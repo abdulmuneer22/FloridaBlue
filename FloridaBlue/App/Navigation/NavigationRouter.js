@@ -8,6 +8,7 @@ import NavItems from './NavItems'
 import CustomNavBar from '../Navigation/CustomNavBar'
 
 // screens identified by the router
+import { Login } from '../Containers/Login'
 import { Home } from '../Containers/Home'
 import { ListviewExample } from '../Containers/ListviewExample'
 
@@ -21,7 +22,8 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
+            <Scene initial key='login' component={Login} title='Login' />
+            <Scene key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
             <Scene key='listviewexample' component={ListviewExample} title='ListviewExample' />
           </Scene>
         </Scene>
