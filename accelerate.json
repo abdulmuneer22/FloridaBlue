@@ -1,0 +1,38 @@
+{
+  "name": "FloridaBlue",
+  "description": "FloridaBlue",
+  "author": "FloridaBlue",
+  "license": "ISC",
+  "port": "8080",
+  "webpackDevPort": "8081",
+  "generators": [
+    {
+      "name": "accelerate-react-native"
+    }
+  ],
+  "backgroundColor" : "#3b9049",
+  "routes": [
+    {
+      "name": "Home",
+      "title": "Welcome",
+      "blueprint": "HomeScreen",
+      "isDefault" : true,
+      "isTab" : true
+    },
+    {
+      "name": "ListviewExample",
+      "blueprint": "ListviewExample",
+      "isDefault" : false,
+      "isTab" : true
+    }
+  ],
+  "appserver" : {
+    "target"    : "local",
+    "public"    : {
+        "url": "http://192.168.1.10:3000/api"
+    },
+    "local"    : {
+        "url": "http://localhost:3000/api"
+    }
+  }
+}
