@@ -51,12 +51,18 @@ class DrawerContent extends Component {
   render () {
     return (
       <ScrollView style={styles.container}>
-        <Image source={Images.logo} style={styles.logo} />
-        <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
-        <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />
-        <DrawerButton text='API Testing' onPress={this.handlePressAPI} />
-        <DrawerButton text='Themes' onPress={this.handlePressTheme} />
-        <DrawerButton text='Device Info' onPress={this.handlePressDevice} />
+
+        <DrawerButton text='Dashboard' onPress={this.handlePressComponents} />
+        <DrawerButton text='My Health Plans' onPress={this.handlePressComponents} />
+          <ScrollView style={styles.container1}>
+            <DrawerButton text='Benefits' onPress={this.handlePressComponents} />
+            <DrawerButton text='Claims' onPress={this.handlePressComponents} />
+            </ScrollView>
+        <DrawerButton text='My Dental Plan' onPress={this.handlePressUsage} />
+        <DrawerButton text='Find Care' onPress={this.handlePressAPI} />
+        <DrawerButton text='Payment' onPress={this.handlePressTheme} />
+        <DrawerButton text='ID Care' onPress={this.handlePressDevice} />
+        <DrawerButton text='Messages' onPress={this.handlePressDevice} />
       </ScrollView>
     )
   }

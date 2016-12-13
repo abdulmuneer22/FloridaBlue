@@ -7,5 +7,14 @@ export default {
   },
   logo: {
     alignSelf: 'center'
+  },
+  container1: {
+    flex: 1,
+  //  padding: 10,
+    margin:10,
+    marginTop:10
+  },
+  logo: {
+    alignSelf: 'center'
   }
 }

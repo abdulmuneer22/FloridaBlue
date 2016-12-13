@@ -14,6 +14,9 @@ import {
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import Screen_1 from '../Registration/Screen_1'
+
+
 
 var logo =require('./logo.png')
 const window = Dimensions.get('window');
@@ -29,7 +32,6 @@ class Login extends Component{
       modalVisible : false
     }
   }
-
 
   _handleLogin(){
       console.log("Login fetch")
@@ -72,29 +74,56 @@ class Login extends Component{
             }
             })
     }
-
+    var username = this.state.username
+    var password = this.state.password
   */
-  var username= 'mbrunit'
-  var password = 'FLBlue29'
+
+  var username = this.state.username
+var password = this.state.password
+  //var username= 'admin'
+  //var password = 'admin1'
   //const hash = new Buffer(`${username}:${password}`).toString('base64')
 
   //const hash='bWJydW5pdDpGTEJsdWUyOQ=='
-  axios.get('https://login-unita.bcbsfl.com/Basic/Login', {
+//axios.get('https://login-unita.bcbsfl.com/Basic/Login', {
+
+if(!this.state.username | !this.state.password){
+       alert("Please enter user name and password!")
+ }else{
+  axios.get('http://localhost:9000/login', {
      auth: {
    username: username,
    password :password
  },
-
   })
-  .then(function (response) {
-    console.log(response);
+
+
+  .then((response)=>{
+    console.log(response.data)
+    console.log(response.status)
+    console.log(response.headers)
+
+    var data = response.data
+
+    if(data.status === 'Success') {
+      alert('Success!')
+    } else {
+      alert(data.message)
+    }
   })
   .catch(function (error) {
-    console.log(error);
-  });
-
+    if(error.response) {
+      console.log(error.response.data)
+      console.log(error.response.status)
+      console.log(error.response.headers)
+    }
+    else {
+      console.log("Error", error.message);
+    }
+  })
   }
 
+}
 
   _moreInfo(){
     if(this.state.modalVisible === true){
@@ -154,16 +183,34 @@ class Login extends Component{
       );
     }else{
       return(
+        <View style={{
+          //borderColor : 'red',
+          //borderWidth : 1,
+          height : 140
+        }}>
+        <TouchableOpacity style={styles.button}
+        onPress={()=>{
+          this._handleLogin()
+        }}>
+        <Text style={styles.buttonText}>
+        Log-in
+        </Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style={{
           height : 20,
-          marginBottom:120
+          //borderColor : 'red',
+          //borderWidth : 1,
+          marginBottom : 120
         }}
         onPress={()=>{this.props.navigator.push({name:'screen_1'})}}
         >
+
         <Text style={styles.regularText}>
         Im new Sign-up
         </Text>
         </TouchableOpacity>
+        </View>
       );
     }
   }
@@ -202,18 +249,6 @@ class Login extends Component{
         Forgot your Password
         </Text>
         </View>
-
-
-        <TouchableOpacity style={styles.button}
-        onPress={()=>{
-          this._handleLogin()
-        }}>
-
-        <Text style={styles.buttonText}>
-        Log-in
-        </Text>
-        </TouchableOpacity>
-
 
 
         {
