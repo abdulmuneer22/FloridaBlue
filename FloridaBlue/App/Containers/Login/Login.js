@@ -13,8 +13,9 @@ import {
 
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {Actions as NavigationActions} from 'react-native-router-flux'
 
-import Screen_1 from '../Registration/Screen_1'
+
 
 
 
@@ -106,10 +107,12 @@ if(!this.state.username | !this.state.password){
     var data = response.data
 
     if(data.status === 'Success') {
-      alert('Success!')
+    //  alert('Success!')
     } else {
       alert(data.message)
     }
+    NavigationActions.WelcomeDashBoard()
+
   })
   .catch(function (error) {
     if(error.response) {
@@ -191,6 +194,8 @@ if(!this.state.username | !this.state.password){
         <TouchableOpacity style={styles.button}
         onPress={()=>{
           this._handleLogin()
+
+
         }}>
         <Text style={styles.buttonText}>
         Log-in
@@ -203,7 +208,7 @@ if(!this.state.username | !this.state.password){
           //borderWidth : 1,
           marginBottom : 120
         }}
-        onPress={()=>{this.props.navigator.push({name:'screen_1'})}}
+        onPress={()=>NavigationActions.screen_1()}
         >
 
         <Text style={styles.regularText}>
