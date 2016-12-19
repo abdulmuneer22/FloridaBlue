@@ -32,10 +32,11 @@ class Greeting extends Component{
   }
 
   render(){
+  
     return(
       <View style={Styles.Greeting}>
       <Text style={{fontSize:20}}>
-      Good Morning {this.state.userName ? this.state.userName :"Yash"}
+      Good Morning {this.props.userName ? this.props.userName :""}
       </Text>
       </View>
     );

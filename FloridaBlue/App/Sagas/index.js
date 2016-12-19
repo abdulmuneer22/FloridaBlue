@@ -8,11 +8,13 @@ import DebugSettings from '../Config/DebugSettings'
 import { StartupTypes } from '../Redux/StartupRedux'
 import { TemperatureTypes } from '../Redux/TemperatureRedux'
 import { LoginTypes } from '../Redux/LoginRedux'
+import { MemberTypes } from '../Redux/MemberRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
 import { login } from './LoginSagas'
+import { member } from './MemberSagas'
 import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -28,6 +30,7 @@ export default function * root () {
     // some sagas only receive an action
     takeLatest(StartupTypes.STARTUP, startup),
     takeLatest(LoginTypes.LOGIN_REQUEST, login),
+    takeLatest(MemberTypes.MEMBER_REQUEST, member),
 
     // some sagas receive extra parameters in addition to an action
     takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)

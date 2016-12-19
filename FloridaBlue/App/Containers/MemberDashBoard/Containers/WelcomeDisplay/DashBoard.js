@@ -20,11 +20,22 @@ import SeeDetailsCard from './Components/SeeDetailsCard'
 import TransButton from './Components/transButton'
 import styles from './DashBoardStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
-
 import {Actions as NavigationActions} from 'react-native-router-flux'
+import MemberActions from '../../../../Redux/MemberRedux'
+import { connect } from 'react-redux';
 
+type LoginScreenProps = {
+  dispatch: () => any,
+  fetching: boolean,
+  userName : string ,
+  attemptMember: () => void
+}
 
 class LandingScreen extends Component {
+
+  props: LoginScreenProps
+  isAttempting : boolean
+
 
   _renderHeader(){
   return <View style={styles.headerContainer}>
@@ -36,13 +47,16 @@ class LandingScreen extends Component {
 }
 
 
+componentDidMount(){
+     this.props.attemptMember();
+}
+
   render(){
+    console.log("root testing"+this.props.userName);
     return(
       <View style={styles.container}>
       {this._renderHeader()}
-
-      <Greeting/>
-
+      <Greeting userName={this.props.userName}/>
       <MyPlanCard/>
       {
         <View style={{
@@ -86,4 +100,17 @@ class LandingScreen extends Component {
 }
 
 
-export default LandingScreen
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.login.fetching,
+    userName: state.member.username
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptMember:() => dispatch(MemberActions.memberRequest())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(LandingScreen)
