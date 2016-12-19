@@ -168,7 +168,7 @@ class TermsofUse extends Component{
           marginBottom : 20,
           borderRadius : 6
         }}
-        onPress={()=>{this.props.navigator.push({name:'confirmation'})}}
+        onPress={()=>{NavigationActions.confirmation()}}
         >
         <Text style={{
           color : 'white'

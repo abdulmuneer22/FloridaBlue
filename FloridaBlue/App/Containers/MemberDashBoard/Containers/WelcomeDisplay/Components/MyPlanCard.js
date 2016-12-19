@@ -3,9 +3,11 @@ import {
   Text,
   View,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native'
 
+import {Actions as NavigationActions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const window = Dimensions.get('window');
@@ -33,16 +35,19 @@ class MyPlanCard extends Component{
           alignItems : 'center'
 
         }}>
-        <View style={{
+        <TouchableOpacity style={{
             backgroundColor : 'rgb(174, 179, 182)',
             width : 50,
             height : 50,
             borderRadius : 50/2,
             alignItems :'center',
             justifyContent : 'center'
-        }}>
+        }}
+         onPress={()=>NavigationActions.Myplan()}>
         <Icon name="heartbeat" size={30} color="white" />
-        </View>
+
+        </TouchableOpacity>
+
 
 
         </View>

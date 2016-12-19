@@ -20,12 +20,9 @@ class Input extends Component{
     super();
     this.state = {
       text : "",
-      errorMemberID : ""
+
     }
   }
-
-
-
 
   render(){
     return(
@@ -47,7 +44,7 @@ class Input extends Component{
 
       />
       </View>
-      <Text style={Styles.memberErrormessage}>{this.state.errorMemberID}</Text>
+
 
       </View>
     );
@@ -62,7 +59,9 @@ const Styles = StyleSheet.create({
     borderBottomColor: '#000000',
     borderBottomWidth: 1,
     fontSize : 12,
-    color : 'grey'
+    color : 'grey',
+    marginTop : 10,
+    //marginBottom : 10
 
 
   }

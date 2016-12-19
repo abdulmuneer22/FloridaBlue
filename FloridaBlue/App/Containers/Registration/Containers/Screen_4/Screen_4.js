@@ -221,13 +221,13 @@ class Screen_4 extends Component{
 
         }}>
         <View style={{flex : 1}}>
-        <Button title="Back" color ={'rgb(211, 215, 218)'} navigator={this.props.navigator} target="Back"/>
+        <Button title="Back" color ={'rgb(211, 215, 218)'}  target="Back"/>
         </View>
 
         <View style={{flex : 1}}>
         </View>
         <View style={{flex : 1}}>
-        <Button title = "Next" color ={'rgb(88, 96, 100 )'} navigator={this.props.navigator} target="Termsofuse"/>
+        <Button title = "Next" color ={'rgb(88, 96, 100 )'}  target="Termsofuse"/>
         </View>
         </View>
 

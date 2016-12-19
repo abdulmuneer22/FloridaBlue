@@ -15,6 +15,7 @@ import { Screen_1} from '../Containers/Registration/Containers/Screen_1'
 import { Screen_2} from '../Containers/Registration/Containers/Screen_2'
 import { Screen_3} from '../Containers/Registration/Containers/Screen_3'
 import { Screen_4} from '../Containers/Registration/Containers/Screen_4'
+import { ReadMore}  from '../Containers/Registration/Containers/Screen_2/ReadMore'
 import { TermsofUse} from '../Containers/Registration/Containers/TermsofUse'
 import { FindMemberID} from '../Containers/Registration/Containers/FindMemberID'
 import { Confirmation} from '../Containers/Registration/Containers/Confirmation'
@@ -38,14 +39,15 @@ class NavigationRouter extends Component {
             <Scene initial key='login' component={Login} title='Login' hideNavBar />
             <Scene key='screen_1' component={Screen_1} title='first page' />
             <Scene key='screen_2' component={Screen_2} title='create username page' />
+              <Scene key='readmore' component={ReadMore} title='readmore page' />
             <Scene key='screen_3' component={Screen_3} title='Verify Device page' />
             <Scene key='screen_4' component={Screen_4} title='Security page' />
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' />
-            <Scene key='MemberId' component={FindMemberID} title='MemberId page' />
-            <Scene key='Confirmation' component={Confirmation} title='Confirmation page' />
-            <Scene  key='WelcomeDashBoard' component={DashBoard} title='Welcome Dash Board' hideNavBar/>
-            <Scene key='Myplan' component={MyPlanScreen} title='MyPlan Page' hideNavBar/>
-            <Scene key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
+            <Scene key='memberid' component={FindMemberID} title='MemberId page' />
+            <Scene key='confirmation' component={Confirmation} title='Confirmation page' />
+            <Scene  key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
+            <Scene  key='Myplan' component={MyPlanScreen} title='MyPlan Page'hideNavBar/>
+            <Scene   key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
             <Scene  key='listviewexample' component={ListviewExample} title='ListviewExample' />
           </Scene>
         </Scene>

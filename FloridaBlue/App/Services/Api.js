@@ -66,6 +66,9 @@ const create = (baseURL = 'http://api.openweathermap.org/data/2.5/') => {
   }
 }
 
+const userApi=apisauce.create({
+  baseURL:'http://localhost:9000/login'
+})
 // let's return back our create method as the default.
 export default {
   create

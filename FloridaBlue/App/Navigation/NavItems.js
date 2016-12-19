@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native'
 import styles from './Styles/NavItemsStyle'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import IonicIcon from 'react-native-vector-icons/Ionicons'
 import { Colors, Metrics } from '../Themes'
 
 const openDrawer = () => {
@@ -21,7 +22,7 @@ export default {
         <Icon name='angle-left'
           size={Metrics.icons.large}
           color={Colors.snow}
-          style={styles.backButton}
+          style={[styles.backButton, {marginTop:5}]}
         />
       </TouchableOpacity>
     )
@@ -37,6 +38,15 @@ export default {
         />
       </TouchableOpacity>
     )
+  },
+  settingsButton () {
+    return <TouchableOpacity onPress={openDrawer.bind(null,'settings')}>
+      <IonicIcon
+        name='ios-more'
+        size={Metrics.icons.large}
+        style={{color:Colors.snow,marginTop:10}}
+      />
+    </TouchableOpacity>
   },
 
   searchButton (callback: Function) {

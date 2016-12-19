@@ -33,7 +33,7 @@ export default function(){
   return(
     <Swiper height={300} style={styles.wrapper} showButtons={true}>
     <View style={styles.slide}>
-    <Header text="Annual Deductable"/
+    <Header text="Annual Deductable"/>
     </View>
     </Swiper>
   )

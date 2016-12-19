@@ -124,7 +124,7 @@ class FindMemberID extends Component{
 
        <View style={Styles.crossStyle}>
        <Text style={Styles.crossText}
-       onPress={()=>{this.props.navigator.pop()}}
+       onPress={()=>{NavigationActions.pop()}}
        >x</Text>
 
        <Text style={Styles.imageId}>
@@ -190,7 +190,7 @@ class FindMemberID extends Component{
 
       <View style={Styles.backgroundClose}>
          <TouchableOpacity style={Styles.closeButton}
-         onPress={()=>{this.props.navigator.pop()}}
+         onPress={()=>{NavigationActions.pop()}}
          >
              <Text style={Styles.closeText}>Close</Text>
          </TouchableOpacity>

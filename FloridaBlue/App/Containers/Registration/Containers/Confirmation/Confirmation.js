@@ -11,18 +11,18 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 var Modal   = require('react-native-modalbox');
+import { Actions } from 'react-native-router-flux'
+
 //var Slider  = require('react-native-slider');
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Actions as NavigationActions} from 'react-native-router-flux'
-
+import ToolBar from '../ToolBar'
+import Button from '../Button'
 
 const window = Dimensions.get('window');
 
 
-import ToolBar from '../ToolBar'
 
-import Button from '../Button'
 class Confirmation extends Component{
 
   constructor(){
@@ -32,8 +32,6 @@ class Confirmation extends Component{
 
     }
   }
-
-
   _showPopup(){
     //alert(this.state.isPopupVisible)
     var isPopupVisible = this.state.isPopupVisible
@@ -87,16 +85,7 @@ class Confirmation extends Component{
 
         </View>
 
-
-
-
-
-
-
-
-
-
-        <View style={{
+      <View style={{
           height : window.height *0.5,
           backgroundColor : 'red',
           position : 'absolute',
@@ -159,7 +148,7 @@ class Confirmation extends Component{
           alignSelf : 'center',
           //marginTop : 14
         }}
-        onPress = {()=>{this.props.navigator.push({name:'login'})}}
+        onPress = {Actions.login}
         >
         <Text style={{
           color : 'white',
@@ -266,6 +255,58 @@ class Confirmation extends Component{
 }
 
 
+const Styles = StyleSheet.create({
+  wrapper : {
+    backgroundColor : 'white',
+    flex : 1
+  },
+  SecurityHintTitle:{
+    fontWeight : 'bold',
+    margin : 10,
+    fontSize : 12
+  },
+  SecurityHintWrapper : {
+    flexDirection : 'row',
+    marginLeft : 15,
+    marginRight : 15,
+    marginTop : 5,
+    //borderColor : 'red',
+    //borderWidth : 1
+  },
+  form : {
+    width : window.width - 30,
+    //borderColor : 'red',
+    //borderWidth : 1,
+    alignSelf : 'center',
+    marginLeft : 20,
+    marginRight : 20
 
+
+  },
+  click : {
+    width: 25,
+    height: 25,
+    borderRadius: 25/2,
+    backgroundColor: 'black',
+    alignItems : 'center',
+    justifyContent : 'center',
+    marginTop : 5
+  },
+  modal: {
+   justifyContent: 'center',
+   alignItems: 'center'
+ },
+ modal4: {
+    height: 200
+  },
+  textInput:{
+    height: 30,
+    borderBottomColor: '#000000',
+    borderBottomWidth: 1
+
+
+  }
+
+});
 
 export default Confirmation

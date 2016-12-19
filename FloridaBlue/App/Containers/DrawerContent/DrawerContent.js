@@ -25,7 +25,19 @@ class DrawerContent extends Component {
 
   handlePressComponents = () => {
     this.toggleDrawer()
-    NavigationActions.componentExamples()
+    NavigationActions.WelcomeDashBoard()
+  }
+  handlePressPlans = () => {
+    this.toggleDrawer()
+    NavigationActions.Myplan()
+  }
+  handlePressBenefits = () => {
+    this.toggleDrawer()
+    NavigationActions.benefits()
+  }
+  handlePressClaims = () => {
+    this.toggleDrawer()
+    NavigationActions.claims()
   }
 
   handlePressUsage = () => {
@@ -53,10 +65,10 @@ class DrawerContent extends Component {
       <ScrollView style={styles.container}>
 
         <DrawerButton text='Dashboard' onPress={this.handlePressComponents} />
-        <DrawerButton text='My Health Plans' onPress={this.handlePressComponents} />
+        <DrawerButton text='My Health Plans' onPress={this.handlePressPlans} />
           <ScrollView style={styles.container1}>
-            <DrawerButton text='Benefits' onPress={this.handlePressComponents} />
-            <DrawerButton text='Claims' onPress={this.handlePressComponents} />
+            <DrawerButton text='Benefits' onPress={this.handlePressBenefits} />
+            <DrawerButton text='Claims' onPress={this.handlePressClaims} />
             </ScrollView>
         <DrawerButton text='My Dental Plan' onPress={this.handlePressUsage} />
         <DrawerButton text='Find Care' onPress={this.handlePressAPI} />

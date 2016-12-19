@@ -81,7 +81,7 @@ class Screen_1 extends Component{
           <Text style={Styles.errormessage}>
           Cant find your member ID ?
           </Text>
-          <Button title="FIND IT HERE" color ={'rgb(26, 147, 216 )'} navigator={this.props.navigator} target="memberid"/>
+          <Button title="FIND IT HERE" color ={'rgb(26, 147, 216 )'} target="memberid"/>
         </View>
         <Input placeholder="First Name" keyboardType="default"/>
         <Input placeholder="Last Name" keyboardType="default"/>
@@ -104,12 +104,12 @@ class Screen_1 extends Component{
           marginRight : 25
         }}>
         <View style={{flex : 1}}>
-        <Button title="Back" color ={'rgb(211, 215, 218)'} navigator={this.props.navigator} target="Back"/>
+        <Button title="Back" color ={'rgb(211, 215, 218)'}  target="Back"/>
         </View>
         <View style={{flex : 1}}>
         </View>
         <View style={{flex : 1}}>
-        <Button title = "Next" color ={'rgb(88, 96, 100 )'} onPress={()=>NavigationActions.screen_2()}/>
+        <Button title = "Next" color ={'rgb(88, 96, 100 )'} target="screen_2"/>
         </View>
         </View>
       </View>

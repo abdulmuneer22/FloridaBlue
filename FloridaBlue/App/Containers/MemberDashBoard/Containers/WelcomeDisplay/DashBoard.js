@@ -11,18 +11,36 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 
-import ToolBar from './Components/toolBar'
+
 import Greeting from './Components/Greeting'
 import MyPlanCard from './Components/MyPlanCard'
 import Card from './Components/Card'
+import {Colors,Metrics,Fonts} from '../../../../Themes'
 import SeeDetailsCard from './Components/SeeDetailsCard'
 import TransButton from './Components/transButton'
+import styles from './DashBoardStyle'
+import NavItems from '../../../../Navigation/NavItems.js'
+
+import {Actions as NavigationActions} from 'react-native-router-flux'
+
 
 class LandingScreen extends Component {
+
+  _renderHeader(){
+  return <View style={styles.headerContainer}>
+    {NavItems.hamburgerButton()}
+    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>Florida Blue</Text>
+    {NavItems.settingsButton()}
+
+  </View>
+}
+
+
   render(){
     return(
-      <View>
-      <ToolBar/>
+      <View style={styles.container}>
+      {this._renderHeader()}
+
       <Greeting/>
 
       <MyPlanCard/>
@@ -32,35 +50,31 @@ class LandingScreen extends Component {
           flexWrap : 'wrap',
           flexDirection : 'row'
         }}>
+
         <Card
-        image={"imagelink"}
         title = "Payment"
         bg="rgb(204, 211, 214)"
         icon = "usd"
         />
-        <Card
-        image={"imagelink"}
+
+      <Card
         title = "ID Card"
         bg="rgb(220, 230, 234 )"
         icon = "credit-card"
-
         />
 
         <SeeDetailsCard
-        image={"imagelink"}
         title = "Promotions"
         bg="rgb(220, 230, 234 )"
         icon = "paperclip"
-
         />
 
         <SeeDetailsCard
-        image={"imagelink"}
         title = "Session"
         bg="rgb(234, 234, 220)"
         icon = "apple"
-
         />
+
         </View>
       }
 

@@ -124,7 +124,7 @@ class Screen_2 extends Component{
 
       <View style={{
         width : 110,
-        marginTop : 18
+        marginTop : 25
       }}>
       <PasswordMeter/>
       </View>
@@ -182,7 +182,7 @@ class Screen_2 extends Component{
           borderBottomColor : 'blue',
           borderBottomWidth : 1
         }}
-        onPress={()=>{this.props.navigator.push({name:'readmore'})}}
+        onPress={()=>{NavigationActions.readmore()}}
         >
         <Text style={{
           fontSize : 10
@@ -194,16 +194,7 @@ class Screen_2 extends Component{
         </TouchableOpacity>
         </View>
       }
-      {
-        this.state.clicked ? null :
-        <Text style={{
-          textAlign : 'center',
-          fontSize : 12,
-          color : 'red'
-        }}>
-        Please Agree To The Termsof Use.
-        </Text>
-      }
+
       <View style={{
         bottom : 30,
         flexDirection : 'row',
@@ -212,12 +203,12 @@ class Screen_2 extends Component{
         marginRight : 25
       }}>
       <View style={{flex : 1}}>
-      <Button title="Back" color ={'rgb(211, 215, 218)'} navigator={this.props.navigator} target="Back"/>
+      <Button title="Back" color ={'rgb(211, 215, 218)'}  target="Back"/>
       </View>
       <View style={{flex : 1}}>
       </View>
       <View style={{flex : 1}}>
-      <Button title = "Next" color ={'rgb(88, 96, 100 )'} navigator={this.props.navigator} target="Screen_3"/>
+      <Button title = "Next" color ={'rgb(88, 96, 100 )'}  target="screen_3"/>
       </View>
       </View>
       </View>

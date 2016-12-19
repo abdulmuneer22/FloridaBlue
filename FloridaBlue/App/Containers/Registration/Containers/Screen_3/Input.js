@@ -20,7 +20,6 @@ class Input extends Component{
     super();
     this.state = {
       text : "",
-      errorMemberID : ""
     }
   }
 
@@ -35,7 +34,7 @@ class Input extends Component{
         borderBottomWidth :1,
         marginLeft : 10,
         marginRight : 20,
-        marginTop : 10
+        marginTop : 20
       }}>
       <TextInput
       style={Styles.textInput}
@@ -43,12 +42,12 @@ class Input extends Component{
       value={this.state.text}
       placeholder= {this.props.placeholder}
       underlineColorAndroid='white'
-      placeholderTextColor="rgba(181, 188, 192  , 0.7)"
+      placeholderTextColor="rgba(213, 211, 200 , 0.7)"
       keyboardType = {this.props.keyboardType}
 
       />
       </View>
-      <Text style={Styles.memberErrormessage}>{this.state.errorMemberID}</Text>
+
 
       </View>
     );
@@ -57,17 +56,11 @@ class Input extends Component{
 
 
 const Styles = StyleSheet.create({
-  memberErrormessage : {
-    color : 'red'
 
-
-  },
   textInput:{
-    height: 20,
+    height: 30,
     borderBottomColor: '#000000',
-    borderBottomWidth: 1,
-    fontSize : 12,
-    marginTop : 0
+    borderBottomWidth: 1
 
 
   }

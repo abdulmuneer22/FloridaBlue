@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import RegistrationToolBar from '../RegistrationToolBar'
+import {Actions as NavigationActions} from 'react-native-router-flux'
 
 
 class ReadMore extends Component{

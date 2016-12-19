@@ -14,43 +14,52 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 
 
 class Button extends Component{
-
-  _handlePress(){
-
-    switch (this.props.target) {
-      case 'Back':
-        NavigationActions.pop()
-        break;
-      case 'Screen_3':
-        NavigationActions.screen_3()
-        break;
-      case 'Screen_4':
-        NavigationActions.screen_4()
-        break;
-      case 'screen_2':
-        NavigationActions.screen_2()
-          break;
-      case 'Termsofuse':
-            NavigationActions.Termsofuse()
-            break;
-
-
-      case 'memberid':
-
-        NavigationActions.MemberId()
-        break;
-
-
-      default:
-
-    }
-  }
-
   render(){
 
     return(
       <TouchableOpacity style={[Styles.button,{backgroundColor : this.props.color}]}
-      onPress={()=>{this._handlePress()}}
+      onPress={()=>{
+        var routeName = this.props.target
+        switch(routeName){
+          case 'memberid':
+          NavigationActions.memberid()
+          break;
+
+          case 'screen_2':
+          NavigationActions.screen_2()
+          break;
+
+          case 'readmore':
+          NavigationActions.readmore()
+          break;
+
+          case 'screen_3':
+          NavigationActions.screen_3()
+          break;
+
+          case 'screen_4':
+          NavigationActions.screen_4()
+          break;
+
+          case 'Termsofuse':
+          NavigationActions.Termsofuse()
+          break;
+          case 'confirmation':
+          NavigationActions.confirmation()
+          break;
+
+
+
+          case 'Back':
+          NavigationActions.pop()
+          break;
+          default:
+          return null
+        }
+
+
+
+      }}
       >
       <Text style={Styles.buttonText}>
       {this.props.title}
