@@ -13,8 +13,10 @@ import {
 
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Actions as NavigationActions} from 'react-native-router-flux'
-
+import {Actions as NavigationActions} from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import LoginActions from '../../Redux/LoginRedux'
+import styles from './LoginStyle'
 
 
 
@@ -22,9 +24,18 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 var logo =require('./logo.png')
 const window = Dimensions.get('window');
 
-import styles from './LoginStyle'
+type LoginScreenProps = {
+  dispatch: () => any,
+  fetching: boolean,
+  attemptLogin: () => void
+}
+
+
 
 class Login extends Component{
+   props: LoginScreenProps
+   isAttempting : boolean
+
   constructor(){
     super();
     this.state = {
@@ -32,101 +43,38 @@ class Login extends Component{
       password : "",
       modalVisible : false
     }
+
+      this.isAttempting = false
   }
 
   _handleLogin(){
-      console.log("Login fetch")
-      //var username = this.state.username
-      //var password = this.state.password
-      //end point to do api call
 
 
-  /*          fetch("https://login-unita.bcbsfl.com/Basic/Login", {
-        method: "GET",
-        headers: {
-            'Authorization': "Basic " + btoa("username" + ":" + "password")
-        }
-    })
-    .then((response) => response.text())
-    .then((quote) => {
-        AlertIOS.alert(Test)
-    })
-    .done();
-  */
-
-
-
-
-  /*
-  if(!this.state.username | !this.state.password){
-         alert("Please enter user name and password!")
-   }else{
-          axios.get('https://login-unita.bcbsfl.com/Basic/Login',{
-
-        uid: this.state.username,
-        password:this.state.password
-    })
-        .then((response)=>{
-            console.log(response.data)
-            if(response.data.loginSuccessful === true){
-                this.props.navigator.push({name:'Screen_1'})
-            }else{
-                alert("Incorrect User Name or Password")
-            }
-            })
-    }
-    var username = this.state.username
-    var password = this.state.password
-  */
 
   var username = this.state.username
 var password = this.state.password
-  //var username= 'admin'
-  //var password = 'admin1'
-  //const hash = new Buffer(`${username}:${password}`).toString('base64')
-
-  //const hash='bWJydW5pdDpGTEJsdWUyOQ=='
-//axios.get('https://login-unita.bcbsfl.com/Basic/Login', {
 
 if(!this.state.username | !this.state.password){
        alert("Please enter user name and password!")
  }else{
-  axios.get('http://localhost:9000/login', {
-     auth: {
-   username: username,
-   password :password
- },
-  })
-
-
-  .then((response)=>{
-    console.log(response.data)
-    console.log(response.status)
-    console.log(response.headers)
-
-    var data = response.data
-
-    if(data.status === 'Success') {
-    //  alert('Success!')
-    } else {
-      alert(data.message)
-    }
-    NavigationActions.WelcomeDashBoard()
-
-  })
-  .catch(function (error) {
-    if(error.response) {
-      console.log(error.response.data)
-      console.log(error.response.status)
-      console.log(error.response.headers)
-    }
-    else {
-      console.log("Error", error.message);
-    }
-  })
-  }
+   //const { username, password } = this.state
+ this.isAttempting = true
+ // attempt a login - a saga is listening to pick it up from here.
+ this.props.attemptLogin(username, password)
+}
 
 }
+
+
+componentWillReceiveProps (newProps) {
+    this.forceUpdate()
+    // Did the login attempt complete?
+    console.log("I am receving new props")
+    if (this.isAttempting && !newProps.fetching) {
+    //  NavigationActions.WelcomeDashBoard()
+        NavigationActions.WelcomeDashBoard()
+    }
+  }
 
   _moreInfo(){
     if(this.state.modalVisible === true){
@@ -281,4 +229,17 @@ if(!this.state.username | !this.state.password){
   }
 }
 
-export default Login
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.login.fetching
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

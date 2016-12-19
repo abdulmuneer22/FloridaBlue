@@ -35,7 +35,7 @@ class Greeting extends Component{
     return(
       <View style={Styles.Greeting}>
       <Text style={{fontSize:20}}>
-      Good Morning {this.state.userName}
+      Good Morning {this.state.userName ? this.state.userName :"Yash"}
       </Text>
       </View>
     );
