@@ -19,8 +19,6 @@ import LoginActions from '../../Redux/LoginRedux'
 import styles from './LoginStyle'
 
 
-
-
 var logo =require('./logo.png')
 const window = Dimensions.get('window');
 
