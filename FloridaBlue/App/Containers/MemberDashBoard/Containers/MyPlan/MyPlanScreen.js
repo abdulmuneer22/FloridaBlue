@@ -17,6 +17,16 @@ import Card from './Components/Card'
 import NavItems from '../../../../Navigation/NavItems.js'
 import styles from './MyPlanScreenStyle'
 import MyPlanSwiper from './Components/MyPlanSwiper'
+import { connect } from 'react-redux';
+import MyPlanActions from '../../../../Redux/MyPlanRedux'
+
+type LoginScreenProps = {
+  dispatch: () => any,
+  fetching: boolean,
+  userName : string ,
+  data:Object,
+  attemptMember: () => void
+}
 
 
 class MyPlanScreen extends Component{
@@ -25,11 +35,7 @@ class MyPlanScreen extends Component{
         super();
         this.state = {
             planName : "",
-            userName : "",
-            currentBalance : "",
-            ytdContribution : "",
-            ytdDistribution : ""
-        }
+          }
     }
 
     _renderHeader(){
@@ -40,6 +46,11 @@ class MyPlanScreen extends Component{
 
     </View>
   }
+
+  componentDidMount(){
+       this.props.attemptMyPlan();
+  }
+
 
     render(){
         return(
@@ -57,7 +68,7 @@ class MyPlanScreen extends Component{
 
 
                 <View style={Styles.chartWrapper}>
-                <MyPlanSwiper/>
+                <MyPlanSwiper data={this.props.data}/>
 
                 </View>
 
@@ -86,17 +97,17 @@ class MyPlanScreen extends Component{
 
                         <View style={Styles.column}>
                         <Text style={Styles.columnText}>Current Balance</Text>
-                        <Text>$ 2500</Text>
+                        <Text>${this.props.data.hsaamount.currentBalance} </Text>
                         </View>
 
                         <View style={Styles.column}>
                         <Text style={Styles.columnText}>YTD Contribute</Text>
-                        <Text>$2500</Text>
+                        <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
                         </View>
 
                         <View style={Styles.column}>
                         <Text style={Styles.columnText}>YTD Distribute</Text>
-                        <Text>$2500</Text>
+                        <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
                         </View>
 
 
@@ -148,8 +159,18 @@ column : {
 
   }
 
-
-
-
 });
-export default MyPlanScreen
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.login.fetching,
+    data: state.myplan.data
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
+  }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(MyPlanScreen)

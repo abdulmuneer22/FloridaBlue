@@ -29,9 +29,6 @@ class Button extends Component{
           NavigationActions.screen_2()
           break;
 
-          case 'readmore':
-          NavigationActions.readmore()
-          break;
 
           case 'screen_3':
           NavigationActions.screen_3()

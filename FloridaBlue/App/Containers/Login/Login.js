@@ -183,6 +183,10 @@ componentWillReceiveProps (newProps) {
         onChangeText={(text) => this.setState({username : text})}
         value={this.state.username}
         placeholder="User ID"
+        autoCapitalize='none'
+        autoCorrect={false}
+        returnKeyType='next'
+        keyboardType='default'
         underlineColorAndroid='rgba(0,0,0,0)'
         placeholderTextColor="rgba(213, 211, 200 , 0.7)"
         />

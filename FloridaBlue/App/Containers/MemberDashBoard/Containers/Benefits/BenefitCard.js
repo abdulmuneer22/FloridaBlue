@@ -13,27 +13,19 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 
 class Card extends Component{
 
-  _handleCardClick(){
-    switch(this.props.title){
-      case 'Benefits':
-      NavigationActions.myplanbenefits()
-      break;
-      default :
-      return null
-    }
-  }
+
   render(){
     return(
       <View style={{
         backgroundColor : this.props.bg,
         width : window.width * 0.5,
-        height : 140,
+        height : 160,
         alignItems : 'center',
         justifyContent : 'center'
 
       }}>
       <TouchableOpacity
-      onPress = {()=>{this._handleCardClick()}}
+      
       >
       <View style={{alignItems : 'center'}}>
       <Icon name={this.props.icon} size={40} color="black" />

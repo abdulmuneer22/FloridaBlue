@@ -94,7 +94,7 @@ class ReadMore extends Component{
         borderRadius : 6,
         margin : 20
       }}
-      onPress={()=>{this.props.navigator.pop()}}
+      onPress={()=>{NavigationActions.pop()}}
       >
       <Text style={{
         color : 'white'

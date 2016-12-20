@@ -5,6 +5,7 @@ import Drawer from 'react-native-drawer'
 import { DefaultRenderer, Actions as NavigationActions } from 'react-native-router-flux'
 import { DrawerContent } from '../Containers/DrawerContent'
 import { connect } from 'react-redux'
+import SettingsContent from '../Containers/DrawerContent/SettingsContent'
 import Styles from './Styles/NavigationDrawerStyle'
 
 /* *******************
@@ -15,6 +16,14 @@ class NavigationDrawer extends Component {
   render () {
     const state = this.props.navigationState
     const children = state.children
+    console.log("state.type", state.contentType)
+    let content;
+    if(state.contentType=='menu'){
+      content =<DrawerContent/>
+    }else{
+      content=<SettingsContent/>
+    }
+    
     return (
       <Drawer
         ref='navigation'
@@ -22,7 +31,7 @@ class NavigationDrawer extends Component {
         open={state.open}
         onOpen={() => NavigationActions.refresh({key: state.key, open: true})}
         onClose={() => NavigationActions.refresh({key: state.key, open: false})}
-        content={<DrawerContent />}
+        content={content}
         styles={Styles}
         tapToClose
         openDrawerOffset={0.2}

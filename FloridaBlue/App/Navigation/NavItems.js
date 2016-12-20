@@ -8,9 +8,10 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import IonicIcon from 'react-native-vector-icons/Ionicons'
 import { Colors, Metrics } from '../Themes'
 
-const openDrawer = () => {
+const openDrawer = (type) => {
   NavigationActions.refresh({
     key: 'drawer',
+    contentType:type,
     open: true
   })
 }
@@ -22,7 +23,7 @@ export default {
         <Icon name='angle-left'
           size={Metrics.icons.large}
           color={Colors.snow}
-          style={[styles.backButton, {marginTop:5}]}
+          style={[styles.backButton, {top:-10}]}
         />
       </TouchableOpacity>
     )
@@ -30,7 +31,7 @@ export default {
 
   hamburgerButton () {
     return (
-      <TouchableOpacity onPress={openDrawer}>
+      <TouchableOpacity onPress={openDrawer.bind(null,'menu')}>
         <Icon name='bars'
           size={Metrics.icons.medium}
           color={Colors.snow}
@@ -44,7 +45,7 @@ export default {
       <IonicIcon
         name='ios-more'
         size={Metrics.icons.large}
-        style={{color:Colors.snow,marginTop:10}}
+        style={{color:Colors.snow,marginTop:5}}
       />
     </TouchableOpacity>
   },

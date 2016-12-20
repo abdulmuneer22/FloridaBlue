@@ -124,7 +124,7 @@ class Screen_2 extends Component{
 
       <View style={{
         width : 110,
-        marginTop : 25
+        marginTop : 35
       }}>
       <PasswordMeter/>
       </View>
@@ -182,7 +182,7 @@ class Screen_2 extends Component{
           borderBottomColor : 'blue',
           borderBottomWidth : 1
         }}
-        onPress={()=>{NavigationActions.readmore()}}
+        onPress={()=>{NavigationActions.ReadMore()}}
         >
         <Text style={{
           fontSize : 10

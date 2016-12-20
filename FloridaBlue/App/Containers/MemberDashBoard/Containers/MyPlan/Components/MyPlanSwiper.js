@@ -24,8 +24,10 @@ class MyPlanSwiper extends Component{
                     }}>Annual Deductable (In-Network)</Text>
                 </View>
 
-                <Text>Spent Year-to-Date: $2,250</Text>
-
+                <Text>Spent Year-to-Date: ${this.props.data.annualDeductible.usedDeductible}</Text>
+                <Text style={{justifyContent:'center', marginTop:10}}> You are ${this.props.data.annualDeductible.remainingValue} away reaching
+                your In-Network Family Deductables of $ {this.props.data.annualDeductible.benefitValue}
+                </Text>
                 </View>
 
                 <View style={styles.slide}>
@@ -35,7 +37,10 @@ class MyPlanSwiper extends Component{
                         fontWeight : 'bold'
                     }}>Annual Out-of-Pocket Maximum (In-Network)</Text>
                 </View>
-                <Text>Spent Year-to-Date: $2,250</Text>
+                <Text>Spent Year-to-Date: ${this.props.data.oop.usedOOP}</Text>
+                <Text style={{alignItems:'center', marginTop:10}}> You are ${this.props.data.oop.remainingValue} away reaching
+                your In-Network Family Deductables of $ {this.props.data.oop.benefitValue}
+                </Text>
                 </View>
                 </Swiper>
 
