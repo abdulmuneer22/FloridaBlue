@@ -20,7 +20,7 @@ import MyPlanSwiper from './Components/MyPlanSwiper'
 import { connect } from 'react-redux';
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
 
-type LoginScreenProps = {
+type MyPlanScreenProps = {
   dispatch: () => any,
   fetching: boolean,
   userName : string ,
@@ -65,7 +65,6 @@ class MyPlanScreen extends Component{
                 {this.props.data.plan.planName ? this.props.data.plan.planName:""}
                 </Text>
                 </View>
-
 
                 <View style={Styles.chartWrapper}>
                 <MyPlanSwiper data={this.props.data}/>
