@@ -5,16 +5,13 @@ import axios from 'axios'
 export function * login ({ username, password }) {
   var username = username
   var password = password
-  console.log(username, password)
-  //process.env.NODE_TLS_REJECT_UNAUTHORIZED="0"
-  axios.get('https://login-unita.bcbsfl.com/Basic/Login', {
+  axios.get('http://localhost:9000/login', {
       auth: {
-        username: username,
-        password :password
-      },
-      maxRedirects: 0
-  })
-  .then((response)=>{
+    username: username,
+    password :password
+  },
+   })
+   .then((response)=>{
 
      console.log(response.data)
      console.log(response.status)
@@ -27,36 +24,12 @@ export function * login ({ username, password }) {
      }
 
    })
-  .catch(function (error) {
-    console.log(error)
-    /*
-    var response = error.response
-    console.log(response);
-    // Read JSON response
-    var httpStatusCode = response.status
-    var status = response.headers.location
-
-    // Check for login status
-    var pattern = /Success/;
-    if(pattern.test(status)) {
-      console.log("Login Successful")
-      // Grab SiteMinder Token
-      var cookieItems = response.headers['set-cookie']
-      cookieItems.forEach(function(item) {
-        var pattern = /^SMSESSION/;
-    if(pattern.test(item)) {
-          console.log(item)
-          var elements = item.split(';')
-          var smToken = elements[0]
-          var smToken = smToken.replace('SMSESSION=', '')
-          console.log(smToken)
-        }
-      })
-    }
-    else {
-      console.log("Login Failed")
-    }
-    */
+   .catch(function (error) {
+     if(error.response) {
+       console.log(error.response.data)
+       console.log(error.response.status)
+       console.log(error.response.headers)
+     }
 
    })
 

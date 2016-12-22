@@ -55,7 +55,7 @@ class Input extends Component{
 const Styles = StyleSheet.create({
 
   textInput:{
-    height: 30,
+    height: 31,
     borderBottomColor: '#000000',
     borderBottomWidth: 1,
     fontSize : 12,
