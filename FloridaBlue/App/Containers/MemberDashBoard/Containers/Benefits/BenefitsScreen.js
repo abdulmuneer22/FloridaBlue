@@ -26,7 +26,7 @@ class PlanBenefits extends Component{
   _renderHeader(){
   return <View style={styles.headerContainer}>
     {NavItems.backButton()}
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>MyPlan</Text>
+    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>Plan Benefits</Text>
     {NavItems.settingsButton()}
 
   </View>
@@ -48,42 +48,41 @@ class PlanBenefits extends Component{
             <Card
             title = "Doctor Office Services"
             bg="rgb(204, 211, 214)"
-            icon = "usd"
-            target="planbenefits"
+            icon = "user-md"
+
             />
             <Card
-            title = "ID Card"
+            title = "Emergency Services"
             bg="rgb(114, 154, 160)"
-            icon = "credit-card"
-            target="planbenefits"
+            icon = "ambulance"
 
             />
 
             <Card
-            title = "ID Card"
+            title = "Hospital/Surgical"
             bg="rgb(226, 233, 235)"
-            icon = "credit-card"
-            target="planbenefits"
+            icon = "hospital-o"
+
 
             />
 
             <Card
-            title = "ID Card"
+            title = "Laboratory and Radiology Service"
             bg="rgb(76, 82, 83)"
-            icon = "credit-card"
-            target="planbenefits"
+            icon = "flask"
+
 
             />
 
             <Card
-            title = "ID Card"
+            title = "Mental Health"
             bg="rgb(190, 193, 194)"
-            icon = "credit-card"
+            icon = "plus-square"
             />
             <Card
-            title = "ID Card"
+            title = "Pahrmacy"
             bg="rgb(82, 111, 115)"
-            icon = "credit-card"
+            icon = "plus"
             />
 
 

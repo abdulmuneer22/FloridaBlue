@@ -1,4 +1,3 @@
-// @flow
 
 import React, { Component } from 'react'
 import { Scene, Router } from 'react-native-router-flux'
@@ -6,7 +5,6 @@ import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
 import NavItems from './NavItems'
 import CustomNavBar from '../Navigation/CustomNavBar'
-
 // screens identified by the router
 import { Login } from '../Containers/Login'
 import { Home } from '../Containers/Home'
@@ -20,17 +18,14 @@ import { TermsofUse} from '../Containers/Registration/Containers/TermsofUse'
 import { FindMemberID} from '../Containers/Registration/Containers/FindMemberID'
 import { Confirmation} from '../Containers/Registration/Containers/Confirmation'
 //import { WelcomeDisplay} from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
-
 import { DashBoard} from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import { MyPlanScreen} from '../Containers/MemberDashBoard/Containers/MyPlan'
 import { BenefitsScreen} from '../Containers/MemberDashBoard/Containers/Benefits'
-
+import { DoctorServices } from '../Containers/MemberDashBoard/Containers/DoctorService'
 import { ListviewExample } from '../Containers/ListviewExample'
-
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
 ***************************/
-
 class NavigationRouter extends Component {
   render () {
     return (
@@ -46,9 +41,10 @@ class NavigationRouter extends Component {
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' />
             <Scene key='memberid' component={FindMemberID} title='MemberId page' />
             <Scene key='confirmation' component={Confirmation} title='Confirmation page' />
-            <Scene  key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
+            <Scene   key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
             <Scene  key='Myplan' component={MyPlanScreen} title='MyPlan Page'hideNavBar/>
-            <Scene  key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page'hideNavBar/>
+            <Scene   key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page'hideNavBar/>
+            <Scene  key='doctorservices' component={DoctorServices} title='DoctorServices Page'hideNavBar/>
             <Scene   key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
             <Scene  key='listviewexample' component={ListviewExample} title='ListviewExample' />
           </Scene>
@@ -57,5 +53,4 @@ class NavigationRouter extends Component {
     )
   }
 }
-
 export default NavigationRouter

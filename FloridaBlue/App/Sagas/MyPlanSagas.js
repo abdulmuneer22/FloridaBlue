@@ -11,6 +11,9 @@ console.log("I am coming from myplan")
     "yearToDateContribution": "2000",
     "yearToDateDistribution": "2000"
 },
+"plan":{
+  "planName":"Blue Options PPO"
+},
 "annualDeductible": {
     "benefitValue": "50",
     "usedDeductible": "22",
@@ -22,6 +25,20 @@ console.log("I am coming from myplan")
     "usedOOP": "33",
     "remainingValue":17,
     "coverageType":"“Individual/Family"
+  },
+  "DoctorServices":{
+    "InNetwork":{
+      "physicianservices":"20",
+      "Specialist":"40",
+      "physician":"200",
+      "specialists":"400"
+    },
+    "OutNetwork":{
+      "familyphysician":"20%",
+      "Specialist":"40%",
+      "family":"20%",
+      "specialists":"40%"
+    }
   }
 }
 
