@@ -4,7 +4,7 @@ import {
   View,
   StyleSheet,
   Dimensions,
-  TouchableOpacity
+  TouchableWithoutFeedback
 } from 'react-native'
 
 const window = Dimensions.get('window');
@@ -13,6 +13,16 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 
 class Card extends Component{
 
+
+  _handleCardClick(){
+    switch(this.props.title){
+      case 'Doctor Office Services':
+      NavigationActions.doctorservices()
+      break;
+      default :
+      return null
+    }
+  }
 
   render(){
     return(
@@ -24,9 +34,8 @@ class Card extends Component{
         justifyContent : 'center'
 
       }}>
-      <TouchableOpacity
-      
-      >
+      <TouchableWithoutFeedback
+      onPress = {()=>{this._handleCardClick()}}>
       <View style={{alignItems : 'center'}}>
       <Icon name={this.props.icon} size={40} color="black" />
       <Text style={{
@@ -41,7 +50,7 @@ class Card extends Component{
 
       </View>
 
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
       </View>
     );
   }

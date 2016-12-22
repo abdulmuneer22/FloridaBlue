@@ -4,7 +4,7 @@ import {
   View,
   StyleSheet,
   Dimensions,
-  TouchableOpacity
+  TouchableWithoutFeedback
 } from 'react-native'
 
 const window = Dimensions.get('window');
@@ -32,7 +32,7 @@ class Card extends Component{
         justifyContent : 'center'
 
       }}>
-      <TouchableOpacity
+      <TouchableWithoutFeedback
       onPress = {()=>{this._handleCardClick()}}
       >
       <View style={{alignItems : 'center'}}>
@@ -49,7 +49,7 @@ class Card extends Component{
 
       </View>
 
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
       </View>
     );
   }

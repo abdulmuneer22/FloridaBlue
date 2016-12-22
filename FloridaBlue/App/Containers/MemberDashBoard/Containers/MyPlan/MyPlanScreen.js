@@ -62,7 +62,7 @@ class MyPlanScreen extends Component{
 
                 <View style={Styles.PlanName}>
                 <Text>
-                Blue Options
+                {this.props.data.plan.planName ? this.props.data.plan.planName:""}
                 </Text>
                 </View>
 

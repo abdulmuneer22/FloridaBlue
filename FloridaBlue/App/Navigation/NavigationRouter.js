@@ -15,7 +15,7 @@ import { Screen_1} from '../Containers/Registration/Containers/Screen_1'
 import { Screen_2} from '../Containers/Registration/Containers/Screen_2'
 import { Screen_3} from '../Containers/Registration/Containers/Screen_3'
 import { Screen_4} from '../Containers/Registration/Containers/Screen_4'
-import { ReadMore}  from '../Containers/Registration/Containers/Screen_2/ReadMore'
+import { ReadMore}  from '../Containers/Registration/Containers/Screen_2'
 import { TermsofUse} from '../Containers/Registration/Containers/TermsofUse'
 import { FindMemberID} from '../Containers/Registration/Containers/FindMemberID'
 import { Confirmation} from '../Containers/Registration/Containers/Confirmation'
@@ -24,6 +24,7 @@ import { Confirmation} from '../Containers/Registration/Containers/Confirmation'
 import { DashBoard} from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import { MyPlanScreen} from '../Containers/MemberDashBoard/Containers/MyPlan'
 import { BenefitsScreen} from '../Containers/MemberDashBoard/Containers/Benefits'
+import { DoctorServices } from '../Containers/MemberDashBoard/Containers/DoctorService'
 
 import { ListviewExample } from '../Containers/ListviewExample'
 
@@ -37,7 +38,7 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene  key='login' component={Login} title='Login' hideNavBar />
+            <Scene initial key='login' component={Login} title='Login' hideNavBar />
             <Scene key='screen_1' component={Screen_1} title='first page' />
             <Scene key='screen_2' component={Screen_2} title='create username page' />
             <Scene key='ReadMore' component={ReadMore} title='readmore page' />
@@ -46,9 +47,10 @@ class NavigationRouter extends Component {
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' />
             <Scene key='memberid' component={FindMemberID} title='MemberId page' />
             <Scene key='confirmation' component={Confirmation} title='Confirmation page' />
-            <Scene initial key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
+            <Scene   key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
             <Scene  key='Myplan' component={MyPlanScreen} title='MyPlan Page'hideNavBar/>
-            <Scene  key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page'hideNavBar/>
+            <Scene   key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page'hideNavBar/>
+            <Scene  key='doctorservices' component={DoctorServices} title='DoctorServices Page'hideNavBar/>
 
             <Scene   key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
             <Scene  key='listviewexample' component={ListviewExample} title='ListviewExample' />
