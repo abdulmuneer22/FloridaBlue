@@ -30,6 +30,7 @@ const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
 export default function * root () {
   console.log("testing"+MyPlanTypes.MYPLAN_REQUEST);
   console.log("testing"+MemberTypes.MEMBER_REQUEST);
+  console.log("testing"+myplan);
 
   yield [
     // some sagas only receive an action

@@ -17,7 +17,7 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  data: null,
+  data: null ,
   fetching: false,
   error: null,
 })
@@ -25,15 +25,16 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Reducers ------------- */
 
 // we're attempting to login
-export const request = (state: Object) => state.merge({ fetching: true })
+export const request = (state: Object) => state.merge({ fetching: true,data:null })
 
 // we've successfully logged in
-export const success = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, error: null,data})
-
+export const success = (state: Object, action: Object) =>{
+  const {data} = action
+  return state.merge({fetching: false, data})
+}
 // we've had a problem logging in
 export const failure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error })
+  state.merge({ fetching: false, error ,data:null})
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -47,4 +48,4 @@ export const reducer = createReducer(INITIAL_STATE, {
 /* ------------- Selectors ------------- */
 
 // Is the current user logged in?
-export const isMyPlanIn = (myplanState: Object) => myplanState.data !== null
+export const isMyPlanIn = (myplanState: Object) => myplanState.myplan.data !== null

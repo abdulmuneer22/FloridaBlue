@@ -49,7 +49,6 @@ class NavigationRouter extends Component {
             <Scene  key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
             <Scene  key='Myplan' component={MyPlanScreen} title='MyPlan Page'hideNavBar/>
             <Scene  key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page'hideNavBar/>
-
             <Scene   key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
             <Scene  key='listviewexample' component={ListviewExample} title='ListviewExample' />
           </Scene>

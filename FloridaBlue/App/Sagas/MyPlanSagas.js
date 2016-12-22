@@ -3,7 +3,7 @@ import MyPlanActions from '../Redux/MyPlanRedux'
 //import axios from 'axios'
 // attempts to login
 export function * myplan () {
-
+console.log("I am coming from myplan")
   var data =
 {
   "hsaamount" :{

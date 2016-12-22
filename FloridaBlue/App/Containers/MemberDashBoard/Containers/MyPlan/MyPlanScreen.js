@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component ,PropTypes} from 'react';
 import {
   StyleSheet,
   Text,
@@ -19,106 +19,100 @@ import styles from './MyPlanScreenStyle'
 import MyPlanSwiper from './Components/MyPlanSwiper'
 import { connect } from 'react-redux';
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
-
-type LoginScreenProps = {
+/*
+type MyPlanScreenProps = {
   dispatch: () => any,
   fetching: boolean,
   userName : string ,
-  data:Object,
-  attemptMember: () => void
+  data: object,
+  attemptMyPlan: () => void
 }
-
-
+*/
 class MyPlanScreen extends Component{
 
-    constructor(){
-        super();
-        this.state = {
-            planName : "",
-          }
-    }
-
-    _renderHeader(){
-    return <View style={styles.headerContainer}>
-      {NavItems.backButton()}
-      <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>MyPlan</Text>
-      {NavItems.settingsButton()}
-
-    </View>
-  }
 
   componentDidMount(){
-       this.props.attemptMyPlan();
+       console.log("I am my plan screen")
+        this.props.attemptMyPlan();
   }
 
 
-    render(){
-        return(
-            <View style={{
-                flex : 1 ,
-                backgroundColor : 'white'
-            }}>
-                  {this._renderHeader()}
+  _renderHeader(){
+  return <View style={styles.headerContainer}>
+    {NavItems.backButton()}
+    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>MyPlan</Text>
+    {NavItems.settingsButton()}
 
-                <View style={Styles.PlanName}>
-                <Text>
-                Blue Options
-                </Text>
-                </View>
-
-
-                <View style={Styles.chartWrapper}>
-                <MyPlanSwiper data={this.props.data}/>
-
-                </View>
-
-                <View style={{
-
-                flexWrap : 'wrap',
-                flexDirection : 'row'
-                }}>
-                <Card
-                title = "Benefits"
-                bg="rgb(204, 211, 214)"
-                icon = "briefcase"
-                />
-
-                <Card
-                title = "Claims"
-                bg="rgb(151, 198, 207)"
-                icon = "book"
-                />
-                </View>
-
-                <View style={Styles.footer}>
-                    <Text style={Styles.footerText}>Health Savings Account</Text>
-
-                    <View style={Styles.footerSecondTextWraper}>
-
-                        <View style={Styles.column}>
-                        <Text style={Styles.columnText}>Current Balance</Text>
-                        <Text>${this.props.data.hsaamount.currentBalance} </Text>
-                        </View>
-
-                        <View style={Styles.column}>
-                        <Text style={Styles.columnText}>YTD Contribute</Text>
-                        <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
-                        </View>
-
-                        <View style={Styles.column}>
-                        <Text style={Styles.columnText}>YTD Distribute</Text>
-                        <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
-                        </View>
-
-
-                    </View>
-                </View>
-
-            </View>
-        );
-    }
+  </View>
 }
 
+  render(){
+    return(
+        <View style={{
+            flex : 1 ,
+            backgroundColor : 'white'
+        }}>
+              {this._renderHeader()}
+
+            <View style={Styles.PlanName}>
+            <Text>
+            Blue Options
+            </Text>
+            </View>
+
+
+            <View style={Styles.chartWrapper}>
+            <MyPlanSwiper data={this.props.data}/>
+
+            </View>
+
+            <View style={{
+
+            flexWrap : 'wrap',
+            flexDirection : 'row'
+            }}>
+            <Card
+            title = "Benefits"
+            bg="rgb(204, 211, 214)"
+            icon = "briefcase"
+            />
+
+            <Card
+            title = "Claims"
+            bg="rgb(151, 198, 207)"
+            icon = "book"
+            />
+            </View>
+
+            <View style={Styles.footer}>
+                <Text style={Styles.footerText}>Health Savings Account</Text>
+
+                <View style={Styles.footerSecondTextWraper}>
+
+                    <View style={Styles.column}>
+                    <Text style={Styles.columnText}>Current Balance</Text>
+                    <Text>${this.props.data.hsaamount.currentBalance} </Text>
+                    </View>
+
+                    <View style={Styles.column}>
+                    <Text style={Styles.columnText}>YTD Contribute</Text>
+                    <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
+                    </View>
+
+                    <View style={Styles.column}>
+                    <Text style={Styles.columnText}>YTD Distribute</Text>
+                    <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
+                    </View>
+
+
+                </View>
+            </View>
+
+        </View>
+    );
+  }
+
+}
 const Styles = StyleSheet.create({
   PlanName : {
     alignItems  : 'center',
@@ -160,6 +154,12 @@ column : {
   }
 
 });
+
+MyPlanScreen.propTypes = {
+  data: PropTypes.object,
+  attemptMyPlan: PropTypes.func
+}
+
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
@@ -172,5 +172,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(MyPlanScreen)
+export default connect(mapStateToProps, mapDispatchToProps) (MyPlanScreen)
