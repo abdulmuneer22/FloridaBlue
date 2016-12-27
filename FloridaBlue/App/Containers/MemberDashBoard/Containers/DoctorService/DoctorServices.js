@@ -4,7 +4,6 @@ import {
   Text,
   View,
   StyleSheet,
-  TouchableWithoutFeedback,
   Dimensions,
   ScrollView,
   TouchableOpacity,
@@ -22,13 +21,6 @@ import {connect} from 'react-redux'
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
 const window = Dimensions.get('window');
-
-/*
-type DoctorServicesProps = {
-  fetching: boolean,
-  userName : string ,
-  data:Object,
-}*/
 
 
  class DoctorServices extends Component{
