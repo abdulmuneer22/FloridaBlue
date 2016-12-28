@@ -28,16 +28,20 @@ console.log("I am coming from myplan")
   },
   "DoctorServices":{
     "InNetwork":{
+      "physicianname":"Physician Services",
+      "SpecialistName":"Specialist",
       "physicianservices":"20",
       "Specialist":"40",
       "physician":"200",
       "specialists":"400"
     },
     "OutNetwork":{
-      "familyphysician":"20%",
-      "Specialist":"40%",
-      "family":"20%",
-      "specialists":"40%"
+      "familyname":"Family Physician",
+      "Specialistservice":"Specialist",
+      "familyphysician":"20",
+      "Specialist":"40",
+      "family":"20",
+      "specialists":"40"
     }
   }
 }

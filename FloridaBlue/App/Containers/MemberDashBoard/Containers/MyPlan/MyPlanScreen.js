@@ -64,49 +64,49 @@ class MyPlanScreen extends Component{
             <MyPlanSwiper data={this.props.data}/>
             </View>
 
+            <View style={{
 
-                        <View style={{
+            flexWrap : 'wrap',
+            flexDirection : 'row'
+            }}>
+            <Card
+            title = "Benefits"
+            bg="rgb(204, 211, 214)"
+            icon = "briefcase"
+            />
 
-                        flexWrap : 'wrap',
-                        flexDirection : 'row'
-                        }}>
-                        <Card
-                        title = "Benefits"
-                        bg="rgb(204, 211, 214)"
-                        icon = "briefcase"
-                        />
-
-                        <Card
-                        title = "Claims"
-                        bg="rgb(151, 198, 207)"
-                        icon = "book"
-                        />
-                        </View>
-
-
-                                    <View style={Styles.footer}>
-                                        <Text style={Styles.footerText}>Health Savings Account</Text>
-
-                                        <View style={Styles.footerSecondTextWraper}>
-
-                                            <View style={Styles.column}>
-                                            <Text style={Styles.columnText}>Current Balance</Text>
-                                            <Text>${this.props.data.hsaamount.currentBalance} </Text>
-                                            </View>
-
-                                            <View style={Styles.column}>
-                                            <Text style={Styles.columnText}>YTD Contribute</Text>
-                                            <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
-                                            </View>
-
-                                            <View style={Styles.column}>
-                                            <Text style={Styles.columnText}>YTD Distribute</Text>
-                                            <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
-                                            </View>
+            <Card
+            title = "Claims"
+            bg="rgb(151, 198, 207)"
+            icon = "book"
+            />
+            </View>
 
 
-                                        </View>
-                                    </View>
+            <View style={Styles.footer}>
+            <Text style={Styles.footerText}>Health Savings Account</Text>
+
+            <View style={Styles.footerSecondTextWraper}>
+
+            <View style={Styles.column}>
+            <Text style={Styles.columnText}>Current Balance</Text>
+            <Text>${this.props.data.hsaamount.currentBalance} </Text>
+            </View>
+
+            <View style={Styles.column}>
+            <Text style={Styles.columnText}>YTD Contribute</Text>
+            <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
+            </View>
+
+            <View style={Styles.column}>
+            <Text style={Styles.columnText}>YTD Distribute</Text>
+            <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
+            </View>
+
+
+            </View>
+            </View>
+
 
 
             </View>

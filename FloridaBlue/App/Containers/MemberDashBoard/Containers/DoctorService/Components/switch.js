@@ -8,34 +8,12 @@ import {
 
 
 class Switch extends Component{
-    constructor(){
-        super();
-        this.state = {
-            leftActive : true,
-            rightActive : false
-        }
-    }
-
     handleClickLeft(){
-      if(this.state.leftActive === false){
-        this.setState({
-          leftActive : true,
-          rightActive : false
-        })
-
-      }
+      this.props.attemptHandleLeft();
     }
-
     handleClickRight(){
-      if(this.state.rightActive === false){
-        this.setState({
-          leftActive : false,
-          rightActive : true
-        })
-
-      }
+      this.props.attemptHandleRight() ;
     }
-
     render(){
 
         return(
@@ -47,7 +25,7 @@ class Switch extends Component{
                 <TouchableOpacity style={{
                     // width : 80,
                     // height : 20,
-                    backgroundColor : this.state.leftActive ? 'darkgrey' : 'grey',
+                    backgroundColor : this.props.leftActive ? 'darkgrey' : 'grey',
                     borderLeftWidth : 1,
                     borderColor : 'grey',
                     borderTopLeftRadius : 3,
@@ -58,7 +36,7 @@ class Switch extends Component{
                 onPress = {()=>{this.handleClickLeft()}}
                 >
                 <Text style={{
-                    color : this.state.leftActive ? 'white' : 'darkgrey',
+                    color : this.props.leftActive ? 'white' : 'darkgrey',
                     fontWeight : '500'
 
                 }}>In Network</Text>
@@ -67,7 +45,7 @@ class Switch extends Component{
                 <TouchableOpacity style={{
                     // width : 80,
                     // height : 20,
-                    backgroundColor : this.state.rightActive ? 'darkgrey' : 'grey',
+                    backgroundColor : this.props.rightActive ? 'darkgrey' : 'grey',
                     borderLeftWidth : 1,
                     borderColor : 'darkgrey',
                     borderTopRightRadius : 3,
@@ -79,7 +57,7 @@ class Switch extends Component{
                 >
                 <Text
                 style={{
-                    color : this.state.rightActive ? 'white' : 'darkgrey',
+                    color : this.props.rightActive ? 'white' : 'darkgrey',
                     fontWeight : '600'
                 }}
                 >Out Of Network</Text>
@@ -90,10 +68,6 @@ class Switch extends Component{
     }
 }
 
-
-const Style = StyleSheet.create({
-
-});
 
 
 export default Switch

@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import {Text,View,ScrollView} from 'react-native'
 import Switch from './Components/switch'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Card from './Components/Card'
-import SecondCard from './Components/SecondCard'
+//simport SecondCard from './Components/SecondCard'
 import BenefitsSwiper from './Components/Swiper'
 import styles from './DoctorServiceStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Colors, Metrics, Fonts} from '../../../../Themes'
-
+import {connect} from 'react-redux'
+import MyPlanActions from '../../../../Redux/MyPlanRedux'
 
 
 
@@ -18,13 +19,11 @@ class DoctorServices extends Component{
   _renderHeader(){
   return <View style={styles.headerContainer}>
     {NavItems.backButton()}
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>MyPlan</Text>
+    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>Plan Benefits</Text>
     {NavItems.settingsButton()}
 
   </View>
 }
-
-
     render(){
         return(
           <View style={{
@@ -43,18 +42,16 @@ class DoctorServices extends Component{
                       marginTop : 5,
                       fontSize : 13
                     }}>Doctor Office Services</Text>
-                    <Switch/>
 
+                    <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}/ >
 
                     </View>
 
-                    <View>
-                    <Card/>
+                    <View style={{marginTop:15}}>
+                    <Card data= {this.props.data} leftActive = {this.props.leftActive} rightActive={this.props.rightActive}/>
                     </View>
 
                     <View>
-                    <Text style={{textAlign : 'center',padding : 15}}>Advanced Imaging in the Phycisians Office</Text>
-                    <SecondCard/>
 
                     <View style={{
                       paddingLeft : 10,
@@ -96,5 +93,25 @@ class DoctorServices extends Component{
     }
 }
 
+DoctorServices.propTypes = {
 
-export default DoctorServices
+  attemptHandleLeft: PropTypes.func,
+  attemptHandleRight: PropTypes.func
+}
+
+const mapStateToProps = (state) => {
+  return {
+    data: state.myplan.data,
+    leftActive:state.myplan.leftActive,
+    rightActive:state.myplan.rightActive
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptHandleLeft:() => dispatch(MyPlanActions.myplanClickleft()),
+    attemptHandleRight:() => dispatch(MyPlanActions.myplanClickright())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(DoctorServices)
