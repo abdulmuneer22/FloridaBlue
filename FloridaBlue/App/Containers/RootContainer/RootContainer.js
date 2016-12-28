@@ -11,13 +11,14 @@ import ReduxPersist from '../../Config/ReduxPersist'
 import styles from './RootContainerStyle'
 
 class RootContainer extends Component {
+  /*
   componentDidMount () {
     // if redux persist is not active fire startup action
     if (!ReduxPersist.active) {
       this.props.startup()
     }
   }
-
+*/
   render () {
     return (
       <View style={styles.applicationView}>
@@ -33,4 +34,4 @@ const mapDispatchToProps = (dispatch) => ({
   startup: () => dispatch(StartupActions.startup())
 })
 
-export default connect(null, mapDispatchToProps)(RootContainer)
+export default RootContainer
