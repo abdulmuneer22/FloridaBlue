@@ -13,7 +13,7 @@ class Card extends Component{
   render(){
     return(
       <View style={Style.wrapper1}>
-      <View style={Style.wrapper}>
+      <View style={this.props.leftActive ? Style.wrapper :Style.wrapper2}>
       <Text>
       Physician Services
       </Text>
@@ -133,7 +133,7 @@ var Style = StyleSheet.create({
     alignItems : 'center',
     padding : 10,
     marginTop : 10,
-    backgroundColor : 'lightgrey'
+    backgroundColor : 'grey'
   },
   wrapper1:{
     width : window.width,
