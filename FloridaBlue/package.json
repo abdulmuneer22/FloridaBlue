@@ -23,7 +23,12 @@
   },
   "dependencies": {
     "apisauce": "^0.6.0",
+    "btoa": "^1.1.2",
+    "buffer": "^5.0.2",
+    "es6-promise": "^4.0.5",
+    "fetch-everywhere": "^1.0.5",
     "format-json": "^1.0.3",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.2",
     "querystringify": "0.0.4",
     "ramda": "^0.22.1",
@@ -46,7 +51,8 @@
     "redux-persist": "^3.5.0",
     "redux-saga": "^0.13.0",
     "reduxsauce": "0.2.0",
-    "seamless-immutable": "^6.3.0"
+    "seamless-immutable": "^6.3.0",
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "ava": "^0.17.0",
@@ -65,7 +71,12 @@
     "reactotron-redux": "^1.5.2",
     "reactotron-redux-saga": "^1.5.2",
     "snazzy": "^5.0.0",
-    "standard-flow": "^1.0.0"
+    "standard-flow": "^1.0.0",
+    "isomorphic-fetch": "^2.2.1",
+    "jwt-decode": "^2.1.0",
+    "eslint": "3.9.1",
+    "eslint-config-airbnb-base": "9.0.0",
+    "eslint-plugin-import": "2.0.1"
   },
   "ava": {
     "files": [

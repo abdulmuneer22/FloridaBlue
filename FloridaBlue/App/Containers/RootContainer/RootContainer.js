@@ -11,12 +11,22 @@ import ReduxPersist from '../../Config/ReduxPersist'
 import styles from './RootContainerStyle'
 
 class RootContainer extends Component {
+
+  /*
+  componentDidMount () {
+=======
   /*componentDidMount () {
+>>>>>>> refs/remotes/origin/dev
     // if redux persist is not active fire startup action
     if (!ReduxPersist.active) {
       this.props.startup()
     }
-  }*/
+<<<<<<< HEAD
+  }
+*/
+
+
+
 
   render () {
     return (

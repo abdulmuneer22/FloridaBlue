@@ -1,40 +1,28 @@
-import { put } from 'redux-saga/effects'
+import {
+  call,
+  put
+} from 'redux-saga/effects'
+
 import LoginActions from '../Redux/LoginRedux'
 import axios from 'axios'
 // attempts to login
-export function * login ({ username, password }) {
-  var username = username
-  var password = password
-  axios.get('http://localhost:9000/login', {
-      auth: {
-    username: username,
-    password :password
-  },
-   })
-   .then((response)=>{
+export function* login(api,{username, password}) {
+  var username = username
+  var password = password
 
-     console.log(response.data)
-     console.log(response.status)
-     console.log(response.headers)
-     var data = response.data
-     if(data.status === 'Success') {
-      // alert('Success!')
-     } else {
-       alert(data.message)
-     }
+  console.log("username+password" + JSON.stringify(username)+password);
+     api.setHeaders(username,password);
+  const response = yield call(api.getUser, username, password)
+  console.log(JSON.stringify(response));
+  if (response.ok) {
+    // dispatch failure
+     console.log("I am coming from success ")
+    yield put(LoginActions.loginSuccess(username))
 
-   })
-   .catch(function (error) {
-     if(error.response) {
-       console.log(error.response.data)
-       console.log(error.response.status)
-       console.log(error.response.headers)
-     }
+  } else {
+    // dispatch successful logins
+   console.log("I am coming from failuer ")
+    yield put(LoginActions.loginFailure('WRONG'))
+  }
 
-   })
-
-
-   console.log("I am coming from login ");
-   yield put(LoginActions.loginSuccess(username))
-
-   }
+}

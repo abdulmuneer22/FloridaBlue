@@ -27,19 +27,26 @@ const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
 
 /* ------------- Connect Types To Sagas ------------- */
 
-export default function * root ()   {
-  //console.log("testing"+MyPlanTypes.MYPLAN_REQUEST);
-  //console.log("testing"+MemberTypes.MEMBER_REQUEST);
-  //console.log("testing"+myplan);
+
+export default function * root () {
+//  console.log("testing"+MyPlanTypes.MYPLAN_REQUEST);
+//  console.log("testing"+MemberTypes.MEMBER_REQUEST);
+//  console.log("testing"+myplan);
 
   yield [
     // some sagas only receive an action
   //  takeLatest(StartupTypes.STARTUP, startup),
-    takeLatest(LoginTypes.LOGIN_REQUEST, login),
+    //takeLatest(LoginTypes.LOGIN_REQUEST, login),
+
     takeLatest(MemberTypes.MEMBER_REQUEST, member),
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan),
 
     // some sagas receive extra parameters in addition to an action
+
+     takeLatest(LoginTypes.LOGIN_REQUEST, login , api)
+//    takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)
+
     //takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)
+
   ]
 }
