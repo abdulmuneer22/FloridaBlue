@@ -13,6 +13,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RegistrationToolBar from '../RegistrationToolBar'
 import {Actions as NavigationActions} from 'react-native-router-flux'
+import Swiper from 'react-native-swiper';
 
 
 var logo1=require('./download.png')
@@ -21,68 +22,9 @@ var logo2=require('./FloridaBlue.png')
 const window = Dimensions.get('window');
 
 class FindMemberID extends Component{
-  constructor(){
-    super();
-    this.state = {
-      viewStyle1 : {
-        flex : 1
-
-      },
-      viewStyle2 : {
-        flex : 0
-      },
-      button1 : 'blue',
-      button2 : 'white'
-
-
-    }
-  }
-
-  animateView(view){
-
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
-
-    switch (view) {
-      case '1':
-
-      this.setState({
-        viewStyle1 : {
-          flex : 0,
-
-        },
-        viewStyle2 : {
-          flex : 1,
-        },
-        button1 : 'white',
-        button2 : 'blue'
-      });
-
-      break;
-
-      case 2:
-      this.setState({
-        viewStyle1 : {
-          flex : 1
-        },
-        viewStyle2 : {
-          flex : 0
-        },
-        button1 : 'blue',
-        button2 : 'white'
-      });
-        break;
-
-      break;
-
-
-    }
-
-  }
 
   render(){
 
-    let Style1 = [Styles.view1,this.state.viewStyle1]
-    let Style2 = [Styles.view2,this.state.viewStyle2]
     return(
       <View style={{flex : 1 , backgroundColor : 'white' }}>
     <RegistrationToolBar/>
@@ -140,55 +82,41 @@ class FindMemberID extends Component{
        }}>Optional function where you can configure scene animations and gestures. Will be invoked with route and </Text>
 
        </View>
-      <View style={{flexDirection : 'row'}}>
 
-        <View style={Style1}>
-        <Image
-          style={{
-            width: window.width,
-            height: 200,
-            flex : 0
-          }}
-          source={logo1}
-        />
-        </View>
+       <Swiper height={250} style={Styles.wrapper1} showsButtons={true}>
+       <View style={Styles.slide}>
+       <View style={Styles.outofBox}>
+       <Image
+         style={{
+           width: window.width,
+           height: 200,
+           flex : 0
+         }}
+         source={logo1}
+       />
+       </View>
 
-        <View style={Style2}>
-        <Image
-          style={{
-            width: window.width,
-            height: 200,
-            flex : 0
-          }}
-          source={logo2}
+       </View>
 
-        />
-        </View>
-
-
-
-
-      </View>
-
-      <View style={{flexDirection : 'row', backgroundColor : 'rgb(212, 215, 218 )',padding : 5}}>
-      <TouchableOpacity
-      onPress={()=>{this.animateView('1')}}
-      style={{flex : 1,alignItems : 'flex-end',paddingRight : 20}}
-      >
-      <Icon name="circle" size={18} color={this.state.button1} />
-      </TouchableOpacity>
-
-      <TouchableOpacity
-      style={{flex : 1,alignItems : 'flex-start',paddingLeft : 20}}
-      onPress={this.animateView.bind(this,2)}
-      >
-      <Icon name="circle" size={18} color={this.state.button2} />
-      </TouchableOpacity>
+       <View style={Styles.slide}>
+       <View style={Styles.outofBox}>
+       <Image
+         style={{
+           width: window.width,
+           height: 200,
+           flex : 0
+         }}
+         source={logo2}
+       />
+       </View>
+       </View>
+       </Swiper>
 
 
-      </View>
+        <View style={Styles.backgroundClose}>
 
-      <View style={Styles.backgroundClose}>
+
+
          <TouchableOpacity style={Styles.closeButton}
          onPress={()=>{NavigationActions.pop()}}
          >
@@ -204,16 +132,7 @@ class FindMemberID extends Component{
 }
 
 const Styles = StyleSheet.create({
-  view1 : {
-    backgroundColor : 'red',
-    height : 200,
 
-  },
-  view2 : {
-    backgroundColor : 'yellow',
-    height : 200,
-
-  },
   wrapper : {
 
     backgroundColor : 'rgb(78, 85, 87 )',
@@ -269,14 +188,35 @@ closeText:{
     fontWeight : '600'
 },
 backgroundClose:{
-    padding : 40,
+  //  padding : 40,
+  marginTop:40,
     alignItems : 'center',
-    justifyContent : 'center'
+    justifyContent : 'center',
+  //  backgroundColor:'lightgrey'
 },
 progressBoxStyle : {
   flex : 1,
   alignItems :'center',
   justifyContent : 'center'
+},
+wrapper1: {
+  backgroundColor: 'grey'
+
+},
+slide: {
+  flex:1,
+  alignItems: 'center',
+  flexWrap:'nowrap',
+  backgroundColor: 'grey',
+},
+outofBox:{
+  //backgroundColor : 'grey',
+  //padding : 20,
+  alignItems : 'center',
+  justifyContent : 'center',
+  width : window.width,
+  //marginBottom : 30
+
 }
 
 });
