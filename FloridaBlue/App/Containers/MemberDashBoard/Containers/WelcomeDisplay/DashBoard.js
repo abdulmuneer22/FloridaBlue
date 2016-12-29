@@ -48,7 +48,9 @@ class LandingScreen extends Component {
 
 
 componentDidMount(){
-     this.props.attemptMember();
+  console.log("mount on dashboadr"+this.props.smToken);
+
+     this.props.attemptMember(this.props.smToken)
 }
 
   render(){
@@ -103,13 +105,14 @@ componentDidMount(){
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
-    userName: state.member.username
+    userName: state.member.username,
+    smToken: state.login.smToken
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMember:() => dispatch(MemberActions.memberRequest())
+    attemptMember:(smToken) => dispatch(MemberActions.memberRequest(smToken))
   }
 }
 
