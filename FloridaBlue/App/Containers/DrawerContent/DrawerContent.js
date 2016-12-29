@@ -33,7 +33,7 @@ class DrawerContent extends Component {
   }
   handlePressBenefits = () => {
     this.toggleDrawer()
-    NavigationActions.benefits()
+    NavigationActions.myplanbenefits()
   }
   handlePressClaims = () => {
     this.toggleDrawer()

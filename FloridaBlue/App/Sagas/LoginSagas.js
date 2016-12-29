@@ -17,7 +17,9 @@ export function* login(api,{username, password}) {
   if (response.ok) {
     // dispatch failure
      console.log("I am coming from success ")
-    yield put(LoginActions.loginSuccess(username))
+     console.log("smstoken"+response.data.smToken);
+     var smToken =  response.data.smToken
+    yield put(LoginActions.loginSuccess(username,smToken))
 
   } else {
     // dispatch successful logins

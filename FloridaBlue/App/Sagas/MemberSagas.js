@@ -2,8 +2,9 @@ import { put } from 'redux-saga/effects'
 import MemberActions from '../Redux/MemberRedux'
 import axios from 'axios'
 // attempts to login
-export function * member () {
+export function * member ({smToken}) {
   var userName = "" ;
+  console.log("smToken from member "+smToken);
   axios.get('http://localhost:9000/members')
    .then((response)=>{
      console.log(response.data)

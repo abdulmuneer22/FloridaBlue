@@ -46,7 +46,7 @@ class NavigationRouter extends Component {
             <Scene   key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page'hideNavBar/>
             <Scene  key='doctorservices' component={DoctorServices} title='DoctorServices Page'hideNavBar/>
           </Scene>
-        
+
       </Router>
     )
   }

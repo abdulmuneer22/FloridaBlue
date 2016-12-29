@@ -35,8 +35,8 @@ class BenefitsSwiper extends Component{
                 <Swiper height={200} style={styles.wrapper} showsButtons={true}>
 
                 {this.renderSingleSlide("Blue Phycisian Recognision","Pay 20%")}
-                {this.renderSingleSlide("Blue Phycisian Recognision","Pay 30%")}
-                {this.renderSingleSlide("Blue Phycisian Recognision","Pay 40%")}
+                {this.renderSingleSlide("Family Phycisian","$5 Copay ")}
+                {this.renderSingleSlide("Specialist","Pay 20%")}
                 </Swiper>
 
         );

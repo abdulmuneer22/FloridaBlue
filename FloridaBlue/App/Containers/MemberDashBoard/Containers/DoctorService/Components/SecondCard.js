@@ -13,6 +13,8 @@ class SecondCard extends Component{
   render(){
     return(
       <View style={Style.wrapper}>
+
+        <Text style={{textAlign : 'center',padding : 15}}>Advanced Imaging in the Phycisians Office</Text>
       <Text>
       Physician Services
       </Text>
