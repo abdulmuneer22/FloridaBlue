@@ -38,11 +38,11 @@ export default function * root () {
   //  takeLatest(StartupTypes.STARTUP, startup),
     //takeLatest(LoginTypes.LOGIN_REQUEST, login),
 
-    takeLatest(MemberTypes.MEMBER_REQUEST, member),
+
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan),
 
     // some sagas receive extra parameters in addition to an action
-
+     takeLatest(MemberTypes.MEMBER_REQUEST, member,api),
      takeLatest(LoginTypes.LOGIN_REQUEST, login , api)
 //    takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)
 

@@ -23,7 +23,7 @@ class NavigationDrawer extends Component {
     }else{
       content=<SettingsContent/>
     }
-    
+
     return (
       <Drawer
         ref='navigation'
