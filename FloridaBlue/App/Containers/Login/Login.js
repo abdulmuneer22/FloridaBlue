@@ -68,8 +68,9 @@ componentWillReceiveProps (newProps) {
     this.forceUpdate()
     // Did the login attempt complete?
     console.log("I am receving new props")
-    if (this.isAttempting && !newProps.fetching) {
+    if (this.isAttempting && !newProps.fetching && newProps.error === null) {
     //  NavigationActions.WelcomeDashBoard()
+    console.log("HERRREEE: "+newProps.error);
         NavigationActions.WelcomeDashBoard()
     }
   }
@@ -178,6 +179,8 @@ componentWillReceiveProps (newProps) {
         }}
         source={logo}
       />
+
+    <View>{this.props.error ? <Text style={{color:'red'}}>{this.props.error}</Text>:<Text></Text>}</View>
         <TextInput
         style={styles.textInput}
         onChangeText={(text) => this.setState({username : text})}
@@ -233,7 +236,8 @@ componentWillReceiveProps (newProps) {
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.login.fetching
+    fetching: state.login.fetching,
+    error: state.login.error
   }
 }
 
