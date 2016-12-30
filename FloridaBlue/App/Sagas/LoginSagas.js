@@ -6,7 +6,7 @@ import {
 import LoginActions from '../Redux/LoginRedux'
 import axios from 'axios'
 // attempts to login
-export function* login(api,{username, password}) {
+export function * login(api,{username, password}) {
   var username = username
   var password = password
 

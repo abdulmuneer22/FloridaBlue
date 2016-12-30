@@ -1,32 +1,28 @@
-import { put } from 'redux-saga/effects'
+import {
+  call,
+  put
+} from 'redux-saga/effects'
 import MemberActions from '../Redux/MemberRedux'
+import LoginActions from '../Redux/LoginRedux'
 import axios from 'axios'
 // attempts to login
-export function * member ({smToken}) {
-  var userName = "" ;
-  console.log("smToken from member "+smToken);
-  axios.get('http://localhost:9000/members')
-   .then((response)=>{
-     console.log(response.data)
-     console.log(response.status)
-     console.log(response.headers)
-     userName = response.data.firstName+response.data.lastName ;
-     //var data = response.data
-     /*
-     if(data.status === 'Success') {
-     //  alert('Success!')
-     } else {
-       alert(data.message)
-     }*/
-   })
-   .catch(function (error) {
-     if(error.response) {
-       console.log(error.response.data)
-       console.log(error.response.status)
-       console.log(error.response.headers)
-     }
-   })
+export function * member (api,{smToken}) {
 
-   yield put(MemberActions.memberSuccess("John Smith"))
+    api.setsmTokenHeaders(smToken);
+    const response = yield call(api.getMember)
+    console.log(JSON.stringify(response));
+    if (response.ok) {
+      // dispatch failure
+      console.log("I am coming from success ")
+      var Name = response.data.firstName+" "+response.data.lastName ;
 
-   }
+      yield put(LoginActions.loginSuccess(Name,smToken))
+      yield put(MemberActions.memberSuccess(Name))
+
+    } else {
+      // dispatch successful logins
+     console.log("I am coming from failuer ")
+      yield put(LoginActions.loginFailure('WRONG'))
+    }
+
+  }

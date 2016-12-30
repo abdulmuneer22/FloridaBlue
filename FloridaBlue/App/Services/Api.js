@@ -58,6 +58,13 @@ const create = (baseURL = 'http://localhost:9000') => {
 })
   const getUser = (username,password) => api.get('/login')
 
+  const setsmTokenHeaders = (smToken) => api.setHeaders({
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'smToken':smToken
+})
+
+const getMember = () => api.get('/members')
 
   // ------
   // STEP 3
@@ -74,7 +81,9 @@ const create = (baseURL = 'http://localhost:9000') => {
   return {
     // a list of the API functions from step 2
     setHeaders,
-    getUser
+    getUser,
+    setsmTokenHeaders,
+    getMember
   }
 }
 
