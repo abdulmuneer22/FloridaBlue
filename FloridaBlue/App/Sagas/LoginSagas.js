@@ -14,7 +14,7 @@ export function* login(api,{username, password}) {
      api.setHeaders(username,password);
   const response = yield call(api.getUser, username, password)
   console.log(JSON.stringify(response));
-  if (response.ok) {
+  if (response.data.status=="Success") {
     // dispatch failure
      console.log("I am coming from success ")
      console.log("smstoken"+response.data.smToken);
@@ -24,7 +24,8 @@ export function* login(api,{username, password}) {
   } else {
     // dispatch successful logins
    console.log("I am coming from failuer ")
-    yield put(LoginActions.loginFailure('WRONG'))
+   var error = "Invalid Credentials. Please enter correctly."
+    yield put(LoginActions.loginFailure(error))
   }
 
 }
