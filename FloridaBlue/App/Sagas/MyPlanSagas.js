@@ -3,6 +3,7 @@ import {
   put
 } from 'redux-saga/effects'
 import MyPlanActions from '../Redux/MyPlanRedux'
+import LoginActions from '../Redux/LoginRedux'
 //import axios from 'axios'
 // attempts to login
 export function * myplan (api,{smToken}) {
@@ -16,7 +17,7 @@ if (response.ok) {
   // dispatch failure
   console.log("I am coming from success ")
   var Name ="testing" ;
-//  yield put(LoginActions.loginSuccess(Name,smToken))
+  yield put(LoginActions.loginSuccess(Name,smToken))
   yield put(MyPlanActions.myplanSuccess(response.data))
 
 } else {

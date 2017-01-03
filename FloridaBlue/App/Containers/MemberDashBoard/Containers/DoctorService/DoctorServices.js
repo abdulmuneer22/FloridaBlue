@@ -17,12 +17,12 @@ import MyPlanActions from '../../../../Redux/MyPlanRedux'
 class DoctorServices extends Component{
 
   _renderHeader(){
-  return <View style={styles.headerContainer}>
+  return (<View style={styles.headerContainer}>
     {NavItems.backButton()}
     <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>Plan Benefits</Text>
     {NavItems.settingsButton()}
 
-  </View>
+  </View>)
 }
     render(){
         return(
