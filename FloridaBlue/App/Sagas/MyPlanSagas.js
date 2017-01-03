@@ -17,13 +17,16 @@ if (response.ok) {
   // dispatch failure
   console.log("I am coming from success ")
   var Name ="testing" ;
+  var data = response.data ;
+  console.log(JSON.stringify(data));
   yield put(LoginActions.loginSuccess(Name,smToken))
-  yield put(MyPlanActions.myplanSuccess(response.data))
+  yield put(MyPlanActions.myplanSuccess(data))
 
 } else {
   // dispatch successful logins
  console.log("I am coming from failuer ")
-  yield put(MyPlanActions.myplanFailure('WRONG'))
+ var error = "WRONG"
+  yield put(MyPlanActions.myplanFailure(error))
 }
 
    }

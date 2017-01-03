@@ -35,18 +35,9 @@ export default function * root () {
 
   yield [
     // some sagas only receive an action
-  //  takeLatest(StartupTypes.STARTUP, startup),
-    //takeLatest(LoginTypes.LOGIN_REQUEST, login),
-
-
-    takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan,api),
-
     // some sagas receive extra parameters in addition to an action
-     takeLatest(MemberTypes.MEMBER_REQUEST, member,api),
-     takeLatest(LoginTypes.LOGIN_REQUEST, login , api)
-//    takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)
-
-    //takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)
-
+    takeLatest(LoginTypes.LOGIN_REQUEST, login , api),
+    takeLatest(MemberTypes.MEMBER_REQUEST, member,api),
+    takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan,api)
   ]
 }

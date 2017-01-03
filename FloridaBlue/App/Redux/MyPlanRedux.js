@@ -19,7 +19,7 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  data: null ,
+  data: {} ,
   fetching: false,
   error: null,
   leftActive : true ,
@@ -29,23 +29,23 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Reducers ------------- */
 
 // we're attempting to login
-export const request = (state: Object) => state.merge({fetching: true,leftActive : true ,rightActive : false})
+export const request = (state: Object) => state.merge({fetching: true, data:{},error:null,leftActive : true ,rightActive : false})
 
 // we've successfully logged in
-export const success = (state: Object, data: Object) =>{
-  return state.merge({fetching: false, data,leftActive : true ,rightActive : false })
+export const success = (state: Object, {data}:Object) =>{
+  return state.merge({fetching: false, data, error:null, leftActive : true ,rightActive : false })
 }
 // we've had a problem logging in
 export const failure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error ,data:null,leftActive : true ,rightActive : false })
+  state.merge({ fetching: false, error ,data:{}, leftActive : true ,rightActive : false })
 
   // we've successfully logged in
   export const rightclick = (state: Object, action: Object) =>{
-    return state.merge({fetching: false,leftActive:false,rightActive :true})
+    return state.merge({fetching: false, error:null,leftActive:false,rightActive :true})
   }
   // we've successfully logged in
   export const leftclick = (state: Object, action: Object) =>{
-    return state.merge({fetching: false,leftActive:true,rightActive :false})
+    return state.merge({fetching: false, error:null,leftActive:true,rightActive :false})
   }
 /* ------------- Hookup Reducers To Types ------------- */
 

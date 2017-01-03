@@ -36,9 +36,20 @@ class MyPlanScreen extends Component{
         this.props.attemptMyPlan(this.props.smToken);
   }
 
+  componentWillReceiveProps (newProps) {
+      this.forceUpdate()
+      console.log("I am receving new props from My plan scree "+JSON.stringify(newProps))
+      console.log("error message "+newProps.error);
+      if (!newProps.fetching && newProps.error == "WRONG") {
+          console.log("Hey going to login "+newProps.error);
+          NavigationActions.login()
+      }
+    }
+
 
   render(){
     return(
+
       <View style={{
           flex : 1 ,
           backgroundColor : 'white'
@@ -57,7 +68,7 @@ class MyPlanScreen extends Component{
           </View>
 
           <View style={Styles.chartWrapper}>
-          <MyPlanSwiper data={this.props.data}/>
+          {this.props.data.hsaamount ? <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
           </View>
 
 
@@ -78,7 +89,7 @@ class MyPlanScreen extends Component{
                       icon = "book"
                       />
                       </View>
-
+                        {this.props.data.hsaamount ?
 
                                   <View style={Styles.footer}>
                                       <Text style={Styles.footerText}>Health Savings Account</Text>
@@ -102,10 +113,9 @@ class MyPlanScreen extends Component{
 
 
                                       </View>
-                                  </View>
-
-
+                                  </View> :<Text>loading</Text>}
           </View>
+
 
 
 
@@ -158,14 +168,17 @@ column : {
 MyPlanScreen.propTypes = {
   data: PropTypes.object,
   attemptMyPlan: PropTypes.func,
-  smToken :PropTypes.string
+  smToken :PropTypes.string,
+  error: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
+
   return {
     fetching: state.login.fetching,
-    data: state.myplan.data.data,
-    smToken: state.login.smToken
+    data : state.myplan.data,
+    smToken: state.login.smToken,
+    error: state.myplan.error
   }
 }
 const mapDispatchToProps = (dispatch) => {
