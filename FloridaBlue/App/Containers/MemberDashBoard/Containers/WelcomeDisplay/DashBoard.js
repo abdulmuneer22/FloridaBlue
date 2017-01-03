@@ -38,12 +38,12 @@ class LandingScreen extends Component {
 
 
   _renderHeader(){
-  return <View style={styles.headerContainer}>
+  return( <View style={styles.headerContainer}>
     {NavItems.hamburgerButton()}
     <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>Florida Blue</Text>
     {NavItems.settingsButton()}
 
-  </View>
+  </View>)
 }
 
 

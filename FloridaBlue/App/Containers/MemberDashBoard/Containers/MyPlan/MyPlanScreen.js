@@ -33,83 +33,80 @@ class MyPlanScreen extends Component{
 
   componentDidMount(){
        console.log("I am my plan screen")
-        this.props.attemptMyPlan();
+        this.props.attemptMyPlan(this.props.smToken);
   }
 
 
-  _renderHeader(){
-  return <View style={styles.headerContainer}>
-    {NavItems.backButton()}
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>MyPlan</Text>
-    {NavItems.settingsButton()}
-
-  </View>
-}
-
   render(){
     return(
-        <View style={{
-            flex : 1 ,
-            backgroundColor : 'white'
-        }}>
-              {this._renderHeader()}
+      <View style={{
+          flex : 1 ,
+          backgroundColor : 'white'
+      }}>
+      <View style={styles.headerContainer}>
+        {NavItems.backButton()}
+        <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>MyPlan</Text>
+        {NavItems.settingsButton()}
 
-            <View style={Styles.PlanName}>
-            <Text>
-            Blue Options
-            </Text>
-            </View>
+      </View>
 
-            <View style={Styles.chartWrapper}>
-            <MyPlanSwiper data={this.props.data}/>
-            </View>
+          <View style={Styles.PlanName}>
+          <Text>
+          Blue Options
+          </Text>
+          </View>
 
-            <View style={{
-
-            flexWrap : 'wrap',
-            flexDirection : 'row'
-            }}>
-            <Card
-            title = "Benefits"
-            bg="rgb(204, 211, 214)"
-            icon = "briefcase"
-            />
-
-            <Card
-            title = "Claims"
-            bg="rgb(151, 198, 207)"
-            icon = "book"
-            />
-            </View>
+          <View style={Styles.chartWrapper}>
+          <MyPlanSwiper data={this.props.data}/>
+          </View>
 
 
-            <View style={Styles.footer}>
-            <Text style={Styles.footerText}>Health Savings Account</Text>
+                      <View style={{
 
-            <View style={Styles.footerSecondTextWraper}>
+                      flexWrap : 'wrap',
+                      flexDirection : 'row'
+                      }}>
+                      <Card
+                      title = "Benefits"
+                      bg="rgb(204, 211, 214)"
+                      icon = "briefcase"
+                      />
 
-            <View style={Styles.column}>
-            <Text style={Styles.columnText}>Current Balance</Text>
-            <Text>${this.props.data.hsaamount.currentBalance} </Text>
-            </View>
-
-            <View style={Styles.column}>
-            <Text style={Styles.columnText}>YTD Contribute</Text>
-            <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
-            </View>
-
-            <View style={Styles.column}>
-            <Text style={Styles.columnText}>YTD Distribute</Text>
-            <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
-            </View>
+                      <Card
+                      title = "Claims"
+                      bg="rgb(151, 198, 207)"
+                      icon = "book"
+                      />
+                      </View>
 
 
-            </View>
-            </View>
+                                  <View style={Styles.footer}>
+                                      <Text style={Styles.footerText}>Health Savings Account</Text>
+
+                                      <View style={Styles.footerSecondTextWraper}>
+
+                                          <View style={Styles.column}>
+                                          <Text style={Styles.columnText}>Current Balance</Text>
+                                          <Text>${this.props.data.hsaamount.currentBalance} </Text>
+                                          </View>
+
+                                          <View style={Styles.column}>
+                                          <Text style={Styles.columnText}>YTD Contribute</Text>
+                                          <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
+                                          </View>
+
+                                          <View style={Styles.column}>
+                                          <Text style={Styles.columnText}>YTD Distribute</Text>
+                                          <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
+                                          </View>
 
 
+                                      </View>
+                                  </View>
 
-            </View>
+
+          </View>
+
 
 
     );
@@ -160,18 +157,20 @@ column : {
 
 MyPlanScreen.propTypes = {
   data: PropTypes.object,
-  attemptMyPlan: PropTypes.func
+  attemptMyPlan: PropTypes.func,
+  smToken :PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
-    data: state.myplan.data
+    data: state.myplan.data.data,
+    smToken: state.login.smToken
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
+    attemptMyPlan:(smToken) => dispatch(MyPlanActions.myplanRequest(smToken))
   }
 }
 

@@ -65,6 +65,8 @@ const create = (baseURL = 'http://localhost:9000') => {
 })
 
 const getMember = () => api.get('/members')
+const getPlan = () => api.get('/benefits')
+
 
   // ------
   // STEP 3
@@ -83,7 +85,8 @@ const getMember = () => api.get('/members')
     setHeaders,
     getUser,
     setsmTokenHeaders,
-    getMember
+    getMember,
+    getPlan
   }
 }
 

@@ -6,7 +6,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  myplanRequest: [],
+  myplanRequest: ['smToken'],
   myplanSuccess: ['data'],
   myplanFailure: ['error'],
   myplanClickleft: [],
@@ -29,11 +29,10 @@ export const INITIAL_STATE = Immutable({
 /* ------------- Reducers ------------- */
 
 // we're attempting to login
-export const request = (state: Object) => state.merge({fetching: true, data:null,leftActive : true ,rightActive : false})
+export const request = (state: Object) => state.merge({fetching: true,leftActive : true ,rightActive : false})
 
 // we've successfully logged in
-export const success = (state: Object, action: Object) =>{
-  const {data} = action
+export const success = (state: Object, data: Object) =>{
   return state.merge({fetching: false, data,leftActive : true ,rightActive : false })
 }
 // we've had a problem logging in

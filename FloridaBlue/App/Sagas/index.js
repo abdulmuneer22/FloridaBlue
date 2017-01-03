@@ -39,7 +39,7 @@ export default function * root () {
     //takeLatest(LoginTypes.LOGIN_REQUEST, login),
 
 
-    takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan),
+    takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan,api),
 
     // some sagas receive extra parameters in addition to an action
      takeLatest(MemberTypes.MEMBER_REQUEST, member,api),

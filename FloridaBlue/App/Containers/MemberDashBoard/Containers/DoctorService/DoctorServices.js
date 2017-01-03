@@ -101,7 +101,7 @@ DoctorServices.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    data: state.myplan.data,
+    data: state.myplan.data.data,
     leftActive:state.myplan.leftActive,
     rightActive:state.myplan.rightActive
   }
