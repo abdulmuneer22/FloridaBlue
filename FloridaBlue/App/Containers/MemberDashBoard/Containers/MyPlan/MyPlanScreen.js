@@ -30,6 +30,10 @@ type MyPlanScreenProps = {
 */
 class MyPlanScreen extends Component{
 
+  constructor(props) {
+    super(props);
+  }
+
 
   componentDidMount(){
        console.log("I am my plan screen")

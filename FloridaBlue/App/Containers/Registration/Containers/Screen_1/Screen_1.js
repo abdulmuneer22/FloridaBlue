@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,PropTypes } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -10,17 +10,22 @@ import {
   Image,
   Modal
 } from 'react-native';
-
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-
-const window = Dimensions.get('window');
-
-//import ToolBar from '../ToolBar'
+import {connect} from 'react-redux'
+import RegistrationActions from '../../../../Redux/RegistrationRedux'
 import RegistrationToolBar from '../RegistrationToolBar'
 import Input from './Input'
 import Button from '../Button'
+
+const window = Dimensions.get('window');
+
 class Screen_1 extends Component{
+
+  constructor(props) {
+    super(props);
+  }
+
 
   render(){
     return(
@@ -137,4 +142,34 @@ const Styles = StyleSheet.create({
     justifyContent : 'center'
   }
 });
-export default Screen_1
+
+Screen_1.propTypes = {
+  verifyIdentification: PropTypes.func,
+  fetching: PropTypes.string,
+  contactnumber : PropTypes.string,
+  firstname :PropTypes.string,
+  lastname : PropTypes.string,
+  dob : PropTypes.string,
+  zip : PropTypes.string,
+  error: PropTypes.string
+}
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.registration.fetching,
+    contactnumber: state.registration.contactnumber,
+    firstname: state.registration.firstname,
+    lastname: state.registration.lastname,
+    dob:state.registration.dob,
+    zip:state.registration.zip,
+    error: state.registration.error
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    verifyIdentification:(contactnumber,firstname,lastname,dob,zip) => dispatch(RegistrationActions.registrationRequest(contactnumber,firstname,lastname,dob,zip))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Screen_1)
