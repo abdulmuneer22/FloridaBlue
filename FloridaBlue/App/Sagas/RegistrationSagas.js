@@ -15,9 +15,9 @@ export function* registration(api, {
 }) {
   var contactnumber = contactnumber
   var firstname = firstname
-  var lastname = firstname
-  var dob = firstname
-  var zip = firstname
+  var lastname = lastname
+  var dob = dob
+  var zip = zip
 
   console.log("username+password" + contactnumber + firstname + lastname + dob + zip);
 
@@ -25,11 +25,8 @@ export function* registration(api, {
 
   console.log(JSON.stringify(response));
 
-  if (response.data.status == "Success") {
+  if (response.ok) {
     // dispatch failure
-    console.log("I am coming from success ");
-    console.log("smstoken" + response.data.smToken);
-    var smToken = response.data.smToken;
     yield put(RegistrationActions.registrationSuccess(contactnumber, firstname, lastname, dob, zip));
   } else {
     // dispatch successful logins

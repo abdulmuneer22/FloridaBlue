@@ -8,6 +8,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  Alert,
   Modal
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -24,12 +25,41 @@ class Screen_1 extends Component{
 
   constructor(props) {
     super(props);
+    this._handleRegistration = this._handleRegistration.bind(this);
+    this.state = {
+      contractnumber : "",
+      firstname : "",
+      lastname : "",
+      dob : "",
+      zip : ""
+    }
   }
 
+  _handleRegistration(){
+    var contactnumber = this.state.contractnumber
+    var firstname = this.state.firstname
+    var lastname = this.state.lastname
+    var dob = this.state.dob
+    var zip = this.state.zip
+    Alert.alert("details"+contactnumber+firstname+lastname+dob+zip);
+    //Alert.alert("Hey I am coming from registration")
+    /*
+    var contactnumber = this.props.contactnumber
+    var firstname = this.props.firstname
+    var lastname = this.props.lastname
+    var dob = this.props.dob
+    var zip = this.props.zip
+    */
+    if (!this.state.contractnumber) {
+      alert("Please enter user name and password!")
+    } else {
+      this.props.verifyIdentification(contactnumber, firstname,lastname,dob,zip)
+    }
 
+  };
   render(){
     return(
-      <View style={Styles.wrapper}>
+        <View style={Styles.wrapper}>
         <RegistrationToolBar/>
 
         <View style={{
@@ -73,7 +103,34 @@ class Screen_1 extends Component{
         <Text>
         Please complete all the fields below.
         </Text>
-        <Input placeholder="Member ID" keyboardType="default"/>
+
+        <TextInput
+        style={
+           {
+            width : window.width - 80,
+            height: 40,
+            borderColor: 'rgba(213, 211, 200 , 0.9)',
+            borderWidth: 1,
+            marginLeft : 40,
+            marginRight : 40,
+            marginBottom : 10,
+            marginTop : 20,
+            borderRadius : 3,
+            padding : 6
+          }
+        }
+        onChangeText={(text) => this.setState({contractnumber : text})}
+        value={this.state.contractnumber}
+        placeholder="Member Id "
+        autoCapitalize='none'
+        autoCorrect={false}
+        returnKeyType='next'
+        keyboardType='default'
+        underlineColorAndroid='rgba(0,0,0,0)'
+        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
+        />
+
+
 
         <View style={{
           flexDirection : 'row',
@@ -88,17 +145,106 @@ class Screen_1 extends Component{
           </Text>
           <Button title="FIND IT HERE" color ={'rgb(26, 147, 216 )'} target="memberid"/>
         </View>
-        <Input placeholder="First Name" keyboardType="default"/>
-        <Input placeholder="Last Name" keyboardType="default"/>
-        <Input placeholder="Date of Birth" keyboardType="numbers-and-punctuation"/>
-        <Text style={{
-          alignSelf : 'flex-end',
-          color : 'grey',
-          marginRight : 15
-        }}>
-        mm/dd/yyyy
-        </Text>
-        <Input placeholder="Zip Code" keyboardType="numeric"/>
+        <TextInput
+        style={
+           {
+            width : window.width - 80,
+            height: 40,
+            borderColor: 'rgba(213, 211, 200 , 0.9)',
+            borderWidth: 1,
+            marginLeft : 40,
+            marginRight : 40,
+            marginBottom : 10,
+            marginTop : 20,
+            borderRadius : 3,
+            padding : 6
+          }
+        }
+        onChangeText={(text) => this.setState({firstname : text})}
+        value={this.state.firstname}
+        placeholder="First Name"
+        autoCapitalize='none'
+        autoCorrect={false}
+        returnKeyType='next'
+        keyboardType='default'
+        underlineColorAndroid='rgba(0,0,0,0)'
+        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
+        />
+        <TextInput
+        style={
+           {
+            width : window.width - 80,
+            height: 40,
+            borderColor: 'rgba(213, 211, 200 , 0.9)',
+            borderWidth: 1,
+            marginLeft : 40,
+            marginRight : 40,
+            marginBottom : 10,
+            marginTop : 20,
+            borderRadius : 3,
+            padding : 6
+          }
+        }
+        onChangeText={(text) => this.setState({lastname : text})}
+        value={this.state.lastname}
+        placeholder="Last Name "
+        autoCapitalize='none'
+        autoCorrect={false}
+        returnKeyType='next'
+        keyboardType='default'
+        underlineColorAndroid='rgba(0,0,0,0)'
+        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
+        />
+        <TextInput
+        style={
+           {
+            width : window.width - 80,
+            height: 40,
+            borderColor: 'rgba(213, 211, 200 , 0.9)',
+            borderWidth: 1,
+            marginLeft : 40,
+            marginRight : 40,
+            marginBottom : 10,
+            marginTop : 20,
+            borderRadius : 3,
+            padding : 6
+          }
+        }
+        onChangeText={(text) => this.setState({dob : text})}
+        value={this.state.dob}
+        placeholder="Date of Birth"
+        autoCapitalize='none'
+        autoCorrect={false}
+        returnKeyType='next'
+        keyboardType='default'
+        underlineColorAndroid='rgba(0,0,0,0)'
+        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
+        />
+        <TextInput
+        style={
+           {
+            width : window.width - 80,
+            height: 40,
+            borderColor: 'rgba(213, 211, 200 , 0.9)',
+            borderWidth: 1,
+            marginLeft : 40,
+            marginRight : 40,
+            marginBottom : 10,
+            marginTop : 20,
+            borderRadius : 3,
+            padding : 6
+          }
+        }
+        onChangeText={(text) => this.setState({zip : text})}
+        value={this.state.zip}
+        placeholder="Enter ZIP code"
+        autoCapitalize='none'
+        autoCorrect={false}
+        returnKeyType='next'
+        keyboardType='default'
+        underlineColorAndroid='rgba(0,0,0,0)'
+        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
+        />
         </KeyboardAwareScrollView>
         </View>
         <View style={{
@@ -109,12 +255,32 @@ class Screen_1 extends Component{
           marginRight : 25
         }}>
         <View style={{flex : 1}}>
-        <Button title="Back" color ={'rgb(211, 215, 218)'}  target="Back"/>
-        </View>
-        <View style={{flex : 1}}>
-        </View>
-        <View style={{flex : 1}}>
-        <Button title = "Next" color ={'rgb(88, 96, 100 )'} target="screen_2"/>
+        <TouchableOpacity style={{
+          backgroundColor : 'rgba(17, 147, 203,0.9)',
+          width : 100,
+          padding : 9,
+          borderColor : 'rgba(17, 147, 203,0.9)',
+          borderRadius : 7,
+          alignItems : 'center',
+          justifyContent : 'center',
+          marginTop : 40,
+          marginBottom : 40
+        }
+        }
+        onPress={()=>{
+          this._handleRegistration()
+
+
+        }}>
+
+        <Text style={{
+          color : 'rgba(242, 246, 247   ,0.9)',
+          fontWeight : 'bold'
+        }}>
+        Log-in
+        </Text>
+        </TouchableOpacity>
+
         </View>
         </View>
       </View>
@@ -145,7 +311,7 @@ const Styles = StyleSheet.create({
 
 Screen_1.propTypes = {
   verifyIdentification: PropTypes.func,
-  fetching: PropTypes.string,
+  fetching: PropTypes.bool,
   contactnumber : PropTypes.string,
   firstname :PropTypes.string,
   lastname : PropTypes.string,

@@ -66,18 +66,15 @@ const create = (baseURL = 'http://localhost:9000') => {
 
   const getMember = () => api.get('/members')
   const getPlan = () => api.get('/benefits')
-  const postIdentification = (contactnumber, firstname, lastname, dob, zip) => api.post('/identifyuser.json', {
-      "user" :{
-        "contactnumber": contactnumber,
-        "firstname": firstname,
-        "lastname": lastname,
-        "dob": dob,
-        "zip": zip
-      }
+  const postIdentification = (contactnumber, firstname, lastname, dob, zip) => api.post('/identifyuser.json',{
+    "user": {
+      "contractnumber": contactnumber,
+      "firstName": firstname,
+      "lastName": lastname,
+      "dob": dob,
+      "zip": zip
     }
-  )
-
-
+  })
   // ------
   // STEP 3
   // ------
