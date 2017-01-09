@@ -6,7 +6,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  myplanRequest: ['smToken'],
+  myplanRequest: [],
   myplanSuccess: ['data'],
   myplanFailure: ['error'],
   myplanClickleft: [],

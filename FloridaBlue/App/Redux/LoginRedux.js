@@ -20,8 +20,7 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   username: null,
   error: null,
-  fetching: false,
-  smToken: null,
+  fetching: false
 })
 
 /* ------------- Reducers ------------- */
@@ -30,8 +29,8 @@ export const INITIAL_STATE = Immutable({
 export const request = (state: Object) => state.merge({ fetching: true })
 
 // we've successfully logged in
-export const success = (state: Object, { username ,smToken}: Object) =>
-  state.merge({ fetching: false, error: null, username ,smToken})
+export const success = (state: Object, { username}: Object) =>
+  state.merge({ fetching: false, error: null, username })
 
 // we've had a problem logging in
 export const failure = (state: Object, { error }: Object) =>

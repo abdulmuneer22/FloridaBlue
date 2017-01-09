@@ -37,7 +37,7 @@ class MyPlanScreen extends Component{
 
   componentDidMount(){
        console.log("I am my plan screen")
-        this.props.attemptMyPlan(this.props.smToken);
+        this.props.attemptMyPlan();
   }
 
   componentWillReceiveProps (newProps) {
@@ -172,7 +172,6 @@ column : {
 MyPlanScreen.propTypes = {
   data: PropTypes.object,
   attemptMyPlan: PropTypes.func,
-  smToken :PropTypes.string,
   error: PropTypes.string
 }
 
@@ -181,13 +180,12 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
     data : state.myplan.data,
-    smToken: state.login.smToken,
     error: state.myplan.error
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMyPlan:(smToken) => dispatch(MyPlanActions.myplanRequest(smToken))
+    attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
   }
 }
 
