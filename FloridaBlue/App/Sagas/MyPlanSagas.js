@@ -8,18 +8,26 @@ import LoginActions from '../Redux/LoginRedux'
 // attempts to login
 export function * myplan (api,{smToken}) {
 console.log("I am coming from myplan")
-
-
-api.setsmTokenHeaders(smToken);
+//api.setsmTokenHeaders(smToken);
 const response = yield call(api.getPlan)
 console.log(JSON.stringify(response));
-if (response.ok) {
+if (response.data.status.code = "200") {
   // dispatch failure
   console.log("I am coming from success ")
   var Name ="testing" ;
-  var data = response.data ;
+  var data = response.data.data ;
   console.log(JSON.stringify(data));
-  yield put(LoginActions.loginSuccess(Name,smToken))
+  var cookieItems = response.headers['set-cookie']
+  console.log("cookieItems" + cookieItems);
+  var pattern = /^SMSESSION/;
+   if (pattern.test(cookieItems)) {
+      //console.log(item)
+      var elements = cookieItems.split(';')
+      var smTokenNew = elements[0]
+        /*var smToken = smToken.replace('SMSESSION=', '')*/
+    }
+  console.log("smToken"+smTokenNew);
+  yield put(LoginActions.loginSuccess(Name,smTokenNew))
   yield put(MyPlanActions.myplanSuccess(data))
 
 } else {

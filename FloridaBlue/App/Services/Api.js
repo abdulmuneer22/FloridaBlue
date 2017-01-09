@@ -4,7 +4,7 @@ var btoa = require('btoa');
 global.Buffer = global.Buffer || require('buffer').Buffer;
 
 // our "constructor"
-const create = (baseURL = 'http://localhost:9000') => {
+const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
   // ------
   // STEP 1
   // ------
@@ -61,7 +61,7 @@ const create = (baseURL = 'http://localhost:9000') => {
   const setsmTokenHeaders = (smToken) => api.setHeaders({
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'smToken': smToken
+    'set-cookie': smToken
   })
 
   const getMember = () => api.get('/members')

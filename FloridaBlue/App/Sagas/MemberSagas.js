@@ -7,22 +7,27 @@ import LoginActions from '../Redux/LoginRedux'
 import axios from 'axios'
 // attempts to login
 export function * member (api,{smToken}) {
-
-    api.setsmTokenHeaders(smToken);
+//    api.setsmTokenHeaders(smToken);
     const response = yield call(api.getMember)
     console.log(JSON.stringify(response));
-    if (response.ok) {
-      // dispatch failure
+    if (response.data.status.code = "200") {
+      // dispatch success
       console.log("I am coming from success ")
-      var Name = response.data.firstName+" "+response.data.lastName ;
-
-      yield put(LoginActions.loginSuccess(Name,smToken))
+      var cookieItems = response.headers['set-cookie']
+      console.log("cookieItems" + cookieItems);
+      var pattern = /^SMSESSION/;
+       if (pattern.test(cookieItems)) {
+          //console.log(item)
+          var elements = cookieItems.split(';')
+          var smTokenNew = elements[0]
+            /*var smToken = smToken.replace('SMSESSION=', '')*/
+        }
+      console.log("smToken"+smToken);
+      var Name = response.data.data.firstName+" "+response.data.data.lastName ;
+      yield put(LoginActions.loginSuccess(Name,smTokenNew))
       yield put(MemberActions.memberSuccess(Name))
-
     } else {
-      // dispatch successful logins
-     console.log("I am coming from failuer ")
+      console.log("I am coming from failuer ")
       yield put(LoginActions.loginFailure('WRONG'))
     }
-
   }
