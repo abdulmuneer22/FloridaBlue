@@ -8,7 +8,8 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
-  Modal
+  Modal,
+  ScrollView
 } from 'react-native';
 
 import axios from 'axios'
@@ -17,6 +18,11 @@ import {Actions as NavigationActions} from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import LoginActions from '../../Redux/LoginRedux'
 import styles from './LoginStyle'
+import FlbIcon from './FlbIcon'
+import {Images} from '../../Themes'
+
+
+
 
 
 var logo =require('./logo.png')
@@ -138,15 +144,16 @@ componentWillReceiveProps (newProps) {
           //borderWidth : 1,
           height : 140
         }}>
-        <TouchableOpacity style={styles.button}
+        <TouchableOpacity
         onPress={()=>{
           this._handleLogin()
-
-
         }}>
-        <Text style={styles.buttonText}>
-        Log-in
-        </Text>
+        <Image
+        source={Images.loginIn}
+        resizeMode="stretch"
+        style={styles.button}
+        />
+
         </TouchableOpacity>
 
         <TouchableOpacity style={{
@@ -158,8 +165,9 @@ componentWillReceiveProps (newProps) {
         onPress={()=>NavigationActions.screen_1()}
         >
 
-        <Text style={styles.regularText}>
+        <Text style={styles.regularTex}>
         Im new Sign-up
+
         </Text>
         </TouchableOpacity>
         </View>
@@ -168,20 +176,40 @@ componentWillReceiveProps (newProps) {
   }
   render(){
     return(
-      <View style={styles.mainContainer}>
-      <View style={{flex : 1,backgroundColor : 'rgba(0,0,0,0)',justifyContent : 'center' }}>
+      <Image source={Images.background} resizeMode='stretch' style={{flex :1,
+        alignSelf: 'stretch',
+       width: null,
+      }}>
+    <View style={{flex : 1, justifyContent : 'center' }}>
+
       <View style={styles.wrapper}>
+
       <Image
         style={{
           width: 300,
-          height: 65,
+          height: 100,
           marginBottom : 30
         }}
-        source={logo}
+        source={Images.clouds}
+        resizeMode="stretch"
+      >
+      <Image
+        style={{
+          width: 300,
+          height: 100,
+          marginBottom : 30
+        }}
+        source={Images.logInlog}
+        resizeMode="stretch"
       />
+</Image>
+</View>
 
-    <View>{this.props.error ? <Text style={{color:'red'}}>{this.props.error}</Text>:<Text></Text>}</View>
-        <TextInput
+
+    <View style={styles.logincard}>
+     <View>{this.props.error ? <Text style={{color:'red'}}>{this.props.error}</Text>:<Text></Text>}
+     </View>
+      <TextInput
         style={styles.textInput}
         onChangeText={(text) => this.setState({username : text})}
         value={this.state.username}
@@ -193,7 +221,8 @@ componentWillReceiveProps (newProps) {
         underlineColorAndroid='rgba(0,0,0,0)'
         placeholderTextColor="rgba(213, 211, 200 , 0.7)"
         />
-        <TextInput
+
+      <TextInput
         style={styles.textInput}
         onChangeText={(text) => this.setState({password : text})}
         value={this.state.password}
@@ -202,13 +231,16 @@ componentWillReceiveProps (newProps) {
         underlineColorAndroid='rgba(0,0,0,0)'
         secureTextEntry={true}
         />
+
         <View style={styles.forgotPassword}>
         <Text style={styles.regularText}>
-        Forgot your Password
+        Forgot User ID/Password
         </Text>
         </View>
+        </View>
 
-
+        <View style={{flex : 1, justifyContent : 'center' ,backgroundColor:'white'}}>
+        <View style={styles.wrapper}>
         {
           this._moreInfo()
         }
@@ -227,9 +259,11 @@ componentWillReceiveProps (newProps) {
         i
         </Text>
         </TouchableOpacity>
+        </View>
       </View>
+
       </View>
-      </View>
+      </Image>
     );
   }
 }
