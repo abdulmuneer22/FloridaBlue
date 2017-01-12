@@ -41,8 +41,8 @@ const mdlstyles = Object.assign({}, appStyles, StyleSheet.create({
     marginTop: 32,
   },
   textfieldWithFloatingLabel: {
-    height: 25,  // have to do it on iOS
-    marginTop: 10,
+    height: 48,  // have to do it on iOS
+    marginTop: 5,
   },
 }));
 
@@ -114,10 +114,11 @@ class Login extends Component{
 
   _handleLogin(){
 
-
+    console.log("input"+this.refs.defaultInput)
+    console.log("input"+this.refs.defaultInputForPassword)
 
   var username = this.state.username
-var password = this.state.password
+  var password = this.state.password
 
 if(!this.state.username | !this.state.password){
        alert("Please enter user name and password!")
@@ -220,7 +221,7 @@ componentWillReceiveProps (newProps) {
 
       <Image
         style={{
-          width: 300,
+          width: 250,
           height: 100,
           marginBottom : 30
         }}
@@ -229,7 +230,7 @@ componentWillReceiveProps (newProps) {
       >
       <Image
         style={{
-          width: 300,
+          width: 250,
           height: 100,
           marginBottom : 30
         }}
@@ -239,14 +240,17 @@ componentWillReceiveProps (newProps) {
 </Image>
 </View>
       <View style={styles.logincard}>
+      <View style={{margin : 10  }}>
       <View style={{margin : 10}}>
-      <TextfieldWithFloatingLabel/>
-      <PasswordTextfieldWithFloatingLabel/>
-      <View style={{alignSelf:'center'}}>
-      <Text>Forgot UserID / Password</Text>
+      <TextfieldWithFloatingLabel ref="defaultInput"/>
       </View>
-
+      <View style={{margin : 10}}>
+      <PasswordTextfieldWithFloatingLabel ref="defaultInputForPassword"/>
       </View>
+      </View>
+       </View>
+       <View style={{flex : 1 , alignSelf:'center'}}>
+       <Text>Forgot UserID / Password</Text>
        </View>
 
 
@@ -261,7 +265,7 @@ componentWillReceiveProps (newProps) {
         }}>
         <Image
         source={Images.loginIn}
-        resizeMode="stretch"
+        resizeMode="cover"
         style={styles.button}
         />
         </TouchableOpacity>

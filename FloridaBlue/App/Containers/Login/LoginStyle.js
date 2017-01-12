@@ -71,13 +71,13 @@ export default StyleSheet.create({
     alignSelf : 'center'
   },
   logincard :{
-    backgroundColor :Colors.snow,
-    margin : Metrics.baseMargin,
-    borderRadius : 20,
+  //  backgroundColor :Colors.snow,
+  //  margin : Metrics.baseMargin,
+  //  borderRadius : 20,
     flex : 1,
-    paddingTop : 20,
-    paddingBottom : 20,
-    width :300,
+//    paddingTop : 20,
+    paddingBottom : 80,
+    width :350,
     alignSelf :'center'
   }
 
