@@ -75,7 +75,7 @@ export default StyleSheet.create({
     margin : Metrics.baseMargin,
     borderRadius : 18,
     flex : 1,
-    paddingTop : 10,
-    paddingBottom : 10
+    paddingTop : 20,
+    paddingBottom : 20
   }
 })

@@ -20,10 +20,43 @@ import LoginActions from '../../Redux/LoginRedux'
 import styles from './LoginStyle'
 import FlbIcon from './FlbIcon'
 import {Images} from '../../Themes'
+import {
+  MKTextField,
+  MKColor,
+  mdl,
+} from 'react-native-material-kit';
+const appStyles = require('./styles');
 
 
+const mdlstyles = Object.assign({}, appStyles, StyleSheet.create({
+  col: {
+    flex: 1,
+    flexDirection: 'column',
+    // alignItems: 'center', // this will prevent TFs from stretching horizontal
+    marginLeft: 7, marginRight: 7,
+    // backgroundColor: MKColor.Lime,
+  },
+  textfield: {
+    height: 28,  // have to do it on iOS
+    marginTop: 32,
+  },
+  textfieldWithFloatingLabel: {
+    height: 48,  // have to do it on iOS
+    marginTop: 10,
+  },
+}));
 
-
+const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
+  .withPlaceholder('UserId..')
+  .withStyle(mdlstyles.textfieldWithFloatingLabel)
+  .withTextInputStyle({flex: 1})
+  .withFloatingLabelFont({
+    fontSize: 10,
+    fontStyle: 'italic',
+    fontWeight: '200',
+  })
+  .withKeyboardType('numeric')
+  .build();
 
 var logo =require('./logo.png')
 const window = Dimensions.get('window');
@@ -70,6 +103,8 @@ if(!this.state.username | !this.state.password){
 }
 
 
+
+
 componentWillReceiveProps (newProps) {
     this.forceUpdate()
     // Did the login attempt complete?
@@ -81,6 +116,7 @@ componentWillReceiveProps (newProps) {
     }
   }
 
+  
   _moreInfo(){
     if(this.state.modalVisible === true){
       return(
@@ -139,37 +175,7 @@ componentWillReceiveProps (newProps) {
       );
     }else{
       return(
-        <View style={{
-          //borderColor : 'red',
-          //borderWidth : 1,
-          height : 140
-        }}>
-        <TouchableOpacity
-        onPress={()=>{
-          this._handleLogin()
-        }}>
-        <Image
-        source={Images.loginIn}
-        resizeMode="stretch"
-        style={styles.button}
-        />
-
-        </TouchableOpacity>
-
-        <TouchableOpacity style={{
-          height : 20,
-          //borderColor : 'red',
-          //borderWidth : 1,
-          marginBottom : 120
-        }}
-        onPress={()=>NavigationActions.screen_1()}
-        >
-
-        <Text style={styles.regularTex}>
-        Im new Sign-up
-
-        </Text>
-        </TouchableOpacity>
+        <View >
         </View>
       );
     }
@@ -209,29 +215,10 @@ componentWillReceiveProps (newProps) {
     <View style={styles.logincard}>
      <View>{this.props.error ? <Text style={{color:'red'}}>{this.props.error}</Text>:<Text></Text>}
      </View>
-      <TextInput
-        style={styles.textInput}
-        onChangeText={(text) => this.setState({username : text})}
-        value={this.state.username}
-        placeholder="User ID"
-        autoCapitalize='none'
-        autoCorrect={false}
-        returnKeyType='next'
-        keyboardType='default'
-        underlineColorAndroid='rgba(0,0,0,0)'
-        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
-        />
-
-      <TextInput
-        style={styles.textInput}
-        onChangeText={(text) => this.setState({password : text})}
-        value={this.state.password}
-        placeholder="Password"
-        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
-        underlineColorAndroid='rgba(0,0,0,0)'
-        secureTextEntry={true}
-        />
-
+     <View style={mdlstyles.col}>
+     <TextfieldWithFloatingLabel ref="defaultInput"/>
+                <Text style={mdlstyles.legendLabel}>With floating label</Text>
+      </View>
         <View style={styles.forgotPassword}>
         <Text style={styles.regularText}>
         Forgot User ID/Password
@@ -240,11 +227,41 @@ componentWillReceiveProps (newProps) {
         </View>
 
         <View style={{flex : 1, justifyContent : 'center' ,backgroundColor:'white'}}>
+        <View style={{
+          justifyContent : 'center',
+          alignItems :'center'
+        }}>
+        <TouchableOpacity
+        onPress={()=>{
+          this._handleLogin()
+        }}>
+        <Image
+        source={Images.loginIn}
+        resizeMode="stretch"
+        style={styles.button}
+        />
+        </TouchableOpacity>
+        <TouchableOpacity
+        onPress={()=>NavigationActions.screen_1()}
+        >
+        <Text style={styles.regularTex}>
+        I'm new.Sign-up
+        </Text>
+        </TouchableOpacity>
+
+        </View>
+        </View>
+        <View style={{flex : 1, justifyContent : 'center' ,backgroundColor:'white'}}>
         <View style={styles.wrapper}>
         {
           this._moreInfo()
         }
-        <TouchableOpacity style={styles.circle}
+        </View>
+        </View>
+        <View style={{flex : 1, justifyContent : 'center' ,backgroundColor:'white'}}>
+        <View style={styles.wrapper}>
+
+        <TouchableOpacity
         onPress={()=>{
           if(this.state.modalVisible === true){
           this.setState({modalVisible : false})
@@ -253,14 +270,11 @@ componentWillReceiveProps (newProps) {
         }
         }}
         >
-        <Text style={{
-          fontWeight : 'bold'
-        }}>
-        i
-        </Text>
+        <Image source={Images.infoIcon} resizeMode='stretch' />
         </TouchableOpacity>
         </View>
       </View>
+
 
       </View>
       </Image>

@@ -12,6 +12,7 @@ const images = {
   splashlog: require('../Images/splash-logo.png'),
   logInlog: require('../Images/login-logo.png'),
   clouds: require('../Images/clouds.png'),
+  infoIcon: require('../Images/info-icon-gray.png')
 }
 
 export default images
