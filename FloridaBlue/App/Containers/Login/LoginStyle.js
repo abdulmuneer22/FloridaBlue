@@ -73,9 +73,13 @@ export default StyleSheet.create({
   logincard :{
     backgroundColor :Colors.snow,
     margin : Metrics.baseMargin,
-    borderRadius : 18,
+    borderRadius : 20,
     flex : 1,
     paddingTop : 20,
-    paddingBottom : 20
+    paddingBottom : 20,
+    width :300,
+    alignSelf :'center'
   }
+
+
 })

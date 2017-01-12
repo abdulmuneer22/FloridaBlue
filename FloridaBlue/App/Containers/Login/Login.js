@@ -41,7 +41,7 @@ const mdlstyles = Object.assign({}, appStyles, StyleSheet.create({
     marginTop: 32,
   },
   textfieldWithFloatingLabel: {
-    height: 48,  // have to do it on iOS
+    height: 25,  // have to do it on iOS
     marginTop: 10,
   },
 }));
@@ -56,6 +56,34 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
     fontWeight: '200',
   })
   .withKeyboardType('numeric')
+  .build();
+
+  const PasswordTextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
+    .withPlaceholder('Password..')
+    .withStyle(mdlstyles.textfieldWithFloatingLabel)
+    .withTextInputStyle({flex: 1})
+    .withFloatingLabelFont({
+      fontSize: 10,
+      fontStyle: 'italic',
+      fontWeight: '200',
+    })
+    .withKeyboardType('numeric')
+    .build();
+
+
+  const PasswordInput = mdl.Textfield.textfieldWithFloatingLabel()
+  .withPassword(true)
+  .withPlaceholder('Password')
+  .withDefaultValue('!123')
+  .withHighlightColor(MKColor.Lime)
+  .withStyle(styles.textfieldWithFloatingLabel)
+  .withTextInputStyle({flex: 1})
+  .withOnFocus(() => console.log('Focus'))
+  .withOnBlur(() => console.log('Blur'))
+  .withOnEndEditing((e) => console.log('EndEditing', e.nativeEvent.text))
+  .withOnSubmitEditing((e) => console.log('SubmitEditing', e.nativeEvent.text))
+  .withOnTextChange((e) => console.log('TextChange', e))
+  .withOnChangeText((e) => console.log('ChangeText', e))
   .build();
 
 var logo =require('./logo.png')
@@ -116,7 +144,7 @@ componentWillReceiveProps (newProps) {
     }
   }
 
-  
+
   _moreInfo(){
     if(this.state.modalVisible === true){
       return(
@@ -210,21 +238,17 @@ componentWillReceiveProps (newProps) {
       />
 </Image>
 </View>
-
-
-    <View style={styles.logincard}>
-     <View>{this.props.error ? <Text style={{color:'red'}}>{this.props.error}</Text>:<Text></Text>}
-     </View>
-     <View style={mdlstyles.col}>
-     <TextfieldWithFloatingLabel ref="defaultInput"/>
-                <Text style={mdlstyles.legendLabel}>With floating label</Text>
+      <View style={styles.logincard}>
+      <View style={{margin : 10}}>
+      <TextfieldWithFloatingLabel/>
+      <PasswordTextfieldWithFloatingLabel/>
+      <View style={{alignSelf:'center'}}>
+      <Text>Forgot UserID / Password</Text>
       </View>
-        <View style={styles.forgotPassword}>
-        <Text style={styles.regularText}>
-        Forgot User ID/Password
-        </Text>
-        </View>
-        </View>
+
+      </View>
+       </View>
+
 
         <View style={{flex : 1, justifyContent : 'center' ,backgroundColor:'white'}}>
         <View style={{
