@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -11,18 +11,18 @@ import {
   Modal,
 
 } from 'react-native';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RegistrationToolBar from '../RegistrationToolBar'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-
+import {connect} from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
 const window = Dimensions.get('window');
-
-
 import Input from './Input'
 import Button from '../Button'
+
+
+
+
 class Screen_4 extends Component{
 
   constructor(){
@@ -287,4 +287,37 @@ const Styles = StyleSheet.create({
 
 });
 
-export default Screen_4
+
+Screen_4.propTypes = {
+  postRegistrationAnswers: PropTypes.func,
+  fetching: PropTypes.bool,
+  questionone : PropTypes.string,
+  questiontwo :PropTypes.string,
+  questionthree : PropTypes.string,
+  answerone : PropTypes.string,
+  answertwo : PropTypes.string,
+  answerthree : PropTypes.string,
+  error: PropTypes.string
+}
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.registration.fetching,
+    questionone : state.registration.questionone,
+    questiontwo : state.registration.questiontwo,
+    questionthree : state.registration.questionthree,
+    answerone : state.registration.answerone,
+    answertwo : state.registration.answertwo,
+    answerthree : state.registration.answerthree,
+    error: state.registration.error
+  }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    postRegistrationAnswers:(questionone,questiontwo,questionthree,answerone,answertwo,answerthree) => dispatch(RegistrationActions.sendregistrationAnswers(questionone,questiontwo,questionthree,answerone,answertwo,answerthree))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Screen_4)

@@ -10,9 +10,13 @@ const { Types, Creators } = createActions({
   registrationSuccess: ['contactnumber' ,'firstname','lastname','dob','zip'],
   sendregistrationRequest: ['email' ,'confirmemail','uniqueuserid','password','confirmpassword'],
   sendregistrationSuccess: ['email' ,'confirmemail','uniqueuserid','password','confirmpassword'],
-  sendregistrationCode :['registrationcode'],
+  sendregistrationRequestcode :['registrationcode'],
+  sendregistrationSuccesscode :['registrationcode'],
+  sendregistrationRequestanswers :['questionone','questiontwo','questionthree','answerone','answertwo','answerthree'],
+  sendregistrationSuccessanswers :['questionone','questiontwo','questionthree','answerone','answertwo','answerthree'],
+  sendregistrationRequestconfirm : ['confirm'],
+  sendregistrationSuccessconfirm : ['confirm'],
   registrationFailure: ['error'],
-
 })
 
 export const RegistrationTypes = Types
@@ -34,6 +38,13 @@ export const INITIAL_STATE = Immutable({
   password : null ,
   confirmpassword : null,
   registrationcode : null ,
+  questionone : null,
+  questiontwo : null,
+  questionthree : null,
+  answerone: null ,
+  answertwo: null ,
+  answerthree: null,
+  confirm : null
 })
 
 /* ------------- Reducers ------------- */
@@ -51,6 +62,12 @@ export const sendsuccess = (state: Object, {email,confirmemail,uniqueuserid,pass
 export const sendcode = (state: Object, {registrationcode}: Object) =>
       state.merge({fetching: false, registrationcode})
 
+export const sendanswers = (state: Object, {questionone ,questiontwo, questionthree, answerone, answertwo, answerthree}: Object) =>
+      state.merge({fetching: false,questionone ,questiontwo, questionthree, answerone, answertwo, answerthree })
+
+export const sendconfirm = (state: Object, {sendconfrim}: Object) =>
+      state.merge({fetching: false,sendconfrim})
+
 // we've had a problem logging in
 export const failure = (state: Object, {error}: Object) =>
   state.merge({ fetching: false, error })
@@ -65,7 +82,12 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.REGISTRATION_SUCCESS]: success,
   [Types.SENDREGISTRATION_REQUEST]: request,
   [Types.SENDREGISTRATION_SUCCESS]: sendsuccess,
-  [Types.SENDREGISTRATION_CODE]: sendcode,
+  [Types.SENDREGISTRATION_REQUESTCODE] : request,
+  [Types.SENDREGISTRATION_SUCCESSCODE]: sendcode,
+  [Types.SENDREGISTRATION_REQUESTANSWERS]: request,
+  [Types.SENDREGISTRATION_SUCCESSANSWERS]: sendanswers,
+  [Types.SENDREGISTRATION_REQUESTCONFIRM]: request,
+  [Types.SENDREGISTRATION_SUCCESSCONFIRM]: sendconfirm,
   [Types.REGISTRATION_FAILURE]: failure,
 })
 

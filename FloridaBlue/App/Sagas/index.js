@@ -18,7 +18,11 @@ import { RegistrationTypes } from '../Redux/RegistrationRedux'
 import { login } from './LoginSagas'
 import { member } from './MemberSagas'
 import { myplan } from './MyPlanSagas'
-import { registration} from './RegistrationSagas'
+import {registration} from './RegistrationSagas'
+import {sendregistration} from './RegistrationSagas'
+import {sendregistrationCode} from './RegistrationSagas'
+import {sendregistrationAnswers} from './RegistrationSagas'
+import {sendconfirm} from './RegistrationSagas'
 //import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -37,6 +41,9 @@ export default function * root () {
     takeLatest(LoginTypes.LOGIN_REQUEST, login , api),
     takeLatest(MemberTypes.MEMBER_REQUEST, member,api),
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan,api),
-    takeLatest(RegistrationTypes.REGISTRATION_REQUEST,registration,apiforRegistration)
+    takeLatest(RegistrationTypes.REGISTRATION_REQUEST,registration,apiforRegistration),
+    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCODE,sendregistrationCode,apiforRegistration),
+    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTANSWERS,sendregistrationAnswers,apiforRegistration),
+    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCONFIRM, sendconfirm,apiforRegistration)
   ]
 }

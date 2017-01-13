@@ -336,7 +336,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    sendregistrationCode:(registrationcode) => dispatch(RegistrationActions.sendregistrationCode(registrationcode))
+    sendregistrationCode:(registrationcode) => dispatch(RegistrationActions.sendregistrationRequestcode(registrationcode))
   }
 }
 

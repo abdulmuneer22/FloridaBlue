@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,8 +9,8 @@ import {
   ScrollView,
   TouchableWithoutFeedback
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
+import Icon from 'react-native-vector-icons/FontAwesome'
+import {connect} from 'react-redux'
 import RegistrationToolBar from '../RegistrationToolBar'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 
@@ -195,4 +195,29 @@ const Styles = StyleSheet.create({
     justifyContent : 'center',
   }
 });
-export default TermsofUse
+
+
+TermsofUse.propTypes = {
+  sendConfirm: PropTypes.func,
+  fetching: PropTypes.bool,
+  confirm : PropTypes.string,
+  error: PropTypes.string
+}
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.registration.fetching,
+    confirm : state.registration.confirm ,
+    error: state.registration.error
+  }
+}
+
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendConfirm:(confirm) => dispatch(RegistrationActions.sendregistrationSuccessconfirm(confirm))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TermsofUse)
