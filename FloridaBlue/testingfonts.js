@@ -1,4 +1,4 @@
-<View style={Styles.wrapper}>
+  <View style={Styles.wrapper}>
        <RegistrationToolBar/>
        <View style={{
          flexDirection : 'row',
@@ -79,3 +79,24 @@
        </View>
        </View>
      </View>
+
+
+
+
+     <ScrollView style={styles.scrollView}
+             contentContainerStyle={styles.container}>
+
+     <View style={styles.row}>
+     <View style={mdlstyles.col}>
+     <TextfieldWithFloatingLabel ref="defaultInput"/>
+      <Text style={mdlstyles.legendLabel}>With floating label</Text>
+      </View>
+      <View style={styles.row}>
+      <View style={mdlstyles.col}>
+            <PasswordInput/>
+            <Text style={styles.legendLabel}>With floating label</Text>
+          </View>
+        </View>
+      </View>
+
+      </ScrollView>

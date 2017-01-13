@@ -24,7 +24,7 @@ export const INITIAL_STATE = Immutable({
   dob: null,
   zip: null,
   fetching : false,
-  error : null 
+  error : null
 })
 
 /* ------------- Reducers ------------- */

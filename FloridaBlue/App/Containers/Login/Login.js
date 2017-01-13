@@ -20,71 +20,10 @@ import LoginActions from '../../Redux/LoginRedux'
 import styles from './LoginStyle'
 import FlbIcon from './FlbIcon'
 import {Images} from '../../Themes'
-import {
-  MKTextField,
-  MKColor,
-  mdl,
-} from 'react-native-material-kit';
-const appStyles = require('./styles');
 
 
-const mdlstyles = Object.assign({}, appStyles, StyleSheet.create({
-  col: {
-    flex: 1,
-    flexDirection: 'column',
-    // alignItems: 'center', // this will prevent TFs from stretching horizontal
-    marginLeft: 7, marginRight: 7,
-    // backgroundColor: MKColor.Lime,
-  },
-  textfield: {
-    height: 28,  // have to do it on iOS
-    marginTop: 32,
-  },
-  textfieldWithFloatingLabel: {
-    height: 48,  // have to do it on iOS
-    marginTop: 5,
-  },
-}));
-
-const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
-  .withPlaceholder('UserId..')
-  .withStyle(mdlstyles.textfieldWithFloatingLabel)
-  .withTextInputStyle({flex: 1})
-  .withFloatingLabelFont({
-    fontSize: 10,
-    fontStyle: 'italic',
-    fontWeight: '200',
-  })
-  .withKeyboardType('numeric')
-  .build();
-
-  const PasswordTextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
-    .withPlaceholder('Password..')
-    .withStyle(mdlstyles.textfieldWithFloatingLabel)
-    .withTextInputStyle({flex: 1})
-    .withFloatingLabelFont({
-      fontSize: 10,
-      fontStyle: 'italic',
-      fontWeight: '200',
-    })
-    .withKeyboardType('numeric')
-    .build();
 
 
-  const PasswordInput = mdl.Textfield.textfieldWithFloatingLabel()
-  .withPassword(true)
-  .withPlaceholder('Password')
-  .withDefaultValue('!123')
-  .withHighlightColor(MKColor.Lime)
-  .withStyle(styles.textfieldWithFloatingLabel)
-  .withTextInputStyle({flex: 1})
-  .withOnFocus(() => console.log('Focus'))
-  .withOnBlur(() => console.log('Blur'))
-  .withOnEndEditing((e) => console.log('EndEditing', e.nativeEvent.text))
-  .withOnSubmitEditing((e) => console.log('SubmitEditing', e.nativeEvent.text))
-  .withOnTextChange((e) => console.log('TextChange', e))
-  .withOnChangeText((e) => console.log('ChangeText', e))
-  .build();
 
 var logo =require('./logo.png')
 const window = Dimensions.get('window');
@@ -114,11 +53,10 @@ class Login extends Component{
 
   _handleLogin(){
 
-    console.log("input"+this.refs.defaultInput)
-    console.log("input"+this.refs.defaultInputForPassword)
+
 
   var username = this.state.username
-  var password = this.state.password
+var password = this.state.password
 
 if(!this.state.username | !this.state.password){
        alert("Please enter user name and password!")
@@ -132,8 +70,6 @@ if(!this.state.username | !this.state.password){
 }
 
 
-
-
 componentWillReceiveProps (newProps) {
     this.forceUpdate()
     // Did the login attempt complete?
@@ -144,7 +80,6 @@ componentWillReceiveProps (newProps) {
         NavigationActions.WelcomeDashBoard()
     }
   }
-
 
   _moreInfo(){
     if(this.state.modalVisible === true){
@@ -204,7 +139,37 @@ componentWillReceiveProps (newProps) {
       );
     }else{
       return(
-        <View >
+        <View style={{
+          //borderColor : 'red',
+          //borderWidth : 1,
+          height : 140
+        }}>
+        <TouchableOpacity
+        onPress={()=>{
+          this._handleLogin()
+        }}>
+        <Image
+        source={Images.loginIn}
+        resizeMode="stretch"
+        style={styles.button}
+        />
+
+        </TouchableOpacity>
+
+        <TouchableOpacity style={{
+          height : 20,
+          //borderColor : 'red',
+          //borderWidth : 1,
+          marginBottom : 120
+        }}
+        onPress={()=>NavigationActions.screen_1()}
+        >
+
+        <Text style={styles.regularTex}>
+        Im new Sign-up
+
+        </Text>
+        </TouchableOpacity>
         </View>
       );
     }
@@ -221,7 +186,7 @@ componentWillReceiveProps (newProps) {
 
       <Image
         style={{
-          width: 250,
+          width: 300,
           height: 100,
           marginBottom : 30
         }}
@@ -230,7 +195,7 @@ componentWillReceiveProps (newProps) {
       >
       <Image
         style={{
-          width: 250,
+          width: 300,
           height: 100,
           marginBottom : 30
         }}
@@ -239,57 +204,47 @@ componentWillReceiveProps (newProps) {
       />
 </Image>
 </View>
-      <View style={styles.logincard}>
-      <View style={{margin : 10  }}>
-      <View style={{margin : 10}}>
-      <TextfieldWithFloatingLabel ref="defaultInput"/>
-      </View>
-      <View style={{margin : 10}}>
-      <PasswordTextfieldWithFloatingLabel ref="defaultInputForPassword"/>
-      </View>
-      </View>
-       </View>
-       <View style={{flex : 1 , alignSelf:'center'}}>
-       <Text>Forgot UserID / Password</Text>
-       </View>
 
 
-        <View style={{flex : 1, justifyContent : 'center' ,backgroundColor:'white'}}>
-        <View style={{
-          justifyContent : 'center',
-          alignItems :'center'
-        }}>
-        <TouchableOpacity
-        onPress={()=>{
-          this._handleLogin()
-        }}>
-        <Image
-        source={Images.loginIn}
-        resizeMode="cover"
-        style={styles.button}
+    <View style={styles.logincard}>
+     <View>{this.props.error ? <Text style={{color:'red'}}>{this.props.error}</Text>:<Text></Text>}
+     </View>
+      <TextInput
+        style={styles.textInput}
+        onChangeText={(text) => this.setState({username : text})}
+        value={this.state.username}
+        placeholder="User ID"
+        autoCapitalize='none'
+        autoCorrect={false}
+        returnKeyType='next'
+        keyboardType='default'
+        underlineColorAndroid='rgba(0,0,0,0)'
+        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
         />
-        </TouchableOpacity>
-        <TouchableOpacity
-        onPress={()=>NavigationActions.screen_1()}
-        >
-        <Text style={styles.regularTex}>
-        I'm new.Sign-up
-        </Text>
-        </TouchableOpacity>
 
+      <TextInput
+        style={styles.textInput}
+        onChangeText={(text) => this.setState({password : text})}
+        value={this.state.password}
+        placeholder="Password"
+        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
+        underlineColorAndroid='rgba(0,0,0,0)'
+        secureTextEntry={true}
+        />
+
+        <View style={styles.forgotPassword}>
+        <Text style={styles.regularText}>
+        Forgot User ID/Password
+        </Text>
         </View>
         </View>
+
         <View style={{flex : 1, justifyContent : 'center' ,backgroundColor:'white'}}>
         <View style={styles.wrapper}>
         {
           this._moreInfo()
         }
-        </View>
-        </View>
-        <View style={{flex : 1, justifyContent : 'center' ,backgroundColor:'white'}}>
-        <View style={styles.wrapper}>
-
-        <TouchableOpacity
+        <TouchableOpacity style={styles.circle}
         onPress={()=>{
           if(this.state.modalVisible === true){
           this.setState({modalVisible : false})
@@ -298,11 +253,14 @@ componentWillReceiveProps (newProps) {
         }
         }}
         >
-        <Image source={Images.infoIcon} resizeMode='stretch' />
+        <Text style={{
+          fontWeight : 'bold'
+        }}>
+        i
+        </Text>
         </TouchableOpacity>
         </View>
       </View>
-
 
       </View>
       </Image>

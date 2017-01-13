@@ -27,11 +27,12 @@ export function* registration(api, {
 
   if (response.ok) {
     // dispatch failure
+    console.log("I am coming from success");
     yield put(RegistrationActions.registrationSuccess(contactnumber, firstname, lastname, dob, zip));
   } else {
     // dispatch successful logins
     console.log("I am coming from failuer ")
-    var error = "Invalid Credentials. Please enter correctly."
+    var error = "Invaid input provided"
     yield put(RegistrationActions.registrationFailure(error))
   }
 }

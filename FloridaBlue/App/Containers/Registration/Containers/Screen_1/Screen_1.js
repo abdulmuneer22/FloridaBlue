@@ -57,6 +57,18 @@ class Screen_1 extends Component{
     }
 
   };
+
+
+
+  componentWillReceiveProps (newProps) {
+      this.forceUpdate()
+      // Did the first page perfect
+      console.log("I am receving new props")
+      if (!newProps.fetching && newProps.error === null) {
+         console.log("I am from reg success "+newProps.error);
+          NavigationActions.screen_2()
+      }
+    }
   render(){
     return(
         <View style={Styles.wrapper}>
