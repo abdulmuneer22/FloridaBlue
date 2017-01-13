@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,PropTypes } from 'react';
 import {
   StyleSheet,
   Text,
@@ -13,6 +13,7 @@ import {
 import RegistrationToolBar from '../RegistrationToolBar'
 import Input from './Input'
 import Button from '../Button'
+import {connect} from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Actions as NavigationActions} from 'react-native-router-flux'
 
@@ -315,4 +316,28 @@ const Styles = StyleSheet.create({
 
   }
 });
-export default Screen_3
+
+
+Screen_3.propTypes = {
+  sendregistrationCode: PropTypes.func,
+  fetching: PropTypes.bool,
+  registrationcode : PropTypes.string,
+
+}
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.registration.fetching,
+    registrationcode : state.registration.registrationcode ,
+    error: state.registration.error
+  }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendregistrationCode:(registrationcode) => dispatch(RegistrationActions.sendregistrationCode(registrationcode))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Screen_3)

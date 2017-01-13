@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component ,PropTypes} from 'react';
 import {
   StyleSheet,
   Text,
@@ -13,7 +13,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Button from '../Button'
-
+import {connect} from 'react-redux'
 import RegistrationToolBar from '../RegistrationToolBar'
 import Input from './Input'
 import PasswordMeter from './PasswordMeter'
@@ -236,4 +236,35 @@ const Styles = StyleSheet.create({
     justifyContent : 'center'
   }
 });
-export default Screen_2
+
+
+Screen_2.propTypes = {
+  verifyUniqueId: PropTypes.func,
+  fetching : PropTypes.bool,
+  email: PropTypes.string,
+  confirmemail : PropTypes.string,
+  uniqueuserid :PropTypes.string,
+  password: PropTypes.string,
+  confirmpassword : PropTypes.string
+}
+
+const mapStateToProps = (state) => {
+  return {
+    fetching : state.registration.fetching,
+    email: state.registration.email,
+    confirmemail : state.registration.confirmemail,
+    uniqueuserid : state.registration.uniqueuserid,
+    password: state.registration.password,
+    confirmpassword : state.registration.confirmpassword,
+    error: state.registration.error
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    verifyUniqueId:(email,confirmemail,uniqueuserid,password,confirmpassword) => dispatch(RegistrationActions.sendregistrationRequest(email,confirmemail,uniqueuserid,password,confirmpassword))
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Screen_2)
