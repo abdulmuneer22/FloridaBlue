@@ -1,7 +1,7 @@
 // @flow
 
 import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles } from '../../Themes/'
+import { Metrics, Colors, ApplicationStyles } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
@@ -11,7 +11,8 @@ export default StyleSheet.create({
     justifyContent : 'center',
     alignItems :'center',
     paddingTop : 40,
-    paddingBottom : 40
+    paddingBottom : 60,
+
   },
   textInput : {
     width : window.width - 80,
@@ -26,8 +27,7 @@ export default StyleSheet.create({
     padding : 6
   },
   forgotPassword : {
-    alignSelf : "flex-end",
-    marginRight : 40
+     alignItems: 'center',
   },
   button : {
     backgroundColor : 'rgba(17, 147, 203,0.9)',
@@ -45,7 +45,7 @@ export default StyleSheet.create({
     fontWeight : 'bold'
   },
   regularText : {
-    color : 'rgb(86, 187, 231)'
+    color : 'rgb(0, 0, 0)'
   },
   circle: {
     width: 40,
@@ -54,7 +54,8 @@ export default StyleSheet.create({
     backgroundColor: '#58D3F7',
     alignItems : 'center',
     justifyContent : 'center',
-    marginTop : 20,
+    marginTop : 20
+
   },
   popupchild:{
     width : window.width / 2 - 10 ,
@@ -68,5 +69,17 @@ export default StyleSheet.create({
     fontSize : 14,
     marginLeft : 5,
     alignSelf : 'center'
+  },
+  logincard :{
+  //  backgroundColor :Colors.snow,
+  //  margin : Metrics.baseMargin,
+  //  borderRadius : 20,
+    flex : 1,
+//    paddingTop : 20,
+    paddingBottom : 80,
+    width :350,
+    alignSelf :'center'
   }
+
+
 })

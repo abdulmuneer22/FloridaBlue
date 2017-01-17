@@ -17,15 +17,16 @@ import MyPlanActions from '../../../../Redux/MyPlanRedux'
 class DoctorServices extends Component{
 
   _renderHeader(){
-  return <View style={styles.headerContainer}>
+  return (<View style={styles.headerContainer}>
     {NavItems.backButton()}
     <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>Plan Benefits</Text>
     {NavItems.settingsButton()}
 
-  </View>
+  </View>)
 }
     render(){
         return(
+          
           <View style={{
               flex : 1 ,
               backgroundColor : 'white'
@@ -37,13 +38,13 @@ class DoctorServices extends Component{
                         alignItems : 'center',
                         marginTop : 10
                     }}>
-                    <Icon name="user-md" size={60} color="black" />
+                    <Icon name="user-md" size={60} color="black"></Icon>
                     <Text style={{
                       marginTop : 5,
                       fontSize : 13
                     }}>Doctor Office Services</Text>
 
-                    <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}/ >
+                    <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
 
                     </View>
 
@@ -81,13 +82,8 @@ class DoctorServices extends Component{
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
                     </Text>
                     </View>
-
                 </View>
-
             </ScrollView>
-
-
-
             </View>
         );
     }

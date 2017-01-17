@@ -10,6 +10,7 @@ import DebugSettings from '../Config/DebugSettings'
 import { LoginTypes } from '../Redux/LoginRedux'
 import { MemberTypes } from '../Redux/MemberRedux'
 import { MyPlanTypes } from '../Redux/MyPlanRedux'
+import { RegistrationTypes } from '../Redux/RegistrationRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -17,6 +18,11 @@ import { MyPlanTypes } from '../Redux/MyPlanRedux'
 import { login } from './LoginSagas'
 import { member } from './MemberSagas'
 import { myplan } from './MyPlanSagas'
+import {registration} from './RegistrationSagas'
+import {sendregistration} from './RegistrationSagas'
+import {sendregistrationCode} from './RegistrationSagas'
+import {sendregistrationAnswers} from './RegistrationSagas'
+import {sendconfirm} from './RegistrationSagas'
 //import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -24,29 +30,20 @@ import { myplan } from './MyPlanSagas'
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.
 const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
+const apiforRegistration = API.create(baseURL='https://registration-stga.bcbsfl.com/restservices/public')
 
 /* ------------- Connect Types To Sagas ------------- */
 
-
 export default function * root () {
-//  console.log("testing"+MyPlanTypes.MYPLAN_REQUEST);
-//  console.log("testing"+MemberTypes.MEMBER_REQUEST);
-//  console.log("testing"+myplan);
-
   yield [
     // some sagas only receive an action
-  //  takeLatest(StartupTypes.STARTUP, startup),
-    //takeLatest(LoginTypes.LOGIN_REQUEST, login),
-
-
-    takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan),
-
     // some sagas receive extra parameters in addition to an action
-     takeLatest(MemberTypes.MEMBER_REQUEST, member,api),
-     takeLatest(LoginTypes.LOGIN_REQUEST, login , api)
-//    takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)
-
-    //takeLatest(TemperatureTypes.TEMPERATURE_REQUEST, getTemperature, api)
-
+    takeLatest(LoginTypes.LOGIN_REQUEST, login , api),
+    takeLatest(MemberTypes.MEMBER_REQUEST, member,api),
+    takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan,api),
+    takeLatest(RegistrationTypes.REGISTRATION_REQUEST,registration,apiforRegistration),
+    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCODE,sendregistrationCode,apiforRegistration),
+    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTANSWERS,sendregistrationAnswers,apiforRegistration),
+    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCONFIRM, sendconfirm,apiforRegistration)
   ]
 }

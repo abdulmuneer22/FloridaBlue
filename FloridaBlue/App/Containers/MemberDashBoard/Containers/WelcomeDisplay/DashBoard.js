@@ -38,19 +38,19 @@ class LandingScreen extends Component {
 
 
   _renderHeader(){
-  return <View style={styles.headerContainer}>
+  return( <View style={styles.headerContainer}>
     {NavItems.hamburgerButton()}
     <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>Florida Blue</Text>
     {NavItems.settingsButton()}
 
-  </View>
+  </View>)
 }
 
 
 componentDidMount(){
   console.log("mount on dashboadr"+this.props.smToken);
 
-     this.props.attemptMember(this.props.smToken)
+     this.props.attemptMember()
 }
 
   render(){
@@ -105,14 +105,13 @@ componentDidMount(){
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
-    userName: state.member.username,
-    smToken: state.login.smToken
+    userName: state.member.username
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMember:(smToken) => dispatch(MemberActions.memberRequest(smToken))
+    attemptMember:() => dispatch(MemberActions.memberRequest())
   }
 }
 

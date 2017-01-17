@@ -30,86 +30,97 @@ type MyPlanScreenProps = {
 */
 class MyPlanScreen extends Component{
 
+  constructor(props) {
+    super(props);
+  }
+
 
   componentDidMount(){
        console.log("I am my plan screen")
         this.props.attemptMyPlan();
   }
 
+  componentWillReceiveProps (newProps) {
+      this.forceUpdate()
+      console.log("I am receving new props from My plan scree "+JSON.stringify(newProps))
+      console.log("error message "+newProps.error);
+      if (!newProps.fetching && newProps.error == "WRONG") {
+          console.log("Hey going to login "+newProps.error);
+          NavigationActions.login()
+      }
+    }
 
-  _renderHeader(){
-  return <View style={styles.headerContainer}>
-    {NavItems.backButton()}
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>MyPlan</Text>
-    {NavItems.settingsButton()}
-
-  </View>
-}
 
   render(){
     return(
-        <View style={{
-            flex : 1 ,
-            backgroundColor : 'white'
-        }}>
-              {this._renderHeader()}
 
-            <View style={Styles.PlanName}>
-            <Text>
-            Blue Options
-            </Text>
-            </View>
+      <View style={{
+          flex : 1 ,
+          backgroundColor : 'white'
+      }}>
+      <View style={styles.headerContainer}>
+        {NavItems.backButton()}
+        <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>MyPlan</Text>
+        {NavItems.settingsButton()}
 
-            <View style={Styles.chartWrapper}>
-            <MyPlanSwiper data={this.props.data}/>
-            </View>
+      </View>
 
-            <View style={{
+          <View style={Styles.PlanName}>
+          <Text>
+          Blue Options
+          </Text>
+          </View>
 
-            flexWrap : 'wrap',
-            flexDirection : 'row'
-            }}>
-            <Card
-            title = "Benefits"
-            bg="rgb(204, 211, 214)"
-            icon = "briefcase"
-            />
-
-            <Card
-            title = "Claims"
-            bg="rgb(151, 198, 207)"
-            icon = "book"
-            />
-            </View>
+          <View style={Styles.chartWrapper}>
+          {this.props.data.hsaamount ? <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
+          </View>
 
 
-            <View style={Styles.footer}>
-            <Text style={Styles.footerText}>Health Savings Account</Text>
+                      <View style={{
 
-            <View style={Styles.footerSecondTextWraper}>
+                      flexWrap : 'wrap',
+                      flexDirection : 'row'
+                      }}>
+                      <Card
+                      title = "Benefits"
+                      bg="rgb(204, 211, 214)"
+                      icon = "briefcase"
+                      />
 
-            <View style={Styles.column}>
-            <Text style={Styles.columnText}>Current Balance</Text>
-            <Text>${this.props.data.hsaamount.currentBalance} </Text>
-            </View>
+                      <Card
+                      title = "Claims"
+                      bg="rgb(151, 198, 207)"
+                      icon = "book"
+                      />
+                      </View>
+                        {this.props.data.hsaamount ?
 
-            <View style={Styles.column}>
-            <Text style={Styles.columnText}>YTD Contribute</Text>
-            <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
-            </View>
+                                  <View style={Styles.footer}>
+                                      <Text style={Styles.footerText}>Health Savings Account</Text>
 
-            <View style={Styles.column}>
-            <Text style={Styles.columnText}>YTD Distribute</Text>
-            <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
-            </View>
+                                      <View style={Styles.footerSecondTextWraper}>
+
+                                          <View style={Styles.column}>
+                                          <Text style={Styles.columnText}>Current Balance</Text>
+                                          <Text>${this.props.data.hsaamount.currentBalance} </Text>
+                                          </View>
+
+                                          <View style={Styles.column}>
+                                          <Text style={Styles.columnText}>YTD Contribute</Text>
+                                          <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
+                                          </View>
+
+                                          <View style={Styles.column}>
+                                          <Text style={Styles.columnText}>YTD Distribute</Text>
+                                          <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
+                                          </View>
 
 
-            </View>
-            </View>
+                                      </View>
+                                  </View> :<Text>loading</Text>}
+          </View>
 
 
-
-            </View>
 
 
     );
@@ -160,13 +171,16 @@ column : {
 
 MyPlanScreen.propTypes = {
   data: PropTypes.object,
-  attemptMyPlan: PropTypes.func
+  attemptMyPlan: PropTypes.func,
+  error: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
+
   return {
     fetching: state.login.fetching,
-    data: state.myplan.data
+    data : state.myplan.data,
+    error: state.myplan.error
   }
 }
 const mapDispatchToProps = (dispatch) => {

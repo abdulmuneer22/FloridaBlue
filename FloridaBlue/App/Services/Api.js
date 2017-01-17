@@ -1,10 +1,10 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
- var btoa = require('btoa');
- global.Buffer = global.Buffer || require('buffer').Buffer;
+var btoa = require('btoa');
+global.Buffer = global.Buffer || require('buffer').Buffer;
 
 // our "constructor"
-const create = (baseURL = 'http://localhost:9000') => {
+const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   // ------
   // STEP 1
   // ------
@@ -51,21 +51,30 @@ const create = (baseURL = 'http://localhost:9000') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  const setHeaders = (username,password) => api.setHeaders({
+  const setHeaders = (username, password) => api.setHeaders({
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization':'Basic '+btoa(username+":"+password)
-})
-  const getUser = (username,password) => api.get('/login')
+    'Authorization': 'Basic ' + btoa(username + ":" + password)
+  })
+  const getUser = (username, password) => api.get('/login')
 
   const setsmTokenHeaders = (smToken) => api.setHeaders({
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'smToken':smToken
-})
+    'set-cookie': smToken
+  })
 
-const getMember = () => api.get('/members')
-
+  const getMember = () => api.get('/members')
+  const getPlan = () => api.get('/benefits')
+  const postIdentification = (contactnumber, firstname, lastname, dob, zip) => api.post('/identifyuser.json',{
+    "user": {
+      "contractnumber": contactnumber,
+      "firstName": firstname,
+      "lastName": lastname,
+      "dob": dob,
+      "zip": zip
+    }
+  })
   // ------
   // STEP 3
   // ------
@@ -83,7 +92,9 @@ const getMember = () => api.get('/members')
     setHeaders,
     getUser,
     setsmTokenHeaders,
-    getMember
+    getMember,
+    getPlan,
+    postIdentification
   }
 }
 
