@@ -18,11 +18,20 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     baseURL,
     // here are some default headers
     headers: {
-      'Cache-Control': 'no-cache'
+      'Cache-Control': 'no-cache',
+
     },
     // 10 second timeout...
+    maxRedirects: 0,
+    validateStatus: function(status) {
+      return status >= 200 && status < 300; // default
+    },
     timeout: 10000
   })
+
+
+
+
 
   // Force OpenWeather API Key on all requests
   /*
@@ -57,7 +66,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     'Authorization': 'Basic ' + btoa(username + ":" + password)
   })
   const getUser = (username, password) => api.get('/login')
-
   const setsmTokenHeaders = (smToken) => api.setHeaders({
     'Accept': 'application/json',
     'Content-Type': 'application/json',

@@ -15,7 +15,7 @@ export function* login(api, {
     console.log("username+password" + JSON.stringify(username) + password);
     api.setHeaders(username, password);
     const response = yield call(api.getUser, username, password)
-    console.log(JSON.stringify(response));
+    console.log(response);
     if (response.status == "200") {
       yield put(LoginActions.loginSuccess(username))
     } else if (response.status == "401") {
