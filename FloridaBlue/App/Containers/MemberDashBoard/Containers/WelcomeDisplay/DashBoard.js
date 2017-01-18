@@ -8,7 +8,8 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ScrollView
 } from 'react-native';
 
 
@@ -58,6 +59,8 @@ componentDidMount(){
     return(
       <View style={styles.container}>
       {this._renderHeader()}
+      <ScrollView
+      showsVerticalScrollIndicator={false}>
       <Greeting userName={this.props.userName}/>
       <MyPlanCard/>
       {
@@ -95,6 +98,7 @@ componentDidMount(){
       }
 
       <TransButton/>
+      </ScrollView>
 
       </View>
     );

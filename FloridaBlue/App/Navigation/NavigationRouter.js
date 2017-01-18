@@ -7,6 +7,7 @@ import NavItems from './NavItems'
 import CustomNavBar from '../Navigation/CustomNavBar'
 // screens identified by the router
 import { Login } from '../Containers/Login'
+import { Webview } from '../Containers/Login/WebView'
 import { Home } from '../Containers/Home'
 //import { Screen_1} from '../Containers/Registration'
 import { Screen_1} from '../Containers/Registration/Containers/Screen_1'
@@ -23,6 +24,7 @@ import { MyPlanScreen} from '../Containers/MemberDashBoard/Containers/MyPlan'
 import { BenefitsScreen} from '../Containers/MemberDashBoard/Containers/Benefits'
 import { DoctorServices } from '../Containers/MemberDashBoard/Containers/DoctorService'
 import { ListviewExample } from '../Containers/ListviewExample'
+
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
 ***************************/
@@ -33,6 +35,7 @@ class NavigationRouter extends Component {
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
             <Scene initial key='login' component={Login} title='Login' hideNavBar />
+            <Scene key='MyView' component={Webview} title='WebView page' />
             <Scene key='screen_1' component={Screen_1} title='first page' />
             <Scene key='screen_2' component={Screen_2} title='create username page' />
             <Scene key='ReadMore' component={ReadMore} title='readmore page' />

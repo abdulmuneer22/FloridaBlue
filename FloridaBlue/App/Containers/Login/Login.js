@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Actions as NavigationActions} from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import LoginActions from '../../Redux/LoginRedux'
+//import WebView from './Components/WebView'
 import styles from './LoginStyle'
 import FlbIcon from './FlbIcon'
 import {Images} from '../../Themes'
@@ -101,6 +102,7 @@ componentWillReceiveProps (newProps) {
         <Icon name="chevron-right" size={12} color="black" />
 
         <TouchableOpacity>
+
         <Text style={styles.popupchildText}>
          Terms of Use
         </Text>
@@ -116,9 +118,14 @@ componentWillReceiveProps (newProps) {
 
         <View style={styles.popupchild}>
         <Icon name="chevron-right" size={12} color="black" />
+
+        <TouchableOpacity
+        onPress={()=>NavigationActions.MyView()}>
         <Text style={styles.popupchildText}>
          Accessibility
         </Text>
+        </TouchableOpacity>
+
         </View>
 
         <View style={styles.popupchild}>
