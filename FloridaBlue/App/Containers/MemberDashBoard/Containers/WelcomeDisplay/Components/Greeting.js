@@ -6,6 +6,11 @@ import {
 } from 'react-native'
 import axios from 'axios'
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
+var messageCount="10"
+
 class Greeting extends Component{
 
   constructor(){
@@ -15,7 +20,7 @@ class Greeting extends Component{
     }
   }
 
-  _getUserData(){
+/*  _getUserData(){
     axios.get('http://localhost:9000/members')
     .then((response)=>{
       console.log(response.data.firstName + " " + response.data.lastName);
@@ -26,19 +31,40 @@ class Greeting extends Component{
     })
   }
 
-
   componentDidMount(){
     this._getUserData();
   }
-
+*/
   render(){
-  
+
     return(
+      <View>
       <View style={Styles.Greeting}>
       <Text style={{fontSize:20}}>
       Good Morning {this.props.userName ? this.props.userName :""}
       </Text>
       </View>
+
+      {
+        messageCount ?
+        <View style={{
+          alignItems:'center',
+          justifyContent:'center',
+          height:40,
+          backgroundColor:'rgba(230,232,238,0.1)'
+        }}>
+        <View style={{
+          flexDirection : 'row'}}>
+        <Icon name="envelope" size={18} color="black" />
+        <Text style={{marginLeft : 10}}> You have {messageCount} New Messages </Text>
+        </View>
+
+        </View>
+        : null
+      }
+      </View>
+
+
     );
   }
 }
@@ -48,7 +74,8 @@ const Styles = StyleSheet.create({
   Greeting : {
     alignItems  : 'center',
     justifyContent : 'center',
-    margin : 10
+    padding : 15,
+    backgroundColor: 'rgba(38, 45, 49, 0.8)'
   }
 });
 

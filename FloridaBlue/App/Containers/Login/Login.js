@@ -101,9 +101,7 @@ componentWillReceiveProps (newProps) {
 
         <Icon name="chevron-right" size={12} color="black" />
 
-        <TouchableOpacity
-
-        onPress={()=>NavigationActions.MyView()}>
+        <TouchableOpacity>
 
         <Text style={styles.popupchildText}>
          Terms of Use
@@ -120,9 +118,14 @@ componentWillReceiveProps (newProps) {
 
         <View style={styles.popupchild}>
         <Icon name="chevron-right" size={12} color="black" />
+
+        <TouchableOpacity
+        onPress={()=>NavigationActions.MyView()}>
         <Text style={styles.popupchildText}>
          Accessibility
         </Text>
+        </TouchableOpacity>
+
         </View>
 
         <View style={styles.popupchild}>

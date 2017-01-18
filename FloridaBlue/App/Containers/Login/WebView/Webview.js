@@ -39,8 +39,8 @@ class Webview extends Component {
       {this._renderHeader()}
 
       <WebView
-        source={{uri: 'https://www.google.com/maps/@30.3093218,-81.5047772,12z'}}
-
+        source={{uri: 'https://www.floridablue.com/general/web-accessibility'}}
+        style={{margin:10}}
       />
       </View>
     );
