@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component,PropTypes } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -15,6 +15,7 @@ import {
 import styles from './WebViewStyle'
 import NavItems from '../../Navigation/NavItems.js'
 import {Colors, Metrics, Fonts} from '../../Themes'
+import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 
 const window=Dimensions.get('window');
@@ -31,6 +32,11 @@ class Webview extends Component {
   }
 
   render() {
+    var dynamic = this.props.responseURL
+    var redirect ={
+      uri: dynamic
+    }
+
     return (
       <View style={{
           flex : 1 ,
@@ -40,7 +46,7 @@ class Webview extends Component {
 
       <WebView
 
-        source={{uri: 'https://registration-stga.bcbsfl.com/ecir/public/apsaction.do?apsparam=usrlocked&TARGET=https%3A%2F%2Fmobapi-stga%2Ebcbsfl%2Ecom%2Fmob%2Fapi%2Fv1%2Flogin'}}
+        source={redirect}
               />
       </View>
     );
@@ -48,4 +54,16 @@ class Webview extends Component {
   }
 }
 
-export default Webview
+Webview.propTypes = {
+  fetching: PropTypes.bool,
+  responseURL : PropTypes.string
+}
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.login.fetching,
+    responseURL: state.login.responseURL
+  }
+}
+
+export default connect(mapStateToProps)(Webview)
