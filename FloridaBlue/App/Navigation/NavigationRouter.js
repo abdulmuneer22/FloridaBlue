@@ -7,7 +7,7 @@ import NavItems from './NavItems'
 import CustomNavBar from '../Navigation/CustomNavBar'
 // screens identified by the router
 import { Login } from '../Containers/Login'
-import { Webview } from '../Containers/Login/WebView'
+import { Webview } from '../Containers/WebView'
 import { Home } from '../Containers/Home'
 //import { Screen_1} from '../Containers/Registration'
 import { Screen_1} from '../Containers/Registration/Containers/Screen_1'
