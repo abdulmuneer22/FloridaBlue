@@ -1,7 +1,7 @@
 #  FloridaBlue
 
 ## Setup
-[Setup README](../blob/master/README.md)
+[Setup README](../README.md)
 
 ## NPM Install
 
