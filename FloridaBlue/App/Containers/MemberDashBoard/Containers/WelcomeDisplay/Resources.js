@@ -25,32 +25,17 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import MemberActions from '../../../../Redux/MemberRedux'
 import { connect } from 'react-redux';
 
-type LoginScreenProps = {
-  dispatch: () => any,
-  fetching: boolean,
-  userName : string ,
-  attemptMember: () => void
-}
 
-class LandingScreen extends Component {
-
-  props: LoginScreenProps
-  isAttempting : boolean
+class Resources extends Component {
 
 
   _renderHeader(){
   return( <View style={styles.headerContainer}>
+    {NavItems.backButton()}
     <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,alignSelf:'center'}]}>Florida Blue</Text>
-    {NavItems.settingsButton()}
+
 
   </View>)
-}
-
-
-componentDidMount(){
-  console.log("mount on dashboadr"+this.props.smToken);
-
-     this.props.attemptMember()
 }
 
   render(){
@@ -58,10 +43,8 @@ componentDidMount(){
     return(
       <View style={styles.container}>
       {this._renderHeader()}
-      <ScrollView
-      showsVerticalScrollIndicator={false}>
-      <Greeting userName={this.props.userName}/>
-      <MyPlanCard/>
+      <ScrollView>
+
       {
         <View style={{
 
@@ -81,18 +64,42 @@ componentDidMount(){
         icon = "credit-card"
         />
 
-
-        <TouchableOpacity
-        onPress={()=>NavigationActions.Resources()}>
-
         <SeeDetailsCard
         title = "Promotions"
         bg="rgb(220, 230, 234 )"
         icon = "paperclip"
-
         />
-        </TouchableOpacity>
 
+        <SeeDetailsCard
+        title = "Session"
+        bg="rgb(234, 234, 220)"
+        icon = "apple"
+        />
+        <SeeDetailsCard
+        title = "Session"
+        bg="rgb(234, 270, 220)"
+        icon = "apple"
+        />
+        <SeeDetailsCard
+        title = "Session"
+        bg="rgb(234, 230, 220)"
+        icon = "apple"
+        />
+        <SeeDetailsCard
+        title = "Session"
+        bg="rgb(234, 205, 220)"
+        icon = "apple"
+        />
+        <SeeDetailsCard
+        title = "Session"
+        bg="rgb(234, 260, 220)"
+        icon = "apple"
+        />
+        <SeeDetailsCard
+        title = "Session"
+        bg="rgb(234, 211, 220)"
+        icon = "apple"
+        />
         <SeeDetailsCard
         title = "Session"
         bg="rgb(234, 234, 220)"
@@ -102,7 +109,7 @@ componentDidMount(){
         </View>
       }
 
-      <TransButton/>
+
       </ScrollView>
 
       </View>
@@ -111,17 +118,6 @@ componentDidMount(){
 }
 
 
-const mapStateToProps = (state) => {
-  return {
-    fetching: state.login.fetching,
-    userName: state.member.username
-  }
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    attemptMember:() => dispatch(MemberActions.memberRequest())
-  }
-}
 
-export default connect(mapStateToProps,mapDispatchToProps)(LandingScreen)
+export default Resources

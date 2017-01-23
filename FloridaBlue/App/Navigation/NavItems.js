@@ -28,7 +28,7 @@ export default {
       </TouchableOpacity>
     )
   },
-
+/*
   hamburgerButton () {
     return (
       <TouchableOpacity onPress={openDrawer.bind(null,'menu')}>
@@ -39,11 +39,12 @@ export default {
         />
       </TouchableOpacity>
     )
-  },
+    name='ios-more'
+  },*/
   settingsButton () {
     return <TouchableOpacity onPress={openDrawer.bind(null,'settings')}>
-      <IonicIcon
-        name='ios-more'
+      <Icon
+        name='bars'
         size={Metrics.icons.large}
         style={{color:Colors.snow,marginTop:5}}
       />

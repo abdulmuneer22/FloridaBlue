@@ -11,22 +11,17 @@ import {
   Modal,
   WebView
   } from 'react-native';
-
 import styles from './WebViewStyle'
 import NavItems from '../../Navigation/NavItems.js'
 import {Colors, Metrics, Fonts} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-
 const window=Dimensions.get('window');
-
-
 var WEBVIEW_REF = 'webview';
 
 
+
 class Webview extends Component {
-
-
   _renderHeader(){
   return <View style={styles.headerContainer}>
     {NavItems.backButton()}
@@ -34,7 +29,6 @@ class Webview extends Component {
     {NavItems.settingsButton()}
     </View>
   }
-
   render() {
     var dynamic = this.props.responseURL
     var setcookie = this.props.setcookie
@@ -42,27 +36,28 @@ class Webview extends Component {
       'set-cookie' : setcookie
     }
 
+
     var redirect ={
       uri: dynamic,
       headers : headers
     }
     console.log("redirect"+JSON.stringify(redirect));
+
     return (
       <View style={{
           flex : 1 ,
           backgroundColor : 'white'
       }}>
       {this._renderHeader()}
-
       <WebView
         ref={WEBVIEW_REF}
         source={redirect}
               />
       </View>
     );
-
   }
 }
+
 
 
 goBack = () => {
@@ -74,12 +69,12 @@ goForward = () => {
 };
 
 
+
 Webview.propTypes = {
   fetching: PropTypes.bool,
   responseURL : PropTypes.string,
   setcookie : PropTypes.string
 }
-
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
@@ -87,5 +82,4 @@ const mapStateToProps = (state) => {
     setcookie : state.login.setcookie
   }
 }
-
 export default connect(mapStateToProps)(Webview)
