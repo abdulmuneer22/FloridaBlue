@@ -20,6 +20,10 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 
 const window=Dimensions.get('window');
 
+
+var WEBVIEW_REF = 'webview';
+
+
 class Webview extends Component {
 
 
@@ -33,10 +37,16 @@ class Webview extends Component {
 
   render() {
     var dynamic = this.props.responseURL
-    var redirect ={
-      uri: dynamic
+    var setcookie = this.props.setcookie
+    var headers = {
+      'set-cookie' : setcookie
     }
 
+    var redirect ={
+      uri: dynamic,
+      headers : headers
+    }
+    console.log("redirect"+JSON.stringify(redirect));
     return (
       <View style={{
           flex : 1 ,
@@ -45,7 +55,7 @@ class Webview extends Component {
       {this._renderHeader()}
 
       <WebView
-
+        ref={WEBVIEW_REF}
         source={redirect}
               />
       </View>
@@ -54,15 +64,27 @@ class Webview extends Component {
   }
 }
 
+
+goBack = () => {
+  this.refs[WEBVIEW_REF].goBack();
+};
+
+goForward = () => {
+  this.refs[WEBVIEW_REF].goForward();
+};
+
+
 Webview.propTypes = {
   fetching: PropTypes.bool,
-  responseURL : PropTypes.string
+  responseURL : PropTypes.string,
+  setcookie : PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
-    responseURL: state.login.responseURL
+    responseURL: state.login.responseURL,
+    setcookie : state.login.setcookie
   }
 }
 
