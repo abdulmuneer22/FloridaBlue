@@ -9,7 +9,7 @@ import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
-var messageCount="10"
+var messageCount=""
 
 class Greeting extends Component{
 
