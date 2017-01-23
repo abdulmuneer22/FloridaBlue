@@ -83,6 +83,7 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
+
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
@@ -110,6 +111,12 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    // This is important, it will run lint checks but won't abort build
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+    }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -124,6 +131,7 @@ android {
         }
     }
 }
+
 
 dependencies {
     compile project(':react-native-material-kit')

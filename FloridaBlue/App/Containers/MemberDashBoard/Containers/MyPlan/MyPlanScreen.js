@@ -65,128 +65,129 @@ class MyPlanScreen extends Component{
 
       </View>
 
-          <View style={Styles.PlanName}>
-          <Text>
-          Blue Options
-          </Text>
-          </View>
+      <View style={Styles.PlanName}>
+      <Text>
+      Blue Options
+      </Text>
+      </View>
 
-          <View style={Styles.chartWrapper}>
-          {this.props.data.hsaamount ? <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
-          </View>
-
-
-                      <View style={{
-
-                      flexWrap : 'wrap',
-                      flexDirection : 'row'
-                      }}>
-                      <Card
-                      title = "Benefits"
-                      bg="rgb(204, 211, 214)"
-                      icon = "briefcase"
-                      />
-
-                      <Card
-                      title = "Claims"
-                      bg="rgb(151, 198, 207)"
-                      icon = "book"
-                      />
-                      </View>
-                        {this.props.data.hsaamount ?
-
-                                  <View style={Styles.footer}>
-                                      <Text style={Styles.footerText}>Health Savings Account</Text>
-
-                                      <View style={Styles.footerSecondTextWraper}>
-
-                                          <View style={Styles.column}>
-                                          <Text style={Styles.columnText}>Current Balance</Text>
-                                          <Text>${this.props.data.hsaamount.currentBalance} </Text>
-                                          </View>
-
-                                          <View style={Styles.column}>
-                                          <Text style={Styles.columnText}>YTD Contribute</Text>
-                                          <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
-                                          </View>
-
-                                          <View style={Styles.column}>
-                                          <Text style={Styles.columnText}>YTD Distribute</Text>
-                                          <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
-                                          </View>
+      <View style={Styles.chartWrapper}>
+      {this.props.data.hsaamount ? <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
+      </View>
 
 
-                                      </View>
-                                  </View> :<Text>loading</Text>}
-          </View>
+      <View style={{
+
+      flexWrap : 'wrap',
+      flexDirection : 'row'
+      }}>
+      <Card
+      title = "Benefits"
+      bg="rgb(204, 211, 214)"
+      icon = "briefcase"
+      />
+
+      <Card
+      title = "Claims"
+      bg="rgb(151, 198, 207)"
+      icon = "book"
+      />
+      </View>
+      {this.props.data.hsaamount ?
+
+      <View style={Styles.footer}>
+      <Text style={Styles.footerText}>Health Savings Account</Text>
+
+      <View style={Styles.footerSecondTextWraper}>
+
+
+                <View style={Styles.column}>
+                <Text style={Styles.columnText}>Current Balance</Text>
+                <Text>${this.props.data.hsaamount.currentBalance} </Text>
+                </View>
+
+                <View style={Styles.column}>
+                <Text style={Styles.columnText}>YTD Contribute</Text>
+                <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
+                </View>
+
+                <View style={Styles.column}>
+                <Text style={Styles.columnText}>YTD Distribute</Text>
+                <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
+                </View>
+
+
+                </View>
+                </View> :<Text>loading</Text>}
+                </View>
 
 
 
 
-    );
-  }
+          );
+        }
 
-}
-const Styles = StyleSheet.create({
-  PlanName : {
-    alignItems  : 'center',
-    justifyContent : 'center',
-    margin : 10,
-    padding : 5
+      }
+      const Styles = StyleSheet.create({
+        PlanName : {
+          alignItems  : 'center',
+          justifyContent : 'center',
+          margin : 10,
+          padding : 5
 
-  },
+        },
 
-  chartWrapper : {
-    //   backgroundColor : 'yellow',
-      flex : 2,
-      marginBottom : 20
-  },
-  footer: {
-      flex : 1,
-      backgroundColor : 'rgb(123, 136, 138)',
+        chartWrapper : {
+          //   backgroundColor : 'yellow',
+            flex : 2,
+            marginBottom : 20
+        },
+        footer: {
+            flex : 1,
+            backgroundColor : 'rgb(123, 136, 138)',
 
-  },
-  footerSecondTextWraper : {
-      flexDirection : 'row',
+        },
+        footerSecondTextWraper : {
+            flexDirection : 'row',
 
-      padding : 5
-  },
-  footerText : {
-    padding : 20,
-    textAlign : 'center',
-    fontWeight : '500',
-    fontSize : 12
-  },
-column : {
-      alignItems : 'center',
-      flex : 1
-  },
-  columnText : {
-      fontSize : 13,
-      fontWeight : '500'
+            padding : 5
+        },
+        footerText : {
+          padding : 20,
+          textAlign : 'center',
+          fontWeight : '500',
+          fontSize : 12
+        },
+      column : {
+            alignItems : 'center',
+            flex : 1
+        },
+        columnText : {
+            fontSize : 13,
+            fontWeight : '500'
 
-  }
+        }
 
-});
+      });
 
-MyPlanScreen.propTypes = {
-  data: PropTypes.object,
-  attemptMyPlan: PropTypes.func,
-  error: PropTypes.string
-}
+      MyPlanScreen.propTypes = {
+        data: PropTypes.object,
+        attemptMyPlan: PropTypes.func,
+        error: PropTypes.string
+      }
 
-const mapStateToProps = (state) => {
+      const mapStateToProps = (state) => {
 
-  return {
-    fetching: state.login.fetching,
-    data : state.myplan.data,
-    error: state.myplan.error
-  }
-}
-const mapDispatchToProps = (dispatch) => {
-  return {
-    attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
-  }
-}
+        return {
+          fetching: state.login.fetching,
+          data : state.myplan.data,
+          error: state.myplan.error
+        }
+      }
+      const mapDispatchToProps = (dispatch) => {
+        return {
+          attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
+        }
+      }
 
-export default connect(mapStateToProps, mapDispatchToProps) (MyPlanScreen)
+      export default connect(mapStateToProps, mapDispatchToProps) (MyPlanScreen)
