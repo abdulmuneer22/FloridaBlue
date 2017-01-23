@@ -50,6 +50,8 @@
       <string>SimpleLineIcons.ttf</string>
       <string>Zocial.ttf</string>
       <string>flb.ttf</string>
+      <string>flb.ttf</string>
+      <string>FlbIcon.ttf</string>
     </array>
     <key>NSAppTransportSecurity</key>
     <dict>

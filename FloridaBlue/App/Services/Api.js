@@ -23,9 +23,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     },
     // 10 second timeout...
     maxRedirects: 0,
-    validateStatus: function(status) {
-      return status >= 200 && status < 300; // default
-    },
     timeout: 10000
   })
 

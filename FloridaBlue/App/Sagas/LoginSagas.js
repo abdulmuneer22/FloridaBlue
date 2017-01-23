@@ -16,9 +16,23 @@ export function* login(api, {
     api.setHeaders(username, password);
     const response = yield call(api.getUser, username, password)
     console.log(JSON.stringify(response));
+
     if (response.status == "200") {
-      var responseURL = response.responseURL;
-      yield put(LoginActions.loginSuccess(username ,responseURL))
+      var responseURL = response.responseURL
+      var login
+          if (response.data.data) {
+            login = response.data.data.Login
+          } else {
+            login = null
+          }
+          if (login) {
+            responseURL = 'login'
+            var error = null
+
+          } else {
+            var error = null
+          }
+    yield put(LoginActions.loginSuccess(username, responseURL))
     } else if (response.status == "401") {
       // dispatch failure
       console.log("I am coming from failuer ")

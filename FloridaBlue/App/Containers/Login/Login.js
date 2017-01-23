@@ -17,7 +17,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Actions as NavigationActions} from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import LoginActions from '../../Redux/LoginRedux'
-//import WebView from './Components/WebView'
 import styles from './LoginStyle'
 import FlbIcon from './FlbIcon'
 import {Images} from '../../Themes'
@@ -32,7 +31,8 @@ const window = Dimensions.get('window');
 type LoginScreenProps = {
   dispatch: () => any,
   fetching: boolean,
-  attemptLogin: () => void
+  attemptLogin: () => void,
+  responseURL : string
 }
 
 
@@ -54,9 +54,7 @@ class Login extends Component{
 
   _handleLogin(){
 
-
-
-  var username = this.state.username
+var username = this.state.username
 var password = this.state.password
 
 if(!this.state.username | !this.state.password){
@@ -73,12 +71,15 @@ if(!this.state.username | !this.state.password){
 
 componentWillReceiveProps (newProps) {
     this.forceUpdate()
-    // Did the login attempt complete?
-    console.log("I am receving new props")
+      // Did the login attempt complete?
+    console.log("I am receving new props" + newProps.responseURL)
     if (this.isAttempting && !newProps.fetching && newProps.error === null) {
-    //  NavigationActions.WelcomeDashBoard()
-    console.log("HERRREEE: "+newProps.error);
+      if (newProps.responseURL == 'login') {
         NavigationActions.WelcomeDashBoard()
+      } else {
+        console.log("new props"+newProps.responseURL);
+        NavigationActions.MyView()
+      }
     }
   }
 
@@ -278,7 +279,8 @@ componentWillReceiveProps (newProps) {
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
-    error: state.login.error
+    error: state.login.error,
+    responseURL : state.login.responseURL
   }
 }
 
