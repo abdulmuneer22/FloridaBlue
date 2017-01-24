@@ -11,6 +11,8 @@ import {
   TouchableWithoutFeedback,
   ScrollView
 } from 'react-native';
+const window = Dimensions.get('window');
+
 
 
 import Greeting from './Components/Greeting'
@@ -24,7 +26,16 @@ import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import MemberActions from '../../../../Redux/MemberRedux'
 import { connect } from 'react-redux';
+import Flb from './FlbIcon'
 
+
+type LoginScreenProps = {
+  dispatch: () => any,
+  fetching: boolean,
+  userName : string ,
+  visibilityRules : object,
+  attemptMember: () => void
+}
 
 class Resources extends Component {
 
@@ -45,69 +56,53 @@ class Resources extends Component {
       {this._renderHeader()}
       <ScrollView>
 
-      {
-        <View style={{
-          flexWrap : 'wrap',
-          flexDirection : 'row'
-        }}>
+      <View style={{
+        flexWrap : 'wrap',
+        flexDirection:'row'
 
-        <Card
-        title = "Payment"
-        bg="rgb(204, 211, 214)"
-        icon = "usd"
-        />
+      }}>
+        {this.props.visibilityRules.additionalTiles.map(function(tile){
 
-      <Card
-        title = "ID Card"
-        bg="rgb(220, 230, 234 )"
-        icon = "credit-card"
-        />
+          onItemPress =function() {
+          var action ;
+          if (tile.tileType =='webview'){
+            action = NavigationActions.MyView();
+          } else if(tile.tileType == 'native'){
+            action = NavigationActions.Resources();
+          }
+        }
 
-        <Card
-        title = "Promotions"
-        bg="rgb(220, 230, 234 )"
-        icon = "paperclip"
-        />
+        return(
 
-        <Card
-        title = "Session"
-        bg="rgb(234, 234, 220)"
-        icon = "apple"
-        />
-        <Card
-        title = "Session"
-        bg="rgb(234, 270, 220)"
-        icon = "apple"
-        />
-        <Card
-        title = "Session"
-        bg="rgb(234, 230, 220)"
-        icon = "apple"
-        />
-        <Card
-        title = "Session"
-        bg="rgb(234, 205, 220)"
-        icon = "apple"
-        />
-        <Card
-        title = "Session"
-        bg="rgb(234, 260, 220)"
-        icon = "apple"
-        />
-        <Card
-        title = "Session"
-        bg="rgb(234, 211, 220)"
-        icon = "apple"
-        />
-        <Card
-        title = "Session"
-        bg="rgb(234, 234, 220)"
-        icon = "apple"
-        />
+<TouchableOpacity style={{
 
-        </View>
-      }
+  width : window.width * 0.5,
+  backgroundColor : 'white',
+  height : 150,
+  alignItems : 'center',
+  justifyContent : 'center',
+  borderColor : 'red',
+  borderWidth : 1
+}} onPress={onItemPress.bind(this)}>
+          <View>
 
+          <Flb name="cc-card" size={40}/>
+          <Text style={{
+            marginTop : 20,
+            fontSize : 14,
+            fontWeight : '600'
+          }}>
+          {tile.tileName}
+          </Text>
+
+          </View>
+</TouchableOpacity>
+
+      )
+      })}
+      </View>
+      <View>
+      </View>
 
       </ScrollView>
 
@@ -115,8 +110,17 @@ class Resources extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    visibilityRules : state.member.visibilityRules
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptMember:() => dispatch(MemberActions.memberRequest())
+  }
+}
 
 
 
-
-export default Resources
+export default connect(mapStateToProps,mapDispatchToProps)(Resources)

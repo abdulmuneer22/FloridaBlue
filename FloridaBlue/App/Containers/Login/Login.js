@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import LoginActions from '../../Redux/LoginRedux'
 import styles from './LoginStyle'
 import {Images} from '../../Themes'
-import {FlbIcon} from'./FlbIcon'
+//import {FlbIcon} from'./FlbIcon'
 
 
 

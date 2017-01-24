@@ -4,7 +4,9 @@ import {
   View,
   StyleSheet,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+
 } from 'react-native'
 
 const window = Dimensions.get('window');
@@ -25,6 +27,7 @@ class Card extends Component{
         borderColor : 'red',
         borderWidth : 1
       }}>
+        <TouchableOpacity onPress={()=>NavigationActions.Resources()}>
       <Icon name={this.props.icon} size={40} color="black"/>
       <Text style={{
         marginTop : 20,
@@ -33,6 +36,7 @@ class Card extends Component{
       }}>
       {this.props.title}
       </Text>
+        </TouchableOpacity>
       </View>
 
     );

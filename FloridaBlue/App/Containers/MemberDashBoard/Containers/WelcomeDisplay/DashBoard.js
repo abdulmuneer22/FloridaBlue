@@ -16,7 +16,7 @@ import {
 import Greeting from './Components/Greeting'
 import MyPlanCard from './Components/MyPlanCard'
 import Card from './Components/Card'
-import {FlbIcon,Colors,Metrics,Fonts} from '../../../../Themes'
+import {Colors,Metrics,Fonts} from '../../../../Themes'
 import SeeDetailsCard from './Components/SeeDetailsCard'
 import TransButton from './Components/transButton'
 import styles from './DashBoardStyle'
@@ -24,6 +24,13 @@ import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import MemberActions from '../../../../Redux/MemberRedux'
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Flb from './FlbIcon'
+
+
+
+const window = Dimensions.get('window');
+
 
 
 type LoginScreenProps = {
@@ -63,24 +70,50 @@ componentDidMount(){
     return(
       <View style={styles.mainContainer}>
       {this._renderHeader()}
-
+      <ScrollView>
       <Greeting userName={this.props.userName}/>
       <MyPlanCard/>
 
       <View style={{
         flexWrap : 'wrap',
-        flexDirection : 'row'
+        flexDirection:'row'
+
       }}>
         {this.props.visibilityRules.coreTiles.map(function(tile){
+
+          onItemPress =function() {
+          var action ;
+          if (tile.tileType =='webview'){
+            action = NavigationActions.MyView();
+          } else if(tile.tileType == 'native'){
+            action = NavigationActions.Resources();
+          }
+        }
         return(
 
-          <TouchableOpacity onPress={()=>NavigationActions.Resources()}>
-            <Card
-        title = {tile.tileId}
-        bg="rgb(204, 211, 214)"
-        icon = "cc-card"
-        />
-          </TouchableOpacity>
+<TouchableOpacity style={{
+
+  width : window.width * 0.5,
+  backgroundColor : 'white',
+  height : 150,
+  alignItems : 'center',
+  justifyContent : 'center',
+  borderColor : 'red',
+  borderWidth : 1
+}} onPress={onItemPress.bind(this)}>
+          <View>
+
+          <Flb name="cc-card" size={40}/>
+          <Text style={{
+            marginTop : 20,
+            fontSize : 14,
+            fontWeight : '600'
+          }}>
+          {tile.tileName}
+          </Text>
+
+          </View>
+</TouchableOpacity>
 
       )
       })}
@@ -90,7 +123,7 @@ componentDidMount(){
 
       <TransButton/>
 
-
+</ScrollView>
 
       </View>
     );
