@@ -47,7 +47,6 @@ class Resources extends Component {
 
       {
         <View style={{
-
           flexWrap : 'wrap',
           flexDirection : 'row'
         }}>

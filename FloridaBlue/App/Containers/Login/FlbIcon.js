@@ -237,4 +237,3 @@ const glyphMap = {
 };
 
 export default createIconSet(glyphMap, 'flb', 'FlbIcon.ttf');
-

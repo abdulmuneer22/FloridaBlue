@@ -31,8 +31,10 @@ export function* login(api, {
 
           } else {
             var error = null
+            var setcookie = response.headers['set-cookie']
+            console.log("jsession"+setcookie)
           }
-    yield put(LoginActions.loginSuccess(username, responseURL))
+    yield put(LoginActions.loginSuccess(username, responseURL,setcookie))
     } else if (response.status == "401") {
       // dispatch failure
       console.log("I am coming from failuer ")

@@ -17,6 +17,10 @@ import {Colors, Metrics, Fonts} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 const window=Dimensions.get('window');
+var WEBVIEW_REF = 'webview';
+
+
+
 class Webview extends Component {
   _renderHeader(){
   return <View style={styles.headerContainer}>
@@ -27,9 +31,17 @@ class Webview extends Component {
   }
   render() {
     var dynamic = this.props.responseURL
+    var setcookie = this.props.setcookie
+    var headers = {
+      'set-cookie' : setcookie
+    }
+
+
     var redirect ={
       uri: dynamic
     }
+    console.log("redirect"+JSON.stringify(redirect));
+
     return (
       <View style={{
           flex : 1 ,
@@ -37,20 +49,39 @@ class Webview extends Component {
       }}>
       {this._renderHeader()}
       <WebView
-        source={{uri:'https://registration-stga.bcbsfl.com/ecir/public/apsaction.do?apsparam=usrlocked&TARGET=https%3A%2F%2Fmobapi-stga%2Ebcbsfl%2Ecom%2Fmob%2Fapi%2Fv1%2Flogin'}}
+
+        source={redirect}
+        javaScriptEnabled={true}
+          domStorageEnabled={true}
+
               />
       </View>
     );
   }
 }
+
+
+
+goBack = () => {
+  this.refs[WEBVIEW_REF].goBack();
+};
+
+goForward = () => {
+  this.refs[WEBVIEW_REF].goForward();
+};
+
+
+
 Webview.propTypes = {
   fetching: PropTypes.bool,
-  responseURL : PropTypes.string
+  responseURL : PropTypes.string,
+  setcookie : PropTypes.string
 }
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
-    responseURL: state.login.responseURL
+    responseURL: state.login.responseURL,
+    setcookie : state.login.setcookie
   }
 }
 export default connect(mapStateToProps)(Webview)

@@ -16,7 +16,7 @@ import {
 import Greeting from './Components/Greeting'
 import MyPlanCard from './Components/MyPlanCard'
 import Card from './Components/Card'
-import {Colors,Metrics,Fonts} from '../../../../Themes'
+import {FlbIcon,Colors,Metrics,Fonts} from '../../../../Themes'
 import SeeDetailsCard from './Components/SeeDetailsCard'
 import TransButton from './Components/transButton'
 import styles from './DashBoardStyle'
@@ -25,10 +25,12 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import MemberActions from '../../../../Redux/MemberRedux'
 import { connect } from 'react-redux';
 
+
 type LoginScreenProps = {
   dispatch: () => any,
   fetching: boolean,
   userName : string ,
+  visibilityRules : object,
   attemptMember: () => void
 }
 
@@ -55,55 +57,40 @@ componentDidMount(){
 
   render(){
     console.log("root testing"+this.props.userName);
+
+    var coreTiles = this.props.visibilityRules.coreTiles ;
+    var id = coreTiles[0].tileId ;
     return(
       <View style={styles.mainContainer}>
       {this._renderHeader()}
-      <ScrollView
-      showsVerticalScrollIndicator={false}>
+
       <Greeting userName={this.props.userName}/>
       <MyPlanCard/>
-      {
-        <View style={{
 
-          flexWrap : 'wrap',
-          flexDirection : 'row'
-        }}>
+      <View style={{
+        flexWrap : 'wrap',
+        flexDirection : 'row'
+      }}>
+        {this.props.visibilityRules.coreTiles.map(function(tile){
+        return(
 
-        <Card
-        title = "Payment"
+          <TouchableOpacity onPress={()=>NavigationActions.Resources()}>
+            <Card
+        title = {tile.tileId}
         bg="rgb(204, 211, 214)"
-        icon = "usd"
+        icon = "cc-card"
         />
+          </TouchableOpacity>
 
-      <Card
-        title = "ID Card"
-        bg="rgb(220, 230, 234 )"
-        icon = "credit-card"
-        />
-
-
-        <TouchableOpacity
-        onPress={()=>NavigationActions.Resources()}>
-
-        <SeeDetailsCard
-        title = "Promotions"
-        bg="rgb(220, 230, 234 )"
-        icon = "paperclip"
-
-        />
-        </TouchableOpacity>
-
-        <SeeDetailsCard
-        title = "Session"
-        bg="rgb(234, 234, 220)"
-        icon = "apple"
-        />
-
-        </View>
-      }
+      )
+      })}
+      </View>
+      <View>
+      </View>
 
       <TransButton/>
-      </ScrollView>
+
+
 
       </View>
     );
@@ -114,7 +101,8 @@ componentDidMount(){
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
-    userName: state.member.username
+    userName: state.member.username,
+    visibilityRules : state.member.visibilityRules
   }
 }
 
