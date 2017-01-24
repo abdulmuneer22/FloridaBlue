@@ -15,7 +15,8 @@ export function* member(api, {
   if (response.data.status.code = "200") {
     // dispatch success
     var Name = response.data.data.firstName + " " + response.data.data.lastName;
-    yield put(MemberActions.memberSuccess(Name))
+    var visibilityRules = response.data.data.visibilityRule;
+    yield put(MemberActions.memberSuccess(Name,visibilityRules))
   } else {
     console.log("I am coming from failuer ")
     yield put(LoginActions.loginFailure('WRONG'))

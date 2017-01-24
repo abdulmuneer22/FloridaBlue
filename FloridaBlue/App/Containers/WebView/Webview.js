@@ -38,8 +38,7 @@ class Webview extends Component {
 
 
     var redirect ={
-      uri: dynamic,
-      headers : headers
+      uri: dynamic
     }
     console.log("redirect"+JSON.stringify(redirect));
 
@@ -50,8 +49,9 @@ class Webview extends Component {
       }}>
       {this._renderHeader()}
       <WebView
-        ref={WEBVIEW_REF}
         source={redirect}
+        javaScriptEnabled={true}
+          domStorageEnabled={true}
               />
       </View>
     );

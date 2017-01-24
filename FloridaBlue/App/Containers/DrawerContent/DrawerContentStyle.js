@@ -13,7 +13,6 @@ export default {
   //  padding: 10,
     margin:10,
     marginTop:10,
-    Color:'black'
   },
   logo: {
     alignSelf: 'center'
