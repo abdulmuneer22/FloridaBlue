@@ -32,8 +32,8 @@ class Resources extends Component {
   _renderHeader(){
   return( <View style={styles.headerContainer}>
     {NavItems.backButton()}
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,alignSelf:'center'}]}>Florida Blue</Text>
-
+    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,alignSelf:'center'}]}>Resources</Text>
+    {NavItems.settingsButton()}
 
   </View>)
 }
@@ -64,43 +64,43 @@ class Resources extends Component {
         icon = "credit-card"
         />
 
-        <SeeDetailsCard
+        <Card
         title = "Promotions"
         bg="rgb(220, 230, 234 )"
         icon = "paperclip"
         />
 
-        <SeeDetailsCard
+        <Card
         title = "Session"
         bg="rgb(234, 234, 220)"
         icon = "apple"
         />
-        <SeeDetailsCard
+        <Card
         title = "Session"
         bg="rgb(234, 270, 220)"
         icon = "apple"
         />
-        <SeeDetailsCard
+        <Card
         title = "Session"
         bg="rgb(234, 230, 220)"
         icon = "apple"
         />
-        <SeeDetailsCard
+        <Card
         title = "Session"
         bg="rgb(234, 205, 220)"
         icon = "apple"
         />
-        <SeeDetailsCard
+        <Card
         title = "Session"
         bg="rgb(234, 260, 220)"
         icon = "apple"
         />
-        <SeeDetailsCard
+        <Card
         title = "Session"
         bg="rgb(234, 211, 220)"
         icon = "apple"
         />
-        <SeeDetailsCard
+        <Card
         title = "Session"
         bg="rgb(234, 234, 220)"
         icon = "apple"

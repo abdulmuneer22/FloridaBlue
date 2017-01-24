@@ -91,29 +91,31 @@ class SettingsContent extends Component {
 
   render () {
     return (
-      <ScrollView >
-      <View style={[styles.container,{backgroundColor:'#00aec7'}]}>
+      <ScrollView style={styles.container}>
+      <View style={[styles.mainContainer,{backgroundColor:'#00aec7'}]}>
         <DrawerButton text='Dashboard' onPress={this.handlePressDashBoard} />
         <DrawerButton text='Find Care' onPress={this.handlePressFindCare} />
+
         <DrawerButton text='My Health Plans' onPress={this.handlePressPlans} />
         <ScrollView style={styles.container1}>
           <DrawerButton text='Benefits' onPress={this.handlePressBenefits} />
           <DrawerButton text='Claims' onPress={this.handlePressClaims} />
           </ScrollView>
+        <DrawerButton text='My Dental Plan' onPress={this.handlePressFindCare} />
         <DrawerButton text='Resources' onPress={this.handlePressResources} />
         <DrawerButton text='Support' onPress={this.handlePressDevice} />
         <DrawerButton text='Messages' onPress={this.handlePressSupport} />
         </View>
         <View style={styles.container1}>
-        <DrawerButton text='My Account' onPress={this.handlePressComponents} />
+        <DrawerButton   text='My Account' style={{color: 'red'}} onPress={this.handlePressComponents} />
         <DrawerButton text='App Settings' onPress={this.handlePressUsage} />
         <DrawerButton text='Frequently Asked Questions' onPress={this.handlePressAPI} />
-        <DrawerButton text='Policies and Terms' onPress={this.handlePressPolicy} />
-        <DrawerButton text='Contactus' onPress={this.handlePressTheme} />
+        <DrawerButton text='Policies & Terms' onPress={this.handlePressPolicy} />
+        <DrawerButton text='Contact US' onPress={this.handlePressTheme} />
         </View>
 
-        <View style={{backgroundColor:'grey'}}>
-        <DrawerButton text='Logout' onPress={this.handlePressLogout} />
+        <View style={{backgroundColor:'white',marginTop:20}}>
+        <Image source={Images.logout} resizeMode="stretch" onPress={this.handlePressLogout} />
         </View>
       </ScrollView>
     )

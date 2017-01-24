@@ -56,7 +56,7 @@ componentDidMount(){
   render(){
     console.log("root testing"+this.props.userName);
     return(
-      <View style={styles.container}>
+      <View style={styles.mainContainer}>
       {this._renderHeader()}
       <ScrollView
       showsVerticalScrollIndicator={false}>

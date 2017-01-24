@@ -37,7 +37,7 @@ class Webview extends Component {
       }}>
       {this._renderHeader()}
       <WebView
-        source={redirect}
+        source={{uri:'https://registration-stga.bcbsfl.com/ecir/public/apsaction.do?apsparam=usrlocked&TARGET=https%3A%2F%2Fmobapi-stga%2Ebcbsfl%2Ecom%2Fmob%2Fapi%2Fv1%2Flogin'}}
               />
       </View>
     );

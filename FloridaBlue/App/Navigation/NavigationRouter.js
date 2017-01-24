@@ -45,7 +45,7 @@ class NavigationRouter extends Component {
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' />
             <Scene key='memberid' component={FindMemberID} title='MemberId page' />
             <Scene key='confirmation' component={Confirmation} title='Confirmation page' />
-            <Scene initial  key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
+            <Scene  initial key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
             <Scene key ='Resources' component={Resources} title='Resource WebView' hideNavBar />
             <Scene  key='Myplan' component={MyPlanScreen} title='MyPlan Page'hideNavBar/>
             <Scene   key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page'hideNavBar/>
