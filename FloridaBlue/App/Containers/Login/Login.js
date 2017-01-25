@@ -24,7 +24,7 @@ import {Images} from '../../Themes'
 
 
 
-
+const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'});
 var logo =require('./logo.png')
 const window = Dimensions.get('window');
 
@@ -69,6 +69,8 @@ if(!this.state.username | !this.state.password){
 }
 
 
+
+
 componentWillReceiveProps (newProps) {
     this.forceUpdate()
       // Did the login attempt complete?
@@ -78,7 +80,7 @@ componentWillReceiveProps (newProps) {
         NavigationActions.WelcomeDashBoard()
       } else {
         console.log("new props"+newProps.responseURL);
-        NavigationActions.MyView()
+        NavigationActions.MyView({responseURL:newProps.responseURL})
       }
     }
   }

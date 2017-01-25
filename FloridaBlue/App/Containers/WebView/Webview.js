@@ -31,12 +31,6 @@ class Webview extends Component {
   }
   render() {
     var dynamic = this.props.responseURL
-    var setcookie = this.props.setcookie
-    var headers = {
-      'set-cookie' : setcookie
-    }
-
-
     var redirect ={
       uri: dynamic
     }
@@ -71,7 +65,7 @@ goForward = () => {
 };
 
 
-
+/*
 Webview.propTypes = {
   fetching: PropTypes.bool,
   responseURL : PropTypes.string,
@@ -84,4 +78,5 @@ const mapStateToProps = (state) => {
     setcookie : state.login.setcookie
   }
 }
-export default connect(mapStateToProps)(Webview)
+*/
+export default (Webview)

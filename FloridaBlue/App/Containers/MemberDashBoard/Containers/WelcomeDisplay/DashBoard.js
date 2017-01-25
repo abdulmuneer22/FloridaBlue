@@ -84,7 +84,7 @@ componentDidMount(){
           onItemPress =function() {
           var action ;
           if (tile.tileType =='webview'){
-            action = NavigationActions.MyView();
+            action = NavigationActions.MyView({responseURL : tile.tileUrl});
           } else if(tile.tileType == 'native'){
             action = NavigationActions.Resources();
           }
