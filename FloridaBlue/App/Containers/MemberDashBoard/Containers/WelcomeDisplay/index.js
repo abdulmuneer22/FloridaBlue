@@ -2,5 +2,6 @@
 
 import DashBoard from './DashBoard'
 import Resources from './Resources'
+import Hsa from './Hsa'
 
-export { DashBoard, Resources }
+export { DashBoard, Resources, Hsa }
