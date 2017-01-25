@@ -85,6 +85,7 @@ componentDidMount(){
           var action ;
           if (tile.tileType =='webview'){
 
+
             action = test();
 
 
@@ -94,6 +95,13 @@ componentDidMount(){
             action = NavigationActions.Resources();
           } else if(tile.tileType == 'native'){
             action = NavigationActions.Hsa();
+
+             var webview = 'MyView'
+             action = NavigationActions[webview]({responseURL : tile.tileUrl});
+          } else if(tile.tileType == 'native'){
+            var routerName = tile.routerName ;
+           action = NavigationActions[routerName]();
+
           }
         }
         return(
@@ -110,7 +118,7 @@ componentDidMount(){
 }} onPress={onItemPress.bind(this)}>
           <View style={{alignItems:'center'}}>
 
-          <Flb name="cc-card" size={40}/>
+          <Flb name={tile.tileIcon}  size={40}/>
           <Text style={{
             marginTop : 20,
             fontSize : 14,
