@@ -63,10 +63,6 @@ componentDidMount(){
 }
 
   render(){
-    console.log("root testing"+this.props.userName);
-
-    var coreTiles = this.props.visibilityRules.coreTiles ;
-    var id = coreTiles[0].tileId ;
     return(
       <View style={styles.mainContainer}>
       {this._renderHeader()}
@@ -79,7 +75,7 @@ componentDidMount(){
         flexDirection:'row'
 
       }}>
-        {this.props.visibilityRules.coreTiles.map(function(tile){
+        {this.props.visibilityRules ? this.props.visibilityRules.coreTiles.map(function(tile){
 
           onItemPress =function() {
           var action ;
@@ -118,7 +114,7 @@ componentDidMount(){
 </TouchableOpacity>
 
       )
-      })}
+    })      : <Text></Text>}
       </View>
       <View>
       </View>
