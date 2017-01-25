@@ -84,10 +84,10 @@ componentDidMount(){
           onItemPress =function() {
           var action ;
           if (tile.tileType =='webview'){
-            
-            action = NavigationActions.MyView({responseURL : tile.tileUrl});
+             var webview = 'MyView'
+             action = NavigationActions[webview]({responseURL : tile.tileUrl});
           } else if(tile.tileType == 'native'){
-            action = NavigationActions.Resources();
+           action = NavigationActions[tile.routerName]();
           }
         }
         return(
