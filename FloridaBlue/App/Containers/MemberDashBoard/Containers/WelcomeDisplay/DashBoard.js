@@ -87,7 +87,8 @@ componentDidMount(){
              var webview = 'MyView'
              action = NavigationActions[webview]({responseURL : tile.tileUrl});
           } else if(tile.tileType == 'native'){
-           action = NavigationActions[tile.routerName]();
+            var routerName = tile.routerName ;
+           action = NavigationActions[routerName]();
           }
         }
         return(
@@ -104,7 +105,7 @@ componentDidMount(){
 }} onPress={onItemPress.bind(this)}>
           <View>
 
-          <Flb name="cc-card" size={40}/>
+          <Flb name={tile.tileIcon}  size={40}/>
           <Text style={{
             marginTop : 20,
             fontSize : 14,
