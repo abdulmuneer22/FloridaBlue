@@ -49,6 +49,23 @@ class Hsa extends Component {
       <View style={styles.titleView}>
       <Text style={[{fontSize:Fonts.size.h5,fontWeight:'bold', alignSelf:'center'}]}>Health Savings Account</Text>
 
+      <View style={{flexDirection:'row'}}>
+
+      <View style={{alignItems : 'center',
+      flex : 1}}>
+      <Text style={[{marginTop:30,fontSize:Fonts.size.h5}]}> Current{"\n"} Balance</Text>
+      <Text style={[{fontSize:Fonts.size.h5}]}>$3,125</Text>
+
+      </View>
+      <View style={{alignItems : 'center',
+      flex : 1}}>
+
+      <Text style={[{marginTop:30,fontSize:Fonts.size.h5}]}>YTD {"\n"}Contribution</Text>
+      <Text style={[{fontSize:Fonts.size.h5}]}>$2,450</Text>
+
+      </View>
+      </View>
+
 
 
 
