@@ -85,6 +85,11 @@ componentWillReceiveProps (newProps) {
     }
   }
 
+
+
+
+
+
   _moreInfo(){
     if(this.state.modalVisible === true){
       return(
@@ -104,7 +109,7 @@ componentWillReceiveProps (newProps) {
 
         <Icon name="chevron-right" size={12} color="black" />
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/terms-of-use'})}>
 
         <Text style={styles.popupchildText}>
          Terms of Use
@@ -114,16 +119,19 @@ componentWillReceiveProps (newProps) {
 
         <View style={styles.popupchild}>
         <Icon name="chevron-right" size={12} color="black" />
+        <TouchableOpacity
+          onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/internet-privacy-statement'})}>
         <Text style={styles.popupchildText}>
          Privacy Policy
         </Text>
+        </TouchableOpacity>
         </View>
 
         <View style={styles.popupchild}>
         <Icon name="chevron-right" size={12} color="black" />
 
         <TouchableOpacity
-        onPress={()=>NavigationActions.MyView()}>
+          onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/general/web-accessibility'})}>
         <Text style={styles.popupchildText}>
          Accessibility
         </Text>
@@ -133,16 +141,22 @@ componentWillReceiveProps (newProps) {
 
         <View style={styles.popupchild}>
         <Icon name="chevron-right" size={12} color="black" />
+        <TouchableOpacity
+          onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/general/web-accessibility'})}>
         <Text style={styles.popupchildText}>
          Need Help?
         </Text>
+        </TouchableOpacity>
         </View>
 
         <View style={styles.popupchild}>
         <Icon name="chevron-right" size={12} color="black" />
+        <TouchableOpacity
+          onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/general/web-accessibility'})}>
         <Text style={styles.popupchildText}>
          Meaningful Access
         </Text>
+        </TouchableOpacity>
         </View>
 
         </View>
