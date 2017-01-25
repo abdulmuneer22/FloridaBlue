@@ -95,7 +95,7 @@ componentDidMount(){
 
   width : window.width * 0.5,
   backgroundColor : 'white',
-  height : 150,
+  height : 120,
   alignItems : 'center',
   justifyContent : 'center',
   borderColor : 'red',
