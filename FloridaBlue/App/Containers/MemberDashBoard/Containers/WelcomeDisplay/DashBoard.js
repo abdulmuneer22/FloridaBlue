@@ -80,13 +80,15 @@ componentDidMount(){
 
       }}>
         {this.props.visibilityRules.coreTiles.map(function(tile){
-
+        const test = () => NavigationActions['MyView'] ;
           onItemPress =function() {
           var action ;
           if (tile.tileType =='webview'){
-            action = NavigationActions.MyView({responseURL : tile.tileUrl});
+            action = test();
           } else if(tile.tileType == 'native'){
             action = NavigationActions.Resources();
+          } else if(tile.tileType == 'native'){
+            action = NavigationActions.Hsa();
           }
         }
         return(
@@ -95,13 +97,13 @@ componentDidMount(){
 
   width : window.width * 0.5,
   backgroundColor : 'white',
-  height : 120,
+  height : 140,
   alignItems : 'center',
   justifyContent : 'center',
   borderColor : 'red',
   borderWidth : 1
 }} onPress={onItemPress.bind(this)}>
-          <View>
+          <View style={{alignItems:'center'}}>
 
           <Flb name="cc-card" size={40}/>
           <Text style={{

@@ -10,6 +10,7 @@ import { Login } from '../Containers/Login'
 import { Webview } from '../Containers/WebView'
 import { Home } from '../Containers/Home'
 import { Resources } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
+import { Hsa } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 //import { Screen_1} from '../Containers/Registration'
 import { Screen_1} from '../Containers/Registration/Containers/Screen_1'
 import { Screen_2} from '../Containers/Registration/Containers/Screen_2'
@@ -35,7 +36,7 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='login' component={Login} title='Login' hideNavBar />
+            <Scene  key='login' component={Login} title='Login' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' />
             <Scene key='screen_1' component={Screen_1} title='first page' />
             <Scene key='screen_2' component={Screen_2} title='create username page' />
@@ -47,6 +48,7 @@ class NavigationRouter extends Component {
             <Scene key='confirmation' component={Confirmation} title='Confirmation page' />
             <Scene  key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
             <Scene key ='Resources' component={Resources} title='Resource WebView' hideNavBar />
+            <Scene initial key ='Hsa' component={Hsa} title='Health Savings Account Page' hideNavBar />
             <Scene key='Myplan' component={MyPlanScreen} title='MyPlan Page'hideNavBar/>
             <Scene key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page'hideNavBar/>
             <Scene key='doctorservices' component={DoctorServices} title='DoctorServices Page'hideNavBar/>

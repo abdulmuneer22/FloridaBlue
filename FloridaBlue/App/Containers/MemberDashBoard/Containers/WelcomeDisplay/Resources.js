@@ -13,14 +13,7 @@ import {
 } from 'react-native';
 const window = Dimensions.get('window');
 
-
-
-import Greeting from './Components/Greeting'
-import MyPlanCard from './Components/MyPlanCard'
-import Card from './Components/Card'
 import {Colors,Metrics,Fonts} from '../../../../Themes'
-import SeeDetailsCard from './Components/SeeDetailsCard'
-import TransButton from './Components/transButton'
 import styles from './DashBoardStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -84,7 +77,7 @@ class Resources extends Component {
   borderColor : 'red',
   borderWidth : 1
 }} onPress={onItemPress.bind(this)}>
-          <View>
+          <View style={{alignItems:'center'}}>
 
           <Flb name="cc-card" size={40}/>
           <Text style={{

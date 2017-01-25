@@ -29,10 +29,11 @@ container:{
     margin:0
   },
   titleView:{
-    height:40
+    marginTop:10
   },
   center:{
     alignItems:'center',
     justifyContent:'center'
-  }
+  },
+
 })
