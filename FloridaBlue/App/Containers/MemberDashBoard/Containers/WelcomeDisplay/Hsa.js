@@ -64,7 +64,15 @@ class Hsa extends Component {
       <Text style={[{fontSize:Fonts.size.h5}]}>$2,450</Text>
 
       </View>
+
       </View>
+      <View style={{alignItems:'center'}}>
+
+
+      <Text style={[{marginTop:30,fontSize:Fonts.size.h5}]}>YTD {"\n"}Distribution</Text>
+      <Text style={[{fontSize:Fonts.size.h5}]}>$-2,450</Text>
+
+            </View>
 
 
 

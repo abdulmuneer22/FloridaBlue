@@ -7,6 +7,7 @@ import {
 import axios from 'axios'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {Colors,Metrics,Fonts} from '../../../../../Themes'
 
 
 var messageCount=""
@@ -40,7 +41,7 @@ class Greeting extends Component{
     return(
       <View>
       <View style={Styles.Greeting}>
-      <Text style={{fontSize:20}}>
+      <Text style={{fontSize:15}}>
       Good Morning {this.props.userName ? this.props.userName :""}
       </Text>
       </View>
