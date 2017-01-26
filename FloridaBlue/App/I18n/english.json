@@ -1,5 +1,6 @@
 {
    "signIn": "Sign In",
+   "signUp": "I'm new. Sign-up",
    "logOut": "Log Out",
    "loginLogoutExampleTitle": "Login/Logout Redux + Sagas Example",
    "progressiveImageComponent": "Progressive Image Component",
