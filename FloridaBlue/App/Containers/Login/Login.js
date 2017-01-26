@@ -70,14 +70,15 @@ componentWillReceiveProps (newProps) {
     this.forceUpdate()
       // Did the login attempt complete?
     console.log("I am receving new props" + newProps.responseURL)
-    if (this.isAttempting && !newProps.fetching && newProps.error === null) {
-      if (newProps.responseURL == 'login') {
-        NavigationActions.WelcomeDashBoard()
-      } else {
-        console.log("new props"+newProps.responseURL);
-        NavigationActions.MyView({responseURL:newProps.responseURL})
-      }
-    }
+  //  if (this.isAttempting && !newProps.fetching && newProps.error === null) {
+      //if (newProps.responseURL == 'login') {
+        //NavigationActions.WelcomeDashBoard()
+        NavigationActions.MyView({responseURL:'https://mwe-stga.bcbsfl.com/wps/myportal/mbs'})
+    //  } else {
+    //    console.log("new props"+newProps.responseURL);
+    //    NavigationActions.MyView({responseURL:newProps.responseURL})
+    //  }
+  //  }
   }
 
   _moreInfo(){
@@ -190,10 +191,7 @@ componentWillReceiveProps (newProps) {
   }
   render(){
     return(
-      <Image source={Images.background} resizeMode='stretch' style={{flex :1,
-        alignSelf: 'stretch',
-       width: null,
-      }}>
+
     <View style={{flex : 1, justifyContent : 'center' }}>
 
       <View style={styles.wrapper}>
@@ -280,7 +278,7 @@ componentWillReceiveProps (newProps) {
       </View>
 
       </View>
-      </Image>
+
     );
   }
 }
