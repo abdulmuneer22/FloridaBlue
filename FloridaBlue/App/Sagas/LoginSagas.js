@@ -19,8 +19,19 @@ export function* login(api, {
 
     if (response.status == "200") {
       var responseURL = response.responseURL
+
       var login
           if (response.data.data) {
+            var cookieItems = response.headers['set-cookie']
+            console.log("cookieItems" + cookieItems);
+            var pattern = /^SMSESSION/;
+            if (pattern.test(cookieItems)) {
+              //console.log(item)
+              var elements = cookieItems.split(';')
+              var smToken = elements[0]
+              var smToken = smToken.replace('SMSESSION=', '')
+            }
+            console.log("after parsing"+smToken)
             login = response.data.data.Login
           } else {
             login = null
