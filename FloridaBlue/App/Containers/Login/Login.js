@@ -243,7 +243,18 @@ componentWillReceiveProps (newProps) {
               <Text style={styles.link}>{I18n.t('signUp')}</Text>
             </TouchableOpacity>
           </View>
+
         </ScrollView>
+        <View style={styles.footer}>
+          <View>
+            <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
+          </View>
+          <View>
+            <TouchableOpacity onPress={() => {}}>
+              <Image source={Images.infoIcon} />
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     );
   }

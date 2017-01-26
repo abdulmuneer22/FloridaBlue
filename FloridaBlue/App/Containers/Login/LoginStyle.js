@@ -45,5 +45,17 @@ export default StyleSheet.create({
   textInput: {
     height: 40,
     color: Colors.charcoal
+  },
+  footer: {
+    flex: 1,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 0,
+    marginHorizontal: Metrics.section
+  },
+  footerText: {
+    color: Colors.flBlue.grey4,
+    marginHorizontal: Metrics.section,
+    textAlign: 'center'
   }
 })
