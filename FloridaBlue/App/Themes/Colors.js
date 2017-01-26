@@ -19,7 +19,30 @@ const colors = {
   snow: 'white',
   ember: 'rgba(164, 0, 48, 0.5)',
   fire: '#e73536',
-  drawer: 'rgba(30, 30, 29, 0.95)'
+  drawer: 'rgba(30, 30, 29, 0.95)',
+  flBlue: {
+
+    ocean: '#0091cc',
+    night: '#00263e',
+    grass: '#43b02a',
+    red: '#e40046',
+    purple: '#9b26b6',
+    orange: '#ffa300',
+    blueGrey: '#def1f7',
+    deepBlue: '#005b80',
+    lightGreen: '#d8efd7',
+    lightPink: '#f4e1e7',
+    lightPurple: '#f4edf0',
+    lightOrange: '#ffefd5',
+    grey1: '#dedede',
+    grey2: '#cccccc',
+    grey3: '#777777',
+    grey4: '#a6a6a6',
+    grey5: '#555555',
+    grey6: '#515151',
+    anvil: '#333333',
+    sky:   '#00aec7'
+  }
 }
 
 export default colors
