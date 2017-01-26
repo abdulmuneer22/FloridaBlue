@@ -32,9 +32,7 @@ class Webview extends Component {
   render() {
     var dynamic = this.props.responseURL
     var redirect ={
-      uri: dynamic,
-      headers : {
-      'Authorization': 'Basic ' + btoa("benefitfocus001" + ":" + "T123456")}
+      uri: dynamic
     }
     console.log("redirect"+JSON.stringify(redirect));
 
