@@ -76,6 +76,84 @@ componentWillReceiveProps (newProps) {
     }
   }
 
+  _moreInfo() {
+    return(
+      <View style={styles.informationPopup}>
+        <View style={styles.popupchild}>
+          <Icon name="chevron-right" size={12} color="black" />
+          <TouchableOpacity onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/general/web-accessibility'})}>
+            <Text style={styles.popupchildText}>
+              Accessibility
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name="chevron-right" size={12} color="black" />
+          <TouchableOpacity onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/ndnotice'})}>
+            <Text style={styles.popupchildText}>
+              Non-Discrimination Notice
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name="chevron-right" size={12} color="black" />
+          <TouchableOpacity onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/internet-privacy-statement'})}>
+            <Text style={styles.popupchildText}>
+              Privacy Policy
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name="chevron-right" size={12} color="black" />
+          <TouchableOpacity onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/general/contact-us'})}>
+            <Text style={styles.popupchildText}>
+              Need Help?
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name="chevron-right" size={12} color="black" />
+          <TouchableOpacity onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es'})}>
+            <Text style={styles.popupchildText}>
+              Language Services
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name="chevron-right" size={12} color="black" />
+          <TouchableOpacity onPress={()=> NavigationActions.MyView({responseURL : 'https://www.floridablue.com/terms-of-use'})}>
+            <Text style={styles.popupchildText}>
+              Terms of Use
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name="chevron-right" size={12} color="black" />
+          <TouchableOpacity onPress={()=> NavigationActions.MyView({responseURL : 'https://providersearch.floridablue.com/providersearch/pub/index.htm'})}>
+            <Text style={styles.popupchildText}>
+              Online Provider Directory
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name="chevron-right" size={12} color="black" />
+          <TouchableOpacity onPress={()=> NavigationActions.MyView({responseURL : 'https://consumer.websales.floridablue.com/?_ga=1.233631006.1688060624.1484756637'})}>
+            <Text style={styles.popupchildText}>
+              Shop
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+      </View>
+    )
+  }
   /*
   _moreInfo(){
     if(this.state.modalVisible === true){
@@ -245,12 +323,20 @@ componentWillReceiveProps (newProps) {
           </View>
 
         </ScrollView>
+        {this.state.modalVisible && this._moreInfo()}
+
         <View style={styles.footer}>
           <View>
             <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
           </View>
           <View>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={()=>{
+            if(this.state.modalVisible === true){
+              this.setState({modalVisible : false})
+            }else{
+              this.setState({modalVisible : true})
+            }
+            }}>
               <Image source={Images.infoIcon} />
             </TouchableOpacity>
           </View>
