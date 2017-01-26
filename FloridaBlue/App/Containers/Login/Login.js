@@ -35,8 +35,6 @@ type LoginScreenProps = {
   responseURL : string
 }
 
-
-
 class Login extends Component{
    props: LoginScreenProps
    isAttempting : boolean
@@ -68,9 +66,6 @@ if(!this.state.username | !this.state.password){
 
 }
 
-
-
-
 componentWillReceiveProps (newProps) {
     this.forceUpdate()
       // Did the login attempt complete?
@@ -84,11 +79,6 @@ componentWillReceiveProps (newProps) {
       }
     }
   }
-
-
-
-
-
 
   _moreInfo(){
     if(this.state.modalVisible === true){
