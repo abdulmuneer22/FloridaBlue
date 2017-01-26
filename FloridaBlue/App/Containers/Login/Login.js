@@ -255,9 +255,12 @@ componentWillReceiveProps (newProps) {
         />
 
         <View style={styles.forgotPassword}>
+        <TouchableOpacity
+          onPress={()=> NavigationActions.MyView({responseURL : 'https://registration-stga.bcbsfl.com/ecir/public/MemberFPSSelect.do'})}>
         <Text style={styles.regularText}>
         Forgot User ID/Password
         </Text>
+        </TouchableOpacity>
         </View>
         </View>
 

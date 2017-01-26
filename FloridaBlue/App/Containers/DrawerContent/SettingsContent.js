@@ -6,6 +6,7 @@ import styles from './DrawerContentStyle'
 import { Images } from '../../Themes'
 import DrawerButton from '../../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import Flb from '../../Themes/FlbIcon'
 
 class SettingsContent extends Component {
 
@@ -91,8 +92,8 @@ class SettingsContent extends Component {
 
   render () {
     return (
-      <ScrollView style={styles.container}>
-      <View style={[styles.mainContainer,{backgroundColor:'#00aec7'}]}>
+      <ScrollView style={styles.mainContainer} >
+      <View style={styles.container}>
         <DrawerButton text='Dashboard' onPress={this.handlePressDashBoard} />
         <DrawerButton text='Find Care' onPress={this.handlePressFindCare} />
 
@@ -107,14 +108,17 @@ class SettingsContent extends Component {
         <DrawerButton text='Messages' onPress={this.handlePressSupport} />
         </View>
         <View style={styles.container1}>
+        <View style={{flexDirection:'row'}}>
+        <Flb name="cc-card" size={40}/>
         <DrawerButton   text='My Account' style={{color: 'red'}} onPress={this.handlePressComponents} />
+        </View>
         <DrawerButton text='App Settings' onPress={this.handlePressUsage} />
         <DrawerButton text='Frequently Asked Questions' onPress={this.handlePressAPI} />
         <DrawerButton text='Policies & Terms' onPress={this.handlePressPolicy} />
         <DrawerButton text='Contact US' onPress={this.handlePressTheme} />
         </View>
 
-        <View style={{backgroundColor:'white',marginTop:20}}>
+        <View style={{margin:10,marginTop:20}}>
         <Image source={Images.logout} resizeMode="stretch" onPress={this.handlePressLogout} />
         </View>
       </ScrollView>

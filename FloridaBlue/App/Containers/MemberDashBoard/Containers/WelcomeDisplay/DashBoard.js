@@ -72,7 +72,9 @@ componentDidMount(){
 
       <View style={{
         flexWrap : 'wrap',
-        flexDirection:'row'
+        flexDirection:'row',
+        justifyContent:'space-around',
+
 
       }}>
         {this.props.visibilityRules ? this.props.visibilityRules.coreTiles.map(function(tile){
@@ -99,7 +101,7 @@ componentDidMount(){
   borderColor : 'red',
   borderWidth : 1
 }} onPress={onItemPress.bind(this)}>
-          <View>
+          <View style={{alignItems:'center'}}>
 
           <Flb name={tile.tileIcon}  size={40}/>
           <Text style={{

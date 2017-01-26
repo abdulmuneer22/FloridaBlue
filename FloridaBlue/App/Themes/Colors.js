@@ -20,6 +20,7 @@ const colors = {
   ember: 'rgba(164, 0, 48, 0.5)',
   fire: '#e73536',
   drawer: 'rgba(30, 30, 29, 0.95)',
+
   flBlue: {
 
     ocean: '#0091cc',
@@ -43,6 +44,7 @@ const colors = {
     anvil: '#333333',
     sky:   '#00aec7'
   }
+
 }
 
 export default colors
