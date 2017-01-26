@@ -200,10 +200,7 @@ componentWillReceiveProps (newProps) {
   }
   render(){
     return(
-      <Image source={Images.background} resizeMode='stretch' style={{flex :1,
-        alignSelf: 'stretch',
-       width: null,
-      }}>
+
     <View style={{flex : 1, justifyContent : 'center' }}>
 
       <View style={styles.wrapper}>
@@ -290,7 +287,7 @@ componentWillReceiveProps (newProps) {
       </View>
 
       </View>
-      </Image>
+      
     );
   }
 }
