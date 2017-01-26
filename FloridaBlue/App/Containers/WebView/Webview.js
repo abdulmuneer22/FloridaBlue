@@ -54,8 +54,6 @@ class Webview extends Component {
   }
 }
 
-
-
 goBack = () => {
   this.refs[WEBVIEW_REF].goBack();
 };
