@@ -63,6 +63,8 @@ componentDidMount(){
 }
 
   render(){
+    var color  = new Array( "#005b80", "#00aec7", "#0091cc","#005b80" )
+   var i = 0
     return(
       <View style={styles.mainContainer}>
       {this._renderHeader()}
@@ -77,7 +79,7 @@ componentDidMount(){
 
 
       }}>
-        {this.props.visibilityRules ? this.props.visibilityRules.coreTiles.map(function(tile){
+        {this.props.visibilityRules ? this.props.visibilityRules.coreTiles.map(function(tile, i){
 
           onItemPress =function() {
           var action ;
@@ -94,20 +96,20 @@ componentDidMount(){
 <TouchableOpacity style={{
 
   width : window.width * 0.5,
-  backgroundColor : 'white',
+  backgroundColor : color[i],
   height : 150,
   alignItems : 'center',
   justifyContent : 'center',
-  borderColor : 'black',
-  borderWidth : 1
+
 }} onPress={onItemPress.bind(this)}>
           <View style={{alignItems:'center'}}>
 
-          <Flb name={tile.tileIcon}  size={40}/>
+          <Flb name={tile.tileIcon}  size={40} color="white"/>
           <Text style={{
             marginTop : 20,
             fontSize : 14,
-            fontWeight : '600'
+            fontWeight : '600',
+            color:'white'
           }}>
           {tile.tileName}
           </Text>
@@ -116,6 +118,8 @@ componentDidMount(){
 </TouchableOpacity>
 
       )
+        i+=1
+
     })      : <Text></Text>}
       </View>
       <View>

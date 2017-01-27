@@ -44,6 +44,8 @@ class Resources extends Component {
 
   render(){
     console.log("root testing"+this.props.userName);
+    var color  = new Array( "#005b80", "#00aec7", "#0091cc","#005b80","#005b80","#00aec7" )
+   var i = 0
     return(
       <View style={styles.container}>
       {this._renderHeader()}
@@ -54,7 +56,7 @@ class Resources extends Component {
         flexDirection:'row'
 
       }}>
-        {this.props.visibilityRules.additionalTiles.map(function(tile){
+        {this.props.visibilityRules.additionalTiles.map(function(tile, i){
 
           onItemPress =function() {
           var action ;
@@ -70,20 +72,21 @@ class Resources extends Component {
 <TouchableOpacity style={{
 
   width : window.width * 0.5,
-  backgroundColor : 'white',
+  backgroundColor : color[i],
   height : 150,
   alignItems : 'center',
   justifyContent : 'center',
-  borderColor : 'red',
-  borderWidth : 1
+  //borderColor : 'red',
+  //borderWidth : 1
 }} onPress={onItemPress.bind(this)}>
           <View style={{alignItems:'center'}}>
 
-          <Flb name="cc-card" size={40}/>
+          <Flb name="cc-card" size={40} color="white"/>
           <Text style={{
             marginTop : 20,
             fontSize : 14,
-            fontWeight : '600'
+            fontWeight : '600',
+            color:'white'
           }}>
           {tile.tileName}
           </Text>
@@ -92,6 +95,7 @@ class Resources extends Component {
 </TouchableOpacity>
 
       )
+      i+=1
       })}
       </View>
       <View>
