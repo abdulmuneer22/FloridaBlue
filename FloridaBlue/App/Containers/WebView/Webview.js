@@ -38,6 +38,7 @@ class Webview extends Component {
         'set-cookie' :smToken
       }
   }
+
     console.log("redirect"+JSON.stringify(redirect));
 
     return (
@@ -56,8 +57,6 @@ class Webview extends Component {
     );
   }
 }
-
-
 
 goBack = () => {
   this.refs[WEBVIEW_REF].goBack();

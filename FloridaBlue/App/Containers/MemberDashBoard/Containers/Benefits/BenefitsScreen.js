@@ -3,7 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    Dimensions
+    Dimensions,
+    ScrollView
 } from 'react-native'
 
 const window = Dimensions.get('window')
@@ -36,7 +37,7 @@ class PlanBenefits extends Component{
         return(
             <View style={{flex : 1}}>
               {this._renderHeader()}
-
+              <ScrollView>
             <View style={{
                 height : windowheight*0.8,
                 backgroundColor : 'white'}}>
@@ -98,7 +99,7 @@ class PlanBenefits extends Component{
 
             </View>
             </View>
-
+            </ScrollView>
             </View>
         );
     }

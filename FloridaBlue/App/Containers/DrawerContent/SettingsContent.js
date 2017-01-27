@@ -107,15 +107,27 @@ class SettingsContent extends Component {
         <DrawerButton text='Support' onPress={this.handlePressDevice} />
         <DrawerButton text='Messages' onPress={this.handlePressSupport} />
         </View>
-        <View style={styles.container1}>
-        <View style={{flexDirection:'row'}}>
+        <View style={styles.container2}>
+        <View style={{flexDirection:'row',marginTop:15}}>
         <Flb name="cc-card" size={40}/>
         <DrawerButton   text='My Account' style={{color: 'red'}} onPress={this.handlePressComponents} />
         </View>
+        <View style={{flexDirection:'row',marginTop:15}}>
+        <Flb name="cc-card" size={40}/>
         <DrawerButton text='App Settings' onPress={this.handlePressUsage} />
+        </View>
+        <View style={{flexDirection:'row',marginTop:15}}>
+        <Flb name="cc-card" size={40}/>
         <DrawerButton text='Frequently Asked Questions' onPress={this.handlePressAPI} />
+        </View>
+        <View style={{flexDirection:'row',marginTop:15}}>
+        <Flb name="cc-card" size={40}/>
         <DrawerButton text='Policies & Terms' onPress={this.handlePressPolicy} />
+        </View>
+        <View style={{flexDirection:'row',marginTop:15}}>
+        <Flb name="cc-card" size={40}/>
         <DrawerButton text='Contact US' onPress={this.handlePressTheme} />
+        </View>
         </View>
 
         <View style={{margin:10,marginTop:20}}>

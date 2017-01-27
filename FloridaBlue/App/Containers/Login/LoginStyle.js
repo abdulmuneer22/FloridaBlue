@@ -1,64 +1,84 @@
 // @flow
 
 import { StyleSheet } from 'react-native'
-import { Metrics, Colors, ApplicationStyles } from '../../Themes/'
+import { ApplicationStyles, Colors, Metrics, Fonts } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  wrapper : {
-    //borderColor : 'black',
-    //borderWidth : 1,
-    justifyContent : 'center',
-    alignItems :'center',
-    paddingTop : 40,
-    paddingBottom : 60,
-
+  logoView: {
+    alignItems: 'center',
+    paddingTop: Metrics.screenHeight * .05,
+    paddingBottom: Metrics.screenHeight * .05,
   },
-  textInput : {
-    width : window.width - 80,
+  logo: {
+    width: Metrics.images.logo,
+    resizeMode: 'contain'
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    height: Metrics.screenHeight - (Metrics.screenHeight * .3),
+    resizeMode: 'stretch'
+  },
+  centered: {
+    alignItems: 'center'
+  },
+  loginButton: {
+    alignItems: 'center',
+    paddingTop: Metrics.screenHeight * .1
+  },
+  form: {
+    backgroundColor: Colors.snow,
+    margin: Metrics.baseMargin,
+    borderRadius: 24,
+    marginHorizontal: Metrics.section
+  },
+  informationPopup: {
+    flexWrap : 'wrap',
+    flexDirection : 'row',
+    backgroundColor: Colors.flBlue.grey2,
+    height: Metrics.doubleBaseMargin * 8,
+    width: Metrics.screenWidth,
+    bottom: Metrics.doubleBaseMargin * 2,
+  },
+  row: {
+    paddingVertical: Metrics.doubleBaseMargin,
+    paddingHorizontal: Metrics.doubleBaseMargin
+  },
+  link: {
+    color: Colors.flBlue.ocean,
+    alignItems: 'center',
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
+  textInput: {
     height: 40,
-    borderColor: 'rgba(213, 211, 200 , 0.9)',
-    borderWidth: 1,
-    marginLeft : 40,
-    marginRight : 40,
-    marginBottom : 10,
-    marginTop : 20,
-    borderRadius : 3,
-    padding : 6
+    color: Colors.flBlue.grey6,
+    fontWeight: 'bold'
   },
-  forgotPassword : {
-     alignItems: 'center',
+  footer: {
+    flex: 1,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: Metrics.baseMargin,
+    marginHorizontal: Metrics.section
   },
-  button : {
-    //backgroundColor : 'rgba(17, 147, 203,0.9)',
-    width : 100,
-    //padding : 9,
-    //borderColor : 'rgba(17, 147, 203,0.9)',
-    //borderRadius : 7,
-    alignItems : 'center',
-    justifyContent : 'center',
-    marginTop : 40,
-    marginBottom : 40
+  footerText: {
+    color: Colors.flBlue.grey4,
+    marginHorizontal: Metrics.section,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: Fonts.size.small
   },
-  buttonText : {
-    color : 'rgba(242, 246, 247   ,0.9)',
-    fontWeight : 'bold'
-  },
-  regularText : {
-    color : 'rgb(0, 0, 0)'
-  },
-  circle: {
-    width: 40,
-    height: 40,
-    borderRadius: 40/2,
-    backgroundColor: '#58D3F7',
-    alignItems : 'center',
-    justifyContent : 'center',
-    marginTop : 20
-
+  footerLinks: {
+    flex: 1,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: Metrics.baseMargin,
+    marginHorizontal: Metrics.section
   },
   popupchild:{
-    width : window.width / 2 - 10 ,
+    width : Metrics.screenWidth * .5,
     //backgroundColor : 'yellow',
     padding : 10,
     height : 40,
@@ -69,17 +89,5 @@ export default StyleSheet.create({
     fontSize : 14,
     marginLeft : 5,
     alignSelf : 'center'
-  },
-  logincard :{
-  //  backgroundColor :Colors.snow,
-  //  margin : Metrics.baseMargin,
-  //  borderRadius : 20,
-    flex : 1,
-//    paddingTop : 20,
-    paddingBottom : 80,
-    width :350,
-    alignSelf :'center'
   }
-
-
 })
