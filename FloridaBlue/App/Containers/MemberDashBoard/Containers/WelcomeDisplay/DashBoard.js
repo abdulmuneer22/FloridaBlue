@@ -64,7 +64,9 @@ componentDidMount(){
 
   render(){
     var color  = new Array( "#005b80", "#00aec7", "#0091cc","#005b80" )
-   var i = 0
+    var i = 0
+
+
     return(
       <View style={styles.mainContainer}>
       {this._renderHeader()}
@@ -79,7 +81,9 @@ componentDidMount(){
 
 
       }}>
+
         {this.props.visibilityRules ? this.props.visibilityRules.coreTiles.map(function(tile, i){
+
 
           onItemPress =function() {
           var action ;
@@ -99,8 +103,7 @@ componentDidMount(){
   backgroundColor : color[i],
   height : 150,
   alignItems : 'center',
-  justifyContent : 'center',
-
+  justifyContent : 'center'
 }} onPress={onItemPress.bind(this)}>
           <View style={{alignItems:'center'}}>
 
@@ -117,9 +120,9 @@ componentDidMount(){
           </View>
 </TouchableOpacity>
 
+
       )
         i+=1
-
     })      : <Text></Text>}
       </View>
       <View>

@@ -18,7 +18,7 @@ import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 const window=Dimensions.get('window');
 var WEBVIEW_REF = 'webview';
-
+var btoa = require('btoa');
 
 
 class Webview extends Component {
@@ -31,9 +31,14 @@ class Webview extends Component {
   }
   render() {
     var dynamic = this.props.responseURL
+    var smToken = this.props.smToken
     var redirect ={
-      uri: dynamic
-    }
+      uri: dynamic,
+      headers: {
+        'set-cookie' :smToken
+      }
+  }
+
     console.log("redirect"+JSON.stringify(redirect));
 
     return (
@@ -43,7 +48,6 @@ class Webview extends Component {
       }}>
       {this._renderHeader()}
       <WebView
-
         source={redirect}
         javaScriptEnabled={true}
           domStorageEnabled={true}
@@ -63,18 +67,18 @@ goForward = () => {
 };
 
 
-/*
+
 Webview.propTypes = {
-  fetching: PropTypes.bool,
-  responseURL : PropTypes.string,
-  setcookie : PropTypes.string
+/*  fetching: PropTypes.bool,
+  responseURL : PropTypes.string,*/
+  smToken : PropTypes.string
 }
 const mapStateToProps = (state) => {
   return {
-    fetching: state.login.fetching,
-    responseURL: state.login.responseURL,
-    setcookie : state.login.setcookie
+  /*  fetching: state.login.fetching,
+    responseURL: state.login.responseURL,*/
+    smToken : state.login.smToken
   }
 }
-*/
-export default (Webview)
+
+export default connect(mapStateToProps)(Webview)

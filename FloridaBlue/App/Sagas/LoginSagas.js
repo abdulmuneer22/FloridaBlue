@@ -19,18 +19,17 @@ export function* login(api, {
 
     if (response.status == "200") {
       var responseURL = response.responseURL
+        var smToken
 
       var login
           if (response.data.data) {
-            var cookieItems = response.headers['set-cookie']
-            console.log("cookieItems" + cookieItems);
-            var pattern = /^SMSESSION/;
-            if (pattern.test(cookieItems)) {
-              //console.log(item)
-              var elements = cookieItems.split(';')
-              var smToken = elements[0]
-              var smToken = smToken.replace('SMSESSION=', '')
-            }
+              var cookieItems = response.headers['set-cookie']
+              console.log("cookieItems" + cookieItems);
+              var pattern = /^SMSESSION/;
+              if (pattern.test(cookieItems)) {
+                var elements = cookieItems.split(';')
+                 smToken = elements[0]
+              }
             console.log("after parsing"+smToken)
             login = response.data.data.Login
           } else {
@@ -45,7 +44,7 @@ export function* login(api, {
             var setcookie = response.headers['set-cookie']
             console.log("jsession"+setcookie)
           }
-    yield put(LoginActions.loginSuccess(username, responseURL,setcookie))
+    yield put(LoginActions.loginSuccess(username, responseURL,smToken))
     } else if (response.status == "401") {
       // dispatch failure
       console.log("I am coming from failuer ")
