@@ -60,7 +60,7 @@ class MyPlanScreen extends Component{
       }}>
       <View style={styles.headerContainer}>
         {NavItems.backButton()}
-        <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>MyPlan</Text>
+        <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:10}]}>MyPlan</Text>
         {NavItems.settingsButton()}
 
       </View>

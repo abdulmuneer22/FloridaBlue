@@ -18,7 +18,7 @@ class DoctorServices extends Component{
 _renderHeader(){
 return (<View style={styles.headerContainer}>
 {NavItems.backButton()}
-<Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>Plan Benefits</Text>
+<Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:10}]}>Plan Benefits</Text>
 {NavItems.settingsButton()}
 
 </View>)

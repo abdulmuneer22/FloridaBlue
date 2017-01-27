@@ -9,6 +9,7 @@ import {
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {Colors,Metrics,Fonts} from '../../../../../Themes'
 
 const window = Dimensions.get('window');
 
@@ -17,11 +18,11 @@ class MyPlanCard extends Component{
     return(
       <View style={Styles.myPlanWrapper}>
       <Text style={{
-        fontSize : 16,
-        fontWeight : '600',
+        fontSize : Fonts.size.h4,
+        fontWeight : 'bold',
         textAlign : 'center'
       }}>
-      My Plan
+      My Health Plan
       </Text>
 
       <View style={{
@@ -60,10 +61,13 @@ class MyPlanCard extends Component{
           paddingLeft : 10
 
         }}>
-              <Text>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              <Text style={{marginRight:20}}>
+              Find information about deductibles, claims, your savings, and more.
               </Text>
-
+              <View>
+              <Text style={{marginTop:10}}>
+               * Dental & Vision are in the menu</Text>
+               </View>
         </View>
     <View style={{marginTop:10}}>
 <Icon name="chevron-right" size={30} color="black"/>

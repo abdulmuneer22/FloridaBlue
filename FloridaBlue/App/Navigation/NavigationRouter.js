@@ -46,12 +46,12 @@ class NavigationRouter extends Component {
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' />
             <Scene key='memberid' component={FindMemberID} title='MemberId page' />
             <Scene key='confirmation' component={Confirmation} title='Confirmation page' />
-            <Scene  key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
-            <Scene key ='Resources' component={Resources} title='Resource WebView' hideNavBar />
-            <Scene  key ='Hsa' component={Hsa} title='Health Savings Account Page' hideNavBar />
-            <Scene key='Myplan' component={MyPlanScreen} title='MyPlan Page'hideNavBar/>
-            <Scene  key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page'hideNavBar/>
-            <Scene  key='doctorservices' component={DoctorServices} title='DoctorServices Page'hideNavBar/>
+            <Scene  key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' />
+            <Scene key ='Resources' component={Resources} title='Resource WebView'  />
+            <Scene  key ='Hsa' component={Hsa} title='Health Savings Account Page' />
+            <Scene key='Myplan' component={MyPlanScreen} title='MyPlan Page'/>
+            <Scene  key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page'/>
+            <Scene  key='doctorservices' component={DoctorServices} title='DoctorServices Page'/>
             <Scene key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
             <Scene key='listviewexample' component={ListviewExample} title='ListviewExample' />
           </Scene>

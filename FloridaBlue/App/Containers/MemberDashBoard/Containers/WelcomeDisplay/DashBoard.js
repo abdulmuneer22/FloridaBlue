@@ -49,7 +49,7 @@ class LandingScreen extends Component {
 
   _renderHeader(){
   return( <View style={styles.headerContainer}>
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,alignSelf:'center'}]}>Florida Blue</Text>
+    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:100}]}>Florida Blue</Text>
     {NavItems.settingsButton()}
 
   </View>)

@@ -36,7 +36,7 @@ class Hsa extends Component {
   _renderHeader(){
   return( <View style={styles.headerContainer}>
     {NavItems.backButton()}
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,alignSelf:'center'}]}>My Plan Overview</Text>
+    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:10}]}>My Plan Overview</Text>
     {NavItems.settingsButton()}
 
     </View>)

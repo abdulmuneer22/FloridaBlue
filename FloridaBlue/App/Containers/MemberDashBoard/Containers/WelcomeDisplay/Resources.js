@@ -36,7 +36,7 @@ class Resources extends Component {
   _renderHeader(){
   return( <View style={styles.headerContainer}>
     {NavItems.backButton()}
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,alignSelf:'center'}]}>Resources</Text>
+    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:10}]}>Resources</Text>
     {NavItems.settingsButton()}
 
   </View>)
