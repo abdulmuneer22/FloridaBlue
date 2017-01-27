@@ -104,7 +104,7 @@ componentDidMount(){
 }} onPress={onItemPress.bind(this)}>
           <View style={{alignItems:'center'}}>
 
-          <Flb name={tile.tileIcon}  size={40} color="white"/>
+<Flb name={tile.tileIcon}  size={40} color="white"/> 
           <Text style={{
             marginTop : 20,
             fontSize : 14,

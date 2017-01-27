@@ -9,13 +9,15 @@ import {
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import {Colors,Fonts,Metrics} from '../../../../../Themes'
 const window = Dimensions.get('window');
 
 class MyPlanCard extends Component{
   render(){
     return(
+        <TouchableOpacity onPress={()=>NavigationActions.Myplan()}>
       <View style={Styles.myPlanWrapper}>
+
       <Text style={{
         fontSize : 16,
         fontWeight : '600',
@@ -35,18 +37,18 @@ class MyPlanCard extends Component{
           alignItems : 'center'
 
         }}>
-        <TouchableOpacity style={{
-            backgroundColor : 'rgb(174, 179, 182)',
-            width : 50,
-            height : 50,
-            borderRadius : 50/2,
+        <View style={{
+            backgroundColor : Colors.flBlue.ocean,
+            width : 60,
+            height : 60,
+            borderRadius : 60/2,
             alignItems :'center',
             justifyContent : 'center'
         }}
          onPress={()=>NavigationActions.Myplan()}>
-        <Icon name="heartbeat" size={30} color="white" />
+        <Icon name="heartbeat" size={40} color="white" />
 
-        </TouchableOpacity>
+        </View>
 
 
 
@@ -60,16 +62,22 @@ class MyPlanCard extends Component{
           paddingLeft : 10
 
         }}>
+
               <Text>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               </Text>
 
+
         </View>
     <View style={{marginTop:10}}>
+
 <Icon name="chevron-right" size={30} color="black"/>
+
     </View>
       </View>
+
       </View>
+      </TouchableOpacity>
     );
   }
 }
