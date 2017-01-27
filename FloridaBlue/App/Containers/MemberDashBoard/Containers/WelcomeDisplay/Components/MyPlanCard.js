@@ -16,6 +16,7 @@ const window = Dimensions.get('window');
 class MyPlanCard extends Component{
   render(){
     return(
+      <TouchableOpacity onPress={()=>NavigationActions.Myplan()}>
       <View style={Styles.myPlanWrapper}>
       <Text style={{
         fontSize : Fonts.size.h4,
@@ -36,18 +37,17 @@ class MyPlanCard extends Component{
           alignItems : 'center'
 
         }}>
-        <TouchableOpacity style={{
-            backgroundColor : 'rgb(174, 179, 182)',
+        <View style={{
+            backgroundColor : Colors.flBlue.ocean,
             width : 50,
             height : 50,
             borderRadius : 50/2,
             alignItems :'center',
             justifyContent : 'center'
-        }}
-         onPress={()=>NavigationActions.Myplan()}>
+        }}>
         <Icon name="heartbeat" size={30} color="white" />
 
-        </TouchableOpacity>
+        </View>
 
 
 
@@ -74,6 +74,7 @@ class MyPlanCard extends Component{
     </View>
       </View>
       </View>
+      </TouchableOpacity>
     );
   }
 }
@@ -85,7 +86,7 @@ const Styles = StyleSheet.create({
     height : 160,
     alignItems : 'center',
     //justifyContent : 'center',
-    padding : 15
+    padding : 10
   }
 });
 export default MyPlanCard
