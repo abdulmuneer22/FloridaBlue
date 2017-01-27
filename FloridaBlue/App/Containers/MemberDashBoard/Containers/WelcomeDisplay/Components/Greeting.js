@@ -41,7 +41,7 @@ class Greeting extends Component{
     return(
       <View>
       <View style={Styles.Greeting}>
-      <Text style={{fontSize:15}}>
+      <Text style={{fontSize:15, color:'white'}}>
       Good Morning {this.props.userName ? this.props.userName :""}
       </Text>
       </View>
@@ -76,7 +76,7 @@ const Styles = StyleSheet.create({
     alignItems  : 'center',
     justifyContent : 'center',
     padding : 15,
-    backgroundColor: 'rgba(38, 45, 49, 0.8)'
+    backgroundColor: Colors.flBlue.grey3
   }
 });
 

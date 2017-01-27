@@ -35,12 +35,10 @@ class PlanBenefits extends Component{
 
     render(){
         return(
-            <View style={{flex : 1}}>
+            <View style={{flex : 1,  backgroundColor : 'white'}}>
               {this._renderHeader()}
               <ScrollView>
-            <View style={{
-                height : windowheight*0.8,
-                backgroundColor : 'white'}}>
+
                 <View style={{
             flexWrap : 'wrap',
             flexDirection : 'row'
@@ -98,7 +96,7 @@ class PlanBenefits extends Component{
 
 
             </View>
-            </View>
+          
             </ScrollView>
             </View>
         );
