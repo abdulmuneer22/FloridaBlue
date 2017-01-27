@@ -32,7 +32,8 @@ type LoginScreenProps = {
   dispatch: () => any,
   fetching: boolean,
   attemptLogin: () => void,
-  responseURL : string
+  responseURL : string,
+  smToken : string
 }
 
 
@@ -75,15 +76,17 @@ componentWillReceiveProps (newProps) {
     this.forceUpdate()
       // Did the login attempt complete?
     console.log("I am receving new props" + newProps.responseURL)
-  //  if (this.isAttempting && !newProps.fetching && newProps.error === null) {
-      //if (newProps.responseURL == 'login') {
-        //NavigationActions.WelcomeDashBoard()
-        NavigationActions.MyView({responseURL:'https://mwe-stga.bcbsfl.com/wps/myportal/mbs'})
-    //  } else {
-    //    console.log("new props"+newProps.responseURL);
-    //    NavigationActions.MyView({responseURL:newProps.responseURL})
-    //  }
-  //  }
+    console.log("I am receving new smToken" + newProps.smToken)
+
+    if (this.isAttempting && !newProps.fetching && newProps.error === null) {
+      if (newProps.responseURL == 'login') {
+        NavigationActions.WelcomeDashBoard()
+
+      } else {
+        console.log("new props"+newProps.responseURL);
+        NavigationActions.MyView({responseURL:newProps.responseURL})
+      }
+  }
   }
 
 
@@ -297,7 +300,8 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
     error: state.login.error,
-    responseURL : state.login.responseURL
+    responseURL : state.login.responseURL,
+    smToken : state.login.smToken
   }
 }
 
