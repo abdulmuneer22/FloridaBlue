@@ -1,5 +1,6 @@
 {
    "signIn": "Sign In",
+   "signUp": "I'm new. Sign-up",
    "logOut": "Log Out",
    "loginLogoutExampleTitle": "Login/Logout Redux + Sagas Example",
    "progressiveImageComponent": "Progressive Image Component",
@@ -9,8 +10,8 @@
    "loginWithFacebook": "Login with Facebook",
    "rnAnimatable": "RN Animatable",
    "igniteGenerated": "Ignite Generate Screens",
-   "forgotPassword": "Forgot Password",
-   "username": "Username",
+   "forgotPassword": "Forgot User ID/Password",
+   "username": "User ID",
    "password": "Password",
    "cancel": "Cancel",
    "welcome": "Welcome",

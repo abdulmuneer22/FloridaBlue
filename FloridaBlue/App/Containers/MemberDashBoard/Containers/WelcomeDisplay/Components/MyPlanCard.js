@@ -63,9 +63,11 @@ class MyPlanCard extends Component{
               <Text>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               </Text>
+
         </View>
-
-
+    <View style={{marginTop:10}}>
+<Icon name="chevron-right" size={30} color="black"/>
+    </View>
       </View>
       </View>
     );

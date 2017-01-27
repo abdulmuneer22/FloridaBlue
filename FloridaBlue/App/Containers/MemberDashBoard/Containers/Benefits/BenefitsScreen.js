@@ -84,32 +84,20 @@ class PlanBenefits extends Component{
             bg="rgb(82, 111, 115)"
             icon = "plus"
             />
+            <Card
+            title = "Pahrmacy"
+            bg="rgb(82, 105, 115)"
+            icon = "plus"
+            />
+            <Card
+            title = "Pahrmacy"
+            bg="rgb(82, 216, 115)"
+            icon = "plus"
+            />
 
 
             </View>
             </View>
-
-            <View style={{
-                height : windowheight*0.2,
-                backgroundColor : 'white',
-                alignItems : 'center',
-                justifyContent : 'center',
-                padding : 20
-            }}>
-
-            <View style={Styles.footerWrapper}>
-                <View style={Styles.icon}>
-                <Icon name="pencil" size={25} color="black" />
-                </View>
-
-                <View style={Styles.textWrapepr}>
-                <Text>Your pan pays for free flu shots a year</Text>
-                </View>
-
-            </View>
-            </View>
-
-
 
             </View>
         );

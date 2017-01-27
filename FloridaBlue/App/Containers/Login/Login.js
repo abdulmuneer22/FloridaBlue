@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
   View,
   TextInput,
-  Dimensions,
   TouchableOpacity,
   Image,
   Modal,
-  ScrollView
+  ScrollView,
+  Dimensions
 } from 'react-native';
 
 import axios from 'axios'
@@ -18,11 +16,9 @@ import {Actions as NavigationActions} from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import LoginActions from '../../Redux/LoginRedux'
 import styles from './LoginStyle'
-import {Images} from '../../Themes'
+import { Images, Metrics, Colors } from '../../Themes'
 //import {FlbIcon} from'./FlbIcon'
-
-
-
+import I18n from 'react-native-i18n'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'});
 var logo =require('./logo.png')
@@ -34,8 +30,6 @@ type LoginScreenProps = {
   attemptLogin: () => void,
   responseURL : string
 }
-
-
 
 class Login extends Component{
    props: LoginScreenProps
@@ -68,9 +62,6 @@ if(!this.state.username | !this.state.password){
 
 }
 
-
-
-
 componentWillReceiveProps (newProps) {
     this.forceUpdate()
       // Did the login attempt complete?
@@ -85,11 +76,7 @@ componentWillReceiveProps (newProps) {
     }
   }
 
-
-
-
-
-
+  /*
   _moreInfo(){
     if(this.state.modalVisible === true){
       return(
@@ -198,96 +185,66 @@ componentWillReceiveProps (newProps) {
       );
     }
   }
+  */
+
   render(){
     return(
+      <View style={styles.container}>
+        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+        <ScrollView style={styles.container}>
+          <View style={styles.logoView}>
+            <Image source={Images.clearLogo} style={styles.logo} />
+          </View>
+          <View style={styles.form}>
+            <View style={styles.row}>
+              <TextInput
+                ref='username'
+                style={styles.textInput}
+                keyboardType='default'
+                returnKeyType='next'
+                autoCapitalize='none'
+                autoCorrect={false}
+                onChangeText={(text) => this.setState({username : text})}
+                value={this.state.username}
+                underlineColorAndroid={Colors.coal}
+                onSubmitEditing={() => this.refs.password.focus()}
+                placeholder={I18n.t('username')} />
+            </View>
 
-    <View style={{flex : 1, justifyContent : 'center' }}>
+            <View style={styles.row}>
+              <TextInput
+                ref='password'
+                style={styles.textInput}
+                keyboardType='default'
+                returnKeyType='go'
+                autoCapitalize='none'
+                autoCorrect={false}
+                secureTextEntry
+                onChangeText={(text) => this.setState({password : text})}
+                value={this.state.password}
+                underlineColorAndroid={Colors.coal}
+                onSubmitEditing={() => {}}
+                placeholder={I18n.t('password')} />
+            </View>
 
-      <View style={styles.wrapper}>
-
-      <Image
-        style={{
-          width: 300,
-          height: 100,
-          marginBottom : 30
-        }}
-        source={Images.clouds}
-        resizeMode="stretch"
-      >
-      <Image
-        style={{
-          width: 300,
-          height: 100,
-          marginBottom : 30
-        }}
-        source={Images.logInlog}
-        resizeMode="stretch"
-      />
-</Image>
-</View>
-
-
-    <View style={styles.logincard}>
-     <View>{this.props.error ? <Text style={{color:'red'}}>{this.props.error}</Text>:<Text></Text>}
-     </View>
-      <TextInput
-        style={styles.textInput}
-        onChangeText={(text) => this.setState({username : text})}
-        value={this.state.username}
-        placeholder="User ID"
-        autoCapitalize='none'
-        autoCorrect={false}
-        returnKeyType='next'
-        keyboardType='default'
-        underlineColorAndroid='rgba(0,0,0,0)'
-        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
-        />
-
-      <TextInput
-        style={styles.textInput}
-        onChangeText={(text) => this.setState({password : text})}
-        value={this.state.password}
-        placeholder="Password"
-        placeholderTextColor="rgba(213, 211, 200 , 0.7)"
-        underlineColorAndroid='rgba(0,0,0,0)'
-        secureTextEntry={true}
-        />
-
-        <View style={styles.forgotPassword}>
-        <TouchableOpacity
-          onPress={()=> NavigationActions.MyView({responseURL : 'https://registration-stga.bcbsfl.com/ecir/public/MemberFPSSelect.do'})}>
-        <Text style={styles.regularText}>
-        Forgot User ID/Password
-        </Text>
-        </TouchableOpacity>
-        </View>
-        </View>
-
-        <View style={{flex : 1, justifyContent : 'center' ,backgroundColor:'white'}}>
-        <View style={styles.wrapper}>
-        {
-          this._moreInfo()
-        }
-        <TouchableOpacity style={styles.circle}
-        onPress={()=>{
-          if(this.state.modalVisible === true){
-          this.setState({modalVisible : false})
-        }else{
-          this.setState({modalVisible : true})
-        }
-        }}
-        >
-        <Text style={{
-          fontWeight : 'bold'
-        }}>
-        i
-        </Text>
-        </TouchableOpacity>
-        </View>
+            <View style={styles.row}>
+              <TouchableOpacity onPress={()=> NavigationActions.MyView({responseURL : 'https://registration-stga.bcbsfl.com/ecir/public/MemberFPSSelect.do'})}>
+                <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.loginButton}>
+            <TouchableOpacity onPress={() => {this._handleLogin()}}>
+              <Image source={Images.loginButton} />
+            </TouchableOpacity>
+          </View>
+          <View style={[styles.row, {backgroundColor: 'transparent'}]}>
+            <TouchableOpacity  onPress={()=>NavigationActions.screen_1()}>
+              <Text style={styles.link}>{I18n.t('signUp')}</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </View>
-
-      </View>
-      
     );
   }
 }
