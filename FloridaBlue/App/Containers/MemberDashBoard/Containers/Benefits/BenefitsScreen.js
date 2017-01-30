@@ -27,7 +27,7 @@ class PlanBenefits extends Component{
   _renderHeader(){
   return <View style={styles.headerContainer}>
     {NavItems.backButton()}
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>Plan Benefits</Text>
+    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:10}]}>Plan Benefits</Text>
     {NavItems.settingsButton()}
 
   </View>
@@ -35,12 +35,10 @@ class PlanBenefits extends Component{
 
     render(){
         return(
-            <View style={{flex : 1}}>
+            <View style={{flex : 1,  backgroundColor : 'white'}}>
               {this._renderHeader()}
               <ScrollView>
-            <View style={{
-                height : windowheight*0.8,
-                backgroundColor : 'white'}}>
+
                 <View style={{
             flexWrap : 'wrap',
             flexDirection : 'row'
@@ -50,17 +48,19 @@ class PlanBenefits extends Component{
             title = "Doctor Office Services"
             bg="rgb(204, 211, 214)"
             icon = "user-md"
+            target="DoctorServices"
+
 
             />
             <Card
-            title = "Emergency Services"
+            title = "Preventive Care"
             bg="rgb(114, 154, 160)"
             icon = "ambulance"
 
             />
 
             <Card
-            title = "Hospital/Surgical"
+            title = "Emergency Medical Care"
             bg="rgb(226, 233, 235)"
             icon = "hospital-o"
 
@@ -76,29 +76,30 @@ class PlanBenefits extends Component{
             />
 
             <Card
-            title = "Mental Health"
+            title = "Mental Health / Substance Dependency"
             bg="rgb(190, 193, 194)"
             icon = "plus-square"
             />
             <Card
-            title = "Pahrmacy"
+            title = "Hospital / Surgical"
             bg="rgb(82, 111, 115)"
             icon = "plus"
             />
             <Card
-            title = "Pahrmacy"
+            title = "Pharmacy"
             bg="rgb(82, 105, 115)"
             icon = "plus"
             />
             <Card
-            title = "Pahrmacy"
+            title = "AdditionalServices"
             bg="rgb(82, 216, 115)"
             icon = "plus"
+            target="AdditionalServices"
             />
 
 
             </View>
-            </View>
+
             </ScrollView>
             </View>
         );

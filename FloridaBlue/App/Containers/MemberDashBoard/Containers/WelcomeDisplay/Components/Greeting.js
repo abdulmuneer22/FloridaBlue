@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Colors,Metrics,Fonts} from '../../../../../Themes'
 
 
-var messageCount=""
+var messageCount="1"
 
 class Greeting extends Component{
 
@@ -41,7 +41,7 @@ class Greeting extends Component{
     return(
       <View>
       <View style={Styles.Greeting}>
-      <Text style={{fontSize:15}}>
+      <Text style={{fontSize:15, color:Colors.snow}}>
       Good Morning {this.props.userName ? this.props.userName :""}
       </Text>
       </View>
@@ -51,14 +51,13 @@ class Greeting extends Component{
         <View style={{
           alignItems:'center',
           justifyContent:'center',
-          height:40,
-          backgroundColor:'rgba(230,232,238,0.1)'
+          height:30,
+          backgroundColor:'rgba(230,232,238,0.1)',
+            flexDirection : 'row'
         }}>
-        <View style={{
-          flexDirection : 'row'}}>
+
         <Icon name="envelope" size={18} color="black" />
         <Text style={{marginLeft : 10}}> You have {messageCount} New Messages </Text>
-        </View>
 
         </View>
         : null
@@ -75,8 +74,8 @@ const Styles = StyleSheet.create({
   Greeting : {
     alignItems  : 'center',
     justifyContent : 'center',
-    padding : 15,
-    backgroundColor: 'rgba(38, 45, 49, 0.8)'
+    height : 60,
+    backgroundColor: Colors.flBlue.grey3
   }
 });
 

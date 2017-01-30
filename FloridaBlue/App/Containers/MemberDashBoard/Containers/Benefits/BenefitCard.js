@@ -14,16 +14,22 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 class Card extends Component{
 
 
-  _handleCardClick(){
-    switch(this.props.title){
-      case 'Doctor Office Services':
-      NavigationActions.doctorservices()
+  _handleCardClick(target){
+    // alert(target)
+    switch(target){
+      case 'AdditionalServices':
+      NavigationActions.AdditionalServices()
+      // alert("Additonal Benefits")
       break;
+
+
+      case 'DoctorServices':
+      NavigationActions.DoctorServices()
+
       default :
       return null
     }
   }
-
   render(){
     return(
       <View style={{
@@ -35,7 +41,7 @@ class Card extends Component{
 
       }}>
       <TouchableWithoutFeedback
-      onPress = {()=>{this._handleCardClick()}}>
+      onPress = {()=>{this._handleCardClick(this.props.target)}}>
       <View style={{alignItems : 'center'}}>
       <Icon name={this.props.icon} size={40} color="black" />
       <Text style={{

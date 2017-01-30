@@ -9,7 +9,7 @@ import {
 const window = Dimensions.get('window');
 import { connect } from 'react-redux'
 
-class SecondCard extends Component {
+class FourthCard extends Component {
   render() {
     // console.log(this.props.SelctedLeft)
     return (
@@ -96,4 +96,4 @@ var Style = StyleSheet.create({
 
 
 
-export default SecondCard
+export default FourthCard

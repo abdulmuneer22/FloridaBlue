@@ -6,7 +6,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-
+import {Actions as NavigationActions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 
 class Switch extends Component{
@@ -24,7 +24,7 @@ class Switch extends Component{
           leftActive : true,
           rightActive : false
         })
-
+        
       }
     }
 
@@ -34,8 +34,6 @@ class Switch extends Component{
           leftActive : false,
           rightActive : true
         })
-
-
       }
     }
 
@@ -98,4 +96,4 @@ class Switch extends Component{
 
 
 
-export default Switch
+export default Switch;

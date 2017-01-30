@@ -1,12 +1,47 @@
 // @flow
 
 import React, { Component } from 'react'
-import { ScrollView, Image, BackAndroid, View, StyleSheet } from 'react-native'
-import styles from './DrawerContentStyle'
-import { Images } from '../../Themes'
+import { ScrollView, Image, BackAndroid, View, StyleSheet,Text, TouchableWithoutFeedback } from 'react-native'
+//import styles from './DrawerContentStyle'
+import { Colors, Metrics,Fonts, Images } from '../../Themes'
 import DrawerButton from '../../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
+
+
+const styles=StyleSheet.create({
+  wrapper:{
+  },
+  options:{
+    backgroundColor:Colors.bg1,
+    paddingLeft:15,
+    paddingTop:20
+  },
+  settings:{
+    backgroundColor:Colors.bg2,
+    paddingLeft:15,
+    paddingTop:20
+  },
+  divider:{
+    backgroundColor:Colors.snow,
+    height:1,
+    marginLeft:-15,
+    marginTop:10,
+    marginBottom:10
+  },
+  heading:{
+    color:Colors.snow,
+    fontSize:Fonts.size.h3
+  },
+  heading2:{
+    color:Colors.bg1,
+    fontSize:Fonts.size.h4
+  }
+})
+
+const Divider=()=>{
+  return <View style={styles.divider}/>
+}
 
 class SettingsContent extends Component {
 
@@ -48,91 +83,81 @@ class SettingsContent extends Component {
     NavigationActions.claims()
   }
 
-  handlePressResources = () => {
+  handlePressDentalPlan = () => {
     this.toggleDrawer()
     NavigationActions.Resources()
   }
 
-  handlePressSupport= () => {
+  handlePressPayment= () => {
+    this.toggleDrawer()
+    NavigationActions.Support()
+  }
+  handlePressMyAccount= () => {
+    this.toggleDrawer()
+    NavigationActions.Support()
+  }
+  handlePressSettings= () => {
+    this.toggleDrawer()
+    NavigationActions.Support()
+  }
+  handlePressFAQ= () => {
+    this.toggleDrawer()
+    NavigationActions.Support()
+  }
+  handlePressPolicy= () => {
     this.toggleDrawer()
     NavigationActions.Support()
   }
 
 
-
-  handlePressDevice = () => {
-    this.toggleDrawer()
-    NavigationActions.deviceInfo()
-  }
-
-  handlePressComponents = () => {
-    this.toggleDrawer()
-    NavigationActions.componentExamples()
-  }
-
-  handlePressUsage = () => {
-    this.toggleDrawer()
-    NavigationActions.usageExamples()
-  }
-
-  handlePressAPI = () => {
-    this.toggleDrawer()
-    NavigationActions.apiTesting()
-  }
-
-  handlePressTheme = () => {
-    this.toggleDrawer()
-    NavigationActions.theme()
-  }
-
   handlePressLogout = () => {
-    this.toggleDrawer()
-    NavigationActions.login()
-  }
+   this.toggleDrawer()
+   NavigationActions.login()
+ }
+
 
   render () {
     return (
-      <ScrollView style={styles.mainContainer} >
-      <View style={styles.container}>
-        <DrawerButton text='Dashboard' onPress={this.handlePressDashBoard} />
-        <DrawerButton text='Find Care' onPress={this.handlePressFindCare} />
+      <ScrollView style={[styles.wrapper]}>
+        <View style={styles.options}>
+          <Text style={styles.heading} onPress={this.handlePressDashBoard}>Dash Board</Text>
+          <Divider/>
+          <View>
+            <Text style={styles.heading} onPress={this.handlePressPlans}>My Health Plan</Text>
+            <View style={{paddingLeft:30,marginTop:10}}>
+              <Text style={[styles.heading,{fontSize:Fonts.size.h5}]} onPress={this.handlePressBenefits}>Benifits</Text>
+              <Text style={[styles.heading,{fontSize:Fonts.size.h5}]} onPress={this.handlePressClaims}>Claims</Text>
+            </View>
+          </View>
+          <Divider/>
+          <Text style={styles.heading} onPress={this.handlePressDentalPlan}>My Dental Plan</Text>
+          <Divider/>
+          <Text style={styles.heading} onPress={this.handlePressPayment}>Payment</Text>
+        </View>
+        <View style={styles.settings}>
+           <View style={{marginBottom:10,marginTop:10}}>
+             <Text style={styles.heading2} onPress={this.handlePressMyAccount}>My Account</Text>
+           </View>
+           <View style={{marginBottom:10,marginTop:10}}>
+             <Text style={styles.heading2} onPress={this.handlePressSettings}>App Settings</Text>
+           </View>
+           <View style={{marginBottom:10,marginTop:10}}>
+             <Text style={styles.heading2} onPress={this.handlePressFAQ}>Frequently Asked Questions</Text>
+           </View>
 
-        <DrawerButton text='My Health Plans' onPress={this.handlePressPlans} />
-        <ScrollView style={styles.container1}>
-          <DrawerButton text='Benefits' onPress={this.handlePressBenefits} />
-          <DrawerButton text='Claims' onPress={this.handlePressClaims} />
-          </ScrollView>
-        <DrawerButton text='My Dental Plan' onPress={this.handlePressFindCare} />
-        <DrawerButton text='Resources' onPress={this.handlePressResources} />
-        <DrawerButton text='Support' onPress={this.handlePressDevice} />
-        <DrawerButton text='Messages' onPress={this.handlePressSupport} />
+          <View style={{marginBottom:10,marginTop:10}}>
+            <Text style={styles.heading2} onPress={this.handlePressPolicy}>Policies & Terms </Text>
+          </View>
+          <View style={{marginBottom:10,marginTop:10}}>
+            <Text style={styles.heading2} onPress={this.handlePressLogout}>Contact Us </Text>
+          </View>
         </View>
-        <View style={styles.container2}>
-        <View style={{flexDirection:'row',marginTop:15}}>
-        <Flb name="cc-card" size={40}/>
-        <DrawerButton   text='My Account' style={{color: 'red'}} onPress={this.handlePressComponents} />
-        </View>
-        <View style={{flexDirection:'row',marginTop:15}}>
-        <Flb name="cc-card" size={40}/>
-        <DrawerButton text='App Settings' onPress={this.handlePressUsage} />
-        </View>
-        <View style={{flexDirection:'row',marginTop:15}}>
-        <Flb name="cc-card" size={40}/>
-        <DrawerButton text='Frequently Asked Questions' onPress={this.handlePressAPI} />
-        </View>
-        <View style={{flexDirection:'row',marginTop:15}}>
-        <Flb name="cc-card" size={40}/>
-        <DrawerButton text='Policies & Terms' onPress={this.handlePressPolicy} />
-        </View>
-        <View style={{flexDirection:'row',marginTop:15}}>
-        <Flb name="cc-card" size={40}/>
-        <DrawerButton text='Contact US' onPress={this.handlePressTheme} />
-        </View>
-        </View>
-
         <View style={{margin:10,marginTop:20}}>
-        <Image source={Images.logout} resizeMode="stretch" onPress={this.handlePressLogout} />
+        <TouchableWithoutFeedback onPress={this.handlePressLogout}>
+        <Image source={Images.logout} resizeMode="stretch"  />
+        </TouchableWithoutFeedback>
         </View>
+
       </ScrollView>
     )
   }
