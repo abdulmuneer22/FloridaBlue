@@ -10,7 +10,16 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>mwe-stga.bcbsfl.com/wps/myportal/mbs</key>
+			<key>www.*.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSTemporaryExceptionMinimumTLSVersion</key>
+				<string>TLSV1.1</string>
+			</dict>
+			<key>mws8-stga.bcbsfl.com</key>
 			<dict/>
 			<key>NSIncludesSubdomains</key>
 			<true/>

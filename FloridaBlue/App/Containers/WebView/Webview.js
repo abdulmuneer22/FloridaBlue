@@ -19,7 +19,10 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 const window=Dimensions.get('window');
 var WEBVIEW_REF = 'webview';
 var btoa = require('btoa');
-
+const jsForInjection = `
+  var el = document.getElementsByTagName('body')[0];
+  el.style.height = '${Dimensions.get('window').height}px';
+`
 
 class Webview extends Component {
   _renderHeader(){
@@ -34,9 +37,10 @@ class Webview extends Component {
     var smToken = this.props.smToken
     var redirect ={
       uri: dynamic,
-      headers: {
-        'set-cookie' :smToken
-      }
+      method : 'GET'
+      /*headers: {
+        'Cookie' :smToken
+      }*/
   }
 
     console.log("redirect"+JSON.stringify(redirect));
@@ -51,12 +55,21 @@ class Webview extends Component {
         source={redirect}
         javaScriptEnabled={true}
           domStorageEnabled={true}
-
+          injectedJavaScript ={jsForInjection}
+          allowUrlRedirect={true}
+          startInLoadingState={true}
               />
       </View>
     );
   }
 }
+
+onShouldStartLoadWithRequest = (event) => {
+    // Implement any custom loading logic here, don't forget to return!
+
+
+    return true;
+  };
 
 goBack = () => {
   this.refs[WEBVIEW_REF].goBack();

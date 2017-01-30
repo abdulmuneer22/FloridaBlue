@@ -1,7 +1,0 @@
-{
-    "extends": "./node_modules/eslint-config-airbnb-base/index.js",
-    "rules": {
-        "indent": [2, 4],
-        "id-length": [2, { "min": 1 }]
-    }
-}
