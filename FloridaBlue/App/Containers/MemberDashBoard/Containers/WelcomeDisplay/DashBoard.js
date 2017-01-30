@@ -11,12 +11,10 @@ import {
   TouchableWithoutFeedback,
   ScrollView
 } from 'react-native';
-
-
 import Greeting from './Components/Greeting'
 import MyPlanCard from './Components/MyPlanCard'
 import Card from './Components/Card'
-import {Colors,Metrics,Fonts} from '../../../../Themes'
+import {Colors,Metrics,Fonts, Images} from '../../../../Themes'
 import SeeDetailsCard from './Components/SeeDetailsCard'
 import TransButton from './Components/transButton'
 import styles from './DashBoardStyle'
@@ -26,13 +24,7 @@ import MemberActions from '../../../../Redux/MemberRedux'
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Flb from './FlbIcon'
-
-
-
 const window = Dimensions.get('window');
-
-
-
 type LoginScreenProps = {
   dispatch: () => any,
   fetching: boolean,
@@ -40,51 +32,37 @@ type LoginScreenProps = {
   visibilityRules : object,
   attemptMember: () => void
 }
-
 class LandingScreen extends Component {
-
   props: LoginScreenProps
   isAttempting : boolean
 
 
   _renderHeader(){
-  return( <View style={styles.headerContainer}>
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:100}]}>Florida Blue</Text>
+  return( <Image style={styles.headerContainer} source={Images.header}>
+    <View/>
+     <Image source={Images.logo} style={{marginTop:45}}/>
     {NavItems.settingsButton()}
-
-  </View>)
+  </Image>)
 }
-
-
 componentDidMount(){
   console.log("mount on dashboadr"+this.props.smToken);
-
      this.props.attemptMember()
 }
-
   render(){
     var color  = new Array( "#005b80", "#00aec7", "#0091cc","#005b80" )
     var i = 0
-
-
     return(
       <View style={styles.mainContainer}>
       {this._renderHeader()}
       <ScrollView>
       <Greeting userName={this.props.userName}/>
       <MyPlanCard/>
-
       <View style={{
         flexWrap : 'wrap',
         flexDirection:'row',
         justifyContent:'space-around',
-
-
       }}>
-
         {this.props.visibilityRules ? this.props.visibilityRules.coreTiles.map(function(tile, i){
-
-
           onItemPress =function() {
           var action ;
           if (tile.tileType =='webview'){
@@ -96,9 +74,7 @@ componentDidMount(){
           }
         }
         return(
-
 <TouchableOpacity style={{
-
   width : window.width * 0.5,
   backgroundColor : color[i],
   height : 150,
@@ -106,8 +82,7 @@ componentDidMount(){
   justifyContent : 'center'
 }} onPress={onItemPress.bind(this)}>
           <View style={{alignItems:'center'}}>
-
-<Flb name={tile.tileIcon}  size={40} color="white"/> 
+<Flb name={tile.tileIcon}  size={40} color="white"/>
           <Text style={{
             marginTop : 20,
             fontSize : 14,
@@ -116,28 +91,20 @@ componentDidMount(){
           }}>
           {tile.tileName}
           </Text>
-
           </View>
 </TouchableOpacity>
-
-
       )
         i+=1
     })      : <Text></Text>}
       </View>
       <View>
       </View>
-
       <TransButton/>
-
 </ScrollView>
-
       </View>
     );
   }
 }
-
-
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
@@ -145,11 +112,9 @@ const mapStateToProps = (state) => {
     visibilityRules : state.member.visibilityRules
   }
 }
-
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptMember:() => dispatch(MemberActions.memberRequest())
   }
 }
-
 export default connect(mapStateToProps,mapDispatchToProps)(LandingScreen)

@@ -17,62 +17,45 @@ class MyPlanCard extends Component{
   render(){
     return(
       <TouchableOpacity onPress={()=>NavigationActions.Myplan()}>
-      <View style={Styles.myPlanWrapper}>
+      <View style={Styles.summary}>
+      <View style={[Styles.center,{flex:0.3}]}>
+      <View style={{
+          backgroundColor : Colors.flBlue.ocean,
+          width : 50,
+          height : 50,
+          borderRadius : 50/2,
+          alignItems :'center',
+          justifyContent : 'center'
+      }}>
+      <Icon name="heartbeat" size={30} color="white" />
+
+      </View>
+      </View>
+
+      <View style={{flex:0.7,alignItems:'center', padding:20}}>
       <Text style={{
         fontSize : Fonts.size.h4,
         fontWeight : 'bold',
-        textAlign : 'center'
+        alignSelf : 'stretch',
+        alignItems:'center',
+        justifyContent:'center',
+        height:40
       }}>
       My Health Plan
       </Text>
-
-      <View style={{
-        flexDirection : 'row',
-        marginTop : 30
-      }}>
-        <View style={{
-          flex : 1,
-          //borderColor : 'green',
-          //borderWidth : 1,
-          alignItems : 'center'
-
-        }}>
-        <View style={{
-            backgroundColor : Colors.flBlue.ocean,
-            width : 50,
-            height : 50,
-            borderRadius : 50/2,
-            alignItems :'center',
-            justifyContent : 'center'
-        }}>
-        <Icon name="heartbeat" size={30} color="white" />
-
-        </View>
-
-
-
-        </View>
-
-        <View style={{
-          flex : 3,
-          //borderColor : 'red',
-          //borderWidth : 1,
-          justifyContent : 'center',
-          paddingLeft : 10
-
-        }}>
-              <Text style={{marginRight:20}}>
+        <Text style={{fontSize:13,marginTop:20}}>
               Find information about deductibles, claims, your savings, and more.
               </Text>
-              <View>
-              <Text style={{marginTop:10}}>
+
+              <Text style={{fontSize:13,marginTop:20}}>
                * Dental & Vision are in the menu</Text>
                </View>
-        </View>
-    <View style={{marginTop:10}}>
+
+    <View style={{marginTop:80,marginRight:15}}>
 <Icon name="chevron-right" size={30} color="black"/>
-    </View>
-      </View>
+</View>
+
+
       </View>
       </TouchableOpacity>
     );
@@ -80,13 +63,22 @@ class MyPlanCard extends Component{
 }
 
 const Styles = StyleSheet.create({
-  myPlanWrapper : {
-    width : window.width,
-    backgroundColor : 'rgb(228, 230, 231 )',
-    height : 160,
-    alignItems : 'center',
-    //justifyContent : 'center',
-    padding : 10
+  summary:{
+    flexDirection:'row',
+    height:200,
+    backgroundColor:'#E8E8E8'
+  },
+  features:{
+    flexDirection:'row',
+    height:150,
+    margin:0
+  },
+  titleView:{
+    marginTop:10
+  },
+  center:{
+    alignItems:'center',
+    justifyContent:'center'
   }
 });
 export default MyPlanCard

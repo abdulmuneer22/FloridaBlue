@@ -7,7 +7,8 @@ import {
   Dimensions
 } from 'react-native'
 
-
+import * as actions from '../../Redux/Actions'
+import {connect} from 'react-redux'
 const window = Dimensions.get('window')
 
 import Swiper from 'react-native-swiper';
@@ -35,8 +36,8 @@ class BenefitsSwiper extends Component{
                 <Swiper height={200} style={styles.wrapper} showsButtons={true}>
 
                 {this.renderSingleSlide("Blue Phycisian Recognision","Pay 20%")}
-                {this.renderSingleSlide("Family Phycisian","$5 Copay ")}
-                {this.renderSingleSlide("Specialist","Pay 20%")}
+                {this.renderSingleSlide("Blue Phycisian Recognision","Pay 30%")}
+                {this.renderSingleSlide("Blue Phycisian Recognision","Pay 40%")}
                 </Swiper>
 
         );

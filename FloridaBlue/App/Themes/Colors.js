@@ -19,6 +19,9 @@ const colors = {
   snow: 'white',
   ember: 'rgba(164, 0, 48, 0.5)',
   fire: '#e73536',
+  black:'#000',
+  bg1:'#1791C9',
+  bg2:'#F5F5F5',
   drawer: 'rgba(30, 30, 29, 0.95)',
 
   flBlue: {

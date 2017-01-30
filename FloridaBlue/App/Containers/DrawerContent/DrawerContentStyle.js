@@ -29,5 +29,32 @@ export default {
   },
   logo: {
     alignSelf: 'center'
+  },
+  wrapper:{
+  },
+  options:{
+    backgroundColor:Colors.bg1,
+    paddingLeft:15,
+    paddingTop:20
+  },
+  settings:{
+    backgroundColor:Colors.bg2,
+    paddingLeft:15,
+    paddingTop:20
+  },
+  divider:{
+    backgroundColor:Colors.snow,
+    height:1,
+    marginLeft:-15,
+    marginTop:10,
+    marginBottom:10
+  },
+  heading:{
+    color:Colors.snow,
+    fontSize:Fonts.size.h3
+  },
+  heading2:{
+    color:Colors.bg1,
+    fontSize:Fonts.size.h4
   }
 }

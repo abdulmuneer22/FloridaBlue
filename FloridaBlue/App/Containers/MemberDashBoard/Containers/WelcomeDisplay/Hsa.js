@@ -30,7 +30,7 @@ type LoginScreenProps = {
   attemptMember: () => void
 }
 
-class Hsa extends Component {
+class HSA extends Component {
 
 
   _renderHeader(){
@@ -41,48 +41,93 @@ class Hsa extends Component {
 
     </View>)
     }
-  render(){
-    console.log("root testing"+this.props.userName);
-    return(
-      <View style={styles.mainContainer}>
-      {this._renderHeader()}
-      <View style={styles.titleView}>
-      <Text style={[{fontSize:Fonts.size.h5,fontWeight:'bold', alignSelf:'center'}]}>Health Savings Account</Text>
 
-      <View style={{flexDirection:'row'}}>
+        render(){
+            return(
+                <View style ={Style.wrapper}>
+              
+                <Text style={Style.hsaText}>
+                Health Savings Account
+                </Text>
 
-      <View style={{alignItems : 'center',
-      flex : 1}}>
-      <Text style={[{marginTop:30,fontSize:Fonts.size.h5}]}> Current{"\n"} Balance</Text>
-      <Text style={[{fontSize:Fonts.size.h5}]}>$3,125</Text>
+                <View style={Style.content}>
+                    <View style={Style.row_1}>
+                        <View style={Style.col_1}>
+                        <Text style={Style.textStyle}>Current</Text>
+                        <Text style={Style.textStyle}>Balance</Text>
+                        <Text style={Style.textStyle}>$3,125</Text>
 
-      </View>
-      <View style={{alignItems : 'center',
-      flex : 1}}>
+                        </View>
 
-      <Text style={[{marginTop:30,fontSize:Fonts.size.h5}]}>YTD {"\n"}Contribution</Text>
-      <Text style={[{fontSize:Fonts.size.h5}]}>$2,450</Text>
+                        <View style={Style.col_2}>
+                            <Text style={Style.textStyle}>YTD</Text>
+                            <Text style={Style.textStyle}>Contributiont</Text>
+                            <Text style={Style.textStyle}>$2,250</Text>
 
-      </View>
-
-      </View>
-      <View style={{alignItems:'center'}}>
-
-
-      <Text style={[{marginTop:30,fontSize:Fonts.size.h5}]}>YTD {"\n"}Distribution</Text>
-      <Text style={[{fontSize:Fonts.size.h5}]}>$-2,450</Text>
-
-            </View>
+                        </View>
 
 
 
 
 
-      </View>
-      </View>
+                    </View>
 
-    );
-  }
-}
+                    <View style={Style.row_2}>
+                        <Text style={Style.textStyle}>YTD</Text>
+                        <Text style={Style.textStyle}>Distribution</Text>
+                        <Text style={Style.textStyle}>-$2.250</Text>
 
-export default Hsa
+                    </View>
+
+
+
+                </View>
+                </View>
+            )
+        }
+    }
+
+    const Style = StyleSheet.create({
+        wrapper : {
+            flex : 1 ,
+            // backgroundColor : 'red',
+
+        },
+        hsaText : {
+            fontSize : 16,
+            fontWeight : '600',
+            textAlign : 'center',
+            padding : 15
+        },
+        content : {
+            flex : 1,
+            // backgroundColor : 'green'
+        },
+        row_1 : {
+            flexDirection : 'row',
+            justifyContent : 'center',
+            paddingTop : 30,
+            paddingBottom : 30
+        },
+        col_1 : {
+            flex : 1,
+            // backgroundColor : 'yellow',
+            alignItems : 'center'
+        },
+        col_2 : {
+            flex : 1,
+            // backgroundColor : 'purple',
+            alignItems : 'center'
+
+
+        },
+        row_2 : {
+            alignItems : 'center',
+            paddingTop : 15
+        },
+        textStyle : {
+            fontSize : 16,
+            fontWeight : '500'
+        }
+    });
+    export default HSA
