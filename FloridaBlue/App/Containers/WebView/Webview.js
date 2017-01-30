@@ -37,10 +37,10 @@ class Webview extends Component {
     var smToken = this.props.smToken
     var redirect ={
       uri: dynamic,
-      method : 'GET'
-      /*headers: {
+      method :'GET',
+      headers: {
         'Cookie' :smToken
-      }*/
+      }
   }
 
     console.log("redirect"+JSON.stringify(redirect));

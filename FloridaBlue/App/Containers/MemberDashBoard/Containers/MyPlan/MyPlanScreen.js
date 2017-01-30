@@ -72,7 +72,7 @@ class MyPlanScreen extends Component{
       </View>
 
       <View style={Styles.chartWrapper}>
-      {this.props.data.hsaamount ? <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
+      {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
       </View>
 
 
@@ -93,32 +93,6 @@ class MyPlanScreen extends Component{
       icon = "book"
       />
       </View>
-      {this.props.data.hsaamount ?
-
-      <View style={Styles.footer}>
-      <Text style={Styles.footerText}>Health Savings Account</Text>
-
-      <View style={Styles.footerSecondTextWraper}>
-
-
-                <View style={Styles.column}>
-                <Text style={Styles.columnText}>Current Balance</Text>
-                <Text>${this.props.data.hsaamount.currentBalance} </Text>
-                </View>
-
-                <View style={Styles.column}>
-                <Text style={Styles.columnText}>YTD Contribute</Text>
-                <Text>${this.props.data.hsaamount.yearToDateDistribution}</Text>
-                </View>
-
-                <View style={Styles.column}>
-                <Text style={Styles.columnText}>YTD Distribute</Text>
-                <Text>${this.props.data.hsaamount.yearToDateContribution} </Text>
-                </View>
-
-
-                </View>
-                </View> :<Text>loading</Text>}
                 </View>
 
 

@@ -24,7 +24,7 @@ class MyPlanSwiper extends Component{
                     }}>Annual Deductable (In-Network)</Text>
                 </View>
 
-                <Text>Spent Year-to-Date: ${this.props.data.annualDeductible.usedDeductible}</Text>
+                <Text>Spent Year-to-Date: ${this.props.data.annualDeductible.inNetwork[1].value}</Text>
                 <Text style={{justifyContent:'center', marginTop:10}}> You are ${this.props.data.annualDeductible.remainingValue} away reaching
                 your In-Network Family Deductables of $ {this.props.data.annualDeductible.benefitValue}
                 </Text>
