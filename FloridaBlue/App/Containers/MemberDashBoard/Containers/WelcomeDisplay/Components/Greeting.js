@@ -42,7 +42,7 @@ class Greeting extends Component{
       <View>
       <View style={Styles.Greeting}>
       <Text style={{fontSize:15, color:Colors.snow}}>
-      Good Morning {this.props.userName ? this.props.userName :""}
+      Hello {this.props.userName ? this.props.userName :""}
       </Text>
       </View>
 
