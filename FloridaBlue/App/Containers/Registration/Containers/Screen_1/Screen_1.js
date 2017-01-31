@@ -1,6 +1,6 @@
 // @flow
 
-import React from 'react'
+import React, { PropTypes } from 'react'
 import {
   Image,
   KeyboardAvoidingView,
@@ -10,14 +10,13 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
 // external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
-import { Actions as NavigationActions } from 'react-native-router-flux'
+import { MKTextField, MKColor } from 'react-native-material-kit'
 
 // Styles
 import styles from './Screen_1Style'
@@ -26,7 +25,46 @@ import Flb from '../../../../Themes/FlbIcon'
 // I18n
 import I18n from 'react-native-i18n'
 
+import { Actions as NavigationActions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import RegistrationActions from '../../../../Redux/RegistrationRedux'
+
+const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
+  .withStyle(styles.textfieldWithFloatingLabel)
+  .withTextInputStyle({flex: 1})
+  .withFloatingLabelFont({
+    fontSize: 18,
+    fontStyle: 'italic',
+    fontWeight: '200',
+  })
+  .build();
+
 class Screen_1 extends React.Component {
+  constructor(props) {
+    super(props)
+    this._handleRegistration = this._handleRegistration.bind(this)
+  }
+
+  _handleRegistration(){
+    //var contractNumber = this.props.contractNumber ? 
+    //var firstName = this.state.firstName
+    //var lastName = this.state.lastName
+    //var dateOfBirth = this.state.dateOfBirth
+    //var zipCode = this.state.zipCode
+    //Alert.alert("details"+contractNumber+firstName+lastName+dateOfBirth+zipCode);
+    //Alert.alert("Hey I am coming from registration")
+    var contractNumber = this.props.contractNumber
+    var firstName = this.props.firstName
+    var lastName = this.props.lastName
+    var dateOfBirth = this.props.dateOfBirth
+    var zipCode = this.props.zipCode
+    if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
+      alert("Please enter values in all fields")
+    } else {
+      this.props.verifyIdentification(contractNumber, firstName,lastName,dateOfBirth,zipCode)
+    }
+
+  }
 
   render () {
     return (
@@ -43,17 +81,18 @@ class Screen_1 extends React.Component {
             </View>
           </View>
           <View style={styles.row}>
-            <TextInput
-              ref='memberId'
-              style={styles.textInput}
+            <TextfieldWithFloatingLabel 
+              ref='contractNumber'
+              style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
-              onChangeText={() => {}}
+              onChangeText={this.props.handleChangeContractNumber}
               underlineColorAndroid={Colors.coal}
-              onSubmitEditing={() => this.refs.memberId.focus()}
-              placeholder={I18n.t('memberId')} />
+              onSubmitEditing={() => this.refs.contractNumber.focus()}
+              placeholder={I18n.t('memberId')} 
+            />
           </View>
           <View style={styles.row}>
             <Text style={[styles.message, {fontSize: Fonts.size.regular}]}> {I18n.t('cantFindMemberId')}</Text>
@@ -64,53 +103,53 @@ class Screen_1 extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
-            <TextInput
+            <TextfieldWithFloatingLabel 
               ref='firstName'
-              style={styles.textInput}
+              style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
-              onChangeText={() => {}}
+              onChangeText={this.props.handleChangeFirstName}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={() => this.refs.firstName.focus()}
               placeholder={I18n.t('firstName')} />
           </View>
           <View style={styles.row}>
-            <TextInput
+            <TextfieldWithFloatingLabel 
               ref='lastName'
-              style={styles.textInput}
+              style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
-              onChangeText={() => {}}
+              onChangeText={this.props.handleChangeLastName}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={() => this.refs.lastName.focus()}
               placeholder={I18n.t('lastName')} />
           </View>
           <View style={styles.row}>
-            <TextInput
+            <TextfieldWithFloatingLabel 
               ref='dateOfBirth'
-              style={styles.textInput}
+              style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
-              onChangeText={() => {}}
+              onChangeText={this.props.handleChangeDateOfBirth}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={() => this.refs.dateOfBirth.focus()}
               placeholder={I18n.t('dateOfBirth')} />
           </View>
           <View style={styles.row}>
-            <TextInput
+            <TextfieldWithFloatingLabel 
               ref='zipCode'
-              style={styles.textInput}
+              style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
-              onChangeText={() => {}}
+              onChangeText={this.props.handleChangeZipCode}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={() => this.refs.zipCode.focus()}
               placeholder={I18n.t('zipCode')} />
@@ -122,7 +161,7 @@ class Screen_1 extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={styles.nextButton}>
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity onPress={() => {this._handleRegistration()}}>
                 <Image source={Images.nextButton} />
               </TouchableOpacity>
             </View>
@@ -139,13 +178,42 @@ class Screen_1 extends React.Component {
 
 }
 
+Screen_1.propTypes = {
+  verifyIdentification: PropTypes.func,
+  handleChangeContractNumber: PropTypes.func,
+  handleChangeFirstName: PropTypes.func,
+  handleChangeLastName: PropTypes.func,
+  handleChangeDateOfBirth: PropTypes.func,
+  handleChangeZipCode: PropTypes.func,
+  fetching: PropTypes.bool,
+  contractNumber : PropTypes.string,
+  firstName :PropTypes.string,
+  lastName : PropTypes.string,
+  dateOfBirth : PropTypes.string,
+  zipCode : PropTypes.string,
+  error: PropTypes.string
+}
+
 const mapStateToProps = (state) => {
   return {
+    fetching: state.registration.fetching,
+    contractNumber: state.registration.contractNumber,
+    firstName: state.registration.firstName,
+    lastName: state.registration.lastName,
+    dateOfBirth:state.registration.dateOfBirth,
+    zipCode:state.registration.zipCode,
+    error: state.registration.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyIdentification:(contractNumber,firstName,lastName,dateOfBirth,zipCode) => dispatch(RegistrationActions.registrationRequest(contractNumber,firstName,lastName,dateOfBirth,zipCode)),
+    handleChangeContractNumber:(contractNumber) => dispatch(RegistrationActions.changeContractNumber(contractNumber)),
+    handleChangeFirstName:(firstName) => dispatch(RegistrationActions.changeFirstName(firstName)),
+    handleChangeLastName:(lastName) => dispatch(RegistrationActions.changeLastName(lastName)),
+    handleChangeDateOfBirth:(dateOfBirth) => dispatch(RegistrationActions.changeDateOfBirth(dateOfBirth)),
+    handleChangeZipCode:(zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode))
   }
 }
 
