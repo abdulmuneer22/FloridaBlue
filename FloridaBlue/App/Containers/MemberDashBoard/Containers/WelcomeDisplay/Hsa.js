@@ -45,7 +45,8 @@ class HSA extends Component {
         render(){
             return(
                 <View style ={Style.wrapper}>
-              
+                {this._renderHeader()}
+
                 <Text style={Style.hsaText}>
                 Health Savings Account
                 </Text>

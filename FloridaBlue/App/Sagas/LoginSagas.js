@@ -20,8 +20,8 @@ export function* login(api, {
     if (response.status == "200") {
       var responseURL = response.responseURL
         var smToken
+        var login
 
-      var login
           if (response.data.data) {
               var cookieItems = response.headers['set-cookie']
               console.log("cookieItems" + cookieItems);
@@ -35,20 +35,30 @@ export function* login(api, {
           } else {
             login = null
           }
+
+
           if (login) {
             responseURL = 'login'
             var error = null
 
+
           } else {
+             
             var error = null
             var setcookie = response.headers['set-cookie']
             console.log("jsession"+setcookie)
           }
+
+
     yield put(LoginActions.loginSuccess(username, responseURL,smToken))
+
+
+
     } else if (response.status == "401") {
       // dispatch failure
       console.log("I am coming from failuer ")
       var error = "Invalid Credentials. Please enter correctly."
+       alert("Invalid Credentials. Please enter correctly.")
       yield put(LoginActions.loginFailure(error))
     } else if(response.status == null){
       console.log("I am coming from failuer ")

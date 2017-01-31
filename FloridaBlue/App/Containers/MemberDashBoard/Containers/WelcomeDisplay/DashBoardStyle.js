@@ -1,12 +1,12 @@
 // @flow
 
 import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles,Colors, Images } from '../../../../Themes/'
+import { Metrics, ApplicationStyles,Colors, Images, Fonts } from '../../../../Themes/'
 
 export default StyleSheet.create({
   headerContainer:{
    flexDirection:'row',
-   height:78,
+   height:70,
    justifyContent:'space-between',
    alignItems:'center',
    padding:10,
@@ -24,11 +24,16 @@ container:{
     height:200,
     backgroundColor:'#E8E8E8'
   },
-  features:{
-    flexDirection:'row',
-    height:150,
-    margin:0
-  },
+  footerImage:{
+
+     flexDirection:'row',
+     height:100,
+     justifyContent:'space-between',
+     alignItems:'center',
+     padding:10,
+     alignSelf:'stretch',
+     width:null,
+       },
   titleView:{
     marginTop:10
   },
@@ -36,5 +41,25 @@ container:{
     alignItems:'center',
     justifyContent:'center'
   },
+  textBackground:{
+    flexDirection:'row',
+    backgroundColor:Colors.snow,
+    padding:20
+  },
 
+  textBackground1:{
+    flexDirection:'row',
+    backgroundColor:Colors.flBlue.grey2,
+    padding:20
+  },
+
+  textStyle1:{
+    fontSize:Fonts.size.regular,
+    //fontWeight:'bold'
+  },
+
+textStyle:{
+  fontSize:Fonts.size.regular,
+  fontWeight:'bold'
+}
 })

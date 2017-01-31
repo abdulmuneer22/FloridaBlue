@@ -4,12 +4,14 @@ import {
   View,
   StyleSheet,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native'
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Colors,Metrics,Fonts} from '../../../../../Themes'
+import {Colors,Metrics,Fonts, Images} from '../../../../../Themes'
+import Flb from '../../../../../Themes/FlbIcon'
 
 const window = Dimensions.get('window');
 
@@ -17,46 +19,51 @@ class MyPlanCard extends Component{
   render(){
     return(
       <TouchableOpacity onPress={()=>NavigationActions.Myplan()}>
-      <View style={Styles.summary}>
+      <Image source={Images.myPlanbg} style={Styles.summary} >
+
       <View style={[Styles.center,{flex:0.3}]}>
       <View style={{
           backgroundColor : Colors.flBlue.ocean,
-          width : 50,
-          height : 50,
-          borderRadius : 50/2,
+          width : 80,
+          height : 80,
+          borderRadius : 80/2,
           alignItems :'center',
-          justifyContent : 'center'
+          justifyContent : 'center',
+          marginTop:30,
+          marginLeft:Metrics.baseMargin
       }}>
-      <Icon name="heartbeat" size={30} color="white" />
+      <Flb name="criticalillness"  size={Metrics.icons.large} color="white" />
 
       </View>
       </View>
 
-      <View style={{flex:0.7,alignItems:'center', padding:20}}>
+      <View style={{flex:0.7,alignItems:'center', padding:20,backgroundColor:Colors.transparent}}>
       <Text style={{
         fontSize : Fonts.size.h4,
-        fontWeight : 'bold',
-        alignSelf : 'stretch',
-        alignItems:'center',
-        justifyContent:'center',
-        height:40
+        fontWeight:'500',
+        //alignSelf : 'stretch',
+      //  alignItems:'center',
+      //  justifyContent:'center',
+      //  height:40,
+        marginLeft:5
       }}>
       My Health Plan
       </Text>
-        <Text style={{fontSize:13,marginTop:20}}>
+        <Text style={{fontSize:Fonts.size.regular,marginTop:15}}>
               Find information about deductibles, claims, your savings, and more.
               </Text>
 
-              <Text style={{fontSize:13,marginTop:20}}>
+              <Text style={{fontSize:Fonts.size.medium,marginTop:15}}>
                * Dental & Vision are in the menu</Text>
                </View>
 
-    <View style={{marginTop:80,marginRight:15}}>
-<Icon name="chevron-right" size={30} color="black"/>
+    <View style={{marginTop:30,marginRight:15}}>
+<Flb name="chevron-right" size={Metrics.icons.large} />
 </View>
 
 
-      </View>
+      </Image>
+
       </TouchableOpacity>
     );
   }
@@ -65,12 +72,16 @@ class MyPlanCard extends Component{
 const Styles = StyleSheet.create({
   summary:{
     flexDirection:'row',
-    height:200,
-    backgroundColor:'#E8E8E8'
+    height:185,
+    justifyContent:'space-between',
+    alignItems:'center',
+  //  padding:5,
+    alignSelf:'stretch',
+    width:null,
   },
   features:{
     flexDirection:'row',
-    height:150,
+    height:300,
     margin:0
   },
   titleView:{

@@ -41,7 +41,7 @@ class LandingScreen extends Component {
   _renderHeader(){
   return( <Image style={styles.headerContainer} source={Images.themeHeader}>
     <View/>
-     <Image source={Images.themeLogo} style={{marginTop:45}}/>
+     <Image source={Images.themeLogo} style={{marginTop:15}}/>
     {NavItems.settingsButton()}
   </Image>)
 }
@@ -100,7 +100,7 @@ componentDidMount(){
       </View>
       <View>
       </View>
-      <TransButton/>
+       <Image source={Images.findCare} style={styles.footerImage}/>
 </ScrollView>
       </View>
     );

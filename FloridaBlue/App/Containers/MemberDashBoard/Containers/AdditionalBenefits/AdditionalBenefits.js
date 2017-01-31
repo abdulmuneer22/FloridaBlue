@@ -9,12 +9,13 @@ import {
 } from 'react-native'
 
 
-import DropDown from './DropDown'
-import OutOfPocket from './OutOfPocket'
-import HomeHealthCare from './HomeHealthCare'
-import Therapies from './Therapies'
-import Spinal from './SpinalMan'
-import Nursing from './Nursing'
+import DropDown from './Components/DropDown'
+import Switch from './Components/switch'
+import OutOfPocket from './Components/OutOfPocket'
+import HomeHealthCare from './Components/HomeHealthCare'
+import Therapies from './Components/Therapies'
+import Spinal from './Components/SpinalMan'
+import Nursing from './Components/Nursing'
 import {Colors,Metrics,Fonts} from '../../../../Themes'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -22,7 +23,6 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 
 
 import Icon from 'react-native-vector-icons/Ionicons';
-import Switch from './switch'
 const window = Dimensions.get('window');
 
 class AdditionalBenefits extends Component {
@@ -34,14 +34,8 @@ class AdditionalBenefits extends Component {
     }
 
     _renderHeader(){
-    return( <View style={{flexDirection:'row',
-    height:78,
-    justifyContent:'space-between',
-    alignItems:'center',
-    padding:10,
-    alignSelf:'stretch',
-    width:null}}>
-      <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:100}]}>Florida Blue</Text>
+    return( <View style={styles.headerContainer}>
+      <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:100}]}>Plan Benefits</Text>
       {NavItems.settingsButton()}
     </View>)
   }
