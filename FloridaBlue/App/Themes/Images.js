@@ -17,7 +17,7 @@ const images = {
 
   themeHeader: require('../Images/theme-header-bkg.png'),
   themeLogo: require('../Images/theme-logo.png'),
-  myPlanbg: require('../Images/myplan-dashboard-bkg.png')
+  myPlanbg: require('../Images/myplan-dashboard-bkg.png'),
 
 
 
