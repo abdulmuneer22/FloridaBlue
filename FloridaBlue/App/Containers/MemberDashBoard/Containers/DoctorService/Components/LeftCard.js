@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Dimensions,
   LayoutAnimation,
-  View, 
+  View,
   Text
 } from 'react-native'
 
@@ -16,26 +16,26 @@ class LeftCard extends Component{
     return(
       <View
       style={Style.cardStyle}
-      ref="card"
+
       >
       <View>
       <Text style={Style.h1}>Physical Services</Text>
-        <View style={Style.leftHalf}>
+        <View>
           <Text style={Style.h4}>
           Family Physician
           </Text>
-          
+
           <Text style={Style.h2}>
           $20 Copay
           </Text>
         </View>
 
 
-        <View style={Style.leftHalf}>
+        <View >
           <Text style={Style.h4}>
           Specialist
           </Text>
-          
+
           <Text style={Style.h2}>
           $40 Copay
           </Text>
@@ -44,7 +44,7 @@ class LeftCard extends Component{
       </View>
 
 
-      
+
 
 
 
@@ -74,7 +74,7 @@ const Style = StyleSheet.create({
     fontWeight : '600',
     textAlign : 'center'
   },
-  
+
   h2 : {
     fontSize : 18 ,
     textAlign : 'center',
@@ -85,7 +85,7 @@ const Style = StyleSheet.create({
     paddingTop : 15
 
   }
-  
+
 });
 
 

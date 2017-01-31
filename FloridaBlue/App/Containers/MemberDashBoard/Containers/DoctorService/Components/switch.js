@@ -14,7 +14,8 @@ class Switch extends Component{
         super();
         this.state = {
             leftActive : true,
-            rightActive : false
+            rightActive : false,
+            Preferred :false
         }
     }
 
@@ -22,7 +23,9 @@ class Switch extends Component{
       if(this.state.leftActive === false){
         this.setState({
           leftActive : true,
-          rightActive : false
+          rightActive : false,
+          Preferred : false
+
         })
 
       }
@@ -32,10 +35,21 @@ class Switch extends Component{
       if(this.state.rightActive === false){
         this.setState({
           leftActive : false,
-          rightActive : true
+          rightActive : true,
+            Preferred : false
         })
 
 
+      }
+    }
+    handleClickPreferred(){
+      if(this.state.Preferred === false){
+        this.setState({
+          leftActive : false,
+          rightActive : false,
+          Preferred : true
+
+        })
       }
     }
 
@@ -47,6 +61,26 @@ class Switch extends Component{
               flexDirection : 'row',
               marginTop : 15
             }}>
+            <TouchableOpacity style={{
+                // width : 80,
+                // height : 20,
+                backgroundColor : this.state.Preferred ? 'rgb(65, 63, 62)' : 'grey',
+                borderLeftWidth : 1,
+                borderColor : 'darkgrey',
+                borderTopRightRadius : 3,
+                borderBottomRightRadius : 3,
+                padding : 5
+
+            }}
+            onPress = {()=>{this.handleClickPreferred()}}
+            >
+            <Text
+            style={{
+                color : this.state.Preferred ? 'white' : 'darkgrey',
+                fontWeight : '600'
+            }}
+            >Preferred Network</Text>
+            </TouchableOpacity>
 
                 <TouchableOpacity style={{
                     // width : 80,
@@ -90,6 +124,7 @@ class Switch extends Component{
                 }}
                 >Out Of Network</Text>
                 </TouchableOpacity>
+
 
             </View>
         );

@@ -4,6 +4,7 @@ import {
 } from 'redux-saga/effects'
 import MemberActions from '../Redux/MemberRedux'
 import LoginActions from '../Redux/LoginRedux'
+import MyPlanActions from '../Redux/MyPlanRedux'
 import axios from 'axios'
 // attempts to login
 export function* member(api, {
