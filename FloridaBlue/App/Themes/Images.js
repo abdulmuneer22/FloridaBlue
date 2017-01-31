@@ -7,7 +7,6 @@ const images = {
   tileBg: require('../Images/tile_bg.png'),
   background: require('../Images/bkgrd-gradient.png'),
   regcompletehdr : require('../Images/reg-complete-hdr.png'),
-  reghdr2 : require('../Images/reg-step2-hdr.png'),
   loginButton : require('../Images/login-screen-login-btn-blue.png'),
   splashLogo: require('../Images/splash-logo.png'),
   loginLogo: require('../Images/login-logo.png'),
