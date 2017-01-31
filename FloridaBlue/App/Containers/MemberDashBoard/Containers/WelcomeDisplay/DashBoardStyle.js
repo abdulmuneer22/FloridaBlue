@@ -1,7 +1,7 @@
 // @flow
 
 import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles } from '../../../../Themes/'
+import { Metrics, ApplicationStyles,Colors, Images } from '../../../../Themes/'
 
 export default StyleSheet.create({
   headerContainer:{
@@ -11,7 +11,8 @@ export default StyleSheet.create({
    alignItems:'center',
    padding:10,
    alignSelf:'stretch',
-   width:null
+   width:null,
+   backgroundColor:Colors.flBlue.ocean
  },
 container:{
     flex:1,

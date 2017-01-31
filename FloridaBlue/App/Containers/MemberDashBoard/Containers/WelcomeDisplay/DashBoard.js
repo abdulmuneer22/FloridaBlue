@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -38,9 +39,9 @@ class LandingScreen extends Component {
 
 
   _renderHeader(){
-  return( <Image style={styles.headerContainer} source={Images.header}>
+  return( <Image style={styles.headerContainer} source={Images.themeHeader}>
     <View/>
-     <Image source={Images.logo} style={{marginTop:45}}/>
+     <Image source={Images.themeLogo} style={{marginTop:45}}/>
     {NavItems.settingsButton()}
   </Image>)
 }

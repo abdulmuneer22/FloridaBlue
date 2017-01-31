@@ -14,6 +14,9 @@ const images = {
   clouds: require('../Images/clouds.png'),
   infoIcon: require('../Images/info-icon-gray.png'),
   logout: require('../Images/menu-logout-btn-blue.png'),
+  themeHeader: require('../Images/theme-header-bkg.png'),
+  themeLogo: require('../Images/theme-logo.png'),
+  myPlanbg: require('../Images/myplan-dashboard-bkg.png')
 
 
 

@@ -18,7 +18,7 @@ class TransButton extends Component{
 
               <View style={{
               height : 120,
-              margin:0,
+              marginBottom:0,
                 backgroundColor : 'rgba(48, 48, 40,0.8)',
                 alignItems : 'center',
                 justifyContent : 'center',

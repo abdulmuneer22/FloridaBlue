@@ -15,7 +15,7 @@ const styles=StyleSheet.create({
   options:{
     backgroundColor:Colors.bg1,
     paddingLeft:15,
-    paddingTop:20
+    paddingTop:30
   },
   settings:{
     backgroundColor:Colors.bg2,
@@ -26,16 +26,17 @@ const styles=StyleSheet.create({
     backgroundColor:Colors.snow,
     height:1,
     marginLeft:-15,
-    marginTop:10,
-    marginBottom:10
-  },
+    marginBottom:5
+      },
   heading:{
     color:Colors.snow,
-    fontSize:Fonts.size.h3
+    fontSize:Fonts.size.h5,
+    marginBottom:15
   },
   heading2:{
-    color:Colors.bg1,
-    fontSize:Fonts.size.h4
+    color:Colors.flBlue.ocean,
+    fontSize:Fonts.size.h6,
+    marginLeft:10
   }
 })
 
@@ -135,20 +136,37 @@ class SettingsContent extends Component {
           <Text style={styles.heading} onPress={this.handlePressPayment}>Payment</Text>
         </View>
         <View style={styles.settings}>
-           <View style={{marginBottom:10,marginTop:10}}>
-             <Text style={styles.heading2} onPress={this.handlePressMyAccount}>My Account</Text>
+           <View style={{marginBottom:10,marginTop:10, flexDirection:'row'}}>
+           <View >
+           <Flb name="user" size={23} color={Colors.flBlue.ocean}/>
            </View>
-           <View style={{marginBottom:10,marginTop:10}}>
+             <Text style={styles.heading2} onPress={this.handlePressMyAccount}>My Account</Text>
+             </View>
+
+           <View style={{marginBottom:10,marginTop:10, flexDirection:'row'}}>
+           <View >
+           <Flb name="cog-gear" size={23} color={Colors.flBlue.ocean}/>
+           </View>
              <Text style={styles.heading2} onPress={this.handlePressSettings}>App Settings</Text>
            </View>
-           <View style={{marginBottom:10,marginTop:10}}>
+           <View style={{marginBottom:10,marginTop:10, flexDirection:'row'}}>
+           <View >
+           <Flb name="question" size={23} color={Colors.flBlue.ocean}/>
+           </View>
              <Text style={styles.heading2} onPress={this.handlePressFAQ}>Frequently Asked Questions</Text>
            </View>
 
-          <View style={{marginBottom:10,marginTop:10}}>
+           <View style={{marginBottom:10,marginTop:10, flexDirection:'row'}}>
+           <View >
+           <Flb name="generic-doc" size={23} color={Colors.flBlue.ocean}/>
+           </View>
+
             <Text style={styles.heading2} onPress={this.handlePressPolicy}>Policies & Terms </Text>
           </View>
-          <View style={{marginBottom:10,marginTop:10}}>
+          <View style={{marginBottom:10,marginTop:10, flexDirection:'row'}}>
+          <View >
+          <Flb name="brand-phone" size={23} color={Colors.flBlue.ocean}/>
+          </View>
             <Text style={styles.heading2} onPress={this.handlePressLogout}>Contact Us </Text>
           </View>
         </View>
