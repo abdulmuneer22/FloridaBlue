@@ -32,7 +32,7 @@ const colors = {
     red: '#e40046',
     purple: '#9b26b6',
     orange: '#ffa300',
-    blueGrey: '#def1f7',
+    lightBlue: '#def1f7',
     deepBlue: '#005b80',
     lightGreen: '#d8efd7',
     lightPink: '#f4e1e7',

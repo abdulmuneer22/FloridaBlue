@@ -24,5 +24,13 @@
    "deviceDetails": "Device Details",
    "noItems": "No Items",
    "search": "Search",
-   "footerText": "© 2017 Blue Cross and Blue Shield of Florida, Inc. DBA Florida Blue. All rights reserved."
+   "footerText": "© 2017 Blue Cross and Blue Shield of Florida, Inc. DBA Florida Blue. All rights reserved.",
+   "personalInformation": "Personal Information",
+   "createAccountMessage": "All fields are required to create your account and must match what we have on file.",
+   "cantFindMemberId": "Can't find your Member ID?",
+   "memberId": "Member ID",
+   "firstName": "First Name",
+   "lastName": "Last Name",
+   "dateOfBirth": "Date of Birth (mm/dd/yyyy)",
+   "zipCode": "Zip Code"
 }

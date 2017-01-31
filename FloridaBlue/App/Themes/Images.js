@@ -14,11 +14,18 @@ const images = {
   clouds: require('../Images/clouds.png'),
   infoIcon: require('../Images/info-icon-gray.png'),
   logout: require('../Images/menu-logout-btn-blue.png'),
+
   themeHeader: require('../Images/theme-header-bkg.png'),
   themeLogo: require('../Images/theme-logo.png'),
   myPlanbg: require('../Images/myplan-dashboard-bkg.png')
 
 
+
+
+  registrationStep1Hdr: require('../Images/reg-step1-hdr.png'),
+  findItButton: require('../Images/find-it-btn.png'),
+  backButton: require('../Images/back-btn.png'),
+  nextButton: require('../Images/next-btn.png')
 
 }
 
