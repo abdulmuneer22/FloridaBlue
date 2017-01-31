@@ -4,8 +4,14 @@ import {
     View,
     ScrollView,
     StyleSheet,
+    Dimensions,
     TouchableWithoutFeedback
 } from 'react-native'
+
+import {Colors,Metrics,Fonts} from '../../../../../Themes'
+import Flb from '../../../../../Themes/FlbIcon'
+
+const window = Dimensions.get('window')
 
 
 class HomeHealthCare extends Component{
@@ -13,12 +19,13 @@ class HomeHealthCare extends Component{
         return(
             <View style = {Style.wrapper}>
                 <Text style={{
-                    fontWeight : '600',
-                    textAlign : 'center',
-                    marginBottom : 10
+                  fontSize:Fonts.size.h6,
+                  textAlign : 'center',
+                  marginBottom : Metrics.baseMargin,
+                  fontWeight:'bold'
                 }}>Home Health Care</Text>
 
-                <Text>
+                    <Text style={{fontSize:Fonts.size.medium}}>
                 You can also use this component to make more specific components like MyAppHeaderText for other kinds of text.
                 </Text>
             </View>
@@ -28,7 +35,7 @@ class HomeHealthCare extends Component{
 
 const Style = StyleSheet.create({
     wrapper : {
-        padding : 30
+        padding : 10
     }
 
 });

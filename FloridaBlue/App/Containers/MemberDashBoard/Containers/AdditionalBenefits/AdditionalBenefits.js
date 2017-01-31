@@ -17,8 +17,10 @@ import Therapies from './Components/Therapies'
 import Spinal from './Components/SpinalMan'
 import Nursing from './Components/Nursing'
 import {Colors,Metrics,Fonts} from '../../../../Themes'
+import Flb from '../../../../Themes/FlbIcon'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
+import styles from './AdditionalBenefitsStyle'
 
 
 
@@ -35,7 +37,8 @@ class AdditionalBenefits extends Component {
 
     _renderHeader(){
     return( <View style={styles.headerContainer}>
-      <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:100}]}>Plan Benefits</Text>
+      {NavItems.backButton()}
+      <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4}]}>Plan Benefits</Text>
       {NavItems.settingsButton()}
     </View>)
   }
@@ -50,10 +53,10 @@ class AdditionalBenefits extends Component {
                             alignItems: 'center',
                             marginTop: 10
                         }}>
-                            <Icon name="ios-medkit" size={60} color="black" />
+                            <Flb name="cross" size={Metrics.icons.large} color="black" />
                             <Text style={{
                                 marginTop: 5,
-                                fontSize: 13
+                                fontSize: Fonts.size.h6
                             }}>Additional Benefits</Text>
                             <Switch />
 
@@ -64,7 +67,7 @@ class AdditionalBenefits extends Component {
                                 onPress = {()=> {this.setState({dropVisible : !this.state.dropVisible})}}
                                 >
                                     <View style={{ marginLeft: 5, alignItems: 'center', justifyContent: 'center' }}>
-                                    <Icon name={!this.state.dropVisible ? "ios-arrow-dropdown" : "ios-arrow-dropup"} size={18} color="black" />
+                                    <Flb name={!this.state.dropVisible ? "rd-d-arrow" : "rd-u-arrow"} size={18} color="black" />
                                     </View>
 
                                 </TouchableWithoutFeedback>

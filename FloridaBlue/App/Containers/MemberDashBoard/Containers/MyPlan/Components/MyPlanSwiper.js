@@ -15,6 +15,7 @@ class MyPlanSwiper extends Component{
 
     render(){
         return(
+          
                 <Swiper height={300} style={styles.wrapper} showsButtons={true}>
                 <View style={styles.slide}>
                 <View style={styles.outofBox}>

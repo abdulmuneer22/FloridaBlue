@@ -1,114 +1,61 @@
 import React, { Component } from 'react';
 import {
-  Text,
-  View,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  LayoutAnimation,
+  View,
+  Text
 } from 'react-native'
 
-import {connect} from 'react-redux'
+
 const window = Dimensions.get('window');
+import { connect } from 'react-redux'
 
 class Card extends Component{
+
   render(){
+
     return(
-      <View style={Style.wrapper1}>
-      <View style={this.props.leftActive ? Style.wrapper :Style.wrapper2}>
-      <Text>
-      Physician Services
-      </Text>
+      <View
+      style={Style.cardStyle}
+      >
+      <View>
+      <Text style={Style.h1}>Physical Services</Text>
+        <View >
+          <Text style={Style.h4}>
+          Family Physician
+          </Text>
 
-      <View style={{
-        flexDirection : 'row',
-        marginTop : 15
-      }}>
-      <View style={{
-        alignItems : 'center',
-        // borderWidth : 1,
-        // borderColor : 'black',
-        flex : 1
-      }}>
+          {
+            this.props.leftActive?
+            <Text style={Style.h2}>
+            $20 Copay
+            </Text>
+            :
+            <Text style={Style.h2}>
+            Pay 40%
+            </Text>
 
-        {this.props.leftActive ?  <Text style={Style.CopayText}>{ this.props.data.DoctorServices.InNetwork.physicianname} </Text> :
-         <Text style={Style.CopayText}> {this.props.data.DoctorServices.OutNetwork.familyname}</Text>}
+          }
+        </View>
 
+        <View >
+          <Text style={Style.h4}>
+          Specialist
+          </Text>
+          {
+            this.props.leftActive ?
+            <Text style={Style.h2}>
+            $40 Copay
+            </Text>
+            :
+            <Text style={Style.h2}>
+            Pay 40%
+            </Text>
 
-        <View style={Style.Copay}>
-        {this.props.leftActive ?  <Text style={Style.CopayText}>${ this.props.data.DoctorServices.InNetwork.physician} Copay </Text> :
-         <Text style={Style.CopayText}> Pay {this.props.data.DoctorServices.OutNetwork.familyphysician}%</Text>}
+          }
         </View>
       </View>
-
-      <View style={{
-        alignItems : 'center',
-        // borderWidth : 1,
-        // borderColor : 'black',
-        flex : 1
-      }}>
-      {this.props.leftActive ?  <Text style={Style.CopayText}>{ this.props.data.DoctorServices.InNetwork.SpecialistName} </Text> :
-       <Text style={Style.CopayText}> {this.props.data.DoctorServices.OutNetwork.Specialistservice}</Text>}
-
-
-      <View style={Style.Copay}>
-      {this.props.leftActive ?  <Text style={Style.CopayText}>  ${this.props.data.DoctorServices.InNetwork.Specialist} Copay </Text>:
-      <Text style={Style.CopayText}> Pay {this.props.data.DoctorServices.OutNetwork.Specialist}%</Text>}
-      </View>
-
-      </View>
-      </View>
-      </View>
-      <View style={Style.wrapper1}>
-
-        <Text style={{textAlign : 'center',padding : 15}}>Advanced Imaging in the Phycisians Office</Text>
-      <Text>
-      Physician Services
-      </Text>
-
-      <View style={{
-        flexDirection : 'row',
-        marginTop : 15
-      }}>
-      <View style={{
-        alignItems : 'center',
-        // borderWidth : 1,
-        // borderColor : 'black',
-        flex : 1
-      }}>
-
-      {this.props.leftActive ?  <Text style={Style.CopayText}>{ this.props.data.DoctorServices.InNetwork.physicianname} </Text> :
-       <Text style={Style.CopayText}> {this.props.data.DoctorServices.OutNetwork.familyname}</Text>}
-
-        <View style={Style.Copay}>
-        {this.props.leftActive ? <Text style={Style.CopayText}>${this.props.data.DoctorServices.InNetwork.physicianservices} Copay </Text> :
-           <Text style={Style.CopayText}> Pay {this.props.data.DoctorServices.OutNetwork.family}%</Text>}
-
-        </View>
-      </View>
-
-      <View style={{
-        alignItems : 'center',
-        // borderWidth : 1,
-        // borderColor : 'black',
-        flex : 1
-      }}>
-      {this.props.leftActive ?  <Text style={Style.CopayText}>{ this.props.data.DoctorServices.InNetwork.SpecialistName} </Text> :
-       <Text style={Style.CopayText}> {this.props.data.DoctorServices.OutNetwork.Specialistservice}</Text>}
-
-
-      <View style={Style.Copay}>
-        {this.props.leftActive ? <Text style={Style.CopayText}>${this.props.data.DoctorServices.InNetwork.specialists} Copay </Text>:
-         <Text style={Style.CopayText}> Pay {this.props.data.DoctorServices.OutNetwork.specialists}%</Text>}
-      </View>
-
-
-
-      </View>
-
-
-      </View>
-
-      </View>
-
       </View>
     );
   }
@@ -118,37 +65,35 @@ class Card extends Component{
 
 
 
-var Style = StyleSheet.create({
-  wrapper : {
+const Style = StyleSheet.create({
+  cardStyle : {
     width : window.width,
-    //height : 180,
-    alignItems : 'center',
+    backgroundColor : 'rgba(167, 187, 193,0.7)',
+    height : 200,
+    alignSelf : 'center',
     padding : 10,
     marginTop : 10,
-    backgroundColor : 'lightgrey'
+    alignItems : 'center'
+
   },
-  wrapper2 : {
-    width : window.width,
-    //height : 180,
-    alignItems : 'center',
-    padding : 10,
-    marginTop : 10,
-    backgroundColor : 'grey'
+  h1 : {
+    fontSize : 16,
+    fontWeight : '600',
+    textAlign : 'center'
   },
-  wrapper1:{
-    width : window.width,
-  //height : 180,
-  alignItems : 'center',
-  padding : 10,
-  marginTop : 10,
+
+  h2 : {
+    fontSize : 18 ,
+    textAlign : 'center',
+    paddingBottom : 10
   },
-  Copay : {
-    paddingTop : 40,
-    paddingBottom : 40
-  },
-  CopayText : {
-    fontSize : 20
+  h4 : {
+    textAlign : 'center',
+    paddingTop : 15
+
   }
+
 });
+
 
 export default Card

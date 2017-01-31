@@ -4,9 +4,13 @@ import {
     View,
     ScrollView,
     StyleSheet,
+    Dimensions,
     TouchableWithoutFeedback
 } from 'react-native'
 
+import {Colors,Metrics,Fonts} from '../../../../../Themes'
+import Flb from '../../../../../Themes/FlbIcon'
+const window = Dimensions.get('window')
 
 class Therapies extends Component {
     render() {
@@ -14,19 +18,18 @@ class Therapies extends Component {
             <View style={Style.wrapper}>
                 <View style={Style.textWrapper}>
                     <Text style={{
-                        fontWeight: '600',
-                        textAlign: 'center',
-                        marginBottom: 10
+                      fontSize:Fonts.size.h6,
+                      textAlign : 'center',
+                      marginBottom : Metrics.baseMargin,
+                      fontWeight:'bold'
                     }}>Therapies</Text>
 
-                    <Text>
-                        You can also use this component to make more specific components like MyAppHeaderText for other kinds of text.
+                      <Text style={{fontSize:Fonts.size.medium}}>
+                        You have used 0 Visits of your 35 Visit Benefit Period Maximum
                     </Text>
 
-                    <Text style={{
-                        marginTop : 15
-                    }}>
-                        You can also use this component to make more specific components like MyAppHeaderText for other kinds of text.
+                        <Text style={{marginTop:15,fontSize:Fonts.size.medium}}>
+                        Note: Therapies may include: Outpatient Cardiac, Occupational, Physical, Speech and Massage Therapies and Spinal Manipulations.
                     </Text>
                 </View>
             </View>
@@ -36,10 +39,9 @@ class Therapies extends Component {
 
 const Style = StyleSheet.create({
     wrapper: {
-        // padding: 30,
-        paddingTop: 30,
-        paddingBottom: 30,
-        backgroundColor: 'rgb(194, 193, 193)',
+      // padding: 30,
+        backgroundColor: Colors.flBlue.grey2,
+          width : window.width,
 
     },
     textWrapper: {
