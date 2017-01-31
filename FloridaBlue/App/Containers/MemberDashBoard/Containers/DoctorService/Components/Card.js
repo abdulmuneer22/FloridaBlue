@@ -4,6 +4,7 @@ import {
   Dimensions,
   LayoutAnimation,
   View,
+  ScrollView,
   Text
 } from 'react-native'
 
@@ -14,53 +15,73 @@ import { connect } from 'react-redux'
 class Card extends Component{
 
   render(){
+    var cards = [];
+    var card ;
+    var that = this ;
+    if(this.props.leftActive){
+		    card =this.props.data.officeServices.outNetwork
+      }else {
+        card = this.props.data.officeServices.inNetwork
+      }
 
-    return(
-      <View
-      style={Style.cardStyle}
-      >
-      <View>
-      <Text style={Style.h1}>Physical Services</Text>
-        <View >
-          <Text style={Style.h4}>
-          Family Physician
-          </Text>
-
-          {
-            this.props.leftActive?
-            <Text style={Style.h2}>
-            $20 Copay
+    console.log("card of innetwork"+JSON.stringify(this.props.leftActive));
+		// looping through cards to create the view
+     card.map(function(network){
+      var speciality =[] ;
+      speciality = network['speciality'] ;
+      console.log("speciality"+JSON.stringify(that.props.leftActive))
+			cards.push(
+        <View>
+        <Text style={Style.h1}>{network.header_text.en}</Text>
+          <View >
+            <Text style={Style.h4}>
+            {speciality[0].speciality_text.en}
             </Text>
-            :
-            <Text style={Style.h2}>
-            Pay 40%
-            </Text>
 
-          }
+            {
+              that.props.leftActive?
+              <Text style={Style.h2}>
+          { speciality[0].speciality_value.en}
+              </Text>
+              :
+              <Text style={Style.h2}>
+              Pay 40%
+              </Text>
+
+            }
+          </View>
+
+          <View >
+            <Text style={Style.h4}>
+          {speciality[1].speciality_text.en}
+            </Text>
+            {
+              that.props.leftActive ?
+              <Text style={Style.h2}>
+            {speciality[1].speciality_value.en}
+              </Text>
+              :
+              <Text style={Style.h2}>
+              Pay 40%
+              </Text>
+
+            }
+          </View>
         </View>
+      )
+      return cards
+		});
 
-        <View >
-          <Text style={Style.h4}>
-          Specialist
-          </Text>
-          {
-            this.props.leftActive ?
-            <Text style={Style.h2}>
-            $40 Copay
-            </Text>
-            :
-            <Text style={Style.h2}>
-            Pay 40%
-            </Text>
+		return (
 
-          }
-        </View>
-      </View>
-      </View>
-    );
+<ScrollView>
+			<View style={Style.cardStyle}>
+      				{cards}
+			</View>
+</ScrollView>
+
+		);
   }
-
-
 }
 
 
@@ -69,9 +90,9 @@ const Style = StyleSheet.create({
   cardStyle : {
     width : window.width,
     backgroundColor : 'rgba(167, 187, 193,0.7)',
-    height : 200,
+    //height : 200,
     alignSelf : 'center',
-    padding : 10,
+  //  padding : 10,
     marginTop : 10,
     alignItems : 'center'
 
