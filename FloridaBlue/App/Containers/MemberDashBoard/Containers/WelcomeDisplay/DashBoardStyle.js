@@ -9,14 +9,36 @@ export default StyleSheet.create({
    height:70,
    justifyContent:'space-between',
    alignItems:'center',
-   padding:10,
+   padding:15,
    alignSelf:'stretch',
    width:null,
    backgroundColor:Colors.flBlue.ocean
  },
+ hsaHeader:{
+  flexDirection:'row',
+  height:140,
+  //marginTop:20,
+  justifyContent:'space-between',
+  alignItems:'center',
+  padding:10,
+  alignSelf:'stretch',
+  width:null,
+  //backgroundColor:Colors.flBlue.ocean
+},
+hsaBg:{
+ //flexDirection:'row',
+ height:380,
+ //marginTop:20,
+ //justifyContent:'space-between',
+ //alignItems:'center',
+ //padding:10,
+ alignSelf:'stretch',
+ width:null,
+ //backgroundColor:Colors.flBlue.ocean
+},
 container:{
     flex:1,
-    backgroundColor:'white',
+    backgroundColor:Colors.flBlue.lightBlue,
 
   },
   summary:{
@@ -27,15 +49,14 @@ container:{
   footerImage:{
 
      flexDirection:'row',
-     height:100,
+     height:120,
      justifyContent:'space-between',
      alignItems:'center',
-     padding:10,
      alignSelf:'stretch',
      width:null,
        },
   titleView:{
-    marginTop:10
+    marginTop:Metrics.baseMargin
   },
   center:{
     alignItems:'center',
@@ -44,13 +65,13 @@ container:{
   textBackground:{
     flexDirection:'row',
     backgroundColor:Colors.snow,
-    padding:20
+    padding:Metrics.doubleBaseMargin
   },
 
   textBackground1:{
     flexDirection:'row',
     backgroundColor:Colors.flBlue.grey2,
-    padding:20
+    padding:Metrics.doubleBaseMargin
   },
 
   textStyle1:{
@@ -61,5 +82,30 @@ container:{
 textStyle:{
   fontSize:Fonts.size.regular,
   fontWeight:'bold'
-}
+},
+hsaText : {
+    fontSize : Fonts.size.regular,
+    fontWeight : '600',
+    textAlign : 'center',
+    padding : 15
+},
+
+row_1 : {
+    flexDirection : 'row',
+    justifyContent : 'center',
+    paddingTop : Metrics.baseMargin,
+    paddingBottom : Metrics.baseMargin
+},
+col_1 : {
+    flex : 1,
+    // backgroundColor : 'yellow',
+    alignItems : 'center'
+},
+
+row_2 : {
+    alignItems : 'center',
+    //paddingTop : 10
+    paddingBottom:15
+},
+
 })
