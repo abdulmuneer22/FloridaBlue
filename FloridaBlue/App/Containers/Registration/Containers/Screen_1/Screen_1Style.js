@@ -65,6 +65,10 @@ export default StyleSheet.create({
     height: 40,
     color: Colors.charcoal
   },
+  textfieldWithFloatingLabel: {
+    height: 48,  // have to do it on iOS
+    marginTop: 10,
+  },
   footer: {
     flex: 1,
     flexDirection: 'row',
