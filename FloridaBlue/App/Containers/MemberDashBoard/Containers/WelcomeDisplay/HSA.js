@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 const window = Dimensions.get('window');
 
-import {Colors,Metrics,Fonts} from '../../../../Themes'
+import {Colors,Metrics,Fonts,Images} from '../../../../Themes'
 import styles from './DashBoardStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -34,101 +34,53 @@ class HSA extends Component {
 
 
   _renderHeader(){
-  return( <View style={styles.headerContainer}>
-    {NavItems.backButton()}
-    <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:10}]}>My Plan Overview</Text>
+  return( <Image style={styles.hsaHeader} source={Images.hsaHeader}>
+      {NavItems.backButton()}
     {NavItems.settingsButton()}
-
-    </View>)
-    }
+  </Image>)
+  }
 
         render(){
             return(
-                <View style ={Style.wrapper}>
+                <View style ={styles.container}>
                 {this._renderHeader()}
-
-                <Text style={Style.hsaText}>
+                <Text style={styles.hsaText}>
                 Health Savings Account
                 </Text>
 
-                <View style={Style.content}>
-                    <View style={Style.row_1}>
-                        <View style={Style.col_1}>
-                        <Text style={Style.textStyle}>Current</Text>
-                        <Text style={Style.textStyle}>Balance</Text>
-                        <Text style={Style.textStyle}>$3,125</Text>
-
+                <View style={styles.container}>
+                    <View style={styles.row_1}>
+                        <View style={styles.col_1}>
+                        <Text style={styles.textStyle1}>Current</Text>
+                        <Text style={styles.textStyle1}>Balance</Text>
+                        <Text style={styles.textStyle1}>$3,125</Text>
                         </View>
 
-                        <View style={Style.col_2}>
-                            <Text style={Style.textStyle}>YTD</Text>
-                            <Text style={Style.textStyle}>Contributiont</Text>
-                            <Text style={Style.textStyle}>$2,250</Text>
+                        <View style={styles.col_1}>
+                            <Text style={styles.textStyle1}>YTD</Text>
+                            <Text style={styles.textStyle1}>Contributiont</Text>
+                            <Text style={styles.textStyle1}>$2,250</Text>
 
                         </View>
+                  </View>
 
-
-
-
-
+                    <View style={styles.row_2}>
+                        <Text style={styles.textStyle1}>YTD</Text>
+                        <Text style={styles.textStyle1}>Distribution</Text>
+                        <Text style={styles.textStyle1}>-$2.250</Text>
                     </View>
 
-                    <View style={Style.row_2}>
-                        <Text style={Style.textStyle}>YTD</Text>
-                        <Text style={Style.textStyle}>Distribution</Text>
-                        <Text style={Style.textStyle}>-$2.250</Text>
-
-                    </View>
 
 
 
                 </View>
+                <Image style={styles.hsaBg} source={Images.hsaBg}>
+
+                </Image>
                 </View>
             )
         }
     }
 
-    const Style = StyleSheet.create({
-        wrapper : {
-            flex : 1 ,
-            // backgroundColor : 'red',
 
-        },
-        hsaText : {
-            fontSize : 16,
-            fontWeight : '600',
-            textAlign : 'center',
-            padding : 15
-        },
-        content : {
-            flex : 1,
-            // backgroundColor : 'green'
-        },
-        row_1 : {
-            flexDirection : 'row',
-            justifyContent : 'center',
-            paddingTop : 30,
-            paddingBottom : 30
-        },
-        col_1 : {
-            flex : 1,
-            // backgroundColor : 'yellow',
-            alignItems : 'center'
-        },
-        col_2 : {
-            flex : 1,
-            // backgroundColor : 'purple',
-            alignItems : 'center'
-
-
-        },
-        row_2 : {
-            alignItems : 'center',
-            paddingTop : 15
-        },
-        textStyle : {
-            fontSize : 16,
-            fontWeight : '500'
-        }
-    });
     export default HSA

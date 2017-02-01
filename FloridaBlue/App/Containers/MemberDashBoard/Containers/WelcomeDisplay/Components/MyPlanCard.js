@@ -57,7 +57,7 @@ class MyPlanCard extends Component{
                * Dental & Vision are in the menu</Text>
                </View>
 
-    <View style={{marginTop:30,marginRight:15}}>
+    <View style={{marginTop:30,marginRight:15, backgroundColor:Colors.transparent}}>
 <Flb name="chevron-right" size={Metrics.icons.large} />
 </View>
 

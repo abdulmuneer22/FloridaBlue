@@ -41,7 +41,7 @@ class LandingScreen extends Component {
   _renderHeader(){
   return( <Image style={styles.headerContainer} source={Images.themeHeader}>
     <View/>
-     <Image source={Images.themeLogo} style={{marginTop:15}}/>
+     <Image source={Images.themeLogo} style={{marginTop:15,height:23}}/>
     {NavItems.settingsButton()}
   </Image>)
 }
@@ -53,7 +53,7 @@ componentDidMount(){
     var color  = new Array( "#005b80", "#00aec7", "#0091cc","#005b80" )
     var i = 0
     return(
-      <View style={styles.mainContainer}>
+      <View style={styles.container}>
       {this._renderHeader()}
       <ScrollView>
       <Greeting userName={this.props.userName}/>
@@ -80,13 +80,15 @@ componentDidMount(){
   backgroundColor : color[i],
   height : 150,
   alignItems : 'center',
-  justifyContent : 'center'
+  justifyContent : 'center',
+  borderWidth:2,
+  borderColor:Colors.flBlue.lightBlue
 }} onPress={onItemPress.bind(this)}>
           <View style={{alignItems:'center'}}>
 <Flb name={tile.tileIcon}  size={40} color="white"/>
           <Text style={{
-            marginTop : 20,
-            fontSize : 14,
+            marginTop : Metrics.doubleBaseMargin,
+            fontSize : Fonts.size.regular,
             fontWeight : '600',
             color:'white'
           }}>

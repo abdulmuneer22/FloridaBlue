@@ -7,28 +7,30 @@ import RegistrationActions from '../Redux/RegistrationRedux'
 // request to regiter
 
 export function* registration(api, {
-  contactnumber,
-  firstname,
-  lastname,
-  dob,
-  zip
+  contractNumber,
+  firstName,
+  lastName,
+  dateOfBirth,
+  zipCode
 }) {
-  var contactnumber = contactnumber
-  var firstname = firstname
-  var lastname = lastname
-  var dob = dob
-  var zip = zip
+  var contractNumber = contractNumber
+  var firstName = firstName
+  var lastName = lastName
+  var dateOfBirth = dateOfBirth
+  var zipCode = zipCode
 
-  console.log("username+password" + contactnumber + firstname + lastname + dob + zip);
+  console.log("username+password" + contractNumber + firstName + lastName + dateOfBirth + zipCode);
 
-  const response = yield call(api.postIdentification,contactnumber,firstname,lastname,dob,zip);
+  const response = yield call(api.postIdentification,contractNumber,firstName,lastName,dateOfBirth,zipCode);
 
   console.log(JSON.stringify(response));
 
   if (response.ok) {
     // dispatch failure
     console.log("I am coming from success");
-    yield put(RegistrationActions.registrationSuccess(contactnumber, firstname, lastname, dob, zip));
+    var error = null;
+    var data = response.data
+    yield put(RegistrationActions.registrationSuccess(data));
   } else {
     // dispatch successful logins
     console.log("I am coming from failuer ")
@@ -45,7 +47,7 @@ export function* sendregistrationCode(api, {
 
   var registrationcode = registrationcode
   console.log("username+password" + email + confirmemail+ uniqueuserid + password + confirmpassword);
-  const response = yield call(api.postIdentification,contactnumber,firstname,lastname,dob,zip);
+  const response = yield call(api.postIdentification,contractNumber,firstName,lastName,dateOfBirth,zipCode);
 
   console.log(JSON.stringify(response));
 
@@ -79,7 +81,7 @@ export function* sendregistrationAnswers(api, {
   var answertwo = answertwo
   var answerthree = answerthree
   console.log("username+password" + questionone + questiontwo+ questionthree + answerone + answertwo + answerthree);
-  const response = yield call(api.postIdentification,contactnumber,firstname,lastname,dob,zip);
+  const response = yield call(api.postIdentification,contractNumber,firstName,lastName,dateOfBirth,zipCode);
 
   console.log(JSON.stringify(response));
 
@@ -103,7 +105,7 @@ export function* sendconfirm(api, {
 
   var confirm = confirm
   console.log("username+password" + confirm);
-  const response = yield call(api.postIdentification,contactnumber,firstname,lastname,dob,zip);
+  const response = yield call(api.postIdentification,contractNumber,firstName,lastName,dateOfBirth,zipCode);
 
   console.log(JSON.stringify(response));
 
