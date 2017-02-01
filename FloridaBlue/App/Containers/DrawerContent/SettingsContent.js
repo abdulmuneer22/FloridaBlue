@@ -2,43 +2,13 @@
 
 import React, { Component } from 'react'
 import { ScrollView, Image, BackAndroid, View, StyleSheet,Text, TouchableWithoutFeedback } from 'react-native'
-//import styles from './DrawerContentStyle'
+import styles from './DrawerContentStyle'
 import { Colors, Metrics,Fonts, Images } from '../../Themes'
 import DrawerButton from '../../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
 
 
-const styles=StyleSheet.create({
-  wrapper:{
-  },
-  options:{
-    backgroundColor:Colors.bg1,
-    paddingLeft:15,
-    paddingTop:30
-  },
-  settings:{
-    backgroundColor:Colors.bg2,
-    paddingLeft:15,
-    paddingTop:20
-  },
-  divider:{
-    backgroundColor:Colors.snow,
-    height:1,
-    marginLeft:-15,
-    marginBottom:5
-      },
-  heading:{
-    color:Colors.snow,
-    fontSize:Fonts.size.h5,
-    marginBottom:15
-  },
-  heading2:{
-    color:Colors.flBlue.ocean,
-    fontSize:Fonts.size.h6,
-    marginLeft:10
-  }
-})
 
 const Divider=()=>{
   return <View style={styles.divider}/>
@@ -89,9 +59,9 @@ class SettingsContent extends Component {
     NavigationActions.Resources()
   }
 
-  handlePressPayment= () => {
+  handlePressSupport= () => {
     this.toggleDrawer()
-    NavigationActions.Support()
+    NavigationActions.SupportScreen()
   }
   handlePressMyAccount= () => {
     this.toggleDrawer()
@@ -125,9 +95,9 @@ class SettingsContent extends Component {
           <Divider/>
           <View>
             <Text style={styles.heading} onPress={this.handlePressPlans}>My Health Plan</Text>
-            <View style={{paddingLeft:30,marginTop:10}}>
-              <Text style={[styles.heading,{fontSize:Fonts.size.h5}]} onPress={this.handlePressBenefits}>Benifits</Text>
-              <Text style={[styles.heading,{fontSize:Fonts.size.h5}]} onPress={this.handlePressClaims}>Claims</Text>
+            <View style={{paddingLeft:30}}>
+              <Text style={[styles.subheading,{fontSize:Fonts.size.h5}]} onPress={this.handlePressBenefits}>Benefits</Text>
+              <Text style={[styles.subheading,{fontSize:Fonts.size.h5}]} onPress={this.handlePressClaims}>Claims</Text>
             </View>
           </View>
           <Divider/>
@@ -167,7 +137,7 @@ class SettingsContent extends Component {
           <View >
           <Flb name="brand-phone" size={23} color={Colors.flBlue.ocean}/>
           </View>
-            <Text style={styles.heading2} onPress={this.handlePressLogout}>Contact Us </Text>
+            <Text style={styles.heading2} onPress={this.handlePressSupport}>Contact Us </Text>
           </View>
         </View>
         <View style={{margin:10,marginTop:20}}>

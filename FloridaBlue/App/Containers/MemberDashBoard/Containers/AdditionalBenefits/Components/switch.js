@@ -3,11 +3,14 @@ import {
   Text,
   View,
   StyleSheet,
+  Dimensions,
   TouchableOpacity
 } from 'react-native'
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
-import {connect} from 'react-redux'
+import {Colors,Metrics,Fonts} from '../../../../../Themes'
+import Flb from '../../../../../Themes/FlbIcon'
+const window = Dimensions.get('window')
 
 class Switch extends Component{
     constructor(){
@@ -24,7 +27,7 @@ class Switch extends Component{
           leftActive : true,
           rightActive : false
         })
-        
+
       }
     }
 

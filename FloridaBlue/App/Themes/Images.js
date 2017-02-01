@@ -7,25 +7,21 @@ const images = {
   tileBg: require('../Images/tile_bg.png'),
   background: require('../Images/bkgrd-gradient.png'),
   regcompletehdr : require('../Images/reg-complete-hdr.png'),
-  reghdr2 : require('../Images/reg-step2-hdr.png'),
   loginButton : require('../Images/login-screen-login-btn-blue.png'),
-  splashlog: require('../Images/splash-logo.png'),
-  logInlog: require('../Images/login-logo.png'),
+  splashLogo: require('../Images/splash-logo.png'),
+  loginLogo: require('../Images/login-logo.png'),
   clouds: require('../Images/clouds.png'),
   infoIcon: require('../Images/info-icon-gray.png'),
   logout: require('../Images/menu-logout-btn-blue.png'),
-
   themeHeader: require('../Images/theme-header-bkg.png'),
   themeLogo: require('../Images/theme-logo.png'),
-  myPlanbg: require('../Images/myplan-dashboard-bkg.png')
-
-
-
-
-  registrationStep1Hdr: require('../Images/reg-step1-hdr.png'),
+  myPlanbg: require('../Images/myplan-dashboard-bkg.png'),
+  themeMenu: require('../Images/theme-menu-btn.png'),
+  registrationStep1Hdr: require('../Images/registration-step1-header.png'),
   findItButton: require('../Images/find-it-btn.png'),
   backButton: require('../Images/back-btn.png'),
-  nextButton: require('../Images/next-btn.png')
+  nextButton: require('../Images/next-btn.png'),
+  findCare:require('../Images/find-care-img-dashboard.png'),
 
 }
 

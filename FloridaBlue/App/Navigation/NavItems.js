@@ -1,12 +1,13 @@
 // @flow
 
 import React from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, Image } from 'react-native'
 import styles from './Styles/NavItemsStyle'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import IonicIcon from 'react-native-vector-icons/Ionicons'
-import { Colors, Metrics } from '../Themes'
+import { Colors, Metrics, Images } from '../Themes'
+import Flb from '../Themes/FlbIcon'
 
 const openDrawer = (type) => {
   NavigationActions.refresh({
@@ -20,8 +21,8 @@ export default {
   backButton () {
     return (
       <TouchableOpacity onPress={NavigationActions.pop}>
-        <Icon name='angle-left'
-          size={Metrics.icons.large}
+        <Flb name='chevron-left'
+          size={Metrics.icons.medium}
           color={Colors.snow}
           style={[styles.backButton, {top:-10}]}
         />
@@ -43,11 +44,7 @@ export default {
   },*/
   settingsButton () {
     return <TouchableOpacity onPress={openDrawer.bind(null,'settings')}>
-      <Icon
-        name='bars'
-        size={Metrics.icons.medium}
-        style={{color:Colors.snow,marginTop:5}}
-      />
+      <Image source={Images.themeMenu} style={{marginTop:Metrics.baseMargin,backgroundColor:Colors.flBlue.transparent}}/>
     </TouchableOpacity>
   },
 

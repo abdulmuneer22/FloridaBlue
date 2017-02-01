@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 class FirstCard extends Component{
 
   render(){
-      console.log(this.props.SelctedLeft)
+    
     return(
       <View
       style={Style.cardStyle}

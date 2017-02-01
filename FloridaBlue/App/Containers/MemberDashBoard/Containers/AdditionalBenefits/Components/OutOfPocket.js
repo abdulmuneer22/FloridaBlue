@@ -8,6 +8,9 @@ import {
     Dimensions
 } from 'react-native'
 
+import {Colors,Metrics,Fonts} from '../../../../../Themes'
+import Flb from '../../../../../Themes/FlbIcon'
+
 const window = Dimensions.get('window')
 
 class OutOfPocket extends Component{
@@ -15,12 +18,13 @@ class OutOfPocket extends Component{
         return(
             <View style = {Style.wrapper}>
                 <Text style = {{
-                    fontWeight : '600'
+                    fontSize:Fonts.size.h6,
+                    fontWeight:'bold'
                 }}>Out of Pocket Maximum</Text>
 
                 <View style={Style.row_1}>
                     <View style={Style.col_1}>
-                        <Text style={{paddingBottom : 20}}>Individual</Text>
+                        <Text style={{paddingBottom : Metrics.doubleBaseMargin, fontSize:Fonts.size.regular}}>Individual</Text>
 
                         <Text>You have met $0.00</Text>
                         <Text>of your $5,000.00</Text>
@@ -30,7 +34,7 @@ class OutOfPocket extends Component{
                     </View>
 
                     <View style={Style.col_2}>
-                        <Text style={{paddingBottom : 20}}>Family</Text>
+                        <Text style={{paddingBottom : Metrics.doubleBaseMargin,fontSize:Fonts.size.regular}}>Family</Text>
                         <Text>You have met $0.00</Text>
                         <Text>of your $5,000.00</Text>
                         <Text>maximum</Text>
@@ -48,7 +52,7 @@ class OutOfPocket extends Component{
 
 const Style = StyleSheet.create({
     wrapper : {
-        backgroundColor : 'rgb(194, 193, 193)',
+        backgroundColor : Colors.flBlue.grey2,
         width : window.width,
         padding : 15,
         alignItems : 'center',
@@ -61,7 +65,8 @@ const Style = StyleSheet.create({
     col_1 : {
         flex : 1,
         alignItems : 'center',
-        padding : 10
+        padding : 10,
+
     },
     col_2 : {
         flex : 1,
