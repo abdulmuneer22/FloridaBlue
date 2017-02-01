@@ -22,6 +22,8 @@ const images = {
   backButton: require('../Images/back-btn.png'),
   nextButton: require('../Images/next-btn.png'),
   findCare:require('../Images/find-care-img-dashboard.png'),
+  hsaHeader:require('../Images/hsa-header.png'),
+  hsaBg:require('../Images/hsa-graphic.png')
 
 }
 

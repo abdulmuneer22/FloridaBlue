@@ -11,7 +11,7 @@ import {Colors,Metrics,Fonts} from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 
 
-var messageCount="10"
+var messageCount=""
 
 class Greeting extends Component{
 

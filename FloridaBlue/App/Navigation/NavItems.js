@@ -21,7 +21,7 @@ export default {
   backButton () {
     return (
       <TouchableOpacity onPress={NavigationActions.pop}>
-        <Flb name='chevron-left'
+        <Flb name='arrow-left'
           size={Metrics.icons.medium}
           color={Colors.snow}
           style={[styles.backButton, {top:-10}]}
@@ -44,7 +44,12 @@ export default {
   },*/
   settingsButton () {
     return <TouchableOpacity onPress={openDrawer.bind(null,'settings')}>
-      <Image source={Images.themeMenu} style={{marginTop:Metrics.baseMargin,backgroundColor:Colors.flBlue.transparent}}/>
+    <Flb name='align-justify'
+    size={Metrics.icons.medium}
+      style={{color:Colors.snow,
+        backgroundColor:Colors.transparent,
+        marginTop:13}}
+    />
     </TouchableOpacity>
   },
 
