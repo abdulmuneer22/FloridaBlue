@@ -19,7 +19,7 @@ export default StyleSheet.create({
   messageView: {
     padding: Metrics.baseMargin,
     marginHorizontal: Metrics.doubleBaseMargin,
-    backgroundColor: Colors.flBlue.lightBlue,
+    backgroundColor: Colors.flBlue.red,
     borderRadius: 12,
     flexDirection: 'row',
     flex: 0.5,
@@ -30,7 +30,7 @@ export default StyleSheet.create({
     flex: 0.1
   },
   message: {
-    color: Colors.flBlue.anvil,
+    color: Colors.snow,
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.medium,
     flex: 0.8,
