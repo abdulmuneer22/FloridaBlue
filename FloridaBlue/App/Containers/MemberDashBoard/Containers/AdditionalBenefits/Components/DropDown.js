@@ -3,8 +3,14 @@ import {
     Text,
     View,
     ScrollView,
+    Dimensions,
     StyleSheet
 } from 'react-native'
+
+import {Colors,Metrics,Fonts} from '../../../../../Themes'
+import Flb from '../../../../../Themes/FlbIcon'
+
+const window = Dimensions.get('window')
 
 
 class DropDown extends Component{

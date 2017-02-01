@@ -28,7 +28,7 @@ class ThirdCard extends Component{
           </Text>
 
           {
-            this.props.SelctedLeft ?
+            this.props.SelectedLeft ?
             <Text style={Style.h2}>
             $20 Copay
             </Text>
@@ -48,7 +48,7 @@ class ThirdCard extends Component{
           </Text>
 
           {
-            this.props.SelctedLeft ?
+            this.props.SelectedLeft ?
             <Text style={Style.h2}>
             $40 Copay
             </Text>

@@ -8,9 +8,10 @@ import axios from 'axios'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Colors,Metrics,Fonts} from '../../../../../Themes'
+import Flb from '../../../../../Themes/FlbIcon'
 
 
-var messageCount="1"
+var messageCount="10"
 
 class Greeting extends Component{
 
@@ -41,8 +42,8 @@ class Greeting extends Component{
     return(
       <View>
       <View style={Styles.Greeting}>
-      <Text style={{fontSize:15, color:Colors.snow}}>
-      Hello {this.props.userName ? this.props.userName :""}
+      <Text style={{fontSize:18, color:Colors.snow}}>
+      Good Morning {this.props.userName ? this.props.userName :""}
       </Text>
       </View>
 
@@ -51,13 +52,13 @@ class Greeting extends Component{
         <View style={{
           alignItems:'center',
           justifyContent:'center',
-          height:30,
-          backgroundColor:'rgba(230,232,238,0.1)',
+          height:40,
+          backgroundColor:Colors.flBlue.grey1,
             flexDirection : 'row'
         }}>
 
-        <Icon name="envelope" size={18} color="black" />
-        <Text style={{marginLeft : 10}}> You have {messageCount} New Messages </Text>
+        <Flb name="email-envelope" size={20}  />
+        <Text style={{color:Colors.flBlue.night,fontSize:Fonts.size.h6,marginLeft : 10}}> You have {messageCount} new messages. </Text>
 
         </View>
         : null
@@ -74,8 +75,9 @@ const Styles = StyleSheet.create({
   Greeting : {
     alignItems  : 'center',
     justifyContent : 'center',
-    height : 60,
-    backgroundColor: Colors.flBlue.grey3
+    height : 40,
+    //padding:5,
+    backgroundColor: Colors.flBlue.grey6
   }
 });
 

@@ -11,6 +11,7 @@ import { Webview } from '../Containers/WebView'
 import { Home } from '../Containers/Home'
 import { Resources } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import { HSA } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
+import { SupportScreen } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 //import { Screen_1} from '../Containers/Registration'
 import { Screen_1} from '../Containers/Registration/Containers/Screen_1'
 import { Screen_2} from '../Containers/Registration/Containers/Screen_2'
@@ -40,21 +41,22 @@ class NavigationRouter extends Component {
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
             <Scene initial key='login' component={Login} title='Login' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar/>
-           <Scene key='screen_1' component={Screen_1} title='first page' hideNavBar={false} />
-           <Scene key='screen_2' component={Screen_2} title='create username page' hideNavBar/>
-           <Scene key='ReadMore' component={ReadMore} title='readmore page' hideNavBar />
-           <Scene key='screen_3' component={Screen_3} title='Verify Device page' hideNavBar/>
-           <Scene key='screen_4' component={Screen_4} title='Security page' hideNavBar/>
-           <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar/>
-           <Scene key='memberid' component={FindMemberID} title='MemberId page'hideNavBar />
-           <Scene key='confirmation' component={Confirmation} title='Confirmation page' hideNavBar />
+           <Scene key='screen_1' component={Screen_1} title='first page' />
+           <Scene key='screen_2' component={Screen_2} title='create username page' />
+           <Scene key='ReadMore' component={ReadMore} title='readmore page'  />
+           <Scene key='screen_3' component={Screen_3} title='Verify Device page' />
+           <Scene key='screen_4' component={Screen_4} title='Security page' />
+           <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' />
+           <Scene key='memberid' component={FindMemberID} title='MemberId page' />
+           <Scene key='confirmation' component={Confirmation} title='Confirmation page'  />
            <Scene  key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
            <Scene key ='Resources' component={Resources} title='Resource WebView' hideNavBar />
            <Scene  key ='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar/>
+           <Scene  key ='SupportScreen' component={SupportScreen} title='Support Page' hideNavBar/>
            <Scene key='Myplan' component={MyPlanScreen} title='MyPlan Page' hideNavBar/>
            <Scene  key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page' hideNavBar/>
            <Scene  key='DoctorServices' component={DoctorServices} title='DoctorServices Page' hideNavBar/>
-           <Scene  key='AdditionalServices' component={AdditionalBenefits} title='AdditionalBenefits Page' hideNavBar={false}/>
+           <Scene  key='AdditionalServices' component={AdditionalBenefits} title='AdditionalBenefits Page' hideNavBar/>
            <Scene key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
            <Scene key='listviewexample' component={ListviewExample} title='ListviewExample' />
           </Scene>

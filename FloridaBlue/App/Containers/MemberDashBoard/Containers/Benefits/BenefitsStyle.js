@@ -1,7 +1,7 @@
 // @flow
 
 import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles } from '../../../../Themes/'
+import { Metrics, ApplicationStyles, Colors } from '../../../../Themes/'
 
 export default StyleSheet.create({
   headerContainer:{
@@ -9,7 +9,7 @@ export default StyleSheet.create({
   height:70,
   justifyContent:'space-between',
   alignItems:'center',
-  backgroundColor:'black',
+  backgroundColor:Colors.flBlue.ocean,
   padding:10,
   alignSelf:'stretch'
 },

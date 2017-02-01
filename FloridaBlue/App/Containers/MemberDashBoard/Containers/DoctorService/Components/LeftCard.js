@@ -15,11 +15,12 @@ class LeftCard extends Component{
   render(){
     return(
       <View
-      style={Style.cardStyle}
-
-      >
+      style={Style.cardStyle}>
       <View>
       <Text style={Style.h1}>Physical Services</Text>
+
+        <View >
+
         <View>
           <Text style={Style.h4}>
           Family Physician
