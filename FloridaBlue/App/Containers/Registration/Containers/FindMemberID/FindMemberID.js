@@ -40,7 +40,7 @@ class FindMemberID extends React.Component {
         <ScrollView>
           <Image source={Images.registrationStep1Hdr} style={styles.headerImage} />
           <View style={styles.row}>
-            <TouchableOpacity onPress={() => {this._handleClose()}}>
+            <TouchableOpacity style={styles.close} onPress={() => {this._handleClose()}}>
               <Image source={Images.closeIconBlue} />
             </TouchableOpacity>
           </View>
@@ -49,8 +49,8 @@ class FindMemberID extends React.Component {
               <View style={styles.outofBox}>
                 <Image
                   style={{
-                    width: Metrics.screenWidth,
-                    height: 200,
+                    //width: Metrics.screenWidth,
+                    //height: 200,
                     flex : 0
                   }}
                   source={Images.idCardFront}
@@ -62,8 +62,8 @@ class FindMemberID extends React.Component {
               <View style={styles.outofBox}>
                 <Image
                   style={{
-                    width: Metrics.screenWidth,
-                    height: 200,
+                    //width: Metrics.screenWidth,
+                    //height: 200,
                     flex : 0
                   }}
                   source={Images.idCardBack}

@@ -8,6 +8,11 @@ export default StyleSheet.create({
     overflow: 'visible',
     resizeMode: 'cover'
   },
+  close: {
+    marginTop: Metrics.doubleBaseMargin,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end'
+  },
   heading: {
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
@@ -68,20 +73,20 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   wrapper1: {
-    backgroundColor: 'grey'
+    backgroundColor: Colors.snow
   },
   slide: {
     flex:1,
     alignItems: 'center',
     flexWrap:'nowrap',
-    backgroundColor: 'grey',
+    backgroundColor: Colors.snow
   },
   outofBox:{
     //backgroundColor : 'grey',
     //padding : 20,
     alignItems : 'center',
     justifyContent : 'center',
-    width : window.width,
+    //width : window.width,
     //marginBottom : 30
 
   },
