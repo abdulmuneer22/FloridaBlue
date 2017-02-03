@@ -40,17 +40,19 @@ class FindMemberID extends React.Component {
         <ScrollView>
           <Image source={Images.registrationStep1Hdr} style={styles.headerImage} />
           <View style={styles.row}>
-            <TouchableOpacity style={styles.close} onPress={() => {this._handleClose()}}>
-              <Image source={Images.closeIconBlue} />
-            </TouchableOpacity>
+            <Text style={styles.heading}>{I18n.t('findMemberId')}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.description}>{I18n.t('findMemberIdDescription1')}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.description}>{I18n.t('findMemberIdDescription2')}</Text>
           </View>
           <Swiper height={250} style={styles.wrapper1} showsButtons={true}>
             <View style={styles.slide}>
               <View style={styles.outofBox}>
                 <Image
                   style={{
-                    //width: Metrics.screenWidth,
-                    //height: 200,
                     flex : 0
                   }}
                   source={Images.idCardFront}
@@ -62,8 +64,6 @@ class FindMemberID extends React.Component {
               <View style={styles.outofBox}>
                 <Image
                   style={{
-                    //width: Metrics.screenWidth,
-                    //height: 200,
                     flex : 0
                   }}
                   source={Images.idCardBack}
@@ -71,6 +71,11 @@ class FindMemberID extends React.Component {
               </View>
             </View>
           </Swiper>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity onPress={() => {this._handleClose()}}>
+              <Image source={Images.closeButtonGray} />
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </View>
     )

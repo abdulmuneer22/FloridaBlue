@@ -45,7 +45,8 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     width: Metrics.screenWidth,
-    paddingVertical: Metrics.smallMargin,
+    marginTop: Metrics.baseMargin,
+    paddingVertical: Metrics.baseMargin,
     paddingHorizontal: Metrics.doubleBaseMargin,
     alignItems: 'stretch',
     justifyContent: 'space-between'
@@ -79,6 +80,7 @@ export default StyleSheet.create({
   footerText: {
     color: Colors.flBlue.grey4,
     marginHorizontal: Metrics.section,
+    marginBottom: Metrics.baseMargin,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: Fonts.size.small

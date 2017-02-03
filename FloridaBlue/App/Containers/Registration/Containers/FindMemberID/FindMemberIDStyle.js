@@ -9,7 +9,7 @@ export default StyleSheet.create({
     resizeMode: 'cover'
   },
   close: {
-    marginTop: Metrics.doubleBaseMargin,
+    marginTop: Metrics.smallMargin,
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
   },
@@ -18,6 +18,12 @@ export default StyleSheet.create({
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.h4
+  },
+  description: {
+    color: Colors.flBlue.grey3,
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: Fonts.size.medium
   },
   messageView: {
     padding: Metrics.baseMargin,
@@ -48,10 +54,11 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     width: Metrics.screenWidth,
-    paddingVertical: Metrics.smallMargin,
+    marginTop: Metrics.baseMargin,
+    paddingVertical: Metrics.baseMargin,
     paddingHorizontal: Metrics.doubleBaseMargin,
-    alignItems: 'stretch',
-    justifyContent: 'space-between'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -73,7 +80,8 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   wrapper1: {
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.snow,
+    marginTop: Metrics.baseMargin
   },
   slide: {
     flex:1,
@@ -103,5 +111,5 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: Fonts.size.small
-  },
+  }
 })

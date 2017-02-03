@@ -5,6 +5,7 @@ const images = {
   backButton: require('../Images/back-btn.png'),
   background: require('../Images/bkgrd-gradient.png'),
   clearLogo: require('../Images/login-logo.png'),
+  closeButtonGray: require('../Images/close-btn-gray.png'),
   closeIconBlue: require('../Images/close-icon-blue.png'),
   closeIconWhite: require('../Images/close-icon-white.png'),
   clouds: require('../Images/clouds.png'),
