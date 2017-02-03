@@ -6,7 +6,7 @@ const images = {
   clearLogo: require('../Images/login-logo.png'),
   tileBg: require('../Images/tile_bg.png'),
   background: require('../Images/bkgrd-gradient.png'),
-  regcompletehdr : require('../Images/reg-complete-hdr.png'),
+  //regcompletehdr : require('../Images/reg-complete-hdr.png'),
   loginButton : require('../Images/login-screen-login-btn-blue.png'),
   splashLogo: require('../Images/splash-logo.png'),
   loginLogo: require('../Images/login-logo.png'),
@@ -23,7 +23,8 @@ const images = {
   nextButton: require('../Images/next-btn.png'),
   findCare:require('../Images/find-care-img-dashboard.png'),
   hsaHeader:require('../Images/hsa-header.png'),
-  hsaBg:require('../Images/hsa-graphic.png')
+  hsaBg:require('../Images/hsa-graphic.png'),
+  regCompletion: require('../Images/reg-complete-hdr.png')
 
 }
 

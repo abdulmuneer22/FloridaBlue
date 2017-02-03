@@ -72,8 +72,8 @@ class MyPlanScreen extends Component{
       </View>
 
       <View style={Styles.chartWrapper}>
-      {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
-      </View>
+      {this.props.data.annualDeductible ?  <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
+             </View>
 
 
       <View style={{
