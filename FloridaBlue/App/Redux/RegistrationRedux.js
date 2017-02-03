@@ -12,7 +12,7 @@ const { Types, Creators } = createActions({
   changeDateOfBirth: ['dateOfBirth'],
   changeZipCode: ['zipCode'],
   registrationRequest: ['contractNumber' ,'firstName','lastName','dateOfBirth','zipCode'],
-  registrationSuccess: ['contractNumber' ,'firstName','lastName','dateOfBirth','zipCode'],
+  registrationSuccess: ['data'],
   sendregistrationRequest: ['email' ,'confirmemail','uniqueuserid','password','confirmpassword'],
   sendregistrationSuccess: ['email' ,'confirmemail','uniqueuserid','password','confirmpassword'],
   sendregistrationRequestcode :['registrationcode'],
@@ -49,7 +49,8 @@ export const INITIAL_STATE = Immutable({
   answerone: null ,
   answertwo: null ,
   answerthree: null,
-  confirm : null
+  confirm : null,
+  data : null
 })
 
 /* ------------- Reducers ------------- */
@@ -58,8 +59,8 @@ export const INITIAL_STATE = Immutable({
 export const request = (state: Object) => state.merge({ fetching: true })
 
 // we've successfully logged in
-export const success = (state: Object, {contractNumber,firstName,lastName,dateOfBirth,zipCode}: Object) =>
-  state.merge({fetching: false, contractNumber,firstName,lastName,dateOfBirth,zipCode})
+export const success = (state: Object,{data}: Object) =>
+  state.merge({fetching: false, data})
 
 export const sendsuccess = (state: Object, {email,confirmemail,uniqueuserid,password,confirmpassword}: Object) =>
     state.merge({fetching: false, email,confirmemail,uniqueuserid,password,confirmpassword})

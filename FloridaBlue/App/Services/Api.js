@@ -72,13 +72,13 @@ global.Buffer = global.Buffer || require('buffer').Buffer;
 
   const getMember = () => api.get('/members')
   const getPlan = () => api.get('/benefits')
-  const postIdentification = (contactnumber, firstname, lastname, dob, zip) => api.post('/identifyuser.json',{
-    "user": {
-      "contractnumber": contactnumber,
-      "firstName": firstname,
-      "lastName": lastname,
-      "dob": dob,
-      "zip": zip
+  const postIdentification = (contractNumber, firstName, lastName, dateOfBirth, zipCode) => api.post('/identifyuser.json',{
+    "User": {
+      "contractnumber": contractNumber,
+      "firstName": firstName,
+      "lastName": lastName,
+      "dob": dateOfBirth,
+      "zip": zipCode
     }
   })
   // ------

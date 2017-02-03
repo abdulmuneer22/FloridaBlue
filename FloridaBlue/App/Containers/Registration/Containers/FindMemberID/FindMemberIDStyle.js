@@ -1,5 +1,3 @@
-// @flow
-
 import { StyleSheet } from 'react-native'
 import { ApplicationStyles, Colors, Metrics, Fonts } from '../../../../Themes/'
 
@@ -68,6 +66,24 @@ export default StyleSheet.create({
   textfieldWithFloatingLabel: {
     height: 48,  // have to do it on iOS
     marginTop: 10,
+  },
+  wrapper1: {
+    backgroundColor: 'grey'
+  },
+  slide: {
+    flex:1,
+    alignItems: 'center',
+    flexWrap:'nowrap',
+    backgroundColor: 'grey',
+  },
+  outofBox:{
+    //backgroundColor : 'grey',
+    //padding : 20,
+    alignItems : 'center',
+    justifyContent : 'center',
+    width : window.width,
+    //marginBottom : 30
+
   },
   footer: {
     flex: 1,
