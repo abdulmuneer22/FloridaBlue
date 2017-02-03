@@ -11,6 +11,7 @@ const images = {
   loginLogo: require('../Images/login-logo.png'),
 
   clearLogo: require('../Images/login-logo.png'),
+  closeButtonGray: require('../Images/close-btn-gray.png'),
   closeIconBlue: require('../Images/close-icon-blue.png'),
   closeIconWhite: require('../Images/close-icon-white.png'),
 

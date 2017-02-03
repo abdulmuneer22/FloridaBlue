@@ -8,11 +8,22 @@ export default StyleSheet.create({
     overflow: 'visible',
     resizeMode: 'cover'
   },
+  close: {
+    marginTop: Metrics.smallMargin,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end'
+  },
   heading: {
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.h4
+  },
+  description: {
+    color: Colors.flBlue.grey3,
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: Fonts.size.medium
   },
   messageView: {
     padding: Metrics.baseMargin,
@@ -43,10 +54,11 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     width: Metrics.screenWidth,
-    paddingVertical: Metrics.smallMargin,
+    marginTop: Metrics.baseMargin,
+    paddingVertical: Metrics.baseMargin,
     paddingHorizontal: Metrics.doubleBaseMargin,
-    alignItems: 'stretch',
-    justifyContent: 'space-between'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -68,20 +80,21 @@ export default StyleSheet.create({
     marginTop: 10,
   },
   wrapper1: {
-    backgroundColor: 'grey'
+    backgroundColor: Colors.snow,
+    marginTop: Metrics.baseMargin
   },
   slide: {
     flex:1,
     alignItems: 'center',
     flexWrap:'nowrap',
-    backgroundColor: 'grey',
+    backgroundColor: Colors.snow
   },
   outofBox:{
     //backgroundColor : 'grey',
     //padding : 20,
     alignItems : 'center',
     justifyContent : 'center',
-    width : window.width,
+    //width : window.width,
     //marginBottom : 30
 
   },
@@ -98,5 +111,5 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: Fonts.size.small
-  },
+  }
 })

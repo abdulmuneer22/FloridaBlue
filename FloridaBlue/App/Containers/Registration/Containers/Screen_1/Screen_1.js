@@ -173,7 +173,7 @@ class Screen_1 extends React.Component {
               ref='zipCode'
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
-              returnKeyType='next'
+              returnKeyType='done'
               autoCapitalize='none'
               autoCorrect={false}
               onChangeText={this.props.handleChangeZipCode}
