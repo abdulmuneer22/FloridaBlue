@@ -35,13 +35,22 @@ class Webview extends Component {
   render() {
     var dynamic = this.props.responseURL
     var smToken = this.props.smToken
-    var redirect ={
+    var redirect = null ;
+    if (this.props.smToken){
+     redirect ={
       uri: dynamic,
       method :'GET',
       headers: {
         'Cookie' :smToken
       }
-  }
+    }
+  }else {
+    redirect = {
+      uri : dynamic,
+      method :'GET'
+      }
+    }
+
 
     console.log("redirect"+JSON.stringify(redirect));
 
@@ -58,6 +67,7 @@ class Webview extends Component {
           injectedJavaScript ={jsForInjection}
           allowUrlRedirect={true}
           startInLoadingState={true}
+          contentInset={{top:-45,left:0,bottom:0,right:0}}
               />
       </View>
     );

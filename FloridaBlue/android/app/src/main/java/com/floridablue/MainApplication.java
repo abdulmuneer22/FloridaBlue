@@ -6,6 +6,7 @@ import android.util.Log;
 import com.facebook.react.ReactApplication;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
+import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 
 import com.oblador.vectoricons.VectorIconsPackage;
 
