@@ -11,7 +11,7 @@ export default StyleSheet.create({
    alignItems:'center',
    padding:15,
    alignSelf:'stretch',
-   width:null,
+   width:Metrics.screenWidth,
    backgroundColor:Colors.flBlue.ocean
  },
  hsaHeader:{
@@ -21,13 +21,16 @@ export default StyleSheet.create({
   justifyContent:'space-between',
   alignItems:'center',
   padding:10,
+  width: Metrics.screenWidth,
+  //overflow: 'visible',
+  //resizeMode: 'stretch',
   alignSelf:'stretch',
-  width:null,
+  //width:Metrics.screenWidth,
   //backgroundColor:Colors.flBlue.ocean
 },
 hsaBg:{
  //flexDirection:'row',
- height:380,
+ height:350,
  //marginTop:20,
  //justifyContent:'space-between',
  //alignItems:'center',
@@ -38,7 +41,7 @@ hsaBg:{
 },
 container:{
     flex:1,
-    backgroundColor:Colors.flBlue.lightBlue,
+    backgroundColor:Colors.snow,
 
   },
   summary:{
@@ -50,10 +53,11 @@ container:{
 
      flexDirection:'row',
      height:120,
+     //height : window.height * 0.5,
      justifyContent:'space-between',
      alignItems:'center',
      alignSelf:'stretch',
-     width:null,
+     width:Metrics.screenWidth,
        },
   titleView:{
     marginTop:Metrics.baseMargin

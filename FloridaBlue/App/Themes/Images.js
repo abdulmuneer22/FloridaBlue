@@ -43,7 +43,7 @@ const images = {
   findCare:require('../Images/find-care-img-dashboard.png'),
   hsaHeader:require('../Images/hsa-header.png'),
   hsaBg:require('../Images/hsa-graphic.png'),
-  regCompletion: require('../Images/reg-complete-hdr.png')
+  regCompletion: require('../Images/reg-complete-hdr.png'),
 
 
   tileBg: require('../Images/tile_bg.png'),
