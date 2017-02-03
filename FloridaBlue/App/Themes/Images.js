@@ -23,8 +23,11 @@ const images = {
   nextButton: require('../Images/next-btn.png'),
   findCare:require('../Images/find-care-img-dashboard.png'),
   hsaHeader:require('../Images/hsa-header.png'),
-  hsaBg:require('../Images/hsa-graphic.png')
-
+  hsaBg:require('../Images/hsa-graphic.png'),
+  idCardFront: require('../Images/id-card-front.png'),
+  idCardBack: require('../Images/id-card-back.png'),
+  closeIconWhite: require('../Images/close-icon-white.png'),
+  closeIconBlue: require('../Images/close-icon-blue.png')
 }
 
 export default images

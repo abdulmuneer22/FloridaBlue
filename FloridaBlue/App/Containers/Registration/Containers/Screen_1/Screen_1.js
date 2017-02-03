@@ -43,7 +43,7 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
 class Screen_1 extends React.Component {
   constructor(props) {
     super(props)
-    this._handleRegistration = this._handleRegistration.bind(this)
+    //this._handleRegistration = this._handleRegistration.bind(this)
   }
 
   _handleRegistration(){
@@ -65,6 +65,10 @@ class Screen_1 extends React.Component {
     } else {
       this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
     }
+  }
+
+  _handleFindMemberId() {
+    NavigationActions.memberid()
   }
 
   componentDidUpdate() {
@@ -115,7 +119,7 @@ class Screen_1 extends React.Component {
             <Text style={[styles.message, {fontSize: Fonts.size.regular}]}> {I18n.t('cantFindMemberId')}</Text>
           </View>
           <View style={styles.findItButton}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => {this._handleFindMemberId()}}>
               <Image source={Images.findItButton} />
             </TouchableOpacity>
           </View>
@@ -160,7 +164,7 @@ class Screen_1 extends React.Component {
               onChangeText={this.props.handleChangeDateOfBirth}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.zipCode.focus(); 
+                this.refs.zipCode.focus();
               }}
               placeholder={I18n.t('dateOfBirth')} />
           </View>
