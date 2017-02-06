@@ -46,7 +46,7 @@ class Screen_1 extends React.Component {
   }
 
   _handleRegistration(){
-    //var contractNumber = this.props.contractNumber ? 
+    //var contractNumber = this.props.contractNumber ?
     //var firstName = this.state.firstName
     //var lastName = this.state.lastName
     //var dateOfBirth = this.state.dateOfBirth
@@ -81,7 +81,7 @@ class Screen_1 extends React.Component {
             </View>
           </View>
           <View style={styles.row}>
-            <TextfieldWithFloatingLabel 
+            <TextfieldWithFloatingLabel
               ref='contractNumber'
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
@@ -91,7 +91,7 @@ class Screen_1 extends React.Component {
               onChangeText={this.props.handleChangeContractNumber}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={() => this.refs.contractNumber.focus()}
-              placeholder={I18n.t('memberId')} 
+              placeholder={I18n.t('memberId')}
             />
           </View>
           <View style={styles.row}>
@@ -103,7 +103,7 @@ class Screen_1 extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
-            <TextfieldWithFloatingLabel 
+            <TextfieldWithFloatingLabel
               ref='firstName'
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
@@ -116,7 +116,7 @@ class Screen_1 extends React.Component {
               placeholder={I18n.t('firstName')} />
           </View>
           <View style={styles.row}>
-            <TextfieldWithFloatingLabel 
+            <TextfieldWithFloatingLabel
               ref='lastName'
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
@@ -129,7 +129,7 @@ class Screen_1 extends React.Component {
               placeholder={I18n.t('lastName')} />
           </View>
           <View style={styles.row}>
-            <TextfieldWithFloatingLabel 
+            <TextfieldWithFloatingLabel
               ref='dateOfBirth'
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
@@ -142,7 +142,7 @@ class Screen_1 extends React.Component {
               placeholder={I18n.t('dateOfBirth')} />
           </View>
           <View style={styles.row}>
-            <TextfieldWithFloatingLabel 
+            <TextfieldWithFloatingLabel
               ref='zipCode'
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'

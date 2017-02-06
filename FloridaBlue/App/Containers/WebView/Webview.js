@@ -36,7 +36,7 @@ class Webview extends Component {
     var dynamic = this.props.responseURL
     var smToken = this.props.smToken
     var redirect ={
-      uri: dynamic,
+      uri: 'https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/AccountSettings/',
       method :'GET',
       headers: {
         'Cookie' :smToken
@@ -51,6 +51,7 @@ class Webview extends Component {
           backgroundColor : 'white'
       }}>
       {this._renderHeader()}
+
       <WebView
         source={redirect}
         javaScriptEnabled={true}
@@ -58,7 +59,8 @@ class Webview extends Component {
           injectedJavaScript ={jsForInjection}
           allowUrlRedirect={true}
           startInLoadingState={true}
-              />
+          contentInset={{top:-60,left:0,bottom:0,right:0}}/>
+
       </View>
     );
   }
