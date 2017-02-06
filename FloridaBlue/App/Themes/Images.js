@@ -38,6 +38,9 @@ const images = {
   themeMenu: require('../Images/theme-menu-btn.png'),
 
   registrationStep1Hdr: require('../Images/registration-step1-header.png'),
+  registrationStep2Hdr: require('../Images/registration-step2-header.png'),
+  registrationStep3Hdr: require('../Images/registration-step3-header.png'),
+  registrationStep4Hdr: require('../Images/registration-step4-header.png'),
   findItButton: require('../Images/find-it-btn.png'),
   backButton: require('../Images/back-btn.png'),
   nextButton: require('../Images/next-btn.png'),

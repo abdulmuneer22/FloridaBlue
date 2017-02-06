@@ -11,6 +11,12 @@ const { Types, Creators } = createActions({
   changeLastName: ['lastName'],
   changeDateOfBirth: ['dateOfBirth'],
   changeZipCode: ['zipCode'],
+  changePhoneNumber: ['phoneNumber'],
+  changeEmail: ['email'],
+  changeConfirmEmail: ['confirmEmail'],
+  changeCreateUserId: ['createUserId'],
+  changePassword: ['password'],
+  changeConfirmPassword: ['confirmPassword'],
   registrationRequest: ['contractNumber' ,'firstName','lastName','dateOfBirth','zipCode'],
   registrationSuccess: ['data'],
   sendregistrationRequest: ['email' ,'confirmemail','uniqueuserid','password','confirmpassword'],
@@ -35,13 +41,12 @@ export const INITIAL_STATE = Immutable({
   lastName: null,
   dateOfBirth: null,
   zipCode: null,
-  fetching : false,
-  error : null,
-  email : null,
-  confirmemail : null,
-  uniqueuserid : null ,
-  password : null ,
-  confirmpassword : null,
+  phoneNumber: null,
+  email: null,
+  confirmEmail: null,
+  createUserId: null,
+  password: null,
+  confirmPassword: null,
   registrationcode : null ,
   questionone : null,
   questiontwo : null,
@@ -50,6 +55,8 @@ export const INITIAL_STATE = Immutable({
   answertwo: null ,
   answerthree: null,
   confirm : null,
+  fetching : false,
+  error : null,
   data : null
 })
 
@@ -98,6 +105,30 @@ export const _changeDateOfBirth = (state: Object, {dateOfBirth}: Object) =>
 export const _changeZipCode = (state: Object, {zipCode}: Object) =>
       state.merge({fetching: false, zipCode})
 
+// phoneNumber
+export const _changePhoneNumber = (state: Object, {phoneNumber}: Object) =>
+      state.merge({fetching: false, phoneNumber})
+
+// email
+export const _changeEmail = (state: Object, {email}: Object) =>
+      state.merge({fetching: false, email})
+
+// confirmEmail
+export const _changeConfirmEmail = (state: Object, {confirmEmail}: Object) =>
+      state.merge({fetching: false, confirmEmail})
+
+// createUserId
+export const _changeCreateUserId = (state: Object, {createUserId}: Object) =>
+      state.merge({fetching: false, createUserId})
+
+// password
+export const _changePassword = (state: Object, {password}: Object) =>
+      state.merge({fetching: false, password})
+
+// confirmPassword
+export const _changeConfirmPassword = (state: Object, {confirmPassword}: Object) =>
+      state.merge({fetching: false, confirmPassword})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -106,6 +137,12 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_LAST_NAME]: _changeLastName,
   [Types.CHANGE_DATE_OF_BIRTH]: _changeDateOfBirth,
   [Types.CHANGE_ZIP_CODE]: _changeZipCode,
+  [Types.PHONE_NUMBER]: _changePhoneNumber,
+  [Types.EMAIL]: _changeEmail,
+  [Types.CONFIRM_EMAIL]: _changeConfirmEmail,
+  [Types.CREATE_USER_ID]: _changeCreateUserId,
+  [Types.PASSWORD]: _changePassword,
+  [Types.CONFIRM_PASSWORD]: _changeConfirmPassword,
   [Types.REGISTRATION_REQUEST]: request,
   [Types.REGISTRATION_SUCCESS]: success,
   [Types.SENDREGISTRATION_REQUEST]: request,
