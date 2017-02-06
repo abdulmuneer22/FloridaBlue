@@ -1,342 +1,124 @@
-import React, { Component,PropTypes } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  TouchableOpacity,
+// @flow
+
+import React, { PropTypes } from 'react'
+import ReactNative, {
   Image,
+  KeyboardAvoidingView,
+  ScrollView,
+  Text,
   TextInput,
-  TouchableWithoutFeedback
-} from 'react-native';
+  TouchableOpacity,
+  View
+} from 'react-native'
+// Add Actions - replace 'Your' with whatever your reducer is called :)
+// import YourActions from '../Redux/YourRedux'
+import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
+// external libs
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Animatable from 'react-native-animatable'
+import { MKTextField, MKColor } from 'react-native-material-kit'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-import RegistrationToolBar from '../RegistrationToolBar'
-import Input from './Input'
-import Button from '../Button'
-import {connect} from 'react-redux'
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {Actions as NavigationActions} from 'react-native-router-flux'
+// Styles
+import styles from './Screen_3Style'
 
-class Screen_3 extends Component{
-  constructor(){
-    super();
-    this.state = {
-      code : "",
-      verified : true,
-      navigate : false
-    }
+import Flb from '../../../../Themes/FlbIcon'
+// I18n
+import I18n from 'react-native-i18n'
+
+import { Actions as NavigationActions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import RegistrationActions from '../../../../Redux/RegistrationRedux'
+
+const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
+  .withStyle(styles.textfieldWithFloatingLabel)
+  .withTextInputStyle({flex: 1})
+  .withFloatingLabelFont({
+    fontSize: 18,
+    fontStyle: 'italic',
+    fontWeight: '200',
+  })
+  .build();
+
+class Screen_3 extends React.Component {
+
+  _handleBack() {
+    NavigationActions.pop()
   }
-  render(){
-    return(
-      <View style={{
-        flex : 1 ,
-        backgroundColor : 'white'
-      }}>
-      <RegistrationToolBar/>
-      {
-        <View style={{
-          flexDirection : 'row',
-          height : 35
-        }}>
-          <View style={[Styles.progressBoxStyle,{backgroundColor : 'rgb(125, 135, 139)'}]}>
-          <Text>
-          1
-          </Text>
-          </View>
 
-          <View style={[Styles.progressBoxStyle,{backgroundColor : 'rgb(125, 135, 139)'}]}>
-          <Text>
-          2
-          </Text>
-          </View>
-
-          <View style={[Styles.progressBoxStyle,{backgroundColor : 'rgb(125, 135, 139)'}]}>
-          <Text>
-          3
-          </Text>
-          </View>
-
-          <View style={[Styles.progressBoxStyle,{backgroundColor : 'rgb(206, 214, 217)'}]}>
-          <Text>
-          4
-          </Text>
-          </View>
-
-          <View style={[Styles.progressBoxStyle,{backgroundColor : 'rgb(206, 214, 217)'}]}>
-          <Text>
-          5
-          </Text>
-          </View>
-        </View>
-      }
-
-      <View style={{
-        alignItems :'center',
-        justifyContent : 'center',
-        marginLeft : 20,
-        marginRight : 20,
-        marginTop : 25
-        //borderColor : 'red',
-        //borderWidth : 1
-      }}>
-      <Text style={{
-        fontSize : 16,
-        color : 'grey',
-        marginBottom : 20
-      }}>
-      Verify your Device
-      </Text>
-      <Text style={{
-        textAlign : 'justify'
-      }}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      </Text>
-
-
-
-
-
-
-      </View>
-
-      <View style={{
-        flexDirection : 'row',
-        marginLeft : 5,
-        alignItems : 'center',
-        justifyContent : 'center',
-        marginRight : 20
-
-      }}>
-      {
-        <View style={{
-          borderBottomWidth : 1,
-          borderBottomColor : 'grey',
-          height : 40,
-          marginLeft : 40,
-          marginRight : 10,
-          marginTop : 10,
-          flex :1
-
-        }}>
-        <TextInput
-          style={{
-            height: 40,
-            margin : 5,
-            fontSize : 14,
-            flex : 1
-          }}
-          placeholder="Enter Code"
-          onChangeText={
-            (text) => {
-            this.setState({code : text})
-            if(text==="1"){
-              //alert("correct")
-              this.setState({
-                verified : true,
-                navigate : true
-              })
-            }else {
-              this.setState({
-                verified : false
-              })
-            }
-            }
-
-          }
-          value={this.state.code}
-        />
-        </View>
-      }
-
-      {
-        !this.state.verified ?
-        <TouchableOpacity style={{
-          width : 25,
-          height : 25,
-          borderColor : 'red',
-          borderWidth : 2,
-          borderRadius : 25/2,
-          alignItems : 'center',
-          justifyContent : 'center',
-          marginTop : 15
-        }}
-        onPress = {()=>{
-          //alert("reset")
-          this.setState({
-            code : "",
-            verified : true,
-            navigate : false
-          })
-        }}
-        >
-
-        <Text style={{
-          color : 'red',
-          fontWeight : '600'
-        }}>
-        X
-        </Text>
-        </TouchableOpacity>
-
-        : null
-      }
-      {
-        this.state.verified && this.state.navigate ?
-        <TouchableOpacity style={{
-          borderColor : 'green',
-          width : 25,
-          height : 25,
-          borderRadius : 25/2,
-          borderWidth : 1,
-          alignItems : 'center',
-          justifyContent : 'center',
-          backgroundColor : 'white',
-          marginTop : 15
-
-        }}
-        >
-        <Icon name="check" size={12} color="green" />
-        </TouchableOpacity>
-        : null
-
-      }
-      </View>
-
-      {
-        !this.state.verified ?
-        <View style={{
-          flexDirection : 'row',
-          marginLeft : 10,
-          marginRight : 10,
-          justifyContent : 'center',
-          alignItems : 'center',
-          marginTop : 20
-
-        }}>
-        <Text style={{
-          marginRight : 10
-        }}>
-        Please enter valid code or
-        </Text>
-
-        <TouchableWithoutFeedback>
-        <View style={{
-          backgroundColor : 'rgb(5, 128, 194 )',
-          padding : 2,
-          borderColor : 'rgb(5, 128, 194 )',
-          borderRadius : 6
-        }}>
-        <Text style={{
-          color : 'white',
-          fontSize : 12,
-          marginRight : 5,
-          marginLeft : 5,
-          marginTop : 2,
-          marginBottom : 2
-        }}>
-        Resend Code
-        </Text>
-        </View>
-        </TouchableWithoutFeedback>
-
-
-        </View>
-        :null
-      }
-
-
-      {
-        <View style={{
-          bottom : 30,
-          flexDirection : 'row',
-          position : 'absolute',
-          marginLeft : 25,
-          marginRight : 25
-
-        }}>
-
-        <View style={{flex : 1}}>
-        <Button title="Back" color ={'rgb(211, 215, 218)'}  target="Back"/>
-        </View>
-
-        <View style={{flex : 1}}>
-        </View>
-
-        <View style={{flex : 1}}>
-        {
-          this.state.verified && this.state.navigate ?
-          <Button
-          title = "Next"
-          color ={'rgb(88, 96, 100 )'}
-
-          target="screen_4"
-          />
-          :
-          <Button
-          title = "Next"
-          color ='rgb(211, 215, 218)'
-          navigator={this.props.navigator}
-
-          />
-        }
-        </View>
-        </View>
-      }
-      </View>
-    );
+  _handleNext() {
+    NavigationActions.screen_4()
   }
+
+  render () {
+    return (
+      <View style={styles.container}>
+        <KeyboardAwareScrollView>
+          <Image source={Images.registrationStep3Hdr} style={styles.headerImage} />
+          <View style={styles.row}>
+            <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
+          </View>
+          {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
+            <View><Flb name="alert" color={Colors.snow} size={30}/></View>
+            <View style={styles.messagePadding}>
+              <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
+            </View>
+          </View> : <Text></Text>}
+          <View style={styles.row}>
+            <TextfieldWithFloatingLabel
+              ref='enterCode'
+              style={styles.textfieldWithFloatingLabel}
+              keyboardType='numbers-and-punctuation'
+              returnKeyType='done'
+              autoCapitalize='none'
+              autoCorrect={false}
+              onChangeText={this.props.handleChangeEnterCode}
+              underlineColorAndroid={Colors.coal}
+              placeholder={I18n.t('enterCode')}
+            />
+          </View>
+          <View style={styles.buttonRow}>
+            <View style={styles.backButton}>
+              <TouchableOpacity onPress={() => {this._handleBack()}}>
+                <Image source={Images.backButton} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.nextButton}>
+              <TouchableOpacity onPress={() => {this._handleNext()}}>
+                <Image source={Images.nextButton} />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View>
+              <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
+            </View>
+          </View>
+        </KeyboardAwareScrollView>
+      </View>
+    )
+  }
+
 }
 
-const Styles = StyleSheet.create({
-  wrapper : {
-    backgroundColor : 'white',
-    flex : 1,
-
-  },
-  form:{
-    backgroundColor : 'white',
-    flex : 1,
-    margin : 20,
-  },
-  errormessage : {
-    color : 'red',
-    flex : 1,
-    marginLeft : 10
-  },
-  progressBoxStyle : {
-    flex : 1,
-    alignItems :'center',
-    justifyContent : 'center'
-  },
-  textInput:{
-    height: 30,
-    borderBottomColor: '#000000',
-    borderBottomWidth: 1
-
-
-  }
-});
-
-
 Screen_3.propTypes = {
-  sendregistrationCode: PropTypes.func,
+  handleChangeEnterCode: PropTypes.func,
   fetching: PropTypes.bool,
-  registrationcode : PropTypes.string,
-
+  error: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
+    enterCode: state.registration.enterCode,
     fetching: state.registration.fetching,
-    registrationcode : state.registration.registrationcode ,
-    error: state.registration.error
+    error: state.registration.error,
+    data :state.registration.data
   }
 }
 
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    sendregistrationCode:(registrationcode) => dispatch(RegistrationActions.sendregistrationRequestcode(registrationcode))
+    handleChangeEnterCode:(enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode))
   }
 }
 
