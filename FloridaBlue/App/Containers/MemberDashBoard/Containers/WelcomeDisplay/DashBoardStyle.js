@@ -16,7 +16,7 @@ export default StyleSheet.create({
  },
  hsaHeader:{
   flexDirection:'row',
-  height:140,
+  height:145,
   //marginTop:20,
   justifyContent:'space-between',
   alignItems:'center',

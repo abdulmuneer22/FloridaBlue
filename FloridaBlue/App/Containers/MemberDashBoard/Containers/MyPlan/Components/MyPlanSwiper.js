@@ -12,74 +12,58 @@ const window = Dimensions.get('window')
 
 import Swiper from 'react-native-swiper';
 import {Colors,Metrics,Fonts, Images} from '../../../../../Themes'
+import PercentageCircle from 'react-native-percentage-circle'
 
 class MyPlanSwiper extends Component{
 
     render(){
         return(
 
-                <Swiper height={350} style={styles.wrapper} showsButtons={true}>
-                <View style={styles.headerStyle}>
-
-                    <Text style={styles.headerText}>Out-Network</Text>
-                    <Text style={styles.subHeader}> Family Out-of-Pocket (OOP) Maximum</Text>
-
-                    <View style={styles.listViewBg}>
-                    <View style={styles.listViewStyle}>
-
-                  <View style={{flexDirection:'row'}}>
-                  <Text>Family Deductable</Text>
-                <Text>${this.props.data.annualDeductible.inNetwork[1].value}</Text>
-                </View>
-
-                <View style={{flexDirection:'row'}}>
-                <Text>Remaining Family Deductable</Text>
-              <Text>${this.props.data.annualDeductible.remainingValue}</Text>
-              </View>
-
-                <View style={{flexDirection:'row'}}>
-                <Text>Family Pharmacy Deductible:</Text>
-                <Text>${this.props.data.annualDeductible.benefitValue}</Text>
-                </View>
-
-                </View>
-                </View>
-                </View>
-
-                <View style={styles.headerStyle}>
-
-                <Text style={styles.headerText}>Out-Network</Text>
-                <Text style={styles.subHeader}> Family Out-of-Pocket (OOP) Maximum</Text>
-
-                <View style={styles.listViewBg}>
-                <View style={styles.listViewStyle}>
-
-              <View style={{flexDirection:'row'}}>
-              <Text>Family Deductable</Text>
-              <Text>${this.props.data.oop.usedOOP}</Text>
-              </View>
-
-              <View style={{flexDirection:'row'}}>
-              <Text>Remaining Family Deductable</Text>
-              <Text>${this.props.data.oop.remainingValue}</Text>
-              </View>
-
-              <View style={{flexDirection:'row'}}>
-              <Text>Family Pharmacy Deductible:</Text>
-              <Text>${this.props.data.oop.benefitValue}</Text>
-              </View>
-
-                </View>
 
 
-                <View style={{flex:1, alignItems: 'center', justifyContent:'center'}}>
-                <Image style={{width:50,height:50}}
-                source={Images.findCare}/>
-                </View>
-                  </View>
-                </View>
 
-                </Swiper>
+<Swiper height={350} style={styles.wrapper} showsButtons={true}>
+<View style={styles.headerStyle}>
+
+
+
+  <Text style={styles.headerText}>In-Network</Text>
+  <Text style={styles.subHeader}> Family Out-of-Pocket (OOP) Maximum</Text>
+
+  <View style={styles.dataContainer}>
+  <View style={styles.listViewStyle}>
+
+  { this.props.data.annualDeductible.inNetwork ?this.props.data.annualDeductible.inNetwork.map(function(network, i){
+    return(
+      <View>
+  <View style={{flexDirection:'row'}}>
+<Text style={{marginTop:10,fontSize:Fonts.size.regular}}>{network.type} Deductable :</Text>
+<Text style={{marginTop:10,fontSize:Fonts.size.regular}}>${network.value}</Text>
+</View>
+<View style={{flexDirection:'row'}}>
+<Text style={{marginTop:10,fontSize:Fonts.size.regular}}>Remaining {network.type} Deductable :</Text>
+<Text style={{marginTop:10,fontSize:Fonts.size.regular}}>${network.remain}</Text>
+</View>
+<View style={{flexDirection:'row'}}>
+<Text style={{marginTop:10,fontSize:Fonts.size.regular}}>{network.type} Pharmacy Deductible :</Text>
+<Text style={{marginTop:10,fontSize:Fonts.size.regular}}>${network.used}</Text>
+</View>
+</View>)
+
+})      : <Text></Text>}
+
+
+</View>
+
+  <View style={{flex:0.3, alignItems: 'center', justifyContent:'center'}}>
+  <PercentageCircle radius={50} percent={50} color={Colors.flBlue.ocean} />
+  </View>
+
+  </View>
+
+  </View>
+
+  </Swiper>
 
         );
     }
@@ -88,32 +72,50 @@ class MyPlanSwiper extends Component{
 
 var styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: '#eee'
+    backgroundColor: Colors.snow
 
   },
 
   headerStyle: {
+    flex:1,
     alignItems:'center',
-    paddingTop:20
+    //justifyContent:'center',
+    flexWrap:'nowrap',
+    //backgroundColor:Colors.flBlue.ocean
   },
   headerText: {
     color:Colors.flBlue.night,
     fontWeight:'bold',
-    paddingBottom:10
+    //paddingBottom:10,
+    marginTop:30,
+
+    //width:Metrics.screenWidth,
+    //alignSelf:'center',
+    fontSize:Fonts.size.h6,
+    //backgroundColor:Colors.flBlue.ocean
   },
   subHeader:{
     fontSize:Fonts.size.regular,
-    marginBottom:18
+    marginBottom:18,
+    marginTop:20
   },
   listViewBg:{
     flexDirection:'row',
     marginLeft:15,
     marginRight:15
   },
+  dataContainer:{
+    flexDirection:'row',
+      marginLeft:13,
+      marginRight:35,
+    flexWrap:'wrap'
+  },
   listViewStyle:{
     alignItems:'flex-start',
-    flex:2,
-    marginLeft:15
-  }
+     flex:0.7,
+     marginLeft:20,
+
+   }
+
 })
 export default MyPlanSwiper

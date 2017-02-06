@@ -4,12 +4,12 @@ import {Colors,Metrics,Fonts,Images} from '../../../../Themes'
 export default StyleSheet.create({
   headerContainer:{
    //flexDirection:'row',
-   //height:150,
+   height:150,
    //justifyContent:'space-between',
    //alignItems:'center',
    //padding:15,overflow: 'visible',
-   resizeMode: 'cover',
-   overflow:'visible',
+   //resizeMode: 'cover',
+   //overflow:'visible',
    alignSelf:'stretch',
    width:Metrics.screenWidth,
    //backgroundColor:Colors.flBlue.ocean
@@ -38,8 +38,8 @@ export default StyleSheet.create({
  },
  userStyle:{
    flexDirection:'row',
-   paddingTop:20,
-   paddingBottom:20,
+   paddingTop:Metrics.doubleBaseMargin,
+   paddingBottom:Metrics.doubleBaseMargin,
    //height:90,
 
    marginTop:Metrics.doubleBaseMargin,
@@ -81,7 +81,7 @@ export default StyleSheet.create({
    //color:Colors.flBlue.grey3
  },
  row: {
-   paddingVertical: Metrics.doubleBaseMargin,
+   paddingVertical: Metrics.baseMargin,
    paddingHorizontal: Metrics.doubleBaseMargin
  },
 
@@ -90,7 +90,8 @@ export default StyleSheet.create({
    marginHorizontal: Metrics.section,
    textAlign: 'center',
    fontWeight: 'bold',
-   fontSize: Fonts.size.small
+   fontSize: Fonts.size.small,
+   marginTop:100
  },
  textfieldWithFloatingLabel: {
    height: 48,  // have to do it on iOS
@@ -107,6 +108,13 @@ export default StyleSheet.create({
    alignSelf : 'center',
    marginTop : Metrics.doubleBaseMargin
  },
+
+ wrapper:{
+   flex:1,
+   justifyContent:'center',
+   marginTop:100,
+
+ }
 
 
 

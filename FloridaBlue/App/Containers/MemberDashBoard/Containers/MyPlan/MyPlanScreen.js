@@ -4,7 +4,8 @@ import {
   Text,
   View,
   Navigator,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -13,12 +14,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Colors, Metrics, Fonts} from '../../../../Themes'
 import ToolBar from './Components/toolBar'
 import axios from 'axios'
+import SelectBox from './Components/SelectBox'
 import Card from './Components/Card'
 import NavItems from '../../../../Navigation/NavItems.js'
 import styles from './MyPlanScreenStyle'
 import MyPlanSwiper from './Components/MyPlanSwiper'
 import { connect } from 'react-redux';
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
+var {height, width} = Dimensions.get('window');
 /*
 type MyPlanScreenProps = {
   dispatch: () => any,
@@ -28,13 +31,49 @@ type MyPlanScreenProps = {
   attemptMyPlan: () => void
 }
 */
+/*const options=[
+  {
+    key:'Family',
+    value:0
+  },
+  {
+    key:'Member 1',
+    value:1
+  },
+  {
+    key:'Member 2',
+    value:2
+  },
+  {
+    key:'Member 3',
+    value:3
+  }
+];*/
 class MyPlanScreen extends Component{
 
   constructor(props) {
     super(props);
+    this.state={
+      selectedPlan:{}
+    }
+    this._onPlanChange=this._onPlanChange.bind(this);
   }
 
 
+  _renderHeader(){
+  return (<View style={styles.headerContainer}>
+  {NavItems.backButton()}
+  <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:10}]}>My Plan</Text>
+  {NavItems.settingsButton()}
+
+  </View>)
+  }
+
+_onPlanChange(selected){
+  this.setState({
+    selectedPlan:selected
+  })
+}
   componentDidMount(){
        console.log("I am my plan screen")
         this.props.attemptMyPlan();
@@ -52,34 +91,30 @@ class MyPlanScreen extends Component{
 
 
   render(){
-    return(
+    const { selectedPlan } =this.state;
+
+        return(
 
       <View style={{
           flex : 1 ,
           backgroundColor : 'white'
       }}>
-      <View style={styles.headerContainer}>
-        {NavItems.backButton()}
-        <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:10}]}>MyPlan</Text>
-        {NavItems.settingsButton()}
-
-      </View>
+          {this._renderHeader()}
 
       <View style={Styles.PlanName}>
-      <Text>
+      <Text style={{fontSize:Fonts.size.h6}}>
       Blue Options
       </Text>
       </View>
-
+      
       <View style={Styles.chartWrapper}>
-      {this.props.data.annualDeductible ?  <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
+       {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
              </View>
 
 
       <View style={{
-
       flexWrap : 'wrap',
-      flexDirection : 'row'
+      flexDirection : 'row',
       }}>
       <Card
       title = "Benefits"
@@ -92,6 +127,7 @@ class MyPlanScreen extends Component{
       bg="rgb(151, 198, 207)"
       icon = "book"
       />
+
       </View>
                 </View>
 
@@ -106,9 +142,7 @@ class MyPlanScreen extends Component{
         PlanName : {
           alignItems  : 'center',
           justifyContent : 'center',
-          margin : 10,
-          padding : 5
-
+          height:40
         },
 
         chartWrapper : {
@@ -116,31 +150,7 @@ class MyPlanScreen extends Component{
             flex : 2,
             marginBottom : 20
         },
-        footer: {
-            flex : 1,
-            backgroundColor : 'rgb(123, 136, 138)',
 
-        },
-        footerSecondTextWraper : {
-            flexDirection : 'row',
-
-            padding : 5
-        },
-        footerText : {
-          padding : 20,
-          textAlign : 'center',
-          fontWeight : '500',
-          fontSize : 12
-        },
-      column : {
-            alignItems : 'center',
-            flex : 1
-        },
-        columnText : {
-            fontSize : 13,
-            fontWeight : '500'
-
-        }
 
       });
 
