@@ -56,7 +56,7 @@ class Screen_3 extends React.Component {
         <KeyboardAwareScrollView>
           <Image source={Images.registrationStep3Hdr} style={styles.headerImage} />
           <View style={styles.row}>
-            <Text style={styles.heading}>{I18n.t('personalInformation')}</Text>
+            <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
           </View>
           {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
             <View><Flb name="alert" color={Colors.snow} size={30}/></View>
@@ -64,6 +64,19 @@ class Screen_3 extends React.Component {
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
             </View>
           </View> : <Text></Text>}
+          <View style={styles.row}>
+            <TextfieldWithFloatingLabel
+              ref='enterCode'
+              style={styles.textfieldWithFloatingLabel}
+              keyboardType='numbers-and-punctuation'
+              returnKeyType='done'
+              autoCapitalize='none'
+              autoCorrect={false}
+              onChangeText={this.props.handleChangeEnterCode}
+              underlineColorAndroid={Colors.coal}
+              placeholder={I18n.t('enterCode')}
+            />
+          </View>
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
               <TouchableOpacity onPress={() => {this._handleBack()}}>
@@ -89,12 +102,14 @@ class Screen_3 extends React.Component {
 }
 
 Screen_3.propTypes = {
+  handleChangeEnterCode: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
+    enterCode: state.registration.enterCode,
     fetching: state.registration.fetching,
     error: state.registration.error,
     data :state.registration.data
@@ -103,6 +118,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    handleChangeEnterCode:(enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode))
   }
 }
 
