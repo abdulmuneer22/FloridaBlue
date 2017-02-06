@@ -30,7 +30,7 @@
 		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>www.mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/AccountSettings</key>
+			<key>https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/AccountSettings</key>
 			<dict>
 				<key>NSRequiresCertificateTransparency</key>
 				<false/>

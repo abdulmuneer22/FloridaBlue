@@ -32,7 +32,7 @@ export default {
     return toImmutable(state)
   },
   in: (raw: Object) => {
-    // console.log({ storing: raw })
+     console.log({ storing: raw })
     return fromImmutable(raw)
   }
 }

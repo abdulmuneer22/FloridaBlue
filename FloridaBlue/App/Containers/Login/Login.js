@@ -77,7 +77,9 @@ componentWillReceiveProps (newProps) {
         console.log("new props"+newProps.responseURL);
         NavigationActions.MyView({responseURL:newProps.responseURL})
       }
+
   }
+
   }
 
   _moreInfo() {
