@@ -43,9 +43,13 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
 class Screen_1 extends React.Component {
   constructor(props) {
     super(props)
-    //this._handleRegistration = this._handleRegistration.bind(this)
   }
 
+  _handleRegistration(){
+    NavigationActions.screen_2()
+  }
+
+  /*
   _handleRegistration(){
     //var contractNumber = this.props.contractNumber ?
     //var firstName = this.state.firstName
@@ -66,9 +70,14 @@ class Screen_1 extends React.Component {
       this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
     }
   }
+  */
 
   _handleFindMemberId() {
     NavigationActions.memberid()
+  }
+
+  _handleBack() {
+    NavigationActions.pop()
   }
 
   componentDidUpdate() {
@@ -182,7 +191,7 @@ class Screen_1 extends React.Component {
           </View>
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity onPress={() => {this._handleBack()}}>
                 <Image source={Images.backButton} />
               </TouchableOpacity>
             </View>

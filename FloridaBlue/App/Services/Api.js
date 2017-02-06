@@ -1,6 +1,5 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
-var btoa = require('btoa');
 global.Buffer = global.Buffer || require('buffer').Buffer;
 
 // our "constructor"
@@ -20,10 +19,8 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
     // here are some default headers
     headers: {
       'Cache-Control': 'no-cache',
-
     },
     // 10 second timeout...
-    maxRedirects: 0,
     timeout: 10000
   })
 

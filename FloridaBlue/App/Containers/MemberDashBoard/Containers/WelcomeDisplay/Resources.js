@@ -76,8 +76,8 @@ class Resources extends Component {
   height : 150,
   alignItems : 'center',
   justifyContent : 'center',
-  //borderColor : 'red',
-  //borderWidth : 1
+  borderColor : Colors.flBlue.lightBlue,
+  borderWidth : 1
 }} onPress={onItemPress.bind(this)}>
           <View style={{alignItems:'center'}}>
 

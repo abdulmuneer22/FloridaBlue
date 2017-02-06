@@ -81,7 +81,7 @@ componentDidMount(){
   height : 150,
   alignItems : 'center',
   justifyContent : 'center',
-  borderWidth:2,
+  borderWidth:1,
   borderColor:Colors.flBlue.lightBlue
 }} onPress={onItemPress.bind(this)}>
           <View style={{alignItems:'center'}}>

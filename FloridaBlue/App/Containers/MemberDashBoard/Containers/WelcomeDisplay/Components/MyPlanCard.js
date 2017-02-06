@@ -45,7 +45,7 @@ class MyPlanCard extends Component{
       //  alignItems:'center',
       //  justifyContent:'center',
       //  height:40,
-        marginLeft:5
+        //marginLeft:5
       }}>
       My Health Plan
       </Text>
@@ -53,8 +53,7 @@ class MyPlanCard extends Component{
               Find information about deductibles, claims, your savings, and more.
               </Text>
 
-              <Text style={{fontSize:Fonts.size.medium,marginTop:15}}>
-               * Dental & Vision are in the menu</Text>
+
                </View>
 
     <View style={{marginTop:30,marginRight:15, backgroundColor:Colors.transparent}}>
