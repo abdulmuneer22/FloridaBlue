@@ -24,7 +24,7 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import MemberActions from '../../../../Redux/MemberRedux'
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Flb from '../../../../Themes/FlbIcon' 
+import Flb from '../../../../Themes/FlbIcon'
 import Loader from '../../../../Components/Loader'
 const window = Dimensions.get('window');
 
@@ -60,6 +60,10 @@ componentDidMount(){
       <View style={styles.container}>
       {this._renderHeader()}
       <ScrollView>
+      {
+        this.props.visibilityRules ?
+
+        <View style={{flex:1}}>
       <Greeting userName={this.props.userName}/>
       <MyPlanCard/>
       <View style={{
@@ -107,6 +111,16 @@ componentDidMount(){
       <View>
       </View>
        <Image source={Images.findCare} style={styles.footerImage}/>
+
+       </View>
+
+       :
+       <View style={{alignItems:'center',justifyContent:'center'}}>
+       <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+       <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        </View>
+      }
+
 </ScrollView>
       </View>
           );

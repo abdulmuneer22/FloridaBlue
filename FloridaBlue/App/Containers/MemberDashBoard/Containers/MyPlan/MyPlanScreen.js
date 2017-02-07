@@ -21,9 +21,11 @@ import styles from './MyPlanScreenStyle'
 import MyPlanSwiper from './Components/MyPlanSwiper'
 import { connect } from 'react-redux';
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
-var {height, width} = Dimensions.get('window');
 
-import Loader from '../../../../Components/Loader'
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+const window = Dimensions.get('window');
+
+//import Loader from '../../../../Components/Loader'
 /*
 type MyPlanScreenProps = {
   dispatch: () => any,
@@ -33,6 +35,10 @@ type MyPlanScreenProps = {
   attemptMyPlan: () => void
 }
 */
+
+const SingleColorSpinner=MKSpinner.singleColorSpinner()
+.withStyle(styles.spinner)
+.build()
 
 class MyPlanScreen extends Component{
 
@@ -73,29 +79,32 @@ class MyPlanScreen extends Component{
 
         return(
 
-          <View style={{
-            flex : 1 ,
-          backgroundColor : 'white'
-          }}>
 
+          <View style={styles.container}>
 
+          <View>
           {this._renderHeader()}
+          </View>
 
-          <View style={Styles.PlanName}>
+
+          {
+            this.props.data ?
+            <View style={{flex:1}}>
+          <View style={styles.PlanName}>
           <Text style={{fontSize:Fonts.size.h6}}>
           Blue Options
           </Text>
           </View>
 
-          <View style={Styles.chartWrapper}>
-          {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} /> :<Loader />}
+          <View style={styles.chartWrapper}>
+          {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
+          :<View style={{alignItems:'center',justifyContent:'center',marginTop:20}}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+           </View>}
           </View>
 
-
-          <View style={{
-          flexWrap : 'wrap',
-          flexDirection : 'row',
-          }}>
+          <View style={styles.cardStyle}>
           <Card
           title = "Benefits"
           bg="rgb(204, 211, 214)"
@@ -107,29 +116,24 @@ class MyPlanScreen extends Component{
           bg="rgb(151, 198, 207)"
           icon = "book"
           />
-
           </View>
+          </View>
+
+          : <View style={{alignItems:'center',justifyContent:'center'}}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+           </View>
+         }
+
+
+
+
+
           </View>
 
           );
         }
-
-      }
-      const Styles = StyleSheet.create({
-        PlanName : {
-          alignItems  : 'center',
-          justifyContent : 'center',
-          height:40
-        },
-
-        chartWrapper : {
-          //   backgroundColor : 'yellow',
-            flex : 2,
-            marginBottom : 20
-        },
-
-
-      });
+}
 
 MyPlanScreen.propTypes = {
   data: PropTypes.object,

@@ -5,12 +5,12 @@ import {
 import MemberActions from '../Redux/MemberRedux'
 import LoginActions from '../Redux/LoginRedux'
 import MyPlanActions from '../Redux/MyPlanRedux'
-import axios from 'axios'
 // attempts to login
 export function* member(api, {
   smToken
 }) {
   //    api.setsmTokenHeaders(smToken);
+
   const response = yield call(api.getMember)
   console.log(JSON.stringify(response));
   if (response.data.status.code = "200") {

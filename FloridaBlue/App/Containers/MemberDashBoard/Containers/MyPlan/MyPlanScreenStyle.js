@@ -18,5 +18,31 @@ export default StyleSheet.create({
     flex:1,
     backgroundColor:'white'
   },
+  PlanName : {
+    alignItems  : 'center',
+    justifyContent : 'center',
+    height:40
+  },
+
+  chartWrapper : {
+    //   backgroundColor : 'yellow',
+      flex : 2,
+      marginBottom : 20
+  },
+  cardStyle:{
+    flexWrap : 'wrap',
+    flexDirection : 'row'
+  },
+  spinner:{
+  //  color:Colors.flBlue.red,
+  //alignItems:'center',
+  //justifyContent:'center',
+  //height:window.height
+},
+spinnerText:{
+
+marginTop:20,
+}
+
 
 })

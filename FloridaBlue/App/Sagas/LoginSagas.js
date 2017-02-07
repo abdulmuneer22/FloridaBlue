@@ -2,7 +2,7 @@ import {
   call,
   put
 } from 'redux-saga/effects'
-
+var btoa = require('btoa');
 import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
@@ -13,7 +13,7 @@ export function* login(api, {
     var username = username
     var password = password
     console.log("username+password" + JSON.stringify(username) + password);
-    api.setHeaders(username, password);
+  //  api.setHeaders(username, password);
     const response = yield call(api.getUser, username, password)
     console.log(JSON.stringify(response));
 
@@ -43,7 +43,7 @@ export function* login(api, {
 
 
           } else {
-             
+
             var error = null
             var setcookie = response.headers['set-cookie']
             console.log("jsession"+setcookie)

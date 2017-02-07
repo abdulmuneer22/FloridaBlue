@@ -33,6 +33,13 @@ class MyPlanSwiper extends Component{
       });
   }
 
+  if (this.props.data.oop.inNetwork){
+  var outNetwork = this.props.data.oop.inNetwork ;
+    outNetwork.map(function(temObj){
+        myPlan.push(temObj)
+    });
+}
+
 
       return(
 <Swiper height={350} style={styles.wrapper} showsButtons={true}>
@@ -44,7 +51,7 @@ return(
 
 
   <Text style={styles.headerText}>In-Network</Text>
-  <Text style={styles.subHeader}> Family Out-of-Pocket (OOP) Maximum</Text>
+  <Text style={styles.subHeader}> Family Annual Deductible</Text>
 
   <View style={styles.dataContainer}>
   <View style={styles.listViewStyle}>

@@ -20,7 +20,7 @@ import {Colors, Metrics, Fonts, Images} from '../Themes'
    <View style={{alignItems:'center',
      backgroundColor:Colors.snow,
     // backgroundColor : 'red',
-    marginTop : 50,
+    marginTop : 150,
      //height : 300,
      justifyContent:'center',
      bottom :50
