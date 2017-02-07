@@ -4,7 +4,8 @@ import {
   Text,
   View,
   Navigator,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from 'react-native';
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -13,12 +14,18 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Colors, Metrics, Fonts} from '../../../../Themes'
 import ToolBar from './Components/toolBar'
 import axios from 'axios'
+import SelectBox from './Components/SelectBox'
 import Card from './Components/Card'
 import NavItems from '../../../../Navigation/NavItems.js'
 import styles from './MyPlanScreenStyle'
 import MyPlanSwiper from './Components/MyPlanSwiper'
 import { connect } from 'react-redux';
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
+
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+const window = Dimensions.get('window');
+
+//import Loader from '../../../../Components/Loader'
 /*
 type MyPlanScreenProps = {
   dispatch: () => any,
@@ -28,13 +35,29 @@ type MyPlanScreenProps = {
   attemptMyPlan: () => void
 }
 */
+
+const SingleColorSpinner=MKSpinner.singleColorSpinner()
+.withStyle(styles.spinner)
+.build()
+
 class MyPlanScreen extends Component{
 
   constructor(props) {
     super(props);
+    this.state={
+    }
+
   }
 
 
+  _renderHeader(){
+  return (<View style={styles.headerContainer}>
+  {NavItems.backButton()}
+  <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:10}]}>My Plan</Text>
+  {NavItems.settingsButton()}
+
+  </View>)
+  }
   componentDidMount(){
        console.log("I am my plan screen")
         this.props.attemptMyPlan();
@@ -52,116 +75,84 @@ class MyPlanScreen extends Component{
 
 
   render(){
-    return(
-
-      <View style={{
-          flex : 1 ,
-          backgroundColor : 'white'
-      }}>
-      <View style={styles.headerContainer}>
-        {NavItems.backButton()}
-        <Text style={[{color:Colors.snow,fontSize:Fonts.size.h4,marginLeft:10}]}>MyPlan</Text>
-        {NavItems.settingsButton()}
-
-      </View>
-
-      <View style={Styles.PlanName}>
-      <Text>
-      Blue Options
-      </Text>
-      </View>
-
-      <View style={Styles.chartWrapper}>
-      {this.props.data.annualDeductible ?  <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
-             </View>
 
 
-      <View style={{
-
-      flexWrap : 'wrap',
-      flexDirection : 'row'
-      }}>
-      <Card
-      title = "Benefits"
-      bg="rgb(204, 211, 214)"
-      icon = "briefcase"
-      />
-
-      <Card
-      title = "Claims"
-      bg="rgb(151, 198, 207)"
-      icon = "book"
-      />
-      </View>
-                </View>
+        return(
 
 
+          <View style={styles.container}>
 
+          <View>
+          {this._renderHeader()}
+          </View>
+
+
+          {
+            this.props.data ?
+            <View style={{flex:1}}>
+          <View style={styles.PlanName}>
+          <Text style={{fontSize:Fonts.size.h6}}>
+          Blue Options
+          </Text>
+          </View>
+
+          <View style={styles.chartWrapper}>
+          {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
+          :<View style={{alignItems:'center',justifyContent:'center',marginTop:20}}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+           </View>}
+          </View>
+
+          <View style={styles.cardStyle}>
+          <Card
+          title = "Benefits"
+          bg="rgb(204, 211, 214)"
+          icon = "briefcase"
+          />
+
+          <Card
+          title = "Claims"
+          bg="rgb(151, 198, 207)"
+          icon = "book"
+          />
+          </View>
+          </View>
+
+          : <View style={{alignItems:'center',justifyContent:'center'}}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+           </View>
+         }
+
+
+
+
+
+          </View>
 
           );
         }
+}
 
-      }
-      const Styles = StyleSheet.create({
-        PlanName : {
-          alignItems  : 'center',
-          justifyContent : 'center',
-          margin : 10,
-          padding : 5
+MyPlanScreen.propTypes = {
+  data: PropTypes.object,
+  attemptMyPlan: PropTypes.func,
+  error: PropTypes.string
+}
 
-        },
+const mapStateToProps = (state) => {
 
-        chartWrapper : {
-          //   backgroundColor : 'yellow',
-            flex : 2,
-            marginBottom : 20
-        },
-        footer: {
-            flex : 1,
-            backgroundColor : 'rgb(123, 136, 138)',
+  return {
+    fetching: state.login.fetching,
+    data : state.myplan.data,
+    error: state.myplan.error
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
+  }
+}
 
-        },
-        footerSecondTextWraper : {
-            flexDirection : 'row',
-
-            padding : 5
-        },
-        footerText : {
-          padding : 20,
-          textAlign : 'center',
-          fontWeight : '500',
-          fontSize : 12
-        },
-      column : {
-            alignItems : 'center',
-            flex : 1
-        },
-        columnText : {
-            fontSize : 13,
-            fontWeight : '500'
-
-        }
-
-      });
-
-      MyPlanScreen.propTypes = {
-        data: PropTypes.object,
-        attemptMyPlan: PropTypes.func,
-        error: PropTypes.string
-      }
-
-      const mapStateToProps = (state) => {
-
-        return {
-          fetching: state.login.fetching,
-          data : state.myplan.data,
-          error: state.myplan.error
-        }
-      }
-      const mapDispatchToProps = (dispatch) => {
-        return {
-          attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
-        }
-      }
-
-      export default connect(mapStateToProps, mapDispatchToProps) (MyPlanScreen)
+export default connect(mapStateToProps, mapDispatchToProps) (MyPlanScreen)

@@ -1,11 +1,10 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
-var btoa = require('btoa');
 global.Buffer = global.Buffer || require('buffer').Buffer;
 
 // our "constructor"
 const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
-  //const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
+//const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
   // ------
   // STEP 1
   // ------
@@ -20,23 +19,22 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
     // here are some default headers
     headers: {
       'Cache-Control': 'no-cache',
-
     },
     // 10 second timeout...
-    maxRedirects: 0,
     timeout: 10000
   })
 
 
 
-
+  const naviMonitor = (response) => console.log('hey!  listen! ', response)
+  api.addMonitor(naviMonitor)
 
   // Force OpenWeather API Key on all requests
-  /*
+
   api.addRequestTransform((request) => {
-    request.params['APPID'] = '0e44183e8d1018fc92eb3307d885379c'
+    console.log("hey ther I am "+JSON.stringify(request))
   })
-*/
+
   // Wrap api's addMonitor to allow the calling code to attach
   // additional monitors in the future.  But only in __DEV__ and only
   // if we've attached Reactotron to console (it isn't during unit tests).
@@ -58,12 +56,20 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
+  /*
   const setHeaders = (username, password) => api.setHeaders({
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'Authorization': 'Basic ' + btoa(username + ":" + password)
-  })
-  const getUser = (username, password) => api.get('/login')
+  })*/
+
+  const getUser = (username, password) => api.get('/login',{},{
+    'auth': {
+    'username': username,
+    'password': password
+  }
+  }
+)
   const setsmTokenHeaders = (smToken) => api.setHeaders({
     'Accept': 'application/json',
     'Content-Type': 'application/json',
@@ -95,7 +101,7 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
   //
   return {
     // a list of the API functions from step 2
-    setHeaders,
+
     getUser,
     setsmTokenHeaders,
     getMember,
