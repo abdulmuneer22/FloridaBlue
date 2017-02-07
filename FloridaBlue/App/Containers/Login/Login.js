@@ -179,7 +179,7 @@ componentWillReceiveProps (newProps) {
                 onChangeText={(text) => this.setState({username : text})}
                 value={this.state.username}
                 underlineColorAndroid={Colors.coal}
-                onSubmitEditing={() => this.refs.username.focus()}
+                onSubmitEditing={() => this.refs.password.focus()}
                 placeholder={I18n.t('username')} />
             </View>
 
@@ -188,14 +188,13 @@ componentWillReceiveProps (newProps) {
                 ref='password'
                 style={styles.textInput}
                 keyboardType='default'
-
+                returnKeyType='done'
                 autoCapitalize='none'
                 autoCorrect={false}
                 secureTextEntry
                 onChangeText={(text) => this.setState({password : text})}
                 value={this.state.password}
                 underlineColorAndroid={Colors.coal}
-                onSubmitEditing={() => this.refs.password.focus()}
                 placeholder={I18n.t('password')} />
             </View>
 

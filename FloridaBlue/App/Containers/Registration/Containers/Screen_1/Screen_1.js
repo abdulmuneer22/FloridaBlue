@@ -1,7 +1,7 @@
 // @flow
 
 import React, { PropTypes } from 'react'
-import {
+import ReactNative, {
   Image,
   KeyboardAvoidingView,
   ScrollView,
@@ -17,6 +17,7 @@ import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { MKTextField, MKColor } from 'react-native-material-kit'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // Styles
 import styles from './Screen_1Style'
@@ -42,7 +43,7 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
 class Screen_1 extends React.Component {
   constructor(props) {
     super(props)
-    this._handleRegistration = this._handleRegistration.bind(this)
+    //this._handleRegistration = this._handleRegistration.bind(this)
   }
 
   _handleRegistration(){
@@ -58,28 +59,46 @@ class Screen_1 extends React.Component {
     var lastName = this.props.lastName
     var dateOfBirth = this.props.dateOfBirth
     var zipCode = this.props.zipCode
+
     if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
       alert("Please enter values in all fields")
     } else {
-      this.props.verifyIdentification(contractNumber, firstName,lastName,dateOfBirth,zipCode)
+      this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
     }
+  }
 
+  _handleFindMemberId() {
+    NavigationActions.memberid()
+  }
+
+  componentDidUpdate() {
+    if(this.props.data) {
+      var reasonCode = this.props.data.reasonCode
+      console.log(reasonCode)
+
+      if(reasonCode === '000') {
+        NavigationActions.screen_2()
+      }
+      else if(reasonCode === '999') {
+        // NavigationActions.errorScreen
+      }
+    }
   }
 
   render () {
     return (
-      <ScrollView style={styles.mainContainer}>
-        <KeyboardAvoidingView behavior='position'>
+      <View style={styles.container}>
+        <KeyboardAwareScrollView>
           <Image source={Images.registrationStep1Hdr} style={styles.headerImage} />
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('personalInformation')}</Text>
           </View>
-          <View style={styles.messageView}>
-            <View><Flb name="exclamation-triangle" size={30}/></View>
+          {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
+            <View><Flb name="alert" color={Colors.snow} size={30}/></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {I18n.t('createAccountMessage')}</Text></View>
+              <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
             </View>
-          </View>
+          </View> : <Text></Text>}
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='contractNumber'
@@ -90,7 +109,13 @@ class Screen_1 extends React.Component {
               autoCorrect={false}
               onChangeText={this.props.handleChangeContractNumber}
               underlineColorAndroid={Colors.coal}
+
               onSubmitEditing={() => this.refs.contractNumber.focus()}
+
+              onSubmitEditing={(event) => {
+                this.refs.firstName.focus();
+              }}
+
               placeholder={I18n.t('memberId')}
             />
           </View>
@@ -98,7 +123,7 @@ class Screen_1 extends React.Component {
             <Text style={[styles.message, {fontSize: Fonts.size.regular}]}> {I18n.t('cantFindMemberId')}</Text>
           </View>
           <View style={styles.findItButton}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => {this._handleFindMemberId()}}>
               <Image source={Images.findItButton} />
             </TouchableOpacity>
           </View>
@@ -112,7 +137,9 @@ class Screen_1 extends React.Component {
               autoCorrect={false}
               onChangeText={this.props.handleChangeFirstName}
               underlineColorAndroid={Colors.coal}
-              onSubmitEditing={() => this.refs.firstName.focus()}
+              onSubmitEditing={(event) => {
+                this.refs.lastName.focus();
+              }}
               placeholder={I18n.t('firstName')} />
           </View>
           <View style={styles.row}>
@@ -125,7 +152,9 @@ class Screen_1 extends React.Component {
               autoCorrect={false}
               onChangeText={this.props.handleChangeLastName}
               underlineColorAndroid={Colors.coal}
-              onSubmitEditing={() => this.refs.lastName.focus()}
+              onSubmitEditing={(event) => {
+                this.refs.dateOfBirth.focus();
+              }}
               placeholder={I18n.t('lastName')} />
           </View>
           <View style={styles.row}>
@@ -138,7 +167,9 @@ class Screen_1 extends React.Component {
               autoCorrect={false}
               onChangeText={this.props.handleChangeDateOfBirth}
               underlineColorAndroid={Colors.coal}
-              onSubmitEditing={() => this.refs.dateOfBirth.focus()}
+              onSubmitEditing={(event) => {
+                this.refs.zipCode.focus();
+              }}
               placeholder={I18n.t('dateOfBirth')} />
           </View>
           <View style={styles.row}>
@@ -146,12 +177,11 @@ class Screen_1 extends React.Component {
               ref='zipCode'
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
-              returnKeyType='next'
+              returnKeyType='done'
               autoCapitalize='none'
               autoCorrect={false}
               onChangeText={this.props.handleChangeZipCode}
               underlineColorAndroid={Colors.coal}
-              onSubmitEditing={() => this.refs.zipCode.focus()}
               placeholder={I18n.t('zipCode')} />
           </View>
           <View style={styles.buttonRow}>
@@ -171,8 +201,8 @@ class Screen_1 extends React.Component {
               <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
           </View>
-        </KeyboardAvoidingView>
-      </ScrollView>
+        </KeyboardAwareScrollView>
+      </View>
     )
   }
 
@@ -202,7 +232,8 @@ const mapStateToProps = (state) => {
     lastName: state.registration.lastName,
     dateOfBirth:state.registration.dateOfBirth,
     zipCode:state.registration.zipCode,
-    error: state.registration.error
+    error: state.registration.error,
+    data :state.registration.data
   }
 }
 
