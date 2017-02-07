@@ -22,6 +22,8 @@ import MyPlanSwiper from './Components/MyPlanSwiper'
 import { connect } from 'react-redux';
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
 var {height, width} = Dimensions.get('window');
+
+import Loader from '../../../../Components/Loader'
 /*
 type MyPlanScreenProps = {
   dispatch: () => any,
@@ -31,32 +33,14 @@ type MyPlanScreenProps = {
   attemptMyPlan: () => void
 }
 */
-/*const options=[
-  {
-    key:'Family',
-    value:0
-  },
-  {
-    key:'Member 1',
-    value:1
-  },
-  {
-    key:'Member 2',
-    value:2
-  },
-  {
-    key:'Member 3',
-    value:3
-  }
-];*/
+
 class MyPlanScreen extends Component{
 
   constructor(props) {
     super(props);
     this.state={
-      selectedPlan:{}
     }
-    this._onPlanChange=this._onPlanChange.bind(this);
+
   }
 
 
@@ -68,12 +52,6 @@ class MyPlanScreen extends Component{
 
   </View>)
   }
-
-_onPlanChange(selected){
-  this.setState({
-    selectedPlan:selected
-  })
-}
   componentDidMount(){
        console.log("I am my plan screen")
         this.props.attemptMyPlan();
@@ -91,48 +69,47 @@ _onPlanChange(selected){
 
 
   render(){
-    const { selectedPlan } =this.state;
+
 
         return(
 
-      <View style={{
-          flex : 1 ,
+          <View style={{
+            flex : 1 ,
           backgroundColor : 'white'
-      }}>
+          }}>
+
+
           {this._renderHeader()}
 
-      <View style={Styles.PlanName}>
-      <Text style={{fontSize:Fonts.size.h6}}>
-      Blue Options
-      </Text>
-      </View>
-      
-      <View style={Styles.chartWrapper}>
-       {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
-             </View>
+          <View style={Styles.PlanName}>
+          <Text style={{fontSize:Fonts.size.h6}}>
+          Blue Options
+          </Text>
+          </View>
+
+          <View style={Styles.chartWrapper}>
+          {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} /> :<Loader />}
+          </View>
 
 
-      <View style={{
-      flexWrap : 'wrap',
-      flexDirection : 'row',
-      }}>
-      <Card
-      title = "Benefits"
-      bg="rgb(204, 211, 214)"
-      icon = "briefcase"
-      />
+          <View style={{
+          flexWrap : 'wrap',
+          flexDirection : 'row',
+          }}>
+          <Card
+          title = "Benefits"
+          bg="rgb(204, 211, 214)"
+          icon = "briefcase"
+          />
 
-      <Card
-      title = "Claims"
-      bg="rgb(151, 198, 207)"
-      icon = "book"
-      />
+          <Card
+          title = "Claims"
+          bg="rgb(151, 198, 207)"
+          icon = "book"
+          />
 
-      </View>
-                </View>
-
-
-
+          </View>
+          </View>
 
           );
         }
@@ -154,24 +131,24 @@ _onPlanChange(selected){
 
       });
 
-      MyPlanScreen.propTypes = {
-        data: PropTypes.object,
-        attemptMyPlan: PropTypes.func,
-        error: PropTypes.string
-      }
+MyPlanScreen.propTypes = {
+  data: PropTypes.object,
+  attemptMyPlan: PropTypes.func,
+  error: PropTypes.string
+}
 
-      const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
 
-        return {
-          fetching: state.login.fetching,
-          data : state.myplan.data,
-          error: state.myplan.error
-        }
-      }
-      const mapDispatchToProps = (dispatch) => {
-        return {
-          attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
-        }
-      }
+  return {
+    fetching: state.login.fetching,
+    data : state.myplan.data,
+    error: state.myplan.error
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
+  }
+}
 
-      export default connect(mapStateToProps, mapDispatchToProps) (MyPlanScreen)
+export default connect(mapStateToProps, mapDispatchToProps) (MyPlanScreen)

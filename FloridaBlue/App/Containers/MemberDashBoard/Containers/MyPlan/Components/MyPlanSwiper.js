@@ -17,12 +17,28 @@ import PercentageCircle from 'react-native-percentage-circle'
 class MyPlanSwiper extends Component{
 
     render(){
-        return(
+
+      var myPlan =[];
+      if (this.props.data.annualDeductible.inNetwork){
+      var inNetwork = this.props.data.annualDeductible.inNetwork ;
+        inNetwork.map(function(temObj){
+            myPlan.push(temObj)
+        });
+    }
+
+    if (this.props.data.annualDeductible.outNetwork){
+    var outNetwork = this.props.data.annualDeductible.outNetwork ;
+      outNetwork.map(function(temObj){
+          myPlan.push(temObj)
+      });
+  }
 
 
-
-
+      return(
 <Swiper height={350} style={styles.wrapper} showsButtons={true}>
+{ this.props.data.annualDeductible.inNetwork ? myPlan.map(function(network, i){
+
+return(
 <View style={styles.headerStyle}>
 
 
@@ -33,9 +49,8 @@ class MyPlanSwiper extends Component{
   <View style={styles.dataContainer}>
   <View style={styles.listViewStyle}>
 
-  { this.props.data.annualDeductible.inNetwork ?this.props.data.annualDeductible.inNetwork.map(function(network, i){
-    return(
-      <View>
+
+
   <View style={{flexDirection:'row'}}>
 <Text style={{marginTop:10,fontSize:Fonts.size.regular}}>{network.type} Deductable :</Text>
 <Text style={{marginTop:10,fontSize:Fonts.size.regular}}>${network.value}</Text>
@@ -48,9 +63,6 @@ class MyPlanSwiper extends Component{
 <Text style={{marginTop:10,fontSize:Fonts.size.regular}}>{network.type} Pharmacy Deductible :</Text>
 <Text style={{marginTop:10,fontSize:Fonts.size.regular}}>${network.used}</Text>
 </View>
-</View>)
-
-})      : <Text></Text>}
 
 
 </View>
@@ -62,10 +74,16 @@ class MyPlanSwiper extends Component{
   </View>
 
   </View>
+)
+i+=1
+})
+     : <Text></Text>}
 
   </Swiper>
 
-        );
+
+);
+
     }
 
 }

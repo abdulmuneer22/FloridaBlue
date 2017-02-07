@@ -18,7 +18,7 @@ import styles from './DashBoardStyle'
 import {Colors,Metrics,Fonts, Images} from '../../../../Themes'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-import Flb from './FlbIcon'
+import Flb from '../../../../Themes/FlbIcon'
 const window = Dimensions.get('window');
 
 

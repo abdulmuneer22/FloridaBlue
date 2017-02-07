@@ -16,16 +16,18 @@ import Greeting from './Components/Greeting'
 import MyPlanCard from './Components/MyPlanCard'
 import Card from './Components/Card'
 import {Colors,Metrics,Fonts, Images} from '../../../../Themes'
-import SeeDetailsCard from './Components/SeeDetailsCard'
-import TransButton from './Components/transButton'
+//import SeeDetailsCard from './Components/SeeDetailsCard'
+//import TransButton from './Components/transButton'
 import styles from './DashBoardStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import MemberActions from '../../../../Redux/MemberRedux'
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Flb from './FlbIcon'
+import Flb from '../../../../Themes/FlbIcon' 
+import Loader from '../../../../Components/Loader'
 const window = Dimensions.get('window');
+
 type LoginScreenProps = {
   dispatch: () => any,
   fetching: boolean,
@@ -33,6 +35,7 @@ type LoginScreenProps = {
   visibilityRules : object,
   attemptMember: () => void
 }
+
 class LandingScreen extends Component {
   props: LoginScreenProps
   isAttempting : boolean
@@ -53,6 +56,7 @@ componentDidMount(){
     var color  = new Array( "#005b80", "#00aec7", "#0091cc","#005b80" )
     var i = 0
     return(
+
       <View style={styles.container}>
       {this._renderHeader()}
       <ScrollView>
@@ -105,7 +109,7 @@ componentDidMount(){
        <Image source={Images.findCare} style={styles.footerImage}/>
 </ScrollView>
       </View>
-    );
+          );
   }
 }
 const mapStateToProps = (state) => {

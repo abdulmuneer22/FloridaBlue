@@ -5,7 +5,7 @@ global.Buffer = global.Buffer || require('buffer').Buffer;
 
 // our "constructor"
 const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
-//  const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
+  //const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
   // ------
   // STEP 1
   // ------
@@ -24,7 +24,7 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
     },
     // 10 second timeout...
     maxRedirects: 0,
-    timeout: 10000
+    timeout: 20000
   })
 
 

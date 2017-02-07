@@ -18,7 +18,29 @@ class Greeting extends Component{
   constructor(){
     super();
     this.state = {
-      userName : ""
+      userName : "",
+      greetText : ""
+    }
+  }
+
+ _getTimeText() {
+    var currentDate = new Date();
+    var hours = currentDate.getHours()
+    // alert(hours)
+    if (hours < 12) {
+      // alert("Good Morning")
+      this.setState({ greetText: "Good morning" })
+    } else {
+      if (hours >= 12) {
+        if (hours < 17) {
+          // alert("Good Afternoon")
+          this.setState({ greetText: "Good afternoon" })
+        } else {
+          // alert("Good evening")
+          this.setState({ greetText: "Good evening" })
+
+        }
+      }
     }
   }
 
@@ -32,18 +54,20 @@ class Greeting extends Component{
 
     })
   }
+*/
+
 
   componentDidMount(){
-    this._getUserData();
+    this._getTimeText();
   }
-*/
+
   render(){
 
     return(
       <View>
       <View style={Styles.Greeting}>
       <Text style={{fontSize:18, color:Colors.snow}}>
-      Hello {this.props.userName ? this.props.userName :""}
+      {this.state.greetText} {this.props.userName ? this.props.userName :""}
       </Text>
       </View>
 
