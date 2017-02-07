@@ -45,19 +45,13 @@ class Screen_1 extends React.Component {
     super(props)
   }
 
+  /*
   _handleRegistration(){
     NavigationActions.screen_2()
   }
+  */
 
-  /*
-  _handleRegistration(){
-    //var contractNumber = this.props.contractNumber ?
-    //var firstName = this.state.firstName
-    //var lastName = this.state.lastName
-    //var dateOfBirth = this.state.dateOfBirth
-    //var zipCode = this.state.zipCode
-    //Alert.alert("details"+contractNumber+firstName+lastName+dateOfBirth+zipCode);
-    //Alert.alert("Hey I am coming from registration")
+  _handleRegistration() {
     var contractNumber = this.props.contractNumber
     var firstName = this.props.firstName
     var lastName = this.props.lastName
@@ -70,7 +64,6 @@ class Screen_1 extends React.Component {
       this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
     }
   }
-  */
 
   _handleFindMemberId() {
     NavigationActions.memberid()
@@ -88,9 +81,6 @@ class Screen_1 extends React.Component {
       if(reasonCode === '000') {
         NavigationActions.screen_2()
       }
-      else if(reasonCode === '999') {
-        // NavigationActions.errorScreen
-      }
     }
   }
 
@@ -102,7 +92,7 @@ class Screen_1 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('personalInformation')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
+          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
             <View><Flb name="alert" color={Colors.snow} size={30}/></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>

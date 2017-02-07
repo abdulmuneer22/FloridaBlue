@@ -34,7 +34,7 @@ const { Types, Creators } = createActions({
   sendregistrationSuccessanswers :['questionone','questiontwo','questionthree','answerone','answertwo','answerthree'],
   sendregistrationRequestconfirm : ['confirm'],
   sendregistrationSuccessconfirm : ['confirm'],
-  registrationFailure: ['error'],
+  registrationFailure: ['data'],
 })
 
 export const RegistrationTypes = Types
@@ -95,8 +95,8 @@ export const sendconfirm = (state: Object, {sendconfrim}: Object) =>
       state.merge({fetching: false,sendconfrim})
 
 // we've had a problem logging in
-export const failure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error })
+export const failure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, data })
 
 // contractNumber
 export const _changeContractNumber = (state: Object, {contractNumber}: Object) =>
