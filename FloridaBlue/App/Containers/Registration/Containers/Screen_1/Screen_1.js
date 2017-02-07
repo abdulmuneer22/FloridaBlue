@@ -97,6 +97,7 @@ class Screen_1 extends React.Component {
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
             </View>
+            <View><Image source={Images.closeIconWhite}/></View>
           </View> : <Text></Text>}
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
