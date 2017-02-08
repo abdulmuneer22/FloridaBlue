@@ -5,10 +5,6 @@ if (this.props.data.annualDeductible.inNetwork){
   })
 }
 
-
-
-
-
 var myPlan =[];
 if (this.props.data){
   if(this.props.data.annualDeductible){

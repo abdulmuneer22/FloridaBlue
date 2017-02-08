@@ -4,6 +4,7 @@ import {
   Text,
   View,
   Navigator,
+  ScrollView,
   TouchableOpacity,
   Dimensions
 } from 'react-native';
@@ -49,7 +50,6 @@ class MyPlanScreen extends Component{
 
   }
 
-
   _renderHeader(){
   return (<View style={styles.headerContainer}>
   {NavItems.backButton()}
@@ -79,19 +79,18 @@ class MyPlanScreen extends Component{
 
         return(
 
-
           <View style={styles.container}>
 
           <View>
           {this._renderHeader()}
           </View>
 
-
           {
             this.props.data ?
+        
             <View style={{flex:1}}>
           <View style={styles.PlanName}>
-          <Text style={{fontSize:Fonts.size.h6}}>
+          <Text style={{fontSize:Fonts.size.h6,}}>
           Blue Options
           </Text>
           </View>
@@ -119,15 +118,12 @@ class MyPlanScreen extends Component{
           </View>
           </View>
 
+
           : <View style={{alignItems:'center',justifyContent:'center'}}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text style={styles.spinnerText}>Loading Please Wait </Text>
            </View>
          }
-
-
-
-
 
           </View>
 

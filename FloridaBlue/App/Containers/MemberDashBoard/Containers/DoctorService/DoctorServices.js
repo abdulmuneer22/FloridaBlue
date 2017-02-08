@@ -13,6 +13,7 @@ import FourthCard from './Components/FourthCard'
 import styles from './DoctorServiceStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Colors, Metrics, Fonts} from '../../../../Themes'
+import Flb from '../../../../Themes/FlbIcon'
 import {connect} from 'react-redux'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
 
@@ -43,11 +44,11 @@ backgroundColor : 'white'
           alignItems : 'center',
           marginTop : 10
           }}>
-          <Icon name="user-md" size={60} color="black"></Icon>
+          <Flb name="doctor" size={60} color="black" />
           <Text style={{
           marginTop : 5,
           fontSize : 13
-          }}>Doctor Office Services</Text>
+        }}>{this.props.data.officeServices.text.en}</Text>
           <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
           </View>
           <View>

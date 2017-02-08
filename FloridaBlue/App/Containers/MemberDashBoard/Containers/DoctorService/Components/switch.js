@@ -6,6 +6,7 @@ import {
   TouchableOpacity
 } from 'react-native'
 
+import {Colors,Metrics,Fonts} from '../../../../../Themes'
 
 class Switch extends Component{
     handleClickLeft(){
@@ -32,12 +33,10 @@ class Switch extends Component{
                     borderBottomLeftRadius : 3,
                     padding : 5
 
-                }}
-                onPress = {()=>{this.handleClickLeft()}}
-                >
+                }} onPress = {()=>{this.handleClickLeft()}}>
                 <Text style={{
                     color : this.props.leftActive ? 'white' : 'darkgrey',
-                    fontWeight : '500'
+                    fontWeight : 'bold'
 
                 }}>In Network</Text>
                 </TouchableOpacity>
@@ -52,16 +51,31 @@ class Switch extends Component{
                     borderBottomRightRadius : 3,
                     padding : 5
 
-                }}
-                onPress = {()=>{this.handleClickRight()}}
-                >
-                <Text
-                style={{
+                }}  onPress = {()=>{this.handleClickRight()}}>
+                <Text style={{
                     color : this.props.rightActive ? 'white' : 'darkgrey',
                     fontWeight : '600'
-                }}
-                >Out Of Network</Text>
+                }}>Out Of Network</Text>
                 </TouchableOpacity>
+                <TouchableOpacity style={{
+                    // width : 80,
+                    // height : 20,
+                    backgroundColor : this.props.leftActive ? 'darkgrey' : 'grey',
+                    borderLeftWidth : 1,
+                    borderColor : 'grey',
+                    borderTopLeftRadius : 3,
+                    borderBottomLeftRadius : 3,
+                    padding : 5
+
+                }}
+                onPress = {()=>{this.handleClickLeft()}}>
+                <Text style={{
+                    color : this.props.leftActive ? 'white' : 'darkgrey',
+                    fontWeight : 'bold'
+
+                }}>Preferred Network</Text>
+                </TouchableOpacity>
+
 
             </View>
         );

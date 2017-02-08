@@ -30,7 +30,7 @@ export default StyleSheet.create({
 },
 hsaBg:{
  //flexDirection:'row',
- height:350,
+ height:310,
  //marginTop:20,
  //justifyContent:'space-between',
  //alignItems:'center',
