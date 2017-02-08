@@ -53,7 +53,8 @@ const images = {
   tileBg: require('../Images/tile_bg.png'),
   setupPinButtonGray : require('../Images/setup-pin-btn-gray.png'),
   setupTouchButtonGray : require('../Images/setup-touch-btn-gray.png'),
-  setupTouchButtonBlue : require('../Images/setup-touch-btn-blue.png')
+  setupTouchButtonBlue : require('../Images/setup-touch-btn-blue.png'),
+  loader: require('../Images/loader.gif')
 
 }
 

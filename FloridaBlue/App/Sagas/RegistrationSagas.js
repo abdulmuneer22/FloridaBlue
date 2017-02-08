@@ -33,9 +33,13 @@ export function* registration(api, {
     yield put(RegistrationActions.registrationSuccess(data));
   } else {
     // dispatch successful logins
-    console.log("I am coming from failuer ")
+    console.log("I am coming from failure")
     var error = "Invaid input provided"
-    yield put(RegistrationActions.registrationFailure(error))
+    var data = {
+      "reasonCode": "999",
+      "reasonDesc": "Invalid input provided"
+    }
+    yield put(RegistrationActions.registrationFailure(data))
   }
 }
 
@@ -57,9 +61,13 @@ export function* sendregistrationCode(api, {
     yield put(RegistrationActions.sendregistrationSuccesscode(registrationcode));
   } else {
     // dispatch successful logins
-    console.log("I am coming from failuer ")
+    console.log("I am coming from failure ")
     var error = "Invaid input provided"
-    yield put(RegistrationActions.registrationFailure(error))
+    var data = {
+      "reasonCode": "999",
+      "reasonDesc": "Invalid input provided"
+    }
+    yield put(RegistrationActions.registrationFailure(data))
   }
 }
 
@@ -91,9 +99,13 @@ export function* sendregistrationAnswers(api, {
     yield put(RegistrationActions.sendregistrationAnswers(questionone,questiontwo.questionthree,answerone,answertwo,answerthree));
   } else {
     // dispatch successful logins
-    console.log("I am coming from failuer ")
+    console.log("I am coming from failure ")
     var error = "Invaid input provided"
-    yield put(RegistrationActions.registrationFailure(error))
+    var data = {
+      "reasonCode": "999",
+      "reasonDesc": "Invalid input provided"
+    }
+    yield put(RegistrationActions.registrationFailure(data))
   }
 }
 
@@ -115,8 +127,12 @@ export function* sendconfirm(api, {
     yield put(RegistrationActions.sendconfirm(confirm));
   } else {
     // dispatch successful logins
-    console.log("I am coming from failuer ")
+    console.log("I am coming from failure ")
     var error = "Invaid input provided"
-    yield put(RegistrationActions.registrationFailure(error))
+    var data = {
+      "reasonCode": "999",
+      "reasonDesc": "Invalid input provided"
+    }
+    yield put(RegistrationActions.registrationFailure(data))
   }
 }

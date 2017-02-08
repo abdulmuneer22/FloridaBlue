@@ -4,6 +4,7 @@ import {
   Text,
   View,
   Navigator,
+  ScrollView,
   TouchableOpacity,
   Dimensions
 } from 'react-native';
@@ -21,7 +22,11 @@ import styles from './MyPlanScreenStyle'
 import MyPlanSwiper from './Components/MyPlanSwiper'
 import { connect } from 'react-redux';
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
-var {height, width} = Dimensions.get('window');
+
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+const window = Dimensions.get('window');
+
+//import Loader from '../../../../Components/Loader'
 /*
 type MyPlanScreenProps = {
   dispatch: () => any,
@@ -31,34 +36,19 @@ type MyPlanScreenProps = {
   attemptMyPlan: () => void
 }
 */
-/*const options=[
-  {
-    key:'Family',
-    value:0
-  },
-  {
-    key:'Member 1',
-    value:1
-  },
-  {
-    key:'Member 2',
-    value:2
-  },
-  {
-    key:'Member 3',
-    value:3
-  }
-];*/
+
+const SingleColorSpinner=MKSpinner.singleColorSpinner()
+.withStyle(styles.spinner)
+.build()
+
 class MyPlanScreen extends Component{
 
   constructor(props) {
     super(props);
     this.state={
-      selectedPlan:{}
     }
-    this._onPlanChange=this._onPlanChange.bind(this);
-  }
 
+  }
 
   _renderHeader(){
   return (<View style={styles.headerContainer}>
@@ -68,12 +58,6 @@ class MyPlanScreen extends Component{
 
   </View>)
   }
-
-_onPlanChange(selected){
-  this.setState({
-    selectedPlan:selected
-  })
-}
   componentDidMount(){
        console.log("I am my plan screen")
         this.props.attemptMyPlan();
@@ -91,87 +75,80 @@ _onPlanChange(selected){
 
 
   render(){
-    const { selectedPlan } =this.state;
+
 
         return(
 
-      <View style={{
-          flex : 1 ,
-          backgroundColor : 'white'
-      }}>
+          <View style={styles.container}>
+
+          <View>
           {this._renderHeader()}
+          </View>
 
-      <View style={Styles.PlanName}>
-      <Text style={{fontSize:Fonts.size.h6}}>
-      Blue Options
-      </Text>
-      </View>
-      
-      <View style={Styles.chartWrapper}>
-       {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} /> :<Text>Loading</Text>}
-             </View>
+          {
+            this.props.data ?
+        
+            <View style={{flex:1}}>
+          <View style={styles.PlanName}>
+          <Text style={{fontSize:Fonts.size.h6,}}>
+          Blue Options
+          </Text>
+          </View>
+
+          <View style={styles.chartWrapper}>
+          {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
+          :<View style={{alignItems:'center',justifyContent:'center',marginTop:20}}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+           </View>}
+          </View>
+
+          <View style={styles.cardStyle}>
+          <Card
+          title = "Benefits"
+          bg="rgb(204, 211, 214)"
+          icon = "briefcase"
+          />
+
+          <Card
+          title = "Claims"
+          bg="rgb(151, 198, 207)"
+          icon = "book"
+          />
+          </View>
+          </View>
 
 
-      <View style={{
-      flexWrap : 'wrap',
-      flexDirection : 'row',
-      }}>
-      <Card
-      title = "Benefits"
-      bg="rgb(204, 211, 214)"
-      icon = "briefcase"
-      />
+          : <View style={{alignItems:'center',justifyContent:'center'}}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+           </View>
+         }
 
-      <Card
-      title = "Claims"
-      bg="rgb(151, 198, 207)"
-      icon = "book"
-      />
-
-      </View>
-                </View>
-
-
-
+          </View>
 
           );
         }
+}
 
-      }
-      const Styles = StyleSheet.create({
-        PlanName : {
-          alignItems  : 'center',
-          justifyContent : 'center',
-          height:40
-        },
+MyPlanScreen.propTypes = {
+  data: PropTypes.object,
+  attemptMyPlan: PropTypes.func,
+  error: PropTypes.string
+}
 
-        chartWrapper : {
-          //   backgroundColor : 'yellow',
-            flex : 2,
-            marginBottom : 20
-        },
+const mapStateToProps = (state) => {
 
+  return {
+    fetching: state.login.fetching,
+    data : state.myplan.data,
+    error: state.myplan.error
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
+  }
+}
 
-      });
-
-      MyPlanScreen.propTypes = {
-        data: PropTypes.object,
-        attemptMyPlan: PropTypes.func,
-        error: PropTypes.string
-      }
-
-      const mapStateToProps = (state) => {
-
-        return {
-          fetching: state.login.fetching,
-          data : state.myplan.data,
-          error: state.myplan.error
-        }
-      }
-      const mapDispatchToProps = (dispatch) => {
-        return {
-          attemptMyPlan:() => dispatch(MyPlanActions.myplanRequest())
-        }
-      }
-
-      export default connect(mapStateToProps, mapDispatchToProps) (MyPlanScreen)
+export default connect(mapStateToProps, mapDispatchToProps) (MyPlanScreen)

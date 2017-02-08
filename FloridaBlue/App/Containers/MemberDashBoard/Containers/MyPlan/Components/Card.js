@@ -27,7 +27,7 @@ class Card extends Component{
       <View style={{
         backgroundColor : this.props.bg,
         width : window.width * 0.5,
-        height : 180,
+        height : 170,
         alignItems : 'center',
         justifyContent : 'center'
 

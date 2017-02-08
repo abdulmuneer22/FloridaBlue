@@ -30,5 +30,42 @@ container:{
    width:null,
    backgroundColor:Colors.flBlue.ocean
  },
+ cardStyle: {
+   width: window.width,
+   backgroundColor: 'rgba(167, 187, 193,0.7)',
+   //height : 200,
+   //alignSelf: 'center',
+   //  padding : 10,
+   marginTop: 10,
+   alignItems: 'center'
+
+ },
+ cardStyle1: {
+   width: window.width,
+   backgroundColor: Colors.snow,
+   //height : 200,
+   //alignSelf: 'center',
+   //  padding : 10,
+   marginTop: 10,
+   alignItems: 'center'
+
+ },
+ h1: {
+   fontSize: 16,
+   fontWeight: '600',
+   textAlign: 'center'
+ },
+
+ h2: {
+   fontSize: 18,
+   textAlign: 'center',
+   paddingBottom: 10
+ },
+ h4: {
+   textAlign: 'center',
+   paddingTop: 15
+
+ }
+
 
 })
