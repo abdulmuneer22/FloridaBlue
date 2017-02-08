@@ -36,17 +36,17 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withFloatingLabelFont({
     fontSize: 18,
     fontStyle: 'italic',
-    fontWeight: '200',
+    fontWeight: '200'
   })
-  .build();
+  .build()
 
 class Screen_2 extends React.Component {
 
-  _handleBack() {
+  _handleBack () {
     NavigationActions.pop()
   }
 
-  _handleNext() {
+  _handleNext () {
     NavigationActions.screen_3()
   }
 
@@ -59,11 +59,11 @@ class Screen_2 extends React.Component {
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
           </View>
           {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
-            <View><Flb name="alert" color={Colors.snow} size={30}/></View>
+            <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
             </View>
-          </View> : <Text></Text>}
+          </View> : <Text />}
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='phoneNumber'
@@ -75,7 +75,7 @@ class Screen_2 extends React.Component {
               onChangeText={this.props.handleChangePhoneNumber}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.email.focus();
+                this.refs.email.focus()
               }}
               placeholder={I18n.t('phoneNumber')}
             />
@@ -91,7 +91,7 @@ class Screen_2 extends React.Component {
               onChangeText={this.props.handleChangeEmail}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.confirmEmail.focus();
+                this.refs.confirmEmail.focus()
               }}
               placeholder={I18n.t('email')}
             />
@@ -107,7 +107,7 @@ class Screen_2 extends React.Component {
               onChangeText={this.props.handleChangeConfirmEmail}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.createUserId.focus();
+                this.refs.createUserId.focus()
               }}
               placeholder={I18n.t('confirmEmail')}
             />
@@ -123,7 +123,7 @@ class Screen_2 extends React.Component {
               onChangeText={this.props.handleChangeCreateUserId}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.password.focus();
+                this.refs.password.focus()
               }}
               placeholder={I18n.t('createUserId')}
             />
@@ -136,11 +136,11 @@ class Screen_2 extends React.Component {
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
-              secureTextEntry={true}
+              secureTextEntry
               onChangeText={this.props.handleChangePassword}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.confirmPassword.focus();
+                this.refs.confirmPassword.focus()
               }}
               placeholder={I18n.t('password')}
             />
@@ -153,7 +153,7 @@ class Screen_2 extends React.Component {
               returnKeyType='done'
               autoCapitalize='none'
               autoCorrect={false}
-              secureTextEntry={true}
+              secureTextEntry
               onChangeText={this.props.handleChangeConfirmPassword}
               underlineColorAndroid={Colors.coal}
               placeholder={I18n.t('confirmPassword')}
@@ -161,12 +161,12 @@ class Screen_2 extends React.Component {
           </View>
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
-              <TouchableOpacity onPress={() => {this._handleBack()}}>
+              <TouchableOpacity onPress={() => { this._handleBack() }}>
                 <Image source={Images.backButton} />
               </TouchableOpacity>
             </View>
             <View style={styles.nextButton}>
-              <TouchableOpacity onPress={() => {this._handleNext()}}>
+              <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButton} />
               </TouchableOpacity>
             </View>
@@ -204,18 +204,18 @@ const mapStateToProps = (state) => {
     confirmPassword: state.registration.confirmPassword,
     fetching: state.registration.fetching,
     error: state.registration.error,
-    data :state.registration.data
+    data: state.registration.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleChangePhoneNumber:(phoneNumber) => dispatch(RegistrationActions.changePhoneNumber(phoneNumber)),
-    handleChangeEmail:(email) => dispatch(RegistrationActions.changeEmail(email)),
-    handleChangeConfirmEmail:(confirmEmail) => dispatch(RegistrationActions.changeConfirmEmail(confirmEmail)),
-    handleChangeCreateUserId:(createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
-    handleChangePassword:(password) => dispatch(RegistrationActions.changePassword(password)),
-    handleChangeConfirmPassword:(confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword))
+    handleChangePhoneNumber: (phoneNumber) => dispatch(RegistrationActions.changePhoneNumber(phoneNumber)),
+    handleChangeEmail: (email) => dispatch(RegistrationActions.changeEmail(email)),
+    handleChangeConfirmEmail: (confirmEmail) => dispatch(RegistrationActions.changeConfirmEmail(confirmEmail)),
+    handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
+    handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
+    handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword))
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
@@ -9,44 +9,41 @@ import {
   TouchableOpacity,
   Image,
   Modal
-} from 'react-native';
+} from 'react-native'
 
-class PasswordMeter extends Component{
-  render(){
-    return(
+class PasswordMeter extends Component {
+  render () {
+    return (
       <View style={{
-        width : 100,
-        flexDirection : 'row',
-        justifyContent : 'center',
-        alignItems : 'center'
+        width: 100,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}>
 
-      <Text style={{
-        fontSize : 13,
-        textAlign : 'left',
-        flex : 1
-      }}>
+        <Text style={{
+          fontSize: 13,
+          textAlign: 'left',
+          flex: 1
+        }}>
       Strong
       </Text>
 
-      <View style={{
-        flex : 1,
-        marginRight : 10
-      }}>
-      <Image
-          style={{
-            width: 40,
-            height: 5
-          }}
-          source={require('./password.png')}
+        <View style={{
+          flex: 1,
+          marginRight: 10
+        }}>
+          <Image
+            style={{
+              width: 40,
+              height: 5
+            }}
+            source={require('./password.png')}
       />
-      </View>
-
-
-
+        </View>
 
       </View>
-    );
+    )
   }
 }
 

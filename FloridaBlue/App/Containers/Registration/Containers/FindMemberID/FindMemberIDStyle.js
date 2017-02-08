@@ -77,25 +77,25 @@ export default StyleSheet.create({
   },
   textfieldWithFloatingLabel: {
     height: 48,  // have to do it on iOS
-    marginTop: 10,
+    marginTop: 10
   },
   wrapper1: {
     backgroundColor: Colors.snow,
     marginTop: Metrics.baseMargin
   },
   slide: {
-    flex:1,
+    flex: 1,
     alignItems: 'center',
-    flexWrap:'nowrap',
+    flexWrap: 'nowrap',
     backgroundColor: Colors.snow
   },
-  outofBox:{
-    //backgroundColor : 'grey',
-    //padding : 20,
-    alignItems : 'center',
-    justifyContent : 'center',
-    //width : window.width,
-    //marginBottom : 30
+  outofBox: {
+    // backgroundColor : 'grey',
+    // padding : 20,
+    alignItems: 'center',
+    justifyContent: 'center'
+    // width : window.width,
+    // marginBottom : 30
 
   },
   footer: {

@@ -36,13 +36,13 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withFloatingLabelFont({
     fontSize: 18,
     fontStyle: 'italic',
-    fontWeight: '200',
+    fontWeight: '200'
   })
-  .build();
+  .build()
 
 class Screen_4 extends React.Component {
 
-  _handleBack() {
+  _handleBack () {
     NavigationActions.pop()
   }
 
@@ -60,11 +60,11 @@ class Screen_4 extends React.Component {
             </View>
           </View>
           {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
-            <View><Flb name="alert" color={Colors.snow} size={30}/></View>
+            <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
             </View>
-          </View> : <Text></Text>}
+          </View> : <Text />}
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('securityHint1')}</Text>
           </View>
@@ -79,7 +79,7 @@ class Screen_4 extends React.Component {
               onChangeText={this.props.handleChangeSecurityHint1}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.securityAnswer1.focus();
+                this.refs.securityAnswer1.focus()
               }}
               placeholder={I18n.t('securityCreateHintOrQuestion')}
             />
@@ -95,7 +95,7 @@ class Screen_4 extends React.Component {
               onChangeText={this.props.handleChangeSecurityAnswer1}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.securityHint2.focus();
+                this.refs.securityHint2.focus()
               }}
               placeholder={I18n.t('securityEnterYourAnswer')}
             />
@@ -114,7 +114,7 @@ class Screen_4 extends React.Component {
               onChangeText={this.props.handleChangeSecurityHint2}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.securityAnswer2.focus();
+                this.refs.securityAnswer2.focus()
               }}
               placeholder={I18n.t('securityCreateHintOrQuestion')}
             />
@@ -130,7 +130,7 @@ class Screen_4 extends React.Component {
               onChangeText={this.props.handleChangeSecurityAnswer2}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.securityHint3.focus();
+                this.refs.securityHint3.focus()
               }}
               placeholder={I18n.t('securityEnterYourAnswer')}
             />
@@ -149,7 +149,7 @@ class Screen_4 extends React.Component {
               onChangeText={this.props.handleChangeSecurityHint3}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.securityAnswer3.focus();
+                this.refs.securityAnswer3.focus()
               }}
               placeholder={I18n.t('securityCreateHintOrQuestion')}
             />
@@ -169,7 +169,7 @@ class Screen_4 extends React.Component {
           </View>
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
-              <TouchableOpacity onPress={() => {this._handleBack()}}>
+              <TouchableOpacity onPress={() => { this._handleBack() }}>
                 <Image source={Images.backButton} />
               </TouchableOpacity>
             </View>
@@ -212,18 +212,18 @@ const mapStateToProps = (state) => {
     securityAnswer3: state.registration.securityAnswer3,
     fetching: state.registration.fetching,
     error: state.registration.error,
-    data :state.registration.data
+    data: state.registration.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleChangeSecurityHint1:(securityHint1) => dispatch(RegistrationActions.changeSecurityHint1(securityHint1)),
-    handleChangeSecurityAnswer1:(securityAnswer1) => dispatch(RegistrationActions.changeSecurityAnswer1(securityAnswer1)),
-    handleChangeSecurityHint2:(securityHint2) => dispatch(RegistrationActions.changeSecurityHint2(securityHint2)),
-    handleChangeSecurityAnswer2:(securityAnswer2) => dispatch(RegistrationActions.changeSecurityAnswer2(securityAnswer2)),
-    handleChangeSecurityHint3:(securityHint3) => dispatch(RegistrationActions.changeSecurityHint3(securityHint3)),
-    handleChangeSecurityAnswer3:(securityAnswer3) => dispatch(RegistrationActions.changeSecurityAnswer3(securityAnswer3))
+    handleChangeSecurityHint1: (securityHint1) => dispatch(RegistrationActions.changeSecurityHint1(securityHint1)),
+    handleChangeSecurityAnswer1: (securityAnswer1) => dispatch(RegistrationActions.changeSecurityAnswer1(securityAnswer1)),
+    handleChangeSecurityHint2: (securityHint2) => dispatch(RegistrationActions.changeSecurityHint2(securityHint2)),
+    handleChangeSecurityAnswer2: (securityAnswer2) => dispatch(RegistrationActions.changeSecurityAnswer2(securityAnswer2)),
+    handleChangeSecurityHint3: (securityHint3) => dispatch(RegistrationActions.changeSecurityHint3(securityHint3)),
+    handleChangeSecurityAnswer3: (securityAnswer3) => dispatch(RegistrationActions.changeSecurityAnswer3(securityAnswer3))
   }
 }
 

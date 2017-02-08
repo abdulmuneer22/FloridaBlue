@@ -16,12 +16,12 @@ class NavigationDrawer extends Component {
   render () {
     const state = this.props.navigationState
     const children = state.children
-    console.log("state.type", state.contentType)
-    let content;
-    if(state.contentType=='menu'){
-      content =<DrawerContent/>
-    }else{
-      content=<SettingsContent/>
+    console.log('state.type', state.contentType)
+    let content
+    if (state.contentType == 'menu') {
+      content = <DrawerContent />
+    } else {
+      content = <SettingsContent />
     }
 
     return (

@@ -36,17 +36,17 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withFloatingLabelFont({
     fontSize: 18,
     fontStyle: 'italic',
-    fontWeight: '200',
+    fontWeight: '200'
   })
-  .build();
+  .build()
 
 class Screen_3 extends React.Component {
 
-  _handleBack() {
+  _handleBack () {
     NavigationActions.pop()
   }
 
-  _handleNext() {
+  _handleNext () {
     NavigationActions.screen_4()
   }
 
@@ -59,11 +59,11 @@ class Screen_3 extends React.Component {
             <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
           </View>
           {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
-            <View><Flb name="alert" color={Colors.snow} size={30}/></View>
+            <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
             </View>
-          </View> : <Text></Text>}
+          </View> : <Text />}
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='enterCode'
@@ -79,12 +79,12 @@ class Screen_3 extends React.Component {
           </View>
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
-              <TouchableOpacity onPress={() => {this._handleBack()}}>
+              <TouchableOpacity onPress={() => { this._handleBack() }}>
                 <Image source={Images.backButton} />
               </TouchableOpacity>
             </View>
             <View style={styles.nextButton}>
-              <TouchableOpacity onPress={() => {this._handleNext()}}>
+              <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButton} />
               </TouchableOpacity>
             </View>
@@ -112,13 +112,13 @@ const mapStateToProps = (state) => {
     enterCode: state.registration.enterCode,
     fetching: state.registration.fetching,
     error: state.registration.error,
-    data :state.registration.data
+    data: state.registration.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleChangeEnterCode:(enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode))
+    handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode))
   }
 }
 

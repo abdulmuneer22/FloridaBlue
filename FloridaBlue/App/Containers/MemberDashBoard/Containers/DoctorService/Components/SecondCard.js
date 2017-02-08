@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Text,
   View,
@@ -6,11 +6,11 @@ import {
   Dimensions
 } from 'react-native'
 
-const window = Dimensions.get('window');
+const window = Dimensions.get('window')
 import { connect } from 'react-redux'
 
 class SecondCard extends Component {
-  render() {
+  render () {
     // console.log(this.props.SelctedLeft)
     return (
       <View style={Style.wrapper}>
@@ -36,7 +36,7 @@ class SecondCard extends Component {
                   Specialist
                 </Text>
                 <Text style={Style.h2}>$20 Copay</Text>
-                </View>
+              </View>
 
               :
               <View style={{
@@ -54,37 +54,27 @@ class SecondCard extends Component {
                   Specialist
                 </Text>
                 <Text style={Style.h2}>Pay 40%</Text>
-                </View>
+              </View>
           }
-
-
-
-
-
-
-
 
         </View>
 
       </View>
-    );
+    )
   }
 
-
 }
-
-
 
 var Style = StyleSheet.create({
   wrapper: {
     width: window.width,
     alignItems: 'center',
-    padding: 10,
+    padding: 10
     // marginTop: 10,
 
   },
   h4: {
-    fontSize: 14,
+    fontSize: 14
 
   },
   h2: {
@@ -92,8 +82,6 @@ var Style = StyleSheet.create({
     marginBottom: 10
   }
 
-});
-
-
+})
 
 export default SecondCard
