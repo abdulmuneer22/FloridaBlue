@@ -91,7 +91,7 @@ export default StyleSheet.create({
    textAlign: 'center',
    fontWeight: 'bold',
    fontSize: Fonts.size.small,
-   marginTop:100
+   marginTop:150
  },
  textfieldWithFloatingLabel: {
    height: 48,  // have to do it on iOS
@@ -112,8 +112,7 @@ export default StyleSheet.create({
  wrapper:{
    flex:1,
    justifyContent:'center',
-   marginTop:100,
-
+   marginTop:50
  }
 
 

@@ -29,6 +29,13 @@ export default StyleSheet.create({
   messagePadding: {
     flex: 0.1
   },
+  topText: {
+    color: Colors.flBlue.grey4,
+    marginHorizontal: Metrics.section,
+    marginBottom: Metrics.baseMargin,
+    fontWeight: 'bold',
+    fontSize: Fonts.size.normal
+  },
   message: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,

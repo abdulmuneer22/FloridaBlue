@@ -45,12 +45,13 @@ class Screen_1 extends React.Component {
     super(props)
   }
 
-  /*
+  
   _handleRegistration(){
     NavigationActions.screen_2()
   }
-  */
 
+
+  /*
   _handleRegistration() {
     var contractNumber = this.props.contractNumber
     var firstName = this.props.firstName
@@ -64,6 +65,7 @@ class Screen_1 extends React.Component {
       this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
     }
   }
+  */
 
   _handleFindMemberId() {
     NavigationActions.memberid()
