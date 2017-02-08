@@ -46,7 +46,7 @@ class Screen_4 extends React.Component {
     NavigationActions.pop()
   }
 
-  _handleNext() {
+  _handleNext () {
     NavigationActions.confirmation()
   }
 
@@ -178,7 +178,7 @@ class Screen_4 extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={styles.nextButton}>
-              <TouchableOpacity onPress={() => {this._handleNext()}}>
+              <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButton} />
               </TouchableOpacity>
             </View>
