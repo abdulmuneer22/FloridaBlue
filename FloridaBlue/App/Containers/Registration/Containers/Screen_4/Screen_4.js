@@ -46,6 +46,10 @@ class Screen_4 extends React.Component {
     NavigationActions.pop()
   }
 
+  _handleNext() {
+    NavigationActions.confirmation()
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -56,7 +60,7 @@ class Screen_4 extends React.Component {
           </View>
           <View style={styles.row}>
             <View>
-              <Text style={styles.footerText}>{I18n.t('setUpSecurityQuestionsInstructions')}</Text>
+              <Text style={styles.topText}>{I18n.t('setUpSecurityQuestionsInstructions')}</Text>
             </View>
           </View>
           {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
@@ -174,7 +178,7 @@ class Screen_4 extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={styles.nextButton}>
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity onPress={() => {this._handleNext()}}>
                 <Image source={Images.nextButton} />
               </TouchableOpacity>
             </View>
