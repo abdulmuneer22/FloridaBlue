@@ -24,6 +24,7 @@ const { Types, Creators } = createActions({
   changeSecurityAnswer2: ['securityAnswer2'],
   changeSecurityHint3: ['securityHint3'],
   changeSecurityAnswer3: ['securityAnswer3'],
+  changeReceiveCommunicationsElectronically: ['receiveCommunicationsElectronically'],
   changeReasonCode: ['data'],
   registrationRequest: ['contractNumber', 'firstName', 'lastName', 'dateOfBirth', 'zipCode'],
   registrationSuccess: ['data'],
@@ -62,6 +63,7 @@ export const INITIAL_STATE = Immutable({
   securityAnswer2: null,
   securityHint3: null,
   securityAnswer3: null,
+  receiveCommunicationsElectronically: null,
   questionone: null,
   questiontwo: null,
   questionthree: null,
@@ -175,6 +177,10 @@ export const _changeSecurityAnswer3 = (state: Object, {securityAnswer3}: Object)
 export const _changeReasonCode = (state: Object, {data}: Object) =>
       state.merge({fetching: false, data})
 
+// receiveCommunicationsElectronically
+export const _changeReceiveCommunicationsElectronically = (state: Object, {receiveCommunicationsElectronically}: Object) =>
+      state.merge({fetching: false, receiveCommunicationsElectronically})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -190,6 +196,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CREATE_USER_ID]: _changeCreateUserId,
   [Types.PASSWORD]: _changePassword,
   [Types.CONFIRM_PASSWORD]: _changeConfirmPassword,
+  [Types.CHANGE_RECEIVE_COMMUNICATIONS_ELECTRONICALLY]: _changeReceiveCommunicationsElectronically,
   [Types.ENTER_CODE]: _changeEnterCode,
   [Types.SECURITY_HINT1]: _changeSecurityHint1,
   [Types.SECURITY_ANSWER1]: _changeSecurityAnswer1,

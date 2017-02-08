@@ -16,7 +16,7 @@ import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
 // external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
-import { MKTextField, MKColor } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKCheckbox, setTheme } from 'react-native-material-kit'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // Styles
@@ -39,6 +39,12 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
     fontWeight: '200'
   })
   .build()
+
+  setTheme({checkboxStyle: {
+    fillColor: Colors.flBlue.ocean,
+    borderOnColor: Colors.flBlue.ocean,
+    borderOffColor: Colors.flBlue.ocean,
+  }})
 
 class Screen_2 extends React.Component {
 
@@ -159,6 +165,18 @@ class Screen_2 extends React.Component {
               placeholder={I18n.t('confirmPassword')}
             />
           </View>
+          <View style={styles.row}>
+            <View style={{height:Metrics.doubleBaseMargin * 4, backgroundColor: Colors.flBlue.grey1}}>
+              <MKCheckbox
+                ref='receiveCommunicationsElectronically'
+                onCheckedChange={() => {
+                  console.log(this)
+                  var checked = this.refs.receiveCommunicationsElectronically.state.checked
+                  this.props.handleChangeReceiveCommunicationsElectronically(checked)}
+                }
+              />
+            </View>
+          </View>
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
@@ -190,6 +208,7 @@ Screen_2.propTypes = {
   handleChangeCreateUserId: PropTypes.func,
   handleChangePassword: PropTypes.func,
   handleChangeConfirmPassword: PropTypes.func,
+  handleChangeReceiveCommunicationsElectronically: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -202,6 +221,7 @@ const mapStateToProps = (state) => {
     createUserId: state.registration.createUserId,
     password: state.registration.password,
     confirmPassword: state.registration.confirmPassword,
+    receiveCommunicationsElectronically: state.registration.receiveCommunicationsElectronically,
     fetching: state.registration.fetching,
     error: state.registration.error,
     data: state.registration.data
@@ -215,7 +235,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeConfirmEmail: (confirmEmail) => dispatch(RegistrationActions.changeConfirmEmail(confirmEmail)),
     handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
     handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
-    handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword))
+    handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword)),
+    handleChangeReceiveCommunicationsElectronically:(receiveCommunicationsElectronically) => dispatch(RegistrationActions.changeReceiveCommunicationsElectronically(receiveCommunicationsElectronically))
   }
 }
 
