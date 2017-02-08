@@ -16,6 +16,7 @@ import { RegistrationTypes } from '../Redux/RegistrationRedux'
 
 //import { startup } from './StartupSagas'
 import { login } from './LoginSagas'
+import { logout } from './LoginSagas'
 import { member } from './MemberSagas'
 import { myplan } from './MyPlanSagas'
 import {registration} from './RegistrationSagas'
@@ -31,6 +32,7 @@ import {sendconfirm} from './RegistrationSagas'
 // to the sagas which need it.
 const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
 const apiforRegistration = API.create(baseURL='https://registration-stga.bcbsfl.com/restservices/public')
+const apiforlogout = API.create(baseURL='https://logout-stage.bcbsfl.com/')
 
 /* ------------- Connect Types To Sagas ------------- */
 
@@ -39,6 +41,7 @@ export default function * root () {
     // some sagas only receive an action
     // some sagas receive extra parameters in addition to an action
     takeLatest(LoginTypes.LOGIN_REQUEST, login , api),
+    takeLatest(LoginTypes.LOGOUT_REQUEST,logout, apiforlogout),
     takeLatest(MemberTypes.MEMBER_REQUEST, member,api),
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan,api),
     takeLatest(RegistrationTypes.REGISTRATION_REQUEST,registration,apiforRegistration),

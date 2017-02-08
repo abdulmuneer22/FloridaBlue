@@ -2,7 +2,6 @@ import {
   call,
   put
 } from 'redux-saga/effects'
-var btoa = require('btoa');
 import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
@@ -66,3 +65,12 @@ export function* login(api, {
       yield put(LoginActions.loginFailure(error))
     }
   }
+
+
+
+
+
+  export function* logout(apiforlogout) {
+      const response = yield call(apiforlogout.getLogout)
+      console.log(JSON.stringify(response));
+    }

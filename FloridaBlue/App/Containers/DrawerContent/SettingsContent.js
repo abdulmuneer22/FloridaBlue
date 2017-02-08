@@ -1,12 +1,14 @@
 // @flow
 
-import React, { Component } from 'react'
+import React, { Component} from 'react'
 import { ScrollView, Image, BackAndroid, View, StyleSheet,Text, TouchableWithoutFeedback } from 'react-native'
 import styles from './DrawerContentStyle'
 import { Colors, Metrics,Fonts, Images } from '../../Themes'
 import DrawerButton from '../../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
+import { connect } from 'react-redux';
+import LoginActions from '../../Redux/LoginRedux'
 
 
 
@@ -83,6 +85,7 @@ class SettingsContent extends Component {
 
   handlePressLogout = () => {
    this.toggleDrawer()
+   this.props.attemptLogout()
    NavigationActions.login()
  }
 
@@ -156,4 +159,23 @@ SettingsContent.contextTypes = {
   drawer: React.PropTypes.object
 }
 
-export default SettingsContent
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.login.fetching,
+    error: state.login.error,
+    responseURL : state.login.responseURL,
+    smToken : state.login.smToken
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptLogout:() => dispatch(LoginActions.logoutRequest())
+  }
+}
+
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsContent)
