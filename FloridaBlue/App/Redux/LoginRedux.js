@@ -10,7 +10,7 @@ const { Types, Creators } = createActions({
   loginSuccess: ['username', 'responseURL','smToken'],
   logoutRequest: [],
   loginFailure: ['error'],
-  logout: []
+  logout: null
 })
 
 export const LoginTypes = Types

@@ -73,6 +73,4 @@ export function* login(api, {
   export function* logout(apiforlogout) {
       const response = yield call(apiforlogout.getLogout)
         console.log("response of logout"+response);
-         yield put(LoginActions.logout())
-
     }
