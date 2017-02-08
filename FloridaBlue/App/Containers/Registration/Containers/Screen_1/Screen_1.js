@@ -97,7 +97,11 @@ class Screen_1 extends React.Component {
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
             </View>
-            <View><Image source={Images.closeIconWhite}/></View>
+            <View>
+              <TouchableOpacity onPress={() => {this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})}}>
+                <Image source={Images.closeIconWhite} />
+              </TouchableOpacity>
+            </View>
           </View> : <Text></Text>}
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
@@ -211,6 +215,7 @@ Screen_1.propTypes = {
   handleChangeLastName: PropTypes.func,
   handleChangeDateOfBirth: PropTypes.func,
   handleChangeZipCode: PropTypes.func,
+  handleChangeReasonCode: PropTypes.func,
   fetching: PropTypes.bool,
   contractNumber : PropTypes.string,
   firstName :PropTypes.string,
@@ -240,7 +245,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeFirstName:(firstName) => dispatch(RegistrationActions.changeFirstName(firstName)),
     handleChangeLastName:(lastName) => dispatch(RegistrationActions.changeLastName(lastName)),
     handleChangeDateOfBirth:(dateOfBirth) => dispatch(RegistrationActions.changeDateOfBirth(dateOfBirth)),
-    handleChangeZipCode:(zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode))
+    handleChangeZipCode:(zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode)),
+    handleChangeReasonCode:(data) => dispatch(RegistrationActions.changeReasonCode(data))
   }
 }
 
