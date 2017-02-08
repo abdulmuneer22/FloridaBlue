@@ -24,6 +24,7 @@ const { Types, Creators } = createActions({
   changeSecurityAnswer2: ['securityAnswer2'],
   changeSecurityHint3: ['securityHint3'],
   changeSecurityAnswer3: ['securityAnswer3'],
+  changeReasonCode: ['data'],
   registrationRequest: ['contractNumber' ,'firstName','lastName','dateOfBirth','zipCode'],
   registrationSuccess: ['data'],
   sendregistrationRequest: ['email' ,'confirmemail','uniqueuserid','password','confirmpassword'],
@@ -34,7 +35,7 @@ const { Types, Creators } = createActions({
   sendregistrationSuccessanswers :['questionone','questiontwo','questionthree','answerone','answertwo','answerthree'],
   sendregistrationRequestconfirm : ['confirm'],
   sendregistrationSuccessconfirm : ['confirm'],
-  registrationFailure: ['error'],
+  registrationFailure: ['data'],
 })
 
 export const RegistrationTypes = Types
@@ -54,7 +55,7 @@ export const INITIAL_STATE = Immutable({
   createUserId: null,
   password: null,
   confirmPassword: null,
-  enterCode: null,  
+  enterCode: null,
   securityHint1: null,
   securityAnswer1: null,
   securityHint2: null,
@@ -95,8 +96,8 @@ export const sendconfirm = (state: Object, {sendconfrim}: Object) =>
       state.merge({fetching: false,sendconfrim})
 
 // we've had a problem logging in
-export const failure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error })
+export const failure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, data })
 
 // contractNumber
 export const _changeContractNumber = (state: Object, {contractNumber}: Object) =>
@@ -170,6 +171,10 @@ export const _changeSecurityHint3 = (state: Object, {securityHint3}: Object) =>
 export const _changeSecurityAnswer3 = (state: Object, {securityAnswer3}: Object) =>
       state.merge({fetching: false, securityAnswer3})
 
+// reasonCode
+export const _changeReasonCode = (state: Object, {data}: Object) =>
+      state.merge({fetching: false, data})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -178,6 +183,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_LAST_NAME]: _changeLastName,
   [Types.CHANGE_DATE_OF_BIRTH]: _changeDateOfBirth,
   [Types.CHANGE_ZIP_CODE]: _changeZipCode,
+  [Types.CHANGE_REASON_CODE]: _changeReasonCode,
   [Types.PHONE_NUMBER]: _changePhoneNumber,
   [Types.EMAIL]: _changeEmail,
   [Types.CONFIRM_EMAIL]: _changeConfirmEmail,
