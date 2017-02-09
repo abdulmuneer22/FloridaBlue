@@ -10,6 +10,7 @@ import DebugSettings from '../Config/DebugSettings'
 import { LoginTypes } from '../Redux/LoginRedux'
 import { MemberTypes } from '../Redux/MemberRedux'
 import { MyPlanTypes } from '../Redux/MyPlanRedux'
+import { SupportTypes } from '../Redux/SupportRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
 
 /* ------------- Sagas ------------- */
@@ -19,6 +20,7 @@ import { login } from './LoginSagas'
 import { logout } from './LoginSagas'
 import { member } from './MemberSagas'
 import { myplan } from './MyPlanSagas'
+import { support } from './SupportSagas'
 import {registration} from './RegistrationSagas'
 import {sendregistration} from './RegistrationSagas'
 import {sendregistrationCode} from './RegistrationSagas'
@@ -44,6 +46,7 @@ export default function * root () {
     takeLatest(LoginTypes.LOGOUT_REQUEST,logout, apiforlogout),
     takeLatest(MemberTypes.MEMBER_REQUEST, member,api),
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan,api),
+    takeLatest(SupportTypes.SUPPORT_REQUEST, support,api),
     takeLatest(RegistrationTypes.REGISTRATION_REQUEST,registration,apiforRegistration),
     takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCODE,sendregistrationCode,apiforRegistration),
     takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTANSWERS,sendregistrationAnswers,apiforRegistration),

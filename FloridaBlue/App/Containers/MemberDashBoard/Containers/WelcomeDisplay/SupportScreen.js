@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -15,16 +15,24 @@ import {
 
 
 import styles from './DashBoardStyle'
+import axios from 'axios'
 import {Colors,Metrics,Fonts, Images} from '../../../../Themes'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Flb from '../../../../Themes/FlbIcon'
+import {connect} from 'react-redux'
+import SupportActions from '../../../../Redux/SupportRedux'
+
+
 const window = Dimensions.get('window');
 
-
-
-
 class SupportScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+    }
+
+  }
 
 _renderHeader(){
 return( <View style={styles.headerContainer}>
@@ -35,81 +43,85 @@ return( <View style={styles.headerContainer}>
   </View>)
   }
 
+
+  componentDidMount(){
+       console.log("I am Support screen")
+        this.props.attemptSupportScreen();
+  }
+
+
       render(){
-          return(
-              <View style ={styles.container}>
-              {this._renderHeader()}
-              <ScrollView>
-              <View style={styles.textBackground}>
-              <View >
-              <Text style={styles.textStyle}>Members</Text>
-              <Text> 1-800-FLA-BLUE (352-2583)</Text>
-              </View>
-              <View style={{marginLeft:20}}>
-              <Text style={styles.textStyle1}>TTY/TDD</Text>
-              <Text> 1-800-955-8771</Text>
-              </View>
-              </View>
 
-              <View style={styles.textBackground1}>
-              <View >
-              <Text style={styles.textStyle}>Florida Blue Centers</Text>
-              <Text> 1-800-FLA-BLUE (352-2583)</Text>
-              </View>
-              <View style={{marginLeft:20}}>
-              <Text style={styles.textStyle1}>TTY/TDD</Text>
-              <Text> 1-800-955-8771</Text>
-              </View>
-              </View>
+        var texts = [];
+        var text=this.props.data
+          var i=0;
 
-              <View style={styles.textBackground}>
-              <View >
-              <Text style={styles.textStyle}>Medicare Members</Text>
-              <Text> 1-800-926-6565</Text>
-              </View>
-              <View style={{marginLeft:60}}>
-              <Text style={styles.textStyle1}>TTY/TDD</Text>
-              <Text> 1-800-955-8771</Text>
-              </View>
-              </View>
+        text.map(function(network, i) {
+          var support  = network['support'];
 
-              <View style={styles.textBackground1}>
-              <View >
-              <Text style={styles.textStyle}>Physicians & Providers</Text>
-              <Text> 1-800-727-2227</Text>
-              </View>
+            console.log("support" + JSON.stringify(text))
+            texts.push( <View style = {i % 2 == 0 ? styles.textBackground : styles.textBackground1} >
 
-              </View>
-
-              <View style={styles.textBackground}>
-              <View >
-              <Text style={styles.textStyle}>Agent Contact Center</Text>
-              <Text> 1-800-267-3156</Text>
-              </View>
-
-              </View>
-
-              <View style={styles.textBackground1}>
               <View>
-              <Text style={styles.textStyle}>Employers & Benefit Administrators</Text>
-              <Text> 1-866-946-2583</Text>
-              </View>
+              <Text style = {styles.textStyle} >
+              {network.contactType}
+              </Text>
+              <Text style = {styles.textStyle} >
+              {network.contactNumber}
+              </Text>
 
               </View>
+              <View>
+              <Text style = {styles.textStyle1} >
+              {network.accessibilityType}
+              </Text>
 
-              <View style={styles.textBackground}>
-              <View >
-              <Text style={styles.textStyle}>Media Inquires</Text>
-              <Text> 1-904-905-7864</Text>
-              </View>
-              </View>
+              <Text style = {styles.textStyle1} >
+              {network.accessibilitynumber}
+              </Text>
 
-              </ScrollView>
+              </View >
               </View>
             )
-        }
+            i += 1
+            return texts
+
+          }
+
+        );
+        return (
+
+          <ScrollView >
+          <View >
+            <Text>Hi 
+            </Text>
+          </View>
+          </ScrollView >
+
+        );
+      }
     }
 
 
+    SupportScreen.propTypes = {
 
-export default SupportScreen
+      data: PropTypes.object,
+      attemptSupportScreen: PropTypes.func,
+      error: PropTypes.string
+    }
+
+    const mapStateToProps = (state) => {
+    return {
+      fetching: state.login.fetching,
+      data : state.support.data,
+      error: state.support.error
+  }
+    }
+
+    const mapDispatchToProps = (dispatch) => {
+    return {
+    attemptSupportScreen:() => dispatch(SupportActions.supportRequest()),
+    }
+    }
+
+export default connect(mapStateToProps,mapDispatchToProps)(SupportScreen)

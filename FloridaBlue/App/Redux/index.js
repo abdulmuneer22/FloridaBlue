@@ -10,6 +10,7 @@ export default () => {
     login: require('./LoginRedux').reducer,
     member: require('./MemberRedux').reducer,
     myplan: require('./MyPlanRedux').reducer,
+    support: require('./SupportRedux').reducer,
     registration: require('./RegistrationRedux').reducer
   })
 

@@ -48,7 +48,7 @@ backgroundColor : 'white'
           <Text style={{
           marginTop : 5,
           fontSize : 13
-        }}>{this.props.data.officeServices.text.en}</Text>
+        }}>DoctorServices</Text>
           <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
           </View>
           <View>
