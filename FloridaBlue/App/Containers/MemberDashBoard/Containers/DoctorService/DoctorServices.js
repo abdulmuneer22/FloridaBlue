@@ -1,3 +1,4 @@
+
 import React, { Component, PropTypes } from 'react'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import {Text, View, ScrollView} from 'react-native'
@@ -49,7 +50,13 @@ class DoctorServices extends Component {
                 marginTop: 5,
                 fontSize: 13
               }}>{this.props.data.officeServices.text.en}</Text>
-              <Switch leftActive={this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight} />
+              <Switch
+              leftActive={this.props.leftActive}
+              rightActive={this.props.rightActive}
+              preferredActive={this.props.preferredActive}
+              attemptHandleLeft={this.props.attemptHandleLeft}
+              attemptHandleRight={this.props.attemptHandleRight}
+              attemptHandlePreferred={this.props.attemptHandlePreferred}/>
             </View>
             <View>
               <Card data={this.props.data} leftActive={this.props.leftActive} rightActive={this.props.rightActive} />
@@ -66,21 +73,24 @@ class DoctorServices extends Component {
 DoctorServices.propTypes = {
 
   attemptHandleLeft: PropTypes.func,
-  attemptHandleRight: PropTypes.func
+  attemptHandleRight: PropTypes.func,
+  attemptHandlePreferred: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
   return {
     data: state.myplan.data,
     leftActive: state.myplan.leftActive,
-    rightActive: state.myplan.rightActive
+    rightActive: state.myplan.rightActive,
+    preferredActive :state.myplan.preferredActive
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptHandleLeft: () => dispatch(MyPlanActions.myplanClickleft()),
-    attemptHandleRight: () => dispatch(MyPlanActions.myplanClickright())
+    attemptHandleRight: () => dispatch(MyPlanActions.myplanClickright()),
+    attemptHandlePreferred :() => dispatch(MyPlanActions.myplanClickpreferred())
   }
 }
 
