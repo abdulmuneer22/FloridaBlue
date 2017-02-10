@@ -29,6 +29,13 @@ export default StyleSheet.create({
   messagePadding: {
     flex: 0.1
   },
+  topText: {
+    color: Colors.flBlue.grey4,
+    marginHorizontal: Metrics.section,
+    marginBottom: Metrics.baseMargin,
+    fontWeight: 'bold',
+    fontSize: Fonts.size.normal
+  },
   message: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,
@@ -68,7 +75,7 @@ export default StyleSheet.create({
   },
   textfieldWithFloatingLabel: {
     height: 48,  // have to do it on iOS
-    marginTop: 10,
+    marginTop: 10
   },
   footer: {
     flex: 1,
@@ -84,5 +91,5 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: Fonts.size.small
-  },
+  }
 })

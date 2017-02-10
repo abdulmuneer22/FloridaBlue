@@ -7,7 +7,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   memberRequest: [],
-  memberSuccess: ['username','visibilityRules'],
+  memberSuccess: ['username', 'visibilityRules'],
   memberFailure: ['error']
 })
 
@@ -19,7 +19,7 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   username: null,
   error: null,
-  visibilityRules : null ,
+  visibilityRules: null,
   fetching: false
 })
 

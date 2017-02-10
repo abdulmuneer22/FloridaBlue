@@ -1,99 +1,98 @@
 // @flow
 
-import {StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
 
 export default StyleSheet.create({
-  headerContainer:{
-     flexDirection:'row',
-     height:78,
-     justifyContent:'space-between',
-     alignItems:'center',
-     padding:10,
-     alignSelf:'stretch',
-     width:null,
-     backgroundColor:Colors.flBlue.ocean
+  headerContainer: {
+    flexDirection: 'row',
+    height: 78,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    alignSelf: 'stretch',
+    width: null,
+    backgroundColor: Colors.flBlue.ocean
   },
-  container:{
-    flex:1,
-    backgroundColor:'white'
+  container: {
+    flex: 1,
+    backgroundColor: 'white'
   },
-  PlanName : {
-    alignItems  : 'center',
-    justifyContent : 'center',
-    height:40,
+  PlanName: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40
 
   },
 
-  chartWrapper : {
+  chartWrapper: {
     //   backgroundColor : 'yellow',
-      flex : 2,
-      marginBottom : 20
+    flex: 2,
+    marginBottom: 20
   },
-  cardStyle:{
-    flexWrap : 'wrap',
-    flexDirection : 'row'
+  cardStyle: {
+    flexWrap: 'wrap',
+    flexDirection: 'row'
   },
-  spinner:{
+  spinner: {
   //  color:Colors.flBlue.red,
-  //alignItems:'center',
-  //justifyContent:'center',
-  //height:window.height
-},
-spinnerText:{
+  // alignItems:'center',
+  // justifyContent:'center',
+  // height:window.height
+  },
+  spinnerText: {
 
-marginTop:20,
-},
-wrapper: {
-  backgroundColor: Colors.snow
+    marginTop: 20
+  },
+  wrapper: {
+    backgroundColor: Colors.snow
 
-},
+  },
 
-headerStyle: {
-  flex:1,
-  alignItems:'center',
-  //justifyContent:'center',
-  flexWrap:'nowrap',
+  headerStyle: {
+    flex: 1,
+    alignItems: 'center',
+  // justifyContent:'center',
+    flexWrap: 'nowrap',
 //  borderWidth:2,
-  marginTop:5,
+    marginTop: 5
 //  borderColor:Colors.flBlue.grey4,
 //  backgroundColor:Colors.flBlue.grey2
-},
-headerText: {
-  color:Colors.flBlue.night,
-  fontWeight:'bold',
-  //paddingBottom:10,
-  marginTop:10,
+  },
+  headerText: {
+    color: Colors.flBlue.night,
+    fontWeight: 'bold',
+  // paddingBottom:10,
+    marginTop: 10,
 
-  //width:window.width,
-  //alignSelf:'center',
-  fontSize:Fonts.size.h6,
-  //backgroundColor:Colors.flBlue.ocean
-},
-subHeader:{
-  fontSize:Fonts.size.regular,
-  marginBottom:10,
-  marginTop:10
-},
-listViewBg:{
-  flexDirection:'row',
-  marginLeft:15,
-  marginRight:15
-},
-dataContainer:{
+  // width:window.width,
+  // alignSelf:'center',
+    fontSize: Fonts.size.h6
+  // backgroundColor:Colors.flBlue.ocean
+  },
+  subHeader: {
+    fontSize: Fonts.size.regular,
+    marginBottom: 10,
+    marginTop: 10
+  },
+  listViewBg: {
+    flexDirection: 'row',
+    marginLeft: 15,
+    marginRight: 15
+  },
+  dataContainer: {
 //  flexDirection:'row',
-    marginLeft:20,
-    marginRight:20,
-    flex:1,
-    margin:10,
-  flexWrap:'wrap'
-},
-listViewStyle:{
-  alignItems:'flex-start',
+    marginLeft: 20,
+    marginRight: 20,
+    flex: 1,
+    margin: 10,
+    flexWrap: 'wrap'
+  },
+  listViewStyle: {
+    alignItems: 'flex-start',
 
-   marginLeft:20,
+    marginLeft: 20
 
- }
-
+  }
 
 })

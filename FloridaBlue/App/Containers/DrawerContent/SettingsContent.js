@@ -1,19 +1,17 @@
 // @flow
 
 import React, { Component} from 'react'
-import { ScrollView, Image, BackAndroid, View, StyleSheet,Text, TouchableWithoutFeedback } from 'react-native'
+import { ScrollView, Image, BackAndroid, View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native'
 import styles from './DrawerContentStyle'
-import { Colors, Metrics,Fonts, Images } from '../../Themes'
+import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import DrawerButton from '../../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import LoginActions from '../../Redux/LoginRedux'
 
-
-
-const Divider=()=>{
-  return <View style={styles.divider}/>
+const Divider = () => {
+  return <View style={styles.divider} />
 }
 
 class SettingsContent extends Component {
@@ -31,7 +29,6 @@ class SettingsContent extends Component {
   toggleDrawer () {
     this.context.drawer.toggle()
   }
-
 
   handlePressDashBoard = () => {
     this.toggleDrawer()
@@ -82,71 +79,69 @@ class SettingsContent extends Component {
     NavigationActions.Support()
   }
 
-
   handlePressLogout = () => {
-   this.toggleDrawer()
-   this.props.attemptLogout()
-   NavigationActions.login()
- }
-
+    this.toggleDrawer()
+    this.props.attemptLogout()
+    NavigationActions.login()
+  }
 
   render () {
     return (
       <ScrollView style={[styles.wrapper]}>
         <View style={styles.options}>
           <Text style={styles.heading} onPress={this.handlePressDashBoard}>Dash Board</Text>
-          <Divider/>
+          <Divider />
           <View>
             <Text style={styles.heading} onPress={this.handlePressPlans}>My Health Plan</Text>
-            <View style={{paddingLeft:30}}>
-              <Text style={[styles.subheading,{fontSize:Fonts.size.h5}]} onPress={this.handlePressBenefits}>Benefits</Text>
-              <Text style={[styles.subheading,{fontSize:Fonts.size.h5}]} onPress={this.handlePressClaims}>Claims</Text>
+            <View style={{paddingLeft: 30}}>
+              <Text style={[styles.subheading, {fontSize: Fonts.size.h5}]} onPress={this.handlePressBenefits}>Benefits</Text>
+              <Text style={[styles.subheading, {fontSize: Fonts.size.h5}]} onPress={this.handlePressClaims}>Claims</Text>
             </View>
           </View>
-          <Divider/>
+          <Divider />
           <Text style={styles.heading} onPress={this.handlePressDentalPlan}>My Dental Plan</Text>
-          <Divider/>
+          <Divider />
           <Text style={styles.heading} onPress={this.handlePressPayment}>Payment</Text>
         </View>
         <View style={styles.settings}>
-           <View style={{marginBottom:10,marginTop:10, flexDirection:'row'}}>
-           <View >
-           <Flb name="user" size={23} color={Colors.flBlue.ocean}/>
-           </View>
-             <Text style={styles.heading2} onPress={this.handlePressMyAccount}>My Account</Text>
-             </View>
+          <View style={{marginBottom: 10, marginTop: 10, flexDirection: 'row'}}>
+            <View >
+              <Flb name='user' size={23} color={Colors.flBlue.ocean} />
+            </View>
+            <Text style={styles.heading2} onPress={this.handlePressMyAccount}>My Account</Text>
+          </View>
 
-           <View style={{marginBottom:10,marginTop:10, flexDirection:'row'}}>
-           <View >
-           <Flb name="cog-gear" size={23} color={Colors.flBlue.ocean}/>
-           </View>
-             <Text style={styles.heading2} onPress={this.handlePressSettings}>App Settings</Text>
-           </View>
-           <View style={{marginBottom:10,marginTop:10, flexDirection:'row'}}>
-           <View >
-           <Flb name="question" size={23} color={Colors.flBlue.ocean}/>
-           </View>
-             <Text style={styles.heading2} onPress={this.handlePressFAQ}>Frequently Asked Questions</Text>
-           </View>
+          <View style={{marginBottom: 10, marginTop: 10, flexDirection: 'row'}}>
+            <View >
+              <Flb name='cog-gear' size={23} color={Colors.flBlue.ocean} />
+            </View>
+            <Text style={styles.heading2} onPress={this.handlePressSettings}>App Settings</Text>
+          </View>
+          <View style={{marginBottom: 10, marginTop: 10, flexDirection: 'row'}}>
+            <View >
+              <Flb name='question' size={23} color={Colors.flBlue.ocean} />
+            </View>
+            <Text style={styles.heading2} onPress={this.handlePressFAQ}>Frequently Asked Questions</Text>
+          </View>
 
-           <View style={{marginBottom:10,marginTop:10, flexDirection:'row'}}>
-           <View >
-           <Flb name="generic-doc" size={23} color={Colors.flBlue.ocean}/>
-           </View>
+          <View style={{marginBottom: 10, marginTop: 10, flexDirection: 'row'}}>
+            <View >
+              <Flb name='generic-doc' size={23} color={Colors.flBlue.ocean} />
+            </View>
 
             <Text style={styles.heading2} onPress={this.handlePressPolicy}>Policies & Terms </Text>
           </View>
-          <View style={{marginBottom:10,marginTop:10, flexDirection:'row'}}>
-          <View >
-          <Flb name="brand-phone" size={23} color={Colors.flBlue.ocean}/>
-          </View>
+          <View style={{marginBottom: 10, marginTop: 10, flexDirection: 'row'}}>
+            <View >
+              <Flb name='brand-phone' size={23} color={Colors.flBlue.ocean} />
+            </View>
             <Text style={styles.heading2} onPress={this.handlePressSupport}>Contact Us </Text>
           </View>
         </View>
-        <View style={{margin:10,marginTop:20}}>
-        <TouchableWithoutFeedback onPress={this.handlePressLogout}>
-        <Image source={Images.logout} resizeMode="stretch"  />
-        </TouchableWithoutFeedback>
+        <View style={{margin: 10, marginTop: 20}}>
+          <TouchableWithoutFeedback onPress={this.handlePressLogout}>
+            <Image source={Images.logout} resizeMode='stretch' />
+          </TouchableWithoutFeedback>
         </View>
 
       </ScrollView>
@@ -159,23 +154,19 @@ SettingsContent.contextTypes = {
   drawer: React.PropTypes.object
 }
 
-
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
     error: state.login.error,
-    responseURL : state.login.responseURL,
-    smToken : state.login.smToken
+    responseURL: state.login.responseURL,
+    smToken: state.login.smToken
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogout:() => dispatch(LoginActions.logoutRequest())
+    attemptLogout: () => dispatch(LoginActions.logoutRequest())
   }
 }
-
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsContent)

@@ -24,18 +24,19 @@ const { Types, Creators } = createActions({
   changeSecurityAnswer2: ['securityAnswer2'],
   changeSecurityHint3: ['securityHint3'],
   changeSecurityAnswer3: ['securityAnswer3'],
+  changeReceiveCommunicationsElectronically: ['receiveCommunicationsElectronically'],
   changeReasonCode: ['data'],
-  registrationRequest: ['contractNumber' ,'firstName','lastName','dateOfBirth','zipCode'],
+  registrationRequest: ['contractNumber', 'firstName', 'lastName', 'dateOfBirth', 'zipCode'],
   registrationSuccess: ['data'],
-  sendregistrationRequest: ['email' ,'confirmemail','uniqueuserid','password','confirmpassword'],
-  sendregistrationSuccess: ['email' ,'confirmemail','uniqueuserid','password','confirmpassword'],
-  sendregistrationRequestcode :['registrationcode'],
-  sendregistrationSuccesscode :['registrationcode'],
-  sendregistrationRequestanswers :['questionone','questiontwo','questionthree','answerone','answertwo','answerthree'],
-  sendregistrationSuccessanswers :['questionone','questiontwo','questionthree','answerone','answertwo','answerthree'],
-  sendregistrationRequestconfirm : ['confirm'],
-  sendregistrationSuccessconfirm : ['confirm'],
-  registrationFailure: ['data'],
+  sendregistrationRequest: ['email', 'confirmemail', 'uniqueuserid', 'password', 'confirmpassword'],
+  sendregistrationSuccess: ['email', 'confirmemail', 'uniqueuserid', 'password', 'confirmpassword'],
+  sendregistrationRequestcode: ['registrationcode'],
+  sendregistrationSuccesscode: ['registrationcode'],
+  sendregistrationRequestanswers: ['questionone', 'questiontwo', 'questionthree', 'answerone', 'answertwo', 'answerthree'],
+  sendregistrationSuccessanswers: ['questionone', 'questiontwo', 'questionthree', 'answerone', 'answertwo', 'answerthree'],
+  sendregistrationRequestconfirm: ['confirm'],
+  sendregistrationSuccessconfirm: ['confirm'],
+  registrationFailure: ['data']
 })
 
 export const RegistrationTypes = Types
@@ -62,16 +63,17 @@ export const INITIAL_STATE = Immutable({
   securityAnswer2: null,
   securityHint3: null,
   securityAnswer3: null,
-  questionone : null,
-  questiontwo : null,
-  questionthree : null,
-  answerone: null ,
-  answertwo: null ,
+  receiveCommunicationsElectronically: null,
+  questionone: null,
+  questiontwo: null,
+  questionthree: null,
+  answerone: null,
+  answertwo: null,
   answerthree: null,
-  confirm : null,
-  fetching : false,
-  error : null,
-  data : null
+  confirm: null,
+  fetching: false,
+  error: null,
+  data: null
 })
 
 /* ------------- Reducers ------------- */
@@ -80,20 +82,20 @@ export const INITIAL_STATE = Immutable({
 export const request = (state: Object) => state.merge({ fetching: true })
 
 // we've successfully logged in
-export const success = (state: Object,{data}: Object) =>
+export const success = (state: Object, {data}: Object) =>
   state.merge({fetching: false, data})
 
-export const sendsuccess = (state: Object, {email,confirmemail,uniqueuserid,password,confirmpassword}: Object) =>
-    state.merge({fetching: false, email,confirmemail,uniqueuserid,password,confirmpassword})
+export const sendsuccess = (state: Object, {email, confirmemail, uniqueuserid, password, confirmpassword}: Object) =>
+    state.merge({fetching: false, email, confirmemail, uniqueuserid, password, confirmpassword})
 
 export const sendcode = (state: Object, {registrationcode}: Object) =>
       state.merge({fetching: false, registrationcode})
 
-export const sendanswers = (state: Object, {questionone ,questiontwo, questionthree, answerone, answertwo, answerthree}: Object) =>
-      state.merge({fetching: false,questionone ,questiontwo, questionthree, answerone, answertwo, answerthree })
+export const sendanswers = (state: Object, {questionone, questiontwo, questionthree, answerone, answertwo, answerthree}: Object) =>
+      state.merge({fetching: false, questionone, questiontwo, questionthree, answerone, answertwo, answerthree })
 
 export const sendconfirm = (state: Object, {sendconfrim}: Object) =>
-      state.merge({fetching: false,sendconfrim})
+      state.merge({fetching: false, sendconfrim})
 
 // we've had a problem logging in
 export const failure = (state: Object, {data}: Object) =>
@@ -175,6 +177,10 @@ export const _changeSecurityAnswer3 = (state: Object, {securityAnswer3}: Object)
 export const _changeReasonCode = (state: Object, {data}: Object) =>
       state.merge({fetching: false, data})
 
+// receiveCommunicationsElectronically
+export const _changeReceiveCommunicationsElectronically = (state: Object, {receiveCommunicationsElectronically}: Object) =>
+      state.merge({fetching: false, receiveCommunicationsElectronically})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -190,6 +196,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CREATE_USER_ID]: _changeCreateUserId,
   [Types.PASSWORD]: _changePassword,
   [Types.CONFIRM_PASSWORD]: _changeConfirmPassword,
+  [Types.CHANGE_RECEIVE_COMMUNICATIONS_ELECTRONICALLY]: _changeReceiveCommunicationsElectronically,
   [Types.ENTER_CODE]: _changeEnterCode,
   [Types.SECURITY_HINT1]: _changeSecurityHint1,
   [Types.SECURITY_ANSWER1]: _changeSecurityAnswer1,
@@ -201,13 +208,13 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.REGISTRATION_SUCCESS]: success,
   [Types.SENDREGISTRATION_REQUEST]: request,
   [Types.SENDREGISTRATION_SUCCESS]: sendsuccess,
-  [Types.SENDREGISTRATION_REQUESTCODE] : request,
+  [Types.SENDREGISTRATION_REQUESTCODE]: request,
   [Types.SENDREGISTRATION_SUCCESSCODE]: sendcode,
   [Types.SENDREGISTRATION_REQUESTANSWERS]: request,
   [Types.SENDREGISTRATION_SUCCESSANSWERS]: sendanswers,
   [Types.SENDREGISTRATION_REQUESTCONFIRM]: request,
   [Types.SENDREGISTRATION_SUCCESSCONFIRM]: sendconfirm,
-  [Types.REGISTRATION_FAILURE]: failure,
+  [Types.REGISTRATION_FAILURE]: failure
 })
 
 /* ------------- Selectors ------------- */

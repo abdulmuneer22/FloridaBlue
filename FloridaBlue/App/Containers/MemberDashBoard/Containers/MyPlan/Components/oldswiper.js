@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Text,
   View,
@@ -10,44 +10,44 @@ import {
 
 const window = Dimensions.get('window')
 
-import Swiper from 'react-native-swiper';
+import Swiper from 'react-native-swiper'
 
-class MyPlanSwiper extends Component{
+class MyPlanSwiper extends Component {
 
-    render(){
-        return(
+  render () {
+    return (
 
-                <Swiper height={300} style={styles.wrapper} showsButtons={true}>
-                <View style={styles.slide}>
-                <View style={styles.outofBox}>
-                    <Text style={{
-                        fontSize : 14,
-                        fontWeight : 'bold'
-                    }}>Annual Deductable (In-Network)</Text>
-                </View>
+      <Swiper height={300} style={styles.wrapper} showsButtons>
+        <View style={styles.slide}>
+          <View style={styles.outofBox}>
+            <Text style={{
+              fontSize: 14,
+              fontWeight: 'bold'
+            }}>Annual Deductable (In-Network)</Text>
+          </View>
 
-                <Text>Spent Year-to-Date: ${this.props.data.annualDeductible.inNetwork[1].value}</Text>
-                <Text style={{justifyContent:'center', marginTop:10}}> You are ${this.props.data.annualDeductible.remainingValue} away reaching
+          <Text>Spent Year-to-Date: ${this.props.data.annualDeductible.inNetwork[1].value}</Text>
+          <Text style={{justifyContent: 'center', marginTop: 10}}> You are ${this.props.data.annualDeductible.remainingValue} away reaching
                 your In-Network Family Deductables of $ {this.props.data.annualDeductible.benefitValue}
-                </Text>
-                </View>
+          </Text>
+        </View>
 
-                <View style={styles.slide}>
-                <View style={styles.outofBox}>
-                    <Text style={{
-                        fontSize : 14,
-                        fontWeight : 'bold'
-                    }}>Annual Out-of-Pocket Maximum (In-Network)</Text>
-                </View>
-                <Text>Spent Year-to-Date: ${this.props.data.oop.usedOOP}</Text>
-                <Text style={{alignItems:'center', marginTop:10}}> You are ${this.props.data.oop.remainingValue} away reaching
+        <View style={styles.slide}>
+          <View style={styles.outofBox}>
+            <Text style={{
+              fontSize: 14,
+              fontWeight: 'bold'
+            }}>Annual Out-of-Pocket Maximum (In-Network)</Text>
+          </View>
+          <Text>Spent Year-to-Date: ${this.props.data.oop.usedOOP}</Text>
+          <Text style={{alignItems: 'center', marginTop: 10}}> You are ${this.props.data.oop.remainingValue} away reaching
                 your In-Network Family Deductables of $ {this.props.data.oop.benefitValue}
-                </Text>
-                </View>
-                </Swiper>
+          </Text>
+        </View>
+      </Swiper>
 
-        );
-    }
+    )
+  }
 
 }
 
@@ -57,18 +57,18 @@ var styles = StyleSheet.create({
 
   },
   slide: {
-    flex:1,
+    flex: 1,
     alignItems: 'center',
-    flexWrap:'nowrap',
-    backgroundColor: '#ccc',
+    flexWrap: 'nowrap',
+    backgroundColor: '#ccc'
   },
-  outofBox:{
-    backgroundColor : 'rgb(221, 227, 228)',
-    padding : 10,
-    alignItems : 'center',
-    justifyContent : 'center',
-    width : window.width,
-    marginBottom : 10
+  outofBox: {
+    backgroundColor: 'rgb(221, 227, 228)',
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: window.width,
+    marginBottom: 10
 
   }
 })
