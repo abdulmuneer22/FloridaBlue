@@ -1,10 +1,10 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
-global.Buffer = global.Buffer || require('buffer').Buffer
+global.Buffer = global.Buffer || require('buffer').Buffer;
 
 // our "constructor"
 const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
-//  const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
+
   // ------
   // STEP 1
   // ------
@@ -12,16 +12,19 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   // Create and configure an apisauce-based api object.
   //
 
+
   const api = apisauce.create({
     // base URL is read from the "constructor"
     baseURL,
     // here are some default headers
     headers: {
-      'Cache-Control': 'no-cache'
+      'Cache-Control': 'no-cache',
     },
     // 10 second timeout...
     timeout: 10000
   })
+
+
 
   const naviMonitor = (response) => console.log('hey!  listen! ', response)
   api.addMonitor(naviMonitor)
@@ -29,7 +32,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   // Force OpenWeather API Key on all requests
 
   api.addRequestTransform((request) => {
-    console.log('hey ther I am ' + JSON.stringify(request))
+    console.log("hey ther I am "+JSON.stringify(request))
   })
 
   // Wrap api's addMonitor to allow the calling code to attach
@@ -58,13 +61,13 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'Authorization': 'Basic ' + btoa(username + ":" + password)
-  }) */
+  })*/
 
-  const getUser = (username, password) => api.get('/login', {}, {
+  const getUser = (username, password) => api.get('/login',{},{
     'auth': {
-      'username': username,
-      'password': password
-    }
+    'username': username,
+    'password': password
+  }
   }
 )
   const setsmTokenHeaders = (smToken) => api.setHeaders({
@@ -75,18 +78,18 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 
   const getMember = () => api.get('/members')
   const getPlan = () => api.get('/benefits')
+  const getSupport = () => api.get('/support')
   const getLogout = () => api.get('logout.fcc')
 
-  const postIdentification = (contractNumber, firstName, lastName, dateOfBirth,
-    zipCode) => api.post('/identifyuser.json', {
-      'User': {
-        'contractnumber': contractNumber,
-        'firstName': firstName,
-        'lastName': lastName,
-        'dob': dateOfBirth,
-        'zip': zipCode
-      }
-    })
+  const postIdentification = (contractNumber, firstName, lastName, dateOfBirth, zipCode) => api.post('/identifyuser.json',{
+    "User": {
+      "contractnumber": contractNumber,
+      "firstName": firstName,
+      "lastName": lastName,
+      "dob": dateOfBirth,
+      "zip": zipCode
+    }
+  })
   // ------
   // STEP 3
   // ------
@@ -106,6 +109,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     setsmTokenHeaders,
     getMember,
     getPlan,
+    getSupport,
     postIdentification
   }
 }

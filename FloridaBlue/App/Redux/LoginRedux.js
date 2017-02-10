@@ -7,7 +7,8 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   loginRequest: ['username', 'password'],
-  loginSuccess: ['username', 'responseURL', 'smToken'],
+  loginSuccess: ['username', 'responseURL','smToken'],
+  changeAgreeTermsOfUse: ['agreeTermsOfUse'],
   logoutRequest: [],
   loginFailure: ['error'],
   logout: null
@@ -21,8 +22,11 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   username: null,
   error: null,
-  responseURL: 'login',
-  smToken: null,
+
+  responseURL : 'login',
+  smToken : null,
+  agreeTermsOfUse: null,
+
   fetching: false
 
 })
@@ -40,6 +44,10 @@ export const success = (state: Object, { username, responseURL, smToken}: Object
 export const failure = (state: Object, { error }: Object) =>
   state.merge({ fetching: false, error, responseURL: 'login' })
 
+// agreeTermsOfUse
+export const _changeAgreeTermsOfUse = (state: Object, {agreeTermsOfUse}: Object) =>
+      state.merge({fetching: false, agreeTermsOfUse})
+
 // we've logged out
 export const logout = (state: Object) => INITIAL_STATE
 
@@ -49,6 +57,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_REQUEST]: request,
   [Types.LOGOUT_REQUEST]: request,
   [Types.LOGIN_SUCCESS]: success,
+  [Types.CHANGE_AGREE_TERMS_OF_USE]: _changeAgreeTermsOfUse,
   [Types.LOGIN_FAILURE]: failure,
   [Types.LOGOUT]: logout
 })

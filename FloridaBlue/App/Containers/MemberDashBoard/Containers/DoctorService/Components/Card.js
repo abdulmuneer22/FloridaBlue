@@ -40,17 +40,13 @@ class Card extends Component {
           <Text style={styles.h4} >
             {speciality[0].speciality_text.en}
           </Text>
-          <Text style={styles.h2} >
-            {speciality[0].speciality_value[0].en}
-          </Text>
-          <Text style={styles.h2} >
-            {speciality[0].speciality_value[0].en ? speciality[0].speciality_value[0].en : speciality[0].speciality_value[1].en}
-          </Text>
-        </View>
 
-        <View>
-          <Text style={styles.h4} >
-            {speciality[1].speciality_text.en}
+
+          </View>
+          <View>
+          <Text style = {styles.h4} >
+          {speciality[1].speciality_text.en}
+
           </Text>
 
           <Text style={styles.h2} >
@@ -67,7 +63,8 @@ class Card extends Component {
       return cards
     }
 
-    )
+
+    );
 
     return (
       <ScrollView>

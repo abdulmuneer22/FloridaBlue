@@ -26,6 +26,7 @@ import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Flb from '../../../../Themes/FlbIcon'
 import Loader from '../../../../Components/Loader'
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 const window = Dimensions.get('window')
 
 type LoginScreenProps = {
@@ -36,6 +37,9 @@ type LoginScreenProps = {
   attemptMember: () => void
 }
 
+const SingleColorSpinner = MKSpinner.singleColorSpinner()
+.withStyle(styles.spinner)
+.build()
 class LandingScreen extends Component {
   props: LoginScreenProps
   isAttempting : boolean

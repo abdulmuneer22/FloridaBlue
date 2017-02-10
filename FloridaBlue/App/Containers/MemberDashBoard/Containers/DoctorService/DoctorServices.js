@@ -17,8 +17,13 @@ import {Colors, Metrics, Fonts} from '../../../../Themes'
 import Flb from '../../../../Themes/FlbIcon'
 import {connect} from 'react-redux'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 
 import Card from './Components/Card'
+
+const SingleColorSpinner = MKSpinner.singleColorSpinner()
+.withStyle(styles.spinner)
+.build()
 
 class DoctorServices extends Component {
 
@@ -39,30 +44,35 @@ class DoctorServices extends Component {
       }}>
         {this._renderHeader()}
 
-        <ScrollView>
-          <View style={{flex: 1}}>
-            <View style={{
-              alignItems: 'center',
-              marginTop: 10
-            }}>
-              <Flb name='doctor' size={60} color='black' />
-              <Text style={{
-                marginTop: 5,
-                fontSize: 13
-              }}>{this.props.data.officeServices.text.en}</Text>
-              <Switch
-              leftActive={this.props.leftActive}
-              rightActive={this.props.rightActive}
-              preferredActive={this.props.preferredActive}
-              attemptHandleLeft={this.props.attemptHandleLeft}
-              attemptHandleRight={this.props.attemptHandleRight}
-              attemptHandlePreferred={this.props.attemptHandlePreferred}/>
-            </View>
-            <View>
-              <Card data={this.props.data} leftActive={this.props.leftActive} rightActive={this.props.rightActive} />
-            </View>
+
+          <ScrollView>
+          {
+              this.props.data ?
+              
+          <View style={{flex : 1}}>
+          <View style={{
+          alignItems : 'center',
+          marginTop : 10
+          }}>
+          <Flb name="doctor" size={60} color="black" />
+          <Text style={{
+          marginTop : 5,
+          fontSize : 13
+        }}>DoctorServices</Text>
+          <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
+          </View>
+          <View>
+          <Card data= {this.props.data} leftActive = {this.props.leftActive} rightActive={this.props.rightActive}/>
+          </View>
+
 
           </View>
+          :
+             <View style={{alignItems: 'center', justifyContent: 'center'}}>
+               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+               <Text style={styles.spinnerText}>Loading Please Wait </Text>
+             </View>
+         }
         </ScrollView>
 
       </View>
