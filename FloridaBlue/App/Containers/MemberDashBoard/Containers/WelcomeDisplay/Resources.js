@@ -67,7 +67,6 @@ class Resources extends Component {
               return (
 
                 <TouchableOpacity style={{
-
                   width: window.width * 0.5,
                   backgroundColor: color[i],
                   height: 150,
@@ -75,7 +74,7 @@ class Resources extends Component {
                   justifyContent: 'center',
                   borderColor: Colors.flBlue.lightBlue,
                   borderWidth: 1
-                }} onPress={onItemPress.bind(this)}>
+                }} onPress={onItemPress.bind(this)} key={i}>
                   <View style={{alignItems: 'center'}}>
 
                     <Flb name='cc-card' size={40} color='white' />

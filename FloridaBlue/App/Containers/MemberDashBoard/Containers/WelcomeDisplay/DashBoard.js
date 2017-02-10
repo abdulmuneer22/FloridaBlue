@@ -90,7 +90,7 @@ class LandingScreen extends Component {
                     justifyContent: 'center',
                     borderWidth: 1,
                     borderColor: Colors.flBlue.lightBlue
-                  }} onPress={onItemPress.bind(this)}>
+                  }} onPress={onItemPress.bind(this)} key={i}>
                     <View style={{alignItems: 'center'}}>
                       <Flb name={tile.tileIcon} size={40} color='white' />
                       <Text style={{
