@@ -44,34 +44,32 @@ class DoctorServices extends Component {
       }}>
         {this._renderHeader()}
 
-
-          <ScrollView>
+        <ScrollView>
           {
               this.props.data ?
-              
-          <View style={{flex : 1}}>
-          <View style={{
-          alignItems : 'center',
-          marginTop : 10
-          }}>
-          <Flb name="doctor" size={60} color="black" />
-          <Text style={{
-          marginTop : 5,
-          fontSize : 13
-        }}>DoctorServices</Text>
-          <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
-          </View>
-          <View>
-          <Card data= {this.props.data} leftActive = {this.props.leftActive} rightActive={this.props.rightActive}/>
-          </View>
 
+                <View style={{flex: 1}}>
+                  <View style={{
+                    alignItems: 'center',
+                    marginTop: 10
+                  }}>
+                    <Flb name='doctor' size={60} color='black' />
+                    <Text style={{
+                      marginTop: 5,
+                      fontSize: 13
+                    }}>DoctorServices</Text>
+                    <Switch leftActive={this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight} />
+                  </View>
+                  <View>
+                    <Card data={this.props.data} leftActive={this.props.leftActive} rightActive={this.props.rightActive} />
+                  </View>
 
-          </View>
+                </View>
           :
-             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-               <Text style={styles.spinnerText}>Loading Please Wait </Text>
-             </View>
+                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                  <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                  <Text style={styles.spinnerText}>Loading Please Wait </Text>
+                </View>
          }
         </ScrollView>
 
@@ -92,7 +90,7 @@ const mapStateToProps = (state) => {
     data: state.myplan.data,
     leftActive: state.myplan.leftActive,
     rightActive: state.myplan.rightActive,
-    preferredActive :state.myplan.preferredActive
+    preferredActive: state.myplan.preferredActive
   }
 }
 
@@ -100,7 +98,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     attemptHandleLeft: () => dispatch(MyPlanActions.myplanClickleft()),
     attemptHandleRight: () => dispatch(MyPlanActions.myplanClickright()),
-    attemptHandlePreferred :() => dispatch(MyPlanActions.myplanClickpreferred())
+    attemptHandlePreferred: () => dispatch(MyPlanActions.myplanClickpreferred())
   }
 }
 

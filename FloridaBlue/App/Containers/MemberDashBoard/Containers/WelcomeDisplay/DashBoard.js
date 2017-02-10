@@ -103,7 +103,7 @@ class LandingScreen extends Component {
                         fontWeight: '600',
                         color: 'white'
                       }}>
-                        {tile.tileName}
+                        {tile.tileName['en']}
                       </Text>
                     </View>
                   </TouchableOpacity>

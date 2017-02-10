@@ -84,9 +84,9 @@ class MyPlanScreen extends Component {
         {
             this.props.data ?
 
-            <View style={{flex:1}}>
-          <View style={styles.PlanName}>
-          <Text style={{fontSize:Fonts.size.h6,}}>
+              <View style={{flex: 1}}>
+                <View style={styles.PlanName}>
+                  <Text style={{fontSize: Fonts.size.h6 }}>
 
           Blue Options
           </Text>

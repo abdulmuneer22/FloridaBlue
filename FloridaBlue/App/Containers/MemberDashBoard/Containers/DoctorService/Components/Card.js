@@ -41,11 +41,10 @@ class Card extends Component {
             {speciality[0].speciality_text.en}
           </Text>
 
-
-          </View>
-          <View>
-          <Text style = {styles.h4} >
-          {speciality[1].speciality_text.en}
+        </View>
+        <View>
+          <Text style={styles.h4} >
+            {speciality[1].speciality_text.en}
 
           </Text>
 
@@ -55,7 +54,7 @@ class Card extends Component {
           <Text style={styles.h2} >
             {speciality[1].speciality_value[0].en}
           </Text>
-      </View>
+        </View>
       </View>
 
         )
@@ -63,8 +62,7 @@ class Card extends Component {
       return cards
     }
 
-
-    );
+    )
 
     return (
       <ScrollView>

@@ -34,7 +34,7 @@ import {sendconfirm} from './RegistrationSagas'
 // to the sagas which need it.
 const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
 const apiforRegistration = API.create(baseURL = 'https://registration-stga.bcbsfl.com/restservices/public')
-const apiforlogout = API.create(baseURL = 'https://logout-stage.bcbsfl.com/')
+const apiforlogout = API.create(baseURL = 'https://logout-stga.bcbsfl.com/')
 
 /* ------------- Connect Types To Sagas ------------- */
 
@@ -43,15 +43,15 @@ export default function * root () {
     // some sagas only receive an action
     // some sagas receive extra parameters in addition to an action
 
-    takeLatest(LoginTypes.LOGIN_REQUEST, login , api),
-    takeLatest(LoginTypes.LOGOUT_REQUEST,logout, apiforlogout),
-    takeLatest(MemberTypes.MEMBER_REQUEST, member,api),
-    takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan,api),
-    takeLatest(SupportTypes.SUPPORT_REQUEST, support,api),
-    takeLatest(RegistrationTypes.REGISTRATION_REQUEST,registration,apiforRegistration),
-    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCODE,sendregistrationCode,apiforRegistration),
-    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTANSWERS,sendregistrationAnswers,apiforRegistration),
-    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCONFIRM, sendconfirm,apiforRegistration)
+    takeLatest(LoginTypes.LOGIN_REQUEST, login, api),
+    takeLatest(LoginTypes.LOGOUT_REQUEST, logout, apiforlogout),
+    takeLatest(MemberTypes.MEMBER_REQUEST, member, api),
+    takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan, api),
+    takeLatest(SupportTypes.SUPPORT_REQUEST, support, api),
+    takeLatest(RegistrationTypes.REGISTRATION_REQUEST, registration, apiforRegistration),
+    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCODE, sendregistrationCode, apiforRegistration),
+    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTANSWERS, sendregistrationAnswers, apiforRegistration),
+    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCONFIRM, sendconfirm, apiforRegistration)
 
   ]
 }

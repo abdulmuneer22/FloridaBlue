@@ -21,83 +21,80 @@ class Switch extends Component {
     this.props.attemptHandlePreferred()
   }
 
-
-
   render () {
-    var _this = this ;
+    var _this = this
 
     var twoTabLeftActiveStyle = {
       borderBottomLeftRadius: 15,
       borderColor: Colors.flBlue.ocean,
-      borderRightWidth : 1,
+      borderRightWidth: 1,
       borderTopLeftRadius: 15,
       padding: 1,
-      backgroundColor : Colors.flBlue.ocean,
-      width:150,
+      backgroundColor: Colors.flBlue.ocean,
+      width: 150
     }
 
     var twoTabRightActiveStyle = {
       borderBottomRightRadius: 15,
       borderColor: Colors.flBlue.ocean,
-      borderLeftWidth : 1,
+      borderLeftWidth: 1,
       borderTopRightRadius: 15,
       padding: 1,
-      backgroundColor : Colors.flBlue.ocean,
-      width:150,
+      backgroundColor: Colors.flBlue.ocean,
+      width: 150
     }
     var twoTextActiveStyle = {
-      color : 'white',
-        alignSelf:'center'
+      color: 'white',
+      alignSelf: 'center'
     }
     var twoTabInactiveStyle = {
-      backgroundColor : Colors.flBlue.ocean,
+      backgroundColor: Colors.flBlue.ocean,
       padding: 1,
-      backgroundColor : 'white',
-      borderRadius : 25,
-      width:150
+      backgroundColor: 'white',
+      borderRadius: 25,
+      width: 150
     }
 
     var twoTextInactiveStyle = {
-        color : 'darkgrey',
-          alignSelf:'center'
+      color: 'darkgrey',
+      alignSelf: 'center'
     }
 
-
     var threeTabActiveStyle = {
-      borderBottomWidth : 2,
-      backgroundColor : Colors.snow,
-      borderBottomColor : Colors.flBlue.ocean,
+      borderBottomWidth: 2,
+      backgroundColor: Colors.snow,
+      borderBottomColor: Colors.flBlue.ocean,
       padding: 7
     }
 
     var threeTextActiveStyle = {
-      color : 'blue',
-      marginRight:5
+      color: 'blue',
+      marginRight: 5
     }
 
     var threeTabInactiveStyle = {
-      borderBottomWidth : 2,
-      backgroundColor : 'white',
-      borderBottomColor : 'grey',
+      borderBottomWidth: 2,
+      backgroundColor: 'white',
+      borderBottomColor: 'grey',
       padding: 7
     }
 
     var threeTextInactiveStyle = {
-        color : 'darkgrey',
-        marginRight:5
+      color: 'darkgrey',
+      marginRight: 5
     }
     var twoTabHeaderStyle = {
-        flexDirection: 'row',
-        marginTop: 15,
-        borderRadius : 25,
-       borderWidth : 2,
-        borderColor: Colors.flBlue.ocean
-      }
+      flexDirection: 'row',
+      marginTop: 15,
+      borderRadius: 25,
+      borderWidth: 2,
+      borderColor: Colors.flBlue.ocean
+    }
 
-      var threeTabHeaderStyle = {
-          flexDirection: 'row',
-          marginTop: 15,
-        }
+    var threeTabHeaderStyle = {
+      flexDirection: 'row',
+      marginTop: 15
+    }
         /*
     var injectedStyle     = twoTableftActiveStyle
     var inactiveStyle     = twoTabInactiveStyle
@@ -105,86 +102,85 @@ class Switch extends Component {
     var inactiveTextStyle = twoTextInactiveStyle
     var injectHeaderStyle = twoTabHeaderStyle
     */
-    var _threeTabView = function(
+    var _threeTabView = function (
       injectedStyle,
       inactiveStyle,
       injectedTextStyle,
       inactiveTextStyle,
       injectHeaderStyle
-    ){
-      return(
-            <View style={injectHeaderStyle}>
+    ) {
+      return (
+        <View style={injectHeaderStyle}>
 
-            <TouchableOpacity style={_this.props.preferredActive ? injectedStyle :
+          <TouchableOpacity style={_this.props.preferredActive ? injectedStyle :
               inactiveStyle} onPress={() => { _this.handleClickPreferred() }}>
-              <Text style={{
-                  color: _this.props.preferredActive ? 'blue' : 'darkgrey',
-                  marginRight:5
-                }}>Preferred Network
+            <Text style={{
+              color: _this.props.preferredActive ? 'blue' : 'darkgrey',
+              marginRight: 5
+            }}>Preferred Network
               </Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={_this.props.leftActive ? injectedStyle :
+          <TouchableOpacity style={_this.props.leftActive ? injectedStyle :
               inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
-              <Text style={_this.props.leftActive ? injectedTextStyle :
+            <Text style={_this.props.leftActive ? injectedTextStyle :
               inactiveTextStyle}>In Network
               </Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={_this.props.rightActive ? injectedStyle :
+          <TouchableOpacity style={_this.props.rightActive ? injectedStyle :
               inactiveStyle} onPress={() => { _this.handleClickRight() }}>
-                <Text style={_this.props.rightActive ? injectedTextStyle :
+            <Text style={_this.props.rightActive ? injectedTextStyle :
                   inactiveTextStyle
                 }>Out Of Network
                 </Text>
-            </TouchableOpacity>
+          </TouchableOpacity>
 
-            </View>
+        </View>
 
-          )}
+      )
+    }
 
-    var _twoTabView = function(
+    var _twoTabView = function (
         injectedStyle,
         inactiveStyle,
         injectedTextStyle,
         inactiveTextStyle,
         injectHeaderStyle
-    ){
+    ) {
+      return (<View style={injectHeaderStyle}>
 
-
-      return(<View style={injectHeaderStyle}>
-
-      <TouchableOpacity style={_this.props.leftActive ? injectedStyle :
+        <TouchableOpacity style={_this.props.leftActive ? injectedStyle :
         inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
-        <Text style={_this.props.leftActive ? injectedTextStyle :
+          <Text style={_this.props.leftActive ? injectedTextStyle :
         inactiveTextStyle}>In Network
         </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={_this.props.rightActive ? injectedStyle :
+        <TouchableOpacity style={_this.props.rightActive ? injectedStyle :
         inactiveStyle} onPress={() => { _this.handleClickRight() }}>
           <Text style={_this.props.rightActive ? injectedTextStyle :
             inactiveTextStyle
           }>Out Of Network
           </Text>
-      </TouchableOpacity>
+        </TouchableOpacity>
 
       </View>
-    )}
-
+      )
+    }
 
     return (
-      <View style={{flex:1}}>
+      <View style={{flex: 1}}>
 
-      <View style={{flex:1}}>
-        {this.props.leftActive ?
+        <View style={{flex: 1}}>
+          {this.props.leftActive ?
           _twoTabView(
           twoTabLeftActiveStyle,
           twoTabInactiveStyle,
           twoTextActiveStyle,
           twoTextInactiveStyle,
           twoTabHeaderStyle
-        ):
+        ) :
         _twoTabView(
         twoTabRightActiveStyle,
         twoTabInactiveStyle,
@@ -193,7 +189,7 @@ class Switch extends Component {
         twoTabHeaderStyle
         )
       }
-      </View>
+        </View>
       </View>
     )
   }
