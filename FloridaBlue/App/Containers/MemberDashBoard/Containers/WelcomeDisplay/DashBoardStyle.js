@@ -1,115 +1,115 @@
 // @flow
 
 import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles,Colors, Images, Fonts } from '../../../../Themes/'
+import { Metrics, ApplicationStyles, Colors, Images, Fonts } from '../../../../Themes/'
 
 export default StyleSheet.create({
-  headerContainer:{
-   flexDirection:'row',
-   height:70,
-   justifyContent:'space-between',
-   alignItems:'center',
-   padding:15,
-   alignSelf:'stretch',
-   width:Metrics.screenWidth,
-   backgroundColor:Colors.flBlue.ocean
- },
- hsaHeader:{
-  flexDirection:'row',
-  height:145,
-  //marginTop:20,
-  justifyContent:'space-between',
-  alignItems:'center',
-  padding:10,
-  width: Metrics.screenWidth,
-  //overflow: 'visible',
-  //resizeMode: 'stretch',
-  alignSelf:'stretch',
-  //width:Metrics.screenWidth,
-  //backgroundColor:Colors.flBlue.ocean
-},
-hsaBg:{
- //flexDirection:'row',
- height:350,
- //marginTop:20,
- //justifyContent:'space-between',
- //alignItems:'center',
- //padding:10,
- alignSelf:'stretch',
- width:null,
- //backgroundColor:Colors.flBlue.ocean
-},
-container:{
-    flex:1,
-    backgroundColor:Colors.snow,
+  headerContainer: {
+    flexDirection: 'row',
+    height: 70,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 15,
+    alignSelf: 'stretch',
+    width: Metrics.screenWidth,
+    backgroundColor: Colors.flBlue.ocean
+  },
+  hsaHeader: {
+    flexDirection: 'row',
+    height: 145,
+  // marginTop:20,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    width: Metrics.screenWidth,
+  // overflow: 'visible',
+  // resizeMode: 'stretch',
+    alignSelf: 'stretch'
+  // width:Metrics.screenWidth,
+  // backgroundColor:Colors.flBlue.ocean
+  },
+  hsaBg: {
+ // flexDirection:'row',
+    height: 310,
+ // marginTop:20,
+ // justifyContent:'space-between',
+ // alignItems:'center',
+ // padding:10,
+    alignSelf: 'stretch',
+    width: null
+ // backgroundColor:Colors.flBlue.ocean
+  },
+  container: {
+    flex: 1,
+    backgroundColor: Colors.snow
 
   },
-  summary:{
-    flexDirection:'row',
-    height:200,
-    backgroundColor:'#E8E8E8'
+  summary: {
+    flexDirection: 'row',
+    height: 200,
+    backgroundColor: '#E8E8E8'
   },
-  footerImage:{
+  footerImage: {
 
-     flexDirection:'row',
-     height:120,
-     //height : window.height * 0.5,
-     justifyContent:'space-between',
-     alignItems:'center',
-     alignSelf:'stretch',
-     width:Metrics.screenWidth,
-       },
-  titleView:{
-    marginTop:Metrics.baseMargin
+    flexDirection: 'row',
+    height: 150,
+     // height : window.height * 0.5,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    width: Metrics.screenWidth
   },
-  center:{
-    alignItems:'center',
-    justifyContent:'center'
+  titleView: {
+    marginTop: Metrics.baseMargin
   },
-  textBackground:{
-    flexDirection:'row',
-    backgroundColor:Colors.snow,
-    padding:Metrics.doubleBaseMargin
+  center: {
+    alignItems: 'center',
+    justifyContent: 'center'
   },
-
-  textBackground1:{
-    flexDirection:'row',
-    backgroundColor:Colors.flBlue.grey2,
-    padding:Metrics.doubleBaseMargin
+  textBackground: {
+    flexDirection: 'row',
+    backgroundColor: Colors.snow,
+    padding: Metrics.doubleBaseMargin
   },
 
-  textStyle1:{
-    fontSize:Fonts.size.regular,
-    //fontWeight:'bold'
+  textBackground1: {
+    flexDirection: 'row',
+    backgroundColor: Colors.flBlue.grey2,
+    padding: Metrics.doubleBaseMargin
   },
 
-textStyle:{
-  fontSize:Fonts.size.regular,
-  fontWeight:'bold'
-},
-hsaText : {
-    fontSize : Fonts.size.regular,
-    fontWeight : '600',
-    textAlign : 'center',
-    padding : 15
-},
+  textStyle1: {
+    fontSize: Fonts.size.regular
+    // fontWeight:'bold'
+  },
 
-row_1 : {
-    flexDirection : 'row',
-    justifyContent : 'center',
-    paddingTop : Metrics.baseMargin,
-    paddingBottom : Metrics.baseMargin
-},
-col_1 : {
-    flex : 1,
+  textStyle: {
+    fontSize: Fonts.size.regular,
+    fontWeight: 'bold'
+  },
+  hsaText: {
+    fontSize: Fonts.size.regular,
+    fontWeight: '600',
+    textAlign: 'center',
+    padding: 15
+  },
+
+  row_1: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingTop: Metrics.baseMargin,
+    paddingBottom: Metrics.baseMargin
+  },
+  col_1: {
+    flex: 1,
     // backgroundColor : 'yellow',
-    alignItems : 'center'
-},
+    alignItems: 'center'
+  },
 
-row_2 : {
-    alignItems : 'center',
-    //paddingTop : 10
-    paddingBottom:15
-},
+  row_2: {
+    alignItems: 'center',
+    // paddingTop : 10
+    paddingBottom: 15
+  }
 
 })

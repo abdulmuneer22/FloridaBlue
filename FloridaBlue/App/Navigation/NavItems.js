@@ -12,7 +12,7 @@ import Flb from '../Themes/FlbIcon'
 const openDrawer = (type) => {
   NavigationActions.refresh({
     key: 'drawer',
-    contentType:type,
+    contentType: type,
     open: true
   })
 }
@@ -24,7 +24,7 @@ export default {
         <Flb name='arrow-left'
           size={Metrics.icons.medium}
           color={Colors.snow}
-          style={[styles.backButton, {top:-10}]}
+          style={[styles.backButton, {top: -10}]}
         />
       </TouchableOpacity>
     )
@@ -41,14 +41,14 @@ export default {
       </TouchableOpacity>
     )
     name='ios-more'
-  },*/
+  }, */
   settingsButton () {
-    return <TouchableOpacity onPress={openDrawer.bind(null,'settings')}>
-    <Flb name='align-justify'
-    size={Metrics.icons.medium}
-      style={{color:Colors.snow,
-        backgroundColor:Colors.transparent,
-        marginTop:13}}
+    return <TouchableOpacity onPress={openDrawer.bind(null, 'settings')}>
+      <Flb name='align-justify'
+        size={Metrics.icons.medium}
+        style={{color: Colors.snow,
+          backgroundColor: Colors.transparent,
+          marginTop: 13}}
     />
     </TouchableOpacity>
   },

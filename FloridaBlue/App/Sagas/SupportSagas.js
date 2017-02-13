@@ -2,23 +2,23 @@ import {
   call,
   put
 } from 'redux-saga/effects'
-import MyPlanActions from '../Redux/MyPlanRedux'
+import SupportActions from '../Redux/SupportRedux'
 import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
-export function* myplan (api) {
-  console.log('I am coming from myplan')
+export function* support (api) {
+  console.log('I am coming from support')
     // api.setsmTokenHeaders(smToken);
-  const response = yield call(api.getPlan)
+  const response = yield call(api.getSupport)
   console.log(JSON.stringify(response))
   if (response.data.status.code = '200') {
     // dispatch success
     var data = response.data.data
-    yield put(MyPlanActions.myplanSuccess(data))
+    yield put(SupportActions.supportSuccess(data))
   } else {
     // dispatch successful logins
     console.log('I am coming from failuer ')
     var error = 'WRONG'
-    yield put(MyPlanActions.myplanFailure(error))
+    yield put(SupportActions.supportFailure(error))
   }
 }

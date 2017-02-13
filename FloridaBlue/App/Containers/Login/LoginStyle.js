@@ -7,8 +7,8 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   logoView: {
     alignItems: 'center',
-    paddingTop: Metrics.screenHeight * .05,
-    paddingBottom: Metrics.screenHeight * .05,
+    paddingTop: Metrics.screenHeight * 0.05,
+    paddingBottom: Metrics.screenHeight * 0.05
   },
   logo: {
     width: Metrics.images.logo,
@@ -17,7 +17,7 @@ export default StyleSheet.create({
   backgroundImage: {
     position: 'absolute',
     top: 0,
-    height: Metrics.screenHeight - (Metrics.screenHeight * .3),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.3),
     resizeMode: 'stretch'
   },
   centered: {
@@ -25,7 +25,7 @@ export default StyleSheet.create({
   },
   loginButton: {
     alignItems: 'center',
-    paddingTop: Metrics.screenHeight * .1
+    paddingTop: Metrics.screenHeight * 0.1
   },
   form: {
     backgroundColor: Colors.snow,
@@ -34,12 +34,12 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.section
   },
   informationPopup: {
-    flexWrap : 'wrap',
-    flexDirection : 'row',
+    flexWrap: 'wrap',
+    flexDirection: 'row',
     backgroundColor: Colors.flBlue.grey2,
     height: Metrics.doubleBaseMargin * 8,
     width: Metrics.screenWidth,
-    bottom: Metrics.doubleBaseMargin * 2,
+    bottom: Metrics.doubleBaseMargin * 2
   },
   row: {
     paddingVertical: Metrics.doubleBaseMargin,
@@ -77,17 +77,17 @@ export default StyleSheet.create({
     bottom: Metrics.baseMargin,
     marginHorizontal: Metrics.section
   },
-  popupchild:{
-    width : Metrics.screenWidth * .5,
-    //backgroundColor : 'yellow',
-    padding : 10,
-    height : 40,
-    flexDirection : 'row' ,
-    alignItems : 'center'
+  popupchild: {
+    width: Metrics.screenWidth * 0.5,
+    // backgroundColor : 'yellow',
+    padding: 10,
+    height: 40,
+    flexDirection: 'row',
+    alignItems: 'center'
   },
-  popupchildText : {
-    fontSize : 14,
-    marginLeft : 5,
-    alignSelf : 'center'
+  popupchildText: {
+    fontSize: 14,
+    marginLeft: 5,
+    alignSelf: 'center'
   }
 })

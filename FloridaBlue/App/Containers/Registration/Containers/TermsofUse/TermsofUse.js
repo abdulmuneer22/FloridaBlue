@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
 import {
   StyleSheet,
   Text,
@@ -7,216 +7,131 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  WebView,
   TouchableWithoutFeedback
-} from 'react-native';
+
+} from 'react-native'
+
+import LoginActions from '../../../../Redux/LoginRedux'
+import I18n from 'react-native-i18n'
+import styles from './TermsStyle'
+import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
+
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { MKTextField, MKColor, MKCheckbox, setTheme } from 'react-native-material-kit'
 import {connect} from 'react-redux'
 import RegistrationToolBar from '../RegistrationToolBar'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 
-class TermsofUse extends Component{
-  constructor(){
-    super();
+  setTheme({checkboxStyle: {
+      fillColor: Colors.flBlue.ocean,
+      borderOnColor: Colors.flBlue.ocean,
+      borderOffColor: Colors.flBlue.ocean
+  }})
+
+class TermsofUse extends Component {
+  constructor () {
+    super()
+
     this.state = {
-      clicked : false
+      clicked: false
     }
   }
-  render(){
-    return(
-      <View>
-      <RegistrationToolBar/>
-      {
-        <View style={{
-          flexDirection : 'row',
-          height : 35,
 
+  _handleAgreeTermsOfUse () {
+    console.log(this.props.agreeTermsOfUse)
+    if (!this.props.agreeTermsOfUse) {
+      alert('Please accept Terms of Use')
+    } else {
+      NavigationActions.WelcomeDashBoard()
+    }
+  }
 
-        }}
-        zindex = "-1"
-        >
-          <View style={[Styles.progressBoxStyle,{backgroundColor : 'rgb(125, 135, 139)'}]}>
-          <Text>
-          1
-          </Text>
+  render () {
+    return (
+      <View style={styles.container}>
+
+        <WebView
+          source={{uri: 'https://www.floridablue.com/terms-of-use'}}
+          style={{marginBottom: 30}} />
+
+        <View style={styles.checkViewStyle}>
+          <View style={styles.checkStyle}>
+
+            <MKCheckbox
+              ref='agreeTermsOfUse'
+              onCheckedChange={() => {
+                var checked = this.refs.agreeTermsOfUse.state.checked
+                this.props.handleChangeAgreeTermsOfUse(checked)
+              }} />
           </View>
 
-          <View style={[Styles.progressBoxStyle,{backgroundColor : 'rgb(125, 135, 139)'}]}>
-          <Text>
-          2
-          </Text>
-          </View>
-
-          <View style={[Styles.progressBoxStyle,{backgroundColor : 'rgb(125, 135, 139)'}]}>
-          <Text>
-          3
-          </Text>
-          </View>
-
-          <View style={[Styles.progressBoxStyle,{backgroundColor : 'rgb(125, 135, 139)'}]}>
-          <Text>
-          4
-          </Text>
-          </View>
-
-          <View style={[Styles.progressBoxStyle,{backgroundColor : 'rgb(125, 135, 139)'}]}>
-          <Text>
-          5
-          </Text>
+          <View style={styles.checkTextView}>
+            <Text style={styles.checkText}>
+        Yes. I certified that I have read the above Terms of Use and agree with those terms in order
+        to use this apllication.
+        </Text>
           </View>
         </View>
-      }
-      <ScrollView>
-      <View style={{
-        flex : 1 ,
-        backgroundColor : 'white'
-      }}>
-      <Text style={{
-        marginLeft : 20,
-        marginTop : 20,
-        fontSize : 16,
-        fontWeight : '600'
-      }}>
-      Termsof Use
-      </Text>
-      <Text style={{
-        margin : 20,
-        textAlign : 'justify'
-      }}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </Text>
 
-      <Text style={{
-        margin : 20,
-        textAlign : 'justify'
-
-      }}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </Text>
-
-      <Text style={{
-        margin : 20,
-        textAlign : 'justify'
-
-      }}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </Text>
-      </View>
-      <View style={{
-        height : 100,
-        //backgroundColor : 'green',
-        flexDirection : 'row',
-        justifyContent : 'center',
-        alignItems : 'center',
-        borderTopColor : 'grey',
-        borderTopWidth : 1
-      }}>
-        <View style={{
-          flex : 1,
-          //backgroundColor : 'yellow',
-          alignItems : 'center'
-
-        }}>
-          <TouchableOpacity style={{
-            borderColor : 'grey',
-            width : 25,
-            height : 25,
-            borderRadius : 25/2,
-            borderWidth : 1,
-            alignItems : 'center',
-            justifyContent : 'center',
-            backgroundColor : this.state.clicked ? 'grey' : 'white'
-
-          }}
-          onPress={()=>{
-            if(this.state.clicked){
-            this.setState({clicked : false})
-          }else {
-            this.setState({clicked : true})
-
-          }
-
-          }}
-          >
-          {
-            this.state.clicked ?
-            <Icon name="check" size={12} color="black" />
-          : null
-          }
-
+        <View style={{marginTop: 20}}>
+          <TouchableOpacity style={styles.agreeButton}
+            onPress={() => this._handleAgreeTermsOfUse()}
+        >
+            <Text style={{
+              color: 'white'
+            }}>
+        I Agree
+        </Text>
           </TouchableOpacity>
         </View>
 
-        <View style={{
-          flex : 4,
-          //backgroundColor : 'purple'
-        }}>
-        <Text>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit{"\n"}
-        ipsum dolor sit amet
-        </Text>
+        <View style={styles.row}>
+          <View>
+            <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
+          </View>
         </View>
-      </View>
-
-      {
-        this.state.clicked ?
-        <TouchableOpacity style={{
-          alignSelf : 'center',
-          backgroundColor : 'grey',
-          paddingLeft : 30,
-          paddingRight : 30,
-          padding : 10,
-          marginBottom : 20,
-          borderRadius : 6
-        }}
-        onPress={()=>{NavigationActions.confirmation()}}
-        >
-        <Text style={{
-          color : 'white'
-        }}>
-        Continue
-        </Text>
-        </TouchableOpacity>
-        :
-        null
-      }
-      </ScrollView>
-
 
       </View>
 
-    );
+    )
   }
 }
 
 const Styles = StyleSheet.create({
-  progressBoxStyle : {
-    flex : 1,
-    alignItems :'center',
-    justifyContent : 'center',
+  progressBoxStyle: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
-});
-
+})
 
 TermsofUse.propTypes = {
   sendConfirm: PropTypes.func,
   fetching: PropTypes.bool,
-  confirm : PropTypes.string,
-  error: PropTypes.string
+  confirm: PropTypes.string,
+  error: PropTypes.string,
+  handleChangeAgreeTermsOfUse: PropTypes.func
+
 }
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.registration.fetching,
-    confirm : state.registration.confirm ,
-    error: state.registration.error
+
+    fetching: state.login.fetching,
+    confirm: state.login.confirm,
+    error: state.login.error,
+    agreeTermsOfUse: state.login.agreeTermsOfUse
+
   }
 }
 
-
-
 const mapDispatchToProps = (dispatch) => {
   return {
-    sendConfirm:(confirm) => dispatch(RegistrationActions.sendregistrationSuccessconfirm(confirm))
+
+    handleChangeAgreeTermsOfUse: (agreeTermsOfUse) => dispatch(LoginActions.changeAgreeTermsOfUse(agreeTermsOfUse)),
+    sendConfirm: (confirm) => dispatch(LoginActions.sendregistrationSuccessconfirm(confirm))
+
   }
 }
 

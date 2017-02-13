@@ -6,20 +6,20 @@ import MemberActions from '../Redux/MemberRedux'
 import LoginActions from '../Redux/LoginRedux'
 import MyPlanActions from '../Redux/MyPlanRedux'
 // attempts to login
-export function* member(api, {
+export function* member (api, {
   smToken
 }) {
   //    api.setsmTokenHeaders(smToken);
 
   const response = yield call(api.getMember)
-  console.log(JSON.stringify(response));
-  if (response.data.status.code = "200") {
+  console.log(JSON.stringify(response))
+  if (response.data.status.code = '200') {
     // dispatch success
-    var Name = response.data.data.firstName + " " + response.data.data.lastName;
-    var visibilityRules = response.data.data.visibilityRule;
-    yield put(MemberActions.memberSuccess(Name,visibilityRules))
+    var Name = response.data.data.firstName + ' ' + response.data.data.lastName
+    var visibilityRules = response.data.data.visibilityRule
+    yield put(MemberActions.memberSuccess(Name, visibilityRules))
   } else {
-    console.log("I am coming from failuer ")
+    console.log('I am coming from failuer ')
     yield put(LoginActions.loginFailure('WRONG'))
   }
 }

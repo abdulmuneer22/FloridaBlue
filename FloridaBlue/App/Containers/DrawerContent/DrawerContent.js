@@ -66,10 +66,10 @@ class DrawerContent extends Component {
 
         <DrawerButton text='Dashboard' onPress={this.handlePressComponents} />
         <DrawerButton text='My Health Plans' onPress={this.handlePressPlans} />
-          <ScrollView style={styles.container1}>
-            <DrawerButton text='Benefits' onPress={this.handlePressBenefits} />
-            <DrawerButton text='Claims' onPress={this.handlePressClaims} />
-            </ScrollView>
+        <ScrollView style={styles.container1}>
+          <DrawerButton text='Benefits' onPress={this.handlePressBenefits} />
+          <DrawerButton text='Claims' onPress={this.handlePressClaims} />
+        </ScrollView>
         <DrawerButton text='My Dental Plan' onPress={this.handlePressUsage} />
         <DrawerButton text='Find Care' onPress={this.handlePressAPI} />
         <DrawerButton text='Payment' onPress={this.handlePressTheme} />

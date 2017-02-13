@@ -36,28 +36,21 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withFloatingLabelFont({
     fontSize: 18,
     fontStyle: 'italic',
-    fontWeight: '200',
+    fontWeight: '200'
   })
-  .build();
+  .build()
 
 class Screen_1 extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  _handleRegistration(){
+  _handleRegistration () {
     NavigationActions.screen_2()
   }
 
   /*
-  _handleRegistration(){
-    //var contractNumber = this.props.contractNumber ?
-    //var firstName = this.state.firstName
-    //var lastName = this.state.lastName
-    //var dateOfBirth = this.state.dateOfBirth
-    //var zipCode = this.state.zipCode
-    //Alert.alert("details"+contractNumber+firstName+lastName+dateOfBirth+zipCode);
-    //Alert.alert("Hey I am coming from registration")
+  _handleRegistration() {
     var contractNumber = this.props.contractNumber
     var firstName = this.props.firstName
     var lastName = this.props.lastName
@@ -72,24 +65,21 @@ class Screen_1 extends React.Component {
   }
   */
 
-  _handleFindMemberId() {
+  _handleFindMemberId () {
     NavigationActions.memberid()
   }
 
-  _handleBack() {
+  _handleBack () {
     NavigationActions.pop()
   }
 
-  componentDidUpdate() {
-    if(this.props.data) {
+  componentDidUpdate () {
+    if (this.props.data) {
       var reasonCode = this.props.data.reasonCode
       console.log(reasonCode)
 
-      if(reasonCode === '000') {
+      if (reasonCode === '000') {
         NavigationActions.screen_2()
-      }
-      else if(reasonCode === '999') {
-        // NavigationActions.errorScreen
       }
     }
   }
@@ -102,12 +92,17 @@ class Screen_1 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('personalInformation')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
-            <View><Flb name="alert" color={Colors.snow} size={30}/></View>
+          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
+            <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
             </View>
-          </View> : <Text></Text>}
+            <View>
+              <TouchableOpacity onPress={() => { this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null}) }}>
+                <Image source={Images.closeIconWhite} />
+              </TouchableOpacity>
+            </View>
+          </View> : <Text />}
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='contractNumber'
@@ -122,7 +117,7 @@ class Screen_1 extends React.Component {
               onSubmitEditing={() => this.refs.contractNumber.focus()}
 
               onSubmitEditing={(event) => {
-                this.refs.firstName.focus();
+                this.refs.firstName.focus()
               }}
 
               placeholder={I18n.t('memberId')}
@@ -132,7 +127,7 @@ class Screen_1 extends React.Component {
             <Text style={[styles.message, {fontSize: Fonts.size.regular}]}> {I18n.t('cantFindMemberId')}</Text>
           </View>
           <View style={styles.findItButton}>
-            <TouchableOpacity onPress={() => {this._handleFindMemberId()}}>
+            <TouchableOpacity onPress={() => { this._handleFindMemberId() }}>
               <Image source={Images.findItButton} />
             </TouchableOpacity>
           </View>
@@ -147,7 +142,7 @@ class Screen_1 extends React.Component {
               onChangeText={this.props.handleChangeFirstName}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.lastName.focus();
+                this.refs.lastName.focus()
               }}
               placeholder={I18n.t('firstName')} />
           </View>
@@ -162,7 +157,7 @@ class Screen_1 extends React.Component {
               onChangeText={this.props.handleChangeLastName}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.dateOfBirth.focus();
+                this.refs.dateOfBirth.focus()
               }}
               placeholder={I18n.t('lastName')} />
           </View>
@@ -177,7 +172,7 @@ class Screen_1 extends React.Component {
               onChangeText={this.props.handleChangeDateOfBirth}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.zipCode.focus();
+                this.refs.zipCode.focus()
               }}
               placeholder={I18n.t('dateOfBirth')} />
           </View>
@@ -195,12 +190,12 @@ class Screen_1 extends React.Component {
           </View>
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
-              <TouchableOpacity onPress={() => {this._handleBack()}}>
+              <TouchableOpacity onPress={() => { this._handleBack() }}>
                 <Image source={Images.backButton} />
               </TouchableOpacity>
             </View>
             <View style={styles.nextButton}>
-              <TouchableOpacity onPress={() => {this._handleRegistration()}}>
+              <TouchableOpacity onPress={() => { this._handleRegistration() }}>
                 <Image source={Images.nextButton} />
               </TouchableOpacity>
             </View>
@@ -224,12 +219,13 @@ Screen_1.propTypes = {
   handleChangeLastName: PropTypes.func,
   handleChangeDateOfBirth: PropTypes.func,
   handleChangeZipCode: PropTypes.func,
+  handleChangeReasonCode: PropTypes.func,
   fetching: PropTypes.bool,
-  contractNumber : PropTypes.string,
-  firstName :PropTypes.string,
-  lastName : PropTypes.string,
-  dateOfBirth : PropTypes.string,
-  zipCode : PropTypes.string,
+  contractNumber: PropTypes.string,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  dateOfBirth: PropTypes.string,
+  zipCode: PropTypes.string,
   error: PropTypes.string
 }
 
@@ -239,21 +235,22 @@ const mapStateToProps = (state) => {
     contractNumber: state.registration.contractNumber,
     firstName: state.registration.firstName,
     lastName: state.registration.lastName,
-    dateOfBirth:state.registration.dateOfBirth,
-    zipCode:state.registration.zipCode,
+    dateOfBirth: state.registration.dateOfBirth,
+    zipCode: state.registration.zipCode,
     error: state.registration.error,
-    data :state.registration.data
+    data: state.registration.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    verifyIdentification:(contractNumber,firstName,lastName,dateOfBirth,zipCode) => dispatch(RegistrationActions.registrationRequest(contractNumber,firstName,lastName,dateOfBirth,zipCode)),
-    handleChangeContractNumber:(contractNumber) => dispatch(RegistrationActions.changeContractNumber(contractNumber)),
-    handleChangeFirstName:(firstName) => dispatch(RegistrationActions.changeFirstName(firstName)),
-    handleChangeLastName:(lastName) => dispatch(RegistrationActions.changeLastName(lastName)),
-    handleChangeDateOfBirth:(dateOfBirth) => dispatch(RegistrationActions.changeDateOfBirth(dateOfBirth)),
-    handleChangeZipCode:(zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode))
+    verifyIdentification: (contractNumber, firstName, lastName, dateOfBirth, zipCode) => dispatch(RegistrationActions.registrationRequest(contractNumber, firstName, lastName, dateOfBirth, zipCode)),
+    handleChangeContractNumber: (contractNumber) => dispatch(RegistrationActions.changeContractNumber(contractNumber)),
+    handleChangeFirstName: (firstName) => dispatch(RegistrationActions.changeFirstName(firstName)),
+    handleChangeLastName: (lastName) => dispatch(RegistrationActions.changeLastName(lastName)),
+    handleChangeDateOfBirth: (dateOfBirth) => dispatch(RegistrationActions.changeDateOfBirth(dateOfBirth)),
+    handleChangeZipCode: (zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode)),
+    handleChangeReasonCode: (data) => dispatch(RegistrationActions.changeReasonCode(data))
   }
 }
 

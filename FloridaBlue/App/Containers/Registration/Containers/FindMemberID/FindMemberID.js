@@ -26,11 +26,11 @@ import I18n from 'react-native-i18n'
 
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import Swiper from 'react-native-swiper';
+import Swiper from 'react-native-swiper'
 
 class FindMemberID extends React.Component {
 
-  _handleClose() {
+  _handleClose () {
     NavigationActions.pop()
   }
 
@@ -48,12 +48,12 @@ class FindMemberID extends React.Component {
           <View style={styles.row}>
             <Text style={styles.description}>{I18n.t('findMemberIdDescription2')}</Text>
           </View>
-          <Swiper height={250} style={styles.wrapper1} showsButtons={true}>
+          <Swiper height={250} style={styles.wrapper1} showsButtons>
             <View style={styles.slide}>
               <View style={styles.outofBox}>
                 <Image
                   style={{
-                    flex : 0
+                    flex: 0
                   }}
                   source={Images.idCardFront}
                 />
@@ -64,7 +64,7 @@ class FindMemberID extends React.Component {
               <View style={styles.outofBox}>
                 <Image
                   style={{
-                    flex : 0
+                    flex: 0
                   }}
                   source={Images.idCardBack}
                 />
@@ -72,7 +72,7 @@ class FindMemberID extends React.Component {
             </View>
           </Swiper>
           <View style={styles.buttonRow}>
-            <TouchableOpacity onPress={() => {this._handleClose()}}>
+            <TouchableOpacity onPress={() => { this._handleClose() }}>
               <Image source={Images.closeButtonGray} />
             </TouchableOpacity>
           </View>
@@ -91,11 +91,11 @@ FindMemberID.propTypes = {
   handleChangeDateOfBirth: PropTypes.func,
   handleChangeZipCode: PropTypes.func,
   fetching: PropTypes.bool,
-  contractNumber : PropTypes.string,
-  firstName :PropTypes.string,
-  lastName : PropTypes.string,
-  dateOfBirth : PropTypes.string,
-  zipCode : PropTypes.string,
+  contractNumber: PropTypes.string,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  dateOfBirth: PropTypes.string,
+  zipCode: PropTypes.string,
   error: PropTypes.string
 }
 
@@ -105,21 +105,21 @@ const mapStateToProps = (state) => {
     contractNumber: state.registration.contractNumber,
     firstName: state.registration.firstName,
     lastName: state.registration.lastName,
-    dateOfBirth:state.registration.dateOfBirth,
-    zipCode:state.registration.zipCode,
+    dateOfBirth: state.registration.dateOfBirth,
+    zipCode: state.registration.zipCode,
     error: state.registration.error,
-    data :state.registration.data
+    data: state.registration.data
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    verifyIdentification:(contractNumber,firstName,lastName,dateOfBirth,zipCode) => dispatch(RegistrationActions.registrationRequest(contractNumber,firstName,lastName,dateOfBirth,zipCode)),
-    handleChangeContractNumber:(contractNumber) => dispatch(RegistrationActions.changeContractNumber(contractNumber)),
-    handleChangeFirstName:(firstName) => dispatch(RegistrationActions.changeFirstName(firstName)),
-    handleChangeLastName:(lastName) => dispatch(RegistrationActions.changeLastName(lastName)),
-    handleChangeDateOfBirth:(dateOfBirth) => dispatch(RegistrationActions.changeDateOfBirth(dateOfBirth)),
-    handleChangeZipCode:(zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode))
+    verifyIdentification: (contractNumber, firstName, lastName, dateOfBirth, zipCode) => dispatch(RegistrationActions.registrationRequest(contractNumber, firstName, lastName, dateOfBirth, zipCode)),
+    handleChangeContractNumber: (contractNumber) => dispatch(RegistrationActions.changeContractNumber(contractNumber)),
+    handleChangeFirstName: (firstName) => dispatch(RegistrationActions.changeFirstName(firstName)),
+    handleChangeLastName: (lastName) => dispatch(RegistrationActions.changeLastName(lastName)),
+    handleChangeDateOfBirth: (dateOfBirth) => dispatch(RegistrationActions.changeDateOfBirth(dateOfBirth)),
+    handleChangeZipCode: (zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode))
   }
 }
 

@@ -19,6 +19,6 @@ export default StyleSheet.create({
     marginTop: Metrics.section,
     marginRight: Metrics.baseMargin,
     alignItems: 'center'
-  },
+  }
 
 })
