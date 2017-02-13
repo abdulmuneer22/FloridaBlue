@@ -18,6 +18,7 @@ class MyPlanSwiper extends Component {
 
   render () {
     var myPlan = []
+    
     if (this.props.data.annualDeductible.inNetwork) {
       var inNetwork = this.props.data.annualDeductible.inNetwork
       inNetwork.map(function (temObj) {

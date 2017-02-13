@@ -4,13 +4,7 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import {Text, View, ScrollView} from 'react-native'
 import Switch from './Components/switch'
 import Icon from 'react-native-vector-icons/FontAwesome'
-// import Card from './Components/Card'
-import FirstCard from './Components/FirstCard'
-import SecondCard from './Components/SecondCard'
-import ThirdCard from './Components/ThirdCard'
-import FourthCard from './Components/FourthCard'
 
-// import BenefitsSwiper from './Components/Swiper'
 import styles from './DoctorServiceStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Colors, Metrics, Fonts} from '../../../../Themes'
@@ -48,7 +42,7 @@ class DoctorServices extends Component {
           <ScrollView>
           {
               this.props.data ?
-              
+
           <View style={{flex : 1}}>
           <View style={{
           alignItems : 'center',
@@ -58,7 +52,7 @@ class DoctorServices extends Component {
           <Text style={{
           marginTop : 5,
           fontSize : 13
-        }}>DoctorServices</Text>
+        }}>{this.props.data.officeServices.text['en']}</Text>
           <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
           </View>
           <View>

@@ -36,24 +36,31 @@ class Card extends Component {
         <Text style={styles.h1}>
           {network.header_text.en}
         </Text>
-        {
-          speciality.map(specialities=>{
-            const{speciality_text, speciality_value}=specialities
-            return <View >
-            <Text style = {styles.h4} >
-            {speciality_text['en']}
-            </Text>
-            {
-              speciality_value.map(value=>{
-                return <Text style={styles.h2}>
-                {value['en']}</Text>
-              })
-            }
-            </View>
-          })
-        }
+        <View>
+          <Text style={styles.h4} >
+            {speciality[0].speciality_text.en}
+          </Text>
+          {
+            speciality_value[0].map(value=>{
+              return <Text style={styles.h2}>
+              {value['en']}</Text>
+            })
+          }
 
+        </View>
+        <View>
+          <Text style={styles.h4} >
+            {speciality[1].speciality_text.en}
 
+          </Text>
+
+          {
+            speciality_value[1].map(value=>{
+              return <Text style={styles.h2}>
+              {value['en']}</Text>
+            })
+          }
+        </View>
       </View>
 
         )
@@ -61,8 +68,7 @@ class Card extends Component {
       return cards
     }
 
-
-    );
+    )
 
     return (
       <ScrollView>

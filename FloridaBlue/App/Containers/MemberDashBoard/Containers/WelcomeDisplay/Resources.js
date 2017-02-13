@@ -41,7 +41,7 @@ class Resources extends Component {
   }
 
   render () {
-    console.log('root testing' + this.props.userName)
+    console.log('root testing')
     var color = new Array('#005b80', '#00aec7', '#0091cc', '#005b80', '#005b80', '#00aec7')
     var i = 0
     return (
@@ -84,7 +84,7 @@ class Resources extends Component {
                       fontWeight: '600',
                       color: 'white'
                     }}>
-                      {tile.tileName}
+                      {tile.tileName['en']}
                     </Text>
 
                   </View>
