@@ -62,7 +62,7 @@ class LandingScreen extends Component {
 
       <View style={styles.container}>
         {this._renderHeader()}
-        <ScrollView>
+
           {
         this.props.visibilityRules ?
 
@@ -89,7 +89,7 @@ class LandingScreen extends Component {
                   <TouchableOpacity style={{
                     width: window.width * 0.5,
                     backgroundColor: color[i],
-                    height: 150,
+                    height:Metrics.screenHeight-(Metrics.screenHeight*0.81),
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderWidth: 1,
@@ -123,7 +123,7 @@ class LandingScreen extends Component {
           </View>
       }
 
-        </ScrollView>
+
       </View>
     )
   }

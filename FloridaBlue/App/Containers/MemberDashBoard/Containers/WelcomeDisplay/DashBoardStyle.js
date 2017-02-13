@@ -6,7 +6,7 @@ import { Metrics, ApplicationStyles, Colors, Images, Fonts } from '../../../../T
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: 70,
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 15,
@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   hsaHeader: {
     flexDirection: 'row',
-    height: 145,
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.80)),
   // marginTop:20,
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -30,7 +30,7 @@ export default StyleSheet.create({
   },
   hsaBg: {
  // flexDirection:'row',
-    height: 310,
+    height:Metrics.screenHeight-(Metrics.screenHeight*0.45),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
@@ -52,7 +52,7 @@ export default StyleSheet.create({
   footerImage: {
 
     flexDirection: 'row',
-    height: 120,
+    height:Metrics.screenHeight-(Metrics.screenHeight*0.81),
      // height : window.height * 0.5,
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -91,7 +91,8 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular,
     fontWeight: '600',
     textAlign: 'center',
-    padding: 15
+    padding: 5,
+    marginTop:Metrics.small
   },
 
   row_1: {

@@ -93,7 +93,7 @@ const Styles = StyleSheet.create({
   Greeting: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40,
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.78))/3,
     // padding:5,
     backgroundColor: Colors.flBlue.grey6
   }

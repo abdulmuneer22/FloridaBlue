@@ -69,17 +69,12 @@ class MyPlanCard extends Component {
 const Styles = StyleSheet.create({
   summary: {
     flexDirection: 'row',
-    height: 185,
+    height: Metrics.screenHeight-(Metrics.screenHeight*0.73),
     justifyContent: 'space-between',
     alignItems: 'center',
   //  padding:5,
     alignSelf: 'stretch',
     width: null
-  },
-  features: {
-    flexDirection: 'row',
-    height: 300,
-    margin: 0
   },
   titleView: {
     marginTop: 10
