@@ -36,30 +36,28 @@ class Card extends Component {
       var speciality = []
       speciality = network['speciality']
       console.log('speciality' + JSON.stringify(card))
-      cards.push(<View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} >
-        <Text style={styles.h1}>
+      cards.push(
+        <View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1}>
+        <Text style={styles.h1} >
           {network.header_text.en}
         </Text>
-
         {
           speciality.map(specialities=>{
             const{speciality_text, speciality_value}=specialities
-            return <View >
-            <Text style = {styles.h4} >
+            return(
+            <View >
+            <Text style = {styles.h4}>
             {speciality_text['en']}
             </Text>
             {
               speciality_value.map(value=>{
-                return <Text style={styles.h2}>
+                return <Text style={styles.h2} >
                 {value['en']}</Text>
               })
             }
-            </View>
+           </View>)
           })
         }
-
-
-
       </View>
 
         )
