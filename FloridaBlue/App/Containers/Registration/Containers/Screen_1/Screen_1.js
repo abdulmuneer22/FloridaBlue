@@ -45,25 +45,29 @@ class Screen_1 extends React.Component {
     super(props)
   }
 
-  _handleRegistration () {
+  /*
+  _handleNext () {
     NavigationActions.screen_2()
   }
+  */
 
-  /*
-  _handleRegistration() {
+  _handleNext() {
     var contractNumber = this.props.contractNumber
     var firstName = this.props.firstName
     var lastName = this.props.lastName
     var dateOfBirth = this.props.dateOfBirth
     var zipCode = this.props.zipCode
 
+    /*
     if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
       alert("Please enter values in all fields")
     } else {
       this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
     }
+    */
+    this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
+
   }
-  */
 
   _handleFindMemberId () {
     NavigationActions.memberid()
@@ -191,7 +195,7 @@ class Screen_1 extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={styles.nextButton}>
-              <TouchableOpacity onPress={() => { this._handleRegistration() }}>
+              <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButton} />
               </TouchableOpacity>
             </View>
@@ -240,7 +244,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    verifyIdentification: (contractNumber, firstName, lastName, dateOfBirth, zipCode) => dispatch(RegistrationActions.registrationRequest(contractNumber, firstName, lastName, dateOfBirth, zipCode)),
+    verifyIdentification: (contractNumber, firstName, lastName, dateOfBirth, zipCode) => dispatch(RegistrationActions.sendIdentificationRequest(contractNumber, firstName, lastName, dateOfBirth, zipCode)),
     handleChangeContractNumber: (contractNumber) => dispatch(RegistrationActions.changeContractNumber(contractNumber)),
     handleChangeFirstName: (firstName) => dispatch(RegistrationActions.changeFirstName(firstName)),
     handleChangeLastName: (lastName) => dispatch(RegistrationActions.changeLastName(lastName)),
