@@ -30,7 +30,12 @@ class DoctorServices extends Component {
     </View>)
   }
   render () {
+
+    var temp = this.props.data;
+    var objectName = this.props.objectName
+    var temp1 = temp[objectName];
     return (
+
 
       <View style={{
         flex: 1,
@@ -51,8 +56,8 @@ class DoctorServices extends Component {
           <Flb name="doctor" size={60} color="black" />
           <Text style={{
           marginTop : 5,
-          fontSize : 13
-        }}>{this.props.data.officeServices.text['en']}</Text>
+          fontSize : Fonts.size.medium
+        }}>{temp1.text['en']}</Text>
           <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
           </View>
           <View>
