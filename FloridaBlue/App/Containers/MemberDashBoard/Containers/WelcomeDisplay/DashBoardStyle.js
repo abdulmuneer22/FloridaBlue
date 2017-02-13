@@ -52,7 +52,7 @@ export default StyleSheet.create({
   footerImage: {
 
     flexDirection: 'row',
-    height: 120,
+    height: 150,
      // height : window.height * 0.5,
     justifyContent: 'space-between',
     alignItems: 'center',
