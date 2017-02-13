@@ -26,35 +26,34 @@ export const INITIAL_STATE = Immutable({
   error: null,
   leftActive: true,
   rightActive: false,
-  preferredActive : false
+  preferredActive: false
 })
 
 /* ------------- Reducers ------------- */
 
 // we're attempting to login
-export const request = (state: Object) => state.merge({fetching: true, data: {}, error: null, leftActive: true, rightActive: false,preferredActive: false})
+export const request = (state: Object) => state.merge({fetching: true, data: {}, error: null, leftActive: true, rightActive: false, preferredActive: false})
 
 // we've successfully logged in
 export const success = (state: Object, {data}:Object) => {
-  return state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false,preferredActive: false })
+  return state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false, preferredActive: false })
 }
 // we've had a problem logging in
 export const failure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error, data: {}, leftActive: true, rightActive: false,preferredActive: false })
+  state.merge({ fetching: false, error, data: {}, leftActive: true, rightActive: false, preferredActive: false })
 
   // we've successfully logged in
 export const rightclick = (state: Object, action: Object) => {
-  return state.merge({fetching: false, error: null, leftActive: false, rightActive: true,preferredActive: false})
+  return state.merge({fetching: false, error: null, leftActive: false, rightActive: true, preferredActive: false})
 }
   // we've successfully logged in
 export const leftclick = (state: Object, action: Object) => {
-  return state.merge({fetching: false, error: null, leftActive: true, rightActive: false,preferredActive: false})
+  return state.merge({fetching: false, error: null, leftActive: true, rightActive: false, preferredActive: false})
 }
   // we've successfully logged in
 
 export const preferredclick = (state: Object, action: Object) => {
   return state.merge({fetching: false, error: null, leftActive: false, rightActive: false, preferredActive: true})
-
 }
 /* ------------- Hookup Reducers To Types ------------- */
 

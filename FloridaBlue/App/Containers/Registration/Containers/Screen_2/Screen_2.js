@@ -40,11 +40,11 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   })
   .build()
 
-  setTheme({checkboxStyle: {
-    fillColor: Colors.flBlue.ocean,
-    borderOnColor: Colors.flBlue.ocean,
-    borderOffColor: Colors.flBlue.ocean,
-  }})
+setTheme({checkboxStyle: {
+  fillColor: Colors.flBlue.ocean,
+  borderOnColor: Colors.flBlue.ocean,
+  borderOffColor: Colors.flBlue.ocean
+}})
 
 class Screen_2 extends React.Component {
 
@@ -166,13 +166,14 @@ class Screen_2 extends React.Component {
             />
           </View>
           <View style={styles.row}>
-            <View style={{height:Metrics.doubleBaseMargin * 4, backgroundColor: Colors.flBlue.grey1}}>
+            <View style={{height: Metrics.doubleBaseMargin * 4, backgroundColor: Colors.flBlue.grey1}}>
               <MKCheckbox
                 ref='receiveCommunicationsElectronically'
                 onCheckedChange={() => {
                   console.log(this)
                   var checked = this.refs.receiveCommunicationsElectronically.state.checked
-                  this.props.handleChangeReceiveCommunicationsElectronically(checked)}
+                  this.props.handleChangeReceiveCommunicationsElectronically(checked)
+                }
                 }
               />
             </View>
@@ -236,7 +237,7 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
     handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
     handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword)),
-    handleChangeReceiveCommunicationsElectronically:(receiveCommunicationsElectronically) => dispatch(RegistrationActions.changeReceiveCommunicationsElectronically(receiveCommunicationsElectronically))
+    handleChangeReceiveCommunicationsElectronically: (receiveCommunicationsElectronically) => dispatch(RegistrationActions.changeReceiveCommunicationsElectronically(receiveCommunicationsElectronically))
   }
 }
 

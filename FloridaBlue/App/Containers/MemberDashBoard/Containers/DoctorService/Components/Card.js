@@ -36,6 +36,7 @@ class Card extends Component {
         <Text style={styles.h1}>
           {network.header_text.en}
         </Text>
+
         {
           speciality.map(specialities=>{
             const{speciality_text, speciality_value}=specialities
@@ -54,6 +55,7 @@ class Card extends Component {
         }
 
 
+
       </View>
 
         )
@@ -61,8 +63,7 @@ class Card extends Component {
       return cards
     }
 
-
-    );
+    )
 
     return (
       <ScrollView>

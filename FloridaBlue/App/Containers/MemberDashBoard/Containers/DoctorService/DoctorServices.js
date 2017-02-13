@@ -38,10 +38,10 @@ class DoctorServices extends Component {
       }}>
         {this._renderHeader()}
 
-
-          <ScrollView>
+        <ScrollView>
           {
               this.props.data ?
+
 
           <View style={{flex : 1}}>
           <View style={{
@@ -62,10 +62,10 @@ class DoctorServices extends Component {
 
           </View>
           :
-             <View style={{alignItems: 'center', justifyContent: 'center'}}>
-               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-               <Text style={styles.spinnerText}>Loading Please Wait </Text>
-             </View>
+                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                  <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                  <Text style={styles.spinnerText}>Loading Please Wait </Text>
+                </View>
          }
         </ScrollView>
 
@@ -86,7 +86,7 @@ const mapStateToProps = (state) => {
     data: state.myplan.data,
     leftActive: state.myplan.leftActive,
     rightActive: state.myplan.rightActive,
-    preferredActive :state.myplan.preferredActive
+    preferredActive: state.myplan.preferredActive
   }
 }
 
@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     attemptHandleLeft: () => dispatch(MyPlanActions.myplanClickleft()),
     attemptHandleRight: () => dispatch(MyPlanActions.myplanClickright()),
-    attemptHandlePreferred :() => dispatch(MyPlanActions.myplanClickpreferred())
+    attemptHandlePreferred: () => dispatch(MyPlanActions.myplanClickpreferred())
   }
 }
 
