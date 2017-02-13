@@ -70,7 +70,8 @@ return (
           var action
           if (tile.tileType == 'native') {
             var routerName = tile.routerName
-            action = NavigationActions[routerName]()
+            var objectName = tile.tileId
+            action = NavigationActions[routerName]({objectName : objectName})
           }
         }
 

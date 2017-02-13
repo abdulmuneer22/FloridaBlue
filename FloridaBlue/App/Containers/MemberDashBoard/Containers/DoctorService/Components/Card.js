@@ -17,12 +17,16 @@ class Card extends Component {
 
   render () {
     var cards = []
-
     var that = this
+    var card ;
+    var temp = this.props.data;
+    var objectName = this.props.objectName
+    var temp1 = temp[objectName];
+
     if (this.props.leftActive) {
-      var card = this.props.data.officeServices.inNetwork
+      card = temp1.inNetwork ;
     } else {
-      var card = this.props.data.officeServices.outNetwork
+      card = temp1.outNetwork ;
     }
 
     console.log('card of innetwork' + JSON.stringify(this.props.leftActive))

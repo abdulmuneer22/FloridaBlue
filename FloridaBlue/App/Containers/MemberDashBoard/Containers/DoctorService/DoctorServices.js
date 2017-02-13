@@ -56,7 +56,7 @@ class DoctorServices extends Component {
           <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
           </View>
           <View>
-          <Card data= {this.props.data} leftActive = {this.props.leftActive} rightActive={this.props.rightActive}/>
+          <Card data= {this.props.data} objectName={this.props.objectName} leftActive = {this.props.leftActive} rightActive={this.props.rightActive}/>
           </View>
 
 
