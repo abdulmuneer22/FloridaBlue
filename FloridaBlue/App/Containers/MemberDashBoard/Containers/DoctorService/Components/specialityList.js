@@ -13,34 +13,16 @@ const window = Dimensions.get('window')
 import {connect} from 'react-redux'
 import styles from '../DoctorServiceStyle.js'
 
-class Card extends Component {
+const Card=(style, header, specialities, lang) => {
+  return <View style={style}>
 
-  render () {
-    var cards = []
-
-    var that = this
-    if (this.props.leftActive) {
-      var card = this.props.data.officeServices.inNetwork
-    } else {
-      var card = this.props.data.officeServices.outNetwork
-    }
-
-    console.log('card of innetwork' + JSON.stringify(this.props.leftActive))
-    // looping through cards to create the view
-    var i = 0
-    card.map(function (network, i) {
-      var speciality = []
-      speciality = network['speciality']
-      console.log('speciality' + JSON.stringify(card))
-      cards.push(<View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} >
         <Text style={styles.h1}>
-          {network.header_text.en}
+          {header}
         </Text>
-
         {
           speciality.map(specialities=>{
             const{speciality_text, speciality_value}=specialities
-            return <View >
+            return <View>
             <Text style = {styles.h4} >
             {speciality_text['en']}
             </Text>
@@ -55,24 +37,32 @@ class Card extends Component {
         }
 
 
-
       </View>
-
-        )
-      i += 1
-      return cards
     }
 
-    )
+  class specialityList extends Component {
 
-    return (
+        render () {
+          var cards = []
+
+          var that = this
+          if (this.props.leftActive) {
+            var card = this.props.data.officeServices.inNetwork
+          } else {
+            var card = this.props.data.officeServices.outNetwork
+          }
+
+          console.log('card of innetwork' + JSON.stringify(this.props.leftActive))
+          // looping through cards to create the view
+          var i = 0
+          return(
       <ScrollView>
         <View>
-          {cards}
+          <Card header={card.header_text['en']} specialities={card.speciality} lang="en" style={styles.cardStyle} />
         </View>
       </ScrollView>
     )
   }
 }
 
-export default Card
+export default specialityList
