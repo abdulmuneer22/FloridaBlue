@@ -45,12 +45,12 @@ class Screen_1 extends React.Component {
     super(props)
   }
 
-  /*
   _handleNext () {
-    NavigationActions.screen_2()
+    console.log(this.props)
+    this.props.verifyIdentification(this.props)
   }
-  */
 
+  /*
   _handleNext() {
     var contractNumber = this.props.contractNumber
     var firstName = this.props.firstName
@@ -58,16 +58,15 @@ class Screen_1 extends React.Component {
     var dateOfBirth = this.props.dateOfBirth
     var zipCode = this.props.zipCode
 
-    /*
     if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
       alert("Please enter values in all fields")
     } else {
       this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
     }
-    */
     this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
 
   }
+  */
 
   _handleFindMemberId () {
     NavigationActions.memberid()
@@ -244,7 +243,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    verifyIdentification: (contractNumber, firstName, lastName, dateOfBirth, zipCode) => dispatch(RegistrationActions.sendIdentificationRequest(contractNumber, firstName, lastName, dateOfBirth, zipCode)),
+    verifyIdentification: (data) => dispatch(RegistrationActions.sendIdentificationRequest(data)),
     handleChangeContractNumber: (contractNumber) => dispatch(RegistrationActions.changeContractNumber(contractNumber)),
     handleChangeFirstName: (firstName) => dispatch(RegistrationActions.changeFirstName(firstName)),
     handleChangeLastName: (lastName) => dispatch(RegistrationActions.changeLastName(lastName)),
