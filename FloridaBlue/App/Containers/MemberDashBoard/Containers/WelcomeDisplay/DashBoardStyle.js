@@ -17,7 +17,7 @@ export default StyleSheet.create({
   },
   hsaHeader: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight-(Metrics.screenHeight*0.80)),
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.795)),
   // marginTop:20,
     justifyContent: 'space-between',
     alignItems: 'center',

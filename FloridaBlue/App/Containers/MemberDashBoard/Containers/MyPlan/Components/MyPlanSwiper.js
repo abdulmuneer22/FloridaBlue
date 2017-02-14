@@ -64,7 +64,7 @@ class MyPlanSwiper extends Component {
                   <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>${network.remain}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>{network.type} Pharmacy deductible :</Text>
+                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>{network.type} pharmacy deductible :</Text>
                   <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>${network.used}</Text>
                 </View>
                 <View>

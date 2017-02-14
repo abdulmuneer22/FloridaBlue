@@ -46,7 +46,7 @@ export default {
     return <TouchableOpacity onPress={openDrawer.bind(null, 'settings')}>
       <Flb name='align-justify'
         size={Metrics.icons.medium}
-        style={{color: Colors.snow,
+        style={{color: Colors.flBlue.night,
           backgroundColor: Colors.transparent,
           marginTop: Metrics.baseMargin}}
     />

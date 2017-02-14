@@ -80,11 +80,12 @@ return (
           <TouchableOpacity style={{
             width: window.width * 0.5,
             backgroundColor: color[i],
-            height: Metrics.screenHeight-(Metrics.screenHeight*0.81),
+            height: Metrics.screenHeight-(Metrics.screenHeight*0.76),
             alignItems: 'center',
             justifyContent: 'center',
             borderColor: Colors.flBlue.lightBlue,
-            borderWidth: 1
+            borderWidth: 1,
+            borderTopWidth:3
           }} onPress={onItemPress.bind(this)} key={i}>
 
             <View style={{alignItems: 'center'}}>
@@ -103,7 +104,7 @@ return (
 
         )
         i += 1
-      }): <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      }): <View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>
