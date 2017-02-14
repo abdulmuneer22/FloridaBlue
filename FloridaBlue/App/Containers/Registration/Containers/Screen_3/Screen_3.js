@@ -46,20 +46,17 @@ class Screen_3 extends React.Component {
     NavigationActions.pop()
   }
 
-  /*
   _handleNext () {
     NavigationActions.screen_4()
   }
-  */
 
+  /*
   _handleNext () {
-    /*
     if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
       alert("Please enter values in all fields")
     } else {
       this.props.verifyPersonalInformation(phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, communicationsElectronically)
     }
-    */
     this.props.verifyPersonalInformation(this.props)
   }
 
@@ -73,6 +70,7 @@ class Screen_3 extends React.Component {
       }
     }
   }
+  */
 
   render () {
     return (
@@ -82,7 +80,7 @@ class Screen_3 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
+          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>

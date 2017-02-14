@@ -52,22 +52,20 @@ class Screen_2 extends React.Component {
     NavigationActions.pop()
   }
 
-  /*
   _handleNext () {
     NavigationActions.screen_3()
   }
-  */
 
+  /*
   _handleNext () {
-    /*
     if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
       alert("Please enter values in all fields")
     } else {
       this.props.verifyPersonalInformation(phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, communicationsElectronically)
     }
-    */
     this.props.verifyPersonalInformation(this.props)
   }
+  */
 
   componentDidUpdate () {
     if (this.props.data) {
