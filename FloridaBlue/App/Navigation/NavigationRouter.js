@@ -48,14 +48,14 @@ class NavigationRouter extends Component {
             <Scene key='screen_4' component={Screen_4} title='Security page' hideNavBar />
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page'hideNavBar />
             <Scene key='memberid' component={FindMemberID} title='MemberId page'hideNavBar />
-            <Scene key='confirmation' component={Confirmation} title='Confirmation page' hideNavBar />
-            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
+            <Scene  key='confirmation' component={Confirmation} title='Confirmation page' hideNavBar />
+            <Scene  key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar />
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />
             <Scene key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
             <Scene key='SupportScreen' component={SupportScreen} title='Support Page' hideNavBar />
             <Scene key='Myplan' component={MyPlanScreen} title='MyPlan Page' hideNavBar />
             <Scene key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page' hideNavBar />
-            <Scene key='DoctorServices' component={DoctorServices} title='DoctorServices Page' hideNavBar />
+            <Scene  key='DoctorServices' component={DoctorServices} title='DoctorServices Page' hideNavBar />
             <Scene key='AdditionalServices' component={AdditionalBenefits} title='AdditionalBenefits Page' hideNavBar />
             <Scene key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
             <Scene key='listviewexample' component={ListviewExample} title='ListviewExample' />

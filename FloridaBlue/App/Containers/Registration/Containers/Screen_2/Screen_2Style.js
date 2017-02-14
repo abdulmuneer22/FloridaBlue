@@ -51,6 +51,32 @@ export default StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'space-between'
   },
+  checkboxRow: {
+    flex: 1,
+    flexDirection: 'row',
+    width: Metrics.screenWidth,
+    marginTop: Metrics.baseMargin,
+    paddingVertical: Metrics.baseMargin,
+    paddingHorizontal: Metrics.doubleBaseMargin,
+    height:Metrics.doubleBaseMargin * 4,
+    backgroundColor: Colors.flBlue.grey1,
+    alignItems: 'stretch',
+    justifyContent: 'space-between'
+  },
+  checkbox: {
+    alignSelf: 'flex-start',
+    justifyContent: 'flex-start'
+  },
+  checkboxMessageView: {
+    alignSelf: 'flex-end',
+    justifyContent: 'flex-end'
+  },
+  checkboxMessageText: {
+    color: Colors.flBlue.grey5,
+    fontWeight: 'bold',
+    fontSize: Fonts.size.medium,
+    height: Metrics.doubleBaseMargin * 2.5
+  },
   backButton: {
     alignSelf: 'flex-start',
     justifyContent: 'flex-start'

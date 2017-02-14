@@ -45,12 +45,13 @@ class Screen_1 extends React.Component {
     super(props)
   }
 
-  _handleRegistration () {
-    NavigationActions.screen_2()
+  _handleNext () {
+    console.log(this.props)
+    this.props.verifyIdentification(this.props)
   }
 
   /*
-  _handleRegistration() {
+  _handleNext() {
     var contractNumber = this.props.contractNumber
     var firstName = this.props.firstName
     var lastName = this.props.lastName
@@ -62,6 +63,8 @@ class Screen_1 extends React.Component {
     } else {
       this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
     }
+    this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
+
   }
   */
 
@@ -191,7 +194,7 @@ class Screen_1 extends React.Component {
               </TouchableOpacity>
             </View>
             <View style={styles.nextButton}>
-              <TouchableOpacity onPress={() => { this._handleRegistration() }}>
+              <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButton} />
               </TouchableOpacity>
             </View>
@@ -240,7 +243,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    verifyIdentification: (contractNumber, firstName, lastName, dateOfBirth, zipCode) => dispatch(RegistrationActions.registrationRequest(contractNumber, firstName, lastName, dateOfBirth, zipCode)),
+    verifyIdentification: (data) => dispatch(RegistrationActions.sendIdentificationRequest(data)),
     handleChangeContractNumber: (contractNumber) => dispatch(RegistrationActions.changeContractNumber(contractNumber)),
     handleChangeFirstName: (firstName) => dispatch(RegistrationActions.changeFirstName(firstName)),
     handleChangeLastName: (lastName) => dispatch(RegistrationActions.changeLastName(lastName)),

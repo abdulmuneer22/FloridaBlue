@@ -30,6 +30,7 @@ class DoctorServices extends Component {
     </View>)
   }
   render () {
+    console.log(this.props.data)
     return (
 
       <View style={{

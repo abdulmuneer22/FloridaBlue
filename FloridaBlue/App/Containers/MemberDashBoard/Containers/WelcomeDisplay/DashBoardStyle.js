@@ -10,7 +10,8 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 15,
-    alignSelf: 'stretch',
+    //resizeMode:'cover',
+    //alignSelf: 'stretch',
     width: Metrics.screenWidth,
     backgroundColor: Colors.flBlue.ocean
   },
@@ -23,8 +24,8 @@ export default StyleSheet.create({
     padding: 10,
     width: Metrics.screenWidth,
   // overflow: 'visible',
-  // resizeMode: 'stretch',
-    alignSelf: 'stretch'
+   resizeMode: 'cover',
+  //  alignSelf: 'stretch'
   // width:Metrics.screenWidth,
   // backgroundColor:Colors.flBlue.ocean
   },
@@ -36,7 +37,7 @@ export default StyleSheet.create({
  // alignItems:'center',
  // padding:10,
     alignSelf: 'stretch',
-    width: null
+    width: Metrics.screenWidth
  // backgroundColor:Colors.flBlue.ocean
   },
   container: {
@@ -53,9 +54,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     height:Metrics.screenHeight-(Metrics.screenHeight*0.81),
      // height : window.height * 0.5,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    alignSelf: 'stretch',
+    //justifyContent: 'space-between',
+    //alignItems: 'center',
+  //  alignSelf: 'stretch',
+  resizeMode:'cover',
     width: Metrics.screenWidth
   },
   titleView: {
@@ -91,7 +93,7 @@ export default StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     padding: 5,
-    marginTop:Metrics.small
+    marginTop:Metrics.smallMargin
   },
 
   row_1: {

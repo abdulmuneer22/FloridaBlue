@@ -40,11 +40,11 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   })
   .build()
 
-setTheme({checkboxStyle: {
-  fillColor: Colors.flBlue.ocean,
-  borderOnColor: Colors.flBlue.ocean,
-  borderOffColor: Colors.flBlue.ocean
-}})
+  setTheme({checkboxStyle: {
+    fillColor: Colors.flBlue.ocean,
+    borderOnColor: Colors.flBlue.ocean,
+    borderOffColor: Colors.flBlue.ocean,
+  }})
 
 class Screen_2 extends React.Component {
 
@@ -52,8 +52,32 @@ class Screen_2 extends React.Component {
     NavigationActions.pop()
   }
 
+  /*
   _handleNext () {
     NavigationActions.screen_3()
+  }
+  */
+
+  _handleNext () {
+    /*
+    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
+      alert("Please enter values in all fields")
+    } else {
+      this.props.verifyPersonalInformation(phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, communicationsElectronically)
+    }
+    */
+    this.props.verifyPersonalInformation(this.props)
+  }
+
+  componentDidUpdate () {
+    if (this.props.data) {
+      var reasonCode = this.props.data.reasonCode
+      console.log(reasonCode)
+
+      if (reasonCode === '000') {
+        NavigationActions.screen_3()
+      }
+    }
   }
 
   render () {
@@ -64,10 +88,15 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
+          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
+            </View>
+            <View>
+              <TouchableOpacity onPress={() => { this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null}) }}>
+                <Image source={Images.closeIconWhite} />
+              </TouchableOpacity>
             </View>
           </View> : <Text />}
           <View style={styles.row}>
@@ -142,7 +171,7 @@ class Screen_2 extends React.Component {
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
-              secureTextEntry
+              password={true}
               onChangeText={this.props.handleChangePassword}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
@@ -159,23 +188,25 @@ class Screen_2 extends React.Component {
               returnKeyType='done'
               autoCapitalize='none'
               autoCorrect={false}
-              secureTextEntry
+              password={true}
               onChangeText={this.props.handleChangeConfirmPassword}
               underlineColorAndroid={Colors.coal}
               placeholder={I18n.t('confirmPassword')}
             />
           </View>
-          <View style={styles.row}>
-            <View style={{height: Metrics.doubleBaseMargin * 4, backgroundColor: Colors.flBlue.grey1}}>
+          <View style={styles.checkboxRow}>
+            <View style={styles.checkbox}>
               <MKCheckbox
-                ref='receiveCommunicationsElectronically'
+                ref='communicationsElectronically'
                 onCheckedChange={() => {
                   console.log(this)
-                  var checked = this.refs.receiveCommunicationsElectronically.state.checked
-                  this.props.handleChangeReceiveCommunicationsElectronically(checked)
-                }
+                  var checked = this.refs.communicationsElectronically.state.checked
+                  this.props.handleChangeCommunicationsElectronically(checked)}
                 }
               />
+            </View>
+            <View style={styles.checkboxMessageView}>
+              <Text style={styles.checkboxMessageText}>{I18n.t('communicationsElectronically')}</Text>
             </View>
           </View>
           <View style={styles.buttonRow}>
@@ -203,26 +234,32 @@ class Screen_2 extends React.Component {
 }
 
 Screen_2.propTypes = {
+  verifyPersonalInformation: PropTypes.func,
   handleChangePhoneNumber: PropTypes.func,
   handleChangeEmail: PropTypes.func,
   handleChangeConfirmEmail: PropTypes.func,
   handleChangeCreateUserId: PropTypes.func,
   handleChangePassword: PropTypes.func,
   handleChangeConfirmPassword: PropTypes.func,
-  handleChangeReceiveCommunicationsElectronically: PropTypes.func,
+  handleChangeCommunicationsElectronically: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
+    contractNumber: state.registration.contractNumber,
+    firstName: state.registration.firstName,
+    lastName: state.registration.lastName,
+    dateOfBirth: state.registration.dateOfBirth,
+    zipCode: state.registration.zipCode,
     phoneNumber: state.registration.phoneNumber,
     email: state.registration.email,
     confirmEmail: state.registration.confirmEmail,
     createUserId: state.registration.createUserId,
     password: state.registration.password,
     confirmPassword: state.registration.confirmPassword,
-    receiveCommunicationsElectronically: state.registration.receiveCommunicationsElectronically,
+    communicationsElectronically: state.registration.communicationsElectronically,
     fetching: state.registration.fetching,
     error: state.registration.error,
     data: state.registration.data
@@ -231,13 +268,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyPersonalInformation: (data) => dispatch(RegistrationActions.sendPersonalInformationRequest(data)),
     handleChangePhoneNumber: (phoneNumber) => dispatch(RegistrationActions.changePhoneNumber(phoneNumber)),
     handleChangeEmail: (email) => dispatch(RegistrationActions.changeEmail(email)),
     handleChangeConfirmEmail: (confirmEmail) => dispatch(RegistrationActions.changeConfirmEmail(confirmEmail)),
     handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
     handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
     handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword)),
-    handleChangeReceiveCommunicationsElectronically: (receiveCommunicationsElectronically) => dispatch(RegistrationActions.changeReceiveCommunicationsElectronically(receiveCommunicationsElectronically))
+    handleChangeCommunicationsElectronically:(communicationsElectronically) => dispatch(RegistrationActions.changeCommunicationsElectronically(communicationsElectronically)),
+    handleChangeReasonCode: (data) => dispatch(RegistrationActions.changeReasonCode(data))
   }
 }
 

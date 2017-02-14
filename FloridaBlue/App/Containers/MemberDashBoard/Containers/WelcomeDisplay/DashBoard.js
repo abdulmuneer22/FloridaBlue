@@ -16,8 +16,6 @@ import Greeting from './Components/Greeting'
 import MyPlanCard from './Components/MyPlanCard'
 import Card from './Components/Card'
 import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
-// import SeeDetailsCard from './Components/SeeDetailsCard'
-// import TransButton from './Components/transButton'
 import styles from './DashBoardStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -89,14 +87,14 @@ class LandingScreen extends Component {
                   <TouchableOpacity style={{
                     width: window.width * 0.5,
                     backgroundColor: color[i],
-                    height:Metrics.screenHeight-(Metrics.screenHeight*0.81),
+                    height:Metrics.screenHeight-(Metrics.screenHeight*0.80),
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderWidth: 1,
                     borderColor: Colors.flBlue.lightBlue
                   }} onPress={onItemPress.bind(this)} key={i}>
                     <View style={{alignItems: 'center'}}>
-                      <Flb name={tile.tileIcon} size={40} color='white' />
+                      <Flb name={tile.tileIcon} size={Metrics.icons.regular} color='white' />
                       <Text style={{
                         marginTop: Metrics.doubleBaseMargin,
                         fontSize: Fonts.size.regular,

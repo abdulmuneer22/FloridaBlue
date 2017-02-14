@@ -67,7 +67,7 @@ class SupportScreen extends Component {
                 <View >
                   {this.props.data && this.props.data.support ?
             this.props.data.support.map(function (support, i) {
-              return (<View style={i % 2 == 0 ? styles.textBackground : styles.textBackground1} >
+              return (<View style={i % 2 == 0 ? styles.textBackground : styles.textBackground1} key={i} >
                 <View>
                   <Text style={styles.textStyle} >
                     {support.contactType}

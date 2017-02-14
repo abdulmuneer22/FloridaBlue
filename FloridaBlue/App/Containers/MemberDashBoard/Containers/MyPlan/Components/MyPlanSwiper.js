@@ -18,7 +18,7 @@ class MyPlanSwiper extends Component {
 
   render () {
     var myPlan = []
-    
+
     if (this.props.data.annualDeductible.inNetwork) {
       var inNetwork = this.props.data.annualDeductible.inNetwork
       inNetwork.map(function (temObj) {
@@ -44,7 +44,7 @@ class MyPlanSwiper extends Component {
       <Swiper height={380} style={styles.wrapper} showsButtons>
         { this.props.data.annualDeductible.inNetwork ? myPlan.map(function (network, i) {
           return (
-            <View style={styles.headerStyle}>
+            <View style={styles.headerStyle} key={i}>   
 
               <Text style={styles.headerText}>In-Network</Text>
               <Text style={styles.subHeader}> Family Annual Deductible</Text>

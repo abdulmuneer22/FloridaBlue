@@ -24,19 +24,14 @@ const { Types, Creators } = createActions({
   changeSecurityAnswer2: ['securityAnswer2'],
   changeSecurityHint3: ['securityHint3'],
   changeSecurityAnswer3: ['securityAnswer3'],
-  changeReceiveCommunicationsElectronically: ['receiveCommunicationsElectronically'],
+  changeCommunicationsElectronically: ['communicationsElectronically'],
   changeReasonCode: ['data'],
-  registrationRequest: ['contractNumber', 'firstName', 'lastName', 'dateOfBirth', 'zipCode'],
-  registrationSuccess: ['data'],
-  sendregistrationRequest: ['email', 'confirmemail', 'uniqueuserid', 'password', 'confirmpassword'],
-  sendregistrationSuccess: ['email', 'confirmemail', 'uniqueuserid', 'password', 'confirmpassword'],
-  sendregistrationRequestcode: ['registrationcode'],
-  sendregistrationSuccesscode: ['registrationcode'],
-  sendregistrationRequestanswers: ['questionone', 'questiontwo', 'questionthree', 'answerone', 'answertwo', 'answerthree'],
-  sendregistrationSuccessanswers: ['questionone', 'questiontwo', 'questionthree', 'answerone', 'answertwo', 'answerthree'],
-  sendregistrationRequestconfirm: ['confirm'],
-  sendregistrationSuccessconfirm: ['confirm'],
-  registrationFailure: ['data']
+  sendIdentificationRequest: ['data'],
+  sendIdentificationSuccess: ['data'],
+  sendIdentificationFailure: ['data'],
+  sendPersonalInformationRequest: ['data'],
+  sendPersonalInformationSuccess: ['data'],
+  sendPersonalInformationFailure: ['data']
 })
 
 export const RegistrationTypes = Types
@@ -63,7 +58,7 @@ export const INITIAL_STATE = Immutable({
   securityAnswer2: null,
   securityHint3: null,
   securityAnswer3: null,
-  receiveCommunicationsElectronically: null,
+  communicationsElectronically: null,
   questionone: null,
   questiontwo: null,
   questionthree: null,
@@ -78,27 +73,26 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-// we're attempting to login
-export const request = (state: Object) => state.merge({ fetching: true })
+// _sendIdentificationRequest
+export const _sendIdentificationRequest = (state: Object) => state.merge({ fetching: true })
 
-// we've successfully logged in
-export const success = (state: Object, {data}: Object) =>
+// sendIdentificationSuccess
+export const _sendIdentificationSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, data})
 
-export const sendsuccess = (state: Object, {email, confirmemail, uniqueuserid, password, confirmpassword}: Object) =>
-    state.merge({fetching: false, email, confirmemail, uniqueuserid, password, confirmpassword})
+// _sendIdentificationFailure
+export const _sendIdentificationFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, data })
 
-export const sendcode = (state: Object, {registrationcode}: Object) =>
-      state.merge({fetching: false, registrationcode})
+// _sendPersonalInformationRequest
+export const _sendPersonalInformationRequest = (state: Object) => state.merge({ fetching: true })
 
-export const sendanswers = (state: Object, {questionone, questiontwo, questionthree, answerone, answertwo, answerthree}: Object) =>
-      state.merge({fetching: false, questionone, questiontwo, questionthree, answerone, answertwo, answerthree })
+// sendPersonalInformationSuccess
+export const _sendPersonalInformationSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false, data})
 
-export const sendconfirm = (state: Object, {sendconfrim}: Object) =>
-      state.merge({fetching: false, sendconfrim})
-
-// we've had a problem logging in
-export const failure = (state: Object, {data}: Object) =>
+// _sendPersonalInformationFailure
+export const _sendPersonalInformationFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, data })
 
 // contractNumber
@@ -177,9 +171,9 @@ export const _changeSecurityAnswer3 = (state: Object, {securityAnswer3}: Object)
 export const _changeReasonCode = (state: Object, {data}: Object) =>
       state.merge({fetching: false, data})
 
-// receiveCommunicationsElectronically
-export const _changeReceiveCommunicationsElectronically = (state: Object, {receiveCommunicationsElectronically}: Object) =>
-      state.merge({fetching: false, receiveCommunicationsElectronically})
+// communicationsElectronically
+export const _changeCommunicationsElectronically = (state: Object, {communicationsElectronically}: Object) =>
+      state.merge({fetching: false, communicationsElectronically})
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -196,7 +190,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CREATE_USER_ID]: _changeCreateUserId,
   [Types.PASSWORD]: _changePassword,
   [Types.CONFIRM_PASSWORD]: _changeConfirmPassword,
-  [Types.CHANGE_RECEIVE_COMMUNICATIONS_ELECTRONICALLY]: _changeReceiveCommunicationsElectronically,
+  [Types.CHANGE_RECEIVE_COMMUNICATIONS_ELECTRONICALLY]: _changeCommunicationsElectronically,
   [Types.ENTER_CODE]: _changeEnterCode,
   [Types.SECURITY_HINT1]: _changeSecurityHint1,
   [Types.SECURITY_ANSWER1]: _changeSecurityAnswer1,
@@ -204,17 +198,12 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SECURITY_ANSWER2]: _changeSecurityAnswer2,
   [Types.SECURITY_HINT3]: _changeSecurityHint3,
   [Types.SECURITY_ANSWER3]: _changeSecurityAnswer3,
-  [Types.REGISTRATION_REQUEST]: request,
-  [Types.REGISTRATION_SUCCESS]: success,
-  [Types.SENDREGISTRATION_REQUEST]: request,
-  [Types.SENDREGISTRATION_SUCCESS]: sendsuccess,
-  [Types.SENDREGISTRATION_REQUESTCODE]: request,
-  [Types.SENDREGISTRATION_SUCCESSCODE]: sendcode,
-  [Types.SENDREGISTRATION_REQUESTANSWERS]: request,
-  [Types.SENDREGISTRATION_SUCCESSANSWERS]: sendanswers,
-  [Types.SENDREGISTRATION_REQUESTCONFIRM]: request,
-  [Types.SENDREGISTRATION_SUCCESSCONFIRM]: sendconfirm,
-  [Types.REGISTRATION_FAILURE]: failure
+  [Types.SEND_IDENTIFICATION_REQUEST]: _sendIdentificationRequest,
+  [Types.SEND_IDENTIFICATION_SUCCESS]: _sendIdentificationSuccess,
+  [Types.SEND_IDENTIFICATION_FAILURE]: _sendIdentificationFailure,
+  [Types.SEND_PERSONAL_INFORMATION_REQUEST]: _sendPersonalInformationRequest,
+  [Types.SEND_PERSONAL_INFORMATION_SUCCESS]: _sendPersonalInformationSuccess,
+  [Types.SEND_PERSONAL_INFORMATION_FAILURE]: _sendPersonalInformationFailure
 })
 
 /* ------------- Selectors ------------- */

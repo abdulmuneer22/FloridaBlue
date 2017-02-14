@@ -23,6 +23,7 @@ const metrics = {
     tiny: 15,
     small: 20,
     medium: 30,
+    regular: 35,
     large: 45,
     xl: 60
   },
