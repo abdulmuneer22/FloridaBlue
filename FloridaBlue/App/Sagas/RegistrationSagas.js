@@ -36,7 +36,7 @@ export function* sendPersonalInformationRequest (api, {
   data
 }) {
 
-  const response = yield call(api.postIdentification, data)
+  const response = yield call(api.postPersonalInformation, data)
 
   console.log(JSON.stringify(response))
 
@@ -45,7 +45,7 @@ export function* sendPersonalInformationRequest (api, {
     console.log('I am coming from success')
     var error = null
     var data = response.data
-    yield put(RegistrationActions.sendIdentificationSuccess(data))
+    yield put(RegistrationActions.sendPersonalInformationSuccess(data))
   } else {
     // dispatch successful logins
     console.log('I am coming from failure')
@@ -54,6 +54,32 @@ export function* sendPersonalInformationRequest (api, {
       'reasonCode': '999',
       'reasonDesc': 'Invalid input provided'
     }
-    yield put(RegistrationActions.sendIdentificationFailure(data))
+    yield put(RegistrationActions.sendPersonalInformationFailure(data))
+  }
+}
+
+export function* sendRegistrationCodeRequest (api, {
+  data
+}) {
+
+  const response = yield call(api.postRegistrationCode, data)
+
+  console.log(JSON.stringify(response))
+
+  if (response.ok) {
+    // dispatch failure
+    console.log('I am coming from success')
+    var error = null
+    var data = response.data
+    yield put(RegistrationActions.sendRegistrationCodeSuccess(data))
+  } else {
+    // dispatch successful logins
+    console.log('I am coming from failure')
+    var error = 'Invaid input provided'
+    var data = {
+      'reasonCode': '999',
+      'reasonDesc': 'Invalid input provided'
+    }
+    yield put(RegistrationActions.sendRegistrationCodeFailure(data))
   }
 }

@@ -46,8 +46,32 @@ class Screen_3 extends React.Component {
     NavigationActions.pop()
   }
 
+  /*
   _handleNext () {
     NavigationActions.screen_4()
+  }
+  */
+
+  _handleNext () {
+    /*
+    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
+      alert("Please enter values in all fields")
+    } else {
+      this.props.verifyPersonalInformation(phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, communicationsElectronically)
+    }
+    */
+    this.props.verifyPersonalInformation(this.props)
+  }
+
+  componentDidUpdate () {
+    if (this.props.data) {
+      var reasonCode = this.props.data.reasonCode
+      console.log(reasonCode)
+
+      if (reasonCode === '000') {
+        NavigationActions.screen_4()
+      }
+    }
   }
 
   render () {
@@ -102,6 +126,7 @@ class Screen_3 extends React.Component {
 }
 
 Screen_3.propTypes = {
+  verifyRegistrationCode: PropTypes.func,
   handleChangeEnterCode: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
@@ -110,6 +135,11 @@ Screen_3.propTypes = {
 const mapStateToProps = (state) => {
   return {
     enterCode: state.registration.enterCode,
+    contractNumber: state.registration.contractNumber,
+    firstName: state.registration.firstName,
+    lastName: state.registration.lastName,
+    dateOfBirth: state.registration.dateOfBirth,
+    zipCode: state.registration.zipCode,
     fetching: state.registration.fetching,
     error: state.registration.error,
     data: state.registration.data
@@ -118,6 +148,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyRegistrationCode: (data) => dispatch(RegistrationActions.sendRegistrationCodeRequest(data)),
     handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode))
   }
 }

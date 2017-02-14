@@ -23,6 +23,7 @@ import { myplan } from './MyPlanSagas'
 import { support } from './SupportSagas'
 import {sendIdentificationRequest} from './RegistrationSagas'
 import {sendPersonalInformationRequest} from './RegistrationSagas'
+import {sendRegistrationCodeRequest} from './RegistrationSagas'
 // import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -47,6 +48,7 @@ export default function * root () {
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan, api),
     takeLatest(SupportTypes.SUPPORT_REQUEST, support, api),
     takeLatest(RegistrationTypes.SEND_IDENTIFICATION_REQUEST, sendIdentificationRequest, apiforRegistration),
-    takeLatest(RegistrationTypes.SEND_PERSONAL_INFORMATION_REQUEST, sendPersonalInformationRequest, apiforRegistration)
+    takeLatest(RegistrationTypes.SEND_PERSONAL_INFORMATION_REQUEST, sendPersonalInformationRequest, apiforRegistration),
+    takeLatest(RegistrationTypes.SEND_REGISTRATION_CODE_REQUEST, sendRegistrationCodeRequest, apiforRegistration)
   ]
 }

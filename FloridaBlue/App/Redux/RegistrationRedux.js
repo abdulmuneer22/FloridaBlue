@@ -31,7 +31,10 @@ const { Types, Creators } = createActions({
   sendIdentificationFailure: ['data'],
   sendPersonalInformationRequest: ['data'],
   sendPersonalInformationSuccess: ['data'],
-  sendPersonalInformationFailure: ['data']
+  sendPersonalInformationFailure: ['data'],
+  sendRegistrationCodeRequest: ['data'],
+  sendRegistrationCodeSuccess: ['data'],
+  sendRegistrationCodeFailure: ['data']
 })
 
 export const RegistrationTypes = Types
@@ -73,6 +76,9 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
+////////////////////////////
+// Identification
+////////////////////////////
 // _sendIdentificationRequest
 export const _sendIdentificationRequest = (state: Object) => state.merge({ fetching: true })
 
@@ -84,6 +90,9 @@ export const _sendIdentificationSuccess = (state: Object, {data}: Object) =>
 export const _sendIdentificationFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, data })
 
+////////////////////////////
+// PersonalInformation
+////////////////////////////
 // _sendPersonalInformationRequest
 export const _sendPersonalInformationRequest = (state: Object) => state.merge({ fetching: true })
 
@@ -95,6 +104,23 @@ export const _sendPersonalInformationSuccess = (state: Object, {data}: Object) =
 export const _sendPersonalInformationFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, data })
 
+////////////////////////////
+// RegistrationCode
+////////////////////////////
+// _sendRegistrationCodeRequest
+export const _sendRegistrationCodeRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendRegistrationCodeSuccess
+export const _sendRegistrationCodeSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false, data})
+
+// _sendRegistrationCodeFailure
+export const _sendRegistrationCodeFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, data })
+
+////////////////////////////
+// Props
+////////////////////////////
 // contractNumber
 export const _changeContractNumber = (state: Object, {contractNumber}: Object) =>
       state.merge({fetching: false, contractNumber})
@@ -203,7 +229,10 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEND_IDENTIFICATION_FAILURE]: _sendIdentificationFailure,
   [Types.SEND_PERSONAL_INFORMATION_REQUEST]: _sendPersonalInformationRequest,
   [Types.SEND_PERSONAL_INFORMATION_SUCCESS]: _sendPersonalInformationSuccess,
-  [Types.SEND_PERSONAL_INFORMATION_FAILURE]: _sendPersonalInformationFailure
+  [Types.SEND_PERSONAL_INFORMATION_FAILURE]: _sendPersonalInformationFailure,
+  [Types.SEND_REGISTRATION_CODE_REQUEST]: _sendRegistrationCodeRequest,
+  [Types.SEND_REGISTRATION_CODE_SUCCESS]: _sendRegistrationCodeSuccess,
+  [Types.SEND_REGISTRATION_CODE_FAILURE]: _sendRegistrationCodeFailure
 })
 
 /* ------------- Selectors ------------- */
