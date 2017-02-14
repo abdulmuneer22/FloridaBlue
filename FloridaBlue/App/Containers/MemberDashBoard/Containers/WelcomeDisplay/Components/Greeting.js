@@ -62,7 +62,7 @@ class Greeting extends Component {
     return (
       <View>
         <View style={Styles.Greeting}>
-          <Text style={{fontSize: 18, color: Colors.snow}}>
+          <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
             {this.state.greetText} {this.props.userName ? this.props.userName : ''}
           </Text>
         </View>
@@ -72,13 +72,13 @@ class Greeting extends Component {
           <View style={{
             alignItems: 'center',
             justifyContent: 'center',
-            height: 40,
+            height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/3,
             backgroundColor: Colors.flBlue.grey1,
             flexDirection: 'row'
           }}>
 
             <Flb name='email-envelope' size={20} />
-            <Text style={{color: Colors.flBlue.night, fontSize: Fonts.size.h6, marginLeft: 10}}> You have {messageCount} new messages. </Text>
+            <Text style={{color: Colors.flBlue.night, fontSize: Fonts.size.h6, marginLeft: Metrics.baseMargin}}> You have {messageCount} new messages. </Text>
 
           </View>
         : null
@@ -93,7 +93,7 @@ const Styles = StyleSheet.create({
   Greeting: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40,
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.78))/3,
     // padding:5,
     backgroundColor: Colors.flBlue.grey6
   }

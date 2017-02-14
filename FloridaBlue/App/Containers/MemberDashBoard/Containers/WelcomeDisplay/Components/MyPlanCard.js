@@ -14,6 +14,7 @@ import {Colors, Metrics, Fonts, Images} from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 
 const window = Dimensions.get('window')
+var {height,width}=Dimensions.get('window')
 
 class MyPlanCard extends Component {
   render () {
@@ -24,9 +25,13 @@ class MyPlanCard extends Component {
           <View style={[Styles.center, {flex: 0.3}]}>
             <View style={{
               backgroundColor: Colors.flBlue.ocean,
-              width: 80,
-              height: 80,
-              borderRadius: 80 / 2,
+              width: 70,
+              height: 70,
+              borderRadius:70/2 ,
+
+              //borderBottomWidth:10,
+              //borderLeftWidth:10,
+              //borderRightWidth:-20,
               alignItems: 'center',
               justifyContent: 'center',
               marginTop: 30,
@@ -69,17 +74,13 @@ class MyPlanCard extends Component {
 const Styles = StyleSheet.create({
   summary: {
     flexDirection: 'row',
-    height: 185,
+    height: Metrics.screenHeight-(Metrics.screenHeight*0.73),
     justifyContent: 'space-between',
     alignItems: 'center',
+    resizeMode:'cover',
   //  padding:5,
-    alignSelf: 'stretch',
-    width: null
-  },
-  features: {
-    flexDirection: 'row',
-    height: 300,
-    margin: 0
+    //alignSelf: 'stretch',
+    width: Metrics.screenWidth
   },
   titleView: {
     marginTop: 10

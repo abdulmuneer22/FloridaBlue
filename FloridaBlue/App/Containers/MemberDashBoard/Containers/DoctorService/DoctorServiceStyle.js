@@ -1,7 +1,7 @@
 // @flow
 
 import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles, Colors } from '../../../../Themes/'
+import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
 
 export default StyleSheet.create({
 
@@ -57,13 +57,16 @@ export default StyleSheet.create({
   },
 
   h2: {
-    fontSize: 18,
+    fontSize: Fonts.size.regular,
     textAlign: 'center',
-    paddingBottom: 10
+    paddingTop: 10,
+
   },
   h4: {
     textAlign: 'center',
-    paddingTop: 15
+    //paddingBottom: 15,
+    fontSize:Fonts.size.medium,
+    marginTop:Metrics.smallMargin
 
   }
 

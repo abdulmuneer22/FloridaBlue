@@ -44,7 +44,7 @@ class MyPlanSwiper extends Component {
       <Swiper height={380} style={styles.wrapper} showsButtons>
         { this.props.data.annualDeductible.inNetwork ? myPlan.map(function (network, i) {
           return (
-            <View style={styles.headerStyle} key={i}>   
+            <View style={styles.headerStyle} key={i}>
 
               <Text style={styles.headerText}>In-Network</Text>
               <Text style={styles.subHeader}> Family Annual Deductible</Text>
@@ -56,15 +56,15 @@ class MyPlanSwiper extends Component {
                 </View>
 
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>{network.type} Deductable :</Text>
+                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>{network.type} deductible :</Text>
                   <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>${network.value}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>Remaining {network.type} Deductable :</Text>
+                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>Remaining {network.type} deductible :</Text>
                   <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>${network.remain}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>{network.type} Pharmacy Deductible :</Text>
+                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>{network.type} Pharmacy deductible :</Text>
                   <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>${network.used}</Text>
                 </View>
                 <View>

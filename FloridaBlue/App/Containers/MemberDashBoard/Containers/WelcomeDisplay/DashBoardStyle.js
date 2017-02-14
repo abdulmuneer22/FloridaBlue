@@ -6,37 +6,38 @@ import { Metrics, ApplicationStyles, Colors, Images, Fonts } from '../../../../T
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: 70,
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 15,
-    alignSelf: 'stretch',
+    //resizeMode:'cover',
+    //alignSelf: 'stretch',
     width: Metrics.screenWidth,
     backgroundColor: Colors.flBlue.ocean
   },
   hsaHeader: {
     flexDirection: 'row',
-    height: 145,
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.80)),
   // marginTop:20,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
     width: Metrics.screenWidth,
   // overflow: 'visible',
-  // resizeMode: 'stretch',
-    alignSelf: 'stretch'
+   resizeMode: 'cover',
+  //  alignSelf: 'stretch'
   // width:Metrics.screenWidth,
   // backgroundColor:Colors.flBlue.ocean
   },
   hsaBg: {
  // flexDirection:'row',
-    height: 310,
+    height:Metrics.screenHeight-(Metrics.screenHeight*0.45),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
  // padding:10,
     alignSelf: 'stretch',
-    width: null
+    width: Metrics.screenWidth
  // backgroundColor:Colors.flBlue.ocean
   },
   container: {
@@ -50,13 +51,13 @@ export default StyleSheet.create({
     backgroundColor: '#E8E8E8'
   },
   footerImage: {
-
     flexDirection: 'row',
-    height: 150,
+    height:Metrics.screenHeight-(Metrics.screenHeight*0.81),
      // height : window.height * 0.5,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    alignSelf: 'stretch',
+    //justifyContent: 'space-between',
+    //alignItems: 'center',
+  //  alignSelf: 'stretch',
+  resizeMode:'cover',
     width: Metrics.screenWidth
   },
   titleView: {
@@ -91,7 +92,8 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular,
     fontWeight: '600',
     textAlign: 'center',
-    padding: 15
+    padding: 5,
+    marginTop:Metrics.smallMargin
   },
 
   row_1: {

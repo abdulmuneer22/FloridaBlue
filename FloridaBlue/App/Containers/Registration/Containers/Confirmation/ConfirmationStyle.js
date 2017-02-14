@@ -4,13 +4,11 @@ import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 export default StyleSheet.create({
   headerContainer: {
    // flexDirection:'row',
-    height: 150,
-   // justifyContent:'space-between',
-   // alignItems:'center',
-   // padding:15,overflow: 'visible',
+    height: Metrics.screenHeight-(Metrics.screenHeight*0.79),
+    resizeMode:'cover',
    // resizeMode: 'cover',
    // overflow:'visible',
-    alignSelf: 'stretch',
+  //  alignSelf: 'stretch',
     width: Metrics.screenWidth
    // backgroundColor:Colors.flBlue.ocean
   },
@@ -82,16 +80,18 @@ export default StyleSheet.create({
   },
   row: {
     paddingVertical: Metrics.baseMargin,
-    paddingHorizontal: Metrics.doubleBaseMargin
+    paddingHorizontal: Metrics.doubleBaseMargin,
+    //height: Metrics.screenHeight-(Metrics.screenHeight*0.79)
   },
-
   footerText: {
     color: Colors.flBlue.grey4,
     marginHorizontal: Metrics.section,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: Fonts.size.small,
-    marginTop: 150
+    marginBottom: Metrics.baseMargin,
+    marginTop:70
+
   },
   textfieldWithFloatingLabel: {
     height: 48,  // have to do it on iOS

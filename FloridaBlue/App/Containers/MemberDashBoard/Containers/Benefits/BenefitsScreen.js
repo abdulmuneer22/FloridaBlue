@@ -12,7 +12,7 @@ const window = Dimensions.get('window')
 // toolbar => 60
 // grid => window - 60 -> 70%
 // footer => window-60 -> 30%
-const windowheight = window.height - 60
+//const windowheight = window.height - 60
 
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -80,7 +80,7 @@ return (
           <TouchableOpacity style={{
             width: window.width * 0.5,
             backgroundColor: color[i],
-            height: 150,
+            height: Metrics.screenHeight-(Metrics.screenHeight*0.81),
             alignItems: 'center',
             justifyContent: 'center',
             borderColor: Colors.flBlue.lightBlue,
@@ -88,10 +88,10 @@ return (
           }} onPress={onItemPress.bind(this)} key={i}>
 
             <View style={{alignItems: 'center'}}>
-              <Flb name='doctor' size={40} color='white' />
+              <Flb name={tile.tileIcon} size={Metrics.icons.regular} color='white' />
               <Text style={{
-                marginTop: 20,
-                fontSize: 14,
+                marginTop: Metrics.baseMargin,
+                fontSize: Fonts.size.regular,
                 fontWeight: '600',
                 color: 'white'
               }}>
@@ -103,7 +103,11 @@ return (
 
         )
         i += 1
-      }):<Text> Loading..</Text>}
+      }): <View style={{alignItems: 'center', justifyContent: 'center'}}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>
+     }
     </View>
 
 

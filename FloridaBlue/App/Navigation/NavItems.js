@@ -24,7 +24,7 @@ export default {
         <Flb name='arrow-left'
           size={Metrics.icons.medium}
           color={Colors.snow}
-          style={[styles.backButton, {top: -10}]}
+          style={[styles.backButton, {marginTop:5}]}
         />
       </TouchableOpacity>
     )
@@ -48,7 +48,7 @@ export default {
         size={Metrics.icons.medium}
         style={{color: Colors.snow,
           backgroundColor: Colors.transparent,
-          marginTop: 13}}
+          marginTop: Metrics.baseMargin}}
     />
     </TouchableOpacity>
   },

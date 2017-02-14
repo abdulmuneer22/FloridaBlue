@@ -11,7 +11,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.flBlue.ocean,
     padding: 10,
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
+    
   },
   container: {
     flex: 1,

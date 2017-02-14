@@ -4,6 +4,7 @@ global.Buffer = global.Buffer || require('buffer').Buffer
 
 // our "constructor"
 const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
+//const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
   // ------
   // STEP 1
   // ------
@@ -77,18 +78,50 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
   const getSupport = () => api.get('/support')
   const getLogout = () => api.get('logout.fcc')
 
-  const postIdentification = (contractNumber, firstName, lastName, dateOfBirth,
-    zipCode) => api.post('/identifyuser.json', {
-      'User': {
-        'contractnumber': contractNumber,
-        'transactionId': contractNumber,
-        'applicationId': '1001',
-        'firstName': firstName,
-        'lastName': lastName,
-        'dob': dateOfBirth,
-        'zip': zipCode
-      }
-    })
+  const postIdentification = (data) => api.post('/identifyuser.json', {
+    'User': {
+      'contractnumber': data.contractNumber,
+      'transactionId': data.contractNumber,
+      'applicationId': '1001',
+      'firstName': data.firstName,
+      'lastName': data.lastName,
+      'dob': data.dateOfBirth,
+      'zip': data.zipCode
+    }
+  })
+
+  const postPersonalInformation = (data) => api.post('/sendregistrationcode.json', {
+    "SendRegistrationCode": {
+      "applicationId": '1001',
+      "transactionId": data.data.transactionId,
+      "contractnumber": data.contractNumber,
+      "firstName": data.firstName,
+      "lastName": data.lastName,
+      "dob": data.dateOfBirth,
+      "zip": data.zipCode,
+      "token": data.data.token,
+      "userid": data.createUserId,
+      "password": data.password,
+      "email": data.email,
+      "emailupdated": "true",
+      "eobOptin": data.communicationsElectronically
+    }
+  })
+
+  const postRegistrationCode = (data) => api.post('/verifyregistrationcode.json', {
+    "SendRegistrationCode": {
+      "applicationId": '1001',
+      "transactionId": data.data.transactionId,
+      "contractnumber": data.contractNumber,
+      "firstName": data.firstName,
+      "lastName": data.lastName,
+      "dob": data.dateOfBirth,
+      "zip": data.zipCode,
+      "token": data.data.token,
+      "code": data.enterCode
+    }
+  })
+
   // ------
   // STEP 3
   // ------
@@ -109,7 +142,9 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
     getMember,
     getPlan,
     getSupport,
-    postIdentification
+    postIdentification,
+    postPersonalInformation,
+    postRegistrationCode
   }
 }
 

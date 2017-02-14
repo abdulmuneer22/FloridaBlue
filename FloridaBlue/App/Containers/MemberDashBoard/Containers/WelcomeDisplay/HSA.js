@@ -43,7 +43,6 @@ class HSA extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
 
-        <ScrollView>
           <Text style={styles.hsaText}>
                 Health Savings Account
                 </Text>
@@ -73,7 +72,6 @@ class HSA extends Component {
           </View>
           <Image style={styles.hsaBg} source={Images.hsaBg} />
 
-        </ScrollView>
       </View>
     )
   }

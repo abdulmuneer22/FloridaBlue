@@ -6,12 +6,12 @@ import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: 78,
+    height: Metrics.screenHeight-(Metrics.screenHeight*0.89),
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
     alignSelf: 'stretch',
-    width: null,
+    width: Metrics.screenWidth,
     backgroundColor: Colors.flBlue.ocean
   },
   container: {
@@ -21,7 +21,7 @@ export default StyleSheet.create({
   PlanName: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/3
 
   },
 
