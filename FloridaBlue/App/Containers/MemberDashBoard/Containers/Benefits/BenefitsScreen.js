@@ -70,7 +70,8 @@ return (
           var action
           if (tile.tileType == 'native') {
             var routerName = tile.routerName
-            action = NavigationActions[routerName]()
+            var objectName = tile.tileId
+            action = NavigationActions[routerName]({objectName : objectName})
           }
         }
 
@@ -87,7 +88,7 @@ return (
           }} onPress={onItemPress.bind(this)} key={i}>
 
             <View style={{alignItems: 'center'}}>
-              <Flb name='doctor' size={40} color='white' />
+              <Flb name={tile.tileIcon} size={40} color='white' />
               <Text style={{
                 marginTop: 20,
                 fontSize: 14,
@@ -102,7 +103,11 @@ return (
 
         )
         i += 1
-      }):<Text> Loading..</Text>}
+      }): <View style={{alignItems: 'center', justifyContent: 'center'}}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>
+     }
     </View>
 
 

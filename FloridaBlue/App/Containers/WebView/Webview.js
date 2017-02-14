@@ -28,8 +28,8 @@ class Webview extends Component {
   _renderHeader () {
     return <View style={styles.headerContainer}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.snow, fontSize: Fonts.size.h4}]}>Web View</Text>
-      {NavItems.settingsButton()}
+      <Text style={[{color: Colors.snow, marginRight:100,fontSize: Fonts.size.h4}]}>Web View</Text>
+
     </View>
   }
   render () {

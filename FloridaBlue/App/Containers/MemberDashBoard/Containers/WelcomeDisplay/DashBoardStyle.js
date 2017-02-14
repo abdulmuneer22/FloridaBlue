@@ -50,7 +50,6 @@ export default StyleSheet.create({
     backgroundColor: '#E8E8E8'
   },
   footerImage: {
-
     flexDirection: 'row',
     height:Metrics.screenHeight-(Metrics.screenHeight*0.81),
      // height : window.height * 0.5,

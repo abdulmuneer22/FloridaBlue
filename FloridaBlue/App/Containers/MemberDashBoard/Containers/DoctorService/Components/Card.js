@@ -17,12 +17,16 @@ class Card extends Component {
 
   render () {
     var cards = []
-
     var that = this
+    var card ;
+    var temp = this.props.data;
+    var objectName = this.props.objectName
+    var temp1 = temp[objectName];
+
     if (this.props.leftActive) {
-      var card = this.props.data.officeServices.inNetwork
+      card = temp1.inNetwork ;
     } else {
-      var card = this.props.data.officeServices.outNetwork
+      card = temp1.outNetwork ;
     }
 
     console.log('card of innetwork' + JSON.stringify(this.props.leftActive))
@@ -32,7 +36,7 @@ class Card extends Component {
       var speciality = []
       speciality = network['speciality']
       console.log('speciality' + JSON.stringify(card))
-      cards.push(<View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} >
+      cards.push(<View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} key={i} >
         <Text style={styles.h1}>
           {network.header_text.en}
         </Text>
@@ -41,12 +45,12 @@ class Card extends Component {
           speciality.map(specialities=>{
             const{speciality_text, speciality_value}=specialities
             return <View >
-            <Text style = {styles.h4} >
+            <Text style = {styles.h2} >
             {speciality_text['en']}
             </Text>
             {
               speciality_value.map(value=>{
-                return <Text style={styles.h2}>
+                return <Text style={styles.h4}>
                 {value['en']}</Text>
               })
             }
