@@ -6,7 +6,6 @@ const images = {
   background: require('../Images/bkgrd-gradient.png'),
 
   // regcompletehdr : require('../Images/reg-complete-hdr.png'),
-  loginButton: require('../Images/login-screen-login-btn-blue.png'),
   splashLogo: require('../Images/splash-logo.png'),
   loginLogo: require('../Images/login-logo.png'),
 
@@ -18,8 +17,6 @@ const images = {
   clouds: require('../Images/clouds.png'),
   findCare: require('../Images/find-care-img-dashboard.png'),
   findItButton: require('../Images/find-it-btn.png'),
-  hsaBg: require('../Images/hsa-graphic.png'),
-  hsaHeader: require('../Images/hsa-header.png'),
   idCardBack: require('../Images/id-card-back.png'),
   idCardFront: require('../Images/id-card-front.png'),
   infoIcon: require('../Images/info-icon-gray.png'),
@@ -33,10 +30,8 @@ const images = {
   regcompletehdr: require('../Images/reg-complete-hdr.png'),
   registrationStep1Hdr: require('../Images/registration-step1-header.png'),
   splashLogo: require('../Images/splash-logo.png'),
-  themeHeader: require('../Images/theme-header-bkg.png'),
+  themeHeader: require('../Images/dashboard-hdr.png'),
   themeLogo: require('../Images/theme-logo.png'),
-  themeMenu: require('../Images/theme-menu-btn.png'),
-
   registrationStep1Hdr: require('../Images/registration-step1-header.png'),
   registrationStep2Hdr: require('../Images/registration-step2-header.png'),
   registrationStep3Hdr: require('../Images/registration-step3-header.png'),
@@ -45,7 +40,7 @@ const images = {
   backButton: require('../Images/back-btn.png'),
   nextButton: require('../Images/next-btn.png'),
   findCare: require('../Images/find-care-img-dashboard.png'),
-  hsaHeader: require('../Images/hsa-header.png'),
+  hsaHeader: require('../Images/hsa-hdr.png'),
   hsaBg: require('../Images/hsa-graphic.png'),
   regCompletion: require('../Images/reg-complete-hdr.png'),
 

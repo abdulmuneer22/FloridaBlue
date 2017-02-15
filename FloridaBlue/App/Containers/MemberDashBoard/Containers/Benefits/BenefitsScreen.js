@@ -5,7 +5,8 @@ Text,
 StyleSheet,
 Dimensions,
 ScrollView,
-TouchableOpacity
+TouchableOpacity,
+Image
 } from 'react-native'
 
 const window = Dimensions.get('window')
@@ -17,7 +18,7 @@ const window = Dimensions.get('window')
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import NavItems from '../../../../Navigation/NavItems.js'
-import {Colors, Metrics, Fonts} from '../../../../Themes'
+import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import Flb from '../../../../Themes/FlbIcon'
 import styles from './BenefitsStyle'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
@@ -33,12 +34,12 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 class PlanBenefits extends Component {
 
 _renderHeader () {
-return <View style={styles.headerContainer}>
+return (<Image style={styles.headerContainer} source={Images.themeHeader}>
 {NavItems.backButton()}
-<Text style={[{color: Colors.snow, fontSize: Fonts.size.h4, marginLeft: 10}]}>Plan Benefits</Text>
+<Text style={[{color: Colors.flBlue.deepBlue,backgroundColor:Colors.transparent, fontSize: Fonts.size.h4, marginLeft: 10, marginTop:10}]}>Plan Benefits</Text>
 {NavItems.settingsButton()}
 
-</View>
+</Image>)
 }
 
 
@@ -80,11 +81,12 @@ return (
           <TouchableOpacity style={{
             width: window.width * 0.5,
             backgroundColor: color[i],
-            height: Metrics.screenHeight-(Metrics.screenHeight*0.81),
+            height: Metrics.screenHeight-(Metrics.screenHeight*0.76),
             alignItems: 'center',
             justifyContent: 'center',
             borderColor: Colors.flBlue.lightBlue,
-            borderWidth: 1
+            borderWidth: 1,
+            borderTopWidth:3
           }} onPress={onItemPress.bind(this)} key={i}>
 
             <View style={{alignItems: 'center'}}>
@@ -103,7 +105,7 @@ return (
 
         )
         i += 1
-      }): <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      }): <View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>

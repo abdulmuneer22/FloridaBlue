@@ -56,7 +56,7 @@ class NavigationRouter extends Component {
             <Scene key='Myplan' component={MyPlanScreen} title='MyPlan Page' hideNavBar />
             <Scene key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page' hideNavBar />
             <Scene  key='DoctorServices' component={DoctorServices} title='DoctorServices Page' hideNavBar />
-            <Scene key='AdditionalServices' component={AdditionalBenefits} title='AdditionalBenefits Page' hideNavBar />
+            <Scene  key='AdditionalServices' component={AdditionalBenefits} title='AdditionalBenefits Page' hideNavBar />
             <Scene key='home' component={Home} title='Welcome' renderLeftButton={NavItems.hamburgerButton} />
             <Scene key='listviewexample' component={ListviewExample} title='ListviewExample' />
           </Scene>

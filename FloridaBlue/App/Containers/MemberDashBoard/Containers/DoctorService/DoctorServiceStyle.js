@@ -1,7 +1,9 @@
 // @flow
 
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
+var {height,width}=Dimensions.get('window')
+const window=Dimensions.get('window')
 
 export default StyleSheet.create({
 
@@ -22,22 +24,27 @@ export default StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    height: 78,
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
-    alignSelf: 'stretch',
-    width: null,
-    backgroundColor: Colors.flBlue.ocean
+    padding: Metrics.mediumMargin,
+    //resizeMode:'cover',
+    //alignSelf: 'stretch',
+    width: Metrics.screenWidth,
+    //backgroundColor: Colors.flBlue.sky
   },
   cardStyle: {
     width: window.width,
-    backgroundColor: 'rgba(167, 187, 193,0.7)',
+    backgroundColor: Colors.flBlue.grey2,
    // height : 200,
    // alignSelf: 'center',
    //  padding : 10,
-    marginTop: 10,
-    alignItems: 'center'
+    marginTop: Metrics.mediumMargin,
+    alignItems: 'center',
+    borderTopWidth:1,
+    borderBottomWidth:1,
+    borderTopColor: Colors.flBlue.grey3,
+    borderBottomColor: Colors.flBlue.grey3,
 
   },
   cardStyle1: {
@@ -46,28 +53,38 @@ export default StyleSheet.create({
    // height : 200,
    // alignSelf: 'center',
    //  padding : 10,
-    marginTop: 10,
-    alignItems: 'center'
+    marginTop: Metrics.baseMargin,
+    alignItems: 'center',
+
 
   },
   h1: {
-    fontSize: 16,
+    //flexWrap:'wrap',
+    margin:5,
+    fontSize: Fonts.size.regular,
     fontWeight: '600',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop:Metrics.baseMargin
   },
 
   h2: {
     fontSize: Fonts.size.regular,
     textAlign: 'center',
-    paddingTop: 10,
+    paddingTop: Metrics.mediumMargin,
 
   },
   h4: {
     textAlign: 'center',
-    //paddingBottom: 15,
+    //paddingBottom: Metrics.mediumMargin,
     fontSize:Fonts.size.medium,
     marginTop:Metrics.smallMargin
 
+  },
+  spinnerView:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    width:window.width,
+    height:window.height
   }
 
 })

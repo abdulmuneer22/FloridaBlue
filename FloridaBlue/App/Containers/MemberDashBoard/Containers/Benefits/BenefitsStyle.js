@@ -1,19 +1,21 @@
 // @flow
 
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { Metrics, ApplicationStyles, Colors } from '../../../../Themes/'
+ var {height,width}=Dimensions.get('window')
+ const window=Dimensions.get('window')
 
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: Metrics.screenHeight-(Metrics.screenHeight*0.89),
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: Colors.flBlue.ocean,
-    padding: 10,
-  //  alignSelf: 'stretch',
-    //resizeMode:'cover'
-    width:Metrics.screenWidth
+    padding: Metrics.mediumMargin,
+    //resizeMode:'cover',
+    //alignSelf: 'stretch',
+    width: Metrics.screenWidth,
+    //backgroundColor: Colors.flBlue.sky
   },
   container: {
     flex: 1,
@@ -23,5 +25,11 @@ export default StyleSheet.create({
 
     marginTop: 20
   },
+  spinnerView:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    width:window.width,
+    height:window.height
+  }
 
 })

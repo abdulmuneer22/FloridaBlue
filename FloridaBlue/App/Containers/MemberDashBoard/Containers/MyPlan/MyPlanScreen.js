@@ -6,13 +6,14 @@ import {
   Navigator,
   ScrollView,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Image
 } from 'react-native'
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {Colors, Metrics, Fonts} from '../../../../Themes'
+import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import ToolBar from './Components/toolBar'
 import axios from 'axios'
 import SelectBox from './Components/SelectBox'
@@ -50,12 +51,12 @@ class MyPlanScreen extends Component {
   }
 
   _renderHeader () {
-    return (<View style={styles.headerContainer}>
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.snow, fontSize: Fonts.size.h4, marginLeft: 10}]}>My Plan</Text>
+      <Text style={[{color: Colors.flBlue.deepBlue,backgroundColor:Colors.transparent, fontSize: Fonts.size.h4, marginLeft: 10, marginTop:10}]}>My Plan</Text>
       {NavItems.settingsButton()}
 
-    </View>)
+    </Image>)
   }
   componentDidMount () {
     console.log('I am my plan screen')
