@@ -46,6 +46,7 @@ export default StyleSheet.create({
     borderTopColor: Colors.flBlue.grey3,
     borderBottomColor: Colors.flBlue.grey3,
 
+
   },
   cardStyle1: {
     width: window.width,
@@ -77,7 +78,8 @@ export default StyleSheet.create({
     textAlign: 'center',
     //paddingBottom: Metrics.mediumMargin,
     fontSize:Fonts.size.medium,
-    marginTop:Metrics.smallMargin
+    marginTop:Metrics.smallMargin,
+  //  marginBottom:5
 
   },
   spinnerView:{
