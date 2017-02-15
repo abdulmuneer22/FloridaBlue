@@ -20,7 +20,7 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
       'Cache-Control': 'no-cache'
     },
     // 10 second timeout...
-    timeout: 10000
+    timeout: 30000
   })
 
   const naviMonitor = (response) => console.log('hey!  listen! ', response)
