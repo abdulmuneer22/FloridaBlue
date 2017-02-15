@@ -115,7 +115,7 @@ class LandingScreen extends Component {
           </View>
 
        :
-          <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>

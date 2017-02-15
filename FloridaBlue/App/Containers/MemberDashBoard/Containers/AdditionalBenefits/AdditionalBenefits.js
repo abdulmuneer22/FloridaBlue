@@ -5,7 +5,8 @@ View,
 ScrollView,
 StyleSheet,
 Dimensions,
-TouchableWithoutFeedback
+TouchableWithoutFeedback,
+Image
 } from 'react-native'
 
 import DropDown from './Components/DropDown'
@@ -15,7 +16,7 @@ import HomeHealthCare from './Components/HomeHealthCare'
 import Therapies from './Components/Therapies'
 import Spinal from './Components/SpinalMan'
 import Nursing from './Components/Nursing'
-import {Colors, Metrics, Fonts} from '../../../../Themes'
+import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import Flb from '../../../../Themes/FlbIcon'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -33,16 +34,17 @@ class AdditionalBenefits extends Component {
   }
 
   _renderHeader () {
-    return (<View style={styles.headerContainer}>
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.snow, fontSize: Fonts.size.h4}]}>Plan Benefits</Text>
+      <Text style={[{color: Colors.flBlue.deepBlue,backgroundColor:Colors.transparent, fontSize: Fonts.size.h4, marginLeft: 10, marginTop:10}]}>Plan Benefits</Text>
       {NavItems.settingsButton()}
-    </View>)
+
+    </Image>)
   }
 
   render () {
     return (
-      <View>
+      <View style={styles.container}>
         {this._renderHeader()}
         <ScrollView>
           <View style={{ flex: 1 }}>

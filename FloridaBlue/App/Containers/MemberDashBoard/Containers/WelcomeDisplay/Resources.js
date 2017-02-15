@@ -13,7 +13,7 @@ import {
 } from 'react-native'
 const window = Dimensions.get('window')
 
-import {Colors, Metrics, Fonts} from '../../../../Themes'
+import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import styles from './DashBoardStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -32,12 +32,12 @@ type LoginScreenProps = {
 class Resources extends Component {
 
   _renderHeader () {
-    return (<View style={styles.headerContainer}>
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.snow, fontSize: Fonts.size.h4, marginLeft: 10}]}>Resources</Text>
+      <Text style={[{color: Colors.flBlue.deepBlue,backgroundColor:Colors.transparent, fontSize: Fonts.size.h4, marginLeft: 10, marginTop:10}]}>Resources</Text>
       {NavItems.settingsButton()}
 
-    </View>)
+    </Image>)
   }
 
   render () {

@@ -12,6 +12,7 @@ const metrics = {
   baseMargin: 10,
   doubleBaseMargin: 20,
   smallMargin: 5,
+  mediumMargin:15,
   horizontalLineHeight: 1,
   searchBarHeight: 30,
   screenWidth: width < height ? width : height,
@@ -22,6 +23,7 @@ const metrics = {
   icons: {
     tiny: 15,
     small: 20,
+    xm:25,
     medium: 30,
     regular: 35,
     large: 45,

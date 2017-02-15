@@ -1,13 +1,13 @@
 
 import React, { Component, PropTypes } from 'react'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-import {Text, View, ScrollView} from 'react-native'
+import {Text, View, ScrollView, Image} from 'react-native'
 import Switch from './Components/switch'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import styles from './DoctorServiceStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
-import {Colors, Metrics, Fonts} from '../../../../Themes'
+import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import Flb from '../../../../Themes/FlbIcon'
 import {connect} from 'react-redux'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
@@ -22,14 +22,19 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 class DoctorServices extends Component {
 
   _renderHeader () {
-    return (<View style={styles.headerContainer}>
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.snow, fontSize: Fonts.size.h4, marginLeft: 10}]}>Plan Benefits</Text>
+      <Text style={[{color: Colors.flBlue.deepBlue,backgroundColor:Colors.transparent, fontSize: Fonts.size.h4, marginLeft: 10, marginTop:10}]}>Plan Benefits</Text>
       {NavItems.settingsButton()}
 
-    </View>)
+    </Image>)
   }
   render () {
+
+    var temp = this.props.data;
+    var objectName = this.props.objectName
+    var temp1 = temp[objectName];
+
     console.log(this.props.data)
     return (
 
@@ -47,13 +52,13 @@ class DoctorServices extends Component {
           <View style={{flex : 1}}>
           <View style={{
           alignItems : 'center',
-          marginTop : 10
+          marginTop : Metrics.baseMargin
           }}>
-          <Flb name="doctor" size={60} color="black" />
+          <Flb name="doctor" size={Metrics.icons.xl} color="black" />
           <Text style={{
-          marginTop : 5,
-          fontSize : 13
-        }}>{this.props.data.officeServices.text['en']}</Text>
+          marginTop : Metrics.smallMargin,
+          fontSize : Fonts.size.regular
+        }}>{temp1.text['en']}</Text>
           <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
           </View>
           <View>

@@ -1,7 +1,9 @@
 // @flow
 
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Images, Fonts } from '../../../../Themes/'
+var {height,width}=Dimensions.get('window')
+const window=Dimensions.get('window')
 
 export default StyleSheet.create({
   headerContainer: {
@@ -9,11 +11,11 @@ export default StyleSheet.create({
     height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 15,
+    padding: Metrics.mediumMargin,
     //resizeMode:'cover',
     //alignSelf: 'stretch',
     width: Metrics.screenWidth,
-    backgroundColor: Colors.flBlue.ocean
+    //backgroundColor: Colors.flBlue.ocean
   },
   hsaHeader: {
     flexDirection: 'row',
@@ -21,7 +23,7 @@ export default StyleSheet.create({
   // marginTop:20,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
+    padding: Metrics.baseMargin,
     width: Metrics.screenWidth,
   // overflow: 'visible',
    resizeMode: 'cover',
@@ -112,6 +114,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     // paddingTop : 10
     paddingBottom: 15
+  },
+  spinnerView:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    width:window.width,
+    height:window.height
   }
 
 })

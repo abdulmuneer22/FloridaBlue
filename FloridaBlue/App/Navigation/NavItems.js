@@ -22,8 +22,8 @@ export default {
     return (
       <TouchableOpacity onPress={NavigationActions.pop}>
         <Flb name='arrow-left'
-          size={Metrics.icons.medium}
-          color={Colors.snow}
+          size={Metrics.icons.xm}
+          color={Colors.flBlue.deepBlue}
           style={[styles.backButton, {marginTop:5}]}
         />
       </TouchableOpacity>
@@ -45,8 +45,8 @@ export default {
   settingsButton () {
     return <TouchableOpacity onPress={openDrawer.bind(null, 'settings')}>
       <Flb name='align-justify'
-        size={Metrics.icons.medium}
-        style={{color: Colors.flBlue.night,
+        size={Metrics.icons.xm}
+        style={{color: Colors.flBlue.deepBlue,
           backgroundColor: Colors.transparent,
           marginTop: Metrics.baseMargin}}
     />

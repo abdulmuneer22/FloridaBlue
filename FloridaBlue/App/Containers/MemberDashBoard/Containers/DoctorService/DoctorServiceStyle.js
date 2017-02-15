@@ -24,13 +24,14 @@ export default StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.89),
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
-    alignSelf: 'stretch',
-    width: window.width,
-    backgroundColor: Colors.flBlue.ocean
+    padding: Metrics.mediumMargin,
+    //resizeMode:'cover',
+    //alignSelf: 'stretch',
+    width: Metrics.screenWidth,
+    //backgroundColor: Colors.flBlue.sky
   },
   cardStyle: {
     width: window.width,
@@ -38,7 +39,7 @@ export default StyleSheet.create({
    // height : 200,
    // alignSelf: 'center',
    //  padding : 10,
-    marginTop: 15,
+    marginTop: Metrics.mediumMargin,
     alignItems: 'center',
     borderTopWidth:1,
     borderBottomWidth:1,
@@ -58,6 +59,8 @@ export default StyleSheet.create({
 
   },
   h1: {
+    //flexWrap:'wrap',
+    margin:5,
     fontSize: Fonts.size.regular,
     fontWeight: '600',
     textAlign: 'center',
@@ -67,12 +70,12 @@ export default StyleSheet.create({
   h2: {
     fontSize: Fonts.size.regular,
     textAlign: 'center',
-    paddingTop: 15,
+    paddingTop: Metrics.mediumMargin,
 
   },
   h4: {
     textAlign: 'center',
-    paddingBottom: 15,
+    //paddingBottom: Metrics.mediumMargin,
     fontSize:Fonts.size.medium,
     marginTop:Metrics.smallMargin
 
