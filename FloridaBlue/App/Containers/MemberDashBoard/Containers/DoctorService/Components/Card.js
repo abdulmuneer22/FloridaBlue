@@ -44,17 +44,22 @@ class Card extends Component {
         {
           speciality.map(specialities=>{
             const{speciality_text, speciality_value}=specialities
-            return <View >
-            <Text style = {styles.h2} >
-            {speciality_text['en']}
-            </Text>
+            return (
+            
+            <View >
+            {speciality_text['en'] ?
+                <Text style={styles.h2} >
+                  {speciality_text['en']}
+                </Text>
+              : <View></View>
+            }                       
             {
               speciality_value.map(value=>{
-                return <Text style={styles.h4}>
-                {value['en']}</Text>
+                return(<Text style={styles.h4}>
+                {value['en']}</Text>)
               })
             }
-            </View>
+            </View>)
           })
         }
 
