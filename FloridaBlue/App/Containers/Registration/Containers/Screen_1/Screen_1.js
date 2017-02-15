@@ -46,8 +46,7 @@ class Screen_1 extends React.Component {
   }
 
   _handleNext () {
-    console.log(this.props)
-    this.props.verifyIdentification(this.props)
+    NavigationActions.screen_2()
   }
 
   /*
@@ -66,15 +65,6 @@ class Screen_1 extends React.Component {
     this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
 
   }
-  */
-
-  _handleFindMemberId () {
-    NavigationActions.memberid()
-  }
-
-  _handleBack () {
-    NavigationActions.pop()
-  }
 
   componentDidUpdate () {
     if (this.props.data) {
@@ -86,6 +76,16 @@ class Screen_1 extends React.Component {
       }
     }
   }
+  */
+
+  _handleFindMemberId () {
+    NavigationActions.memberid()
+  }
+
+  _handleBack () {
+    NavigationActions.pop()
+  }
+
 
   render () {
     return (

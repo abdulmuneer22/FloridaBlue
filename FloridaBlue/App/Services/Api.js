@@ -3,10 +3,8 @@ import apisauce from 'apisauce'
 global.Buffer = global.Buffer || require('buffer').Buffer
 
 // our "constructor"
-
 const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
 //const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
-
   // ------
   // STEP 1
   // ------
@@ -94,7 +92,7 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
 
   const postPersonalInformation = (data) => api.post('/sendregistrationcode.json', {
     "SendRegistrationCode": {
-      "applicationId": '123',
+      "applicationId": '1001',
       "transactionId": data.data.transactionId,
       "contractnumber": data.contractNumber,
       "firstName": data.firstName,
@@ -107,6 +105,20 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
       "email": data.email,
       "emailupdated": "true",
       "eobOptin": data.communicationsElectronically
+    }
+  })
+
+  const postRegistrationCode = (data) => api.post('/verifyregistrationcode.json', {
+    "SendRegistrationCode": {
+      "applicationId": '1001',
+      "transactionId": data.data.transactionId,
+      "contractnumber": data.contractNumber,
+      "firstName": data.firstName,
+      "lastName": data.lastName,
+      "dob": data.dateOfBirth,
+      "zip": data.zipCode,
+      "token": data.data.token,
+      "code": data.enterCode
     }
   })
 
@@ -130,7 +142,9 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
     getMember,
     getPlan,
     getSupport,
-    postIdentification
+    postIdentification,
+    postPersonalInformation,
+    postRegistrationCode
   }
 }
 
