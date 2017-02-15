@@ -64,13 +64,13 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular,
     fontWeight: '600',
     textAlign: 'center',
-    marginTop:Metrics.baseMargin
+    marginTop:Metrics.smallMargin
   },
 
   h2: {
     fontSize: Fonts.size.regular,
     textAlign: 'center',
-    paddingTop: Metrics.mediumMargin,
+    paddingTop: Metrics.baseMargin,
 
   },
   h4: {

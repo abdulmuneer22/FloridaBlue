@@ -63,7 +63,10 @@ class Greeting extends Component {
       <View>
         <View style={Styles.Greeting}>
           <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
-            {this.state.greetText} {this.props.userName ? this.props.userName : ''}
+            {this.state.greetText} 
+          </Text>
+          <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
+           {this.props.userName ? this.props.userName : ''}
           </Text>
         </View>
 
