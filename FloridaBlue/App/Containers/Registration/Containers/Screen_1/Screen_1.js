@@ -195,7 +195,7 @@ class Screen_1 extends React.Component {
             </View>
             <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
-                <Image source={Images.nextButton} />
+                <Image source={Images.nextButtonGreen} />
               </TouchableOpacity>
             </View>
           </View>

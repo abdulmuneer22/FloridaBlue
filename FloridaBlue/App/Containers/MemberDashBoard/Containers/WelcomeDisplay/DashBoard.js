@@ -51,7 +51,7 @@ class LandingScreen extends Component {
   }
   componentDidMount () {
     console.log('mount on dashboadr' + this.props.smToken)
-    this.props.attemptMember()
+  //  this.props.attemptMember()
   }
   render () {
     var color = new Array('#005b80', '#00aec7', '#0091cc', '#005b80')

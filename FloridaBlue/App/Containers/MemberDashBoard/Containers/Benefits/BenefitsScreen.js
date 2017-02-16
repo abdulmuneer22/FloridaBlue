@@ -45,7 +45,7 @@ return (<Image style={styles.headerContainer} source={Images.themeHeader}>
 
 componentDidMount () {
 console.log('I am my plan screen')
-this.props.attemptMyPlan()
+//this.props.attemptMyPlan()
 }
 
 render () {
