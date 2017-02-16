@@ -78,20 +78,21 @@ export default StyleSheet.create({
   },
 
   h2: {
-    fontSize: Fonts.size.h6,
+    fontSize: Fonts.size.regular,
   //  textAlign: 'center',
   color:Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
-      marginLeft:10
+      marginLeft:5
 
   },
   h4: {
     //textAlign: 'center',
     //paddingBottom: Metrics.mediumMargin,
-    fontSize:Fonts.size.regular,
+    fontSize:Fonts.size.medium,
     marginTop:Metrics.smallMargin,
     color:Colors.flBlue.grey5,
-    marginLeft:10
+  //  marginLeft:10,
+    marginTop:10
   //  marginBottom:5
 
   },

@@ -27,14 +27,15 @@ export default StyleSheet.create({
   },
   hsaHeader: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight-(Metrics.screenHeight*0.795)),
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
   // marginTop:20,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: Metrics.baseMargin,
     width: Metrics.screenWidth,
-  // overflow: 'visible',
-   resizeMode: 'cover',
+    overflow: 'visible',
+    resizeMode: 'cover',
+    marginBottom:15
   //  alignSelf: 'stretch'
   // width:Metrics.screenWidth,
   // backgroundColor:Colors.flBlue.ocean
@@ -167,7 +168,7 @@ export default StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     padding: 5,
-    marginTop:Metrics.smallMargin
+    marginTop:Metrics.doubleBaseMargin
   },
 
   row_1: {
