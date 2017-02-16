@@ -98,7 +98,7 @@ class Confirmation extends Component {
         <View style={styles.wrapper}>
 
           <TouchableWithoutFeedback onPress={NavigationActions.login}>
-            <Image source={Images.loginNowButton} style={styles.buttonStyle} />
+            <Image source={Images.loginNowButtonGreen} style={styles.buttonStyle} />
 
           </TouchableWithoutFeedback>
 

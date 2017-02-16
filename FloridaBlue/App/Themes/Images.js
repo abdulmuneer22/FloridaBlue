@@ -23,6 +23,7 @@ const images = {
   loginLogo: require('../Images/login-logo.png'),
   loginLogo: require('../Images/login-logo.png'),
   loginNowButton: require('../Images/login-now-btn-dk-blue.png'),
+  loginNowButtonGreen: require('../Images/login-now-btn.png'),
   logo: require('../Images/ir.png'),
   logout: require('../Images/logout-btn-green.png'),
   myPlanbg: require('../Images/myplan-dashboard-bkg.png'),
