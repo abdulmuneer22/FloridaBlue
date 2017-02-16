@@ -3,7 +3,7 @@ import apisauce from 'apisauce'
 global.Buffer = global.Buffer || require('buffer').Buffer
 
 // our "constructor"
-const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
+const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
 //const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
   // ------
   // STEP 1
