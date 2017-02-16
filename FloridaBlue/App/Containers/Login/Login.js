@@ -203,7 +203,7 @@ class Login extends Component {
           </View>
           <View style={styles.loginButton}>
             <TouchableOpacity onPress={() => { this._handleLogin() }}>
-              <Image source={Images.loginButton} />
+              <Image source={Images.loginButtonGreen} />
             </TouchableOpacity>
           </View>
           <View style={[styles.row, {backgroundColor: 'transparent'}]}>
