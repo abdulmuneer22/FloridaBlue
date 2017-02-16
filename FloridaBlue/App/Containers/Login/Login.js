@@ -77,7 +77,6 @@ class Login extends Component {
       if (newProps.responseURL == 'login') {
         //we are displacing these action by this time we knew that member loged in success fully 
         this.props.attemptMember()
-        this.props.attemptMyPlan()
         this.props.attemptSupportScreen()
         NavigationActions.WelcomeDashBoard()
       } else {

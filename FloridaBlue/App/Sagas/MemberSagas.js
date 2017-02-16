@@ -18,6 +18,7 @@ export function* member (api, {
     // dispatch success
     var Name = response.data.data.firstName 
     var visibilityRules = response.data.data.visibilityRule
+    yield put(MyPlanActions.myplanRequest())
     yield put(MemberActions.memberSuccess(Name, visibilityRules))
   } else {
     console.log('I am coming from failuer ')
