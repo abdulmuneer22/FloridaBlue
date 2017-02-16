@@ -18,9 +18,6 @@ export function* member (api, {
     // dispatch success
     var Name = response.data.data.firstName 
     var visibilityRules = response.data.data.visibilityRule
-    //we are displacing these action by this time we knew that member loged in success fully 
-    yield put(MyPlanActions.myplanRequest())
-    yield put(SupportActions.supportRequest())
     yield put(MemberActions.memberSuccess(Name, visibilityRules))
   } else {
     console.log('I am coming from failuer ')
