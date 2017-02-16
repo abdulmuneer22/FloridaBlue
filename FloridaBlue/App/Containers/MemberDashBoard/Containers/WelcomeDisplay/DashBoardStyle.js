@@ -2,46 +2,46 @@
 
 import { StyleSheet, Dimensions } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Images, Fonts } from '../../../../Themes/'
-var {height,width}=Dimensions.get('window')
-const window=Dimensions.get('window')
+var {height, width} = Dimensions.get('window')
+const window = Dimensions.get('window')
 
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: Metrics.mediumMargin,
-    //resizeMode:'cover',
-    //alignSelf: 'stretch',
-    width: Metrics.screenWidth,
-    //backgroundColor: Colors.flBlue.ocean
+    // resizeMode:'cover',
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth
+    // backgroundColor: Colors.flBlue.ocean
   },
-  headerTextStyle:{
+  headerTextStyle: {
     color: Colors.flBlue.ocean,
-      backgroundColor:Colors.transparent,
-      fontSize: Fonts.size.h3,
-      marginLeft: Metrics.baseMargin,
-      marginTop:Metrics.smallMargin
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3,
+    marginLeft: Metrics.baseMargin,
+    marginTop: Metrics.smallMargin
 
   },
   hsaHeader: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight-(Metrics.screenHeight*0.795)),
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.795)),
   // marginTop:20,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: Metrics.baseMargin,
     width: Metrics.screenWidth,
   // overflow: 'visible',
-   resizeMode: 'cover',
+    resizeMode: 'cover'
   //  alignSelf: 'stretch'
   // width:Metrics.screenWidth,
   // backgroundColor:Colors.flBlue.ocean
   },
   hsaBg: {
  // flexDirection:'row',
-    height:Metrics.screenHeight-(Metrics.screenHeight*0.45),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.45),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
@@ -55,33 +55,33 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow
 
   },
-  greetingView:{
+  greetingView: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: (Metrics.screenHeight-(Metrics.screenHeight*0.78))/3,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.78)) / 3,
     // padding:5,
     backgroundColor: Colors.flBlue.grey6
   },
-  messageCountStyle:{
+  messageCountStyle: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/3,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 3,
     backgroundColor: Colors.flBlue.grey1,
     flexDirection: 'row'
   },
-  messageTextStyle:{
+  messageTextStyle: {
     color: Colors.flBlue.night,
     fontSize: Fonts.size.h6,
     marginLeft: Metrics.baseMargin
   },
   summary: {
     flexDirection: 'row',
-    height: Metrics.screenHeight-(Metrics.screenHeight*0.73),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.73),
     justifyContent: 'space-between',
     alignItems: 'center',
-    resizeMode:'cover',
+    resizeMode: 'cover',
   //  padding:5,
-    //alignSelf: 'stretch',
+    // alignSelf: 'stretch',
     width: Metrics.screenWidth
   },
   titleView: {
@@ -92,15 +92,15 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  healthPlanView:{
+  healthPlanView: {
     flex: 0.7,
     alignItems: 'center',
     padding: 20,
     backgroundColor: Colors.transparent
   },
-  healthPlanText:{
-    fontSize: Fonts.size.h4 * Metrics.screenWidth * .0025,
-    color:Colors.flBlue.anvil,
+  healthPlanText: {
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
+    color: Colors.flBlue.anvil
   //  fontWeight: '500'
 // alignSelf : 'stretch',
 //  alignItems:'center',
@@ -108,31 +108,31 @@ export default StyleSheet.create({
 //  height:40,
 // marginLeft:5
   },
-  healthPlanImage:{
+  healthPlanImage: {
     marginTop: Metrics.mediumMargin,
-    marginLeft:Metrics.doubleBaseMargin,
-    width:Metrics.images.large,
+    marginLeft: Metrics.doubleBaseMargin,
+    width: Metrics.images.large,
     height: Metrics.images.large
   },
-  healthPlanIcon:{
+  healthPlanIcon: {
     marginTop: Metrics.searchBarHeight,
     marginRight: Metrics.mediumMargin,
     backgroundColor: Colors.transparent
   },
-  footerView:{
-    borderTopWidth:0.5,
-    borderBottomWidth:0.5,
-    borderColor:Colors.snow
-    },
+  footerView: {
+    borderTopWidth: 0.5,
+    borderBottomWidth: 0.5,
+    borderColor: Colors.snow
+  },
   footerImage: {
-    //flexDirection: 'row',
-    height:Metrics.screenHeight-(Metrics.screenHeight*0.84),
+    // flexDirection: 'row',
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.84),
      // height : window.height * 0.5,
-    //justifyContent: 'space-between',
-    //alignItems: 'center',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
   //  alignSelf: 'stretch',
-  resizeMode:'cover',
-    width: Metrics.screenWidth,
+    resizeMode: 'cover',
+    width: Metrics.screenWidth
   },
   titleView: {
     marginTop: Metrics.baseMargin
@@ -167,7 +167,7 @@ export default StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     padding: 5,
-    marginTop:Metrics.smallMargin
+    marginTop: Metrics.smallMargin
   },
 
   row_1: {
@@ -187,11 +187,11 @@ export default StyleSheet.create({
     // paddingTop : 10
     paddingBottom: 15
   },
-  spinnerView:{
+  spinnerView: {
     alignItems: 'center',
     justifyContent: 'center',
-    width:window.width,
-    height:window.height
+    width: window.width,
+    height: window.height
   }
 
 })

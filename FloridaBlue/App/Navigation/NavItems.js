@@ -24,7 +24,7 @@ export default {
         <Flb name='arrow-left'
           size={Metrics.icons.xm}
           color={Colors.flBlue.ocean}
-          style={[styles.backButton, {marginTop:5}]}
+          style={[styles.backButton, {marginTop: 5}]}
         />
       </TouchableOpacity>
     )

@@ -34,8 +34,8 @@ type LoginScreenProps = {
   responseURL : string,
   smToken : string,
   attemptMyPlan :() => void,
-  attemptMember :() => void ,
-  attemptSupportScreen :() => void 
+  attemptMember :() => void,
+  attemptSupportScreen :() => void
 }
 
 class Login extends Component {
@@ -75,7 +75,7 @@ class Login extends Component {
 
     if (this.isAttempting && !newProps.fetching && newProps.error === null) {
       if (newProps.responseURL == 'login') {
-        //we are displacing these action by this time we knew that member loged in success fully 
+        // we are displacing these action by this time we knew that member loged in success fully
         this.props.attemptMember()
         this.props.attemptSupportScreen()
         NavigationActions.WelcomeDashBoard()

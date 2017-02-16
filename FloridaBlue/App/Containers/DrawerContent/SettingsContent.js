@@ -10,8 +10,8 @@ import Flb from '../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import LoginActions from '../../Redux/LoginRedux'
 
-var {height, width}=Dimensions.get('window')
-const window=Dimensions.get('window')
+var {height, width} = Dimensions.get('window')
+const window = Dimensions.get('window')
 
 const Divider = () => {
   return <View style={styles.divider} />
@@ -161,9 +161,9 @@ class SettingsContent extends Component {
             <Text style={styles.heading2} onPress={this.handlePressSupport}>Contact Us </Text>
           </View>
         </View>
-        <View style={{marginTop: Metrics.doubleBaseMargin, margin:Metrics.baseMargin}}>
+        <View style={{marginTop: Metrics.doubleBaseMargin, margin: Metrics.baseMargin}}>
           <TouchableWithoutFeedback onPress={this.handlePressLogout}>
-            <Image source={Images.logout}  style={{width:Metrics.screenWidth-(Metrics.screenWidth*0.25)}}/>
+            <Image source={Images.logout} style={{width: Metrics.screenWidth - (Metrics.screenWidth * 0.25)}} />
           </TouchableWithoutFeedback>
         </View>
 

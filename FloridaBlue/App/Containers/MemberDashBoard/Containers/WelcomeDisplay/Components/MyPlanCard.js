@@ -15,7 +15,7 @@ import Flb from '../../../../../Themes/FlbIcon'
 import styles from '../DashBoardStyle'
 
 const window = Dimensions.get('window')
-var {height,width}=Dimensions.get('window')
+var {height, width} = Dimensions.get('window')
 
 class MyPlanCard extends Component {
   render () {
@@ -24,14 +24,14 @@ class MyPlanCard extends Component {
         <Image source={Images.myPlanbg} style={styles.summary} >
 
           <View style={styles.center}>
-              <Image source={Images.healthPlan} style={styles.healthPlanImage} />
+            <Image source={Images.healthPlan} style={styles.healthPlanImage} />
           </View>
 
           <View style={styles.healthPlanView}>
             <Text style={styles.healthPlanText}>
       My Health Plan
       </Text>
-            <Text style={{fontSize: Fonts.size.regular  * Metrics.screenWidth * .0025, marginTop: 15}}>
+            <Text style={{fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025, marginTop: 15}}>
               Find information about deductibles, claims, your savings, and more.
               </Text>
 

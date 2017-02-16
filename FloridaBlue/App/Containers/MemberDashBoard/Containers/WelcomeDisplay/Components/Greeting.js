@@ -67,7 +67,7 @@ class Greeting extends Component {
             {this.state.greetText}
           </Text>
           <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
-           {this.props.userName ? this.props.userName : ''}
+            {this.props.userName ? this.props.userName : ''}
           </Text>
         </View>
 
@@ -86,6 +86,5 @@ class Greeting extends Component {
     )
   }
 }
-
 
 export default Greeting

@@ -40,11 +40,11 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   })
   .build()
 
-  setTheme({checkboxStyle: {
-    fillColor: Colors.flBlue.ocean,
-    borderOnColor: Colors.flBlue.ocean,
-    borderOffColor: Colors.flBlue.ocean,
-  }})
+setTheme({checkboxStyle: {
+  fillColor: Colors.flBlue.ocean,
+  borderOnColor: Colors.flBlue.ocean,
+  borderOffColor: Colors.flBlue.ocean
+}})
 
 class Screen_2 extends React.Component {
 
@@ -169,7 +169,7 @@ class Screen_2 extends React.Component {
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
-              password={true}
+              password
               onChangeText={this.props.handleChangePassword}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
@@ -186,7 +186,7 @@ class Screen_2 extends React.Component {
               returnKeyType='done'
               autoCapitalize='none'
               autoCorrect={false}
-              password={true}
+              password
               onChangeText={this.props.handleChangeConfirmPassword}
               underlineColorAndroid={Colors.coal}
               placeholder={I18n.t('confirmPassword')}
@@ -199,7 +199,8 @@ class Screen_2 extends React.Component {
                 onCheckedChange={() => {
                   console.log(this)
                   var checked = this.refs.communicationsElectronically.state.checked
-                  this.props.handleChangeCommunicationsElectronically(checked)}
+                  this.props.handleChangeCommunicationsElectronically(checked)
+                }
                 }
               />
             </View>
@@ -273,7 +274,7 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
     handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
     handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword)),
-    handleChangeCommunicationsElectronically:(communicationsElectronically) => dispatch(RegistrationActions.changeCommunicationsElectronically(communicationsElectronically)),
+    handleChangeCommunicationsElectronically: (communicationsElectronically) => dispatch(RegistrationActions.changeCommunicationsElectronically(communicationsElectronically)),
     handleChangeReasonCode: (data) => dispatch(RegistrationActions.changeReasonCode(data))
   }
 }

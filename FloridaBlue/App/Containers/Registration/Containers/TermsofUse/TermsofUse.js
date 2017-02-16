@@ -75,7 +75,7 @@ class TermsofUse extends Component {
         </View>
 
         <View style={{marginTop: Metrics.doubleBaseMargin}}>
-          <TouchableWithoutFeedback  onPress={() => this._handleAgreeTermsOfUse()}>
+          <TouchableWithoutFeedback onPress={() => this._handleAgreeTermsOfUse()}>
             <Image style={styles.iAgree} source={Images.iAgree} />
           </TouchableWithoutFeedback>
         </View>

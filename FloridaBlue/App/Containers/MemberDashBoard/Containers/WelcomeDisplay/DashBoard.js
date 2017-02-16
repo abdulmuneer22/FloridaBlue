@@ -61,7 +61,7 @@ class LandingScreen extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
 
-          {
+        {
         this.props.visibilityRules ?
 
           <View style={{flex: 1}}>
@@ -87,7 +87,7 @@ class LandingScreen extends Component {
                   <TouchableOpacity style={{
                     width: window.width * 0.5,
                     backgroundColor: color[i],
-                    height:Metrics.screenHeight-(Metrics.screenHeight*0.80),
+                    height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderWidth: 1,
@@ -111,7 +111,7 @@ class LandingScreen extends Component {
             }
             </View>
             <View style={styles.footerView} >
-            <Image source={Images.findCare} style={styles.footerImage} />
+              <Image source={Images.findCare} style={styles.footerImage} />
             </View>
 
           </View>
@@ -122,7 +122,6 @@ class LandingScreen extends Component {
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>
       }
-
 
       </View>
     )
