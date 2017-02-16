@@ -61,6 +61,7 @@ return (
 <View style={{
      flexWrap: 'wrap',
      flexDirection: 'row',
+     borderTopWidth:1
 
    }}>
 
@@ -86,7 +87,8 @@ return (
             justifyContent: 'center',
             borderColor: Colors.flBlue.lightBlue,
             borderWidth: 1,
-            borderTopWidth:3
+
+            //borderTopWidth:1
           }} onPress={onItemPress.bind(this)} key={i}>
 
             <View style={{alignItems: 'center'}}>

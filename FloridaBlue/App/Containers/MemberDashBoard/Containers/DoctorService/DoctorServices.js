@@ -54,7 +54,7 @@ class DoctorServices extends Component {
           alignItems : 'center',
           marginTop : Metrics.baseMargin
           }}>
-          <Flb name="doctor" size={Metrics.icons.xl} color="black" />
+          <Flb name="doctor" size={Metrics.icons.xl} color={Colors.flBlue.ocean} />
           <Text style={{
           marginTop : Metrics.smallMargin,
           fontSize : Fonts.size.regular

@@ -107,10 +107,12 @@ class LandingScreen extends Component {
                   </TouchableOpacity>
                 )
                 i += 1
-              }) : <Text />}
+              }) : <Text />
+            }
             </View>
-            <View />
+            <View style={styles.footerView} >
             <Image source={Images.findCare} style={styles.footerImage} />
+            </View>
 
           </View>
 

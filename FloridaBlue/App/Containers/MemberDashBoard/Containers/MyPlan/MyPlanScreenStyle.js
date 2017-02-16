@@ -1,7 +1,9 @@
 // @flow
 
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Dimensions} from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
+var {height,width}=Dimensions.get('window')
+const window=Dimensions.get('window')
 
 export default StyleSheet.create({
   headerContainer: {
@@ -94,6 +96,11 @@ export default StyleSheet.create({
 
     marginLeft: 20
 
-  }
-
+  },
+  spinnerView:{
+  alignItems: 'center',
+  justifyContent: 'center',
+  width:window.width,
+  height:window.height*0.5
+}
 })

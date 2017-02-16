@@ -95,7 +95,7 @@ class MyPlanScreen extends Component {
 
                 <View style={styles.chartWrapper}>
                   {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
-          : <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
+          : <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>}

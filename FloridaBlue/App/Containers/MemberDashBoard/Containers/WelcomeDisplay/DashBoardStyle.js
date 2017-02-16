@@ -52,15 +52,20 @@ export default StyleSheet.create({
     height: 200,
     backgroundColor: '#E8E8E8'
   },
+  footerView:{
+    borderTopWidth:0.5,
+    borderBottomWidth:0.5,
+    borderColor:Colors.snow
+    },
   footerImage: {
-    flexDirection: 'row',
-    height:Metrics.screenHeight-(Metrics.screenHeight*0.81),
+    //flexDirection: 'row',
+    height:Metrics.screenHeight-(Metrics.screenHeight*0.84),
      // height : window.height * 0.5,
     //justifyContent: 'space-between',
     //alignItems: 'center',
   //  alignSelf: 'stretch',
   resizeMode:'cover',
-    width: Metrics.screenWidth
+    width: Metrics.screenWidth,
   },
   titleView: {
     marginTop: Metrics.baseMargin

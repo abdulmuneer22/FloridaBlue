@@ -41,6 +41,11 @@ export default StyleSheet.create({
     marginBottom: 13,
     borderRadius: 6
   },
+  iAgree: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginBottom:Metrics.mediumMargin
+  },
 
   backButton: {
     alignSelf: 'flex-start',

@@ -25,9 +25,9 @@ class MyPlanCard extends Component {
           <View style={[Styles.center, {flex: 0.3}]}>
             <View style={{
               backgroundColor: Colors.flBlue.ocean,
-              width: 70,
-              height: 70,
-              borderRadius:70/2 ,
+              width: 60,
+              height: 60,
+              borderRadius:60/2 ,
 
               //borderBottomWidth:10,
               //borderLeftWidth:10,
@@ -37,7 +37,7 @@ class MyPlanCard extends Component {
               marginTop: 30,
               marginLeft: Metrics.baseMargin
             }}>
-              <Flb name='criticalillness' size={Metrics.icons.large} color='white' />
+              <Flb name='criticalillness' size={30} color='white' />
 
             </View>
           </View>

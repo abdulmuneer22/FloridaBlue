@@ -39,8 +39,8 @@ export default StyleSheet.create({
    // height : 200,
    // alignSelf: 'center',
    //  padding : 10,
-    marginTop: Metrics.mediumMargin,
-    alignItems: 'center',
+    marginTop: Metrics.baseMargin,
+  //  alignItems: 'center',
     borderTopWidth:1,
     borderBottomWidth:1,
     borderTopColor: Colors.flBlue.grey3,
@@ -55,30 +55,35 @@ export default StyleSheet.create({
    // alignSelf: 'center',
    //  padding : 10,
     marginTop: Metrics.baseMargin,
-    alignItems: 'center',
+  //  alignItems: 'center',
 
 
   },
   h1: {
     //flexWrap:'wrap',
     margin:5,
-    fontSize: Fonts.size.regular,
-    fontWeight: '600',
+    fontSize: Fonts.size.h6,
+    //fontWeight: '600',
+    color:Colors.flBlue.anvil,
     textAlign: 'center',
-    marginTop:Metrics.smallMargin
+    marginTop:Metrics.mediumMargin
   },
 
   h2: {
     fontSize: Fonts.size.regular,
-    textAlign: 'center',
+  //  textAlign: 'center',
+  color:Colors.flBlue.grey3,
     paddingTop: Metrics.baseMargin,
+      marginLeft:10
 
   },
   h4: {
-    textAlign: 'center',
+    //textAlign: 'center',
     //paddingBottom: Metrics.mediumMargin,
     fontSize:Fonts.size.medium,
     marginTop:Metrics.smallMargin,
+    color:Colors.flBlue.grey3,
+    marginLeft:10
   //  marginBottom:5
 
   },

@@ -24,7 +24,7 @@ const images = {
   loginLogo: require('../Images/login-logo.png'),
   loginNowButton: require('../Images/login-now-btn-dk-blue.png'),
   logo: require('../Images/ir.png'),
-  logout: require('../Images/menu-logout-btn-blue.png'),
+  logout: require('../Images/logout-btn-green.png'),
   myPlanbg: require('../Images/myplan-dashboard-bkg.png'),
   nextButton: require('../Images/next-btn.png'),
   regcompletehdr: require('../Images/reg-complete-hdr.png'),
@@ -43,12 +43,12 @@ const images = {
   hsaHeader: require('../Images/hsa-hdr.png'),
   hsaBg: require('../Images/hsa-graphic.png'),
   regCompletion: require('../Images/reg-complete-hdr.png'),
-
+  iAgree: require('../Images/agree-btn.png'),
   tileBg: require('../Images/tile_bg.png'),
   setupPinButtonGray: require('../Images/setup-pin-btn-gray.png'),
   setupTouchButtonGray: require('../Images/setup-touch-btn-gray.png'),
   setupTouchButtonBlue: require('../Images/setup-touch-btn-blue.png'),
-  loader: require('../Images/loader.gif')
+
 
 }
 
