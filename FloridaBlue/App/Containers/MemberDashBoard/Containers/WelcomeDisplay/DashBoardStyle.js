@@ -99,7 +99,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.transparent
   },
   healthPlanText:{
-    fontSize: Fonts.size.h4,
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * .0025,
     color:Colors.flBlue.anvil,
   //  fontWeight: '500'
 // alignSelf : 'stretch',
