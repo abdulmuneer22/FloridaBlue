@@ -15,7 +15,7 @@ export function* member (api, {
   console.log(JSON.stringify(response))
   if (response.data.status.code = '200') {
     // dispatch success
-    var Name = response.data.data.firstName + ' ' + response.data.data.lastName
+    var Name = response.data.data.firstName 
     var visibilityRules = response.data.data.visibilityRule
     yield put(MemberActions.memberSuccess(Name, visibilityRules))
   } else {
