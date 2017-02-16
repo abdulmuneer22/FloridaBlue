@@ -49,7 +49,7 @@ class SupportScreen extends Component {
 
   componentDidMount () {
     console.log('I am Support screen')
-    this.props.attemptSupportScreen()
+  //  this.props.attemptSupportScreen()
   }
 
   render () {
