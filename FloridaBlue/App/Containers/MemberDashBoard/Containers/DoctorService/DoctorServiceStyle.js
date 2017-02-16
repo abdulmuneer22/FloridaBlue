@@ -2,8 +2,8 @@
 
 import { StyleSheet, Dimensions } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
-var {height,width}=Dimensions.get('window')
-const window=Dimensions.get('window')
+var {height, width} = Dimensions.get('window')
+const window = Dimensions.get('window')
 
 export default StyleSheet.create({
 
@@ -24,21 +24,21 @@ export default StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: Metrics.mediumMargin,
-    //resizeMode:'cover',
-    //alignSelf: 'stretch',
-    width: Metrics.screenWidth,
-    //backgroundColor: Colors.flBlue.sky
+    // resizeMode:'cover',
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth
+    // backgroundColor: Colors.flBlue.sky
   },
-  headerTextStyle:{
+  headerTextStyle: {
     color: Colors.flBlue.ocean,
-      backgroundColor:Colors.transparent,
-      fontSize: Fonts.size.h3,
-      marginLeft: Metrics.baseMargin,
-      marginTop:Metrics.smallMargin
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3,
+    marginLeft: Metrics.baseMargin,
+    marginTop: Metrics.smallMargin
 
   },
   cardStyle: {
@@ -49,11 +49,10 @@ export default StyleSheet.create({
    //  padding : 10,
     marginTop: Metrics.baseMargin,
   //  alignItems: 'center',
-    borderTopWidth:1,
-    borderBottomWidth:1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
     borderTopColor: Colors.flBlue.grey3,
-    borderBottomColor: Colors.flBlue.grey3,
-
+    borderBottomColor: Colors.flBlue.grey3
 
   },
   cardStyle1: {
@@ -62,26 +61,26 @@ export default StyleSheet.create({
    // height : 200,
    // alignSelf: 'center',
    //  padding : 10,
-    marginTop: Metrics.baseMargin,
+    marginTop: Metrics.baseMargin
   //  alignItems: 'center',
-
 
   },
   h1: {
-    //flexWrap:'wrap',
-    margin:5,
+    // flexWrap:'wrap',
+    margin: 5,
     fontSize: Fonts.size.h5,
-    //fontWeight: '600',
-    color:Colors.flBlue.anvil,
+    // fontWeight: '600',
+    color: Colors.flBlue.anvil,
     textAlign: 'center',
-    marginTop:Metrics.mediumMargin
+    marginTop: Metrics.mediumMargin
   },
 
   h2: {
     fontSize: Fonts.size.regular,
   //  textAlign: 'center',
-  color:Colors.flBlue.anvil,
+    color: Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
+<<<<<<< HEAD
       marginLeft:5
 
   },
@@ -93,14 +92,26 @@ export default StyleSheet.create({
     color:Colors.flBlue.grey5,
   //  marginLeft:10,
     marginTop:10
+=======
+    marginLeft: 10
+
+  },
+  h4: {
+    // textAlign: 'center',
+    // paddingBottom: Metrics.mediumMargin,
+    fontSize: Fonts.size.regular,
+    marginTop: Metrics.smallMargin,
+    color: Colors.flBlue.grey5,
+    marginLeft: 10
+>>>>>>> 4b72f7eade18d3410ee30bb2699df8b565a143e1
   //  marginBottom:5
 
   },
-  spinnerView:{
+  spinnerView: {
     alignItems: 'center',
     justifyContent: 'center',
-    width:window.width,
-    height:window.height
+    width: window.width,
+    height: window.height
   }
 
 })

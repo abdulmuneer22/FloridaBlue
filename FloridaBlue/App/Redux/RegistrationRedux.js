@@ -76,9 +76,9 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-////////////////////////////
+// //////////////////////////
 // Identification
-////////////////////////////
+// //////////////////////////
 // _sendIdentificationRequest
 export const _sendIdentificationRequest = (state: Object) => state.merge({ fetching: true })
 
@@ -90,9 +90,9 @@ export const _sendIdentificationSuccess = (state: Object, {data}: Object) =>
 export const _sendIdentificationFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, data })
 
-////////////////////////////
+// //////////////////////////
 // PersonalInformation
-////////////////////////////
+// //////////////////////////
 // _sendPersonalInformationRequest
 export const _sendPersonalInformationRequest = (state: Object) => state.merge({ fetching: true })
 
@@ -104,9 +104,9 @@ export const _sendPersonalInformationSuccess = (state: Object, {data}: Object) =
 export const _sendPersonalInformationFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, data })
 
-////////////////////////////
+// //////////////////////////
 // RegistrationCode
-////////////////////////////
+// //////////////////////////
 // _sendRegistrationCodeRequest
 export const _sendRegistrationCodeRequest = (state: Object) => state.merge({ fetching: true })
 
@@ -118,9 +118,9 @@ export const _sendRegistrationCodeSuccess = (state: Object, {data}: Object) =>
 export const _sendRegistrationCodeFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, data })
 
-////////////////////////////
+// //////////////////////////
 // Props
-////////////////////////////
+// //////////////////////////
 // contractNumber
 export const _changeContractNumber = (state: Object, {contractNumber}: Object) =>
       state.merge({fetching: false, contractNumber})

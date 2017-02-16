@@ -70,7 +70,7 @@ class Resources extends Component {
                 <TouchableOpacity style={{
                   width: window.width * 0.5,
                   backgroundColor: color[i],
-                  height: Metrics.screenHeight-(Metrics.screenHeight*0.80),
+                  height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
                   alignItems: 'center',
                   justifyContent: 'center',
                   borderColor: Colors.flBlue.lightBlue,

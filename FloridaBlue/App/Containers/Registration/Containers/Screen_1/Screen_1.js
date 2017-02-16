@@ -86,7 +86,6 @@ class Screen_1 extends React.Component {
     NavigationActions.pop()
   }
 
-
   render () {
     return (
       <View style={styles.container}>

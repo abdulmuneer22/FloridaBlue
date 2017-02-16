@@ -44,7 +44,7 @@ export default StyleSheet.create({
   iAgree: {
     alignSelf: 'center',
     justifyContent: 'center',
-    marginBottom:Metrics.mediumMargin
+    marginBottom: Metrics.mediumMargin
   },
 
   backButton: {

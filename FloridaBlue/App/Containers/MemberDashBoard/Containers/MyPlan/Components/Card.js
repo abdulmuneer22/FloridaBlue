@@ -12,7 +12,6 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import {Colors, Metrics, Fonts} from '../../../../../Themes'
 
-
 class Card extends Component {
 
   _handleCardClick () {
@@ -29,7 +28,7 @@ class Card extends Component {
       <View style={{
         backgroundColor: this.props.bg,
         width: window.width * 0.5,
-        height: Metrics.screenHeight-(Metrics.screenHeight*0.76),
+        height: Metrics.screenHeight - (Metrics.screenHeight * 0.76),
         alignItems: 'center',
         justifyContent: 'center'
 

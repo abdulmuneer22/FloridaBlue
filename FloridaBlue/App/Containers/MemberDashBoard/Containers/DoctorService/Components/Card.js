@@ -15,18 +15,18 @@ import styles from '../DoctorServiceStyle.js'
 
 class Card extends Component {
 
-  render() {
+  render () {
     var cards = []
     var that = this
-    var card;
-    var temp = this.props.data;
+    var card
+    var temp = this.props.data
     var objectName = this.props.objectName
-    var temp1 = temp[objectName];
+    var temp1 = temp[objectName]
 
     if (this.props.leftActive) {
-      card = temp1.inNetwork;
+      card = temp1.inNetwork
     } else {
-      card = temp1.outNetwork;
+      card = temp1.outNetwork
     }
 
     console.log('card of innetwork' + JSON.stringify(this.props.leftActive))
@@ -42,6 +42,7 @@ class Card extends Component {
         </Text>
 
         {
+<<<<<<< HEAD
           speciality.map(specialities=>{
             const{speciality_text, speciality_value}=specialities
             return (<View style={{marginBottom:20, flexDirection:'row'}}>
@@ -59,18 +60,37 @@ class Card extends Component {
               speciality_value.map(value=>{
                 return( <View style={{flex:1}}><Text style={styles.h4}>
                 {value['en']} </Text></View>)
-              })
+=======
+          speciality.map(specialities => {
+            const {speciality_text, speciality_value} = specialities
+            return (
+              <View style={{marginBottom: 20}}>
+                {speciality_text['en'] ?
+                  <Text style={styles.h2} >
+                    {speciality_text['en']}
+                  </Text>
+              : <View />
 
             }
 
+                {
+              speciality_value.map(value => {
+                return (<Text style={styles.h4}>
+                  {value['en']}</Text>)
+>>>>>>> 4b72f7eade18d3410ee30bb2699df8b565a143e1
+              })
+
+            }
+<<<<<<< HEAD
+
             </View>)
+=======
+              </View>)
+>>>>>>> 4b72f7eade18d3410ee30bb2699df8b565a143e1
           })
         }
 
-
-
       </View>
-
 
       )
       i += 1

@@ -4,7 +4,7 @@ global.Buffer = global.Buffer || require('buffer').Buffer
 
 // our "constructor"
 const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
-//const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
+// const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
   // ------
   // STEP 1
   // ------
@@ -91,34 +91,34 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
   })
 
   const postPersonalInformation = (data) => api.post('/sendregistrationcode.json', {
-    "SendRegistrationCode": {
-      "applicationId": '1001',
-      "transactionId": data.data.transactionId,
-      "contractnumber": data.contractNumber,
-      "firstName": data.firstName,
-      "lastName": data.lastName,
-      "dob": data.dateOfBirth,
-      "zip": data.zipCode,
-      "token": data.data.token,
-      "userid": data.createUserId,
-      "password": data.password,
-      "email": data.email,
-      "emailupdated": "true",
-      "eobOptin": data.communicationsElectronically
+    'SendRegistrationCode': {
+      'applicationId': '1001',
+      'transactionId': data.data.transactionId,
+      'contractnumber': data.contractNumber,
+      'firstName': data.firstName,
+      'lastName': data.lastName,
+      'dob': data.dateOfBirth,
+      'zip': data.zipCode,
+      'token': data.data.token,
+      'userid': data.createUserId,
+      'password': data.password,
+      'email': data.email,
+      'emailupdated': 'true',
+      'eobOptin': data.communicationsElectronically
     }
   })
 
   const postRegistrationCode = (data) => api.post('/verifyregistrationcode.json', {
-    "SendRegistrationCode": {
-      "applicationId": '1001',
-      "transactionId": data.data.transactionId,
-      "contractnumber": data.contractNumber,
-      "firstName": data.firstName,
-      "lastName": data.lastName,
-      "dob": data.dateOfBirth,
-      "zip": data.zipCode,
-      "token": data.data.token,
-      "code": data.enterCode
+    'SendRegistrationCode': {
+      'applicationId': '1001',
+      'transactionId': data.data.transactionId,
+      'contractnumber': data.contractNumber,
+      'firstName': data.firstName,
+      'lastName': data.lastName,
+      'dob': data.dateOfBirth,
+      'zip': data.zipCode,
+      'token': data.data.token,
+      'code': data.enterCode
     }
   })
 

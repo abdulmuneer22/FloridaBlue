@@ -62,7 +62,7 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin,
     paddingVertical: Metrics.baseMargin,
     paddingHorizontal: Metrics.doubleBaseMargin,
-    height:Metrics.doubleBaseMargin * 4,
+    height: Metrics.doubleBaseMargin * 4,
     backgroundColor: Colors.flBlue.grey1,
     alignItems: 'stretch',
     justifyContent: 'space-between'

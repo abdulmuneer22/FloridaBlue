@@ -4,8 +4,8 @@ import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 export default StyleSheet.create({
   headerContainer: {
    // flexDirection:'row',
-    height: Metrics.screenHeight-(Metrics.screenHeight*0.79),
-    resizeMode:'cover',
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.79),
+    resizeMode: 'cover',
    // resizeMode: 'cover',
    // overflow:'visible',
   //  alignSelf: 'stretch',
@@ -80,8 +80,8 @@ export default StyleSheet.create({
   },
   row: {
     paddingVertical: Metrics.baseMargin,
-    paddingHorizontal: Metrics.doubleBaseMargin,
-    //height: Metrics.screenHeight-(Metrics.screenHeight*0.79)
+    paddingHorizontal: Metrics.doubleBaseMargin
+    // height: Metrics.screenHeight-(Metrics.screenHeight*0.79)
   },
   footerText: {
     color: Colors.flBlue.grey4,
@@ -90,7 +90,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: Fonts.size.small,
     marginBottom: Metrics.baseMargin,
-    marginTop:70
+    marginTop: 70
 
   },
   textfieldWithFloatingLabel: {

@@ -31,8 +31,8 @@ export default {
     alignSelf: 'center'
   },
   wrapper: {
-    flex:1,
-    backgroundColor:Colors.snow
+    flex: 1,
+    backgroundColor: Colors.snow
   },
   options: {
     backgroundColor: Colors.bg1,

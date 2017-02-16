@@ -6,25 +6,25 @@ import { Metrics, ApplicationStyles, Colors, Images, Fonts } from '../../../../T
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: Metrics.mediumMargin,
-    //resizeMode:'cover',
-    //alignSelf: 'stretch',
-    width: Metrics.screenWidth,
-    //backgroundColor: Colors.flBlue.ocean
+    // resizeMode:'cover',
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth
+    // backgroundColor: Colors.flBlue.ocean
   },
-  headerTextStyle:{
+  headerTextStyle: {
     color: Colors.flBlue.ocean,
-      backgroundColor:Colors.transparent,
-      fontSize: Fonts.size.h3,
-      marginLeft: Metrics.baseMargin,
-      marginTop:Metrics.smallMargin
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3,
+    marginLeft: Metrics.baseMargin,
+    marginTop: Metrics.smallMargin
 
   },
-  container:{
-    flex:1,
-    backgroundColor:Colors.snow
+  container: {
+    flex: 1,
+    backgroundColor: Colors.snow
   }
 })

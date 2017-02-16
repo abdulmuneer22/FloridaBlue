@@ -12,21 +12,21 @@ const metrics = {
   baseMargin: 10,
   doubleBaseMargin: 20,
   smallMargin: 5,
-  mediumMargin:15,
+  mediumMargin: 15,
   horizontalLineHeight: 1,
   searchBarHeight: 30,
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
   navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
-  //standardHeight: (Platform.OS === 'ios') ?
+  // standardHeight: (Platform.OS === 'ios') ?
   buttonRadius: 4,
   icons: {
     tiny: 15,
     small: 20,
-    xm:25,
+    xm: 25,
     medium: 30,
     regular: 35,
-    xml:40,
+    xml: 40,
     large: 45,
     xl: 60
   },
@@ -34,7 +34,7 @@ const metrics = {
     small: 20,
     medium: 40,
     large: 60,
-    xl:65,
+    xl: 65,
     logo: 300
   }
 }

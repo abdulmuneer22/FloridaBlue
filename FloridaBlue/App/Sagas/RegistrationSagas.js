@@ -9,7 +9,6 @@ import RegistrationActions from '../Redux/RegistrationRedux'
 export function* sendIdentificationRequest (api, {
   data
 }) {
-
   const response = yield call(api.postIdentification, data)
 
   console.log(JSON.stringify(response))
@@ -35,7 +34,6 @@ export function* sendIdentificationRequest (api, {
 export function* sendPersonalInformationRequest (api, {
   data
 }) {
-
   const response = yield call(api.postPersonalInformation, data)
 
   console.log(JSON.stringify(response))
@@ -61,7 +59,6 @@ export function* sendPersonalInformationRequest (api, {
 export function* sendRegistrationCodeRequest (api, {
   data
 }) {
-
   const response = yield call(api.postRegistrationCode, data)
 
   console.log(JSON.stringify(response))

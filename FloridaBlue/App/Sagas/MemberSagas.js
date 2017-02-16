@@ -16,7 +16,7 @@ export function* member (api, {
   console.log(JSON.stringify(response))
   if (response.data.status.code = '200') {
     // dispatch success
-    var Name = response.data.data.firstName 
+    var Name = response.data.data.firstName
     var visibilityRules = response.data.data.visibilityRule
     yield put(MyPlanActions.myplanRequest())
     yield put(MemberActions.memberSuccess(Name, visibilityRules))

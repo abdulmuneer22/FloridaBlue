@@ -19,7 +19,7 @@ class Card extends Component {
       <View style={{
         width: window.width * 0.5,
         backgroundColor: this.props.bg,
-        height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/3,
+        height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 3,
         alignItems: 'center',
         justifyContent: 'center',
         borderColor: 'red',
