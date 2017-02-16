@@ -36,7 +36,7 @@ class AdditionalBenefits extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.flBlue.deepBlue,backgroundColor:Colors.transparent, fontSize: Fonts.size.h4, marginLeft: 10, marginTop:10}]}>Plan Benefits</Text>
+      <Text style={styles.headerTextStyle}>Plan Benefits</Text>
       {NavItems.settingsButton()}
 
     </Image>)
@@ -55,7 +55,7 @@ class AdditionalBenefits extends Component {
               <Flb name='cross' size={Metrics.icons.large} color='black' />
               <Text style={{
                 marginTop: 5,
-                fontSize: Fonts.size.h6
+                fontSize: Fonts.size.h3
               }}>Additional Benefits</Text>
               <Switch />
 

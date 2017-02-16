@@ -39,12 +39,12 @@ class SupportScreen extends Component {
   }
 
   _renderHeader () {
-    return (<View style={styles.headerContainer}>
+    return (<Image source={Images.themeHeader} style={styles.headerContainer}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.snow, fontSize: Fonts.size.h4, marginLeft: 10}]}>Support</Text>
+      <Text style={styles.headerTextStyle}>Support</Text>
       {NavItems.settingsButton()}
 
-    </View>)
+    </Image>)
   }
 
   componentDidMount () {

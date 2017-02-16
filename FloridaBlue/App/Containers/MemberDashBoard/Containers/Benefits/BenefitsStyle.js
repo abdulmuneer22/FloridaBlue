@@ -1,7 +1,7 @@
 // @flow
 
 import { StyleSheet, Dimensions } from 'react-native'
-import { Metrics, ApplicationStyles, Colors } from '../../../../Themes/'
+import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
  var {height,width}=Dimensions.get('window')
  const window=Dimensions.get('window')
 
@@ -16,6 +16,14 @@ export default StyleSheet.create({
     //alignSelf: 'stretch',
     width: Metrics.screenWidth,
     //backgroundColor: Colors.flBlue.sky
+  },
+  headerTextStyle:{
+    color: Colors.flBlue.ocean,
+      backgroundColor:Colors.transparent,
+      fontSize: Fonts.size.h3,
+      marginLeft: Metrics.baseMargin,
+      marginTop:Metrics.smallMargin
+
   },
   container: {
     flex: 1,

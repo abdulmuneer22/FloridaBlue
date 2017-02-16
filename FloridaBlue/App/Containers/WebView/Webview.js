@@ -28,7 +28,7 @@ class Webview extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.flBlue.deepBlue,backgroundColor:Colors.transparent, fontSize: Fonts.size.h4, marginRight: 100, marginTop:10}]}>Web View</Text>
+      <Text style={[{color: Colors.flBlue.ocean,backgroundColor:Colors.transparent, fontSize: Fonts.size.h3, marginRight: 50, marginTop:5}]}>Web View</Text>
 
     </Image>)
   }

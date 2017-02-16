@@ -1,7 +1,7 @@
 // @flow
 
 import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles, Colors, Images } from '../../../../Themes/'
+import { Metrics, ApplicationStyles, Colors, Images, Fonts } from '../../../../Themes/'
 
 export default StyleSheet.create({
   headerContainer: {
@@ -14,6 +14,14 @@ export default StyleSheet.create({
     //alignSelf: 'stretch',
     width: Metrics.screenWidth,
     //backgroundColor: Colors.flBlue.ocean
+  },
+  headerTextStyle:{
+    color: Colors.flBlue.ocean,
+      backgroundColor:Colors.transparent,
+      fontSize: Fonts.size.h3,
+      marginLeft: Metrics.baseMargin,
+      marginTop:Metrics.smallMargin
+
   },
   container:{
     flex:1,

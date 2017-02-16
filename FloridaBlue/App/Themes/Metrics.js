@@ -26,6 +26,7 @@ const metrics = {
     xm:25,
     medium: 30,
     regular: 35,
+    xml:40,
     large: 45,
     xl: 60
   },
@@ -33,6 +34,7 @@ const metrics = {
     small: 20,
     medium: 40,
     large: 60,
+    xl:65,
     logo: 300
   }
 }

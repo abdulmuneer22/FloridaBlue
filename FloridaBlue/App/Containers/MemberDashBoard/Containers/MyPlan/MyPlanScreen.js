@@ -53,7 +53,7 @@ class MyPlanScreen extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.flBlue.deepBlue,backgroundColor:Colors.transparent, fontSize: Fonts.size.h4, marginLeft: 10, marginTop:10}]}>My Plan</Text>
+      <Text style={styles.headerTextStyle}>My Plan</Text>
       {NavItems.settingsButton()}
 
     </Image>)

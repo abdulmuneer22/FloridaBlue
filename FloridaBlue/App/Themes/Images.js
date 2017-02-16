@@ -42,6 +42,7 @@ const images = {
   findCare: require('../Images/find-care-img-dashboard.png'),
   hsaHeader: require('../Images/hsa-hdr.png'),
   hsaBg: require('../Images/hsa-graphic.png'),
+  healthPlan: require('../Images/health-plan-circle-icon.png'),
   regCompletion: require('../Images/reg-complete-hdr.png'),
   iAgree: require('../Images/agree-btn.png'),
   tileBg: require('../Images/tile_bg.png'),

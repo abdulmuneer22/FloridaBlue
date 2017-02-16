@@ -24,7 +24,7 @@ class DoctorServices extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.flBlue.deepBlue,backgroundColor:Colors.transparent, fontSize: Fonts.size.h4, marginLeft: 10, marginTop:10}]}>Plan Benefits</Text>
+      <Text style={styles.headerTextStyle}>Plan Benefits</Text>
       {NavItems.settingsButton()}
 
     </Image>)
@@ -34,8 +34,13 @@ class DoctorServices extends Component {
     var temp = this.props.data;
     var objectName = this.props.objectName
     var temp1 = temp[objectName];
+    var tiles=this.props.data.tiles;
+    var tile=tiles.filter(function(tiles){return (tiles.tileId == objectName)})
 
-    console.log(this.props.data)
+    console.log('tile'+JSON.stringify(tile))
+    console.log('tiles'+JSON.stringify(tiles))
+
+
     return (
 
       <View style={{
@@ -54,10 +59,11 @@ class DoctorServices extends Component {
           alignItems : 'center',
           marginTop : Metrics.baseMargin
           }}>
-          <Flb name="doctor" size={Metrics.icons.xl} color={Colors.flBlue.ocean} />
+          <Flb name={tile[0].tileIcon}size={Metrics.icons.xl} color={Colors.flBlue.ocean} />
           <Text style={{
           marginTop : Metrics.smallMargin,
-          fontSize : Fonts.size.regular
+          fontSize : Fonts.size.h4,
+          color:Colors.flBlue.anvil,
         }}>{temp1.text['en']}</Text>
           <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
           </View>

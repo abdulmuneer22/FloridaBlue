@@ -17,6 +17,14 @@ export default StyleSheet.create({
     width: Metrics.screenWidth,
     //backgroundColor: Colors.flBlue.sky
   },
+  headerTextStyle:{
+    color: Colors.flBlue.ocean,
+      backgroundColor:Colors.transparent,
+      fontSize: Fonts.size.h3,
+      marginLeft: Metrics.baseMargin,
+      marginTop:Metrics.smallMargin
+
+  },
   container: {
     flex: 1,
     backgroundColor: 'white'

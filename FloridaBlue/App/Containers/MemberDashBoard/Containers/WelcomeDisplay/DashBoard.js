@@ -45,7 +45,7 @@ class LandingScreen extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View />
-      <Image source={Images.themeLogo} style={{marginTop: 15, height: 23}} />
+      <Image source={Images.themeLogo} style={{marginTop: Metrics.mediumMargin, height: Metrics.images.small}} />
       {NavItems.settingsButton()}
     </Image>)
   }

@@ -48,7 +48,7 @@ export default {
         size={Metrics.icons.xm}
         style={{color: Colors.flBlue.ocean,
           backgroundColor: Colors.transparent,
-          marginTop: Metrics.baseMargin}}
+          marginTop: Metrics.smallMargin}}
     />
     </TouchableOpacity>
   },

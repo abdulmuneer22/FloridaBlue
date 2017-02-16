@@ -33,9 +33,17 @@ export default StyleSheet.create({
     width: Metrics.screenWidth,
     //backgroundColor: Colors.flBlue.sky
   },
+  headerTextStyle:{
+    color: Colors.flBlue.ocean,
+      backgroundColor:Colors.transparent,
+      fontSize: Fonts.size.h3,
+      marginLeft: Metrics.baseMargin,
+      marginTop:Metrics.smallMargin
+
+  },
   cardStyle: {
     width: window.width,
-    backgroundColor: Colors.flBlue.grey2,
+    backgroundColor: Colors.flBlue.grey1,
    // height : 200,
    // alignSelf: 'center',
    //  padding : 10,
@@ -62,7 +70,7 @@ export default StyleSheet.create({
   h1: {
     //flexWrap:'wrap',
     margin:5,
-    fontSize: Fonts.size.h6,
+    fontSize: Fonts.size.h5,
     //fontWeight: '600',
     color:Colors.flBlue.anvil,
     textAlign: 'center',
@@ -70,9 +78,9 @@ export default StyleSheet.create({
   },
 
   h2: {
-    fontSize: Fonts.size.regular,
+    fontSize: Fonts.size.h6,
   //  textAlign: 'center',
-  color:Colors.flBlue.grey3,
+  color:Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
       marginLeft:10
 
@@ -80,9 +88,9 @@ export default StyleSheet.create({
   h4: {
     //textAlign: 'center',
     //paddingBottom: Metrics.mediumMargin,
-    fontSize:Fonts.size.medium,
+    fontSize:Fonts.size.regular,
     marginTop:Metrics.smallMargin,
-    color:Colors.flBlue.grey3,
+    color:Colors.flBlue.grey5,
     marginLeft:10
   //  marginBottom:5
 
