@@ -27,16 +27,12 @@ class Webview extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-<<<<<<< HEAD
-      <Text style={[{color: Colors.flBlue.ocean, backgroundColor: Colors.transparent, fontSize: Fonts.size.h3, marginRight: 50, marginTop: 5}]}>Florida Blue</Text>
-=======
       <Text style={[{color: Colors.flBlue.ocean,
         backgroundColor: Colors.transparent,
         fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
         marginRight: 50, marginTop: 5}]}>
         Florida Blue
         </Text>
->>>>>>> 2575481e69d47adde8b39968911202f326b037b5
 
     </Image>)
   }

@@ -44,42 +44,22 @@ class Card extends Component {
         {
           speciality.map(specialities=>{
             const{speciality_text, speciality_value}=specialities
-<<<<<<< HEAD
-            return (<View style={{marginBottom:20, flexDirection:'row'}}>
-
-            {speciality_text['en'] ?
-                <Text style={styles.h2} >
-                  {speciality_text['en']} :
-=======
             return (
             <View style={{marginBottom:20}}>
             {speciality_text['en'] ?
                 <Text style={styles.h2} >
                   {speciality_text['en']}
->>>>>>> 2575481e69d47adde8b39968911202f326b037b5
                 </Text>
               : <View></View>
 
             }
 
             {
-<<<<<<< HEAD
-
-              speciality_value.map(value=>{
-                return( <View style={{flex:1}}><Text style={styles.h4}>
-                {value['en']} </Text></View>)
-=======
               speciality_value.map(value=>{
                 return(<Text style={styles.h4}>
                 {value['en']}</Text> )
->>>>>>> 2575481e69d47adde8b39968911202f326b037b5
               })
-
             }
-<<<<<<< HEAD
-
-=======
->>>>>>> 2575481e69d47adde8b39968911202f326b037b5
             </View>)
           })
         }
