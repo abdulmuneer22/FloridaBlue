@@ -48,7 +48,8 @@ class SupportScreen extends Component {
   }
 
   componentDidMount () {
-    console.log('I am Support screen')
+    console.tron.log('I am Support screen' )
+    console.tron.log(this.props)
   //  this.props.attemptSupportScreen()
   }
 

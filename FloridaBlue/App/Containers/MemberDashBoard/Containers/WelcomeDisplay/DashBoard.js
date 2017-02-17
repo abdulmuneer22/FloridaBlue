@@ -64,14 +64,12 @@ class LandingScreen extends Component {
         {
         this.props.visibilityRules ?
 
-          <View style={{flex: 1}}>
+          <View style={styles.container}>
             <Greeting userName={this.props.userName} />
             <MyPlanCard />
             <View style={{
               flexWrap: 'wrap',
-              flexDirection: 'row',
-              justifyContent: 'space-around'
-            }}>
+              flexDirection: 'row'}}>
               {this.props.visibilityRules ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
                 onItemPress = function () {
                   var action
@@ -84,23 +82,10 @@ class LandingScreen extends Component {
                   }
                 }
                 return (
-                  <TouchableOpacity style={{
-                    width: window.width * 0.5,
-                    backgroundColor: color[i],
-                    height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderWidth: 1,
-                    borderColor: Colors.flBlue.lightBlue
-                  }} onPress={onItemPress.bind(this)} key={i}>
+                  <TouchableOpacity style={[styles.tileStyle,{backgroundColor: color[i]}]} onPress={onItemPress.bind(this)} key={i}>
                     <View style={{alignItems: 'center'}}>
-                      <Flb name={tile.tileIcon} size={Metrics.icons.regular} color='white' />
-                      <Text style={{
-                        marginTop: Metrics.doubleBaseMargin,
-                        fontSize: Fonts.size.regular,
-                        fontWeight: '600',
-                        color: 'white'
-                      }}>
+                      <Flb name={tile.tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0027} color={Colors.snow} />
+                      <Text style={styles.tileTextStyle}>
                         {tile.tileName['en']}
                       </Text>
                     </View>

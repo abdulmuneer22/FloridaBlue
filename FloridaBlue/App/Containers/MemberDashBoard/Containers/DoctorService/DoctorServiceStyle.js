@@ -20,7 +20,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: Colors.snow
   },
   headerContainer: {
     flexDirection: 'row',
@@ -34,23 +34,34 @@ export default StyleSheet.create({
     //backgroundColor: Colors.flBlue.sky
   },
   headerTextStyle:{
-    color: Colors.flBlue.ocean,
+      color: Colors.flBlue.ocean,
       backgroundColor:Colors.transparent,
-      fontSize: Fonts.size.h3,
+      fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
       marginLeft: Metrics.baseMargin,
       marginTop:Metrics.smallMargin
 
   },
+  doctorCardStyle:{
+    alignItems : 'center',
+    marginTop : Metrics.baseMargin
+  },
+
+  doctorTextStyle:{
+    marginTop : Metrics.smallMargin,
+    fontSize : Fonts.size.h4 * Metrics.screenWidth * 0.0023,
+    color:Colors.flBlue.anvil,
+},
   cardStyle: {
     width: window.width,
     backgroundColor: Colors.flBlue.grey1,
    // height : 200,
    // alignSelf: 'center',
-   //  padding : 10,
+   //  padding : Metrics.baseMargin,
     marginTop: Metrics.baseMargin,
   //  alignItems: 'center',
     borderTopWidth:1,
     borderBottomWidth:1,
+
     borderTopColor: Colors.flBlue.grey3,
     borderBottomColor: Colors.flBlue.grey3,
 
@@ -61,8 +72,9 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow,
    // height : 200,
    // alignSelf: 'center',
-   //  padding : 10,
+   //  padding : Metrics.baseMargin,
     marginTop: Metrics.baseMargin,
+
   //  alignItems: 'center',
 
 
@@ -70,7 +82,7 @@ export default StyleSheet.create({
   h1: {
     //flexWrap:'wrap',
     margin:5,
-    fontSize: Fonts.size.h5,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
     //fontWeight: '600',
     color:Colors.flBlue.anvil,
     textAlign: 'center',
@@ -78,20 +90,21 @@ export default StyleSheet.create({
   },
 
   h2: {
-    fontSize: Fonts.size.h6,
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0026,
   //  textAlign: 'center',
-  color:Colors.flBlue.anvil,
+    color:Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
-      marginLeft:10
+    marginLeft:Metrics.baseMargin,
+
 
   },
   h4: {
     //textAlign: 'center',
     //paddingBottom: Metrics.mediumMargin,
-    fontSize:Fonts.size.regular,
+    fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0029,
     marginTop:Metrics.smallMargin,
     color:Colors.flBlue.grey5,
-    marginLeft:10
+    marginLeft:Metrics.baseMargin
   //  marginBottom:5
 
   },

@@ -109,8 +109,8 @@ class SettingsContent extends Component {
           <View>
             <Text style={styles.heading} onPress={this.handlePressPlans}>My Health Plan</Text>
             <View style={{paddingLeft: 30}}>
-              <Text style={[styles.subheading, {fontSize: Fonts.size.h5}]} onPress={this.handlePressBenefits}>Benefits</Text>
-              <Text style={[styles.subheading, {fontSize: Fonts.size.h5}]} onPress={this.handlePressClaims}>Claims</Text>
+              <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
+              <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
             </View>
           </View>
           <Divider />
@@ -127,43 +127,43 @@ class SettingsContent extends Component {
           <Text style={styles.heading} onPress={this.handlePressPayment}>Payment</Text>
         </View>
         <View style={styles.settings}>
-          <View style={{marginBottom: Metrics.baseMargin, marginTop: Metrics.baseMargin, flexDirection: 'row'}}>
+          <View style={styles.myAccountStyle}>
             <View >
               <Flb name='user' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
             <Text style={styles.heading2} onPress={this.handlePressMyAccount}>My Account</Text>
           </View>
 
-          <View style={{marginBottom: Metrics.baseMargin, marginTop: Metrics.baseMargin, flexDirection: 'row'}}>
+          <View style={styles.myAccountStyle}>
             <View >
               <Flb name='cog-gear' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
             <Text style={styles.heading2} onPress={this.handlePressSettings}>App Settings</Text>
           </View>
-          <View style={{marginBottom: Metrics.baseMargin, marginTop: Metrics.baseMargin, flexDirection: 'row'}}>
+          <View style={styles.myAccountStyle}>
             <View >
               <Flb name='question' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
             <Text style={styles.heading2} onPress={this.handlePressFAQ}>Frequently Asked Questions</Text>
           </View>
 
-          <View style={{marginBottom: Metrics.baseMargin, marginTop: Metrics.baseMargin, flexDirection: 'row'}}>
+          <View style={styles.myAccountStyle}>
             <View >
-              <Flb name='generic-doc' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
+              <Flb name='generic-doc' size={Metrics.icons.xm  } color={Colors.flBlue.ocean} />
             </View>
 
             <Text style={styles.heading2} onPress={this.handlePressPolicy}>Policies & Terms </Text>
           </View>
-          <View style={{marginBottom: Metrics.baseMargin, marginTop: Metrics.baseMargin, flexDirection: 'row'}}>
+          <View style={styles.myAccountStyle}>
             <View >
               <Flb name='brand-phone' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
             <Text style={styles.heading2} onPress={this.handlePressSupport}>Contact Us </Text>
           </View>
         </View>
-        <View style={{marginTop: Metrics.doubleBaseMargin, margin: Metrics.baseMargin}}>
+        <View style={styles.logoutView}>
           <TouchableWithoutFeedback onPress={this.handlePressLogout}>
-            <Image source={Images.logout} style={{width: Metrics.screenWidth - (Metrics.screenWidth * 0.25)}} />
+            <Image source={Images.logout} style={styles.logoutStyle} />
           </TouchableWithoutFeedback>
         </View>
 

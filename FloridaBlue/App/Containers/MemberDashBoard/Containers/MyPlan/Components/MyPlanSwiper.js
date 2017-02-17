@@ -56,19 +56,19 @@ class MyPlanSwiper extends Component {
                 </View>
 
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>{network.type} deductible :</Text>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>${network.value}</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270}}>{network.type} deductible :</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270}}>${network.value}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>Remaining {network.type} deductible :</Text>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>${network.remain}</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270}}>Remaining {network.type} deductible :</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270}}>${network.remain}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>{network.type} pharmacy deductible :</Text>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>${network.used}</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270}}>{network.type} pharmacy deductible :</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270}}>${network.used}</Text>
                 </View>
                 <View>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>{network.text.en}</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270}}>{network.text.en}</Text>
 
                 </View>
 

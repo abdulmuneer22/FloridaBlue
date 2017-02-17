@@ -43,10 +43,7 @@ class DoctorServices extends Component {
 
     return (
 
-      <View style={{
-        flex: 1,
-        backgroundColor: 'white'
-      }}>
+      <View style={styles.container}>
         {this._renderHeader()}
 
         <ScrollView>
@@ -55,16 +52,9 @@ class DoctorServices extends Component {
 
 
           <View style={{flex : 1}}>
-          <View style={{
-          alignItems : 'center',
-          marginTop : Metrics.baseMargin
-          }}>
-          <Flb name={tile[0].tileIcon}size={Metrics.icons.xl} color={Colors.flBlue.ocean} />
-          <Text style={{
-          marginTop : Metrics.smallMargin,
-          fontSize : Fonts.size.h4,
-          color:Colors.flBlue.anvil,
-        }}>{temp1.text['en']}</Text>
+          <View style={styles.doctorCardStyle}>
+          <Flb name={tile[0].tileIcon}size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+          <Text style={styles.doctorTextStyle}>{temp1.text['en']}</Text>
           <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
           </View>
           <View>
