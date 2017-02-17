@@ -21,11 +21,7 @@ import { logout } from './LoginSagas'
 import { member } from './MemberSagas'
 import { myplan } from './MyPlanSagas'
 import { support } from './SupportSagas'
-import {registration} from './RegistrationSagas'
-import {sendregistration} from './RegistrationSagas'
-import {sendregistrationCode} from './RegistrationSagas'
-import {sendregistrationAnswers} from './RegistrationSagas'
-import {sendconfirm} from './RegistrationSagas'
+import {sendIdentificationRequest} from './RegistrationSagas'
 // import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -33,7 +29,8 @@ import {sendconfirm} from './RegistrationSagas'
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.
 const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
-const apiforRegistration = API.create(baseURL = 'https://registration-stga.bcbsfl.com/restservices/public')
+//const apiforRegistration = API.create(baseURL = 'https://registration-stga.bcbsfl.com/restservices/public')
+const apiforRegistration = API.create(baseURL = 'http://localhost:3000/api')
 const apiforlogout = API.create(baseURL = 'https://logout-stga.bcbsfl.com/')
 
 /* ------------- Connect Types To Sagas ------------- */
@@ -48,10 +45,6 @@ export default function * root () {
     takeLatest(MemberTypes.MEMBER_REQUEST, member, api),
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan, api),
     takeLatest(SupportTypes.SUPPORT_REQUEST, support, api),
-    takeLatest(RegistrationTypes.REGISTRATION_REQUEST, registration, apiforRegistration),
-    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCODE, sendregistrationCode, apiforRegistration),
-    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTANSWERS, sendregistrationAnswers, apiforRegistration),
-    takeLatest(RegistrationTypes.SENDREGISTRATION_REQUESTCONFIRM, sendconfirm, apiforRegistration)
-
+    takeLatest(RegistrationTypes.SEND_IDENTIFICATION_REQUEST, sendIdentificationRequest, apiforRegistration)
   ]
 }

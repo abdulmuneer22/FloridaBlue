@@ -57,6 +57,7 @@ return (
 {this._renderHeader()}
 
 <ScrollView>
+
 <View style={{
      flexWrap: 'wrap',
      flexDirection: 'row',
@@ -103,7 +104,13 @@ return (
 
         )
         i += 1
-      }):<Text> Loading..</Text>}
+      })
+
+    :<View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+      <Text style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>
+     }
     </View>
 
 

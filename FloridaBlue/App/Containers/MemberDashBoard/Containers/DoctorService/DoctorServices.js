@@ -37,10 +37,7 @@ class DoctorServices extends Component {
     return (
 
 
-      <View style={{
-        flex: 1,
-        backgroundColor: 'white'
-      }}>
+      <View style={styles.container}>
         {this._renderHeader()}
 
         <ScrollView>

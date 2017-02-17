@@ -26,17 +26,9 @@ const { Types, Creators } = createActions({
   changeSecurityAnswer3: ['securityAnswer3'],
   changeReceiveCommunicationsElectronically: ['receiveCommunicationsElectronically'],
   changeReasonCode: ['data'],
-  registrationRequest: ['contractNumber', 'firstName', 'lastName', 'dateOfBirth', 'zipCode'],
-  registrationSuccess: ['data'],
-  sendregistrationRequest: ['email', 'confirmemail', 'uniqueuserid', 'password', 'confirmpassword'],
-  sendregistrationSuccess: ['email', 'confirmemail', 'uniqueuserid', 'password', 'confirmpassword'],
-  sendregistrationRequestcode: ['registrationcode'],
-  sendregistrationSuccesscode: ['registrationcode'],
-  sendregistrationRequestanswers: ['questionone', 'questiontwo', 'questionthree', 'answerone', 'answertwo', 'answerthree'],
-  sendregistrationSuccessanswers: ['questionone', 'questiontwo', 'questionthree', 'answerone', 'answertwo', 'answerthree'],
-  sendregistrationRequestconfirm: ['confirm'],
-  sendregistrationSuccessconfirm: ['confirm'],
-  registrationFailure: ['data']
+  sendIdentificationRequest: ['contractNumber', 'firstName', 'lastName', 'dateOfBirth', 'zipCode'],
+  sendIdentificationSuccess: ['data'],
+  sendIdentificationFailure: ['data']
 })
 
 export const RegistrationTypes = Types
@@ -78,27 +70,15 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-// we're attempting to login
-export const request = (state: Object) => state.merge({ fetching: true })
+// _sendIdentificationRequest
+export const _sendIdentificationRequest = (state: Object) => state.merge({ fetching: true })
 
-// we've successfully logged in
-export const success = (state: Object, {data}: Object) =>
+// sendIdentificationSuccess
+export const _sendIdentificationSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, data})
 
-export const sendsuccess = (state: Object, {email, confirmemail, uniqueuserid, password, confirmpassword}: Object) =>
-    state.merge({fetching: false, email, confirmemail, uniqueuserid, password, confirmpassword})
-
-export const sendcode = (state: Object, {registrationcode}: Object) =>
-      state.merge({fetching: false, registrationcode})
-
-export const sendanswers = (state: Object, {questionone, questiontwo, questionthree, answerone, answertwo, answerthree}: Object) =>
-      state.merge({fetching: false, questionone, questiontwo, questionthree, answerone, answertwo, answerthree })
-
-export const sendconfirm = (state: Object, {sendconfrim}: Object) =>
-      state.merge({fetching: false, sendconfrim})
-
-// we've had a problem logging in
-export const failure = (state: Object, {data}: Object) =>
+// _sendIdentificationFailure
+export const _sendIdentificationFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, data })
 
 // contractNumber
@@ -204,17 +184,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SECURITY_ANSWER2]: _changeSecurityAnswer2,
   [Types.SECURITY_HINT3]: _changeSecurityHint3,
   [Types.SECURITY_ANSWER3]: _changeSecurityAnswer3,
-  [Types.REGISTRATION_REQUEST]: request,
-  [Types.REGISTRATION_SUCCESS]: success,
-  [Types.SENDREGISTRATION_REQUEST]: request,
-  [Types.SENDREGISTRATION_SUCCESS]: sendsuccess,
-  [Types.SENDREGISTRATION_REQUESTCODE]: request,
-  [Types.SENDREGISTRATION_SUCCESSCODE]: sendcode,
-  [Types.SENDREGISTRATION_REQUESTANSWERS]: request,
-  [Types.SENDREGISTRATION_SUCCESSANSWERS]: sendanswers,
-  [Types.SENDREGISTRATION_REQUESTCONFIRM]: request,
-  [Types.SENDREGISTRATION_SUCCESSCONFIRM]: sendconfirm,
-  [Types.REGISTRATION_FAILURE]: failure
+  [Types.SEND_IDENTIFICATION_REQUEST]: _sendIdentificationRequest,
+  [Types.SEND_IDENTIFICATION_SUCCESS]: _sendIdentificationSuccess,
+  [Types.SEND_IDENTIFICATION_FAILURE]: _sendIdentificationFailure
 })
 
 /* ------------- Selectors ------------- */

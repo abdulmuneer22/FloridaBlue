@@ -40,11 +40,11 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   })
   .build()
 
-setTheme({checkboxStyle: {
-  fillColor: Colors.flBlue.ocean,
-  borderOnColor: Colors.flBlue.ocean,
-  borderOffColor: Colors.flBlue.ocean
-}})
+  setTheme({checkboxStyle: {
+    fillColor: Colors.flBlue.ocean,
+    borderOnColor: Colors.flBlue.ocean,
+    borderOffColor: Colors.flBlue.ocean,
+  }})
 
 class Screen_2 extends React.Component {
 
@@ -64,10 +64,15 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
+          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
+            </View>
+            <View>
+              <TouchableOpacity onPress={() => { this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null}) }}>
+                <Image source={Images.closeIconWhite} />
+              </TouchableOpacity>
             </View>
           </View> : <Text />}
           <View style={styles.row}>
@@ -142,7 +147,7 @@ class Screen_2 extends React.Component {
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
-              secureTextEntry
+              password={true}
               onChangeText={this.props.handleChangePassword}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
@@ -159,23 +164,25 @@ class Screen_2 extends React.Component {
               returnKeyType='done'
               autoCapitalize='none'
               autoCorrect={false}
-              secureTextEntry
+              password={true}
               onChangeText={this.props.handleChangeConfirmPassword}
               underlineColorAndroid={Colors.coal}
               placeholder={I18n.t('confirmPassword')}
             />
           </View>
-          <View style={styles.row}>
-            <View style={{height: Metrics.doubleBaseMargin * 4, backgroundColor: Colors.flBlue.grey1}}>
+          <View style={styles.checkboxRow}>
+            <View style={styles.checkbox}>
               <MKCheckbox
                 ref='receiveCommunicationsElectronically'
                 onCheckedChange={() => {
                   console.log(this)
                   var checked = this.refs.receiveCommunicationsElectronically.state.checked
-                  this.props.handleChangeReceiveCommunicationsElectronically(checked)
-                }
+                  this.props.handleChangeReceiveCommunicationsElectronically(checked)}
                 }
               />
+            </View>
+            <View style={styles.checkboxMessageView}>
+              <Text style={styles.checkboxMessageText}>{I18n.t('communicationsElectronically')}</Text>
             </View>
           </View>
           <View style={styles.buttonRow}>
@@ -231,13 +238,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyPersonalInformation: (phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, receiveCommunicationsElectronically) => dispatch(RegistrationActions.Request(phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, receiveCommunicationsElectronically)),
     handleChangePhoneNumber: (phoneNumber) => dispatch(RegistrationActions.changePhoneNumber(phoneNumber)),
     handleChangeEmail: (email) => dispatch(RegistrationActions.changeEmail(email)),
     handleChangeConfirmEmail: (confirmEmail) => dispatch(RegistrationActions.changeConfirmEmail(confirmEmail)),
     handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
     handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
     handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword)),
-    handleChangeReceiveCommunicationsElectronically: (receiveCommunicationsElectronically) => dispatch(RegistrationActions.changeReceiveCommunicationsElectronically(receiveCommunicationsElectronically))
+    handleChangeReceiveCommunicationsElectronically:(receiveCommunicationsElectronically) => dispatch(RegistrationActions.changeReceiveCommunicationsElectronically(receiveCommunicationsElectronically)),
+    handleChangeReasonCode: (data) => dispatch(RegistrationActions.changeReasonCode(data))
   }
 }
 
