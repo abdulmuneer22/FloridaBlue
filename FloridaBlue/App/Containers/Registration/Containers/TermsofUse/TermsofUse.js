@@ -74,16 +74,10 @@ class TermsofUse extends Component {
           </View>
         </View>
 
-        <View style={{marginTop: 20}}>
-          <TouchableOpacity style={styles.agreeButton}
-            onPress={() => this._handleAgreeTermsOfUse()}
-        >
-            <Text style={{
-              color: 'white'
-            }}>
-        I Agree
-        </Text>
-          </TouchableOpacity>
+        <View style={{marginTop: Metrics.doubleBaseMargin}}>
+          <TouchableWithoutFeedback onPress={() => this._handleAgreeTermsOfUse()}>
+            <Image style={styles.iAgree} source={Images.iAgree} />
+          </TouchableWithoutFeedback>
         </View>
 
         <View style={styles.row}>

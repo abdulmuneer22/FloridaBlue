@@ -6,13 +6,14 @@ import {
   Navigator,
   ScrollView,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Image
 } from 'react-native'
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {Colors, Metrics, Fonts} from '../../../../Themes'
+import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import ToolBar from './Components/toolBar'
 import axios from 'axios'
 import SelectBox from './Components/SelectBox'
@@ -50,16 +51,16 @@ class MyPlanScreen extends Component {
   }
 
   _renderHeader () {
-    return (<View style={styles.headerContainer}>
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.snow, fontSize: Fonts.size.h4, marginLeft: 10}]}>My Plan</Text>
+      <Text style={styles.headerTextStyle}>My Plan</Text>
       {NavItems.settingsButton()}
 
-    </View>)
+    </Image>)
   }
   componentDidMount () {
     console.log('I am my plan screen')
-    this.props.attemptMyPlan()
+ //   this.props.attemptMyPlan()
   }
 
   componentWillReceiveProps (newProps) {
@@ -94,7 +95,7 @@ class MyPlanScreen extends Component {
 
                 <View style={styles.chartWrapper}>
                   {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
-          : <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 20}}>
+          : <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>}

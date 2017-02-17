@@ -50,6 +50,28 @@ class Screen_3 extends React.Component {
     NavigationActions.screen_4()
   }
 
+  /*
+  _handleNext () {
+    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
+      alert("Please enter values in all fields")
+    } else {
+      this.props.verifyPersonalInformation(phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, communicationsElectronically)
+    }
+    this.props.verifyPersonalInformation(this.props)
+  }
+
+  componentDidUpdate () {
+    if (this.props.data) {
+      var reasonCode = this.props.data.reasonCode
+      console.log(reasonCode)
+
+      if (reasonCode === '000') {
+        NavigationActions.screen_4()
+      }
+    }
+  }
+  */
+
   render () {
     return (
       <View style={styles.container}>
@@ -58,7 +80,7 @@ class Screen_3 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
+          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
@@ -85,7 +107,7 @@ class Screen_3 extends React.Component {
             </View>
             <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
-                <Image source={Images.nextButton} />
+                <Image source={Images.nextButtonGreen} />
               </TouchableOpacity>
             </View>
           </View>
@@ -102,6 +124,7 @@ class Screen_3 extends React.Component {
 }
 
 Screen_3.propTypes = {
+  verifyRegistrationCode: PropTypes.func,
   handleChangeEnterCode: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
@@ -110,6 +133,11 @@ Screen_3.propTypes = {
 const mapStateToProps = (state) => {
   return {
     enterCode: state.registration.enterCode,
+    contractNumber: state.registration.contractNumber,
+    firstName: state.registration.firstName,
+    lastName: state.registration.lastName,
+    dateOfBirth: state.registration.dateOfBirth,
+    zipCode: state.registration.zipCode,
     fetching: state.registration.fetching,
     error: state.registration.error,
     data: state.registration.data
@@ -118,6 +146,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifyRegistrationCode: (data) => dispatch(RegistrationActions.sendRegistrationCodeRequest(data)),
     handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode))
   }
 }

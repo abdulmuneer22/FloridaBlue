@@ -7,19 +7,9 @@ import RegistrationActions from '../Redux/RegistrationRedux'
 // request to regiter
 
 export function* sendIdentificationRequest (api, {
-  contractNumber,
-  firstName,
-  lastName,
-  dateOfBirth,
-  zipCode
+  data
 }) {
-  var contractNumber = contractNumber
-  var firstName = firstName
-  var lastName = lastName
-  var dateOfBirth = dateOfBirth
-  var zipCode = zipCode
-
-  const response = yield call(api.postIdentification, contractNumber, firstName, lastName, dateOfBirth, zipCode)
+  const response = yield call(api.postIdentification, data)
 
   console.log(JSON.stringify(response))
 
@@ -38,5 +28,55 @@ export function* sendIdentificationRequest (api, {
       'reasonDesc': 'Invalid input provided'
     }
     yield put(RegistrationActions.sendIdentificationFailure(data))
+  }
+}
+
+export function* sendPersonalInformationRequest (api, {
+  data
+}) {
+  const response = yield call(api.postPersonalInformation, data)
+
+  console.log(JSON.stringify(response))
+
+  if (response.ok) {
+    // dispatch failure
+    console.log('I am coming from success')
+    var error = null
+    var data = response.data
+    yield put(RegistrationActions.sendPersonalInformationSuccess(data))
+  } else {
+    // dispatch successful logins
+    console.log('I am coming from failure')
+    var error = 'Invaid input provided'
+    var data = {
+      'reasonCode': '999',
+      'reasonDesc': 'Invalid input provided'
+    }
+    yield put(RegistrationActions.sendPersonalInformationFailure(data))
+  }
+}
+
+export function* sendRegistrationCodeRequest (api, {
+  data
+}) {
+  const response = yield call(api.postRegistrationCode, data)
+
+  console.log(JSON.stringify(response))
+
+  if (response.ok) {
+    // dispatch failure
+    console.log('I am coming from success')
+    var error = null
+    var data = response.data
+    yield put(RegistrationActions.sendRegistrationCodeSuccess(data))
+  } else {
+    // dispatch successful logins
+    console.log('I am coming from failure')
+    var error = 'Invaid input provided'
+    var data = {
+      'reasonCode': '999',
+      'reasonDesc': 'Invalid input provided'
+    }
+    yield put(RegistrationActions.sendRegistrationCodeFailure(data))
   }
 }

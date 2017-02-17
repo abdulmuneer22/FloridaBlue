@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component} from 'react'
-import { ScrollView, Image, BackAndroid, View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native'
+import { ScrollView, Image, BackAndroid, View, StyleSheet, Text, Dimensions, TouchableWithoutFeedback } from 'react-native'
 import styles from './DrawerContentStyle'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import DrawerButton from '../../Components/DrawerButton'
@@ -9,6 +9,9 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import LoginActions from '../../Redux/LoginRedux'
+
+var {height, width} = Dimensions.get('window')
+const window = Dimensions.get('window')
 
 const Divider = () => {
   return <View style={styles.divider} />
@@ -34,10 +37,6 @@ class SettingsContent extends Component {
     this.toggleDrawer()
     NavigationActions.WelcomeDashBoard()
   }
-  handlePressFindCare = () => {
-    this.toggleDrawer()
-    NavigationActions.FindCare()
-  }
 
   handlePressPlans = () => {
     this.toggleDrawer()
@@ -53,14 +52,30 @@ class SettingsContent extends Component {
     NavigationActions.claims()
   }
 
-  handlePressDentalPlan = () => {
+  handlePressResources = () => {
     this.toggleDrawer()
     NavigationActions.Resources()
+  }
+  handlePressId= () => {
+    this.toggleDrawer()
+    NavigationActions.MyView()
+  }
+  handlePressHSA= () => {
+    this.toggleDrawer()
+    NavigationActions.Hsa()
   }
 
   handlePressSupport= () => {
     this.toggleDrawer()
     NavigationActions.SupportScreen()
+  }
+  handlePressFindCare= () => {
+    this.toggleDrawer()
+    NavigationActions.MyView()
+  }
+  handlePressPayment= () => {
+    this.toggleDrawer()
+    NavigationActions.MyView()
   }
   handlePressMyAccount= () => {
     this.toggleDrawer()
@@ -99,48 +114,56 @@ class SettingsContent extends Component {
             </View>
           </View>
           <Divider />
-          <Text style={styles.heading} onPress={this.handlePressDentalPlan}>My Dental Plan</Text>
+          <Text style={styles.heading} onPress={this.handlePressResources}>Resources</Text>
+          <Divider />
+          <Text style={styles.heading} onPress={this.handlePressId}>Id Card</Text>
+          <Divider />
+          <Text style={styles.heading} onPress={this.handlePressHSA}>Health Savings Account</Text>
+          <Divider />
+          <Text style={styles.heading} onPress={this.handlePressSupport}>Support</Text>
+          <Divider />
+          <Text style={styles.heading} onPress={this.handlePressFindCare}>Find Care</Text>
           <Divider />
           <Text style={styles.heading} onPress={this.handlePressPayment}>Payment</Text>
         </View>
         <View style={styles.settings}>
-          <View style={{marginBottom: 10, marginTop: 10, flexDirection: 'row'}}>
+          <View style={{marginBottom: Metrics.baseMargin, marginTop: Metrics.baseMargin, flexDirection: 'row'}}>
             <View >
-              <Flb name='user' size={23} color={Colors.flBlue.ocean} />
+              <Flb name='user' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
             <Text style={styles.heading2} onPress={this.handlePressMyAccount}>My Account</Text>
           </View>
 
-          <View style={{marginBottom: 10, marginTop: 10, flexDirection: 'row'}}>
+          <View style={{marginBottom: Metrics.baseMargin, marginTop: Metrics.baseMargin, flexDirection: 'row'}}>
             <View >
-              <Flb name='cog-gear' size={23} color={Colors.flBlue.ocean} />
+              <Flb name='cog-gear' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
             <Text style={styles.heading2} onPress={this.handlePressSettings}>App Settings</Text>
           </View>
-          <View style={{marginBottom: 10, marginTop: 10, flexDirection: 'row'}}>
+          <View style={{marginBottom: Metrics.baseMargin, marginTop: Metrics.baseMargin, flexDirection: 'row'}}>
             <View >
-              <Flb name='question' size={23} color={Colors.flBlue.ocean} />
+              <Flb name='question' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
             <Text style={styles.heading2} onPress={this.handlePressFAQ}>Frequently Asked Questions</Text>
           </View>
 
-          <View style={{marginBottom: 10, marginTop: 10, flexDirection: 'row'}}>
+          <View style={{marginBottom: Metrics.baseMargin, marginTop: Metrics.baseMargin, flexDirection: 'row'}}>
             <View >
-              <Flb name='generic-doc' size={23} color={Colors.flBlue.ocean} />
+              <Flb name='generic-doc' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
 
             <Text style={styles.heading2} onPress={this.handlePressPolicy}>Policies & Terms </Text>
           </View>
-          <View style={{marginBottom: 10, marginTop: 10, flexDirection: 'row'}}>
+          <View style={{marginBottom: Metrics.baseMargin, marginTop: Metrics.baseMargin, flexDirection: 'row'}}>
             <View >
-              <Flb name='brand-phone' size={23} color={Colors.flBlue.ocean} />
+              <Flb name='brand-phone' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
             <Text style={styles.heading2} onPress={this.handlePressSupport}>Contact Us </Text>
           </View>
         </View>
-        <View style={{margin: 10, marginTop: 20}}>
+        <View style={{marginTop: Metrics.doubleBaseMargin, margin: Metrics.baseMargin}}>
           <TouchableWithoutFeedback onPress={this.handlePressLogout}>
-            <Image source={Images.logout} resizeMode='stretch' />
+            <Image source={Images.logout} style={{width: Metrics.screenWidth - (Metrics.screenWidth * 0.25)}} />
           </TouchableWithoutFeedback>
         </View>
 

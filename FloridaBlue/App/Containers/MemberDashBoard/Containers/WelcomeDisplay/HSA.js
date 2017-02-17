@@ -43,37 +43,35 @@ class HSA extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
 
-        <ScrollView>
-          <Text style={styles.hsaText}>
+        <Text style={styles.hsaText}>
                 Health Savings Account
                 </Text>
 
-          <View style={styles.container}>
-            <View style={styles.row_1}>
-              <View style={styles.col_1}>
-                <Text style={styles.textStyle1}>Current</Text>
-                <Text style={styles.textStyle1}>Balance</Text>
-                <Text style={styles.textStyle1}>$3,125</Text>
-              </View>
-
-              <View style={styles.col_1}>
-                <Text style={styles.textStyle1}>YTD</Text>
-                <Text style={styles.textStyle1}>Contributiont</Text>
-                <Text style={styles.textStyle1}>$2,250</Text>
-
-              </View>
+        <View style={styles.container}>
+          <View style={styles.row_1}>
+            <View style={styles.col_1}>
+              <Text style={styles.textStyle1}>Current</Text>
+              <Text style={styles.textStyle1}>Balance</Text>
+              <Text style={styles.textStyle1}>$3,125</Text>
             </View>
 
-            <View style={styles.row_2}>
+            <View style={styles.col_1}>
               <Text style={styles.textStyle1}>YTD</Text>
-              <Text style={styles.textStyle1}>Distribution</Text>
-              <Text style={styles.textStyle1}>-$2.250</Text>
+              <Text style={styles.textStyle1}>Contributiont</Text>
+              <Text style={styles.textStyle1}>$2,250</Text>
+
             </View>
-
           </View>
-          <Image style={styles.hsaBg} source={Images.hsaBg} />
 
-        </ScrollView>
+          <View style={styles.row_2}>
+            <Text style={styles.textStyle1}>YTD</Text>
+            <Text style={styles.textStyle1}>Distribution</Text>
+            <Text style={styles.textStyle1}>-$2.250</Text>
+          </View>
+
+        </View>
+        <Image style={styles.hsaBg} source={Images.hsaBg} />
+
       </View>
     )
   }

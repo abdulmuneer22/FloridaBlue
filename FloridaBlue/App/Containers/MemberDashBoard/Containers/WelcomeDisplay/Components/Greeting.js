@@ -9,6 +9,7 @@ import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Colors, Metrics, Fonts} from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
+import styles from '../DashBoardStyle'
 
 var messageCount = ''
 
@@ -61,24 +62,21 @@ class Greeting extends Component {
   render () {
     return (
       <View>
-        <View style={Styles.Greeting}>
-          <Text style={{fontSize: 18, color: Colors.snow}}>
-            {this.state.greetText} {this.props.userName ? this.props.userName : ''}
+        <View style={styles.greetingView}>
+          <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
+            {this.state.greetText}
+          </Text>
+          <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
+            {this.props.userName ? this.props.userName : ''}
           </Text>
         </View>
 
         {
         messageCount ?
-          <View style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: 40,
-            backgroundColor: Colors.flBlue.grey1,
-            flexDirection: 'row'
-          }}>
+          <View style={styles.messageCountStyle}>
 
-            <Flb name='email-envelope' size={20} />
-            <Text style={{color: Colors.flBlue.night, fontSize: Fonts.size.h6, marginLeft: 10}}> You have {messageCount} new messages. </Text>
+            <Flb name='email-envelope' size={Metrics.icons.small} />
+            <Text style={styles.messageTextStyle}> You have {messageCount} new messages. </Text>
 
           </View>
         : null
@@ -88,15 +86,5 @@ class Greeting extends Component {
     )
   }
 }
-
-const Styles = StyleSheet.create({
-  Greeting: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 40,
-    // padding:5,
-    backgroundColor: Colors.flBlue.grey6
-  }
-})
 
 export default Greeting

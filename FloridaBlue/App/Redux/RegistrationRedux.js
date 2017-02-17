@@ -24,11 +24,17 @@ const { Types, Creators } = createActions({
   changeSecurityAnswer2: ['securityAnswer2'],
   changeSecurityHint3: ['securityHint3'],
   changeSecurityAnswer3: ['securityAnswer3'],
-  changeReceiveCommunicationsElectronically: ['receiveCommunicationsElectronically'],
+  changeCommunicationsElectronically: ['communicationsElectronically'],
   changeReasonCode: ['data'],
-  sendIdentificationRequest: ['contractNumber', 'firstName', 'lastName', 'dateOfBirth', 'zipCode'],
+  sendIdentificationRequest: ['data'],
   sendIdentificationSuccess: ['data'],
-  sendIdentificationFailure: ['data']
+  sendIdentificationFailure: ['data'],
+  sendPersonalInformationRequest: ['data'],
+  sendPersonalInformationSuccess: ['data'],
+  sendPersonalInformationFailure: ['data'],
+  sendRegistrationCodeRequest: ['data'],
+  sendRegistrationCodeSuccess: ['data'],
+  sendRegistrationCodeFailure: ['data']
 })
 
 export const RegistrationTypes = Types
@@ -55,7 +61,7 @@ export const INITIAL_STATE = Immutable({
   securityAnswer2: null,
   securityHint3: null,
   securityAnswer3: null,
-  receiveCommunicationsElectronically: null,
+  communicationsElectronically: null,
   questionone: null,
   questiontwo: null,
   questionthree: null,
@@ -70,6 +76,9 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
+// //////////////////////////
+// Identification
+// //////////////////////////
 // _sendIdentificationRequest
 export const _sendIdentificationRequest = (state: Object) => state.merge({ fetching: true })
 
@@ -81,6 +90,37 @@ export const _sendIdentificationSuccess = (state: Object, {data}: Object) =>
 export const _sendIdentificationFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, data })
 
+// //////////////////////////
+// PersonalInformation
+// //////////////////////////
+// _sendPersonalInformationRequest
+export const _sendPersonalInformationRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendPersonalInformationSuccess
+export const _sendPersonalInformationSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false, data})
+
+// _sendPersonalInformationFailure
+export const _sendPersonalInformationFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, data })
+
+// //////////////////////////
+// RegistrationCode
+// //////////////////////////
+// _sendRegistrationCodeRequest
+export const _sendRegistrationCodeRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendRegistrationCodeSuccess
+export const _sendRegistrationCodeSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false, data})
+
+// _sendRegistrationCodeFailure
+export const _sendRegistrationCodeFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, data })
+
+// //////////////////////////
+// Props
+// //////////////////////////
 // contractNumber
 export const _changeContractNumber = (state: Object, {contractNumber}: Object) =>
       state.merge({fetching: false, contractNumber})
@@ -157,9 +197,9 @@ export const _changeSecurityAnswer3 = (state: Object, {securityAnswer3}: Object)
 export const _changeReasonCode = (state: Object, {data}: Object) =>
       state.merge({fetching: false, data})
 
-// receiveCommunicationsElectronically
-export const _changeReceiveCommunicationsElectronically = (state: Object, {receiveCommunicationsElectronically}: Object) =>
-      state.merge({fetching: false, receiveCommunicationsElectronically})
+// communicationsElectronically
+export const _changeCommunicationsElectronically = (state: Object, {communicationsElectronically}: Object) =>
+      state.merge({fetching: false, communicationsElectronically})
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -176,7 +216,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CREATE_USER_ID]: _changeCreateUserId,
   [Types.PASSWORD]: _changePassword,
   [Types.CONFIRM_PASSWORD]: _changeConfirmPassword,
-  [Types.CHANGE_RECEIVE_COMMUNICATIONS_ELECTRONICALLY]: _changeReceiveCommunicationsElectronically,
+  [Types.CHANGE_RECEIVE_COMMUNICATIONS_ELECTRONICALLY]: _changeCommunicationsElectronically,
   [Types.ENTER_CODE]: _changeEnterCode,
   [Types.SECURITY_HINT1]: _changeSecurityHint1,
   [Types.SECURITY_ANSWER1]: _changeSecurityAnswer1,
@@ -186,7 +226,13 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SECURITY_ANSWER3]: _changeSecurityAnswer3,
   [Types.SEND_IDENTIFICATION_REQUEST]: _sendIdentificationRequest,
   [Types.SEND_IDENTIFICATION_SUCCESS]: _sendIdentificationSuccess,
-  [Types.SEND_IDENTIFICATION_FAILURE]: _sendIdentificationFailure
+  [Types.SEND_IDENTIFICATION_FAILURE]: _sendIdentificationFailure,
+  [Types.SEND_PERSONAL_INFORMATION_REQUEST]: _sendPersonalInformationRequest,
+  [Types.SEND_PERSONAL_INFORMATION_SUCCESS]: _sendPersonalInformationSuccess,
+  [Types.SEND_PERSONAL_INFORMATION_FAILURE]: _sendPersonalInformationFailure,
+  [Types.SEND_REGISTRATION_CODE_REQUEST]: _sendRegistrationCodeRequest,
+  [Types.SEND_REGISTRATION_CODE_SUCCESS]: _sendRegistrationCodeSuccess,
+  [Types.SEND_REGISTRATION_CODE_FAILURE]: _sendRegistrationCodeFailure
 })
 
 /* ------------- Selectors ------------- */

@@ -5,6 +5,10 @@ import { ApplicationStyles, Colors, Metrics, Fonts } from '../../../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
+  container: {
+    flex: 1,
+    paddingTop: 0
+  },
   headerImage: {
     width: Metrics.screenWidth,
     overflow: 'visible',
@@ -58,7 +62,7 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin,
     paddingVertical: Metrics.baseMargin,
     paddingHorizontal: Metrics.doubleBaseMargin,
-    height:Metrics.doubleBaseMargin * 4,
+    height: Metrics.doubleBaseMargin * 4,
     backgroundColor: Colors.flBlue.grey1,
     alignItems: 'stretch',
     justifyContent: 'space-between'

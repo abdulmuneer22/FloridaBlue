@@ -15,6 +15,9 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import LoginActions from '../../Redux/LoginRedux'
+import MemberActions from '../../Redux/MemberRedux'
+import MyPlanActions from '../../Redux/MyPlanRedux'
+import SupportActions from '../../Redux/SupportRedux'
 import styles from './LoginStyle'
 import { Images, Metrics, Colors } from '../../Themes'
 // import {FlbIcon} from'./FlbIcon'
@@ -29,7 +32,10 @@ type LoginScreenProps = {
   fetching: boolean,
   attemptLogin: () => void,
   responseURL : string,
-  smToken : string
+  smToken : string,
+  attemptMyPlan :() => void,
+  attemptMember :() => void,
+  attemptSupportScreen :() => void
 }
 
 class Login extends Component {
@@ -69,6 +75,9 @@ class Login extends Component {
 
     if (this.isAttempting && !newProps.fetching && newProps.error === null) {
       if (newProps.responseURL == 'login') {
+        // we are displacing these action by this time we knew that member loged in success fully
+        this.props.attemptMember()
+        this.props.attemptSupportScreen()
         NavigationActions.WelcomeDashBoard()
       } else {
         console.log('new props' + newProps.responseURL)
@@ -203,7 +212,7 @@ class Login extends Component {
           </View>
           <View style={styles.loginButton}>
             <TouchableOpacity onPress={() => { this._handleLogin() }}>
-              <Image source={Images.loginButton} />
+              <Image source={Images.loginButtonGreen} />
             </TouchableOpacity>
           </View>
           <View style={[styles.row, {backgroundColor: 'transparent'}]}>
@@ -247,7 +256,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
+    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
+    attemptMember: () => dispatch(MemberActions.memberRequest()),
+    attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
+    attemptSupportScreen: () => dispatch(SupportActions.supportRequest())
   }
 }
 

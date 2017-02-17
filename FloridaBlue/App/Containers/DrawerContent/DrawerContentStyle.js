@@ -5,14 +5,14 @@ import { Fonts, Colors, Metrics } from '../../Themes/'
 export default {
   container: {
     flex: 1,
-    padding: 20,
+    padding: Metrics.doubleBaseMargin,
     // margin:15,
     backgroundColor: Colors.flBlue.ocean
   },
   container1: {
     flex: 1,
     // padding: 20,
-    marginLeft: 15,
+    marginLeft: Metrics.mediumMargin,
     backgroundColor: Colors.flBlue.ocean
   },
   logo: {
@@ -20,7 +20,7 @@ export default {
   },
   container2: {
     flex: 1,
-    padding: 10,
+    padding: Metrics.baseMargin,
     // margin:10,
     // marginTop:15,
     backgroundColor: Colors.flBlue.grey1
@@ -31,40 +31,42 @@ export default {
     alignSelf: 'center'
   },
   wrapper: {
+    flex: 1,
+    backgroundColor: Colors.snow
   },
   options: {
     backgroundColor: Colors.bg1,
-    paddingLeft: 15,
-    paddingTop: 30
+    paddingLeft: Metrics.mediumMargin,
+    paddingTop: Metrics.searchBarHeight
   },
   settings: {
     backgroundColor: Colors.bg2,
-    paddingLeft: 15,
-    paddingTop: 20
+    paddingLeft: Metrics.mediumMargin,
+    paddingTop: Metrics.doubleBaseMargin
   },
 
   divider: {
     backgroundColor: Colors.snow,
     height: 1,
     marginLeft: -15,
-    marginBottom: 5
+    marginBottom: Metrics.smallMargin
   },
   heading: {
     color: Colors.snow,
     fontSize: Fonts.size.h5,
-    marginBottom: 15,
-    marginTop: 10
+    marginBottom: Metrics.mediumMargin,
+    marginTop: Metrics.baseMargin
   },
   subheading: {
     color: Colors.snow,
     fontSize: Fonts.size.h5,
-    marginBottom: 15
+    marginBottom: Metrics.mediumMargin
 
   },
 
   heading2: {
     color: Colors.flBlue.ocean,
     fontSize: Fonts.size.h6,
-    marginLeft: 10
+    marginLeft: Metrics.baseMargin
   }
 }

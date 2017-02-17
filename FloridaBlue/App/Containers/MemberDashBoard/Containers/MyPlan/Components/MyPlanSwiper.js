@@ -41,7 +41,7 @@ class MyPlanSwiper extends Component {
     }
 
     return (
-      <Swiper height={380} style={styles.wrapper} showsButtons>
+      <Swiper height={(Metrics.screenHeight-(Metrics.screenHeight*0.38))} style={styles.wrapper} showsButtons>
         { this.props.data.annualDeductible.inNetwork ? myPlan.map(function (network, i) {
           return (
             <View style={styles.headerStyle} key={i}>
@@ -52,23 +52,23 @@ class MyPlanSwiper extends Component {
               <View style={styles.dataContainer}>
 
                 <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                  <PercentageCircle radius={50} percent={50} color={Colors.flBlue.ocean} />
+                  <PercentageCircle radius={40} percent={50} color={Colors.flBlue.ocean} />
                 </View>
 
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>{network.type} Deductible :</Text>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>${network.value}</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>{network.type} deductible :</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>${network.value}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>Remaining {network.type} Deductible :</Text>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>${network.remain}</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>Remaining {network.type} deductible :</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>${network.remain}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>{network.type} Pharmacy Deductible :</Text>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>${network.used}</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>{network.type} pharmacy deductible :</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>${network.used}</Text>
                 </View>
                 <View>
-                  <Text style={{marginTop: 10, fontSize: Fonts.size.regular}}>{network.text.en}</Text>
+                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular}}>{network.text.en}</Text>
 
                 </View>
 

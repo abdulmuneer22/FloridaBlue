@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
   StyleSheet,
   Dimensions,
@@ -8,25 +8,25 @@ import {
   Text
 } from 'react-native'
 
-import {Colors, Metrics, Fonts} from '../../../../../Themes'
+import { Colors, Metrics, Fonts } from '../../../../../Themes'
 const window = Dimensions.get('window')
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import styles from '../DoctorServiceStyle.js'
 
 class Card extends Component {
 
-  render () {
+  render() {
     var cards = []
     var that = this
-    var card ;
+    var card;
     var temp = this.props.data;
     var objectName = this.props.objectName
     var temp1 = temp[objectName];
 
     if (this.props.leftActive) {
-      card = temp1.inNetwork ;
+      card = temp1.inNetwork;
     } else {
-      card = temp1.outNetwork ;
+      card = temp1.outNetwork;
     }
 
     console.log('card of innetwork' + JSON.stringify(this.props.leftActive))
@@ -35,31 +35,41 @@ class Card extends Component {
     card.map(function (network, i) {
       var speciality = []
       speciality = network['speciality']
-      console.log('speciality' + JSON.stringify(card))
-      cards.push( <View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} key={i}>
-        <Text style={styles.h1}  >
+
+      cards.push(<View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} key={i} >
+        <Text style={styles.h1}>
           {network.header_text.en}
         </Text>
+
         {
           speciality.map(specialities=>{
             const{speciality_text, speciality_value}=specialities
+            return (
+            <View style={{marginBottom:20}}>
+            {speciality_text['en'] ?
+                <Text style={styles.h2} >
+                  {speciality_text['en']}
+                </Text>
+              : <View></View>
 
-          return  <View >
-            <Text style = {styles.h4} >
-            {speciality_text['en']}
-            </Text>
+            }
+
             {
               speciality_value.map(value=>{
-                return <Text style={styles.h2}>
-                {value['en']}</Text>
+                return(<Text style={styles.h4}>
+                {value['en']}</Text> )
               })
             }
-           </View>
+            </View>)
           })
         }
+
+
+
       </View>
 
-        )
+
+      )
       i += 1
       return cards
     }
@@ -67,8 +77,8 @@ class Card extends Component {
     )
 
     return (
-      <ScrollView >
-        <View >
+      <ScrollView>
+        <View>
           {cards}
         </View>
       </ScrollView>

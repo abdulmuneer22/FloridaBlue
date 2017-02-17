@@ -1,13 +1,13 @@
 
 import React, { Component, PropTypes } from 'react'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-import {Text, View, ScrollView} from 'react-native'
+import {Text, View, ScrollView, Image} from 'react-native'
 import Switch from './Components/switch'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import styles from './DoctorServiceStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
-import {Colors, Metrics, Fonts} from '../../../../Themes'
+import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import Flb from '../../../../Themes/FlbIcon'
 import {connect} from 'react-redux'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
@@ -22,22 +22,31 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 class DoctorServices extends Component {
 
   _renderHeader () {
-    return (<View style={styles.headerContainer}>
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.snow, fontSize: Fonts.size.h4, marginLeft: 10}]}>Plan Benefits</Text>
+      <Text style={styles.headerTextStyle}>Plan Benefits</Text>
       {NavItems.settingsButton()}
 
-    </View>)
+    </Image>)
   }
   render () {
 
     var temp = this.props.data;
     var objectName = this.props.objectName
     var temp1 = temp[objectName];
+    var tiles=this.props.data.tiles;
+    var tile=tiles.filter(function(tiles){return (tiles.tileId == objectName)})
+
+    console.log('tile'+JSON.stringify(tile))
+    console.log('tiles'+JSON.stringify(tiles))
+
+
     return (
 
-
-      <View style={styles.container}>
+      <View style={{
+        flex: 1,
+        backgroundColor: 'white'
+      }}>
         {this._renderHeader()}
 
         <ScrollView>
@@ -48,12 +57,13 @@ class DoctorServices extends Component {
           <View style={{flex : 1}}>
           <View style={{
           alignItems : 'center',
-          marginTop : 10
+          marginTop : Metrics.baseMargin
           }}>
-          <Flb name="doctor" size={60} color="black" />
+          <Flb name={tile[0].tileIcon}size={Metrics.icons.xl} color={Colors.flBlue.ocean} />
           <Text style={{
-          marginTop : 5,
-          fontSize : Fonts.size.medium
+          marginTop : Metrics.smallMargin,
+          fontSize : Fonts.size.h4,
+          color:Colors.flBlue.anvil,
         }}>{temp1.text['en']}</Text>
           <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
           </View>
@@ -64,7 +74,7 @@ class DoctorServices extends Component {
 
           </View>
           :
-                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                <View style={styles.spinnerView}>
                   <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
                   <Text style={styles.spinnerText}>Loading Please Wait </Text>
                 </View>

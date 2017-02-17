@@ -39,17 +39,17 @@ class SupportScreen extends Component {
   }
 
   _renderHeader () {
-    return (<View style={styles.headerContainer}>
+    return (<Image source={Images.themeHeader} style={styles.headerContainer}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.snow, fontSize: Fonts.size.h4, marginLeft: 10}]}>Support</Text>
+      <Text style={styles.headerTextStyle}>Support</Text>
       {NavItems.settingsButton()}
 
-    </View>)
+    </Image>)
   }
 
   componentDidMount () {
     console.log('I am Support screen')
-    this.props.attemptSupportScreen()
+  //  this.props.attemptSupportScreen()
   }
 
   render () {
@@ -67,7 +67,7 @@ class SupportScreen extends Component {
                 <View >
                   {this.props.data && this.props.data.support ?
             this.props.data.support.map(function (support, i) {
-              return (<View style={i % 2 == 0 ? styles.textBackground : styles.textBackground1} >
+              return (<View style={i % 2 == 0 ? styles.textBackground : styles.textBackground1} key={i} >
                 <View>
                   <Text style={styles.textStyle} >
                     {support.contactType}

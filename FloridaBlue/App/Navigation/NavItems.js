@@ -22,9 +22,9 @@ export default {
     return (
       <TouchableOpacity onPress={NavigationActions.pop}>
         <Flb name='arrow-left'
-          size={Metrics.icons.medium}
-          color={Colors.snow}
-          style={[styles.backButton, {top: -10}]}
+          size={Metrics.icons.xm}
+          color={Colors.flBlue.ocean}
+          style={[styles.backButton, {marginTop: 5}]}
         />
       </TouchableOpacity>
     )
@@ -45,10 +45,10 @@ export default {
   settingsButton () {
     return <TouchableOpacity onPress={openDrawer.bind(null, 'settings')}>
       <Flb name='align-justify'
-        size={Metrics.icons.medium}
-        style={{color: Colors.snow,
+        size={Metrics.icons.xm}
+        style={{color: Colors.flBlue.ocean,
           backgroundColor: Colors.transparent,
-          marginTop: 13}}
+          marginTop: Metrics.smallMargin}}
     />
     </TouchableOpacity>
   },

@@ -13,7 +13,7 @@ import {
   } from 'react-native'
 import styles from './WebViewStyle'
 import NavItems from '../../Navigation/NavItems.js'
-import {Colors, Metrics, Fonts} from '../../Themes'
+import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 const window = Dimensions.get('window')
@@ -25,11 +25,11 @@ const jsForInjection = `
 `
 class Webview extends Component {
   _renderHeader () {
-    return <View style={styles.headerContainer}>
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.snow, fontSize: Fonts.size.h4}]}>Web View</Text>
-      {NavItems.settingsButton()}
-    </View>
+      <Text style={[{color: Colors.flBlue.ocean, backgroundColor: Colors.transparent, fontSize: Fonts.size.h3, marginRight: 50, marginTop: 5}]}>Web View</Text>
+
+    </Image>)
   }
   render () {
     var dynamic = this.props.responseURL
@@ -67,7 +67,7 @@ class Webview extends Component {
           injectedJavaScript={jsForInjection}
           allowUrlRedirect
           startInLoadingState
-          contentInset={{top: -45, left: 0, bottom: 0, right: 0}}
+          contentInset={{top: -70, left: 0, bottom: 0, right: 0}}
               />
       </View>
     )

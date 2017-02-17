@@ -63,7 +63,7 @@ class Screen_4 extends React.Component {
               <Text style={styles.topText}>{I18n.t('setUpSecurityQuestionsInstructions')}</Text>
             </View>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null || this.props.data.reasonCode != '000' || this.props.data.reasonCode != '999') ? <View style={styles.messageView}>
+          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
@@ -179,7 +179,7 @@ class Screen_4 extends React.Component {
             </View>
             <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
-                <Image source={Images.nextButton} />
+                <Image source={Images.nextButtonGreen} />
               </TouchableOpacity>
             </View>
           </View>

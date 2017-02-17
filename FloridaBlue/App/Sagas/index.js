@@ -22,6 +22,8 @@ import { member } from './MemberSagas'
 import { myplan } from './MyPlanSagas'
 import { support } from './SupportSagas'
 import {sendIdentificationRequest} from './RegistrationSagas'
+import {sendPersonalInformationRequest} from './RegistrationSagas'
+import {sendRegistrationCodeRequest} from './RegistrationSagas'
 // import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -29,7 +31,7 @@ import {sendIdentificationRequest} from './RegistrationSagas'
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.
 const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
-//const apiforRegistration = API.create(baseURL = 'https://registration-stga.bcbsfl.com/restservices/public')
+// const apiforRegistration = API.create(baseURL = 'https://registration-stga.bcbsfl.com/restservices/public')
 const apiforRegistration = API.create(baseURL = 'http://localhost:3000/api')
 const apiforlogout = API.create(baseURL = 'https://logout-stga.bcbsfl.com/')
 
@@ -45,6 +47,8 @@ export default function * root () {
     takeLatest(MemberTypes.MEMBER_REQUEST, member, api),
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan, api),
     takeLatest(SupportTypes.SUPPORT_REQUEST, support, api),
-    takeLatest(RegistrationTypes.SEND_IDENTIFICATION_REQUEST, sendIdentificationRequest, apiforRegistration)
+    takeLatest(RegistrationTypes.SEND_IDENTIFICATION_REQUEST, sendIdentificationRequest, apiforRegistration),
+    takeLatest(RegistrationTypes.SEND_PERSONAL_INFORMATION_REQUEST, sendPersonalInformationRequest, apiforRegistration),
+    takeLatest(RegistrationTypes.SEND_REGISTRATION_CODE_REQUEST, sendRegistrationCodeRequest, apiforRegistration)
   ]
 }

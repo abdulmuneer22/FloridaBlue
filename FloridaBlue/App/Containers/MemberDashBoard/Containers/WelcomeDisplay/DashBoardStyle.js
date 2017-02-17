@@ -1,42 +1,53 @@
 // @flow
 
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Images, Fonts } from '../../../../Themes/'
+var {height, width} = Dimensions.get('window')
+const window = Dimensions.get('window')
 
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: 70,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 15,
-    alignSelf: 'stretch',
-    width: Metrics.screenWidth,
-    backgroundColor: Colors.flBlue.ocean
+    padding: Metrics.mediumMargin,
+    // resizeMode:'cover',
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth
+    // backgroundColor: Colors.flBlue.ocean
+  },
+  headerTextStyle: {
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3,
+    marginLeft: Metrics.baseMargin,
+    marginTop: Metrics.smallMargin
+
   },
   hsaHeader: {
     flexDirection: 'row',
-    height: 145,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.795)),
   // marginTop:20,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
+    padding: Metrics.baseMargin,
     width: Metrics.screenWidth,
   // overflow: 'visible',
-  // resizeMode: 'stretch',
-    alignSelf: 'stretch'
+    resizeMode: 'cover'
+  //  alignSelf: 'stretch'
   // width:Metrics.screenWidth,
   // backgroundColor:Colors.flBlue.ocean
   },
   hsaBg: {
  // flexDirection:'row',
-    height: 310,
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.45),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
  // padding:10,
     alignSelf: 'stretch',
-    width: null
+    width: Metrics.screenWidth
  // backgroundColor:Colors.flBlue.ocean
   },
   container: {
@@ -44,19 +55,83 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow
 
   },
+  greetingView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.78)) / 3,
+    // padding:5,
+    backgroundColor: Colors.flBlue.grey6
+  },
+  messageCountStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 3,
+    backgroundColor: Colors.flBlue.grey1,
+    flexDirection: 'row'
+  },
+  messageTextStyle: {
+    color: Colors.flBlue.night,
+    fontSize: Fonts.size.h6,
+    marginLeft: Metrics.baseMargin
+  },
   summary: {
     flexDirection: 'row',
-    height: 200,
-    backgroundColor: '#E8E8E8'
-  },
-  footerImage: {
-
-    flexDirection: 'row',
-    height: 150,
-     // height : window.height * 0.5,
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.73),
     justifyContent: 'space-between',
     alignItems: 'center',
-    alignSelf: 'stretch',
+    resizeMode: 'cover',
+  //  padding:5,
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth
+  },
+  titleView: {
+    marginTop: 10
+  },
+  center: {
+    flex: 0.3,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  healthPlanView: {
+    flex: 0.7,
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: Colors.transparent
+  },
+  healthPlanText: {
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
+    color: Colors.flBlue.anvil
+  //  fontWeight: '500'
+// alignSelf : 'stretch',
+//  alignItems:'center',
+//  justifyContent:'center',
+//  height:40,
+// marginLeft:5
+  },
+  healthPlanImage: {
+    marginTop: Metrics.mediumMargin,
+    marginLeft: Metrics.doubleBaseMargin,
+    width: Metrics.images.large,
+    height: Metrics.images.large
+  },
+  healthPlanIcon: {
+    marginTop: Metrics.searchBarHeight,
+    marginRight: Metrics.mediumMargin,
+    backgroundColor: Colors.transparent
+  },
+  footerView: {
+    borderTopWidth: 0.5,
+    borderBottomWidth: 0.5,
+    borderColor: Colors.snow
+  },
+  footerImage: {
+    // flexDirection: 'row',
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.84),
+     // height : window.height * 0.5,
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+  //  alignSelf: 'stretch',
+    resizeMode: 'cover',
     width: Metrics.screenWidth
   },
   titleView: {
@@ -91,7 +166,8 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular,
     fontWeight: '600',
     textAlign: 'center',
-    padding: 15
+    padding: 5,
+    marginTop: Metrics.smallMargin
   },
 
   row_1: {
@@ -110,6 +186,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     // paddingTop : 10
     paddingBottom: 15
+  },
+  spinnerView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: window.width,
+    height: window.height
   }
 
 })

@@ -16,8 +16,6 @@ import Greeting from './Components/Greeting'
 import MyPlanCard from './Components/MyPlanCard'
 import Card from './Components/Card'
 import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
-// import SeeDetailsCard from './Components/SeeDetailsCard'
-// import TransButton from './Components/transButton'
 import styles from './DashBoardStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -47,13 +45,13 @@ class LandingScreen extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View />
-      <Image source={Images.themeLogo} style={{marginTop: 15, height: 23}} />
+      <Image source={Images.themeLogo} style={{marginTop: Metrics.mediumMargin, height: Metrics.images.small}} />
       {NavItems.settingsButton()}
     </Image>)
   }
   componentDidMount () {
     console.log('mount on dashboadr' + this.props.smToken)
-    this.props.attemptMember()
+  //  this.props.attemptMember()
   }
   render () {
     var color = new Array('#005b80', '#00aec7', '#0091cc', '#005b80')
@@ -62,8 +60,8 @@ class LandingScreen extends Component {
 
       <View style={styles.container}>
         {this._renderHeader()}
-        <ScrollView>
-          {
+
+        {
         this.props.visibilityRules ?
 
           <View style={{flex: 1}}>
@@ -89,14 +87,14 @@ class LandingScreen extends Component {
                   <TouchableOpacity style={{
                     width: window.width * 0.5,
                     backgroundColor: color[i],
-                    height: 150,
+                    height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
                     alignItems: 'center',
                     justifyContent: 'center',
                     borderWidth: 1,
                     borderColor: Colors.flBlue.lightBlue
                   }} onPress={onItemPress.bind(this)} key={i}>
                     <View style={{alignItems: 'center'}}>
-                      <Flb name={tile.tileIcon} size={40} color='white' />
+                      <Flb name={tile.tileIcon} size={Metrics.icons.regular} color='white' />
                       <Text style={{
                         marginTop: Metrics.doubleBaseMargin,
                         fontSize: Fonts.size.regular,
@@ -109,21 +107,22 @@ class LandingScreen extends Component {
                   </TouchableOpacity>
                 )
                 i += 1
-              }) : <Text />}
+              }) : <Text />
+            }
             </View>
-            <View />
-            <Image source={Images.findCare} style={styles.footerImage} />
+            <View style={styles.footerView} >
+              <Image source={Images.findCare} style={styles.footerImage} />
+            </View>
 
           </View>
 
        :
-          <View style={{alignItems: 'center', justifyContent: 'center'}}>
+          <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>
       }
 
-        </ScrollView>
       </View>
     )
   }
