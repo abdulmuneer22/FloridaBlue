@@ -30,45 +30,39 @@ class DoctorServices extends Component {
     </Image>)
   }
   render () {
-    var temp = this.props.data
-    var objectName = this.props.objectName
-    var temp1 = temp[objectName]
-    var tiles = this.props.data.tiles
-    var tile = tiles.filter(function (tiles) { return (tiles.tileId == objectName) })
 
-    console.log('tile' + JSON.stringify(tile))
-    console.log('tiles' + JSON.stringify(tiles))
+    var temp = this.props.data;
+    var objectName = this.props.objectName
+    var temp1 = temp[objectName];
+    var tiles=this.props.data.tiles;
+    var tile=tiles.filter(function(tiles){return (tiles.tileId == objectName)})
+
+    console.log('tile'+JSON.stringify(tile))
+    console.log('tiles'+JSON.stringify(tiles))
+
 
     return (
 
-      <View style={{
-        flex: 1,
-        backgroundColor: 'white'
-      }}>
+      <View style={styles.container}>
         {this._renderHeader()}
 
         <ScrollView>
           {
               this.props.data ?
 
-                <View style={{flex: 1}}>
-                  <View style={{
-                    alignItems: 'center',
-                    marginTop: Metrics.baseMargin
-                  }}>
-                    <Flb name={tile[0].tileIcon}size={Metrics.icons.xl} color={Colors.flBlue.ocean} />
-                    <Text style={{
-                      marginTop: Metrics.smallMargin,
-                      fontSize: Fonts.size.h4,
-                      color: Colors.flBlue.anvil
-                    }}>{temp1.text['en']}</Text>
-                    <Switch leftActive={this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight} />
-                  </View>
-                  <View>
-                    <Card data={this.props.data} objectName={this.props.objectName} leftActive={this.props.leftActive} rightActive={this.props.rightActive} />
-                  </View>
 
-                </View>
+          <View style={{flex : 1}}>
+          <View style={styles.doctorCardStyle}>
+          <Flb name={tile[0].tileIcon}size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+          <Text style={styles.doctorTextStyle}>{temp1.text['en']}</Text>
+          <Switch leftActive = {this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight}></Switch>
+          </View>
+          <View>
+          <Card data= {this.props.data} objectName={this.props.objectName} leftActive = {this.props.leftActive} rightActive={this.props.rightActive}/>
+          </View>
+
+
+          </View>
           :
                 <View style={styles.spinnerView}>
                   <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />

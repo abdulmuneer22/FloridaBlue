@@ -23,12 +23,16 @@ const jsForInjection = `
   var el = document.getElementsByTagName('body')[0];
   el.style.height = '${Dimensions.get('window').height}px';
 `
-
 class Webview extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
-      <Text style={[{color: Colors.flBlue.ocean, backgroundColor: Colors.transparent, fontSize: Fonts.size.h3, marginRight: 50, marginTop: 5}]}>Web View</Text>
+      <Text style={[{color: Colors.flBlue.ocean,
+        backgroundColor: Colors.transparent,
+        fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
+        marginRight: 50, marginTop: 5}]}>
+        Florida Blue
+        </Text>
 
     </Image>)
   }
@@ -51,7 +55,9 @@ class Webview extends Component {
       }
     }
 
-    console.log('redirect' + JSON.stringify(redirect))
+    console.log("redirect"+JSON.stringify(redirect));
+
+
 
     return (
       <View style={{
@@ -72,21 +78,17 @@ class Webview extends Component {
     )
   }
 }
-
 onShouldStartLoadWithRequest = (event) => {
     // Implement any custom loading logic here, don't forget to return!
 
-  return true
-}
-
+    return true;
+  };
 goBack = () => {
-  this.refs[WEBVIEW_REF].goBack()
-}
-
+  this.refs[WEBVIEW_REF].goBack();
+};
 goForward = () => {
-  this.refs[WEBVIEW_REF].goForward()
-}
-
+  this.refs[WEBVIEW_REF].goForward();
+};
 Webview.propTypes = {
 /*  fetching: PropTypes.bool,
   responseURL : PropTypes.string, */
@@ -99,5 +101,4 @@ const mapStateToProps = (state) => {
     smToken: state.login.smToken
   }
 }
-
 export default connect(mapStateToProps)(Webview)

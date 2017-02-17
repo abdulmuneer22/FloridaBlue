@@ -31,14 +31,14 @@ class MyPlanCard extends Component {
             <Text style={styles.healthPlanText}>
       My Health Plan
       </Text>
-            <Text style={{fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025, marginTop: 15}}>
+            <Text style={styles.healthPlanSubText}>
               Find information about deductibles, claims, your savings, and more.
               </Text>
 
           </View>
 
           <View style={styles.healthPlanIcon}>
-            <Flb name='chevron-right' size={Metrics.icons.xml} />
+            <Flb name='chevron-right' size={Metrics.icons.xml * Metrics.screenWidth * 0.0025} />
           </View>
 
         </Image>

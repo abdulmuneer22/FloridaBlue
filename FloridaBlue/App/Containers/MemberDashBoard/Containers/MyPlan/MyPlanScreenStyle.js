@@ -20,7 +20,7 @@ export default StyleSheet.create({
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h3,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
     marginLeft: Metrics.baseMargin,
     marginTop: Metrics.smallMargin
 
@@ -29,31 +29,30 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: 'white'
   },
-  PlanName: {
+  planNameView: {
     alignItems: 'center',
     justifyContent: 'center',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 3
 
   },
+  planNameText:{
+    fontSize: Fonts.size.h6 ,
+    color:Colors.flBlue.anvil
+  },
 
   chartWrapper: {
     //   backgroundColor : 'yellow',
     flex: 2,
-    marginBottom: 20
+    marginBottom: Metrics.doubleBaseMargin
   },
   cardStyle: {
     flexWrap: 'wrap',
     flexDirection: 'row'
   },
-  spinner: {
-  //  color:Colors.flBlue.red,
-  // alignItems:'center',
-  // justifyContent:'center',
-  // height:window.height
-  },
+
   spinnerText: {
 
-    marginTop: 20
+    marginTop: Metrics.doubleBaseMargin
   },
   wrapper: {
     backgroundColor: Colors.snow
@@ -66,43 +65,44 @@ export default StyleSheet.create({
   // justifyContent:'center',
     flexWrap: 'nowrap',
 //  borderWidth:2,
-    marginTop: 5
+    marginTop: Metrics.smallMargin
 //  borderColor:Colors.flBlue.grey4,
 //  backgroundColor:Colors.flBlue.grey2
   },
   headerText: {
-    color: Colors.flBlue.night,
+    color: Colors.flBlue.anvil,
     fontWeight: 'bold',
-  // paddingBottom:10,
-    marginTop: 10,
+  // paddingBottom:Metrics.baseMargin,
+    marginTop: Metrics.baseMargin,
 
   // width:window.width,
   // alignSelf:'center',
-    fontSize: Fonts.size.h6
+    fontSize: Fonts.size.h5
   // backgroundColor:Colors.flBlue.ocean
   },
   subHeader: {
-    fontSize: Fonts.size.regular,
-    marginBottom: 10,
-    marginTop: 10
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025,
+    color:Colors.flBlue.anvil,
+    marginBottom: Metrics.baseMargin,
+    marginTop: Metrics.baseMargin
   },
   listViewBg: {
     flexDirection: 'row',
-    marginLeft: 15,
-    marginRight: 15
+    marginLeft: Metrics.mediumMargin,
+    marginRight: Metrics.mediumMargin
   },
   dataContainer: {
 //  flexDirection:'row',
-    marginLeft: 20,
-    marginRight: 20,
+    marginLeft: Metrics.doubleBaseMargin,
+    marginRight: Metrics.doubleBaseMargin,
     flex: 1,
-    margin: 10,
+    margin: Metrics.baseMargin,
     flexWrap: 'wrap'
   },
   listViewStyle: {
     alignItems: 'flex-start',
 
-    marginLeft: 20
+    marginLeft: Metrics.doubleBaseMargin
 
   },
   spinnerView: {

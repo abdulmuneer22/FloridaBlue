@@ -20,7 +20,7 @@ export default StyleSheet.create({
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h3,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
     marginLeft: Metrics.baseMargin,
     marginTop: Metrics.smallMargin
 
@@ -28,6 +28,31 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white'
+  },
+  benefitTileView:{
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    flex:1
+
+  },
+  tileView:{
+    width: window.width * 0.5,
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.76),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: Colors.flBlue.lightBlue,
+    borderWidth: 1,
+
+
+    // borderTopWidth:1
+  },
+  tileText:{
+    marginTop: Metrics.baseMargin,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00265,
+    textAlign:'center',
+    fontWeight: '600',
+    color: 'white',
   },
   spinnerText: {
 

@@ -118,9 +118,13 @@ class Screen_1 extends React.Component {
               autoCorrect={false}
               onChangeText={this.props.handleChangeContractNumber}
               underlineColorAndroid={Colors.coal}
+
+              onSubmitEditing={() => this.refs.contractNumber.focus()}
+
               onSubmitEditing={(event) => {
                 this.refs.firstName.focus()
               }}
+
               placeholder={I18n.t('memberId')}
             />
           </View>
