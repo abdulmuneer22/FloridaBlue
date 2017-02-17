@@ -63,19 +63,17 @@ class Greeting extends Component {
     return (
       <View>
         <View style={styles.greetingView}>
-          <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
-            {this.state.greetText}
+          <Text style={{fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027, color: Colors.snow}}>
+            {this.state.greetText} {this.props.userName ? this.props.userName : ''}
           </Text>
-          <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
-            {this.props.userName ? this.props.userName : ''}
-          </Text>
+
         </View>
 
         {
         messageCount ?
           <View style={styles.messageCountStyle}>
 
-            <Flb name='email-envelope' size={Metrics.icons.small} />
+            <Flb name='email-envelope' size={Metrics.icons.small } />
             <Text style={styles.messageTextStyle}> You have {messageCount} new messages. </Text>
 
           </View>

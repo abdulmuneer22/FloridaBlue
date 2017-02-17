@@ -38,7 +38,7 @@ class MyPlanCard extends Component {
           </View>
 
           <View style={styles.healthPlanIcon}>
-            <Flb name='chevron-right' size={Metrics.icons.xml} />
+            <Flb name='chevron-right' size={Metrics.icons.xml * Metrics.screenWidth * 0.0025} />
           </View>
 
         </Image>
