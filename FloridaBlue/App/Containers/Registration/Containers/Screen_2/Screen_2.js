@@ -10,6 +10,7 @@ import ReactNative, {
   TouchableOpacity,
   View
 } from 'react-native'
+
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
@@ -52,30 +53,48 @@ class Screen_2 extends React.Component {
     NavigationActions.pop()
   }
 
+  /*
   _handleNext () {
     NavigationActions.screen_3()
   }
+  */
 
-  /*
   _handleNext () {
+    var phoneNumber = this.props.phoneNumber
+    var email = this.props.email
+    var confirmEmail = this.props.confirmEmail
+    var createUserId = this.props.createUserId
+    var password = this.props.password
+    var confirmPassword = this.props.confirmPassword
+    var communicationsElectronically = this.props.communicationsElectronically
+
     if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
       alert("Please enter values in all fields")
     } else {
-      this.props.verifyPersonalInformation(phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, communicationsElectronically)
+      this.props.verifyPersonalInformation(this.props)
     }
-    this.props.verifyPersonalInformation(this.props)
+
   }
-  */
+
+  componentDidMount() {
+    this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
+  }
 
   componentDidUpdate () {
+    console.tron.log('update')
+    console.tron.log(this.props)
+
     if (this.props.data) {
       var reasonCode = this.props.data.reasonCode
-      console.log(reasonCode)
 
       if (reasonCode === '000') {
         NavigationActions.screen_3()
       }
     }
+  }
+
+  componentWillReceiveProps() {
+    console.tron.log('receiving props')
   }
 
   render () {
@@ -100,6 +119,7 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='phoneNumber'
+              value={this.props.phoneNumber}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='numbers-and-punctuation'
               returnKeyType='next'
@@ -116,6 +136,7 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='email'
+              value={this.props.email}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='email-address'
               returnKeyType='next'
@@ -132,6 +153,7 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='confirmEmail'
+              value={this.props.confirmEmail}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='email-address'
               returnKeyType='next'
@@ -148,6 +170,7 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='createUserId'
+              value={this.props.createUserId}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
@@ -164,6 +187,7 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='password'
+              value={this.props.password}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
@@ -181,6 +205,7 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='confirmPassword'
+              value={this.props.confirmPassword}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='done'
@@ -196,10 +221,13 @@ class Screen_2 extends React.Component {
             <View style={styles.checkbox}>
               <MKCheckbox
                 ref='communicationsElectronically'
+                value={this.props.communicationsElectronically}
                 onCheckedChange={() => {
-                  console.log(this)
-                  var checked = this.refs.communicationsElectronically.state.checked
-                  this.props.handleChangeCommunicationsElectronically(checked)
+                  console.tron.log('clicked')
+                  //console.tron.log(this.refs)
+                  //var checked = this.refs.communicationsElectronically.state.checked
+                  //console.tron.log(checked)
+                  //this.props.handleChangeCommunicationsElectronically(checked)
                 }
                 }
               />

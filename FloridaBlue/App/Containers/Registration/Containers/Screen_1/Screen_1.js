@@ -45,11 +45,12 @@ class Screen_1 extends React.Component {
     super(props)
   }
 
+  /*
   _handleNext () {
     NavigationActions.screen_2()
   }
+  */
 
-  /*
   _handleNext() {
     var contractNumber = this.props.contractNumber
     var firstName = this.props.firstName
@@ -57,26 +58,27 @@ class Screen_1 extends React.Component {
     var dateOfBirth = this.props.dateOfBirth
     var zipCode = this.props.zipCode
 
+
     if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
       alert("Please enter values in all fields")
     } else {
-      this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
+      this.props.verifyIdentification(this.props)
     }
-    this.props.verifyIdentification(contractNumber,firstName,lastName,dateOfBirth,zipCode)
+  }
 
+  componentDidMount() {
+    this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
   }
 
   componentDidUpdate () {
     if (this.props.data) {
       var reasonCode = this.props.data.reasonCode
-      console.log(reasonCode)
 
       if (reasonCode === '000') {
         NavigationActions.screen_2()
       }
     }
   }
-  */
 
   _handleFindMemberId () {
     NavigationActions.memberid()
@@ -108,6 +110,7 @@ class Screen_1 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='contractNumber'
+              value={this.props.contractNumber}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
@@ -136,6 +139,7 @@ class Screen_1 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='firstName'
+              value={this.props.firstName}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
@@ -151,6 +155,7 @@ class Screen_1 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='lastName'
+              value={this.props.lastName}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
@@ -166,6 +171,7 @@ class Screen_1 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='dateOfBirth'
+              value={this.props.dateOfBirth}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
@@ -181,6 +187,7 @@ class Screen_1 extends React.Component {
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='zipCode'
+              value={this.props.zipCode}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='done'
