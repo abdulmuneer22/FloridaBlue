@@ -11,17 +11,15 @@ export function* sendIdentificationRequest (api, {
 }) {
   const response = yield call(api.postIdentification, data)
 
-  console.log(JSON.stringify(response))
+  console.tron.log(response)
 
   if (response.ok) {
-    // dispatch failure
-    console.log('I am coming from success')
+    console.tron.log('postIdentification success')
     var error = null
     var data = response.data
     yield put(RegistrationActions.sendIdentificationSuccess(data))
   } else {
-    // dispatch successful logins
-    console.log('I am coming from failure')
+    console.tron.log('postIdentification failure')
     var error = 'Invaid input provided'
     var data = {
       'reasonCode': '999',
@@ -36,17 +34,15 @@ export function* sendPersonalInformationRequest (api, {
 }) {
   const response = yield call(api.postPersonalInformation, data)
 
-  console.log(JSON.stringify(response))
+  console.tron.log(response)
 
   if (response.ok) {
-    // dispatch failure
-    console.log('I am coming from success')
+    console.tron.log('postPersonalInformation success')
     var error = null
     var data = response.data
     yield put(RegistrationActions.sendPersonalInformationSuccess(data))
   } else {
-    // dispatch successful logins
-    console.log('I am coming from failure')
+    console.tron.log('postPersonalInformation failure')
     var error = 'Invaid input provided'
     var data = {
       'reasonCode': '999',
@@ -61,17 +57,15 @@ export function* sendRegistrationCodeRequest (api, {
 }) {
   const response = yield call(api.postRegistrationCode, data)
 
-  console.log(JSON.stringify(response))
+  console.tron.log(response)
 
   if (response.ok) {
-    // dispatch failure
-    console.log('I am coming from success')
+    console.tron.log('postRegistrationCode success')
     var error = null
     var data = response.data
     yield put(RegistrationActions.sendRegistrationCodeSuccess(data))
   } else {
-    // dispatch successful logins
-    console.log('I am coming from failure')
+    console.tron.log('postRegistrationCode failure')
     var error = 'Invaid input provided'
     var data = {
       'reasonCode': '999',

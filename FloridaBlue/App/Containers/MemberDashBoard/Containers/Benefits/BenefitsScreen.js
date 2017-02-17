@@ -10,10 +10,7 @@ Image
 } from 'react-native'
 
 const window = Dimensions.get('window')
-// toolbar => 60
-// grid => window - 60 -> 70%
-// footer => window-60 -> 30%
-// const windowheight = window.height - 60
+
 
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -56,15 +53,11 @@ class PlanBenefits extends Component {
         {this._renderHeader()}
 
         <ScrollView>
-          <View style={{
-            flexWrap: 'wrap',
-            flexDirection: 'row',
-            borderTopWidth: 1
-
-          }}>
+          <View style={styles.benefitTileView}>
 
             {this.props.data && this.props.data.tiles ?
       this.props.data.tiles.map(function (tile, i) {
+
         onItemPress = function () {
           var action
           if (tile.tileType == 'native') {
@@ -76,26 +69,11 @@ class PlanBenefits extends Component {
 
         return (
 
-          <TouchableOpacity style={{
-            width: window.width * 0.5,
-            backgroundColor: color[i],
-            height: Metrics.screenHeight - (Metrics.screenHeight * 0.76),
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderColor: Colors.flBlue.lightBlue,
-            borderWidth: 1
-
-            // borderTopWidth:1
-          }} onPress={onItemPress.bind(this)} key={i}>
+          <TouchableOpacity style={[styles.tileView, {backgroundColor: color[i]}]} onPress={onItemPress.bind(this)} key={i}>
 
             <View style={{alignItems: 'center'}}>
-              <Flb name={tile.tileIcon} size={Metrics.icons.regular} color='white' />
-              <Text style={{
-                marginTop: Metrics.baseMargin,
-                fontSize: Fonts.size.regular,
-                fontWeight: '600',
-                color: 'white'
-              }}>
+              <Flb name={tile.tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0035} color={Colors.snow} />
+              <Text style={styles.tileText}>
                 {tile.tileName['en']}
               </Text>
             </View>
@@ -103,6 +81,7 @@ class PlanBenefits extends Component {
 
         )
         i += 1
+
       }) : <View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
@@ -115,23 +94,9 @@ class PlanBenefits extends Component {
     )
   }
 
+
 }
 
-var Styles = StyleSheet.create({
-  footerWrapper: {
-    flexDirection: 'row',
-    bottom: 0
-  },
-  icon: {
-    flex: 0.6
-// width : window.width,
-// backgroundColor : 'red'
-  },
-  textWrapepr: {
-// backgroundColor : 'green',
-    flex: 3
-  }
-})
 
 PlanBenefits.propTypes = {
 

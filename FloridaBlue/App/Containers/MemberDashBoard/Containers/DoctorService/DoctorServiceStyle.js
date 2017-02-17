@@ -20,7 +20,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: Colors.snow
   },
   headerContainer: {
     flexDirection: 'row',
@@ -34,23 +34,43 @@ export default StyleSheet.create({
     //backgroundColor: Colors.flBlue.sky
   },
   headerTextStyle:{
+<<<<<<< HEAD
     color: Colors.flBlue.ocean,
       backgroundColor:Colors.transparent,
       fontSize: Fonts.size.h3,
+=======
+      color: Colors.flBlue.ocean,
+      backgroundColor:Colors.transparent,
+      fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
+>>>>>>> 2575481e69d47adde8b39968911202f326b037b5
       marginLeft: Metrics.baseMargin,
       marginTop:Metrics.smallMargin
 
   },
+  doctorCardStyle:{
+    alignItems : 'center',
+    marginTop : Metrics.baseMargin
+  },
+
+  doctorTextStyle:{
+    marginTop : Metrics.smallMargin,
+    fontSize : Fonts.size.h4 * Metrics.screenWidth * 0.0023,
+    color:Colors.flBlue.anvil,
+},
   cardStyle: {
     width: window.width,
     backgroundColor: Colors.flBlue.grey1,
    // height : 200,
    // alignSelf: 'center',
-   //  padding : 10,
+   //  padding : Metrics.baseMargin,
     marginTop: Metrics.baseMargin,
   //  alignItems: 'center',
     borderTopWidth:1,
     borderBottomWidth:1,
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2575481e69d47adde8b39968911202f326b037b5
     borderTopColor: Colors.flBlue.grey3,
     borderBottomColor: Colors.flBlue.grey3,
 
@@ -61,8 +81,14 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow,
    // height : 200,
    // alignSelf: 'center',
+<<<<<<< HEAD
    //  padding : 10,
     marginTop: Metrics.baseMargin,
+=======
+   //  padding : Metrics.baseMargin,
+    marginTop: Metrics.baseMargin,
+
+>>>>>>> 2575481e69d47adde8b39968911202f326b037b5
   //  alignItems: 'center',
 
 
@@ -70,7 +96,11 @@ export default StyleSheet.create({
   h1: {
     //flexWrap:'wrap',
     margin:5,
+<<<<<<< HEAD
     fontSize: Fonts.size.h5,
+=======
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
+>>>>>>> 2575481e69d47adde8b39968911202f326b037b5
     //fontWeight: '600',
     color:Colors.flBlue.anvil,
     textAlign: 'center',
@@ -78,21 +108,37 @@ export default StyleSheet.create({
   },
 
   h2: {
+<<<<<<< HEAD
     fontSize: Fonts.size.regular,
   //  textAlign: 'center',
   color:Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
       marginLeft:5
+=======
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0026,
+  //  textAlign: 'center',
+    color:Colors.flBlue.anvil,
+    paddingTop: Metrics.baseMargin,
+    marginLeft:Metrics.baseMargin,
+
+>>>>>>> 2575481e69d47adde8b39968911202f326b037b5
 
   },
   h4: {
     //textAlign: 'center',
     //paddingBottom: Metrics.mediumMargin,
+<<<<<<< HEAD
     fontSize:Fonts.size.medium,
     marginTop:Metrics.smallMargin,
     color:Colors.flBlue.grey5,
   //  marginLeft:10,
     marginTop:10
+=======
+    fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0029,
+    marginTop:Metrics.smallMargin,
+    color:Colors.flBlue.grey5,
+    marginLeft:Metrics.baseMargin
+>>>>>>> 2575481e69d47adde8b39968911202f326b037b5
   //  marginBottom:5
 
   },

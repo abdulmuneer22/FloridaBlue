@@ -20,7 +20,7 @@ export default StyleSheet.create({
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h3,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
     marginLeft: Metrics.baseMargin,
     marginTop: Metrics.smallMargin
 
@@ -90,7 +90,24 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
   },
   titleView: {
-    marginTop: 10
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  tileStyle:{
+    width: window.width * 0.5,
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: Colors.flBlue.lightBlue
+  },
+  tileTextStyle:{
+    marginTop: Metrics.doubleBaseMargin,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    fontWeight: '600',
+    color: 'white',
+    textAlign:'center',
   },
   center: {
     flex: 0.3,
@@ -105,19 +122,23 @@ export default StyleSheet.create({
   },
   healthPlanText: {
     fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
-    color: Colors.flBlue.anvil
-  //  fontWeight: '500'
+    color: Colors.flBlue.anvil,
+    fontWeight: '500'
 // alignSelf : 'stretch',
 //  alignItems:'center',
 //  justifyContent:'center',
 //  height:40,
 // marginLeft:5
   },
+  healthPlanSubText:{
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    marginTop: 10
+  },
   healthPlanImage: {
     marginTop: Metrics.mediumMargin,
     marginLeft: Metrics.doubleBaseMargin,
-    width: Metrics.images.large,
-    height: Metrics.images.large
+    width: Metrics.images.xl,
+    height: Metrics.images.xl
   },
   healthPlanIcon: {
     marginTop: Metrics.searchBarHeight,
