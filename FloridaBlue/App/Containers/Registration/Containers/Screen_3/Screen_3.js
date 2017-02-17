@@ -46,11 +46,12 @@ class Screen_3 extends React.Component {
     NavigationActions.pop()
   }
 
+  /*
   _handleNext () {
     NavigationActions.screen_4()
   }
+  */
 
-  /*
   _handleNext () {
     if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
       alert("Please enter values in all fields")
@@ -70,7 +71,10 @@ class Screen_3 extends React.Component {
       }
     }
   }
-  */
+
+  componentDidMount() {
+    this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
+  }
 
   render () {
     return (
