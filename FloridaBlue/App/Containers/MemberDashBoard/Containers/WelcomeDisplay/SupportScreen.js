@@ -88,7 +88,6 @@ class SupportScreen extends Component {
               </View>)
               i += 1
             }) : <Text> Loading ..</Text>}
-
                 </View>
           : <View style={{alignItems: 'center', justifyContent: 'center'}}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
