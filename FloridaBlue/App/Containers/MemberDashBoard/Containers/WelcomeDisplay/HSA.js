@@ -50,23 +50,23 @@ class HSA extends Component {
         <View style={styles.container}>
           <View style={styles.row_1}>
             <View style={styles.col_1}>
-              <Text style={styles.textStyle1}>Current</Text>
-              <Text style={styles.textStyle1}>Balance</Text>
-              <Text style={styles.textStyle1}>$3,125</Text>
+              <Text style={styles.hsaTextStyle1}>Current</Text>
+              <Text style={styles.hsaTextStyle1}>Balance</Text>
+              <Text style={styles.hsaTextStyle1}>$3,125</Text>
             </View>
 
             <View style={styles.col_1}>
-              <Text style={styles.textStyle1}>YTD</Text>
-              <Text style={styles.textStyle1}>Contributiont</Text>
-              <Text style={styles.textStyle1}>$2,250</Text>
+              <Text style={styles.hsaTextStyle1}>YTD</Text>
+              <Text style={styles.hsaTextStyle1}>Contributiont</Text>
+              <Text style={styles.hsaTextStyle1}>$2,250</Text>
 
             </View>
           </View>
 
           <View style={styles.row_2}>
-            <Text style={styles.textStyle1}>YTD</Text>
-            <Text style={styles.textStyle1}>Distribution</Text>
-            <Text style={styles.textStyle1}>-$2.250</Text>
+            <Text style={styles.hsaTextStyle1}>YTD</Text>
+            <Text style={styles.hsaTextStyle1}>Distribution</Text>
+            <Text style={styles.hsaTextStyle1}>-$2.250</Text>
           </View>
 
         </View>

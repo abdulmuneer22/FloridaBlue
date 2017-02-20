@@ -69,7 +69,7 @@ class SupportScreen extends Component {
                   {this.props.data && this.props.data.support ?
             this.props.data.support.map(function (support, i) {
               return (<View style={i % 2 == 0 ? styles.textBackground : styles.textBackground1} key={i} >
-                <View>
+                <View style={{flex:0.5}}>
                   <Text style={styles.textStyle} >
                     {support.contactType}
                   </Text>
@@ -77,7 +77,7 @@ class SupportScreen extends Component {
                     {support.contactNumber}
                   </Text>
                 </View>
-                <View>
+                <View style={{flex:0.5, alignItems:'center'}}>
                   <Text style={styles.textStyle1} >
                     {support.accessibilityType}
                   </Text>

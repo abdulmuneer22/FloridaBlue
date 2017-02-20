@@ -1,7 +1,10 @@
 # iOS
 # app_identifier "com.infinitered.ignite" # The bundle identifier of your app
+# "com.bcbsfl.com.FloridaBlue"
 # apple_id "thisIsMe@gmail.com" # Your Apple email address
+# "anveshreddy.enugu@bcbsfl.com"
 # team_id "3FTD6ME549"  # Developer Portal Team ID
+# "Blue Cross and Blue Shield of Florida"
 
 # Android
 # json_key_file "./google-play-api-secret.json" # Path to the json secret file - Follow https://github.com/fastlane/supply#setup to get one

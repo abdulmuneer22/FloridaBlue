@@ -57,6 +57,12 @@ export default {
     marginBottom: Metrics.mediumMargin,
     marginTop: Metrics.baseMargin
   },
+  heading1: {
+    color: Colors.snow,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
+    marginBottom: Metrics.mediumMargin,
+  //  marginTop: Metrics.baseMargin
+  },
   subheading: {
     color: Colors.snow,
     fontSize: Fonts.size.h5,

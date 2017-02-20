@@ -30,7 +30,7 @@ class Webview extends Component {
       <Text style={[{color: Colors.flBlue.ocean,
         backgroundColor: Colors.transparent,
         fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
-        marginRight: 50, marginTop: 5}]}>
+        marginRight: 70, marginTop: 5}]}>
         Florida Blue
         </Text>
 

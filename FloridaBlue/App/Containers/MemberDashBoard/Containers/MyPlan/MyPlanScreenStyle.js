@@ -65,7 +65,8 @@ export default StyleSheet.create({
   // justifyContent:'center',
     flexWrap: 'nowrap',
 //  borderWidth:2,
-    marginTop: Metrics.smallMargin
+    marginTop: Metrics.smallMargin,
+    marginLeft:10,
 //  borderColor:Colors.flBlue.grey4,
 //  backgroundColor:Colors.flBlue.grey2
   },

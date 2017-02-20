@@ -32,7 +32,7 @@ export default StyleSheet.create({
   benefitTileView:{
     flexWrap: 'wrap',
     flexDirection: 'row',
-    borderTopWidth: 1,
+  //  borderTopWidth: 1,
     flex:1
 
   },
@@ -41,9 +41,12 @@ export default StyleSheet.create({
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.76),
     alignItems: 'center',
     justifyContent: 'center',
-    borderColor: Colors.flBlue.lightBlue,
-    borderWidth: 1,
-
+    shadowColor:Colors.flBlue.green,
+    shadowOpacity:2,
+    shadowOffset: {width: 5, height: 5},
+    shadowRadius:15,
+    borderWidth: 6,
+    borderColor: Colors.flBlue.lightBlue
 
     // borderTopWidth:1
   },

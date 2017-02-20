@@ -1,7 +1,15 @@
 // @flow
 
 import React, { Component} from 'react'
-import { ScrollView, Image, BackAndroid, View, StyleSheet, Text, Dimensions, TouchableWithoutFeedback } from 'react-native'
+import { ScrollView,
+  Image, BackAndroid,
+  View,
+  StyleSheet,
+  Text,
+  Dimensions,
+  TouchableWithoutFeedback,
+  TouchableOpacity
+} from 'react-native'
 import styles from './DrawerContentStyle'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import DrawerButton from '../../Components/DrawerButton'
@@ -9,6 +17,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import LoginActions from '../../Redux/LoginRedux'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 var {height, width} = Dimensions.get('window')
 const window = Dimensions.get('window')
@@ -18,6 +27,12 @@ const Divider = () => {
 }
 
 class SettingsContent extends Component {
+  constructor(){
+    super();
+    this.state = {
+      hpActive : false
+    }
+  }
 
   componentDidMount () {
     BackAndroid.addEventListener('hardwareBackPress', () => {
@@ -106,12 +121,37 @@ class SettingsContent extends Component {
         <View style={styles.options}>
           <Text style={styles.heading} onPress={this.handlePressDashBoard}>Dash Board</Text>
           <Divider />
+
           <View>
-            <Text style={styles.heading} onPress={this.handlePressPlans}>My Health Plan</Text>
-            <View style={{paddingLeft: 30}}>
+
+          <View style={{flexDirection:'row',marginRight:15,marginTop:10}}>
+          <View style={{flex:1}}>
+            <Text style={styles.heading1} onPress={this.handlePressPlans}>My Health Plan</Text>
+            </View>
+            <TouchableOpacity onPress={()=>{
+              this.setState({hpActive : !this.state.hpActive})
+            }}>
+            {
+
+              !this.state.hpActive ?
+
+              <Icon name="caret-down" size={18} color="white" />
+              :
+              <Icon name="caret-up" size={18} color="white" />
+
+            }
+            </TouchableOpacity>
+            </View>
+
+            {
+              this.state.hpActive ?
+
+            <View style={{marginLeft:20}}>
               <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
               <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
             </View>
+            :null
+          }
           </View>
           <Divider />
           <Text style={styles.heading} onPress={this.handlePressResources}>Resources</Text>

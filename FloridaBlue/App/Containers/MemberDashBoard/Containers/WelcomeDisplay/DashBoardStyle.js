@@ -21,14 +21,14 @@ export default StyleSheet.create({
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
-    marginLeft: Metrics.baseMargin,
+    marginLeft: Metrics.smallMargin,
     marginTop: Metrics.smallMargin
 
   },
   hsaHeader: {
     flexDirection: 'row',
 
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 2,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.83)),
 
   // marginTop:20,
     justifyContent: 'space-between',
@@ -46,7 +46,7 @@ export default StyleSheet.create({
   },
   hsaBg: {
  // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.45),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.50),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
@@ -81,7 +81,7 @@ export default StyleSheet.create({
   },
   summary: {
     flexDirection: 'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.73),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
     justifyContent: 'space-between',
     alignItems: 'center',
     resizeMode: 'cover',
@@ -95,11 +95,16 @@ export default StyleSheet.create({
     justifyContent: 'space-around'
   },
   tileStyle:{
-    width: window.width * 0.5,
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
+    width: (window.width * 0.5),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.81),
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    //margin:2,
+    shadowColor:Colors.flBlue.green,
+    shadowOpacity:2,
+    shadowOffset: {width: 5, height: 5},
+    shadowRadius:15,
+    borderWidth: 6,
     borderColor: Colors.flBlue.lightBlue
   },
   tileTextStyle:{
@@ -152,13 +157,14 @@ export default StyleSheet.create({
   },
   footerImage: {
     // flexDirection: 'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.84),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
      // height : window.height * 0.5,
     // justifyContent: 'space-between',
     // alignItems: 'center',
   //  alignSelf: 'stretch',
-    resizeMode: 'cover',
-    width: Metrics.screenWidth
+    resizeMode: 'stretch',
+    width: Metrics.screenWidth,
+    marginBottom:0
   },
   titleView: {
     marginTop: Metrics.baseMargin
@@ -170,29 +176,36 @@ export default StyleSheet.create({
   textBackground: {
     flexDirection: 'row',
     backgroundColor: Colors.snow,
-    padding: Metrics.doubleBaseMargin
+    padding: Metrics.mediumMargin
   },
 
   textBackground1: {
     flexDirection: 'row',
-    backgroundColor: Colors.flBlue.grey2,
-    padding: Metrics.doubleBaseMargin
+    backgroundColor: Colors.flBlue.lightBlue,
+    padding: Metrics.mediumMargin
   },
 
   textStyle1: {
-    fontSize: Fonts.size.regular
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    marginTop:Metrics.baseMargin
+    // fontWeight:'bold'
+  },
+  hsaTextStyle1: {
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+
     // fontWeight:'bold'
   },
 
   textStyle: {
-    fontSize: Fonts.size.regular,
-    fontWeight: 'bold'
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    fontWeight: 'bold',
+    marginTop:Metrics.baseMargin
   },
   hsaText: {
     fontSize: Fonts.size.regular,
     fontWeight: '600',
     textAlign: 'center',
-    padding: 5,
+    padding: Metrics.smallMargin,
 
     marginTop: Metrics.doubleBaseMargin
 
