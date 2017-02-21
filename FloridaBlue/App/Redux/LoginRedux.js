@@ -13,6 +13,7 @@ const { Types, Creators } = createActions({
   updateTou: ['getTou'],
   logoutRequest: [],
   loginFailure: ['error'],
+  sendConfirm :[],
   logout: null
 })
 
@@ -69,6 +70,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.GET_TOU]: getTOU,
   [Types.UPDATE_TOU]: updateTOU,
   [Types.CHANGE_AGREE_TERMS_OF_USE]: _changeAgreeTermsOfUse,
+  [Types.SEND_CONFIRM]: request,
   [Types.LOGIN_FAILURE]: failure,
   [Types.LOGOUT]: logout
 })

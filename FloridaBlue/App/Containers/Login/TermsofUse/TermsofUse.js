@@ -33,7 +33,7 @@ class TermsofUse extends Component {
     super()
 
     this.state = {
-      clicked: false
+      clicked: true
     }
   }
 
@@ -42,6 +42,7 @@ class TermsofUse extends Component {
     if (!this.props.agreeTermsOfUse) {
       alert('Please accept Terms of Use')
     } else {
+      this.props.sendConfirm()
       NavigationActions.WelcomeDashBoard()
     }
   }
@@ -124,7 +125,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleGetTOU: () => dispatch(LoginActions.getTou()),
     handleChangeAgreeTermsOfUse: (agreeTermsOfUse) => dispatch(LoginActions.changeAgreeTermsOfUse(agreeTermsOfUse)),
-    sendConfirm: (confirm) => dispatch(LoginActions.sendregistrationSuccessconfirm(confirm))
+    sendConfirm:() => dispatch(LoginActions.sendConfirm())
 
   }
 }

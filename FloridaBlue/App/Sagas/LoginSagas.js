@@ -39,7 +39,7 @@ export function* login (api, {
       responseURL = 'login'
       var error = null
     } else {
-      //*path webviews and redirect the user 
+      //* path webviews and redirect the user
       var error = null
       var setcookie = response.headers['set-cookie']
       console.log('jsession' + setcookie)
@@ -69,6 +69,19 @@ export function* getTou (api) {
   if (response.status == '200') {
     var getTou = response.data
     yield put(LoginActions.updateTou(getTou))
+  } else {
+    var error = 'I am being errored'
+    yield put(LoginActions.loginFailure(error))
+  }
+}
+
+
+export function* sendConfirm (api) {
+  const response = yield call(api.putTou)
+  console.log(JSON.stringify(response.data))
+  if (response.status == '200') {
+    var getTou = response.data
+    console.log("put tou"+response.data)
   } else {
     var error = 'I am being errored'
     yield put(LoginActions.loginFailure(error))
