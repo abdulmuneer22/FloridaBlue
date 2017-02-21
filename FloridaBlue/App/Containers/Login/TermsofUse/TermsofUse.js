@@ -12,15 +12,14 @@ import {
 
 } from 'react-native'
 
-import LoginActions from '../../../../Redux/LoginRedux'
+import LoginActions from '../../../Redux/LoginRedux'
 import I18n from 'react-native-i18n'
 import styles from './TermsStyle'
-import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
+import { Colors, Fonts, Images, Metrics } from '../../../Themes'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { MKTextField, MKColor, MKCheckbox, setTheme } from 'react-native-material-kit'
 import {connect} from 'react-redux'
-import RegistrationToolBar from '../RegistrationToolBar'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 
   setTheme({checkboxStyle: {
