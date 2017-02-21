@@ -35,9 +35,9 @@ export default StyleSheet.create({
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 3
 
   },
-  planNameText:{
-    fontSize: Fonts.size.h6 ,
-    color:Colors.flBlue.anvil
+  planNameText: {
+    fontSize: Fonts.size.h6,
+    color: Colors.flBlue.anvil
   },
 
   chartWrapper: {
@@ -66,7 +66,7 @@ export default StyleSheet.create({
     flexWrap: 'nowrap',
 //  borderWidth:2,
     marginTop: Metrics.smallMargin,
-    marginLeft:10,
+    marginLeft: 10
 //  borderColor:Colors.flBlue.grey4,
 //  backgroundColor:Colors.flBlue.grey2
   },
@@ -83,7 +83,7 @@ export default StyleSheet.create({
   },
   subHeader: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025,
-    color:Colors.flBlue.anvil,
+    color: Colors.flBlue.anvil,
     marginBottom: Metrics.baseMargin,
     marginTop: Metrics.baseMargin
   },

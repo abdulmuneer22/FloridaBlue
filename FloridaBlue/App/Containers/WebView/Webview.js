@@ -55,9 +55,7 @@ class Webview extends Component {
       }
     }
 
-    console.log("redirect"+JSON.stringify(redirect));
-
-
+    console.log('redirect' + JSON.stringify(redirect))
 
     return (
       <View style={{
@@ -81,14 +79,14 @@ class Webview extends Component {
 onShouldStartLoadWithRequest = (event) => {
     // Implement any custom loading logic here, don't forget to return!
 
-    return true;
-  };
+  return true
+}
 goBack = () => {
-  this.refs[WEBVIEW_REF].goBack();
-};
+  this.refs[WEBVIEW_REF].goBack()
+}
 goForward = () => {
-  this.refs[WEBVIEW_REF].goForward();
-};
+  this.refs[WEBVIEW_REF].goForward()
+}
 Webview.propTypes = {
 /*  fetching: PropTypes.bool,
   responseURL : PropTypes.string, */

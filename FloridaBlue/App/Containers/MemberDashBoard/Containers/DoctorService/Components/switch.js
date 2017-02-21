@@ -31,7 +31,7 @@ class Switch extends Component {
       borderTopLeftRadius: 15,
       padding: 1,
       backgroundColor: Colors.flBlue.ocean,
-      width: Metrics.screenWidth*0.40
+      width: Metrics.screenWidth * 0.40
     }
 
     var twoTabRightActiveStyle = {
@@ -41,7 +41,7 @@ class Switch extends Component {
       borderTopRightRadius: 15,
       padding: 1,
       backgroundColor: Colors.flBlue.ocean,
-      width: Metrics.screenWidth*0.40
+      width: Metrics.screenWidth * 0.40
     }
     var twoTextActiveStyle = {
       color: 'white',
@@ -52,7 +52,7 @@ class Switch extends Component {
       padding: 1,
       backgroundColor: 'white',
       borderRadius: 25,
-      width: Metrics.screenWidth*0.40
+      width: Metrics.screenWidth * 0.40
     }
 
     var twoTextInactiveStyle = {

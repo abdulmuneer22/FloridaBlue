@@ -69,14 +69,13 @@ class Screen_2 extends React.Component {
     var communicationsElectronically = this.props.communicationsElectronically
 
     if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
-      alert("Please enter values in all fields")
+      alert('Please enter values in all fields')
     } else {
       this.props.verifyPersonalInformation(this.props)
     }
-
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
   }
 
@@ -93,7 +92,7 @@ class Screen_2 extends React.Component {
     }
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps () {
     console.tron.log('receiving props')
   }
 
@@ -224,10 +223,10 @@ class Screen_2 extends React.Component {
                 value={this.props.communicationsElectronically}
                 onCheckedChange={() => {
                   console.tron.log('clicked')
-                  //console.tron.log(this.refs)
-                  //var checked = this.refs.communicationsElectronically.state.checked
-                  //console.tron.log(checked)
-                  //this.props.handleChangeCommunicationsElectronically(checked)
+                  // console.tron.log(this.refs)
+                  // var checked = this.refs.communicationsElectronically.state.checked
+                  // console.tron.log(checked)
+                  // this.props.handleChangeCommunicationsElectronically(checked)
                 }
                 }
               />

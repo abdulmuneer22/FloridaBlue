@@ -27,10 +27,10 @@ const Divider = () => {
 }
 
 class SettingsContent extends Component {
-  constructor(){
-    super();
+  constructor () {
+    super()
     this.state = {
-      hpActive : false
+      hpActive: false
     }
   }
 
@@ -124,33 +124,33 @@ class SettingsContent extends Component {
 
           <View>
 
-          <View style={{flexDirection:'row',marginRight:15,marginTop:10}}>
-          <View style={{flex:1}}>
-            <Text style={styles.heading1} onPress={this.handlePressPlans}>My Health Plan</Text>
-            </View>
-            <TouchableOpacity onPress={()=>{
-              this.setState({hpActive : !this.state.hpActive})
-            }}>
-            {
+            <View style={{flexDirection: 'row', marginRight: 15, marginTop: 10}}>
+              <View style={{flex: 1}}>
+                <Text style={styles.heading1} onPress={this.handlePressPlans}>My Health Plan</Text>
+              </View>
+              <TouchableOpacity onPress={() => {
+                this.setState({hpActive: !this.state.hpActive})
+              }}>
+                {
 
               !this.state.hpActive ?
 
-              <Icon name="caret-down" size={18} color="white" />
+                <Icon name='caret-down' size={18} color='white' />
               :
-              <Icon name="caret-up" size={18} color="white" />
+                <Icon name='caret-up' size={18} color='white' />
 
             }
-            </TouchableOpacity>
+              </TouchableOpacity>
             </View>
 
             {
               this.state.hpActive ?
 
-            <View style={{marginLeft:20}}>
-              <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
-              <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
-            </View>
-            :null
+                <View style={{marginLeft: 20}}>
+                  <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
+                  <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
+                </View>
+            : null
           }
           </View>
           <Divider />
@@ -189,7 +189,7 @@ class SettingsContent extends Component {
 
           <View style={styles.myAccountStyle}>
             <View >
-              <Flb name='generic-doc' size={Metrics.icons.xm  } color={Colors.flBlue.ocean} />
+              <Flb name='generic-doc' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
 
             <Text style={styles.heading2} onPress={this.handlePressPolicy}>Policies & Terms </Text>

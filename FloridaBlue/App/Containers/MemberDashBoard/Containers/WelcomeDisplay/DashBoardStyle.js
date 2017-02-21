@@ -94,25 +94,25 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around'
   },
-  tileStyle:{
+  tileStyle: {
     width: (window.width * 0.5),
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.81),
     alignItems: 'center',
     justifyContent: 'center',
-    //margin:2,
-    shadowColor:Colors.flBlue.green,
-    shadowOpacity:2,
+    // margin:2,
+    shadowColor: Colors.flBlue.green,
+    shadowOpacity: 2,
     shadowOffset: {width: 5, height: 5},
-    shadowRadius:15,
+    shadowRadius: 15,
     borderWidth: 6,
     borderColor: Colors.flBlue.lightBlue
   },
-  tileTextStyle:{
+  tileTextStyle: {
     marginTop: Metrics.doubleBaseMargin,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     fontWeight: '600',
     color: 'white',
-    textAlign:'center',
+    textAlign: 'center'
   },
   center: {
     flex: 0.3,
@@ -135,7 +135,7 @@ export default StyleSheet.create({
 //  height:40,
 // marginLeft:5
   },
-  healthPlanSubText:{
+  healthPlanSubText: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     marginTop: 10
   },
@@ -164,7 +164,7 @@ export default StyleSheet.create({
   //  alignSelf: 'stretch',
     resizeMode: 'stretch',
     width: Metrics.screenWidth,
-    marginBottom:0
+    marginBottom: 0
   },
   titleView: {
     marginTop: Metrics.baseMargin
@@ -187,11 +187,11 @@ export default StyleSheet.create({
 
   textStyle1: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-    marginTop:Metrics.baseMargin
+    marginTop: Metrics.baseMargin
     // fontWeight:'bold'
   },
   hsaTextStyle1: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027
 
     // fontWeight:'bold'
   },
@@ -199,7 +199,7 @@ export default StyleSheet.create({
   textStyle: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     fontWeight: 'bold',
-    marginTop:Metrics.baseMargin
+    marginTop: Metrics.baseMargin
   },
   hsaText: {
     fontSize: Fonts.size.regular,

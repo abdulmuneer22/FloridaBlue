@@ -60,7 +60,7 @@ export default {
   heading1: {
     color: Colors.snow,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-    marginBottom: Metrics.mediumMargin,
+    marginBottom: Metrics.mediumMargin
   //  marginTop: Metrics.baseMargin
   },
   subheading: {
@@ -70,23 +70,23 @@ export default {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0029
 
   },
-  myAccountStyle:{
+  myAccountStyle: {
     marginBottom: Metrics.baseMargin,
     marginTop: Metrics.baseMargin,
     flexDirection: 'row'
-    },
+  },
 
   heading2: {
     color: Colors.flBlue.ocean,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
     marginLeft: Metrics.baseMargin
   },
-  logoutView:{
+  logoutView: {
     marginTop: Metrics.doubleBaseMargin,
     margin: Metrics.baseMargin
   },
-  logoutStyle:{
+  logoutStyle: {
     width: Metrics.screenWidth - (Metrics.screenWidth * 0.50),
-    alignSelf:'center'
-    }
+    alignSelf: 'center'
+  }
 }

@@ -82,7 +82,7 @@ class LandingScreen extends Component {
                   }
                 }
                 return (
-                  <TouchableOpacity style={[styles.tileStyle,{backgroundColor: color[i]}]} onPress={onItemPress.bind(this)} key={i}>
+                  <TouchableOpacity style={[styles.tileStyle, {backgroundColor: color[i]}]} onPress={onItemPress.bind(this)} key={i}>
                     <View style={{alignItems: 'center'}}>
                       <Flb name={tile.tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0027} color={Colors.snow} />
                       <Text style={styles.tileTextStyle}>

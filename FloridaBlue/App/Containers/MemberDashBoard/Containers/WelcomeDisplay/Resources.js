@@ -73,10 +73,10 @@ class Resources extends Component {
                   height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
                   alignItems: 'center',
                   justifyContent: 'center',
-                  shadowColor:Colors.flBlue.green,
-                  shadowOpacity:2,
+                  shadowColor: Colors.flBlue.green,
+                  shadowOpacity: 2,
                   shadowOffset: {width: 5, height: 5},
-                  shadowRadius:15,
+                  shadowRadius: 15,
                   borderWidth: 6,
                   borderColor: Colors.flBlue.lightBlue
                 }} onPress={onItemPress.bind(this)} key={i}>

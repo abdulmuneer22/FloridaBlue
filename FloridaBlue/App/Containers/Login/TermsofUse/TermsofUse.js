@@ -52,7 +52,7 @@ class TermsofUse extends Component {
       <View style={styles.container}>
 
         <WebView
-          source={{uri: 'https://www.floridablue.com/terms-of-use'}}
+          source={{uri: 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/get/tou'}}
           style={{marginBottom: 30}} />
 
         <View style={styles.checkViewStyle}>

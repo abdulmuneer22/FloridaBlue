@@ -41,7 +41,7 @@ class MyPlanSwiper extends Component {
     }
 
     return (
-      <Swiper height={(Metrics.screenHeight-(Metrics.screenHeight*0.40))} style={styles.wrapper} showsButtons>
+      <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.40))} style={styles.wrapper} showsButtons>
         { this.props.data.annualDeductible.inNetwork ? myPlan.map(function (network, i) {
           return (
             <View style={styles.headerStyle} key={i}>

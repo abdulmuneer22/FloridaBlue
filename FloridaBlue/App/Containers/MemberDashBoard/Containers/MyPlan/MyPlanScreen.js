@@ -25,7 +25,6 @@ import MyPlanActions from '../../../../Redux/MyPlanRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 const window = Dimensions.get('window')
 
-
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
@@ -33,105 +32,105 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 class MyPlanScreen extends Component {
 
   constructor (props) {
-  super(props)
-  this.state = {
-  }
+    super(props)
+    this.state = {
+    }
   }
 
   _renderHeader () {
-  return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-  {NavItems.backButton()}
-  <Text style={styles.headerTextStyle}>My Plan</Text>
-  {NavItems.settingsButton()}
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+      {NavItems.backButton()}
+      <Text style={styles.headerTextStyle}>My Plan</Text>
+      {NavItems.settingsButton()}
 
-  </Image>)
+    </Image>)
   }
   componentDidMount () {
-  console.log('I am my plan screen')
+    console.log('I am my plan screen')
   //   this.props.attemptMyPlan()
   }
 
   componentWillReceiveProps (newProps) {
-  this.forceUpdate()
-  console.log('I am receving new props from My plan scree ' + JSON.stringify(newProps))
-  console.log('error message ' + newProps.error)
-  if (!newProps.fetching && newProps.error == 'WRONG') {
-  console.log('Hey going to login ' + newProps.error)
-  NavigationActions.login()
-  }
+    this.forceUpdate()
+    console.log('I am receving new props from My plan scree ' + JSON.stringify(newProps))
+    console.log('error message ' + newProps.error)
+    if (!newProps.fetching && newProps.error == 'WRONG') {
+      console.log('Hey going to login ' + newProps.error)
+      NavigationActions.login()
+    }
   }
 
   render () {
-  return (
+    return (
 
-    <View style={styles.container}>
+      <View style={styles.container}>
 
         <View>
-        {this._renderHeader()}
+          {this._renderHeader()}
         </View>
 
         {
         this.props.data ?
 
-        <View style={styles.container}>
-        <View style={styles.planNameView}>
-        <Text style={styles.planNameText}>
+          <View style={styles.container}>
+            <View style={styles.planNameView}>
+              <Text style={styles.planNameText}>
         Blue Options
         </Text>
-        </View>
+            </View>
 
-        <View style={styles.chartWrapper}>
-        {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
+            <View style={styles.chartWrapper}>
+              {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
         : <View style={styles.spinnerView}>
-        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>}
-        </View>
+            </View>
 
-        <View style={styles.cardStyle}>
-        <Card
-        title='Benefits'
-        bg='rgb(204, 211, 214)'
-        icon='briefcase'
+            <View style={styles.cardStyle}>
+              <Card
+                title='Benefits'
+                bg='rgb(204, 211, 214)'
+                icon='briefcase'
         />
 
-        <Card
-        title='Claims'
-        bg='rgb(151, 198, 207)'
-        icon='book'
+              <Card
+                title='Claims'
+                bg='rgb(151, 198, 207)'
+                icon='book'
         />
-        </View>
-        </View>
+            </View>
+          </View>
 
         : <View style={{alignItems: 'center', justifyContent: 'center'}}>
-        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>
         }
 
-</View>
+      </View>
 
-)
-}
+    )
+  }
 }
 
 MyPlanScreen.propTypes = {
-data: PropTypes.object,
-attemptMyPlan: PropTypes.func,
-error: PropTypes.string
+  data: PropTypes.object,
+  attemptMyPlan: PropTypes.func,
+  error: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
-return {
-fetching: state.login.fetching,
-data: state.myplan.data,
-error: state.myplan.error
-}
+  return {
+    fetching: state.login.fetching,
+    data: state.myplan.data,
+    error: state.myplan.error
+  }
 }
 const mapDispatchToProps = (dispatch) => {
-return {
-attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest())
-}
+  return {
+    attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest())
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyPlanScreen)
