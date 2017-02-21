@@ -9,6 +9,8 @@ const { Types, Creators } = createActions({
   loginRequest: ['username', 'password'],
   loginSuccess: ['username', 'responseURL', 'smToken'],
   changeAgreeTermsOfUse: ['agreeTermsOfUse'],
+  getTou: [],
+  updateTou: ['getTou'],
   logoutRequest: [],
   loginFailure: ['error'],
   logout: null
@@ -22,11 +24,10 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   username: null,
   error: null,
-
   responseURL: 'login',
   smToken: null,
   agreeTermsOfUse: null,
-
+  getTou: null,
   fetching: false
 
 })
@@ -51,12 +52,22 @@ export const _changeAgreeTermsOfUse = (state: Object, {agreeTermsOfUse}: Object)
 // we've logged out
 export const logout = (state: Object) => INITIAL_STATE
 
+// we're getting TOu Markup
+export const getTOU = (state: Object) => state.merge({ fetching: true, responseURL: 'login'})
+
+// we are updating state
+
+export const updateTOU = (state: Object, {getTou} : Object) =>
+  state.merge({getTou})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_REQUEST]: request,
   [Types.LOGOUT_REQUEST]: request,
   [Types.LOGIN_SUCCESS]: success,
+  [Types.GET_TOU]: getTOU,
+  [Types.UPDATE_TOU]: updateTOU,
   [Types.CHANGE_AGREE_TERMS_OF_USE]: _changeAgreeTermsOfUse,
   [Types.LOGIN_FAILURE]: failure,
   [Types.LOGOUT]: logout

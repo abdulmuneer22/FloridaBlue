@@ -62,3 +62,15 @@ export function* logout (apiforlogout) {
   const response = yield call(apiforlogout.getLogout)
   console.log('response of logout' + response)
 }
+
+export function* getTou (api) {
+  const response = yield call(api.getTOU)
+  console.log(JSON.stringify(response.data))
+  if (response.status == '200') {
+    var getTou = response.data
+    yield put(LoginActions.updateTou(getTou))
+  } else {
+    var error = 'I am being errored'
+    yield put(LoginActions.loginFailure(error))
+  }
+}

@@ -46,17 +46,21 @@ class TermsofUse extends Component {
     }
   }
 
+  componentDidMount () {
+    this.props.handleGetTOU()
+  }
+
   render () {
+    var HTML = this.props.getTou
+
     return (
       <View style={styles.container}>
-
-        <WebView
-          source={{uri: 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/get/tou'}}
-          style={{marginBottom: 30}} />
-
+        {this.props.getTou ?
+          <WebView
+            source={{html: HTML}}
+            style={{marginBottom: 30}} /> : <View />}
         <View style={styles.checkViewStyle}>
           <View style={styles.checkStyle}>
-
             <MKCheckbox
               ref='agreeTermsOfUse'
               onCheckedChange={() => {
@@ -64,7 +68,6 @@ class TermsofUse extends Component {
                 this.props.handleChangeAgreeTermsOfUse(checked)
               }} />
           </View>
-
           <View style={styles.checkTextView}>
             <Text style={styles.checkText}>
         Yes. I certified that I have read the above Terms of Use and agree with those terms in order
@@ -72,21 +75,17 @@ class TermsofUse extends Component {
         </Text>
           </View>
         </View>
-
         <View style={{marginTop: Metrics.doubleBaseMargin}}>
           <TouchableWithoutFeedback onPress={() => this._handleAgreeTermsOfUse()}>
             <Image style={styles.iAgree} source={Images.iAgree} />
           </TouchableWithoutFeedback>
         </View>
-
         <View style={styles.row}>
           <View>
             <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
           </View>
         </View>
-
       </View>
-
     )
   }
 }
@@ -104,6 +103,7 @@ TermsofUse.propTypes = {
   fetching: PropTypes.bool,
   confirm: PropTypes.string,
   error: PropTypes.string,
+  getTou: PropTypes.string,
   handleChangeAgreeTermsOfUse: PropTypes.func
 
 }
@@ -114,14 +114,15 @@ const mapStateToProps = (state) => {
     fetching: state.login.fetching,
     confirm: state.login.confirm,
     error: state.login.error,
-    agreeTermsOfUse: state.login.agreeTermsOfUse
+    agreeTermsOfUse: state.login.agreeTermsOfUse,
+    getTou: state.login.getTou
 
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    handleGetTOU: () => dispatch(LoginActions.getTou()),
     handleChangeAgreeTermsOfUse: (agreeTermsOfUse) => dispatch(LoginActions.changeAgreeTermsOfUse(agreeTermsOfUse)),
     sendConfirm: (confirm) => dispatch(LoginActions.sendregistrationSuccessconfirm(confirm))
 
