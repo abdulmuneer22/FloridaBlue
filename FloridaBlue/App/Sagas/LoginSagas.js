@@ -39,11 +39,11 @@ export function* login (api, {
       responseURL = 'login'
       var error = null
     } else {
+      //*path webviews and redirect the user 
       var error = null
       var setcookie = response.headers['set-cookie']
       console.log('jsession' + setcookie)
     }
-
     yield put(LoginActions.loginSuccess(username, responseURL, smToken))
   } else if (response.status == '401') {
       // dispatch failure

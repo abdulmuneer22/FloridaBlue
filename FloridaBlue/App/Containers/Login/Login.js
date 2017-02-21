@@ -33,6 +33,7 @@ type LoginScreenProps = {
   attemptLogin: () => void,
   responseURL : string,
   smToken : string,
+  termsOfUse : boolean,
   attemptMyPlan :() => void,
   attemptMember :() => void,
   attemptSupportScreen :() => void
@@ -72,13 +73,18 @@ class Login extends Component {
       // Did the login attempt complete?
     console.log('I am receving new props' + newProps.responseURL)
     console.log('I am receving new smToken' + newProps.smToken)
+    
 
     if (this.isAttempting && !newProps.fetching && newProps.error === null) {
       if (newProps.responseURL == 'login') {
         // we are displacing these action by this time we knew that member loged in success fully
         this.props.attemptMember()
         this.props.attemptSupportScreen()
-        NavigationActions.WelcomeDashBoard()
+        if(newProps.termsOfUse){
+             NavigationActions.WelcomeDashBoard()
+          }else{
+            NavigationActions.Termsofuse()
+          }
       } else {
         console.log('new props' + newProps.responseURL)
         NavigationActions.MyView({responseURL: newProps.responseURL})
@@ -250,7 +256,8 @@ const mapStateToProps = (state) => {
     fetching: state.login.fetching,
     error: state.login.error,
     responseURL: state.login.responseURL,
-    smToken: state.login.smToken
+    smToken: state.login.smToken,
+    termsOfUse : state.member.termsOfUse
   }
 }
 
