@@ -53,12 +53,6 @@ class Screen_2 extends React.Component {
     NavigationActions.pop()
   }
 
-  /*
-  _handleNext () {
-    NavigationActions.screen_3()
-  }
-  */
-
   _handleNext () {
     var phoneNumber = this.props.phoneNumber
     var email = this.props.email
@@ -66,22 +60,16 @@ class Screen_2 extends React.Component {
     var createUserId = this.props.createUserId
     var password = this.props.password
     var confirmPassword = this.props.confirmPassword
-    var commElect = this.props.commElect
 
-    /*
-    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && commElect)) {
+    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword)) {
       alert("Please enter values in all fields")
     } else {
       this.props.verifyPersonalInformation(this.props)
     }
-    */
-    this.props.verifyPersonalInformation(this.props)
-
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
-    //this.props.handleChangeCommElect(false)
   }
 
   componentDidUpdate () {
@@ -94,7 +82,7 @@ class Screen_2 extends React.Component {
     }
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps () {
     console.tron.log('receiving props')
   }
 
@@ -129,10 +117,9 @@ class Screen_2 extends React.Component {
               onChangeText={this.props.handleChangePhoneNumber}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                if(this.props.emailVerified) {
+                if (this.props.emailVerified) {
                   this.refs.createUserId.focus()
-                }
-                else {
+                } else {
                   this.refs.email.focus()
                 }
               }}
@@ -157,7 +144,7 @@ class Screen_2 extends React.Component {
               placeholder={I18n.t('email')}
             />
           </View>
-          { ! this.props.emailVerified ? <View style={styles.row}>
+          { !this.props.emailVerified ? <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='confirmEmail'
               value={this.props.confirmEmail}
@@ -231,8 +218,8 @@ class Screen_2 extends React.Component {
                 checked={this.props.commElect}
                 onCheckedChange={() => {
                     // Set to the opposite value using !
-                    this.props.handleChangeCommElect(!this.props.commElect)
-                  }
+                  this.props.handleChangeCommElect(!this.props.commElect)
+                }
                 }
               />
             </View>

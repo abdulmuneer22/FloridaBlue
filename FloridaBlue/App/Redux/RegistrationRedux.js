@@ -26,7 +26,7 @@ const { Types, Creators } = createActions({
   changeSecurityHint3: ['securityHint3'],
   changeSecurityAnswer3: ['securityAnswer3'],
   changeCommElect: ['commElect'],
-  changeShowCommElect: ['showCommElect'], 
+  changeShowCommElect: ['showCommElect'],
   changeReasonCode: ['data'],
   changeToken: ['token'],
   sendIdentificationRequest: ['data'],
