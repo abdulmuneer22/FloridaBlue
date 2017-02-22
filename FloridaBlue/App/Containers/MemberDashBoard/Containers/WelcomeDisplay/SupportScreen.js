@@ -40,15 +40,21 @@ class SupportScreen extends Component {
 
   _renderHeader () {
     return (<Image source={Images.themeHeader} style={styles.headerContainer}>
+      <View style={{marginLeft:Metrics.screenWidth*0.025}}>
       {NavItems.backButton()}
+      </View>
       <Text style={styles.headerTextStyle}>Support</Text>
-      {NavItems.settingsButton()}
+
+      <View style={{marginRight:Metrics.screenWidth*0.035}}>
+    {NavItems.settingsButton()}
+    </View>
+
 
     </Image>)
   }
 
   componentDidMount () {
-    console.tron.log('I am Support screen')
+    console.tron.log('I am Support screen' )
     console.tron.log(this.props)
   //  this.props.attemptSupportScreen()
   }
@@ -69,7 +75,7 @@ class SupportScreen extends Component {
                   {this.props.data && this.props.data.support ?
             this.props.data.support.map(function (support, i) {
               return (<View style={i % 2 == 0 ? styles.textBackground : styles.textBackground1} key={i} >
-                <View style={{flex: 0.5}}>
+                <View style={{flex:0.5}}>
                   <Text style={styles.textStyle} >
                     {support.contactType}
                   </Text>
@@ -77,7 +83,7 @@ class SupportScreen extends Component {
                     {support.contactNumber}
                   </Text>
                 </View>
-                <View style={{flex: 0.5, alignItems: 'center'}}>
+                <View style={{flex:0.5, alignItems:'center'}}>
                   <Text style={styles.textStyle1} >
                     {support.accessibilityType}
                   </Text>

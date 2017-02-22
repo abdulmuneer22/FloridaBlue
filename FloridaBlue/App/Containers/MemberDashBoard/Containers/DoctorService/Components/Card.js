@@ -15,18 +15,18 @@ import styles from '../DoctorServiceStyle.js'
 
 class Card extends Component {
 
-  render () {
+  render() {
     var cards = []
     var that = this
-    var card
-    var temp = this.props.data
+    var card;
+    var temp = this.props.data;
     var objectName = this.props.objectName
-    var temp1 = temp[objectName]
+    var temp1 = temp[objectName];
 
     if (this.props.leftActive) {
-      card = temp1.inNetwork
+      card = temp1.inNetwork;
     } else {
-      card = temp1.outNetwork
+      card = temp1.outNetwork;
     }
 
     console.log('card of innetwork' + JSON.stringify(this.props.leftActive))
@@ -42,32 +42,35 @@ class Card extends Component {
         </Text>
 
         {
-          speciality.map(specialities => {
-            const {speciality_text, speciality_value} = specialities
+          speciality.map(specialities=>{
+            const{speciality_text, speciality_value}=specialities
             return (
-              <View style={{marginBottom: 20, flexDirection: 'row'}}>
-                <View style={{flex: 0.5}}>
-                  {speciality_text['en'] ?
-                    <Text style={styles.h2} >
-                      {speciality_text['en']} :
+            <View style={{marginBottom:20, flexDirection:'row'}}>
+            <View style={{flex:0.5}}>
+            {speciality_text['en'] ?
+                <Text style={styles.h2} >
+                  {speciality_text['en']} :
                 </Text>
-              : <View />
+              : <View></View>
 
             }
-                </View>
-                <View style={{marginTop: 5, flex: 0.5}}>
-                  {
-              speciality_value.map(value => {
-                return (<Text style={styles.h4}>
-                  {value['en']}</Text>)
+            </View>
+            <View style={{marginTop:5,flex:0.5}}>
+            {
+              speciality_value.map(value=>{
+                return(<Text style={styles.h4}>
+                 {value['en']}</Text> )
               })
             }
-                </View>
-              </View>)
+            </View>
+            </View>)
           })
         }
 
+
+
       </View>
+
 
       )
       i += 1
