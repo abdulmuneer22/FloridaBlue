@@ -6,10 +6,12 @@ import MyPlanActions from '../Redux/MyPlanRedux'
 import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
-export function* myplan (api) {
+
+export function* myplan (api,data) {
   console.log('I am coming from myplan')
     // api.setsmTokenHeaders(smToken);
-  const response = yield call(api.getPlan)
+  console.log("data of myplan"+JSON.stringify(data));
+  const response = yield call(api.getPlan,data)
   console.log(JSON.stringify(response))
   if (response.data.status.code = '200') {
     // dispatch success

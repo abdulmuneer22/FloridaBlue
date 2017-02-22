@@ -3,7 +3,7 @@ import apisauce from 'apisauce'
 global.Buffer = global.Buffer || require('buffer').Buffer
 
 // our "constructor"
-const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
+const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
 // const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
   // ------
   // STEP 1
@@ -74,7 +74,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   })
 
   const getMember = () => api.get('/members')
-  const getPlan = () => api.get('/benefits')
+  const getPlan = (data) => api.post('/benefits',data.input)
   const getTOU = () => api.get('/get/tou')
   const getSupport = () => api.get('/support')
   const getLogout = () => api.get('logout.fcc')
