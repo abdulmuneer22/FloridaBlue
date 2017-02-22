@@ -48,8 +48,8 @@ export function* login (api, {
   } else if (response.status == '401') {
       // dispatch failure
     console.log('I am coming from failuer ')
-    var error = 'Invalid Credentials. Please enter correctly.'
-    alert('Invalid Credentials. Please enter correctly.')
+    var error = 'Invalid Credentials. Please Enter Correctly.'
+    alert('Invalid Credentials. Please Enter Correctly.')
     yield put(LoginActions.loginFailure(error))
   } else if (response.status == null) {
     console.log('I am coming from failuer ')

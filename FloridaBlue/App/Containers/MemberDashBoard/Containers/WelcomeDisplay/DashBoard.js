@@ -107,9 +107,9 @@ class LandingScreen extends Component {
               }) : <Text />
             }
             </View>
-            <View style={styles.footerView} >
+            <TouchableWithoutFeedback style={styles.footerView} >
               <Image source={Images.findCare} style={styles.footerImage} />
-            </View>
+            </TouchableWithoutFeedback>
 
           </View>
 

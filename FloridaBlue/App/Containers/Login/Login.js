@@ -59,7 +59,7 @@ class Login extends Component {
     var password = this.state.password
 
     if (!this.state.username | !this.state.password) {
-      alert('Please enter user name and password!')
+      alert('Please enter User ID and Password!')
     } else {
    // const { username, password } = this.state
       this.isAttempting = true
@@ -80,9 +80,9 @@ class Login extends Component {
         this.props.attemptMember()
         this.props.attemptSupportScreen()
         if (newProps.termsOfUse) {
-          NavigationActions.Termsofuse()
+           NavigationActions.Termsofuse()
         } else {
-          NavigationActions.WelcomeDashBoard()
+            NavigationActions.WelcomeDashBoard()
         }
       } else {
         console.log('new props' + newProps.responseURL)
