@@ -32,7 +32,9 @@ const metrics = {
   },
   images: {
     small: 20,
+    average:25,
     medium: 40,
+    xm:50,
     large: 60,
     xl: 65,
     logo: 300

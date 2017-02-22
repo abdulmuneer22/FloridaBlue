@@ -42,6 +42,7 @@ class MyPlanScreen extends Component {
   return (<Image style={styles.headerContainer} source={Images.themeHeader}>
   {NavItems.backButton()}
   <Text style={styles.headerTextStyle}>My Plan</Text>
+
   {NavItems.settingsButton()}
 
   </Image>)

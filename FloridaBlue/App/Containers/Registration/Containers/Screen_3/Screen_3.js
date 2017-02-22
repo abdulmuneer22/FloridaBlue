@@ -54,7 +54,7 @@ class Screen_3 extends React.Component {
 
   _handleNext () {
     if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
-      alert("Please enter values in all fields")
+      alert('Please enter values in all fields')
     } else {
       this.props.verifyPersonalInformation(phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, communicationsElectronically)
     }
@@ -72,7 +72,7 @@ class Screen_3 extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
   }
 

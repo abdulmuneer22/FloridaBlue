@@ -17,7 +17,9 @@ import { RegistrationTypes } from '../Redux/RegistrationRedux'
 
 // import { startup } from './StartupSagas'
 import { login } from './LoginSagas'
+import { getTou } from './LoginSagas'
 import { logout } from './LoginSagas'
+import {sendConfirm} from './LoginSagas'
 import { member } from './MemberSagas'
 import { myplan } from './MyPlanSagas'
 import { support } from './SupportSagas'
@@ -44,6 +46,8 @@ export default function * root () {
 
     takeLatest(LoginTypes.LOGIN_REQUEST, login, api),
     takeLatest(LoginTypes.LOGOUT_REQUEST, logout, apiforlogout),
+    takeLatest(LoginTypes.GET_TOU, getTou, api),
+    takeLatest(LoginTypes.SEND_CONFIRM,sendConfirm, api),
     takeLatest(MemberTypes.MEMBER_REQUEST, member, api),
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan, api),
     takeLatest(SupportTypes.SUPPORT_REQUEST, support, api),

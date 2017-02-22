@@ -3,7 +3,9 @@
 const type = {
   base: 'Avenir-Book',
   bold: 'AvenirNext-Bold',
-  emphasis: 'AvenirNext-Italic'
+  emphasis: 'AvenirNext-Italic',
+  headerFont: 'Avenir Light',
+  subHeaderFont: 'Avenir Book'
 }
 
 const size = {

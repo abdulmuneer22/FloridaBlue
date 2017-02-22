@@ -8,7 +8,7 @@ const window = Dimensions.get('window')
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 2,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: Metrics.mediumMargin,
@@ -21,8 +21,9 @@ export default StyleSheet.create({
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
-    marginLeft: Metrics.baseMargin,
-    marginTop: Metrics.smallMargin
+    //marginLeft:,
+    fontFamily:Fonts.type.headerFont,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023
 
   },
   container: {
@@ -36,8 +37,10 @@ export default StyleSheet.create({
 
   },
   planNameText:{
-    fontSize: Fonts.size.h6 ,
-    color:Colors.flBlue.anvil
+    fontSize: Fonts.size.h5 ,
+    color:Colors.flBlue.anvil,
+    fontFamily:Fonts.type.subHeaderFont,
+    fontWeight:'500'
   },
 
   chartWrapper: {
@@ -72,18 +75,20 @@ export default StyleSheet.create({
   },
   headerText: {
     color: Colors.flBlue.anvil,
-    fontWeight: 'bold',
+    fontWeight: '500',
   // paddingBottom:Metrics.baseMargin,
     marginTop: Metrics.baseMargin,
 
   // width:window.width,
   // alignSelf:'center',
-    fontSize: Fonts.size.h5
+    fontSize: Fonts.size.h5,
+    fontFamily:Fonts.type.subHeaderFont,
   // backgroundColor:Colors.flBlue.ocean
   },
   subHeader: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025,
     color:Colors.flBlue.anvil,
+    fontFamily:Fonts.type.subHeaderFont,
     marginBottom: Metrics.baseMargin,
     marginTop: Metrics.baseMargin
   },

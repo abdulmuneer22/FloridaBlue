@@ -50,7 +50,7 @@ class Screen_4 extends React.Component {
     NavigationActions.confirmation()
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
   }
 

@@ -8,37 +8,38 @@ const window = Dimensions.get('window')
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 2,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: Metrics.mediumMargin,
+    //padding: Metrics.mediumMargin,
     // resizeMode:'cover',
     // alignSelf: 'stretch',
-    width: Metrics.screenWidth
+    width: Metrics.screenWidth,
     // backgroundColor: Colors.flBlue.ocean
   },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
-    marginLeft: Metrics.smallMargin,
-    marginTop: Metrics.smallMargin
+  //  marginLeft: Metrics.smallMargin,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    fontFamily:Fonts.type.headerFont
 
   },
   hsaHeader: {
     flexDirection: 'row',
 
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.83)),
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)),
 
   // marginTop:20,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: Metrics.baseMargin,
+  //  padding: Metrics.baseMargin,
     width: Metrics.screenWidth,
 
     overflow: 'visible',
     resizeMode: 'cover',
-    marginBottom: 15
+    marginBottom: Metrics.smallMargin * Metrics.screenHeight*0.0015
 
   //  alignSelf: 'stretch'
   // width:Metrics.screenWidth,
@@ -46,14 +47,13 @@ export default StyleSheet.create({
   },
   hsaBg: {
  // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.50),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.43),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
  // padding:10,
     alignSelf: 'stretch',
-    width: Metrics.screenWidth
- // backgroundColor:Colors.flBlue.ocean
+    width: Metrics.screenWidth,
   },
   container: {
     flex: 1,
@@ -96,22 +96,26 @@ export default StyleSheet.create({
   },
   tileStyle:{
     width: (window.width * 0.5),
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.81),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
     alignItems: 'center',
     justifyContent: 'center',
     //margin:2,
-    shadowColor:Colors.flBlue.green,
-    shadowOpacity:2,
+    shadowColor:Colors.flBlue.grey4,
+    shadowOpacity:0.8,
+    elevation:8,
+  //  outlineProvider:'bounds',
     shadowOffset: {width: 5, height: 5},
-    shadowRadius:15,
-    borderWidth: 6,
+    shadowRadius:25,
+    borderWidth: 7,
+    borderRadius:6,
     borderColor: Colors.flBlue.lightBlue
   },
   tileTextStyle:{
-    marginTop: Metrics.doubleBaseMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    marginTop: Metrics.baseMargin,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029,
+      fontFamily:Fonts.type.subHeaderFont,
     fontWeight: '600',
-    color: 'white',
+    color: Colors.snow,
     textAlign:'center',
   },
   center: {
@@ -128,7 +132,9 @@ export default StyleSheet.create({
   healthPlanText: {
     fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.anvil,
-    fontWeight: '500'
+    fontWeight: '500',
+    fontFamily:Fonts.type.subHeaderFont,
+    marginLeft:-10,
 // alignSelf : 'stretch',
 //  alignItems:'center',
 //  justifyContent:'center',
@@ -137,7 +143,8 @@ export default StyleSheet.create({
   },
   healthPlanSubText:{
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
-    marginTop: 10
+    marginTop: 10,
+    fontFamily:Fonts.type.subHeaderFont,
   },
   healthPlanImage: {
     marginTop: Metrics.mediumMargin,
@@ -151,18 +158,18 @@ export default StyleSheet.create({
     backgroundColor: Colors.transparent
   },
   footerView: {
-    borderTopWidth: 0.5,
-    borderBottomWidth: 0.5,
+    //borderTopWidth: 0.5,
+    //borderBottomWidth: 0.5,
     borderColor: Colors.snow
   },
   footerImage: {
     // flexDirection: 'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.805),
      // height : window.height * 0.5,
     // justifyContent: 'space-between',
     // alignItems: 'center',
   //  alignSelf: 'stretch',
-    resizeMode: 'stretch',
+    resizeMode: 'contain',
     width: Metrics.screenWidth,
     marginBottom:0
   },
@@ -182,40 +189,54 @@ export default StyleSheet.create({
   textBackground1: {
     flexDirection: 'row',
     backgroundColor: Colors.flBlue.lightBlue,
-    padding: Metrics.mediumMargin
+    padding: Metrics.mediumMargin,
+
   },
 
   textStyle1: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-    marginTop:Metrics.baseMargin
+    marginTop:Metrics.smallMargin,
+      fontFamily:Fonts.type.headerFont
     // fontWeight:'bold'
   },
   hsaTextStyle1: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
+    fontFamily:Fonts.type.subHeaderFont,
 
+    // fontWeight:'bold'
+  },
+  hsaTextStyle2: {
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
+    color:Colors.flBlue.grass,
+    fontWeight:'600',
+    fontFamily:Fonts.type.subHeaderFont,
     // fontWeight:'bold'
   },
 
   textStyle: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-    fontWeight: 'bold',
-    marginTop:Metrics.baseMargin
+    fontWeight: '500',
+    marginTop:Metrics.smallMargin,
+    fontFamily:Fonts.type.headerFont,
   },
   hsaText: {
-    fontSize: Fonts.size.regular,
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0033,
     fontWeight: '600',
     textAlign: 'center',
-    padding: Metrics.smallMargin,
+    fontFamily:Fonts.type.subHeaderFont,
+  //  padding: Metrics.smallMargin,
 
-    marginTop: Metrics.doubleBaseMargin
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0027
 
   },
 
   row_1: {
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingTop: Metrics.baseMargin,
-    paddingBottom: Metrics.baseMargin
+  //  paddingTop: Metrics.baseMargin,
+  //  paddingBottom: Metrics.baseMargin
+    marginTop:10,
+    marginBottom:Metrics.smallMargin * Metrics.screenHeight*0.003
   },
   col_1: {
     flex: 1,
@@ -223,11 +244,6 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
 
-  row_2: {
-    alignItems: 'center',
-    // paddingTop : 10
-    paddingBottom: 15
-  },
   spinnerView: {
     alignItems: 'center',
     justifyContent: 'center',

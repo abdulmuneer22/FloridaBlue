@@ -33,6 +33,7 @@ type LoginScreenProps = {
   attemptLogin: () => void,
   responseURL : string,
   smToken : string,
+  termsOfUse : boolean,
   attemptMyPlan :() => void,
   attemptMember :() => void,
   attemptSupportScreen :() => void
@@ -78,7 +79,11 @@ class Login extends Component {
         // we are displacing these action by this time we knew that member loged in success fully
         this.props.attemptMember()
         this.props.attemptSupportScreen()
-        NavigationActions.WelcomeDashBoard()
+        if (newProps.termsOfUse) {
+           NavigationActions.Termsofuse()
+        } else {  
+            NavigationActions.WelcomeDashBoard()
+        }
       } else {
         console.log('new props' + newProps.responseURL)
         NavigationActions.MyView({responseURL: newProps.responseURL})
@@ -250,7 +255,8 @@ const mapStateToProps = (state) => {
     fetching: state.login.fetching,
     error: state.login.error,
     responseURL: state.login.responseURL,
-    smToken: state.login.smToken
+    smToken: state.login.smToken,
+    termsOfUse: state.member.termsOfUse
   }
 }
 

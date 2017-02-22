@@ -51,22 +51,21 @@ class Screen_1 extends React.Component {
   }
   */
 
-  _handleNext() {
+  _handleNext () {
     var contractNumber = this.props.contractNumber
     var firstName = this.props.firstName
     var lastName = this.props.lastName
     var dateOfBirth = this.props.dateOfBirth
     var zipCode = this.props.zipCode
 
-
     if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
-      alert("Please enter values in all fields")
+      alert('Please enter values in all fields')
     } else {
       this.props.verifyIdentification(this.props)
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
   }
 

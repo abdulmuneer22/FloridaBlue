@@ -33,11 +33,14 @@ class Resources extends Component {
 
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+      <View style={{marginLeft:Metrics.screenWidth*0.025}}>
       {NavItems.backButton()}
+      </View>
       <Text style={styles.headerTextStyle}>
         Resources</Text>
+        <View style={{marginRight:Metrics.screenWidth*0.035}}>
       {NavItems.settingsButton()}
-
+      </View>
     </Image>)
   }
 
@@ -59,7 +62,7 @@ class Resources extends Component {
               onItemPress = function () {
                 var action
                 if (tile.tileType == 'webview') {
-                  action = NavigationActions.MyView({responseURL: tile.tileUrl})
+                  action = NavigationActions.MyView({responseURL: 'tile.tileUrl'})
                 } else if (tile.tileType == 'native') {
                   action = NavigationActions.Resources()
                 }
@@ -84,10 +87,12 @@ class Resources extends Component {
 
                     <Flb name='cc-card' size={Metrics.icons.regular} color='white' />
                     <Text style={{
-                      marginTop: Metrics.doubleBaseMargin,
-                      fontSize: Fonts.size.regular,
+                      marginTop: Metrics.baseMargin,
+                      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029,
+                      fontFamily:Fonts.type.headerFont,
                       fontWeight: '600',
-                      color: 'white'
+                      color: Colors.snow,
+                      textAlign:'center',
                     }}>
                       {tile.tileName['en']}
                     </Text>

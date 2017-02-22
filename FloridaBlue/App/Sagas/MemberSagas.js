@@ -18,8 +18,10 @@ export function* member (api, {
     // dispatch success
     var Name = response.data.data.firstName
     var visibilityRules = response.data.data.visibilityRule
+    var termsOfUse = response.data.data.visibilityRule.termsOfUse
+    console.log('termsOfUse' + termsOfUse)
     yield put(MyPlanActions.myplanRequest())
-    yield put(MemberActions.memberSuccess(Name, visibilityRules))
+    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules))
   } else {
     console.log('I am coming from failuer ')
     yield put(LoginActions.loginFailure('WRONG'))

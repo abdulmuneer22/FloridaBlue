@@ -9,9 +9,11 @@ import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Colors, Metrics, Fonts} from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
+import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import styles from '../DashBoardStyle'
 
 var messageCount = ''
+const theme=getTheme();
 
 class Greeting extends Component {
 
@@ -29,15 +31,15 @@ class Greeting extends Component {
     // alert(hours)
     if (hours < 12) {
       // alert("Good Morning")
-      this.setState({ greetText: 'Good morning' })
+      this.setState({ greetText: 'Good Morning' })
     } else {
       if (hours >= 12) {
         if (hours < 17) {
           // alert("Good Afternoon")
-          this.setState({ greetText: 'Good afternoon' })
+          this.setState({ greetText: 'Good Afternoon' })
         } else {
           // alert("Good evening")
-          this.setState({ greetText: 'Good evening' })
+          this.setState({ greetText: 'Good Evening' })
         }
       }
     }
@@ -61,9 +63,11 @@ class Greeting extends Component {
 
   render () {
     return (
-      <View>
+      <View >
         <View style={styles.greetingView}>
-          <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
+          <Text style={{fontSize: Fonts.size.regular,
+            fontFamily:Fonts.type.subHeaderFont,
+            color: Colors.snow}}>
             {this.state.greetText} {this.props.userName ? this.props.userName : ''}
           </Text>
 

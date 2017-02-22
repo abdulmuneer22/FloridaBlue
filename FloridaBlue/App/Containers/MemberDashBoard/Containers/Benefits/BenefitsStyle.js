@@ -8,7 +8,7 @@ const window = Dimensions.get('window')
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 2,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: Metrics.mediumMargin,
@@ -22,7 +22,8 @@ export default StyleSheet.create({
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
     marginLeft: Metrics.baseMargin,
-    marginTop: Metrics.smallMargin
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    fontFamily:Fonts.type.headerFont
 
   },
   container: {
@@ -56,6 +57,7 @@ export default StyleSheet.create({
     textAlign:'center',
     fontWeight: '600',
     color: 'white',
+    fontFamily:Fonts.type.subHeaderFont,
   },
   spinnerText: {
 

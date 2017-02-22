@@ -38,7 +38,8 @@ export default StyleSheet.create({
       backgroundColor:Colors.transparent,
       fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
       marginLeft: Metrics.baseMargin,
-      marginTop:Metrics.smallMargin
+      marginTop:Metrics.baseMargin,
+      fontFamily:Fonts.type.headerFont,
 
   },
   doctorCardStyle:{
@@ -50,6 +51,8 @@ export default StyleSheet.create({
     marginTop : Metrics.smallMargin,
     fontSize : Fonts.size.h4 * Metrics.screenWidth * 0.0023,
     color:Colors.flBlue.anvil,
+      fontFamily:Fonts.type.headerFont,
+      fontWeight:'500'
 },
   cardStyle: {
     width: window.width,
@@ -86,7 +89,9 @@ export default StyleSheet.create({
     //fontWeight: '600',
     color:Colors.flBlue.anvil,
     textAlign: 'center',
-    marginTop:Metrics.mediumMargin
+    marginTop:Metrics.mediumMargin,
+    fontFamily:Fonts.type.subHeaderFont,
+    fontWeight:'bold'
   },
 
   h2: {
@@ -95,6 +100,7 @@ export default StyleSheet.create({
     color:Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
     marginLeft:Metrics.baseMargin,
+    fontFamily:Fonts.type.headerFont,
 
 
   },
@@ -104,7 +110,8 @@ export default StyleSheet.create({
     fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0030,
     marginTop:Metrics.smallMargin,
     color:Colors.flBlue.grey5,
-    marginLeft:Metrics.baseMargin
+    marginLeft:Metrics.baseMargin,
+      fontFamily:Fonts.type.headerFont,
   //  marginBottom:5
 
   },

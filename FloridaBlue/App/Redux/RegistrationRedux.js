@@ -12,6 +12,7 @@ const { Types, Creators } = createActions({
   changeDateOfBirth: ['dateOfBirth'],
   changeZipCode: ['zipCode'],
   changePhoneNumber: ['phoneNumber'],
+  changeEmailVerified: ['emailVerified'],
   changeEmail: ['email'],
   changeConfirmEmail: ['confirmEmail'],
   changeCreateUserId: ['createUserId'],
@@ -24,8 +25,10 @@ const { Types, Creators } = createActions({
   changeSecurityAnswer2: ['securityAnswer2'],
   changeSecurityHint3: ['securityHint3'],
   changeSecurityAnswer3: ['securityAnswer3'],
-  changeCommunicationsElectronically: ['communicationsElectronically'],
+  changeCommElect: ['commElect'],
+  changeShowCommElect: ['showCommElect'],
   changeReasonCode: ['data'],
+  changeToken: ['token'],
   sendIdentificationRequest: ['data'],
   sendIdentificationSuccess: ['data'],
   sendIdentificationFailure: ['data'],
@@ -49,6 +52,7 @@ export const INITIAL_STATE = Immutable({
   dateOfBirth: null,
   zipCode: null,
   phoneNumber: null,
+  emailVerified: false,
   email: null,
   confirmEmail: null,
   createUserId: null,
@@ -61,7 +65,9 @@ export const INITIAL_STATE = Immutable({
   securityAnswer2: null,
   securityHint3: null,
   securityAnswer3: null,
-  communicationsElectronically: null,
+  commElect: null,
+  showCommElect: null,
+  token: null,
   questionone: null,
   questiontwo: null,
   questionthree: null,
@@ -84,7 +90,7 @@ export const _sendIdentificationRequest = (state: Object) => state.merge({ fetch
 
 // sendIdentificationSuccess
 export const _sendIdentificationSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, data})
+  state.merge({fetching: false, emailVerified: data.emailverified, email: data.homeEmail, commElect: data.defaultEOB, showCommElect: data.collectEOB, token: data.token, data})
 
 // _sendIdentificationFailure
 export const _sendIdentificationFailure = (state: Object, {data}: Object) =>
@@ -98,7 +104,7 @@ export const _sendPersonalInformationRequest = (state: Object) => state.merge({ 
 
 // sendPersonalInformationSuccess
 export const _sendPersonalInformationSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, data})
+  state.merge({fetching: false, token: data.token, data})
 
 // _sendPersonalInformationFailure
 export const _sendPersonalInformationFailure = (state: Object, {data}: Object) =>
@@ -112,7 +118,7 @@ export const _sendRegistrationCodeRequest = (state: Object) => state.merge({ fet
 
 // sendRegistrationCodeSuccess
 export const _sendRegistrationCodeSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, data})
+  state.merge({fetching: false, token: data.token, data})
 
 // _sendRegistrationCodeFailure
 export const _sendRegistrationCodeFailure = (state: Object, {data}: Object) =>
@@ -144,6 +150,10 @@ export const _changeZipCode = (state: Object, {zipCode}: Object) =>
 // phoneNumber
 export const _changePhoneNumber = (state: Object, {phoneNumber}: Object) =>
       state.merge({fetching: false, phoneNumber})
+
+// emailVerified
+export const _changeEmailVerified = (state: Object, {emailVerified}: Object) =>
+      state.merge({fetching: false, emailVerified})
 
 // email
 export const _changeEmail = (state: Object, {email}: Object) =>
@@ -197,9 +207,17 @@ export const _changeSecurityAnswer3 = (state: Object, {securityAnswer3}: Object)
 export const _changeReasonCode = (state: Object, {data}: Object) =>
       state.merge({fetching: false, data})
 
-// communicationsElectronically
-export const _changeCommunicationsElectronically = (state: Object, {communicationsElectronically}: Object) =>
-      state.merge({fetching: false, communicationsElectronically})
+// commElect
+export const _changeCommElect = (state: Object, {commElect}: Object) =>
+      state.merge({fetching: false, commElect})
+
+// showCommElect
+export const _changeShowCommElect = (state: Object, {showCommElect}: Object) =>
+      state.merge({fetching: false, showCommElect})
+
+// token
+export const _changeToken = (state: Object, {token}: Object) =>
+      state.merge({fetching: false, token})
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -211,12 +229,15 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_ZIP_CODE]: _changeZipCode,
   [Types.CHANGE_REASON_CODE]: _changeReasonCode,
   [Types.CHANGE_PHONE_NUMBER]: _changePhoneNumber,
+  [Types.CHANGE_EMAIL_VERIFIED]: _changeEmailVerified,
   [Types.CHANGE_EMAIL]: _changeEmail,
   [Types.CHANGE_CONFIRM_EMAIL]: _changeConfirmEmail,
   [Types.CHANGE_CREATE_USER_ID]: _changeCreateUserId,
   [Types.CHANGE_PASSWORD]: _changePassword,
   [Types.CHANGE_CONFIRM_PASSWORD]: _changeConfirmPassword,
-  [Types.CHANGE_RECEIVE_COMMUNICATIONS_ELECTRONICALLY]: _changeCommunicationsElectronically,
+  [Types.CHANGE_COMM_ELECT]: _changeCommElect,
+  [Types.CHANGE_SHOW_COMM_ELECT]: _changeShowCommElect,
+  [Types.CHANGE_TOKEN]: _changeToken,
   [Types.CHANGE_ENTER_CODE]: _changeEnterCode,
   [Types.CHANGE_SECURITY_HINT1]: _changeSecurityHint1,
   [Types.CHANGE_SECURITY_ANSWER1]: _changeSecurityAnswer1,

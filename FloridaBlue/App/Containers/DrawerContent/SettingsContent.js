@@ -119,11 +119,11 @@ class SettingsContent extends Component {
     return (
       <ScrollView style={[styles.wrapper]}>
         <View style={styles.options}>
-          <Text style={styles.heading} onPress={this.handlePressDashBoard}>Dash Board</Text>
+          <Text style={styles.heading} onPress={this.handlePressDashBoard}>Dashboard</Text>
           <Divider />
 
           <View>
-          <TouchableOpacity onPress={()=>{
+          <TouchableWithoutFeedback onPress={()=>{
             this.setState({hpActive : !this.state.hpActive})
           }}>
           <View style={{flexDirection:'row',marginRight:15,marginTop:10}}>
@@ -131,18 +131,20 @@ class SettingsContent extends Component {
             <Text style={styles.heading1} >My Health Plan</Text>
             </View>
 
+
             {
 
               !this.state.hpActive ?
 
-              <Icon name="caret-down" size={30} color="white" />
+              <Icon name="caret-down" size={25} color="white" />
               :
-              <Icon name="caret-up" size={30} color="white" />
+              <Icon name="caret-up" size={25} color="white" />
 
             }
 
             </View>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
+
             {
               this.state.hpActive ?
 
@@ -156,15 +158,15 @@ class SettingsContent extends Component {
           <Divider />
           <Text style={styles.heading} onPress={this.handlePressResources}>Resources</Text>
           <Divider />
-          <Text style={styles.heading} onPress={this.handlePressId}>Id Card</Text>
+          <Text style={styles.heading} onPress={this.handlePressId}>ID Card</Text>
           <Divider />
           <Text style={styles.heading} onPress={this.handlePressHSA}>Health Savings Account</Text>
           <Divider />
           <Text style={styles.heading} onPress={this.handlePressSupport}>Support</Text>
           <Divider />
           <Text style={styles.heading} onPress={this.handlePressFindCare}>Find Care</Text>
-          <Divider />
-          <Text style={styles.heading} onPress={this.handlePressPayment}>Payment</Text>
+
+
         </View>
         <View style={styles.settings}>
           <View style={styles.myAccountStyle}>
@@ -181,10 +183,12 @@ class SettingsContent extends Component {
             <Text style={styles.heading2} onPress={this.handlePressSettings}>App Settings</Text>
           </View>
           <View style={styles.myAccountStyle}>
-            <View >
+            <View style={{flex:0.1}}>
               <Flb name='question' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
-            <Text style={styles.heading2} onPress={this.handlePressFAQ}>Frequently Asked Questions</Text>
+            <View style={{flex:0.8}}>
+            <Text style={styles.heading3} onPress={this.handlePressFAQ}>Frequently Asked Questions</Text>
+            </View>
           </View>
 
           <View style={styles.myAccountStyle}>
