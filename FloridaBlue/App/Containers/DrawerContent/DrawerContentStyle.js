@@ -54,39 +54,50 @@ export default {
   heading: {
     color: Colors.snow,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-    marginBottom: Metrics.mediumMargin,
-    marginTop: Metrics.baseMargin
+    marginBottom: Metrics.baseMargin,
+    marginTop: Metrics.smallMargin,
+    fontFamily:Fonts.type.subHeaderFont,
   },
   heading1: {
     color: Colors.snow,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-    marginBottom: Metrics.mediumMargin
+    marginBottom: Metrics.mediumMargin,
+    fontFamily:Fonts.type.subHeaderFont,
   //  marginTop: Metrics.baseMargin
   },
   subheading: {
     color: Colors.snow,
     fontSize: Fonts.size.h5,
     marginBottom: Metrics.mediumMargin,
+    fontFamily:Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0029
 
   },
-  myAccountStyle: {
+  myAccountStyle:{
     marginBottom: Metrics.baseMargin,
     marginTop: Metrics.baseMargin,
     flexDirection: 'row'
-  },
+    },
 
   heading2: {
     color: Colors.flBlue.ocean,
-    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-    marginLeft: Metrics.baseMargin
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
+    marginLeft: Metrics.baseMargin,
+    fontFamily:Fonts.type.subHeaderFont,
   },
-  logoutView: {
+  heading3: {
+    color: Colors.flBlue.ocean,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
+    marginLeft: 4,
+    fontFamily:Fonts.type.subHeaderFont,
+  },
+  logoutView:{
     marginTop: Metrics.doubleBaseMargin,
     margin: Metrics.baseMargin
   },
-  logoutStyle: {
-    width: Metrics.screenWidth - (Metrics.screenWidth * 0.50),
-    alignSelf: 'center'
-  }
+  logoutStyle:{
+    width: 160,
+    //width:160,
+    alignSelf:'center'
+    }
 }

@@ -33,8 +33,13 @@ class HSA extends Component {
 
   _renderHeader () {
     return (<Image style={styles.hsaHeader} source={Images.hsaHeader}>
+
+      <View style={{marginLeft:Metrics.screenWidth*0.025}}>
       {NavItems.backButton()}
-      {NavItems.settingsButton()}
+      </View>
+      <View style={{marginRight:Metrics.screenWidth*0.035}}>
+    {NavItems.settingsButton()}
+    </View>
     </Image>)
   }
 
@@ -43,35 +48,37 @@ class HSA extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
 
-        <Text style={styles.hsaText}>
+        <View style={{flex:1, marginTop:20}}>
+
+            <Text style={styles.hsaText}>
                 Health Savings Account
                 </Text>
 
-        <View style={styles.container}>
-          <View style={styles.row_1}>
-            <View style={styles.col_1}>
-              <Text style={styles.hsaTextStyle1}>Current</Text>
-              <Text style={styles.hsaTextStyle1}>Balance</Text>
-              <Text style={styles.hsaTextStyle1}>$3,125</Text>
+            <View style={{flexDirection:'row', justifyContent:'center', marginTop:20}}>
+            <View>
+              <Text style={styles.hsaTextStyle1}>Current Balance :</Text>
+              </View>
+              <View style={{marginLeft:10}}>
+              <Text style={styles.hsaTextStyle2}>$3,125</Text>
             </View>
-
+            </View>
+            <View style={styles.row_1}>
             <View style={styles.col_1}>
               <Text style={styles.hsaTextStyle1}>YTD</Text>
-              <Text style={styles.hsaTextStyle1}>Contributiont</Text>
-              <Text style={styles.hsaTextStyle1}>$2,250</Text>
-
+              <Text style={styles.hsaTextStyle1}>Contribution</Text>
+              <Text style={styles.hsaTextStyle2}>$2,250</Text>
             </View>
-          </View>
 
-          <View style={styles.row_2}>
+          <View style={styles.col_1}>
             <Text style={styles.hsaTextStyle1}>YTD</Text>
             <Text style={styles.hsaTextStyle1}>Distribution</Text>
-            <Text style={styles.hsaTextStyle1}>-$2.250</Text>
+            <Text style={styles.hsaTextStyle2}>-$2.250</Text>
+          </View>
           </View>
 
-        </View>
-        <Image style={styles.hsaBg} source={Images.hsaBg} />
 
+        <Image style={styles.hsaBg} source={Images.hsaBg} />
+        </View>
       </View>
     )
   }

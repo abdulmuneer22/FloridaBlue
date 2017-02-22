@@ -29,9 +29,9 @@ class Switch extends Component {
       borderColor: Colors.flBlue.ocean,
       borderRightWidth: 1,
       borderTopLeftRadius: 15,
-      padding: 1,
+      padding: 4,
       backgroundColor: Colors.flBlue.ocean,
-      width: Metrics.screenWidth * 0.40
+      width: Metrics.screenWidth*0.40
     }
 
     var twoTabRightActiveStyle = {
@@ -39,9 +39,9 @@ class Switch extends Component {
       borderColor: Colors.flBlue.ocean,
       borderLeftWidth: 1,
       borderTopRightRadius: 15,
-      padding: 1,
+      padding: 4,
       backgroundColor: Colors.flBlue.ocean,
-      width: Metrics.screenWidth * 0.40
+      width: Metrics.screenWidth*0.40
     }
     var twoTextActiveStyle = {
       color: 'white',
@@ -49,10 +49,10 @@ class Switch extends Component {
     }
     var twoTabInactiveStyle = {
       backgroundColor: Colors.flBlue.ocean,
-      padding: 1,
+      padding: 4,
       backgroundColor: 'white',
       borderRadius: 25,
-      width: Metrics.screenWidth * 0.40
+      width: Metrics.screenWidth*0.40
     }
 
     var twoTextInactiveStyle = {
