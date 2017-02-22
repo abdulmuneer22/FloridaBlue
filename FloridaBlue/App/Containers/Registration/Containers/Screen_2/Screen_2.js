@@ -53,12 +53,6 @@ class Screen_2 extends React.Component {
     NavigationActions.pop()
   }
 
-  /*
-  _handleNext () {
-    NavigationActions.screen_3()
-  }
-  */
-
   _handleNext () {
     var phoneNumber = this.props.phoneNumber
     var email = this.props.email
@@ -66,10 +60,9 @@ class Screen_2 extends React.Component {
     var createUserId = this.props.createUserId
     var password = this.props.password
     var confirmPassword = this.props.confirmPassword
-    var communicationsElectronically = this.props.communicationsElectronically
 
-    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
-      alert('Please enter values in all fields')
+    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword)) {
+      alert("Please enter values in all fields")
     } else {
       this.props.verifyPersonalInformation(this.props)
     }
@@ -80,9 +73,6 @@ class Screen_2 extends React.Component {
   }
 
   componentDidUpdate () {
-    console.tron.log('update')
-    console.tron.log(this.props)
-
     if (this.props.data) {
       var reasonCode = this.props.data.reasonCode
 
@@ -127,7 +117,11 @@ class Screen_2 extends React.Component {
               onChangeText={this.props.handleChangePhoneNumber}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
-                this.refs.email.focus()
+                if (this.props.emailVerified) {
+                  this.refs.createUserId.focus()
+                } else {
+                  this.refs.email.focus()
+                }
               }}
               placeholder={I18n.t('phoneNumber')}
             />
@@ -138,6 +132,7 @@ class Screen_2 extends React.Component {
               value={this.props.email}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='email-address'
+              editable={this.props.emailVerified ? false : true}
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
@@ -149,7 +144,7 @@ class Screen_2 extends React.Component {
               placeholder={I18n.t('email')}
             />
           </View>
-          <View style={styles.row}>
+          { !this.props.emailVerified ? <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='confirmEmail'
               value={this.props.confirmEmail}
@@ -165,7 +160,7 @@ class Screen_2 extends React.Component {
               }}
               placeholder={I18n.t('confirmEmail')}
             />
-          </View>
+          </View> : null}
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='createUserId'
@@ -216,25 +211,22 @@ class Screen_2 extends React.Component {
               placeholder={I18n.t('confirmPassword')}
             />
           </View>
-          <View style={styles.checkboxRow}>
+          {this.props.showCommElect ? <View style={styles.checkboxRow}>
             <View style={styles.checkbox}>
               <MKCheckbox
-                ref='communicationsElectronically'
-                value={this.props.communicationsElectronically}
+                ref='commElect'
+                checked={this.props.commElect}
                 onCheckedChange={() => {
-                  console.tron.log('clicked')
-                  // console.tron.log(this.refs)
-                  // var checked = this.refs.communicationsElectronically.state.checked
-                  // console.tron.log(checked)
-                  // this.props.handleChangeCommunicationsElectronically(checked)
+                    // Set to the opposite value using !
+                  this.props.handleChangeCommElect(!this.props.commElect)
                 }
                 }
               />
             </View>
             <View style={styles.checkboxMessageView}>
-              <Text style={styles.checkboxMessageText}>{I18n.t('communicationsElectronically')}</Text>
+              <Text style={styles.checkboxMessageText}>{I18n.t('commElect')}</Text>
             </View>
-          </View>
+          </View> : null}
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
@@ -267,7 +259,7 @@ Screen_2.propTypes = {
   handleChangeCreateUserId: PropTypes.func,
   handleChangePassword: PropTypes.func,
   handleChangeConfirmPassword: PropTypes.func,
-  handleChangeCommunicationsElectronically: PropTypes.func,
+  handleChangeCommElect: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -280,12 +272,14 @@ const mapStateToProps = (state) => {
     dateOfBirth: state.registration.dateOfBirth,
     zipCode: state.registration.zipCode,
     phoneNumber: state.registration.phoneNumber,
+    emailVerified: state.registration.emailVerified,
     email: state.registration.email,
     confirmEmail: state.registration.confirmEmail,
     createUserId: state.registration.createUserId,
     password: state.registration.password,
     confirmPassword: state.registration.confirmPassword,
-    communicationsElectronically: state.registration.communicationsElectronically,
+    commElect: state.registration.commElect,
+    showCommElect: state.registration.showCommElect,
     fetching: state.registration.fetching,
     error: state.registration.error,
     data: state.registration.data
@@ -301,7 +295,7 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
     handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
     handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword)),
-    handleChangeCommunicationsElectronically: (communicationsElectronically) => dispatch(RegistrationActions.changeCommunicationsElectronically(communicationsElectronically)),
+    handleChangeCommElect: (commElect) => dispatch(RegistrationActions.changeCommElect(commElect)),
     handleChangeReasonCode: (data) => dispatch(RegistrationActions.changeReasonCode(data))
   }
 }

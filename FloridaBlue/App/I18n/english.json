@@ -6,7 +6,7 @@
    "componentExamples": "Component Examples",
    "confirmEmail": "Confirm Email",
    "confirmPassword": "Confirm Password",
-   "communicationsElectronically": "Yes. I want all communications electronically.",
+   "commElect": "Yes. I want all communications electronically.",
    "createAccountMessage": "All fields are required to create your account and must match what we have on file.",
    "createUserId": "Create User ID",
    "createUserIdAndPassword": "Create a User Id and Password",
