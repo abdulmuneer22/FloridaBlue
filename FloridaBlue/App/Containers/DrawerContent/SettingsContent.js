@@ -123,26 +123,26 @@ class SettingsContent extends Component {
           <Divider />
 
           <View>
-
+          <TouchableOpacity onPress={()=>{
+            this.setState({hpActive : !this.state.hpActive})
+          }}>
           <View style={{flexDirection:'row',marginRight:15,marginTop:10}}>
           <View style={{flex:1}}>
-            <Text style={styles.heading1} onPress={this.handlePressPlans}>My Health Plan</Text>
+            <Text style={styles.heading1} >My Health Plan</Text>
             </View>
-            <TouchableOpacity onPress={()=>{
-              this.setState({hpActive : !this.state.hpActive})
-            }}>
+
             {
 
               !this.state.hpActive ?
 
-              <Icon name="caret-down" size={18} color="white" />
+              <Icon name="caret-down" size={30} color="white" />
               :
-              <Icon name="caret-up" size={18} color="white" />
+              <Icon name="caret-up" size={30} color="white" />
 
             }
-            </TouchableOpacity>
-            </View>
 
+            </View>
+            </TouchableOpacity>
             {
               this.state.hpActive ?
 
