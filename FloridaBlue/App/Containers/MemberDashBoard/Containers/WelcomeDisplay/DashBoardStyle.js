@@ -28,9 +28,7 @@ export default StyleSheet.create({
   },
   hsaHeader: {
     flexDirection: 'row',
-
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80))/2,
-
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.79),
   // marginTop:20,
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -47,14 +45,59 @@ export default StyleSheet.create({
   },
   hsaBg: {
  // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.43),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.45),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
  // padding:10,
-    alignSelf: 'stretch',
+    //alignSelf: 'stretch',
+    resizeMode:'contain',
     width: Metrics.screenWidth,
   },
+  hsaTextStyle1: {
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
+    fontFamily:Fonts.type.subHeaderFont,
+
+    // fontWeight:'bold'
+  },
+  hsaTextStyle2: {
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0032,
+    color:Colors.flBlue.grass,
+    fontWeight:'600',
+    fontFamily:Fonts.type.subHeaderFont,
+    // fontWeight:'bold'
+  },
+
+  textStyle: {
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    fontWeight: '500',
+    marginTop:Metrics.smallMargin,
+    fontFamily:Fonts.type.headerFont,
+  },
+  hsaText: {
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0033,
+    fontWeight: '600',
+    textAlign: 'center',
+    fontFamily:Fonts.type.subHeaderFont,
+  //  padding: Metrics.smallMargin,
+
+    marginTop: Metrics.smallMargin * Metrics.screenHeight * 0.0005
+
+  },
+  row_1: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  //  paddingTop: Metrics.baseMargin,
+  //  paddingBottom: Metrics.baseMargin
+    marginTop:Metrics.smallMargin * Metrics.screenHeight * 0.003,
+    marginBottom:Metrics.smallMargin * Metrics.screenHeight * 0.001
+  },
+  col_1: {
+    flex: 1,
+    // backgroundColor : 'yellow',
+    alignItems: 'center'
+  },
+
   container: {
     flex: 1,
     backgroundColor: Colors.snow
@@ -65,7 +108,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.78)) / 3,
     // padding:5,
-    backgroundColor: Colors.flBlue.grey6
+    backgroundColor: Colors.flBlue.grey6,
+    margin:2
   },
   messageCountStyle: {
     alignItems: 'center',
@@ -83,11 +127,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
     justifyContent: 'space-between',
+    //margin:2,
     alignItems: 'center',
     resizeMode: 'cover',
   //  padding:5,
     // alignSelf: 'stretch',
-    width: Metrics.screenWidth
+    width: Metrics.screenWidth * 0.98
   },
   titleView: {
     flexWrap: 'wrap',
@@ -95,20 +140,24 @@ export default StyleSheet.create({
     justifyContent: 'space-around'
   },
   tileStyle:{
-    width: (window.width * 0.5),
+    width: (window.width * 0.5)-5,
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
     alignItems: 'center',
     justifyContent: 'center',
-    //margin:2,
-    shadowColor:Colors.flBlue.grey4,
-    shadowOpacity:0.8,
-    elevation:8,
+    margin: 2,
+  //  marginTop:2,
+  //  marginBottom:2,
+  //  marginRight:2,
+  // marginLeft:2,
+    //shadowColor:Colors.flBlue.grey4,
+  //  shadowOpacity:0.8,
+  //  elevation:8,
   //  outlineProvider:'bounds',
-    shadowOffset: {width: 5, height: 5},
-    shadowRadius:25,
-    borderWidth: 7,
-    borderRadius:6,
-    borderColor: Colors.flBlue.lightBlue
+//    shadowOffset: {width: 5, height: 5},
+  //  shadowRadius:25,
+  //  borderWidth: 7,
+  //  borderRadius:6,
+//    borderColor: Colors.flBlue.lightBlue
   },
   tileTextStyle:{
     marginTop: Metrics.baseMargin,
@@ -160,18 +209,22 @@ export default StyleSheet.create({
   footerView: {
     //borderTopWidth: 0.5,
     //borderBottomWidth: 0.5,
-    borderColor: Colors.snow
+    //width:Metrics.screenWidth,
+  //  borderColor: Colors.snow
+  alignItems:'center'
+
   },
   footerImage: {
     // flexDirection: 'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.805),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.825),
      // height : window.height * 0.5,
     // justifyContent: 'space-between',
     // alignItems: 'center',
   //  alignSelf: 'stretch',
-    resizeMode: 'contain',
-    width: Metrics.screenWidth,
-    marginBottom:0
+    resizeMode: 'cover',
+    width: Metrics.screenWidth * 0.985,
+    marginLeft:2
+    //marginBottom:0
   },
   titleView: {
     marginTop: Metrics.baseMargin
@@ -198,50 +251,6 @@ export default StyleSheet.create({
     marginTop:Metrics.smallMargin,
       fontFamily:Fonts.type.headerFont
     // fontWeight:'bold'
-  },
-  hsaTextStyle1: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
-    fontFamily:Fonts.type.subHeaderFont,
-
-    // fontWeight:'bold'
-  },
-  hsaTextStyle2: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
-    color:Colors.flBlue.grass,
-    fontWeight:'600',
-    fontFamily:Fonts.type.subHeaderFont,
-    // fontWeight:'bold'
-  },
-
-  textStyle: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-    fontWeight: '500',
-    marginTop:Metrics.smallMargin,
-    fontFamily:Fonts.type.headerFont,
-  },
-  hsaText: {
-    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0033,
-    fontWeight: '600',
-    textAlign: 'center',
-    fontFamily:Fonts.type.subHeaderFont,
-  //  padding: Metrics.smallMargin,
-
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0027
-
-  },
-
-  row_1: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  //  paddingTop: Metrics.baseMargin,
-  //  paddingBottom: Metrics.baseMargin
-    marginTop:10,
-    marginBottom:Metrics.smallMargin * Metrics.screenHeight*0.003
-  },
-  col_1: {
-    flex: 1,
-    // backgroundColor : 'yellow',
-    alignItems: 'center'
   },
 
   spinnerView: {

@@ -48,13 +48,13 @@ class HSA extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
 
-        <View style={{flex:1, marginTop:20}}>
+        <View style={{flex:1}}>
 
             <Text style={styles.hsaText}>
                 Health Savings Account
                 </Text>
 
-            <View style={{flexDirection:'row', justifyContent:'center', marginTop:20}}>
+            <View style={{flexDirection:'row', justifyContent:'center', marginTop:5}}>
             <View>
               <Text style={styles.hsaTextStyle1}>Current Balance :</Text>
               </View>
@@ -72,7 +72,7 @@ class HSA extends Component {
           <View style={styles.col_1}>
             <Text style={styles.hsaTextStyle1}>YTD</Text>
             <Text style={styles.hsaTextStyle1}>Distribution</Text>
-            <Text style={styles.hsaTextStyle2}>-$2.250</Text>
+            <Text style={styles.hsaTextStyle2}>-$2,250</Text>
           </View>
           </View>
 

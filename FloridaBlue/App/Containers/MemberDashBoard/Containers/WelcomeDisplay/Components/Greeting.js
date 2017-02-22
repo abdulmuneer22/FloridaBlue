@@ -31,15 +31,15 @@ class Greeting extends Component {
     // alert(hours)
     if (hours < 12) {
       // alert("Good Morning")
-      this.setState({ greetText: 'Good morning' })
+      this.setState({ greetText: 'Good Morning' })
     } else {
       if (hours >= 12) {
         if (hours < 17) {
           // alert("Good Afternoon")
-          this.setState({ greetText: 'Good afternoon' })
+          this.setState({ greetText: 'Good Afternoon' })
         } else {
           // alert("Good evening")
-          this.setState({ greetText: 'Good evening' })
+          this.setState({ greetText: 'Good Evening' })
         }
       }
     }
