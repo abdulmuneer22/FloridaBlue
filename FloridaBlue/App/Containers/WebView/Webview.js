@@ -42,6 +42,7 @@ class Webview extends Component {
     var dynamic = this.props.responseURL
     var smToken = this.props.smToken
     var redirect = null
+    /*
     if (this.props.smToken) {
       redirect = {
         uri: dynamic,
@@ -56,7 +57,13 @@ class Webview extends Component {
         method: 'GET'
       }
     }
+*/
 
+
+redirect = {
+  uri: 'https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/IDCardServices/',
+  method: 'GET'
+}
     console.log("redirect"+JSON.stringify(redirect));
 
 

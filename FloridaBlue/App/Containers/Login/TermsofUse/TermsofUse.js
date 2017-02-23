@@ -125,7 +125,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleGetTOU: () => dispatch(LoginActions.getTou()),
     handleChangeAgreeTermsOfUse: (agreeTermsOfUse) => dispatch(LoginActions.changeAgreeTermsOfUse(agreeTermsOfUse)),
-    sendConfirm:() => dispatch(LoginActions.sendConfirm())
+    sendConfirm: () => dispatch(LoginActions.sendConfirm())
 
   }
 }

@@ -48,8 +48,8 @@ export function* login (api, {
   } else if (response.status == '401') {
       // dispatch failure
     console.log('I am coming from failuer ')
-    var error = 'Invalid Credentials. Please enter correctly.'
-    alert('Invalid Credentials. Please enter correctly.')
+    var error = 'Invalid Credentials. Please Enter Correctly.'
+    alert('Invalid Credentials. Please Enter Correctly.')
     yield put(LoginActions.loginFailure(error))
   } else if (response.status == null) {
     console.log('I am coming from failuer ')
@@ -75,13 +75,12 @@ export function* getTou (api) {
   }
 }
 
-
 export function* sendConfirm (api) {
   const response = yield call(api.putTou)
   console.log(JSON.stringify(response.data))
   if (response.status == '200') {
     var getTou = response.data
-    console.log("put tou"+response.data)
+    console.log('put tou' + response.data)
   } else {
     var error = 'I am being errored'
     yield put(LoginActions.loginFailure(error))

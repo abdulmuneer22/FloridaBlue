@@ -13,7 +13,7 @@ const { Types, Creators } = createActions({
   updateTou: ['getTou'],
   logoutRequest: [],
   loginFailure: ['error'],
-  sendConfirm :[],
+  sendConfirm: [],
   logout: null
 })
 
