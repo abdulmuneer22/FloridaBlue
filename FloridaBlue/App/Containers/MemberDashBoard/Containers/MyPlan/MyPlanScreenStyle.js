@@ -115,6 +115,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: window.width,
-    height: window.height * 0.5
+    height: window.height 
   }
 })

@@ -71,7 +71,12 @@ class LandingScreen extends Component {
     }
   }
   render () {
-    var color = new Array('#005b80', '#00aec7', '#0091cc', '#005b80')
+    var image = [
+        Images.dashboardGradient ,
+        Images.dashboardGradient2 ,
+        Images.dashboardGradient3 ,
+        Images.dashboardGradient4
+    ]
     var i = 0
     return (
 
@@ -100,13 +105,28 @@ class LandingScreen extends Component {
                 }
                 return (
 
-                  <TouchableOpacity  style={[styles.tileStyle,{backgroundColor: color[i]}]} onPress={onItemPress.bind(this)} key={i}>
-                    <View style={{alignItems: 'center',marginTop:5}}>
-                      <Flb name={tile.tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0027} color={Colors.snow} />
+               <TouchableOpacity
+
+                style={
+                  i % 2 == 0 ?
+                  styles.tileStyle
+                  :
+                  styles.tileStyle1
+                }
+                onPress={onItemPress.bind(this)} key={i}>
+
+                <Image  source={image[i]}
+                  style={{
+                  alignItems:'center',
+                  justifyContent:'center',
+                  width: (Metrics.screenWidth/2) - (Metrics.baseMargin *1.7),
+                  height: Metrics.screenHeight - (Metrics.screenHeight * 0.75)}}>
+
+                      <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow} style={{backgroundColor:Colors.transparent, marginTop:10}} />
                       <Text style={styles.tileTextStyle}>
                         {tile.tileName['en']}
                       </Text>
-                    </View>
+                      </Image>
                   </TouchableOpacity>
 
                 )
@@ -114,8 +134,26 @@ class LandingScreen extends Component {
               }) : <Text />
             }
             </View>
-            <TouchableWithoutFeedback style={styles.footerView} >
-              <Image source={Images.findCare} style={styles.footerImage} />
+            <TouchableWithoutFeedback >
+              <Image source={Images.findCare} style={styles.footerImage}>
+              <View style={{flexDirection:'row',
+              alignItems:'center',
+              justifyContent:'center', marginTop:Metrics.doubleBaseMargin}}>
+
+              <Flb name="search-find"
+                style={{backgroundColor:Colors.transparent,
+                marginRight:Metrics.doubleBaseMargin * Metrics.screenWidth*0.003}}
+                size={Metrics.icons.large * Metrics.screenWidth*0.003}
+                color={Colors.snow}/>
+              <Text style={{fontSize:Fonts.size.h3 * Metrics.screenWidth*0.003,
+                color:Colors.snow,
+                fontFamily:Fonts.type.headerFont,
+                backgroundColor:Colors.transparent}}>
+                Find Care
+                </Text>
+
+              </View>
+              </Image>
             </TouchableWithoutFeedback>
 
           </View>

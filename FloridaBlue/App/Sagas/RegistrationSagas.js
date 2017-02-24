@@ -17,13 +17,13 @@ export function* sendIdentificationRequest (api, {
     console.tron.log('postIdentification success')
     var error = null
     var data = response.data
+    data.screen1Status = data.reasonCode
     yield put(RegistrationActions.sendIdentificationSuccess(data))
   } else {
     console.tron.log('postIdentification failure')
     var error = 'Invaid input provided'
     var data = {
-      'reasonCode': '999',
-      'reasonDesc': 'Invalid input provided'
+      'screen1Status': '999'
     }
     yield put(RegistrationActions.sendIdentificationFailure(data))
   }
@@ -40,13 +40,13 @@ export function* sendPersonalInformationRequest (api, {
     console.tron.log('postPersonalInformation success')
     var error = null
     var data = response.data
+    data.screen2Status = data.reasonCode
     yield put(RegistrationActions.sendPersonalInformationSuccess(data))
   } else {
     console.tron.log('postPersonalInformation failure')
     var error = 'Invaid input provided'
     var data = {
-      'reasonCode': '999',
-      'reasonDesc': 'Invalid input provided'
+      'screen2Status': '999'
     }
     yield put(RegistrationActions.sendPersonalInformationFailure(data))
   }
@@ -63,13 +63,13 @@ export function* sendRegistrationCodeRequest (api, {
     console.tron.log('postRegistrationCode success')
     var error = null
     var data = response.data
+    data.screen3Status = data.reasonCode
     yield put(RegistrationActions.sendRegistrationCodeSuccess(data))
   } else {
     console.tron.log('postRegistrationCode failure')
     var error = 'Invaid input provided'
     var data = {
-      'reasonCode': '999',
-      'reasonDesc': 'Invalid input provided'
+      'screen3Status': '999'
     }
     yield put(RegistrationActions.sendRegistrationCodeFailure(data))
   }

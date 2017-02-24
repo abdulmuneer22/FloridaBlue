@@ -50,8 +50,12 @@ class Screen_4 extends React.Component {
     NavigationActions.confirmation()
   }
 
+  componentWillReceiveProps () {
+    console.tron.log('Screen 4: receiving props')
+  }
+
   componentDidMount () {
-    this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
+    this.props.handleChangeScreen4Status(null)
   }
 
   render () {
@@ -67,10 +71,10 @@ class Screen_4 extends React.Component {
               <Text style={styles.topText}>{I18n.t('setUpSecurityQuestionsInstructions')}</Text>
             </View>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
+          {this.props.screen4Status && (this.props.screen4Status != null && this.props.screen4Status != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
+              <View><Text style={styles.message}> {this.props.screen4Status}</Text></View>
             </View>
           </View> : <Text />}
           <View style={styles.row}>
@@ -218,9 +222,9 @@ const mapStateToProps = (state) => {
     securityAnswer2: state.registration.securityAnswer2,
     securityHint3: state.registration.securityHint3,
     securityAnswer3: state.registration.securityAnswer3,
+    screen4Status: state.registration.screen4Status,
     fetching: state.registration.fetching,
-    error: state.registration.error,
-    data: state.registration.data
+    error: state.registration.error
   }
 }
 
@@ -231,7 +235,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeSecurityHint2: (securityHint2) => dispatch(RegistrationActions.changeSecurityHint2(securityHint2)),
     handleChangeSecurityAnswer2: (securityAnswer2) => dispatch(RegistrationActions.changeSecurityAnswer2(securityAnswer2)),
     handleChangeSecurityHint3: (securityHint3) => dispatch(RegistrationActions.changeSecurityHint3(securityHint3)),
-    handleChangeSecurityAnswer3: (securityAnswer3) => dispatch(RegistrationActions.changeSecurityAnswer3(securityAnswer3))
+    handleChangeSecurityAnswer3: (securityAnswer3) => dispatch(RegistrationActions.changeSecurityAnswer3(securityAnswer3)),
+    handleChangeScreen4Status: (data) => dispatch(RegistrationActions.changeScreen4Status(data))
   }
 }
 
