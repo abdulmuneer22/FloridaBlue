@@ -28,6 +28,10 @@ const { Types, Creators } = createActions({
   changeCommElect: ['commElect'],
   changeShowCommElect: ['showCommElect'],
   changeReasonCode: ['data'],
+  changeScreen1Status: ['data'],
+  changeScreen2Status: ['data'],
+  changeScreen3Status: ['data'],
+  changeScreen4Status: ['data'],
   changeToken: ['token'],
   sendIdentificationRequest: ['data'],
   sendIdentificationSuccess: ['data'],
@@ -46,6 +50,10 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
+  screen1Status: null,
+  screen2Status: null,
+  screen3Status: null,
+  screen4Status: null,
   contractNumber: null,
   firstName: null,
   lastName: null,
@@ -90,7 +98,7 @@ export const _sendIdentificationRequest = (state: Object) => state.merge({ fetch
 
 // sendIdentificationSuccess
 export const _sendIdentificationSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, emailVerified: data.emailverified, email: data.homeEmail, commElect: data.defaultEOB, showCommElect: data.collectEOB, token: data.token, data})
+  state.merge({fetching: false, emailVerified: data.emailverified, email: data.homeEmail, commElect: data.defaultEOB, showCommElect: data.collectEOB, token: data.token, screen1Status: data.screen1Status})
 
 // _sendIdentificationFailure
 export const _sendIdentificationFailure = (state: Object, {data}: Object) =>
@@ -102,9 +110,9 @@ export const _sendIdentificationFailure = (state: Object, {data}: Object) =>
 // _sendPersonalInformationRequest
 export const _sendPersonalInformationRequest = (state: Object) => state.merge({ fetching: true })
 
-// sendPersonalInformationSuccess
+// _sendPersonalInformationSuccess
 export const _sendPersonalInformationSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, token: data.token, data})
+  state.merge({fetching: false, token: data.token, screen2Status: data.screen2Status})
 
 // _sendPersonalInformationFailure
 export const _sendPersonalInformationFailure = (state: Object, {data}: Object) =>
@@ -118,7 +126,7 @@ export const _sendRegistrationCodeRequest = (state: Object) => state.merge({ fet
 
 // sendRegistrationCodeSuccess
 export const _sendRegistrationCodeSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, token: data.token, data})
+  state.merge({fetching: false, token: data.token, screen3Status: data.screen3Status})
 
 // _sendRegistrationCodeFailure
 export const _sendRegistrationCodeFailure = (state: Object, {data}: Object) =>
@@ -207,6 +215,22 @@ export const _changeSecurityAnswer3 = (state: Object, {securityAnswer3}: Object)
 export const _changeReasonCode = (state: Object, {data}: Object) =>
       state.merge({fetching: false, data})
 
+// screen1Status
+export const _changeScreen1Status = (state: Object, {data}: Object) =>
+      state.merge({fetching: false, data})
+
+// screen2Status
+export const _changeScreen2Status = (state: Object, {data}: Object) =>
+      state.merge({fetching: false, data})
+
+// screen3Status
+export const _changeScreen3Status = (state: Object, {data}: Object) =>
+      state.merge({fetching: false, data})
+
+// screen4Status
+export const _changeScreen4Status = (state: Object, {data}: Object) =>
+      state.merge({fetching: false, data})
+
 // commElect
 export const _changeCommElect = (state: Object, {commElect}: Object) =>
       state.merge({fetching: false, commElect})
@@ -227,7 +251,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_LAST_NAME]: _changeLastName,
   [Types.CHANGE_DATE_OF_BIRTH]: _changeDateOfBirth,
   [Types.CHANGE_ZIP_CODE]: _changeZipCode,
-  [Types.CHANGE_REASON_CODE]: _changeReasonCode,
   [Types.CHANGE_PHONE_NUMBER]: _changePhoneNumber,
   [Types.CHANGE_EMAIL_VERIFIED]: _changeEmailVerified,
   [Types.CHANGE_EMAIL]: _changeEmail,
@@ -245,6 +268,11 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_SECURITY_ANSWER2]: _changeSecurityAnswer2,
   [Types.CHANGE_SECURITY_HINT3]: _changeSecurityHint3,
   [Types.CHANGE_SECURITY_ANSWER3]: _changeSecurityAnswer3,
+  [Types.CHANGE_REASON_CODE]: _changeReasonCode,
+  [Types.CHANGE_SCREEN1_STATUS]: _changeScreen1Status,
+  [Types.CHANGE_SCREEN2_STATUS]: _changeScreen2Status,
+  [Types.CHANGE_SCREEN3_STATUS]: _changeScreen3Status,
+  [Types.CHANGE_SCREEN4_STATUS]: _changeScreen4Status,
   [Types.SEND_IDENTIFICATION_REQUEST]: _sendIdentificationRequest,
   [Types.SEND_IDENTIFICATION_SUCCESS]: _sendIdentificationSuccess,
   [Types.SEND_IDENTIFICATION_FAILURE]: _sendIdentificationFailure,

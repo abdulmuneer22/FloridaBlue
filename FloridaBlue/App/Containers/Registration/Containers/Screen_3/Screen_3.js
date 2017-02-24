@@ -46,34 +46,39 @@ class Screen_3 extends React.Component {
     NavigationActions.pop()
   }
 
-  /*
   _handleNext () {
-    NavigationActions.screen_4()
-  }
-  */
+    var enterCode = this.props.enterCode
+    console.tron.log(enterCode)
 
-  _handleNext () {
-    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
-      alert('Please enter values in all fields')
+    if (!enterCode) {
+      alert('Please enter a registration code')
     } else {
-      this.props.verifyPersonalInformation(phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, communicationsElectronically)
+      this.props.verifyRegistrationCode(this.props)
     }
-    this.props.verifyPersonalInformation(this.props)
+  }
+
+  componentDidMount () {
+    this.props.handleChangeScreen3Status(null)
+  }
+
+  componentWillReceiveProps () {
+    console.tron.log('Screen 3: receiving props')
   }
 
   componentDidUpdate () {
-    if (this.props.data) {
-      var reasonCode = this.props.data.reasonCode
-      console.log(reasonCode)
+    if (this.props.screen3Status) {
+      var status = this.props.screen3Status
 
-      if (reasonCode === '000') {
+      if (status === '000') {
+        this.props.handleChangeScreen3Status(null)
+        console.tron.log("Navigating to Screen 4")
         NavigationActions.screen_4()
       }
     }
   }
 
   componentDidMount () {
-    this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
+    this.props.handleChangeScreen3Status(null)
   }
 
   render () {
@@ -84,10 +89,15 @@ class Screen_3 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
+          {this.props.screen3Status && (this.props.screen3Status != null && this.props.screen3Status != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
+              <View><Text style={styles.message}> {this.props.screen3Status}</Text></View>
+            </View>
+            <View>
+              <TouchableOpacity onPress={() => { this.props.handleChangeScreen3Status(null) }}>
+                <Image source={Images.closeIconWhite} />
+              </TouchableOpacity>
             </View>
           </View> : <Text />}
           <View style={styles.row}>
@@ -96,6 +106,7 @@ class Screen_3 extends React.Component {
               style={styles.textfieldWithFloatingLabel}
               keyboardType='numbers-and-punctuation'
               returnKeyType='done'
+              value={this.props.enterCode}
               autoCapitalize='none'
               autoCorrect={false}
               onChangeText={this.props.handleChangeEnterCode}
@@ -142,16 +153,17 @@ const mapStateToProps = (state) => {
     lastName: state.registration.lastName,
     dateOfBirth: state.registration.dateOfBirth,
     zipCode: state.registration.zipCode,
+    screen3Status: state.registration.screen3Status,
     fetching: state.registration.fetching,
-    error: state.registration.error,
-    data: state.registration.data
+    error: state.registration.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     verifyRegistrationCode: (data) => dispatch(RegistrationActions.sendRegistrationCodeRequest(data)),
-    handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode))
+    handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode)),
+    handleChangeScreen3Status: (data) => dispatch(RegistrationActions.changeScreen3Status(data))
   }
 }
 

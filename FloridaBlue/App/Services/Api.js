@@ -95,31 +95,31 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
   const postPersonalInformation = (data) => api.post('/sendregistrationcode.json', {
     'SendRegistrationCode': {
       'applicationId': '1001',
-      'transactionId': data.data.transactionId,
+      'transactionId': data.contractNumber,
       'contractnumber': data.contractNumber,
       'firstName': data.firstName,
       'lastName': data.lastName,
       'dob': data.dateOfBirth,
       'zip': data.zipCode,
-      'token': data.data.token,
+      'token': data.token,
       'userid': data.createUserId,
       'password': data.password,
       'email': data.email,
       'emailupdated': 'true',
-      'eobOptin': data.communicationsElectronically
+      'eobOptin': data.commElect
     }
   })
 
   const postRegistrationCode = (data) => api.post('/verifyregistrationcode.json', {
     'SendRegistrationCode': {
       'applicationId': '1001',
-      'transactionId': data.data.transactionId,
+      'transactionId': data.contractNumber,
       'contractnumber': data.contractNumber,
       'firstName': data.firstName,
       'lastName': data.lastName,
       'dob': data.dateOfBirth,
       'zip': data.zipCode,
-      'token': data.data.token,
+      'token': data.token,
       'code': data.enterCode
     }
   })
