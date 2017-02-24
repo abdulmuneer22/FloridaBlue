@@ -80,9 +80,9 @@ class Login extends Component {
         this.props.attemptMember()
         this.props.attemptSupportScreen()
         if (newProps.termsOfUse) {
-           NavigationActions.Termsofuse()
-        } else {
             NavigationActions.WelcomeDashBoard()
+        } else {
+            NavigationActions.Termsofuse()
         }
       } else {
         console.log('new props' + newProps.responseURL)
