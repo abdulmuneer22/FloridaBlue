@@ -69,21 +69,23 @@ class Screen_2 extends React.Component {
   }
 
   componentDidMount () {
-    this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
+    this.props.handleChangeScreen2Status(null)
   }
 
   componentDidUpdate () {
-    if (this.props.data) {
-      var reasonCode = this.props.data.reasonCode
+    if (this.props.screen2Status) {
+      var status = this.props.screen2Status
 
-      if (reasonCode === '000') {
+      if (status === '000') {
+        this.props.handleChangeScreen2Status(null)
+        console.tron.log("Navigating to Screen 3")
         NavigationActions.screen_3()
       }
     }
   }
 
   componentWillReceiveProps () {
-    console.tron.log('receiving props')
+    console.tron.log('Screen 2: receiving props')
   }
 
   render () {
@@ -94,13 +96,13 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
+          {this.props.screen2Status && (this.props.screen2Status != null && this.props.screen2Status != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
+              <View><Text style={styles.message}> {this.props.screen2Status}</Text></View>
             </View>
             <View>
-              <TouchableOpacity onPress={() => { this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null}) }}>
+              <TouchableOpacity onPress={() => { this.props.handleChangeScreen2Status(null) }}>
                 <Image source={Images.closeIconWhite} />
               </TouchableOpacity>
             </View>
@@ -279,10 +281,11 @@ const mapStateToProps = (state) => {
     password: state.registration.password,
     confirmPassword: state.registration.confirmPassword,
     commElect: state.registration.commElect,
+    token: state.registration.token,
     showCommElect: state.registration.showCommElect,
     fetching: state.registration.fetching,
-    error: state.registration.error,
-    data: state.registration.data
+    screen2Status: state.registration.screen2Status,
+    error: state.registration.error
   }
 }
 
@@ -296,7 +299,7 @@ const mapDispatchToProps = (dispatch) => {
     handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
     handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword)),
     handleChangeCommElect: (commElect) => dispatch(RegistrationActions.changeCommElect(commElect)),
-    handleChangeReasonCode: (data) => dispatch(RegistrationActions.changeReasonCode(data))
+    handleChangeScreen2Status: (data) => dispatch(RegistrationActions.changeScreen2Status(data))
   }
 }
 

@@ -66,14 +66,20 @@ class Screen_1 extends React.Component {
   }
 
   componentDidMount () {
-    this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
+    this.props.handleChangeScreen1Status(null)
+  }
+
+  componentWillReceiveProps () {
+    console.tron.log('Screen 1: receiving props')
   }
 
   componentDidUpdate () {
-    if (this.props.data) {
-      var reasonCode = this.props.data.reasonCode
+    if (this.props.screen1Status) {
+      var status = this.props.screen1Status
 
-      if (reasonCode === '000') {
+      if (status === '000') {
+        this.props.handleChangeScreen1Status(null)
+        console.tron.log("Navigating to Screen 2")
         NavigationActions.screen_2()
       }
     }
@@ -95,13 +101,13 @@ class Screen_1 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('personalInformation')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
+          {this.props.screen1Status && (this.props.screen1Status != null && this.props.screen1Status != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
+              <View><Text style={styles.message}> {this.props.screen1Status}</Text></View>
             </View>
             <View>
-              <TouchableOpacity onPress={() => { this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null}) }}>
+              <TouchableOpacity onPress={() => { this.props.handleChangeScreen1Status(null) }}>
                 <Image source={Images.closeIconWhite} />
               </TouchableOpacity>
             </View>
@@ -227,7 +233,7 @@ Screen_1.propTypes = {
   handleChangeLastName: PropTypes.func,
   handleChangeDateOfBirth: PropTypes.func,
   handleChangeZipCode: PropTypes.func,
-  handleChangeReasonCode: PropTypes.func,
+  handleChangeScreen1Status: PropTypes.func,
   fetching: PropTypes.bool,
   contractNumber: PropTypes.string,
   firstName: PropTypes.string,
@@ -245,8 +251,8 @@ const mapStateToProps = (state) => {
     lastName: state.registration.lastName,
     dateOfBirth: state.registration.dateOfBirth,
     zipCode: state.registration.zipCode,
-    error: state.registration.error,
-    data: state.registration.data
+    screen1Status: state.registration.screen1Status,
+    error: state.registration.error
   }
 }
 
@@ -258,7 +264,7 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeLastName: (lastName) => dispatch(RegistrationActions.changeLastName(lastName)),
     handleChangeDateOfBirth: (dateOfBirth) => dispatch(RegistrationActions.changeDateOfBirth(dateOfBirth)),
     handleChangeZipCode: (zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode)),
-    handleChangeReasonCode: (data) => dispatch(RegistrationActions.changeReasonCode(data))
+    handleChangeScreen1Status: (data) => dispatch(RegistrationActions.changeScreen1Status(data))
   }
 }
 
