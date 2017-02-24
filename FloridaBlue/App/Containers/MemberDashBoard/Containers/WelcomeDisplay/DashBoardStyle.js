@@ -108,9 +108,14 @@ export default StyleSheet.create({
     justifyContent: 'center',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.78)) / 3,
     // padding:5,
-    backgroundColor: Colors.flBlue.grey6,
+  //  backgroundColor: Colors.flBlue.grey6,
     margin:2
   },
+  greetingText:{
+    fontSize: Fonts.size.h6,
+    fontFamily:Fonts.type.subHeaderFont,
+    color: Colors.flBlue.anvil
+    },
   messageCountStyle: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -125,26 +130,38 @@ export default StyleSheet.create({
   },
   summary: {
     flexDirection: 'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
-    justifyContent: 'space-between',
+    height: Metrics.screenHeight * 0.125,
+  //  justifyContent: 'space-between',
     //margin:2,
     alignItems: 'center',
     resizeMode: 'cover',
+    marginTop:4,
+    marginBottom:4,
   //  padding:5,
     // alignSelf: 'stretch',
-    width: Metrics.screenWidth * 0.98
+    width: Metrics.screenWidth
   },
   titleView: {
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'space-around'
   },
-  tileStyle:{
-    width: (window.width * 0.5)-5,
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
+  tileStyle1:{
+    width: (window.width - 70)/2,
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 2,
+    //margin:4,
+  //  marginTop:10,
+    marginBottom:5,
+    backgroundColor:'red',
+    marginLeft : 20
+    //marginLeft = x
+    //marginRight :4
+    //margin middle = x
+    //totalmargin =3x
+    //cardWidth = (window.width - 3x ) /2
+
   //  marginTop:2,
   //  marginBottom:2,
   //  marginRight:2,
@@ -159,11 +176,25 @@ export default StyleSheet.create({
   //  borderRadius:6,
 //    borderColor: Colors.flBlue.lightBlue
   },
+  tileStyle2:{
+  width: (window.width - 70)/2,
+  height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
+  alignItems: 'center',
+  justifyContent: 'center',
+  //margin:4,
+  backgroundColor:'red',
+//  marginRight:0
+marginLeft:30,
+marginRight:20,
+//marginTop:10,
+marginBottom:5,
+},
   tileTextStyle:{
     marginTop: Metrics.baseMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029,
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0029,
       fontFamily:Fonts.type.subHeaderFont,
     fontWeight: '600',
+    backgroundColor:Colors.transparent,
     color: Colors.snow,
     textAlign:'center',
   },
@@ -173,17 +204,22 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   healthPlanView: {
-    flex: 0.7,
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: Colors.transparent
+    justifyContent:'center',
+    flexDirection:'row',
+    alignItems:'center'
+  //  flex: 1,
+  //  alignItems: 'center',
+    //padding: 20,
+
+    //marginLeft:20
   },
   healthPlanText: {
-    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
-    color: Colors.flBlue.anvil,
+    fontSize: Fonts.size.h2 * Metrics.screenWidth * 0.0025,
+    color: Colors.snow,
     fontWeight: '500',
+    backgroundColor: Colors.transparent,
     fontFamily:Fonts.type.subHeaderFont,
-    marginLeft:-10,
+    marginLeft:Metrics.images.large * Metrics.screenWidth * 0.0035,
 // alignSelf : 'stretch',
 //  alignItems:'center',
 //  justifyContent:'center',
@@ -201,29 +237,40 @@ export default StyleSheet.create({
     width: Metrics.images.xl,
     height: Metrics.images.xl
   },
+  myPlanArrowIcon: {
+    backgroundColor:Colors.transparent,
+    marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.0035,
+   marginTop:Metrics.smallMargin
+ },
   healthPlanIcon: {
-    marginTop: Metrics.searchBarHeight,
-    marginRight: Metrics.mediumMargin,
-    backgroundColor: Colors.transparent
+  //  marginTop: Metrics.baseMargin,
+  //flex:0.2,
+    marginRight: Metrics.doubleBaseMargin,
+    backgroundColor: Colors.transparent,
+    //alignSelf:'center',
+    marginLeft:-20
   },
   footerView: {
     //borderTopWidth: 0.5,
     //borderBottomWidth: 0.5,
     //width:Metrics.screenWidth,
   //  borderColor: Colors.snow
-  alignItems:'center'
+  //  alignItems:'center',
+  //  justifyContent:'center'
+    //smargin:4
 
   },
   footerImage: {
     // flexDirection: 'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.825),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.84),
      // height : window.height * 0.5,
-    // justifyContent: 'space-between',
+    // justifyContent: 'center',
     // alignItems: 'center',
   //  alignSelf: 'stretch',
-    resizeMode: 'cover',
-    width: Metrics.screenWidth * 0.985,
-    marginLeft:2
+    resizeMode: 'stretch',
+    width: Metrics.screenWidth,
+    marginTop:4,
+
     //marginBottom:0
   },
   titleView: {

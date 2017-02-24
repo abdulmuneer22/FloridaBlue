@@ -26,6 +26,19 @@ const Divider = () => {
   return <View style={styles.divider} />
 }
 
+const Dummy = [{
+  title :"A"
+},
+{
+  title :"B"
+},
+{
+  title :"C"
+}
+
+
+
+]
 class SettingsContent extends Component {
   constructor(){
     super();
@@ -155,15 +168,38 @@ class SettingsContent extends Component {
             :null
           }
           </View>
+
           <Divider />
-          <Text style={styles.heading} onPress={this.handlePressResources}>Resources</Text>
-          <Divider />
-          <Text style={styles.heading} onPress={this.handlePressId}>ID Card</Text>
-          <Divider />
-          <Text style={styles.heading} onPress={this.handlePressHSA}>Health Savings Account</Text>
-          <Divider />
-          <Text style={styles.heading} onPress={this.handlePressSupport}>Support</Text>
-          <Divider />
+          {
+            this.props.visibilityRules ?
+            this.props.visibilityRules.coreTiles.map((tile,i)=>{
+              onItemPress = function () {
+                var action
+                if (tile.tileType == 'webview') {
+                  var webview = 'MyView'
+                  action = NavigationActions[webview]({responseURL: tile.tileUrl})
+                  this.toggleDrawer()
+                } else if (tile.tileType == 'native') {
+                  var routerName = tile.routerName
+                  action = NavigationActions[routerName]()
+                  this.toggleDrawer()
+                }
+              }
+              return (
+
+                <TouchableOpacity onPress={onItemPress.bind(this)} key={i}>
+                <View>
+                  <Text style={styles.heading}>{tile.tileName['en']}</Text>
+
+                  <Divider />
+                  </View>
+                </TouchableOpacity>
+              )
+            })
+            :
+            null
+          }
+
           <Text style={styles.heading} onPress={this.handlePressFindCare}>Find Care</Text>
 
 
@@ -182,14 +218,6 @@ class SettingsContent extends Component {
             </View>
             <Text style={styles.heading2} onPress={this.handlePressSettings}>App Settings</Text>
           </View>
-          <View style={styles.myAccountStyle}>
-            <View style={{flex:0.1}}>
-              <Flb name='question' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
-            </View>
-            <View style={{flex:0.8}}>
-            <Text style={styles.heading3} onPress={this.handlePressFAQ}>Frequently Asked Questions</Text>
-            </View>
-          </View>
 
           <View style={styles.myAccountStyle}>
             <View >
@@ -198,12 +226,9 @@ class SettingsContent extends Component {
 
             <Text style={styles.heading2} onPress={this.handlePressPolicy}>Policies & Terms </Text>
           </View>
-          <View style={styles.myAccountStyle}>
-            <View >
-              <Flb name='brand-phone' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
-            </View>
-            <Text style={styles.heading2} onPress={this.handlePressSupport}>Contact Us </Text>
-          </View>
+        
+
+
         </View>
         <View style={styles.logoutView}>
           <TouchableWithoutFeedback onPress={this.handlePressLogout}>
@@ -226,7 +251,9 @@ const mapStateToProps = (state) => {
     fetching: state.login.fetching,
     error: state.login.error,
     responseURL: state.login.responseURL,
-    smToken: state.login.smToken
+    smToken: state.login.smToken,
+    visibilityRules: state.member.visibilityRules
+
   }
 }
 
