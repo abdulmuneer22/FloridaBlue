@@ -12,8 +12,9 @@ const window = Dimensions.get('window')
 
 import Swiper from 'react-native-swiper'
 import {Colors, Metrics, Fonts, Images} from '../../../../../Themes'
-import PercentageCircle from 'react-native-percentage-circle'
+import SemiCircle from '../../../../../Components/SemiCircle'
 import styles from '../MyPlanScreenStyle'
+
 class MyPlanSwiper extends Component {
 
   render () {
@@ -52,7 +53,18 @@ class MyPlanSwiper extends Component {
               <View style={styles.dataContainer}>
 
                 <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                  <PercentageCircle radius={30} percent={50} color={Colors.flBlue.ocean} />
+
+                  <SemiCircle
+                    pieWidth={150}
+                    pieHeight={150}
+                    width={250}
+                    height={180}
+                    barWidth={10}
+                    barTopColor={Colors.flBlue.ocean}
+                    barBottomColor={Colors.flBlue.grey2}
+                    percent={network.used / network.value}
+                  />
+
                 </View>
 
                 <View style={{flexDirection: 'row'}}>
@@ -67,13 +79,7 @@ class MyPlanSwiper extends Component {
                   <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>{network.type} pharmacy deductible :</Text>
                   <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>${network.used}</Text>
                 </View>
-                <View>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>{network.text.en}</Text>
-
-                </View>
-
               </View>
-
             </View>
           )
           i += 1
