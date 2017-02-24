@@ -146,49 +146,30 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around'
   },
-  tileStyle1:{
-    width: (window.width - 70)/2,
+  tileStyle:{
+    width: (Metrics.screenWidth/2) - (Metrics.baseMargin * 1.5),
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
     alignItems: 'center',
     justifyContent: 'center',
     //margin:4,
-  //  marginTop:10,
-    marginBottom:5,
-    backgroundColor:'red',
-    marginLeft : 20
-    //marginLeft = x
-    //marginRight :4
-    //margin middle = x
-    //totalmargin =3x
-    //cardWidth = (window.width - 3x ) /2
+    marginTop:4,
+    marginBottom:4,
+   marginRight:(Metrics.baseMargin)/2,
+   marginLeft:Metrics.baseMargin,
 
-  //  marginTop:2,
-  //  marginBottom:2,
-  //  marginRight:2,
-  // marginLeft:2,
-    //shadowColor:Colors.flBlue.grey4,
-  //  shadowOpacity:0.8,
-  //  elevation:8,
-  //  outlineProvider:'bounds',
-//    shadowOffset: {width: 5, height: 5},
-  //  shadowRadius:25,
-  //  borderWidth: 7,
-  //  borderRadius:6,
-//    borderColor: Colors.flBlue.lightBlue
   },
-  tileStyle2:{
-  width: (window.width - 70)/2,
-  height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
-  alignItems: 'center',
-  justifyContent: 'center',
-  //margin:4,
-  backgroundColor:'red',
-//  marginRight:0
-marginLeft:30,
-marginRight:20,
-//marginTop:10,
-marginBottom:5,
-},
+  tileStyle1:{
+    width: (Metrics.screenWidth/2) - (Metrics.baseMargin *1.5),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
+    alignItems: 'center',
+    justifyContent: 'center',
+    //margin:4,
+    marginTop:4,
+    marginBottom:4,
+   marginRight:(Metrics.baseMargin),
+   marginLeft:(Metrics.baseMargin)/2,
+
+  },
   tileTextStyle:{
     marginTop: Metrics.baseMargin,
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0029,

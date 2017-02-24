@@ -84,7 +84,7 @@ class LandingScreen extends Component {
             <MyPlanCard />
             <View style={{
               flexWrap: 'wrap',
-              flexDirection: 'row', marginTop:5}}>
+              flexDirection: 'row'}}>
               {this.props.visibilityRules ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
                 onItemPress = function () {
                   var action
@@ -98,20 +98,21 @@ class LandingScreen extends Component {
                 }
                 return (
 
-                <TouchableOpacity
+               <TouchableOpacity
 
                 style={
-                  i % 2 === 0 ?
-                  styles.tileStyle1
+                  i % 2 == 0 ?
+                  styles.tileStyle
                   :
-                  styles.tileStyle2
+                  styles.tileStyle1
                 }
                 onPress={onItemPress.bind(this)} key={i}>
+
                 <Image  source={image[i]}
                   style={{
                   alignItems:'center',
                   justifyContent:'center',
-
+                  width: (Metrics.screenWidth/2) - (Metrics.baseMargin *1.7),
                   height: Metrics.screenHeight - (Metrics.screenHeight * 0.75)}}>
 
                       <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow} style={{backgroundColor:Colors.transparent, marginTop:10}} />
@@ -130,14 +131,14 @@ class LandingScreen extends Component {
               <Image source={Images.findCare} style={styles.footerImage}>
               <View style={{flexDirection:'row',
               alignItems:'center',
-              justifyContent:'center', marginTop:Metrics.baseMargin}}>
+              justifyContent:'center', marginTop:Metrics.doubleBaseMargin}}>
 
               <Flb name="search-find"
                 style={{backgroundColor:Colors.transparent,
-                marginRight:Metrics.doubleBaseMargin}}
-                size={Metrics.icons.large}
+                marginRight:Metrics.doubleBaseMargin * Metrics.screenWidth*0.003}}
+                size={Metrics.icons.large * Metrics.screenWidth*0.003}
                 color={Colors.snow}/>
-              <Text style={{fontSize:Fonts.size.h3,
+              <Text style={{fontSize:Fonts.size.h3 * Metrics.screenWidth*0.003,
                 color:Colors.snow,
                 fontFamily:Fonts.type.headerFont,
                 backgroundColor:Colors.transparent}}>
