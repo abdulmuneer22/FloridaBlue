@@ -286,6 +286,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: window.width,
     height: window.height
-  }
+  },
+  spinnerText: {
+
+    marginTop: Metrics.doubleBaseMargin
+  },
 
 })

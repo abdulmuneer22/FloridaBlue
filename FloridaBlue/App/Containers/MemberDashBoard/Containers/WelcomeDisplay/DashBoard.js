@@ -32,7 +32,8 @@ type LoginScreenProps = {
   fetching: boolean,
   userName : string,
   visibilityRules : object,
-  attemptMember: () => void
+  attemptMember: () => void,
+  error :string
 }
 const theme=getTheme();
 
@@ -66,10 +67,12 @@ class LandingScreen extends Component {
 
 
   componentWillReceiveProps (newProps) {
-    if (newProps.error === 'failure') {
-        NavigationActions.Hsa()
+     console.log("dash board failure"+newProps.error)
+    if (!newProps.error) {
+        NavigationActions.ErrorPage()
     }
   }
+  
   render () {
     var image = [
         Images.dashboardGradient ,
@@ -134,7 +137,7 @@ class LandingScreen extends Component {
               }) : <Text />
             }
             </View>
-            <TouchableWithoutFeedback >
+             <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/tools/findadoctor'})}>
               <Image source={Images.findCare} style={styles.footerImage}>
               <View style={{flexDirection:'row',
               alignItems:'center',
@@ -154,7 +157,7 @@ class LandingScreen extends Component {
 
               </View>
               </Image>
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
 
           </View>
 
@@ -173,7 +176,8 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
     userName: state.member.username,
-    visibilityRules: state.member.visibilityRules
+    visibilityRules: state.member.visibilityRules,
+    error: state.member.error
   }
 }
 const mapDispatchToProps = (dispatch) => {

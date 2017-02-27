@@ -3,7 +3,8 @@ import {
   put
 } from 'redux-saga/effects'
 import LoginActions from '../Redux/LoginRedux'
-
+import MemberActions from '../Redux/MemberRedux'
+import SupportActions from '../Redux/SupportRedux'
 // attempts to login
 export function* login (api, {
     username,
@@ -36,6 +37,12 @@ export function* login (api, {
     }
 
     if (login) {
+      // we are displacing these action by this time we knew that member loged in success fully
+      yield put(MemberActions.memberRequest()) 
+      //This action for benefits details and hsa 
+      // yield put(MemberActions.memberRequest()) 
+      // yield put(MemberActions.memberRequest()) 
+      yield put(SupportActions.supportRequest())
       responseURL = 'login'
       var error = null
     } else {
