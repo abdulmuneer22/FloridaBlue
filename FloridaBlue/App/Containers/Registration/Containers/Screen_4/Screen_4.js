@@ -47,15 +47,34 @@ class Screen_4 extends React.Component {
   }
 
   _handleNext () {
-    NavigationActions.confirmation()
-  }
+    var securityHint1 = this.props.securityHint1
+    var securityAnswer1 = this.props.securityAnswer1
+    var securityHint2 = this.props.securityHint2
+    var securityAnswer2 = this.props.securityAnswer2
+    var securityHint3 = this.props.securityHint3
+    var securityAnswer3 = this.props.securityAnswer3
 
-  componentWillReceiveProps () {
-    console.tron.log('Screen 4: receiving props')
+    if (!(securityHint1 && securityAnswer1 && securityHint2 && securityAnswer2 && securityHint3 && securityAnswer3)) {
+      alert("Please enter values in all fields")
+    } else {
+      this.props.verifySecurityHints(this.props)
+    }
   }
 
   componentDidMount () {
-    this.props.handleChangeScreen4Status(null)
+    this.props.handleChangeSecurityHintsStatus(null)
+  }
+
+  componentDidUpdate () {
+    if (this.props.securityHintsStatus) {
+      var status = this.props.securityHintsStatus
+
+      if (status === '000') {
+        this.props.handleChangeSecurityHintsStatus(null)
+        console.tron.log("")
+        NavigationActions.confirmation()
+      }
+    }
   }
 
   render () {
@@ -71,10 +90,10 @@ class Screen_4 extends React.Component {
               <Text style={styles.topText}>{I18n.t('setUpSecurityQuestionsInstructions')}</Text>
             </View>
           </View>
-          {this.props.screen4Status && (this.props.screen4Status != null && this.props.screen4Status != '000') ? <View style={styles.messageView}>
+          {this.props.securityHintsStatus && (this.props.securityHintsStatus != null && this.props.securityHintsStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.screen4Status}</Text></View>
+              <View><Text style={styles.message}> {this.props.securityHintsStatus}</Text></View>
             </View>
           </View> : <Text />}
           <View style={styles.row}>
@@ -204,6 +223,7 @@ class Screen_4 extends React.Component {
 }
 
 Screen_4.propTypes = {
+  verifySecurityHints: PropTypes.func,
   handleChangeSecurityHint1: PropTypes.func,
   handleChangeSecurityAnswer1: PropTypes.func,
   handleChangeSecurityHint2: PropTypes.func,
@@ -216,13 +236,26 @@ Screen_4.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    contractNumber: state.registration.contractNumber,
+    firstName: state.registration.firstName,
+    lastName: state.registration.lastName,
+    dateOfBirth: state.registration.dateOfBirth,
+    zipCode: state.registration.zipCode,
+    emailVerified: state.registration.emailVerified,
+    email: state.registration.email,
+    confirmEmail: state.registration.confirmEmail,
+    createUserId: state.registration.createUserId,
+    password: state.registration.password,
+    confirmPassword: state.registration.confirmPassword,
+    commElect: state.registration.commElect,
     securityHint1: state.registration.securityHint1,
     securityAnswer1: state.registration.securityAnswer1,
     securityHint2: state.registration.securityHint2,
     securityAnswer2: state.registration.securityAnswer2,
     securityHint3: state.registration.securityHint3,
     securityAnswer3: state.registration.securityAnswer3,
-    screen4Status: state.registration.screen4Status,
+    token: state.registration.token,
+    securityHintsStatus: state.registration.securityHintsStatus,
     fetching: state.registration.fetching,
     error: state.registration.error
   }
@@ -230,13 +263,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    verifySecurityHints: (data) => dispatch(RegistrationActions.sendSecurityHintsRequest(data)),
     handleChangeSecurityHint1: (securityHint1) => dispatch(RegistrationActions.changeSecurityHint1(securityHint1)),
     handleChangeSecurityAnswer1: (securityAnswer1) => dispatch(RegistrationActions.changeSecurityAnswer1(securityAnswer1)),
     handleChangeSecurityHint2: (securityHint2) => dispatch(RegistrationActions.changeSecurityHint2(securityHint2)),
     handleChangeSecurityAnswer2: (securityAnswer2) => dispatch(RegistrationActions.changeSecurityAnswer2(securityAnswer2)),
     handleChangeSecurityHint3: (securityHint3) => dispatch(RegistrationActions.changeSecurityHint3(securityHint3)),
     handleChangeSecurityAnswer3: (securityAnswer3) => dispatch(RegistrationActions.changeSecurityAnswer3(securityAnswer3)),
-    handleChangeScreen4Status: (data) => dispatch(RegistrationActions.changeScreen4Status(data))
+    handleChangeSecurityHintsStatus: (data) => dispatch(RegistrationActions.changeSecurityHintsStatus(data))
   }
 }
 

@@ -2,6 +2,8 @@
 import apisauce from 'apisauce'
 global.Buffer = global.Buffer || require('buffer').Buffer
 
+const APP_ID = '1001'
+
 // our "constructor"
 const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 // const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
@@ -80,11 +82,11 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   const getLogout = () => api.get('logout.fcc')
   const putTou = () => api.put('/tou')
 
-  const postIdentification = (data) => api.post('/identifyuser.json', {
+  const postIdentification = (data) => api.post('/identifications', {
     'User': {
+      'applicationId': APP_ID,
       'contractnumber': data.contractNumber,
       'transactionId': data.contractNumber,
-      'applicationId': '1001',
       'firstName': data.firstName,
       'lastName': data.lastName,
       'dob': data.dateOfBirth,
@@ -92,9 +94,9 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     }
   })
 
-  const postPersonalInformation = (data) => api.post('/sendregistrationcode.json', {
+  const postPersonalInformation = (data) => api.post('/codes', {
     'SendRegistrationCode': {
-      'applicationId': '1001',
+      'applicationId': APP_ID,
       'transactionId': data.contractNumber,
       'contractnumber': data.contractNumber,
       'firstName': data.firstName,
@@ -110,9 +112,9 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     }
   })
 
-  const postRegistrationCode = (data) => api.post('/verifyregistrationcode.json', {
+  const postRegistrationCode = (data) => api.post('/verifications', {
     'SendRegistrationCode': {
-      'applicationId': '1001',
+      'applicationId': APP_ID,
       'transactionId': data.contractNumber,
       'contractnumber': data.contractNumber,
       'firstName': data.firstName,
@@ -123,6 +125,37 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
       'code': data.enterCode
     }
   })
+
+  const postSecurityHints = (data) => api.post('/hints', {
+    'hints': {
+      'applicationId': APP_ID,
+      'transactionId': data.contractNumber,
+      'hint1': data.securityHint1,
+      'ans1': data.securityAnswer1,
+      'hint2': data.securityHint2,
+      'ans2': data.securityAnswer2,
+      'hint3': data.securityHint3,
+      'ans3': data.securityAnswer3,
+      'token': data.token
+    }
+  })
+
+  const postRegisterUser = (data) => api.post('/registrations', {
+    'RegisterUser': {
+      'applicationId': APP_ID,
+      'transactionId': data.contractNumber,
+      "dob": data.dateOfBirth,
+      "email": data.email,
+      "emailupdated": data.emailUpdated,
+      "eobOptin": data.commElect,
+      "firstName": data.firstName,
+      "lastName": data.lastName,
+      "password": data.password,
+      "zip": data.zipCode,
+      'token': data.token
+    }
+  })
+
 
   // ------
   // STEP 3

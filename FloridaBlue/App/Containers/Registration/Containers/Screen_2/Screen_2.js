@@ -69,23 +69,25 @@ class Screen_2 extends React.Component {
   }
 
   componentDidMount () {
-    this.props.handleChangeScreen2Status(null)
+    // Set to null initially
+    this.props.handleChangePersonalInformationStatus(null)
+
+    // Set for true by defaul
+    this.props.handleChangeEmailUpdated(true)
   }
 
   componentDidUpdate () {
-    if (this.props.screen2Status) {
-      var status = this.props.screen2Status
+    if (this.props.personalInformationStatus) {
+      var status = this.props.personalInformationStatus
 
       if (status === '000') {
-        this.props.handleChangeScreen2Status(null)
+        // Reset to null
+        this.props.handleChangePersonalInformationStatus(null)
+
         console.tron.log("Navigating to Screen 3")
         NavigationActions.screen_3()
       }
     }
-  }
-
-  componentWillReceiveProps () {
-    console.tron.log('Screen 2: receiving props')
   }
 
   render () {
@@ -96,13 +98,13 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
           </View>
-          {this.props.screen2Status && (this.props.screen2Status != null && this.props.screen2Status != '000') ? <View style={styles.messageView}>
+          {this.props.personalInformationStatus && (this.props.personalInformationStatus != null && this.props.personalInformationStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.screen2Status}</Text></View>
+              <View><Text style={styles.message}> {this.props.personalInformationStatus}</Text></View>
             </View>
             <View>
-              <TouchableOpacity onPress={() => { this.props.handleChangeScreen2Status(null) }}>
+              <TouchableOpacity onPress={() => { this.props.handleChangePersonalInformationStatus(null) }}>
                 <Image source={Images.closeIconWhite} />
               </TouchableOpacity>
             </View>
@@ -258,6 +260,7 @@ Screen_2.propTypes = {
   handleChangePhoneNumber: PropTypes.func,
   handleChangeEmail: PropTypes.func,
   handleChangeConfirmEmail: PropTypes.func,
+  handleChangeEmailUpdated: PropTypes.func,
   handleChangeCreateUserId: PropTypes.func,
   handleChangePassword: PropTypes.func,
   handleChangeConfirmPassword: PropTypes.func,
@@ -277,6 +280,7 @@ const mapStateToProps = (state) => {
     emailVerified: state.registration.emailVerified,
     email: state.registration.email,
     confirmEmail: state.registration.confirmEmail,
+    emailUpdated: state.registration.emailUpdated,
     createUserId: state.registration.createUserId,
     password: state.registration.password,
     confirmPassword: state.registration.confirmPassword,
@@ -284,7 +288,7 @@ const mapStateToProps = (state) => {
     token: state.registration.token,
     showCommElect: state.registration.showCommElect,
     fetching: state.registration.fetching,
-    screen2Status: state.registration.screen2Status,
+    personalInformationStatus: state.registration.personalInformationStatus,
     error: state.registration.error
   }
 }
@@ -295,11 +299,12 @@ const mapDispatchToProps = (dispatch) => {
     handleChangePhoneNumber: (phoneNumber) => dispatch(RegistrationActions.changePhoneNumber(phoneNumber)),
     handleChangeEmail: (email) => dispatch(RegistrationActions.changeEmail(email)),
     handleChangeConfirmEmail: (confirmEmail) => dispatch(RegistrationActions.changeConfirmEmail(confirmEmail)),
+    handleChangeEmailUpdated: (emailUpdated) => dispatch(RegistrationActions.changeEmailUpdated(emailUpdated)),
     handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
     handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
     handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword)),
     handleChangeCommElect: (commElect) => dispatch(RegistrationActions.changeCommElect(commElect)),
-    handleChangeScreen2Status: (data) => dispatch(RegistrationActions.changeScreen2Status(data))
+    handleChangePersonalInformationStatus: (data) => dispatch(RegistrationActions.changePersonalInformationStatus(data))
   }
 }
 

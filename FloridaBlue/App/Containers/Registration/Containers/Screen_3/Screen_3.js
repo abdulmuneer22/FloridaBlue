@@ -48,7 +48,6 @@ class Screen_3 extends React.Component {
 
   _handleNext () {
     var enterCode = this.props.enterCode
-    console.tron.log(enterCode)
 
     if (!enterCode) {
       alert('Please enter a registration code')
@@ -58,19 +57,15 @@ class Screen_3 extends React.Component {
   }
 
   componentDidMount () {
-    this.props.handleChangeScreen3Status(null)
-  }
-
-  componentWillReceiveProps () {
-    console.tron.log('Screen 3: receiving props')
+    this.props.handleChangeRegistrationCodeStatus(null)
   }
 
   componentDidUpdate () {
-    if (this.props.screen3Status) {
-      var status = this.props.screen3Status
+    if (this.props.registrationCodeStatus) {
+      var status = this.props.registrationCodeStatus
 
       if (status === '000') {
-        this.props.handleChangeScreen3Status(null)
+        this.props.handleChangeRegistrationCodeStatus(null)
         console.tron.log("Navigating to Screen 4")
         NavigationActions.screen_4()
       }
@@ -78,7 +73,7 @@ class Screen_3 extends React.Component {
   }
 
   componentDidMount () {
-    this.props.handleChangeScreen3Status(null)
+    this.props.handleChangeRegistrationCodeStatus(null)
   }
 
   render () {
@@ -89,13 +84,13 @@ class Screen_3 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
           </View>
-          {this.props.screen3Status && (this.props.screen3Status != null && this.props.screen3Status != '000') ? <View style={styles.messageView}>
+          {this.props.registrationCodeStatus && (this.props.registrationCodeStatus != null && this.props.registrationCodeStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.screen3Status}</Text></View>
+              <View><Text style={styles.message}> {this.props.registrationCodeStatus}</Text></View>
             </View>
             <View>
-              <TouchableOpacity onPress={() => { this.props.handleChangeScreen3Status(null) }}>
+              <TouchableOpacity onPress={() => { this.props.handleChangeRegistrationCodeStatus(null) }}>
                 <Image source={Images.closeIconWhite} />
               </TouchableOpacity>
             </View>
@@ -140,6 +135,7 @@ class Screen_3 extends React.Component {
 
 Screen_3.propTypes = {
   verifyRegistrationCode: PropTypes.func,
+  verifyRegisterUser: PropTypes.func,
   handleChangeEnterCode: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
@@ -153,7 +149,8 @@ const mapStateToProps = (state) => {
     lastName: state.registration.lastName,
     dateOfBirth: state.registration.dateOfBirth,
     zipCode: state.registration.zipCode,
-    screen3Status: state.registration.screen3Status,
+    token: state.registration.token,
+    registrationCodeStatus: state.registration.registrationCodeStatus,
     fetching: state.registration.fetching,
     error: state.registration.error
   }
@@ -162,8 +159,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     verifyRegistrationCode: (data) => dispatch(RegistrationActions.sendRegistrationCodeRequest(data)),
+    verifyRegisterUser: (data) => dispatch(RegistrationActions.registerUserRequest(data)),
     handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode)),
-    handleChangeScreen3Status: (data) => dispatch(RegistrationActions.changeScreen3Status(data))
+    handleChangeRegistrationCodeStatus: (data) => dispatch(RegistrationActions.changeRegistrationCodeStatus(data))
   }
 }
 
