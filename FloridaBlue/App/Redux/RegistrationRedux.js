@@ -178,7 +178,7 @@ export const _registerUserSuccess = (state: Object, {data}: Object) =>
 
 // _registerUserFailure
 export const _registerUserFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, data })
+  state.merge({ fetching: false, registerUserStatus: data.registerUserStatus, registerUserStatusMessage: data.registerUserStatusMessage })
 
 // //////////////////////////
 // Props

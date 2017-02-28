@@ -123,13 +123,13 @@ export function* registerUserRequest (api, {
     data.registerUserStatus = data.reasonCode
     data.registerUserStatusMessage = getReasonMessage(data.registerUserStatus)
     console.tron.log(data)
-    yield put(RegistrationActions.sendRegisterUserSuccess(data))
+    yield put(RegistrationActions.registerUserSuccess(data))
   } else {
     var error = 'Invaid input provided'
     var data = {
       'registerUserStatus': '999'
     }
     data.registerUserStatusMessage = getReasonMessage(data.registerUserStatus)
-    yield put(RegistrationActions.sendRegisterUserFailure(data))
+    yield put(RegistrationActions.registerUserFailure(data))
   }
 }

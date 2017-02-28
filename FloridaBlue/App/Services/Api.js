@@ -180,6 +180,8 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
     postIdentification,
     postPersonalInformation,
     postRegistrationCode,
+    postRegisterUser,
+    postSecurityHints,
     getTOU,
     putTou
   }

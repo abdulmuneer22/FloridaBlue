@@ -239,17 +239,6 @@ Screen_4.propTypes = {
 const mapStateToProps = (state) => {
   return {
     contractNumber: state.registration.contractNumber,
-    firstName: state.registration.firstName,
-    lastName: state.registration.lastName,
-    dateOfBirth: state.registration.dateOfBirth,
-    zipCode: state.registration.zipCode,
-    emailVerified: state.registration.emailVerified,
-    email: state.registration.email,
-    confirmEmail: state.registration.confirmEmail,
-    createUserId: state.registration.createUserId,
-    password: state.registration.password,
-    confirmPassword: state.registration.confirmPassword,
-    commElect: state.registration.commElect,
     securityHint1: state.registration.securityHint1,
     securityAnswer1: state.registration.securityAnswer1,
     securityHint2: state.registration.securityHint2,
