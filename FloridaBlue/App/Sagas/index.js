@@ -26,6 +26,8 @@ import { support } from './SupportSagas'
 import {sendIdentificationRequest} from './RegistrationSagas'
 import {sendPersonalInformationRequest} from './RegistrationSagas'
 import {sendRegistrationCodeRequest} from './RegistrationSagas'
+import {sendSecurityHintsRequest} from './RegistrationSagas'
+import {registerUserRequest} from './RegistrationSagas'
 // import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -35,7 +37,7 @@ import {sendRegistrationCodeRequest} from './RegistrationSagas'
 const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
 // const apiforRegistration = API.create(baseURL = 'https://registration-stga.bcbsfl.com/restservices/public')
 const apiforRegistration = API.create(baseURL = 'http://localhost:3000/api')
-const apiforlogout = API.create(baseURL = 'https://logout-stga.bcbsfl.com/')
+const apiforlogout = API.create(baseURL = 'https://logout-stage.bcbsfl.com/')
 
 /* ------------- Connect Types To Sagas ------------- */
 
@@ -53,6 +55,8 @@ export default function * root () {
     takeLatest(SupportTypes.SUPPORT_REQUEST, support, api),
     takeLatest(RegistrationTypes.SEND_IDENTIFICATION_REQUEST, sendIdentificationRequest, apiforRegistration),
     takeLatest(RegistrationTypes.SEND_PERSONAL_INFORMATION_REQUEST, sendPersonalInformationRequest, apiforRegistration),
-    takeLatest(RegistrationTypes.SEND_REGISTRATION_CODE_REQUEST, sendRegistrationCodeRequest, apiforRegistration)
+    takeLatest(RegistrationTypes.SEND_REGISTRATION_CODE_REQUEST, sendRegistrationCodeRequest, apiforRegistration),
+    takeLatest(RegistrationTypes.SEND_SECURITY_HINTS_REQUEST, sendSecurityHintsRequest, apiforRegistration),
+    takeLatest(RegistrationTypes.REGISTER_USER_REQUEST, registerUserRequest, apiforRegistration)
   ]
 }

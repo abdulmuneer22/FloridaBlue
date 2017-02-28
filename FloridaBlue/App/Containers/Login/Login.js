@@ -22,6 +22,7 @@ import styles from './LoginStyle'
 import { Images, Metrics, Colors } from '../../Themes'
 // import {FlbIcon} from'./FlbIcon'
 import I18n from 'react-native-i18n'
+import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 var logo = require('./logo.png')
@@ -36,8 +37,13 @@ type LoginScreenProps = {
   termsOfUse : boolean,
   attemptMyPlan :() => void,
   attemptMember :() => void,
-  attemptSupportScreen :() => void
+  attemptSupportScreen :() => void,
+  merror :string
 }
+
+const SingleColorSpinner = MKSpinner.singleColorSpinner()
+.withStyle(styles.spinner)
+.build()
 
 class Login extends Component {
   props: LoginScreenProps
@@ -68,28 +74,31 @@ class Login extends Component {
     }
   }
 
-  componentWillReceiveProps (newProps) {
-    this.forceUpdate()
-      // Did the login attempt complete?
-    console.log('I am receving new props' + newProps.responseURL)
-    console.log('I am receving new smToken' + newProps.smToken)
+componentWillReceiveProps(newProps) {
+  this.forceUpdate()
+  // Did the login attempt complete?
+  console.log('I am receving new props' + newProps.responseURL)
+  console.log('I am receving new smToken' + newProps.smToken)
 
-    if (this.isAttempting && !newProps.fetching && newProps.error === null) {
-      if (newProps.responseURL == 'login') {
-        // we are displacing these action by this time we knew that member loged in success fully
-        this.props.attemptMember()
-        this.props.attemptSupportScreen()
+  if (this.isAttempting && !newProps.fetching && newProps.error === null) {
+    if (newProps.responseURL == 'login') {
+      if (!newProps.mfetching) {
+        if(!newProps.merror){
         if (newProps.termsOfUse) {
-           NavigationActions.Termsofuse()
+          NavigationActions.WelcomeDashBoard()
         } else {
-            NavigationActions.WelcomeDashBoard()
+          NavigationActions.Termsofuse()
         }
-      } else {
-        console.log('new props' + newProps.responseURL)
-        NavigationActions.MyView({responseURL: newProps.responseURL})
+        }else {
+          NavigationActions.ErrorPage()
+        }
       }
+    } else {
+      console.log('new props' + newProps.responseURL)
+      NavigationActions.MyView({responseURL: newProps.responseURL})
     }
   }
+}
 
   _moreInfo () {
     return (
@@ -171,13 +180,32 @@ class Login extends Component {
   }
 
   render () {
+    var transparent 
+    if(this.props.mfetching){
+         transparent = 0.5
+    } else {
+        transparent = 1
+    }
     return (
+     <View  style={{position:'absolute',
+                    top:0,
+                    left:0, 
+                    width:window.width, 
+                    height:window.height,
+                    opacity:transparent,
+                    backgroundColor:Colors.snow
+                    }} >
+      
       <View style={styles.container}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+        
         <ScrollView style={styles.container}>
+          
           <View style={styles.logoView}>
             <Image source={Images.clearLogo} style={styles.logo} />
           </View>
+
+  
           <View style={styles.form}>
             <View style={styles.row}>
               <TextInput
@@ -208,13 +236,14 @@ class Login extends Component {
                 underlineColorAndroid={Colors.coal}
                 placeholder={I18n.t('password')} />
             </View>
-
+             {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean}  style={styles.spinnerView}/>:<View></View>}
             <View style={styles.row}>
               <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration-stga.bcbsfl.com/ecir/public/MemberFPSSelect.do'})}>
                 <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
               </TouchableOpacity>
             </View>
           </View>
+          
           <View style={styles.loginButton}>
             <TouchableOpacity onPress={() => { this._handleLogin() }}>
               <Image source={Images.loginButtonGreen} />
@@ -225,8 +254,10 @@ class Login extends Component {
               <Text style={styles.link}>{I18n.t('signUp')}</Text>
             </TouchableOpacity>
           </View>
-
+          
         </ScrollView>
+     
+        
         {this.state.modalVisible && this._moreInfo()}
 
         <View style={styles.footer}>
@@ -245,7 +276,10 @@ class Login extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      
+       
+    </View>
+        </View>
     )
   }
 }
@@ -253,10 +287,12 @@ class Login extends Component {
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
+    mfetching: state.member.fetching,
     error: state.login.error,
     responseURL: state.login.responseURL,
     smToken: state.login.smToken,
-    termsOfUse: state.member.termsOfUse
+    termsOfUse: state.member.termsOfUse,
+    merror : state.member.error
   }
 }
 

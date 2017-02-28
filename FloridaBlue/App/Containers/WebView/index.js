@@ -1,5 +1,6 @@
 // @flow
 
 import Webview from './Webview'
+import ErrorScreen from './ErrorScreen'
 
-export { Webview }
+export { Webview, ErrorScreen }

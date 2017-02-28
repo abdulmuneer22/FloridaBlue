@@ -65,9 +65,7 @@ class Greeting extends Component {
     return (
       <View >
         <View style={styles.greetingView}>
-          <Text style={{fontSize: Fonts.size.regular,
-            fontFamily:Fonts.type.subHeaderFont,
-            color: Colors.snow}}>
+          <Text style={styles.greetingText}>
             {this.state.greetText} {this.props.userName ? this.props.userName : ''}
           </Text>
 

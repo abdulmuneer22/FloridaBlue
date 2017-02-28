@@ -8,6 +8,7 @@ import CustomNavBar from '../Navigation/CustomNavBar'
 // screens identified by the router
 import { Login } from '../Containers/Login'
 import { Webview } from '../Containers/WebView'
+import { ErrorScreen } from '../Containers/WebView'
 import { Home } from '../Containers/Home'
 import { Resources } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import { HSA } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
@@ -42,6 +43,7 @@ class NavigationRouter extends Component {
             <Scene initial key='login' component={Login} title='Login' hideNavBar />
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
+              <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar />
             <Scene key='screen_1' component={Screen_1} title='first page' hideNavBar />
             <Scene key='screen_2' component={Screen_2} title='create username page' hideNavBar />
             <Scene key='ReadMore' component={ReadMore} title='readmore page' hideNavBar />

@@ -9,7 +9,7 @@ export function * member (api, {smToken}) {
 
   const response = yield call(api.getMember)
   console.log(JSON.stringify(response))
-  if (response.data.status.code = '200') {
+  if (response.data.status.code == '200') {
     // dispatch success
     var Name = response.data.data.firstName
     var visibilityRules = response.data.data.visibilityRule
@@ -26,7 +26,8 @@ export function * member (api, {smToken}) {
     yield put(MyPlanActions.myplanRequest(data))
     yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules))
   } else {
-    console.log('I am coming from failuer ')
-    yield put(LoginActions.loginFailure('WRONG'))
+    console.log('failure ')
+     var error = '99'
+    yield put(MemberActions.memberFailure(error))
   }
 }
