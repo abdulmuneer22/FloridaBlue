@@ -87,7 +87,7 @@ class Screen_3 extends React.Component {
           {this.props.registrationCodeStatus && (this.props.registrationCodeStatus != null && this.props.registrationCodeStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.registrationCodeStatus}</Text></View>
+              <View><Text style={styles.message}> {this.props.registrationCodeStatusMessage}</Text></View>
             </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangeRegistrationCodeStatus(null) }}>
@@ -137,6 +137,8 @@ Screen_3.propTypes = {
   verifyRegistrationCode: PropTypes.func,
   verifyRegisterUser: PropTypes.func,
   handleChangeEnterCode: PropTypes.func,
+  handleChangeRegistrationCodeStatus: PropTypes.func,
+  handleChangeRegistrationCodeStatusMessage: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -151,6 +153,7 @@ const mapStateToProps = (state) => {
     zipCode: state.registration.zipCode,
     token: state.registration.token,
     registrationCodeStatus: state.registration.registrationCodeStatus,
+    registrationCodeStatusMessage: state.registration.registrationCodeStatusMessage,
     fetching: state.registration.fetching,
     error: state.registration.error
   }

@@ -106,7 +106,7 @@ const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
       'token': data.token,
       'userid': data.createUserId,
       'password': data.password,
-      'email': data.email,
+      'email': data.confirmEmail,
       'emailupdated': 'true',
       'eobOptin': data.commElect
     }
