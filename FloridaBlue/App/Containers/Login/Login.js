@@ -168,7 +168,7 @@ componentWillReceiveProps(newProps) {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://consumer.websales.floridablue.com/?_ga=1.233631006.1688060624.1484756637'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://consumer.websales.floridablue.com'})}>
             <Text style={styles.popupchildText}>
               Shop
             </Text>
