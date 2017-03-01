@@ -96,8 +96,6 @@ export default StyleSheet.create({
     alignSelf:'center'
 
   },
-  spinnerText: {
-    marginTop: Metrics.doubleBaseMargin
-  },
+
 
 })

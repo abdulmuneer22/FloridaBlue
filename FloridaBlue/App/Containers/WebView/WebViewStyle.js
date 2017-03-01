@@ -21,7 +21,6 @@ export default StyleSheet.create({
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
   //  justifyContent: 'space-between',
     alignSelf: 'center',
-    //padding: Metrics.mediumMargin,
 
     // resizeMode:'cover',
     // alignSelf: 'stretch',
