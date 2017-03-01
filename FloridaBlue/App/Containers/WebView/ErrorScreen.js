@@ -24,13 +24,14 @@ const window = Dimensions.get('window')
 class ErrorScreen extends Component {
 
  _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-      {NavItems.backButton()}
+    return (<Image style={styles.headerContainerError} source={Images.themeHeader}>
+
       <Text style={{color: Colors.flBlue.ocean,
+        alignSelf:'center',
         backgroundColor: Colors.transparent,
         fontFamily:Fonts.type.headerFont,
         fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
-        marginRight: 80,
+
         marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023}}>
         Florida Blue
         </Text>
@@ -42,13 +43,15 @@ class ErrorScreen extends Component {
 
       <View style={styles.container}>
         {this._renderHeader()}
-        
+
      <View style={{margin:10}}>
 
-        <Text style={{fontSize:Fonts.size.h3,color:Colors.flBlue.anvil,fontFamily:Fonts.type.headerFont}}> We are Sorry, Please login after some time!!!</Text>
-    
+        <Text style={{fontSize:Fonts.size.h4,
+          color:Colors.flBlue.anvil,
+          fontFamily:Fonts.type.headerFont}}> We are Sorry, Please login after some time!!!</Text>
+
           </View>
-       
+
 
       </View>
     )
