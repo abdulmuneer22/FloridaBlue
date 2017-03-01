@@ -106,7 +106,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
       'token': data.token,
       'userid': data.createUserId,
       'password': data.password,
-      'email': data.email,
+      'email': data.confirmEmail,
       'emailupdated': 'true',
       'eobOptin': data.commElect
     }
@@ -180,6 +180,8 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     postIdentification,
     postPersonalInformation,
     postRegistrationCode,
+    postRegisterUser,
+    postSecurityHints,
     getTOU,
     putTou
   }

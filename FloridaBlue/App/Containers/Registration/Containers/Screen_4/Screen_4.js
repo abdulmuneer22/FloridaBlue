@@ -93,7 +93,7 @@ class Screen_4 extends React.Component {
           {this.props.securityHintsStatus && (this.props.securityHintsStatus != null && this.props.securityHintsStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.securityHintsStatus}</Text></View>
+              <View><Text style={styles.message}> {this.props.securityHintsStatusMessage}</Text></View>
             </View>
           </View> : <Text />}
           <View style={styles.row}>
@@ -230,6 +230,8 @@ Screen_4.propTypes = {
   handleChangeSecurityAnswer2: PropTypes.func,
   handleChangeSecurityHint3: PropTypes.func,
   handleChangeSecurityAnswer3: PropTypes.func,
+  handleChangeSecurityHintsStatus: PropTypes.func,
+  handleChangeSecurityHintsStatusMessage: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -237,17 +239,6 @@ Screen_4.propTypes = {
 const mapStateToProps = (state) => {
   return {
     contractNumber: state.registration.contractNumber,
-    firstName: state.registration.firstName,
-    lastName: state.registration.lastName,
-    dateOfBirth: state.registration.dateOfBirth,
-    zipCode: state.registration.zipCode,
-    emailVerified: state.registration.emailVerified,
-    email: state.registration.email,
-    confirmEmail: state.registration.confirmEmail,
-    createUserId: state.registration.createUserId,
-    password: state.registration.password,
-    confirmPassword: state.registration.confirmPassword,
-    commElect: state.registration.commElect,
     securityHint1: state.registration.securityHint1,
     securityAnswer1: state.registration.securityAnswer1,
     securityHint2: state.registration.securityHint2,
@@ -256,6 +247,7 @@ const mapStateToProps = (state) => {
     securityAnswer3: state.registration.securityAnswer3,
     token: state.registration.token,
     securityHintsStatus: state.registration.securityHintsStatus,
+    securityHintsStatusMessage: state.registration.securityHintsStatusMessage,
     fetching: state.registration.fetching,
     error: state.registration.error
   }
@@ -270,7 +262,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeSecurityAnswer2: (securityAnswer2) => dispatch(RegistrationActions.changeSecurityAnswer2(securityAnswer2)),
     handleChangeSecurityHint3: (securityHint3) => dispatch(RegistrationActions.changeSecurityHint3(securityHint3)),
     handleChangeSecurityAnswer3: (securityAnswer3) => dispatch(RegistrationActions.changeSecurityAnswer3(securityAnswer3)),
-    handleChangeSecurityHintsStatus: (data) => dispatch(RegistrationActions.changeSecurityHintsStatus(data))
+    handleChangeSecurityHintsStatus: (data) => dispatch(RegistrationActions.changeSecurityHintsStatus(data)),
+    handleChangeSecurityHintsStatusMessage: (data) => dispatch(RegistrationActions.changeSecurityHintsStatusMessage(data))
   }
 }
 

@@ -6,6 +6,24 @@ import {
 import RegistrationActions from '../Redux/RegistrationRedux'
 // request to regiter
 
+var getReasonMessage = function(status) {
+  /*
+  For all error codes except the one (002) - Error Message - Your request cannot be completed at this time. If problem persists, refer to the contact information on Contact Us section for further assistance.
+   
+  For 002, user found in LDAP - Error Message - You have already registered an account with us, please return to the log in page and enter your username and password  "
+  */
+
+  var message = ""
+  if(status === '002') {
+    message = "You have already registered an account with us, please return to the log in page and enter your username and password." 
+  }
+  else {
+    message = "Your request cannot be completed at this time. If problem persists, refer to the contact information on Contact Us section for further assistance."
+  }
+
+  return(message)
+}
+
 export function* sendIdentificationRequest (api, {
   data
 }) {
@@ -15,6 +33,7 @@ export function* sendIdentificationRequest (api, {
     var error = null
     var data = response.data
     data.identificationStatus = data.reasonCode
+    data.identificationStatusMessage = getReasonMessage(data.indentificationStatus)
     console.tron.log(data)
     yield put(RegistrationActions.sendIdentificationSuccess(data))
   } else {
@@ -22,6 +41,7 @@ export function* sendIdentificationRequest (api, {
     var data = {
       'identificationStatus': '999'
     }
+    data.identificationStatusMessage = getReasonMessage(data.indentificationStatus)
     yield put(RegistrationActions.sendIdentificationFailure(data))
   }
 }
@@ -35,6 +55,7 @@ export function* sendPersonalInformationRequest (api, {
     var error = null
     var data = response.data
     data.personalInformationStatus = data.reasonCode
+    data.personalInformationStatusMessage = getReasonMessage(data.personalInformationStatus)
     console.tron.log(data)
     yield put(RegistrationActions.sendPersonalInformationSuccess(data))
   } else {
@@ -42,6 +63,7 @@ export function* sendPersonalInformationRequest (api, {
     var data = {
       'personalInformationStatus': '999'
     }
+    data.personalInformationStatusMessage = getReasonMessage(data.personalInformationStatus)
     yield put(RegistrationActions.sendPersonalInformationFailure(data))
   }
 }
@@ -55,6 +77,7 @@ export function* sendRegistrationCodeRequest (api, {
     var error = null
     var data = response.data
     data.registrationCodeStatus = data.reasonCode
+    data.registrationCodeStatusMessage = getReasonMessage(data.registrationCodeStatus)
     console.tron.log(data)
     yield put(RegistrationActions.sendRegistrationCodeSuccess(data))
   } else {
@@ -62,6 +85,7 @@ export function* sendRegistrationCodeRequest (api, {
     var data = {
       'registrationCodeStatus': '999'
     }
+    data.registrationCodeStatusMessage = getReasonMessage(data.registrationCodeStatus)
     yield put(RegistrationActions.sendRegistrationCodeFailure(data))
   }
 }
@@ -75,6 +99,7 @@ export function* sendSecurityHintsRequest (api, {
     var error = null
     var data = response.data
     data.securityHintsStatus = data.reasonCode
+    data.securityHintsStatusMessage = getReasonMessage(data.securityHintsStatus)
     console.tron.log(data)
     yield put(RegistrationActions.sendSecurityHintsSuccess(data))
   } else {
@@ -82,6 +107,7 @@ export function* sendSecurityHintsRequest (api, {
     var data = {
       'securityHintsStatus': '999'
     }
+    data.securityHintsStatusMessage = getReasonMessage(data.securityHintsStatus)
     yield put(RegistrationActions.sendSecurityHintsFailure(data))
   }
 }
@@ -95,13 +121,15 @@ export function* registerUserRequest (api, {
     var error = null
     var data = response.data
     data.registerUserStatus = data.reasonCode
+    data.registerUserStatusMessage = getReasonMessage(data.registerUserStatus)
     console.tron.log(data)
-    yield put(RegistrationActions.sendRegisterUserSuccess(data))
+    yield put(RegistrationActions.registerUserSuccess(data))
   } else {
     var error = 'Invaid input provided'
     var data = {
       'registerUserStatus': '999'
     }
-    yield put(RegistrationActions.sendRegisterUserFailure(data))
+    data.registerUserStatusMessage = getReasonMessage(data.registerUserStatus)
+    yield put(RegistrationActions.registerUserFailure(data))
   }
 }

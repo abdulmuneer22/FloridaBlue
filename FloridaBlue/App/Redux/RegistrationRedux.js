@@ -30,9 +30,15 @@ const { Types, Creators } = createActions({
   changeShowCommElect: ['showCommElect'],
   changeReasonCode: ['data'],
   changeIdentificationStatus: ['identificationStatus'],
+  changeIdentificationStatusMessage: ['identificationStatusMessage'],
   changePersonalInformationStatus: ['personalInformationStatus'],
+  changePersonalInformationStatusMessage: ['personalInformationStatusMessage'],
+  changeRegistrationCodeStatus: ['registrationCodeStatus'],
+  changeRegistrationCodeStatusMessage: ['registrationCodeStatusMessage'],
   changeSecurityHintsStatus: ['securityHintsStatus'],
+  changeSecurityHintsStatusMessage: ['securityHintsStatusMessage'],
   changeRegisterUserStatus: ['registerUserStatus'],
+  changeRegisterUserStatusMessage: ['registerUserStatusMessage'],
   changeToken: ['token'],
   sendIdentificationRequest: ['data'],
   sendIdentificationSuccess: ['data'],
@@ -58,10 +64,15 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
   identificationStatus: null,
+  identificationStatusMessage: null,
   personalInformationStatus: null,
+  personalInformationStatusMessage: null,
   registrationCodeStatus: null,
+  registrationCodeStatusMessage: null,
   securityHintsStatus: null,
+  securityHintsStatusMessage: null,
   registerUserStatus: null,
+  registerUserStatusMessage: null,
   contractNumber: null,
   firstName: null,
   lastName: null,
@@ -107,11 +118,11 @@ export const _sendIdentificationRequest = (state: Object) => state.merge({ fetch
 
 // sendIdentificationSuccess
 export const _sendIdentificationSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, emailVerified: data.emailverified, email: data.homeEmail, commElect: data.defaultEOB, showCommElect: data.collectEOB, token: data.token, identificationStatus: data.identificationStatus})
+  state.merge({fetching: false, emailVerified: data.emailverified, email: data.homeEmail, commElect: data.defaultEOB, showCommElect: data.collectEOB, token: data.token, identificationStatus: data.identificationStatus, identificationStatusMessage: data.identificationStatusMessage})
 
 // _sendIdentificationFailure
 export const _sendIdentificationFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, data })
+  state.merge({ fetching: false, identificationStatus: data.identificationStatus, identificationStatusMessage: data.identificationStatusMessage })
 
 // //////////////////////////
 // PersonalInformation
@@ -121,11 +132,11 @@ export const _sendPersonalInformationRequest = (state: Object) => state.merge({ 
 
 // _sendPersonalInformationSuccess
 export const _sendPersonalInformationSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, token: data.token, personalInformationStatus: data.personalInformationStatus})
+  state.merge({fetching: false, token: data.token, personalInformationStatus: data.personalInformationStatus, personalInformationStatusMessage: data.personalInformationStatusMessage})
 
 // _sendPersonalInformationFailure
 export const _sendPersonalInformationFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, data })
+  state.merge({ fetching: false, personalInformationStatus: data.personalInformationStatus, personalInformationStatusMessage: data.personalInformationStatusMessage})
 
 // //////////////////////////
 // RegistrationCode
@@ -135,11 +146,11 @@ export const _sendRegistrationCodeRequest = (state: Object) => state.merge({ fet
 
 // sendRegistrationCodeSuccess
 export const _sendRegistrationCodeSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, token: data.token, registrationCodeStatus: data.registrationCodeStatus})
+  state.merge({fetching: false, token: data.token, registrationCodeStatus: data.registrationCodeStatus, registrationCodeStatusMessage: data.registrationCodeStatusMessage})
 
 // _sendRegistrationCodeFailure
 export const _sendRegistrationCodeFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, data })
+  state.merge({ fetching: false, registrationCodeStatus: data.registrationCodeStatus, registrationCodeStatusMessage: data.registrationCodeStatusMessage})
 
 // //////////////////////////
 // SecurityHints
@@ -149,11 +160,11 @@ export const _sendSecurityHintsRequest = (state: Object) => state.merge({ fetchi
 
 // sendSecurityHintsSuccess
 export const _sendSecurityHintsSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, token: data.token, securityHintsStatus: data.securityHintsStatus})
+  state.merge({fetching: false, token: data.token, securityHintsStatus: data.securityHintsStatus, securityHintsStatusMessage: data.securityHintsStatusMessage})
 
 // _sendSecurityHintsFailure
 export const _sendSecurityHintsFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, data })
+  state.merge({ fetching: false, securityHintsStatus: data.securityHintsStatus, securityHintsStatusMessage: data.securityHintsStatusMessage})
 
 // //////////////////////////
 // RegisterUser
@@ -163,11 +174,11 @@ export const _registerUserRequest = (state: Object) => state.merge({ fetching: t
 
 // registerUserSuccess
 export const _registerUserSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, token: data.token, registerUserStatus: data.registerUserStatus})
+  state.merge({fetching: false, token: data.token, registerUserStatus: data.registerUserStatus, registerUserStatusMessage: data.registerUserStatusMessage})
 
 // _registerUserFailure
 export const _registerUserFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, data })
+  state.merge({ fetching: false, registerUserStatus: data.registerUserStatus, registerUserStatusMessage: data.registerUserStatusMessage })
 
 // //////////////////////////
 // Props
@@ -260,21 +271,41 @@ export const _changeReasonCode = (state: Object, {data}: Object) =>
 export const _changeIdentificationStatus = (state: Object, {identificationStatus}: Object) =>
       state.merge({fetching: false, identificationStatus})
 
+// identificationStatusMessage
+export const _changeIdentificationStatusMessage = (state: Object, {identificationStatusMessage}: Object) =>
+      state.merge({fetching: false, identificationStatusMessage})
+
 // personalInformationStatus
 export const _changePersonalInformationStatus = (state: Object, {personalInformationStatus}: Object) =>
       state.merge({fetching: false, personalInformationStatus})
+
+// personalInformationStatusMessage
+export const _changePersonalInformationStatusMessage = (state: Object, {personalInformationStatusMessage}: Object) =>
+      state.merge({fetching: false, personalInformationStatusMessage})
 
 // registrationCodeStatus
 export const _changeRegistrationCodeStatus = (state: Object, {registrationCodeStatus}: Object) =>
       state.merge({fetching: false, registrationCodeStatus})
 
+// registrationCodeStatusMessage
+export const _changeRegistrationCodeStatusMessage = (state: Object, {registrationCodeStatusMessage}: Object) =>
+      state.merge({fetching: false, registrationCodeStatusMessage})
+
 // securityHintsStatus
 export const _changeSecurityHintsStatus = (state: Object, {securityHintsStatus}: Object) =>
       state.merge({fetching: false, securityHintsStatus})
 
+// securityHintsStatusMessage
+export const _changeSecurityHintsStatusMessage = (state: Object, {securityHintsStatusMessage}: Object) =>
+      state.merge({fetching: false, securityHintsStatusMessage})
+
 // registerUserStatus
 export const _changeRegisterUserStatus = (state: Object, {registerUserStatus}: Object) =>
       state.merge({fetching: false, registerUserStatus})
+
+// registerUserStatusMessage
+export const _changeRegisterUserStatusMessage = (state: Object, {registerUserStatusMessage}: Object) =>
+      state.merge({fetching: false, registerUserStatusMessage})
 
 // commElect
 export const _changeCommElect = (state: Object, {commElect}: Object) =>
@@ -316,9 +347,15 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_SECURITY_ANSWER3]: _changeSecurityAnswer3,
   [Types.CHANGE_REASON_CODE]: _changeReasonCode,
   [Types.CHANGE_IDENTIFICATION_STATUS]: _changeIdentificationStatus,
+  [Types.CHANGE_IDENTIFICATION_STATUS_MESSAGE]: _changeIdentificationStatusMessage,
   [Types.CHANGE_PERSONAL_INFORMATION_STATUS]: _changePersonalInformationStatus,
+  [Types.CHANGE_PERSONAL_INFORMATION_STATUS_MESSAGE]: _changePersonalInformationStatusMessage,
   [Types.CHANGE_REGISTRATION_CODE_STATUS]: _changeRegistrationCodeStatus,
+  [Types.CHANGE_REGISTRATION_CODE_STATUS_MESSAGE]: _changeRegistrationCodeStatusMessage,
+  [Types.CHANGE_REGISTER_USER_STATUS]: _changeRegisterUserStatus,
+  [Types.CHANGE_REGISTER_USER_STATUS_MESSAGE]: _changeRegisterUserStatusMessage,
   [Types.CHANGE_SECURITY_HINTS_STATUS]: _changeSecurityHintsStatus,
+  [Types.CHANGE_SECURITY_HINTS_STATUS_MESSAGE]: _changeSecurityHintsStatusMessage,
   [Types.SEND_IDENTIFICATION_REQUEST]: _sendIdentificationRequest,
   [Types.SEND_IDENTIFICATION_SUCCESS]: _sendIdentificationSuccess,
   [Types.SEND_IDENTIFICATION_FAILURE]: _sendIdentificationFailure,

@@ -58,22 +58,31 @@ class Screen_3 extends React.Component {
 
   componentDidMount () {
     this.props.handleChangeRegistrationCodeStatus(null)
+    this.props.handleChangeRegisterUserStatus(null)
   }
 
   componentDidUpdate () {
-    if (this.props.registrationCodeStatus) {
-      var status = this.props.registrationCodeStatus
+    // Step 1 - Verify registration code
+    if (this.props.registrationCodeStatus && this.props.registerUserStatus === null) {
+      var registrationCodeStatus  = this.props.registrationCodeStatus
 
-      if (status === '000') {
+      if (registrationCodeStatus === '000') {
+        this.props.verifyRegisterUser(this.props)
+      }
+    }
+
+    // Step 2 - Register user
+    if (this.props.registrationCodeStatus && this.props.registerUserStatus) {
+      var registrationCodeStatus  = this.props.registrationCodeStatus
+      var registerUserStatus  = this.props.registerUserStatus
+
+      if (registrationCodeStatus === '000' && registerUserStatus === '000') {
         this.props.handleChangeRegistrationCodeStatus(null)
+        this.props.handleChangeRegisterUserStatus(null)
         console.tron.log("Navigating to Screen 4")
         NavigationActions.screen_4()
       }
     }
-  }
-
-  componentDidMount () {
-    this.props.handleChangeRegistrationCodeStatus(null)
   }
 
   render () {
@@ -87,10 +96,21 @@ class Screen_3 extends React.Component {
           {this.props.registrationCodeStatus && (this.props.registrationCodeStatus != null && this.props.registrationCodeStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.registrationCodeStatus}</Text></View>
+              <View><Text style={styles.message}> {this.props.registrationCodeStatusMessage}</Text></View>
             </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangeRegistrationCodeStatus(null) }}>
+                <Image source={Images.closeIconWhite} />
+              </TouchableOpacity>
+            </View>
+          </View> : <Text />}
+          {this.props.registerUserStatus && (this.props.registerUserStatus != null && this.props.registerUserStatus != '000') ? <View style={styles.messageView}>
+            <View><Flb name='alert' color={Colors.snow} size={30} /></View>
+            <View style={styles.messagePadding}>
+              <View><Text style={styles.message}> {this.props.registerUserStatusMessage}</Text></View>
+            </View>
+            <View>
+              <TouchableOpacity onPress={() => { this.props.handleChangeRegisterUserStatus(null) }}>
                 <Image source={Images.closeIconWhite} />
               </TouchableOpacity>
             </View>
@@ -137,6 +157,10 @@ Screen_3.propTypes = {
   verifyRegistrationCode: PropTypes.func,
   verifyRegisterUser: PropTypes.func,
   handleChangeEnterCode: PropTypes.func,
+  handleChangeRegistrationCodeStatus: PropTypes.func,
+  handleChangeRegistrationCodeStatusMessage: PropTypes.func,
+  handleChangeRegisterUserStatus: PropTypes.func,
+  handleChangeRegisterUserStatusMessage: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -149,8 +173,18 @@ const mapStateToProps = (state) => {
     lastName: state.registration.lastName,
     dateOfBirth: state.registration.dateOfBirth,
     zipCode: state.registration.zipCode,
+    emailVerified: state.registration.emailVerified,
+    email: state.registration.email,
+    confirmEmail: state.registration.confirmEmail,
+    createUserId: state.registration.createUserId,
+    password: state.registration.password,
+    confirmPassword: state.registration.confirmPassword,
+    commElect: state.registration.commElect,
     token: state.registration.token,
     registrationCodeStatus: state.registration.registrationCodeStatus,
+    registrationCodeStatusMessage: state.registration.registrationCodeStatusMessage,
+    registerUserStatus: state.registration.registerUserStatus,
+    registerUserStatusMessage: state.registration.registerUserStatusMessage,
     fetching: state.registration.fetching,
     error: state.registration.error
   }
@@ -161,7 +195,8 @@ const mapDispatchToProps = (dispatch) => {
     verifyRegistrationCode: (data) => dispatch(RegistrationActions.sendRegistrationCodeRequest(data)),
     verifyRegisterUser: (data) => dispatch(RegistrationActions.registerUserRequest(data)),
     handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode)),
-    handleChangeRegistrationCodeStatus: (data) => dispatch(RegistrationActions.changeRegistrationCodeStatus(data))
+    handleChangeRegistrationCodeStatus: (data) => dispatch(RegistrationActions.changeRegistrationCodeStatus(data)),
+    handleChangeRegisterUserStatus: (data) => dispatch(RegistrationActions.changeRegisterUserStatus(data))
   }
 }
 

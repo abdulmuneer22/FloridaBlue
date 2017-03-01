@@ -54,14 +54,12 @@ class Screen_2 extends React.Component {
   }
 
   _handleNext () {
-    var phoneNumber = this.props.phoneNumber
-    var email = this.props.email
     var confirmEmail = this.props.confirmEmail
     var createUserId = this.props.createUserId
     var password = this.props.password
     var confirmPassword = this.props.confirmPassword
 
-    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword)) {
+    if (!(createUserId && password && confirmPassword)) {
       alert("Please enter values in all fields")
     } else {
       this.props.verifyPersonalInformation(this.props)
@@ -72,7 +70,7 @@ class Screen_2 extends React.Component {
     // Set to null initially
     this.props.handleChangePersonalInformationStatus(null)
 
-    // Set for true by defaul
+    // Set for true by default
     this.props.handleChangeEmailUpdated(true)
   }
 
@@ -101,7 +99,7 @@ class Screen_2 extends React.Component {
           {this.props.personalInformationStatus && (this.props.personalInformationStatus != null && this.props.personalInformationStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.personalInformationStatus}</Text></View>
+              <View><Text style={styles.message}> {this.props.personalInformationStatusMessage}</Text></View>
             </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangePersonalInformationStatus(null) }}>
@@ -109,7 +107,7 @@ class Screen_2 extends React.Component {
               </TouchableOpacity>
             </View>
           </View> : <Text />}
-          <View style={styles.row}>
+          {false ? <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='phoneNumber'
               value={this.props.phoneNumber}
@@ -129,7 +127,7 @@ class Screen_2 extends React.Component {
               }}
               placeholder={I18n.t('phoneNumber')}
             />
-          </View>
+          </View> : null}
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='email'
@@ -265,6 +263,8 @@ Screen_2.propTypes = {
   handleChangePassword: PropTypes.func,
   handleChangeConfirmPassword: PropTypes.func,
   handleChangeCommElect: PropTypes.func,
+  handleChangePersonalInformationStatus: PropTypes.func,
+  handleChangePersonalInformationStatusMessage: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -289,6 +289,7 @@ const mapStateToProps = (state) => {
     showCommElect: state.registration.showCommElect,
     fetching: state.registration.fetching,
     personalInformationStatus: state.registration.personalInformationStatus,
+    personalInformationStatusMessage: state.registration.personalInformationStatusMessage,
     error: state.registration.error
   }
 }
@@ -304,7 +305,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
     handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword)),
     handleChangeCommElect: (commElect) => dispatch(RegistrationActions.changeCommElect(commElect)),
-    handleChangePersonalInformationStatus: (data) => dispatch(RegistrationActions.changePersonalInformationStatus(data))
+    handleChangePersonalInformationStatus: (data) => dispatch(RegistrationActions.changePersonalInformationStatus(data)),
+    handleChangePersonalInformationStatusMessage: (data) => dispatch(RegistrationActions.changePersonalInformationStatusMessage(data))
   }
 }
 

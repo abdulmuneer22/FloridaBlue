@@ -100,7 +100,7 @@ class Screen_1 extends React.Component {
           {this.props.identificationStatus && (this.props.identificationStatus != null && this.props.identificationStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.identificationStatus}</Text></View>
+              <View><Text style={styles.message}> {this.props.identificationStatusMessage}</Text></View>
             </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangeIdentificationStatus(null) }}>
@@ -230,6 +230,7 @@ Screen_1.propTypes = {
   handleChangeDateOfBirth: PropTypes.func,
   handleChangeZipCode: PropTypes.func,
   handleChangeIdentificationStatus: PropTypes.func,
+  handleChangeIdentificationStatusMessage: PropTypes.func,
   fetching: PropTypes.bool,
   contractNumber: PropTypes.string,
   firstName: PropTypes.string,
@@ -248,6 +249,7 @@ const mapStateToProps = (state) => {
     dateOfBirth: state.registration.dateOfBirth,
     zipCode: state.registration.zipCode,
     identificationStatus: state.registration.identificationStatus,
+    identificationStatusMessage: state.registration.identificationStatusMessage,
     error: state.registration.error
   }
 }
@@ -260,7 +262,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeLastName: (lastName) => dispatch(RegistrationActions.changeLastName(lastName)),
     handleChangeDateOfBirth: (dateOfBirth) => dispatch(RegistrationActions.changeDateOfBirth(dateOfBirth)),
     handleChangeZipCode: (zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode)),
-    handleChangeIdentificationStatus: (data) => dispatch(RegistrationActions.changeIdentificationStatus(data))
+    handleChangeIdentificationStatus: (data) => dispatch(RegistrationActions.changeIdentificationStatus(data)),
+    handleChangeIdentificationStatusMessage: (data) => dispatch(RegistrationActions.changeIdentificationStatusMessage(data))
   }
 }
 
