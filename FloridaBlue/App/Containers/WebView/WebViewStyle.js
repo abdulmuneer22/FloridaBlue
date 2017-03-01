@@ -16,6 +16,18 @@ export default StyleSheet.create({
     width: Metrics.screenWidth,
     backgroundColor: Colors.flBlue.ocean
   },
+  headerContainerError: {
+  //  flexDirection: 'row',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
+  //  justifyContent: 'space-between',
+    alignSelf: 'center',
+    //padding: Metrics.mediumMargin,
+
+    // resizeMode:'cover',
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth,
+    backgroundColor: Colors.flBlue.ocean
+  },
   container: {
     flex: 1,
     backgroundColor: 'white'
