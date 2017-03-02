@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react'
-import { AppRegistry, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, Image, Button, Modal } from 'react-native'
+import { AppRegistry, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, Image, Button, Modal,WebView } from 'react-native'
 import styles from './WebViewStyle'
 import NavItems from '../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import { connect } from 'react-redux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import WKWebView from 'react-native-wkwebview-reborn'
+
 const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
 var btoa = require('btoa')
@@ -40,7 +41,7 @@ class Webview extends Component {
     var redirect = null
     if (this.props.smToken) {
       redirect = {
-        uri: 'https://mws8-stga.bcbsfl.com/wps/myportal/mbs',
+        uri: dynamic,
         method: 'GET',
         headers: {
           'Cookie': smToken
