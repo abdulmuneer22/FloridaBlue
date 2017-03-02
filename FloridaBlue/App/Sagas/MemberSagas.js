@@ -16,7 +16,6 @@ export function * member (api, {smToken}) {
     var termsOfUse = response.data.data.visibilityRule.termsOfUse
     console.log('termsOfUse' + termsOfUse)
     var data = {
-            "cipid": response.data.data.cipId,
             "firstName": response.data.data.firstName,
             "lastName": response.data.data.lastName,
             "contractNumber": response.data.data.contracts[0].contractNumber,
