@@ -49,12 +49,12 @@ export default StyleSheet.create({
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
   //  marginLeft: Metrics.smallMargin,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
     fontFamily:Fonts.type.headerFont
   },
   hsaBg: {
  // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.28),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.27),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
