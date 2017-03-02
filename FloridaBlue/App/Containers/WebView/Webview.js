@@ -52,13 +52,22 @@ class Webview extends Component {
         method: 'GET'
       }
     }
-    console.log('redirect' + JSON.stringify(redirect))
+
+    console.log("redirect"+JSON.stringify(redirect));
+
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         {this._renderHeader()}
         <WebView
           source={redirect}
-          sendCookies={true}/>
+          sendCookies={true}
+          javaScriptEnabled
+          domStorageEnabled
+          injectedJavaScript={jsForInjection}
+          allowUrlRedirect
+          startInLoadingState
+          contentInset={{top: -40, left: 0, bottom: 0, right: 0}}
+              />
       </View>
     )
   }
