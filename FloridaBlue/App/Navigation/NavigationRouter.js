@@ -8,6 +8,7 @@ import CustomNavBar from '../Navigation/CustomNavBar'
 // screens identified by the router
 import { Login } from '../Containers/Login'
 import { Webview } from '../Containers/WebView'
+import { ErrorScreen } from '../Containers/WebView'
 import { Home } from '../Containers/Home'
 import { Resources } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import { HSA } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
@@ -39,9 +40,10 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene  key='login' component={Login} title='Login' hideNavBar />
+            <Scene initial key='login' component={Login} title='Login' hideNavBar />
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
+              <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar />
             <Scene key='screen_1' component={Screen_1} title='first page' hideNavBar />
             <Scene key='screen_2' component={Screen_2} title='create username page' hideNavBar />
             <Scene key='ReadMore' component={ReadMore} title='readmore page' hideNavBar />
@@ -52,7 +54,7 @@ class NavigationRouter extends Component {
             <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNsavBar />
             <Scene key='memberid' component={FindMemberID} title='MemberId page'hideNavBar />
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />
-            <Scene initial key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
+            <Scene  key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
             <Scene key='SupportScreen' component={SupportScreen} title='Support Page' hideNavBar />
             <Scene key='Myplan' component={MyPlanScreen} title='MyPlan Page' hideNavBar />
             <Scene key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page' hideNavBar />

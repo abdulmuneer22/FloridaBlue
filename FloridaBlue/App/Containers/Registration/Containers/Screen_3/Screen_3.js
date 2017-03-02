@@ -46,34 +46,43 @@ class Screen_3 extends React.Component {
     NavigationActions.pop()
   }
 
-  /*
   _handleNext () {
-    NavigationActions.screen_4()
-  }
-  */
+    var enterCode = this.props.enterCode
 
-  _handleNext () {
-    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword && communicationsElectronically)) {
-      alert('Please enter values in all fields')
+    if (!enterCode) {
+      alert('Please enter a registration code')
     } else {
-      this.props.verifyPersonalInformation(phoneNumber, email, confirmEmail, createUserId, password, confirmPassword, communicationsElectronically)
-    }
-    this.props.verifyPersonalInformation(this.props)
-  }
-
-  componentDidUpdate () {
-    if (this.props.data) {
-      var reasonCode = this.props.data.reasonCode
-      console.log(reasonCode)
-
-      if (reasonCode === '000') {
-        NavigationActions.screen_4()
-      }
+      this.props.verifyRegistrationCode(this.props)
     }
   }
 
   componentDidMount () {
-    this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
+    this.props.handleChangeRegistrationCodeStatus(null)
+    this.props.handleChangeRegisterUserStatus(null)
+  }
+
+  componentDidUpdate () {
+    // Step 1 - Verify registration code
+    if (this.props.registrationCodeStatus && this.props.registerUserStatus === null) {
+      var registrationCodeStatus  = this.props.registrationCodeStatus
+
+      if (registrationCodeStatus === '000') {
+        this.props.verifyRegisterUser(this.props)
+      }
+    }
+
+    // Step 2 - Register user
+    if (this.props.registrationCodeStatus && this.props.registerUserStatus) {
+      var registrationCodeStatus  = this.props.registrationCodeStatus
+      var registerUserStatus  = this.props.registerUserStatus
+
+      if (registrationCodeStatus === '000' && registerUserStatus === '000') {
+        this.props.handleChangeRegistrationCodeStatus(null)
+        this.props.handleChangeRegisterUserStatus(null)
+        console.tron.log("Navigating to Screen 4")
+        NavigationActions.screen_4()
+      }
+    }
   }
 
   render () {
@@ -84,10 +93,26 @@ class Screen_3 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
+          {this.props.registrationCodeStatus && (this.props.registrationCodeStatus != null && this.props.registrationCodeStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
+              <View><Text style={styles.message}> {this.props.registrationCodeStatusMessage}</Text></View>
+            </View>
+            <View>
+              <TouchableOpacity onPress={() => { this.props.handleChangeRegistrationCodeStatus(null) }}>
+                <Image source={Images.closeIconWhite} />
+              </TouchableOpacity>
+            </View>
+          </View> : <Text />}
+          {this.props.registerUserStatus && (this.props.registerUserStatus != null && this.props.registerUserStatus != '000') ? <View style={styles.messageView}>
+            <View><Flb name='alert' color={Colors.snow} size={30} /></View>
+            <View style={styles.messagePadding}>
+              <View><Text style={styles.message}> {this.props.registerUserStatusMessage}</Text></View>
+            </View>
+            <View>
+              <TouchableOpacity onPress={() => { this.props.handleChangeRegisterUserStatus(null) }}>
+                <Image source={Images.closeIconWhite} />
+              </TouchableOpacity>
             </View>
           </View> : <Text />}
           <View style={styles.row}>
@@ -96,6 +121,7 @@ class Screen_3 extends React.Component {
               style={styles.textfieldWithFloatingLabel}
               keyboardType='numbers-and-punctuation'
               returnKeyType='done'
+              value={this.props.enterCode}
               autoCapitalize='none'
               autoCorrect={false}
               onChangeText={this.props.handleChangeEnterCode}
@@ -129,7 +155,12 @@ class Screen_3 extends React.Component {
 
 Screen_3.propTypes = {
   verifyRegistrationCode: PropTypes.func,
+  verifyRegisterUser: PropTypes.func,
   handleChangeEnterCode: PropTypes.func,
+  handleChangeRegistrationCodeStatus: PropTypes.func,
+  handleChangeRegistrationCodeStatusMessage: PropTypes.func,
+  handleChangeRegisterUserStatus: PropTypes.func,
+  handleChangeRegisterUserStatusMessage: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -142,16 +173,30 @@ const mapStateToProps = (state) => {
     lastName: state.registration.lastName,
     dateOfBirth: state.registration.dateOfBirth,
     zipCode: state.registration.zipCode,
+    emailVerified: state.registration.emailVerified,
+    email: state.registration.email,
+    confirmEmail: state.registration.confirmEmail,
+    createUserId: state.registration.createUserId,
+    password: state.registration.password,
+    confirmPassword: state.registration.confirmPassword,
+    commElect: state.registration.commElect,
+    token: state.registration.token,
+    registrationCodeStatus: state.registration.registrationCodeStatus,
+    registrationCodeStatusMessage: state.registration.registrationCodeStatusMessage,
+    registerUserStatus: state.registration.registerUserStatus,
+    registerUserStatusMessage: state.registration.registerUserStatusMessage,
     fetching: state.registration.fetching,
-    error: state.registration.error,
-    data: state.registration.data
+    error: state.registration.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     verifyRegistrationCode: (data) => dispatch(RegistrationActions.sendRegistrationCodeRequest(data)),
-    handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode))
+    verifyRegisterUser: (data) => dispatch(RegistrationActions.registerUserRequest(data)),
+    handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode)),
+    handleChangeRegistrationCodeStatus: (data) => dispatch(RegistrationActions.changeRegistrationCodeStatus(data)),
+    handleChangeRegisterUserStatus: (data) => dispatch(RegistrationActions.changeRegisterUserStatus(data))
   }
 }
 

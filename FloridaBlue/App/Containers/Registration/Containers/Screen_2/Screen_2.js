@@ -54,14 +54,12 @@ class Screen_2 extends React.Component {
   }
 
   _handleNext () {
-    var phoneNumber = this.props.phoneNumber
-    var email = this.props.email
     var confirmEmail = this.props.confirmEmail
     var createUserId = this.props.createUserId
     var password = this.props.password
     var confirmPassword = this.props.confirmPassword
 
-    if (!(phoneNumber && email && confirmEmail && createUserId && password && confirmPassword)) {
+    if (!(createUserId && password && confirmPassword)) {
       alert("Please enter values in all fields")
     } else {
       this.props.verifyPersonalInformation(this.props)
@@ -69,21 +67,25 @@ class Screen_2 extends React.Component {
   }
 
   componentDidMount () {
-    this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null})
+    // Set to null initially
+    this.props.handleChangePersonalInformationStatus(null)
+
+    // Set for true by default
+    this.props.handleChangeEmailUpdated(true)
   }
 
   componentDidUpdate () {
-    if (this.props.data) {
-      var reasonCode = this.props.data.reasonCode
+    if (this.props.personalInformationStatus) {
+      var status = this.props.personalInformationStatus
 
-      if (reasonCode === '000') {
+      if (status === '000') {
+        // Reset to null
+        this.props.handleChangePersonalInformationStatus(null)
+
+        console.tron.log("Navigating to Screen 3")
         NavigationActions.screen_3()
       }
     }
-  }
-
-  componentWillReceiveProps () {
-    console.tron.log('receiving props')
   }
 
   render () {
@@ -94,18 +96,18 @@ class Screen_2 extends React.Component {
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
           </View>
-          {this.props.data && (this.props.data.reasonCode != null && this.props.data.reasonCode != '000') ? <View style={styles.messageView}>
+          {this.props.personalInformationStatus && (this.props.personalInformationStatus != null && this.props.personalInformationStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.data.reasonDesc}</Text></View>
+              <View><Text style={styles.message}> {this.props.personalInformationStatusMessage}</Text></View>
             </View>
             <View>
-              <TouchableOpacity onPress={() => { this.props.handleChangeReasonCode({reasonCode: null, reasonDesc: null}) }}>
+              <TouchableOpacity onPress={() => { this.props.handleChangePersonalInformationStatus(null) }}>
                 <Image source={Images.closeIconWhite} />
               </TouchableOpacity>
             </View>
           </View> : <Text />}
-          <View style={styles.row}>
+          {false ? <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='phoneNumber'
               value={this.props.phoneNumber}
@@ -125,7 +127,7 @@ class Screen_2 extends React.Component {
               }}
               placeholder={I18n.t('phoneNumber')}
             />
-          </View>
+          </View> : null}
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='email'
@@ -256,10 +258,13 @@ Screen_2.propTypes = {
   handleChangePhoneNumber: PropTypes.func,
   handleChangeEmail: PropTypes.func,
   handleChangeConfirmEmail: PropTypes.func,
+  handleChangeEmailUpdated: PropTypes.func,
   handleChangeCreateUserId: PropTypes.func,
   handleChangePassword: PropTypes.func,
   handleChangeConfirmPassword: PropTypes.func,
   handleChangeCommElect: PropTypes.func,
+  handleChangePersonalInformationStatus: PropTypes.func,
+  handleChangePersonalInformationStatusMessage: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -275,14 +280,17 @@ const mapStateToProps = (state) => {
     emailVerified: state.registration.emailVerified,
     email: state.registration.email,
     confirmEmail: state.registration.confirmEmail,
+    emailUpdated: state.registration.emailUpdated,
     createUserId: state.registration.createUserId,
     password: state.registration.password,
     confirmPassword: state.registration.confirmPassword,
     commElect: state.registration.commElect,
+    token: state.registration.token,
     showCommElect: state.registration.showCommElect,
     fetching: state.registration.fetching,
-    error: state.registration.error,
-    data: state.registration.data
+    personalInformationStatus: state.registration.personalInformationStatus,
+    personalInformationStatusMessage: state.registration.personalInformationStatusMessage,
+    error: state.registration.error
   }
 }
 
@@ -292,11 +300,13 @@ const mapDispatchToProps = (dispatch) => {
     handleChangePhoneNumber: (phoneNumber) => dispatch(RegistrationActions.changePhoneNumber(phoneNumber)),
     handleChangeEmail: (email) => dispatch(RegistrationActions.changeEmail(email)),
     handleChangeConfirmEmail: (confirmEmail) => dispatch(RegistrationActions.changeConfirmEmail(confirmEmail)),
+    handleChangeEmailUpdated: (emailUpdated) => dispatch(RegistrationActions.changeEmailUpdated(emailUpdated)),
     handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
     handleChangePassword: (password) => dispatch(RegistrationActions.changePassword(password)),
     handleChangeConfirmPassword: (confirmPassword) => dispatch(RegistrationActions.changeConfirmPassword(confirmPassword)),
     handleChangeCommElect: (commElect) => dispatch(RegistrationActions.changeCommElect(commElect)),
-    handleChangeReasonCode: (data) => dispatch(RegistrationActions.changeReasonCode(data))
+    handleChangePersonalInformationStatus: (data) => dispatch(RegistrationActions.changePersonalInformationStatus(data)),
+    handleChangePersonalInformationStatusMessage: (data) => dispatch(RegistrationActions.changePersonalInformationStatusMessage(data))
   }
 }
 

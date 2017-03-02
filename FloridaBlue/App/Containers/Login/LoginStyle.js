@@ -89,5 +89,13 @@ export default StyleSheet.create({
     fontSize: 14,
     marginLeft: 5,
     alignSelf: 'center'
-  }
+  },
+  spinnerView: {
+  //  alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf:'center'
+
+  },
+
+
 })

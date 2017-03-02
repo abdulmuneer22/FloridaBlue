@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -19,7 +20,9 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		256E9DA91E660C3200B58A36 /* libRCTWKWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E9DA81E660C0400B58A36 /* libRCTWKWebView.a */; };
 		2586A77E1E256A3A0079CD7E /* flb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2586A77D1E256A3A0079CD7E /* flb.ttf */; };
+		2B6D86BC1E5E17C300077093 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6D86A01E5E178600077093 /* libART.a */; };
 		2BEF36FC1DF205C800A9CB66 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BEF36F31DF205C800A9CB66 /* Entypo.ttf */; };
 		2BEF36FD1DF205C800A9CB66 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BEF36F41DF205C800A9CB66 /* EvilIcons.ttf */; };
 		2BEF36FE1DF205C800A9CB66 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BEF36F51DF205C800A9CB66 /* FontAwesome.ttf */; };
@@ -106,6 +109,13 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
+		256E9DA71E660C0400B58A36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 256E9DA31E660C0400B58A36 /* RCTWKWebView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0974579A1D2A440A000D9368;
+			remoteInfo = RCTWKWebView;
+		};
 		259CE3A21E4A289E006BFCCD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2329001006EC44C4B4406AE6 /* rnpc_demo.xcodeproj */;
@@ -119,6 +129,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 00E356EE1AD99517003FC87E;
 			remoteInfo = rnpc_demoTests;
+		};
+		2B6D869F1E5E178600077093 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B6D869B1E5E178600077093 /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = ART;
 		};
 		2BEF36D61DF2046600A9CB66 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -264,7 +281,9 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		1C458D24C0074B04B7E9C49A /* libRCTMaterialKit.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTMaterialKit.a; sourceTree = "<group>"; };
 		2329001006EC44C4B4406AE6 /* rnpc_demo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = rnpc_demo.xcodeproj; path = "../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo.xcodeproj"; sourceTree = "<group>"; };
+		256E9DA31E660C0400B58A36 /* RCTWKWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWKWebView.xcodeproj; path = "../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView.xcodeproj"; sourceTree = "<group>"; };
 		2586A77D1E256A3A0079CD7E /* flb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = flb.ttf; sourceTree = "<group>"; };
+		2B6D869B1E5E178600077093 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		2BEF36F31DF205C800A9CB66 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		2BEF36F41DF205C800A9CB66 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		2BEF36F51DF205C800A9CB66 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -299,6 +318,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				256E9DA91E660C3200B58A36 /* libRCTWKWebView.a in Frameworks */,
+				2B6D86BC1E5E17C300077093 /* libART.a in Frameworks */,
 				C5DF0C541E5242E90006B909 /* libReact.a in Frameworks */,
 				2BEF37481DF2099000A9CB66 /* libReactNativeConfig.a in Frameworks */,
 				2BEF37451DF2097900A9CB66 /* libRNI18n.a in Frameworks */,
@@ -421,11 +442,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		256E9DA41E660C0400B58A36 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				256E9DA81E660C0400B58A36 /* libRCTWKWebView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		259CE3861E4A289D006BFCCD /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				259CE3A31E4A289E006BFCCD /* rnpc_demo.app */,
 				259CE3A51E4A289E006BFCCD /* rnpc_demoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B6D869C1E5E178600077093 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B6D86A01E5E178600077093 /* libART.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -503,6 +540,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				256E9DA31E660C0400B58A36 /* RCTWKWebView.xcodeproj */,
+				2B6D869B1E5E178600077093 /* ART.xcodeproj */,
 				00E356F21AD99517003FC87E /* FloridaBlueTests.m */,
 				2BEF37351DF2086A00A9CB66 /* RNI18n.xcodeproj */,
 				2BEF372F1DF2085000A9CB66 /* RNDeviceInfo.xcodeproj */,
@@ -635,6 +674,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 2B6D869C1E5E178600077093 /* Products */;
+					ProjectRef = 2B6D869B1E5E178600077093 /* ART.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
 				},
@@ -677,6 +720,10 @@
 				{
 					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
 					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
+				},
+				{
+					ProductGroup = 256E9DA41E660C0400B58A36 /* Products */;
+					ProjectRef = 256E9DA31E660C0400B58A36 /* RCTWKWebView.xcodeproj */;
 				},
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
@@ -768,6 +815,13 @@
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		256E9DA81E660C0400B58A36 /* libRCTWKWebView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTWKWebView.a;
+			remoteRef = 256E9DA71E660C0400B58A36 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		259CE3A31E4A289E006BFCCD /* rnpc_demo.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
@@ -780,6 +834,13 @@
 			fileType = wrapper.cfbundle;
 			path = rnpc_demoTests.xctest;
 			remoteRef = 259CE3A41E4A289E006BFCCD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2B6D86A01E5E178600077093 /* libART.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libART.a;
+			remoteRef = 2B6D869F1E5E178600077093 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2BEF36D71DF2046600A9CB66 /* libRCTImage-tvOS.a */ = {
@@ -1007,6 +1068,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1027,6 +1089,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1044,7 +1107,7 @@
 				DEVELOPMENT_TEAM = MW6RC742N3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FloridaBlue/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1068,7 +1131,7 @@
 				DEVELOPMENT_TEAM = MW6RC742N3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FloridaBlue/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -1128,8 +1191,9 @@
 					"$(SRCROOT)/../node_modules/react-native-material-kit/iOS/RCTMaterialKit",
 					"$(SRCROOT)/../node_modules/react-native-material-kit/iOS/RCTMaterialKit",
 					"$(SRCROOT)/../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo",
+					"$(SRCROOT)/../node_modules/react-native-safari-view",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1175,8 +1239,9 @@
 					"$(SRCROOT)/../node_modules/react-native-material-kit/iOS/RCTMaterialKit",
 					"$(SRCROOT)/../node_modules/react-native-material-kit/iOS/RCTMaterialKit",
 					"$(SRCROOT)/../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo",
+					"$(SRCROOT)/../node_modules/react-native-safari-view",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
