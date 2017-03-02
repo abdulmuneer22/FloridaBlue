@@ -32,14 +32,15 @@ type LoginScreenProps = {
 class HSA extends Component {
 
   _renderHeader () {
-    return (<Image style={styles.hsaHeader} source={Images.hsaHeader}>
-
-      <View style={{marginLeft:Metrics.screenWidth*0.025}}>
+    return (<Image style={styles.hsaHeader} source={Images.themeHeader}>
+      <View style={{marginLeft:Metrics.screenWidth*0.005}}>
       {NavItems.backButton()}
       </View>
-      <View style={{marginRight:Metrics.screenWidth*0.035}}>
-    {NavItems.settingsButton()}
-    </View>
+      <Text style={styles.hsaheaderTextStyle}>
+        Health Savings Account</Text>
+        <View style={{marginRight:Metrics.screenWidth*0.35}}>
+      {NavItems.settingsButton()}
+      </View>
     </Image>)
   }
 
@@ -49,12 +50,7 @@ class HSA extends Component {
         {this._renderHeader()}
 
         <View style={{flex:1}}>
-
-            <Text style={styles.hsaText}>
-                Health Savings Account
-                </Text>
-
-            <View style={{flexDirection:'row', justifyContent:'center', marginTop:5}}>
+            <View style={{flexDirection:'row', justifyContent:'center', marginTop:Metrics.mediumMargin}}>
             <View>
               <Text style={styles.hsaTextStyle1}>Current Balance :</Text>
               </View>

@@ -38,15 +38,23 @@ export default StyleSheet.create({
 
     overflow: 'visible',
     resizeMode: 'cover',
-    marginBottom: Metrics.smallMargin * Metrics.screenHeight*0.0015
+    //marginBottom: Metrics.smallMargin * Metrics.screenHeight*0.0015
 
   //  alignSelf: 'stretch'
   // width:Metrics.screenWidth,
   // backgroundColor:Colors.flBlue.ocean
   },
+  hsaheaderTextStyle: {
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
+  //  marginLeft: Metrics.smallMargin,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    fontFamily:Fonts.type.headerFont
+  },
   hsaBg: {
  // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.45),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.28),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
@@ -56,13 +64,13 @@ export default StyleSheet.create({
     width: Metrics.screenWidth,
   },
   hsaTextStyle1: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0032,
     fontFamily:Fonts.type.subHeaderFont,
 
     // fontWeight:'bold'
   },
   hsaTextStyle2: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0032,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0034,
     color:Colors.flBlue.grass,
     fontWeight:'600',
     fontFamily:Fonts.type.subHeaderFont,
@@ -90,8 +98,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
   //  paddingTop: Metrics.baseMargin,
   //  paddingBottom: Metrics.baseMargin
-    marginTop:Metrics.smallMargin * Metrics.screenHeight * 0.003,
-    marginBottom:Metrics.smallMargin * Metrics.screenHeight * 0.001
+    marginTop:Metrics.mediumMargin * Metrics.screenHeight * 0.003,
+    marginBottom:Metrics.mediumMargin * Metrics.screenHeight * 0.001
   },
   col_1: {
     flex: 1,

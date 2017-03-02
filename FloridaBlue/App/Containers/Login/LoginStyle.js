@@ -37,8 +37,9 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     backgroundColor: Colors.flBlue.grey2,
-    height: Metrics.doubleBaseMargin * 8,
+    height: Metrics.doubleBaseMargin * 10,
     width: Metrics.screenWidth,
+
     bottom: Metrics.doubleBaseMargin * 2
   },
   row: {
@@ -81,6 +82,7 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 0.5,
     // backgroundColor : 'yellow',
     padding: 10,
+    marginTop:10,
     height: 40,
     flexDirection: 'row',
     alignItems: 'center'
