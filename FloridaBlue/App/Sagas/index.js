@@ -35,7 +35,7 @@ import {registerUserRequest} from './RegistrationSagas'
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.
 const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
-const apiforRegistration = API.create(baseURL = 'https://registration-stga.bcbsfl.com/ers/api-pubilc/v1/users/')
+const apiforRegistration = API.create(baseURL = 'https://registration-stga.bcbsfl.com/ers/api-public/v1/users/')
 //const apiforRegistration = API.create(baseURL = 'http://localhost:3000/api')
 const apiforlogout = API.create(baseURL = 'https://logout-stage.bcbsfl.com/')
 
