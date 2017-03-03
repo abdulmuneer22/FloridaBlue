@@ -31,6 +31,7 @@ type LoginScreenProps = {
 
 class Resources extends Component {
 
+
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{marginLeft:Metrics.screenWidth*0.025}}>
@@ -44,9 +45,10 @@ class Resources extends Component {
     </Image>)
   }
 
+
   render () {
     console.log('root testing')
-    var color = new Array('#005b80', '#00aec7', '#0091cc', '#005b80', '#005b80', '#00aec7')
+    var color = new Array('#005b80', '#00aec7', '#0091cc', '#005b80', '#005b80', '#00aec7','#0091cc','#005b80','#00aec7')
     var i = 0
     return (
       <View style={styles.container}>
@@ -58,7 +60,13 @@ class Resources extends Component {
             flexDirection: 'row'
 
           }}>
-            {this.props.visibilityRules.additionalTiles.map(function (tile, i) {
+            {
+              this.props.visibilityRules.additionalTiles.map((tile, i) => {
+
+              const index = i + 1
+              const TileCount = this.props.visibilityRules.additionalTiles.length
+
+
               onItemPress = function () {
                 var action
                 if (tile.tileType == 'webview') {
@@ -71,7 +79,8 @@ class Resources extends Component {
               return (
 
                 <TouchableOpacity style={{
-                  width: window.width * 0.5,
+                  //width: window.width * 0.5,
+                  width : TileCount === index ? window.width : window.width * 0.5,
                   backgroundColor: color[i],
                   height: Metrics.screenHeight - (Metrics.screenHeight * 0.80),
                   alignItems: 'center',
@@ -94,7 +103,7 @@ class Resources extends Component {
                       color: Colors.snow,
                       textAlign:'center',
                     }}>
-                      {tile.tileName['en']}
+                      {tile.tileName['en'] }
                     </Text>
 
                   </View>

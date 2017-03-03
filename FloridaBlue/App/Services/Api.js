@@ -112,8 +112,8 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     }
   })
 
-  const postRegistrationCode = (data) => api.post('/verifications', {
-    'SendRegistrationCode': {
+  const postRegistrationCode = (data) => api.post('/codes/verifications', {
+    'VerifyRegcode': {
       'applicationId': APP_ID,
       'transactionId': data.contractNumber,
       'contractnumber': data.contractNumber,
@@ -127,16 +127,16 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   })
 
   const postSecurityHints = (data) => api.post('/hints', {
-    'hints': {
-      'applicationId': APP_ID,
+    'Hints': {
       'transactionId': data.contractNumber,
+      'userID': data.createUserId,
       'hint1': data.securityHint1,
       'ans1': data.securityAnswer1,
       'hint2': data.securityHint2,
       'ans2': data.securityAnswer2,
       'hint3': data.securityHint3,
-      'ans3': data.securityAnswer3,
-      'token': data.token
+      'ans3': data.securityAnswer3
+
     }
   })
 
@@ -144,15 +144,18 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     'RegisterUser': {
       'applicationId': APP_ID,
       'transactionId': data.contractNumber,
+      'contractnumber': data.contractNumber,
       "dob": data.dateOfBirth,
       "email": data.email,
       "emailupdated": data.emailUpdated,
       "eobOptin": data.commElect,
       "firstName": data.firstName,
       "lastName": data.lastName,
+      "userid": data.createUserId,
       "password": data.password,
       "zip": data.zipCode,
-      'token': data.token
+      'token': data.token,
+      'emailupdated': 'true'
     }
   })
 

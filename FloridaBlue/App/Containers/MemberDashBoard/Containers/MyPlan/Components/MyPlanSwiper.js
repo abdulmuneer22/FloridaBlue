@@ -52,7 +52,7 @@ class MyPlanSwiper extends Component {
 
               <View style={styles.dataContainer}>
 
-                <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                <View style={{alignItems: 'center', justifyContent: 'center',flex:0.3,marginTop:40}}>
 
                   <SemiCircle
                     pieWidth={150}
@@ -64,21 +64,22 @@ class MyPlanSwiper extends Component {
                     barBottomColor={Colors.flBlue.grey2}
                     percent={network.used / network.value}
                   />
+                  </View>
 
-                </View>
-
+                  <View style={{flex:0.7}}>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>{network.type} deductible :</Text>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>${network.value}</Text>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>Remaining {network.type} deductible :</Text>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>${network.remain}</Text>
+                  <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>{network.type} deductible :</Text>
+                  <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>${network.value}</Text>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>{network.type} pharmacy deductible :</Text>
-                  <Text style={{marginTop: Metrics.baseMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>${network.used}</Text>
+                  <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>Remaining {network.type} deductible :</Text>
+                  <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>${network.remain}</Text>
                 </View>
+                <View style={{flexDirection: 'row'}}>
+                  <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>{network.type} pharmacy deductible :</Text>
+                  <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00270, fontFamily:Fonts.type.subHeaderFont}}>${network.used}</Text>
+                </View>
+                  </View>
               </View>
             </View>
           )

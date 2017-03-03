@@ -78,6 +78,7 @@ class PlanBenefits extends Component {
               </Text>
             </View>
           </TouchableOpacity>
+          
 
         )
         i += 1

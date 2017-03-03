@@ -18,7 +18,7 @@ export function * member (api, {smToken}) {
     var data = {
             "firstName": response.data.data.firstName,
             "lastName": response.data.data.lastName,
-            "contractNumber": response.data.data.contracts[0].contractNumber,
+            "contractNumber": response.data.data.defaultContract.hccId,
             "memberID": response.data.data.memberId,
             "dob": response.data.data.dob
            }

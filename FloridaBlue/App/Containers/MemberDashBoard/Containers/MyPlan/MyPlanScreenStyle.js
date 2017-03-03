@@ -101,7 +101,7 @@ export default StyleSheet.create({
 //  flexDirection:'row',
     marginLeft: Metrics.doubleBaseMargin,
     marginRight: Metrics.doubleBaseMargin,
-    flex: 1,
+    //flex: 1,
     margin: Metrics.baseMargin,
     flexWrap: 'wrap'
   },
@@ -115,6 +115,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: window.width,
-    height: window.height 
+    height: window.height
   }
 })

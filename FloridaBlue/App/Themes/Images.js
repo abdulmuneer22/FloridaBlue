@@ -46,7 +46,8 @@ const images = {
   splashLogo: require('../Images/splash-logo.png'),
   themeHeader: require('../Images/dashboard-hdr.png'),
   themeLogo: require('../Images/theme-logo.png'),
-  tileBg: require('../Images/tile_bg.png')
+  tileBg: require('../Images/tile_bg.png'),
+  tagLine: require('../Images/tag-line.gif')
 }
 
 export default images
