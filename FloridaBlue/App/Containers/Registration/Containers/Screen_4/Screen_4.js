@@ -249,7 +249,8 @@ const mapStateToProps = (state) => {
     securityHintsStatus: state.registration.securityHintsStatus,
     securityHintsStatusMessage: state.registration.securityHintsStatusMessage,
     fetching: state.registration.fetching,
-    error: state.registration.error
+    error: state.registration.error,
+    createUserId: state.registration.createUserId
   }
 }
 

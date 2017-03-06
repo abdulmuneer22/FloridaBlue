@@ -6,6 +6,9 @@ import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import { connect } from 'react-redux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import WKWebView from 'react-native-wkwebview-reborn'
+import  SafariView  from 'react-native-safari-view'
+import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
+import axios from 'axios'
 
 const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
@@ -17,6 +20,9 @@ const jsForInjection = `
 class Webview extends Component {
   constructor (props) {
     super(props)
+     this.state = {
+       responsedata : null
+     }
   }
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
@@ -33,19 +39,42 @@ class Webview extends Component {
 
     </Image>)
   }
+  _pressHandler() {
+    RCTSFSafariViewController.open('https://google.com/');
+  }
+
+    
+    componentDidMount() {
+     
+      axios.get('https://mobapi-stga.bcbsfl.com/mob/api/v1/webview')
+      .then(res => {
+        var linkto = res.data.responseUrl
+        var headerCookies = res.data.serviceHeaders.Cookie
+        var responsedata = {
+          linkto :linkto,
+          headerCookies :headerCookies
+        }
+        
+        this.setState({responsedata});
+       
+      });
+
+    }
 
 
   render () {
     var dynamic = this.props.responseURL
     var smToken = this.props.smToken
     var redirect = null
-    if (this.props.smToken) {
+    if (this.state.responsedata != null) {
       redirect = {
-        uri: dynamic,
+        uri: 'https://mobapi-stga.bcbsfl.com/mob/api/v1/webview' ,
         method: 'GET',
         headers: {
-          'Cookie': smToken
+          'Cookie': this.state.responsedata.headerCookies,
+          'User-Agent':"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
         }
+        
       }
     } else {
       redirect = {
@@ -55,20 +84,12 @@ class Webview extends Component {
     }
 
     console.log("redirect"+JSON.stringify(redirect));
-
+    console.log("state of the component"+JSON.stringify(this.state));
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         {this._renderHeader()}
-        <WebView
-          source={redirect}
-          sendCookies={true}
-          javaScriptEnabled
-          domStorageEnabled
-          injectedJavaScript={jsForInjection}
-          allowUrlRedirect
-          startInLoadingState
-          contentInset={{top: -40, left: 0, bottom: 0, right: 0}}
-              />
+        {this._pressHandler()}  
+ 
       </View>
     )
   }

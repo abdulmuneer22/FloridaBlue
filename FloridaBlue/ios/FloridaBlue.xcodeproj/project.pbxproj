@@ -22,6 +22,8 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		256E9DA91E660C3200B58A36 /* libRCTWKWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 256E9DA81E660C0400B58A36 /* libRCTWKWebView.a */; };
 		2586A77E1E256A3A0079CD7E /* flb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2586A77D1E256A3A0079CD7E /* flb.ttf */; };
+		259133B01E69F9CE005C5412 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 259133AF1E69F9CE005C5412 /* SafariServices.framework */; };
+		25A864E01E6A0BB5002407AF /* libRCTSFSafariViewController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A864DF1E6A0BA5002407AF /* libRCTSFSafariViewController.a */; };
 		2B6D86BC1E5E17C300077093 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6D86A01E5E178600077093 /* libART.a */; };
 		2BEF36FC1DF205C800A9CB66 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BEF36F31DF205C800A9CB66 /* Entypo.ttf */; };
 		2BEF36FD1DF205C800A9CB66 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BEF36F41DF205C800A9CB66 /* EvilIcons.ttf */; };
@@ -129,6 +131,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 00E356EE1AD99517003FC87E;
 			remoteInfo = rnpc_demoTests;
+		};
+		25A864DE1E6A0BA5002407AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 25A864DA1E6A0BA5002407AF /* RCTSFSafariViewController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6524D40F1D2FAE0F0060C92E;
+			remoteInfo = RCTSFSafariViewController;
 		};
 		2B6D869F1E5E178600077093 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -283,6 +292,8 @@
 		2329001006EC44C4B4406AE6 /* rnpc_demo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = rnpc_demo.xcodeproj; path = "../node_modules/react-native-percentage-circle/rnpc_demo/ios/rnpc_demo.xcodeproj"; sourceTree = "<group>"; };
 		256E9DA31E660C0400B58A36 /* RCTWKWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWKWebView.xcodeproj; path = "../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView.xcodeproj"; sourceTree = "<group>"; };
 		2586A77D1E256A3A0079CD7E /* flb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = flb.ttf; sourceTree = "<group>"; };
+		259133AF1E69F9CE005C5412 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		25A864DA1E6A0BA5002407AF /* RCTSFSafariViewController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSFSafariViewController.xcodeproj; path = "../node_modules/react-native-sfsafariviewcontroller/RCTSFSafariViewController.xcodeproj"; sourceTree = "<group>"; };
 		2B6D869B1E5E178600077093 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		2BEF36F31DF205C800A9CB66 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		2BEF36F41DF205C800A9CB66 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
@@ -318,6 +329,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A864E01E6A0BB5002407AF /* libRCTSFSafariViewController.a in Frameworks */,
+				259133B01E69F9CE005C5412 /* SafariServices.framework in Frameworks */,
 				256E9DA91E660C3200B58A36 /* libRCTWKWebView.a in Frameworks */,
 				2B6D86BC1E5E17C300077093 /* libART.a in Frameworks */,
 				C5DF0C541E5242E90006B909 /* libReact.a in Frameworks */,
@@ -450,11 +463,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		259133AE1E69F9CE005C5412 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				259133AF1E69F9CE005C5412 /* SafariServices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		259CE3861E4A289D006BFCCD /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				259CE3A31E4A289E006BFCCD /* rnpc_demo.app */,
 				259CE3A51E4A289E006BFCCD /* rnpc_demoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		25A864DB1E6A0BA5002407AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				25A864DF1E6A0BA5002407AF /* libRCTSFSafariViewController.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -540,6 +569,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				25A864DA1E6A0BA5002407AF /* RCTSFSafariViewController.xcodeproj */,
 				256E9DA31E660C0400B58A36 /* RCTWKWebView.xcodeproj */,
 				2B6D869B1E5E178600077093 /* ART.xcodeproj */,
 				00E356F21AD99517003FC87E /* FloridaBlueTests.m */,
@@ -581,6 +611,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FloridaBlueTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				259133AE1E69F9CE005C5412 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -710,6 +741,10 @@
 					ProjectRef = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
 				},
 				{
+					ProductGroup = 25A864DB1E6A0BA5002407AF /* Products */;
+					ProjectRef = 25A864DA1E6A0BA5002407AF /* RCTSFSafariViewController.xcodeproj */;
+				},
+				{
 					ProductGroup = 832341B11AAA6A8300B99B32 /* Products */;
 					ProjectRef = 832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */;
 				},
@@ -834,6 +869,13 @@
 			fileType = wrapper.cfbundle;
 			path = rnpc_demoTests.xctest;
 			remoteRef = 259CE3A41E4A289E006BFCCD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		25A864DF1E6A0BA5002407AF /* libRCTSFSafariViewController.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTSFSafariViewController.a;
+			remoteRef = 25A864DE1E6A0BA5002407AF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2B6D86A01E5E178600077093 /* libART.a */ = {
