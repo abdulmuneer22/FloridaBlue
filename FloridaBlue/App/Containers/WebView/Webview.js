@@ -39,10 +39,7 @@ class Webview extends Component {
 
     </Image>)
   }
-  _pressHandler() {
-    RCTSFSafariViewController.open('https://google.com/');
-  }
-
+  
     
     componentDidMount() {
      
@@ -68,7 +65,7 @@ class Webview extends Component {
     var redirect = null
     if (this.state.responsedata != null) {
       redirect = {
-        uri: 'https://mobapi-stga.bcbsfl.com/mob/api/v1/webview' ,
+        uri: 'https://mws8-stga.bcbsfl.com/wps/myportal/mbs',
         method: 'GET',
         headers: {
           'Cookie': this.state.responsedata.headerCookies,
@@ -88,8 +85,18 @@ class Webview extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         {this._renderHeader()}
-        {this._pressHandler()}  
- 
+        {this.state.responsedata ?
+        <WebView
+          source={redirect}
+          sendCookies={true}
+          javaScriptEnabled
+          domStorageEnabled
+          injectedJavaScript={jsForInjection}
+          allowUrlRedirect
+          startInLoadingState
+          contentInset={{top: -40, left: 0, bottom: 0, right: 0}}
+              />
+        :<View><Text>I am loading wait</Text></View>}
       </View>
     )
   }
