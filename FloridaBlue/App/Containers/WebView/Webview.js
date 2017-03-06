@@ -5,9 +5,9 @@ import NavItems from '../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import { connect } from 'react-redux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
-import WKWebView from 'react-native-wkwebview-reborn'
-import  SafariView  from 'react-native-safari-view'
-import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
+//import WKWebView from 'react-native-wkwebview-reborn'
+//import  SafariView  from 'react-native-safari-view'
+//import RCTSFSafariViewController from 'react-native-sfsafariviewcontroller'
 import axios from 'axios'
 
 const window = Dimensions.get('window')
