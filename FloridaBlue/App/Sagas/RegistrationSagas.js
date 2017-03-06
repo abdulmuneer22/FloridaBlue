@@ -99,7 +99,7 @@ export function* sendSecurityHintsRequest (api, {
   if (response.ok) {
     var error = null
     var data = response.data
-    data.securityHintsStatus = data.reasonCode
+    data.securityHintsStatus = data.reasoncode
     data.securityHintsStatusMessage = getReasonMessage(data.securityHintsStatus)
     console.tron.log(data)
     yield put(RegistrationActions.sendSecurityHintsSuccess(data))

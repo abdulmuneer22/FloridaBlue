@@ -143,6 +143,11 @@ class Screen_3 extends React.Component {
           </View>
           <View style={styles.row}>
             <View>
+              <Text style={styles.footerText}>{this.props.tempRegCode}</Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View>
               <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
           </View>
@@ -168,6 +173,7 @@ Screen_3.propTypes = {
 const mapStateToProps = (state) => {
   return {
     enterCode: state.registration.enterCode,
+    tempRegCode: state.registration.tempRegCode,
     contractNumber: state.registration.contractNumber,
     firstName: state.registration.firstName,
     lastName: state.registration.lastName,

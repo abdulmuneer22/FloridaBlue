@@ -96,6 +96,7 @@ export const INITIAL_STATE = Immutable({
   commElect: null,
   showCommElect: null,
   token: null,
+  tempRegCode: null,
   questionone: null,
   questiontwo: null,
   questionthree: null,
@@ -132,7 +133,7 @@ export const _sendPersonalInformationRequest = (state: Object) => state.merge({ 
 
 // _sendPersonalInformationSuccess
 export const _sendPersonalInformationSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, token: data.token, personalInformationStatus: data.personalInformationStatus, personalInformationStatusMessage: data.personalInformationStatusMessage})
+  state.merge({fetching: false, token: data.token, tempRegCode: data.tempRegCode, personalInformationStatus: data.personalInformationStatus, personalInformationStatusMessage: data.personalInformationStatusMessage})
 
 // _sendPersonalInformationFailure
 export const _sendPersonalInformationFailure = (state: Object, {data}: Object) =>
