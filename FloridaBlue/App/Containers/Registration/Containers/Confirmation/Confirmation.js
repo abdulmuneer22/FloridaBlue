@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
   AppRegistry,
   StyleSheet,
@@ -13,6 +13,8 @@ import {
 } from 'react-native'
 
 var Modal = require('react-native-modalbox')
+
+import { connect } from 'react-redux'
 
 import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import styles from './ConfirmationStyle'
@@ -89,8 +91,8 @@ class Confirmation extends Component {
       Your User ID is:
       </Text>
             <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
-            something long here
-              </Text>
+            {this.props.createUserId}
+            </Text>
           </View>
 
         </View>
@@ -116,4 +118,18 @@ class Confirmation extends Component {
   }
 }
 
-export default Confirmation
+Confirmation.propTypes = {
+  createUserId: PropTypes.string,
+  fetching: PropTypes.bool,
+  error: PropTypes.string
+}
+
+const mapStateToProps = (state) => {
+  return {
+    createUserId: state.registration.createUserId,
+    fetching: state.registration.fetching,
+    error: state.registration.error
+  }
+}
+
+export default connect(mapStateToProps)(Confirmation)

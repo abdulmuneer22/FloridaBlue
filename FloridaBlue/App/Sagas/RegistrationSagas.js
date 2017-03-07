@@ -33,7 +33,7 @@ export function* sendIdentificationRequest (api, {
     var error = null
     var data = response.data
     data.identificationStatus = data.reasonCode
-    data.identificationStatusMessage = getReasonMessage(data.indentificationStatus)
+    data.identificationStatusMessage = getReasonMessage(data.identificationStatus)
     console.tron.log(data)
     yield put(RegistrationActions.sendIdentificationSuccess(data))
   } else {
