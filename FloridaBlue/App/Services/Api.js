@@ -22,7 +22,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
       'Cache-Control': 'no-cache'
     },
     // 10 second timeout...
-    timeout: 30000
+    timeout: 60000
   })
 
   const naviMonitor = (response) => console.log('hey!  listen! ', response)
@@ -79,6 +79,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   const getPlan = (data) => api.post('/benefits',data.input)
   const getTOU = () => api.get('/tou')
   const getSupport = () => api.get('/support')
+  const getHsa = () => api.get('/hsa/financialProduct/:financialProduct')
   const getLogout = () => api.get('logout.fcc')
   const putTou = () => api.put('/tou')
 
