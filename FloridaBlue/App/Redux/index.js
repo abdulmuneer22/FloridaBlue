@@ -11,7 +11,6 @@ export default () => {
     member: require('./MemberRedux').reducer,
     myplan: require('./MyPlanRedux').reducer,
     support: require('./SupportRedux').reducer,
-    hsa: require('./HsaRedux').reducer,
     registration: require('./RegistrationRedux').reducer
   })
 

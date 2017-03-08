@@ -11,7 +11,6 @@ import { LoginTypes } from '../Redux/LoginRedux'
 import { MemberTypes } from '../Redux/MemberRedux'
 import { MyPlanTypes } from '../Redux/MyPlanRedux'
 import { SupportTypes } from '../Redux/SupportRedux'
-import { HsaTypes } from '../Redux/HsaRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
 
 /* ------------- Sagas ------------- */
@@ -24,7 +23,6 @@ import {sendConfirm} from './LoginSagas'
 import { member } from './MemberSagas'
 import { myplan } from './MyPlanSagas'
 import { support } from './SupportSagas'
-import { hsa } from './HsaSagas'
 import {sendIdentificationRequest} from './RegistrationSagas'
 import {sendPersonalInformationRequest} from './RegistrationSagas'
 import {sendRegistrationCodeRequest} from './RegistrationSagas'
@@ -56,7 +54,6 @@ export default function * root () {
     takeLatest(MemberTypes.MEMBER_REQUEST, member, api),
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan, api),
     takeLatest(SupportTypes.SUPPORT_REQUEST, support, api),
-    takeLatest(HsaTypes.HSA_REQUEST, hsa, api),
     takeLatest(RegistrationTypes.SEND_IDENTIFICATION_REQUEST, sendIdentificationRequest, apiforRegistration),
     takeLatest(RegistrationTypes.SEND_PERSONAL_INFORMATION_REQUEST, sendPersonalInformationRequest, apiforRegistration),
     takeLatest(RegistrationTypes.SEND_REGISTRATION_CODE_REQUEST, sendRegistrationCodeRequest, apiforRegistration),
