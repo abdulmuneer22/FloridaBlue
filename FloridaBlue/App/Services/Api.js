@@ -5,7 +5,7 @@ global.Buffer = global.Buffer || require('buffer').Buffer
 const APP_ID = '1001'
 
 // our "constructor"
-const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
+const create = (baseURL = 'https://mobapi-tsta.bcbsfl.com/mob/api/v1/') => {
 // const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
   // ------
   // STEP 1
@@ -79,6 +79,9 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   const getPlan = (data) => api.post('/benefits',data.input)
   const getTOU = () => api.get('/tou')
   const getSupport = () => api.get('/support')
+  //const getHsa = (financialProduct) => api.get('/hsa/financialProduct/:',{financialProduct})
+//  const getHsa = (financialProduct) => api.get('/hsa',{'financialProduct': financialProduct})
+const getHsa = (financialProduct) => api.get('/hsa/financialProduct/'+financialProduct)
   const getLogout = () => api.get('logout.fcc')
   const putTou = () => api.put('/tou')
 
