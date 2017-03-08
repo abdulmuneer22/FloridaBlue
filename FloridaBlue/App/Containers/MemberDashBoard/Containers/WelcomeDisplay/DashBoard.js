@@ -68,9 +68,11 @@ class LandingScreen extends Component {
 
   componentWillReceiveProps (newProps) {
      console.log("dash board failure"+newProps.error)
+     /*
     if (!newProps.error) {
         NavigationActions.ErrorPage()
     }
+    */
   }
 
   render () {
