@@ -22,7 +22,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
       'Cache-Control': 'no-cache'
     },
     // 10 second timeout...
-    timeout: 30000
+    timeout: 60000
   })
 
   const naviMonitor = (response) => console.log('hey!  listen! ', response)
