@@ -2,8 +2,8 @@ import { call, put} from 'redux-saga/effects'
 import MemberActions from '../Redux/MemberRedux'
 import LoginActions from '../Redux/LoginRedux'
 import MyPlanActions from '../Redux/MyPlanRedux'
-import SupportActions from '../Redux/SupportRedux'
 import HsaActions from '../Redux/HsaRedux'
+import SupportActions from '../Redux/SupportRedux'
 // attempts to login
 export function * member (api, {smToken}) {
   //    api.setsmTokenHeaders(smToken)
@@ -18,6 +18,7 @@ export function * member (api, {smToken}) {
     var claimsRule = response.data.data.visibilityRule.claims
     var benefitsRule =response.data.data.visibilityRule.benefits
     var hsaTrue=response.data.data.visibilityRule.hsa
+    console.log('financialProduct4' +financialProduct)
     console.log('termsOfUse' + termsOfUse)
     var data = {
             "firstName": response.data.data.firstName,
@@ -32,6 +33,9 @@ export function * member (api, {smToken}) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }
     yield put(MyPlanActions.myplanRequest(data))
+    if(hsaTrue && financialProduct!=null){
+        yield put(HsaActions.hsaRequest(financialProduct))
+    }
     yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules))
   } else {
     console.log('failure ')

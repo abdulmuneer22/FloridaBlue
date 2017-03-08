@@ -6,6 +6,7 @@ const APP_ID = '1001'
 
 // our "constructor"
 const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
+// const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
 
   // ------
   // STEP 1
@@ -141,7 +142,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
       'ans2': data.securityAnswer2,
       'hint3': data.securityHint3,
       'ans3': data.securityAnswer3
-      
+
     }
   })
 
