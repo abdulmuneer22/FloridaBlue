@@ -18,6 +18,7 @@ export function * member (api, {smToken}) {
     var claimsRule = response.data.data.visibilityRule.claims
     var benefitsRule =response.data.data.visibilityRule.benefits
     var hsaTrue=response.data.data.visibilityRule.hsa
+    var financialProduct=response.data.data.defaultContract.financialProduct
     console.log('financialProduct4' +financialProduct)
     console.log('termsOfUse' + termsOfUse)
     var data = {
