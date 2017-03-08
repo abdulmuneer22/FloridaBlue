@@ -42,14 +42,10 @@ class Webview extends Component {
     var dynamic = this.props.responseURL
     var smToken = this.props.smToken
     var redirect = null
-
     if (this.props.smToken) {
       redirect = {
         uri: dynamic,
-        method: 'GET',
-        headers: {
-          'Cookie': smToken
-        }
+        method: 'GET'
       }
     } else {
       redirect = {
@@ -57,17 +53,7 @@ class Webview extends Component {
         method: 'GET'
       }
     }
-
-
-
-redirect = {
-  uri: dynamic,
-  method: 'GET'
-}
     console.log("redirect"+JSON.stringify(redirect));
-
-
-
     return (
       <View style={{
         flex: 1,

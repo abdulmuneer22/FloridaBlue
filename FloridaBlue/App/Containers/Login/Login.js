@@ -74,111 +74,122 @@ class Login extends Component {
     }
   }
 
-componentWillReceiveProps(newProps) {
-  this.forceUpdate()
-  // Did the login attempt complete?
-  console.log('I am receving new props' + newProps.responseURL)
-  console.log('I am receving new smToken' + newProps.smToken)
-
-  if (this.isAttempting && !newProps.fetching && newProps.error === null) {
-    if (newProps.responseURL == 'login') {
-      if (!newProps.mfetching) {
-        if(!newProps.merror){
-        if (newProps.termsOfUse) {
-          NavigationActions.WelcomeDashBoard()
-        } else {
-          NavigationActions.Termsofuse()
-        }
-        }else {
-          NavigationActions.ErrorPage()
-        }
-      }
-    } else {
-      console.log('new props' + newProps.responseURL)
-      NavigationActions.MyView({responseURL: newProps.responseURL})
+  componentDidMount() {
+    //after registration fire login for auto login
+    if(this.props.username && this.props.password){
+        this.props.attemptLogin(this.props.username,this.props.password)
     }
   }
-}
+
+  componentWillReceiveProps(newProps) {
+    this.forceUpdate()
+    // Did the login attempt complete?
+    console.log('I am receving new props' + newProps.responseURL)
+    console.log('I am receving new smToken' + newProps.smToken)
+    var responsURL = newProps.responseURL;
+
+    if (this.isAttempting && !newProps.fetching && newProps.error === null) {
+      if (responsURL.includes("login")) {
+        if (!newProps.mfetching) {
+          if (!newProps.merror) {
+            if (newProps.termsOfUse) {
+              NavigationActions.WelcomeDashBoard()
+            } else {
+              NavigationActions.Termsofuse()
+            }
+          } else {
+            NavigationActions.ErrorPage()
+          }
+        }
+      } else {
+        console.log('new props' + newProps.responseURL)
+        if (responsURL.includes("updateSecurityHintsAnswers")) {
+          NavigationActions.screen_4();
+        } else {
+          NavigationActions.MyView({ responseURL: newProps.responseURL })
+        }
+      }
+    }
+  }
 
   _moreInfo () {
     return (
-    <View style={styles.informationPopup}>
-      <View style={styles.popupchild}>
-        <Icon name='chevron-right' size={12} color='black' />
-        <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/web-accessibility'})}>
-          <Text style={styles.popupchildText}>
-            Accessibility
-          </Text>
-        </TouchableOpacity>
+      <View style={styles.informationPopup}>
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/web-accessibility'})}>
+            <Text style={styles.popupchildText}>
+              Accessibility
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/ndnotice'})}>
+            <Text style={styles.popupchildText}>
+              Non-Discrimination Notice
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/internet-privacy-statement'})}>
+            <Text style={styles.popupchildText}>
+              Privacy Policy
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/contact-us'})}>
+            <Text style={styles.popupchildText}>
+              Need Help?
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es'})}>
+            <Text style={styles.popupchildText}>
+              Language Services
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/terms-of-use'})}>
+            <Text style={styles.popupchildText}>
+              Terms of Use
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://providersearch.floridablue.com/providersearch/pub/index.htm'})}>
+            <Text style={styles.popupchildText}>
+              Online Provider Directory
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://consumer.websales.floridablue.com'})}>
+            <Text style={styles.popupchildText}>
+              Shop
+            </Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
-
-      <View style={styles.popupchild}>
-        <Icon name='chevron-right' size={12} color='black' />
-        <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/ndnotice'})}>
-          <Text style={styles.popupchildText}>
-            Non-Discrimination
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.popupchild}>
-        <Icon name='chevron-right' size={12} color='black' />
-        <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/terms-of-use'})}>
-          <Text style={styles.popupchildText}>
-            Terms of Use
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.popupchild}>
-        <Icon name='chevron-right' size={12} color='black' />
-        <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/internet-privacy-statement'})}>
-          <Text style={styles.popupchildText}>
-            Privacy Policy
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.popupchild}>
-        <Icon name='chevron-right' size={12} color='black' />
-        <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://providersearch.floridablue.com/providersearch/pub/index.htm'})}>
-          <Text style={styles.popupchildText}>
-            Browse for a doctor
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.popupchild}>
-        <Icon name='chevron-right' size={12} color='black' />
-        <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/contact-us'})}>
-          <Text style={styles.popupchildText}>
-            Contact us
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-
-
-      <View style={styles.popupchild}>
-        <Icon name='chevron-right' size={12} color='black' />
-        <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/'})}>
-          <Text style={styles.popupchildText}>
-            Floridablue.com
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.popupchild}>
-        <Icon name='chevron-right' size={12} color='black' />
-        <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es'})}>
-          <Text style={styles.popupchildText}>
-            Language Services
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-    </View>
-  )
-}
-
+    )
+  }
 
   render () {
     var transparent
