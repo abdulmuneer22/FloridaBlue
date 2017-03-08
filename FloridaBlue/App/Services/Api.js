@@ -7,6 +7,7 @@ const APP_ID = '1001'
 // our "constructor"
 const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 // const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
+
   // ------
   // STEP 1
   // ------
@@ -19,7 +20,8 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     baseURL,
     // here are some default headers
     headers: {
-      'Cache-Control': 'no-cache'
+      'Cache-Control': 'no-cache',
+      'Accept':'text/html,application/json'
     },
     // 10 second timeout...
     timeout: 60000
@@ -69,11 +71,12 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     }
   }
 )
+/*
   const setsmTokenHeaders = (smToken) => api.setHeaders({
     'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'set-cookie': smToken
+    'Content-Type': 'application/json'
   })
+  */
 
   const getMember = () => api.get('/members')
   const getPlan = (data) => api.post('/benefits',data.input)
@@ -179,7 +182,6 @@ const getHsa = (financialProduct) => api.get('/hsa/financialProduct/'+financialP
     // a list of the API functions from step 2
     getLogout,
     getUser,
-    setsmTokenHeaders,
     getMember,
     getPlan,
     getSupport,
