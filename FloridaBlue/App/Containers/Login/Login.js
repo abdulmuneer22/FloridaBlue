@@ -74,31 +74,43 @@ class Login extends Component {
     }
   }
 
-componentWillReceiveProps(newProps) {
-  this.forceUpdate()
-  // Did the login attempt complete?
-  console.log('I am receving new props' + newProps.responseURL)
-  console.log('I am receving new smToken' + newProps.smToken)
-
-  if (this.isAttempting && !newProps.fetching && newProps.error === null) {
-    if (newProps.responseURL == 'login') {
-      if (!newProps.mfetching) {
-        if(!newProps.merror){
-        if (newProps.termsOfUse) {
-          NavigationActions.WelcomeDashBoard()
-        } else {
-          NavigationActions.Termsofuse()
-        }
-        }else {
-          NavigationActions.ErrorPage()
-        }
-      }
-    } else {
-      console.log('new props' + newProps.responseURL)
-      NavigationActions.MyView({responseURL: newProps.responseURL})
+  componentDidMount() {
+    //after registration fire login for auto login
+    if(this.props.username && this.props.password){
+        this.props.attemptLogin(this.props.username,this.props.password)
     }
   }
-}
+
+  componentWillReceiveProps(newProps) {
+    this.forceUpdate()
+    // Did the login attempt complete?
+    console.log('I am receving new props' + newProps.responseURL)
+    console.log('I am receving new smToken' + newProps.smToken)
+    var responsURL = newProps.responseURL;
+
+    if (this.isAttempting && !newProps.fetching && newProps.error === null) {
+      if (responsURL.includes("login")) {
+        if (!newProps.mfetching) {
+          if (!newProps.merror) {
+            if (newProps.termsOfUse) {
+              NavigationActions.WelcomeDashBoard()
+            } else {
+              NavigationActions.Termsofuse()
+            }
+          } else {
+            NavigationActions.ErrorPage()
+          }
+        }
+      } else {
+        console.log('new props' + newProps.responseURL)
+        if (responsURL.includes("updateSecurityHintsAnswers")) {
+          NavigationActions.screen_4();
+        } else {
+          NavigationActions.MyView({ responseURL: newProps.responseURL })
+        }
+      }
+    }
+  }
 
   _moreInfo () {
     return (

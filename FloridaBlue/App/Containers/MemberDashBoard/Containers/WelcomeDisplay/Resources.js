@@ -70,9 +70,10 @@ class Resources extends Component {
               onItemPress = function () {
                 var action
                 if (tile.tileType == 'webview') {
-                  action = NavigationActions.MyView({responseURL: 'tile.tileUrl'})
+                  action = NavigationActions.MyView({responseURL: tile.tileUrl})
                 } else if (tile.tileType == 'native') {
-                  action = NavigationActions.Resources()
+                  var routerName = tile.routerName
+                  action = NavigationActions[routerName]()
                 }
               }
 

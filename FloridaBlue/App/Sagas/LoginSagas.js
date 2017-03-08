@@ -15,16 +15,17 @@ export function* login (api, {
   console.log('username+password' + JSON.stringify(username) + password)
   //  api.setHeaders(username, password);
   const response = yield call(api.getUser, username, password)
-  console.log(JSON.stringify(response))
+  console.log(response)
 
   if (response.status == '200') {
     var responseURL = response.responseURL
-    var smToken
-    var login
-
+    var smToken = response.headers['set-cookie']
+    /*
     if (response.data.data) {
-      var cookieItems = response.headers['set-cookie']
+      var smToken = response.headers['set-cookie']
+
       console.log('cookieItems' + cookieItems)
+    
       var pattern = /^SMSESSION/
       if (pattern.test(cookieItems)) {
         var elements = cookieItems.split(';')
@@ -35,7 +36,8 @@ export function* login (api, {
     } else {
       login = null
     }
-
+*/
+/* 
     if (login) {
       // we are displacing these action by this time we knew that member loged in success fully
       yield put(MemberActions.memberRequest()) 
@@ -43,7 +45,6 @@ export function* login (api, {
       // yield put(MemberActions.memberRequest()) 
       // yield put(MemberActions.memberRequest()) 
       yield put(SupportActions.supportRequest())
-      responseURL = 'login'
       var error = null
     } else {
       //* path webviews and redirect the user
@@ -51,7 +52,15 @@ export function* login (api, {
       var setcookie = response.headers['set-cookie']
       console.log('jsession' + setcookie)
     }
+    */
+
+    yield put(MemberActions.memberRequest()) 
+    //This action for benefits details and hsa 
+    // yield put(MemberActions.memberRequest()) 
+    // yield put(MemberActions.memberRequest()) 
+    yield put(SupportActions.supportRequest())
     yield put(LoginActions.loginSuccess(username, responseURL, smToken))
+
   } else if (response.status == '401') {
       // dispatch failure
     console.log('I am coming from failuer ')

@@ -48,7 +48,7 @@ class TermsofUse extends Component {
   }
 
   componentDidMount () {
-//    this.props.handleGetTOU()
+    this.props.handleGetTOU()
   }
 
   render () {
@@ -58,10 +58,7 @@ class TermsofUse extends Component {
       <View style={styles.container}>
         {this.props.getTou ?
           <WebView
-          //  source={{html: HTML}}
-          source={{
-            uri:'https://mobapi-stga.bcbsfl.com/mob/api/v1/tou'
-          }}
+            source={{html: HTML}}
             style={{marginBottom: 30}} /> : <View />}
         <View style={styles.checkViewStyle}>
           <View style={styles.checkStyle}>
