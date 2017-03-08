@@ -3,6 +3,7 @@ import MemberActions from '../Redux/MemberRedux'
 import LoginActions from '../Redux/LoginRedux'
 import MyPlanActions from '../Redux/MyPlanRedux'
 import SupportActions from '../Redux/SupportRedux'
+import HsaActions from '../Redux/HsaRedux'
 // attempts to login
 export function * member (api, {smToken}) {
   //    api.setsmTokenHeaders(smToken)
@@ -14,14 +15,22 @@ export function * member (api, {smToken}) {
     var Name = response.data.data.firstName
     var visibilityRules = response.data.data.visibilityRule
     var termsOfUse = response.data.data.visibilityRule.termsOfUse
+    var claimsRule = response.data.data.visibilityRule.claims
+    var benefitsRule =response.data.data.visibilityRule.benefits
+    var hsaTrue=response.data.data.visibilityRule.hsa
     console.log('termsOfUse' + termsOfUse)
     var data = {
             "firstName": response.data.data.firstName,
             "lastName": response.data.data.lastName,
             "contractNumber": response.data.data.defaultContract.hccId,
             "memberID": response.data.data.memberId,
-            "dob": response.data.data.dob
+            "dob": response.data.data.dob,
+            "claimsRule":response.data.data.visibilityRule.claims,
+            "benefitsRule":response.data.data.visibilityRule.benefits
            }
+    if (hsaTrue && financialProduct != null) {
+      yield put(HsaActions.hsaRequest(financialProduct))
+    }
     yield put(MyPlanActions.myplanRequest(data))
     yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules))
   } else {
