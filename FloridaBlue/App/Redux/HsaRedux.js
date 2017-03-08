@@ -6,7 +6,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  hsaRequest: [],
+  hsaRequest: ['financialProduct'],
   hsaSuccess: ['data'],
   hsaFailure: ['error']
 })
