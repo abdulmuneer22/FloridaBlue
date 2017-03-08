@@ -192,7 +192,7 @@ class Login extends Component {
   }
 
   render () {
-    var transparent 
+    var transparent
     if(this.props.mfetching){
          transparent = 0.5
     } else {
@@ -201,23 +201,23 @@ class Login extends Component {
     return (
      <View  style={{position:'absolute',
                     top:0,
-                    left:0, 
-                    width:window.width, 
+                    left:0,
+                    width:window.width,
                     height:window.height,
                     opacity:transparent,
                     backgroundColor:Colors.snow
                     }} >
-      
+
       <View style={styles.container}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        
+
         <ScrollView style={styles.container}>
-          
+
           <View style={styles.logoView}>
             <Image source={Images.clearLogo} style={styles.logo} />
           </View>
 
-  
+
           <View style={styles.form}>
             <View style={styles.row}>
               <TextInput
@@ -255,7 +255,7 @@ class Login extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          
+
           <View style={styles.loginButton}>
             <TouchableOpacity onPress={() => { this._handleLogin() }}>
               <Image source={Images.loginButtonGreen} />
@@ -266,10 +266,10 @@ class Login extends Component {
               <Text style={styles.link}>{I18n.t('signUp')}</Text>
             </TouchableOpacity>
           </View>
-          
+
         </ScrollView>
-     
-        
+
+
         {this.state.modalVisible && this._moreInfo()}
 
         <View style={styles.footer}>
@@ -288,8 +288,8 @@ class Login extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      
-       
+
+
     </View>
         </View>
     )
