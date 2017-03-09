@@ -65,7 +65,7 @@ class Hsa extends Component {
 
           <View style={styles.col_1}>
             <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text.en}</Text>
-            <Text style={styles.hsaTextStyle2}>-${this.props.data.distribution.value}</Text>
+            <Text style={styles.hsaTextStyle2}>${this.props.data.distribution.value}</Text>
           </View>
           </View>
 

@@ -5,6 +5,10 @@ import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
 var {height,width}=Dimensions.get('window')
 const window=Dimensions.get('window')
 
+import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+
+const theme = getTheme();
+
 export default StyleSheet.create({
 
   backgroundImage: {
@@ -54,7 +58,7 @@ export default StyleSheet.create({
       fontFamily:Fonts.type.headerFont,
       fontWeight:'500'
 },
-  cardStyle: {
+  cardStyle:{
     width: window.width,
     backgroundColor: Colors.flBlue.lightBlue,
    // height : 200,
@@ -85,33 +89,35 @@ export default StyleSheet.create({
   h1: {
     //flexWrap:'wrap',
     margin:5,
-    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     //fontWeight: '600',
     color:Colors.flBlue.anvil,
     textAlign: 'center',
     marginTop:Metrics.mediumMargin,
     fontFamily:Fonts.type.subHeaderFont,
-    fontWeight:'bold'
+    fontWeight:'600'
   },
 
   h2: {
-    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0029,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
   //  textAlign: 'center',
     color:Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
-    marginLeft:Metrics.baseMargin,
+    marginLeft:Metrics.mediumMargin,
     fontFamily:Fonts.type.headerFont,
+    fontWeight:'600'
 
 
   },
   h4: {
     //textAlign: 'center',
     //paddingBottom: Metrics.mediumMargin,
-    fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0030,
-    marginTop:Metrics.smallMargin,
+    fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    //marginTop:Metrics.smallMargin,
     color:Colors.flBlue.grey5,
-    marginLeft:Metrics.baseMargin,
+    marginLeft:Metrics.mediumMargin,
       fontFamily:Fonts.type.headerFont,
+    //  marginRight:7
   //  marginBottom:5
 
   },

@@ -76,13 +76,6 @@ class LandingScreen extends Component {
   }
 
   render () {
-    var image = [
-        Images.dashboardGradient ,
-        Images.dashboardGradient2 ,
-        Images.dashboardGradient3 ,
-        Images.dashboardGradient4
-    ]
-    var i = 0
     return (
 
       <View style={styles.container}>
@@ -120,7 +113,7 @@ class LandingScreen extends Component {
                 }
                 onPress={onItemPress.bind(this)} key={i}>
 
-                <Image  source={image[i]}
+                <Image  source={Images[tile.backgroundImage]}
                   style={{
                   alignItems:'center',
                   justifyContent:'center',
@@ -140,22 +133,22 @@ class LandingScreen extends Component {
             }
             </View>
 
-             <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/tools/findadoctor'})}>
-              <Image source={Images.findCare} style={styles.footerImage}>
+             <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})}>
+              <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
               <View style={{flexDirection:'row',
               alignItems:'center',
               justifyContent:'center', marginTop:Metrics.doubleBaseMargin}}>
 
-              <Flb name="search-find"
+              <Flb name={this.props.visibilityRules.opdTile.tileIcon}
                 style={{backgroundColor:Colors.transparent,
-                marginRight:Metrics.doubleBaseMargin * Metrics.screenWidth*0.003}}
+                marginRight:Metrics.baseMargin * Metrics.screenWidth*0.003}}
                 size={Metrics.icons.large * Metrics.screenWidth*0.003}
                 color={Colors.snow}/>
               <Text style={{fontSize:Fonts.size.h3 * Metrics.screenWidth*0.003,
                 color:Colors.snow,
                 fontFamily:Fonts.type.headerFont,
                 backgroundColor:Colors.transparent}}>
-                Find Care
+                {this.props.visibilityRules.opdTile.tileName['en']}
                 </Text>
 
               </View>

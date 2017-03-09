@@ -12,6 +12,9 @@ import { Colors, Metrics, Fonts } from '../../../../../Themes'
 const window = Dimensions.get('window')
 import { connect } from 'react-redux'
 import styles from '../DoctorServiceStyle.js'
+import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+
+const theme = getTheme();
 
 class Card extends Component {
 
@@ -45,17 +48,18 @@ class Card extends Component {
           speciality.map(specialities=>{
             const{speciality_text, speciality_value}=specialities
             return (
-            <View style={{marginBottom:20, flexDirection:'row'}}>
-            <View style={{flex:0.5}}>
+            <View style={{marginBottom:10}}>
+            <View>
+
             {speciality_text['en'] ?
                 <Text style={styles.h2} >
-                  {speciality_text['en']} :
+                  {speciality_text['en']}
                 </Text>
               : <View></View>
 
             }
             </View>
-            <View style={{marginTop:5,flex:0.5}}>
+            <View>
             {
               speciality_value.map(value=>{
                 return(<Text style={styles.h4}>

@@ -14,7 +14,7 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import ToolBar from './Components/toolBar'
-import axios from 'axios'
+import Flb from '../../../../Themes/FlbIcon'
 import SelectBox from './Components/SelectBox'
 import Card from './Components/Card'
 import NavItems from '../../../../Navigation/NavItems.js'
@@ -63,6 +63,9 @@ class MyPlanScreen extends Component {
   }
 
   render () {
+    var color = new Array('#005b80', '#00aec7', '#0091cc', '#005b80', '#005b80', '#00aec7', '#005b80', '#0091cc')
+    var i = 0
+    var tileCard = []
   return (
 
     <View style={styles.container}>
@@ -75,6 +78,7 @@ class MyPlanScreen extends Component {
         this.props.data ?
 
         <View style={styles.container}>
+
         <View style={styles.planNameView}>
         <Text style={styles.planNameText}>
         Blue Options
@@ -82,32 +86,54 @@ class MyPlanScreen extends Component {
         </View>
 
         <View style={styles.chartWrapper}>
-        {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
+        {
+          this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
         : <View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>}
+        </View>
+      }
+
         </View>
 
         <View style={styles.cardStyle}>
-        <Card
-        title='Benefits'
-        bg='rgb(204, 211, 214)'
-        icon='briefcase'
-        />
+        {this.props.data && this.props.data.planOverViewTiles ?
+  this.props.data.planOverViewTiles.map(function (tile, i) {
+    console.log('tiles2'+JSON.stringify(tile))
 
-        <Card
-        title='Claims'
-        bg='rgb(151, 198, 207)'
-        icon='book'
-        />
+    onItemPress = function () {
+      var action
+      if (tile.tileType == 'webview') {
+        action = NavigationActions.MyView({responseURL: tile.tileUrl})
+      } else if (tile.tileType == 'native') {
+        var routerName = tile.routerName
+        action = NavigationActions[routerName]()
+      }
+    }
+
+    return (
+
+      <TouchableOpacity style={[styles.tileView, {backgroundColor: color[i]}]} onPress={onItemPress.bind(this)} key={i}>
+
+        <View style={{alignItems: 'center'}}>
+          <Flb name={tile.tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0035} color={Colors.snow} />
+          <Text style={styles.tileText}>
+            {tile.tileName['en']}
+          </Text>
+        </View>
+      </TouchableOpacity>
+
+
+    )
+    i += 1
+
+  }) : null
+ }
+
         </View>
         </View>
 
-        : <View style={styles.spinnerView}>
-        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>
+        : <Text></Text>
         }
 
 </View>

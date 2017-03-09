@@ -11,7 +11,9 @@ import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import Flb from '../../../../Themes/FlbIcon'
 import {connect} from 'react-redux'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
-import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+
+const theme = getTheme();
 
 import Card from './Components/Card'
 
