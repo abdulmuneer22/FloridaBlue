@@ -80,7 +80,7 @@ class Screen_3 extends React.Component {
         this.props.handleChangeRegistrationCodeStatus(null)
         this.props.handleChangeRegisterUserStatus(null)
         console.tron.log("Navigating to Screen 4")
-        NavigationActions.screen_4()
+        NavigationActions.confirmation()
       }
     }
   }

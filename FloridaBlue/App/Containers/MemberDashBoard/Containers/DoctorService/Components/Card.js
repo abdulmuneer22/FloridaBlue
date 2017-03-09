@@ -24,9 +24,9 @@ class Card extends Component {
     var temp1 = temp[objectName];
 
     if (this.props.leftActive) {
-      card = temp1.inNetwork;
+      card = temp1.inNetwork.networkBenefits;
     } else {
-      card = temp1.outNetwork;
+      card = temp1.outNetwork.networkBenefits;
     }
 
     console.log('card of innetwork' + JSON.stringify(this.props.leftActive))

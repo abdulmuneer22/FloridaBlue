@@ -99,7 +99,8 @@ class Confirmation extends Component {
 
         <View style={styles.wrapper}>
 
-          <TouchableWithoutFeedback onPress={NavigationActions.login}>
+          <TouchableWithoutFeedback onPress={NavigationActions.login({'username':this.props.createUserId,
+                                                                      'password':this.props.password})}>
             <Image source={Images.loginNowButtonGreen} style={styles.buttonStyle} />
 
           </TouchableWithoutFeedback>
@@ -121,12 +122,14 @@ class Confirmation extends Component {
 Confirmation.propTypes = {
   createUserId: PropTypes.string,
   fetching: PropTypes.bool,
-  error: PropTypes.string
+  error: PropTypes.string,
+  password:PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
     createUserId: state.registration.createUserId,
+    password : state.registration.password,
     fetching: state.registration.fetching,
     error: state.registration.error
   }
