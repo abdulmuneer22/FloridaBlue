@@ -115,6 +115,16 @@ export default StyleSheet.create({
   //  marginBottom:5
 
   },
+  h4_2: {
+    //paddingBottom: Metrics.mediumMargin,
+    fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0030,
+    marginTop:Metrics.smallMargin,
+    color:Colors.flBlue.grey5,
+    //marginLeft:Metrics.baseMargin,
+  //  backgroundColor:'red',
+      fontFamily:Fonts.type.headerFont,
+      textAlign:'center'
+    },
   spinnerView:{
     alignItems: 'center',
     justifyContent: 'center',

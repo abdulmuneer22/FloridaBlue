@@ -33,14 +33,15 @@ export default StyleSheet.create({
   planNameView: {
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop:Metrics.smallMargin,
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 3
 
   },
   planNameText:{
-    fontSize: Fonts.size.h5 ,
+    fontSize: Fonts.size.h4 ,
     color:Colors.flBlue.anvil,
     fontFamily:Fonts.type.subHeaderFont,
-    fontWeight:'500'
+    fontWeight:'500',
   },
 
   chartWrapper: {
@@ -61,6 +62,17 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow
 
   },
+  myplanTilesStyle:{
+    flexDirection: 'row',
+          //backgroundColor : 'red',
+          flexWrap: 'wrap',
+          flex : 1,
+          marginLeft : window.width * 0.04,
+          marginRight : window.width * 0.04,
+          marginTop : window.width * 0.04,
+          marginBottom : window.width * 0.01,
+
+  },
 
   headerStyle: {
     flex: 1,
@@ -70,6 +82,7 @@ export default StyleSheet.create({
 //  borderWidth:2,
     marginTop: Metrics.smallMargin,
     marginLeft:10,
+    marginRight:15,
 //  borderColor:Colors.flBlue.grey4,
 //  backgroundColor:Colors.flBlue.grey2
   },
