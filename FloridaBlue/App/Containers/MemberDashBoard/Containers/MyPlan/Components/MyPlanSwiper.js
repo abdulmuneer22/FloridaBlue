@@ -35,7 +35,13 @@ class MyPlanSwiper extends Component {
     }
 
     if (this.props.data.oop.inNetwork) {
-      var outNetwork = this.props.data.oop.inNetwork
+      var inNetwork = this.props.data.oop.inNetwork
+      inNetwork.map(function (temObj) {
+        myPlan.push(temObj)
+      })
+    }
+    if (this.props.data.oop.outNetwork) {
+      var outNetwork = this.props.data.oop.outNetwork
       outNetwork.map(function (temObj) {
         myPlan.push(temObj)
       })
