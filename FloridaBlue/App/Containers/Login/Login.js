@@ -187,6 +187,12 @@ class Login extends Component {
           </TouchableOpacity>
         </View>
 
+
+
+
+
+
+
       </View>
     )
   }

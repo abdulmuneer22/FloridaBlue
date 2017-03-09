@@ -12,7 +12,8 @@ var getReasonMessage = function(status) {
 
   For 002, user found in LDAP - Error Message - You have already registered an account with us, please return to the log in page and enter your username and password  "
   */
-
+console.tron.log( status )
+console.log('im status'  +status )
   var message = ""
   if(status === '002') {
     message = "You have already registered an account with us, please return to the log in page and enter your username and password."
@@ -35,6 +36,9 @@ export function* sendIdentificationRequest (api, {
     data.identificationStatus = data.reasonCode
     data.identificationStatusMessage = getReasonMessage(data.identificationStatus)
     console.tron.log(data)
+    console.log(data)
+    console.log('im reason code' +data.reasonCode)
+    console.tron.log(data.reasonCode)
     yield put(RegistrationActions.sendIdentificationSuccess(data))
   } else {
     var error = 'Invaid input provided'
