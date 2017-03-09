@@ -41,19 +41,18 @@ class ErrorScreen extends Component {
   render () {
     return (
 
-      <View style={styles.container}>
-        {this._renderHeader()}
-
-     <View style={{margin:10}}>
-
+      <Image style={styles.headerContainerError} source={Images.errorPage}>
+      <View style={{marginTop:Metrics.screenHeight*0.15}}>
         <Text style={{fontSize:Fonts.size.h4,
-          color:Colors.flBlue.anvil,
-          fontFamily:Fonts.type.headerFont}}> We are Sorry, Please login after some time!!!</Text>
-
+          color:Colors.snow,
+          textAlign:'center',
+          fontFamily:Fonts.type.headerFont,
+          backgroundColor:Colors.transparent}}>
+          We are Sorry, Please login after some time!!!
+          </Text>
           </View>
+          </Image>
 
-
-      </View>
     )
   }
 }

@@ -143,34 +143,7 @@ componentWillReceiveProps(newProps) {
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/ndnotice'})}>
             <Text style={styles.popupchildText}>
-              Non-Discrimination Notice
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/internet-privacy-statement'})}>
-            <Text style={styles.popupchildText}>
-              Privacy Policy
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/contact-us'})}>
-            <Text style={styles.popupchildText}>
-              Need Help?
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es'})}>
-            <Text style={styles.popupchildText}>
-              Language Services
+              Non-Discrimination
             </Text>
           </TouchableOpacity>
         </View>
@@ -186,21 +159,54 @@ componentWillReceiveProps(newProps) {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://providersearch.floridablue.com/providersearch/pub/index.htm'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/internet-privacy-statement'})}>
             <Text style={styles.popupchildText}>
-              Online Provider Directory
+              Privacy Policy
             </Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://consumer.websales.floridablue.com'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://providersearch.floridablue.com/providersearch/pub/index.htm'})}>
             <Text style={styles.popupchildText}>
-              Shop
+              Unsecured OPD
             </Text>
           </TouchableOpacity>
         </View>
+
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/contact-us'})}>
+            <Text style={styles.popupchildText}>
+              Contact us
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/'})}>
+            <Text style={styles.popupchildText}>
+              Floridablue.com
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.popupchild}>
+          <Icon name='chevron-right' size={12} color='black' />
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es'})}>
+            <Text style={styles.popupchildText}>
+              Language Services
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+
+
+
+
+
 
       </View>
     )

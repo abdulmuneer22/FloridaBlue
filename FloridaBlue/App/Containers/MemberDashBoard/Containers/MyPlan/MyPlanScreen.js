@@ -79,19 +79,33 @@ class MyPlanScreen extends Component {
         </View>}
         </View>
 
-        <View style={styles.cardStyle}>
-        <Card
-        title='Benefits'
-        bg='rgb(204, 211, 214)'
-        icon='briefcase'
-        />
+        <View style={styles.myplanTilesStyle}>
+          {this.props.data && this.props.data.planOverViewTiles ?
+            this.props.data.planOverViewTiles.map((tile, i) => {
+            const index = i + 1
+            const TileCount = this.props.data.planOverViewTiles.length
 
-        <Card
-        title='Claims'
-        bg='rgb(151, 198, 207)'
-        icon='book'
-        />
+              console.log(tile);
+              return(
+                <Card
+                      i = {i}
+                      key={index}
+                      title={tile.tileName['en'] }
+                      tileType={tile.tileType }
+                      icon={tile.tileIcon}
+                      CardCount = {TileCount}
+                      webURL= {tile.tileType !== "native" ? tile.tileUrl : null}
+                      routerName = {tile.tileType === "native" ? tile.routerName : null}
+
+                    />
+              )
+
+          }
+        )
+        :<Text/>
+      }
         </View>
+
         </View>
 
         : <View style={styles.spinnerView}>

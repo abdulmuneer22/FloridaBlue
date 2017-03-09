@@ -44,6 +44,8 @@ class Card extends Component {
         {
           speciality.map(specialities=>{
             const{speciality_text, speciality_value}=specialities
+            const style1={marginTop:5,width:Metrics.screenWidth}
+            const style2={marginTop:5, flex:0.5}
             return (
             <View style={{marginBottom:20, flexDirection:'row'}}>
             <View style={{flex:0.5}}>
@@ -51,15 +53,20 @@ class Card extends Component {
                 <Text style={styles.h2} >
                   {speciality_text['en']} :
                 </Text>
-              : <View></View>
+              : <View>
+              </View>
 
             }
             </View>
-            <View style={{marginTop:5,flex:0.5}}>
+            <View style={!speciality_text['en']?style1:style2}>
             {
               speciality_value.map(value=>{
-                return(<Text style={styles.h4}>
-                 {value['en']}</Text> )
+
+                return(
+                  <Text style={!speciality_text['en'] ? styles.h4_2:styles.h4}>
+                 {value['en']} </Text>
+
+               )
               })
             }
             </View>

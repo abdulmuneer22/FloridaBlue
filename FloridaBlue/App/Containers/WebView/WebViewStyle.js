@@ -18,14 +18,15 @@ export default StyleSheet.create({
   },
   headerContainerError: {
   //  flexDirection: 'row',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
-  //  justifyContent: 'space-between',
-    alignSelf: 'center',
-
+    flex:1,
+    height: Metrics.screenHeight,
+    //justifyContent: 'space-between',
+    //alignItems: 'center',
+    alignItems:'center',
     // resizeMode:'cover',
     // alignSelf: 'stretch',
     width: Metrics.screenWidth,
-    backgroundColor: Colors.flBlue.ocean
+    //backgroundColor: Colors.flBlue.ocean
   },
   container: {
     flex: 1,

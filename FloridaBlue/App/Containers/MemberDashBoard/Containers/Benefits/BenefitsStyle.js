@@ -31,10 +31,11 @@ export default StyleSheet.create({
     backgroundColor: 'white'
   },
   benefitTileView:{
-    flexWrap: 'wrap',
     flexDirection: 'row',
-  //  borderTopWidth: 1,
-    flex:1
+          //backgroundColor : 'red',
+          flexWrap: 'wrap',
+          flex : 1
+
 
   },
   tileView:{
