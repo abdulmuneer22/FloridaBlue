@@ -52,16 +52,6 @@ class MyPlanScreen extends Component {
   //   this.props.attemptMyPlan()
   }
 
-  componentWillReceiveProps (newProps) {
-  this.forceUpdate()
-  console.log('I am receving new props from My plan scree ' + JSON.stringify(newProps))
-  console.log('error message ' + newProps.error)
-  if (!newProps.fetching && newProps.error == 'WRONG') {
-  console.log('Hey going to login ' + newProps.error)
-  NavigationActions.login()
-  }
-  }
-
   render () {
   return (
 

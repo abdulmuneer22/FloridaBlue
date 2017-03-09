@@ -1,68 +1,36 @@
-import {
-  call,
-  put
-} from 'redux-saga/effects'
+import { call, put} from 'redux-saga/effects'
 import LoginActions from '../Redux/LoginRedux'
 import MemberActions from '../Redux/MemberRedux'
 import SupportActions from '../Redux/SupportRedux'
 // attempts to login
-export function* login (api, {
-    username,
-    password
-  }) {
+export function * login (api, {username, password}) {
   var username = username
   var password = password
+  var  setLogin
   console.log('username+password' + JSON.stringify(username) + password)
-  //  api.setHeaders(username, password);
-  const response = yield call(api.getUser, username, password)
   console.log(response)
-
-  if (response.status == '200') {
+  const response = yield call(api.getUser, username, password)
+  if (response.status == '200' || response.status == '404') {
     var responseURL = response.responseURL
     var smToken = response.headers['set-cookie']
-    /*
     if (response.data.data) {
-      var smToken = response.headers['set-cookie']
-
-      console.log('cookieItems' + cookieItems)
-    
-      var pattern = /^SMSESSION/
-      if (pattern.test(cookieItems)) {
-        var elements = cookieItems.split(';')
-        smToken = elements[0]
+      if (response.data.data.Login) {
+        setLogin = response.data.data.Login
+      }else {
+        setLogin = null
       }
-      console.log('after parsing' + smToken)
-      login = response.data.data.Login
-    } else {
-      login = null
     }
-*/
-/* 
-    if (login) {
+    console.log('loginvalue at saga'+setLogin)
+    if (setLogin) {
       // we are displacing these action by this time we knew that member loged in success fully
-      yield put(MemberActions.memberRequest()) 
-      //This action for benefits details and hsa 
-      // yield put(MemberActions.memberRequest()) 
-      // yield put(MemberActions.memberRequest()) 
+      yield put(MemberActions.memberRequest())
       yield put(SupportActions.supportRequest())
+      responseURL = 'login'
       var error = null
-    } else {
-      //* path webviews and redirect the user
-      var error = null
-      var setcookie = response.headers['set-cookie']
-      console.log('jsession' + setcookie)
     }
-    */
-
-    yield put(MemberActions.memberRequest()) 
-    //This action for benefits details and hsa 
-    // yield put(MemberActions.memberRequest()) 
-    // yield put(MemberActions.memberRequest()) 
-    yield put(SupportActions.supportRequest())
     yield put(LoginActions.loginSuccess(username, responseURL, smToken))
-
   } else if (response.status == '401') {
-      // dispatch failure
+    // dispatch failure
     console.log('I am coming from failuer ')
     var error = 'Invalid Credentials. Please Enter Correctly.'
     alert('Invalid Credentials. Please Enter Correctly.')
@@ -74,12 +42,12 @@ export function* login (api, {
   }
 }
 
-export function* logout (apiforlogout) {
+export function * logout (apiforlogout) {
   const response = yield call(apiforlogout.getLogout)
   console.log('response of logout' + response)
 }
 
-export function* getTou (api) {
+export function * getTou (api) {
   const response = yield call(api.getTOU)
   console.log(JSON.stringify(response.data))
   if (response.status == '200') {
@@ -91,7 +59,7 @@ export function* getTou (api) {
   }
 }
 
-export function* sendConfirm (api) {
+export function * sendConfirm (api) {
   const response = yield call(api.putTou)
   console.log(JSON.stringify(response.data))
   if (response.status == '200') {
