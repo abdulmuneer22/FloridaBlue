@@ -23,13 +23,13 @@ class MyPlanCard extends Component {
       <TouchableOpacity onPress={() => NavigationActions.Myplan()}>
         <Image source={Images.myPlanbg} style={styles.summary} >
 
-        <View style={styles.healthPlanView}>
+          <View style={styles.healthPlanView}>
             <Text style={styles.healthPlanText}>
             My Health Plan
           </Text>
 
-        <Flb name='chevron-right' style={styles.myPlanArrowIcon} size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.snow}/>
-        </View>
+            <Flb name='chevron-right' style={styles.myPlanArrowIcon} size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.snow} />
+          </View>
         </Image>
 
       </TouchableOpacity>

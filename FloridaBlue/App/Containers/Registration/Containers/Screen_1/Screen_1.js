@@ -75,7 +75,7 @@ class Screen_1 extends React.Component {
 
       if (status === '000') {
         this.props.handleChangeIdentificationStatus(null)
-        console.tron.log("Navigating to Screen 2")
+        console.tron.log('Navigating to Screen 2')
         NavigationActions.screen_2()
       }
     }
@@ -219,7 +219,6 @@ class Screen_1 extends React.Component {
       </View>
     )
   }
-
 }
 
 Screen_1.propTypes = {

@@ -2,9 +2,9 @@ import { call, put} from 'redux-saga/effects'
 import HsaActions from '../Redux/HsaRedux'
 import LoginActions from '../Redux/LoginRedux'
 // attempts to login
-export function * hsa (api,{financialProduct}) {
+export function * hsa (api, {financialProduct}) {
   //    api.setsmTokenHeaders(smToken)
-console.log('financialProduct'+financialProduct)
+  console.log('financialProduct' + financialProduct)
   const response = yield call(api.getHsa, financialProduct)
   console.log(JSON.stringify(response))
   if (response.data.status.code = '200') {
@@ -13,7 +13,7 @@ console.log('financialProduct'+financialProduct)
     yield put(HsaActions.hsaSuccess(data))
   } else {
     console.log('failure ')
-     var error = 'WRONG'
+    var error = 'WRONG'
     yield put(HsaActions.hsaFailure(error))
   }
 }

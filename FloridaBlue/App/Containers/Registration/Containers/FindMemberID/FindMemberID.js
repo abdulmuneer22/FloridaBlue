@@ -29,7 +29,6 @@ import { connect } from 'react-redux'
 import Swiper from 'react-native-swiper'
 
 class FindMemberID extends React.Component {
-
   _handleClose () {
     NavigationActions.pop()
   }
@@ -80,7 +79,6 @@ class FindMemberID extends React.Component {
       </View>
     )
   }
-
 }
 
 FindMemberID.propTypes = {

@@ -32,7 +32,6 @@ class Input extends Component {
 
       default:
       // alert("default")
-
     }
   }
 

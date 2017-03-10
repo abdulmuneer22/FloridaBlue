@@ -10,7 +10,6 @@ import {
 import {Colors, Metrics, Fonts} from '../../../../../Themes'
 
 class Switch extends Component {
-
   handleClickLeft () {
     this.props.attemptHandleLeft()
   }
@@ -31,7 +30,7 @@ class Switch extends Component {
       borderTopLeftRadius: 15,
       padding: 4,
       backgroundColor: Colors.flBlue.ocean,
-      width: Metrics.screenWidth*0.40
+      width: Metrics.screenWidth * 0.40
     }
 
     var twoTabRightActiveStyle = {
@@ -41,7 +40,7 @@ class Switch extends Component {
       borderTopRightRadius: 15,
       padding: 4,
       backgroundColor: Colors.flBlue.ocean,
-      width: Metrics.screenWidth*0.40
+      width: Metrics.screenWidth * 0.40
     }
     var twoTextActiveStyle = {
       color: 'white',
@@ -52,7 +51,7 @@ class Switch extends Component {
       padding: 4,
       backgroundColor: 'white',
       borderRadius: 25,
-      width: Metrics.screenWidth*0.40
+      width: Metrics.screenWidth * 0.40
     }
 
     var twoTextInactiveStyle = {
@@ -112,8 +111,8 @@ class Switch extends Component {
       return (
         <View style={injectHeaderStyle}>
 
-          <TouchableOpacity style={_this.props.preferredActive ? injectedStyle :
-              inactiveStyle} onPress={() => { _this.handleClickPreferred() }}>
+          <TouchableOpacity style={_this.props.preferredActive ? injectedStyle
+              : inactiveStyle} onPress={() => { _this.handleClickPreferred() }}>
             <Text style={{
               color: _this.props.preferredActive ? 'blue' : 'darkgrey',
               marginRight: 5
@@ -121,17 +120,17 @@ class Switch extends Component {
               </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={_this.props.leftActive ? injectedStyle :
-              inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
-            <Text style={_this.props.leftActive ? injectedTextStyle :
-              inactiveTextStyle}>In Network
+          <TouchableOpacity style={_this.props.leftActive ? injectedStyle
+              : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
+            <Text style={_this.props.leftActive ? injectedTextStyle
+              : inactiveTextStyle}>In Network
               </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={_this.props.rightActive ? injectedStyle :
-              inactiveStyle} onPress={() => { _this.handleClickRight() }}>
-            <Text style={_this.props.rightActive ? injectedTextStyle :
-                  inactiveTextStyle
+          <TouchableOpacity style={_this.props.rightActive ? injectedStyle
+              : inactiveStyle} onPress={() => { _this.handleClickRight() }}>
+            <Text style={_this.props.rightActive ? injectedTextStyle
+                  : inactiveTextStyle
                 }>Out Of Network
                 </Text>
           </TouchableOpacity>
@@ -150,17 +149,17 @@ class Switch extends Component {
     ) {
       return (<View style={injectHeaderStyle}>
 
-        <TouchableOpacity style={_this.props.leftActive ? injectedStyle :
-        inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
-          <Text style={_this.props.leftActive ? injectedTextStyle :
-        inactiveTextStyle}>In Network
+        <TouchableOpacity style={_this.props.leftActive ? injectedStyle
+        : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
+          <Text style={_this.props.leftActive ? injectedTextStyle
+        : inactiveTextStyle}>In Network
         </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={_this.props.rightActive ? injectedStyle :
-        inactiveStyle} onPress={() => { _this.handleClickRight() }}>
-          <Text style={_this.props.rightActive ? injectedTextStyle :
-            inactiveTextStyle
+        <TouchableOpacity style={_this.props.rightActive ? injectedStyle
+        : inactiveStyle} onPress={() => { _this.handleClickRight() }}>
+          <Text style={_this.props.rightActive ? injectedTextStyle
+            : inactiveTextStyle
           }>Out Of Network
           </Text>
         </TouchableOpacity>
@@ -173,15 +172,15 @@ class Switch extends Component {
       <View style={{flex: 1}}>
 
         <View style={{flex: 1}}>
-          {this.props.leftActive ?
-          _twoTabView(
+          {this.props.leftActive
+          ? _twoTabView(
           twoTabLeftActiveStyle,
           twoTabInactiveStyle,
           twoTextActiveStyle,
           twoTextInactiveStyle,
           twoTabHeaderStyle
-        ) :
-        _twoTabView(
+        )
+        : _twoTabView(
         twoTabRightActiveStyle,
         twoTabInactiveStyle,
         twoTextActiveStyle,

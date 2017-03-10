@@ -40,7 +40,6 @@ const Card = (style, header, specialities, lang) => {
 }
 
 class specialityList extends Component {
-
   render () {
     var cards = []
 

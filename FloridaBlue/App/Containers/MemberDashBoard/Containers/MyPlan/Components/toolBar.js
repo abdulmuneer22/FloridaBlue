@@ -10,10 +10,8 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class ToolBar extends Component {
-
   _renderLeftLogo (target) {
     switch (target) {
-
       case 'myplan':
         return (
           <TouchableOpacity

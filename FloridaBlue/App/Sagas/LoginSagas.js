@@ -6,7 +6,7 @@ import SupportActions from '../Redux/SupportRedux'
 export function * login (api, {username, password}) {
   var username = username
   var password = password
-  var  setLogin
+  var setLogin
   console.log('username+password' + JSON.stringify(username) + password)
   console.log(response)
   const response = yield call(api.getUser, username, password)
@@ -16,11 +16,11 @@ export function * login (api, {username, password}) {
     if (response.data.data) {
       if (response.data.data.Login) {
         setLogin = response.data.data.Login
-      }else {
+      } else {
         setLogin = null
       }
     }
-    console.log('loginvalue at saga'+setLogin)
+    console.log('loginvalue at saga' + setLogin)
     if (setLogin) {
       // we are displacing these action by this time we knew that member loged in success fully
       yield put(MemberActions.memberRequest())
@@ -32,8 +32,8 @@ export function * login (api, {username, password}) {
   } else if (response.status == '401') {
     // dispatch failure
     console.log('I am coming from failuer ')
-    var error = 'Invalid Credentials. Please Enter Correctly.'
-    alert('Invalid Credentials. Please Enter Correctly.')
+    var error = 'The user ID or password you have entered is incorrect. Please try again.'
+    alert('The user ID or password you have entered is incorrect. Please try again.')
     yield put(LoginActions.loginFailure(error))
   } else if (response.status == null) {
     console.log('I am coming from failuer ')

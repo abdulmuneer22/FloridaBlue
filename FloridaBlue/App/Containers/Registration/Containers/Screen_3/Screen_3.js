@@ -41,7 +41,6 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .build()
 
 class Screen_3 extends React.Component {
-
   _handleBack () {
     NavigationActions.pop()
   }
@@ -64,7 +63,7 @@ class Screen_3 extends React.Component {
   componentDidUpdate () {
     // Step 1 - Verify registration code
     if (this.props.registrationCodeStatus && this.props.registerUserStatus === null) {
-      var registrationCodeStatus  = this.props.registrationCodeStatus
+      var registrationCodeStatus = this.props.registrationCodeStatus
 
       if (registrationCodeStatus === '000') {
         this.props.verifyRegisterUser(this.props)
@@ -73,13 +72,13 @@ class Screen_3 extends React.Component {
 
     // Step 2 - Register user
     if (this.props.registrationCodeStatus && this.props.registerUserStatus) {
-      var registrationCodeStatus  = this.props.registrationCodeStatus
-      var registerUserStatus  = this.props.registerUserStatus
+      var registrationCodeStatus = this.props.registrationCodeStatus
+      var registerUserStatus = this.props.registerUserStatus
 
       if (registrationCodeStatus === '000' && registerUserStatus === '000') {
         this.props.handleChangeRegistrationCodeStatus(null)
         this.props.handleChangeRegisterUserStatus(null)
-        console.tron.log("Navigating to Screen 4")
+        console.tron.log('Navigating to Screen 4')
         NavigationActions.confirmation()
       }
     }
@@ -155,7 +154,6 @@ class Screen_3 extends React.Component {
       </View>
     )
   }
-
 }
 
 Screen_3.propTypes = {

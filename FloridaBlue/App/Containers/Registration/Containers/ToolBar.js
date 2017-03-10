@@ -8,7 +8,6 @@ import {
 } from 'react-native'
 
 class ToolBar extends Component {
-
   _renderText () {
     switch (this.props.target) {
       case 'screen_1':
@@ -144,7 +143,6 @@ class ToolBar extends Component {
         </Text>
           </View>
         )
-
     }
   }
 

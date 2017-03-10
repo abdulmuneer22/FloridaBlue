@@ -19,7 +19,8 @@ module.exports = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    marginLeft: 7, marginRight: 7
+    marginLeft: 7,
+    marginRight: 7
   },
   welcome: {
     fontSize: 20,
@@ -29,12 +30,14 @@ module.exports = StyleSheet.create({
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginTop: 10, marginBottom: 20
+    marginTop: 10,
+    marginBottom: 20
   },
   legendLabel: {
     textAlign: 'center',
     color: '#666666',
-    marginTop: 10, marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 20,
     fontSize: 12,
     fontWeight: '300'
   }
