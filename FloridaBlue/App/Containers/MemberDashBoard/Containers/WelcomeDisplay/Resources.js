@@ -22,7 +22,6 @@ import { connect } from 'react-redux'
 import Flb from '../../../../Themes/FlbIcon'
 import Card from './Components/Card'
 
-
 type LoginScreenProps = {
   dispatch: () => any,
   fetching: boolean,
@@ -32,21 +31,18 @@ type LoginScreenProps = {
 }
 
 class Resources extends Component {
-
-
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-      <View style={{marginLeft:Metrics.screenWidth*0.025}}>
-      {NavItems.backButton()}
+      <View style={{marginLeft: Metrics.screenWidth * 0.025}}>
+        {NavItems.backButton()}
       </View>
       <Text style={styles.headerTextStyle}>
         Resources</Text>
-        <View style={{marginRight:Metrics.screenWidth*0.035}}>
-      {NavItems.settingsButton()}
+      <View style={{marginRight: Metrics.screenWidth * 0.035}}>
+        {NavItems.settingsButton()}
       </View>
     </Image>)
   }
-
 
   render () {
     console.log('root testing')
@@ -59,37 +55,34 @@ class Resources extends Component {
 
           <View style={{
             flexDirection: 'row',
-                  //backgroundColor : 'red',
-                  flexWrap: 'wrap',
-                  flex : 1,
-                  marginLeft : window.width * 0.04,
-                  marginRight : window.width * 0.03,
-                  marginTop : window.width * 0.03,
+                  // backgroundColor : 'red',
+            flexWrap: 'wrap',
+            flex: 1,
+            marginLeft: window.width * 0.04,
+            marginRight: window.width * 0.03,
+            marginTop: window.width * 0.03
 
           }}>
             {
               this.props.visibilityRules.additionalTiles.map((tile, i) => {
-              const index = i + 1
-              const TileCount = this.props.visibilityRules.additionalTiles.length
+                const index = i + 1
+                const TileCount = this.props.visibilityRules.additionalTiles.length
 
-                console.log(tile);
-                return(
+                console.log(tile)
+                return (
                   <Card
-                        i = {i}
-                        key={index}
-                        title={tile.tileName['en'] }
-                        tileType={tile.tileType }
-                        icon={tile.tileIcon}
-                        CardCount = {TileCount}
-                        webURL= {tile.tileType !== "native" ? tile.tileUrl : null}
-                        routerName = {tile.tileType === "native" ? tile.routerName : null}
+                    i={i}
+                    key={index}
+                    title={tile.tileName['en']}
+                    tileType={tile.tileType}
+                    icon={tile.tileIcon}
+                    CardCount={TileCount}
+                    webURL={tile.tileType !== 'native' ? tile.tileUrl : null}
+                    routerName={tile.tileType === 'native' ? tile.routerName : null}
 
                       />
                 )
-
-
-
-            }
+              }
           )
         }
           </View>

@@ -20,10 +20,21 @@ const openDrawer = (type) => {
 export default {
   backButton () {
     return (
-      <TouchableOpacity  style={{width:50,height:50,alignItems:'center'}} onPress={NavigationActions.pop}>
+      <TouchableOpacity style={{width: 50, height: 50, alignItems: 'center'}} onPress={NavigationActions.pop}>
         <Flb name='arrow-left'
-          size={Metrics.icons.xm * Metrics.screenHeight*0.0016}
+          size={Metrics.icons.xm * Metrics.screenHeight * 0.0016}
           color={Colors.flBlue.ocean}
+          style={[styles.backButton, {marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.0020}]}
+        />
+      </TouchableOpacity>
+    )
+  },
+  errorBackButton () {
+    return (
+      <TouchableOpacity  style={{width:100,height:100,alignItems:'center'}} onPress={NavigationActions.pop}>
+        <Flb name='arrow-left'
+          size={Metrics.icons.large * Metrics.screenHeight*0.0013}
+          color={Colors.snow}
           style={[styles.backButton, {marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.0020}]}
         />
       </TouchableOpacity>
@@ -43,9 +54,9 @@ export default {
     name='ios-more'
   }, */
   settingsButton () {
-    return <TouchableOpacity style={{width:50,height:50,alignItems:'center'}} onPress={openDrawer.bind(null, 'settings')}>
+    return <TouchableOpacity style={{width: 50, height: 50, alignItems: 'center'}} onPress={openDrawer.bind(null, 'settings')}>
       <Flb name='align-justify'
-        size={Metrics.icons.xm * Metrics.screenHeight*0.0016}
+        size={Metrics.icons.xm * Metrics.screenHeight * 0.0016}
         style={{color: Colors.flBlue.ocean,
           backgroundColor: Colors.transparent,
           marginTop: Metrics.doubleBaseMargin}}

@@ -1,7 +1,7 @@
 // @flow
-'use strict';
+'use strict'
 
-import React from 'react';
+import React from 'react'
 import {
   StyleSheet,
   Text,
@@ -9,30 +9,30 @@ import {
   ART,
   LayoutAnimation,
   Dimensions,
-  TouchableWithoutFeedback,
-} from 'react-native';
+  TouchableWithoutFeedback
+} from 'react-native'
 
 const {
   Surface,
   Group,
   Rectangle,
-  Shape,
-} = ART;
+  Shape
+} = ART
 
-import * as scale from 'd3-scale';
-import * as shape from 'd3-shape';
-import * as d3Array from 'd3-array';
-import AnimShape from './AnimShape';
+import * as scale from 'd3-scale'
+import * as shape from 'd3-shape'
+import * as d3Array from 'd3-array'
+import AnimShape from './AnimShape'
 
 const d3 = {
   scale,
-  shape,
-};
+  shape
+}
 
 import {
     scaleBand,
     scaleLinear
-} from 'd3-scale';
+} from 'd3-scale'
 
 type Props = {
   height: number,
@@ -50,27 +50,25 @@ type State = {
 };
 
 class SemiCircle extends React.Component {
-
   state: State;
 
-  constructor(props: Props) {
-    super(props);
-    this.state = { highlightedIndex: 0 };
-    this._createSemiCircleChart = this._createSemiCircleChart.bind(this);
+  constructor (props: Props) {
+    super(props)
+    this.state = { highlightedIndex: 0 }
+    this._createSemiCircleChart = this._createSemiCircleChart.bind(this)
   }
 
-  _createSemiCircleChart(barWidth, percent) {
-    //percent *= .01
+  _createSemiCircleChart (barWidth, percent) {
+    // percent *= .01
 
-    if(percent === 1) {
+    if (percent === 1) {
       percent = 0
-    }
-    else {
+    } else {
       // take the reciprocal to show properly on the graph
       percent = 1 - percent
     }
-    //var startAngle = (Math.PI / 2) * -1
-    //var endAngle = (Math.PI / 2) * (percent * .01)
+    // var startAngle = (Math.PI / 2) * -1
+    // var endAngle = (Math.PI / 2) * (percent * .01)
     var startAngle = (Math.PI / 2) * -1
     var endAngle = (Math.PI / 2) - (Math.PI * percent)
 
@@ -82,13 +80,13 @@ class SemiCircle extends React.Component {
 
     var path = arc()
 
-     return {
-       path
-     };
+    return {
+      path
+    }
   }
 
-  render() {
-    const margin = styles.container.margin;
+  render () {
+    const margin = styles.container.margin
     const x = this.props.width / 2
     const y = this.props.height / 2
 
@@ -98,16 +96,16 @@ class SemiCircle extends React.Component {
           <Group x={x} y={y}>
             <AnimShape
               color={this.props.barBottomColor}
-              d={ () => this._createSemiCircleChart(this.props.barWidth, 1)}
+              d={() => this._createSemiCircleChart(this.props.barWidth, 1)}
             />
             <AnimShape
               color={this.props.barTopColor}
-              d={ () => this._createSemiCircleChart(this.props.barWidth, this.props.percent)}
+              d={() => this._createSemiCircleChart(this.props.barWidth, this.props.percent)}
             />
           </Group>
         </Surface>
       </View>
-    );
+    )
   }
 }
 
@@ -118,8 +116,8 @@ const styles = {
   label: {
     fontSize: 15,
     marginTop: 5,
-    fontWeight: 'normal',
+    fontWeight: 'normal'
   }
-};
+}
 
-export default SemiCircle;
+export default SemiCircle

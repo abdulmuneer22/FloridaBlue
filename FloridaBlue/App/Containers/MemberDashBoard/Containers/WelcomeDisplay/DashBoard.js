@@ -35,7 +35,7 @@ type LoginScreenProps = {
   attemptMember: () => void,
   error :string
 }
-const theme=getTheme();
+const theme = getTheme()
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
@@ -47,15 +47,15 @@ class LandingScreen extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.0015,
-                  marginLeft:Metrics.images.xm * Metrics.screenWidth *0.003}}>
-      <Image source={Images.themeLogo}
-        style={{
-        height: Metrics.images.average * Metrics.screenHeight *0.0017,
-        width:Metrics.screenWidth*0.65}} />
-        </View>
+        marginLeft: Metrics.images.xm * Metrics.screenWidth * 0.003}}>
+        <Image source={Images.themeLogo}
+          style={{
+            height: Metrics.images.average * Metrics.screenHeight * 0.0017,
+            width: Metrics.screenWidth * 0.65}} />
+      </View>
 
-        <View style={{marginRight:Metrics.screenWidth*0.020}}>
-      {NavItems.settingsButton()}
+      <View style={{marginRight: Metrics.screenWidth * 0.020}}>
+        {NavItems.settingsButton()}
       </View>
 
     </Image>)
@@ -63,11 +63,10 @@ class LandingScreen extends Component {
   componentDidMount () {
     console.log('mount on dashboadr' + this.props.smToken)
   //  this.props.attemptMember()
-}
-
+  }
 
   componentWillReceiveProps (newProps) {
-     console.log("dash board failure"+newProps.error)
+    console.log('dash board failure' + newProps.error)
      /*
     if (!newProps.error) {
         NavigationActions.ErrorPage()
@@ -76,15 +75,16 @@ class LandingScreen extends Component {
   }
 
   render () {
+
     return (
 
       <View style={styles.container}>
         {this._renderHeader()}
 
         {
-        this.props.visibilityRules ?
+        this.props.visibilityRules
 
-          <View style={styles.container}>
+          ? <View style={styles.container}>
             <Greeting userName={this.props.userName} />
             <MyPlanCard />
             <View style={{
@@ -103,16 +103,14 @@ class LandingScreen extends Component {
                 }
                 return (
 
-               <TouchableOpacity
+                  <TouchableOpacity
 
-                style={
-                  i % 2 == 0 ?
-                  styles.tileStyle
-                  :
-                  styles.tileStyle1
+                    style={
+                  i % 2 == 0
+                  ? styles.tileStyle
+                  : styles.tileStyle1
                 }
-                onPress={onItemPress.bind(this)} key={i}>
-
+                    onPress={onItemPress.bind(this)} key={i}>
                 <Image  source={Images[tile.backgroundImage]}
                   style={{
                   alignItems:'center',
@@ -120,11 +118,11 @@ class LandingScreen extends Component {
                   width: (Metrics.screenWidth/2) - (Metrics.baseMargin *1.7),
                   height: Metrics.screenHeight - (Metrics.screenHeight * 0.75)}}>
 
-                      <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow} style={{backgroundColor:Colors.transparent, marginTop:10}} />
+                      <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow} style={{backgroundColor: Colors.transparent, marginTop: 10}} />
                       <Text style={styles.tileTextStyle}>
                         {tile.tileName['en']}
                       </Text>
-                      </Image>
+                    </Image>
                   </TouchableOpacity>
 
                 )
@@ -149,20 +147,19 @@ class LandingScreen extends Component {
                 fontFamily:Fonts.type.headerFont,
                 backgroundColor:Colors.transparent}}>
                 {this.props.visibilityRules.opdTile.tileName['en']}
+
                 </Text>
 
-              </View>
+                </View>
               </Image>
             </TouchableOpacity>
 
-
           </View>
 
-       :
-          <View style={styles.spinnerView}>
-            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-            <Text style={styles.spinnerText}>Loading Please Wait </Text>
-          </View>
+       : <View style={styles.spinnerView}>
+         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+         <Text style={styles.spinnerText}>Loading Please Wait </Text>
+       </View>
       }
 
       </View>

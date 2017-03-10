@@ -7,11 +7,11 @@ import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
 
-export function* myplan (api,data) {
+export function * myplan (api, data) {
   console.log('I am coming from myplan')
     // api.setsmTokenHeaders(smToken);
-  console.log("data of myplan"+JSON.stringify(data));
-  const response = yield call(api.getPlan,data)
+  console.log('data of myplan' + JSON.stringify(data))
+  const response = yield call(api.getPlan, data)
   console.log(JSON.stringify(response))
   if (response.status = '200') {
     // dispatch success

@@ -30,7 +30,6 @@ class Input extends Component {
         break
 
       default:
-
     }
   }
 

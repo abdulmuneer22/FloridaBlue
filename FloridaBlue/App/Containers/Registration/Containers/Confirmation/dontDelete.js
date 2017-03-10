@@ -34,7 +34,6 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .build()
 
 class Confirmation extends Component {
-
   constructor () {
     super()
     this.state = {
@@ -155,7 +154,8 @@ class Confirmation extends Component {
 
             }}>
               <Text style={{textAlign: 'center',
-                fontSize: Fonts.size.h4, color: Colors.flBlue.grey6}}>Touch ID</Text>
+                fontSize: Fonts.size.h4,
+                color: Colors.flBlue.grey6}}>Touch ID</Text>
 
               <Text style={{
                      // textAlign : 'center',

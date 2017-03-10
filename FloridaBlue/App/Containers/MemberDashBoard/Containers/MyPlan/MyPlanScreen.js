@@ -25,118 +25,115 @@ import MyPlanActions from '../../../../Redux/MyPlanRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 const window = Dimensions.get('window')
 
-
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
 
 class MyPlanScreen extends Component {
-
   constructor (props) {
-  super(props)
-  this.state = {
-  }
+    super(props)
+    this.state = {
+    }
   }
 
   _renderHeader () {
-  return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-  {NavItems.backButton()}
-  <Text style={styles.headerTextStyle}>My Plan</Text>
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+      {NavItems.backButton()}
+      <Text style={styles.headerTextStyle}>My Plan</Text>
 
-  {NavItems.settingsButton()}
+      {NavItems.settingsButton()}
 
-  </Image>)
+    </Image>)
   }
   componentDidMount () {
-  console.log('I am my plan screen')
+    console.log('I am my plan screen')
   //   this.props.attemptMyPlan()
   }
 
   render () {
-  return (
+    return (
 
-    <View style={styles.container}>
+      <View style={styles.container}>
 
         <View>
-        {this._renderHeader()}
+          {this._renderHeader()}
         </View>
 
         {
-        this.props.data ?
+        this.props.data
 
-        <View style={styles.container}>
-        <View style={styles.planNameView}>
-        <Text style={styles.planNameText}>
+          ? <View style={styles.container}>
+            <View style={styles.planNameView}>
+              <Text style={styles.planNameText}>
         Blue Options
         </Text>
-        </View>
+            </View>
 
-        <View style={styles.chartWrapper}>
-        {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
+            <View style={styles.chartWrapper}>
+              {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
         : <View style={styles.spinnerView}>
-        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>}
-        </View>
+            </View>
 
-        <View style={styles.myplanTilesStyle}>
-          {this.props.data && this.props.data.planOverViewTiles ?
-            this.props.data.planOverViewTiles.map((tile, i) => {
-            const index = i + 1
-            const TileCount = this.props.data.planOverViewTiles.length
+            <View style={styles.myplanTilesStyle}>
+              {this.props.data && this.props.data.planOverViewTiles
+            ? this.props.data.planOverViewTiles.map((tile, i) => {
+              const index = i + 1
+              const TileCount = this.props.data.planOverViewTiles.length
 
-              console.log(tile);
-              return(
+              console.log(tile)
+              return (
                 <Card
-                      i = {i}
-                      key={index}
-                      title={tile.tileName['en'] }
-                      tileType={tile.tileType }
-                      icon={tile.tileIcon}
-                      CardCount = {TileCount}
-                      webURL= {tile.tileType !== "native" ? tile.tileUrl : null}
-                      routerName = {tile.tileType === "native" ? tile.routerName : null}
+                  i={i}
+                  key={index}
+                  title={tile.tileName['en']}
+                  tileType={tile.tileType}
+                  icon={tile.tileIcon}
+                  CardCount={TileCount}
+                  webURL={tile.tileType !== 'native' ? tile.tileUrl : null}
+                  routerName={tile.tileType === 'native' ? tile.routerName : null}
 
                     />
               )
-
-          }
+            }
         )
-        :<Text/>
+        : <Text />
       }
-        </View>
+            </View>
 
-        </View>
+          </View>
 
         : <View style={styles.spinnerView}>
-        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>
         }
 
-</View>
+      </View>
 
-)
-}
+    )
+  }
 }
 
 MyPlanScreen.propTypes = {
-data: PropTypes.object,
-attemptMyPlan: PropTypes.func,
-error: PropTypes.string
+  data: PropTypes.object,
+  attemptMyPlan: PropTypes.func,
+  error: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
-return {
-fetching: state.login.fetching,
-data: state.myplan.data,
-error: state.myplan.error
-}
+  return {
+    fetching: state.login.fetching,
+    data: state.myplan.data,
+    error: state.myplan.error
+  }
 }
 const mapDispatchToProps = (dispatch) => {
-return {
-attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest())
-}
+  return {
+    attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest())
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyPlanScreen)

@@ -11,7 +11,6 @@ Image
 
 const window = Dimensions.get('window')
 
-
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import NavItems from '../../../../Navigation/NavItems.js'
@@ -28,7 +27,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .build()
 
 class PlanBenefits extends Component {
-
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
@@ -55,9 +53,8 @@ class PlanBenefits extends Component {
         <ScrollView>
           <View style={styles.benefitTileView}>
 
-            {this.props.data && this.props.data.tiles ?
-      this.props.data.tiles.map(function (tile, i) {
-
+            {this.props.data && this.props.data.tiles
+      ? this.props.data.tiles.map(function (tile, i) {
         onItemPress = function () {
           var action
           if (tile.tileType == 'native') {
@@ -79,10 +76,8 @@ class PlanBenefits extends Component {
             </View>
           </TouchableOpacity>
 
-
         )
         i += 1
-
       }) : <View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
@@ -94,10 +89,7 @@ class PlanBenefits extends Component {
       </View>
     )
   }
-
-
 }
-
 
 PlanBenefits.propTypes = {
 

@@ -26,7 +26,7 @@ export default StyleSheet.create({
   loginButton: {
     alignItems: 'center',
     paddingTop: Metrics.screenHeight * 0.1,
-    paddingHorizontal:Metrics.doubleBaseMargin
+    paddingHorizontal: Metrics.doubleBaseMargin
 
   },
   form: {
@@ -84,7 +84,7 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 0.5,
     // backgroundColor : 'yellow',
     padding: 10,
-    marginTop:10,
+    marginTop: 10,
     height: 40,
   //  flexWrap:'wrap',
     flexDirection: 'row',
@@ -93,15 +93,14 @@ export default StyleSheet.create({
   popupchildText: {
     fontSize: 14,
     marginLeft: 5,
-    alignSelf: 'center',
+    alignSelf: 'center'
 
   },
   spinnerView: {
   //  alignItems: 'center',
   //  justifyContent: 'center',
-    alignSelf:'center'
+    alignSelf: 'center'
 
-  },
-
+  }
 
 })

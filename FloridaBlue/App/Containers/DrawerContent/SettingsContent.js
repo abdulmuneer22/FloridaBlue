@@ -7,6 +7,7 @@ import { ScrollView,
   StyleSheet,
   Text,
   Dimensions,
+  WebView,
   TouchableWithoutFeedback,
   TouchableOpacity
 } from 'react-native'
@@ -26,24 +27,11 @@ const Divider = () => {
   return <View style={styles.divider} />
 }
 
-const Dummy = [{
-  title :"A"
-},
-{
-  title :"B"
-},
-{
-  title :"C"
-}
-
-
-
-]
 class SettingsContent extends Component {
-  constructor(){
-    super();
+  constructor () {
+    super()
     this.state = {
-      hpActive : false
+      hpActive: false
     }
   }
 
@@ -77,7 +65,7 @@ class SettingsContent extends Component {
   }
   handlePressClaims = () => {
     this.toggleDrawer()
-    NavigationActions.claims()
+      NavigationActions.MyView({responseURL: 'https://mws8-stga.bcbsfl.com/wps/myportal/mbs/mwe/myBenefits/claims/'})
   }
 
   handlePressResources = () => {
@@ -99,27 +87,19 @@ class SettingsContent extends Component {
   }
   handlePressFindCare= () => {
     this.toggleDrawer()
-    NavigationActions.MyView()
+    NavigationActions.MyView({responseURL: 'https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/tools/findadoctor'})
   }
   handlePressPayment= () => {
     this.toggleDrawer()
     NavigationActions.MyView()
   }
-  handlePressMyAccount= () => {
+  handlePressSupport= () => {
     this.toggleDrawer()
-    NavigationActions.Support()
-  }
-  handlePressSettings= () => {
-    this.toggleDrawer()
-    NavigationActions.Support()
-  }
-  handlePressFAQ= () => {
-    this.toggleDrawer()
-    NavigationActions.Support()
+    NavigationActions.SupportScreen()
   }
   handlePressPolicy= () => {
     this.toggleDrawer()
-    NavigationActions.Support()
+   NavigationActions.MyView({responseURL: 'https://www.floridablue.com/terms-of-use'})
   }
 
   handlePressLogout = () => {
@@ -136,43 +116,41 @@ class SettingsContent extends Component {
           <Divider />
 
           <View>
-          <TouchableWithoutFeedback onPress={()=>{
-            this.setState({hpActive : !this.state.hpActive})
-          }}>
-          <View style={{flexDirection:'row',marginRight:15,marginTop:10}}>
-          <View style={{flex:1}}>
-            <Text style={styles.heading1} >My Health Plan</Text>
-            </View>
+            <TouchableWithoutFeedback onPress={() => {
+              this.setState({hpActive: !this.state.hpActive})
+            }}>
+              <View style={{flexDirection: 'row', marginRight: 15, marginTop: 10}}>
+                <View style={{flex: 1}}>
+                  <Text style={styles.heading1} >My Health Plan</Text>
+                </View>
 
+                {
 
-            {
+              !this.state.hpActive
 
-              !this.state.hpActive ?
-
-              <Icon name="caret-down" size={25} color="white" />
-              :
-              <Icon name="caret-up" size={25} color="white" />
+                ? <Icon name='caret-down' size={25} color='white' />
+              : <Icon name='caret-up' size={25} color='white' />
 
             }
 
-            </View>
+              </View>
             </TouchableWithoutFeedback>
 
             {
-              this.state.hpActive ?
+              this.state.hpActive
 
-            <View style={{marginLeft:20}}>
-              <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
-              <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
-            </View>
-            :null
+                ? <View style={{marginLeft: 20}}>
+                  <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
+                  <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
+                </View>
+            : null
           }
           </View>
 
           <Divider />
           {
-            this.props.visibilityRules ?
-            this.props.visibilityRules.coreTiles.map((tile,i)=>{
+            this.props.visibilityRules
+            ? this.props.visibilityRules.coreTiles.map((tile, i) => {
               onItemPress = function () {
                 var action
                 if (tile.tileType == 'webview') {
@@ -188,46 +166,36 @@ class SettingsContent extends Component {
               return (
 
                 <TouchableOpacity onPress={onItemPress.bind(this)} key={i}>
-                <View>
-                  <Text style={styles.heading}>{tile.tileName['en']}</Text>
+                  <View>
+                    <Text style={styles.heading}>{tile.tileName['en']}</Text>
 
-                  <Divider />
+                    <Divider />
                   </View>
                 </TouchableOpacity>
               )
             })
-            :
-            null
+            : null
           }
 
           <Text style={styles.heading} onPress={this.handlePressFindCare}>Find Care</Text>
 
-
         </View>
         <View style={styles.settings}>
-          <View style={styles.myAccountStyle}>
-            <View >
-              <Flb name='user' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
-            </View>
-            <Text style={styles.heading2} onPress={this.handlePressMyAccount}>My Account</Text>
-          </View>
 
           <View style={styles.myAccountStyle}>
             <View >
               <Flb name='cog-gear' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
-            <Text style={styles.heading2} onPress={this.handlePressSettings}>App Settings</Text>
+            <Text style={styles.heading2} onPress={this.handlePressSupport}>Support</Text>
           </View>
 
           <View style={styles.myAccountStyle}>
             <View >
-              <Flb name='generic-doc' size={Metrics.icons.xm  } color={Colors.flBlue.ocean} />
+              <Flb name='generic-doc' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
 
-            <Text style={styles.heading2} onPress={this.handlePressPolicy}>Policies & Terms </Text>
+            <Text style={styles.heading2} onPress={this.handlePressPolicy}>Terms of Use </Text>
           </View>
-        
-
 
         </View>
         <View style={styles.logoutView}>
@@ -239,7 +207,6 @@ class SettingsContent extends Component {
       </ScrollView>
     )
   }
-
 }
 
 SettingsContent.contextTypes = {

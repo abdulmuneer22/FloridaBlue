@@ -41,7 +41,6 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .build()
 
 class Screen_4 extends React.Component {
-
   _handleBack () {
     NavigationActions.pop()
   }
@@ -55,7 +54,7 @@ class Screen_4 extends React.Component {
     var securityAnswer3 = this.props.securityAnswer3
 
     if (!(securityHint1 && securityAnswer1 && securityHint2 && securityAnswer2 && securityHint3 && securityAnswer3)) {
-      alert("Please enter values in all fields")
+      alert('Please enter values in all fields')
     } else {
       this.props.verifySecurityHints(this.props)
     }
@@ -71,7 +70,7 @@ class Screen_4 extends React.Component {
 
       if (status === '000') {
         this.props.handleChangeSecurityHintsStatus(null)
-        console.tron.log("")
+        console.tron.log('')
         NavigationActions.confirmation()
       }
     }
@@ -219,7 +218,6 @@ class Screen_4 extends React.Component {
       </View>
     )
   }
-
 }
 
 Screen_4.propTypes = {

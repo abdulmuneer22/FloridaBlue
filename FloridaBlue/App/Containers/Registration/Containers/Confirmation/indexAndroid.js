@@ -22,7 +22,6 @@ import ToolBar from '../ToolBar'
 
 import Button from '../Button'
 class androidPin extends Component {
-
   constructor () {
     super()
     this.state = {
@@ -241,7 +240,6 @@ class androidPin extends Component {
       </View>
     )
   }
-
 }
 
 const Styles = StyleSheet.create({
