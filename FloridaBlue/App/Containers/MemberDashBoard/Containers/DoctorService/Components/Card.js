@@ -14,19 +14,18 @@ import { connect } from 'react-redux'
 import styles from '../DoctorServiceStyle.js'
 
 class Card extends Component {
-
-  render() {
+  render () {
     var cards = []
     var that = this
-    var card;
-    var temp = this.props.data;
+    var card
+    var temp = this.props.data
     var objectName = this.props.objectName
-    var temp1 = temp[objectName];
+    var temp1 = temp[objectName]
 
     if (this.props.leftActive) {
-      card = temp1.inNetwork.networkBenefits;
+      card = temp1.inNetwork.networkBenefits
     } else {
-      card = temp1.outNetwork.networkBenefits;
+      card = temp1.outNetwork.networkBenefits
     }
 
     console.log('card of innetwork' + JSON.stringify(this.props.leftActive))
@@ -42,42 +41,37 @@ class Card extends Component {
         </Text>
 
         {
-          speciality.map(specialities=>{
-            const{speciality_text, speciality_value}=specialities
-            const style1={marginTop:5,width:Metrics.screenWidth}
-            const style2={marginTop:5, flex:0.5}
+          speciality.map(specialities => {
+            const {speciality_text, speciality_value} = specialities
+            const style1 = {marginTop: 5, width: Metrics.screenWidth}
+            const style2 = {marginTop: 5, flex: 0.5}
             return (
-            <View style={{marginBottom:20, flexDirection:'row'}}>
-            <View style={{flex:0.5}}>
-            {speciality_text['en'] ?
-                <Text style={styles.h2} >
-                  {speciality_text['en']} :
+              <View style={{marginBottom: 20, flexDirection: 'row'}}>
+                <View style={{flex: 0.5}}>
+                  {speciality_text['en']
+                    ? <Text style={styles.h2} >
+                      {speciality_text['en']} :
                 </Text>
-              : <View>
-              </View>
+              : <View />
 
             }
-            </View>
-            <View style={!speciality_text['en']?style1:style2}>
-            {
-              speciality_value.map(value=>{
+                </View>
+                <View style={!speciality_text['en'] ? style1 : style2}>
+                  {
+              speciality_value.map(value => {
+                return (
+                  <Text style={!speciality_text['en'] ? styles.h4_2 : styles.h4}>
+                    {value['en']} </Text>
 
-                return(
-                  <Text style={!speciality_text['en'] ? styles.h4_2:styles.h4}>
-                 {value['en']} </Text>
-
-               )
+                )
               })
             }
-            </View>
-            </View>)
+                </View>
+              </View>)
           })
         }
 
-
-
       </View>
-
 
       )
       i += 1

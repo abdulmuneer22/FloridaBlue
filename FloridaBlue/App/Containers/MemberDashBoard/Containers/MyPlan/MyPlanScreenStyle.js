@@ -21,8 +21,8 @@ export default StyleSheet.create({
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
-    //marginLeft:,
-    fontFamily:Fonts.type.headerFont,
+    // marginLeft:,
+    fontFamily: Fonts.type.headerFont,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023
 
   },
@@ -33,15 +33,15 @@ export default StyleSheet.create({
   planNameView: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop:Metrics.smallMargin,
+    marginTop: Metrics.smallMargin,
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 3
 
   },
-  planNameText:{
-    fontSize: Fonts.size.h4 ,
-    color:Colors.flBlue.anvil,
-    fontFamily:Fonts.type.subHeaderFont,
-    fontWeight:'500',
+  planNameText: {
+    fontSize: Fonts.size.h4,
+    color: Colors.flBlue.anvil,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '500'
   },
 
   chartWrapper: {
@@ -62,15 +62,15 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow
 
   },
-  myplanTilesStyle:{
+  myplanTilesStyle: {
     flexDirection: 'row',
-          //backgroundColor : 'red',
-          flexWrap: 'wrap',
-          flex : 1,
-          marginLeft : window.width * 0.04,
-          marginRight : window.width * 0.04,
-          marginTop : window.width * 0.04,
-          marginBottom : window.width * 0.01,
+          // backgroundColor : 'red',
+    flexWrap: 'wrap',
+    flex: 1,
+    marginLeft: window.width * 0.04,
+    marginRight: window.width * 0.04,
+    marginTop: window.width * 0.04,
+    marginBottom: window.width * 0.01
 
   },
 
@@ -81,8 +81,8 @@ export default StyleSheet.create({
     flexWrap: 'nowrap',
 //  borderWidth:2,
     marginTop: Metrics.smallMargin,
-    marginLeft:10,
-    marginRight:15,
+    marginLeft: 10,
+    marginRight: 15
 //  borderColor:Colors.flBlue.grey4,
 //  backgroundColor:Colors.flBlue.grey2
   },
@@ -95,13 +95,13 @@ export default StyleSheet.create({
   // width:window.width,
   // alignSelf:'center',
     fontSize: Fonts.size.h5,
-    fontFamily:Fonts.type.subHeaderFont,
+    fontFamily: Fonts.type.subHeaderFont
   // backgroundColor:Colors.flBlue.ocean
   },
   subHeader: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025,
-    color:Colors.flBlue.anvil,
-    fontFamily:Fonts.type.subHeaderFont,
+    color: Colors.flBlue.anvil,
+    fontFamily: Fonts.type.subHeaderFont,
     marginBottom: Metrics.baseMargin,
     marginTop: Metrics.baseMargin
   },
@@ -114,7 +114,7 @@ export default StyleSheet.create({
 //  flexDirection:'row',
     marginLeft: Metrics.doubleBaseMargin,
     marginRight: Metrics.doubleBaseMargin,
-    //flex: 1,
+    // flex: 1,
     margin: Metrics.baseMargin,
     flexWrap: 'wrap'
   },

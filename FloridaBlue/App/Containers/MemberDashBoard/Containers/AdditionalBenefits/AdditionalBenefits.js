@@ -72,10 +72,9 @@ class AdditionalBenefits extends Component {
 
               </View>
               {
-              this.state.dropVisible ?
-                <DropDown />
-              :
-              null
+              this.state.dropVisible
+                ? <DropDown />
+              : null
           }
 
               <OutOfPocket />

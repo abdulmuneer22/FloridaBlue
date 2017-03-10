@@ -29,7 +29,7 @@ class Webview extends Component {
       {NavItems.backButton()}
       <Text style={{color: Colors.flBlue.ocean,
         backgroundColor: Colors.transparent,
-        fontFamily:Fonts.type.headerFont,
+        fontFamily: Fonts.type.headerFont,
         fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
         marginRight: 80,
         marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023}}>
@@ -53,7 +53,7 @@ class Webview extends Component {
         method: 'GET'
       }
     }
-    console.log("redirect"+JSON.stringify(redirect));
+    console.log('redirect' + JSON.stringify(redirect))
     return (
       <View style={{
         flex: 1,
@@ -76,14 +76,14 @@ class Webview extends Component {
 onShouldStartLoadWithRequest = (event) => {
     // Implement any custom loading logic here, don't forget to return!
 
-    return true;
-  };
+  return true
+}
 goBack = () => {
-  this.refs[WEBVIEW_REF].goBack();
-};
+  this.refs[WEBVIEW_REF].goBack()
+}
 goForward = () => {
-  this.refs[WEBVIEW_REF].goForward();
-};
+  this.refs[WEBVIEW_REF].goForward()
+}
 Webview.propTypes = {
 /*  fetching: PropTypes.bool,
   responseURL : PropTypes.string, */

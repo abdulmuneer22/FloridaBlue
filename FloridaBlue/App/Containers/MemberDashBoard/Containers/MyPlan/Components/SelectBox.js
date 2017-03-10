@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
 })
 
 class SelectBox extends Component {
-
   constructor (props) {
     super(props)
     this.state = {

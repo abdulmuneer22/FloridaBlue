@@ -17,8 +17,8 @@ const size = {
   h6: 19,
   input: 18,
   regular: 17,
-  xr:16,
-  xm:15,
+  xr: 16,
+  xm: 15,
   medium: 14,
   small: 12,
   tiny: 8.5

@@ -65,7 +65,7 @@ class Login extends Component {
     var password = this.state.password
 
     if (!this.state.username | !this.state.password) {
-      alert('Please enter User ID and Password!')
+      alert('Please enter your user ID./Please enter your password.')
     } else {
    // const { username, password } = this.state
       this.isAttempting = true
@@ -91,7 +91,7 @@ componentWillReceiveProps(newProps) {
 
   if (this.isAttempting && !newProps.fetching && newProps.error === null) {
     // login path
-    if (responseURL== 'login') {
+    if (responseURL == 'login') {
       if (!newProps.mfetching) {
         if (!newProps.merror) {
           if (newProps.termsOfUse) {
@@ -103,29 +103,26 @@ componentWillReceiveProps(newProps) {
           NavigationActions.ErrorPage()
         }
       }
-    // redirect path
     } else if (responseURL.includes("updateSecurityHintsAnswers")) {
-                NavigationActions.screen_4();
+      NavigationActions.screen_4();
+      //Unauthorized User
     } else if (responseURL.includes('mob/error/accessdenied')) {
-             this.props.attemptLogout()
-              alert('User is not authorized')
+      this.props.attemptLogout()
+      alert('Please use your user ID and password to log in. You must be a Florida Blue member.')
+      //Disabled Account
     } else if (responseURL.includes('apsparam=usrlocked')) {
-               alert('Your account is disabled. For assistance, please call our Member Help Line:1-800-FLA-BLUE (352-2583)TTY / TDD Call 711')
-    }else {
+      this.props.attemptLogout()
+      alert('Your account is disabled.  Click Support for help')
+      //Password About to Expire
+    } else {
       NavigationActions.MyView({
         responseURL: newProps.responseURL + '?source=mobile'
       })
     }
-
   }
 
   //end of IF condition
 }
-
-
-
-
-
 
   _moreInfo () {
     return (

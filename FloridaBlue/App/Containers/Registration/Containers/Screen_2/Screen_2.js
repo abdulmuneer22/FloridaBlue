@@ -48,7 +48,6 @@ setTheme({checkboxStyle: {
 }})
 
 class Screen_2 extends React.Component {
-
   _handleBack () {
     NavigationActions.pop()
   }
@@ -60,7 +59,7 @@ class Screen_2 extends React.Component {
     var confirmPassword = this.props.confirmPassword
 
     if (!(createUserId && password && confirmPassword)) {
-      alert("Please enter values in all fields")
+      alert('Please enter values in all fields')
     } else {
       this.props.verifyPersonalInformation(this.props)
     }
@@ -82,7 +81,7 @@ class Screen_2 extends React.Component {
         // Reset to null
         this.props.handleChangePersonalInformationStatus(null)
 
-        console.tron.log("Navigating to Screen 3")
+        console.tron.log('Navigating to Screen 3')
         NavigationActions.screen_3()
       }
     }
@@ -134,7 +133,7 @@ class Screen_2 extends React.Component {
               value={this.props.email}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='email-address'
-              editable={this.props.emailVerified ? false : true}
+              editable={!this.props.emailVerified}
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
@@ -250,7 +249,6 @@ class Screen_2 extends React.Component {
       </View>
     )
   }
-
 }
 
 Screen_2.propTypes = {

@@ -6,7 +6,7 @@ import SupportActions from '../Redux/SupportRedux'
 import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
-export function* support (api) {
+export function * support (api) {
   console.log('I am coming from support')
     // api.setsmTokenHeaders(smToken);
   const response = yield call(api.getSupport)

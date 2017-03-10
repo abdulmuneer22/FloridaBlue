@@ -11,7 +11,6 @@ import {Colors, Metrics, Fonts, Images} from '../Themes'
 const window = Dimensions.get('window')
 
 class Loader extends Component {
-
   render () {
     return (
 

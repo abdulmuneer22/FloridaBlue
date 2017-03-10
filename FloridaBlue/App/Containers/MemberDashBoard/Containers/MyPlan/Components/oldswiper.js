@@ -13,7 +13,6 @@ const window = Dimensions.get('window')
 import Swiper from 'react-native-swiper'
 
 class MyPlanSwiper extends Component {
-
   render () {
     return (
 
@@ -48,7 +47,6 @@ class MyPlanSwiper extends Component {
 
     )
   }
-
 }
 
 var styles = StyleSheet.create({

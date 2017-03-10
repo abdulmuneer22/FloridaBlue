@@ -56,8 +56,8 @@ class TermsofUse extends Component {
 
     return (
       <View style={styles.container}>
-        {this.props.getTou ?
-          <WebView
+        {this.props.getTou
+          ? <WebView
             source={{html: HTML}}
             style={{marginBottom: 30}} /> : <View />}
         <View style={styles.checkViewStyle}>

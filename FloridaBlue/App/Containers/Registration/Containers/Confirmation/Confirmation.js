@@ -36,7 +36,6 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .build()
 
 class Confirmation extends Component {
-
   constructor () {
     super()
     this.state = {
@@ -91,7 +90,7 @@ class Confirmation extends Component {
       Your User ID is:
       </Text>
             <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
-            {this.props.createUserId}
+              {this.props.createUserId}
             </Text>
           </View>
 
@@ -99,8 +98,8 @@ class Confirmation extends Component {
 
         <View style={styles.wrapper}>
 
-          <TouchableWithoutFeedback onPress={NavigationActions.login({'username':this.props.createUserId,
-                                                                      'password':this.props.password})}>
+          <TouchableWithoutFeedback onPress={NavigationActions.login({'username': this.props.createUserId,
+            'password': this.props.password})}>
             <Image source={Images.loginNowButtonGreen} style={styles.buttonStyle} />
 
           </TouchableWithoutFeedback>
@@ -123,13 +122,13 @@ Confirmation.propTypes = {
   createUserId: PropTypes.string,
   fetching: PropTypes.bool,
   error: PropTypes.string,
-  password:PropTypes.string
+  password: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
     createUserId: state.registration.createUserId,
-    password : state.registration.password,
+    password: state.registration.password,
     fetching: state.registration.fetching,
     error: state.registration.error
   }

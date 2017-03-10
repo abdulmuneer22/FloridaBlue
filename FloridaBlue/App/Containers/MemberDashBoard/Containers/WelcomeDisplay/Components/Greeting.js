@@ -13,10 +13,9 @@ import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material
 import styles from '../DashBoardStyle'
 
 var messageCount = ''
-const theme=getTheme();
+const theme = getTheme()
 
 class Greeting extends Component {
-
   constructor () {
     super()
     this.state = {
@@ -72,8 +71,8 @@ class Greeting extends Component {
         </View>
 
         {
-        messageCount ?
-          <View style={styles.messageCountStyle}>
+        messageCount
+          ? <View style={styles.messageCountStyle}>
 
             <Flb name='email-envelope' size={Metrics.icons.small} />
             <Text style={styles.messageTextStyle}> You have {messageCount} new messages. </Text>

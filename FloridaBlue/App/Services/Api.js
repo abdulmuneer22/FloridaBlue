@@ -21,7 +21,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     // here are some default headers
     headers: {
       'Cache-Control': 'no-cache',
-      'Accept':'text/html,application/json'
+      'Accept': 'text/html,application/json'
     },
     // 10 second timeout...
     timeout: 60000
@@ -79,10 +79,10 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   */
 
   const getMember = () => api.get('/members')
-  const getPlan = (data) => api.post('/benefits',data.input)
+  const getPlan = (data) => api.post('/benefits', data.input)
   const getTOU = () => api.get('/tou')
   const getSupport = () => api.get('/support')
-  const getHsa = (financialProduct) => api.get('/hsa/financialProduct/'+financialProduct)
+  const getHsa = (financialProduct) => api.get('/hsa/financialProduct/' + financialProduct)
   const getLogout = () => api.get('logout.fcc')
   const putTou = () => api.put('/tou')
 
@@ -149,20 +149,19 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
       'applicationId': APP_ID,
       'transactionId': data.contractNumber,
       'contractnumber': data.contractNumber,
-      "dob": data.dateOfBirth,
-      "email": data.email,
-      "emailupdated": data.emailUpdated,
-      "eobOptin": data.commElect,
-      "firstName": data.firstName,
-      "lastName": data.lastName,
-      "userid": data.createUserId,
-      "password": data.password,
-      "zip": data.zipCode,
+      'dob': data.dateOfBirth,
+      'email': data.email,
+      'emailupdated': data.emailUpdated,
+      'eobOptin': data.commElect,
+      'firstName': data.firstName,
+      'lastName': data.lastName,
+      'userid': data.createUserId,
+      'password': data.password,
+      'zip': data.zipCode,
       'token': data.token,
       'emailupdated': 'true'
     }
   })
-
 
   // ------
   // STEP 3

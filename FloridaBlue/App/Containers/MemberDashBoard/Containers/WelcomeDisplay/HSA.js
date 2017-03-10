@@ -22,23 +22,21 @@ import { connect } from 'react-redux'
 import HsaActions from '../../../../Redux/HsaRedux'
 import Flb from '../../../../Themes/FlbIcon'
 
-
 class Hsa extends Component {
-
   _renderHeader () {
     return (<Image style={styles.hsaHeader} source={Images.themeHeader}>
-      <View style={{marginLeft:Metrics.screenWidth*0.005}}>
-      {NavItems.backButton()}
+      <View style={{marginLeft: Metrics.screenWidth * 0.005}}>
+        {NavItems.backButton()}
       </View>
       <Text style={styles.hsaheaderTextStyle}>
         {this.props.data.title.en}</Text>
-        <View style={{marginRight:Metrics.screenWidth*0.35}}>
-      {NavItems.settingsButton()}
+      <View style={{marginRight: Metrics.screenWidth * 0.35}}>
+        {NavItems.settingsButton()}
       </View>
     </Image>)
   }
   componentDidMount () {
-    console.log('I am HSA screen' )
+    console.log('I am HSA screen')
     console.tron.log(this.props)
   //  this.props.attemptSupportScreen()
   }
@@ -48,53 +46,52 @@ class Hsa extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
 
-        <View style={{flex:1}}>
-            <View style={{flexDirection:'row', justifyContent:'center', marginTop:Metrics.mediumMargin}}>
+        <View style={{flex: 1}}>
+          <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.mediumMargin}}>
             <View>
               <Text style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text.en} :</Text>
-              </View>
-              <View style={{marginLeft:10}}>
+            </View>
+            <View style={{marginLeft: 10}}>
               <Text style={styles.hsaTextStyle2}>${this.props.data.currentBalance.value}</Text>
             </View>
-            </View>
-            <View style={styles.row_1}>
+          </View>
+          <View style={styles.row_1}>
             <View style={styles.col_1}>
               <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text.en}</Text>
               <Text style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
             </View>
 
-          <View style={styles.col_1}>
-            <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text.en}</Text>
-            <Text style={styles.hsaTextStyle2}>-${this.props.data.distribution.value}</Text>
-          </View>
+            <View style={styles.col_1}>
+              <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text.en}</Text>
+              <Text style={styles.hsaTextStyle2}>-${this.props.data.distribution.value}</Text>
+            </View>
           </View>
 
-
-        <Image style={styles.hsaBg} source={Images.hsaBg} />
+          <Image style={styles.hsaBg} source={Images.hsaBg} />
         </View>
       </View>
     )
   }
     }
 
-    Hsa.propTypes = {
+Hsa.propTypes = {
 
-      data: PropTypes.object,
-      attemptHsa: PropTypes.func,
-      error: PropTypes.string
-    }
+  data: PropTypes.object,
+  attemptHsa: PropTypes.func,
+  error: PropTypes.string
+}
 
-    const mapStateToProps = (state) => {
-      return {
-        fetching: state.login.fetching,
-        data: state.hsa.data,
-        error: state.hsa.error
-      }
-    }
-    const mapDispatchToProps = (dispatch) => {
-      return {
-        attemptHsa: () => dispatch(HsaActions.memberRequest())
-      }
-    }
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.login.fetching,
+    data: state.hsa.data,
+    error: state.hsa.error
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptHsa: () => dispatch(HsaActions.memberRequest())
+  }
+}
 
-    export default connect(mapStateToProps, mapDispatchToProps)(Hsa)
+export default connect(mapStateToProps, mapDispatchToProps)(Hsa)
