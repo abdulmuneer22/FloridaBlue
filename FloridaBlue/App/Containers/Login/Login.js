@@ -81,36 +81,51 @@ class Login extends Component {
     }
   }
 
-  componentWillReceiveProps(newProps) {
-    this.forceUpdate()
-    // Did the login attempt complete?
-    console.log('I am receving new props' + newProps.responseURL)
-    console.log('I am receving new smToken' + newProps.smToken)
-    var responsURL = newProps.responseURL;
+componentWillReceiveProps(newProps) {
+  this.forceUpdate()
+  // Did the login attempt complete?
 
-    if (this.isAttempting && !newProps.fetching && newProps.error === null) {
-      if (responsURL.includes("login")) {
-        if (!newProps.mfetching) {
-          if (!newProps.merror) {
-            if (newProps.termsOfUse) {
-              NavigationActions.WelcomeDashBoard()
-            } else {
-              NavigationActions.Termsofuse()
-            }
+  console.log('I am receving new props' + newProps.responseURL)
+  console.log('I am receving new smToken' + newProps.smToken)
+  var responseURL = newProps.responseURL;
+  
+  if (this.isAttempting && !newProps.fetching && newProps.error === null) {
+    // login path
+    if (responseURL== 'login') {
+      if (!newProps.mfetching) {
+        if (!newProps.merror) {
+          if (newProps.termsOfUse) {
+            NavigationActions.WelcomeDashBoard()
           } else {
-            NavigationActions.ErrorPage()
+            NavigationActions.Termsofuse()
           }
-        }
-      } else {
-        console.log('new props' + newProps.responseURL)
-        if (responsURL.includes("updateSecurityHintsAnswers")) {
-          NavigationActions.screen_4();
         } else {
-          NavigationActions.MyView({ responseURL: newProps.responseURL })
+          NavigationActions.ErrorPage()
         }
       }
+    // redirect path   
+    } else if (responseURL.includes("updateSecurityHintsAnswers")) {
+                NavigationActions.screen_4();
+    } else if (responseURL.includes('mob/error/accessdenied')) {
+             this.props.attemptLogout()
+              alert('User is not authorized')
+    } else if (responseURL.includes('apsparam=usrlocked')) {
+               alert('Your account is disabled. For assistance, please call our Member Help Line:1-800-FLA-BLUE (352-2583)TTY / TDD Call 711')
+    }else {
+      NavigationActions.MyView({
+        responseURL: newProps.responseURL + '?source=mobile'
+      })
     }
+
   }
+
+  //end of IF condition
+}
+
+
+
+
+
 
   _moreInfo () {
     return (
@@ -319,7 +334,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
     attemptMember: () => dispatch(MemberActions.memberRequest()),
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
-    attemptSupportScreen: () => dispatch(SupportActions.supportRequest())
+    attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
+    attemptLogout: () => dispatch(LoginActions.logoutRequest())
   }
 }
 

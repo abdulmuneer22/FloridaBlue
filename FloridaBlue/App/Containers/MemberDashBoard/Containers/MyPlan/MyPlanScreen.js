@@ -14,7 +14,7 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import ToolBar from './Components/toolBar'
-import Flb from '../../../../Themes/FlbIcon'
+import axios from 'axios'
 import SelectBox from './Components/SelectBox'
 import Card from './Components/Card'
 import NavItems from '../../../../Navigation/NavItems.js'
@@ -52,20 +52,7 @@ class MyPlanScreen extends Component {
   //   this.props.attemptMyPlan()
   }
 
-  componentWillReceiveProps (newProps) {
-  this.forceUpdate()
-  console.log('I am receving new props from My plan scree ' + JSON.stringify(newProps))
-  console.log('error message ' + newProps.error)
-  if (!newProps.fetching && newProps.error == 'WRONG') {
-  console.log('Hey going to login ' + newProps.error)
-  NavigationActions.login()
-  }
-  }
-
   render () {
-    var color = new Array('#005b80', '#00aec7', '#0091cc', '#005b80', '#005b80', '#00aec7', '#005b80', '#0091cc')
-    var i = 0
-    var tileCard = []
   return (
 
     <View style={styles.container}>
@@ -78,7 +65,6 @@ class MyPlanScreen extends Component {
         this.props.data ?
 
         <View style={styles.container}>
-
         <View style={styles.planNameView}>
         <Text style={styles.planNameText}>
         Blue Options
@@ -86,54 +72,46 @@ class MyPlanScreen extends Component {
         </View>
 
         <View style={styles.chartWrapper}>
-        {
-          this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
+        {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
+        : <View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        </View>}
+        </View>
+
+        <View style={styles.myplanTilesStyle}>
+          {this.props.data && this.props.data.planOverViewTiles ?
+            this.props.data.planOverViewTiles.map((tile, i) => {
+            const index = i + 1
+            const TileCount = this.props.data.planOverViewTiles.length
+
+              console.log(tile);
+              return(
+                <Card
+                      i = {i}
+                      key={index}
+                      title={tile.tileName['en'] }
+                      tileType={tile.tileType }
+                      icon={tile.tileIcon}
+                      CardCount = {TileCount}
+                      webURL= {tile.tileType !== "native" ? tile.tileUrl : null}
+                      routerName = {tile.tileType === "native" ? tile.routerName : null}
+
+                    />
+              )
+
+          }
+        )
+        :<Text/>
+      }
+        </View>
+
+        </View>
+
         : <View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>
-      }
-
-        </View>
-
-        <View style={styles.cardStyle}>
-        {this.props.data && this.props.data.planOverViewTiles ?
-  this.props.data.planOverViewTiles.map(function (tile, i) {
-    console.log('tiles2'+JSON.stringify(tile))
-
-    onItemPress = function () {
-      var action
-      if (tile.tileType == 'webview') {
-        action = NavigationActions.MyView({responseURL: tile.tileUrl})
-      } else if (tile.tileType == 'native') {
-        var routerName = tile.routerName
-        action = NavigationActions[routerName]()
-      }
-    }
-
-    return (
-
-      <TouchableOpacity style={[styles.tileView, {backgroundColor: color[i]}]} onPress={onItemPress.bind(this)} key={i}>
-
-        <View style={{alignItems: 'center'}}>
-          <Flb name={tile.tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0035} color={Colors.snow} />
-          <Text style={styles.tileText}>
-            {tile.tileName['en']}
-          </Text>
-        </View>
-      </TouchableOpacity>
-
-
-    )
-    i += 1
-
-  }) : null
- }
-
-        </View>
-        </View>
-
-        : <Text></Text>
         }
 
 </View>

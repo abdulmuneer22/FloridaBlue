@@ -43,7 +43,7 @@ class NavigationRouter extends Component {
             <Scene initial key='login' component={Login} title='Login' hideNavBar />
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
-              <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar />
+            <Scene  key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar />
             <Scene key='screen_1' component={Screen_1} title='first page' hideNavBar />
             <Scene key='screen_2' component={Screen_2} title='create username page' hideNavBar />
             <Scene key='ReadMore' component={ReadMore} title='readmore page' hideNavBar />

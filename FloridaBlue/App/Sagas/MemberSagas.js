@@ -10,7 +10,7 @@ export function * member (api, {smToken}) {
 
   const response = yield call(api.getMember)
   console.log(JSON.stringify(response))
-  if (response.data.status.code == '200') {
+  if (response.status == '200') {
     // dispatch success
     var Name = response.data.data.firstName
     var visibilityRules = response.data.data.visibilityRule
