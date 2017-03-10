@@ -16,6 +16,7 @@ import NavItems from '../../Navigation/NavItems.js'
 import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
+import Flb from '../../Themes/FlbIcon'
 const window = Dimensions.get('window')
 
 
@@ -42,14 +43,9 @@ class ErrorScreen extends Component {
     return (
 
       <Image style={styles.headerContainerError} source={Images.errorPage}>
-      <View style={{marginTop:Metrics.screenHeight*0.15}}>
-        <Text style={{fontSize:Fonts.size.h4,
-          color:Colors.snow,
-          textAlign:'center',
-          fontFamily:Fonts.type.headerFont,
-          backgroundColor:Colors.transparent}}>
-          We are Sorry, Please login after some time!!!
-          </Text>
+      <View style={{alignItems:'center',marginTop:Metrics.screenHeight*0.4}}>
+
+          
           </View>
           </Image>
 

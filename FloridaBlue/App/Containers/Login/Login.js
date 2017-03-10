@@ -88,7 +88,7 @@ componentWillReceiveProps(newProps) {
   console.log('I am receving new props' + newProps.responseURL)
   console.log('I am receving new smToken' + newProps.smToken)
   var responseURL = newProps.responseURL;
-  
+
   if (this.isAttempting && !newProps.fetching && newProps.error === null) {
     // login path
     if (responseURL== 'login') {
@@ -103,7 +103,7 @@ componentWillReceiveProps(newProps) {
           NavigationActions.ErrorPage()
         }
       }
-    // redirect path   
+    // redirect path
     } else if (responseURL.includes("updateSecurityHintsAnswers")) {
                 NavigationActions.screen_4();
     } else if (responseURL.includes('mob/error/accessdenied')) {
@@ -179,7 +179,7 @@ componentWillReceiveProps(newProps) {
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/contact-us'})}>
             <Text style={styles.popupchildText}>
-              Contact us
+              Support
             </Text>
           </TouchableOpacity>
         </View>
@@ -201,13 +201,6 @@ componentWillReceiveProps(newProps) {
             </Text>
           </TouchableOpacity>
         </View>
-
-
-
-
-
-
-
       </View>
     )
   }

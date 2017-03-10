@@ -7,6 +7,7 @@ import { ScrollView,
   StyleSheet,
   Text,
   Dimensions,
+  WebView,
   TouchableWithoutFeedback,
   TouchableOpacity
 } from 'react-native'
@@ -26,19 +27,6 @@ const Divider = () => {
   return <View style={styles.divider} />
 }
 
-const Dummy = [{
-  title :"A"
-},
-{
-  title :"B"
-},
-{
-  title :"C"
-}
-
-
-
-]
 class SettingsContent extends Component {
   constructor(){
     super();
@@ -77,7 +65,7 @@ class SettingsContent extends Component {
   }
   handlePressClaims = () => {
     this.toggleDrawer()
-    NavigationActions.claims()
+      NavigationActions.MyView({responseURL: 'https://mws8-stga.bcbsfl.com/wps/myportal/mbs/mwe/myBenefits/claims/'})
   }
 
   handlePressResources = () => {
@@ -99,27 +87,19 @@ class SettingsContent extends Component {
   }
   handlePressFindCare= () => {
     this.toggleDrawer()
-    NavigationActions.MyView()
+    NavigationActions.MyView({responseURL: 'https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/tools/findadoctor'})
   }
   handlePressPayment= () => {
     this.toggleDrawer()
     NavigationActions.MyView()
   }
-  handlePressMyAccount= () => {
+  handlePressSupport= () => {
     this.toggleDrawer()
-    NavigationActions.Support()
-  }
-  handlePressSettings= () => {
-    this.toggleDrawer()
-    NavigationActions.Support()
-  }
-  handlePressFAQ= () => {
-    this.toggleDrawer()
-    NavigationActions.Support()
+    NavigationActions.SupportScreen()
   }
   handlePressPolicy= () => {
     this.toggleDrawer()
-    NavigationActions.Support()
+   NavigationActions.MyView({responseURL: 'https://www.floridablue.com/terms-of-use'})
   }
 
   handlePressLogout = () => {
@@ -205,18 +185,12 @@ class SettingsContent extends Component {
 
         </View>
         <View style={styles.settings}>
-          <View style={styles.myAccountStyle}>
-            <View >
-              <Flb name='user' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
-            </View>
-            <Text style={styles.heading2} onPress={this.handlePressMyAccount}>My Account</Text>
-          </View>
 
           <View style={styles.myAccountStyle}>
             <View >
               <Flb name='cog-gear' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
             </View>
-            <Text style={styles.heading2} onPress={this.handlePressSettings}>App Settings</Text>
+            <Text style={styles.heading2} onPress={this.handlePressSupport}>Support</Text>
           </View>
 
           <View style={styles.myAccountStyle}>
@@ -224,9 +198,9 @@ class SettingsContent extends Component {
               <Flb name='generic-doc' size={Metrics.icons.xm  } color={Colors.flBlue.ocean} />
             </View>
 
-            <Text style={styles.heading2} onPress={this.handlePressPolicy}>Policies & Terms </Text>
+            <Text style={styles.heading2} onPress={this.handlePressPolicy}>Terms of Use </Text>
           </View>
-        
+
 
 
         </View>
