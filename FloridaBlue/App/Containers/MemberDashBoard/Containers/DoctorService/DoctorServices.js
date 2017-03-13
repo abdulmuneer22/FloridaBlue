@@ -21,7 +21,16 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
 
+
+
+
 class DoctorServices extends Component {
+
+    componentDidMount() {
+      this.props.attemptHandleLeft()
+    }
+
+
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       {NavItems.backButton()}
@@ -30,6 +39,11 @@ class DoctorServices extends Component {
 
     </Image>)
   }
+
+
+
+
+
   render () {
     var temp = this.props.data
     var objectName = this.props.objectName

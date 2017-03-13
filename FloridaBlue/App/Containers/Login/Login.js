@@ -70,14 +70,20 @@ class Login extends Component {
     var username = this.state.username
     var password = this.state.password
 
-    if (!this.state.username | !this.state.password) {
-      alert('Please enter your user ID./Please enter your password.')
-    } else {
-   // const { username, password } = this.state
-      this.isAttempting = true
- // attempt a login - a saga is listening to pick it up from here.
-      this.props.attemptLogin(username, password)
-    }
+      if (!this.state.username | !this.state.password) {
+        alert('Please enter your user ID./Please enter your password.')
+      }
+      if (!this.state.username) {
+        alert('Please enter your user ID.')
+      }
+      if (!this.state.password) {
+        alert('Please enter your password.')
+      } else {
+        // const { username, password } = this.state
+        this.isAttempting = true
+        // attempt a login - a saga is listening to pick it up from here.
+        this.props.attemptLogin(username, password)
+      }
   }
 
   componentDidMount() {
