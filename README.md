@@ -2,8 +2,33 @@
 
 ## Setup
 
+### Create .npm-global directory
+Create .npm-global directory
+```
+cd ~
+mkdir .npm-global
+```
+
+### Create ~/.npmrc (be sure to replace with your own racf)
+vi ~/.npmrc
+```
+prefix=/Users/<racf>/.npm-global
+```
+
+### Install react-native-cli
+Install react-native-cli
+```
+npm install -g react-native-cli
+```
+
+### Install yo
+Install yo
+```
+npm install -g yo
+```
+
 ### Clone flblue-mobile repository
-Clone  flblue-mobile
+Clone flblue-mobile
 ```
 git clone git@edclgitd101.bcbsfl.com:git-mob/flblue-mobile.git 
 ```
