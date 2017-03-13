@@ -82,7 +82,7 @@ class Login extends Component {
   }
 
 componentWillReceiveProps(newProps) {
-  this.forceUpdate()
+  //this.forceUpdate()   makes to rerender the stuff     Got the issue of redering 
   // Did the login attempt complete?
 
   console.log('I am receving new props' + newProps.responseURL)
@@ -97,7 +97,7 @@ componentWillReceiveProps(newProps) {
           if (newProps.termsOfUse) {
             NavigationActions.WelcomeDashBoard()
           } else {
-            NavigationActions.Termsofuse()
+            NavigationActions.Termsofuse({'origin':'login'})
           }
         } else {
           NavigationActions.ErrorPage()
@@ -117,7 +117,7 @@ componentWillReceiveProps(newProps) {
       //Password About to Expire
     } else {
       NavigationActions.MyView({
-        responseURL: newProps.responseURL + '?source=mobile'
+        responseURL: newProps.responseURL + '?channel=mobile'
       })
     }
   }

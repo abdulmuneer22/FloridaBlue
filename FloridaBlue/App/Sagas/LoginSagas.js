@@ -24,7 +24,7 @@ export function * login (api, {username, password}) {
     if (setLogin) {
       // we are displacing these action by this time we knew that member loged in success fully
       yield put(MemberActions.memberRequest())
-      yield put(SupportActions.supportRequest())
+     
       responseURL = 'login'
       var error = null
     }

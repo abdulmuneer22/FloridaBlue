@@ -98,11 +98,10 @@ class Confirmation extends Component {
 
         <View style={styles.wrapper}>
 
-          <TouchableWithoutFeedback onPress={NavigationActions.login({'username': this.props.createUserId,
-            'password': this.props.password})}>
+          <TouchableOpacity onPress={() => {NavigationActions.WelcomeDashBoard({'origin':'registration'})}}>
             <Image source={Images.loginNowButtonGreen} style={styles.buttonStyle} />
 
-          </TouchableWithoutFeedback>
+          </TouchableOpacity>
 
           <View style={styles.row}>
             <View>

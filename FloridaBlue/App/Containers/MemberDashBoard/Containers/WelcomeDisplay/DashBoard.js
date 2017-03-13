@@ -62,7 +62,9 @@ class LandingScreen extends Component {
   }
   componentDidMount () {
     console.log('mount on dashboadr' + this.props.smToken)
-  //  this.props.attemptMember()
+    if(this.props.origin && this.props.origin == 'registration'){
+        this.props.attemptMember()
+    }
   }
 
   componentWillReceiveProps (newProps) {

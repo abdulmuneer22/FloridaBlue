@@ -27,6 +27,7 @@ import Flb from '../../../../Themes/FlbIcon'
 import I18n from 'react-native-i18n'
 
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import LoginActions from '../../../../Redux/LoginRedux'
 import { connect } from 'react-redux'
 import RegistrationActions from '../../../../Redux/RegistrationRedux'
 
@@ -61,6 +62,7 @@ class Screen_3 extends React.Component {
   }
 
   componentDidUpdate () {
+   
     // Step 1 - Verify registration code
     if (this.props.registrationCodeStatus && this.props.registerUserStatus === null) {
       var registrationCodeStatus = this.props.registrationCodeStatus
@@ -72,16 +74,21 @@ class Screen_3 extends React.Component {
 
     // Step 2 - Register user
     if (this.props.registrationCodeStatus && this.props.registerUserStatus) {
-      var registrationCodeStatus = this.props.registrationCodeStatus
-      var registerUserStatus = this.props.registerUserStatus
+            var registrationCodeStatus = this.props.registrationCodeStatus
+            var registerUserStatus = this.props.registerUserStatus
 
       if (registrationCodeStatus === '000' && registerUserStatus === '000') {
-        this.props.handleChangeRegistrationCodeStatus(null)
-        this.props.handleChangeRegisterUserStatus(null)
-        console.tron.log('Navigating to Screen 4')
-        NavigationActions.confirmation()
-      }
-    }
+          this.props.handleChangeRegistrationCodeStatus(null)
+          this.props.handleChangeRegisterUserStatus(null)
+          console.tron.log('Auto login the user for secured services')
+          this.props.attemptLogin(this.props.createUserId, this.props.password)
+          console.tron.log('Navigating to Screen 4')
+            if (this.props.loginError === null) {
+              NavigationActions.screen_4()
+            }
+          } 
+         }
+    
   }
 
   render () {
@@ -165,7 +172,9 @@ Screen_3.propTypes = {
   handleChangeRegisterUserStatus: PropTypes.func,
   handleChangeRegisterUserStatusMessage: PropTypes.func,
   fetching: PropTypes.bool,
-  error: PropTypes.string
+  error: PropTypes.string,
+  loginError: PropTypes.string,
+  attemptLogin:PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -190,7 +199,8 @@ const mapStateToProps = (state) => {
     registerUserStatus: state.registration.registerUserStatus,
     registerUserStatusMessage: state.registration.registerUserStatusMessage,
     fetching: state.registration.fetching,
-    error: state.registration.error
+    error: state.registration.error,
+    loginError :state.login.error
   }
 }
 
@@ -200,7 +210,8 @@ const mapDispatchToProps = (dispatch) => {
     verifyRegisterUser: (data) => dispatch(RegistrationActions.registerUserRequest(data)),
     handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode)),
     handleChangeRegistrationCodeStatus: (data) => dispatch(RegistrationActions.changeRegistrationCodeStatus(data)),
-    handleChangeRegisterUserStatus: (data) => dispatch(RegistrationActions.changeRegisterUserStatus(data))
+    handleChangeRegisterUserStatus: (data) => dispatch(RegistrationActions.changeRegisterUserStatus(data)),
+    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
   }
 }
 

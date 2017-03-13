@@ -31,7 +31,7 @@ export function * member (api, {smToken}) {
       'claimsRule': response.data.data.visibilityRule.claims,
       'benefitsRule': response.data.data.visibilityRule.benefits
     }
-
+    yield put(SupportActions.supportRequest())
     yield put(MyPlanActions.myplanRequest(data))
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
