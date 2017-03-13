@@ -11,7 +11,9 @@ import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import Flb from '../../../../Themes/FlbIcon'
 import {connect} from 'react-redux'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
-import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+
+const theme = getTheme();
 
 import Card from './Components/Card'
 
@@ -44,13 +46,14 @@ class DoctorServices extends Component {
         {this._renderHeader()}
 
         <ScrollView>
+
           {
               this.props.data
 
                 ? <View style={{flex: 1}}>
                   <View style={styles.doctorCardStyle}>
-                    <Flb name={tile[0].tileIcon}size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
-                    <Text style={styles.doctorTextStyle}>{temp1.text['en']}</Text>
+                    <Flb name={tile[0].tileIcon}size={Metrics.icons.xl * Metrics.screenWidth* 0.0025} color={Colors.flBlue.ocean} />
+                    <Text style={styles.doctorTextStyle}>{this.props.temp ?  temp1.text['en']:<Text/>}</Text>
                     <Switch leftActive={this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight} />
                   </View>
                   <View>
@@ -63,6 +66,7 @@ class DoctorServices extends Component {
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>
          }
+
         </ScrollView>
 
       </View>

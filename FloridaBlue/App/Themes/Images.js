@@ -9,6 +9,7 @@ const images = {
   closeIconBlue: require('../Images/close-icon-blue.png'),
   closeIconWhite: require('../Images/close-icon-white.png'),
   clouds: require('../Images/clouds.png'),
+  cityscape: require('../Images/cityscape.png'),
   findCare: require('../Images/care-finder.png'),
   dashboardGradient: require('../Images/dashboard-block-bkgrd-1.png'),
   dashboardGradient2: require('../Images/dashboard-block-bkgrd-2.png'),

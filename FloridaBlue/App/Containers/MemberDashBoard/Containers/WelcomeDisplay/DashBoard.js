@@ -54,7 +54,7 @@ class LandingScreen extends Component {
             width: Metrics.screenWidth * 0.65}} />
       </View>
 
-      <View style={{marginRight: Metrics.screenWidth * 0.020}}>
+      <View style={{marginRight: Metrics.smallMargin*Metrics.screenWidth * 0.005}}>
         {NavItems.settingsButton()}
       </View>
 
@@ -77,6 +77,7 @@ class LandingScreen extends Component {
   }
 
   render () {
+    const opdData=this.props.visibilityRules.opdTile
     var image = [
       Images.dashboardGradient,
       Images.dashboardGradient2,
@@ -94,7 +95,7 @@ class LandingScreen extends Component {
 
           ? <View style={styles.container}>
             <Greeting userName={this.props.userName} />
-            <MyPlanCard />
+            <MyPlanCard visibilityRules={this.props.visibilityRules.myHealthPlanTile}/>
             <View style={{
               flexWrap: 'wrap',
               flexDirection: 'row'}}>
@@ -139,15 +140,16 @@ class LandingScreen extends Component {
               }) : <Text />
             }
             </View>
+            {this.props.visibilityRules.opd ?
 
-            <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/tools/findadoctor'})}>
-              <Image source={Images.findCare} style={styles.footerImage}>
+            <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: opdData.tileUrl})}>
+              <Image source={Images[opdData.backgroundImage]} style={styles.footerImage}>
                 <View style={{flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginTop: Metrics.doubleBaseMargin}}>
 
-                  <Flb name='search-find'
+                  <Flb name={opdData.tileIcon}
                     style={{backgroundColor: Colors.transparent,
                       marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003}}
                     size={Metrics.icons.large * Metrics.screenWidth * 0.003}
@@ -156,13 +158,13 @@ class LandingScreen extends Component {
                     color: Colors.snow,
                     fontFamily: Fonts.type.headerFont,
                     backgroundColor: Colors.transparent}}>
-                Find Care
+                    {opdData.tileName['en']}
                 </Text>
 
                 </View>
               </Image>
-            </TouchableOpacity>
-
+            </TouchableOpacity> :null
+          }
           </View>
 
        : <View style={styles.spinnerView}>

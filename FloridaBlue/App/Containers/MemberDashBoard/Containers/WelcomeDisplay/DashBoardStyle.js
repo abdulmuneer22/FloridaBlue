@@ -8,7 +8,7 @@ const window = Dimensions.get('window')
 export default StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.79)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
     // padding: Metrics.mediumMargin,
@@ -29,7 +29,7 @@ export default StyleSheet.create({
   hsaHeader: {
     flexDirection: 'row',
 
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.78)) / 2,
   // marginTop:20,
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -54,7 +54,7 @@ export default StyleSheet.create({
   },
   hsaBg: {
  // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.27),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.19),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',

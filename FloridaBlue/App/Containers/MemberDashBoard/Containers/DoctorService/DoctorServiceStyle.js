@@ -2,8 +2,12 @@
 
 import { StyleSheet, Dimensions } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
-var {height, width} = Dimensions.get('window')
-const window = Dimensions.get('window')
+var {height,width}=Dimensions.get('window')
+const window=Dimensions.get('window')
+
+import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+
+const theme = getTheme();
 
 export default StyleSheet.create({
 
@@ -24,37 +28,37 @@ export default StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 2,
+    height: (Metrics.screenHeight-(Metrics.screenHeight*0.81))/2,
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: Metrics.mediumMargin,
-    // resizeMode:'cover',
-    // alignSelf: 'stretch',
-    width: Metrics.screenWidth
-    // backgroundColor: Colors.flBlue.sky
+    //resizeMode:'cover',
+    //alignSelf: 'stretch',
+    width: Metrics.screenWidth,
+    //backgroundColor: Colors.flBlue.sky
   },
-  headerTextStyle: {
-    color: Colors.flBlue.ocean,
-    backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
-    marginLeft: Metrics.baseMargin,
-    marginTop: Metrics.baseMargin,
-    fontFamily: Fonts.type.headerFont
+  headerTextStyle:{
+      color: Colors.flBlue.ocean,
+      backgroundColor:Colors.transparent,
+      fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
+      marginLeft: Metrics.baseMargin,
+      marginTop:Metrics.baseMargin,
+      fontFamily:Fonts.type.headerFont,
 
   },
-  doctorCardStyle: {
-    alignItems: 'center',
-    marginTop: Metrics.baseMargin
+  doctorCardStyle:{
+    alignItems : 'center',
+    marginTop : Metrics.baseMargin
   },
 
-  doctorTextStyle: {
-    marginTop: Metrics.smallMargin,
-    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0023,
-    color: Colors.flBlue.anvil,
-    fontFamily: Fonts.type.headerFont,
-    fontWeight: '500'
-  },
-  cardStyle: {
+  doctorTextStyle:{
+    marginTop : Metrics.smallMargin,
+    fontSize : Fonts.size.h4 * Metrics.screenWidth * 0.0023,
+    color:Colors.flBlue.anvil,
+      fontFamily:Fonts.type.headerFont,
+      fontWeight:'500'
+},
+  cardStyle:{
     width: window.width,
     backgroundColor: Colors.flBlue.lightBlue,
    // height : 200,
@@ -62,11 +66,12 @@ export default StyleSheet.create({
    //  padding : Metrics.baseMargin,
     marginTop: Metrics.baseMargin,
   //  alignItems: 'center',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    borderTopWidth:1,
+    borderBottomWidth:1,
 
     borderTopColor: Colors.flBlue.grey3,
-    borderBottomColor: Colors.flBlue.grey3
+    borderBottomColor: Colors.flBlue.grey3,
+
 
   },
   cardStyle1: {
@@ -75,58 +80,62 @@ export default StyleSheet.create({
    // height : 200,
    // alignSelf: 'center',
    //  padding : Metrics.baseMargin,
-    marginTop: Metrics.baseMargin
+    marginTop: Metrics.baseMargin,
 
   //  alignItems: 'center',
 
+
   },
   h1: {
-    // flexWrap:'wrap',
-    margin: 5,
-    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
-    // fontWeight: '600',
-    color: Colors.flBlue.anvil,
+    //flexWrap:'wrap',
+    margin:5,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
+    //fontWeight: '600',
+    color:Colors.flBlue.anvil,
     textAlign: 'center',
-    marginTop: Metrics.mediumMargin,
-    fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: 'bold'
+    marginTop:Metrics.mediumMargin,
+    fontFamily:Fonts.type.subHeaderFont,
+    fontWeight:'600'
   },
 
   h2: {
-    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0029,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
   //  textAlign: 'center',
-    color: Colors.flBlue.anvil,
+    color:Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
-    marginLeft: Metrics.baseMargin,
-    fontFamily: Fonts.type.headerFont
+    marginLeft:Metrics.mediumMargin,
+    fontFamily:Fonts.type.headerFont,
+    fontWeight:'600'
+
 
   },
   h4: {
-    // textAlign: 'center',
-    // paddingBottom: Metrics.mediumMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
-    marginTop: Metrics.smallMargin,
-    color: Colors.flBlue.grey5,
-    marginLeft: Metrics.baseMargin,
-    fontFamily: Fonts.type.headerFont
+    //textAlign: 'center',
+    //paddingBottom: Metrics.mediumMargin,
+    fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    //marginTop:Metrics.smallMargin,
+    color:Colors.flBlue.grey5,
+    marginLeft:Metrics.mediumMargin,
+      fontFamily:Fonts.type.headerFont,
+    //  marginRight:7
   //  marginBottom:5
 
   },
   h4_2: {
-    // paddingBottom: Metrics.mediumMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
-    marginTop: Metrics.smallMargin,
-    color: Colors.flBlue.grey5,
-    // marginLeft:Metrics.baseMargin,
+    //paddingBottom: Metrics.mediumMargin,
+    fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0030,
+    marginTop:Metrics.smallMargin,
+    color:Colors.flBlue.grey5,
+    //marginLeft:Metrics.baseMargin,
   //  backgroundColor:'red',
-    fontFamily: Fonts.type.headerFont,
-    textAlign: 'center'
-  },
-  spinnerView: {
+      fontFamily:Fonts.type.headerFont,
+      textAlign:'center'
+    },
+  spinnerView:{
     alignItems: 'center',
     justifyContent: 'center',
-    width: window.width,
-    height: window.height
+    width:window.width,
+    height:window.height
   }
 
 })

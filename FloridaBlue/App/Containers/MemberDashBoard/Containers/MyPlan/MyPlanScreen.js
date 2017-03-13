@@ -22,6 +22,8 @@ import styles from './MyPlanScreenStyle'
 import MyPlanSwiper from './Components/MyPlanSwiper'
 import { connect } from 'react-redux'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
+import _ from 'lodash'
+import MemberActions from '../../../../Redux/MemberRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 const window = Dimensions.get('window')
 
@@ -51,6 +53,7 @@ class MyPlanScreen extends Component {
   }
 
   render () {
+    console.log(this.props.data);
     return (
 
       <View style={styles.container}>
@@ -65,7 +68,7 @@ class MyPlanScreen extends Component {
           ? <View style={styles.container}>
             <View style={styles.planNameView}>
               <Text style={styles.planNameText}>
-        Blue Options
+              {this.props.planName}
         </Text>
             </View>
 
@@ -124,15 +127,18 @@ MyPlanScreen.propTypes = {
 }
 
 const mapStateToProps = (state) => {
+  console.log("state is", state);
   return {
     fetching: state.login.fetching,
     data: state.myplan.data,
-    error: state.myplan.error
+    error: state.myplan.error,
+    planName: _.get(state, 'member.defaultContract.planName','')
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest())
+    attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
+      attemptMember: () => dispatch(MemberActions.memberRequest())
   }
 }
 

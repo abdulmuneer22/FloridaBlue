@@ -51,6 +51,7 @@ class PlanBenefits extends Component {
         {this._renderHeader()}
 
         <ScrollView>
+
           <View style={styles.benefitTileView}>
 
             {this.props.data && this.props.data.tiles
@@ -84,7 +85,7 @@ class PlanBenefits extends Component {
       </View>
      }
           </View>
-
+            <Image source={Images.tagLine} style={{width:window.screenWidth}}/>
         </ScrollView>
       </View>
     )

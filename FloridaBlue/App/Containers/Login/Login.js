@@ -23,6 +23,12 @@ import { Images, Metrics, Colors } from '../../Themes'
 // import {FlbIcon} from'./FlbIcon'
 import I18n from 'react-native-i18n'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+import LoginView from './LoginView'
+import LoginButtonView from './LoginButtonView'
+import LogoView from './LogoView'
+import SignUpView from './SignUpView'
+import Clouds from './Clouds'
+import CityScape from './CityScape'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 var logo = require('./logo.png')
@@ -103,7 +109,6 @@ componentWillReceiveProps(newProps) {
           NavigationActions.ErrorPage()
         }
       }
-      // redirect path
     } else if (responseURL.includes("updateSecurityHintsAnswers")) {
       NavigationActions.screen_4();
       //Unauthorized User
@@ -124,10 +129,6 @@ componentWillReceiveProps(newProps) {
 
   //end of IF condition
 }
-
-
-
-
 
   _moreInfo () {
     return (
@@ -181,7 +182,7 @@ componentWillReceiveProps(newProps) {
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/contact-us'})}>
             <Text style={styles.popupchildText}>
-              Contact us
+              Support
             </Text>
           </TouchableOpacity>
         </View>
@@ -203,13 +204,6 @@ componentWillReceiveProps(newProps) {
             </Text>
           </TouchableOpacity>
         </View>
-
-
-
-
-
-
-
       </View>
     )
   }
@@ -233,15 +227,17 @@ componentWillReceiveProps(newProps) {
 
       <View style={styles.container}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+        <Clouds />
+        <CityScape />
 
         <ScrollView style={styles.container}>
 
-          <View style={styles.logoView}>
+          <LogoView>
             <Image source={Images.clearLogo} style={styles.logo} />
-          </View>
+          </LogoView>
 
 
-          <View style={styles.form}>
+          <LoginView>
             <View style={styles.row}>
               <TextInput
                 ref='username'
@@ -277,18 +273,18 @@ componentWillReceiveProps(newProps) {
                 <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
               </TouchableOpacity>
             </View>
-          </View>
+          </LoginView>
 
-          <View style={styles.loginButton}>
+          <LoginButtonView>
             <TouchableOpacity onPress={() => { this._handleLogin() }}>
               <Image source={Images.loginButtonGreen} />
             </TouchableOpacity>
-          </View>
-          <View style={[styles.row, {backgroundColor: 'transparent'}]}>
+          </LoginButtonView>
+          <SignUpView>
             <TouchableOpacity onPress={() => NavigationActions.screen_1()}>
               <Text style={styles.link}>{I18n.t('signUp')}</Text>
             </TouchableOpacity>
-          </View>
+          </SignUpView>
 
         </ScrollView>
 
