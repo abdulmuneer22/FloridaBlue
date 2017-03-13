@@ -54,7 +54,7 @@ class LandingScreen extends Component {
             width: Metrics.screenWidth * 0.65}} />
       </View>
 
-      <View style={{marginRight: Metrics.screenWidth * 0.020}}>
+      <View style={{marginRight: Metrics.smallMargin*Metrics.screenWidth * 0.005}}>
         {NavItems.settingsButton()}
       </View>
 
@@ -75,7 +75,14 @@ class LandingScreen extends Component {
   }
 
   render () {
-
+    const opdData=this.props.visibilityRules.opdTile
+    var image = [
+      Images.dashboardGradient,
+      Images.dashboardGradient2,
+      Images.dashboardGradient3,
+      Images.dashboardGradient4
+    ]
+    var i = 0
     return (
 
       <View style={styles.container}>
@@ -86,7 +93,7 @@ class LandingScreen extends Component {
 
           ? <View style={styles.container}>
             <Greeting userName={this.props.userName} />
-            <MyPlanCard />
+            <MyPlanCard visibilityRules={this.props.visibilityRules.myHealthPlanTile}/>
             <View style={{
               flexWrap: 'wrap',
               flexDirection: 'row'}}>
@@ -111,12 +118,13 @@ class LandingScreen extends Component {
                   : styles.tileStyle1
                 }
                     onPress={onItemPress.bind(this)} key={i}>
-                <Image  source={Images[tile.backgroundImage]}
-                  style={{
-                  alignItems:'center',
-                  justifyContent:'center',
-                  width: (Metrics.screenWidth/2) - (Metrics.baseMargin *1.7),
-                  height: Metrics.screenHeight - (Metrics.screenHeight * 0.75)}}>
+
+                    <Image source={image[i]}
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
+                        height: Metrics.screenHeight - (Metrics.screenHeight * 0.75)}}>
 
                       <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow} style={{backgroundColor: Colors.transparent, marginTop: 10}} />
                       <Text style={styles.tileTextStyle}>
@@ -130,30 +138,31 @@ class LandingScreen extends Component {
               }) : <Text />
             }
             </View>
+            {this.props.visibilityRules.opd ?
 
-             <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})}>
-              <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
-              <View style={{flexDirection:'row',
-              alignItems:'center',
-              justifyContent:'center', marginTop:Metrics.doubleBaseMargin}}>
+            <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: opdData.tileUrl})}>
+              <Image source={Images[opdData.backgroundImage]} style={styles.footerImage}>
+                <View style={{flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: Metrics.doubleBaseMargin}}>
 
-              <Flb name={this.props.visibilityRules.opdTile.tileIcon}
-                style={{backgroundColor:Colors.transparent,
-                marginRight:Metrics.baseMargin * Metrics.screenWidth*0.003}}
-                size={Metrics.icons.large * Metrics.screenWidth*0.003}
-                color={Colors.snow}/>
-              <Text style={{fontSize:Fonts.size.h3 * Metrics.screenWidth*0.003,
-                color:Colors.snow,
-                fontFamily:Fonts.type.headerFont,
-                backgroundColor:Colors.transparent}}>
-                {this.props.visibilityRules.opdTile.tileName['en']}
-
+                  <Flb name={opdData.tileIcon}
+                    style={{backgroundColor: Colors.transparent,
+                      marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003}}
+                    size={Metrics.icons.large * Metrics.screenWidth * 0.003}
+                    color={Colors.snow} />
+                  <Text style={{fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
+                    color: Colors.snow,
+                    fontFamily: Fonts.type.headerFont,
+                    backgroundColor: Colors.transparent}}>
+                    {opdData.tileName['en']}
                 </Text>
 
                 </View>
               </Image>
-            </TouchableOpacity>
-
+            </TouchableOpacity> :null
+          }
           </View>
 
        : <View style={styles.spinnerView}>

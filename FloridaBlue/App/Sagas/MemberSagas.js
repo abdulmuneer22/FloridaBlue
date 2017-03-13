@@ -13,11 +13,13 @@ export function * member (api, {smToken}) {
   if (response.status == '200') {
     // dispatch success
     var Name = response.data.data.firstName
+    var defaultContract = response.data.data.defaultContract
     var visibilityRules = response.data.data.visibilityRule
     var termsOfUse = response.data.data.visibilityRule.termsOfUse
     var claimsRule = response.data.data.visibilityRule.claims
     var benefitsRule = response.data.data.visibilityRule.benefits
     var hsaTrue = response.data.data.visibilityRule.hsa
+    var opd = response.data.data.visibilityRule.opd
     var financialProduct = response.data.data.defaultContract.financialProduct
 
     console.log('financialProduct4' + financialProduct)
@@ -28,6 +30,7 @@ export function * member (api, {smToken}) {
       'contractNumber': response.data.data.defaultContract.hccId,
       'memberID': response.data.data.memberId,
       'dob': response.data.data.dob,
+      'opd': response.data.data.visibilityRule.opd,
       'claimsRule': response.data.data.visibilityRule.claims,
       'benefitsRule': response.data.data.visibilityRule.benefits
     }
@@ -36,7 +39,7 @@ export function * member (api, {smToken}) {
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }
-    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules))
+    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules,defaultContract))
   } else {
     console.log('failure ')
     var error = '99'

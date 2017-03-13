@@ -116,7 +116,7 @@ componentWillReceiveProps(newProps) {
       //Password About to Expire
     } else {
       NavigationActions.MyView({
-        responseURL: newProps.responseURL + '?source=mobile'
+        responseURL: newProps.responseURL + '?channel=mobile'
       })
     }
   }

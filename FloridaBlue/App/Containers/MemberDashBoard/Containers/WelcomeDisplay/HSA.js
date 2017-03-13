@@ -29,7 +29,7 @@ class Hsa extends Component {
         {NavItems.backButton()}
       </View>
       <Text style={styles.hsaheaderTextStyle}>
-        {this.props.data.title.en}</Text>
+        {this.props.data? this.props.data.title['en'] : <Text/>}</Text>
       <View style={{marginRight: Metrics.screenWidth * 0.35}}>
         {NavItems.settingsButton()}
       </View>
@@ -49,7 +49,7 @@ class Hsa extends Component {
         <View style={{flex: 1}}>
           <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.mediumMargin}}>
             <View>
-              <Text style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text.en} :</Text>
+              <Text style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text['en']} :</Text>
             </View>
             <View style={{marginLeft: 10}}>
               <Text style={styles.hsaTextStyle2}>${this.props.data.currentBalance.value}</Text>
@@ -57,13 +57,13 @@ class Hsa extends Component {
           </View>
           <View style={styles.row_1}>
             <View style={styles.col_1}>
-              <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text.en}</Text>
+              <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text['en']}</Text>
               <Text style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
             </View>
 
 
             <View style={styles.col_1}>
-              <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text.en}</Text>
+              <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text['en']}</Text>
               <Text style={styles.hsaTextStyle2}>-${this.props.data.distribution.value}</Text>
             </View>
           </View>

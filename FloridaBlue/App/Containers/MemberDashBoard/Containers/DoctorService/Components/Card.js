@@ -12,6 +12,7 @@ import { Colors, Metrics, Fonts } from '../../../../../Themes'
 const window = Dimensions.get('window')
 import { connect } from 'react-redux'
 import styles from '../DoctorServiceStyle.js'
+import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 
 const theme = getTheme();
@@ -40,8 +41,9 @@ class Card extends Component {
       speciality = network['speciality']
 
       cards.push(<View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} key={i} >
+
         <Text style={styles.h1}>
-          {network.header_text.en}
+          {_.get(network,'header_text.en','')}
         </Text>
 
         {

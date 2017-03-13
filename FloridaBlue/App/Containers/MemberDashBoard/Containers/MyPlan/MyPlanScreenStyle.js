@@ -38,7 +38,7 @@ export default StyleSheet.create({
 
   },
   planNameText: {
-    fontSize: Fonts.size.h4,
+    fontSize: Fonts.size.h6,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '500'
