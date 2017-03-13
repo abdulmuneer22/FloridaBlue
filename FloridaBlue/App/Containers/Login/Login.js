@@ -10,6 +10,9 @@ import {
   Dimensions
 } from 'react-native'
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import dismissKeyboard from 'react-native-dismiss-keyboard'
+
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -67,6 +70,7 @@ class Login extends Component {
   }
 
   _handleLogin () {
+    onPress={dismissKeyboard}
     var username = this.state.username
     var password = this.state.password
 
@@ -94,7 +98,7 @@ class Login extends Component {
   }
 
 componentWillReceiveProps(newProps) {
-  //this.forceUpdate()   makes to rerender the stuff     Got the issue of redering 
+  //this.forceUpdate()   makes to rerender the stuff     Got the issue of redering
   // Did the login attempt complete?
 
   console.log('I am receving new props' + newProps.responseURL)
@@ -236,7 +240,7 @@ componentWillReceiveProps(newProps) {
         <Clouds />
         <CityScape />
 
-        <ScrollView style={styles.container}>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps={true} style={styles.container}>
 
           <LogoView>
             <Image source={Images.clearLogo} style={styles.logo} />
@@ -292,7 +296,7 @@ componentWillReceiveProps(newProps) {
             </TouchableOpacity>
           </SignUpView>
 
-        </ScrollView>
+        </KeyboardAwareScrollView>
 
 
         {this.state.modalVisible && this._moreInfo()}
