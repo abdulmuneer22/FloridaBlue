@@ -68,7 +68,7 @@ class Screen_3 extends React.Component {
       var registrationCodeStatus = this.props.registrationCodeStatus
 
       if (registrationCodeStatus === '000') {
-        this.props.verifyRegisterUser(this.props)
+      //  this.props.verifyRegisterUser(this.props)
       }
     }
 

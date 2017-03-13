@@ -51,6 +51,7 @@ class DoctorServices extends Component {
     var tiles = this.props.data.tiles
     var tile = tiles.filter(function (tiles) { return (tiles.tileId == objectName) })
 
+   
     console.log('tile' + JSON.stringify(tile))
     console.log('tiles' + JSON.stringify(tiles))
 
@@ -67,7 +68,7 @@ class DoctorServices extends Component {
                 ? <View style={{flex: 1}}>
                   <View style={styles.doctorCardStyle}>
                     <Flb name={tile[0].tileIcon}size={Metrics.icons.xl * Metrics.screenWidth* 0.0025} color={Colors.flBlue.ocean} />
-                    <Text style={styles.doctorTextStyle}>{this.props.temp ?  temp1.text['en']:<Text/>}</Text>
+                    <Text style={styles.doctorTextStyle}>{temp1.text['en']}</Text>
                     <Switch leftActive={this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight} />
                   </View>
                   <View>
