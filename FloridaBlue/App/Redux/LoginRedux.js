@@ -14,7 +14,7 @@ const { Types, Creators } = createActions({
   logoutRequest: [],
   loginFailure: ['error'],
   sendConfirm: [],
-  logout: null,
+  logout: [],
   changeUserName :['username'],
   changePassword:['password']
 
@@ -29,7 +29,7 @@ export const INITIAL_STATE = Immutable({
   username: null,
   password: null,
   error: null,
-  responseURL: 'login',
+  responseURL: null,
   smToken: null,
   agreeTermsOfUse: null,
   getTou: null,

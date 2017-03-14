@@ -23,32 +23,28 @@ const window = Dimensions.get('window')
 var {height, width} = Dimensions.get('window')
 
 class MyPlanCard extends Component {
-  customNavigation (data) {
-    console.log(this.props)
+  customNavigation () {
+    console.log(this.props.data)
     var action
-    if (data.tileType == 'webview') {
-      action = NavigationActions.MyView({responseURL: data.webURL})
-    } else if (data.tileType == 'native') {
-      var routerName = data.routerName
+    if (this.props.data.tileType == 'webview') {
+      action = NavigationActions.MyView({responseURL:this.props.data.tileUrl})
+    } else if (this.props.data.tileType == 'native') {
+      var routerName = this.props.data.routerName
       action = NavigationActions[routerName]()
     }
   }
 
   render () {
-    console.log(this.props.visibilityRules)
-    const data = this.props.visibilityRules
     return (
       <TouchableOpacity onPress={() => {
-        this.customNavigation(data)
+       this.customNavigation()
       }}>
-        <Image source={Images[data.backgroundImage]} style={styles.summary} >
-
+        <Image source={Images[this.props.data.backgroundImage]} style={styles.summary} >
           <View style={styles.healthPlanView}>
             <Text style={styles.healthPlanText}>
-              {data.tileName['en']}
+              {this.props.data.tileName['en']}
             </Text>
-
-            <Flb name={data.tileIcon} style={styles.myPlanArrowIcon} size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.snow} />
+            <Flb name={this.props.data.tileIcon} style={styles.myPlanArrowIcon} size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.snow} />
           </View>
         </Image>
 

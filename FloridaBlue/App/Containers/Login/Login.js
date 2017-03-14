@@ -109,7 +109,7 @@ class Login extends Component {
     console.log('I am receving new smToken' + newProps.smToken)
     var responseURL = newProps.responseURL
 
-    if (this.isAttempting && !newProps.fetching && newProps.error === null) {
+    if (this.isAttempting && !newProps.fetching && newProps.error === null && responseURL) {
     // login path
       if (responseURL == 'login') {
         if (!newProps.mfetching) {
@@ -124,7 +124,7 @@ class Login extends Component {
           }
         }
       } else if (responseURL.includes('updateSecurityHintsAnswers')) {
-        NavigationActions.screen_4({'username': this.state.username})
+        NavigationActions.screen_4({'username': this.props.username})
       // Unauthorized User
       } else if (responseURL.includes('mob/error/accessdenied')) {
         this.props.attemptLogout()
