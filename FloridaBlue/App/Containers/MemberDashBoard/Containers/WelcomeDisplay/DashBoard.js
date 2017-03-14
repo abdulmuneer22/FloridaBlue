@@ -54,7 +54,7 @@ class LandingScreen extends Component {
             width: Metrics.screenWidth * 0.65}} />
       </View>
 
-      <View style={{marginRight: Metrics.smallMargin*Metrics.screenWidth * 0.005}}>
+      <View style={{marginRight: Metrics.smallMargin * Metrics.screenWidth * 0.005}}>
         {NavItems.settingsButton()}
       </View>
 
@@ -62,8 +62,8 @@ class LandingScreen extends Component {
   }
   componentDidMount () {
     console.log('mount on dashboadr' + this.props.smToken)
-    if(this.props.origin && this.props.origin == 'registration'){
-        this.props.attemptMember()
+    if (this.props.origin && this.props.origin == 'registration') {
+      this.props.attemptMember()
     }
   }
 
@@ -77,7 +77,7 @@ class LandingScreen extends Component {
   }
 
   render () {
-    const opdData=this.props.visibilityRules.opdTile
+    const opdData = this.props.visibilityRules.opdTile
     var image = [
       Images.dashboardGradient,
       Images.dashboardGradient2,
@@ -95,7 +95,7 @@ class LandingScreen extends Component {
 
           ? <View style={styles.container}>
             <Greeting userName={this.props.userName} />
-            <MyPlanCard visibilityRules={this.props.visibilityRules.myHealthPlanTile}/>
+            <MyPlanCard visibilityRules={this.props.visibilityRules.myHealthPlanTile} />
             <View style={{
               flexWrap: 'wrap',
               flexDirection: 'row'}}>
@@ -140,30 +140,30 @@ class LandingScreen extends Component {
               }) : <Text />
             }
             </View>
-            {this.props.visibilityRules.opd ?
+            {this.props.visibilityRules.opd
 
-            <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: opdData.tileUrl})}>
-              <Image source={Images[opdData.backgroundImage]} style={styles.footerImage}>
-                <View style={{flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginTop: Metrics.doubleBaseMargin}}>
+              ? <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: opdData.tileUrl})}>
+                <Image source={Images[opdData.backgroundImage]} style={styles.footerImage}>
+                  <View style={{flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: Metrics.doubleBaseMargin}}>
 
-                  <Flb name={opdData.tileIcon}
-                    style={{backgroundColor: Colors.transparent,
-                      marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003}}
-                    size={Metrics.icons.large * Metrics.screenWidth * 0.003}
-                    color={Colors.snow} />
-                  <Text style={{fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
-                    color: Colors.snow,
-                    fontFamily: Fonts.type.headerFont,
-                    backgroundColor: Colors.transparent}}>
-                    {opdData.tileName['en']}
-                </Text>
+                    <Flb name={opdData.tileIcon}
+                      style={{backgroundColor: Colors.transparent,
+                        marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003}}
+                      size={Metrics.icons.large * Metrics.screenWidth * 0.003}
+                      color={Colors.snow} />
+                    <Text style={{fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
+                      color: Colors.snow,
+                      fontFamily: Fonts.type.headerFont,
+                      backgroundColor: Colors.transparent}}>
+                      {opdData.tileName['en']}
+                    </Text>
 
-                </View>
-              </Image>
-            </TouchableOpacity> :null
+                  </View>
+                </Image>
+              </TouchableOpacity> : null
           }
           </View>
 

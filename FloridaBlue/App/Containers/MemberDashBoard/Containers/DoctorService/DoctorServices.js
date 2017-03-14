@@ -13,7 +13,7 @@ import {connect} from 'react-redux'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 
-const theme = getTheme();
+const theme = getTheme()
 
 import Card from './Components/Card'
 
@@ -21,15 +21,10 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
 
-
-
-
 class DoctorServices extends Component {
-
-    componentDidMount() {
-      this.props.attemptHandleLeft()
-    }
-
+  componentDidMount () {
+    this.props.attemptHandleLeft()
+  }
 
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
@@ -40,10 +35,6 @@ class DoctorServices extends Component {
     </Image>)
   }
 
-
-
-
-
   render () {
     var temp = this.props.data
     var objectName = this.props.objectName
@@ -51,7 +42,6 @@ class DoctorServices extends Component {
     var tiles = this.props.data.tiles
     var tile = tiles.filter(function (tiles) { return (tiles.tileId == objectName) })
 
-   
     console.log('tile' + JSON.stringify(tile))
     console.log('tiles' + JSON.stringify(tiles))
 
@@ -67,7 +57,7 @@ class DoctorServices extends Component {
 
                 ? <View style={{flex: 1}}>
                   <View style={styles.doctorCardStyle}>
-                    <Flb name={tile[0].tileIcon}size={Metrics.icons.xl * Metrics.screenWidth* 0.0025} color={Colors.flBlue.ocean} />
+                    <Flb name={tile[0].tileIcon}size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
                     <Text style={styles.doctorTextStyle}>{temp1.text['en']}</Text>
                     <Switch leftActive={this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight} />
                   </View>

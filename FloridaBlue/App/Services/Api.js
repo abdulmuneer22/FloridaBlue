@@ -144,7 +144,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     }
   })
 
-  const postRegisterUser = (data,token) => api.post('/registrations', {
+  const postRegisterUser = (data, token) => api.post('/registrations', {
     'RegisterUser': {
       'applicationId': APP_ID,
       'transactionId': data.contractNumber,

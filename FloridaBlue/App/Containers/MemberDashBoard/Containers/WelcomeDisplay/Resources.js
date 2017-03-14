@@ -86,7 +86,7 @@ class Resources extends Component {
           )
         }
           </View>
-            <Image source={Images.tagLine} style={{width:window.screenWidth}}/>
+          <Image source={Images.tagLine} style={{width: window.screenWidth}} />
         </ScrollView>
 
       </View>

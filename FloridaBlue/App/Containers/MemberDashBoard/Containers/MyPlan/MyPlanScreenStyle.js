@@ -98,7 +98,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont
   // backgroundColor:Colors.flBlue.ocean
   },
-  tileView:{
+  tileView: {
     width: window.width * 0.5,
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.76),
     alignItems: 'center',
@@ -108,37 +108,37 @@ export default StyleSheet.create({
 
     // borderTopWidth:1
   },
-  tileStyle:{
-    width: (Metrics.screenWidth/2) - (Metrics.baseMargin * 1.5),
+  tileStyle: {
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.5),
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
     alignItems: 'center',
     justifyContent: 'center',
-    //margin:4,
-    marginTop:4,
-    marginBottom:4,
-   marginRight:(Metrics.baseMargin)/2,
-   marginLeft:Metrics.baseMargin,
+    // margin:4,
+    marginTop: 4,
+    marginBottom: 4,
+    marginRight: (Metrics.baseMargin) / 2,
+    marginLeft: Metrics.baseMargin
 
   },
-  tileStyle1:{
-    width: (Metrics.screenWidth/2) - (Metrics.baseMargin *1.5),
+  tileStyle1: {
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.5),
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
     alignItems: 'center',
     justifyContent: 'center',
-    //margin:4,
-    marginTop:4,
-    marginBottom:4,
-   marginRight:(Metrics.baseMargin),
-   marginLeft:(Metrics.baseMargin)/2,
+    // margin:4,
+    marginTop: 4,
+    marginBottom: 4,
+    marginRight: (Metrics.baseMargin),
+    marginLeft: (Metrics.baseMargin) / 2
 
   },
-  tileText:{
+  tileText: {
     marginTop: Metrics.baseMargin,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00265,
-    textAlign:'center',
+    textAlign: 'center',
     fontWeight: '600',
     color: 'white',
-    fontFamily:Fonts.type.subHeaderFont,
+    fontFamily: Fonts.type.subHeaderFont
   },
   subHeader: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025,

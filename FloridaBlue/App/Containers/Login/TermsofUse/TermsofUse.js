@@ -43,12 +43,11 @@ class TermsofUse extends Component {
       alert('Please accept Terms of Use')
     } else {
       this.props.sendConfirm()
-      if(this.props.origin === 'registration'){
-      NavigationActions.confirmation()
-    } else {
-       NavigationActions.WelcomeDashBoard()
-    }
-    
+      if (this.props.origin === 'registration') {
+        NavigationActions.confirmation()
+      } else {
+        NavigationActions.WelcomeDashBoard()
+      }
     }
   }
 

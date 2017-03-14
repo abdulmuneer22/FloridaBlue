@@ -3,7 +3,7 @@ import {
   Animated,
   Easing,
   Image,
-  View,
+  View
 } from 'react-native'
 
 import { Images, Metrics, Colors } from '../../Themes'
@@ -33,13 +33,13 @@ export default class CityScape extends Component {
     ).start()
   }
 
-  render() {
+  render () {
     const marginLeft = this.state.animatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: [300, 0]
     })
 
-    return(
+    return (
       <Animated.View style={{marginLeft}} >
         <Image source={Images.cityscape} style={styles.cityscape} />
       </Animated.View>

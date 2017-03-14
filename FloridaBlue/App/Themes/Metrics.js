@@ -33,7 +33,7 @@ const metrics = {
   images: {
     small: 20,
     average: 25,
-    average1:28,
+    average1: 28,
     xa: 30,
     medium: 40,
     xm: 50,

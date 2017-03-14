@@ -29,7 +29,7 @@ class Hsa extends Component {
         {NavItems.backButton()}
       </View>
       <Text style={styles.hsaheaderTextStyle}>
-        {this.props.data? this.props.data.title['en'] : <Text/>}</Text>
+        {this.props.data ? this.props.data.title['en'] : <Text />}</Text>
       <View style={{marginRight: Metrics.screenWidth * 0.35}}>
         {NavItems.settingsButton()}
       </View>
@@ -60,7 +60,6 @@ class Hsa extends Component {
               <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text['en']}</Text>
               <Text style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
             </View>
-
 
             <View style={styles.col_1}>
               <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text['en']}</Text>

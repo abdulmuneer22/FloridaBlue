@@ -52,7 +52,7 @@ const { Types, Creators } = createActions({
   sendSecurityHintsRequest: ['data'],
   sendSecurityHintsSuccess: ['data'],
   sendSecurityHintsFailure: ['data'],
-  registerUserRequest: ['data','token'],
+  registerUserRequest: ['data', 'token'],
   registerUserSuccess: ['data'],
   registerUserFailure: ['data']
 })

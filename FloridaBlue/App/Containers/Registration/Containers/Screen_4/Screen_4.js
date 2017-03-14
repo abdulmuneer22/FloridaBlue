@@ -70,8 +70,8 @@ class Screen_4 extends React.Component {
 
       if (status === '000') {
         this.props.handleChangeSecurityHintsStatus(null)
-         console.tron.log('terms of use')
-         NavigationActions.Termsofuse({'origin':'registration'})
+        console.tron.log('terms of use')
+        NavigationActions.Termsofuse({'origin': 'registration'})
       }
     }
   }

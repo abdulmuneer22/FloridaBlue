@@ -23,7 +23,6 @@ const window = Dimensions.get('window')
 var {height, width} = Dimensions.get('window')
 
 class MyPlanCard extends Component {
-
   customNavigation (data) {
     console.log(this.props)
     var action
@@ -36,19 +35,18 @@ class MyPlanCard extends Component {
   }
 
   render () {
-    console.log(this.props.visibilityRules )
-const data=this.props.visibilityRules
+    console.log(this.props.visibilityRules)
+    const data = this.props.visibilityRules
     return (
       <TouchableOpacity onPress={() => {
         this.customNavigation(data)
       }}>
         <Image source={Images[data.backgroundImage]} style={styles.summary} >
 
-
           <View style={styles.healthPlanView}>
             <Text style={styles.healthPlanText}>
-            {data.tileName['en']}
-          </Text>
+              {data.tileName['en']}
+            </Text>
 
             <Flb name={data.tileIcon} style={styles.myPlanArrowIcon} size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.snow} />
           </View>

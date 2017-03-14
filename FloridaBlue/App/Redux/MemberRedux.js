@@ -7,7 +7,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   memberRequest: [],
-  memberSuccess: ['username', 'termsOfUse', 'visibilityRules','defaultContract'],
+  memberSuccess: ['username', 'termsOfUse', 'visibilityRules', 'defaultContract'],
   memberFailure: ['error']
 })
 

@@ -62,7 +62,6 @@ class Screen_3 extends React.Component {
   }
 
   componentDidUpdate () {
-   
     // Step 1 - Verify registration code
     if (this.props.registrationCodeStatus && this.props.registerUserStatus === null) {
       var registrationCodeStatus = this.props.registrationCodeStatus
@@ -74,21 +73,20 @@ class Screen_3 extends React.Component {
 
     // Step 2 - Register user
     if (this.props.registrationCodeStatus && this.props.registerUserStatus) {
-            var registrationCodeStatus = this.props.registrationCodeStatus
-            var registerUserStatus = this.props.registerUserStatus
+      var registrationCodeStatus = this.props.registrationCodeStatus
+      var registerUserStatus = this.props.registerUserStatus
 
       if (registrationCodeStatus === '000' && registerUserStatus === '000') {
-          this.props.handleChangeRegistrationCodeStatus(null)
-          this.props.handleChangeRegisterUserStatus(null)
-          console.tron.log('Auto login the user for secured services')
-          this.props.attemptLogin(this.props.createUserId, this.props.password)
-          console.tron.log('Navigating to Screen 4')
-            if (this.props.loginError === null) {
-              NavigationActions.screen_4()
-            }
-          } 
-         }
-    
+        this.props.handleChangeRegistrationCodeStatus(null)
+        this.props.handleChangeRegisterUserStatus(null)
+        console.tron.log('Auto login the user for secured services')
+        this.props.attemptLogin(this.props.createUserId, this.props.password)
+        console.tron.log('Navigating to Screen 4')
+        if (this.props.loginError === null) {
+          NavigationActions.screen_4()
+        }
+      }
+    }
   }
 
   render () {
@@ -174,7 +172,7 @@ Screen_3.propTypes = {
   fetching: PropTypes.bool,
   error: PropTypes.string,
   loginError: PropTypes.string,
-  attemptLogin:PropTypes.func
+  attemptLogin: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -200,7 +198,7 @@ const mapStateToProps = (state) => {
     registerUserStatusMessage: state.registration.registerUserStatusMessage,
     fetching: state.registration.fetching,
     error: state.registration.error,
-    loginError :state.login.error
+    loginError: state.login.error
   }
 }
 
@@ -211,7 +209,7 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode)),
     handleChangeRegistrationCodeStatus: (data) => dispatch(RegistrationActions.changeRegistrationCodeStatus(data)),
     handleChangeRegisterUserStatus: (data) => dispatch(RegistrationActions.changeRegisterUserStatus(data)),
-    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
+    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
   }
 }
 

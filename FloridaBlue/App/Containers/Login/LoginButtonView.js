@@ -3,7 +3,7 @@ import {
   Animated,
   Easing,
   Image,
-  View,
+  View
 } from 'react-native'
 
 import { Images, Metrics, Colors } from '../../Themes'
@@ -14,7 +14,7 @@ export default class LoginButtonView extends Component {
   constructor () {
     super()
     this.state = {
-      fadeAnim: new Animated.Value(0), // init opacity 0
+      fadeAnim: new Animated.Value(0) // init opacity 0
     }
   }
 
@@ -25,11 +25,11 @@ export default class LoginButtonView extends Component {
         delay: 1000,
         toValue: 1
       }
-    ).start();
+    ).start()
   }
 
-  render() {
-    return(
+  render () {
+    return (
       <Animated.View style={[styles.loginButton, {opacity: this.state.fadeAnim}]}>
         {this.props.children}
       </Animated.View>

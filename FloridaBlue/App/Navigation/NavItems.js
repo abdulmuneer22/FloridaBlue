@@ -31,9 +31,9 @@ export default {
   },
   errorBackButton () {
     return (
-      <TouchableOpacity  style={{width:100,height:100,alignItems:'center'}} onPress={NavigationActions.pop}>
+      <TouchableOpacity style={{width: 100, height: 100, alignItems: 'center'}} onPress={NavigationActions.pop}>
         <Flb name='arrow-left'
-          size={Metrics.icons.large * Metrics.screenHeight*0.0013}
+          size={Metrics.icons.large * Metrics.screenHeight * 0.0013}
           color={Colors.snow}
           style={[styles.backButton, {marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.0020}]}
         />

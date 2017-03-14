@@ -76,13 +76,13 @@ export function * sendRegistrationCodeRequest (api, {
   data
 }) {
   const response = yield call(api.postRegistrationCode, data)
-  var sendData = data ;
+  var sendData = data
   if (response.ok) {
     var error = null
     var data = response.data
     data.registrationCodeStatus = data.reasonCode
     data.registrationCodeStatusMessage = getReasonMessage(data.registrationCodeStatus)
-    yield put(RegistrationActions.registerUserRequest(sendData,data.token))
+    yield put(RegistrationActions.registerUserRequest(sendData, data.token))
     yield put(RegistrationActions.sendRegistrationCodeSuccess(data))
   } else {
     var error = 'Invaid input provided'
@@ -117,9 +117,9 @@ export function * sendSecurityHintsRequest (api, {
 }
 
 export function * registerUserRequest (api, {
-  data,token
+  data, token
 }) {
-  const response = yield call(api.postRegisterUser,data,token)
+  const response = yield call(api.postRegisterUser, data, token)
 
   if (response.ok) {
     var error = null

@@ -65,7 +65,7 @@ class SettingsContent extends Component {
   }
   handlePressClaims = () => {
     this.toggleDrawer()
-      NavigationActions.MyView({responseURL: 'https://mws8-stga.bcbsfl.com/wps/myportal/mbs/mwe/myBenefits/claims/'})
+    NavigationActions.MyView({responseURL: 'https://mws8-stga.bcbsfl.com/wps/myportal/mbs/mwe/myBenefits/claims/'})
   }
 
   handlePressResources = () => {
@@ -99,7 +99,7 @@ class SettingsContent extends Component {
   }
   handlePressPolicy= () => {
     this.toggleDrawer()
-   NavigationActions.MyView({responseURL: 'https://www.floridablue.com/terms-of-use'})
+    NavigationActions.MyView({responseURL: 'https://www.floridablue.com/terms-of-use'})
   }
 
   handlePressLogout = () => {

@@ -53,7 +53,7 @@ class MyPlanScreen extends Component {
   }
 
   render () {
-    console.log(this.props.data);
+    console.log(this.props.data)
     return (
 
       <View style={styles.container}>
@@ -68,8 +68,8 @@ class MyPlanScreen extends Component {
           ? <View style={styles.container}>
             <View style={styles.planNameView}>
               <Text style={styles.planNameText}>
-              {this.props.planName}
-        </Text>
+                {this.props.planName}
+              </Text>
             </View>
 
             <View style={styles.chartWrapper}>
@@ -127,18 +127,18 @@ MyPlanScreen.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  console.log("state is", state);
+  console.log('state is', state)
   return {
     fetching: state.login.fetching,
     data: state.myplan.data,
     error: state.myplan.error,
-    planName: _.get(state, 'member.defaultContract.planName','')
+    planName: _.get(state, 'member.defaultContract.planName', '')
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
-      attemptMember: () => dispatch(MemberActions.memberRequest())
+    attemptMember: () => dispatch(MemberActions.memberRequest())
   }
 }
 

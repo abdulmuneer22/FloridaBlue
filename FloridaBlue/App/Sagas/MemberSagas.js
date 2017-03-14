@@ -39,7 +39,7 @@ export function * member (api, {smToken}) {
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }
-    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules,defaultContract))
+    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, defaultContract))
   } else {
     console.log('failure ')
     var error = '99'
