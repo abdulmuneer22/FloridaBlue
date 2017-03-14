@@ -116,7 +116,7 @@ componentWillReceiveProps(newProps) {
         }
       }
     } else if (responseURL.includes("updateSecurityHintsAnswers")) {
-      NavigationActions.screen_4();
+      NavigationActions.screen_4({'userName':this.props.userName});
       //Unauthorized User
     } else if (responseURL.includes('mob/error/accessdenied')) {
       this.props.attemptLogout()
@@ -329,7 +329,8 @@ const mapStateToProps = (state) => {
     responseURL: state.login.responseURL,
     smToken: state.login.smToken,
     termsOfUse: state.member.termsOfUse,
-    merror : state.member.error
+    merror : state.member.error,
+    userName:state.login.username
   }
 }
 
