@@ -1,15 +1,14 @@
-
 import React, { Component, PropTypes } from 'react'
-import {Actions as NavigationActions} from 'react-native-router-flux'
-import {Text, View, ScrollView, Image} from 'react-native'
+import { Actions as NavigationActions } from 'react-native-router-flux'
+import { Text, View, ScrollView, Image } from 'react-native'
 import Switch from './Components/switch'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import styles from './DoctorServiceStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
-import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
+import { Colors, Metrics, Fonts, Images } from '../../../../Themes'
 import Flb from '../../../../Themes/FlbIcon'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 
@@ -18,8 +17,8 @@ const theme = getTheme()
 import Card from './Components/Card'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
-.withStyle(styles.spinner)
-.build()
+  .withStyle(styles.spinner)
+  .build()
 
 class DoctorServices extends Component {
   componentDidMount () {
@@ -28,11 +27,12 @@ class DoctorServices extends Component {
 
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-      {NavItems.backButton()}
-      <Text style={styles.headerTextStyle}>Plan Benefits</Text>
-      {NavItems.settingsButton()}
-
-    </Image>)
+              {NavItems.backButton()}
+              <Text style={styles.headerTextStyle}>
+                Plan Benefits
+              </Text>
+              {NavItems.settingsButton()}
+            </Image>)
   }
 
   render () {
@@ -49,38 +49,42 @@ class DoctorServices extends Component {
 
       <View style={styles.container}>
         {this._renderHeader()}
-
         <ScrollView>
-
-          {
-              this.props.data
-
-                ? <View style={{flex: 1}}>
-                  <View style={styles.doctorCardStyle}>
-                    <Flb name={tile[0].tileIcon}size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
-                    <Text style={styles.doctorTextStyle}>{temp1.text['en']}</Text>
-                    <Switch leftActive={this.props.leftActive} rightActive={this.props.rightActive} attemptHandleLeft={this.props.attemptHandleLeft} attemptHandleRight={this.props.attemptHandleRight} />
-                  </View>
-                  <View>
-                    <Card data={this.props.data} objectName={this.props.objectName} leftActive={this.props.leftActive} rightActive={this.props.rightActive} />
-                  </View>
-
-                </View>
-          : <View style={styles.spinnerView}>
-            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-            <Text style={styles.spinnerText}>Loading Please Wait </Text>
-          </View>
-         }
-
+          {this.props.data
+           
+             ? <View style={{flex: 1}}>
+                 <View style={styles.doctorCardStyle}>
+                   <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+                   <Text style={styles.doctorTextStyle}>
+                     {temp1.text['en']}
+                   </Text>
+                   <Switch
+                     leftActive={this.props.leftActive}
+                     rightActive={this.props.rightActive}
+                     attemptHandleLeft={this.props.attemptHandleLeft}
+                     attemptHandleRight={this.props.attemptHandleRight} />
+                 </View>
+                 <View>
+                   <Card
+                     data={this.props.data}
+                     objectName={this.props.objectName}
+                     leftActive={this.props.leftActive}
+                     rightActive={this.props.rightActive} />
+                 </View>
+               </View>
+             : <View style={styles.spinnerView}>
+                 <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                 <Text style={styles.spinnerText}>
+                   Loading Please Wait
+                 </Text>
+               </View>}
         </ScrollView>
-
       </View>
     )
   }
 }
 
 DoctorServices.propTypes = {
-
   attemptHandleLeft: PropTypes.func,
   attemptHandleRight: PropTypes.func,
   attemptHandlePreferred: PropTypes.func

@@ -101,6 +101,10 @@ export default StyleSheet.create({
   //  justifyContent: 'center',
     alignSelf: 'center'
 
+  },
+  
+   textField: {
+   height : 40
   }
 
 })

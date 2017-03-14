@@ -47,7 +47,9 @@ type LoginScreenProps = {
   attemptMyPlan :() => void,
   attemptMember :() => void,
   attemptSupportScreen :() => void,
-  merror :string
+  merror :string,
+  handleChangeUserName :() => any,
+  passhandleChangePasswordword :() => any
 }
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -71,16 +73,16 @@ class Login extends Component {
 
   _handleLogin () {
     onPress = {dismissKeyboard}
-    var username = this.state.username
-    var password = this.state.password
+    var username = this.props.username
+    var password = this.props.password
 
-    if (!this.state.username | !this.state.password) {
-      alert('Please enter your user ID./Please enter your password.')
-    }
-    if (!this.state.username) {
+    if (!username && !password) {
+      alert('Please enter your user ID/Password.') 
+    }else 
+    if (!username && password) {
       alert('Please enter your user ID.')
-    }
-    if (!this.state.password) {
+    }else 
+    if (username && !password) {
       alert('Please enter your password.')
     } else {
         // const { username, password } = this.state
@@ -92,9 +94,11 @@ class Login extends Component {
 
   componentDidMount () {
     // after registration fire login for auto login
+    /*
     if (this.props.username && this.props.password) {
       this.props.attemptLogin(this.props.username, this.props.password)
     }
+    */
   }
 
   componentWillReceiveProps (newProps) {
@@ -120,7 +124,7 @@ class Login extends Component {
           }
         }
       } else if (responseURL.includes('updateSecurityHintsAnswers')) {
-        NavigationActions.screen_4({'userName': this.props.userName})
+        NavigationActions.screen_4({'username': this.state.username})
       // Unauthorized User
       } else if (responseURL.includes('mob/error/accessdenied')) {
         this.props.attemptLogout()
@@ -248,31 +252,34 @@ class Login extends Component {
 
             <LoginView>
               <View style={styles.row}>
-                <TextInput
+                <MKTextField
                   ref='username'
-                  style={styles.textInput}
+                  style={styles.textField}
+                  textInputStyle={{flex :1}}
                   keyboardType='default'
                   returnKeyType='next'
                   autoCapitalize='none'
                   autoCorrect={false}
-                  onChangeText={(text) => this.setState({username: text})}
-                  value={this.state.username}
+                  onChangeText={this.props.handleChangeUserName}
+                  value={this.props.username}
                   underlineColorAndroid={Colors.coal}
                   onSubmitEditing={() => this.refs.password.focus()}
                   placeholder={I18n.t('username')} />
               </View>
 
               <View style={styles.row}>
-                <TextInput
+                <MKTextField
                   ref='password'
-                  style={styles.textInput}
+                  style={styles.textField}
+                  textInputStyle={{flex :1}}
                   keyboardType='default'
                   returnKeyType='done'
                   autoCapitalize='none'
                   autoCorrect={false}
-                  secureTextEntry
-                  onChangeText={(text) => this.setState({password: text})}
-                  value={this.state.password}
+                  secureTextEntry={true}
+                  password={true}
+                  onChangeText={this.props.handleChangePassword}
+                  value={this.props.password}
                   underlineColorAndroid={Colors.coal}
                   placeholder={I18n.t('password')} />
               </View>
@@ -331,12 +338,15 @@ const mapStateToProps = (state) => {
     smToken: state.login.smToken,
     termsOfUse: state.member.termsOfUse,
     merror: state.member.error,
-    userName: state.login.username
+    username: state.login.username,
+    password :state.login.password
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    handleChangeUserName: (username) => dispatch(LoginActions.changeUserName(username)),
+    handleChangePassword: (password) => dispatch(LoginActions.changePassword(password)),
     attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
     attemptMember: () => dispatch(MemberActions.memberRequest()),
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),

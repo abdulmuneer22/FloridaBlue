@@ -14,7 +14,10 @@ const { Types, Creators } = createActions({
   logoutRequest: [],
   loginFailure: ['error'],
   sendConfirm: [],
-  logout: null
+  logout: null,
+  changeUserName :['username'],
+  changePassword:['password']
+
 })
 
 export const LoginTypes = Types
@@ -24,6 +27,7 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
   username: null,
+  password: null,
   error: null,
   responseURL: 'login',
   smToken: null,
@@ -57,9 +61,15 @@ export const logout = (state: Object) => INITIAL_STATE
 export const getTOU = (state: Object) => state.merge({ fetching: true, responseURL: 'login'})
 
 // we are updating state
-
 export const updateTOU = (state: Object, {getTou} : Object) =>
   state.merge({getTou})
+
+// we are change username
+export const username = (state: Object, {username} : Object) =>
+  state.merge({username})
+// we are change username
+export const password = (state: Object, {password} : Object) =>
+  state.merge({password})
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -67,6 +77,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_REQUEST]: request,
   [Types.LOGOUT_REQUEST]: request,
   [Types.LOGIN_SUCCESS]: success,
+  [Types.CHANGE_USER_NAME]:username,
+  [Types.CHANGE_PASSWORD]:password,
   [Types.GET_TOU]: getTOU,
   [Types.UPDATE_TOU]: updateTOU,
   [Types.CHANGE_AGREE_TERMS_OF_USE]: _changeAgreeTermsOfUse,
