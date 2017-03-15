@@ -11,8 +11,8 @@ export default StyleSheet.create({
   },
   headerImage: {
     width: Metrics.screenWidth,
-    overflow: 'visible',
-    resizeMode: 'cover'
+    resizeMode: 'stretch',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
   heading: {
     marginTop: Metrics.doubleBaseMargin,

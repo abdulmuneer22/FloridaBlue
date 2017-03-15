@@ -5,8 +5,7 @@ export default StyleSheet.create({
   headerContainer: {
    // flexDirection:'row',
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.79),
-    resizeMode: 'cover',
-   // resizeMode: 'cover',
+    resizeMode: 'stretch',
    // overflow:'visible',
   //  alignSelf: 'stretch',
     width: Metrics.screenWidth

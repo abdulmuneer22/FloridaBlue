@@ -5,8 +5,8 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   headerImage: {
     width: Metrics.screenWidth,
-    overflow: 'visible',
-    resizeMode: 'cover'
+    resizeMode: 'stretch',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.57)) / 2
   },
   close: {
     marginTop: Metrics.smallMargin,
