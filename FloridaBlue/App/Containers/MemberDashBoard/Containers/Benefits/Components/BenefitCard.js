@@ -12,13 +12,13 @@ import {
 // import SafariView from  'react-native-safari-view'
 
 const window = Dimensions.get('window')
-import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
-import styles from './BenefitsStyle'
-import NavItems from '../../../../Navigation/NavItems.js'
+import {Colors, Metrics, Fonts, Images} from '../../../../../Themes'
+import styles from '../BenefitsStyle'
+import NavItems from '../../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-import MyPlanActions from '../../../../Redux/MyPlanRedux'
+import MyPlanActions from '../../../../../Redux/MyPlanRedux'
 import { connect } from 'react-redux'
-import Flb from '../../../../Themes/FlbIcon'
+import Flb from '../../../../../Themes/FlbIcon'
 
 var image = [
   Images.dashboardGradient,
@@ -39,7 +39,7 @@ class Card extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      CardWidth: (window.width * 0.91) / 2
+      CardWidth: (window.width * 0.88) / 2
     }
   }
 
@@ -55,7 +55,7 @@ class Card extends Component {
       // console.log("index" ,index)
       // console.log("count" , count)
         this.setState({
-          CardWidth: (window.width * 0.94)
+          CardWidth: (window.width * 0.92)
         })
       }
     }
@@ -66,9 +66,19 @@ class Card extends Component {
     var action
     if (this.props.tileType == 'native') {
       var routerName = this.props.routerName
-      action = NavigationActions[routerName]()
+      action = NavigationActions[routerName]({objectName: this.props.objectName})
     }
   }
+
+  // /onItemPress = function () {
+  //         var action
+  //         if (tile.tileType == 'native') {
+  //           var routerName = tile.routerName
+  //           var objectName = tile.tileId
+  //           action = NavigationActions[routerName]({objectName: objectName})
+  //         }
+  //       // 
+
 
   render () {
     return (
@@ -84,7 +94,7 @@ class Card extends Component {
           height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
           alignItems: 'center',
           justifyContent: 'center',
-          marginLeft: this.props.i % 2 !== 0 ? window.width * 0.03 : null,
+          marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
         // marginRight :
         // marginTop : 10,
 
@@ -99,7 +109,7 @@ class Card extends Component {
             alignItems: 'center',
             justifyContent: 'center'
           }}
-            source={image[this.props.i]}
+            source={Images[this.props.image]}
       >
 
             <Flb name={this.props.icon} style={{backgroundColor: Colors.transparent, marginTop: Metrics.baseMargin}} size={Metrics.icons.large} color={Colors.snow} />

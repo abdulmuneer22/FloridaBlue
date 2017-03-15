@@ -19,7 +19,7 @@ import Flb from '../../../../Themes/FlbIcon'
 import styles from './BenefitsStyle'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-import Card from './BenefitCard'
+import Card from './Components/BenefitCard'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -42,8 +42,8 @@ class PlanBenefits extends Component {
   }
 
   render () {
+     var objectName = this.props.objectName
     console.log('root testing')
-    var color = new Array('#005b80', '#00aec7', '#0091cc', '#005b80', '#005b80', '#00aec7', '#005b80', '#0091cc')
     var i = 0
     var tileCard = []
     return (
@@ -52,38 +52,42 @@ class PlanBenefits extends Component {
 
         <ScrollView>
 
-          <View style={styles.benefitTileView}>
+          <View style={{
+            flexDirection: 'row',
+                  // backgroundColor : 'red',
+            flexWrap: 'wrap',
+            flex: 1,
+            marginLeft: window.width * 0.04,
+            marginRight: window.width * 0.04,
+            marginTop: window.width * 0.03
 
-            {this.props.data && this.props.data.tiles
-      ? this.props.data.tiles.map(function (tile, i) {
-        onItemPress = function () {
-          var action
-          if (tile.tileType == 'native') {
-            var routerName = tile.routerName
-            var objectName = tile.tileId
-            action = NavigationActions[routerName]({objectName: objectName})
-          }
-        }
+          }}>
+
+            {this.props.data && this.props.data.tiles ? this.props.data.tiles.map((tile, i) => {
+                const index = i + 1
+                const TileCount = this.props.data.tiles.length
+      
 
         return (
-
-          <TouchableOpacity style={[styles.tileView, {backgroundColor: color[i]}]} onPress={onItemPress.bind(this)} key={i}>
-
-            <View style={{alignItems: 'center'}}>
-              <Flb name={tile.tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0035} color={Colors.snow} />
-              <Text style={styles.tileText}>
-                {tile.tileName['en']}
-              </Text>
-            </View>
-          </TouchableOpacity>
-
-        )
-        i += 1
-      }) : <View style={styles.spinnerView}>
+                  <Card
+                    i={i}
+                    key={index}
+                    title={tile.tileName['en']}
+                    tileType={tile.tileType}
+                    icon={tile.tileIcon}
+                    image={tile.backgroundImage}
+                    CardCount={TileCount}
+                    webURL={tile.tileType !== 'native' ? tile.tileUrl : null}
+                    routerName={tile.tileType === 'native' ? tile.routerName : null}
+                    objectName={tile.tileId}
+                      />
+                )
+              } 
+          ):<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
-      </View>
-     }
+      </View> }
+        
           </View>
           <Image source={Images.tagLine} style={{width: window.screenWidth}} />
         </ScrollView>
