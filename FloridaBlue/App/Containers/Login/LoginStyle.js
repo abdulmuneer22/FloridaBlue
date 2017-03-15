@@ -85,7 +85,7 @@ export default StyleSheet.create({
     // backgroundColor : 'yellow',
     padding: 10,
     marginTop: 10,
-    height: 40,
+    height: 36,
   //  flexWrap:'wrap',
     flexDirection: 'row',
     alignItems: 'center'
@@ -102,7 +102,7 @@ export default StyleSheet.create({
     alignSelf: 'center'
 
   },
-  
+
    textField: {
    height : 40
   }

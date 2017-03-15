@@ -77,11 +77,11 @@ class Login extends Component {
     var password = this.props.password
 
     if (!username && !password) {
-      alert('Please enter your user ID/Password.') 
-    }else 
+      alert('Please enter your user ID/Password.')
+    }else
     if (!username && password) {
       alert('Please enter your user ID.')
-    }else 
+    }else
     if (username && !password) {
       alert('Please enter your password.')
     } else {
@@ -160,7 +160,7 @@ class Login extends Component {
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/ndnotice'})}>
             <Text style={styles.popupchildText}>
-              Non-Discrimination
+              Nondiscrimination
             </Text>
           </TouchableOpacity>
         </View>
@@ -187,7 +187,7 @@ class Login extends Component {
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://providersearch.floridablue.com/providersearch/pub/index.htm'})}>
             <Text style={styles.popupchildText}>
-              Unsecured OPD
+              Browse for Doctors
             </Text>
           </TouchableOpacity>
         </View>
@@ -214,7 +214,7 @@ class Login extends Component {
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es'})}>
             <Text style={styles.popupchildText}>
-              Language Services
+              Speak Another Language?
             </Text>
           </TouchableOpacity>
         </View>
