@@ -58,8 +58,14 @@ class Screen_1 extends React.Component {
     var dateOfBirth = this.props.dateOfBirth
     var zipCode = this.props.zipCode
 
-    if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
-      alert('Please enter values in all fields')
+    var dateTest = new RegExp('\\d{2}\/\\d{2}\/\\d{4}')
+    if(!dateTest.test(dateOfBirth)) {
+      this.props.handleChangeIdentificationStatus('999')
+      this.props.handleChangeIdentificationStatusMessage('Please enter a valid date - MM/DD/YYYY')
+    }
+    else if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
+      this.props.handleChangeIdentificationStatus('999')
+      this.props.handleChangeIdentificationStatusMessage('Please enter values in all fields')
     } else {
       this.props.verifyIdentification(this.props)
     }
@@ -67,6 +73,7 @@ class Screen_1 extends React.Component {
 
   componentDidMount () {
     this.props.handleChangeIdentificationStatus(null)
+    this.props.handleChangeIdentificationStatusMessage(null)
   }
 
   componentDidUpdate () {
