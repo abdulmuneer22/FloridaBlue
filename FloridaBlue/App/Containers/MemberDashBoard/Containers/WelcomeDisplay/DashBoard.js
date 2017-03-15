@@ -77,7 +77,6 @@ class LandingScreen extends Component {
   }
 
   render () {
-    const opdData = this.props.visibilityRules.opdTile
     var image = [
       Images.dashboardGradient,
       Images.dashboardGradient2,
@@ -140,16 +139,16 @@ class LandingScreen extends Component {
               }) : <Text />
             }
             </View>
-            {this.props.visibilityRules.opd
+            {this.props.visibilityRules.opdTile
 
-              ? <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: opdData.tileUrl})}>
-                <Image source={Images[opdData.backgroundImage]} style={styles.footerImage}>
+              ? <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})}>
+                <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
                   <View style={{flexDirection: 'row',
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginTop: Metrics.doubleBaseMargin}}>
 
-                    <Flb name={opdData.tileIcon}
+                    <Flb name={this.props.visibilityRules.opdTile.tileIcon}
                       style={{backgroundColor: Colors.transparent,
                         marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003}}
                       size={Metrics.icons.large * Metrics.screenWidth * 0.003}
@@ -158,7 +157,7 @@ class LandingScreen extends Component {
                       color: Colors.snow,
                       fontFamily: Fonts.type.headerFont,
                       backgroundColor: Colors.transparent}}>
-                      {opdData.tileName['en']}
+                      {this.props.visibilityRules.opdTile.tileName['en']}
                     </Text>
 
                   </View>
