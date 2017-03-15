@@ -11,6 +11,7 @@ const metrics = {
   section: 25,
   baseMargin: 10,
   doubleBaseMargin: 20,
+  footerBaseMargin: 25,
   smallMargin: 5,
   mediumMargin: 15,
   horizontalLineHeight: 1,

@@ -63,7 +63,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     position: 'absolute',
-    bottom: Metrics.baseMargin,
+    bottom: Metrics.footerBaseMargin,
     marginHorizontal: Metrics.section
   },
   footerText: {
