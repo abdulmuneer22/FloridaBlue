@@ -38,6 +38,8 @@ class Card extends Component {
 
     console.log('card of innetwork' + JSON.stringify(this.props.leftActive))
     // looping through cards to create the view
+    // don't generate any markup if card object is null
+    if(card){
     var i = 0
     card.map(function (network, i) {
       var speciality = []
@@ -87,9 +89,8 @@ class Card extends Component {
       )
       i += 1
       return cards
+    })
     }
-
-    )
 
     return (
       <ScrollView>
