@@ -65,7 +65,7 @@ class MyPlanSwiper extends Component {
     }
 
     return (
-      <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.40))} style={styles.wrapper} showsButtons>
+      <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.42))} style={styles.wrapper} showsButtons>
         {
           this.getChildrenOptions(this.props.data).map((network, i) => {
             console.log('children options are', this.getChildrenOptions(this.props.data))
@@ -79,7 +79,7 @@ class MyPlanSwiper extends Component {
 
                 <View style={styles.dataContainer}>
 
-                  <View style={{alignItems: 'center', justifyContent: 'center', flex: 0.3, marginTop: 30}}>
+                  <View style={{alignItems: 'center', justifyContent: 'center', flex: 0.4, marginTop: 30}}>
 
                     <SemiCircle
                       pieWidth={150}
@@ -93,7 +93,7 @@ class MyPlanSwiper extends Component {
                   />
                   </View>
 
-                  <View style={{flex: 0.7}}>
+                  <View style={{flex: 0.6}}>
 
                     {
                     planBenefits.benefit.map((benefit, i) => {

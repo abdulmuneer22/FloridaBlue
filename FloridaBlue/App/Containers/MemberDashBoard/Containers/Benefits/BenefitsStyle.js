@@ -42,12 +42,13 @@ export default StyleSheet.create({
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.76),
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: Colors.flBlue.green,
-    shadowOpacity: 2,
-    shadowOffset: {width: 5, height: 5},
-    shadowRadius: 15,
+    // shadowColor: Colors.flBlue.green,
+    // shadowOpacity: 2,
+    // shadowOffset: {width: 5, height: 5},
+    // shadowRadius: 15,
     borderWidth: 6,
-    borderColor: Colors.flBlue.lightBlue
+    marginTop:3,
+    borderColor: Colors.snow
 
     // borderTopWidth:1
   },

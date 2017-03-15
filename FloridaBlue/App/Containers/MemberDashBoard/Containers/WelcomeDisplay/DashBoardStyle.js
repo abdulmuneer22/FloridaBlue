@@ -54,7 +54,7 @@ export default StyleSheet.create({
   },
   hsaBg: {
  // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.19),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.31),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
@@ -70,7 +70,7 @@ export default StyleSheet.create({
     // fontWeight:'bold'
   },
   hsaTextStyle2: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0034,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0034,
     color: Colors.flBlue.grass,
     fontWeight: '600',
     fontFamily: Fonts.type.subHeaderFont
