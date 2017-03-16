@@ -84,7 +84,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   const getSupport = () => api.get('/support')
   const getHsa = (financialProduct) => api.get('/hsa/financialProduct/' + financialProduct)
   const getLogout = () => api.get('logout.fcc')
-  const putTou = () => api.put('/tou')
+  const putTou = () => api.get('/termsOfUse')
 
   const postIdentification = (data) => api.post('/identifications', {
     'User': {
