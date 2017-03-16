@@ -49,6 +49,10 @@
    "themeSettings": "Theme Settings",
    "usageExamples": "Usage Examples",
    "username": "User ID",
+   "userIdHintTitle": "User ID Suggestion",
+   "userIdHintDescription1": "Your User ID cannot be the same as your Password. Your User ID must be 6-25 characters long, but cannot be your SSN or a 9 digit number. It can contain the following letters, characters and/or numerals and must contain at least one letter and one number:",
+   "userIdHintDescription2": "• Upper and Lowercase Letters: A-Z, a-z\n• Numerals:0-9\n• Special Characters:",
+   "userIdHintDescription3": "o _ (underscore)\no - (dash)\no . (period)\no $ (dollar symbol)\no # (pound or hash symbol)",
    "verifyYourDevice": "Verify Your Device",
    "welcome": "Welcome",
    "zipCode": "Zip Code"

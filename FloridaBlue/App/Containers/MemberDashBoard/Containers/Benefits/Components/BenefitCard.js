@@ -77,8 +77,7 @@ class Card extends Component {
   //           var objectName = tile.tileId
   //           action = NavigationActions[routerName]({objectName: objectName})
   //         }
-  //       // 
-
+  //       //
 
   render () {
     return (

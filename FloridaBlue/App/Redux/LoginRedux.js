@@ -15,8 +15,8 @@ const { Types, Creators } = createActions({
   loginFailure: ['error'],
   sendConfirm: [],
   logout: [],
-  changeUserName :['username'],
-  changePassword:['password']
+  changeUserName: ['username'],
+  changePassword: ['password']
 
 })
 
@@ -77,8 +77,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_REQUEST]: request,
   [Types.LOGOUT_REQUEST]: request,
   [Types.LOGIN_SUCCESS]: success,
-  [Types.CHANGE_USER_NAME]:username,
-  [Types.CHANGE_PASSWORD]:password,
+  [Types.CHANGE_USER_NAME]: username,
+  [Types.CHANGE_PASSWORD]: password,
   [Types.GET_TOU]: getTOU,
   [Types.UPDATE_TOU]: updateTOU,
   [Types.CHANGE_AGREE_TERMS_OF_USE]: _changeAgreeTermsOfUse,

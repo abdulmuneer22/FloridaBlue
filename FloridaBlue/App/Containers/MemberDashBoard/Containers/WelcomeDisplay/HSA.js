@@ -47,35 +47,35 @@ class Hsa extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         {
-          this.props.data.currentBalance ?
+          this.props.data.currentBalance
 
-        <View style={{flex: 1}}>
+            ? <View style={{flex: 1}}>
 
-          <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.textHeight}}>
+              <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.textHeight}}>
 
-            <View style={{marginTop:3}}>
-              <Text style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text['en']} :</Text>
+                <View style={{marginTop: 3}}>
+                  <Text style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text['en']} :</Text>
+                </View>
+                <View style={{marginLeft: 10}}>
+                  <Text style={styles.hsaTextStyle2}>${this.props.data.currentBalance.value}</Text>
+                </View>
+              </View>
+              <View style={styles.row_1}>
+                <View style={styles.col_1}>
+                  <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text['en']}</Text>
+                  <Text style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
+                </View>
+
+                <View style={styles.col_1}>
+                  <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text['en']}</Text>
+                  <Text style={styles.hsaTextStyle2}>${this.props.data.distribution.value}</Text>
+                </View>
+              </View>
+
+              <Image style={styles.hsaBg} source={Images.hsaBg} />
+
             </View>
-            <View style={{marginLeft: 10}}>
-              <Text style={styles.hsaTextStyle2}>${this.props.data.currentBalance.value}</Text>
-            </View>
-          </View>
-          <View style={styles.row_1}>
-            <View style={styles.col_1}>
-              <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text['en']}</Text>
-              <Text style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
-            </View>
-
-            <View style={styles.col_1}>
-              <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text['en']}</Text>
-              <Text style={styles.hsaTextStyle2}>${this.props.data.distribution.value}</Text>
-            </View>
-          </View>
-
-          <Image style={styles.hsaBg} source={Images.hsaBg} />
-
-        </View>
-        :<View/>
+        : <View />
       }
       </View>
     )

@@ -48,7 +48,7 @@ export default StyleSheet.create({
   chartWrapper: {
     //   backgroundColor : 'yellow',
     flex: 2,
-    marginBottom:25
+    marginBottom: 25
   },
   cardStyle: {
     flexWrap: 'wrap',
@@ -60,7 +60,7 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin
   },
   wrapper: {
-    backgroundColor: Colors.snow,
+    backgroundColor: Colors.snow
 
   },
   myplanTilesStyle: {

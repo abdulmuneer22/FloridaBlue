@@ -19,6 +19,7 @@ import Flb from '../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import LoginActions from '../../Redux/LoginRedux'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { AsyncStorage } from 'react-native'
 
 var {height, width} = Dimensions.get('window')
 const window = Dimensions.get('window')
@@ -104,8 +105,11 @@ class SettingsContent extends Component {
 
   handlePressLogout = () => {
     this.toggleDrawer()
+    console.log("clear the store before logout")
+    AsyncStorage.clear();
     this.props.attemptLogout()
     NavigationActions.login()
+    
   }
 
   render () {

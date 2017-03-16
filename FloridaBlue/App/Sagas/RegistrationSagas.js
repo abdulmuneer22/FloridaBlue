@@ -8,8 +8,9 @@ import RegistrationActions from '../Redux/RegistrationRedux'
 
 var getReasonMessage = function (status) {
   let messages = {
-    "000": "",
-    "002": "Looks like you're already signed up. Click Continue to look up your user ID and create a new password.",
+    "000": "Success",
+    "-1000": "Oops! Looks like we're having trouble with your request. Click Support for help.",
+    "002": "Looks like you're already signed up. Enter your user ID and password to log in.",
     "004": "Oops! We can't find you in our system based on your response. Click Support for help.",
     "005": "Oops! Looks like we're having trouble with your request. Click Support for help.",
     "006": "Oops! Looks like we're having trouble with your request. Click Support for help.",

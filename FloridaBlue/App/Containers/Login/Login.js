@@ -2,16 +2,15 @@ import React, { Component } from 'react'
 import {
   Text,
   View,
+  Keyboard,
   TextInput,
   TouchableOpacity,
   Image,
   Modal,
-  ScrollView,
   Dimensions
 } from 'react-native'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import dismissKeyboard from 'react-native-dismiss-keyboard'
 
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -25,7 +24,7 @@ import styles from './LoginStyle'
 import { Images, Metrics, Colors } from '../../Themes'
 // import {FlbIcon} from'./FlbIcon'
 import I18n from 'react-native-i18n'
-import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import LoginView from './LoginView'
 import LoginButtonView from './LoginButtonView'
 import LogoView from './LogoView'
@@ -72,16 +71,16 @@ class Login extends Component {
   }
 
   _handleLogin () {
-    onPress = {dismissKeyboard}
+    Keyboard.dismiss()
     var username = this.props.username
     var password = this.props.password
 
     if (!username && !password) {
       alert('Please enter your user ID/Password.')
-    }else
+    } else
     if (!username && password) {
       alert('Please enter your user ID.')
-    }else
+    } else
     if (username && !password) {
       alert('Please enter your password.')
     } else {
@@ -255,7 +254,7 @@ class Login extends Component {
                 <MKTextField
                   ref='username'
                   style={styles.textField}
-                  textInputStyle={{flex :1}}
+                  textInputStyle={{flex: 1}}
                   keyboardType='default'
                   returnKeyType='next'
                   autoCapitalize='none'
@@ -271,13 +270,13 @@ class Login extends Component {
                 <MKTextField
                   ref='password'
                   style={styles.textField}
-                  textInputStyle={{flex :1}}
+                  textInputStyle={{flex: 1}}
                   keyboardType='default'
                   returnKeyType='done'
                   autoCapitalize='none'
                   autoCorrect={false}
-                  secureTextEntry={true}
-                  password={true}
+                  secureTextEntry
+                  password
                   onChangeText={this.props.handleChangePassword}
                   value={this.props.password}
                   underlineColorAndroid={Colors.coal}
@@ -339,7 +338,7 @@ const mapStateToProps = (state) => {
     termsOfUse: state.member.termsOfUse,
     merror: state.member.error,
     username: state.login.username,
-    password :state.login.password
+    password: state.login.password
   }
 }
 

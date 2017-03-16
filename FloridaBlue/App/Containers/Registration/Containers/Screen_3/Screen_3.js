@@ -3,8 +3,7 @@
 import React, { PropTypes } from 'react'
 import ReactNative, {
   Image,
-  KeyboardAvoidingView,
-  ScrollView,
+  Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
@@ -16,7 +15,7 @@ import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
 // external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
-import { MKTextField, MKColor } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // Styles
@@ -41,12 +40,17 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   })
   .build()
 
+const SingleColorSpinner = MKSpinner.singleColorSpinner()
+.build()
+
 class Screen_3 extends React.Component {
   _handleBack () {
+    Keyboard.dismiss()
     NavigationActions.pop()
   }
 
   _handleNext () {
+    Keyboard.dismiss()
     var enterCode = this.props.enterCode
 
     if (!enterCode) {
@@ -92,7 +96,7 @@ class Screen_3 extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps>
           <Image source={Images.registrationStep3Hdr} style={styles.headerImage} />
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
@@ -139,11 +143,12 @@ class Screen_3 extends React.Component {
                 <Image source={Images.backButton} />
               </TouchableOpacity>
             </View>
+            {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> :
             <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButtonGreen} />
               </TouchableOpacity>
-            </View>
+            </View>}
           </View>
           <View style={styles.row}>
             <View>
