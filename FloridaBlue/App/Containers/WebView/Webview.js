@@ -62,21 +62,27 @@ class Webview extends Component {
         {this._renderHeader()}
         <WebView
           source={redirect}
-          javaScriptEnabled
-          domStorageEnabled
+          javaScriptEnabled={true}
+          domStorageEnabled={true}
           injectedJavaScript={jsForInjection}
-          allowUrlRedirect
-          startInLoadingState
-          contentInset={{top: -40, left: 0, bottom: 0, right: 0}}
+          onNavigationStateChange={this.onNavigationStateChange}
+          startInLoadingState={true}
+          contentInset={{top: 0, left: 0, bottom: 0, right: 0}}
               />
       </View>
     )
   }
 }
-onShouldStartLoadWithRequest = (event) => {
-    // Implement any custom loading logic here, don't forget to return!
-
-  return true
+onNavigationStateChange = (navState) => {
+  console.log("Nav state changed..")
+    this.setState({
+      backButtonEnabled: navState.canGoBack,
+      forwardButtonEnabled: navState.canGoForward,
+      url: navState.url,
+      status: navState.title,
+      loading: navState.loading,
+      scalesPageToFit: true
+    });
 }
 goBack = () => {
   this.refs[WEBVIEW_REF].goBack()
