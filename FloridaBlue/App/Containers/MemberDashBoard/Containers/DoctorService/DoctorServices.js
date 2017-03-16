@@ -44,7 +44,9 @@ class DoctorServices extends Component {
 
     console.log('tile' + JSON.stringify(tile))
     console.log('tiles' + JSON.stringify(tiles))
-
+    //console.log("checking for switch options" , this.props.data.emergencyMedicalCareServices);
+    const switchItems = this.props.data.emergencyMedicalCareServices
+    console.log("checking for switch options" , switchItems);
     return (
 
       <View style={styles.container}>
@@ -61,15 +63,18 @@ class DoctorServices extends Component {
                    <Switch
                      leftActive={this.props.leftActive}
                      rightActive={this.props.rightActive}
+                     preferredActive={this.props.preferredActive}
                      attemptHandleLeft={this.props.attemptHandleLeft}
-                     attemptHandleRight={this.props.attemptHandleRight} />
+                     attemptHandleRight={this.props.attemptHandleRight}
+                     attemptHandlePreferred={this.props.attemptHandlePreferred} />
                  </View>
                  <View>
                    <Card
                      data={this.props.data}
                      objectName={this.props.objectName}
                      leftActive={this.props.leftActive}
-                     rightActive={this.props.rightActive} />
+                     rightActive={this.props.rightActive}
+                     preferredActive={this.props.preferredActive}/>
                  </View>
                </View>
              : <View style={styles.spinnerView}>

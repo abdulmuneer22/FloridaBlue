@@ -113,6 +113,28 @@ class SettingsContent extends Component {
   }
 
   render () {
+
+    renderItem = () => {
+      console.log(this.props.visibilityRules);
+      //if(this.props.visibilityRules.claims &&)
+      var item = this.props.visibilityRules
+      return(
+        <View>
+        {
+          item.benefits ?
+          <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benfits</Text>
+           :
+           null
+        }
+        {
+          item.claims ?
+          <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
+          :
+          null
+        }
+        </View>
+      )
+    }
     return (
       <ScrollView style={[styles.wrapper]}>
         <View style={styles.options}>
@@ -142,10 +164,11 @@ class SettingsContent extends Component {
 
             {
               this.state.hpActive
+                ?
 
-                ? <View style={{marginLeft: 20}}>
-                  <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
-                  <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
+                <View style={{marginLeft: 20}}>
+                  <Text style={styles.subheading} onPress={this.handlePressPlans}>My Plan</Text>
+                  {renderItem()}
                 </View>
             : null
           }
@@ -167,16 +190,27 @@ class SettingsContent extends Component {
                   this.toggleDrawer()
                 }
               }
-              return (
+              //console.log("support id checking", tile);
+              renderItem = () =>{
+                if(tile.tileId != null && tile.tileId !== "support" && tile.tileId.indexOf("benefits") == -1  ){
+                return(
+                    <View>
+                      <Text style={styles.heading}>{ tile.tileName['en']}</Text>
+                      <Divider />
+                    </View>
+                )
+              }
+              }
+              return(
+                <View key={i}>
 
                 <TouchableOpacity onPress={onItemPress.bind(this)} key={i}>
-                  <View>
-                    <Text style={styles.heading}>{tile.tileName['en']}</Text>
-
-                    <Divider />
-                  </View>
+                  {renderItem()}
                 </TouchableOpacity>
+
+                </View>
               )
+
             })
             : null
           }

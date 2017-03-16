@@ -63,7 +63,7 @@ class MyPlanSwiper extends Component {
     }
 
     return (
-      <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.40))} style={styles.wrapper} showsButtons>
+      <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.42))} style={styles.wrapper} showsButtons>
         {this.getChildrenOptions(this.props.data).map((network, i) => {
            console.log('children options are', this.getChildrenOptions(this.props.data))
            console.log('planbenefits length', Object.keys(network.planBenefits).length)
@@ -78,7 +78,7 @@ class MyPlanSwiper extends Component {
                  {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].title.en : 'No Plan Benfits' }
                </Text>
                <View style={styles.dataContainer}>
-                 <View style={{alignItems: 'center', justifyContent: 'center', flex: 0.3, marginTop: 30}}>
+                 <View style={{alignItems: 'center', justifyContent: 'center', flex: 0.4, marginTop: 30}}>
                    <SemiCircle
                      pieWidth={150}
                      pieHeight={150}
@@ -89,7 +89,7 @@ class MyPlanSwiper extends Component {
                      barBottomColor={Colors.flBlue.grey2}
                      percent={Object.keys(network.planBenefits).length > 0 ? network.remain / network.value : 0} />
                  </View>
-                 <View style={{flex: 0.7}}>
+                 <View style={{flex: 0.6}}>
                    {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
                       return <View style={{flexDirection: 'row'}} key={i}>
                                <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029, fontFamily: Fonts.type.subHeaderFont}}>

@@ -21,7 +21,20 @@ class Switch extends Component {
   }
 
   render () {
+
+    console.log("checking switch from switch" , this.props.switchItems);
+
+
     var _this = this
+
+    var oneTabLeftActiveStyle = {
+    //  borderBottomLeftRadius: 15,
+      borderColor: Colors.flBlue.ocean,
+    //  borderTopLeftRadius: 15,
+      padding: 5,
+      backgroundColor: Colors.flBlue.ocean,
+      width: Metrics.screenWidth * 0.50
+    }
 
     var twoTabLeftActiveStyle = {
       borderBottomLeftRadius: 15,
@@ -42,9 +55,20 @@ class Switch extends Component {
       backgroundColor: Colors.flBlue.ocean,
       width: Metrics.screenWidth * 0.40
     }
+    var oneTextActiveStyle = {
+      color: 'white',
+      alignSelf: 'center'
+    }
     var twoTextActiveStyle = {
       color: 'white',
       alignSelf: 'center'
+    }
+    var oneTabInactiveStyle = {
+      backgroundColor: Colors.flBlue.ocean,
+      padding: 4,
+      backgroundColor: 'white',
+      borderRadius: 25,
+      width: Metrics.screenWidth * 0.40
     }
     var twoTabInactiveStyle = {
       backgroundColor: Colors.flBlue.ocean,
@@ -54,6 +78,10 @@ class Switch extends Component {
       width: Metrics.screenWidth * 0.40
     }
 
+    var oneTextInactiveStyle = {
+      color: 'darkgrey',
+      alignSelf: 'center'
+    }
     var twoTextInactiveStyle = {
       color: 'darkgrey',
       alignSelf: 'center'
@@ -82,6 +110,14 @@ class Switch extends Component {
       color: 'darkgrey',
       marginRight: 5
     }
+
+    var oneTabHeaderStyle = {
+      marginTop: 15,
+      borderRadius: 25,
+      borderWidth: 6,
+      borderColor: Colors.flBlue.ocean
+    }
+
     var twoTabHeaderStyle = {
       flexDirection: 'row',
       marginTop: 15,
@@ -94,6 +130,10 @@ class Switch extends Component {
       flexDirection: 'row',
       marginTop: 15
     }
+
+    let isLeftActive = _this.props.leftActive;
+    let rightActive = _this.props.rightActive;
+    let preferredActive = _this.props.preferredActive;
         /*
     var injectedStyle     = twoTableftActiveStyle
     var inactiveStyle     = twoTabInactiveStyle
@@ -111,15 +151,6 @@ class Switch extends Component {
       return (
         <View style={injectHeaderStyle}>
 
-          <TouchableOpacity style={_this.props.preferredActive ? injectedStyle
-              : inactiveStyle} onPress={() => { _this.handleClickPreferred() }}>
-            <Text style={{
-              color: _this.props.preferredActive ? 'blue' : 'darkgrey',
-              marginRight: 5
-            }}>Preferred Network
-              </Text>
-          </TouchableOpacity>
-
           <TouchableOpacity style={_this.props.leftActive ? injectedStyle
               : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
             <Text style={_this.props.leftActive ? injectedTextStyle
@@ -133,6 +164,14 @@ class Switch extends Component {
                   : inactiveTextStyle
                 }>Out Of Network
                 </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={_this.props.preferredActive ? injectedStyle
+              : inactiveStyle} onPress={() => { _this.handleClickPreferred() }}>
+            <Text style={{
+              color: _this.props.preferredActive ? 'blue' : 'darkgrey',
+              marginRight: 5
+            }}>Preferred Network
+              </Text>
           </TouchableOpacity>
 
         </View>
@@ -166,28 +205,47 @@ class Switch extends Component {
 
       </View>
       )
+}
+      var _oneTabView = function (
+          injectedStyle,
+          inactiveStyle,
+          injectedTextStyle,
+          inactiveTextStyle,
+          injectHeaderStyle
+      ) {
+        return (<View style={injectHeaderStyle}>
+
+          <TouchableOpacity style={_this.props.leftActive ? injectedStyle
+          : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
+            <Text style={_this.props.leftActive ? injectedTextStyle
+          : inactiveTextStyle}>In Network
+          </Text>
+          </TouchableOpacity>
+
+        </View>
+        )
     }
 
     return (
       <View style={{flex: 1}}>
 
         <View style={{flex: 1}}>
-          {this.props.leftActive
-          ? _twoTabView(
-          twoTabLeftActiveStyle,
-          twoTabInactiveStyle,
-          twoTextActiveStyle,
-          twoTextInactiveStyle,
-          twoTabHeaderStyle
-        )
-        : _twoTabView(
-        twoTabRightActiveStyle,
+        {this.props.leftActive
+        ? _twoTabView(
+        twoTabLeftActiveStyle,
         twoTabInactiveStyle,
         twoTextActiveStyle,
         twoTextInactiveStyle,
         twoTabHeaderStyle
-        )
-      }
+      )
+      : _twoTabView(
+      twoTabRightActiveStyle,
+      twoTabInactiveStyle,
+      twoTextActiveStyle,
+      twoTextInactiveStyle,
+      twoTabHeaderStyle
+      )
+    }
         </View>
       </View>
     )

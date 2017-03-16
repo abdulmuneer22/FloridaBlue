@@ -51,6 +51,8 @@ class Card extends Component {
           {_.get(network, 'header_text.en', '')}
         </Text>
 
+
+
         {
           speciality.map(specialities => {
             const {speciality_text, speciality_value} = specialities
@@ -83,6 +85,10 @@ class Card extends Component {
               </View>)
           })
         }
+
+        <Text style={styles.footerText}>
+          {_.get(network, 'footer_note.en', '')}
+        </Text> 
 
       </View>
 

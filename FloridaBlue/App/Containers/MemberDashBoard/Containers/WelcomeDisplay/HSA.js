@@ -29,7 +29,8 @@ class Hsa extends Component {
         {NavItems.backButton()}
       </View>
       <Text style={styles.hsaheaderTextStyle}>
-        {this.props.data ? this.props.data.title['en'] : <Text />}</Text>
+          Health Savings Account
+        </Text>
       <View style={{marginRight: Metrics.screenWidth * 0.35}}>
         {NavItems.settingsButton()}
       </View>
@@ -45,9 +46,13 @@ class Hsa extends Component {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
+        {
+          this.props.data.currentBalance ?
 
         <View style={{flex: 1}}>
+
           <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.textHeight}}>
+
             <View style={{marginTop:3}}>
               <Text style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text['en']} :</Text>
             </View>
@@ -68,7 +73,10 @@ class Hsa extends Component {
           </View>
 
           <Image style={styles.hsaBg} source={Images.hsaBg} />
+
         </View>
+        :<View/>
+      }
       </View>
     )
   }
