@@ -32,7 +32,8 @@ class MyPlanSwiper extends Component {
       if (Object.keys(inNetwork.planBenefits) > 0) {
         inNetwork.planBenefits[0].benefit.map(function (temObj) {
           myPlan.push(temObj)
-        })}
+        })
+      }
     }
 
     if (this.props.data.annualDeductible.outNetwork) {
@@ -42,7 +43,8 @@ class MyPlanSwiper extends Component {
         outNetwork.planBenefits[0].benefit.map(function (temObj) {
           console.log(temObj)
           myPlan.push(temObj)
-        })}
+        })
+      }
     }
 
     if (this.props.data.oop.inNetwork) {
@@ -51,7 +53,8 @@ class MyPlanSwiper extends Component {
       if (Object.keys(inNetwork.planBenefits) > 0) {
         inNetwork.planBenefits[0].benefit.map(function (temObj) {
           myPlan.push(temObj)
-        })}
+        })
+      }
     }
     if (this.props.data.oop.outNetwork) {
       var outNetwork = this.props.data.oop.outNetwork
@@ -59,54 +62,55 @@ class MyPlanSwiper extends Component {
       if (Object.keys(outNetwork.planBenefits) > 0) {
         outNetwork.planBenefits[0].benefit.map(function (temObj) {
           myPlan.push(temObj)
-        })}
+        })
+      }
     }
 
     return (
       <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.42))} style={styles.wrapper} showsButtons>
         {this.getChildrenOptions(this.props.data).map((network, i) => {
-           console.log('children options are', this.getChildrenOptions(this.props.data))
-           console.log('planbenefits length', Object.keys(network.planBenefits).length)
+          console.log('children options are', this.getChildrenOptions(this.props.data))
+          console.log('planbenefits length', Object.keys(network.planBenefits).length)
      //      const planBenefits = _.head(network.planBenefits)
     //       console.log('plan benefits', planBenefits)
-           return (
-             <View style={styles.headerStyle} key={i}>
-               <Text style={styles.headerText}>
-                 {network.title.en}
-               </Text>
-               <Text style={styles.subHeader}>
-                 {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].title.en : 'No Plan Benfits' }
-               </Text>
-               <View style={styles.dataContainer}>
-                 <View style={{alignItems: 'center', justifyContent: 'center', flex: 0.4, marginTop: 30}}>
-                   <SemiCircle
-                     pieWidth={150}
-                     pieHeight={150}
-                     width={250}
-                     height={180}
-                     barWidth={10}
-                     barTopColor={Colors.flBlue.ocean}
-                     barBottomColor={Colors.flBlue.grey2}
-                     percent={Object.keys(network.planBenefits).length > 0 ? network.remain / network.value : 0} />
-                 </View>
-                 <View style={{flex: 0.6}}>
-                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
-                      return <View style={{flexDirection: 'row'}} key={i}>
-                               <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029, fontFamily: Fonts.type.subHeaderFont}}>
-                                 {benefit ? benefit.label.en : 0}:
+          return (
+            <View style={styles.headerStyle} key={i}>
+              <Text style={styles.headerText}>
+                {network.title.en}
+              </Text>
+              <Text style={styles.subHeader}>
+                {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].title.en : 'No Plan Benfits' }
+              </Text>
+              <View style={styles.dataContainer}>
+                <View style={{alignItems: 'center', justifyContent: 'center', flex: 0.4, marginTop: 30}}>
+                  <SemiCircle
+                    pieWidth={150}
+                    pieHeight={150}
+                    width={250}
+                    height={180}
+                    barWidth={10}
+                    barTopColor={Colors.flBlue.ocean}
+                    barBottomColor={Colors.flBlue.grey2}
+                    percent={Object.keys(network.planBenefits).length > 0 ? network.remain / network.value : 0} />
+                </View>
+                <View style={{flex: 0.6}}>
+                  {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
+                    return <View style={{flexDirection: 'row'}} key={i}>
+                      <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029, fontFamily: Fonts.type.subHeaderFont}}>
+                        {benefit ? benefit.label.en : 0}:
                                </Text>
-                               <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030, fontFamily: Fonts.type.subHeaderFont, color: Colors.flBlue.grass}}>
+                      <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030, fontFamily: Fonts.type.subHeaderFont, color: Colors.flBlue.grass}}>
                                  $
                                  {benefit ? benefit.value : 0}
-                               </Text>
-                             </View>
-                    }) : <View></View>}
-                 </View>
-               </View>
-             </View>
-           )
-           i += 1
-         })}
+                      </Text>
+                    </View>
+                  }) : <View />}
+                </View>
+              </View>
+            </View>
+          )
+          i += 1
+        })}
       </Swiper>
     )
   }

@@ -42,7 +42,7 @@ class PlanBenefits extends Component {
   }
 
   render () {
-     var objectName = this.props.objectName
+    var objectName = this.props.objectName
     console.log('root testing')
     var i = 0
     var tileCard = []
@@ -64,30 +64,29 @@ class PlanBenefits extends Component {
           }}>
 
             {this.props.data && this.props.data.tiles ? this.props.data.tiles.map((tile, i) => {
-                const index = i + 1
-                const TileCount = this.props.data.tiles.length
-      
+              const index = i + 1
+              const TileCount = this.props.data.tiles.length
 
-        return (
-                  <Card
-                    i={i}
-                    key={index}
-                    title={tile.tileName['en']}
-                    tileType={tile.tileType}
-                    icon={tile.tileIcon}
-                    image={tile.backgroundImage}
-                    CardCount={TileCount}
-                    webURL={tile.tileType !== 'native' ? tile.tileUrl : null}
-                    routerName={tile.tileType === 'native' ? tile.routerName : null}
-                    objectName={tile.tileId}
+              return (
+                <Card
+                  i={i}
+                  key={index}
+                  title={tile.tileName['en']}
+                  tileType={tile.tileType}
+                  icon={tile.tileIcon}
+                  image={tile.backgroundImage}
+                  CardCount={TileCount}
+                  webURL={tile.tileType !== 'native' ? tile.tileUrl : null}
+                  routerName={tile.tileType === 'native' ? tile.routerName : null}
+                  objectName={tile.tileId}
                       />
-                )
-              } 
-          ):<View style={styles.spinnerView}>
-        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
-      </View> }
-        
+              )
+            }
+          ) : <View style={styles.spinnerView}>
+            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+            <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          </View> }
+
           </View>
           <Image source={Images.tagLine} style={{width: window.screenWidth}} />
         </ScrollView>

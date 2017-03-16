@@ -47,7 +47,7 @@ export default StyleSheet.create({
     // shadowOffset: {width: 5, height: 5},
     // shadowRadius: 15,
     borderWidth: 6,
-    marginTop:3,
+    marginTop: 3,
     borderColor: Colors.snow
 
     // borderTopWidth:1

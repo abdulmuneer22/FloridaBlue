@@ -21,9 +21,7 @@ class Switch extends Component {
   }
 
   render () {
-
-    console.log("checking switch from switch" , this.props.switchItems);
-
+    console.log('checking switch from switch', this.props.switchItems)
 
     var _this = this
 
@@ -131,9 +129,9 @@ class Switch extends Component {
       marginTop: 15
     }
 
-    let isLeftActive = _this.props.leftActive;
-    let rightActive = _this.props.rightActive;
-    let preferredActive = _this.props.preferredActive;
+    let isLeftActive = _this.props.leftActive
+    let rightActive = _this.props.rightActive
+    let preferredActive = _this.props.preferredActive
         /*
     var injectedStyle     = twoTableftActiveStyle
     var inactiveStyle     = twoTabInactiveStyle
@@ -205,32 +203,32 @@ class Switch extends Component {
 
       </View>
       )
-}
-      var _oneTabView = function (
+    }
+    var _oneTabView = function (
           injectedStyle,
           inactiveStyle,
           injectedTextStyle,
           inactiveTextStyle,
           injectHeaderStyle
       ) {
-        return (<View style={injectHeaderStyle}>
+      return (<View style={injectHeaderStyle}>
 
-          <TouchableOpacity style={_this.props.leftActive ? injectedStyle
+        <TouchableOpacity style={_this.props.leftActive ? injectedStyle
           : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
-            <Text style={_this.props.leftActive ? injectedTextStyle
+          <Text style={_this.props.leftActive ? injectedTextStyle
           : inactiveTextStyle}>In Network
           </Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
 
-        </View>
-        )
+      </View>
+      )
     }
 
     return (
       <View style={{flex: 1}}>
 
         <View style={{flex: 1}}>
-        {this.props.leftActive
+          {this.props.leftActive
         ? _twoTabView(
         twoTabLeftActiveStyle,
         twoTabInactiveStyle,

@@ -57,7 +57,7 @@ export default StyleSheet.create({
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '500',
-    textAlign:'center'
+    textAlign: 'center'
   },
   cardStyle: {
     width: window.width,
@@ -99,7 +99,7 @@ export default StyleSheet.create({
   footerText: {
     // flexWrap:'wrap',
     marginLeft: Metrics.baseMargin,
-    marginRight:Metrics.baseMargin,
+    marginRight: Metrics.baseMargin,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     // fontWeight: '600',
     color: Colors.flBlue.grey5,

@@ -103,8 +103,8 @@ export default StyleSheet.create({
 
   },
 
-   textField: {
-   height : 40
+  textField: {
+    height: 40
   }
 
 })

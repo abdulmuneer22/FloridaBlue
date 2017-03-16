@@ -45,10 +45,10 @@ export function * login (api, {username, password}) {
 export function * logout (apiforlogout) {
   const response = yield call(apiforlogout.getLogout)
   console.log('response of logout' + response)
-  if(response.status=='200'){
+  if (response.status == '200') {
     yield put(LoginActions.logout())
-  }else {
-     var error = 'Not Successfully Logout'
+  } else {
+    var error = 'Not Successfully Logout'
     yield put(LoginActions.loginFailure(error))
   }
 }

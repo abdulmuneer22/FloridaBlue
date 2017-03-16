@@ -27,7 +27,7 @@ class MyPlanCard extends Component {
     console.log(this.props.data)
     var action
     if (this.props.data.tileType == 'webview') {
-      action = NavigationActions.MyView({responseURL:this.props.data.tileUrl})
+      action = NavigationActions.MyView({responseURL: this.props.data.tileUrl})
     } else if (this.props.data.tileType == 'native') {
       var routerName = this.props.data.routerName
       action = NavigationActions[routerName]()
@@ -37,7 +37,7 @@ class MyPlanCard extends Component {
   render () {
     return (
       <TouchableOpacity onPress={() => {
-       this.customNavigation()
+        this.customNavigation()
       }}>
         <Image source={Images[this.props.data.backgroundImage]} style={styles.summary} >
           <View style={styles.healthPlanView}>

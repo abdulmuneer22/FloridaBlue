@@ -39,21 +39,19 @@ class Card extends Component {
     console.log('card of innetwork' + JSON.stringify(this.props.leftActive))
     // looping through cards to create the view
     // don't generate any markup if card object is null
-    if(card){
-    var i = 0
-    card.map(function (network, i) {
-      var speciality = []
-      speciality = network['speciality']
+    if (card) {
+      var i = 0
+      card.map(function (network, i) {
+        var speciality = []
+        speciality = network['speciality']
 
-      cards.push(<View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} key={i} >
+        cards.push(<View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} key={i} >
 
-        <Text style={styles.h1}>
-          {_.get(network, 'header_text.en', '')}
-        </Text>
+          <Text style={styles.h1}>
+            {_.get(network, 'header_text.en', '')}
+          </Text>
 
-
-
-        {
+          {
           speciality.map(specialities => {
             const {speciality_text, speciality_value} = specialities
             const style1 = {marginTop: 5, width: Metrics.screenWidth}
@@ -86,16 +84,16 @@ class Card extends Component {
           })
         }
 
-        <Text style={styles.footerText}>
-          {_.get(network, 'footer_note.en', '')}
-        </Text> 
+          <Text style={styles.footerText}>
+            {_.get(network, 'footer_note.en', '')}
+          </Text>
 
-      </View>
+        </View>
 
       )
-      i += 1
-      return cards
-    })
+        i += 1
+        return cards
+      })
     }
 
     return (

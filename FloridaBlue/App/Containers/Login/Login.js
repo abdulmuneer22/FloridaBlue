@@ -78,10 +78,10 @@ class Login extends Component {
 
     if (!username && !password) {
       alert('Please enter your user ID/Password.')
-    }else
+    } else
     if (!username && password) {
       alert('Please enter your user ID.')
-    }else
+    } else
     if (username && !password) {
       alert('Please enter your password.')
     } else {
@@ -255,7 +255,7 @@ class Login extends Component {
                 <MKTextField
                   ref='username'
                   style={styles.textField}
-                  textInputStyle={{flex :1}}
+                  textInputStyle={{flex: 1}}
                   keyboardType='default'
                   returnKeyType='next'
                   autoCapitalize='none'
@@ -271,13 +271,13 @@ class Login extends Component {
                 <MKTextField
                   ref='password'
                   style={styles.textField}
-                  textInputStyle={{flex :1}}
+                  textInputStyle={{flex: 1}}
                   keyboardType='default'
                   returnKeyType='done'
                   autoCapitalize='none'
                   autoCorrect={false}
-                  secureTextEntry={true}
-                  password={true}
+                  secureTextEntry
+                  password
                   onChangeText={this.props.handleChangePassword}
                   value={this.props.password}
                   underlineColorAndroid={Colors.coal}
@@ -339,7 +339,7 @@ const mapStateToProps = (state) => {
     termsOfUse: state.member.termsOfUse,
     merror: state.member.error,
     username: state.login.username,
-    password :state.login.password
+    password: state.login.password
   }
 }
 
