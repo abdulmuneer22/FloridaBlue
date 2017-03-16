@@ -3,8 +3,7 @@
 import React, { PropTypes } from 'react'
 import ReactNative, {
   Image,
-  KeyboardAvoidingView,
-  ScrollView,
+  Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
@@ -49,10 +48,13 @@ setTheme({checkboxStyle: {
 
 class Screen_2 extends React.Component {
   _handleBack () {
+    Keyboard.dismiss()
     NavigationActions.pop()
   }
 
   _handleNext () {
+    Keyboard.dismiss()
+
     var confirmEmail = this.props.confirmEmail
     var createUserId = this.props.createUserId
     var password = this.props.password
@@ -90,7 +92,7 @@ class Screen_2 extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps>
           <Image source={Images.registrationStep2Hdr} style={styles.headerImage} />
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>

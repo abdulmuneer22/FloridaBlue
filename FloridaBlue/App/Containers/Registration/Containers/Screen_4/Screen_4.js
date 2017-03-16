@@ -3,8 +3,7 @@
 import React, { PropTypes } from 'react'
 import ReactNative, {
   Image,
-  KeyboardAvoidingView,
-  ScrollView,
+  Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
@@ -42,10 +41,13 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
 
 class Screen_4 extends React.Component {
   _handleBack () {
+    Keyboard.dismiss()
     NavigationActions.pop()
   }
 
   _handleNext () {
+    Keyboard.dismiss()
+
     var securityHint1 = this.props.securityHint1
     var securityAnswer1 = this.props.securityAnswer1
     var securityHint2 = this.props.securityHint2
@@ -79,7 +81,7 @@ class Screen_4 extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps>
           <Image source={Images.registrationStep4Hdr} style={styles.headerImage} />
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('setUpSecurityQuestions')}</Text>

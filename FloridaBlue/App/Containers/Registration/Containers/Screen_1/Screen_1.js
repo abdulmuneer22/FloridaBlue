@@ -3,8 +3,7 @@
 import React, { PropTypes } from 'react'
 import ReactNative, {
   Image,
-  KeyboardAvoidingView,
-  ScrollView,
+  Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
@@ -52,19 +51,21 @@ class Screen_1 extends React.Component {
   */
 
   _handleNext () {
+    Keyboard.dismiss()
+
     var contractNumber = this.props.contractNumber
     var firstName = this.props.firstName
     var lastName = this.props.lastName
     var dateOfBirth = this.props.dateOfBirth
     var zipCode = this.props.zipCode
 
-    var dateTest = new RegExp('\\d{2}\/\\d{2}\/\\d{4}')
-    if (!dateTest.test(dateOfBirth)) {
-      this.props.handleChangeIdentificationStatus('999')
-      this.props.handleChangeIdentificationStatusMessage('Please enter a valid date - MM/DD/YYYY')
-    } else if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
+    var dateTest = new RegExp('^\\d{2}\/\\d{2}\/\\d{4}$')
+    if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
       this.props.handleChangeIdentificationStatus('999')
       this.props.handleChangeIdentificationStatusMessage('Please enter values in all fields')
+    } else if(!dateTest.test(dateOfBirth)) {
+      this.props.handleChangeIdentificationStatus('999')
+      this.props.handleChangeIdentificationStatusMessage('Please enter a valid date - MM/DD/YYYY')
     } else {
       this.props.verifyIdentification(this.props)
     }
@@ -88,17 +89,19 @@ class Screen_1 extends React.Component {
   }
 
   _handleFindMemberId () {
+    Keyboard.dismiss()
     NavigationActions.memberid()
   }
 
   _handleBack () {
+    Keyboard.dismiss()
     NavigationActions.pop()
   }
 
   render () {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps>
           <Image source={Images.registrationStep1Hdr} style={styles.headerImage} />
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('personalInformation')}</Text>
@@ -125,9 +128,6 @@ class Screen_1 extends React.Component {
               autoCorrect={false}
               onChangeText={this.props.handleChangeContractNumber}
               underlineColorAndroid={Colors.coal}
-
-              onSubmitEditing={() => this.refs.contractNumber.focus()}
-
               onSubmitEditing={(event) => {
                 this.refs.firstName.focus()
               }}

@@ -3,8 +3,7 @@
 import React, { PropTypes } from 'react'
 import ReactNative, {
   Image,
-  KeyboardAvoidingView,
-  ScrollView,
+  Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
@@ -43,10 +42,12 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
 
 class Screen_3 extends React.Component {
   _handleBack () {
+    Keyboard.dismiss()
     NavigationActions.pop()
   }
 
   _handleNext () {
+    Keyboard.dismiss()
     var enterCode = this.props.enterCode
 
     if (!enterCode) {
@@ -92,7 +93,7 @@ class Screen_3 extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps>
           <Image source={Images.registrationStep3Hdr} style={styles.headerImage} />
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
