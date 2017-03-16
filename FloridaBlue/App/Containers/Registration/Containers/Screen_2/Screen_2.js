@@ -3,8 +3,7 @@
 import React, { PropTypes } from 'react'
 import ReactNative, {
   Image,
-  KeyboardAvoidingView,
-  ScrollView,
+  Keyboard,
   Text,
   TextInput,
   TouchableOpacity,
@@ -17,7 +16,7 @@ import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
 // external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
-import { MKTextField, MKColor, MKCheckbox, setTheme } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKCheckbox, MKSpinner, setTheme } from 'react-native-material-kit'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // Styles
@@ -47,12 +46,18 @@ setTheme({checkboxStyle: {
   borderOffColor: Colors.flBlue.ocean
 }})
 
+const SingleColorSpinner = MKSpinner.singleColorSpinner()
+.build()
+
 class Screen_2 extends React.Component {
   _handleBack () {
+    Keyboard.dismiss()
     NavigationActions.pop()
   }
 
   _handleNext () {
+    Keyboard.dismiss()
+
     var confirmEmail = this.props.confirmEmail
     var createUserId = this.props.createUserId
     var password = this.props.password
@@ -90,7 +95,7 @@ class Screen_2 extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps>
           <Image source={Images.registrationStep2Hdr} style={styles.headerImage} />
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
@@ -234,11 +239,12 @@ class Screen_2 extends React.Component {
                 <Image source={Images.backButton} />
               </TouchableOpacity>
             </View>
+            {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> :
             <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButtonGreen} />
               </TouchableOpacity>
-            </View>
+            </View>}
           </View>
           <View style={styles.row}>
             <View>

@@ -2,16 +2,15 @@ import React, { Component } from 'react'
 import {
   Text,
   View,
+  Keyboard,
   TextInput,
   TouchableOpacity,
   Image,
   Modal,
-  ScrollView,
   Dimensions
 } from 'react-native'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import dismissKeyboard from 'react-native-dismiss-keyboard'
 
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -25,7 +24,7 @@ import styles from './LoginStyle'
 import { Images, Metrics, Colors } from '../../Themes'
 // import {FlbIcon} from'./FlbIcon'
 import I18n from 'react-native-i18n'
-import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import LoginView from './LoginView'
 import LoginButtonView from './LoginButtonView'
 import LogoView from './LogoView'
@@ -72,7 +71,7 @@ class Login extends Component {
   }
 
   _handleLogin () {
-    onPress = {dismissKeyboard}
+    Keyboard.dismiss()
     var username = this.props.username
     var password = this.props.password
 
