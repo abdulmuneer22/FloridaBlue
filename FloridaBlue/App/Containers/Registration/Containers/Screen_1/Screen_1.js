@@ -66,7 +66,7 @@ class Screen_1 extends React.Component {
     if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
       this.props.handleChangeIdentificationStatus('999')
       this.props.handleChangeIdentificationStatusMessage('Please enter values in all fields')
-    } else if(!dateTest.test(dateOfBirth)) {
+    } else if (!dateTest.test(dateOfBirth)) {
       this.props.handleChangeIdentificationStatus('999')
       this.props.handleChangeIdentificationStatusMessage('Please enter a valid date - MM/DD/YYYY')
     } else {
@@ -213,8 +213,8 @@ class Screen_1 extends React.Component {
                 <Image source={Images.backButton} />
               </TouchableOpacity>
             </View>
-            {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> :
-            <View style={styles.nextButton}>
+            {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} />
+            : <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButtonGreen} />
               </TouchableOpacity>

@@ -30,9 +30,13 @@ class Card extends Component {
       if (temp1 != null && temp1.inNetwork != null && temp1.inNetwork.networkBenefits != null) {
         card = temp1.inNetwork.networkBenefits
       }
-    } else {
+    } else if (this.props.rightActive) {
       if (temp1 != null && temp1.outNetwork != null && temp1.outNetwork.networkBenefits != null) {
         card = temp1.outNetwork.networkBenefits
+      }
+    } else if (this.props.preferredActive) {
+      if (temp1 != null && temp1.preferredNetwork != null && temp1.preferredNetwork.networkBenefits != null) {
+        card = temp1.preferredNetwork.networkBenefits
       }
     }
 
