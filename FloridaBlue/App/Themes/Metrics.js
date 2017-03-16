@@ -23,7 +23,7 @@ const metrics = {
   // standardHeight: (Platform.OS === 'ios') ?
   buttonRadius: 4,
   icons: {
-    tiny: 15,
+    tiny: 12,
     small: 20,
     xm: 25,
     medium: 30,
@@ -41,6 +41,7 @@ const metrics = {
     xm: 50,
     large: 60,
     xl: 65,
+    xll:70,
     logo: 300
   }
 }

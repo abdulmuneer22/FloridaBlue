@@ -40,12 +40,12 @@ class SupportScreen extends Component {
 
   _renderHeader () {
     return (<Image source={Images.themeHeader} style={styles.headerContainer}>
-      <View style={{marginLeft: Metrics.screenWidth * 0.025}}>
+      <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
       <Text style={styles.headerTextStyle}>Support</Text>
 
-      <View style={{marginRight: Metrics.screenWidth * 0.035}}>
+      <View style={{marginRight:Metrics.baseMargin *  Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View>
 

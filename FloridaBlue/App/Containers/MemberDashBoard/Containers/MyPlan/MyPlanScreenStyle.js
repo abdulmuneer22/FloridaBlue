@@ -11,7 +11,7 @@ export default StyleSheet.create({
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: Metrics.mediumMargin,
+  //  padding: Metrics.mediumMargin,
     // resizeMode:'cover',
     // alignSelf: 'stretch',
     width: Metrics.screenWidth
@@ -41,7 +41,8 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h6,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: '500'
+    fontWeight: '500',
+    textAlign:'center'
   },
 
   chartWrapper: {

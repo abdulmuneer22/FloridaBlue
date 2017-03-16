@@ -50,7 +50,7 @@ class NavigationRouter extends Component {
             <Scene key='screen_3' component={Screen_3} title='Verify Device page' hideNavBar />
             <Scene key='screen_4' component={Screen_4} title='Security page' hideNavBar />
             <Scene key='memberid' component={FindMemberID} title='MemberId page' hideNavBar />
-            <Scene key='confirmation' component={Confirmation} title='Confirmation page'hideNavBar />
+            <Scene  key='confirmation' component={Confirmation} title='Confirmation page'hideNavBar />
             <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNsavBar />
             <Scene key='memberid' component={FindMemberID} title='MemberId page'hideNavBar />
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />

@@ -27,11 +27,15 @@ class DoctorServices extends Component {
 
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-              {NavItems.backButton()}
+              <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
+                {NavItems.backButton()}
+                </View>
               <Text style={styles.headerTextStyle}>
                 Plan Benefits
               </Text>
-              {NavItems.settingsButton()}
+              <View style={{marginRight:Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+                {NavItems.settingsButton()}
+                </View>
             </Image>)
   }
 

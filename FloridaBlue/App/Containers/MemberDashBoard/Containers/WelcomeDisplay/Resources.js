@@ -33,12 +33,12 @@ type LoginScreenProps = {
 class Resources extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-      <View style={{marginLeft: Metrics.screenWidth * 0.025}}>
+      <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
       <Text style={styles.headerTextStyle}>
         Resources</Text>
-      <View style={{marginRight: Metrics.screenWidth * 0.035}}>
+      <View style={{marginRight: Metrics.baseMargin  * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View>
     </Image>)
@@ -86,7 +86,7 @@ class Resources extends Component {
           )
         }
           </View>
-          <Image source={Images.tagLine} style={{width: window.screenWidth}} />
+        
         </ScrollView>
 
       </View>

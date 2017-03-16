@@ -141,7 +141,7 @@ class SettingsContent extends Component {
             <TouchableWithoutFeedback onPress={() => {
               this.setState({hpActive: !this.state.hpActive})
             }}>
-              <View style={{flexDirection: 'row', marginRight: 15, marginTop: 10}}>
+              <View style={{flexDirection: 'row', marginRight: Metrics.mediumMargin, marginTop: Metrics.baseMargin}}>
                 <View style={{flex: 1}}>
                   <Text style={styles.heading1} >My Health Plan</Text>
                 </View>
@@ -150,8 +150,8 @@ class SettingsContent extends Component {
 
               !this.state.hpActive
 
-                ? <Icon name='caret-down' size={25} color='white' />
-              : <Icon name='caret-up' size={25} color='white' />
+                ? <Icon name='caret-down' size={Metrics.icons.xm} color={Colors.snow} />
+              : <Icon name='caret-up' size={Metrics.icons.xm* Metrics.screenWidth*0.0035} color={Colors.snow} />
 
             }
 
@@ -162,7 +162,7 @@ class SettingsContent extends Component {
               this.state.hpActive
                 ?
 
-                <View style={{marginLeft: 20}}>
+                <View style={{marginLeft: Metrics.doubleBaseMargin}}>
                   <Text style={styles.subheading} onPress={this.handlePressPlans}>My Plan</Text>
                   {renderItem()}
                 </View>
@@ -218,14 +218,14 @@ class SettingsContent extends Component {
 
           <View style={styles.myAccountStyle}>
             <View >
-              <Flb name='cog-gear' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
+              <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth*0.0025} color={Colors.flBlue.ocean} />
             </View>
             <Text style={styles.heading2} onPress={this.handlePressSupport}>Support</Text>
           </View>
 
           <View style={styles.myAccountStyle}>
             <View >
-              <Flb name='generic-doc' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
+              <Flb name='generic-doc' size={Metrics.icons.medium * Metrics.screenWidth*0.0025} color={Colors.flBlue.ocean} />
             </View>
 
             <Text style={styles.heading2} onPress={this.handlePressPolicy}>Terms of Use </Text>

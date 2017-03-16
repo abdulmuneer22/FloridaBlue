@@ -252,7 +252,7 @@ export default StyleSheet.create({
   },
   footerImage: {
     // flexDirection: 'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.84),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.82),
      // height : window.height * 0.5,
     // justifyContent: 'center',
     // alignItems: 'center',

@@ -41,8 +41,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.flBlue.grey2,
     height: Metrics.doubleBaseMargin * 10,
     width: Metrics.screenWidth,
-
-    bottom: Metrics.doubleBaseMargin * 2
+    bottom: Metrics.doubleBaseMargin * 3
   },
   row: {
     paddingVertical: Metrics.doubleBaseMargin,
@@ -84,15 +83,17 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 0.5,
     // backgroundColor : 'yellow',
     padding: 10,
-    marginTop: 10,
+    marginTop: 5,
     height: 36,
   //  flexWrap:'wrap',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    
   },
   popupchildText: {
-    fontSize: 14,
-    marginLeft: 5,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.003,
+    marginLeft: Metrics.smallMargin,
+
     alignSelf: 'center'
 
   },

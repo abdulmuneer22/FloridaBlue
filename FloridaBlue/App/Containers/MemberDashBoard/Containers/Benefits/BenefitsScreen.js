@@ -29,9 +29,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 class PlanBenefits extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-      {NavItems.backButton()}
+     <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
+                {NavItems.backButton()}
+                </View>
       <Text style={styles.headerTextStyle}>Plan Benefits</Text>
-      {NavItems.settingsButton()}
+      <View style={{marginRight:Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+                {NavItems.settingsButton()}
+                </View>
 
     </Image>)
   }
@@ -58,7 +62,7 @@ class PlanBenefits extends Component {
             flexWrap: 'wrap',
             flex: 1,
             marginLeft: window.width * 0.04,
-            marginRight: window.width * 0.04,
+            marginRight: window.width * 0.03,
             marginTop: window.width * 0.03
 
           }}>
@@ -89,7 +93,6 @@ class PlanBenefits extends Component {
       </View> }
         
           </View>
-          <Image source={Images.tagLine} style={{width: window.screenWidth}} />
         </ScrollView>
       </View>
     )

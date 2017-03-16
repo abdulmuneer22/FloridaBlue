@@ -4,12 +4,13 @@ import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 export default StyleSheet.create({
   headerContainer: {
    // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.79),
-    resizeMode: 'stretch',
-   // overflow:'visible',
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.775),
+    resizeMode: 'cover',
+    overflow:'visible',
   //  alignSelf: 'stretch',
-    width: Metrics.screenWidth
-   // backgroundColor:Colors.flBlue.ocean
+    width: Metrics.screenWidth,
+    marginBottom:Metrics.baseMargin,
+    backgroundColor:Colors.transparent
   },
   container: {
     flex: 1,
@@ -17,18 +18,18 @@ export default StyleSheet.create({
   // backgroundColor:Colors.transparent
   },
   header: {
-    fontSize: Fonts.size.h6,
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.003,
     marginTop: Metrics.doubleBaseMargin,
     marginLeft: Metrics.doubleBaseMargin
 
   },
   subheading: {
-    fontSize: Fonts.size.regular,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.003,
     marginLeft: Metrics.doubleBaseMargin,
     marginTop: Metrics.doubleBaseMargin
   },
   subheading1: {
-    fontSize: Fonts.size.regular,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002,
     marginLeft: Metrics.doubleBaseMargin,
     marginTop: Metrics.smallMargin,
     color: Colors.flBlue.grey3
@@ -52,7 +53,7 @@ export default StyleSheet.create({
     margin: 0
   },
   titleView: {
-    marginTop: 10
+    marginTop: Metrics.baseMargin
   },
   center: {
    // alignItems:'center',
@@ -60,7 +61,9 @@ export default StyleSheet.create({
     marginLeft: Metrics.doubleBaseMargin
   },
   buttonStyle: {
-   // width : 260,
+     width: Metrics.screenWidth * 0.65,
+    borderRadius:20,
+    height:Metrics.screenHeight * 0.07,
    // height : 50,
    // alignSelf: 'flex-end',
   // justifyContent: 'flex-start',
@@ -68,7 +71,7 @@ export default StyleSheet.create({
    // borderColor : 'rgb(80, 88, 90)',
   // borderWidth : 1,
     alignSelf: 'center',
-    marginTop: 15
+    marginTop: Metrics.doubleBaseMargin
   },
   orStyle: {
     fontSize: Fonts.size.regular,
@@ -87,9 +90,9 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.section,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small,
+    fontSize: Fonts.size.small * Metrics.screenWidth*0.003,
     marginBottom: Metrics.baseMargin,
-    marginTop: 70
+    marginTop: 50
 
   },
   textfieldWithFloatingLabel: {
@@ -111,7 +114,7 @@ export default StyleSheet.create({
   wrapper: {
     flex: 1,
     justifyContent: 'center',
-    marginTop: 50
+    marginTop: 30
   }
 
 })

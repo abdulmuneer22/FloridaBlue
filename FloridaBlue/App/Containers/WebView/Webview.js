@@ -26,7 +26,9 @@ const jsForInjection = `
 class Webview extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+      <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
       {NavItems.backButton()}
+      </View>
       <Text style={{color: Colors.flBlue.ocean,
         backgroundColor: Colors.transparent,
         fontFamily: Fonts.type.headerFont,

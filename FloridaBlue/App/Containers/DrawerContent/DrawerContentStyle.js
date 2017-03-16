@@ -47,8 +47,8 @@ export default {
 
   divider: {
     backgroundColor: Colors.snow,
-    height: 0.5,
-    marginLeft: -15,
+    height: Metrics.screenHeight * 0.0013,
+    marginLeft: -Metrics.mediumMargin,
     marginBottom: Metrics.smallMargin
   },
   heading: {
@@ -67,8 +67,8 @@ export default {
   },
   subheading: {
     color: Colors.snow,
-    fontSize: Fonts.size.h5,
-    marginBottom: Metrics.mediumMargin,
+   // fontSize: Fonts.size.h5,
+    marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.003,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0029
 
@@ -81,7 +81,7 @@ export default {
 
   heading2: {
     color: Colors.flBlue.ocean,
-    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0030,
     marginLeft: Metrics.baseMargin,
     fontFamily: Fonts.type.subHeaderFont
   },
@@ -96,7 +96,9 @@ export default {
     margin: Metrics.baseMargin
   },
   logoutStyle: {
-    width: 160,
+    width: Metrics.screenWidth * 0.65,
+    borderRadius:30,
+    height:Metrics.screenHeight * 0.07,
     // width:160,
     alignSelf: 'center'
   }

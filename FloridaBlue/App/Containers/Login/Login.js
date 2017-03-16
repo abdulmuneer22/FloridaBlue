@@ -148,7 +148,7 @@ class Login extends Component {
     return (
       <View style={styles.informationPopup}>
         <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
+          <Icon name='chevron-right' size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/web-accessibility'})}>
             <Text style={styles.popupchildText}>
               Accessibility
@@ -157,7 +157,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
+          <Icon name='chevron-right' size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/ndnotice'})}>
             <Text style={styles.popupchildText}>
               Nondiscrimination
@@ -166,7 +166,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
+          <Icon name='chevron-right' size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/terms-of-use'})}>
             <Text style={styles.popupchildText}>
               Terms of Use
@@ -175,7 +175,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
+          <Icon name='chevron-right' size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/internet-privacy-statement'})}>
             <Text style={styles.popupchildText}>
               Privacy Policy
@@ -184,7 +184,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
+          <Icon name='chevron-right' size={Metrics.icons.tiny*Metrics.screenWidth*0.003}  color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://providersearch.floridablue.com/providersearch/pub/index.htm'})}>
             <Text style={styles.popupchildText}>
               Browse for Doctors
@@ -193,7 +193,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
+          <Icon name='chevron-right' size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/contact-us'})}>
             <Text style={styles.popupchildText}>
               Support
@@ -202,7 +202,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
+          <Icon name='chevron-right' size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/'})}>
             <Text style={styles.popupchildText}>
               Floridablue.com
@@ -211,7 +211,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
+          <Icon name='chevron-right' size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es'})}>
             <Text style={styles.popupchildText}>
               Speak Another Language?
