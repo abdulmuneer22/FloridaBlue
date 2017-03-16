@@ -100,6 +100,9 @@ export default StyleSheet.create({
     height: 48,  // have to do it on iOS
     marginTop: 10
   },
+  spinnerView: {
+    alignSelf: 'center'
+  },
   footer: {
     flex: 1,
     flexDirection: 'row',
