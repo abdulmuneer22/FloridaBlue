@@ -43,3 +43,4 @@ android/app/libs
 *.keystore
 Reactotron.app
 jsconfig.json
+*.jar
