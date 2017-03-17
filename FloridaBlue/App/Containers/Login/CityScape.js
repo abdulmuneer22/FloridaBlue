@@ -30,7 +30,7 @@ export default class CityScape extends Component {
         duration: 84000,
         easing: Easing.linear
       }
-    ).start(() => this.animate())
+    ).start()
   }
 
   render () {
