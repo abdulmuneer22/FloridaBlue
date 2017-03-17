@@ -20,7 +20,7 @@ export default StyleSheet.create({
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
   //  marginLeft: Metrics.smallMargin,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont
@@ -54,13 +54,13 @@ export default StyleSheet.create({
   },
   hsaBg: {
  // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.31),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.385),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
  // padding:10,
     // alignSelf: 'stretch',
-    resizeMode: 'contain',
+    resizeMode: 'stretch',
     width: Metrics.screenWidth
   },
   hsaTextStyle1: {
@@ -121,7 +121,7 @@ export default StyleSheet.create({
     margin: 2
   },
   greetingText: {
-    fontSize: Fonts.size.h6,
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
     fontFamily: Fonts.type.subHeaderFont,
     color: Colors.flBlue.anvil
   },

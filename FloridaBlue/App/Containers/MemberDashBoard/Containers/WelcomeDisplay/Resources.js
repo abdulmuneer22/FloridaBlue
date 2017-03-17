@@ -77,6 +77,7 @@ class Resources extends Component {
                     tileType={tile.tileType}
                     icon={tile.tileIcon}
                     CardCount={TileCount}
+                    image={tile.backgroundImage}
                     webURL={tile.tileType !== 'native' ? tile.tileUrl : null}
                     routerName={tile.tileType === 'native' ? tile.routerName : null}
 

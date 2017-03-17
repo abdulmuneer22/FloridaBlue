@@ -40,7 +40,7 @@ export default StyleSheet.create({
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
    // marginLeft: Metrics.baseMargin,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont

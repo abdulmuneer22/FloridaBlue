@@ -39,6 +39,7 @@ const metrics = {
     xa: 30,
     medium: 40,
     xm: 50,
+    xm1:55,
     large: 60,
     xl: 65,
     xll:70,
