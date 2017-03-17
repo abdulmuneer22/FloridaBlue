@@ -52,6 +52,16 @@ type LoginScreenProps = {
   passhandleChangePasswordword :() => any
 }
 
+const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
+  .withStyle(styles.textfieldWithFloatingLabel)
+  .withTextInputStyle({flex: 1})
+  .withFloatingLabelFont({
+    fontSize: 18,
+    fontStyle: 'italic',
+    fontWeight: '200'
+  })
+  .build()
+
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
@@ -259,7 +269,7 @@ class Login extends Component {
 
             <LoginView>
               <View style={styles.row}>
-                <MKTextField
+                <TextfieldWithFloatingLabel
                   ref='username'
                   style={styles.textField}
                   textInputStyle={{flex: 1}}
@@ -275,7 +285,7 @@ class Login extends Component {
               </View>
 
               <View style={styles.row}>
-                <MKTextField
+                <TextfieldWithFloatingLabel
                   ref='password'
                   style={styles.textField}
                   textInputStyle={{flex: 1}}
