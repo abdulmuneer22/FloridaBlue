@@ -7,7 +7,8 @@ import ReactNative, {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  View,
+  TouchableHighlight
 } from 'react-native'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -65,6 +66,11 @@ class Screen_4 extends React.Component {
     }
   }
 
+  _handleSecurityHint () {
+    Keyboard.dismiss()
+    NavigationActions.securityHint()
+  }
+
   componentDidMount () {
     this.props.handleChangeSecurityHintsStatus(null)
   }
@@ -100,8 +106,11 @@ class Screen_4 extends React.Component {
               <View><Text style={styles.message}> {this.props.securityHintsStatusMessage}</Text></View>
             </View>
           </View> : <Text />}
-          <View style={styles.row}>
+          <View style={styles.hintRow}>
             <Text style={styles.heading}>{I18n.t('securityHint1')}</Text>
+            <TouchableHighlight onPress={this._handleSecurityHint}>
+              <Image source={Images.infoIcon} style={styles.hintImage} />
+            </TouchableHighlight>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
@@ -135,8 +144,11 @@ class Screen_4 extends React.Component {
               placeholder={I18n.t('securityEnterYourAnswer')}
             />
           </View>
-          <View style={styles.row}>
+          <View style={styles.hintRow}>
             <Text style={styles.heading}>{I18n.t('securityHint2')}</Text>
+            <TouchableHighlight onPress={this._handleSecurityHint}>
+              <Image source={Images.infoIcon} style={styles.hintImage} />
+            </TouchableHighlight>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
@@ -170,8 +182,11 @@ class Screen_4 extends React.Component {
               placeholder={I18n.t('securityEnterYourAnswer')}
             />
           </View>
-          <View style={styles.row}>
+          <View style={styles.hintRow}>
             <Text style={styles.heading}>{I18n.t('securityHint3')}</Text>
+            <TouchableHighlight onPress={this._handleSecurityHint}>
+              <Image source={Images.infoIcon} style={styles.hintImage} />
+            </TouchableHighlight>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel

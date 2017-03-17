@@ -1,24 +1,30 @@
-// @flow
-
 import { StyleSheet } from 'react-native'
 import { ApplicationStyles, Colors, Metrics, Fonts } from '../../../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  container: {
-    flex: 1,
-    paddingTop: 0
-  },
   headerImage: {
     width: Metrics.screenWidth,
     resizeMode: 'stretch',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
+  close: {
+    marginTop: Metrics.smallMargin,
+    alignItems: 'flex-end',
+    justifyContent: 'flex-end'
+  },
   heading: {
     marginTop: Metrics.doubleBaseMargin,
+    alignSelf: 'center',
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.h4
+  },
+  description: {
+    color: Colors.flBlue.grey3,
+    textAlign: 'left',
+    fontWeight: 'bold',
+    fontSize: Fonts.size.medium
   },
   messageView: {
     padding: Metrics.baseMargin,
@@ -45,16 +51,6 @@ export default StyleSheet.create({
     paddingVertical: Metrics.smallMargin,
     paddingHorizontal: Metrics.doubleBaseMargin
   },
-  hintRow: {
-    paddingVertical: Metrics.smallMargin,
-    paddingHorizontal: Metrics.doubleBaseMargin,
-    flexDirection: 'row',
-    flexWrap: 'wrap'
-  },
-  hintImage: {
-    marginTop: Metrics.doubleBaseMargin + 5,
-    marginHorizontal: 10
-  },
   buttonRow: {
     flex: 1,
     flexDirection: 'row',
@@ -62,8 +58,8 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin,
     paddingVertical: Metrics.baseMargin,
     paddingHorizontal: Metrics.doubleBaseMargin,
-    alignItems: 'stretch',
-    justifyContent: 'space-between'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -84,8 +80,24 @@ export default StyleSheet.create({
     height: 48,  // have to do it on iOS
     marginTop: 10
   },
-  spinnerView: {
-    alignSelf: 'center'
+  wrapper1: {
+    backgroundColor: Colors.snow,
+    marginTop: Metrics.baseMargin
+  },
+  slide: {
+    flex: 1,
+    alignItems: 'center',
+    flexWrap: 'nowrap',
+    backgroundColor: Colors.snow
+  },
+  outofBox: {
+    // backgroundColor : 'grey',
+    // padding : 20,
+    alignItems: 'center',
+    justifyContent: 'center'
+    // width : window.width,
+    // marginBottom : 30
+
   },
   footer: {
     flex: 1,
@@ -97,7 +109,6 @@ export default StyleSheet.create({
   footerText: {
     color: Colors.flBlue.grey4,
     marginHorizontal: Metrics.section,
-    marginBottom: Metrics.baseMargin,
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: Fonts.size.small
