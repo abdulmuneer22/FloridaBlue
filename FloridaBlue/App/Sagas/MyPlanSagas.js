@@ -13,7 +13,7 @@ export function * myplan (api, data) {
   console.log('data of myplan' + JSON.stringify(data))
   const response = yield call(api.getPlan, data)
   console.log(JSON.stringify(response))
-  if (response.status = '200') {
+  if (response.status == '200') {
     // dispatch success
     var data = response.data.data
     yield put(MyPlanActions.myplanSuccess(data))

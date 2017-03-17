@@ -22,6 +22,12 @@ import { connect } from 'react-redux'
 import HsaActions from '../../../../Redux/HsaRedux'
 import Flb from '../../../../Themes/FlbIcon'
 
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+
+const SingleColorSpinner = MKSpinner.singleColorSpinner()
+.withStyle(styles.spinner)
+.build()
+
 class Hsa extends Component {
   _renderHeader () {
     return (<Image style={styles.hsaHeader} source={Images.themeHeader}>
