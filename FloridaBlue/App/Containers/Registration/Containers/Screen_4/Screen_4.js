@@ -203,11 +203,11 @@ class Screen_4 extends React.Component {
             />
           </View>
           <View style={styles.buttonRow}>
-            <View style={styles.backButton}>
+            {false ? <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
                 <Image source={Images.backButton} />
               </TouchableOpacity>
-            </View>
+            </View> : <View/>}
             {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} />
             : <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
