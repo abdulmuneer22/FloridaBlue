@@ -11,7 +11,7 @@ export function * support (api) {
     // api.setsmTokenHeaders(smToken);
   const response = yield call(api.getSupport)
   console.log(JSON.stringify(response))
-  if (response.status = '200') {
+  if (response.status == '200') {
     // dispatch success
     var data = response.data.data
     yield put(SupportActions.supportSuccess(data))
