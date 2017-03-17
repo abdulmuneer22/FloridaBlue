@@ -4,62 +4,28 @@ import {
   Text,
   View,
   ScrollView,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } from 'react-native'
 
 import RegistrationToolBar from '../RegistrationToolBar'
 import {Actions as NavigationActions} from 'react-native-router-flux'
+import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
 
 // Styles
 import styles from './ReadMoreStyle'
 
+// I18n
+import I18n from 'react-native-i18n'
+
 class ReadMore extends Component {
   render () {
     return (
-      <View style={{
-        backgroundColor: 'white',
-        flex: 1
-      }}>
-        <RegistrationToolBar />
-        {
-          <View style={{
-            flexDirection: 'row',
-            height: 35
-          }}>
-            <View style={[styles.progressBoxStyle, {backgroundColor: 'rgb(125, 135, 139)'}]}>
-              <Text>
-          1
-          </Text>
-            </View>
-
-            <View style={[styles.progressBoxStyle, {backgroundColor: 'rgb(125, 135, 139)'}]}>
-              <Text>
-          2
-          </Text>
-            </View>
-
-            <View style={[styles.progressBoxStyle, {backgroundColor: 'rgb(206, 214, 217)'}]}>
-              <Text>
-          3
-          </Text>
-            </View>
-
-            <View style={[styles.progressBoxStyle, {backgroundColor: 'rgb(206, 214, 217)'}]}>
-              <Text>
-          4
-          </Text>
-            </View>
-
-            <View style={[styles.progressBoxStyle, {backgroundColor: 'rgb(206, 214, 217)'}]}>
-              <Text>
-          5
-          </Text>
-            </View>
-          </View>
-      }
+      <View style={styles.container}>
+      <Image source={Images.registrationStep2Hdr} style={styles.headerImage} />
 
       <ScrollView>
-      
+
           <Text style={styles.readMoreHeader}> Florida Blue Cross & Blue Shield </Text>
 
           <Text style={styles.readMoreSubHeader}> Privacy Notice </Text>
