@@ -96,8 +96,8 @@ export default {
     margin: Metrics.baseMargin
   },
   logoutStyle: {
-    width: Metrics.screenWidth * 0.65,
-    borderRadius:Metrics.doubleBaseMargin,
+    width: Metrics.screenWidth * 0.55,
+    borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0026,
     height:Metrics.screenHeight * 0.07,
     // width:160,
     alignSelf: 'center'
