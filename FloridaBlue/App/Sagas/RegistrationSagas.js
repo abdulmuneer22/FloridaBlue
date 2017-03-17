@@ -8,42 +8,6 @@ import RegistrationActions from '../Redux/RegistrationRedux'
 
 var getReasonMessage = function (status) {
   let messages = {
-<<<<<<< HEAD
-    '000': 'Success',
-    '-1000': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '002': "Looks like you're already signed up. Click Continue to look up your user ID and create a new password.",
-    '004': "Oops! We can't find you in our system based on your response. Click Support for help.",
-    '005': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '006': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '007': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '008': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '009': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '011': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '013': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '014': "Oops! Looks like you've tried to log in one too many times. Click Support for help.",
-    '015': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '018': 'Having trouble? For help, please click Support below.',
-    '020': 'Oops! You must be at least 18 to use this app. Check your birthday and try again.',
-    '032': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '034': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '035': "Oops! Looks like you've entered an invalid code. Please try again, or click Support for help.",
-    '036': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '037': "Oops! Looks like that's not a valid User ID. Please try again or click Hints  for help.",
-    '038': "Oops! Looks like that's not a valid Password. Please try again or click Hints for help.",
-    '040': 'Oops! Looks like that user ID is already registered. Please choose another one.',
-    '041': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '042': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '043': "Oops! Looks like that's not a valid email address. Please try again.",
-    '048': 'Oops! Your security answers must be different from your hints. Please try again.',
-    '049': 'Oops! Looks like you used invalid characters for your security hints. Click Helpful Hints for more info.',
-    '050': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '052': 'Please head to floridablue.com or bluemedicarefl.com to sign up for your member account.',
-    '053': 'Please head to floridablue.com or bluemedicarefl.com to sign up for your member account.',
-    '021': 'Please head to floridablue.com or bluemedicarefl.com to sign up for your member account.',
-    '055': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '056': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '057': "Oops! Looks like we're having trouble with your request. Click Support for help."
-=======
     "000": "Success",
     "-1000": "Oops! Looks like we're having trouble with your request. Click Support for help.",
     "002": "Looks like you're already signed up. Enter your user ID and password to log in.",
@@ -78,7 +42,6 @@ var getReasonMessage = function (status) {
     "055": "Oops! Looks like we're having trouble with your request. Click Support for help.",
     "056": "Oops! Looks like we're having trouble with your request. Click Support for help.",
     "057": "Oops! Looks like we're having trouble with your request. Click Support for help."
->>>>>>> b038dfcdd9595190c4a5d23ef5eb602975eb72b1
   }
 
   console.tron.log(status)
