@@ -144,7 +144,10 @@ class Switch extends Component {
       inactiveStyle,
       injectedTextStyle,
       inactiveTextStyle,
-      injectHeaderStyle
+      injectHeaderStyle,
+      inNetwork,
+      outNetwork,
+      preferredNetwork
     ) {
       return (
         <View style={injectHeaderStyle}>
@@ -152,24 +155,24 @@ class Switch extends Component {
           <TouchableOpacity style={_this.props.leftActive ? injectedStyle
               : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
             <Text style={_this.props.leftActive ? injectedTextStyle
-              : inactiveTextStyle}>In Network
-              </Text>
+              : inactiveTextStyle}>{inNetwork}
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={_this.props.rightActive ? injectedStyle
               : inactiveStyle} onPress={() => { _this.handleClickRight() }}>
             <Text style={_this.props.rightActive ? injectedTextStyle
                   : inactiveTextStyle
-                }>Out Of Network
-                </Text>
+                }>{outNetwork}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity style={_this.props.preferredActive ? injectedStyle
               : inactiveStyle} onPress={() => { _this.handleClickPreferred() }}>
             <Text style={{
               color: _this.props.preferredActive ? 'blue' : 'darkgrey',
               marginRight: 5
-            }}>Preferred Network
-              </Text>
+            }}>{preferredNetwork}
+            </Text>
           </TouchableOpacity>
 
         </View>
@@ -182,22 +185,27 @@ class Switch extends Component {
         inactiveStyle,
         injectedTextStyle,
         inactiveTextStyle,
-        injectHeaderStyle
+        injectHeaderStyle,
+        inNetwork,
+        outNetwork
     ) {
+      var inNetwork = inNetwork
+      var outNetwork = outNetwork
+
       return (<View style={injectHeaderStyle}>
 
         <TouchableOpacity style={_this.props.leftActive ? injectedStyle
         : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
           <Text style={_this.props.leftActive ? injectedTextStyle
-        : inactiveTextStyle}>In Network
-        </Text>
+        : inactiveTextStyle}>{inNetwork}
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={_this.props.rightActive ? injectedStyle
         : inactiveStyle} onPress={() => { _this.handleClickRight() }}>
           <Text style={_this.props.rightActive ? injectedTextStyle
             : inactiveTextStyle
-          }>Out Of Network
+          }>{outNetwork}
           </Text>
         </TouchableOpacity>
 
@@ -209,14 +217,15 @@ class Switch extends Component {
           inactiveStyle,
           injectedTextStyle,
           inactiveTextStyle,
-          injectHeaderStyle
+          injectHeaderStyle,
+          Network
       ) {
       return (<View style={injectHeaderStyle}>
 
         <TouchableOpacity style={_this.props.leftActive ? injectedStyle
           : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
           <Text style={_this.props.leftActive ? injectedTextStyle
-          : inactiveTextStyle}>In Network
+          : inactiveTextStyle}> {Network}
           </Text>
         </TouchableOpacity>
 
@@ -224,26 +233,97 @@ class Switch extends Component {
       )
     }
 
+    var _tabView = function () {
+      var temp = _this.props.data
+      var objectName = _this.props.objectName
+      var temp1 = temp[objectName]
+      var inNetwork = temp1.inNetwork
+      var outNetwork = temp1.outNetwork
+      var preferredNetwork = temp1.preferredNetwork
+
+      if (temp1 != null && temp1.inNetwork != null && temp1.outNetwork != null && temp1.preferredNetwork != null) {
+        console.log('preferrr', temp1.preferredNetwork)
+        var inNetwork = inNetwork.title['en']
+        var outNetwork = outNetwork.title['en']
+        var preferredNetwork = preferredNetwork.title['en']
+        return (_this.props.leftActive
+              ? _threeTabView(
+              threeTabActiveStyle,
+              threeTabInactiveStyle,
+              threeTextActiveStyle,
+              threeTextInactiveStyle,
+              threeTabHeaderStyle,
+              inNetwork,
+              outNetwork,
+              preferredNetwork
+            )
+            : _threeTabView(
+            threeTabActiveStyle,
+            threeTabInactiveStyle,
+            threeTextActiveStyle,
+            threeTextInactiveStyle,
+            threeTabHeaderStyle,
+            inNetwork,
+            outNetwork,
+            preferredNetwork
+            )
+        )
+      } else {
+        if (temp1 != null && temp1.inNetwork != null && temp1.outNetwork != null) {
+          var inNetwork = inNetwork.title['en']
+          var outNetwork = outNetwork.title['en']
+          return (_this.props.leftActive
+              ? _twoTabView(
+              twoTabLeftActiveStyle,
+              twoTabInactiveStyle,
+              twoTextActiveStyle,
+              twoTextInactiveStyle,
+              twoTabHeaderStyle,
+              inNetwork,
+              outNetwork
+            )
+            : _twoTabView(
+            twoTabRightActiveStyle,
+            twoTabInactiveStyle,
+            twoTextActiveStyle,
+            twoTextInactiveStyle,
+            twoTabHeaderStyle,
+            inNetwork,
+            outNetwork
+            )
+          )
+        } else if (temp1 != null && temp1.inNetwork != null) {
+          var inNetwork = inNetwork.title['en']
+          console.log('one tab', inNetwork)
+
+          return (_oneTabView(
+              oneTabLeftActiveStyle,
+              oneTabInactiveStyle,
+              oneTextActiveStyle,
+              oneTextInactiveStyle,
+              oneTabHeaderStyle,
+              inNetwork
+          )
+          )
+        } else if (temp1 != null && temp1.outNetwork != null) {
+          var outNetwork = outNetwork.title['en']
+          return (_oneTabView(
+            oneTabLeftActiveStyle,
+            oneTabInactiveStyle,
+            oneTextActiveStyle,
+            oneTextInactiveStyle,
+            oneTabHeaderStyle,
+            outNetwork
+        )
+          )
+        }
+      }
+    }
+
     return (
       <View style={{flex: 1}}>
-
         <View style={{flex: 1}}>
-          {this.props.leftActive
-        ? _twoTabView(
-        twoTabLeftActiveStyle,
-        twoTabInactiveStyle,
-        twoTextActiveStyle,
-        twoTextInactiveStyle,
-        twoTabHeaderStyle
-      )
-      : _twoTabView(
-      twoTabRightActiveStyle,
-      twoTabInactiveStyle,
-      twoTextActiveStyle,
-      twoTextInactiveStyle,
-      twoTabHeaderStyle
-      )
-    }
+          {_tabView()}
         </View>
       </View>
     )

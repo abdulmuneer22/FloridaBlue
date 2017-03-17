@@ -143,8 +143,8 @@ class Screen_3 extends React.Component {
                 <Image source={Images.backButton} />
               </TouchableOpacity>
             </View>
-            {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> :
-            <View style={styles.nextButton}>
+            {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} />
+            : <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButtonGreen} />
               </TouchableOpacity>

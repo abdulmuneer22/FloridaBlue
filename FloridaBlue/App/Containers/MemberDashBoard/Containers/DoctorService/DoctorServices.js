@@ -65,6 +65,8 @@ class DoctorServices extends Component {
                    {temp1.text['en']}
                  </Text>
                  <Switch
+                   data={this.props.data}
+                   objectName={this.props.objectName}
                    leftActive={this.props.leftActive}
                    rightActive={this.props.rightActive}
                    preferredActive={this.props.preferredActive}
