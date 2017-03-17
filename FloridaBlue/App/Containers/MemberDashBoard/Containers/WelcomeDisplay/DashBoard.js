@@ -46,15 +46,16 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-      <View style={{marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.0015,
+      <View style={{alignItems:'center',marginTop:Metrics.baseMargin *Metrics.screenHeight * 0.002,
         marginLeft: Metrics.images.xm * Metrics.screenWidth * 0.003}}>
-        <Image source={Images.themeLogo}
-          style={{
-            height: Metrics.images.average * Metrics.screenHeight * 0.0017,
-            width: Metrics.screenWidth * 0.65}} />
+        <Image source={Images.themeLogo} style={{
+          width: Metrics.screenWidth*0.65,
+          resizeMode: 'contain', 
+          height:Metrics.images.xm1}}
+           />
       </View>
 
-      <View style={{marginRight: Metrics.smallMargin * Metrics.screenWidth * 0.005}}>
+      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.003}}>
         {NavItems.settingsButton()}
       </View>
 

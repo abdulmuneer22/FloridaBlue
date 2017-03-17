@@ -57,28 +57,24 @@ class Confirmation extends Component {
     return (
       <ScrollView style={styles.container}>
         <Image style={styles.headerContainer} source={Images.regCompletion} />
-
+        <View >
         <Text style={styles.header}>Thank You!</Text>
         <Text style={styles.subheading}>You have successfully completed the registration process.</Text>
-
+        </View>
         <View style={styles.userStyle}>
 
-          <View style={{
-            backgroundColor: Colors.snow,
-            width: 50,
-            height: 50,
-            borderRadius: 50 / 2,
-            alignItems: 'center',
-            justifyContent: 'center',
-          // marginTop:0,
-            marginLeft: Metrics.doubleBaseMargin
-          }}>
-            <Flb name='user' size={Metrics.icons.medium} color={Colors.flBlue.grass} />
-          </View>
+          <Image style={{
+            // backgroundColor: Colors.transparent,
+               marginTop: Metrics.baseMargin,
+                marginLeft: Metrics.doubleBaseMargin,
+                width: Metrics.images.xll,
+                height: Metrics.images.xll
+          }} source={Images.confirmationUser}>
+          </Image>
 
           <View style={styles.center}>
             <Text style={{
-              fontSize: Fonts.size.h6,
+              fontSize: Fonts.size.h5 * Metrics.screenWidth*0.0025,
               fontWeight: '500',
               color: Colors.snow
         // alignSelf : 'stretch',

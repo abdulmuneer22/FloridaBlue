@@ -11,7 +11,7 @@ export default StyleSheet.create({
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: Metrics.mediumMargin,
+  //  padding: Metrics.mediumMargin,
     // resizeMode:'cover',
     // alignSelf: 'stretch',
     width: Metrics.screenWidth
@@ -20,7 +20,7 @@ export default StyleSheet.create({
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0027,
     // marginLeft:,
     fontFamily: Fonts.type.headerFont,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023
@@ -38,10 +38,11 @@ export default StyleSheet.create({
 
   },
   planNameText: {
-    fontSize: Fonts.size.h6,
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: '500'
+    fontWeight: '500',
+    textAlign:'center'
   },
 
   chartWrapper: {
@@ -94,7 +95,7 @@ export default StyleSheet.create({
 
   // width:window.width,
   // alignSelf:'center',
-    fontSize: Fonts.size.h5,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
     fontFamily: Fonts.type.subHeaderFont
   // backgroundColor:Colors.flBlue.ocean
   },

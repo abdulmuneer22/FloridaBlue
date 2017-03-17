@@ -26,11 +26,13 @@ const jsForInjection = `
 class Webview extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+      <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
       {NavItems.backButton()}
+      </View>
       <Text style={{color: Colors.flBlue.ocean,
         backgroundColor: Colors.transparent,
         fontFamily: Fonts.type.headerFont,
-        fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
+        fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
         marginRight: Metrics.screenWidth * 0.25,
         marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023}}>
         Florida Blue
@@ -62,21 +64,27 @@ class Webview extends Component {
         {this._renderHeader()}
         <WebView
           source={redirect}
-          javaScriptEnabled
-          domStorageEnabled
+          javaScriptEnabled={true}
+          domStorageEnabled={true}
           injectedJavaScript={jsForInjection}
-          allowUrlRedirect
-          startInLoadingState
-          contentInset={{top: -40, left: 0, bottom: 0, right: 0}}
+          onNavigationStateChange={this.onNavigationStateChange}
+          startInLoadingState={true}
+          contentInset={{top: 0, left: 0, bottom: 0, right: 0}}
               />
       </View>
     )
   }
 }
-onShouldStartLoadWithRequest = (event) => {
-    // Implement any custom loading logic here, don't forget to return!
-
-  return true
+onNavigationStateChange = (navState) => {
+  console.log("Nav state changed..")
+    this.setState({
+      backButtonEnabled: navState.canGoBack,
+      forwardButtonEnabled: navState.canGoForward,
+      url: navState.url,
+      status: navState.title,
+      loading: navState.loading,
+      scalesPageToFit: true
+    });
 }
 goBack = () => {
   this.refs[WEBVIEW_REF].goBack()

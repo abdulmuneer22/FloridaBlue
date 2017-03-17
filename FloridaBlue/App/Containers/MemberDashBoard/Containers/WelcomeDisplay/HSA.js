@@ -25,13 +25,13 @@ import Flb from '../../../../Themes/FlbIcon'
 class Hsa extends Component {
   _renderHeader () {
     return (<Image style={styles.hsaHeader} source={Images.themeHeader}>
-      <View style={{marginLeft: Metrics.screenWidth * 0.005}}>
+     <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
       <Text style={styles.hsaheaderTextStyle}>
           Health Savings Account
         </Text>
-      <View style={{marginRight: Metrics.screenWidth * 0.35}}>
+      <View style={{marginRight: Metrics.baseMargin  * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View>
     </Image>)

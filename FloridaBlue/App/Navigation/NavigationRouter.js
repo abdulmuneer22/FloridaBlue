@@ -21,6 +21,7 @@ import { Screen_4} from '../Containers/Registration/Containers/Screen_4'
 import { ReadMore} from '../Containers/Registration/Containers/Screen_2'
 import { TermsofUse} from '../Containers/Login'
 import { FindMemberID} from '../Containers/Registration/Containers/FindMemberID'
+import { UserIdHint } from '../Containers/Registration/Containers/UserIdHint'
 import { Confirmation} from '../Containers/Registration/Containers/Confirmation'
 // import { WelcomeDisplay} from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import { DashBoard} from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
@@ -50,7 +51,10 @@ class NavigationRouter extends Component {
             <Scene key='screen_3' component={Screen_3} title='Verify Device page' hideNavBar />
             <Scene key='screen_4' component={Screen_4} title='Security page' hideNavBar />
             <Scene key='memberid' component={FindMemberID} title='MemberId page' hideNavBar />
-            <Scene key='confirmation' component={Confirmation} title='Confirmation page'hideNavBar />
+            <Scene  key='confirmation' component={Confirmation} title='Confirmation page'hideNavBar />
+
+            <Scene key='useridhint' component={UserIdHint} title='UserIdHint page' hideNavBar />
+
             <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNsavBar />
             <Scene key='memberid' component={FindMemberID} title='MemberId page'hideNavBar />
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />

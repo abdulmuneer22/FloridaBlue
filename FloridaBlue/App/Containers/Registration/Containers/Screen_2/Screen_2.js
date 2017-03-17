@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react'
 import ReactNative, {
+  Button,
   Image,
   Keyboard,
   Text,
@@ -90,6 +91,11 @@ class Screen_2 extends React.Component {
         NavigationActions.screen_3()
       }
     }
+  }
+
+  _handleUserIdHint () {
+    Keyboard.dismiss()
+    NavigationActions.useridhint()
   }
 
   render () {
@@ -182,6 +188,11 @@ class Screen_2 extends React.Component {
                 this.refs.password.focus()
               }}
               placeholder={I18n.t('createUserId')}
+            />
+            <Button
+              onPress={() => { this._handleUserIdHint() }}
+              title="Hint"
+              accessibilityLabel="Create User ID Hint"
             />
           </View>
           <View style={styles.row}>

@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react'
 import ReactNative, {
+  Button,
   Image,
   Keyboard,
   Text,
@@ -63,12 +64,16 @@ class Screen_1 extends React.Component {
     var zipCode = this.props.zipCode
 
     var dateTest = new RegExp('^\\d{2}\/\\d{2}\/\\d{4}$')
+    var zipCodeTest = new RegExp('^(^\\d{5}$)|(^\\d{5}-\\d{4}$)$')
     if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
       this.props.handleChangeIdentificationStatus('999')
       this.props.handleChangeIdentificationStatusMessage('Please enter values in all fields')
     } else if (!dateTest.test(dateOfBirth)) {
       this.props.handleChangeIdentificationStatus('999')
       this.props.handleChangeIdentificationStatusMessage('Please enter a valid date - MM/DD/YYYY')
+    } else if(!zipCodeTest.test(zipCode)) {
+      this.props.handleChangeIdentificationStatus('999')
+      this.props.handleChangeIdentificationStatusMessage('Please enter a valid zip code.')
     } else {
       this.props.verifyIdentification(this.props)
     }

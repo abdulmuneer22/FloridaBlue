@@ -17,6 +17,7 @@ export default StyleSheet.create({
   backgroundImage: {
     position: 'absolute',
     top: 0,
+    width:Metrics.screenWidth,
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.3),
     resizeMode: 'stretch'
   },
@@ -39,10 +40,9 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     backgroundColor: Colors.flBlue.grey2,
-    height: Metrics.doubleBaseMargin * 10,
+    height: Metrics.screenHeight * 0.35,
     width: Metrics.screenWidth,
-
-    bottom: Metrics.doubleBaseMargin * 2
+    bottom: Metrics.doubleBaseMargin * 3.7
   },
   row: {
     paddingVertical: Metrics.doubleBaseMargin,
@@ -52,7 +52,8 @@ export default StyleSheet.create({
     color: Colors.flBlue.ocean,
     alignItems: 'center',
     textAlign: 'center',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027
   },
   textInput: {
     height: 40,
@@ -63,7 +64,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     position: 'absolute',
-    bottom: Metrics.footerBaseMargin,
+    bottom: Metrics.mediumMargin,
     marginHorizontal: Metrics.section
   },
   footerText: {
@@ -71,7 +72,7 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.section,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0027
   },
   footerLinks: {
     flex: 1,
@@ -88,11 +89,13 @@ export default StyleSheet.create({
     height: 36,
   //  flexWrap:'wrap',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    
   },
   popupchildText: {
-    fontSize: 14,
-    marginLeft: 5,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
+    marginLeft: Metrics.smallMargin,
+    textAlign:'center',
     alignSelf: 'center'
 
   },

@@ -40,11 +40,15 @@ class MyPlanScreen extends Component {
 
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+      <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
       {NavItems.backButton()}
+      </View>
+
       <Text style={styles.headerTextStyle}>My Plan</Text>
-
+      
+      <View style={{marginRight:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
       {NavItems.settingsButton()}
-
+      </View>
     </Image>)
   }
   componentDidMount () {
