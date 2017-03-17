@@ -12,7 +12,7 @@ export default StyleSheet.create({
   headerImage: {
     width: Metrics.screenWidth,
     resizeMode: 'stretch',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.57)) / 2
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
   heading: {
     marginTop: Metrics.doubleBaseMargin,

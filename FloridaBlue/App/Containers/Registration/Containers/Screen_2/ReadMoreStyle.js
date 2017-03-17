@@ -5,6 +5,11 @@ import { ApplicationStyles, Colors, Metrics, Fonts } from '../../../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+    paddingTop: 0
+  },
   wrapper: {
     backgroundColor: 'white',
     flex: 1
@@ -53,5 +58,10 @@ export default StyleSheet.create({
     borderColor: 'grey',
     borderRadius: 6,
     margin: 20
+  },
+  headerImage: {
+    width: Metrics.screenWidth,
+    resizeMode: 'stretch',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   }
 })
