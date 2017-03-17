@@ -100,7 +100,7 @@ class Card extends Component {
             alignItems: 'center',
             justifyContent: 'center'
           }}
-            source={image[this.props.i]}
+            source={Images[this.props.image]}
       >
 
             <Flb name={this.props.icon} style={{backgroundColor: Colors.transparent, marginTop: Metrics.baseMargin}} size={Metrics.icons.large * Metrics.screenWidth * 0.0025} color={Colors.snow} />

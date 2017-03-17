@@ -121,7 +121,7 @@ class LandingScreen extends Component {
                 }
                     onPress={onItemPress.bind(this)} key={i}>
 
-                    <Image source={image[i]}
+                    <Image source={Images[tile.backgroundImage]}
                       style={{
                         alignItems: 'center',
                         justifyContent: 'center',

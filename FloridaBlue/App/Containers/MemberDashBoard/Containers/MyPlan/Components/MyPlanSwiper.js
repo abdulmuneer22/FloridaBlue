@@ -91,7 +91,7 @@ class MyPlanSwiper extends Component {
                     barWidth={10}
                     barTopColor={Colors.flBlue.ocean}
                     barBottomColor={Colors.flBlue.grey2}
-                    percent={Object.keys(network.planBenefits).length > 0 ? network.remain / network.value : 0} />
+                    percent={Object.keys(network.planBenefits).length > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value)  : 0} />
                 </View>
                 <View style={{flex: 0.6}}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
