@@ -79,7 +79,12 @@ export default StyleSheet.create({
     color: Colors.flBlue.grey5,
     fontWeight: 'bold',
     fontSize: Fonts.size.medium,
-    height: Metrics.doubleBaseMargin * 2.5
+    height: Metrics.doubleBaseMargin * 2.8
+  },
+  checkboxMessageHyperlink: {
+    color: Colors.flBlue.deepBlue,
+    fontWeight: 'bold',
+    fontSize: Fonts.size.medium
   },
   backButton: {
     alignSelf: 'flex-start',

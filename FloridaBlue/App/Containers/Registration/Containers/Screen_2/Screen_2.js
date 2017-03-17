@@ -71,12 +71,18 @@ class Screen_2 extends React.Component {
     }
   }
 
+  _handleReadMore () {
+    NavigationActions.ReadMore();
+  }
+
   componentDidMount () {
     // Set to null initially
     this.props.handleChangePersonalInformationStatus(null)
 
     // Set for true by default
     this.props.handleChangeEmailUpdated(true)
+
+    console.log("Show comm status: " + this.props.showCommElect);
   }
 
   componentDidUpdate () {
@@ -241,7 +247,9 @@ class Screen_2 extends React.Component {
               />
             </View>
             <View style={styles.checkboxMessageView}>
-              <Text style={styles.checkboxMessageText}>{I18n.t('commElect')}</Text>
+              <Text style={styles.checkboxMessageText}>{I18n.t('commElect')}
+                <Text style={styles.checkboxMessageHyperlink} onPress={() => { this._handleReadMore() }}> Read more </Text>
+              </Text>
             </View>
           </View> : null}
           <View style={styles.buttonRow}>

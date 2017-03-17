@@ -13,10 +13,10 @@ class MyPlanSwiper extends Component {
   getChildrenOptions (data) {
     const {annualDeductible, oop} = data
     let result = []
-    result = annualDeductible.inNetwork ? [...result, annualDeductible.inNetwork] : result
-    result = annualDeductible.outNetwork ? [...result, annualDeductible.outNetwork] : result
-    result = oop.inNetwork ? [...result, oop.inNetwork] : result
-    result = oop.outNetwork ? [...result, oop.outNetwork] : result
+    result = Object.keys(annualDeductible.inNetwork.planBenefits).length > 0 ? [...result, annualDeductible.inNetwork] : result
+    result = Object.keys(annualDeductible.outNetwork.planBenefits).length > 0 ? [...result, annualDeductible.outNetwork] : result
+    result = Object.keys(oop.inNetwork.planBenefits).length > 0 ? [...result, oop.inNetwork] : result
+    result = Object.keys(oop.outNetwork.planBenefits).length >0 ? [...result, oop.outNetwork] : result
     console.log(result)
     return result
   }
@@ -68,7 +68,7 @@ class MyPlanSwiper extends Component {
 
     return (
       <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.42))} style={styles.wrapper} showsButtons>
-        {this.getChildrenOptions(this.props.data).map((network, i) => {
+        { this.getChildrenOptions(this.props.data).map((network, i) => {
           console.log('children options are', this.getChildrenOptions(this.props.data))
           console.log('planbenefits length', Object.keys(network.planBenefits).length)
      //      const planBenefits = _.head(network.planBenefits)

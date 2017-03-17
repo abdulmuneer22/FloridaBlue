@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {
+  Alert,
   Text,
   View,
   Keyboard,
@@ -76,7 +77,14 @@ class Login extends Component {
     var password = this.props.password
 
     if (!username && !password) {
-      alert('Please enter your user ID/Password.')
+      Alert.alert(
+             ' ' ,
+            'Please enter your user ID/Password.',
+            [
+              {text: 'OK' },
+            ]
+          )
+     // alert('Please enter your user ID/Password.')
     } else
     if (!username && password) {
       alert('Please enter your user ID.')
@@ -147,7 +155,7 @@ class Login extends Component {
     return (
       <View style={styles.informationPopup}>
         <View style={styles.popupchild}>
-          <Icon name='chevron-right'  size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
+          <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/web-accessibility'})}>
             <Text style={styles.popupchildText}>
               Accessibility
@@ -156,7 +164,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
+          <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/ndnotice'})}>
             <Text style={styles.popupchildText}>
               Nondiscrimination
@@ -165,7 +173,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right'  size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
+          <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/terms-of-use'})}>
             <Text style={styles.popupchildText}>
               Terms of Use
@@ -174,7 +182,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right'  size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
+          <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/internet-privacy-statement'})}>
             <Text style={styles.popupchildText}>
               Privacy Policy
@@ -183,7 +191,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right'  size={Metrics.icons.tiny*Metrics.screenWidth*0.003}  color='black' />
+          <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://providersearch.floridablue.com/providersearch/pub/index.htm'})}>
             <Text style={styles.popupchildText}>
               Browse for Doctors
@@ -192,7 +200,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right'  size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
+          <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/contact-us'})}>
             <Text style={styles.popupchildText}>
               Support
@@ -201,7 +209,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right'  size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
+          <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/'})}>
             <Text style={styles.popupchildText}>
               Floridablue.com
@@ -210,7 +218,7 @@ class Login extends Component {
         </View>
 
         <View style={styles.popupchild}>
-          <Icon name='chevron-right'  size={Metrics.icons.tiny*Metrics.screenWidth*0.003} color='black' />
+          <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es'})}>
             <Text style={styles.popupchildText}>
               Speak Another Language?
@@ -290,9 +298,9 @@ class Login extends Component {
               </View>
             </LoginView>
 
-            <LoginButtonView >
+            <LoginButtonView>
               <TouchableOpacity onPress={() => { this._handleLogin() }}>
-                <Image  source={Images.loginButtonGreen} />
+                <Image source={Images.loginButtonGreen} />
               </TouchableOpacity>
             </LoginButtonView>
             <SignUpView>
@@ -309,12 +317,12 @@ class Login extends Component {
             <View>
               <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
-            <View >
+            <View>
               <TouchableOpacity onPress={() => {
                 if (this.state.modalVisible === true) {
-                  this.setState({ modalVisible: false })
+                  this.setState({modalVisible: false})
                 } else {
-                  this.setState({ modalVisible: true })
+                  this.setState({modalVisible: true})
                 }
               }}>
                 <Image source={Images.infoIcon} />
