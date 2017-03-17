@@ -10,6 +10,9 @@ import {
 import RegistrationToolBar from '../RegistrationToolBar'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 
+// Styles
+import styles from './ReadMoreStyle'
+
 class ReadMore extends Component {
   render () {
     return (
@@ -23,31 +26,31 @@ class ReadMore extends Component {
             flexDirection: 'row',
             height: 35
           }}>
-            <View style={[Styles.progressBoxStyle, {backgroundColor: 'rgb(125, 135, 139)'}]}>
+            <View style={[styles.progressBoxStyle, {backgroundColor: 'rgb(125, 135, 139)'}]}>
               <Text>
           1
           </Text>
             </View>
 
-            <View style={[Styles.progressBoxStyle, {backgroundColor: 'rgb(125, 135, 139)'}]}>
+            <View style={[styles.progressBoxStyle, {backgroundColor: 'rgb(125, 135, 139)'}]}>
               <Text>
           2
           </Text>
             </View>
 
-            <View style={[Styles.progressBoxStyle, {backgroundColor: 'rgb(206, 214, 217)'}]}>
+            <View style={[styles.progressBoxStyle, {backgroundColor: 'rgb(206, 214, 217)'}]}>
               <Text>
           3
           </Text>
             </View>
 
-            <View style={[Styles.progressBoxStyle, {backgroundColor: 'rgb(206, 214, 217)'}]}>
+            <View style={[styles.progressBoxStyle, {backgroundColor: 'rgb(206, 214, 217)'}]}>
               <Text>
           4
           </Text>
             </View>
 
-            <View style={[Styles.progressBoxStyle, {backgroundColor: 'rgb(206, 214, 217)'}]}>
+            <View style={[styles.progressBoxStyle, {backgroundColor: 'rgb(206, 214, 217)'}]}>
               <Text>
           5
           </Text>
@@ -55,85 +58,32 @@ class ReadMore extends Component {
           </View>
       }
 
-        <ScrollView>
-          <Text style={{
-            fontSize: 18,
-            textAlign: 'center',
-            marginTop: 40
+      <ScrollView>
+      
+          <Text style={styles.readMoreHeader}> Florida Blue Cross & Blue Shield </Text>
 
-          }}>
-      Lorem ipsum dolor sit amet,{'\n'} consectetur adipisicing elit.
-      </Text>
+          <Text style={styles.readMoreSubHeader}> Privacy Notice </Text>
 
-          <Text style={Styles.paragraph}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </Text>
+          <Text style={styles.paragraph}>
+          By checking this box you agree to receive all communications from Florida Blue and Florida Blue HMO electronically at the email address provided above. This may include documents related to your application, enrollment, billing, benefits, health statements, and legal documents. Most documents will be available through your online member account and we will email you when you have a new document online.
+          </Text>
 
-          <Text style={Styles.paragraph}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </Text>
+          <Text style={styles.paragraph}>
+          However, in certain cases we may still send you paper documents in the mail. Some of the information we communicate to you may be Protected Health Information (“PHI”) under the terms of the Health Insurance Portability and Accountability Act (“HIPAA”). By selecting electronic communication, you authorize us to release PHI to you electronically and agree that you are solely responsible and liable for the security of the email address you provide, the security of the computer system upon which you view the PHI, and the risks inherent in electronic communication. You have the right to designate a different email address at any time, and you should do so if you believe that the address you are providing today is no longer secure. You understand that failing to update your e-mail address may result in a delay or failure of notification of important information and/or the possible release of PHI to an unintended recipient.
+          </Text>
 
-          <Text style={Styles.paragraph}>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </Text>
+          <Text style={styles.paragraph}>
+          You also have the right to stop receiving documents electronically at any time or request a free paper copy of any communication by logging on to your online Member account or calling us. By agreeing to receive electronic documents you confirm that you have provided a working, private email address, that you have  internet access and  a current and updated web browser and that you can open PDF files using the current version of  Adobe Acrobat Reader or its equivalent.
+          </Text>
 
         </ScrollView>
 
-        <TouchableHighlight style={{
-          backgroundColor: 'grey',
-          alignSelf: 'center',
-          paddingTop: 8,
-          paddingBottom: 8,
-          paddingLeft: 40,
-          paddingRight: 40,
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderColor: 'grey',
-          borderRadius: 6,
-          margin: 20
-        }}
-          onPress={() => { NavigationActions.pop() }}
-      >
-          <Text style={{
-            color: 'white'
-          }}>
-      Close
-      </Text>
+        <TouchableHighlight style={styles.closeButton} onPress={() => { NavigationActions.pop() }}>
+          <Text style={{color: 'white'}}> Close </Text>
         </TouchableHighlight>
 
       </View>
     )
   }
 }
-
-const Styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: 'white',
-    flex: 1
-
-  },
-  form: {
-    backgroundColor: 'white',
-    flex: 1,
-    margin: 20
-  },
-  errormessage: {
-    color: 'red',
-    flex: 1,
-    marginLeft: 10
-  },
-  progressBoxStyle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  paragraph: {
-    marginLeft: 40,
-    marginRight: 40,
-    marginTop: 20,
-    fontSize: 14,
-    textAlign: 'justify'
-
-  }
-})
 export default ReadMore
