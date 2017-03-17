@@ -64,15 +64,15 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     position: 'absolute',
-    bottom: Metrics.doubleBaseMargin,
-    marginHorizontal: Metrics.section
+    bottom: Metrics.searchBarHeight1,
+    marginHorizontal: Metrics.textHeight1
   },
   footerText: {
     color: Colors.flBlue.grey4,
     marginHorizontal: Metrics.section,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0027
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0026
   },
   footerLinks: {
     flex: 1,
@@ -95,7 +95,7 @@ export default StyleSheet.create({
   popupchildText: {
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
     marginLeft: Metrics.smallMargin,
-    textAlign:'center',
+   // textAlign:'center',
     alignSelf: 'center'
 
   },
