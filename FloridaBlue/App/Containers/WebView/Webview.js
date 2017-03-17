@@ -33,7 +33,7 @@ class Webview extends Component {
         backgroundColor: Colors.transparent,
         fontFamily: Fonts.type.headerFont,
         fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
-        marginRight: Metrics.screenWidth * 0.25,
+        marginRight: Metrics.screenWidth * 0.30,
         marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023}}>
         Florida Blue
         </Text>

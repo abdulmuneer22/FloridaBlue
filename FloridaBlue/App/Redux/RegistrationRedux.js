@@ -119,7 +119,7 @@ export const _sendIdentificationRequest = (state: Object) => state.merge({ fetch
 
 // sendIdentificationSuccess
 export const _sendIdentificationSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, emailVerified: data.emailverified, email: data.homeEmail, commElect: data.defaultEOB, showCommElect: data.collectEOB, token: data.token, identificationStatus: data.identificationStatus, identificationStatusMessage: data.identificationStatusMessage})
+  state.merge({fetching: false, emailVerified: data.emailVerified, email: data.homeEmail, commElect: data.defaultEOB, showCommElect: data.collectEOB, token: data.token, identificationStatus: data.identificationStatus, identificationStatusMessage: data.identificationStatusMessage})
 
 // _sendIdentificationFailure
 export const _sendIdentificationFailure = (state: Object, {data}: Object) =>

@@ -27,7 +27,7 @@ export default class CityScape extends Component {
       this.state.animatedValue,
       {
         toValue: 1,
-        duration: 4000,
+        duration: 84000,
         easing: Easing.linear
       }
     ).start()
@@ -36,7 +36,7 @@ export default class CityScape extends Component {
   render () {
     const marginLeft = this.state.animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [300, 0]
+      outputRange: [Metrics.screenWidth * 6, 0]
     })
 
     return (

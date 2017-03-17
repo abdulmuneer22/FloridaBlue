@@ -8,6 +8,7 @@ const { width, height } = Dimensions.get('window')
 const metrics = {
   marginHorizontal: 10,
   marginVertical: 10,
+  section1:23,
   section: 25,
   baseMargin: 10,
   doubleBaseMargin: 20,
@@ -15,7 +16,9 @@ const metrics = {
   smallMargin: 5,
   mediumMargin: 15,
   horizontalLineHeight: 1,
+  searchBarHeight1:26,
   searchBarHeight: 30,
+  textHeight1:35,
   textHeight: 40,
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,

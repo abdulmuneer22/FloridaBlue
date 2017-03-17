@@ -97,8 +97,8 @@ export default {
   },
   logoutStyle: {
     width: Metrics.screenWidth * 0.55,
-    borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0026,
-    height:Metrics.screenHeight * 0.07,
+    borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+    height:Metrics.screenHeight * 0.055,
     // width:160,
     alignSelf: 'center'
   }

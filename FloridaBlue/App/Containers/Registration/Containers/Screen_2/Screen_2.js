@@ -78,11 +78,8 @@ class Screen_2 extends React.Component {
   componentDidMount () {
     // Set to null initially
     this.props.handleChangePersonalInformationStatus(null)
-
     // Set for true by default
     this.props.handleChangeEmailUpdated(true)
-
-    console.log("Show comm status: " + this.props.showCommElect);
   }
 
   componentDidUpdate () {
@@ -92,8 +89,6 @@ class Screen_2 extends React.Component {
       if (status === '000') {
         // Reset to null
         this.props.handleChangePersonalInformationStatus(null)
-
-        console.tron.log('Navigating to Screen 3')
         NavigationActions.screen_3()
       }
     }
@@ -102,6 +97,11 @@ class Screen_2 extends React.Component {
   _handleUserIdHint () {
     Keyboard.dismiss()
     NavigationActions.useridhint()
+  }
+
+  _handlePasswordHint () {
+    Keyboard.dismiss()
+    NavigationActions.passwordHint()
   }
 
   render () {
@@ -193,13 +193,9 @@ class Screen_2 extends React.Component {
               onSubmitEditing={(event) => {
                 this.refs.password.focus()
               }}
-              placeholder={I18n.t('createUserId')}
-            />
-            <Button
-              onPress={() => { this._handleUserIdHint() }}
-              title="Hint"
-              accessibilityLabel="Create User ID Hint"
-            />
+              placeholder={I18n.t('createUserId')}>
+            </TextfieldWithFloatingLabel>
+            <Text style={styles.hintLink} onPress={() => { this._handleUserIdHint() }}> Show hint </Text>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
@@ -218,6 +214,7 @@ class Screen_2 extends React.Component {
               }}
               placeholder={I18n.t('password')}
             />
+            <Text style={styles.hintLink} onPress={() => { this._handlePasswordHint() }}> Show hint </Text>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
