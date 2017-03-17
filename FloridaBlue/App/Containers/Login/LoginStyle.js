@@ -90,7 +90,7 @@ export default StyleSheet.create({
   //  flexWrap:'wrap',
     flexDirection: 'row',
     alignItems: 'center',
-    
+
   },
   popupchildText: {
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
