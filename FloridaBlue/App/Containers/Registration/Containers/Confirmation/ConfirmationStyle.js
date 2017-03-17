@@ -62,7 +62,7 @@ export default StyleSheet.create({
   },
   buttonStyle: {
      width: Metrics.screenWidth * 0.65,
-    borderRadius:20,
+    borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0026,
     height:Metrics.screenHeight * 0.07,
    // height : 50,
    // alignSelf: 'flex-end',

@@ -75,7 +75,10 @@ class Hsa extends Component {
               <Image style={styles.hsaBg} source={Images.hsaBg} />
 
             </View>
-        : <View />
+        : <View style={styles.spinnerView}>
+            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+            <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          </View>
       }
       </View>
     )

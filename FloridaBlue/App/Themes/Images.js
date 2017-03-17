@@ -11,6 +11,7 @@ const images = {
   clouds: require('../Images/clouds.png'),
   cityscape: require('../Images/cityscape.png'),
   confirmationUser: require('../Images/user-id-icon-yellow.png'),
+  confirmationLogin: require('../Images/green-continue-btn.png'),
   findCare: require('../Images/care-finder.png'),
   dashboardGradient: require('../Images/dashboard-block-bkgrd-1.png'),
   dashboardGradient2: require('../Images/dashboard-block-bkgrd-2.png'),

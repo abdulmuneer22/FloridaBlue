@@ -95,7 +95,7 @@ class Confirmation extends Component {
         <View style={styles.wrapper}>
 
           <TouchableOpacity onPress={() => { NavigationActions.WelcomeDashBoard({'origin': 'registration'}) }}>
-            <Image source={Images.loginNowButtonGreen} style={styles.buttonStyle} />
+            <Image source={Images.confirmationLogin} style={styles.buttonStyle} />
 
           </TouchableOpacity>
 
