@@ -8,8 +8,8 @@ export default StyleSheet.create({
   cityscape: {
     position: 'absolute',
     top: Metrics.screenHeight * 0.39,
-    left: -300,
-    width: Metrics.screenWidth * 4,
+    left: ((Metrics.screenWidth * 6) * -1),
+    width: Metrics.screenWidth * 6,
     height: Metrics.screenHeight * 0.3,
     resizeMode: 'stretch'
   },

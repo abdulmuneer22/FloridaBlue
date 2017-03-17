@@ -27,7 +27,7 @@ export default class Clouds extends Component {
       this.state.animatedValue,
       {
         toValue: 1,
-        duration: 80000,
+        duration: 640000,
         easing: Easing.linear
       }
     ).start(() => this.animate())
