@@ -1,15 +1,18 @@
 // @flow
 
 import React, { Component} from 'react'
-import { ScrollView,
-  Image, BackAndroid,
+import { 
+  ScrollView,
+  Image, 
+  BackAndroid,
   View,
   StyleSheet,
   Text,
   Dimensions,
   WebView,
   TouchableWithoutFeedback,
-  TouchableOpacity
+  TouchableOpacity,
+  Navigator
 } from 'react-native'
 import styles from './DrawerContentStyle'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
@@ -20,6 +23,7 @@ import { connect } from 'react-redux'
 import LoginActions from '../../Redux/LoginRedux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { AsyncStorage } from 'react-native'
+ var RCTNetworking =require('RCTNetworking');
 
 var {height, width} = Dimensions.get('window')
 const window = Dimensions.get('window')
@@ -106,8 +110,11 @@ class SettingsContent extends Component {
   handlePressLogout = () => {
     this.toggleDrawer()
     console.log("clear the store before logout")
-    AsyncStorage.clear();
-    this.props.attemptLogout()
+   // AsyncStorage.clear();
+    RCTNetworking.clearCookies((cleared)=>{
+      console.log(cleared.toString)
+    })
+   this.props.attemptLogout()
     NavigationActions.login()
     
   }
