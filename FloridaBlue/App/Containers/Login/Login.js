@@ -14,7 +14,7 @@ import {
 } from 'react-native'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
+ var RCTNetworking =require('RCTNetworking');
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -136,11 +136,17 @@ class Login extends Component {
       } else if (responseURL.includes('updateSecurityHintsAnswers')) {
         NavigationActions.screen_4({'username': this.props.username})
       // Unauthorized User
-      } else if (responseURL.includes('mob/error/accessdenied')) {
+    } else if (responseURL.includes('mob/error/accessdenied')) {
+            RCTNetworking.clearCookies((cleared)=>{
+           console.log('clearing local cookies for the app')
+            })
         this.props.attemptLogout()
         alert('Please use your user ID and password to log in. You must be a Florida Blue member.')
       // Disabled Account
-      } else if (responseURL.includes('apsparam=usrlocked')) {
+    } else if (responseURL.includes('apsparam=usrlocked')) {
+            RCTNetworking.clearCookies((cleared) => {
+           console.log('clearing local cookies for the app')
+            })
         this.props.attemptLogout()
         alert('Your account is disabled.  Click Support for help')
       // Password About to Expire

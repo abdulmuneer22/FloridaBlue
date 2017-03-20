@@ -112,7 +112,7 @@ class SettingsContent extends Component {
     console.log("clear the store before logout")
    // AsyncStorage.clear();
     RCTNetworking.clearCookies((cleared)=>{
-      console.log(cleared.toString)
+      console.log('clearing local cookies for the app')
     })
    this.props.attemptLogout()
     NavigationActions.login()

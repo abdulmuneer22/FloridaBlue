@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import {
+  Alert,
   AppRegistry,
   StyleSheet,
   Text,
@@ -85,10 +86,17 @@ class Hsa extends Component {
             </View>)
           }
        else if(this.props.error == '404'){
-           
-        NavigationActions.ErrorPage()
-
-        }
+                Alert.alert(
+                  'HSA',
+                  'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+                  [
+                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+                  
+                  ],
+                  { cancelable: false }
+                )
+             
+  }
   }
 
   render () {

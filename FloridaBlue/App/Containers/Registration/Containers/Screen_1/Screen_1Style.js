@@ -78,7 +78,7 @@ export default StyleSheet.create({
     color: Colors.charcoal
   },
   textfieldWithFloatingLabel: {
-    height: Metrics.textHeight2 *Metrics.screenHeight*0.0015,  // have to do it on iOS
+    height: Metrics.textHeight2 * Metrics.screenHeight*0.0015,  // have to do it on iOS
     marginTop: Metrics.baseMargin
   },
   spinnerView: {

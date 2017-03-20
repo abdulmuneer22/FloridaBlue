@@ -52,9 +52,9 @@ class FindMemberID extends React.Component {
               <View style={styles.outofBox}>
                 <Image
                   style={{
-                    width: Metrics.screenWidth * 0.65,
+                    width: Metrics.screenWidth * 0.7,
                      // borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0015,
-                   height:Metrics.screenHeight * 0.25
+                   height:Metrics.screenHeight * 0.285
                   }}
                   source={Images.idCardFront}
                 />
@@ -77,9 +77,9 @@ class FindMemberID extends React.Component {
           </Swiper>
           <View style={styles.buttonRow}>
             <TouchableOpacity onPress={() => { this._handleClose() }}>
-              <Image style={{width: Metrics.screenWidth * 0.3,
+              <Image style={{width: Metrics.screenWidth * 0.35,
                             borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.05}} source={Images.closeButtonGray} />
+                            height:Metrics.screenHeight * 0.055}} source={Images.closeButtonGray} />
             </TouchableOpacity>
           </View>
         </ScrollView>

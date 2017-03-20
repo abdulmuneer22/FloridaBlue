@@ -54,7 +54,8 @@ const { Types, Creators } = createActions({
   sendSecurityHintsFailure: ['data'],
   registerUserRequest: ['data', 'token'],
   registerUserSuccess: ['data'],
-  registerUserFailure: ['data']
+  registerUserFailure: ['data'],
+  clearRegistration :[]
 })
 
 export const RegistrationTypes = Types
@@ -319,7 +320,8 @@ export const _changeShowCommElect = (state: Object, {showCommElect}: Object) =>
 // token
 export const _changeToken = (state: Object, {token}: Object) =>
       state.merge({fetching: false, token})
-
+//clear registration 
+export const _clear =(state: Object) => INITIAL_STATE
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -371,7 +373,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEND_SECURITY_HINTS_FAILURE]: _sendSecurityHintsFailure,
   [Types.REGISTER_USER_REQUEST]: _registerUserRequest,
   [Types.REGISTER_USER_SUCCESS]: _registerUserSuccess,
-  [Types.REGISTER_USER_FAILURE]: _registerUserFailure
+  [Types.REGISTER_USER_FAILURE]: _registerUserFailure,
+  [Types.CLEAR_REGISTRATION]:_clear
 })
 
 /* ------------- Selectors ------------- */

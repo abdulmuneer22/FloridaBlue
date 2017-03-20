@@ -14,7 +14,7 @@ export default StyleSheet.create({
    // width: Metrics.images.logo,
    // resizeMode: 'contain'
           width: Metrics.screenWidth*0.85,
-          resizeMode: 'contain', 
+          resizeMode: 'contain',
           height:Metrics.images.xll2 * Metrics.screenHeight*0.0015
 },
   backgroundImage: {
@@ -87,10 +87,9 @@ export default StyleSheet.create({
   popupchild: {
     width: Metrics.screenWidth * 0.5,
     // backgroundColor : 'yellow',
-    padding: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+    paddingHorizontal: Metrics.baseMargin * Metrics.screenHeight * 0.002,
     //marginTop: 5,
     height: Metrics.screenHeight * 0.07,
-  //  flexWrap:'wrap',
     flexDirection: 'row',
     alignItems: 'center',
 
