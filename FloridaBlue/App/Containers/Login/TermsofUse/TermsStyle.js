@@ -80,5 +80,16 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: Fonts.size.small
+  },
+   spinnerText: {
+
+    marginTop: 20
+  },
+  spinnerView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: window.width,
+    height: window.height,
+    marginTop:Metrics.screenHeight*0.5
   }
 })

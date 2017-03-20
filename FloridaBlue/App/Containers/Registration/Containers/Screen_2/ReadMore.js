@@ -5,7 +5,8 @@ import {
   View,
   ScrollView,
   TouchableHighlight,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native'
 
 import RegistrationToolBar from '../RegistrationToolBar'
@@ -19,6 +20,10 @@ import styles from './ReadMoreStyle'
 import I18n from 'react-native-i18n'
 
 class ReadMore extends Component {
+
+    _handleClose () {
+    NavigationActions.pop()
+  }
   render () {
     return (
       <View style={styles.container}>
@@ -28,12 +33,18 @@ class ReadMore extends Component {
           <Text style={styles.paragraph}>{I18n.t('privacyNoticeOne')}</Text>
           <Text style={styles.paragraph}>{I18n.t('privacyNoticeTwo')}</Text>
           <Text style={styles.paragraph}>{I18n.t('privacyNoticeThree')}</Text>
+
+           <View style={styles.buttonRow}>
+       <TouchableOpacity onPress={() => { this._handleClose() }}>
+              <Image style={{width: Metrics.screenWidth * 0.35,
+                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                            height:Metrics.screenHeight * 0.055}} source={Images.closeButtonGray} />
+            </TouchableOpacity>
+            </View>
         </ScrollView>
-
-        <TouchableHighlight style={styles.closeButton} onPress={() => { NavigationActions.pop() }}>
-          <Text style={{color: 'white'}}> Close </Text>
-        </TouchableHighlight>
-
+        
+                
+        
       </View>
     )
   }

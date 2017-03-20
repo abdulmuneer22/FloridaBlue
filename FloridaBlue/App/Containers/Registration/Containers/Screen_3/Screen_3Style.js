@@ -18,7 +18,7 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4
+    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0033
   },
   messageView: {
     padding: Metrics.baseMargin,
@@ -36,14 +36,14 @@ export default StyleSheet.create({
   message: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.medium,
+    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0025,
     flex: 0.8,
     textAlign: 'center',
     flexWrap: 'wrap'
   },
-  row: {
-    paddingVertical: Metrics.smallMargin,
-    paddingHorizontal: Metrics.doubleBaseMargin
+ row: {
+    paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.003,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.004
   },
   buttonRow: {
     flex: 1,
@@ -67,12 +67,12 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   textInput: {
-    height: 40,
+    height: Metrics.textHeight,
     color: Colors.charcoal
   },
   textfieldWithFloatingLabel: {
-    height: 48,  // have to do it on iOS
-    marginTop: 10
+    height: Metrics.textHeight2 * Metrics.screenHeight*0.0015,  // have to do it on iOS
+    marginTop: Metrics.baseMargin
   },
   spinnerView: {
     alignSelf: 'center'
@@ -90,6 +90,6 @@ export default StyleSheet.create({
     marginBottom: Metrics.baseMargin,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small
+     fontSize: Fonts.size.small * Metrics. screenWidth * 0.0033
   }
 })

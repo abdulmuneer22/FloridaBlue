@@ -42,7 +42,7 @@ export function * member (api, {smToken}) {
     yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, defaultContract))
   } else {
     console.log('failure ')
-    var error = '99'
+    var error = response.status
     yield put(MemberActions.memberFailure(error))
   }
 }

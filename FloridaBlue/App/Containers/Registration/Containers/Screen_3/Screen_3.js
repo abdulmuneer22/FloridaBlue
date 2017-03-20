@@ -34,7 +34,7 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
   .withTextInputStyle({flex: 1})
   .withFloatingLabelFont({
-    fontSize: 18,
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025,
     fontStyle: 'italic',
     fontWeight: '200'
   })
@@ -87,7 +87,8 @@ class Screen_3 extends React.Component {
         this.props.attemptLogin(this.props.createUserId, this.props.password)
         console.tron.log('Navigating to Screen 4')
         if (this.props.loginError === null) {
-          NavigationActions.screen_4()
+            this.props.requestClear();
+            NavigationActions.screen_4()
         }
       }
     }
@@ -140,13 +141,19 @@ class Screen_3 extends React.Component {
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
-                <Image source={Images.backButton} />
+                <Image source={Images.backButton}
+                style={{width: Metrics.screenWidth * 0.35,
+                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                            height:Metrics.screenHeight * 0.055}} />
               </TouchableOpacity>
             </View>
             {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} />
             : <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
-                <Image source={Images.nextButtonGreen} />
+                <Image source={Images.nextButtonGreen}
+                style={{width: Metrics.screenWidth * 0.35,
+                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                            height:Metrics.screenHeight * 0.055}} />
               </TouchableOpacity>
             </View>}
           </View>
@@ -177,7 +184,8 @@ Screen_3.propTypes = {
   fetching: PropTypes.bool,
   error: PropTypes.string,
   loginError: PropTypes.string,
-  attemptLogin: PropTypes.func
+  attemptLogin: PropTypes.func,
+  requestClear :PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -214,7 +222,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode)),
     handleChangeRegistrationCodeStatus: (data) => dispatch(RegistrationActions.changeRegistrationCodeStatus(data)),
     handleChangeRegisterUserStatus: (data) => dispatch(RegistrationActions.changeRegisterUserStatus(data)),
-    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
+    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
+    requestClear:()=>dispatch(RegistrationActions.clearRegistration())
   }
 }
 

@@ -34,7 +34,7 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
   .withTextInputStyle({flex: 1})
   .withFloatingLabelFont({
-    fontSize: 18,
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025,
     fontStyle: 'italic',
     fontWeight: '200'
   })
@@ -80,6 +80,7 @@ class Screen_1 extends React.Component {
   }
 
   componentDidMount () {
+    this.props.requestClear()
     this.props.handleChangeIdentificationStatus(null)
     this.props.handleChangeIdentificationStatusMessage(null)
   }
@@ -102,6 +103,7 @@ class Screen_1 extends React.Component {
   }
 
   _handleBack () {
+    this.props.requestClear()
     Keyboard.dismiss()
     NavigationActions.pop()
   }
@@ -148,9 +150,9 @@ class Screen_1 extends React.Component {
           </View>
           <View style={styles.findItButton}>
             <TouchableOpacity onPress={() => { this._handleFindMemberId() }}>
-              <Image style={{width: Metrics.screenWidth * 0.3,
+              <Image style={{width: Metrics.screenWidth * 0.35,
                             borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.05}} 
+                            height:Metrics.screenHeight * 0.055}} 
                     source={Images.findItButton} />
             </TouchableOpacity>
           </View>
@@ -218,9 +220,9 @@ class Screen_1 extends React.Component {
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
-                <Image  style={{width: Metrics.screenWidth * 0.3,
+                <Image  style={{width: Metrics.screenWidth * 0.35,
                             borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.05}}
+                            height:Metrics.screenHeight * 0.055}}
                             source={Images.backButton} />
               </TouchableOpacity>
             </View>
@@ -228,9 +230,9 @@ class Screen_1 extends React.Component {
             : <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButtonGreen} 
-                style={{width: Metrics.screenWidth * 0.3,
-                        borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                        height:Metrics.screenHeight * 0.05}} />
+                style={{width: Metrics.screenWidth * 0.35,
+                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                            height:Metrics.screenHeight * 0.055}} />
               </TouchableOpacity>
             </View>}
           </View>
@@ -260,7 +262,8 @@ Screen_1.propTypes = {
   lastName: PropTypes.string,
   dateOfBirth: PropTypes.string,
   zipCode: PropTypes.string,
-  error: PropTypes.string
+  error: PropTypes.string,
+  requestClear:PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -286,7 +289,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeDateOfBirth: (dateOfBirth) => dispatch(RegistrationActions.changeDateOfBirth(dateOfBirth)),
     handleChangeZipCode: (zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode)),
     handleChangeIdentificationStatus: (data) => dispatch(RegistrationActions.changeIdentificationStatus(data)),
-    handleChangeIdentificationStatusMessage: (data) => dispatch(RegistrationActions.changeIdentificationStatusMessage(data))
+    handleChangeIdentificationStatusMessage: (data) => dispatch(RegistrationActions.changeIdentificationStatusMessage(data)),
+    requestClear:()=>dispatch(RegistrationActions.clearRegistration())
   }
 }
 

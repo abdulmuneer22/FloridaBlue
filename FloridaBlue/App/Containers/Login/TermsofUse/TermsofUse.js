@@ -18,9 +18,12 @@ import styles from './TermsStyle'
 import { Colors, Fonts, Images, Metrics } from '../../../Themes'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { MKTextField, MKColor, MKCheckbox, setTheme } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKCheckbox, setTheme, MKSpinner } from 'react-native-material-kit'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
+const SingleColorSpinner = MKSpinner.singleColorSpinner()
+.withStyle(styles.spinner)
+.build()
 
   setTheme({checkboxStyle: {
       fillColor: Colors.flBlue.ocean,
@@ -55,11 +58,14 @@ class TermsofUse extends Component {
     this.props.handleGetTOU()
   }
 
+
   render () {
     var HTML = this.props.getTou
 
     return (
       <View style={styles.container}>
+        {this.props.fetching ?
+        <View style={{flex:1}}>
         {this.props.getTou
           ? <WebView
             source={{html: HTML}}
@@ -90,6 +96,13 @@ class TermsofUse extends Component {
             <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
           </View>
         </View>
+         </View>
+        : <View style={styles.spinnerView}>
+            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+            <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          </View>
+        }
+       
       </View>
     )
   }

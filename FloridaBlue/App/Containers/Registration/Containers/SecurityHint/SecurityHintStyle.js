@@ -18,13 +18,13 @@ export default StyleSheet.create({
     alignSelf: 'center',
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4
+    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0031
   },
   description: {
     color: Colors.flBlue.grey3,
     textAlign: 'left',
     fontWeight: 'bold',
-    fontSize: Fonts.size.medium
+    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0032
   },
   messageView: {
     padding: Metrics.baseMargin,
