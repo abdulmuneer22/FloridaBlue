@@ -80,7 +80,7 @@ class Login extends Component {
 
     if (!username && !password) {
       Alert.alert(
-             ' ' ,
+             'Login' ,
             'Please enter your user ID/Password.',
             [
               {text: 'OK' },
@@ -89,10 +89,23 @@ class Login extends Component {
      // alert('Please enter your user ID/Password.')
     } else
     if (!username && password) {
-      alert('Please enter your user ID.')
+       Alert.alert(
+             'Login' ,
+            'Please enter your user ID',
+            [
+              {text: 'OK' },
+            ]
+          )
+     
     } else
     if (username && !password) {
-      alert('Please enter your password.')
+      Alert.alert(
+             'Login' ,
+            'Please enter your Password.',
+            [
+              {text: 'OK' },
+            ]
+          )
     } else {
         // const { username, password } = this.state
       this.isAttempting = true
@@ -141,14 +154,29 @@ class Login extends Component {
            console.log('clearing local cookies for the app')
             })
         this.props.attemptLogout()
-        alert('Please use your user ID and password to log in. You must be a Florida Blue member.')
+        Alert.alert(
+             'Login' ,
+            'Please use your user ID and password to log in. You must be a Florida Blue member.',
+            [
+              {text: 'OK' },
+            ]
+          )
+       
       // Disabled Account
     } else if (responseURL.includes('apsparam=usrlocked')) {
             RCTNetworking.clearCookies((cleared) => {
            console.log('clearing local cookies for the app')
             })
         this.props.attemptLogout()
-        alert('Your account is disabled.  Click Support for help')
+
+        Alert.alert(
+             'Login' ,
+            'Your account is disabled.  Click Support for help',
+            [
+              {text: 'OK' },
+            ]
+          )
+       
       // Password About to Expire
       } else {
         NavigationActions.MyView({

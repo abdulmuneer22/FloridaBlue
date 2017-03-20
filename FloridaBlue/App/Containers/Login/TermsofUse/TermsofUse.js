@@ -16,7 +16,7 @@ import LoginActions from '../../../Redux/LoginRedux'
 import I18n from 'react-native-i18n'
 import styles from './TermsStyle'
 import { Colors, Fonts, Images, Metrics } from '../../../Themes'
-
+import NavItems from '../../../Navigation/NavItems.js'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { MKTextField, MKColor, MKCheckbox, setTheme, MKSpinner } from 'react-native-material-kit'
 import {connect} from 'react-redux'
@@ -40,6 +40,20 @@ class TermsofUse extends Component {
     }
   }
 
+   _renderHeader () {
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+      <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+      {NavItems.backButton()}
+      </View>
+
+      <Text style={styles.headerTextStyle}>Terms Of Use</Text>
+      
+      <View style={{marginRight:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
+      {NavItems.settingsButton()}
+      </View>
+    </Image>)
+  }
+
   _handleAgreeTermsOfUse () {
     console.log(this.props.agreeTermsOfUse)
     if (!this.props.agreeTermsOfUse) {
@@ -58,18 +72,18 @@ class TermsofUse extends Component {
     this.props.handleGetTOU()
   }
 
+ _displayCondition(){
+     if(this.props.fetching){
+      return(<View style={styles.spinnerView}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+     </View>)} 
 
-  render () {
-    var HTML = this.props.getTou
-
-    return (
-      <View style={styles.container}>
-        {this.props.fetching ?
-        <View style={{flex:1}}>
-        {this.props.getTou
-          ? <WebView
-            source={{html: HTML}}
-            style={{marginBottom: 30}} /> : <View />}
+     else if( this.props.getTou ) {
+       return(<View style={{flex:1}}>
+         <WebView
+            source={{html: this.props.getTou}}
+            style={{marginBottom: 30}} /> 
         <View style={styles.checkViewStyle}>
           <View style={styles.checkStyle}>
             <MKCheckbox
@@ -96,13 +110,30 @@ class TermsofUse extends Component {
             <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
           </View>
         </View>
-         </View>
-        : <View style={styles.spinnerView}>
-            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-            <Text style={styles.spinnerText}>Loading Please Wait </Text>
-          </View>
-        }
-       
+         </View> )
+     }
+       else if(this.props.error != null ){
+                Alert.alert(
+                  'TOU',
+                  'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+                  [
+                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+                  
+                  ],
+                  { cancelable: false }
+                )
+             
+  }
+  }
+
+
+  render () {
+    var HTML = this.props.getTou
+
+    return (
+      <View style={styles.container}>
+        {this._renderHeader()}
+        {this._displayCondition()}
       </View>
     )
   }

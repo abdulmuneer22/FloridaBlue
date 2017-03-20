@@ -85,7 +85,7 @@ class Hsa extends Component {
 
             </View>)
           }
-       else if(this.props.error == '404'){
+       else if(this.props.error != null){
                 Alert.alert(
                   'HSA',
                   'Oops! Looks like we\'re having trouble with your request. Click Support for help.',

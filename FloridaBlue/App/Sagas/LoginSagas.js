@@ -60,7 +60,7 @@ export function * getTou (api) {
     var getTou = response.data
     yield put(LoginActions.updateTou(getTou))
   } else {
-    var error = 'I am being errored'
+    var error = response.status
     yield put(LoginActions.loginFailure(error))
   }
 }

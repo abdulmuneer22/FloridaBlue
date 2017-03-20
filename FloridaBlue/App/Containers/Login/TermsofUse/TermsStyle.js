@@ -19,6 +19,26 @@ export default StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1
   },
+   headerContainer: {
+    flexDirection: 'row',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  //  padding: Metrics.mediumMargin,
+    // resizeMode:'cover',
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth
+    // backgroundColor: Colors.flBlue.sky
+  },
+  headerTextStyle: {
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0027,
+    // marginLeft:,
+    fontFamily: Fonts.type.headerFont,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023
+
+  },
   checkStyle: {
     flex: 0.2,
     // backgroundColor : 'yellow',
