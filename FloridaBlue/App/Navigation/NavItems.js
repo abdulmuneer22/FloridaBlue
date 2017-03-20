@@ -29,18 +29,7 @@ export default {
       </TouchableOpacity>
     )
   },
-
-    hsabackButton () {
-    return (
-      <TouchableOpacity style={{width: 50, height: 50, alignItems: 'center'}} onPress={NavigationActions.WelcomeDashBoard()}>
-        <Flb name='arrow-left'
-          size={Metrics.icons.xm * Metrics.screenHeight * 0.0016}
-          color={Colors.flBlue.ocean}
-          style={styles.backButton}
-        />
-      </TouchableOpacity>
-    )
-  },
+  
   errorBackButton () {
     return (
       <TouchableOpacity style={{width: 100, height: 100, alignItems: 'center'}} onPress={NavigationActions.pop}>

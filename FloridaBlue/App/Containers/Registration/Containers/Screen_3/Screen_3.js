@@ -87,7 +87,8 @@ class Screen_3 extends React.Component {
         this.props.attemptLogin(this.props.createUserId, this.props.password)
         console.tron.log('Navigating to Screen 4')
         if (this.props.loginError === null) {
-          NavigationActions.screen_4()
+            this.props.requestClear();
+            NavigationActions.screen_4()
         }
       }
     }
@@ -183,7 +184,8 @@ Screen_3.propTypes = {
   fetching: PropTypes.bool,
   error: PropTypes.string,
   loginError: PropTypes.string,
-  attemptLogin: PropTypes.func
+  attemptLogin: PropTypes.func,
+  requestClear :PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -220,7 +222,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeEnterCode: (enterCode) => dispatch(RegistrationActions.changeEnterCode(enterCode)),
     handleChangeRegistrationCodeStatus: (data) => dispatch(RegistrationActions.changeRegistrationCodeStatus(data)),
     handleChangeRegisterUserStatus: (data) => dispatch(RegistrationActions.changeRegisterUserStatus(data)),
-    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
+    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
+    requestClear:()=>dispatch(RegistrationActions.clearRegistration())
   }
 }
 

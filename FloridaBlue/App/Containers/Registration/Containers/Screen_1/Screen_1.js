@@ -80,6 +80,7 @@ class Screen_1 extends React.Component {
   }
 
   componentDidMount () {
+    this.props.requestClear()
     this.props.handleChangeIdentificationStatus(null)
     this.props.handleChangeIdentificationStatusMessage(null)
   }
@@ -102,6 +103,7 @@ class Screen_1 extends React.Component {
   }
 
   _handleBack () {
+    this.props.requestClear()
     Keyboard.dismiss()
     NavigationActions.pop()
   }
@@ -260,7 +262,8 @@ Screen_1.propTypes = {
   lastName: PropTypes.string,
   dateOfBirth: PropTypes.string,
   zipCode: PropTypes.string,
-  error: PropTypes.string
+  error: PropTypes.string,
+  requestClear:PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -286,7 +289,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeDateOfBirth: (dateOfBirth) => dispatch(RegistrationActions.changeDateOfBirth(dateOfBirth)),
     handleChangeZipCode: (zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode)),
     handleChangeIdentificationStatus: (data) => dispatch(RegistrationActions.changeIdentificationStatus(data)),
-    handleChangeIdentificationStatusMessage: (data) => dispatch(RegistrationActions.changeIdentificationStatusMessage(data))
+    handleChangeIdentificationStatusMessage: (data) => dispatch(RegistrationActions.changeIdentificationStatusMessage(data)),
+    requestClear:()=>dispatch(RegistrationActions.clearRegistration())
   }
 }
 
