@@ -23,7 +23,6 @@ import MemberActions from '../../../../Redux/MemberRedux'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Flb from '../../../../Themes/FlbIcon'
-import Loader from '../../../../Components/Loader'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 const window = Dimensions.get('window')
 
