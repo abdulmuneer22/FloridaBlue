@@ -131,9 +131,10 @@ class Login extends Component {
     console.log('I am receving new props' + newProps.responseURL)
     console.log('I am receving new smToken' + newProps.smToken)
     var responseURL = newProps.responseURL
-
-    if (this.isAttempting && !newProps.fetching && newProps.error === null && responseURL) {
-    // login path
+if (this.props != newProps) {
+  if (this.isAttempting && !newProps.fetching && newProps.error === null && responseURL) {
+    if (this.props.responseURL != newProps.responseURL) {
+      // login path
       if (responseURL == 'login') {
         if (!newProps.mfetching) {
           if (!newProps.merror) {
@@ -148,45 +149,61 @@ class Login extends Component {
         }
       } else if (responseURL.includes('updateSecurityHintsAnswers')) {
         NavigationActions.screen_4({'username': this.props.username})
-      // Unauthorized User
-    } else if (responseURL.includes('mob/error/accessdenied')) {
-            RCTNetworking.clearCookies((cleared)=>{
-           console.log('clearing local cookies for the app')
-            })
-        this.props.attemptLogout()
-        Alert.alert(
-             'Login' ,
-            'Please use your user ID and password to log in. You must be a Florida Blue member.',
-            [
-              {text: 'OK' },
-            ]
-          )
-       
-      // Disabled Account
-    } else if (responseURL.includes('apsparam=usrlocked')) {
-            RCTNetworking.clearCookies((cleared) => {
-           console.log('clearing local cookies for the app')
-            })
-        this.props.attemptLogout()
-
-        Alert.alert(
-             'Login' ,
-            'Your account is disabled.  Click Support for help',
-            [
-              {text: 'OK' },
-            ]
-          )
-       
-      // Password About to Expire
-      } else {
-        NavigationActions.MyView({
-          responseURL: newProps.responseURL + '?channel=mobile'
+        // Unauthorized User
+      } else if (responseURL.includes('mob/error/accessdenied')) {
+        RCTNetworking.clearCookies((cleared) => {
+          console.log('clearing local cookies for the app')
         })
+        this
+          .props
+          .attemptLogout()
+        Alert.alert('Login', 'Please use your user ID and password to log in. You must be a Florida Blue membe' +
+            'r.',
+        [
+          {
+            text: 'OK'
+          }
+        ])
+
+        // Disabled Account
+      } else if (responseURL.includes('apsparam=usrlocked')) {
+        RCTNetworking.clearCookies((cleared) => {
+          console.log('clearing local cookies for the app')
+        })
+        this
+          .props
+          .attemptLogout()
+
+        Alert.alert('Login', 'Your account is disabled.  Click Support for help', [
+          {
+            text: 'OK'
+          }
+        ])
+
+        // Password About to Expire
+      } else {
+
+        if (responseURL.includes('updatePassword.do')) {
+          Alert.alert('Login', 'You must change your password now.', [
+            {
+              text: 'OK',
+              onPress: () => NavigationActions.MyView({
+                responseURL: newProps.responseURL + '?channel=mobile'
+              })
+            }
+          ])
+        }else {
+            NavigationActions.MyView({
+                responseURL: newProps.responseURL + '?channel=mobile'
+              })
+
+        }
       }
     }
-
-  // end of IF condition
   }
+}
+  // end of IF condition
+}
 
   _moreInfo () {
     return (
