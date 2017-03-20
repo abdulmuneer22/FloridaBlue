@@ -87,7 +87,6 @@ class Screen_3 extends React.Component {
         this.props.attemptLogin(this.props.createUserId, this.props.password)
         console.tron.log('Navigating to Screen 4')
         if (this.props.loginError === null) {
-            this.props.requestClear();
             NavigationActions.screen_4()
         }
       }
