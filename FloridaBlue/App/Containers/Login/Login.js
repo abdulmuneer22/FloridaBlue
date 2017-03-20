@@ -7,8 +7,10 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Navigator,
   Modal,
-  Dimensions
+  Dimensions,
+  BackAndroid
 } from 'react-native'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -99,14 +101,15 @@ class Login extends Component {
     }
   }
 
-  componentDidMount () {
+   componentDidMount() {
     // after registration fire login for auto login
     /*
     if (this.props.username && this.props.password) {
       this.props.attemptLogin(this.props.username, this.props.password)
     }
     */
-  }
+   }
+
 
   componentWillReceiveProps (newProps) {
   // this.forceUpdate()   makes to rerender the stuff     Got the issue of redering
@@ -300,7 +303,10 @@ class Login extends Component {
 
             <LoginButtonView>
               <TouchableOpacity onPress={() => { this._handleLogin() }}>
-                <Image source={Images.loginButtonGreen} />
+                <Image style={{width: Metrics.screenWidth * 0.5,
+                borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
+                height:Metrics.screenHeight * 0.065,}} 
+                source={Images.loginButtonGreen} />
               </TouchableOpacity>
             </LoginButtonView>
             <SignUpView>

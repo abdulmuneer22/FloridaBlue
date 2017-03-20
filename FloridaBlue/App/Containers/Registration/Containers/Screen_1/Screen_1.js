@@ -144,11 +144,14 @@ class Screen_1 extends React.Component {
             />
           </View>
           <View style={styles.row}>
-            <Text style={[styles.message, {fontSize: Fonts.size.regular}]}> {I18n.t('cantFindMemberId')}</Text>
+            <Text style={[styles.message, {fontSize: Fonts.size.regular * Metrics. screenWidth * 0.0025}]}> {I18n.t('cantFindMemberId')}</Text>
           </View>
           <View style={styles.findItButton}>
             <TouchableOpacity onPress={() => { this._handleFindMemberId() }}>
-              <Image source={Images.findItButton} />
+              <Image style={{width: Metrics.screenWidth * 0.3,
+                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                            height:Metrics.screenHeight * 0.05}} 
+                    source={Images.findItButton} />
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
@@ -215,13 +218,19 @@ class Screen_1 extends React.Component {
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
-                <Image source={Images.backButton} />
+                <Image  style={{width: Metrics.screenWidth * 0.3,
+                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                            height:Metrics.screenHeight * 0.05}}
+                            source={Images.backButton} />
               </TouchableOpacity>
             </View>
             {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} />
             : <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
-                <Image source={Images.nextButtonGreen} />
+                <Image source={Images.nextButtonGreen} 
+                style={{width: Metrics.screenWidth * 0.3,
+                        borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                        height:Metrics.screenHeight * 0.05}} />
               </TouchableOpacity>
             </View>}
           </View>

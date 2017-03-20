@@ -47,12 +47,14 @@ class FindMemberID extends React.Component {
           <View style={styles.row}>
             <Text style={styles.description}>{I18n.t('findMemberIdDescription2')}</Text>
           </View>
-          <Swiper height={250} style={styles.wrapper1} showsButtons>
+          <Swiper height={Metrics.screenHeight * 0.39} style={styles.wrapper1} showsButtons>
             <View style={styles.slide}>
               <View style={styles.outofBox}>
                 <Image
                   style={{
-                    flex: 0
+                    width: Metrics.screenWidth * 0.65,
+                     // borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0015,
+                   height:Metrics.screenHeight * 0.25
                   }}
                   source={Images.idCardFront}
                 />
@@ -63,7 +65,10 @@ class FindMemberID extends React.Component {
               <View style={styles.outofBox}>
                 <Image
                   style={{
-                    flex: 0
+            
+                    width: Metrics.screenWidth * 0.7,
+                    //borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0015,
+                    height:Metrics.screenHeight * 0.28
                   }}
                   source={Images.idCardBack}
                 />
@@ -72,7 +77,9 @@ class FindMemberID extends React.Component {
           </Swiper>
           <View style={styles.buttonRow}>
             <TouchableOpacity onPress={() => { this._handleClose() }}>
-              <Image source={Images.closeButtonGray} />
+              <Image style={{width: Metrics.screenWidth * 0.3,
+                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                            height:Metrics.screenHeight * 0.05}} source={Images.closeButtonGray} />
             </TouchableOpacity>
           </View>
         </ScrollView>

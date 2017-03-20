@@ -11,9 +11,12 @@ export default StyleSheet.create({
     paddingBottom: Metrics.screenHeight * 0.05
   },
   logo: {
-    width: Metrics.images.logo,
-    resizeMode: 'contain'
-  },
+   // width: Metrics.images.logo,
+   // resizeMode: 'contain'
+          width: Metrics.screenWidth*0.85,
+          resizeMode: 'contain', 
+          height:Metrics.images.xll2 * Metrics.screenHeight*0.0015
+},
   backgroundImage: {
     position: 'absolute',
     top: 0,
@@ -45,7 +48,7 @@ export default StyleSheet.create({
     bottom: Metrics.doubleBaseMargin *  Metrics.screenWidth* 0.0095
   },
   row: {
-    paddingVertical: Metrics.doubleBaseMargin,
+    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0013,
     paddingHorizontal: Metrics.doubleBaseMargin
   },
   link: {

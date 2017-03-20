@@ -47,15 +47,17 @@ class Hsa extends Component {
     console.tron.log(this.props)
   //  this.props.attemptSupportScreen()
   }
+  
+  _displayCondition(){
+     if(this.props.fetching){
+      return(<View style={styles.spinnerView}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+     </View>)} 
 
-  render () {
-    return (
-      <View style={styles.container}>
-        {this._renderHeader()}
-        {
-          this.props.data.currentBalance
-
-            ? <View style={{flex: 1}}>
+     else if( this.props.data && this.props.data.currentBalance ) 
+          {
+            return( <View style={{flex: 1}}>
 
               <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.textHeight}}>
 
@@ -80,12 +82,23 @@ class Hsa extends Component {
 
               <Image style={styles.hsaBg} source={Images.hsaBg} />
 
-            </View>
-        : <View style={styles.spinnerView}>
-            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-            <Text style={styles.spinnerText}>Loading Please Wait </Text>
-          </View>
-      }
+            </View>)
+          }
+       else if(this.props.error == '404'){
+           
+        NavigationActions.ErrorPage()
+
+        }
+  }
+
+  render () {
+    // console.log(this.props.error)
+    return (
+      <View style={styles.container}>
+        {this._renderHeader()}
+        
+        {this._displayCondition()}
+       
       </View>
     )
   }
@@ -99,6 +112,7 @@ Hsa.propTypes = {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     fetching: state.login.fetching,
     data: state.hsa.data,

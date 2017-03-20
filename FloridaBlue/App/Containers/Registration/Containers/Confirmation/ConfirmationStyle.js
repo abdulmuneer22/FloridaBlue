@@ -61,7 +61,7 @@ export default StyleSheet.create({
     marginLeft: Metrics.doubleBaseMargin
   },
   buttonStyle: {
-     width: Metrics.screenWidth * 0.65,
+    width: Metrics.screenWidth * 0.65,
     borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0026,
     height:Metrics.screenHeight * 0.07,
    // height : 50,

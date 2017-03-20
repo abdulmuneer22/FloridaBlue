@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { Scene, Router } from 'react-native-router-flux'
+import { Scene, Router, ActionConst } from 'react-native-router-flux'
 import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
 import NavItems from './NavItems'
@@ -43,7 +43,7 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='login' component={Login} title='Login' hideNavBar />
+            <Scene initial key='login' component={Login} title='Login' hideNavBar type={ActionConst.RESET}/>
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
             <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar />

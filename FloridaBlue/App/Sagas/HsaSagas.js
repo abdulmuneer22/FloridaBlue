@@ -12,8 +12,9 @@ export function * hsa (api, {financialProduct}) {
     var data = response.data.data
     yield put(HsaActions.hsaSuccess(data))
   } else {
-    console.log('failure ')
-    var error = 'WRONG'
+    console.log('failure ' , response)
+    var error = response.status
+    
     yield put(HsaActions.hsaFailure(error))
   }
 }

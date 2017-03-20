@@ -15,10 +15,10 @@ export default StyleSheet.create({
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
   heading: {
-    marginTop: Metrics.doubleBaseMargin,
+    marginTop: Metrics.doubleBaseMargin ,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4
+    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0025
   },
   messageView: {
     padding: Metrics.baseMargin,
@@ -38,26 +38,26 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.section,
     marginBottom: Metrics.baseMargin,
     fontWeight: 'bold',
-    fontSize: Fonts.size.normal
+    fontSize: Fonts.size.normal * Metrics. screenWidth * 0.0025
   },
   message: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.medium,
+    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0025,
     flex: 0.8,
     textAlign: 'center',
     flexWrap: 'wrap'
   },
   row: {
-    paddingVertical: Metrics.smallMargin,
-    paddingHorizontal: Metrics.doubleBaseMargin
+    paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.001,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.001
   },
   buttonRow: {
     flex: 1,
     flexDirection: 'row',
     width: Metrics.screenWidth,
     marginTop: Metrics.baseMargin,
-    paddingVertical: Metrics.baseMargin,
+    paddingVertical: Metrics.baseMargin ,
     paddingHorizontal: Metrics.doubleBaseMargin,
     alignItems: 'stretch',
     justifyContent: 'space-between'
@@ -74,12 +74,12 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   textInput: {
-    height: 40,
+    height: Metrics.textHeight,
     color: Colors.charcoal
   },
   textfieldWithFloatingLabel: {
-    height: 48,  // have to do it on iOS
-    marginTop: 10
+    height: Metrics.textHeight2 *Metrics.screenHeight*0.0015,  // have to do it on iOS
+    marginTop: Metrics.baseMargin
   },
   spinnerView: {
     alignSelf: 'center'
@@ -97,6 +97,6 @@ export default StyleSheet.create({
     marginBottom: Metrics.baseMargin,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small
+    fontSize: Fonts.size.small * Metrics. screenWidth * 0.0025
   }
 })

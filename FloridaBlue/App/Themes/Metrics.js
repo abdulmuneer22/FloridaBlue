@@ -20,6 +20,7 @@ const metrics = {
   searchBarHeight: 30,
   textHeight1:35,
   textHeight: 40,
+  textHeight2:50,
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
   navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
@@ -46,6 +47,8 @@ const metrics = {
     large: 60,
     xl: 65,
     xll:70,
+    xll1:75,
+    xll2:80,
     logo: 300
   }
 }
