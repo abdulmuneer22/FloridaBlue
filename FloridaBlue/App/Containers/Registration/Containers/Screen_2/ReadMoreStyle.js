@@ -33,7 +33,7 @@ export default StyleSheet.create({
     marginLeft: 40,
     marginRight: 40,
     marginTop: 20,
-    fontSize: 14,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0024,
     textAlign: 'justify'
   },
   readMoreHeader: {
@@ -63,5 +63,15 @@ export default StyleSheet.create({
     width: Metrics.screenWidth,
     resizeMode: 'stretch',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
+  },
+   buttonRow: {
+    flex: 1,
+    flexDirection: 'row',
+    width: Metrics.screenWidth,
+    marginTop: Metrics.smallMargin,
+    paddingVertical: Metrics.baseMargin,
+    paddingHorizontal: Metrics.doubleBaseMargin,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })

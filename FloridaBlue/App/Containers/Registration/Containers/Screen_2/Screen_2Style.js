@@ -60,9 +60,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
     width: Metrics.screenWidth,
     marginTop: Metrics.baseMargin,
-    paddingVertical: Metrics.baseMargin,
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
     paddingHorizontal: Metrics.doubleBaseMargin,
-    height: Metrics.doubleBaseMargin * 4,
+    height: Metrics.doubleBaseMargin * 5.5,
     backgroundColor: Colors.flBlue.grey1,
     alignItems: 'stretch',
     justifyContent: 'space-between'
@@ -78,13 +78,13 @@ export default StyleSheet.create({
   checkboxMessageText: {
     color: Colors.flBlue.grey5,
     fontWeight: 'bold',
-    fontSize: Fonts.size.medium,
-    height: Metrics.doubleBaseMargin * 2.8
+    fontSize: Fonts.size.medium* Metrics. screenWidth * 0.0031,
+    height: Metrics.doubleBaseMargin * 4
   },
   checkboxMessageHyperlink: {
     color: Colors.flBlue.deepBlue,
     fontWeight: 'bold',
-    fontSize: Fonts.size.medium
+    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0032
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -127,6 +127,6 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin,
     color: Colors.flBlue.ocean,
     fontWeight: 'bold',
-    fontSize: Fonts.size.small * Metrics. screenWidth * 0.003
+    fontSize: Fonts.size.small * Metrics. screenWidth * 0.0035
   }
 })
