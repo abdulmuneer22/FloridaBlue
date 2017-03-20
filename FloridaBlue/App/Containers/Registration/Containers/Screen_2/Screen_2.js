@@ -195,7 +195,7 @@ class Screen_2 extends React.Component {
               }}
               placeholder={I18n.t('createUserId')}>
             </TextfieldWithFloatingLabel>
-            <Text style={styles.hintLink} onPress={() => { this._handleUserIdHint() }}> Show hint </Text>
+            <Text style={styles.hintLink} onPress={() => { this._handleUserIdHint() }}>Hint</Text>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
@@ -214,7 +214,7 @@ class Screen_2 extends React.Component {
               }}
               placeholder={I18n.t('password')}
             />
-            <Text style={styles.hintLink} onPress={() => { this._handlePasswordHint() }}> Show hint </Text>
+            <Text style={styles.hintLink} onPress={() => { this._handlePasswordHint() }}>Hint</Text>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
@@ -245,7 +245,7 @@ class Screen_2 extends React.Component {
             </View>
             <View style={styles.checkboxMessageView}>
               <Text style={styles.checkboxMessageText}>{I18n.t('commElect')}
-                <Text style={styles.checkboxMessageHyperlink} onPress={() => { this._handleReadMore() }}> Read more </Text>
+                <Text style={styles.checkboxMessageHyperlink} onPress={() => { this._handleReadMore() }}>Read more</Text>
               </Text>
             </View>
           </View> : null}
