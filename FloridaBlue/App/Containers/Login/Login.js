@@ -157,8 +157,7 @@ if (this.props != newProps) {
         this
           .props
           .attemptLogout()
-        Alert.alert('Login', 'Please use your user ID and password to log in. You must be a Florida Blue membe' +
-            'r.',
+        Alert.alert('Login', 'Please use your user ID and password to log in. You must be a Florida Blue member.',
         [
           {
             text: 'OK'
@@ -194,7 +193,7 @@ if (this.props != newProps) {
           ])
         }else {
             NavigationActions.MyView({
-                responseURL: newProps.responseURL + '?channel=mobile'
+                responseURL: newProps.responseURL + '?channel=mobile' 
               })
 
         }
@@ -346,7 +345,7 @@ if (this.props != newProps) {
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
               <View style={styles.row}>
-                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration-stga.bcbsfl.com/ecir/public/MemberFPSSelect.do'})}>
+                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration-stga.bcbsfl.com/ecir/public/MemberFPSSelect.do'+ '?channel=mobile'})}>
                   <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
                 </TouchableOpacity>
               </View>
@@ -356,7 +355,7 @@ if (this.props != newProps) {
               <TouchableOpacity onPress={() => { this._handleLogin() }}>
                 <Image style={{width: Metrics.screenWidth * 0.5,
                 borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-                height:Metrics.screenHeight * 0.065,}} 
+                height:Metrics.screenHeight * 0.065}} 
                 source={Images.loginButtonGreen} />
               </TouchableOpacity>
             </LoginButtonView>

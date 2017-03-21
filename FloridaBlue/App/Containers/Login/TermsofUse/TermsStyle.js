@@ -10,7 +10,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow
   },
   checkViewStyle: {
-    height: 120,
+    height:  (Metrics.screenHeight - (Metrics.screenHeight * 0.75)) / 2,
     backgroundColor: Colors.flBlue.grey2,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -33,7 +33,7 @@ export default StyleSheet.create({
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
     // marginLeft:,
    // textAlign:'center',
     fontFamily: Fonts.type.headerFont,
@@ -51,7 +51,7 @@ export default StyleSheet.create({
     // backgroundColor : 'purple'
   },
   checkText: {
-    fontSize: Fonts.size.regular
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025
   },
   agreeButton: {
     alignSelf: 'center',
@@ -65,7 +65,10 @@ export default StyleSheet.create({
   iAgree: {
     alignSelf: 'center',
     justifyContent: 'center',
-    marginBottom: Metrics.mediumMargin
+    marginBottom: Metrics.mediumMargin,
+    width: Metrics.screenWidth * 0.35,
+    borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0015,
+    height:Metrics.screenHeight * 0.055
   },
 
   backButton: {
@@ -97,10 +100,10 @@ export default StyleSheet.create({
   footerText: {
     color: Colors.flBlue.grey4,
     marginHorizontal: Metrics.section,
-    marginBottom: Metrics.baseMargin,
+    marginBottom: Metrics.mediumMargin,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0024
   },
    spinnerText: {
 

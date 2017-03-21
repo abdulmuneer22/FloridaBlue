@@ -8,7 +8,8 @@ import {
   Image,
   ScrollView,
   WebView,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 
 } from 'react-native'
 
@@ -79,7 +80,7 @@ class TermsofUse extends Component {
        return(<View style={{flex:1}}>
          <WebView
             source={{html: this.props.getTou}}
-            style={{marginBottom: 30}} /> 
+             /> 
         <View style={styles.checkViewStyle}>
           <View style={styles.checkStyle}>
             <MKCheckbox
@@ -112,7 +113,7 @@ class TermsofUse extends Component {
                   'TOU',
                   'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
                   [
-                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+                    { text: 'OK', onPress: () => NavigationActions.login() },
                   
                   ],
                   { cancelable: false }

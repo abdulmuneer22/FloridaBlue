@@ -57,7 +57,8 @@ class PlanBenefits extends Component {
 
      else if(this.props.data && this.props.data.tiles) 
           {
-            return(<ScrollView>
+            return(
+            <ScrollView>
 
           <View style={{
             flexDirection: 'row',

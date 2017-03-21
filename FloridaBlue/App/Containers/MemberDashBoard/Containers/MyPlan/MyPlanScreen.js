@@ -7,7 +7,8 @@ Navigator,
 ScrollView,
 TouchableOpacity,
 Dimensions,
-Image
+Image,
+Alert
 } from 'react-native'
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -38,7 +39,7 @@ class MyPlanScreen extends Component {
     }
   }
 
-  _renderHeader () {
+_renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
       {NavItems.backButton()}
@@ -56,6 +57,74 @@ class MyPlanScreen extends Component {
   //   this.props.attemptMyPlan()
   }
 
+  _displayCondition() {
+    if (this.props.fetching) {
+      return (<View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>)
+    }
+
+    else if (this.props.data) {
+      return (
+        <View style={styles.container}>
+          <View style={styles.planNameView}>
+            <Text style={styles.planNameText}>
+              {this.props.planName}
+            </Text>
+          </View>
+
+          <View style={styles.chartWrapper}>
+            {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
+              : <Text>Oops Sorry!!! This Information is not available at this moment.</Text>}
+          </View>
+
+          <View style={styles.myplanTilesStyle}>
+            {this.props.data && this.props.data.planOverViewTiles
+              ? this.props.data.planOverViewTiles.map((tile, i) => {
+                const index = i + 1
+                const TileCount = this.props.data.planOverViewTiles.length
+
+                console.log(tile)
+                return (
+                  <Card
+                    i={i}
+                    key={index}
+                    title={tile.tileName['en']}
+                    tileType={tile.tileType}
+                    icon={tile.tileIcon}
+                    CardCount={TileCount}
+                    image={tile.backgroundImage}
+                    webURL={tile.tileType !== 'native' ? tile.tileUrl : null}
+                    routerName={tile.tileType === 'native' ? tile.routerName : null}
+
+                  />
+                )
+              }
+              )
+              : <Text />
+            }
+          </View>
+
+        </View>
+
+
+      )
+    }
+    else if (this.props.error != null) {
+      Alert.alert(
+        'My Plan Overview',
+        'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+        [
+          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+
+        ],
+        { cancelable: false }
+      )
+
+    }
+  }
+
   render () {
     console.log(this.props.data)
     return (
@@ -65,59 +134,8 @@ class MyPlanScreen extends Component {
         <View>
           {this._renderHeader()}
         </View>
-
-        {
-        this.props.data
-
-          ? <View style={styles.container}>
-            <View style={styles.planNameView}>
-              <Text style={styles.planNameText}>
-                {this.props.planName}
-              </Text>
-            </View>
-
-            <View style={styles.chartWrapper}>
-              {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
-        : <View style={styles.spinnerView}>
-          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>}
-            </View>
-
-            <View style={styles.myplanTilesStyle}>
-              {this.props.data && this.props.data.planOverViewTiles
-            ? this.props.data.planOverViewTiles.map((tile, i) => {
-              const index = i + 1
-              const TileCount = this.props.data.planOverViewTiles.length
-
-              console.log(tile)
-              return (
-                <Card
-                  i={i}
-                  key={index}
-                  title={tile.tileName['en']}
-                  tileType={tile.tileType}
-                  icon={tile.tileIcon}
-                  CardCount={TileCount}
-                  image={tile.backgroundImage}
-                  webURL={tile.tileType !== 'native' ? tile.tileUrl : null}
-                  routerName={tile.tileType === 'native' ? tile.routerName : null}
-
-                    />
-              )
-            }
-        )
-        : <Text />
-      }
-            </View>
-
-          </View>
-
-        : <View style={styles.spinnerView}>
-          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>
-        }
+        {this._displayCondition()}
+       
 
       </View>
 

@@ -167,6 +167,9 @@ export default StyleSheet.create({
     marginLeft: Metrics.doubleBaseMargin
 
   },
+   spinnerText: {
+    marginTop: 20
+  },
   spinnerView: {
     alignItems: 'center',
     justifyContent: 'center',
