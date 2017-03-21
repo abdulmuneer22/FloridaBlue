@@ -94,13 +94,15 @@ export function * sendPersonalInformationRequest (api, {data}) {
 
 export function * sendRegistrationCodeRequest (api, {data}) {
   const response = yield call(api.postRegistrationCode, data)
+  console.log(response)
   var sendData = data
   if (response.ok) {
     var error = null
     var data = response.data
     data.registrationCodeStatus = data.reasonCode
     data.registrationCodeStatusMessage = getReasonMessage(data.registrationCodeStatus)
-    if (data.registrationCodeStatus === '000' && data.registerUserStatus === '000') {
+    console.log('hey I am successfully sent code')
+    if (response.data.reasonCode == '000') {
       yield put(RegistrationActions.registerUserRequest(sendData, data.token))}
     yield put(RegistrationActions.sendRegistrationCodeSuccess(data))
   } else {
