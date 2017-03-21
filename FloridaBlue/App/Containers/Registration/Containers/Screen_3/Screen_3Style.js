@@ -91,5 +91,15 @@ export default StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
      fontSize: Fonts.size.small * Metrics. screenWidth * 0.0033
+  },
+  registrationCodeHeader: {
+    fontSize: Fonts.size.h5,
+    fontFamily: Fonts.type.base,
+    textAlign: 'center'
+  },
+  registrationCodeParagraph: {
+    fontSize: Fonts.size.description,
+    fontFamily: Fonts.type.base,
+    textAlign: 'justify'
   }
 })

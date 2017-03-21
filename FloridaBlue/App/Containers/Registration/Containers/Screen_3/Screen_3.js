@@ -124,8 +124,13 @@ class Screen_3 extends React.Component {
             </View>
           </View> : <Text />}
 
+          <View style={styles.row}>
+            <Text style={styles.registrationCodeHeader}>{I18n.t('registrationCodeTitle')}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.registrationCodeParagraph}>{I18n.t('registrationCodeMessage')}</Text>
+          </View>
 
-        
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='enterCode'
