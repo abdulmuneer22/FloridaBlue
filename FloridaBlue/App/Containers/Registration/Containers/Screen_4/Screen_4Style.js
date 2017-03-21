@@ -12,20 +12,33 @@ export default StyleSheet.create({
   headerImage: {
     width: Metrics.screenWidth,
     resizeMode: 'stretch',
+   // alignItems:'center',
+    //justifyContent:'center',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
   heading: {
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0028
+    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0025
   },
   topText: {
     color: Colors.flBlue.anvil,
    // marginHorizontal: Metrics.section,
     //marginBottom: Metrics.baseMargin,
-    fontWeight: 'bold',
-    fontSize: Fonts.size.xm * Metrics. screenWidth * 0.0025
+    fontWeight: '400',
+    fontSize: Fonts.size.xm * Metrics. screenWidth * 0.0027
+  },
+  headerTextStyle: {
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0033,
+    marginTop:20,
+    marginLeft: Metrics.mediumMargin,
+    //marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight:'400'
+
   },
   messageView: {
     padding: Metrics.baseMargin,
@@ -59,8 +72,10 @@ export default StyleSheet.create({
     flexWrap: 'wrap'
   },
   hintImage: {
-    marginTop: Metrics.doubleBaseMargin + 5,
+    marginTop: Metrics.doubleBaseMargin,
     marginHorizontal: 10,
+    backgroundColor:Colors.transparent,
+    color:Colors.snow
   },
   buttonRow: {
     flex: 1,

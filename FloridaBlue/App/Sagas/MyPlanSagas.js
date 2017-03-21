@@ -20,7 +20,7 @@ export function * myplan (api, data) {
   } else {
     // dispatch successful logins
     console.log('I am coming from failuer ')
-    var error = 'WRONG'
+    var error = response.status
     yield put(MyPlanActions.myplanFailure(error))
   }
 }

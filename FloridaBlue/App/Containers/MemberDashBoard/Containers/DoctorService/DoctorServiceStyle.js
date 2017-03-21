@@ -108,6 +108,16 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600'
   },
+  noteText: {
+    // flexWrap:'wrap',
+    marginLeft: Metrics.baseMargin,
+    marginRight: Metrics.baseMargin,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,  
+    color: Colors.flBlue.grey5,
+    marginTop: Metrics.smallMargin,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400'
+  },
 
   h2: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,

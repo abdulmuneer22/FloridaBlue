@@ -15,15 +15,15 @@ export default StyleSheet.create({
   },
   heading: {
     marginTop: Metrics.doubleBaseMargin,
-    alignSelf: 'center',
+   // alignSelf: 'center',
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0031
+    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0028
   },
   description: {
-    color: Colors.flBlue.grey3,
+    color: Colors.flBlue.grey5,
     textAlign: 'left',
-    fontWeight: 'bold',
+    fontWeight: '400',
     fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0032
   },
   messageView: {

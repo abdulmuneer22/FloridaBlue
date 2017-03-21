@@ -18,7 +18,7 @@ export function * support (api) {
   } else {
     // dispatch successful logins
     console.log('I am coming from failuer ')
-    var error = 'WRONG'
+    var error = response.status
     yield put(SupportActions.supportFailure(error))
   }
 }

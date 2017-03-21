@@ -6,7 +6,8 @@ StyleSheet,
 Dimensions,
 ScrollView,
 TouchableOpacity,
-Image
+Image,
+Alert
 } from 'react-native'
 
 const window = Dimensions.get('window')
@@ -45,16 +46,18 @@ class PlanBenefits extends Component {
 // this.props.attemptMyPlan()
   }
 
-  render () {
-    var objectName = this.props.objectName
-    console.log('root testing')
-    var i = 0
-    var tileCard = []
-    return (
-      <View style={styles.container}>
-        {this._renderHeader()}
 
-        <ScrollView>
+
+  _displayCondition(){
+     if(this.props.fetching){
+      return(<View style={styles.spinnerView}>
+            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+            <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          </View>)} 
+
+     else if(this.props.data && this.props.data.tiles) 
+          {
+            return(<ScrollView>
 
           <View style={{
             flexDirection: 'row',
@@ -92,7 +95,32 @@ class PlanBenefits extends Component {
           </View> }
 
           </View>
-        </ScrollView>
+        </ScrollView>)
+          }
+       else if(this.props.error != null){
+                Alert.alert(
+                  'Plan Benefits',
+                  'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+                  [
+                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+                  
+                  ],
+                  { cancelable: false }
+                )
+             
+  }
+  }
+
+  render () {
+    var objectName = this.props.objectName
+    console.log('root testing')
+    var i = 0
+    var tileCard = []
+    return (
+      <View style={styles.container}>
+        {this._renderHeader()}
+        {this._displayCondition()}
+        
       </View>
     )
   }
@@ -111,7 +139,7 @@ PlanBenefits.propTypes = {
 const mapStateToProps = (state) => {
   return {
     data: state.myplan.data,
-    fetching: state.login.fetching,
+    fetching: state.myplan.fetching,
     error: state.myplan.error,
     leftActive: state.myplan.leftActive,
     rightActive: state.myplan.rightActive,

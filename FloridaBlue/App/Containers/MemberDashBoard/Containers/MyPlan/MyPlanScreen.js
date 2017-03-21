@@ -44,7 +44,7 @@ class MyPlanScreen extends Component {
       {NavItems.backButton()}
       </View>
 
-      <Text style={styles.headerTextStyle}>My Plan</Text>
+      <Text style={styles.headerTextStyle}>My Plan Overview</Text>
       
       <View style={{marginRight:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
       {NavItems.settingsButton()}
@@ -134,7 +134,7 @@ MyPlanScreen.propTypes = {
 const mapStateToProps = (state) => {
   console.log('state is', state)
   return {
-    fetching: state.login.fetching,
+    fetching: state.myplan.fetching,
     data: state.myplan.data,
     error: state.myplan.error,
     planName: _.get(state, 'member.defaultContract.planName', '')

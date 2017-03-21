@@ -59,7 +59,7 @@ class Confirmation extends Component {
         <Image style={styles.headerContainer} source={Images.regCompletion} />
         <View >
         <Text style={styles.header}>Thank You!</Text>
-        <Text style={styles.subheading}>You have successfully completed the registration process.</Text>
+        <Text style={styles.subheading}>You're All Set</Text>
         </View>
         <View style={styles.userStyle}>
 
@@ -91,7 +91,12 @@ class Confirmation extends Component {
           </View>
 
         </View>
-
+        <View style={{alignItems:'center',marginTop: Metrics.searchBarHeight}}>
+          <Text style={{fontSize:Fonts.size.input * Metrics.screenWidth * 0.0030,
+                        color:Colors.flBlue.anvil}}>
+                  Click Continue to start exploring
+           </Text>
+        </View>
         <View style={styles.wrapper}>
 
           <TouchableOpacity onPress={() => { NavigationActions.WelcomeDashBoard({'origin': 'registration'}) }}>

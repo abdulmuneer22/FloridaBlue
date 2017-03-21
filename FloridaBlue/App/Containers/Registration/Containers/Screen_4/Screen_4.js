@@ -91,7 +91,9 @@ class Screen_4 extends React.Component {
     return (
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps>
-          <Image source={Images.registrationStep4Hdr} style={styles.headerImage} />
+          <Image source={Images.registrationStep4Hdr} style={styles.headerImage}>
+          <Text style={styles.headerTextStyle}>Almost Done!</Text>
+            </Image>
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('setUpSecurityQuestions')}</Text>
           </View>
@@ -108,7 +110,7 @@ class Screen_4 extends React.Component {
           </View> : <Text />}
           <View style={styles.hintRow}>
             <Text style={styles.heading}>{I18n.t('securityHint1')}</Text>
-            <TouchableHighlight onPress={this._handleSecurityHint}>
+            <TouchableHighlight style={{backgroundColor:Colors.transparent}} onPress={this._handleSecurityHint}>
               <Image source={Images.infoIcon} style={styles.hintImage} />
             </TouchableHighlight>
           </View>

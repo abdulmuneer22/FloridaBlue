@@ -3,14 +3,11 @@ import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 
 export default StyleSheet.create({
   headerContainer: {
-   // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.775),
-    resizeMode: 'cover',
-    overflow:'visible',
-  //  alignSelf: 'stretch',
-    width: Metrics.screenWidth,
-    marginBottom:Metrics.baseMargin,
-    backgroundColor:Colors.transparent
+   width: Metrics.screenWidth,
+    resizeMode: 'stretch',
+    alignItems:'center',
+    justifyContent:'center',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
   container: {
     flex: 1,
@@ -44,7 +41,7 @@ export default StyleSheet.create({
    // justifyContent:'space-between',
     alignItems: 'center',
    // height:150,
-    backgroundColor: Colors.flBlue.grass
+    backgroundColor: Colors.flBlue.orange
 
   },
   features: {
@@ -71,7 +68,7 @@ export default StyleSheet.create({
    // borderColor : 'rgb(80, 88, 90)',
   // borderWidth : 1,
     alignSelf: 'center',
-    marginTop: Metrics.doubleBaseMargin
+    
   },
   orStyle: {
     fontSize: Fonts.size.regular,
@@ -114,7 +111,7 @@ export default StyleSheet.create({
   wrapper: {
     flex: 1,
     justifyContent: 'center',
-    marginTop: 30
+    marginTop: Metrics.doubleBaseMargin
   }
 
 })

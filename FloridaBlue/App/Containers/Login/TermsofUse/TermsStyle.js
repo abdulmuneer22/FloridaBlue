@@ -22,7 +22,7 @@ export default StyleSheet.create({
    headerContainer: {
     flexDirection: 'row',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   //  padding: Metrics.mediumMargin,
     // resizeMode:'cover',
@@ -35,8 +35,9 @@ export default StyleSheet.create({
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0027,
     // marginLeft:,
+   // textAlign:'center',
     fontFamily: Fonts.type.headerFont,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023
+  //  marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023
 
   },
   checkStyle: {

@@ -42,15 +42,11 @@ class TermsofUse extends Component {
 
    _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-      <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
-      {NavItems.backButton()}
-      </View>
+    
 
-      <Text style={styles.headerTextStyle}>Terms Of Use</Text>
+      <Text style={styles.headerTextStyle}>Terms of Use</Text>
       
-      <View style={{marginRight:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
-      {NavItems.settingsButton()}
-      </View>
+      
     </Image>)
   }
 
@@ -95,8 +91,7 @@ class TermsofUse extends Component {
           </View>
           <View style={styles.checkTextView}>
             <Text style={styles.checkText}>
-        Yes. I certified that I have read the above Terms of Use and agree with those terms in order
-        to use this apllication.
+        Accept terms of use and continue.
         </Text>
           </View>
         </View>

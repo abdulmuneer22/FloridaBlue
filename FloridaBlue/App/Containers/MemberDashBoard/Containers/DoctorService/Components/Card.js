@@ -88,7 +88,7 @@ class Card extends Component {
           })
         }
 
-          <Text style={styles.footerText}>
+          <Text style={styles.noteText}>
             {_.get(network, 'footer_note.en', '')}
           </Text>
 
