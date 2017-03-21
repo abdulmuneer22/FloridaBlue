@@ -146,7 +146,7 @@ class Screen_1 extends React.Component {
             />
           </View>
           <View style={styles.row}>
-            <Text style={[styles.message, {fontSize: Fonts.size.regular * Metrics. screenWidth * 0.0025}]}> {I18n.t('cantFindMemberId')}</Text>
+            <Text style={[styles.findMessage, {fontSize: Fonts.size.regular * Metrics. screenWidth * 0.0025}]}> {I18n.t('cantFindMemberId')}</Text>
           </View>
           <View style={styles.findItButton}>
             <TouchableOpacity onPress={() => { this._handleFindMemberId() }}>
