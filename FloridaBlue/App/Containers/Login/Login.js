@@ -133,7 +133,7 @@ class Login extends Component {
     var responseURL = newProps.responseURL
 if (this.props != newProps) {
   if (this.isAttempting && !newProps.fetching && newProps.error === null && responseURL) {
-    if (this.props.responseURL != newProps.responseURL) {
+   // if (this.props.responseURL != newProps.responseURL) {
       // login path
       if (responseURL == 'login') {
         if (!newProps.mfetching) {
@@ -199,7 +199,7 @@ if (this.props != newProps) {
 
         }
       }
-    }
+    //}
   }
 }
   // end of IF condition
