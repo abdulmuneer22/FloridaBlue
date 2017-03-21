@@ -65,7 +65,11 @@ class Screen_2 extends React.Component {
     var confirmPassword = this.props.confirmPassword
 
     if (!(createUserId && password && confirmPassword)) {
-      alert('Please enter values in all fields')
+      this.props.handleChangePersonalInformationStatus('999')
+      this.props.handleChangePersonalInformationStatusMessage('Please enter values in all fields')
+    } else if (confirmPassword != password){
+      this.props.handleChangePersonalInformationStatus('999')
+      this.props.handleChangePersonalInformationStatusMessage('Your passwords do not match. Please enter matching passwords')
     } else {
       this.props.verifyPersonalInformation(this.props)
     }
@@ -78,6 +82,7 @@ class Screen_2 extends React.Component {
   componentDidMount () {
     // Set to null initially
     this.props.handleChangePersonalInformationStatus(null)
+    this.props.handleChangePersonalInformationStatusMessage(null)
     // Set for true by default
     this.props.handleChangeEmailUpdated(true)
   }
@@ -89,6 +94,7 @@ class Screen_2 extends React.Component {
       if (status === '000') {
         // Reset to null
         this.props.handleChangePersonalInformationStatus(null)
+        this.props.handleChangePersonalInformationStatusMessage(null)
         NavigationActions.screen_3()
       }
     }
@@ -252,7 +258,7 @@ class Screen_2 extends React.Component {
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
-                <Image source={Images.backButton} 
+                <Image source={Images.backButton}
                  style={{width: Metrics.screenWidth * 0.35,
                             borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
                             height:Metrics.screenHeight * 0.055}}/>
