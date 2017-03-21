@@ -173,9 +173,12 @@ if (this.props != newProps) {
           .props
           .attemptLogout()
 
-        Alert.alert('Login', 'Your account is disabled.  Click Support for help', [
+        Alert.alert('Login', 'Your account is locked.  Click Support for help', [
           {
-            text: 'OK'
+            text: 'OK',
+            onPress: () => NavigationActions.MyView({
+                responseURL: newProps.responseURL + '?channel=mobile'
+              })
           }
         ])
 
