@@ -123,6 +123,9 @@ class Screen_3 extends React.Component {
               </TouchableOpacity>
             </View>
           </View> : <Text />}
+
+
+        
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='enterCode'

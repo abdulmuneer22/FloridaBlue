@@ -78,7 +78,7 @@ export default StyleSheet.create({
   checkboxMessageText: {
     color: Colors.flBlue.grey5,
     fontWeight: 'bold',
-    fontSize: Fonts.size.medium* Metrics. screenWidth * 0.0031,
+    fontSize: Fonts.size.medium* Metrics. screenWidth * 0.0033,
     height: Metrics.doubleBaseMargin * 4
   },
   checkboxMessageHyperlink: {

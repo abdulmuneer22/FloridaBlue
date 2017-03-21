@@ -40,8 +40,16 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: Fonts.size.normal * Metrics. screenWidth * 0.0025
   },
-  message: {
+    message: {
     color: Colors.snow,
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0025,
+    flex: 0.8,
+    textAlign: 'center',
+    flexWrap: 'wrap'
+  },
+    findMessage: {
+    color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0025,
     flex: 0.8,
@@ -71,7 +79,8 @@ export default StyleSheet.create({
     justifyContent: 'flex-end'
   },
   findItButton: {
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop:Metrics.baseMargin
   },
   textInput: {
     height: Metrics.textHeight,

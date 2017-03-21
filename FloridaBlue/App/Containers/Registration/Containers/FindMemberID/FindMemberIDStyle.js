@@ -17,13 +17,13 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4 * Metrics.screenWidth *0.0023
+    fontSize: Fonts.size.h4 * Metrics.screenWidth *0.0022
   },
   description: {
     color: Colors.flBlue.grey3,
     textAlign: 'left',
     fontWeight: 'bold',
-    fontSize: Fonts.size.medium * Metrics.screenWidth *0.0021
+    fontSize: Fonts.size.medium * Metrics.screenWidth *0.0023
   },
   messageView: {
     padding: Metrics.baseMargin,
