@@ -51,7 +51,8 @@ type LoginScreenProps = {
   attemptSupportScreen :() => void,
   merror :string,
   handleChangeUserName :() => any,
-  passhandleChangePasswordword :() => any
+  passhandleChangePasswordword :() => any,
+  clearLogin:() => void
 }
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -74,6 +75,8 @@ class Login extends Component {
   }
 
   _handleLogin () {
+    //clearing local cookies before going to PMI
+    RCTNetworking.clearCookies((cleared) => {})
     Keyboard.dismiss()
     var username = this.props.username
     var password = this.props.password
@@ -115,12 +118,10 @@ class Login extends Component {
   }
 
    componentDidMount() {
-    // after registration fire login for auto login
-    /*
-    if (this.props.username && this.props.password) {
-      this.props.attemptLogin(this.props.username, this.props.password)
-    }
-    */
+        this.props.cl
+        RCTNetworking.clearCookies((cleared) => {
+          console.log('clearing local cookies for the app')
+        })
    }
 
 
@@ -151,12 +152,11 @@ if (this.props != newProps) {
         NavigationActions.screen_4({'username': this.props.username})
         // Unauthorized User
       } else if (responseURL.includes('mob/error/accessdenied')) {
+         
         RCTNetworking.clearCookies((cleared) => {
           console.log('clearing local cookies for the app')
         })
-        this
-          .props
-          .attemptLogout()
+        this.props.attemptLogout()
         Alert.alert('Login', 'Please use your user ID and password to log in. You must be a Florida Blue member.',
         [
           {
@@ -166,12 +166,11 @@ if (this.props != newProps) {
 
         // Disabled Account
       } else if (responseURL.includes('apsparam=usrlocked')) {
+       
         RCTNetworking.clearCookies((cleared) => {
           console.log('clearing local cookies for the app')
         })
-        this
-          .props
-          .attemptLogout()
+        this.props.attemptLogout()
 
         Alert.alert('Login', 'Your account is locked.  Click Support for help', [
           {
@@ -184,8 +183,9 @@ if (this.props != newProps) {
 
         // Password About to Expire
       } else {
-
+         this.props.clearLogin()
         if (responseURL.includes('updatePassword.do')) {
+          
           Alert.alert('Login', 'You must change your password now.', [
             {
               text: 'OK',
@@ -198,7 +198,7 @@ if (this.props != newProps) {
             NavigationActions.MyView({
                 responseURL: newProps.responseURL + '?channel=mobile' 
               })
-
+             
         }
       }
     //}
@@ -417,7 +417,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptMember: () => dispatch(MemberActions.memberRequest()),
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
     attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
-    attemptLogout: () => dispatch(LoginActions.logoutRequest())
+    attemptLogout: () => dispatch(LoginActions.logoutRequest()),
+    clearLogin:() => dispatch(LoginActions.logout())
   }
 }
 
