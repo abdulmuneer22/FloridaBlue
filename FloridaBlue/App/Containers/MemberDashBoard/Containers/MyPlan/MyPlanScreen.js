@@ -65,7 +65,7 @@ _renderHeader () {
       </View>)
     }
 
-    else if (this.props.data) {
+    else if (this.props.data && this.props.data.planOverViewTiles ) {
       return (
         <View style={styles.container}>
           <View style={styles.planNameView}>
