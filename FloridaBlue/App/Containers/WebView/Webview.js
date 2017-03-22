@@ -19,11 +19,10 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
 var btoa = require('btoa')
-const jsForInjection = `
-  var el = document.getElementsByTagName('body')[0];
-  el.style.height = '${Dimensions.get('window').height}px';
-`
+
+
 class Webview extends Component {
+  
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
@@ -40,10 +39,22 @@ class Webview extends Component {
 
     </Image>)
   }
+
+
   render () {
     var dynamic = this.props.responseURL
     var smToken = this.props.smToken
     var redirect = null
+    onNavigationStateChange = (navState) => {
+      console.log(navState.url)
+      console.log(navState)
+    };
+    onShouldStartLoadWithRequest = (event) => {
+    // Implement any custom loading logic here, don't forget to return!
+    console.log(event,'request')
+    return true;
+    };
+
     if (this.props.smToken) {
       redirect = {
         uri: dynamic,
@@ -66,8 +77,11 @@ class Webview extends Component {
           source={redirect}
           javaScriptEnabled={true}
           domStorageEnabled={true}
-          injectedJavaScript={jsForInjection}
-              />
+          injectedJavaScript="var el = document.getElementsById('mobile-nav');el.remove(el);"
+       // Below functions for debugging   
+       //   onNavigationStateChange={onNavigationStateChange}
+       //   onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
+            />
       </View>
     )
   }
