@@ -67,31 +67,12 @@ class Webview extends Component {
           javaScriptEnabled={true}
           domStorageEnabled={true}
           injectedJavaScript={jsForInjection}
-          onNavigationStateChange={this.onNavigationStateChange}
-          startInLoadingState={true}
-          contentInset={{top: 0, left: 0, bottom: 0, right: 0}}
               />
       </View>
     )
   }
 }
-onNavigationStateChange = (navState) => {
-  console.log("Nav state changed..")
-    this.setState({
-      backButtonEnabled: navState.canGoBack,
-      forwardButtonEnabled: navState.canGoForward,
-      url: navState.url,
-      status: navState.title,
-      loading: navState.loading,
-      scalesPageToFit: true
-    });
-}
-goBack = () => {
-  this.refs[WEBVIEW_REF].goBack()
-}
-goForward = () => {
-  this.refs[WEBVIEW_REF].goForward()
-}
+
 Webview.propTypes = {
 /*  fetching: PropTypes.bool,
   responseURL : PropTypes.string, */
