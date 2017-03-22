@@ -649,6 +649,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = MW6RC742N3;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1082,6 +1083,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Blue Cross and Blue Shield of Florida (MW6RC742N3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = MW6RC742N3;
@@ -1097,6 +1100,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bcbsfl.mobile.floridablue.Florida-Blue";
 				PRODUCT_NAME = FloridaBlue;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1107,6 +1112,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Blue Cross and Blue Shield of Florida (MW6RC742N3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = MW6RC742N3;
@@ -1122,6 +1129,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bcbsfl.mobile.floridablue.Florida-Blue";
 				PRODUCT_NAME = FloridaBlue;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
