@@ -114,7 +114,9 @@ class Screen_2 extends React.Component {
     return (
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps>
-          <Image source={Images.registrationStep2Hdr} style={styles.headerImage} />
+          <Image source={Images.registrationStep2Hdr} style={styles.headerImage} >
+          <Text style={styles.headerTextStyle}>Set Up Your Account</Text>
+          </Image>
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
           </View>
@@ -251,7 +253,7 @@ class Screen_2 extends React.Component {
             </View>
             <View style={styles.checkboxMessageView}>
               <Text style={styles.checkboxMessageText}>{I18n.t('commElect')}
-                <Text style={styles.checkboxMessageHyperlink} onPress={() => { this._handleReadMore() }}> Read more</Text>
+                <Text style={styles.checkboxMessageHyperlink} onPress={() => { this._handleReadMore() }}> Read More</Text>
               </Text>
             </View>
           </View> : null}

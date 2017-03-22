@@ -97,10 +97,10 @@ class Screen_3 extends React.Component {
     return (
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps>
-          <Image source={Images.registrationStep3Hdr} style={styles.headerImage} />
-          <View style={styles.row}>
-            <Text style={styles.heading}>{I18n.t('verifyYourDevice')}</Text>
-          </View>
+          <Image source={Images.registrationStep3Hdr} style={styles.headerImage} >
+            <Text style={styles.headerTextStyle}>Verify Your Account</Text>
+          </Image>
+
           {this.props.registrationCodeStatus && (this.props.registrationCodeStatus != null && this.props.registrationCodeStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
@@ -124,10 +124,10 @@ class Screen_3 extends React.Component {
             </View>
           </View> : <Text />}
 
-          <View style={styles.row}>
+          <View style={styles.row1}>
             <Text style={styles.registrationCodeHeader}>{I18n.t('registrationCodeTitle')}</Text>
           </View>
-          <View style={styles.row}>
+          <View style={styles.row1}>
             <Text style={styles.registrationCodeParagraph}>{I18n.t('registrationCodeMessage')}</Text>
           </View>
 

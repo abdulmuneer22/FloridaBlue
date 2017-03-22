@@ -88,7 +88,7 @@ class LandingScreen extends Component {
       </View>)
     }
 
-    else if (this.props.visibilityRules) {
+    else if (this.props.visibilityRules != undefined) {
       return (
         <View style={styles.container}>
           <Greeting userName={this.props.userName} />
@@ -97,7 +97,8 @@ class LandingScreen extends Component {
             flexWrap: 'wrap',
             flexDirection: 'row'
           }}>
-            {this.props.visibilityRules ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
+            {
+              this.props.visibilityRules ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
               onItemPress = function () {
                 var action
                 if (tile.tileType == 'webview') {
@@ -140,7 +141,7 @@ class LandingScreen extends Component {
             }) : <Text />
             }
           </View>
-          {this.props.visibilityRules.opdTile
+          { this.props.visibilityRules.opdTile
 
             ? <TouchableOpacity onPress={() => NavigationActions.MyView({ responseURL: this.props.visibilityRules.opdTile.tileUrl })}>
               <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>

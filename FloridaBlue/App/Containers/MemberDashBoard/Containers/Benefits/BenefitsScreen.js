@@ -55,7 +55,7 @@ class PlanBenefits extends Component {
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>)} 
 
-     else if(this.props.data && this.props.data.tiles) 
+     else if(this.props.data && this.props.data.tiles !=null && this.props.data.tiles.length > 0 ) 
           {
             return(
             <ScrollView>
@@ -97,6 +97,16 @@ class PlanBenefits extends Component {
 
           </View>
         </ScrollView>)
+          } else if(this.props.data && this.props.data.tiles !=null && this.props.data.tiles.length == 0){
+            Alert.alert(
+                  'Plan Benefits',
+                  'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+                  [
+                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+                  
+                  ],
+                  { cancelable: false }
+                )
           }
        else if(this.props.error != null){
                 Alert.alert(

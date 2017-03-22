@@ -17,6 +17,21 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
   },
+   headerTextStyle: {
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0030,
+    marginTop:20,
+    marginLeft: Metrics.mediumMargin,
+    //marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight:'400'
+
+  },
+     row1: {
+    paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.003,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035
+  },
   heading: {
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
@@ -26,7 +41,7 @@ export default StyleSheet.create({
   description: {
     color: Colors.flBlue.grey3,
     textAlign: 'left',
-    fontWeight: 'bold',
+    fontWeight: '400',
     fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0033
   },
   messageView: {
@@ -51,7 +66,7 @@ export default StyleSheet.create({
     flexWrap: 'wrap'
   },
   row: {
-   paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.001,
+   paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.003,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.001
   },
   buttonRow: {

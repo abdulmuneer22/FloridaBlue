@@ -20,6 +20,17 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0025
   },
+  headerTextStyle: {
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0029,
+    marginTop:Metrics.doubleBaseMargin,
+    marginLeft: Metrics.mediumMargin,
+    //marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight:'400'
+
+  },
   messageView: {
     padding: Metrics.baseMargin,
     marginHorizontal: Metrics.doubleBaseMargin,
@@ -60,31 +71,29 @@ export default StyleSheet.create({
     flexDirection: 'row',
     width: Metrics.screenWidth,
     marginTop: Metrics.baseMargin,
-    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
+    paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.0020,
     paddingHorizontal: Metrics.doubleBaseMargin,
-    height: Metrics.doubleBaseMargin * 5.5,
+    height: Metrics.doubleBaseMargin * 4.2,
     backgroundColor: Colors.flBlue.grey1,
-    alignItems: 'stretch',
-    justifyContent: 'space-between'
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   checkbox: {
-    alignSelf: 'flex-start',
-    justifyContent: 'flex-start'
+    flex:0.2
   },
   checkboxMessageView: {
-    alignSelf: 'flex-end',
-    justifyContent: 'flex-end'
+   flex:0.8
   },
   checkboxMessageText: {
     color: Colors.flBlue.grey5,
     fontWeight: 'bold',
     fontSize: Fonts.size.medium* Metrics. screenWidth * 0.0033,
-    height: Metrics.doubleBaseMargin * 4
+   // height: Metrics.doubleBaseMargin * 4
   },
   checkboxMessageHyperlink: {
     color: Colors.flBlue.deepBlue,
     fontWeight: 'bold',
-    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0032
+    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0032,
   },
   backButton: {
     alignSelf: 'flex-start',

@@ -110,7 +110,7 @@ class Screen_4 extends React.Component {
           </View> : <Text />}
           <View style={styles.hintRow}>
             <Text style={styles.heading}>{I18n.t('securityHint1')}</Text>
-            <TouchableHighlight style={{backgroundColor:Colors.transparent}} onPress={this._handleSecurityHint}>
+            <TouchableHighlight  onPress={this._handleSecurityHint}>
               <Image source={Images.infoIcon} style={styles.hintImage} />
             </TouchableHighlight>
           </View>

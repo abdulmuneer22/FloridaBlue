@@ -65,18 +65,36 @@ _renderHeader () {
       </View>)
     }
 
-    else if (this.props.data && this.props.data.planOverViewTiles ) {
+    else if (this.props.data && this.props.data.planOverViewTiles != null && this.props.data.planOverViewTiles.length > 0) {
       return (
         <View style={styles.container}>
+          
           <View style={styles.planNameView}>
+
+             { this.props.data.annualDeductible ||  this.props.data.oop ?
             <Text style={styles.planNameText}>
               {this.props.planName}
             </Text>
+
+             :<Text/>
+           }
           </View>
 
           <View style={styles.chartWrapper}>
-            {this.props.data.annualDeductible ? <MyPlanSwiper data={this.props.data} />
-              : <Text>Oops Sorry!!! This Information is not available at this moment.</Text>}
+            {this.props.data.annualDeductible ||  this.props.data.oop ? <MyPlanSwiper data={this.props.data} />
+              
+              :  Alert.alert(
+        'My Plan Overview',
+        'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+        [
+          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+
+        ],
+        { cancelable: false }
+      ) 
+              
+              
+              }
           </View>
 
           <View style={styles.myplanTilesStyle}>
@@ -110,7 +128,7 @@ _renderHeader () {
 
 
       )
-    }
+    } 
     else if (this.props.error != null) {
       Alert.alert(
         'My Plan Overview',

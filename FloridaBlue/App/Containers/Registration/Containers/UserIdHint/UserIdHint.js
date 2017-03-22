@@ -37,17 +37,17 @@ class UserIdHint extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Image source={Images.registrationStep2Hdr} style={styles.headerImage} />
-          <View style={styles.row}>
-            <Text style={styles.heading}>{I18n.t('userIdHintTitle')}</Text>
-          </View>
+          <Image source={Images.registrationStep2Hdr} style={styles.headerImage} >
+             <Text style={styles.headerTextStyle}>{I18n.t('userIdHintTitle')}</Text>
+             </Image>
+        
           <View style={styles.row}>
             <Text style={styles.description}>{I18n.t('userIdHintDescription1')}</Text>
           </View>
           <View style={styles.row}>
             <Text style={styles.description}>{I18n.t('userIdHintDescription2')}</Text>
           </View>
-          <View style={styles.row}>
+          <View style={styles.row1}>
             <Text style={styles.description}>{I18n.t('userIdHintDescription3')}</Text>
           </View>
           <View style={styles.buttonRow}>

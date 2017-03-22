@@ -37,17 +37,17 @@ class SecurityHint extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <Image source={Images.registrationStep4Hdr} style={styles.headerImage} />
-          <View style={styles.row}>
-            <Text style={styles.heading}>{I18n.t('securityHintTitle')}</Text>
-          </View>
+          <Image source={Images.registrationStep4Hdr} style={styles.headerImage}>
+           <Text style={styles.headerTextStyle}>{I18n.t('securityHintTitle')}</Text>
+           
+            </Image>
           <View style={styles.row}>
             <Text style={styles.description}>{I18n.t('securityHintDescription1')}</Text>
           </View>
           <View style={styles.row}>
             <Text style={styles.description}>{I18n.t('securityHintDescription2')}</Text>
           </View>
-          <View style={styles.row}>
+          <View style={styles.row1}>
             <Text style={styles.description}>{I18n.t('securityHintDescription3')}</Text>
           </View>
           <View style={styles.buttonRow}>

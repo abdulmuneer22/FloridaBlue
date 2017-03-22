@@ -20,6 +20,17 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0033
   },
+   headerTextStyle: {
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0029,
+    marginTop:Metrics.doubleBaseMargin,
+    marginLeft: Metrics.mediumMargin,
+    //marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight:'400'
+
+  },
   messageView: {
     padding: Metrics.baseMargin,
     marginHorizontal: Metrics.doubleBaseMargin,
@@ -43,6 +54,10 @@ export default StyleSheet.create({
   },
  row: {
     paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.003,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.004
+  },
+   row1: {
+    paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.002,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.004
   },
   buttonRow: {
@@ -93,12 +108,12 @@ export default StyleSheet.create({
      fontSize: Fonts.size.small * Metrics. screenWidth * 0.0033
   },
   registrationCodeHeader: {
-    fontSize: Fonts.size.h5,
+    fontSize: Fonts.size.h5 * Metrics. screenWidth * 0.0028,
     fontFamily: Fonts.type.base,
     textAlign: 'center'
   },
   registrationCodeParagraph: {
-    fontSize: Fonts.size.description,
+    fontSize: Fonts.size.xr * Metrics. screenWidth * 0.0029,
     fontFamily: Fonts.type.base,
     textAlign: 'justify'
   }

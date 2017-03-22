@@ -53,7 +53,7 @@ class Resources extends Component {
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>)} 
 
-     else if(this.props.visibilityRules.additionalTiles) 
+     else if(this.props.visibilityRules !=undefined && this.props.visibilityRules.additionalTiles !=undefined && this.props.visibilityRules.additionalTiles.length > 0 ) 
           {
             return(
               <View style={{flex:1}}>

@@ -33,7 +33,7 @@ export default StyleSheet.create({
     marginLeft: 40,
     marginRight: 40,
     marginTop: 20,
-    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0024,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0026,
     textAlign: 'justify'
   },
   readMoreHeader: {

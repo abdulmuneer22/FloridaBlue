@@ -75,7 +75,7 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin,
     marginHorizontal: 10,
     backgroundColor:Colors.transparent,
-    color:Colors.snow
+   // color:Colors.snow
   },
   buttonRow: {
     flex: 1,
