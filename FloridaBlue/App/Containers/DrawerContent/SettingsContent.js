@@ -111,6 +111,7 @@ class SettingsContent extends Component {
     this.toggleDrawer()
     console.log("clear the store before logout")
    // AsyncStorage.clear();
+   this.props.clearLogin()
     RCTNetworking.clearCookies((cleared)=>{
       console.log('clearing local cookies for the app')
     })
@@ -255,7 +256,8 @@ class SettingsContent extends Component {
 }
 
 SettingsContent.contextTypes = {
-  drawer: React.PropTypes.object
+  drawer: React.PropTypes.object,
+  clearLogin:React.PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -271,7 +273,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogout: () => dispatch(LoginActions.logoutRequest())
+    attemptLogout: () => dispatch(LoginActions.logoutRequest()),
+     clearLogin:() => dispatch(LoginActions.logout())
   }
 }
 
