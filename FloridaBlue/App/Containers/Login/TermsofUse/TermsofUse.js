@@ -41,13 +41,11 @@ class TermsofUse extends Component {
     }
   }
 
-   _renderHeader () {
+  _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-    
 
       <Text style={styles.headerTextStyle}>Terms of Use</Text>
-      
-      
+
     </Image>)
   }
 
@@ -69,18 +67,17 @@ class TermsofUse extends Component {
     this.props.handleGetTOU()
   }
 
- _displayCondition(){
-     if(this.props.fetching){
-      return(<View style={styles.spinnerView}>
-          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
-     </View>)} 
-
-     else if( this.props.getTou ) {
-       return(<View style={{flex:1}}>
-         <WebView
-            source={{html: this.props.getTou}}
-             /> 
+  _displayCondition () {
+    if (this.props.fetching) {
+      return (<View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>)
+    } else if (this.props.getTou) {
+      return (<View style={{flex: 1}}>
+        <WebView
+          source={{html: this.props.getTou}}
+             />
         <View style={styles.checkViewStyle}>
           <View style={styles.checkStyle}>
             <MKCheckbox
@@ -106,22 +103,19 @@ class TermsofUse extends Component {
             <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
           </View>
         </View>
-         </View> )
-     }
-       else if(this.props.error != null ){
-                Alert.alert(
+      </View>)
+    } else if (this.props.error != null) {
+      Alert.alert(
                   'TOU',
                   'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
-                  [
-                    { text: 'OK', onPress: () => NavigationActions.login() },
-                  
-                  ],
+        [
+                    { text: 'OK', onPress: () => NavigationActions.login() }
+
+        ],
                   { cancelable: false }
                 )
-             
+    }
   }
-  }
-
 
   render () {
     var HTML = this.props.getTou

@@ -42,7 +42,7 @@ export default StyleSheet.create({
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '500',
-    textAlign:'center'
+    textAlign: 'center'
   },
 
   chartWrapper: {
@@ -167,7 +167,7 @@ export default StyleSheet.create({
     marginLeft: Metrics.doubleBaseMargin
 
   },
-   spinnerText: {
+  spinnerText: {
     marginTop: 20
   },
   spinnerView: {

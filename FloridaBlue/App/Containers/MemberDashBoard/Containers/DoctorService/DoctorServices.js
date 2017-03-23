@@ -27,65 +27,63 @@ class DoctorServices extends Component {
 
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-              <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
-                {NavItems.backButton()}
-                </View>
-              <Text style={styles.headerTextStyle}>
+      <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
+        {NavItems.backButton()}
+      </View>
+      <Text style={styles.headerTextStyle}>
                 Plan Benefits
               </Text>
-              <View style={{marginRight:Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
-                {NavItems.settingsButton()}
-                </View>
-            </Image>)
+      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+        {NavItems.settingsButton()}
+      </View>
+    </Image>)
   }
 
-
-
-  renderHeaderText(){
-    if(this.props.leftActive){
+  renderHeaderText () {
+    if (this.props.leftActive) {
       var objectName = this.props.objectName
-      //alert(objectName)
-      if(objectName !=null ){
-        return(
-        <View>
-          <Text style={{fontSize:Fonts.size.xm * Metrics.screenWidth* 0.0025,
-                            textAlign:'justify'}}>
-          {this.props.data[objectName] !=null && this.props.data[objectName].inNetwork !=null && this.props.data[objectName].inNetwork.header_text !=undefined ? this.props.data[objectName].inNetwork.header_text.en : <Text/>}
-          </Text>
-        </View>
-      )
+      // alert(objectName)
+      if (objectName != null) {
+        return (
+          <View>
+            <Text style={{fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
+              textAlign: 'justify'}}>
+              {this.props.data[objectName] != null && this.props.data[objectName].inNetwork != null && this.props.data[objectName].inNetwork.header_text != undefined ? this.props.data[objectName].inNetwork.header_text.en : <Text />}
+            </Text>
+          </View>
+        )
       }
-      //console.log(this.props.data[objectName].inNetwork.header_text.en)
-      
-    }else if(this.props.rightActive){
+      // console.log(this.props.data[objectName].inNetwork.header_text.en)
+    } else if (this.props.rightActive) {
       var objectName = this.props.objectName
-      if(objectName != null){
-      return(
-        <View>
-          <Text style={{fontSize:Fonts.size.xm * Metrics.screenWidth* 0.0025,
-                            textAlign:'justify'}}>
-      {this.props.data[objectName] !=null && this.props.data[objectName].outNetwork !=null && this.props.data[objectName].outNetwork.header_text !=undefined ? this.props.data[objectName].outNetwork.header_text.en :<Text/>}
-      </Text>
-      </View>
-       
-      )
+      if (objectName != null) {
+        return (
+          <View>
+            <Text style={{fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
+              textAlign: 'justify'}}>
+              {this.props.data[objectName] != null && this.props.data[objectName].outNetwork != null && this.props.data[objectName].outNetwork.header_text != undefined ? this.props.data[objectName].outNetwork.header_text.en : <Text />}
+            </Text>
+          </View>
+
+        )
       }
-    }else if(this.props.preferredActive){
+    } else if (this.props.preferredActive) {
       var objectName = this.props.objectName
-       if(objectName != null){
-      return(
-        <View>
-          <Text style={{fontSize:Fonts.size.xm * Metrics.screenWidth* 0.0025,
-                            textAlign:'justify'}}>                        
-        {this.props.data[objectName] !=null && this.props.data[objectName].preferredNetwork !=null && this.props.data[objectName].preferredNetwork.header_text !=undefined ? this.props.data[objectName].preferredNetwork.header_text.en :<Text/>}
-        </Text>
-        </View>
-        
-      )}
+      if (objectName != null) {
+        return (
+          <View>
+            <Text style={{fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
+              textAlign: 'justify'}}>
+              {this.props.data[objectName] != null && this.props.data[objectName].preferredNetwork != null && this.props.data[objectName].preferredNetwork.header_text != undefined ? this.props.data[objectName].preferredNetwork.header_text.en : <Text />}
+            </Text>
+          </View>
+
+        )
+      }
     }
   }
 
-  _displayCondition() {
+  _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
@@ -93,77 +91,71 @@ class DoctorServices extends Component {
           Loading Please Wait
         </Text>
       </View>)
-    }
+    } else if (this.props.data) {
+      var temp = this.props.data
+      var objectName = this.props.objectName
+      var temp1 = temp[objectName]
+      var tiles = this.props.data.tiles
+      var tile = tiles.filter(function (tiles) { return (tiles.tileId == objectName) })
 
-    else if (this.props.data){
-       var temp = this.props.data
-    var objectName = this.props.objectName
-    var temp1 = temp[objectName]
-    var tiles = this.props.data.tiles
-    var tile = tiles.filter(function (tiles) { return (tiles.tileId == objectName) })
-
-    console.log('tile' + JSON.stringify(tile))
-    console.log('tiles' + JSON.stringify(tiles))
+      console.log('tile' + JSON.stringify(tile))
+      console.log('tiles' + JSON.stringify(tiles))
     // console.log("checking for switch options" , this.props.data.emergencyMedicalCareServices);
-    const switchItems = this.props.data.emergencyMedicalCareServices
-    console.log('checking for switch options', switchItems)
+      const switchItems = this.props.data.emergencyMedicalCareServices
+      console.log('checking for switch options', switchItems)
 
-     return ( <ScrollView>
-           <View style={{flex: 1}}>
-               <View style={styles.doctorCardStyle}>
-                 <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
-                 <Text style={styles.doctorTextStyle}>
-                   {temp1.text['en']}
-                 </Text>
-                
-                 <Switch
-                   data={this.props.data}
-                   objectName={this.props.objectName}
-                   leftActive={this.props.leftActive}
-                   rightActive={this.props.rightActive}
-                   preferredActive={this.props.preferredActive}
-                   attemptHandleLeft={this.props.attemptHandleLeft}
-                   attemptHandleRight={this.props.attemptHandleRight}
-                   attemptHandlePreferred={this.props.attemptHandlePreferred} />
+      return (<ScrollView>
+        <View style={{flex: 1}}>
+          <View style={styles.doctorCardStyle}>
+            <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+            <Text style={styles.doctorTextStyle}>
+              {temp1.text['en']}
+            </Text>
 
-                   <View style={{
-                     margin : Metrics.mediumMargin
-                   }}>
-                     {this.renderHeaderText()}
-                   </View>
+            <Switch
+              data={this.props.data}
+              objectName={this.props.objectName}
+              leftActive={this.props.leftActive}
+              rightActive={this.props.rightActive}
+              preferredActive={this.props.preferredActive}
+              attemptHandleLeft={this.props.attemptHandleLeft}
+              attemptHandleRight={this.props.attemptHandleRight}
+              attemptHandlePreferred={this.props.attemptHandlePreferred} />
 
-               </View>
-               <View>
-                 <Card
-                   data={this.props.data}
-                   objectName={this.props.objectName}
-                   leftActive={this.props.leftActive}
-                   rightActive={this.props.rightActive}
-                   preferredActive={this.props.preferredActive} />
-               </View>
-             </View>
-            
-        </ScrollView>
+            <View style={{
+              margin: Metrics.mediumMargin
+            }}>
+              {this.renderHeaderText()}
+            </View>
 
+          </View>
+          <View>
+            <Card
+              data={this.props.data}
+              objectName={this.props.objectName}
+              leftActive={this.props.leftActive}
+              rightActive={this.props.rightActive}
+              preferredActive={this.props.preferredActive} />
+          </View>
+        </View>
+
+      </ScrollView>
 
       )
-    } 
-    else if (this.props.error != null) {
+    } else if (this.props.error != null) {
       Alert.alert(
         'Plan Benefits',
         'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
         [
-          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
 
         ],
         { cancelable: false }
       )
-
     }
   }
 
   render () {
-   
     return (
 
       <View style={styles.container}>

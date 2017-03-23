@@ -32,13 +32,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 class Hsa extends Component {
   _renderHeader () {
     return (<Image style={styles.hsaHeader} source={Images.themeHeader}>
-     <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
+      <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
       <Text style={styles.hsaheaderTextStyle}>
           Health Savings Account
         </Text>
-      <View style={{marginRight: Metrics.baseMargin  * Metrics.screenWidth * 0.002}}>
+      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View>
     </Image>)
@@ -48,55 +48,51 @@ class Hsa extends Component {
     console.tron.log(this.props)
   //  this.props.attemptSupportScreen()
   }
-  
-  _displayCondition(){
-     if(this.props.fetching){
-      return(<View style={styles.spinnerView}>
-          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
-     </View>)} 
 
-     else if( this.props.data && this.props.data.currentBalance ) 
-          {
-            return( <View style={{flex: 1}}>
+  _displayCondition () {
+    if (this.props.fetching) {
+      return (<View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>)
+    } else if (this.props.data && this.props.data.currentBalance) {
+      return (<View style={{flex: 1}}>
 
-              <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.textHeight}}>
+        <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.textHeight}}>
 
-                <View style={{marginTop: 3}}>
-                  <Text style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text['en']} :</Text>
-                </View>
-                <View style={{marginLeft: 10}}>
-                  <Text style={styles.hsaTextStyle2}>${this.props.data.currentBalance.value}</Text>
-                </View>
-              </View>
-              <View style={styles.row_1}>
-                <View style={styles.col_1}>
-                  <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text['en']}</Text>
-                  <Text style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
-                </View>
+          <View style={{marginTop: 3}}>
+            <Text style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text['en']} :</Text>
+          </View>
+          <View style={{marginLeft: 10}}>
+            <Text style={styles.hsaTextStyle2}>${this.props.data.currentBalance.value}</Text>
+          </View>
+        </View>
+        <View style={styles.row_1}>
+          <View style={styles.col_1}>
+            <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text['en']}</Text>
+            <Text style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
+          </View>
 
-                <View style={styles.col_1}>
-                  <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text['en']}</Text>
-                  <Text style={styles.hsaTextStyle2}>${this.props.data.distribution.value}</Text>
-                </View>
-              </View>
+          <View style={styles.col_1}>
+            <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text['en']}</Text>
+            <Text style={styles.hsaTextStyle2}>${this.props.data.distribution.value}</Text>
+          </View>
+        </View>
 
-              <Image style={styles.hsaBg} source={Images.hsaBg} />
+        <Image style={styles.hsaBg} source={Images.hsaBg} />
 
-            </View>)
-          }
-       else if(this.props.error != null){
-                Alert.alert(
+      </View>)
+    } else if (this.props.error != null) {
+      Alert.alert(
                   'HSA',
                   'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
-                  [
-                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
-                  
-                  ],
+        [
+                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
+
+        ],
                   { cancelable: false }
                 )
-             
-  }
+    }
   }
 
   render () {
@@ -104,9 +100,9 @@ class Hsa extends Component {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
-        
+
         {this._displayCondition()}
-       
+
       </View>
     )
   }

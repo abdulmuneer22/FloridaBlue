@@ -64,7 +64,7 @@ export default StyleSheet.create({
     resizeMode: 'stretch',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
-   buttonRow: {
+  buttonRow: {
     flex: 1,
     flexDirection: 'row',
     width: Metrics.screenWidth,

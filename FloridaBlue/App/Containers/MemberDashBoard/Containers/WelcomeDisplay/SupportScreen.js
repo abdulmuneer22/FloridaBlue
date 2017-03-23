@@ -45,7 +45,7 @@ class SupportScreen extends Component {
       </View>
       <Text style={styles.headerTextStyle}>Support</Text>
 
-      <View style={{marginRight:Metrics.baseMargin *  Metrics.screenWidth * 0.002}}>
+      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View>
 

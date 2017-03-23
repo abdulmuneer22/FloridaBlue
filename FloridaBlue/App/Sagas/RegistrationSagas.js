@@ -103,7 +103,8 @@ export function * sendRegistrationCodeRequest (api, {data}) {
     data.registrationCodeStatusMessage = getReasonMessage(data.registrationCodeStatus)
     console.log('hey I am successfully sent code')
     if (response.data.reasonCode == '000') {
-      yield put(RegistrationActions.registerUserRequest(sendData, data.token))}
+      yield put(RegistrationActions.registerUserRequest(sendData, data.token))
+    }
     yield put(RegistrationActions.sendRegistrationCodeSuccess(data))
   } else {
     var error = 'Invaid input provided'

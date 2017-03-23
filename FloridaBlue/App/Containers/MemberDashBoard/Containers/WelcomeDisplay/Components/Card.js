@@ -108,7 +108,7 @@ class Card extends Component {
               marginTop: Metrics.mediumMargin,
               fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
               fontWeight: '600',
-              textAlign:'center',
+              textAlign: 'center',
               color: Colors.snow,
               backgroundColor: Colors.transparent
             }}>

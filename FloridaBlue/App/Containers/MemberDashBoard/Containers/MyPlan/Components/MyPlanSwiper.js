@@ -13,10 +13,10 @@ class MyPlanSwiper extends Component {
   getChildrenOptions (data) {
     const {annualDeductible, oop} = data
     let result = []
-    result = Object.keys(annualDeductible !=undefined && annualDeductible.inNetwork !=undefined && annualDeductible.inNetwork.planBenefits).length > 0 ? [...result, annualDeductible.inNetwork] : result
-    result = Object.keys(annualDeductible !=undefined && annualDeductible.outNetwork !=undefined && annualDeductible.outNetwork.planBenefits).length > 0 ? [...result, annualDeductible.outNetwork] : result
-    result = Object.keys(oop !=undefined && oop.inNetwork !=undefined && oop.inNetwork.planBenefits).length > 0 ? [...result, oop.inNetwork] : result
-    result = Object.keys(oop !=undefined && oop.outNetwork !=undefined && oop.outNetwork.planBenefits).length >0 ? [...result, oop.outNetwork] : result
+    result = Object.keys(annualDeductible != undefined && annualDeductible.inNetwork != undefined && annualDeductible.inNetwork.planBenefits).length > 0 ? [...result, annualDeductible.inNetwork] : result
+    result = Object.keys(annualDeductible != undefined && annualDeductible.outNetwork != undefined && annualDeductible.outNetwork.planBenefits).length > 0 ? [...result, annualDeductible.outNetwork] : result
+    result = Object.keys(oop != undefined && oop.inNetwork != undefined && oop.inNetwork.planBenefits).length > 0 ? [...result, oop.inNetwork] : result
+    result = Object.keys(oop != undefined && oop.outNetwork != undefined && oop.outNetwork.planBenefits).length > 0 ? [...result, oop.outNetwork] : result
     console.log(result)
     return result
   }
@@ -26,7 +26,7 @@ class MyPlanSwiper extends Component {
 
     var myPlan = []
     // const this.props.data=this.props.data
-    if (this.props.data != null && this.props.data.annualDeductible !=undefined && this.props.data.annualDeductible.inNetwork !=undefined) {
+    if (this.props.data != null && this.props.data.annualDeductible != undefined && this.props.data.annualDeductible.inNetwork != undefined) {
       var inNetwork = this.props.data.annualDeductible.inNetwork
       console.log(inNetwork)
       if (Object.keys(inNetwork.planBenefits) > 0) {
@@ -36,7 +36,7 @@ class MyPlanSwiper extends Component {
       }
     }
 
-   if (this.props.data != null && this.props.data.annualDeductible !=undefined && this.props.data.annualDeductible.outNetwork !=undefined) {
+    if (this.props.data != null && this.props.data.annualDeductible != undefined && this.props.data.annualDeductible.outNetwork != undefined) {
       var outNetwork = this.props.data.annualDeductible.outNetwork
       console.log(outNetwork)
       if (Object.keys(outNetwork.planBenefits) > 0) {
@@ -47,7 +47,7 @@ class MyPlanSwiper extends Component {
       }
     }
 
-     if (this.props.data != null && this.props.data.oop !=undefined && this.props.data.oop.inNetwork !=undefined) {
+    if (this.props.data != null && this.props.data.oop != undefined && this.props.data.oop.inNetwork != undefined) {
       var inNetwork = this.props.data.oop.inNetwork
       console.log(inNetwork)
       if (Object.keys(inNetwork.planBenefits) > 0) {
@@ -56,7 +56,7 @@ class MyPlanSwiper extends Component {
         })
       }
     }
-     if (this.props.data != null && this.props.data.oop !=undefined && this.props.data.oop.outNetwork !=undefined) {
+    if (this.props.data != null && this.props.data.oop != undefined && this.props.data.oop.outNetwork != undefined) {
       var outNetwork = this.props.data.oop.outNetwork
       console.log(outNetwork)
       if (Object.keys(outNetwork.planBenefits) > 0) {
@@ -91,7 +91,7 @@ class MyPlanSwiper extends Component {
                     barWidth={10}
                     barTopColor={Colors.flBlue.ocean}
                     barBottomColor={Colors.flBlue.grey2}
-                    percent={Object.keys(network.planBenefits).length > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value)  : 0} />
+                    percent={Object.keys(network.planBenefits).length > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value) : 0} />
                 </View>
                 <View style={{flex: 0.6}}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {

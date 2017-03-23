@@ -48,7 +48,7 @@ export default {
   divider: {
     backgroundColor: Colors.snow,
     height: Metrics.screenHeight * 0.0013,
-    marginLeft: -Metrics.mediumMargin,
+    marginLeft: -Metrics.mediumMargin
    // marginBottom: Metrics.smallMargin
   },
   heading: {
@@ -97,8 +97,8 @@ export default {
   },
   logoutStyle: {
     width: Metrics.screenWidth * 0.55,
-    borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-    height:Metrics.screenHeight * 0.055,
+    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+    height: Metrics.screenHeight * 0.055,
     // width:160,
     alignSelf: 'center'
   }

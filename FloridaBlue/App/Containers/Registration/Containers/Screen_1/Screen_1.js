@@ -71,7 +71,7 @@ class Screen_1 extends React.Component {
     } else if (!dateTest.test(dateOfBirth)) {
       this.props.handleChangeIdentificationStatus('999')
       this.props.handleChangeIdentificationStatusMessage('Please enter a valid date - MM/DD/YYYY')
-    } else if(!zipCodeTest.test(zipCode)) {
+    } else if (!zipCodeTest.test(zipCode)) {
       this.props.handleChangeIdentificationStatus('999')
       this.props.handleChangeIdentificationStatusMessage('Please enter a valid zip code.')
     } else {
@@ -146,14 +146,14 @@ class Screen_1 extends React.Component {
             />
           </View>
           <View style={styles.row}>
-            <Text style={[styles.findMessage, {fontSize: Fonts.size.regular * Metrics. screenWidth * 0.0025}]}> {I18n.t('cantFindMemberId')}</Text>
+            <Text style={[styles.findMessage, {fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}]}> {I18n.t('cantFindMemberId')}</Text>
           </View>
           <View style={styles.findItButton}>
             <TouchableOpacity onPress={() => { this._handleFindMemberId() }}>
               <Image style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}} 
-                    source={Images.findItButton} />
+                borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                height: Metrics.screenHeight * 0.055}}
+                source={Images.findItButton} />
             </TouchableOpacity>
           </View>
           <View style={styles.row}>
@@ -220,19 +220,19 @@ class Screen_1 extends React.Component {
           <View style={styles.buttonRow}>
             <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
-                <Image  style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}}
-                            source={Images.backButton} />
+                <Image style={{width: Metrics.screenWidth * 0.35,
+                  borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                  height: Metrics.screenHeight * 0.055}}
+                  source={Images.backButton} />
               </TouchableOpacity>
             </View>
             {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} />
             : <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
-                <Image source={Images.nextButtonGreen} 
-                style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}} />
+                <Image source={Images.nextButtonGreen}
+                  style={{width: Metrics.screenWidth * 0.35,
+                    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                    height: Metrics.screenHeight * 0.055}} />
               </TouchableOpacity>
             </View>}
           </View>
@@ -263,7 +263,7 @@ Screen_1.propTypes = {
   dateOfBirth: PropTypes.string,
   zipCode: PropTypes.string,
   error: PropTypes.string,
-  requestClear:PropTypes.func
+  requestClear: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -290,7 +290,7 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeZipCode: (zipCode) => dispatch(RegistrationActions.changeZipCode(zipCode)),
     handleChangeIdentificationStatus: (data) => dispatch(RegistrationActions.changeIdentificationStatus(data)),
     handleChangeIdentificationStatusMessage: (data) => dispatch(RegistrationActions.changeIdentificationStatusMessage(data)),
-    requestClear:()=>dispatch(RegistrationActions.clearRegistration())
+    requestClear: () => dispatch(RegistrationActions.clearRegistration())
   }
 }
 

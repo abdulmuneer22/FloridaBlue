@@ -1,9 +1,9 @@
 // @flow
 
 import React, { Component} from 'react'
-import { 
+import {
   ScrollView,
-  Image, 
+  Image,
   BackAndroid,
   View,
   StyleSheet,
@@ -23,7 +23,7 @@ import { connect } from 'react-redux'
 import LoginActions from '../../Redux/LoginRedux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { AsyncStorage } from 'react-native'
- var RCTNetworking =require('RCTNetworking');
+var RCTNetworking = require('RCTNetworking')
 
 var {height, width} = Dimensions.get('window')
 const window = Dimensions.get('window')
@@ -109,36 +109,32 @@ class SettingsContent extends Component {
 
   handlePressLogout = () => {
     this.toggleDrawer()
-    console.log("clear the store before logout")
+    console.log('clear the store before logout')
    // AsyncStorage.clear();
-   this.props.clearLogin()
-    RCTNetworking.clearCookies((cleared)=>{
+    this.props.clearLogin()
+    RCTNetworking.clearCookies((cleared) => {
       console.log('clearing local cookies for the app')
     })
-   this.props.attemptLogout()
+    this.props.attemptLogout()
     NavigationActions.login()
-    
   }
 
   render () {
-
     renderItem = () => {
-      console.log(this.props.visibilityRules);
-      //if(this.props.visibilityRules.claims &&)
+      console.log(this.props.visibilityRules)
+      // if(this.props.visibilityRules.claims &&)
       var item = this.props.visibilityRules
-      return(
+      return (
         <View>
-        {
-          item.benefits  ?
-          <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
-           :
-           null
+          {
+          item.benefits
+            ? <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
+           : null
         }
-        {
-          item.claims ?
-          <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
-          :
-          null
+          {
+          item.claims
+            ? <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
+          : null
         }
         </View>
       )
@@ -163,7 +159,7 @@ class SettingsContent extends Component {
               !this.state.hpActive
 
                 ? <Icon name='caret-down' size={Metrics.icons.xm} color={Colors.snow} />
-              : <Icon name='caret-up' size={Metrics.icons.xm* Metrics.screenWidth*0.0035} color={Colors.snow} />
+              : <Icon name='caret-up' size={Metrics.icons.xm * Metrics.screenWidth * 0.0035} color={Colors.snow} />
 
             }
 
@@ -172,9 +168,7 @@ class SettingsContent extends Component {
 
             {
               this.state.hpActive
-                ?
-
-                <View style={{marginLeft: Metrics.doubleBaseMargin}}>
+                ? <View style={{marginLeft: Metrics.doubleBaseMargin}}>
                   <Text style={styles.subheading} onPress={this.handlePressPlans}>My Plan</Text>
                   {renderItem()}
                 </View>
@@ -198,45 +192,44 @@ class SettingsContent extends Component {
                   this.toggleDrawer()
                 }
               }
-              //console.log("support id checking", tile);
-              renderItem = () =>{
-                if(tile.tileId != null && tile.tileId !== "support" && tile.tileId.indexOf("benefits") == -1  ){
-                return(
+              // console.log("support id checking", tile);
+              renderItem = () => {
+                if (tile.tileId != null && tile.tileId !== 'support' && tile.tileId.indexOf('benefits') == -1) {
+                  return (
                     <View>
                       <Text style={styles.heading}>{ tile.tileName['en']}</Text>
                       <Divider />
                     </View>
-                )
+                  )
+                }
               }
-              }
-              return(
+              return (
                 <View key={i}>
 
-                <TouchableOpacity onPress={onItemPress.bind(this)} key={i}>
-                  {renderItem()}
-                </TouchableOpacity>
+                  <TouchableOpacity onPress={onItemPress.bind(this)} key={i}>
+                    {renderItem()}
+                  </TouchableOpacity>
 
                 </View>
               )
-
             })
             : null
           }
 
-             { this.props.visibilityRules !=undefined && this.props.visibilityRules.opd !=undefined ?   <Text style={styles.heading} onPress={this.handlePressFindCare}>Find Care</Text> : null}
+          { this.props.visibilityRules != undefined && this.props.visibilityRules.opd != undefined ? <Text style={styles.heading} onPress={this.handlePressFindCare}>Find Care</Text> : null}
         </View>
         <View style={styles.settings}>
 
           <View style={styles.myAccountStyle}>
             <View >
-              <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth*0.0025} color={Colors.flBlue.ocean} />
+              <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
             </View>
             <Text style={styles.heading2} onPress={this.handlePressSupport}>Support</Text>
           </View>
 
           <View style={styles.myAccountStyle}>
             <View >
-              <Flb name='generic-doc' size={Metrics.icons.medium * Metrics.screenWidth*0.0025} color={Colors.flBlue.ocean} />
+              <Flb name='generic-doc' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
             </View>
 
             <Text style={styles.heading2} onPress={this.handlePressPolicy}>Terms of Use </Text>
@@ -256,7 +249,7 @@ class SettingsContent extends Component {
 
 SettingsContent.contextTypes = {
   drawer: React.PropTypes.object,
-  clearLogin:React.PropTypes.func
+  clearLogin: React.PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -273,7 +266,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptLogout: () => dispatch(LoginActions.logoutRequest()),
-     clearLogin:() => dispatch(LoginActions.logout())
+    clearLogin: () => dispatch(LoginActions.logout())
   }
 }
 

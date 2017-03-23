@@ -14,7 +14,7 @@ import {
 } from 'react-native'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
- var RCTNetworking =require('RCTNetworking');
+var RCTNetworking = require('RCTNetworking')
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -75,7 +75,7 @@ class Login extends Component {
   }
 
   _handleLogin () {
-    //clearing local cookies before going to PMI
+    // clearing local cookies before going to PMI
     RCTNetworking.clearCookies((cleared) => {})
     Keyboard.dismiss()
     var username = this.props.username
@@ -83,31 +83,30 @@ class Login extends Component {
 
     if (!username && !password) {
       Alert.alert(
-             'Login' ,
+             'Login',
             'Please enter your user ID/Password.',
-            [
-              {text: 'OK' },
-            ]
+        [
+              {text: 'OK' }
+        ]
           )
      // alert('Please enter your user ID/Password.')
     } else
     if (!username && password) {
-       Alert.alert(
-             'Login' ,
+      Alert.alert(
+             'Login',
             'Please enter your user ID',
-            [
-              {text: 'OK' },
-            ]
+        [
+              {text: 'OK' }
+        ]
           )
-     
     } else
     if (username && !password) {
       Alert.alert(
-             'Login' ,
+             'Login',
             'Please enter your Password.',
-            [
-              {text: 'OK' },
-            ]
+        [
+              {text: 'OK' }
+        ]
           )
     } else {
         // const { username, password } = this.state
@@ -117,13 +116,12 @@ class Login extends Component {
     }
   }
 
-   componentDidMount() {
-        this.props.cl
-        RCTNetworking.clearCookies((cleared) => {
-          console.log('clearing local cookies for the app')
-        })
-   }
-
+  componentDidMount () {
+    this.props.cl
+    RCTNetworking.clearCookies((cleared) => {
+      console.log('clearing local cookies for the app')
+    })
+  }
 
   componentWillReceiveProps (newProps) {
   // this.forceUpdate()   makes to rerender the stuff     Got the issue of redering
@@ -132,61 +130,45 @@ class Login extends Component {
     console.log('I am receving new props' + newProps.responseURL)
     console.log('I am receving new smToken' + newProps.smToken)
     var responseURL = newProps.responseURL
-if (this.props != newProps) {
-  if (this.isAttempting && !newProps.fetching && newProps.error === null && responseURL) {
+    if (this.props != newProps) {
+      if (this.isAttempting && !newProps.fetching && newProps.error === null && responseURL) {
    // if (this.props.responseURL != newProps.responseURL) {
       // login path
-      if (responseURL == 'login') {
-        if (!newProps.mfetching) {
-          if (!newProps.merror) {
-            if (newProps.termsOfUse) {
-              NavigationActions.WelcomeDashBoard()
+        if (responseURL == 'login') {
+          if (!newProps.mfetching) {
+            if (!newProps.merror) {
+              if (newProps.termsOfUse) {
+                NavigationActions.WelcomeDashBoard()
+              } else {
+                NavigationActions.Termsofuse({'origin': 'login'})
+              }
             } else {
-              NavigationActions.Termsofuse({'origin': 'login'})
+              NavigationActions.ErrorPage()
             }
-          } else {
-            NavigationActions.ErrorPage()
           }
-        }
-      } else if (responseURL.includes('updateSecurityHintsAnswers')) {
-        NavigationActions.screen_4({'username': this.props.username})
+        } else if (responseURL.includes('updateSecurityHintsAnswers')) {
+          NavigationActions.screen_4({'username': this.props.username})
         // Unauthorized User
-      } else if (responseURL.includes('mob/error/accessdenied')) {
-         
-        RCTNetworking.clearCookies((cleared) => {
-          console.log('clearing local cookies for the app')
-        })
-        this.props.attemptLogout()
-        Alert.alert('Login', 'Please use your user ID and password to log in. You must be a Florida Blue member.',
-        [
-          {
-            text: 'OK'
-          }
-        ])
+        } else if (responseURL.includes('mob/error/accessdenied')) {
+          RCTNetworking.clearCookies((cleared) => {
+            console.log('clearing local cookies for the app')
+          })
+          this.props.attemptLogout()
+          Alert.alert('Login', 'Please use your user ID and password to log in. You must be a Florida Blue member.',
+            [
+              {
+                text: 'OK'
+              }
+            ])
 
         // Disabled Account
-      } else if (responseURL.includes('apsparam=usrlocked')) {
-       
-        RCTNetworking.clearCookies((cleared) => {
-          console.log('clearing local cookies for the app')
-        })
-        this.props.attemptLogout()
+        } else if (responseURL.includes('apsparam=usrlocked')) {
+          RCTNetworking.clearCookies((cleared) => {
+            console.log('clearing local cookies for the app')
+          })
+          this.props.attemptLogout()
 
-        Alert.alert('Login', 'Your account is locked.  Click Support for help', [
-          {
-            text: 'OK',
-            onPress: () => NavigationActions.MyView({
-                responseURL: newProps.responseURL + '?channel=mobile'
-              })
-          }
-        ])
-
-        // Password About to Expire
-      } else {
-         this.props.clearLogin()
-        if (responseURL.includes('updatePassword.do')) {
-          
-          Alert.alert('Login', 'You must change your password now.', [
+          Alert.alert('Login', 'Your account is locked.  Click Support for help', [
             {
               text: 'OK',
               onPress: () => NavigationActions.MyView({
@@ -194,18 +176,30 @@ if (this.props != newProps) {
               })
             }
           ])
-        }else {
+
+        // Password About to Expire
+        } else {
+          this.props.clearLogin()
+          if (responseURL.includes('updatePassword.do')) {
+            Alert.alert('Login', 'You must change your password now.', [
+              {
+                text: 'OK',
+                onPress: () => NavigationActions.MyView({
+                  responseURL: newProps.responseURL + '?channel=mobile'
+                })
+              }
+            ])
+          } else {
             NavigationActions.MyView({
-                responseURL: newProps.responseURL + '?channel=mobile' 
-              })
-             
+              responseURL: newProps.responseURL + '?channel=mobile'
+            })
+          }
         }
+    // }
       }
-    //}
-  }
-}
+    }
   // end of IF condition
-}
+  }
 
   _moreInfo () {
     return (
@@ -348,7 +342,7 @@ if (this.props != newProps) {
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
               <View style={styles.row}>
-                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration-stga.bcbsfl.com/ecir/public/MemberFPSSelect.do'+ '?channel=mobile'})}>
+                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration-stga.bcbsfl.com/ecir/public/MemberFPSSelect.do' + '?channel=mobile'})}>
                   <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
                 </TouchableOpacity>
               </View>
@@ -357,9 +351,9 @@ if (this.props != newProps) {
             <LoginButtonView>
               <TouchableOpacity onPress={() => { this._handleLogin() }}>
                 <Image style={{width: Metrics.screenWidth * 0.5,
-                borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-                height:Metrics.screenHeight * 0.065}} 
-                source={Images.loginButtonGreen} />
+                  borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
+                  height: Metrics.screenHeight * 0.065}}
+                  source={Images.loginButtonGreen} />
               </TouchableOpacity>
             </LoginButtonView>
             <SignUpView>
@@ -418,7 +412,7 @@ const mapDispatchToProps = (dispatch) => {
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
     attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
     attemptLogout: () => dispatch(LoginActions.logoutRequest()),
-    clearLogin:() => dispatch(LoginActions.logout())
+    clearLogin: () => dispatch(LoginActions.logout())
   }
 }
 

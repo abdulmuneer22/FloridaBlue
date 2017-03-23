@@ -39,37 +39,34 @@ class Resources extends Component {
       </View>
       <Text style={styles.headerTextStyle}>
         Resources</Text>
-      <View style={{marginRight: Metrics.baseMargin  * Metrics.screenWidth * 0.002}}>
+      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View>
     </Image>)
   }
 
+  _displayCondition () {
+    if (this.props.fetching) {
+      return (<View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>)
+    } else if (this.props.visibilityRules != undefined && this.props.visibilityRules.additionalTiles != undefined && this.props.visibilityRules.additionalTiles.length > 0) {
+      return (
+        <View style={{flex: 1}}>
+          <ScrollView>
 
- _displayCondition(){
-     if(this.props.fetching){
-      return(<View style={styles.spinnerView}>
-            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-            <Text style={styles.spinnerText}>Loading Please Wait </Text>
-          </View>)} 
-
-     else if(this.props.visibilityRules !=undefined && this.props.visibilityRules.additionalTiles !=undefined && this.props.visibilityRules.additionalTiles.length > 0 ) 
-          {
-            return(
-              <View style={{flex:1}}>
-               <ScrollView>
-
-          <View style={{
-            flexDirection: 'row',
+            <View style={{
+              flexDirection: 'row',
                   // backgroundColor : 'red',
-            flexWrap: 'wrap',
-            flex: 1,
-            marginLeft: window.width * 0.04,
-            marginRight: window.width * 0.03,
-            marginTop: window.width * 0.03
+              flexWrap: 'wrap',
+              flex: 1,
+              marginLeft: window.width * 0.04,
+              marginRight: window.width * 0.03,
+              marginTop: window.width * 0.03
 
-          }}>
-            {
+            }}>
+              {
               this.props.visibilityRules.additionalTiles.map((tile, i) => {
                 const index = i + 1
                 const TileCount = this.props.visibilityRules.additionalTiles.length
@@ -92,25 +89,23 @@ class Resources extends Component {
               }
           )
         }
-          </View>
-        
-        </ScrollView>
+            </View>
+
+          </ScrollView>
         </View>
-            )
-          }
-       else if(this.props.error != null){
-                Alert.alert(
+      )
+    } else if (this.props.error != null) {
+      Alert.alert(
                   'Resources',
                   'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
-                  [
-                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
-                  
-                  ],
+        [
+                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
+
+        ],
                   { cancelable: false }
                 )
-             
+    }
   }
-}
 
   render () {
     console.log('root testing')
@@ -120,7 +115,6 @@ class Resources extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         {this._displayCondition()}
-       
 
       </View>
     )
@@ -129,7 +123,7 @@ class Resources extends Component {
 const mapStateToProps = (state) => {
   return {
     visibilityRules: state.member.visibilityRules,
-     fetching: state.login.fetching
+    fetching: state.login.fetching
   }
 }
 const mapDispatchToProps = (dispatch) => {

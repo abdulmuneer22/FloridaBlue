@@ -13,31 +13,31 @@ export default StyleSheet.create({
     width: Metrics.screenWidth,
     resizeMode: 'stretch',
    // alignItems:'center',
-    //justifyContent:'center',
+    // justifyContent:'center',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
   heading: {
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0025
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025
   },
   topText: {
     color: Colors.flBlue.anvil,
    // marginHorizontal: Metrics.section,
-    //marginBottom: Metrics.baseMargin,
+    // marginBottom: Metrics.baseMargin,
     fontWeight: '400',
-    fontSize: Fonts.size.xm * Metrics. screenWidth * 0.0027
+    fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0027
   },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0033,
-    marginTop:20,
+    marginTop: 20,
     marginLeft: Metrics.mediumMargin,
-    //marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    // marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont,
-    fontWeight:'400'
+    fontWeight: '400'
 
   },
   messageView: {
@@ -56,7 +56,7 @@ export default StyleSheet.create({
   message: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0025,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
     flex: 0.8,
     textAlign: 'center',
     flexWrap: 'wrap'
@@ -74,7 +74,7 @@ export default StyleSheet.create({
   hintImage: {
     marginTop: Metrics.doubleBaseMargin,
     marginHorizontal: 10,
-    backgroundColor:Colors.transparent,
+    backgroundColor: Colors.transparent
    // color:Colors.snow
   },
   buttonRow: {
@@ -103,7 +103,7 @@ export default StyleSheet.create({
     color: Colors.charcoal
   },
   textfieldWithFloatingLabel: {
-    height: Metrics.textHeight2 * Metrics.screenHeight*0.0015,  // have to do it on iOS
+    height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,  // have to do it on iOS
     marginTop: Metrics.baseMargin
   },
   spinnerView: {
@@ -122,6 +122,6 @@ export default StyleSheet.create({
     marginBottom: Metrics.baseMargin,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small * Metrics. screenWidth * 0.0025
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0025
   }
 })

@@ -58,23 +58,22 @@ class Confirmation extends Component {
       <ScrollView style={styles.container}>
         <Image style={styles.headerContainer} source={Images.regCompletion} />
         <View >
-        <Text style={styles.header}>Thank You!</Text>
-        <Text style={styles.subheading}>You're All Set</Text>
+          <Text style={styles.header}>Thank You!</Text>
+          <Text style={styles.subheading}>You're All Set</Text>
         </View>
         <View style={styles.userStyle}>
 
           <Image style={{
             // backgroundColor: Colors.transparent,
-               marginTop: Metrics.baseMargin,
-                marginLeft: Metrics.doubleBaseMargin,
-                width: Metrics.images.xll,
-                height: Metrics.images.xll
-          }} source={Images.confirmationUser}>
-          </Image>
+            marginTop: Metrics.baseMargin,
+            marginLeft: Metrics.doubleBaseMargin,
+            width: Metrics.images.xll,
+            height: Metrics.images.xll
+          }} source={Images.confirmationUser} />
 
           <View style={styles.center}>
             <Text style={{
-              fontSize: Fonts.size.h5 * Metrics.screenWidth*0.0025,
+              fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
               fontWeight: '500',
               color: Colors.snow
         // alignSelf : 'stretch',
@@ -91,9 +90,9 @@ class Confirmation extends Component {
           </View>
 
         </View>
-        <View style={{alignItems:'center',marginTop: Metrics.searchBarHeight}}>
-          <Text style={{fontSize:Fonts.size.input * Metrics.screenWidth * 0.0030,
-                        color:Colors.flBlue.anvil}}>
+        <View style={{alignItems: 'center', marginTop: Metrics.searchBarHeight}}>
+          <Text style={{fontSize: Fonts.size.input * Metrics.screenWidth * 0.0030,
+            color: Colors.flBlue.anvil}}>
                   Click Continue to start exploring
            </Text>
         </View>

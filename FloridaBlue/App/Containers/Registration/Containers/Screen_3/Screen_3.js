@@ -87,7 +87,7 @@ class Screen_3 extends React.Component {
         this.props.attemptLogin(this.props.createUserId, this.props.password)
         console.tron.log('Navigating to Screen 4')
         if (this.props.loginError === null) {
-            NavigationActions.screen_4()
+          NavigationActions.screen_4()
         }
       }
     }
@@ -149,18 +149,18 @@ class Screen_3 extends React.Component {
             <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
                 <Image source={Images.backButton}
-                style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}} />
+                  style={{width: Metrics.screenWidth * 0.35,
+                    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                    height: Metrics.screenHeight * 0.055}} />
               </TouchableOpacity>
             </View>
             {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} />
             : <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButtonGreen}
-                style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}} />
+                  style={{width: Metrics.screenWidth * 0.35,
+                    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                    height: Metrics.screenHeight * 0.055}} />
               </TouchableOpacity>
             </View>}
           </View>
@@ -192,7 +192,7 @@ Screen_3.propTypes = {
   error: PropTypes.string,
   loginError: PropTypes.string,
   attemptLogin: PropTypes.func,
-  requestClear :PropTypes.func
+  requestClear: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
@@ -230,7 +230,7 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeRegistrationCodeStatus: (data) => dispatch(RegistrationActions.changeRegistrationCodeStatus(data)),
     handleChangeRegisterUserStatus: (data) => dispatch(RegistrationActions.changeRegisterUserStatus(data)),
     attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
-    requestClear:()=>dispatch(RegistrationActions.clearRegistration())
+    requestClear: () => dispatch(RegistrationActions.clearRegistration())
   }
 }
 

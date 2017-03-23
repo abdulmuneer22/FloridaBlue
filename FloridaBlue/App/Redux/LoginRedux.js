@@ -9,7 +9,7 @@ const { Types, Creators } = createActions({
   loginRequest: ['username', 'password'],
   loginSuccess: ['username', 'responseURL', 'smToken'],
   changeAgreeTermsOfUse: ['agreeTermsOfUse'],
-  getTou: [],  
+  getTou: [],
   updateTou: ['getTou'],
   logoutRequest: [],
   loginFailure: ['error'],
@@ -62,7 +62,7 @@ export const getTOU = (state: Object) => state.merge({ fetching: true, responseU
 
 // we are updating state
 export const updateTOU = (state: Object, {getTou} : Object) =>
-  state.merge({getTou,fetching: false})
+  state.merge({getTou, fetching: false})
 
 // we are change username
 export const username = (state: Object, {username} : Object) =>

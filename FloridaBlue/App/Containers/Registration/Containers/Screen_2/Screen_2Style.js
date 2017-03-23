@@ -18,17 +18,17 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0025
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025
   },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0029,
-    marginTop:Metrics.doubleBaseMargin,
+    marginTop: Metrics.doubleBaseMargin,
     marginLeft: Metrics.mediumMargin,
-    //marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    // marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont,
-    fontWeight:'400'
+    fontWeight: '400'
 
   },
   messageView: {
@@ -47,7 +47,7 @@ export default StyleSheet.create({
   message: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0025,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
     flex: 0.8,
     textAlign: 'center',
     flexWrap: 'wrap'
@@ -79,21 +79,21 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   checkbox: {
-    flex:0.2
+    flex: 0.2
   },
   checkboxMessageView: {
-   flex:0.8
+    flex: 0.8
   },
   checkboxMessageText: {
     color: Colors.flBlue.grey5,
     fontWeight: 'bold',
-    fontSize: Fonts.size.medium* Metrics. screenWidth * 0.0033,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0033
    // height: Metrics.doubleBaseMargin * 4
   },
   checkboxMessageHyperlink: {
     color: Colors.flBlue.deepBlue,
     fontWeight: 'bold',
-    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0032,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0032
   },
   backButton: {
     alignSelf: 'flex-start',
@@ -111,7 +111,7 @@ export default StyleSheet.create({
     color: Colors.charcoal
   },
   textfieldWithFloatingLabel: {
-    height: Metrics.textHeight2 *Metrics.screenHeight*0.0015,  // have to do it on iOS
+    height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,  // have to do it on iOS
     marginTop: Metrics.baseMargin
   },
   spinnerView: {
@@ -130,12 +130,12 @@ export default StyleSheet.create({
     marginBottom: Metrics.baseMargin,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small * Metrics. screenWidth * 0.0025
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0025
   },
   hintLink: {
     marginTop: Metrics.baseMargin,
     color: Colors.flBlue.ocean,
     fontWeight: 'bold',
-    fontSize: Fonts.size.small * Metrics. screenWidth * 0.0035
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0035
   }
 })

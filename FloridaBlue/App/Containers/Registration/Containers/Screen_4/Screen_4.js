@@ -92,8 +92,8 @@ class Screen_4 extends React.Component {
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps>
           <Image source={Images.registrationStep4Hdr} style={styles.headerImage}>
-          <Text style={styles.headerTextStyle}>Almost Done!</Text>
-            </Image>
+            <Text style={styles.headerTextStyle}>Almost Done!</Text>
+          </Image>
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('setUpSecurityQuestions')}</Text>
           </View>
@@ -110,7 +110,7 @@ class Screen_4 extends React.Component {
           </View> : <Text />}
           <View style={styles.hintRow}>
             <Text style={styles.heading}>{I18n.t('securityHint1')}</Text>
-            <TouchableHighlight  onPress={this._handleSecurityHint}>
+            <TouchableHighlight onPress={this._handleSecurityHint}>
               <Image source={Images.infoIcon} style={styles.hintImage} />
             </TouchableHighlight>
           </View>
@@ -223,18 +223,18 @@ class Screen_4 extends React.Component {
             {false ? <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
                 <Image source={Images.backButton}
-                style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}} />
+                  style={{width: Metrics.screenWidth * 0.35,
+                    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                    height: Metrics.screenHeight * 0.055}} />
               </TouchableOpacity>
-            </View> : <View/>}
+            </View> : <View />}
             {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} />
             : <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButtonGreen}
-                style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}} />
+                  style={{width: Metrics.screenWidth * 0.35,
+                    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                    height: Metrics.screenHeight * 0.055}} />
               </TouchableOpacity>
             </View>}
           </View>
