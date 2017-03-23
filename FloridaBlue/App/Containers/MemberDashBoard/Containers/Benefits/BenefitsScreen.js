@@ -30,13 +30,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 class PlanBenefits extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-     <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
-                {NavItems.backButton()}
-                </View>
+      <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
+        {NavItems.backButton()}
+      </View>
       <Text style={styles.headerTextStyle}>Plan Benefits</Text>
-      <View style={{marginRight:Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
-                {NavItems.settingsButton()}
-                </View>
+      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+        {NavItems.settingsButton()}
+      </View>
 
     </Image>)
   }
@@ -46,19 +46,15 @@ class PlanBenefits extends Component {
 // this.props.attemptMyPlan()
   }
 
-
-
-  _displayCondition(){
-     if(this.props.fetching){
-      return(<View style={styles.spinnerView}>
-            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-            <Text style={styles.spinnerText}>Loading Please Wait </Text>
-          </View>)} 
-
-     else if(this.props.data && this.props.data.tiles !=null && this.props.data.tiles.length > 0 ) 
-          {
-            return(
-            <ScrollView>
+  _displayCondition () {
+    if (this.props.fetching) {
+      return (<View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>)
+    } else if (this.props.data && this.props.data.tiles != null && this.props.data.tiles.length > 0) {
+      return (
+        <ScrollView>
 
           <View style={{
             flexDirection: 'row',
@@ -97,29 +93,27 @@ class PlanBenefits extends Component {
 
           </View>
         </ScrollView>)
-          } else if(this.props.data && this.props.data.tiles !=null && this.props.data.tiles.length == 0){
-            Alert.alert(
+    } else if (this.props.data && this.props.data.tiles != null && this.props.data.tiles.length == 0) {
+      Alert.alert(
                   'Plan Benefits',
                   'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
-                  [
-                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
-                  
-                  ],
+        [
+                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
+
+        ],
                   { cancelable: false }
                 )
-          }
-       else if(this.props.error != null){
-                Alert.alert(
+    } else if (this.props.error != null) {
+      Alert.alert(
                   'Plan Benefits',
                   'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
-                  [
-                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
-                  
-                  ],
+        [
+                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
+
+        ],
                   { cancelable: false }
                 )
-             
-  }
+    }
   }
 
   render () {
@@ -131,7 +125,7 @@ class PlanBenefits extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         {this._displayCondition()}
-        
+
       </View>
     )
   }

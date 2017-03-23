@@ -320,15 +320,13 @@ class Switch extends Component {
       }
     }
 
-   
-
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1}}>
           {_tabView()}
-         
+
         </View>
-        
+
       </View>
     )
   }

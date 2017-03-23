@@ -27,8 +27,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 class DoctorServices extends Component {
-
-
+  
    constructor () {
     super()
     this.state = {
@@ -41,20 +40,17 @@ class DoctorServices extends Component {
 
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-              <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
-                {NavItems.backButton()}
-                </View>
-              <Text style={styles.headerTextStyle}>
+      <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
+        {NavItems.backButton()}
+      </View>
+      <Text style={styles.headerTextStyle}>
                 Plan Benefits
               </Text>
-              <View style={{marginRight:Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
-                {NavItems.settingsButton()}
-                </View>
-            </Image>)
+      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+        {NavItems.settingsButton()}
+      </View>
+    </Image>)
   }
-
-
-
   renderHeaderText(){
     let headerTextStr = '';
     if(this.props.leftActive){
@@ -63,14 +59,13 @@ class DoctorServices extends Component {
       if(objectName !=null ){
        headerTextStr =  this.props.data[objectName] !=null && this.props.data[objectName].inNetwork !=null && this.props.data[objectName].inNetwork.header_text !=undefined ? this.props.data[objectName].inNetwork.header_text.en :'';
       }
-      //console.log(this.props.data[objectName].inNetwork.header_text.en)
-      
-    }else if(this.props.rightActive){
+      // console.log(this.props.data[objectName].inNetwork.header_text.en)
+    } else if (this.props.rightActive) {
       var objectName = this.props.objectName
       if(objectName != null){
      headerTextStr = this.props.data[objectName] !=null && this.props.data[objectName].outNetwork !=null && this.props.data[objectName].outNetwork.header_text !=undefined ? this.props.data[objectName].outNetwork.header_text.en :'';
       }
-    }else if(this.props.preferredActive){
+    } else if (this.props.preferredActive) {
       var objectName = this.props.objectName
        if(objectName != null){
      headerTextStr = this.props.data[objectName] !=null && this.props.data[objectName].preferredNetwork !=null && this.props.data[objectName].preferredNetwork.header_text !=undefined ? this.props.data[objectName].preferredNetwork.header_text.en :'';
@@ -81,7 +76,7 @@ class DoctorServices extends Component {
     return headerTextStr;
   }
 
-  _displayCondition() {
+  _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
@@ -89,17 +84,15 @@ class DoctorServices extends Component {
           Loading Please Wait
         </Text>
       </View>)
-    }
+    } else if (this.props.data) {
+      var temp = this.props.data
+      var objectName = this.props.objectName
+      var temp1 = temp[objectName]
+      var tiles = this.props.data.tiles
+      var tile = tiles.filter(function (tiles) { return (tiles.tileId == objectName) })
 
-    else if (this.props.data){
-       var temp = this.props.data
-    var objectName = this.props.objectName
-    var temp1 = temp[objectName]
-    var tiles = this.props.data.tiles
-    var tile = tiles.filter(function (tiles) { return (tiles.tileId == objectName) })
-
-    console.log('tile' + JSON.stringify(tile))
-    console.log('tiles' + JSON.stringify(tiles))
+      console.log('tile' + JSON.stringify(tile))
+      console.log('tiles' + JSON.stringify(tiles))
     // console.log("checking for switch options" , this.props.data.emergencyMedicalCareServices);
     const switchItems = this.props.data.emergencyMedicalCareServices
     console.log('checking for switch options', switchItems)
@@ -171,25 +164,21 @@ class DoctorServices extends Component {
             
         </ScrollView>
 
-
       )
-    } 
-    else if (this.props.error != null) {
+    } else if (this.props.error != null) {
       Alert.alert(
         'Plan Benefits',
         'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
         [
-          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
 
         ],
         { cancelable: false }
       )
-
     }
   }
 
   render () {
-   
     return (
 
       <View style={styles.container}>

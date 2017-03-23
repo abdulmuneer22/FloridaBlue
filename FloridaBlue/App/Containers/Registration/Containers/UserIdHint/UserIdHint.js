@@ -38,9 +38,9 @@ class UserIdHint extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           <Image source={Images.registrationStep2Hdr} style={styles.headerImage} >
-             <Text style={styles.headerTextStyle}>{I18n.t('userIdHintTitle')}</Text>
-             </Image>
-        
+            <Text style={styles.headerTextStyle}>{I18n.t('userIdHintTitle')}</Text>
+          </Image>
+
           <View style={styles.row}>
             <Text style={styles.description}>{I18n.t('userIdHintDescription1')}</Text>
           </View>
@@ -53,9 +53,9 @@ class UserIdHint extends React.Component {
           <View style={styles.buttonRow}>
             <TouchableOpacity onPress={() => { this._handleClose() }}>
               <Image source={Images.closeButtonGray}
-              style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}} />
+                style={{width: Metrics.screenWidth * 0.35,
+                  borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                  height: Metrics.screenHeight * 0.055}} />
             </TouchableOpacity>
           </View>
         </ScrollView>

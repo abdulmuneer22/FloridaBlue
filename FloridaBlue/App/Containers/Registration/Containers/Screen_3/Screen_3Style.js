@@ -18,17 +18,17 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0033
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0033
   },
-   headerTextStyle: {
+  headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0029,
-    marginTop:Metrics.doubleBaseMargin,
+    marginTop: Metrics.doubleBaseMargin,
     marginLeft: Metrics.mediumMargin,
-    //marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    // marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont,
-    fontWeight:'400'
+    fontWeight: '400'
 
   },
   messageView: {
@@ -47,16 +47,16 @@ export default StyleSheet.create({
   message: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0025,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
     flex: 0.8,
     textAlign: 'center',
     flexWrap: 'wrap'
   },
- row: {
+  row: {
     paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.003,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.004
   },
-   row1: {
+  row1: {
     paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.002,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.004
   },
@@ -86,7 +86,7 @@ export default StyleSheet.create({
     color: Colors.charcoal
   },
   textfieldWithFloatingLabel: {
-    height: Metrics.textHeight2 * Metrics.screenHeight*0.0015,  // have to do it on iOS
+    height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,  // have to do it on iOS
     marginTop: Metrics.baseMargin
   },
   spinnerView: {
@@ -105,15 +105,15 @@ export default StyleSheet.create({
     marginBottom: Metrics.baseMargin,
     textAlign: 'center',
     fontWeight: 'bold',
-     fontSize: Fonts.size.small * Metrics. screenWidth * 0.0033
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0033
   },
   registrationCodeHeader: {
-    fontSize: Fonts.size.h5 * Metrics. screenWidth * 0.0028,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
     fontFamily: Fonts.type.base,
     textAlign: 'center'
   },
   registrationCodeParagraph: {
-    fontSize: Fonts.size.xr * Metrics. screenWidth * 0.0029,
+    fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0029,
     fontFamily: Fonts.type.base,
     textAlign: 'justify'
   }

@@ -39,16 +39,16 @@ class MyPlanScreen extends Component {
     }
   }
 
-_renderHeader () {
+  _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-      <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
-      {NavItems.backButton()}
+      <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+        {NavItems.backButton()}
       </View>
 
       <Text style={styles.headerTextStyle}>My Plan Overview</Text>
-      
-      <View style={{marginRight:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
-      {NavItems.settingsButton()}
+
+      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
+        {NavItems.settingsButton()}
       </View>
     </Image>)
   }
@@ -57,43 +57,40 @@ _renderHeader () {
   //   this.props.attemptMyPlan()
   }
 
-  _displayCondition() {
+  _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    }
-
-    else if (this.props.data && this.props.data.planOverViewTiles != null && this.props.data.planOverViewTiles.length > 0) {
+    } else if (this.props.data && this.props.data.planOverViewTiles != null && this.props.data.planOverViewTiles.length > 0) {
       return (
         <View style={styles.container}>
-          
+
           <View style={styles.planNameView}>
 
-             { this.props.data.annualDeductible ||  this.props.data.oop ?
-            <Text style={styles.planNameText}>
-              {this.props.planName}
-            </Text>
+            { this.props.data.annualDeductible || this.props.data.oop
+              ? <Text style={styles.planNameText}>
+                {this.props.planName}
+              </Text>
 
-             :<Text/>
+             : <Text />
            }
           </View>
 
           <View style={styles.chartWrapper}>
-            {this.props.data.annualDeductible ||  this.props.data.oop ? <MyPlanSwiper data={this.props.data} />
-              
-              :  Alert.alert(
+            {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} />
+
+              : Alert.alert(
         'My Plan Overview',
         'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
-        [
-          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+                [
+          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
 
-        ],
+                ],
         { cancelable: false }
-      ) 
-              
-              
+      )
+
               }
           </View>
 
@@ -126,20 +123,17 @@ _renderHeader () {
 
         </View>
 
-
       )
-    } 
-    else if (this.props.error != null) {
+    } else if (this.props.error != null) {
       Alert.alert(
         'My Plan Overview',
         'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
         [
-          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
 
         ],
         { cancelable: false }
       )
-
     }
   }
 
@@ -153,7 +147,6 @@ _renderHeader () {
           {this._renderHeader()}
         </View>
         {this._displayCondition()}
-       
 
       </View>
 

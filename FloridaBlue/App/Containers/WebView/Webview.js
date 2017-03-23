@@ -20,13 +20,11 @@ const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
 var btoa = require('btoa')
 
-
 class Webview extends Component {
-  
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-      <View style={{marginLeft:Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
-      {NavItems.backButton()}
+      <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
+        {NavItems.backButton()}
       </View>
       <Text style={{color: Colors.flBlue.ocean,
         backgroundColor: Colors.transparent,
@@ -40,7 +38,6 @@ class Webview extends Component {
     </Image>)
   }
 
-
   render () {
     var dynamic = this.props.responseURL
     var smToken = this.props.smToken
@@ -48,12 +45,12 @@ class Webview extends Component {
     onNavigationStateChange = (navState) => {
       console.log(navState.url)
       console.log(navState)
-    };
+    }
     onShouldStartLoadWithRequest = (event) => {
     // Implement any custom loading logic here, don't forget to return!
-    console.log(event,'request')
-    return true;
-    };
+      console.log(event, 'request')
+      return true
+    }
 
     if (this.props.smToken) {
       redirect = {
@@ -75,10 +72,10 @@ class Webview extends Component {
         {this._renderHeader()}
         <WebView
           source={redirect}
-          javaScriptEnabled={true}
-          domStorageEnabled={true}
+          javaScriptEnabled
+          domStorageEnabled
           injectedJavaScript="var el = document.getElementsById('mobile-nav');el.remove(el);"
-       // Below functions for debugging   
+       // Below functions for debugging
        //   onNavigationStateChange={onNavigationStateChange}
        //   onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
             />

@@ -3,10 +3,10 @@ import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 
 export default StyleSheet.create({
   headerContainer: {
-   width: Metrics.screenWidth,
+    width: Metrics.screenWidth,
     resizeMode: 'stretch',
-    alignItems:'center',
-    justifyContent:'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
   container: {
@@ -59,16 +59,16 @@ export default StyleSheet.create({
   },
   buttonStyle: {
     width: Metrics.screenWidth * 0.65,
-    borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0026,
-    height:Metrics.screenHeight * 0.07,
+    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0026,
+    height: Metrics.screenHeight * 0.07,
    // height : 50,
    // alignSelf: 'flex-end',
   // justifyContent: 'flex-start',
    // borderRadius : 2,
    // borderColor : 'rgb(80, 88, 90)',
   // borderWidth : 1,
-    alignSelf: 'center',
-    
+    alignSelf: 'center'
+
   },
   orStyle: {
     fontSize: Fonts.size.regular,
@@ -87,7 +87,7 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.section,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small * Metrics.screenWidth*0.003,
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.003,
     marginBottom: Metrics.baseMargin,
     marginTop: 50
 

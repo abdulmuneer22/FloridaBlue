@@ -13,14 +13,14 @@ export default StyleSheet.create({
   logo: {
    // width: Metrics.images.logo,
    // resizeMode: 'contain'
-          width: Metrics.screenWidth*0.85,
-          resizeMode: 'contain',
-          height:Metrics.images.xll2 * Metrics.screenHeight*0.0015
-},
+    width: Metrics.screenWidth * 0.85,
+    resizeMode: 'contain',
+    height: Metrics.images.xll2 * Metrics.screenHeight * 0.0015
+  },
   backgroundImage: {
     position: 'absolute',
     top: 0,
-    width:Metrics.screenWidth,
+    width: Metrics.screenWidth,
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.3),
     resizeMode: 'stretch'
   },
@@ -45,7 +45,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.flBlue.grey2,
     height: Metrics.screenHeight * 0.31,
     width: Metrics.screenWidth,
-    bottom: Metrics.doubleBaseMargin *  Metrics.screenWidth* 0.0095
+    bottom: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0095
   },
   row: {
     paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0013,
@@ -88,10 +88,10 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 0.5,
     // backgroundColor : 'yellow',
     paddingHorizontal: Metrics.baseMargin * Metrics.screenHeight * 0.002,
-    //marginTop: 5,
+    // marginTop: 5,
     height: Metrics.screenHeight * 0.07,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center'
 
   },
   popupchildText: {

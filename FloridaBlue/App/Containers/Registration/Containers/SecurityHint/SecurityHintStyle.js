@@ -13,15 +13,15 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
   },
-   headerTextStyle: {
+  headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0030,
-    marginTop:20,
+    marginTop: 20,
     marginLeft: Metrics.mediumMargin,
-    //marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    // marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont,
-    fontWeight:'400'
+    fontWeight: '400'
 
   },
   heading: {
@@ -29,15 +29,15 @@ export default StyleSheet.create({
    // alignSelf: 'center',
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0028
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0028
   },
   description: {
     color: Colors.flBlue.grey5,
     textAlign: 'left',
     fontWeight: '400',
-    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0032
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0032
   },
-   row1: {
+  row1: {
     paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.003,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035
   },

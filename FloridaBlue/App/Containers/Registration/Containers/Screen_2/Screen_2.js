@@ -67,7 +67,7 @@ class Screen_2 extends React.Component {
     if (!(createUserId && password && confirmPassword)) {
       this.props.handleChangePersonalInformationStatus('999')
       this.props.handleChangePersonalInformationStatusMessage('Please enter values in all fields')
-    } else if (confirmPassword != password){
+    } else if (confirmPassword != password) {
       this.props.handleChangePersonalInformationStatus('999')
       this.props.handleChangePersonalInformationStatusMessage('Your passwords do not match. Please enter matching passwords')
     } else {
@@ -76,7 +76,7 @@ class Screen_2 extends React.Component {
   }
 
   _handleReadMore () {
-    NavigationActions.ReadMore();
+    NavigationActions.ReadMore()
   }
 
   componentDidMount () {
@@ -115,7 +115,7 @@ class Screen_2 extends React.Component {
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps>
           <Image source={Images.registrationStep2Hdr} style={styles.headerImage} >
-          <Text style={styles.headerTextStyle}>Set Up Your Account</Text>
+            <Text style={styles.headerTextStyle}>Set Up Your Account</Text>
           </Image>
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
@@ -201,8 +201,7 @@ class Screen_2 extends React.Component {
               onSubmitEditing={(event) => {
                 this.refs.password.focus()
               }}
-              placeholder={I18n.t('createUserId')}>
-            </TextfieldWithFloatingLabel>
+              placeholder={I18n.t('createUserId')} />
             <Text style={styles.hintLink} onPress={() => { this._handleUserIdHint() }}>Hint</Text>
           </View>
           <View style={styles.row}>
@@ -261,18 +260,18 @@ class Screen_2 extends React.Component {
             <View style={styles.backButton}>
               <TouchableOpacity onPress={() => { this._handleBack() }}>
                 <Image source={Images.backButton}
-                 style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}}/>
+                  style={{width: Metrics.screenWidth * 0.35,
+                    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                    height: Metrics.screenHeight * 0.055}} />
               </TouchableOpacity>
             </View>
             {this.props.fetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} />
             : <View style={styles.nextButton}>
               <TouchableOpacity onPress={() => { this._handleNext() }}>
                 <Image source={Images.nextButtonGreen}
-                 style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}} />
+                  style={{width: Metrics.screenWidth * 0.35,
+                    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                    height: Metrics.screenHeight * 0.055}} />
               </TouchableOpacity>
             </View>}
           </View>

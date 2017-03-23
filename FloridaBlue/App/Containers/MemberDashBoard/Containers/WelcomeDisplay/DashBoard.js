@@ -44,10 +44,11 @@ class LandingScreen extends Component {
   props: LoginScreenProps
   isAttempting: boolean
 
-  _renderHeader() {
+  _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{
-        alignItems: 'center', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+        alignItems: 'center',
+        marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
         marginLeft: Metrics.images.xm * Metrics.screenWidth * 0.003
       }}>
         <Image source={Images.themeLogo} style={{
@@ -64,14 +65,14 @@ class LandingScreen extends Component {
 
     </Image>)
   }
-  componentDidMount() {
+  componentDidMount () {
     console.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin && this.props.origin == 'registration') {
       this.props.attemptMember()
     }
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps (newProps) {
     console.log('dash board failure' + newProps.error)
     /*
    if (!newProps.error) {
@@ -80,15 +81,13 @@ class LandingScreen extends Component {
    */
   }
 
-  _displayCondition() {
+  _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    }
-
-    else if (this.props.visibilityRules != undefined) {
+    } else if (this.props.visibilityRules != undefined) {
       return (
         <View style={styles.container}>
           <Greeting userName={this.props.userName} />
@@ -98,7 +97,7 @@ class LandingScreen extends Component {
             flexDirection: 'row'
           }}>
             {
-              this.props.visibilityRules !=undefined && this.props.visibilityRules.coreTiles !=undefined && this.props.visibilityRules.coreTiles.length > 0? this.props.visibilityRules.coreTiles.map(function (tile, i) {
+              this.props.visibilityRules !=undefined && this.props.visibilityRules.coreTiles !=undefined && this.props.visibilityRules.coreTiles.length > 0 ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
               onItemPress = function () {
                 var action
                 if (tile.tileType == 'webview') {
@@ -107,38 +106,40 @@ class LandingScreen extends Component {
                 } else if (tile.tileType == 'native') {
                   var routerName = tile.routerName
                   action = NavigationActions[routerName]()
+
                 }
-              }
-              return (
+                return (
 
-                <TouchableOpacity
+                  <TouchableOpacity
 
-                  style={
+                    style={
                     i % 2 == 0
                       ? styles.tileStyle
                       : styles.tileStyle1
                   }
-                  onPress={onItemPress.bind(this)} key={i}>
+                    onPress={onItemPress.bind(this)} key={i}>
 
-                  <Image source={Images[tile.backgroundImage]}
-                    style={{
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
-                      height: Metrics.screenHeight - (Metrics.screenHeight * 0.75)
-                    }}>
+                    <Image source={Images[tile.backgroundImage]}
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
+                        height: Metrics.screenHeight - (Metrics.screenHeight * 0.75)
+                      }}>
 
-                    <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow} 
-                    style={{ backgroundColor: Colors.transparent, marginTop: 10 }} />
-                    <Text style={styles.tileTextStyle}>
-                      {tile.tileName['en']}
-                    </Text>
-                  </Image>
-                </TouchableOpacity>
+                      <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow}
+                        style={{ backgroundColor: Colors.transparent, marginTop: 10 }} />
+                      <Text style={styles.tileTextStyle}>
+                        {tile.tileName['en']}
+                      </Text>
+                    </Image>
+                  </TouchableOpacity>
 
-              )
-              i += 1
-            }) : <Text />
+                )
+                i += 1
+              }
+              }
+              ) : <Text />
             }
           </View>
           { this.props.visibilityRules !=undefined && this.props.visibilityRules.opdTile !=undefined
@@ -174,24 +175,21 @@ class LandingScreen extends Component {
           }
         </View>
 
-
       )
-    }
-    else if (this.props.error != null) {
+    } else if (this.props.error != null) {
       Alert.alert(
         'Florida Blue',
         'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
         [
-          { text: 'OK', onPress: () => NavigationActions.login() },
+          { text: 'OK', onPress: () => NavigationActions.login() }
 
         ],
         { cancelable: false }
       )
-
     }
   }
 
-  render() {
+  render () {
     var image = [
       Images.dashboardGradient,
       Images.dashboardGradient2,
@@ -204,7 +202,6 @@ class LandingScreen extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         {this._displayCondition()}
-      
 
       </View>
     )

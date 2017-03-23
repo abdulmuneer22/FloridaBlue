@@ -17,13 +17,13 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4 * Metrics.screenWidth *0.0022
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0022
   },
   description: {
     color: Colors.flBlue.grey3,
     textAlign: 'left',
     fontWeight: 'bold',
-    fontSize: Fonts.size.medium * Metrics.screenWidth *0.0023
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0023
   },
   messageView: {
     padding: Metrics.baseMargin,
@@ -41,7 +41,7 @@ export default StyleSheet.create({
   message: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.medium * Metrics.screenWidth *0.0023,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0023,
     flex: 0.8,
     textAlign: 'center',
     flexWrap: 'wrap'
@@ -110,6 +110,6 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.section,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small * Metrics.screenWidth *0.0025
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0025
   }
 })

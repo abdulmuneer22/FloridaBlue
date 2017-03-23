@@ -10,7 +10,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow
   },
   checkViewStyle: {
-    height:  (Metrics.screenHeight - (Metrics.screenHeight * 0.75)) / 2,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.75)) / 2,
     backgroundColor: Colors.flBlue.grey2,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -19,7 +19,7 @@ export default StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1
   },
-   headerContainer: {
+  headerContainer: {
     flexDirection: 'row',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
     justifyContent: 'center',
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0027,
     // marginLeft:,
    // textAlign:'center',
-    fontFamily: Fonts.type.headerFont,
+    fontFamily: Fonts.type.headerFont
   //  marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023
 
   },
@@ -67,8 +67,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginBottom: Metrics.mediumMargin,
     width: Metrics.screenWidth * 0.35,
-    borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0015,
-    height:Metrics.screenHeight * 0.055
+    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0015,
+    height: Metrics.screenHeight * 0.055
   },
 
   backButton: {
@@ -105,7 +105,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0024
   },
-   spinnerText: {
+  spinnerText: {
 
     marginTop: 20
   },
@@ -114,6 +114,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: window.width,
     height: window.height,
-    marginTop:Metrics.screenHeight*0.5
+    marginTop: Metrics.screenHeight * 0.5
   }
 })

@@ -3,7 +3,7 @@ import { ApplicationStyles, Colors, Metrics, Fonts } from '../../../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-   container: {
+  container: {
     flex: 1,
     paddingTop: 0
   },
@@ -17,18 +17,18 @@ export default StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'flex-end'
   },
-   headerTextStyle: {
+  headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0030,
-    marginTop:20,
+    marginTop: 20,
     marginLeft: Metrics.mediumMargin,
-    //marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    // marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont,
-    fontWeight:'400'
+    fontWeight: '400'
 
   },
-     row1: {
+  row1: {
     paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.003,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035
   },
@@ -36,13 +36,13 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.h4 * Metrics. screenWidth * 0.0030
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0030
   },
   description: {
     color: Colors.flBlue.grey3,
     textAlign: 'left',
     fontWeight: '400',
-    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0033
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0033
   },
   messageView: {
     padding: Metrics.baseMargin,
@@ -60,13 +60,13 @@ export default StyleSheet.create({
   message: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.medium * Metrics. screenWidth * 0.0027,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
     flex: 0.8,
     textAlign: 'center',
     flexWrap: 'wrap'
   },
   row: {
-   paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.003,
+    paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.003,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.001
   },
   buttonRow: {
@@ -95,7 +95,7 @@ export default StyleSheet.create({
     color: Colors.charcoal
   },
   textfieldWithFloatingLabel: {
-   height: Metrics.textHeight2 * Metrics.screenHeight*0.0015,  // have to do it on iOS
+    height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,  // have to do it on iOS
     marginTop: Metrics.baseMargin
   },
   wrapper1: {

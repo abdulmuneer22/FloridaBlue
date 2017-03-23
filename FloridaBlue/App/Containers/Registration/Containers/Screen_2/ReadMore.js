@@ -20,8 +20,7 @@ import styles from './ReadMoreStyle'
 import I18n from 'react-native-i18n'
 
 class ReadMore extends Component {
-
-    _handleClose () {
+  _handleClose () {
     NavigationActions.pop()
   }
   render () {
@@ -34,17 +33,15 @@ class ReadMore extends Component {
           <Text style={styles.paragraph}>{I18n.t('privacyNoticeTwo')}</Text>
           <Text style={styles.paragraph}>{I18n.t('privacyNoticeThree')}</Text>
 
-           <View style={styles.buttonRow}>
-       <TouchableOpacity onPress={() => { this._handleClose() }}>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity onPress={() => { this._handleClose() }}>
               <Image style={{width: Metrics.screenWidth * 0.35,
-                            borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height:Metrics.screenHeight * 0.055}} source={Images.closeButtonGray} />
+                borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                height: Metrics.screenHeight * 0.055}} source={Images.closeButtonGray} />
             </TouchableOpacity>
-            </View>
+          </View>
         </ScrollView>
-        
-                
-        
+
       </View>
     )
   }
