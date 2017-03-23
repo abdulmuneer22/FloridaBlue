@@ -1,6 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import { Actions as NavigationActions } from 'react-native-router-flux'
-import { Text, View, ScrollView, Image } from 'react-native'
+import { 
+  Text, 
+  View, 
+  ScrollView, 
+  Image,
+  TouchableWithoutFeedback 
+} from 'react-native'
 import Switch from './Components/switch'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -21,6 +27,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 class DoctorServices extends Component {
+  
+   constructor () {
+    super()
+    this.state = {
+      hpActive: false
+    }
+  }
   componentDidMount () {
     this.props.attemptHandleLeft()
   }
@@ -38,49 +51,29 @@ class DoctorServices extends Component {
       </View>
     </Image>)
   }
-
-  renderHeaderText () {
-    if (this.props.leftActive) {
+  renderHeaderText(){
+    let headerTextStr = '';
+    if(this.props.leftActive){
       var objectName = this.props.objectName
-      // alert(objectName)
-      if (objectName != null) {
-        return (
-          <View>
-            <Text style={{fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
-              textAlign: 'justify'}}>
-              {this.props.data[objectName] != null && this.props.data[objectName].inNetwork != null && this.props.data[objectName].inNetwork.header_text != undefined ? this.props.data[objectName].inNetwork.header_text.en : <Text />}
-            </Text>
-          </View>
-        )
+      //alert(objectName)
+      if(objectName !=null ){
+       headerTextStr =  this.props.data[objectName] !=null && this.props.data[objectName].inNetwork !=null && this.props.data[objectName].inNetwork.header_text !=undefined ? this.props.data[objectName].inNetwork.header_text.en :'';
       }
       // console.log(this.props.data[objectName].inNetwork.header_text.en)
     } else if (this.props.rightActive) {
       var objectName = this.props.objectName
-      if (objectName != null) {
-        return (
-          <View>
-            <Text style={{fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
-              textAlign: 'justify'}}>
-              {this.props.data[objectName] != null && this.props.data[objectName].outNetwork != null && this.props.data[objectName].outNetwork.header_text != undefined ? this.props.data[objectName].outNetwork.header_text.en : <Text />}
-            </Text>
-          </View>
-
-        )
+      if(objectName != null){
+     headerTextStr = this.props.data[objectName] !=null && this.props.data[objectName].outNetwork !=null && this.props.data[objectName].outNetwork.header_text !=undefined ? this.props.data[objectName].outNetwork.header_text.en :'';
       }
     } else if (this.props.preferredActive) {
       var objectName = this.props.objectName
-      if (objectName != null) {
-        return (
-          <View>
-            <Text style={{fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
-              textAlign: 'justify'}}>
-              {this.props.data[objectName] != null && this.props.data[objectName].preferredNetwork != null && this.props.data[objectName].preferredNetwork.header_text != undefined ? this.props.data[objectName].preferredNetwork.header_text.en : <Text />}
-            </Text>
-          </View>
-
-        )
+       if(objectName != null){
+     headerTextStr = this.props.data[objectName] !=null && this.props.data[objectName].preferredNetwork !=null && this.props.data[objectName].preferredNetwork.header_text !=undefined ? this.props.data[objectName].preferredNetwork.header_text.en :'';
+    
       }
     }
+
+    return headerTextStr;
   }
 
   _displayCondition () {
@@ -101,45 +94,75 @@ class DoctorServices extends Component {
       console.log('tile' + JSON.stringify(tile))
       console.log('tiles' + JSON.stringify(tiles))
     // console.log("checking for switch options" , this.props.data.emergencyMedicalCareServices);
-      const switchItems = this.props.data.emergencyMedicalCareServices
-      console.log('checking for switch options', switchItems)
+    const switchItems = this.props.data.emergencyMedicalCareServices
+    console.log('checking for switch options', switchItems)
 
-      return (<ScrollView>
-        <View style={{flex: 1}}>
-          <View style={styles.doctorCardStyle}>
-            <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
-            <Text style={styles.doctorTextStyle}>
-              {temp1.text['en']}
-            </Text>
+     return ( <ScrollView>
+           <View style={{flex: 1}}>
+               <View style={styles.doctorCardStyle}>
+                 <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+                 <Text style={styles.doctorTextStyle}>
+                   {temp1.text['en']}
+                 </Text>
+                
+                 <Switch
+                   data={this.props.data}
+                   objectName={this.props.objectName}
+                   leftActive={this.props.leftActive}
+                   rightActive={this.props.rightActive}
+                   preferredActive={this.props.preferredActive}
+                   attemptHandleLeft={this.props.attemptHandleLeft}
+                   attemptHandleRight={this.props.attemptHandleRight}
+                   attemptHandlePreferred={this.props.attemptHandlePreferred} />
 
-            <Switch
-              data={this.props.data}
-              objectName={this.props.objectName}
-              leftActive={this.props.leftActive}
-              rightActive={this.props.rightActive}
-              preferredActive={this.props.preferredActive}
-              attemptHandleLeft={this.props.attemptHandleLeft}
-              attemptHandleRight={this.props.attemptHandleRight}
-              attemptHandlePreferred={this.props.attemptHandlePreferred} />
+                   {this.renderHeaderText() != '' ?
+                 <View style={{ width: Metrics.screenWidth, marginTop: Metrics.baseMargin }}>
+                   <TouchableWithoutFeedback onPress={() => {
+                     this.setState({ hpActive: !this.state.hpActive })
+                   }}>
+                     <View style={{
+                       flexDirection: 'row',
+                       marginTop: Metrics.baseMargin,
+                      // backgroundColor: Colors.flBlue.grey4,
+                     }}>
 
-            <View style={{
-              margin: Metrics.mediumMargin
-            }}>
-              {this.renderHeaderText()}
-            </View>
+                       <View style={{ flex:0.8,marginLeft: Metrics.mediumMargin }}>
+                         <Text style={styles.subheading} >Information</Text>
+                       </View>
+                       <View style={{flex:0.4}}>
+                       {
 
-          </View>
-          <View>
-            <Card
-              data={this.props.data}
-              objectName={this.props.objectName}
-              leftActive={this.props.leftActive}
-              rightActive={this.props.rightActive}
-              preferredActive={this.props.preferredActive} />
-          </View>
-        </View>
+                         !this.state.hpActive
 
-      </ScrollView>
+
+                           ? <Flb name='rd-d-arrow' size={Metrics.icons.xm} color={Colors.flBlue.anvil} />
+                           : <Flb name='rd-u-arrow' size={Metrics.icons.xm } color={Colors.flBlue.anvil} />
+
+                       }
+                       </View>
+
+                     </View>
+                   </TouchableWithoutFeedback>
+                  
+
+                   {this.state.hpActive?<View><View style={{ margin: 10 }}><Text style={{fontSize:Fonts.size.xm * Metrics.screenWidth* 0.0025,
+                           margin:5,textAlign:'justify'}}>{this.renderHeaderText()}</Text></View></View>: <Text/>}
+                 </View>
+                 :<Text/>
+                  }
+
+               </View>
+               <View>
+                 <Card
+                   data={this.props.data}
+                   objectName={this.props.objectName}
+                   leftActive={this.props.leftActive}
+                   rightActive={this.props.rightActive}
+                   preferredActive={this.props.preferredActive} />
+               </View>
+             </View>
+            
+        </ScrollView>
 
       )
     } else if (this.props.error != null) {

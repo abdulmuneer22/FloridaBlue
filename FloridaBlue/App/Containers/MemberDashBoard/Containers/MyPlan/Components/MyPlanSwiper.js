@@ -13,10 +13,12 @@ class MyPlanSwiper extends Component {
   getChildrenOptions (data) {
     const {annualDeductible, oop} = data
     let result = []
-    result = Object.keys(annualDeductible != undefined && annualDeductible.inNetwork != undefined && annualDeductible.inNetwork.planBenefits).length > 0 ? [...result, annualDeductible.inNetwork] : result
-    result = Object.keys(annualDeductible != undefined && annualDeductible.outNetwork != undefined && annualDeductible.outNetwork.planBenefits).length > 0 ? [...result, annualDeductible.outNetwork] : result
-    result = Object.keys(oop != undefined && oop.inNetwork != undefined && oop.inNetwork.planBenefits).length > 0 ? [...result, oop.inNetwork] : result
-    result = Object.keys(oop != undefined && oop.outNetwork != undefined && oop.outNetwork.planBenefits).length > 0 ? [...result, oop.outNetwork] : result
+    result = Object.keys(annualDeductible !=undefined && annualDeductible.inNetwork !=undefined && annualDeductible.inNetwork.planBenefits).length > 0 ? [...result, annualDeductible.inNetwork] : result
+    result = Object.keys(annualDeductible !=undefined && annualDeductible.outNetwork !=undefined && annualDeductible.outNetwork.planBenefits).length > 0 ? [...result, annualDeductible.outNetwork] : result
+    result = Object.keys(annualDeductible !=undefined && annualDeductible.preferredNetwork !=undefined && annualDeductible.preferredNetwork.planBenefits).length > 0 ? [...result, annualDeductible.preferredNetwork] : result
+    result = Object.keys(oop !=undefined && oop.inNetwork !=undefined && oop.inNetwork.planBenefits).length > 0 ? [...result, oop.inNetwork] : result
+    result = Object.keys(oop !=undefined && oop.outNetwork !=undefined && oop.outNetwork.planBenefits).length >0 ? [...result, oop.outNetwork] : result
+    result = Object.keys(oop !=undefined && oop.preferredNetwork !=undefined && oop.preferredNetwork.planBenefits).length >0 ? [...result, oop.preferredNetwork] : result
     console.log(result)
     return result
   }
@@ -47,7 +49,20 @@ class MyPlanSwiper extends Component {
       }
     }
 
-    if (this.props.data != null && this.props.data.oop != undefined && this.props.data.oop.inNetwork != undefined) {
+     if (this.props.data != null && this.props.data.annualDeductible !=undefined && this.props.data.annualDeductible.preferredNetwork !=undefined) {
+      var preferredNetwork = this.props.data.annualDeductible.preferredNetwork
+      console.log(preferredNetwork)
+      if (Object.keys(preferredNetwork.planBenefits) > 0) {
+        preferredNetwork.planBenefits[0].benefit.map(function (temObj) {
+          console.log(temObj)
+          myPlan.push(temObj)
+        })
+      }
+    }
+
+    
+
+     if (this.props.data != null && this.props.data.oop !=undefined && this.props.data.oop.inNetwork !=undefined) {
       var inNetwork = this.props.data.oop.inNetwork
       console.log(inNetwork)
       if (Object.keys(inNetwork.planBenefits) > 0) {
@@ -61,6 +76,15 @@ class MyPlanSwiper extends Component {
       console.log(outNetwork)
       if (Object.keys(outNetwork.planBenefits) > 0) {
         outNetwork.planBenefits[0].benefit.map(function (temObj) {
+          myPlan.push(temObj)
+        })
+      }
+    }
+    if (this.props.data != null && this.props.data.oop !=undefined && this.props.data.oop.preferredNetwork !=undefined) {
+      var preferredNetwork = this.props.data.oop.preferredNetwork
+      console.log(preferredNetwork)
+      if (Object.keys(preferredNetwork.planBenefits) > 0) {
+        preferredNetwork.planBenefits[0].benefit.map(function (temObj) {
           myPlan.push(temObj)
         })
       }

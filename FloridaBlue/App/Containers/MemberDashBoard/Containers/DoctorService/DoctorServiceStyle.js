@@ -157,6 +157,15 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: window.width,
     height: window.height
-  }
+  },
+  subheading: {
+    color: Colors.flBlue.anvil,
+   // fontSize: Fonts.size.h5,
+    marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.003,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
+    fontFamily:Fonts.type.headerFont
+
+  },
 
 })
