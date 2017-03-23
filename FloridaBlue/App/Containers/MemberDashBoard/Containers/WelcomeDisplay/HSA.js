@@ -58,8 +58,8 @@ class Hsa extends Component {
     } else if (this.props.data && this.props.data.currentBalance) {
       return (<View style={{flex: 1}}>
 
+        {this.props.data.currentBalance !=undefined ?
         <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.textHeight}}>
-
           <View style={{marginTop: 3}}>
             <Text style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text['en']} :</Text>
           </View>
@@ -67,17 +67,27 @@ class Hsa extends Component {
             <Text style={styles.hsaTextStyle2}>${this.props.data.currentBalance.value}</Text>
           </View>
         </View>
+        : <Text/>
+        }
+
+       
         <View style={styles.row_1}>
+           {this.props.data.contribution !=undefined ?
           <View style={styles.col_1}>
             <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text['en']}</Text>
             <Text style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
           </View>
-
+           : <Text/>
+        }       
+         {this.props.data.distribution !=undefined ?
           <View style={styles.col_1}>
             <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text['en']}</Text>
             <Text style={styles.hsaTextStyle2}>${this.props.data.distribution.value}</Text>
           </View>
+           : <Text/>
+        }  
         </View>
+        
 
         <Image style={styles.hsaBg} source={Images.hsaBg} />
 

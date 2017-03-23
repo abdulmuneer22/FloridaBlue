@@ -27,7 +27,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 class DoctorServices extends Component {
-  
+
    constructor () {
     super()
     this.state = {
@@ -127,7 +127,7 @@ class DoctorServices extends Component {
                      }}>
 
                        <View style={{ flex:0.8,marginLeft: Metrics.mediumMargin }}>
-                         <Text style={styles.subheading} >Information</Text>
+                         <Text style={styles.subheading} >Info</Text>
                        </View>
                        <View style={{flex:0.4}}>
                        {
