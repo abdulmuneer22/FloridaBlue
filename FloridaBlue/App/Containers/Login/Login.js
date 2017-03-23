@@ -82,32 +82,26 @@ class Login extends Component {
     var password = this.props.password
 
     if (!username && !password) {
-      Alert.alert(
-             'Login',
-            'Please enter your user ID/Password.',
-        [
-              {text: 'OK' }
-        ]
-          )
+            Alert.alert('Login', 'Please enter your user ID/Password.', [
+              {
+                text: 'OK'
+              }
+            ])
      // alert('Please enter your user ID/Password.')
     } else
     if (!username && password) {
-      Alert.alert(
-             'Login',
-            'Please enter your user ID',
-        [
-              {text: 'OK' }
-        ]
-          )
+          Alert.alert('Login', 'Please enter your user ID', [
+            {
+              text: 'OK'
+            }
+          ])
     } else
     if (username && !password) {
-      Alert.alert(
-             'Login',
-            'Please enter your Password.',
-        [
-              {text: 'OK' }
-        ]
-          )
+        Alert.alert('Login', 'Please enter your Password.', [
+          {
+            text: 'OK'
+          }
+        ])
     } else {
         // const { username, password } = this.state
       this.isAttempting = true
@@ -124,7 +118,7 @@ class Login extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-  // this.forceUpdate()   makes to rerender the stuff     Got the issue of redering
+   //this.forceUpdate()   makes to rerender the stuff     Got the issue of redering
   // Did the login attempt complete?
 
     console.log('I am receving new props' + newProps.responseURL)
@@ -342,7 +336,7 @@ class Login extends Component {
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
               <View style={styles.row}>
-                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration-stga.bcbsfl.com/ecir/public/MemberFPSSelect.do' + '?channel=mobile'})}>
+                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration-stga.bcbsfl.com/ecir/public/fps.do?channel=mobile&userType=member'})}>
                   <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
                 </TouchableOpacity>
               </View>
