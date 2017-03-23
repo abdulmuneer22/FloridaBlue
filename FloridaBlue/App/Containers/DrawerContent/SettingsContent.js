@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component} from 'react'
+import React, { Component, PropTypes} from 'react'
 import {
   ScrollView,
   Image,
@@ -21,6 +21,8 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import LoginActions from '../../Redux/LoginRedux'
+import MyPlanActions from '../../Redux/MyPlanRedux'
+import MemberActions from '../../Redux/MemberRedux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { AsyncStorage } from 'react-native'
 var RCTNetworking = require('RCTNetworking')
@@ -120,25 +122,7 @@ class SettingsContent extends Component {
   }
 
   render () {
-    renderItem = () => {
-      console.log(this.props.visibilityRules)
-      // if(this.props.visibilityRules.claims &&)
-      var item = this.props.visibilityRules
-      return (
-        <View>
-          {
-          item.benefits
-            ? <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
-           : null
-        }
-          {
-          item.claims
-            ? <Text style={styles.subheading} onPress={this.handlePressClaims}>Claims</Text>
-          : null
-        }
-        </View>
-      )
-    }
+   
     return (
       <ScrollView style={[styles.wrapper]}>
         <View style={styles.options}>
@@ -158,7 +142,7 @@ class SettingsContent extends Component {
 
               !this.state.hpActive
 
-                ? <Icon name='caret-down' size={Metrics.icons.xm} color={Colors.snow} />
+                ? <Icon name='caret-down' size={Metrics.icons.xm * Metrics.screenWidth * 0.0035} color={Colors.snow} />
               : <Icon name='caret-up' size={Metrics.icons.xm * Metrics.screenWidth * 0.0035} color={Colors.snow} />
 
             }
@@ -170,7 +154,49 @@ class SettingsContent extends Component {
               this.state.hpActive
                 ? <View style={{marginLeft: Metrics.doubleBaseMargin}}>
                   <Text style={styles.subheading} onPress={this.handlePressPlans}>My Plan</Text>
-                  {renderItem()}
+                  
+            <View>
+           {this.props.data && this.props.data.planOverViewTiles
+              ? this.props.data.planOverViewTiles.map((tile, i) => {
+
+            //    console.log("plannnnnn" , +this.props.data.planOverViewTiles);
+              onItemPress = function () {
+                var action
+                if (tile.tileType == 'webview') {
+                  var webview = 'MyView'
+                  action = NavigationActions[webview]({responseURL: tile.tileUrl})
+                  this.toggleDrawer()
+                } else if (tile.tileType == 'native') {
+                  var routerName = tile.routerName
+                  action = NavigationActions[routerName]()
+                  this.toggleDrawer()
+                }
+              }
+              // console.log("support id checking", tile);
+              renderItem = () => {
+                if (tile.tileId != null) {
+                  return (
+                    <View>
+                      <Text style={styles.benefitHeading}>{ tile.tileName['en']}</Text>
+                    </View>
+                  )
+                }
+              }
+              return (
+                <View key={i}>
+
+                  <TouchableOpacity onPress={onItemPress.bind(this)} key={i}>
+                    {renderItem()}
+                  </TouchableOpacity>
+
+                </View>
+              )
+            })
+            : null
+          }
+
+            </View>
+
                 </View>
             : null
           }
@@ -249,13 +275,16 @@ class SettingsContent extends Component {
 
 SettingsContent.contextTypes = {
   drawer: React.PropTypes.object,
-  clearLogin: React.PropTypes.func
+  clearLogin: React.PropTypes.func,
+  data: PropTypes.object,
+  attemptMyPlan: PropTypes.func,
+  error: PropTypes.string
 }
-
 const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
     error: state.login.error,
+    data: state.myplan.data,
     responseURL: state.login.responseURL,
     smToken: state.login.smToken,
     visibilityRules: state.member.visibilityRules
@@ -266,6 +295,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptLogout: () => dispatch(LoginActions.logoutRequest()),
+    attemptMember: () => dispatch(MemberActions.memberRequest()),
+    attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
     clearLogin: () => dispatch(LoginActions.logout())
   }
 }

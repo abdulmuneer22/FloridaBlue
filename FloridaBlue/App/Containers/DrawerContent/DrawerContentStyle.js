@@ -58,6 +58,13 @@ export default {
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.subHeaderFont
   },
+   benefitHeading: {
+    color: Colors.snow,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
+    marginBottom: Metrics.smallMargin,
+    //marginTop: Metrics.smallMargin,
+    fontFamily: Fonts.type.subHeaderFont
+  },
   heading1: {
     color: Colors.snow,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
