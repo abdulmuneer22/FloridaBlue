@@ -59,6 +59,7 @@ class Screen_2 extends React.Component {
   _handleNext () {
     Keyboard.dismiss()
 
+    var email = this.props.email
     var confirmEmail = this.props.confirmEmail
     var createUserId = this.props.createUserId
     var password = this.props.password
@@ -70,6 +71,9 @@ class Screen_2 extends React.Component {
     } else if (confirmPassword != password) {
       this.props.handleChangePersonalInformationStatus('999')
       this.props.handleChangePersonalInformationStatusMessage('Your passwords do not match. Please enter matching passwords')
+    } else if (!this.props.emailVerified && confirmEmail != email) {
+      this.props.handleChangePersonalInformationStatus('999')
+      this.props.handleChangePersonalInformationStatusMessage('Your emails do not match. Please enter the correct email')
     } else {
       this.props.verifyPersonalInformation(this.props)
     }
