@@ -22,6 +22,11 @@ import MemberActions from '../../../../Redux/MemberRedux'
 import { connect } from 'react-redux'
 import Flb from '../../../../Themes/FlbIcon'
 import Card from './Components/Card'
+import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+
+const SingleColorSpinner = MKSpinner.singleColorSpinner()
+.withStyle(styles.spinner)
+.build()
 
 type LoginScreenProps = {
   dispatch: () => any,
@@ -51,7 +56,7 @@ class Resources extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props.visibilityRules != undefined && this.props.visibilityRules.additionalTiles != undefined && this.props.visibilityRules.additionalTiles.length > 0) {
+    } else if (this.props.visibilityRules != undefined) {
       return (
         <View style={{flex: 1}}>
           <ScrollView>
@@ -66,7 +71,7 @@ class Resources extends Component {
               marginTop: window.width * 0.03
 
             }}>
-              {
+              { this.props.visibilityRules != undefined && this.props.visibilityRules.additionalTiles != undefined && this.props.visibilityRules.additionalTiles.length > 0 ?
               this.props.visibilityRules.additionalTiles.map((tile, i) => {
                 const index = i + 1
                 const TileCount = this.props.visibilityRules.additionalTiles.length
@@ -87,7 +92,7 @@ class Resources extends Component {
                       />
                 )
               }
-          )
+          ) :<Text/>
         }
             </View>
 
@@ -123,7 +128,8 @@ class Resources extends Component {
 const mapStateToProps = (state) => {
   return {
     visibilityRules: state.member.visibilityRules,
-    fetching: state.login.fetching
+    error: state.member.error,
+    fetching: state.member.fetching
   }
 }
 const mapDispatchToProps = (dispatch) => {
