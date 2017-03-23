@@ -49,7 +49,7 @@ export default {
     backgroundColor: Colors.snow,
     height: Metrics.screenHeight * 0.0013,
     marginLeft: -Metrics.mediumMargin,
-    marginBottom: Metrics.smallMargin
+   // marginBottom: Metrics.smallMargin
   },
   heading: {
     color: Colors.snow,

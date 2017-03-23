@@ -129,8 +129,8 @@ class SettingsContent extends Component {
       return(
         <View>
         {
-          item.benefits ?
-          <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benfits</Text>
+          item.benefits  ?
+          <Text style={styles.subheading} onPress={this.handlePressBenefits}>Benefits</Text>
            :
            null
         }
@@ -223,8 +223,7 @@ class SettingsContent extends Component {
             : null
           }
 
-          <Text style={styles.heading} onPress={this.handlePressFindCare}>Find Care</Text>
-
+             { this.props.visibilityRules !=undefined && this.props.visibilityRules.opd !=undefined ?   <Text style={styles.heading} onPress={this.handlePressFindCare}>Find Care</Text> : null}
         </View>
         <View style={styles.settings}>
 

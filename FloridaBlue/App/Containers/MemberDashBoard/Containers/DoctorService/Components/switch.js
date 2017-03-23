@@ -21,8 +21,8 @@ class Switch extends Component {
   }
 
   render () {
-    console.log('checking switch from switch', this.props.switchItems)
-
+    console.log('checking data from switch', this.props.data)
+    console.log(this.props)
     var _this = this
 
     var oneTabLeftActiveStyle = {
@@ -320,11 +320,15 @@ class Switch extends Component {
       }
     }
 
+   
+
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1}}>
           {_tabView()}
+         
         </View>
+        
       </View>
     )
   }

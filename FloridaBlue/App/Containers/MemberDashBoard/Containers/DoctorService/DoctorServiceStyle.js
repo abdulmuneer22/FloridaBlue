@@ -116,7 +116,8 @@ export default StyleSheet.create({
     color: Colors.flBlue.grey5,
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: '400'
+    fontWeight: '400',
+    textAlign:'justify'
   },
 
   h2: {
