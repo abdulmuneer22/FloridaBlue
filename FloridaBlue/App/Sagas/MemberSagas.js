@@ -28,9 +28,7 @@ export function * member (api, {smToken}) {
       'firstName': response.data.data.firstName,
       'lastName': response.data.data.lastName,
       'contractNumber': response.data.data.defaultContract.contractNumber,
-      'memberID': response.data.data.memberId,
       'dob': response.data.data.dob,
-      'opd': response.data.data.visibilityRule.opd,
       'claimsRule': response.data.data.visibilityRule.claims,
       'benefitsRule': response.data.data.visibilityRule.benefits
     }
