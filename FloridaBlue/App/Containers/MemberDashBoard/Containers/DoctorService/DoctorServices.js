@@ -39,8 +39,64 @@ class DoctorServices extends Component {
             </Image>)
   }
 
-  render () {
-    var temp = this.props.data
+
+
+  renderHeaderText(){
+    if(this.props.leftActive){
+      var objectName = this.props.objectName
+      //alert(objectName)
+      if(objectName !=null ){
+        return(
+        <View>
+          <Text style={{fontSize:Fonts.size.xm * Metrics.screenWidth* 0.0025,
+                            textAlign:'justify'}}>
+          {this.props.data[objectName] !=null && this.props.data[objectName].inNetwork !=null && this.props.data[objectName].inNetwork.header_text !=undefined ? this.props.data[objectName].inNetwork.header_text.en : <Text/>}
+          </Text>
+        </View>
+      )
+      }
+      //console.log(this.props.data[objectName].inNetwork.header_text.en)
+      
+    }else if(this.props.rightActive){
+      var objectName = this.props.objectName
+      if(objectName != null){
+      return(
+        <View>
+          <Text style={{fontSize:Fonts.size.xm * Metrics.screenWidth* 0.0025,
+                            textAlign:'justify'}}>
+      {this.props.data[objectName] !=null && this.props.data[objectName].outNetwork !=null && this.props.data[objectName].outNetwork.header_text !=undefined ? this.props.data[objectName].outNetwork.header_text.en :<Text/>}
+      </Text>
+      </View>
+       
+      )
+      }
+    }else if(this.props.preferredActive){
+      var objectName = this.props.objectName
+       if(objectName != null){
+      return(
+        <View>
+          <Text style={{fontSize:Fonts.size.xm * Metrics.screenWidth* 0.0025,
+                            textAlign:'justify'}}>                        
+        {this.props.data[objectName] !=null && this.props.data[objectName].preferredNetwork !=null && this.props.data[objectName].preferredNetwork.header_text !=undefined ? this.props.data[objectName].preferredNetwork.header_text.en :<Text/>}
+        </Text>
+        </View>
+        
+      )}
+    }
+  }
+
+  _displayCondition() {
+    if (this.props.fetching) {
+      return (<View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text style={styles.spinnerText}>
+          Loading Please Wait
+        </Text>
+      </View>)
+    }
+
+    else if (this.props.data){
+       var temp = this.props.data
     var objectName = this.props.objectName
     var temp1 = temp[objectName]
     var tiles = this.props.data.tiles
@@ -51,19 +107,15 @@ class DoctorServices extends Component {
     // console.log("checking for switch options" , this.props.data.emergencyMedicalCareServices);
     const switchItems = this.props.data.emergencyMedicalCareServices
     console.log('checking for switch options', switchItems)
-    return (
 
-      <View style={styles.container}>
-        {this._renderHeader()}
-        <ScrollView>
-          {this.props.data
-
-             ? <View style={{flex: 1}}>
+     return ( <ScrollView>
+           <View style={{flex: 1}}>
                <View style={styles.doctorCardStyle}>
                  <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
                  <Text style={styles.doctorTextStyle}>
                    {temp1.text['en']}
                  </Text>
+                
                  <Switch
                    data={this.props.data}
                    objectName={this.props.objectName}
@@ -73,6 +125,13 @@ class DoctorServices extends Component {
                    attemptHandleLeft={this.props.attemptHandleLeft}
                    attemptHandleRight={this.props.attemptHandleRight}
                    attemptHandlePreferred={this.props.attemptHandlePreferred} />
+
+                   <View style={{
+                     margin : Metrics.mediumMargin
+                   }}>
+                     {this.renderHeaderText()}
+                   </View>
+
                </View>
                <View>
                  <Card
@@ -83,13 +142,33 @@ class DoctorServices extends Component {
                    preferredActive={this.props.preferredActive} />
                </View>
              </View>
-             : <View style={styles.spinnerView}>
-               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-               <Text style={styles.spinnerText}>
-                   Loading Please Wait
-                 </Text>
-             </View>}
+            
         </ScrollView>
+
+
+      )
+    } 
+    else if (this.props.error != null) {
+      Alert.alert(
+        'Plan Benefits',
+        'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+        [
+          { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() },
+
+        ],
+        { cancelable: false }
+      )
+
+    }
+  }
+
+  render () {
+   
+    return (
+
+      <View style={styles.container}>
+        {this._renderHeader()}
+        {this._displayCondition()}
       </View>
     )
   }
@@ -104,6 +183,7 @@ DoctorServices.propTypes = {
 const mapStateToProps = (state) => {
   return {
     data: state.myplan.data,
+    fetching: state.myplan.fetching,
     leftActive: state.myplan.leftActive,
     rightActive: state.myplan.rightActive,
     preferredActive: state.myplan.preferredActive
