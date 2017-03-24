@@ -82,7 +82,7 @@ class Login extends Component {
     var password = this.props.password
 
     if (!username && !password) {
-            Alert.alert('Login', 'Please enter your user ID/Password.', [
+            Alert.alert('Login', 'Please enter your User ID/Password.', [
               {
                 text: 'OK'
               }
