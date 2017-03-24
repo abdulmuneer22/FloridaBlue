@@ -49,16 +49,20 @@ class TermsofUse extends Component {
     </Image>)
   }
 
-  _handleAgreeTermsOfUse () {
+  _handleAgreeTermsOfUse() {
     console.log(this.props.agreeTermsOfUse)
     if (!this.props.agreeTermsOfUse) {
       alert('Please accept Terms of Use')
-    } else {
-      this.props.sendConfirm()
-      if (this.props.origin === 'registration') {
-        NavigationActions.confirmation()
+    } 
+    if(this.props.agreeTermsOfUse){
+      if (this.props.origin == 'registration') {
+           this.props.sendConfirm()
+           console.log('if registration')
+           NavigationActions.confirmation()
       } else {
-        NavigationActions.WelcomeDashBoard()
+          this.props.sendConfirm()
+          console.log('if not registration')
+          NavigationActions.WelcomeDashBoard({'tou':'nonregistration'})
       }
     }
   }

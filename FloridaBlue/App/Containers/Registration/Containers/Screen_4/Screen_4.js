@@ -73,6 +73,11 @@ class Screen_4 extends React.Component {
 
   componentDidMount () {
     this.props.handleChangeSecurityHintsStatus(null)
+     if(this.props && this.props.username){
+        var username = this.props.username
+        this.props.handleChangeCreateUserId(username)
+    }
+   
   }
 
   componentDidUpdate () {
@@ -85,6 +90,9 @@ class Screen_4 extends React.Component {
         NavigationActions.Termsofuse({'origin': 'registration'})
       }
     }
+   
+
+   
   }
 
   render () {
@@ -259,6 +267,7 @@ Screen_4.propTypes = {
   handleChangeSecurityAnswer3: PropTypes.func,
   handleChangeSecurityHintsStatus: PropTypes.func,
   handleChangeSecurityHintsStatusMessage: PropTypes.func,
+  handleChangeCreateUserId: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -277,7 +286,8 @@ const mapStateToProps = (state) => {
     securityHintsStatusMessage: state.registration.securityHintsStatusMessage,
     fetching: state.registration.fetching,
     error: state.registration.error,
-    createUserId: state.registration.createUserId
+    createUserId: state.registration.createUserId,
+    
   }
 }
 
@@ -291,7 +301,8 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeSecurityHint3: (securityHint3) => dispatch(RegistrationActions.changeSecurityHint3(securityHint3)),
     handleChangeSecurityAnswer3: (securityAnswer3) => dispatch(RegistrationActions.changeSecurityAnswer3(securityAnswer3)),
     handleChangeSecurityHintsStatus: (data) => dispatch(RegistrationActions.changeSecurityHintsStatus(data)),
-    handleChangeSecurityHintsStatusMessage: (data) => dispatch(RegistrationActions.changeSecurityHintsStatusMessage(data))
+    handleChangeSecurityHintsStatusMessage: (data) => dispatch(RegistrationActions.changeSecurityHintsStatusMessage(data)),
+    handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
   }
 }
 
