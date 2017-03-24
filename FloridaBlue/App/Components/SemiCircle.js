@@ -60,8 +60,9 @@ class SemiCircle extends React.Component {
 
   _createSemiCircleChart (barWidth, percent) {
     // percent *= .01
-
     if (percent === 1) {
+      percent = 0
+    } else if (isNaN(percent) || percent == null){
       percent = 0
     } else {
       // take the reciprocal to show properly on the graph

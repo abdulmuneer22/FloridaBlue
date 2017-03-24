@@ -19,7 +19,7 @@ class MyPlanSwiper extends Component {
     result = Object.keys(oop !=undefined && oop.pnNetwork !=undefined && oop.pnNetwork.planBenefits).length >0 ? [...result, oop.pnNetwork] : result
     result = Object.keys(oop !=undefined && oop.inNetwork !=undefined && oop.inNetwork.planBenefits).length > 0 ? [...result, oop.inNetwork] : result
     result = Object.keys(oop !=undefined && oop.outNetwork !=undefined && oop.outNetwork.planBenefits).length >0 ? [...result, oop.outNetwork] : result
-   
+
     console.log(result)
     return result
   }
@@ -60,7 +60,7 @@ class MyPlanSwiper extends Component {
       }
     }
 
-    
+
 
      if (this.props.data != null && this.props.data.oop !=undefined && this.props.data.oop.pnNetwork !=undefined) {
       var pnNetwork = this.props.data.oop.pnNetwork
@@ -90,7 +90,7 @@ class MyPlanSwiper extends Component {
         })
       }
     }
-   
+
 
     return (
       <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.42))} style={styles.wrapper} showsButtons>
@@ -117,7 +117,7 @@ class MyPlanSwiper extends Component {
                     barWidth={10}
                     barTopColor={Colors.flBlue.ocean}
                     barBottomColor={Colors.flBlue.grey2}
-                    percent={Object.keys(network.planBenefits).length > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value) : 0} />
+                    percent={Object.keys(network.planBenefits).length > 0 && network.planBenefits[0].value > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value) : 0} />
                 </View>
                 <View style={{flex: 0.6}}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
