@@ -62,8 +62,17 @@ class SettingsContent extends Component {
   }
 
   handlePressPlans = () => {
-    this.toggleDrawer()
-    NavigationActions.Myplan()
+   
+   console.log(this.props.data)
+    var action
+    if (this.props.visibilityRules.myHealthPlanTile.tileType == 'webview') {
+      action = NavigationActions.MyView({responseURL: this.props.visibilityRules.myHealthPlanTile.tileUrl})
+       this.toggleDrawer()
+    } else if (this.props.visibilityRules.myHealthPlanTile.tileType == 'native') {
+      var routerName = this.props.visibilityRules.myHealthPlanTile.routerName
+      action = NavigationActions[routerName]()
+       this.toggleDrawer()
+    }
   }
 
   handlePressBenefits = () => {
@@ -153,10 +162,13 @@ class SettingsContent extends Component {
             {
               this.state.hpActive
                 ? <View style={{marginLeft: Metrics.doubleBaseMargin}}>
-                  <Text style={styles.subheading} onPress={this.handlePressPlans}>My Plan</Text>
 
+                   { this.props.visibilityRules !=undefined && this.props.visibilityRules.myHealthPlanTile !=undefined ?
 
+                   
+                  <Text style={styles.subheading} onPress={this.handlePressPlans}>{this.props.visibilityRules.myHealthPlanTile.tileName['en']}</Text> : null
 
+                   }
 
 
 
@@ -227,7 +239,7 @@ class SettingsContent extends Component {
               }
               // console.log("support id checking", tile);
               renderItem = () => {
-                if (tile.tileId != null && tile.tileId !== 'support' && tile.tileId.indexOf('benefits') == -1) {
+                if (tile.tileId != null && tile.tileId !== 'support' && tile.tileId !== 'claims' && tile.tileId.indexOf('benefits') == -1) {
                   return (
                     <View>
                       <Text style={styles.heading}>{ tile.tileName['en']}</Text>
