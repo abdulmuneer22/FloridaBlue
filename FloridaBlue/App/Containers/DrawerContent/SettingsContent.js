@@ -167,7 +167,7 @@ class SettingsContent extends Component {
            {this.props.data && this.props.data.planOverViewTiles
               ? this.props.data.planOverViewTiles.map((tile, i) => {
 
-            //    console.log("plannnnnn" , +this.props.data.planOverViewTiles);
+               console.log("checking plan overview" , tile);
               onItemPress = function () {
                 var action
                 if (tile.tileType == 'webview') {
@@ -180,7 +180,6 @@ class SettingsContent extends Component {
                   this.toggleDrawer()
                 }
               }
-              // console.log("support id checking", tile);
               renderItem = () => {
                 if (tile.tileId != null) {
                   return (
