@@ -12,8 +12,14 @@ import styles from './RootContainerStyle'
 var RCTNetworking =require('RCTNetworking');
 var inactiveTime = Date
 var activeTime = Date
+var component = null
 
 class RootContainer extends Component {
+
+  constructor() {
+    super()
+    component = this
+  }
 
   componentDidMount () {
     // if redux persist is not active fire startup action
@@ -27,30 +33,32 @@ class RootContainer extends Component {
     AppState.removeEventListener('change', this._handleAppState);
   }
 
+  componentWillReceiveProps() {
+    console.log("Component received props..", this.props)
+  }
+
   _handleAppState() {
     var appState = AppState.currentState;
-    if (appState.match(/inactive|background/)) {
-      console.log("Went inactive..");
-      var date = new Date();
-      inactiveTime = date.getTime();
-    } else if (appState.match(/active/)) {
-      console.log("Went active..");
-      var date = new Date();
-      activeTime = date.getTime();
-      var diffMs = (inactiveTime - activeTime); // milliseconds between inactive and active times
-      var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // converted to minutes
-      var elapsedTime = Math.abs(diffMins);
-      if (elapsedTime >= 1) {
-        console.log("Logout the user..");
-        // Call logout logic
-        RCTNetworking.clearCookies((cleared)=>{})
-        LoginActions.logoutRequest()
-        NavigationActions.login()
-      } else {
-        console.log("Keep the session..");
-        inactiveTime = null;
-        activeTime = null;
-      }
+    if(component.props && component.props.userName) {
+        if (appState.match(/inactive|background/)) {
+          var date = new Date();
+          inactiveTime = date.getTime();
+        } else if (appState.match(/active/)) {
+          var date = new Date();
+          activeTime = date.getTime();
+          var diffMs = (inactiveTime - activeTime); // milliseconds between inactive and active times
+          var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // converted to minutes
+          var elapsedTime = Math.abs(diffMins);
+          if (elapsedTime >= 15) {
+            // Call logout logic
+            RCTNetworking.clearCookies((cleared)=>{})
+            component.props.attemptLogout()
+            NavigationActions.login()
+          } else {
+            inactiveTime = null;
+            activeTime = null;
+          }
+        }
     }
   }
 
