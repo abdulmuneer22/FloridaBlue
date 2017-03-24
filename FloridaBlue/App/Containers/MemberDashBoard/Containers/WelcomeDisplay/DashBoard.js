@@ -92,7 +92,7 @@ class LandingScreen extends Component {
       return (
         <View style={styles.container}>
           <Greeting userName={this.props.userName} />
-          {this.props.visibilityRules !=undefined && this.props.visibilityRules.myHealthPlanTile !=undefined? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} /> : <View />}
+          {this.props.visibilityRules !=undefined && this.props.visibilityRules.myHealthPlanTile !=undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} /> : <View />}
           <View style={{
             flexWrap: 'wrap',
             flexDirection: 'row'

@@ -27,9 +27,7 @@ export default {
   //  backgroundColor:'red'
 
   },
-  logo: {
-    alignSelf: 'center'
-  },
+ 
   wrapper: {
     flex: 1,
     backgroundColor: Colors.snow
@@ -68,14 +66,14 @@ export default {
   heading1: {
     color: Colors.snow,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-    marginBottom: Metrics.mediumMargin,
+    marginBottom: Metrics.baseMargin,
     fontFamily: Fonts.type.subHeaderFont
   //  marginTop: Metrics.baseMargin
   },
   subheading: {
     color: Colors.snow,
    // fontSize: Fonts.size.h5,
-    marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.003,
+    marginBottom: Metrics.smallMargin ,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0029
 
