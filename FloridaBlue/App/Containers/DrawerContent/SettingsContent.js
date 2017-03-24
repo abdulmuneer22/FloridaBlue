@@ -154,6 +154,14 @@ class SettingsContent extends Component {
               this.state.hpActive
                 ? <View style={{marginLeft: Metrics.doubleBaseMargin}}>
                   <Text style={styles.subheading} onPress={this.handlePressPlans}>My Plan</Text>
+
+
+
+
+
+
+
+
                   
             <View>
            {this.props.data && this.props.data.planOverViewTiles
@@ -242,7 +250,25 @@ class SettingsContent extends Component {
             : null
           }
 
-          { this.props.visibilityRules != undefined && this.props.visibilityRules.opd != undefined ? <Text style={styles.heading} onPress={this.handlePressFindCare}>Find Care</Text> : null}
+         
+           { this.props.visibilityRules !=undefined && this.props.visibilityRules.opdTile !=undefined
+
+            ? <TouchableOpacity onPress={this.handlePressFindCare} >
+             
+                  <Text style={{
+                    color: Colors.snow,
+                    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
+                    marginBottom: Metrics.baseMargin,
+                    marginTop: Metrics.smallMargin,
+                    fontFamily: Fonts.type.subHeaderFont
+                  }}>
+                    {this.props.visibilityRules.opdTile.tileName['en']}
+                  </Text>
+            </TouchableOpacity> : null
+          }
+
+
+
         </View>
         <View style={styles.settings}>
 
