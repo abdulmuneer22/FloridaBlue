@@ -74,7 +74,6 @@ class Webview extends Component {
           source={redirect}
           javaScriptEnabled={true}
           domStorageEnabled={true}
-          injectedJavaScript="var el = document.getElementsById('mobile-nav');el.remove(el);"
        // Below functions for debugging
        //   onNavigationStateChange={onNavigationStateChange}
        //   onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
