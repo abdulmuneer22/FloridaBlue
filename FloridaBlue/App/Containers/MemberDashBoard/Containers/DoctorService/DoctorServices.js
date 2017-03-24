@@ -127,7 +127,7 @@ class DoctorServices extends Component {
                      }}>
 
                        <View style={{ flex:0.8,marginLeft: Metrics.mediumMargin }}>
-                         <Text style={styles.subheading} >Info</Text>
+                         <Text style={styles.subheading} >Benefit Information</Text>
                        </View>
                        <View style={{flex:0.4}}>
                        {

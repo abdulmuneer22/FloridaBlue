@@ -20,6 +20,17 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025
   },
+    headerTextStyle: {
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0030,
+    marginTop: 20,
+    marginLeft: Metrics.mediumMargin,
+    // marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight: '400'
+
+  },
   messageView: {
     padding: Metrics.baseMargin,
     marginHorizontal: Metrics.doubleBaseMargin,

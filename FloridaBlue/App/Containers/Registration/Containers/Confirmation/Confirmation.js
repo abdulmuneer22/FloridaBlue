@@ -56,9 +56,12 @@ class Confirmation extends Component {
   render () {
     return (
       <ScrollView style={styles.container}>
-        <Image style={styles.headerContainer} source={Images.regCompletion} />
+        <Image style={styles.headerContainer} source={Images.regCompletion} >
+          <Text style={styles.headerTextStyle}>Thank You!</Text>
+          </Image>
+
+
         <View >
-          <Text style={styles.header}>Thank You!</Text>
           <Text style={styles.subheading}>You're All Set</Text>
         </View>
         <View style={styles.userStyle}>

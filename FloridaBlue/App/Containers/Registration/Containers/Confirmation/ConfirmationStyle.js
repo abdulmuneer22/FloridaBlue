@@ -5,8 +5,8 @@ export default StyleSheet.create({
   headerContainer: {
     width: Metrics.screenWidth,
     resizeMode: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
+  //  alignItems: 'center',
+    //justifyContent: 'center',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
   container: {
@@ -18,6 +18,16 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.003,
     marginTop: Metrics.doubleBaseMargin,
     marginLeft: Metrics.doubleBaseMargin
+  },
+    headerTextStyle: {
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0031,
+    marginTop: 20,
+    marginLeft: Metrics.mediumMargin,
+    // marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight: '400'
 
   },
   subheading: {

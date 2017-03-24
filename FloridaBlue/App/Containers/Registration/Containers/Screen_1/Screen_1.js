@@ -112,7 +112,10 @@ class Screen_1 extends React.Component {
     return (
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps>
-          <Image source={Images.registrationStep1Hdr} style={styles.headerImage} />
+          <Image source={Images.registrationStep1Hdr} style={styles.headerImage} >
+            <Text style={styles.headerTextStyle}>Let's Get Started!</Text>
+          </Image>
+
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('personalInformation')}</Text>
           </View>
