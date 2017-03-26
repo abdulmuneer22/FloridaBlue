@@ -87,7 +87,7 @@ export default StyleSheet.create({
   },
   h1: {
     // flexWrap:'wrap',
-    margin: 5,
+   // margin: 5,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     // fontWeight: '600',
     color: Colors.flBlue.anvil,
@@ -110,8 +110,8 @@ export default StyleSheet.create({
   },
   noteText: {
     // flexWrap:'wrap',
-    marginLeft: Metrics.baseMargin,
-    marginRight: Metrics.baseMargin,
+    marginLeft: Metrics.mediumMargin,
+    marginRight: Metrics.mediumMargin,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.grey5,
     marginTop: Metrics.smallMargin,

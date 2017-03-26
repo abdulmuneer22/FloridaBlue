@@ -5,7 +5,8 @@ import {
   LayoutAnimation,
   View,
   ScrollView,
-  Text
+  Text,
+  TouchableWithoutFeedback
 } from 'react-native'
 
 import { Colors, Metrics, Fonts } from '../../../../../Themes'
@@ -14,11 +15,20 @@ import { connect } from 'react-redux'
 import styles from '../DoctorServiceStyle.js'
 import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+import Flb from '../../../../../Themes/FlbIcon'
 
 const theme = getTheme()
 
 class Card extends Component {
-  render () {
+
+  constructor() {
+    super();
+    this.state = {
+      notesVisible: false
+    }
+  }
+
+  render() {
     var cards = []
     var that = this
     var card
@@ -44,57 +54,89 @@ class Card extends Component {
     // looping through cards to create the view
     // don't generate any markup if card object is null
     if (card) {
+      var { notesVisible } = this.state
+
       var i = 0
-      card.map(function (network, i) {
+      card.map((network, i) => {
         var speciality = []
         speciality = network['speciality']
 
         cards.push(<View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} key={i} >
 
-          <Text style={styles.h1}>
-            {_.get(network, 'header_text.en', '')}
-          </Text>
+          <View style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <View style={{
+              marginRight: 10,
+              marginLeft: 10,
+              flex: 0.7
+            }}>
+              <Text style={styles.h1}>
+                {_.get(network, 'header_text.en', '')}
+              </Text>
+            </View>
+            <View style={{ marginRight: 25 }}>
+              {
+                network.footer_note ?
+                  <TouchableWithoutFeedback
+                    onPress={() => { this.setState({ notesVisible: !notesVisible }) }}
+                  >
+                    <Flb name={!notesVisible ? 'rd-d-arrow' : 'rd-u-arrow'} size={Metrics.icons.xm} style={{ marginTop: 25 }} color={Colors.flBlue.anvil} />
+                  </TouchableWithoutFeedback>
+                  :
+                  null
+              }
+
+            </View>
+          </View>
 
           {
-          speciality.map(specialities => {
-            const {speciality_text, speciality_value} = specialities
-            const style1 = {marginTop: 5, width: Metrics.screenWidth}
-            const style2 = {marginTop: 5, flex: 0.5}
-            return (
-              <View style={{marginBottom: 10}}>
-                <View>
+            notesVisible ?
+              <Text style={styles.noteText}>
+                {_.get(network, 'footer_note.en', '')}
+              </Text>
+              :
+              null
+          }
 
-                  {speciality_text['en']
-                    ? <Text style={styles.h2} >
-                      {speciality_text['en']}
-                    </Text>
-              : <View />
+          {
+            speciality.map(specialities => {
+              const { speciality_text, speciality_value } = specialities
+              const style1 = { marginTop: 5, width: Metrics.screenWidth }
+              const style2 = { marginTop: 5, flex: 0.5 }
+              return (
+                <View style={{ marginBottom: 10 }}>
+                  <View>
 
-            }
-                </View>
+                    {speciality_text['en']
+                      ? <Text style={styles.h2} >
+                        {speciality_text['en']}
+                      </Text>
+                      : <View />
 
-                <View style={!speciality_text['en'] ? style1 : style2}>
-                  {
-              speciality_value.map(value => {
-                return (
-                  <Text style={styles.h4}>
-                    {value['en']} </Text>
+                    }
+                  </View>
 
-                )
-              })
-            }
-                </View>
-              </View>)
-          })
-        }
+                  <View style={!speciality_text['en'] ? style1 : style2}>
+                    {
+                      speciality_value.map(value => {
+                        return (
+                          <Text style={styles.h4}>
+                            {value['en']} </Text>
 
-          <Text style={styles.noteText}>
-            {_.get(network, 'footer_note.en', '')}
-          </Text>
+                        )
+                      })
+                    }
+                  </View>
+                </View>)
+            })
+          }
 
         </View>
 
-      )
+        )
         i += 1
         return cards
       })
@@ -111,3 +153,5 @@ class Card extends Component {
 }
 
 export default Card
+
+
