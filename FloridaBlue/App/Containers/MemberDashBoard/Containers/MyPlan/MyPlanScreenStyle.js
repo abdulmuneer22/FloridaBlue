@@ -69,7 +69,7 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     flex: 1,
     marginLeft: window.width * 0.04,
-    marginRight: window.width * 0.04,
+    marginRight: window.width * 0.03,
     marginTop: window.width * 0.04,
     marginBottom: window.width * 0.01
 

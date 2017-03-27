@@ -13,20 +13,45 @@ class MyPlanSwiper extends Component {
   getChildrenOptions (data) {
     const {annualDeductible, oop} = data
     let result = []
-    result = Object.keys(annualDeductible !=undefined && annualDeductible.pnNetwork !=undefined && annualDeductible.pnNetwork.planBenefits).length > 0 ? [...result, annualDeductible.pnNetwork] : result
+   /* 
+    result = annualDeductible !=undefined && annualDeductible.pnNetwork !=undefined && annualDeductible.pnNetwork.planBenefits != undefined ?
+    (Object.keys(annualDeductible.pnNetwork.planBenefits).length > 0 ? [...result, annualDeductible.pnNetwork] : result ) : result;
     result = Object.keys(annualDeductible !=undefined && annualDeductible.inNetwork !=undefined && annualDeductible.inNetwork.planBenefits).length > 0 ? [...result, annualDeductible.inNetwork] : result
-    result = Object.keys(annualDeductible !=undefined && annualDeductible.outNetwork !=undefined && annualDeductible.outNetwork.planBenefits).length > 0 ? [...result, annualDeductible.outNetwork] : result
-    result = Object.keys(oop !=undefined && oop.pnNetwork !=undefined && oop.pnNetwork.planBenefits).length >0 ? [...result, oop.pnNetwork] : result
-    result = Object.keys(oop !=undefined && oop.inNetwork !=undefined && oop.inNetwork.planBenefits).length > 0 ? [...result, oop.inNetwork] : result
-    result = Object.keys(oop !=undefined && oop.outNetwork !=undefined && oop.outNetwork.planBenefits).length >0 ? [...result, oop.outNetwork] : result
+    //result = Object.keys(annualDeductible !=undefined && annualDeductible.outNetwork !=undefined && annualDeductible.outNetwork.planBenefits).length > 0 ? [...result, annualDeductible.outNetwork] : result
+    //result = Object.keys(oop !=undefined && oop.pnNetwork !=undefined && oop.pnNetwork.planBenefits).length >0 ? [...result, oop.pnNetwork] : result
+    //result = Object.keys(oop !=undefined && oop.inNetwork !=undefined && oop.inNetwork.planBenefits).length > 0 ? [...result, oop.inNetwork] : result
+    //result = Object.keys(oop !=undefined && oop.outNetwork !=undefined && oop.outNetwork.planBenefits).length >0 ? [...result, oop.outNetwork] : result
+   */
+   if(annualDeductible && annualDeductible.pnNetwork && annualDeductible.pnNetwork.planBenefits ){
+    result = Object.keys(annualDeductible.pnNetwork.planBenefits).length > 0 ? [...result, annualDeductible.pnNetwork] : result
+   }
 
-    console.log(result)
+   if(annualDeductible && annualDeductible.inNetwork && annualDeductible.inNetwork.planBenefits ){
+    result = Object.keys(annualDeductible.inNetwork.planBenefits).length > 0 ? [...result, annualDeductible.inNetwork] : result
+  }
+
+    if(annualDeductible && annualDeductible.outNetwork && annualDeductible.outNetwork.planBenefits ){
+    result = Object.keys(annualDeductible.outNetwork.planBenefits).length > 0 ? [...result, annualDeductible.outNetwork] : result
+   }
+
+    if(oop && oop.pnNetwork && oop.pnNetwork.planBenefits ){
+    result = Object.keys(oop.pnNetwork.planBenefits).length >0 ? [...result, oop.pnNetwork] : result
+  }
+
+    if(oop && oop.inNetwork && oop.inNetwork.planBenefits ){
+    result = Object.keys(oop.inNetwork.planBenefits).length > 0 ? [...result, oop.inNetwork] : result
+  }
+
+    if(oop && oop.outNetwork && oop.outNetwork.planBenefits ){
+    result = Object.keys(oop.outNetwork.planBenefits).length >0 ? [...result, oop.outNetwork] : result
+  }
+     
     return result
   }
 
   render () {
     console.log(this.props.data)
-
+/*
     var myPlan = []
     // const this.props.data=this.props.data
      if (this.props.data != null && this.props.data.annualDeductible !=undefined && this.props.data.annualDeductible.pnNetwork !=undefined) {
@@ -90,7 +115,7 @@ class MyPlanSwiper extends Component {
         })
       }
     }
-
+*/
 
     return (
       <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.42))} style={styles.wrapper} showsButtons>

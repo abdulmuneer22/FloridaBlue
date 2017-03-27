@@ -17,9 +17,17 @@ import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
+var RCTNetworking = require('RCTNetworking')
 const window = Dimensions.get('window')
 
+
 class ErrorScreen extends Component {
+
+  componentDidMount() {
+    RCTNetworking.clearCookies((cleared) => {
+            console.log('clearing local cookies for the app')
+          })
+  }
   _renderHeader () {
     return (<Image style={styles.headerContainerError} source={Images.themeHeader}>
 
