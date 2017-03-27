@@ -59,9 +59,21 @@ class Screen_4 extends React.Component {
     var securityHint3 = this.props.securityHint3
     var securityAnswer3 = this.props.securityAnswer3
 
+
+
     if (!(securityHint1 && securityAnswer1 && securityHint2 && securityAnswer2 && securityHint3 && securityAnswer3)) {
-      alert('Please enter values in all fields')
+      this.props.handleChangeSecurityHintsStatus('999')
+      this.props.handleChangeSecurityHintsStatusMessage('Please enter values in all fields')
+    } else if(securityHint1.length < 4 || securityHint2.length < 4 || securityHint3.length < 4) {
+      console.log("Hint errors..")
+      this.props.handleChangeSecurityHintsStatus('999')
+      this.props.handleChangeSecurityHintsStatusMessage('All hints must be at least four characters in length')
+    } else if (securityAnswer1.length < 3 || securityAnswer2.length < 3 || securityAnswer3.length < 3) {
+      console.log("Answer errors..")
+      this.props.handleChangeSecurityHintsStatus('999')
+      this.props.handleChangeSecurityHintsStatusMessage('All answers must be at least three characters in length')
     } else {
+      console.log("Verify the security questions..")
       this.props.verifySecurityHints(this.props)
     }
   }
@@ -77,7 +89,7 @@ class Screen_4 extends React.Component {
         var username = this.props.username
         this.props.handleChangeCreateUserId(username)
     }
-   
+
   }
 
   componentDidUpdate () {
@@ -90,9 +102,9 @@ class Screen_4 extends React.Component {
         NavigationActions.Termsofuse({'origin': 'registration'})
       }
     }
-   
 
-   
+
+
   }
 
   render () {
@@ -114,6 +126,11 @@ class Screen_4 extends React.Component {
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View><Text style={styles.message}> {this.props.securityHintsStatusMessage}</Text></View>
+            </View>
+            <View>
+              <TouchableOpacity onPress={() => { this.props.handleChangeSecurityHintsStatus(null) }}>
+                <Image source={Images.closeIconWhite} />
+              </TouchableOpacity>
             </View>
           </View> : <Text />}
           <View style={styles.hintRow}>
@@ -287,7 +304,7 @@ const mapStateToProps = (state) => {
     fetching: state.registration.fetching,
     error: state.registration.error,
     createUserId: state.registration.createUserId,
-    
+
   }
 }
 
