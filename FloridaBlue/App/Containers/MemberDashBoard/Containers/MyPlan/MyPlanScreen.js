@@ -95,10 +95,10 @@ class MyPlanScreen extends Component {
           </View>
 
           <View style={styles.myplanTilesStyle}>
-            {this.props.data && this.props.data.planOverViewTiles
-              ? this.props.data.planOverViewTiles.map((tile, i) => {
+            {this.props.visibilityRules !=undefined && this.props.visibilityRules.planOverViewTiles !=undefined
+              ? this.props.visibilityRules.planOverViewTiles.map((tile, i) => {
                 const index = i + 1
-                const TileCount = this.props.data.planOverViewTiles.length
+                const TileCount = this.props.visibilityRules.planOverViewTiles.length
 
                 console.log(tile)
                 return (
@@ -165,7 +165,9 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.myplan.fetching,
     data: state.myplan.data,
+    visibilityRules: state.member.visibilityRules,
     error: state.myplan.error,
+    error: state.member.error,
     planName: _.get(state, 'member.defaultContract.planName', '')
   }
 }

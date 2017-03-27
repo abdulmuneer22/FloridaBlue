@@ -55,9 +55,10 @@ class Hsa extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props.data && this.props.data.currentBalance) {
+    } else if (this.props.data !=undefined) {
       return (<View style={{flex: 1}}>
-
+      
+      {this.props.data !=undefined}
         {this.props.data.currentBalance !=undefined ?
         <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.textHeight}}>
           <View style={{marginTop: 3}}>
@@ -67,7 +68,7 @@ class Hsa extends Component {
             <Text style={styles.hsaTextStyle2}>${this.props.data.currentBalance.value}</Text>
           </View>
         </View>
-        : <Text/>
+        : null
         }
 
        
@@ -77,14 +78,14 @@ class Hsa extends Component {
             <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text['en']}</Text>
             <Text style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
           </View>
-           : <Text/>
+           :  null
         }       
          {this.props.data.distribution !=undefined ?
           <View style={styles.col_1}>
             <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text['en']}</Text>
             <Text style={styles.hsaTextStyle2}>${this.props.data.distribution.value}</Text>
           </View>
-           : <Text/>
+           : null
         }  
         </View>
         

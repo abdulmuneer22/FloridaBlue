@@ -110,12 +110,31 @@ class SettingsContent extends Component {
     NavigationActions.MyView()
   }
   handlePressSupport= () => {
-    this.toggleDrawer()
-    NavigationActions.SupportScreen()
+
+     console.log(this.props.data)
+    var action
+    if (this.props.visibilityRules.supportTile.tileType == 'webview') {
+      action = NavigationActions.MyView({responseURL: this.props.visibilityRules.supportTile.tileUrl})
+       this.toggleDrawer()
+    } else if (this.props.visibilityRules.supportTile.tileType == 'native') {
+      var routerName = this.props.visibilityRules.supportTile.routerName
+      action = NavigationActions[routerName]()
+       this.toggleDrawer()
+    }
   }
   handlePressPolicy= () => {
-    this.toggleDrawer()
-    NavigationActions.MyView({responseURL: 'https://www.floridablue.com/terms-of-use'})
+
+ console.log(this.props.data)
+    var action
+    if (this.props.visibilityRules.touTile.tileType == 'webview') {
+      action = NavigationActions.MyView({responseURL: this.props.visibilityRules.touTile.tileUrl})
+       this.toggleDrawer()
+    } else if (this.props.visibilityRules.touTile.tileType == 'native') {
+      var routerName = this.props.visibilityRules.touTile.routerName
+      action = NavigationActions[routerName]()
+       this.toggleDrawer()
+    }
+
   }
 
   handlePressLogout = () => {
@@ -137,18 +156,17 @@ class SettingsContent extends Component {
         <View style={styles.options}>
           <Text style={styles.heading} onPress={this.handlePressDashBoard}>Dashboard</Text>
           <Divider />
-
+          { this.props.visibilityRules !=undefined && this.props.visibilityRules.myHealthPlanTile !=undefined ?
           <View>
+            
             <TouchableWithoutFeedback onPress={() => {
-              this.setState({hpActive: !this.state.hpActive})
-            }}>
+              this.setState({hpActive: !this.state.hpActive}) }}>
               <View style={{flexDirection: 'row', marginRight: Metrics.mediumMargin, marginTop: Metrics.baseMargin}}>
                 <View style={{flex: 1}}>
-                  <Text style={styles.heading1} >My Health Plan</Text>
+                  <Text style={styles.heading1} > {this.props.visibilityRules.myHealthPlanTile.tileName['en']} </Text>
                 </View>
 
                 {
-
               !this.state.hpActive
 
                 ? <Icon name='caret-down' size={Metrics.icons.xm * Metrics.screenWidth * 0.0035} color={Colors.snow} />
@@ -166,18 +184,16 @@ class SettingsContent extends Component {
                    { this.props.visibilityRules !=undefined && this.props.visibilityRules.myHealthPlanTile !=undefined ?
 
                    
-                  <Text style={styles.subheading} onPress={this.handlePressPlans}>{this.props.visibilityRules.myHealthPlanTile.tileName['en']}</Text> : null
+                  <Text style={styles.subheading} onPress={this.handlePressPlans}>
+                    {this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
+                    </Text> 
+                    : null
 
                    }
-
-
-
-
-
                   
             <View>
-           {this.props.data && this.props.data.planOverViewTiles
-              ? this.props.data.planOverViewTiles.map((tile, i) => {
+           { this.props.visibilityRules !=undefined && this.props.visibilityRules.planOverViewTiles !=undefined
+              ? this.props.visibilityRules.planOverViewTiles.map((tile, i) => {
 
                console.log("checking plan overview" , tile);
               onItemPress = function () {
@@ -219,8 +235,12 @@ class SettingsContent extends Component {
                 </View>
             : null
           }
+
           </View>
 
+           : null
+
+             }
           <Divider />
           {
             this.props.visibilityRules
@@ -272,31 +292,39 @@ class SettingsContent extends Component {
                     marginBottom: Metrics.baseMargin,
                     marginTop: Metrics.smallMargin,
                     fontFamily: Fonts.type.subHeaderFont
-                  }}>
+                  }} >
                     {this.props.visibilityRules.opdTile.tileName['en']}
                   </Text>
             </TouchableOpacity> : null
           }
 
 
-
         </View>
         <View style={styles.settings}>
+
+         { this.props.visibilityRules !=undefined && this.props.visibilityRules.supportTile !=undefined ?
 
           <View style={styles.myAccountStyle}>
             <View >
               <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
             </View>
-            <Text style={styles.heading2} onPress={this.handlePressSupport}>Support</Text>
+            <Text style={styles.heading2} onPress={this.handlePressSupport}>{this.props.visibilityRules.supportTile.tileName['en']}</Text>
           </View>
+          : null
 
+         }
+
+           { this.props.visibilityRules !=undefined && this.props.visibilityRules.touTile !=undefined ?
           <View style={styles.myAccountStyle}>
             <View >
               <Flb name='generic-doc' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
             </View>
 
-            <Text style={styles.heading2} onPress={this.handlePressPolicy}>Terms of Use </Text>
+            <Text style={styles.heading2} onPress={this.handlePressPolicy}>{this.props.visibilityRules.touTile.tileName['en']} </Text>
           </View>
+          : null
+
+         }
 
         </View>
         <View style={styles.logoutView}>

@@ -79,10 +79,10 @@ class Card extends Component {
             </View>
             <View style={{ marginRight: 25 }}>
               {
-                network.footer_note ?
+                network !=undefined && network.footer_note !=undefined && network.footer_note !=null && network.footer_note.en !=undefined && network.footer_note.en !=null ?
                   <TouchableWithoutFeedback
-                    onPress={() => { this.setState({ notesVisible: !notesVisible }) }}
-                  >
+                    onPress={() => { this.setState({ notesVisible: !notesVisible }) }} >
+                    
                     <Flb name={!notesVisible ? 'rd-d-arrow' : 'rd-u-arrow'} size={Metrics.icons.xm} style={{ marginTop: 25 }} color={Colors.flBlue.anvil} />
                   </TouchableWithoutFeedback>
                   :
