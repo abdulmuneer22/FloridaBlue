@@ -74,6 +74,7 @@ class Webview extends Component {
           source={redirect}
           javaScriptEnabled={true}
           domStorageEnabled={true}
+           startInLoadingState={true}
        // Below functions for debugging
        //   onNavigationStateChange={onNavigationStateChange}
        //   onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
