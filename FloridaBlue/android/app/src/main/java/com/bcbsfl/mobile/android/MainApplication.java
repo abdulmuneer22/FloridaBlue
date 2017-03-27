@@ -1,11 +1,8 @@
-package com.floridablue;
+package com.bcbsfl.mobile.android;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.facebook.react.ReactApplication;
-import com.github.xinthink.rnmk.ReactMaterialKitPackage;
-import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -13,7 +10,6 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
-import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;

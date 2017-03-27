@@ -61,6 +61,7 @@ export default StyleSheet.create({
  // padding:10,
     // alignSelf: 'stretch',
     resizeMode: 'stretch',
+    marginBottom:0,
     width: Metrics.screenWidth
   },
   hsaTextStyle1: {

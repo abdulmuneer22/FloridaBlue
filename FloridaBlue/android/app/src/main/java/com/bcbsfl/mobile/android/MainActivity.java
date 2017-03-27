@@ -1,4 +1,4 @@
-package com.floridablue;
+package com.bcbsfl.mobile.android;
 
 import com.facebook.react.ReactActivity;
 
