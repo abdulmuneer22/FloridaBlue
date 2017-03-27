@@ -115,7 +115,7 @@ export default StyleSheet.create({
   greetingView: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.78)) / 3,
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 3,
     // padding:5,
   //  backgroundColor: Colors.flBlue.grey6,
     margin: 2
@@ -139,7 +139,7 @@ export default StyleSheet.create({
   },
   summary: {
     flexDirection: 'row',
-    height: Metrics.screenHeight * 0.125,
+    height: Metrics.screenHeight * 0.115,
   //  justifyContent: 'space-between',
     // margin:2,
     alignItems: 'center',
@@ -245,7 +245,7 @@ export default StyleSheet.create({
     // borderBottomWidth: 0.5,
     // width:Metrics.screenWidth,
   //  borderColor: Colors.snow
-  //  alignItems:'center',
+    alignItems:'center',
   //  justifyContent:'center'
     // smargin:4
 
@@ -259,16 +259,9 @@ export default StyleSheet.create({
   //  alignSelf: 'stretch',
     resizeMode: 'stretch',
     width: Metrics.screenWidth,
-    marginTop: 4
+    marginTop: 2
 
     // marginBottom:0
-  },
-  titleView: {
-    marginTop: Metrics.baseMargin
-  },
-  center: {
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   textBackground: {
     flexDirection: 'row',

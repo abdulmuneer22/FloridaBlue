@@ -91,7 +91,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     // fontWeight: '600',
     color: Colors.flBlue.anvil,
-    textAlign: 'center',
+   // textAlign: 'center',
     marginTop: Metrics.mediumMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600'

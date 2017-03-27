@@ -113,9 +113,7 @@ class LandingScreen extends Component {
                 }
               }
               return (
-
                 <TouchableOpacity
-
                   style={
                     i % 2 == 0
                       ? styles.tileStyle
@@ -128,7 +126,7 @@ class LandingScreen extends Component {
                       alignItems: 'center',
                       justifyContent: 'center',
                       width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
-                      height: Metrics.screenHeight - (Metrics.screenHeight * 0.75)
+                      height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
                     }}>
 
                     <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow} 
@@ -158,9 +156,9 @@ class LandingScreen extends Component {
                   <Flb name={this.props.visibilityRules.opdTile.tileIcon}
                     style={{
                       backgroundColor: Colors.transparent,
-                      marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003
+                      marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.003
                     }}
-                    size={Metrics.icons.large * Metrics.screenWidth * 0.003}
+                    size={Metrics.icons.xml * Metrics.screenWidth * 0.003}
                     color={Colors.snow} />
                   <Text style={{
                     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
