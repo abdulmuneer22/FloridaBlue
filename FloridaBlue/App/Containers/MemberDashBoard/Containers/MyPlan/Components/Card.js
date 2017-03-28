@@ -6,7 +6,8 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
-  Linking
+  Linking,
+  Platform
 } from 'react-native'
 
 // import SafariView from  'react-native-safari-view'
@@ -96,7 +97,7 @@ class Card extends Component {
         <View style={{alignItems: 'center'}}>
           <Image style={{
             width: this.state.CardWidth,
-            height: Metrics.screenHeight - (Metrics.screenHeight * 0.77),
+            height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.77) : Metrics.screenHeight - (Metrics.screenHeight * 0.79),
             alignItems: 'center',
             justifyContent: 'center'
           }}

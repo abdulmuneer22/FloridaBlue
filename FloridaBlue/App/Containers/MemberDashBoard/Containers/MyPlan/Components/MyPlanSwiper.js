@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions} from 'react-native'
+import { Text, View, StyleSheet, Image, TouchableOpacity, Dimensions, Platform } from 'react-native'
 
 const window = Dimensions.get('window')
 
@@ -13,7 +13,7 @@ class MyPlanSwiper extends Component {
   getChildrenOptions (data) {
     const {annualDeductible, oop} = data
     let result = []
-   /* 
+   /*
     result = annualDeductible !=undefined && annualDeductible.pnNetwork !=undefined && annualDeductible.pnNetwork.planBenefits != undefined ?
     (Object.keys(annualDeductible.pnNetwork.planBenefits).length > 0 ? [...result, annualDeductible.pnNetwork] : result ) : result;
     result = Object.keys(annualDeductible !=undefined && annualDeductible.inNetwork !=undefined && annualDeductible.inNetwork.planBenefits).length > 0 ? [...result, annualDeductible.inNetwork] : result
@@ -45,7 +45,7 @@ class MyPlanSwiper extends Component {
     if(oop && oop.outNetwork && oop.outNetwork.planBenefits ){
     result = Object.keys(oop.outNetwork.planBenefits).length >0 ? [...result, oop.outNetwork] : result
   }
-     
+
     return result
   }
 
@@ -118,7 +118,7 @@ class MyPlanSwiper extends Component {
 */
 
     return (
-      <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.44))} style={styles.wrapper} showsButtons>
+      <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.42)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.44))} style={styles.wrapper} showsButtons>
         { this.getChildrenOptions(this.props.data).map((network, i) => {
           console.log('children options are', this.getChildrenOptions(this.props.data))
           console.log('planbenefits length', Object.keys(network.planBenefits).length)
