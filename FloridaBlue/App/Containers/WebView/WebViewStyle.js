@@ -1,6 +1,6 @@
 // @flow
 
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions, Platform } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Fonts } from '../../Themes/'
 const window = Dimensions.get('window')
 
@@ -18,12 +18,9 @@ export default StyleSheet.create({
     backgroundColor: Colors.flBlue.ocean
   },
   headerContainerError: {
-   // flex: 1,
-   //resizeMode:'contain',
-    height: Metrics.screenHeight,
-    // alignSelf: 'stretch',
-    width: Metrics.screenWidth,
-    // backgroundColor: Colors.flBlue.ocean
+   width: Metrics.screenWidth,
+   height: (Platform.OS === 'ios') ? Metrics.screenHeight : Metrics.screenHeight - Metrics.section,
+   resizeMode: 'stretch'
   },
   container: {
     flex: 1,
