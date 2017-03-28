@@ -150,7 +150,7 @@ class LandingScreen extends Component {
                   flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginTop: Metrics.doubleBaseMargin
+                  marginTop:27.5
                 }}>
 
                   <Flb name={this.props.visibilityRules.opdTile.tileIcon}
@@ -158,7 +158,7 @@ class LandingScreen extends Component {
                       backgroundColor: Colors.transparent,
                       marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.003
                     }}
-                    size={Metrics.icons.xml * Metrics.screenWidth * 0.003}
+                    size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
                     color={Colors.snow} />
                   <Text style={{
                     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
