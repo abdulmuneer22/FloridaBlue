@@ -1,6 +1,6 @@
 // @flow
 
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 import { ApplicationStyles, Colors, Metrics, Fonts } from '../../Themes/'
 
 export default StyleSheet.create({
@@ -45,7 +45,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.flBlue.grey2,
     height: Metrics.screenHeight * 0.31,
     width: Metrics.screenWidth,
-    bottom: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0095
+    bottom: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.011 : Metrics.doubleBaseMargin * Metrics.screenWidth * 0.012
   },
   row: {
     paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0013,
@@ -67,7 +67,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     position: 'absolute',
-    bottom: Metrics.searchBarHeight1,
+    bottom: (Platform.OS === 'ios') ? Metrics.searchBarHeight1 : Metrics.searchBarHeight,
     marginHorizontal: Metrics.textHeight1
   },
   footerText: {
@@ -75,7 +75,7 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.section,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0026
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0030
   },
   footerLinks: {
     flex: 1,

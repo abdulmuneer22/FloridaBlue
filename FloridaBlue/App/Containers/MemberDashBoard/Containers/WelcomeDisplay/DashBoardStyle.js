@@ -1,6 +1,6 @@
 // @flow
 
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions, Platform } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Images, Fonts } from '../../../../Themes/'
 var {height, width} = Dimensions.get('window')
 const window = Dimensions.get('window')
@@ -54,7 +54,7 @@ export default StyleSheet.create({
   },
   hsaBg: {
  // flexDirection:'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.385),
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.37) : Metrics.screenHeight - (Metrics.screenHeight * 0.415),
  // marginTop:20,
  // justifyContent:'space-between',
  // alignItems:'center',
@@ -253,10 +253,10 @@ export default StyleSheet.create({
   },
   footerImage: {
     // flexDirection: 'row',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.82),
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.86),
      // height : window.height * 0.5,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   //  alignSelf: 'stretch',
     resizeMode: 'stretch',
     width: Metrics.screenWidth,
