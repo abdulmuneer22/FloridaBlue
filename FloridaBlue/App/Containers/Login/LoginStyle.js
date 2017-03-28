@@ -29,7 +29,7 @@ export default StyleSheet.create({
   },
   loginButton: {
     alignItems: 'center',
-    paddingTop: Metrics.screenHeight * 0.1,
+    paddingTop: Metrics.screenHeight * 0.11,
     paddingHorizontal: Metrics.doubleBaseMargin
 
   },
@@ -51,8 +51,18 @@ export default StyleSheet.create({
     paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0013,
     paddingHorizontal: Metrics.doubleBaseMargin
   },
+  forgotRow: {
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0013,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.009
+  },
+    newSignRow: {
+    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0014,
+    paddingHorizontal: Metrics .textHeight2 * Metrics.screenWidth * 0.006,
+   
+  },
   link: {
     color: Colors.flBlue.ocean,
+   // backgroundColor:'red',
     alignItems: 'center',
     textAlign: 'center',
     fontWeight: 'bold',

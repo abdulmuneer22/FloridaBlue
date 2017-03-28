@@ -335,7 +335,7 @@ class Login extends Component {
                   placeholder={I18n.t('password')} />
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
-              <View style={styles.row}>
+              <View style={styles.forgotRow}>
                 <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration-stga.bcbsfl.com/ecir/public/fps.do?channel=mobile&userType=member'})}>
                   <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
                 </TouchableOpacity>
@@ -346,7 +346,7 @@ class Login extends Component {
               <TouchableOpacity onPress={() => { this._handleLogin() }}>
                 <Image style={{width: Metrics.screenWidth * 0.5,
                   borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-                  height: Metrics.screenHeight * 0.065}}
+                  height: Metrics.screenHeight * 0.064}}
                   source={Images.loginButtonGreen} />
               </TouchableOpacity>
             </LoginButtonView>

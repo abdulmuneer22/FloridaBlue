@@ -70,15 +70,17 @@ class Card extends Component {
             justifyContent: 'center'
           }}>
             <View style={{
-              marginRight: 10,
-              marginLeft: 10,
-              flex: 0.7
+            //  marginRight: 10,
+             // marginLeft: 10,
+              flex: 0.7,
+              alignItems:'center',
+              //justifyContent:'center'
             }}>
               <Text style={styles.h1}>
                 {_.get(network, 'header_text.en', '')}
               </Text>
             </View>
-            <View style={{ marginRight: 25 }}>
+            <View style={{ marginRight: 15 }}>
               {
                 network !=undefined && network.footer_note !=undefined && network.footer_note !=null && network.footer_note.en !=undefined && network.footer_note.en !=null ?
                   <TouchableWithoutFeedback

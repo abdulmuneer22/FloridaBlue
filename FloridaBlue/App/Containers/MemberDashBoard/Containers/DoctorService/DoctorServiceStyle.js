@@ -47,13 +47,13 @@ export default StyleSheet.create({
 
   },
   doctorCardStyle: {
-    alignItems: 'center',
+  //  alignItems: 'center',
     marginTop: Metrics.baseMargin
   },
 
   doctorTextStyle: {
     marginTop: Metrics.smallMargin,
-    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0023,
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '500',
@@ -91,7 +91,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     // fontWeight: '600',
     color: Colors.flBlue.anvil,
-   // textAlign: 'center',
+    textAlign: 'center',
     marginTop: Metrics.mediumMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600'

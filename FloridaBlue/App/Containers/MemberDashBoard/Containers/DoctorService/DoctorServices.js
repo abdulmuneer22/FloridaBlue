@@ -100,19 +100,23 @@ class DoctorServices extends Component {
       return (<ScrollView>
         <View style={{ flex: 1 }}>
           <View style={styles.doctorCardStyle}>
+            <View style={{alignItems:'center'}}>
             <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+            </View>
 
             <View style={{
               //backgroundColor: 'purple',
               flexDirection: 'row',
-              justifyContent: 'center',
+             justifyContent: 'center',
               alignItems: 'center'
 
             }}>
 
               <View style={{
-                marginRight: 5,
-                flex: 0.7
+                flex:0.8,
+                //marginRight:5,
+                alignItems:'center'
+               
               }}>
                 <Text style={styles.doctorTextStyle}>
                   {temp1.text['en']}
@@ -132,7 +136,7 @@ class DoctorServices extends Component {
                       }}>
 
 
-                        <View style={{ flex: 0.3, marginRight: 20 }}>
+                        <View style={{ flex:0.2, marginLeft:-40,marginRight:Metrics.mediumMargin}}>
                           {
 
                             !this.state.hpActive
@@ -173,7 +177,7 @@ class DoctorServices extends Component {
               }
 
             </View>
-
+             <View style={{alignItems:'center'}}>
             <Switch
               data={this.props.data}
               objectName={this.props.objectName}
@@ -183,7 +187,7 @@ class DoctorServices extends Component {
               attemptHandleLeft={this.props.attemptHandleLeft}
               attemptHandleRight={this.props.attemptHandleRight}
               attemptHandlePreferred={this.props.attemptHandlePreferred} />
-
+              </View>
           </View>
           <View>
             <Card
