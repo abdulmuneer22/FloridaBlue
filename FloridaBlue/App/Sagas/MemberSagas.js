@@ -21,7 +21,8 @@ export function * member (api, {smToken}) {
     var hsaTrue = response.data.data.visibilityRule.hsa
     var opd = response.data.data.visibilityRule.opd
     var financialProduct = response.data.data.defaultContract.financialProduct
-
+    var visibleDashboard = response.data.data.visibleDashboard
+    console.log("visibleDashboard",visibleDashboard)
     console.log('financialProduct4' + financialProduct)
     console.log('termsOfUse' + termsOfUse)
     var data = {
@@ -38,7 +39,7 @@ export function * member (api, {smToken}) {
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }
-    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, defaultContract))
+    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules,visibleDashboard, defaultContract))
   } else {
     console.log('failure ')
     var error = response.status

@@ -52,7 +52,8 @@ type LoginScreenProps = {
   merror :string,
   handleChangeUserName :() => any,
   passhandleChangePasswordword :() => any,
-  clearLogin:() => void
+  clearLogin:() => void, 
+  visibleDashboard : boolean
 }
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -131,11 +132,18 @@ class Login extends Component {
         if (responseURL == 'login') {
           if (!newProps.mfetching) {
             if (!newProps.merror) {
+              //Need to work on the applicaiton 
+              
               if (newProps.termsOfUse) {
-                NavigationActions.WelcomeDashBoard()
+                  if(newProps.visibleDashboard){
+                  NavigationActions.WelcomeDashBoard()
+                  }else {
+                     NavigationActions.ErrorPage()
+                  }
               } else {
                 NavigationActions.Termsofuse({'origin': 'login'})
-              }
+              
+              } 
             } else {
               NavigationActions.ErrorPage()
             }
@@ -393,7 +401,8 @@ const mapStateToProps = (state) => {
     termsOfUse: state.member.termsOfUse,
     merror: state.member.error,
     username: state.login.username,
-    password: state.login.password
+    password: state.login.password, 
+    visibleDashboard : state.member.visibleDashboard
   }
 }
 
