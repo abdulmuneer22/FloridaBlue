@@ -129,7 +129,7 @@ class LandingScreen extends Component {
                       height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
                     }}>
 
-                    <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow} 
+                    <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow}
                     style={{ backgroundColor: Colors.transparent, marginTop: 10 }} />
                     <Text style={styles.tileTextStyle}>
                       {tile.tileName['en']}
@@ -150,7 +150,7 @@ class LandingScreen extends Component {
                   flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginTop:27.5
+                  //marginTop:27.5
                 }}>
 
                   <Flb name={this.props.visibilityRules.opdTile.tileIcon}
@@ -205,7 +205,7 @@ class LandingScreen extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         {this._displayCondition()}
-      
+
 
       </View>
     )

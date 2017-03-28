@@ -62,7 +62,7 @@ class SettingsContent extends Component {
   }
 
   handlePressPlans = () => {
-   
+
    console.log(this.props.data)
     var action
     if (this.props.visibilityRules.myHealthPlanTile.tileType == 'webview') {
@@ -150,7 +150,7 @@ class SettingsContent extends Component {
   }
 
   render () {
-   
+
     return (
       <ScrollView style={[styles.wrapper]}>
         <View style={styles.options}>
@@ -158,7 +158,7 @@ class SettingsContent extends Component {
           <Divider />
           { this.props.visibilityRules !=undefined && this.props.visibilityRules.myHealthPlanTile !=undefined ?
           <View>
-            
+
             <TouchableWithoutFeedback onPress={() => {
               this.setState({hpActive: !this.state.hpActive}) }}>
               <View style={{flexDirection: 'row', marginRight: Metrics.mediumMargin, marginTop: Metrics.baseMargin}}>
@@ -183,14 +183,14 @@ class SettingsContent extends Component {
 
                    { this.props.visibilityRules !=undefined && this.props.visibilityRules.myHealthPlanTile !=undefined ?
 
-                   
+
                   <Text style={styles.subheading} onPress={this.handlePressPlans}>
                     {this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
-                    </Text> 
+                    </Text>
                     : null
 
                    }
-                  
+
             <View>
            { this.props.visibilityRules !=undefined && this.props.visibilityRules.planOverViewTiles !=undefined
               ? this.props.visibilityRules.planOverViewTiles.map((tile, i) => {
@@ -281,16 +281,17 @@ class SettingsContent extends Component {
             : null
           }
 
-         
+
            { this.props.visibilityRules !=undefined && this.props.visibilityRules.opdTile !=undefined
 
             ? <TouchableOpacity onPress={this.handlePressFindCare} >
-             
+
                   <Text style={{
                     color: Colors.snow,
                     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
                     marginBottom: Metrics.baseMargin,
                     marginTop: Metrics.smallMargin,
+                    marginLeft: Metrics.baseMargin,
                     fontFamily: Fonts.type.subHeaderFont
                   }} >
                     {this.props.visibilityRules.opdTile.tileName['en']}

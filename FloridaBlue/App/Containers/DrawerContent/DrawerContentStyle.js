@@ -27,14 +27,14 @@ export default {
   //  backgroundColor:'red'
 
   },
- 
+
   wrapper: {
     flex: 1,
     backgroundColor: Colors.snow
   },
   options: {
     backgroundColor: Colors.bg1,
-    paddingLeft: Metrics.mediumMargin,
+    //paddingLeft: Metrics.mediumMargin,
     paddingTop: Metrics.searchBarHeight
   },
   settings: {
@@ -46,7 +46,7 @@ export default {
   divider: {
     backgroundColor: Colors.snow,
     height: Metrics.screenHeight * 0.0013,
-    marginLeft: -Metrics.mediumMargin
+    //marginLeft: -Metrics.section
    // marginBottom: Metrics.smallMargin
   },
   heading: {
@@ -54,12 +54,14 @@ export default {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
     marginBottom: Metrics.baseMargin,
     marginTop: Metrics.smallMargin,
+    marginLeft: Metrics.baseMargin,
     fontFamily: Fonts.type.subHeaderFont
   },
    benefitHeading: {
     color: Colors.snow,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
     marginBottom: Metrics.smallMargin,
+    marginLeft: Metrics.baseMargin,
     //marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.subHeaderFont
   },
@@ -67,13 +69,15 @@ export default {
     color: Colors.snow,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
     marginBottom: Metrics.baseMargin,
+    marginLeft: Metrics.smallMargin,
     fontFamily: Fonts.type.subHeaderFont
   //  marginTop: Metrics.baseMargin
   },
   subheading: {
     color: Colors.snow,
    // fontSize: Fonts.size.h5,
-    marginBottom: Metrics.smallMargin ,
+    marginBottom: Metrics.smallMargin,
+    marginLeft: Metrics.baseMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0029
 
