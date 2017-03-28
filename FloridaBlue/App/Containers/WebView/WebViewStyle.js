@@ -1,7 +1,8 @@
 // @flow
 
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Fonts } from '../../Themes/'
+const window = Dimensions.get('window')
 
 export default StyleSheet.create({
   headerContainer: {
@@ -17,15 +18,11 @@ export default StyleSheet.create({
     backgroundColor: Colors.flBlue.ocean
   },
   headerContainerError: {
-  //  flexDirection: 'row',
-    flex: 1,
+   // flex: 1,
+   //resizeMode:'contain',
     height: Metrics.screenHeight,
-    // justifyContent: 'space-between',
-    // alignItems: 'center',
-    alignItems: 'center',
-    // resizeMode:'cover',
     // alignSelf: 'stretch',
-    width: Metrics.screenWidth
+    width: Metrics.screenWidth,
     // backgroundColor: Colors.flBlue.ocean
   },
   container: {

@@ -46,9 +46,9 @@ class ErrorScreen extends Component {
   render () {
     return (
 
-      <Image style={styles.headerContainerError} source={Images.errorPage}>
-        <View style={{alignItems: 'center', marginTop: Metrics.screenHeight * 0.4}} />
-      </Image>
+      <View style={{flex:1}}>
+      <Image style={styles.headerContainerError} source={Images.errorPage}/>
+     </View>
 
     )
   }

@@ -63,7 +63,7 @@ class MyPlanScreen extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props.data && this.props.data.planOverViewTiles != null && this.props.data.planOverViewTiles.length > 0) {
+    } else if (this.props.data && this.props.visibilityRules.planOverViewTiles != null && this.props.visibilityRules.planOverViewTiles.length > 0) {
       return (
         <View style={styles.container}>
 
@@ -167,7 +167,6 @@ const mapStateToProps = (state) => {
     data: state.myplan.data,
     visibilityRules: state.member.visibilityRules,
     error: state.myplan.error,
-    error: state.member.error,
     planName: _.get(state, 'member.defaultContract.planName', '')
   }
 }

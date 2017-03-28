@@ -118,7 +118,7 @@ class MyPlanSwiper extends Component {
 */
 
     return (
-      <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.42))} style={styles.wrapper} showsButtons>
+      <Swiper height={(Metrics.screenHeight - (Metrics.screenHeight * 0.44))} style={styles.wrapper} showsButtons>
         { this.getChildrenOptions(this.props.data).map((network, i) => {
           console.log('children options are', this.getChildrenOptions(this.props.data))
           console.log('planbenefits length', Object.keys(network.planBenefits).length)

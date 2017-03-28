@@ -96,7 +96,7 @@ class Card extends Component {
         <View style={{alignItems: 'center'}}>
           <Image style={{
             width: this.state.CardWidth,
-            height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
+            height: Metrics.screenHeight - (Metrics.screenHeight * 0.77),
             alignItems: 'center',
             justifyContent: 'center'
           }}
