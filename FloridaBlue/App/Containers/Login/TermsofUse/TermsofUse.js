@@ -32,12 +32,40 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       borderOffColor: Colors.flBlue.ocean
   }})
 
+const script = `
+<script>
+	window.location.hash = 1;
+    var calculator = document.createElement("div");
+    calculator.id = "height-calculator";
+    while (document.body.firstChild) {
+        calculator.appendChild(document.body.firstChild);
+    }
+	document.body.appendChild(calculator);
+    document.title = calculator.scrollHeight;
+</script>
+`;
+const style = `
+<style>
+body, html, #height-calculator {
+    margin: 0;
+    padding: 0;
+}
+#height-calculator {
+    position: absolute;
+    top: 0;
+    left: 2;
+    right: 2;
+}
+</style>
+`;
+
 class TermsofUse extends Component {
   constructor () {
     super()
 
     this.state = {
-      clicked: true
+      clicked: true,
+      Height:0
     }
   }
 
@@ -53,7 +81,7 @@ class TermsofUse extends Component {
     console.log(this.props.agreeTermsOfUse)
     if (!this.props.agreeTermsOfUse) {
       alert('Please accept Terms of Use')
-    } 
+    }
     if(this.props.agreeTermsOfUse){
       if (this.props.origin == 'registration') {
            this.props.sendConfirm()
@@ -71,6 +99,13 @@ class TermsofUse extends Component {
     this.props.handleGetTOU()
   }
 
+  onNavigationStateChange(event) {
+    if (event.title) {
+      const htmlHeight = Number(event.title) //convert to number
+      this.setState({Height:htmlHeight});
+    }
+  }
+
   _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
@@ -78,9 +113,13 @@ class TermsofUse extends Component {
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.getTou) {
-      return (<View style={{flex: 1}}>
+      return (<ScrollView style={{flex: 1}}>
         <WebView
-          source={{html: this.props.getTou}}
+          style={{height:this.state.Height}}
+          source={{html: this.props.getTou+style+script}}
+          scrollEnabled={false}
+          javaScriptEnabled={true}
+          onNavigationStateChange={this.onNavigationStateChange.bind(this)}
              />
         <View style={styles.checkViewStyle}>
           <View style={styles.checkStyle}>
@@ -107,7 +146,7 @@ class TermsofUse extends Component {
             <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
           </View>
         </View>
-      </View>)
+      </ScrollView>)
     } else if (this.props.error != null) {
       Alert.alert(
                   'TOU',
@@ -123,7 +162,7 @@ class TermsofUse extends Component {
 
   render () {
     var HTML = this.props.getTou
-
+    console.log("TOU HTML: ", HTML)
     return (
       <View style={styles.container}>
         {this._renderHeader()}
