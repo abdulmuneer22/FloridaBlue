@@ -16,6 +16,7 @@ import styles from '../DoctorServiceStyle.js'
 import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../../Themes/FlbIcon'
+import HTMLView from 'react-native-htmlview'
 
 const theme = getTheme()
 
@@ -94,9 +95,9 @@ class Card extends Component {
 
           {
             notesVisible ?
-              <Text style={styles.noteText}>
-                {_.get(network, 'footer_note.en', '')}
-              </Text>
+                <View style={styles.noteText}>
+                <HTMLView value={_.get(network, 'footer_note.en', '')} />
+                </View>
               :
               null
           }
