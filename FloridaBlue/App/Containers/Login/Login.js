@@ -198,7 +198,34 @@ class Login extends Component {
           }
         }
     // }
-      }
+  }else {
+
+    if(newProps.error =="401")
+    {
+      this.props.clearLogin()
+      RCTNetworking.clearCookies((cleared) => {
+        console.log('clearing local cookies for the app')
+      })
+      Alert.alert('Login', 'The user ID or password you have entered is incorrect. Please try again.', [
+        {
+          text: 'OK'
+        }
+      ])
+
+    }else  if(newProps.error!= null && newProps.error != "401"){
+      this.props.clearLogin()
+      RCTNetworking.clearCookies((cleared) => {
+        console.log('clearing local cookies for the app')
+      })
+      Alert.alert('Login', 'Oops! Looks Like There\'s a, Problem. ',[
+        {
+          text: 'OK'
+        }
+      ])
+
+    }
+  }
+
     }
   // end of IF condition
   }
