@@ -27,18 +27,17 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 class DoctorServices extends Component {
-
-  constructor() {
+  constructor () {
     super()
     this.state = {
       hpActive: false
     }
   }
-  componentDidMount() {
+  componentDidMount () {
     this.props.attemptHandleLeft()
   }
 
-  _renderHeader() {
+  _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
@@ -51,32 +50,31 @@ class DoctorServices extends Component {
       </View>
     </Image>)
   }
-  renderHeaderText() {
-    let headerTextStr = '';
+  renderHeaderText () {
+    let headerTextStr = ''
     if (this.props.leftActive) {
       var objectName = this.props.objectName
-      //alert(objectName)
+      // alert(objectName)
       if (objectName != null) {
-        headerTextStr = this.props.data[objectName] != null && this.props.data[objectName].inNetwork != null && this.props.data[objectName].inNetwork.header_text != undefined ? this.props.data[objectName].inNetwork.header_text.en : '';
+        headerTextStr = this.props.data[objectName] != null && this.props.data[objectName].inNetwork != null && this.props.data[objectName].inNetwork.header_text != undefined ? this.props.data[objectName].inNetwork.header_text.en : ''
       }
       // console.log(this.props.data[objectName].inNetwork.header_text.en)
     } else if (this.props.rightActive) {
       var objectName = this.props.objectName
       if (objectName != null) {
-        headerTextStr = this.props.data[objectName] != null && this.props.data[objectName].outNetwork != null && this.props.data[objectName].outNetwork.header_text != undefined ? this.props.data[objectName].outNetwork.header_text.en : '';
+        headerTextStr = this.props.data[objectName] != null && this.props.data[objectName].outNetwork != null && this.props.data[objectName].outNetwork.header_text != undefined ? this.props.data[objectName].outNetwork.header_text.en : ''
       }
     } else if (this.props.preferredActive) {
       var objectName = this.props.objectName
       if (objectName != null) {
-        headerTextStr = this.props.data[objectName] != null && this.props.data[objectName].preferredNetwork != null && this.props.data[objectName].preferredNetwork.header_text != undefined ? this.props.data[objectName].preferredNetwork.header_text.en : '';
-
+        headerTextStr = this.props.data[objectName] != null && this.props.data[objectName].preferredNetwork != null && this.props.data[objectName].preferredNetwork.header_text != undefined ? this.props.data[objectName].preferredNetwork.header_text.en : ''
       }
     }
 
-    return headerTextStr;
+    return headerTextStr
   }
 
-  _displayCondition() {
+  _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
@@ -100,23 +98,23 @@ class DoctorServices extends Component {
       return (<ScrollView>
         <View style={{ flex: 1 }}>
           <View style={styles.doctorCardStyle}>
-            <View style={{alignItems:'center'}}>
-            <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+            <View style={{alignItems: 'center'}}>
+              <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
             </View>
 
             <View style={{
-              //backgroundColor: 'purple',
+              // backgroundColor: 'purple',
               flexDirection: 'row',
-             justifyContent: 'center',
+              justifyContent: 'center',
               alignItems: 'center'
 
             }}>
 
               <View style={{
-                flex:0.8,
-                //marginRight:5,
-                alignItems:'center'
-               
+                flex: 0.8,
+                // marginRight:5,
+                alignItems: 'center'
+
               }}>
                 <Text style={styles.doctorTextStyle}>
                   {temp1.text['en']}
@@ -124,19 +122,18 @@ class DoctorServices extends Component {
               </View>
 
               <View>
-                {this.renderHeaderText() != '' ?
-                  <View>
+                {this.renderHeaderText() != ''
+                  ? <View>
                     <TouchableWithoutFeedback onPress={() => {
                       this.setState({ hpActive: !this.state.hpActive })
                     }}>
                       <View style={{
                         // flexDirection: 'row',
-                        marginTop: Metrics.baseMargin,
+                        marginTop: Metrics.baseMargin
                         // backgroundColor: Colors.flBlue.grey4,
                       }}>
 
-
-                        <View style={{ flex:0.2, marginLeft:-40,marginRight:Metrics.mediumMargin}}>
+                        <View style={{ flex: 0.2, marginLeft: -40, marginRight: Metrics.mediumMargin}}>
                           {
 
                             !this.state.hpActive
@@ -157,14 +154,14 @@ class DoctorServices extends Component {
 
             <View>
               {
-                this.state.hpActive ?
-                  <View style={{
+                this.state.hpActive
+                  ? <View style={{
                     width: Metrics.screenWidth * 0.9,
-                    alignSelf: 'center',
+                    alignSelf: 'center'
                     //  marginLeft : (Metrics.screenWidth * 0.15)/2,
                     // marginRight : (Metrics.screenWidth * 0.15)/2,
                     //  backgroundColor : 'yellow',
-                    //alignItems : 'center',                   
+                    // alignItems : 'center',
                   }}>
                     <Text style={{
                       fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
@@ -172,22 +169,21 @@ class DoctorServices extends Component {
                       textAlign: 'justify'
                     }}>{this.renderHeaderText()}</Text>
                   </View>
-                  :
-                  null
+                  : null
               }
 
             </View>
-             <View style={{alignItems:'center'}}>
-            <Switch
-              data={this.props.data}
-              objectName={this.props.objectName}
-              leftActive={this.props.leftActive}
-              rightActive={this.props.rightActive}
-              preferredActive={this.props.preferredActive}
-              attemptHandleLeft={this.props.attemptHandleLeft}
-              attemptHandleRight={this.props.attemptHandleRight}
-              attemptHandlePreferred={this.props.attemptHandlePreferred} />
-              </View>
+            <View style={{alignItems: 'center'}}>
+              <Switch
+                data={this.props.data}
+                objectName={this.props.objectName}
+                leftActive={this.props.leftActive}
+                rightActive={this.props.rightActive}
+                preferredActive={this.props.preferredActive}
+                attemptHandleLeft={this.props.attemptHandleLeft}
+                attemptHandleRight={this.props.attemptHandleRight}
+                attemptHandlePreferred={this.props.attemptHandlePreferred} />
+            </View>
           </View>
           <View>
             <Card
@@ -215,7 +211,7 @@ class DoctorServices extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
 
       <View style={styles.container}>

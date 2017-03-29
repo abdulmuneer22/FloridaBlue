@@ -6,7 +6,7 @@ export default StyleSheet.create({
     width: Metrics.screenWidth,
     resizeMode: 'stretch',
   //  alignItems: 'center',
-    //justifyContent: 'center',
+    // justifyContent: 'center',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
   container: {
@@ -19,7 +19,7 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin,
     marginLeft: Metrics.doubleBaseMargin
   },
-    headerTextStyle: {
+  headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0031,

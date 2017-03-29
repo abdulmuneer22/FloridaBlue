@@ -28,14 +28,14 @@ class Webview extends Component {
         {NavItems.backButton()}
       </View>
       <Text style={{color: Colors.flBlue.ocean,
-                    backgroundColor: Colors.transparent,
-                    fontSize:Fonts.size.h3 * Metrics.screenWidth * 0.0025,
+        backgroundColor: Colors.transparent,
+        fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0025,
                   // marginLeft: Metrics.baseMargin,
-                    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
-                    fontFamily: Fonts.type.headerFont,
-                    fontWeight: (Platform.OS === 'ios') ? '500' :'400',      
-                     marginRight: Metrics.screenWidth * 0.30,
-                    }}>
+        marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+        fontFamily: Fonts.type.headerFont,
+        fontWeight: (Platform.OS === 'ios') ? '500' : '400',
+        marginRight: Metrics.screenWidth * 0.30
+      }}>
                       Florida Blue
         </Text>
 
@@ -76,9 +76,9 @@ class Webview extends Component {
         {this._renderHeader()}
         <WebView
           source={redirect}
-          javaScriptEnabled={true}
-          domStorageEnabled={true}
-           startInLoadingState={true}
+          javaScriptEnabled
+          domStorageEnabled
+          startInLoadingState
        // Below functions for debugging
        //   onNavigationStateChange={onNavigationStateChange}
        //   onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}

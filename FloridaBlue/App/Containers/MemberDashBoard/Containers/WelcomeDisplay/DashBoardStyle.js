@@ -17,14 +17,14 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.ocean
   },
- headerTextStyle: {
+  headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize:Fonts.size.h3 * Metrics.screenWidth * 0.0025,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0025,
    // marginLeft: Metrics.baseMargin,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont,
-    fontWeight: (Platform.OS === 'ios') ? '500' :'400'
+    fontWeight: (Platform.OS === 'ios') ? '500' : '400'
 
   },
   hsaHeader: {
@@ -46,13 +46,13 @@ export default StyleSheet.create({
   // backgroundColor:Colors.flBlue.ocean
   },
   hsaheaderTextStyle: {
-   color: Colors.flBlue.ocean,
+    color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize:Fonts.size.h4 * Metrics.screenWidth * 0.0025,
+    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
    // marginLeft: Metrics.baseMargin,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont,
-    fontWeight: (Platform.OS === 'ios') ? '500' :'400'
+    fontWeight: (Platform.OS === 'ios') ? '500' : '400'
 
   },
   hsaBg: {
@@ -64,7 +64,7 @@ export default StyleSheet.create({
  // padding:10,
     // alignSelf: 'stretch',
     resizeMode: 'stretch',
-    marginBottom:0,
+    marginBottom: 0,
     width: Metrics.screenWidth
   },
   hsaTextStyle1: {
@@ -249,7 +249,7 @@ export default StyleSheet.create({
     // borderBottomWidth: 0.5,
     // width:Metrics.screenWidth,
   //  borderColor: Colors.snow
-    alignItems:'center',
+    alignItems: 'center'
   //  justifyContent:'center'
     // smargin:4
 

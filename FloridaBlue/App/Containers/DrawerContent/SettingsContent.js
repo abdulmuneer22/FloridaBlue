@@ -62,16 +62,15 @@ class SettingsContent extends Component {
   }
 
   handlePressPlans = () => {
-
-   console.log(this.props.data)
+    console.log(this.props.data)
     var action
     if (this.props.visibilityRules.myHealthPlanTile.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.visibilityRules.myHealthPlanTile.tileUrl})
-       this.toggleDrawer()
+      this.toggleDrawer()
     } else if (this.props.visibilityRules.myHealthPlanTile.tileType == 'native') {
       var routerName = this.props.visibilityRules.myHealthPlanTile.routerName
       action = NavigationActions[routerName]()
-       this.toggleDrawer()
+      this.toggleDrawer()
     }
   }
 
@@ -110,31 +109,28 @@ class SettingsContent extends Component {
     NavigationActions.MyView()
   }
   handlePressSupport= () => {
-
-     console.log(this.props.data)
+    console.log(this.props.data)
     var action
     if (this.props.visibilityRules.supportTile.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.visibilityRules.supportTile.tileUrl})
-       this.toggleDrawer()
+      this.toggleDrawer()
     } else if (this.props.visibilityRules.supportTile.tileType == 'native') {
       var routerName = this.props.visibilityRules.supportTile.routerName
       action = NavigationActions[routerName]()
-       this.toggleDrawer()
+      this.toggleDrawer()
     }
   }
   handlePressPolicy= () => {
-
- console.log(this.props.data)
+    console.log(this.props.data)
     var action
     if (this.props.visibilityRules.touTile.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.visibilityRules.touTile.tileUrl})
-       this.toggleDrawer()
+      this.toggleDrawer()
     } else if (this.props.visibilityRules.touTile.tileType == 'native') {
       var routerName = this.props.visibilityRules.touTile.routerName
       action = NavigationActions[routerName]()
-       this.toggleDrawer()
+      this.toggleDrawer()
     }
-
   }
 
   handlePressLogout = () => {
@@ -150,23 +146,23 @@ class SettingsContent extends Component {
   }
 
   render () {
-
     return (
       <ScrollView style={[styles.wrapper]}>
         <View style={styles.options}>
           <Text style={styles.heading} onPress={this.handlePressDashBoard}>Dashboard</Text>
           <Divider />
-          { this.props.visibilityRules !=undefined && this.props.visibilityRules.myHealthPlanTile !=undefined ?
-          <View>
+          { this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined
+            ? <View>
 
-            <TouchableWithoutFeedback onPress={() => {
-              this.setState({hpActive: !this.state.hpActive}) }}>
-              <View style={{flexDirection: 'row', marginRight: Metrics.mediumMargin, marginTop: Metrics.baseMargin}}>
-                <View style={{flex: 1}}>
-                  <Text style={styles.heading1} > {this.props.visibilityRules.myHealthPlanTile.tileName['en']} </Text>
-                </View>
+              <TouchableWithoutFeedback onPress={() => {
+                this.setState({hpActive: !this.state.hpActive})
+              }}>
+                <View style={{flexDirection: 'row', marginRight: Metrics.mediumMargin, marginTop: Metrics.baseMargin}}>
+                  <View style={{flex: 1}}>
+                    <Text style={styles.heading1} > {this.props.visibilityRules.myHealthPlanTile.tileName['en']} </Text>
+                  </View>
 
-                {
+                  {
               !this.state.hpActive
 
                 ? <Icon name='caret-down' size={Metrics.icons.xm * Metrics.screenWidth * 0.0035} color={Colors.snow} />
@@ -174,69 +170,67 @@ class SettingsContent extends Component {
 
             }
 
-              </View>
-            </TouchableWithoutFeedback>
+                </View>
+              </TouchableWithoutFeedback>
 
-            {
+              {
               this.state.hpActive
                 ? <View style={{marginLeft: Metrics.doubleBaseMargin}}>
 
-                   { this.props.visibilityRules !=undefined && this.props.visibilityRules.myHealthPlanTile !=undefined ?
+                  { this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined
 
-
-                  <Text style={styles.subheading} onPress={this.handlePressPlans}>
-                    {this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
+                    ? <Text style={styles.subheading} onPress={this.handlePressPlans}>
+                      {this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
                     </Text>
                     : null
 
                    }
 
-            <View>
-           { this.props.visibilityRules !=undefined && this.props.visibilityRules.planOverViewTiles !=undefined
+                  <View>
+                    { this.props.visibilityRules != undefined && this.props.visibilityRules.planOverViewTiles != undefined
               ? this.props.visibilityRules.planOverViewTiles.map((tile, i) => {
-
-               console.log("checking plan overview" , tile);
-              onItemPress = function () {
-                var action
-                if (tile.tileType == 'webview') {
-                  var webview = 'MyView'
-                  action = NavigationActions[webview]({responseURL: tile.tileUrl})
-                  this.toggleDrawer()
-                } else if (tile.tileType == 'native') {
-                  var routerName = tile.routerName
-                  action = NavigationActions[routerName]()
-                  this.toggleDrawer()
+                console.log('checking plan overview', tile)
+                onItemPress = function () {
+                  var action
+                  if (tile.tileType == 'webview') {
+                    var webview = 'MyView'
+                    action = NavigationActions[webview]({responseURL: tile.tileUrl})
+                    this.toggleDrawer()
+                  } else if (tile.tileType == 'native') {
+                    var routerName = tile.routerName
+                    action = NavigationActions[routerName]()
+                    this.toggleDrawer()
+                  }
                 }
-              }
-              renderItem = () => {
-                if (tile.tileId != null) {
-                  return (
-                    <View>
-                      <Text style={styles.benefitHeading}>{ tile.tileName['en']}</Text>
-                    </View>
-                  )
+                renderItem = () => {
+                  if (tile.tileId != null) {
+                    return (
+                      <View>
+                        <Text style={styles.benefitHeading}>{ tile.tileName['en']}</Text>
+                      </View>
+                    )
+                  }
                 }
-              }
-              return (
-                <View key={i}>
+                return (
+                  <View key={i}>
 
-                  <TouchableOpacity onPress={onItemPress.bind(this)} key={i}>
-                    {renderItem()}
-                  </TouchableOpacity>
+                    <TouchableOpacity onPress={onItemPress.bind(this)} key={i}>
+                      {renderItem()}
+                    </TouchableOpacity>
+
+                  </View>
+                )
+              })
+            : null
+          }
+
+                  </View>
 
                 </View>
-              )
-            })
             : null
           }
 
             </View>
-
-                </View>
-            : null
-          }
-
-          </View>
 
            : null
 
@@ -281,48 +275,46 @@ class SettingsContent extends Component {
             : null
           }
 
-
-           { this.props.visibilityRules !=undefined && this.props.visibilityRules.opdTile !=undefined
+          { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
 
             ? <TouchableOpacity onPress={this.handlePressFindCare} >
 
-                  <Text style={{
-                    color: Colors.snow,
-                    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-                    marginBottom: Metrics.baseMargin,
-                    marginTop: Metrics.smallMargin,
-                    marginLeft: Metrics.baseMargin,
-                    fontFamily: Fonts.type.subHeaderFont
-                  }} >
-                    {this.props.visibilityRules.opdTile.tileName['en']}
-                  </Text>
+              <Text style={{
+                color: Colors.snow,
+                fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
+                marginBottom: Metrics.baseMargin,
+                marginTop: Metrics.smallMargin,
+                marginLeft: Metrics.baseMargin,
+                fontFamily: Fonts.type.subHeaderFont
+              }} >
+                {this.props.visibilityRules.opdTile.tileName['en']}
+              </Text>
             </TouchableOpacity> : null
           }
-
 
         </View>
         <View style={styles.settings}>
 
-         { this.props.visibilityRules !=undefined && this.props.visibilityRules.supportTile !=undefined ?
+          { this.props.visibilityRules != undefined && this.props.visibilityRules.supportTile != undefined
 
-          <View style={styles.myAccountStyle}>
-            <View >
-              <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+            ? <View style={styles.myAccountStyle}>
+              <View >
+                <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+              </View>
+              <Text style={styles.heading2} onPress={this.handlePressSupport}>{this.props.visibilityRules.supportTile.tileName['en']}</Text>
             </View>
-            <Text style={styles.heading2} onPress={this.handlePressSupport}>{this.props.visibilityRules.supportTile.tileName['en']}</Text>
-          </View>
           : null
 
          }
 
-           { this.props.visibilityRules !=undefined && this.props.visibilityRules.touTile !=undefined ?
-          <View style={styles.myAccountStyle}>
-            <View >
-              <Flb name='generic-doc' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
-            </View>
+          { this.props.visibilityRules != undefined && this.props.visibilityRules.touTile != undefined
+            ? <View style={styles.myAccountStyle}>
+              <View >
+                <Flb name='generic-doc' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+              </View>
 
-            <Text style={styles.heading2} onPress={this.handlePressPolicy}>{this.props.visibilityRules.touTile.tileName['en']} </Text>
-          </View>
+              <Text style={styles.heading2} onPress={this.handlePressPolicy}>{this.props.visibilityRules.touTile.tileName['en']} </Text>
+            </View>
           : null
 
          }

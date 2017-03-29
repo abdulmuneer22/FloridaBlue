@@ -43,7 +43,7 @@ const script = `
 	document.body.appendChild(calculator);
     document.title = calculator.scrollHeight;
 </script>
-`;
+`
 const style = `
 <style>
 body, html, #height-calculator {
@@ -57,7 +57,7 @@ body, html, #height-calculator {
     right: 2;
 }
 </style>
-`;
+`
 
 class TermsofUse extends Component {
   constructor () {
@@ -65,7 +65,7 @@ class TermsofUse extends Component {
 
     this.state = {
       clicked: true,
-      Height:0
+      Height: 0
     }
   }
 
@@ -77,20 +77,20 @@ class TermsofUse extends Component {
     </Image>)
   }
 
-  _handleAgreeTermsOfUse() {
+  _handleAgreeTermsOfUse () {
     console.log(this.props.agreeTermsOfUse)
     if (!this.props.agreeTermsOfUse) {
       alert('Please accept Terms of Use')
     }
-    if(this.props.agreeTermsOfUse){
+    if (this.props.agreeTermsOfUse) {
       if (this.props.origin == 'registration') {
-           this.props.sendConfirm()
-           console.log('if registration')
-           NavigationActions.confirmation()
+        this.props.sendConfirm()
+        console.log('if registration')
+        NavigationActions.confirmation()
       } else {
-          this.props.sendConfirm()
-          console.log('if not registration')
-          NavigationActions.WelcomeDashBoard({'tou':'nonregistration'})
+        this.props.sendConfirm()
+        console.log('if not registration')
+        NavigationActions.WelcomeDashBoard({'tou': 'nonregistration'})
       }
     }
   }
@@ -99,10 +99,10 @@ class TermsofUse extends Component {
     this.props.handleGetTOU()
   }
 
-  onNavigationStateChange(event) {
+  onNavigationStateChange (event) {
     if (event.title) {
-      const htmlHeight = Number(event.title) //convert to number
-      this.setState({Height:htmlHeight});
+      const htmlHeight = Number(event.title) // convert to number
+      this.setState({Height: htmlHeight})
     }
   }
 
@@ -115,10 +115,10 @@ class TermsofUse extends Component {
     } else if (this.props.getTou) {
       return (<ScrollView style={{flex: 1}}>
         <WebView
-          style={{height:this.state.Height}}
-          source={{html: this.props.getTou+style+script}}
+          style={{height: this.state.Height}}
+          source={{html: this.props.getTou + style + script}}
           scrollEnabled={false}
-          javaScriptEnabled={true}
+          javaScriptEnabled
           onNavigationStateChange={this.onNavigationStateChange.bind(this)}
              />
         <View style={styles.checkViewStyle}>
@@ -162,7 +162,7 @@ class TermsofUse extends Component {
 
   render () {
     var HTML = this.props.getTou
-    console.log("TOU HTML: ", HTML)
+    console.log('TOU HTML: ', HTML)
     return (
       <View style={styles.container}>
         {this._renderHeader()}

@@ -9,14 +9,13 @@ import StartupActions from '../../Redux/StartupRedux'
 import ReduxPersist from '../../Config/ReduxPersist'
 import LoginActions from '../../Redux/LoginRedux'
 import styles from './RootContainerStyle'
-var RCTNetworking =require('RCTNetworking');
+var RCTNetworking = require('RCTNetworking')
 var inactiveTime = Date
 var activeTime = Date
 var component = null
 
 class RootContainer extends Component {
-
-  constructor() {
+  constructor () {
     super()
     component = this
   }
@@ -26,39 +25,39 @@ class RootContainer extends Component {
     if (!ReduxPersist.active) {
       this.props.startup()
     }
-    AppState.addEventListener('change', this._handleAppState);
+    AppState.addEventListener('change', this._handleAppState)
   }
 
-  componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppState);
+  componentWillUnmount () {
+    AppState.removeEventListener('change', this._handleAppState)
   }
 
-  componentWillReceiveProps() {
-    console.log("Component received props..", this.props)
+  componentWillReceiveProps () {
+    console.log('Component received props..', this.props)
   }
 
-  _handleAppState() {
-    var appState = AppState.currentState;
-    if(component.props && component.props.userName) {
-        if (appState.match(/inactive|background/)) {
-          var date = new Date();
-          inactiveTime = date.getTime();
-        } else if (appState.match(/active/)) {
-          var date = new Date();
-          activeTime = date.getTime();
-          var diffMs = (inactiveTime - activeTime); // milliseconds between inactive and active times
-          var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // converted to minutes
-          var elapsedTime = Math.abs(diffMins);
-          if (elapsedTime >= 15) {
+  _handleAppState () {
+    var appState = AppState.currentState
+    if (component.props && component.props.userName) {
+      if (appState.match(/inactive|background/)) {
+        var date = new Date()
+        inactiveTime = date.getTime()
+      } else if (appState.match(/active/)) {
+        var date = new Date()
+        activeTime = date.getTime()
+        var diffMs = (inactiveTime - activeTime) // milliseconds between inactive and active times
+        var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000) // converted to minutes
+        var elapsedTime = Math.abs(diffMins)
+        if (elapsedTime >= 15) {
             // Call logout logic
-            RCTNetworking.clearCookies((cleared)=>{})
-            component.props.attemptLogout()
-            NavigationActions.login()
-          } else {
-            inactiveTime = null;
-            activeTime = null;
-          }
+          RCTNetworking.clearCookies((cleared) => {})
+          component.props.attemptLogout()
+          NavigationActions.login()
+        } else {
+          inactiveTime = null
+          activeTime = null
         }
+      }
     }
   }
 

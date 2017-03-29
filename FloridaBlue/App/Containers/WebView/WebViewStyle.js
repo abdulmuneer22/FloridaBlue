@@ -18,9 +18,9 @@ export default StyleSheet.create({
     backgroundColor: Colors.flBlue.ocean
   },
   headerContainerError: {
-   width: Metrics.screenWidth,
-   height: (Platform.OS === 'ios') ? Metrics.screenHeight : Metrics.screenHeight - Metrics.section,
-   resizeMode: 'stretch'
+    width: Metrics.screenWidth,
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight : Metrics.screenHeight - Metrics.section,
+    resizeMode: 'stretch'
   },
   container: {
     flex: 1,

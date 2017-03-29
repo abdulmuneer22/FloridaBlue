@@ -62,7 +62,7 @@ class SemiCircle extends React.Component {
     // percent *= .01
     if (percent === 1) {
       percent = 0
-    } else if (isNaN(percent) || percent == null){
+    } else if (isNaN(percent) || percent == null) {
       percent = 0
     } else {
       // take the reciprocal to show properly on the graph
