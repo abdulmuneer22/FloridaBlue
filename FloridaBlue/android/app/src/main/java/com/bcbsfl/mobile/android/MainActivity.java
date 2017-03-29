@@ -1,6 +1,16 @@
 package com.bcbsfl.mobile.android;
 
+import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.support.annotation.Nullable;
+import android.view.View;
+import android.graphics.drawable.BitmapDrawable;
+
+import com.facebook.react.ReactInstanceManager;
+import com.facebook.react.ReactRootView;
 import com.facebook.react.ReactActivity;
+import com.facebook.react.common.LifecycleState;
+import com.facebook.react.shell.MainReactPackage;
 
 public class MainActivity extends ReactActivity {
 
@@ -11,5 +21,25 @@ public class MainActivity extends ReactActivity {
     @Override
     protected String getMainComponentName() {
         return "FloridaBlue";
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        ReactRootView mReactRootView = new ReactRootView(this);
+        mReactRootView.setBackground(getResources().getDrawable(R.drawable.splash));
+
+        ReactInstanceManager mReactInstanceManager = ReactInstanceManager.builder()
+                .setApplication(getApplication())
+                .setBundleAssetName("index.android.bundle")
+                .setJSMainModuleName("index.android")
+                .addPackage(new MainReactPackage())
+                .setUseDeveloperSupport(BuildConfig.DEBUG)
+                .setInitialLifecycleState(LifecycleState.RESUMED)
+                .build();
+
+        mReactRootView.startReactApplication(mReactInstanceManager, "FloridaBlue", null);
+
+        setContentView(mReactRootView);
     }
 }
