@@ -140,7 +140,7 @@ export default StyleSheet.create({
   },
   summary: {
     flexDirection: 'row',
-    height: Metrics.screenHeight * 0.115,
+    height: Metrics.screenHeight * 0.125,
   //  justifyContent: 'space-between',
     // margin:2,
     alignItems: 'center',
@@ -253,14 +253,14 @@ export default StyleSheet.create({
   },
   footerImage: {
     // flexDirection: 'row',
-    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.86),
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.88),
      // height : window.height * 0.5,
     justifyContent: 'center',
     alignItems: 'center',
   //  alignSelf: 'stretch',
     resizeMode: 'stretch',
     width: Metrics.screenWidth,
-    marginTop: 2
+    marginTop: 4
 
     // marginBottom:0
   },

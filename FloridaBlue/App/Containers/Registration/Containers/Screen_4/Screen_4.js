@@ -65,15 +65,12 @@ class Screen_4 extends React.Component {
       this.props.handleChangeSecurityHintsStatus('999')
       this.props.handleChangeSecurityHintsStatusMessage('Please enter values in all fields')
     } else if(securityHint1.length < 4 || securityHint2.length < 4 || securityHint3.length < 4) {
-      console.log("Hint errors..")
       this.props.handleChangeSecurityHintsStatus('999')
       this.props.handleChangeSecurityHintsStatusMessage('All hints must be at least four characters in length')
     } else if (securityAnswer1.length < 3 || securityAnswer2.length < 3 || securityAnswer3.length < 3) {
-      console.log("Answer errors..")
       this.props.handleChangeSecurityHintsStatus('999')
       this.props.handleChangeSecurityHintsStatusMessage('All answers must be at least three characters in length')
     } else {
-      console.log("Verify the security questions..")
       this.props.verifySecurityHints(this.props)
     }
   }

@@ -30,7 +30,7 @@ export default class SignUpView extends Component {
 
   render () {
     return (
-      <Animated.View style={[styles.row, {backgroundColor: 'transparent', opacity: this.state.fadeAnim}]}>
+      <Animated.View style={[styles.newSignRow, {backgroundColor: 'transparent', opacity: this.state.fadeAnim}]}>
         {this.props.children}
       </Animated.View>
     )

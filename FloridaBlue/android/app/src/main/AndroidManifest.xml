@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bcbsfl.mobile.android"
-    android:versionCode="50"
+    android:versionCode="54"
     android:versionName="3.5">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,7 +11,7 @@
 
     <uses-sdk
         android:minSdkVersion="16"
-        android:targetSdkVersion="22" />
+        android:targetSdkVersion="23" />
 
     <application
       android:name=".MainApplication"
