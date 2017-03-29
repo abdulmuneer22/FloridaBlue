@@ -10,7 +10,7 @@ export function * login (api, {username, password}) {
   console.log('username+password' + JSON.stringify(username) + password)
   console.log(response)
   const response = yield call(api.getUser, username, password)
-  if (response.status == '200' || response.status == '404') {
+  if (response.status == '200' ) {
     var responseURL = response.responseURL
     var smToken = response.headers['set-cookie']
     if (response.data.data) {
