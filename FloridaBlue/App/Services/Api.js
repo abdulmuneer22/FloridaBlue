@@ -131,17 +131,12 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   })
 
   const postSecurityHints = (data) => api.post('/hints', {
-    'Hints': {
-      'transactionId': data.contractNumber,
-      'userID': data.createUserId,
       'hint1': data.securityHint1,
       'ans1': data.securityAnswer1,
       'hint2': data.securityHint2,
       'ans2': data.securityAnswer2,
       'hint3': data.securityHint3,
       'ans3': data.securityAnswer3
-
-    }
   })
 
   const postRegisterUser = (data, token) => api.post('/registrations', {

@@ -52,7 +52,7 @@ type LoginScreenProps = {
   merror :string,
   handleChangeUserName :() => any,
   passhandleChangePasswordword :() => any,
-  clearLogin:() => void, 
+  clearLogin:() => void,
   visibleDashboard : boolean
 }
 
@@ -112,7 +112,7 @@ class Login extends Component {
   }
 
   componentDidMount () {
-    this.props.cl
+    this.props.clearLogin()
     RCTNetworking.clearCookies((cleared) => {
       console.log('clearing local cookies for the app')
     })
@@ -141,8 +141,8 @@ class Login extends Component {
         if (responseURL == 'login') {
           if (!newProps.mfetching) {
             if (!newProps.merror) {
-              //Need to work on the applicaiton 
-              
+              //Need to work on the applicaiton
+
               if (newProps.termsOfUse) {
                   if(newProps.visibleDashboard){
                   NavigationActions.WelcomeDashBoard()
@@ -151,8 +151,8 @@ class Login extends Component {
                   }
               } else {
                 NavigationActions.Termsofuse({'origin': 'login'})
-              
-              } 
+
+              }
             } else {
               NavigationActions.ErrorPage()
             }
@@ -410,7 +410,7 @@ const mapStateToProps = (state) => {
     termsOfUse: state.member.termsOfUse,
     merror: state.member.error,
     username: state.login.username,
-    password: state.login.password, 
+    password: state.login.password,
     visibleDashboard : state.member.visibleDashboard
   }
 }
