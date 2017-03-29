@@ -138,7 +138,7 @@ class MyPlanSwiper extends Component {
                     pieWidth={150}
                     pieHeight={150}
                     width={250}
-                    height={180}
+                    height={185}
                     barWidth={10}
                     barTopColor={Colors.flBlue.ocean}
                     barBottomColor={Colors.flBlue.grey2}

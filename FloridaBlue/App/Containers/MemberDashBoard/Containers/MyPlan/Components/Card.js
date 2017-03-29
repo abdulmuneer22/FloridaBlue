@@ -108,7 +108,7 @@ class Card extends Component {
             <Text style={{
               marginTop: Metrics.mediumMargin,
               fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
-              fontWeight: '600',
+              fontWeight: (Platform.OS === 'ios') ? '600' : '400',
               color: Colors.snow,
               backgroundColor: Colors.transparent
             }}>

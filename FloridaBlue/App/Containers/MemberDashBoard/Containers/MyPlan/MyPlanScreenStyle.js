@@ -1,6 +1,6 @@
 // @flow
 
-import {StyleSheet, Dimensions} from 'react-native'
+import {StyleSheet, Dimensions, Platform} from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
 var {height, width} = Dimensions.get('window')
 const window = Dimensions.get('window')
@@ -18,12 +18,14 @@ export default StyleSheet.create({
     // backgroundColor: Colors.flBlue.sky
   },
   headerTextStyle: {
-    color: Colors.flBlue.ocean,
+   color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0027,
-    // marginLeft:,
+    fontSize:Fonts.size.h4 * Metrics.screenWidth * 0.0025,
+   // marginLeft: Metrics.baseMargin,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023
+    fontWeight: (Platform.OS === 'ios') ? '500' :'400'
+
 
   },
   container: {
@@ -41,7 +43,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: '500',
+   fontWeight:  '500' ,
     textAlign: 'center'
   },
 

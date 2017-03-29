@@ -17,13 +17,14 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.ocean
   },
-  headerTextStyle: {
+ headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
-  //  marginLeft: Metrics.smallMargin,
+    fontSize:Fonts.size.h3 * Metrics.screenWidth * 0.0025,
+   // marginLeft: Metrics.baseMargin,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
-    fontFamily: Fonts.type.headerFont
+    fontFamily: Fonts.type.headerFont,
+    fontWeight: (Platform.OS === 'ios') ? '500' :'400'
 
   },
   hsaHeader: {
@@ -45,12 +46,14 @@ export default StyleSheet.create({
   // backgroundColor:Colors.flBlue.ocean
   },
   hsaheaderTextStyle: {
-    color: Colors.flBlue.ocean,
+   color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
-  //  marginLeft: Metrics.smallMargin,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
-    fontFamily: Fonts.type.headerFont
+    fontSize:Fonts.size.h4 * Metrics.screenWidth * 0.0025,
+   // marginLeft: Metrics.baseMargin,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight: (Platform.OS === 'ios') ? '500' :'400'
+
   },
   hsaBg: {
  // flexDirection:'row',
@@ -182,9 +185,9 @@ export default StyleSheet.create({
   },
   tileTextStyle: {
     marginTop: Metrics.baseMargin,
-    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0029,
+    fontSize: (Platform.OS === 'ios') ? Fonts.size.h6 * Metrics.screenWidth * 0.0029 : Fonts.size.h6 * Metrics.screenWidth * 0.0029,
     fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: '600',
+    fontWeight: (Platform.OS === 'ios') ? '600' : '400',
     backgroundColor: Colors.transparent,
     color: Colors.snow,
     textAlign: 'center'
@@ -207,7 +210,7 @@ export default StyleSheet.create({
   healthPlanText: {
     fontSize: Fonts.size.h2 * Metrics.screenWidth * 0.0025,
     color: Colors.snow,
-    fontWeight: '500',
+    fontWeight: (Platform.OS === 'ios') ? '500' : '400',
     backgroundColor: Colors.transparent,
     fontFamily: Fonts.type.subHeaderFont,
     marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0035

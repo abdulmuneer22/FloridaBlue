@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
   Image,
   Modal,
-  WebView
+  WebView,
+  BackAndroid
   } from 'react-native'
 import styles from './WebViewStyle'
 import NavItems from '../../Navigation/NavItems.js'
@@ -27,6 +28,14 @@ class ErrorScreen extends Component {
     RCTNetworking.clearCookies((cleared) => {
             console.log('clearing local cookies for the app')
           })
+
+            BackAndroid.addEventListener('hardwareBackPress', function() {
+            console.log("android back")
+      // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
+      // Typically you would use the navigator here to go to the last state.
+
+      return true;
+      });
   }
   _renderHeader () {
     return (<Image style={styles.headerContainerError} source={Images.themeHeader}>
