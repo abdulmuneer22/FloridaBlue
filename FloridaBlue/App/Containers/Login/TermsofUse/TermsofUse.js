@@ -32,7 +32,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       borderOffColor: Colors.flBlue.ocean
   }})
 
-const script = `
+const webScript = `
 <script>
 	window.location.hash = 1;
     var calculator = document.createElement("div");
@@ -44,7 +44,7 @@ const script = `
     document.title = calculator.scrollHeight;
 </script>
 `
-const style = `
+const webStyle = `
 <style>
 body, html, #height-calculator {
     margin: 0;
@@ -65,31 +65,21 @@ class TermsofUse extends Component {
 
     this.state = {
       clicked: true,
-      Height: 0
+      webHeight: 0,
+      showCheckbox: false
     }
   }
 
-  _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-
-      <Text style={styles.headerTextStyle}>Terms of Use</Text>
-
-    </Image>)
-  }
-
   _handleAgreeTermsOfUse () {
-    console.log(this.props.agreeTermsOfUse)
     if (!this.props.agreeTermsOfUse) {
       alert('Please accept Terms of Use')
     }
     if (this.props.agreeTermsOfUse) {
       if (this.props.origin == 'registration') {
         this.props.sendConfirm()
-        console.log('if registration')
         NavigationActions.confirmation()
       } else {
         this.props.sendConfirm()
-        console.log('if not registration')
         NavigationActions.WelcomeDashBoard({'tou': 'nonregistration'})
       }
     }
@@ -102,25 +92,17 @@ class TermsofUse extends Component {
   onNavigationStateChange (event) {
     if (event.title) {
       const htmlHeight = Number(event.title) // convert to number
-      this.setState({Height: htmlHeight})
+      this.setState({webHeight: htmlHeight})
     }
   }
 
-  _displayCondition () {
-    if (this.props.fetching) {
-      return (<View style={styles.spinnerView}>
-        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
-      </View>)
-    } else if (this.props.getTou) {
-      return (<ScrollView style={{flex: 1}}>
-        <WebView
-          style={{height: this.state.Height}}
-          source={{html: this.props.getTou + style + script}}
-          scrollEnabled={false}
-          javaScriptEnabled
-          onNavigationStateChange={this.onNavigationStateChange.bind(this)}
-             />
+  onLoadEnd(event) {
+    this.state.showCheckbox = true
+  }
+
+  _displayCheckbox() {
+    return (
+      <View>
         <View style={styles.checkViewStyle}>
           <View style={styles.checkStyle}>
             <MKCheckbox
@@ -129,11 +111,9 @@ class TermsofUse extends Component {
                 var checked = this.refs.agreeTermsOfUse.state.checked
                 this.props.handleChangeAgreeTermsOfUse(checked)
               }} />
-          </View>
+            </View>
           <View style={styles.checkTextView}>
-            <Text style={styles.checkText}>
-        Accept terms of use and continue.
-        </Text>
+            <Text style={styles.checkText}>Accept terms of use and continue.</Text>
           </View>
         </View>
         <View style={{marginTop: Metrics.doubleBaseMargin}}>
@@ -146,26 +126,50 @@ class TermsofUse extends Component {
             <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
           </View>
         </View>
-      </ScrollView>)
-    } else if (this.props.error != null) {
-      Alert.alert(
-                  'TOU',
-                  'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
-        [
-                    { text: 'OK', onPress: () => NavigationActions.login() }
+      </View>
+    )
+  }
 
-        ],
-                  { cancelable: false }
-                )
+  _displayHeader() {
+    <Image style={styles.headerContainer} source={Images.themeHeader}>
+      <Text style={styles.headerTextStyle}>Terms of Use</Text>
+    </Image>
+  }
+
+  _displayCondition() {
+    var webHtml = this.props.getTou
+
+    if (this.props.fetching) {
+      return (
+        <View style={styles.spinnerView}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        </View>
+      )
+    } else if (this.props.getTou) {
+      return (
+          <ScrollView style={{flex: 1}}>
+            <WebView
+            style={{height: this.state.webHeight}}
+            source={{html: this.props.getTou + webStyle + webScript}}
+            scrollEnabled={false}
+            javaScriptEnabled={true}
+            onNavigationStateChange={this.onNavigationStateChange.bind(this)}
+            onLoadEnd={this.onLoadEnd.bind(this)} />
+
+            {this.state.showCheckbox && this._displayCheckbox()}
+          </ScrollView>
+      )
+    } else if (this.props.error != null) {
+      Alert.alert( 'TOU', 'Oops! Looks like we\'re having trouble with your request. Click Support for help.', [{ text: 'OK', onPress: () => NavigationActions.login() }], { cancelable: false } )
+      return(<View></View>)
     }
   }
 
   render () {
-    var HTML = this.props.getTou
-    console.log('TOU HTML: ', HTML)
-    return (
+    return(
       <View style={styles.container}>
-        {this._renderHeader()}
+        {this._displayHeader()}
         {this._displayCondition()}
       </View>
     )
@@ -187,18 +191,15 @@ TermsofUse.propTypes = {
   error: PropTypes.string,
   getTou: PropTypes.string,
   handleChangeAgreeTermsOfUse: PropTypes.func
-
 }
 
 const mapStateToProps = (state) => {
   return {
-
     fetching: state.login.fetching,
     confirm: state.login.confirm,
     error: state.login.error,
     agreeTermsOfUse: state.login.agreeTermsOfUse,
     getTou: state.login.getTou
-
   }
 }
 
