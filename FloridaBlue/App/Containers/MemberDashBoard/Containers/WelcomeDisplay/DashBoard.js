@@ -46,10 +46,11 @@ class LandingScreen extends Component {
   props: LoginScreenProps
   isAttempting: boolean
 
-  _renderHeader() {
+  _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{
-        alignItems: 'center', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+        alignItems: 'center',
+        marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
         marginLeft: Metrics.images.xm * Metrics.screenWidth * 0.003
       }}>
         <Image source={Images.themeLogo} style={{
@@ -66,26 +67,25 @@ class LandingScreen extends Component {
 
     </Image>)
   }
-  componentDidMount() {
-
-      BackAndroid.addEventListener('hardwareBackPress', function() {
-            console.log("android back")
+  componentDidMount () {
+    BackAndroid.addEventListener('hardwareBackPress', function () {
+      console.log('android back')
       // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
       // Typically you would use the navigator here to go to the last state.
 
-      return true;
-      });
+      return true
+    })
 
     console.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin == 'registration') {
       this.props.attemptMember()
     }
-    if(this.props.tou =='nonregistration'){
+    if (this.props.tou == 'nonregistration') {
       this.props.attemptMember()
     }
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps (newProps) {
     console.log('dash board failure' + newProps.error)
     /*
    if (!newProps.error) {
@@ -94,38 +94,36 @@ class LandingScreen extends Component {
    */
   }
 
-  _displayCondition() {
+  _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    }
-
-    else if (this.props.visibilityRules != undefined) {
+    } else if (this.props.visibilityRules != undefined) {
       return (
         <View style={styles.container}>
           <Greeting userName={this.props.userName} />
-          {this.props.visibilityRules !=undefined && this.props.visibilityRules.myHealthPlanTile !=undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} /> : <View />}
+          {this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} /> : <View />}
           <View style={{
             flexWrap: 'wrap',
             flexDirection: 'row'
           }}>
             {
-              this.props.visibilityRules !=undefined && this.props.visibilityRules.coreTiles !=undefined && this.props.visibilityRules.coreTiles.length > 0? this.props.visibilityRules.coreTiles.map(function (tile, i) {
-              onItemPress = function () {
-                var action
-                if (tile.tileType == 'webview') {
-                  var webview = 'MyView'
-                  action = NavigationActions[webview]({ responseURL: tile.tileUrl })
-                } else if (tile.tileType == 'native') {
-                  var routerName = tile.routerName
-                  action = NavigationActions[routerName]()
+              this.props.visibilityRules != undefined && this.props.visibilityRules.coreTiles != undefined && this.props.visibilityRules.coreTiles.length > 0 ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
+                onItemPress = function () {
+                  var action
+                  if (tile.tileType == 'webview') {
+                    var webview = 'MyView'
+                    action = NavigationActions[webview]({ responseURL: tile.tileUrl })
+                  } else if (tile.tileType == 'native') {
+                    var routerName = tile.routerName
+                    action = NavigationActions[routerName]()
+                  }
                 }
-              }
-              return (
-                <TouchableOpacity
-                  style={
+                return (
+                  <TouchableOpacity
+                    style={
                     i % 2 == 0
                       ? styles.tileStyle
                       : styles.tileStyle1
@@ -153,15 +151,15 @@ class LandingScreen extends Component {
             }) : <Text />
             }
           </View>
-          { this.props.visibilityRules !=undefined && this.props.visibilityRules.opdTile !=undefined
+          { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
 
             ? <TouchableOpacity onPress={() => NavigationActions.MyView({ responseURL: this.props.visibilityRules.opdTile.tileUrl })}>
               <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
                 <View style={{
                   flexDirection: 'row',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  //marginTop:27.5
+                  justifyContent: 'center'
+                  // marginTop:27.5
                 }}>
 
                   <Flb name={this.props.visibilityRules.opdTile.tileIcon}
@@ -186,24 +184,21 @@ class LandingScreen extends Component {
           }
         </View>
 
-
       )
-    }
-    else if (this.props.error != null) {
+    } else if (this.props.error != null) {
       Alert.alert(
         'Florida Blue',
         'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
         [
-          { text: 'OK', onPress: () => NavigationActions.login() },
+          { text: 'OK', onPress: () => NavigationActions.login() }
 
         ],
         { cancelable: false }
       )
-
     }
   }
 
-  render() {
+  render () {
     var image = [
       Images.dashboardGradient,
       Images.dashboardGradient2,
@@ -216,7 +211,6 @@ class LandingScreen extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         {this._displayCondition()}
-
 
       </View>
     )

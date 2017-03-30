@@ -34,7 +34,7 @@ export default {
   },
   options: {
     backgroundColor: Colors.bg1,
-    //paddingLeft: Metrics.mediumMargin,
+    // paddingLeft: Metrics.mediumMargin,
     paddingTop: Metrics.searchBarHeight
   },
   settings: {
@@ -45,8 +45,8 @@ export default {
 
   divider: {
     backgroundColor: Colors.snow,
-    height: Metrics.screenHeight * 0.0013,
-    //marginLeft: -Metrics.section
+    height: Metrics.screenHeight * 0.0013
+    // marginLeft: -Metrics.section
    // marginBottom: Metrics.smallMargin
   },
   heading: {
@@ -57,12 +57,12 @@ export default {
     marginLeft: Metrics.baseMargin,
     fontFamily: Fonts.type.subHeaderFont
   },
-   benefitHeading: {
+  benefitHeading: {
     color: Colors.snow,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
     marginBottom: Metrics.smallMargin,
     marginLeft: Metrics.baseMargin,
-    //marginTop: Metrics.smallMargin,
+    // marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.subHeaderFont
   },
   heading1: {

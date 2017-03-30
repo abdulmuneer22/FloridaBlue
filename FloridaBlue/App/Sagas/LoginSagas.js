@@ -10,7 +10,7 @@ export function * login (api, {username, password}) {
   console.log('username+password' + JSON.stringify(username) + password)
   console.log(response)
   const response = yield call(api.getUser, username, password)
-  if (response.status == '200' ) {
+  if (response.status == '200') {
     var responseURL = response.responseURL
     var smToken = response.headers['set-cookie']
     if (response.data.data) {
@@ -32,8 +32,8 @@ export function * login (api, {username, password}) {
   } else if (response.status == '401') {
     // dispatch failure
     console.log('I am coming from failuer ')
-    var error = 'The user ID or password you have entered is incorrect. Please try again.'
-    alert('The user ID or password you have entered is incorrect. Please try again.')
+    var error = response.status
+  //  alert('The user ID or password you have entered is incorrect. Please try again.')
     yield put(LoginActions.loginFailure(error))
   } else if (response.status == null) {
     console.log('I am coming from failuer ')

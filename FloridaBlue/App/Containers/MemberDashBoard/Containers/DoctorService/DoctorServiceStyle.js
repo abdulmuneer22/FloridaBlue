@@ -40,11 +40,11 @@ export default StyleSheet.create({
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
-    fontSize:Fonts.size.h3 * Metrics.screenWidth * 0.0025,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0025,
    // marginLeft: Metrics.baseMargin,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
     fontFamily: Fonts.type.headerFont,
-    fontWeight: (Platform.OS === 'ios') ? '500' :'400'
+    fontWeight: (Platform.OS === 'ios') ? '500' : '400'
 
   },
   doctorCardStyle: {
@@ -165,8 +165,8 @@ export default StyleSheet.create({
     marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.003,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-    fontFamily:Fonts.type.headerFont
+    fontFamily: Fonts.type.headerFont
 
-  },
+  }
 
 })

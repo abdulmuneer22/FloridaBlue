@@ -21,15 +21,14 @@ import HTMLView from 'react-native-htmlview'
 const theme = getTheme()
 
 class Card extends Component {
-
-  constructor() {
-    super();
+  constructor () {
+    super()
     this.state = {
       notesVisible: false
     }
   }
 
-  render() {
+  render () {
     var cards = []
     var that = this
     var card
@@ -73,8 +72,8 @@ class Card extends Component {
             //  marginRight: 10,
              // marginLeft: 10,
               flex: 0.7,
-              alignItems:'center',
-              //justifyContent:'center'
+              alignItems: 'center'
+              // justifyContent:'center'
             }}>
               <Text style={styles.h1}>
                 {_.get(network, 'header_text.en', '')}
@@ -82,26 +81,24 @@ class Card extends Component {
             </View>
             <View style={{ marginRight: 15 }}>
               {
-                network !=undefined && network.footer_note !=undefined && network.footer_note !=null && network.footer_note.en !=undefined && network.footer_note.en !=null ?
-                  <TouchableWithoutFeedback
+                network != undefined && network.footer_note != undefined && network.footer_note != null && network.footer_note.en != undefined && network.footer_note.en != null
+                  ? <TouchableWithoutFeedback
                     onPress={() => { this.setState({ notesVisible: !notesVisible }) }} >
-                    
+
                     <Flb name={!notesVisible ? 'rd-d-arrow' : 'rd-u-arrow'} size={Metrics.icons.xm} style={{ marginTop: 25 }} color={Colors.flBlue.anvil} />
                   </TouchableWithoutFeedback>
-                  :
-                  null
+                  : null
               }
 
             </View>
           </View>
 
           {
-            notesVisible ?
-                <View style={styles.noteText}>
+            notesVisible
+              ? <View style={styles.noteText}>
                 <HTMLView value={_.get(network, 'footer_note.en', '')} />
-                </View>
-              :
-              null
+              </View>
+              : null
           }
 
           {
@@ -156,5 +153,3 @@ class Card extends Component {
 }
 
 export default Card
-
-

@@ -71,8 +71,8 @@ class Resources extends Component {
               marginTop: window.width * 0.03
 
             }}>
-              { this.props.visibilityRules != undefined && this.props.visibilityRules.additionalTiles != undefined && this.props.visibilityRules.additionalTiles.length > 0 ?
-              this.props.visibilityRules.additionalTiles.map((tile, i) => {
+              { this.props.visibilityRules != undefined && this.props.visibilityRules.additionalTiles != undefined && this.props.visibilityRules.additionalTiles.length > 0
+              ? this.props.visibilityRules.additionalTiles.map((tile, i) => {
                 const index = i + 1
                 const TileCount = this.props.visibilityRules.additionalTiles.length
 
@@ -92,7 +92,7 @@ class Resources extends Component {
                       />
                 )
               }
-          ) :<Text/>
+          ) : <Text />
         }
             </View>
 

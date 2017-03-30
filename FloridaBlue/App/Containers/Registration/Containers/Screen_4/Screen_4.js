@@ -59,12 +59,10 @@ class Screen_4 extends React.Component {
     var securityHint3 = this.props.securityHint3
     var securityAnswer3 = this.props.securityAnswer3
 
-
-
     if (!(securityHint1 && securityAnswer1 && securityHint2 && securityAnswer2 && securityHint3 && securityAnswer3)) {
       this.props.handleChangeSecurityHintsStatus('999')
       this.props.handleChangeSecurityHintsStatusMessage('Please enter values in all fields')
-    } else if(securityHint1.length < 4 || securityHint2.length < 4 || securityHint3.length < 4) {
+    } else if (securityHint1.length < 4 || securityHint2.length < 4 || securityHint3.length < 4) {
       this.props.handleChangeSecurityHintsStatus('999')
       this.props.handleChangeSecurityHintsStatusMessage('All hints must be at least four characters in length')
     } else if (securityAnswer1.length < 3 || securityAnswer2.length < 3 || securityAnswer3.length < 3) {
@@ -82,11 +80,10 @@ class Screen_4 extends React.Component {
 
   componentDidMount () {
     this.props.handleChangeSecurityHintsStatus(null)
-     if(this.props && this.props.username){
-        var username = this.props.username
-        this.props.handleChangeCreateUserId(username)
+    if (this.props && this.props.username) {
+      var username = this.props.username
+      this.props.handleChangeCreateUserId(username)
     }
-
   }
 
   componentDidUpdate () {
@@ -99,16 +96,13 @@ class Screen_4 extends React.Component {
         NavigationActions.Termsofuse({'origin': 'registration'})
       }
     }
-
-
-
   }
 
   render () {
     return (
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps>
-         {this.props.username ? <View></View> :<Image source={Images.registrationStep4Hdr} style={styles.headerImage}>
+          {this.props.username ? <View /> : <Image source={Images.registrationStep4Hdr} style={styles.headerImage}>
             <Text style={styles.headerTextStyle}>Almost Done!</Text>
           </Image>}
           <View style={styles.row}>
@@ -300,7 +294,7 @@ const mapStateToProps = (state) => {
     securityHintsStatusMessage: state.registration.securityHintsStatusMessage,
     fetching: state.registration.fetching,
     error: state.registration.error,
-    createUserId: state.registration.createUserId,
+    createUserId: state.registration.createUserId
 
   }
 }
@@ -316,7 +310,7 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeSecurityAnswer3: (securityAnswer3) => dispatch(RegistrationActions.changeSecurityAnswer3(securityAnswer3)),
     handleChangeSecurityHintsStatus: (data) => dispatch(RegistrationActions.changeSecurityHintsStatus(data)),
     handleChangeSecurityHintsStatusMessage: (data) => dispatch(RegistrationActions.changeSecurityHintsStatusMessage(data)),
-    handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId)),
+    handleChangeCreateUserId: (createUserId) => dispatch(RegistrationActions.changeCreateUserId(createUserId))
   }
 }
 

@@ -55,10 +55,10 @@ export default StyleSheet.create({
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0013,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.009
   },
-    newSignRow: {
+  newSignRow: {
     paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0014,
-    paddingHorizontal: Metrics .textHeight2 * Metrics.screenWidth * 0.006,
-   
+    paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.006
+
   },
   link: {
     color: Colors.flBlue.ocean,

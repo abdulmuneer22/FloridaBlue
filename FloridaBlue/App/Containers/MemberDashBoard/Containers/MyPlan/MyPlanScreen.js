@@ -98,7 +98,7 @@ class MyPlanScreen extends Component {
           </View>
 
           <View style={styles.myplanTilesStyle}>
-            {this.props.visibilityRules !=undefined && this.props.visibilityRules.planOverViewTiles !=undefined
+            {this.props.visibilityRules != undefined && this.props.visibilityRules.planOverViewTiles != undefined
               ? this.props.visibilityRules.planOverViewTiles.map((tile, i) => {
                 const index = i + 1
                 const TileCount = this.props.visibilityRules.planOverViewTiles.length

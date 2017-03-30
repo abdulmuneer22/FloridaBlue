@@ -83,26 +83,26 @@ class Login extends Component {
     var password = this.props.password
 
     if (!username && !password) {
-            Alert.alert('Login', 'Please enter your User ID/Password.', [
-              {
-                text: 'OK'
-              }
-            ])
+      Alert.alert('Login', 'Please enter your User ID/Password.', [
+        {
+          text: 'OK'
+        }
+      ])
      // alert('Please enter your user ID/Password.')
     } else
     if (!username && password) {
-          Alert.alert('Login', 'Please enter your user ID', [
-            {
-              text: 'OK'
-            }
-          ])
+      Alert.alert('Login', 'Please enter your user ID', [
+        {
+          text: 'OK'
+        }
+      ])
     } else
     if (username && !password) {
-        Alert.alert('Login', 'Please enter your Password.', [
-          {
-            text: 'OK'
-          }
-        ])
+      Alert.alert('Login', 'Please enter your Password.', [
+        {
+          text: 'OK'
+        }
+      ])
     } else {
         // const { username, password } = this.state
       this.isAttempting = true
@@ -117,18 +117,17 @@ class Login extends Component {
       console.log('clearing local cookies for the app')
     })
 
-    BackAndroid.addEventListener('hardwareBackPress', function() {
-      console.log("android back")
+    BackAndroid.addEventListener('hardwareBackPress', function () {
+      console.log('android back')
  // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
  // Typically you would use the navigator here to go to the last state.
 
- return true;
-});
-
+      return true
+    })
   }
 
   componentWillReceiveProps (newProps) {
-   //this.forceUpdate()   makes to rerender the stuff     Got the issue of redering
+   // this.forceUpdate()   makes to rerender the stuff     Got the issue of redering
   // Did the login attempt complete?
 
     console.log('I am receving new props' + newProps.responseURL)
@@ -141,17 +140,16 @@ class Login extends Component {
         if (responseURL == 'login') {
           if (!newProps.mfetching) {
             if (!newProps.merror) {
-              //Need to work on the applicaiton
+              // Need to work on the applicaiton
 
               if (newProps.termsOfUse) {
-                  if(newProps.visibleDashboard){
+                if (newProps.visibleDashboard) {
                   NavigationActions.WelcomeDashBoard()
-                  }else {
-                     NavigationActions.ErrorPage()
-                  }
+                } else {
+                  NavigationActions.ErrorPage()
+                }
               } else {
                 NavigationActions.Termsofuse({'origin': 'login'})
-
               }
             } else {
               NavigationActions.ErrorPage()
@@ -207,6 +205,28 @@ class Login extends Component {
           }
         }
     // }
+      } else {
+        if (newProps.error == '401') {
+          this.props.clearLogin()
+          RCTNetworking.clearCookies((cleared) => {
+            console.log('clearing local cookies for the app')
+          })
+          Alert.alert('Login', 'The user ID or password you have entered is incorrect. Please try again.', [
+            {
+              text: 'OK'
+            }
+          ])
+        } else if (newProps.error != null && newProps.error != '401') {
+          this.props.clearLogin()
+          RCTNetworking.clearCookies((cleared) => {
+            console.log('clearing local cookies for the app')
+          })
+          Alert.alert('Login', 'Oops! Looks Like There\'s a, Problem. ', [
+            {
+              text: 'OK'
+            }
+          ])
+        }
       }
     }
   // end of IF condition
@@ -411,7 +431,7 @@ const mapStateToProps = (state) => {
     merror: state.member.error,
     username: state.login.username,
     password: state.login.password,
-    visibleDashboard : state.member.visibleDashboard
+    visibleDashboard: state.member.visibleDashboard
   }
 }
 
