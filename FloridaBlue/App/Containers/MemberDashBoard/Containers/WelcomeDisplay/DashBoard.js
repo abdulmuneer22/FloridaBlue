@@ -141,7 +141,7 @@ class LandingScreen extends Component {
                     }}>
 
                     <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow}
-                    style={{ backgroundColor: Colors.transparent, marginTop: 10 }} />
+                    style={{ backgroundColor: Colors.transparent}} />
                     <Text style={styles.tileTextStyle}>
                       {tile.tileName['en']}
                     </Text>

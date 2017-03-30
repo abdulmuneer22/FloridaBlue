@@ -256,7 +256,7 @@ export default StyleSheet.create({
   },
   footerImage: {
     // flexDirection: 'row',
-    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.88),
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.87),
      // height : window.height * 0.5,
     justifyContent: 'center',
     alignItems: 'center',

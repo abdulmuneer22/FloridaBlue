@@ -29,7 +29,7 @@ class Switch extends Component {
     //  borderBottomLeftRadius: 15,
       borderColor: Colors.flBlue.ocean,
     //  borderTopLeftRadius: 15,
-      padding: 5,
+      padding: 2.5,
       backgroundColor: Colors.flBlue.ocean,
       width: Metrics.screenWidth * 0.50
     }

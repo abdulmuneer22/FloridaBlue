@@ -5,7 +5,8 @@ import {
   View,
   ScrollView,
   Image,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Platform
 } from 'react-native'
 import Switch from './Components/switch'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -105,15 +106,15 @@ class DoctorServices extends Component {
             </View>
 
             <View style={{
-              //backgroundColor: 'purple',
+            //  backgroundColor: 'purple',
               flexDirection: 'row',
-             justifyContent: 'center',
+              justifyContent: 'center',
               alignItems: 'center'
 
             }}>
 
               <View style={{
-                flex:0.8,
+                flex:0.7,
                 //marginRight:5,
                 alignItems:'center'
                
@@ -125,7 +126,10 @@ class DoctorServices extends Component {
 
               <View>
                 {this.renderHeaderText() != '' ?
-                  <View>
+                  <View style={{ flex:0.3, 
+                        marginLeft: -40,
+                        marginRight: Metrics.mediumMargin
+                        }}>
                     <TouchableWithoutFeedback onPress={() => {
                       this.setState({ hpActive: !this.state.hpActive })
                     }}>
@@ -136,7 +140,7 @@ class DoctorServices extends Component {
                       }}>
 
 
-                        <View style={{ flex:0.2, marginLeft:-40,marginRight:Metrics.mediumMargin}}>
+                        <View >
                           {
 
                             !this.state.hpActive
@@ -169,7 +173,8 @@ class DoctorServices extends Component {
                     <Text style={{
                       fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
                       margin: 5,
-                      textAlign: 'justify'
+                      textAlign: 'justify',
+                      color:Colors.flBlue.grey5
                     }}>{this.renderHeaderText()}</Text>
                   </View>
                   :
