@@ -47,14 +47,15 @@ class FindMemberID extends React.Component {
           <View style={styles.row}>
             <Text style={styles.description}>{I18n.t('findMemberIdDescription2')}</Text>
           </View>
-          <Swiper height={Metrics.screenHeight * 0.39} style={styles.wrapper1} showsButtons>
+          <Swiper height={Metrics.screenHeight * 0.42} style={styles.wrapper1} showsButtons>
             <View style={styles.slide}>
               <View style={styles.outofBox}>
                 <Image
                   style={{
-                    width: Metrics.screenWidth * 0.7,
+                    width: Metrics.screenWidth * 0.75,
                      // borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0015,
-                    height: Metrics.screenHeight * 0.285
+                    height: Metrics.screenHeight * 0.3,
+                    resizeMode:"stretch"
                   }}
                   source={Images.idCardFront}
                 />
@@ -67,6 +68,7 @@ class FindMemberID extends React.Component {
                   style={{
 
                     width: Metrics.screenWidth * 0.7,
+                   // resizeMode:"cover",
                     // borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0015,
                     height: Metrics.screenHeight * 0.28
                   }}

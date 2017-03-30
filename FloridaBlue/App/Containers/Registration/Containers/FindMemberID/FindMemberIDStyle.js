@@ -54,7 +54,7 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     width: Metrics.screenWidth,
-    marginTop: Metrics.baseMargin,
+    marginTop: Metrics.smallMargin,
     paddingVertical: Metrics.baseMargin,
     paddingHorizontal: Metrics.doubleBaseMargin,
     alignItems: 'center',

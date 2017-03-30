@@ -35,9 +35,10 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
   .withTextInputStyle({flex: 1})
   .withFloatingLabelFont({
-    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025,
-    fontStyle: 'italic',
-    fontWeight: '200'
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0035,
+   // fontStyle: 'italic',
+    fontWeight: '200',
+    width:window.width
   })
   .build()
 
