@@ -10,7 +10,8 @@ import {
   Navigator,
   Modal,
   Dimensions,
-  BackAndroid
+  BackAndroid,
+  TouchableWithoutFeedback
 } from 'react-native'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -332,7 +333,7 @@ class Login extends Component {
           <Clouds />
           <CityScape />
 
-          <KeyboardAwareScrollView keyboardShouldPersistTaps style={styles.container}>
+          <View keyboardShouldPersistTaps style={styles.container}>
 
             <LogoView>
               <Image source={Images.clearLogo} style={styles.logo} />
@@ -393,7 +394,7 @@ class Login extends Component {
               </TouchableOpacity>
             </SignUpView>
 
-          </KeyboardAwareScrollView>
+          </View>
 
           {this.state.modalVisible && this._moreInfo()}
 
@@ -402,7 +403,7 @@ class Login extends Component {
               <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
             <View>
-              <TouchableOpacity onPress={() => {
+              <TouchableWithoutFeedback onPress={() => {
                 if (this.state.modalVisible === true) {
                   this.setState({modalVisible: false})
                 } else {
@@ -410,7 +411,7 @@ class Login extends Component {
                 }
               }}>
                 <Image source={Images.infoIcon} />
-              </TouchableOpacity>
+              </TouchableWithoutFeedback>
             </View>
           </View>
 

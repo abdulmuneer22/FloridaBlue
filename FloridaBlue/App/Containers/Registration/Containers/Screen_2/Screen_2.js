@@ -35,9 +35,10 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
   .withTextInputStyle({flex: 1})
   .withFloatingLabelFont({
-    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025,
-    fontStyle: 'italic',
-    fontWeight: '200'
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0035,
+   // fontStyle: 'italic',
+    fontWeight: '200',
+    width:window.width
   })
   .build()
 
@@ -156,6 +157,42 @@ class Screen_2 extends React.Component {
               placeholder={I18n.t('phoneNumber')}
             />
           </View> : null}
+          { !this.props.emailVerified ?
+          <View>
+            <View style={styles.row}>
+              <TextfieldWithFloatingLabel
+                ref='email'
+                value={""}
+                style={styles.textfieldWithFloatingLabel}
+                keyboardType='email-address'
+                editable={!this.props.emailVerified}
+                returnKeyType='next'
+                autoCapitalize='none'
+                autoCorrect={false}
+                onChangeText={this.props.handleChangeEmail}
+                underlineColorAndroid={Colors.coal}
+                onSubmitEditing={(event) => {
+                  this.refs.confirmEmail.focus()
+                }}
+                placeholder={I18n.t('email')} />
+            </View>
+            <View style={styles.row}>
+              <TextfieldWithFloatingLabel
+                ref='confirmEmail'
+                value={this.props.confirmEmail}
+                style={styles.textfieldWithFloatingLabel}
+                keyboardType='email-address'
+                returnKeyType='next'
+                autoCapitalize='none'
+                autoCorrect={false}
+                onChangeText={this.props.handleChangeConfirmEmail}
+                underlineColorAndroid={Colors.coal}
+                onSubmitEditing={(event) => {
+                  this.refs.createUserId.focus()
+                }}
+                placeholder={I18n.t('confirmEmail')} />
+            </View>
+          </View> :
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='email'
@@ -171,26 +208,8 @@ class Screen_2 extends React.Component {
               onSubmitEditing={(event) => {
                 this.refs.confirmEmail.focus()
               }}
-              placeholder={I18n.t('email')}
-            />
-          </View>
-          { !this.props.emailVerified ? <View style={styles.row}>
-            <TextfieldWithFloatingLabel
-              ref='confirmEmail'
-              value={this.props.confirmEmail}
-              style={styles.textfieldWithFloatingLabel}
-              keyboardType='email-address'
-              returnKeyType='next'
-              autoCapitalize='none'
-              autoCorrect={false}
-              onChangeText={this.props.handleChangeConfirmEmail}
-              underlineColorAndroid={Colors.coal}
-              onSubmitEditing={(event) => {
-                this.refs.createUserId.focus()
-              }}
-              placeholder={I18n.t('confirmEmail')}
-            />
-          </View> : null}
+              placeholder={I18n.t('email')} />
+          </View> }
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='createUserId'

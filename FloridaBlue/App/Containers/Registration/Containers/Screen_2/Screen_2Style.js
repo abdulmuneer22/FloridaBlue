@@ -53,6 +53,7 @@ export default StyleSheet.create({
     flexWrap: 'wrap'
   },
   row: {
+   // backgroundColor:'yellow',
     paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.001,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.001
   },
@@ -108,11 +109,14 @@ export default StyleSheet.create({
   },
   textInput: {
     height: 40,
-    color: Colors.charcoal
+    color: Colors.charcoal,
+    width:Metrics.screenWidth
   },
   textfieldWithFloatingLabel: {
+    //backgroundColor:'red',
     height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,  // have to do it on iOS
-    marginTop: Metrics.baseMargin
+    marginTop: Metrics.baseMargin,
+   // width:Metrics.screenWidth
   },
   spinnerView: {
     alignSelf: 'center'

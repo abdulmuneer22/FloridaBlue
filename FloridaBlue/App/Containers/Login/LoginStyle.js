@@ -29,13 +29,13 @@ export default StyleSheet.create({
   },
   loginButton: {
     alignItems: 'center',
-    paddingTop: Metrics.screenHeight * 0.11,
+    paddingTop: Metrics.screenHeight * 0.16,
     paddingHorizontal: Metrics.doubleBaseMargin
 
   },
   form: {
     backgroundColor: Colors.snow,
-    margin: Metrics.baseMargin,
+  //  margin: Metrics.smallMargin,
     borderRadius: 24,
     marginHorizontal: Metrics.section
   },
@@ -48,7 +48,7 @@ export default StyleSheet.create({
     bottom: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.011 : Metrics.doubleBaseMargin * Metrics.screenWidth * 0.012
   },
   row: {
-    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0013,
+    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015,
     paddingHorizontal: Metrics.doubleBaseMargin
   },
   forgotRow: {
@@ -119,7 +119,7 @@ export default StyleSheet.create({
   },
 
   textField: {
-    height: 40
+    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
   }
 
 })
