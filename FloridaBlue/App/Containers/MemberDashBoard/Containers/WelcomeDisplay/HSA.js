@@ -127,7 +127,7 @@ Hsa.propTypes = {
 const mapStateToProps = (state) => {
   console.log(state)
   return {
-    fetching: state.login.fetching,
+    fetching: state.hsa.fetching,
     data: state.hsa.data,
     error: state.hsa.error
   }
