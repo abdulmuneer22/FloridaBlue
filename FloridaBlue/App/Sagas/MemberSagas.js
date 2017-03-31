@@ -22,6 +22,7 @@ export function * member (api, {smToken}) {
     var opd = response.data.data.visibilityRule.opd
     var financialProduct = response.data.data.defaultContract.financialProduct
     var visibleDashboard = response.data.data.visibleDashboard
+    var isIndividualContract = response.data.data.visibilityRule.isIndividualContract
     console.log('visibleDashboard', visibleDashboard)
     console.log('financialProduct4' + financialProduct)
     console.log('termsOfUse' + termsOfUse)
@@ -32,7 +33,8 @@ export function * member (api, {smToken}) {
       'pdfBenefit': response.data.data.visibilityRule.pdfBenefit,
       'dob': response.data.data.dob,
       'claimsRule': response.data.data.visibilityRule.claims,
-      'benefitsRule': response.data.data.visibilityRule.benefits
+      'benefitsRule': response.data.data.visibilityRule.benefits,
+      'isIndividualContract' : isIndividualContract
     }
     yield put(SupportActions.supportRequest())
     yield put(MyPlanActions.myplanRequest(data))
