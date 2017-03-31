@@ -69,7 +69,8 @@ export default StyleSheet.create({
   },
   hsaTextStyle1: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0032,
-    fontFamily: Fonts.type.subHeaderFont
+    fontFamily: Fonts.type.subHeaderFont,
+    color:Colors.flBlue.anvil
 
     // fontWeight:'bold'
   },

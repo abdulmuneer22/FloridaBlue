@@ -145,13 +145,23 @@ class MyPlanSwiper extends Component {
                 <View style={{flex: 0.6}}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
                     return <View style={{flexDirection: 'row'}} key={i}>
-                      <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029, fontFamily: Fonts.type.subHeaderFont}}>
-                        {benefit ? benefit.label.en : 0}:
-                               </Text>
-                      <Text style={{marginTop: Metrics.smallMargin, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030, fontFamily: Fonts.type.subHeaderFont, color: Colors.flBlue.grass}}>
-                                 $
-                                 {benefit ? benefit.value : 0}
+                      <View style={{flex:0.7}}>
+                      <Text style={{marginTop: Metrics.smallMargin, 
+                      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029, 
+                      fontFamily: Fonts.type.subHeaderFont,
+                       color:Colors.flBlue.anvil
+                      }}>
+                        {benefit ? benefit.label.en : null}:
+                            </Text>
+                         </View>
+                      <View style={{flex:0.3}}>
+                      <Text style={{marginTop: Metrics.smallMargin, 
+                      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030, 
+                      fontFamily: Fonts.type.subHeaderFont, 
+                      color: Colors.flBlue.grass}}>
+                      ${benefit ? benefit.value : null}
                       </Text>
+                      </View>
                     </View>
                   }) : <View />}
                 </View>
