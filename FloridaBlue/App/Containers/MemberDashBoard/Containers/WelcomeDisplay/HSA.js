@@ -56,6 +56,7 @@ class Hsa extends Component {
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.data != undefined) {
+      if(this.props.data.currentBalance.value ||this.props.data.contribution.value || this.props.data.distribution.value ){
       return (<View style={{flex: 1}}>
 
         {this.props.data != undefined}
@@ -91,6 +92,18 @@ class Hsa extends Component {
         <Image style={styles.hsaBg} source={Images.hsaBg} />
 
       </View>)
+    } else {
+              Alert.alert(
+                  'HSA',
+                  'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+        [
+                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
+
+        ],
+                  { cancelable: false }
+                )
+
+      }
     } else if (this.props.error != null) {
       Alert.alert(
                   'HSA',
