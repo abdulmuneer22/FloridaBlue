@@ -114,7 +114,7 @@ SupportScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.login.fetching,
+    fetching: state.support.fetching,
     data: state.support.data,
     error: state.support.error
   }
