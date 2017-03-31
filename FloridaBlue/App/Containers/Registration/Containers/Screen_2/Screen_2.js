@@ -162,7 +162,6 @@ class Screen_2 extends React.Component {
             <View style={styles.row}>
               <TextfieldWithFloatingLabel
                 ref='email'
-                value={""}
                 style={styles.textfieldWithFloatingLabel}
                 keyboardType='email-address'
                 editable={!this.props.emailVerified}
@@ -203,7 +202,7 @@ class Screen_2 extends React.Component {
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
-              onChangeText={this.props.handleChangeEmail}
+              editable={false}
               underlineColorAndroid={Colors.coal}
               onSubmitEditing={(event) => {
                 this.refs.confirmEmail.focus()
