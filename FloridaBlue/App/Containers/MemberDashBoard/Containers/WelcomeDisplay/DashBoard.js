@@ -104,7 +104,8 @@ class LandingScreen extends Component {
       return (
         <View style={styles.container}>
           <Greeting userName={this.props.userName} />
-          {this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} /> : <View />}
+          {
+            this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} /> : <View />}
           <View style={{
             flexWrap: 'wrap',
             flexDirection: 'row'
@@ -185,17 +186,7 @@ class LandingScreen extends Component {
         </View>
 
       )
-    } else if (this.props.error != null) {
-      Alert.alert(
-        'Florida Blue',
-        'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
-        [
-          { text: 'OK', onPress: () => NavigationActions.login() }
-
-        ],
-        { cancelable: false }
-      )
-    }
+    } 
   }
 
   render () {
