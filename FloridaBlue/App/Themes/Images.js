@@ -26,6 +26,7 @@ const images = {
   idCardFront: require('../Images/id-card-front.png'),
   infoIcon: require('../Images/info-icon-gray.png'),
   errorPage: require('../Images/error-pg.png'),
+  errorBackButton: require('../Images/error-go-back-btn.png'),
   loginButton: require('../Images/login-screen-login-btn-blue.png'),
   loginButtonGreen: require('../Images/login-btn-green.png'),
   loginLogo: require('../Images/login-logo.png'),

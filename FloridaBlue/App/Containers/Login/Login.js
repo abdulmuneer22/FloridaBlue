@@ -209,6 +209,7 @@ class Login extends Component {
       } else {
         if (newProps.error == '401') {
           this.props.clearLogin()
+           console.log('coming from future contract scenarios')
           RCTNetworking.clearCookies((cleared) => {
             console.log('clearing local cookies for the app')
           })
@@ -219,6 +220,7 @@ class Login extends Component {
           ])
         } else if (newProps.error != null && newProps.error != '401') {
           this.props.clearLogin()
+          console.log('coming from future contract')
           RCTNetworking.clearCookies((cleared) => {
             console.log('clearing local cookies for the app')
           })

@@ -20,7 +20,9 @@ export default StyleSheet.create({
   headerContainerError: {
     width: Metrics.screenWidth,
     height: (Platform.OS === 'ios') ? Metrics.screenHeight : Metrics.screenHeight - Metrics.section,
-    resizeMode: 'stretch'
+    resizeMode: 'stretch',
+   // alignItems:'center',
+    justifyContent:'center'
   },
   container: {
     flex: 1,
