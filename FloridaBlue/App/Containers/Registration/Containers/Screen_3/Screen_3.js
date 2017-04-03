@@ -33,6 +33,7 @@ import RegistrationActions from '../../../../Redux/RegistrationRedux'
 const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
   .withTextInputStyle({flex: 1})
+  .withPlaceholderTextColor(Colors.steel)
   .withFloatingLabelFont({
     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025,
    // fontStyle: 'italic',

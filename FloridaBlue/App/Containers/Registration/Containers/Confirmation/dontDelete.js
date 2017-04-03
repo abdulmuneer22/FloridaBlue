@@ -25,6 +25,7 @@ import { MKTextField, MKColor } from 'react-native-material-kit'
 const window = Dimensions.get('window')
 const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
+  .withPlaceholderTextColor(Colors.steel)
   .withTextInputStyle({flex: 1})
   .withFloatingLabelFont({
     fontSize: 18,

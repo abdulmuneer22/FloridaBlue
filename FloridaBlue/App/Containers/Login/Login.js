@@ -358,7 +358,8 @@ class Login extends Component {
                   value={this.props.username}
                   underlineColorAndroid={Colors.coal}
                   onSubmitEditing={() => this.refs.password.focus()}
-                  placeholder={I18n.t('username')} />
+                  placeholder={I18n.t('username')}
+                  placeholderTextColor=Colors.steel />
               </View>
 
               <View style={styles.row}>
@@ -375,7 +376,8 @@ class Login extends Component {
                   onChangeText={this.props.handleChangePassword}
                   value={this.props.password}
                   underlineColorAndroid={Colors.coal}
-                  placeholder={I18n.t('password')} />
+                  placeholder={I18n.t('password')}
+                  placeholderTextColor=Colors.steel />
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
               <View style={styles.forgotRow}>
