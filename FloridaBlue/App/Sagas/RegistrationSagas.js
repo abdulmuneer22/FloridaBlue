@@ -30,6 +30,7 @@ var getReasonMessage = function (status) {
     '041': "Oops! Looks like we're having trouble with your request. Click Support for help.",
     '042': "Oops! Looks like we're having trouble with your request. Click Support for help.",
     '043': "Oops! Looks like that's not a valid email address. Please try again.",
+    '046': "Oops! Looks like we're having trouble with your request. Click Support for help.",
     '048': 'Oops! Your security answers must be different from your hints. Please try again.',
     '049': 'Oops! Looks like you used invalid characters for your security hints. Click Helpful Hints for more info.',
     '050': "Oops! Looks like we're having trouble with your request. Click Support for help.",
