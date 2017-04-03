@@ -224,11 +224,14 @@ class Login extends Component {
           RCTNetworking.clearCookies((cleared) => {
             console.log('clearing local cookies for the app')
           })
-          Alert.alert('Login', 'Oops! Looks Like There\'s a, Problem. ', [
-            {
-              text: 'OK'
-            }
-          ])
+          Alert.alert('Login', 'Oops! Looks Like There\'s a, Problem. ', 
+           [
+          { text: 'OK', onPress: () => NavigationActions.login() }
+
+                ],
+        { cancelable: false }
+          
+          )
         }
       }
     }
