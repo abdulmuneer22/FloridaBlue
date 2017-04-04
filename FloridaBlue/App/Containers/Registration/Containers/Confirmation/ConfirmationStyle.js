@@ -33,7 +33,8 @@ export default StyleSheet.create({
   subheading: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.003,
     marginLeft: Metrics.doubleBaseMargin,
-    marginTop: Metrics.doubleBaseMargin
+    marginTop: Metrics.doubleBaseMargin,
+    color: Colors.flBlue.anvil
   },
   subheading1: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002,
