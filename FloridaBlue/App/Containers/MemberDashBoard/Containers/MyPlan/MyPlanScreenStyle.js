@@ -61,7 +61,9 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin
   },
   wrapper: {
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.snow,
+    //width:Metrics.screenWidth,
+    //backgroundColor:'red'
 
   },
   myplanTilesStyle: {
@@ -79,12 +81,13 @@ export default StyleSheet.create({
   headerStyle: {
     flex: 1,
     alignItems: 'center',
-  // justifyContent:'center',
-    flexWrap: 'nowrap',
+    
+    // justifyContent:'center',
+   // flexWrap: 'nowrap',
 //  borderWidth:2,
     marginTop: Metrics.smallMargin,
-    marginLeft: 10,
-    marginRight: 15
+   // marginLeft: 10,
+  // marginRight: 15
 //  borderColor:Colors.flBlue.grey4,
 //  backgroundColor:Colors.flBlue.grey2
   },
@@ -147,7 +150,7 @@ export default StyleSheet.create({
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.subHeaderFont,
     marginBottom: Metrics.baseMargin,
-    marginTop: Metrics.baseMargin
+    marginTop: Metrics.smallMargin
   },
   listViewBg: {
     flexDirection: 'row',
@@ -156,15 +159,14 @@ export default StyleSheet.create({
   },
   dataContainer: {
 //  flexDirection:'row',
-    marginLeft: Metrics.doubleBaseMargin,
-    marginRight: Metrics.doubleBaseMargin,
+  // marginLeft: Metrics.doubleBaseMargin,
+  // marginRight: Metrics.doubleBaseMargin,
     // flex: 1,
-    margin: Metrics.baseMargin,
+// margin: Metrics.baseMargin,
     flexWrap: 'wrap'
   },
   listViewStyle: {
     alignItems: 'flex-start',
-
     marginLeft: Metrics.doubleBaseMargin
 
   },
