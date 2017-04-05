@@ -97,7 +97,7 @@ class Screen_3 extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView keyboardShouldPersistTaps>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps contentInset={null}>
           <Image source={Images.registrationStep3Hdr} style={styles.headerImage} >
             <Text style={styles.headerTextStyle}>Verify Your Account</Text>
           </Image>

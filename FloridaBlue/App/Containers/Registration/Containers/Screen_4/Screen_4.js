@@ -102,7 +102,7 @@ class Screen_4 extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView keyboardShouldPersistTaps>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps contentInset={null}>
           {this.props.username ? <View /> : <Image source={Images.registrationStep4Hdr} style={styles.headerImage}>
             <Text style={styles.headerTextStyle}>Almost Done!</Text>
           </Image>}
