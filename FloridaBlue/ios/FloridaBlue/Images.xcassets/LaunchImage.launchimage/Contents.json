@@ -25,7 +25,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "ipad",
-      "filename" : "768x1004-1.png",
+      "filename" : "768x1004.png",
       "extent" : "to-status-bar",
       "scale" : "1x"
     },
@@ -104,7 +104,7 @@
       "extent" : "full-screen",
       "idiom" : "ipad",
       "subtype" : "1366h",
-      "filename" : "iPadPro.png",
+      "filename" : "2048x2732.png",
       "minimum-system-version" : "8.0",
       "orientation" : "portrait",
       "scale" : "2x"
@@ -121,7 +121,7 @@
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "retina4",
-      "filename" : "iPhoneSE.png",
+      "filename" : "640x1136-1.png",
       "minimum-system-version" : "7.0",
       "orientation" : "portrait",
       "scale" : "2x"
