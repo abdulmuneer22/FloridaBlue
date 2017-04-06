@@ -107,7 +107,7 @@ export default StyleSheet.create({
   popupchildText: {
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
     marginLeft: Metrics.smallMargin,
-   // textAlign:'center',
+    color: Colors.flBlue.anvil,
     alignSelf: 'center'
 
   },
