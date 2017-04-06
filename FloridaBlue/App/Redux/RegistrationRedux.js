@@ -148,7 +148,7 @@ export const _sendRegistrationCodeRequest = (state: Object) => state.merge({ fet
 
 // sendRegistrationCodeSuccess
 export const _sendRegistrationCodeSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, token: data.token, registrationCodeStatus: data.registrationCodeStatus, registrationCodeStatusMessage: data.registrationCodeStatusMessage})
+  state.merge({ token: data.token, registrationCodeStatus: data.registrationCodeStatus, registrationCodeStatusMessage: data.registrationCodeStatusMessage})
 
 // _sendRegistrationCodeFailure
 export const _sendRegistrationCodeFailure = (state: Object, {data}: Object) =>

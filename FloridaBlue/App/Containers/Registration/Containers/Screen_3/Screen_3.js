@@ -67,13 +67,10 @@ class Screen_3 extends React.Component {
   }
 
   componentDidUpdate () {
+    console.log("Fetching Status: ", this.props.fetching)
     // Step 1 - Verify registration code
     if (this.props.registrationCodeStatus && this.props.registerUserStatus === null) {
       var registrationCodeStatus = this.props.registrationCodeStatus
-
-      if (registrationCodeStatus === '000') {
-      //  this.props.verifyRegisterUser(this.props)
-      }
     }
 
     // Step 2 - Register user
@@ -84,9 +81,7 @@ class Screen_3 extends React.Component {
       if (registrationCodeStatus === '000' && registerUserStatus === '000') {
         this.props.handleChangeRegistrationCodeStatus(null)
         this.props.handleChangeRegisterUserStatus(null)
-        console.tron.log('Auto login the user for secured services')
         this.props.attemptLogin(this.props.createUserId, this.props.password)
-        console.tron.log('Navigating to Screen 4')
         if (this.props.loginError === null) {
           NavigationActions.screen_4()
         }
