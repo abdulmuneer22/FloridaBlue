@@ -110,7 +110,7 @@ class Card extends Component {
 
           {
             notesVisible
-              ? <View style={{margin:10}}>
+              ? <View style={{marginLeft:10, marginRight:10}}>
                 <HTMLView value={htmvalue}
                  stylesheet={HtMLstyles} />
               </View>
