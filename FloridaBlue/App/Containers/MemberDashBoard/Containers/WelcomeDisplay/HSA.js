@@ -55,8 +55,8 @@ class Hsa extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props.data != undefined) {
-      if(this.props.data.currentBalance.value ||this.props.data.contribution.value || this.props.data.distribution.value ){
+    } else if (this.props.data && this.props.data.currentBalance) {
+      if( this.props.data.currentBalance.value || this.props.data.contribution.value || this.props.data.distribution.value) {
       return (<View style={{flex: 1}}>
 
         {this.props.data != undefined}
