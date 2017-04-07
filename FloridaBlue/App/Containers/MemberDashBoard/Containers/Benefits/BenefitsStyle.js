@@ -62,7 +62,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont
   },
   spinnerText: {
-
+    color: Colors.flBlue.anvil,
     marginTop: 20
   },
   spinnerView: {

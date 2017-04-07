@@ -57,7 +57,7 @@ export default StyleSheet.create({
   },
 
   spinnerText: {
-
+    color: Colors.flBlue.anvil,
     marginTop: Metrics.doubleBaseMargin
   },
   wrapper: {
@@ -81,7 +81,7 @@ export default StyleSheet.create({
   headerStyle: {
     flex: 1,
     alignItems: 'center',
-    
+
     // justifyContent:'center',
    // flexWrap: 'nowrap',
 //  borderWidth:2,
@@ -169,9 +169,6 @@ export default StyleSheet.create({
     alignItems: 'flex-start',
     marginLeft: Metrics.doubleBaseMargin
 
-  },
-  spinnerText: {
-    marginTop: 20
   },
   spinnerView: {
     alignItems: 'center',

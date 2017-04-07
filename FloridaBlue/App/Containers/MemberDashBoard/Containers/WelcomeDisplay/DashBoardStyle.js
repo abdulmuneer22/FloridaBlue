@@ -297,9 +297,9 @@ export default StyleSheet.create({
     height: window.height
   },
   spinnerText: {
-
+    color: Colors.flBlue.anvil,
     marginTop: Metrics.doubleBaseMargin,
-    
+
   }
 
 })
