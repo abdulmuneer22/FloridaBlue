@@ -39,7 +39,8 @@ var getReasonMessage = function (status) {
     '021': 'Please head to floridablue.com or bluemedicarefl.com to sign up for your member account.',
     '055': "Oops! Looks like we're having trouble with your request. Click Support for help.",
     '056': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '057': "Oops! Looks like we're having trouble with your request. Click Support for help."
+    '057': "Oops! Looks like we're having trouble with your request. Click Support for help.",
+    '999': "Oops! Looks like we're having trouble with your request. Click Support for help.",
   }
 
   console.tron.log(status)
