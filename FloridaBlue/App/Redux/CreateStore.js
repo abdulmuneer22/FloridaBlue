@@ -21,7 +21,7 @@ export default (rootReducer, rootSaga) => {
   middleware.push(sagaMiddleware)
 
   /* ------------- Logger Middleware ------------- */
-
+/*
   const SAGA_LOGGING_BLACKLIST = ['EFFECT_TRIGGERED', 'EFFECT_RESOLVED', 'EFFECT_REJECTED', 'persist/REHYDRATE']
   if (__DEV__) {
     // the logger master switch
@@ -33,7 +33,7 @@ export default (rootReducer, rootSaga) => {
     })
     middleware.push(logger)
   }
-
+*/
   /* ------------- Assemble Middleware ------------- */
 
   enhancers.push(applyMiddleware(...middleware))
