@@ -22,7 +22,7 @@
     "android:shake": "$ANDROID_HOME/platform-tools/adb devices | grep '\\t' | awk '{print $1}' | sed 's/\\s//g' | xargs -I {} $ANDROID_HOME/platform-tools/adb -s {} shell input keyevent 82",
     "flow": "flow --show-all-errors"
   },
-    "dependencies": {
+  "dependencies": {
     "apisauce": "^0.10.0",
     "btoa": "^1.1.2",
     "buffer": "^5.0.6",
@@ -35,6 +35,7 @@
     "react": "~15.4.1",
     "react-native": "0.42.0",
     "react-native-animatable": "^1.1.1",
+    "react-native-card-view": "^0.0.3",
     "react-native-config": "^0.2.1",
     "react-native-device-info": "^0.10.0",
     "react-native-drawer": "^2.3.0",
