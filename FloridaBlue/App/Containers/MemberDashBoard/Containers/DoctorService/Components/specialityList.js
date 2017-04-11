@@ -50,7 +50,7 @@ class specialityList extends Component {
       var card = this.props.data.officeServices.outNetwork
     }
 
-    console.log('card of innetwork' + JSON.stringify(this.props.leftActive))
+    console.tron.log('card of innetwork' + JSON.stringify(this.props.leftActive))
           // looping through cards to create the view
     var i = 0
     return (

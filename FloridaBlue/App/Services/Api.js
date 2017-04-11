@@ -27,13 +27,13 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     timeout: 60000
   })
 
-  const naviMonitor = (response) => console.log('hey!  listen! ', response)
+  const naviMonitor = (response) => console.tron.log('hey!  listen! ', response)
   api.addMonitor(naviMonitor)
 
   // Force OpenWeather API Key on all requests
 
   api.addRequestTransform((request) => {
-    console.log('hey ther I am ' + JSON.stringify(request))
+    console.tron.log('hey ther I am ' + JSON.stringify(request))
   })
 
   // Wrap api's addMonitor to allow the calling code to attach

@@ -44,7 +44,7 @@ var getReasonMessage = function (status) {
   }
 
   console.tron.log(status)
-  console.log('im status' + status)
+  console.tron.log('im status' + status)
   var message = messages[status]
 
   return (message)
@@ -59,8 +59,8 @@ export function * sendIdentificationRequest (api, {data}) {
     data.identificationStatus = data.reasonCode
     data.identificationStatusMessage = getReasonMessage(data.identificationStatus)
     console.tron.log(data)
-    console.log(data)
-    console.log('im reason code' + data.reasonCode)
+    console.tron.log(data)
+    console.tron.log('im reason code' + data.reasonCode)
     console.tron.log(data.reasonCode)
     yield put(RegistrationActions.sendIdentificationSuccess(data))
   } else {
@@ -79,7 +79,7 @@ export function * sendPersonalInformationRequest (api, {data}) {
   if (response.ok) {
     var error = null
     var data = response.data
-    console.log(response.data)
+    console.tron.log(response.data)
     data.personalInformationStatus = data.reasonCode
     data.personalInformationStatusMessage = getReasonMessage(data.personalInformationStatus)
     console.tron.log(data)
@@ -96,14 +96,14 @@ export function * sendPersonalInformationRequest (api, {data}) {
 
 export function * sendRegistrationCodeRequest (api, {data}) {
   const response = yield call(api.postRegistrationCode, data)
-  console.log(response)
+  console.tron.log(response)
   var sendData = data
   if (response.ok) {
     var error = null
     var data = response.data
     data.registrationCodeStatus = data.reasonCode
     data.registrationCodeStatusMessage = getReasonMessage(data.registrationCodeStatus)
-    console.log('hey I am successfully sent code')
+    console.tron.log('hey I am successfully sent code')
     if (response.data.reasonCode == '000') {
       yield put(RegistrationActions.registerUserRequest(sendData, data.token))
     }

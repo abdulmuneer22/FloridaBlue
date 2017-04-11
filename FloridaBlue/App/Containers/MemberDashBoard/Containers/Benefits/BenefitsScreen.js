@@ -42,7 +42,7 @@ class PlanBenefits extends Component {
   }
 
   componentDidMount () {
-    console.log('I am my plan screen')
+    console.tron.log('I am my plan screen')
 // this.props.attemptMyPlan()
   }
 
@@ -118,7 +118,7 @@ class PlanBenefits extends Component {
 
   render () {
     var objectName = this.props.objectName
-    console.log('root testing')
+    console.tron.log('root testing')
     var i = 0
     var tileCard = []
     return (

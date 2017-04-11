@@ -33,7 +33,7 @@ class RootContainer extends Component {
   }
 
   componentWillReceiveProps () {
-    console.log('Component received props..', this.props)
+    console.tron.log('Component received props..', this.props)
   }
 
   _handleAppState () {

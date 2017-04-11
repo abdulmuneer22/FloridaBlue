@@ -76,7 +76,7 @@ class Resources extends Component {
                 const index = i + 1
                 const TileCount = this.props.visibilityRules.additionalTiles.length
 
-                console.log(tile)
+                console.tron.log(tile)
                 return (
                   <Card
                     i={i}
@@ -113,7 +113,7 @@ class Resources extends Component {
   }
 
   render () {
-    console.log('root testing')
+    console.tron.log('root testing')
 
     var i = 0
     return (

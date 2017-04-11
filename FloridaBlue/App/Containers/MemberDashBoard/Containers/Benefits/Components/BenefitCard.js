@@ -44,16 +44,16 @@ class Card extends Component {
   }
 
   componentWillMount () {
-    // console.log(this.props.i)
-    // console.log(this.props.CardCount)
+    // console.tron.log(this.props.i)
+    // console.tron.log(this.props.CardCount)
     const index = this.props.i + 1
     const count = this.props.CardCount
     if (count % 2 !== 0) {
-      // console.log("odd number cards !!")
+      // console.tron.log("odd number cards !!")
 
       if (index === count) {
-      // console.log("index" ,index)
-      // console.log("count" , count)
+      // console.tron.log("index" ,index)
+      // console.tron.log("count" , count)
         this.setState({
           CardWidth: (window.width * 0.92)
         })
@@ -62,7 +62,7 @@ class Card extends Component {
   }
 
   customNavigation () {
-    console.log(this.props)
+    console.tron.log(this.props)
     var action
     if (this.props.tileType == 'native') {
       var routerName = this.props.routerName

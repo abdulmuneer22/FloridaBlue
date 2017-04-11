@@ -59,7 +59,7 @@ class DoctorServices extends Component {
       if (objectName != null) {
         headerTextStr = this.props.data[objectName] != null && this.props.data[objectName].inNetwork != null && this.props.data[objectName].inNetwork.header_text != undefined ? this.props.data[objectName].inNetwork.header_text.en : ''
       }
-      // console.log(this.props.data[objectName].inNetwork.header_text.en)
+      // console.tron.log(this.props.data[objectName].inNetwork.header_text.en)
     } else if (this.props.rightActive) {
       var objectName = this.props.objectName
       if (objectName != null) {
@@ -90,11 +90,11 @@ class DoctorServices extends Component {
       var tiles = this.props.data.tiles
       var tile = tiles.filter(function (tiles) { return (tiles.tileId == objectName) })
 
-      console.log('tile' + JSON.stringify(tile))
-      console.log('tiles' + JSON.stringify(tiles))
-      // console.log("checking for switch options" , this.props.data.emergencyMedicalCareServices);
+      console.tron.log('tile' + JSON.stringify(tile))
+      console.tron.log('tiles' + JSON.stringify(tiles))
+      // console.tron.log("checking for switch options" , this.props.data.emergencyMedicalCareServices);
       const switchItems = this.props.data.emergencyMedicalCareServices
-      console.log('checking for switch options', switchItems)
+      console.tron.log('checking for switch options', switchItems)
 
       return (<ScrollView>
         <View style={{ flex: 1 }}>

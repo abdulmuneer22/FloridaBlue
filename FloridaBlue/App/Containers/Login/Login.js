@@ -115,11 +115,11 @@ class Login extends Component {
   componentDidMount () {
     this.props.clearLogin()
     RCTNetworking.clearCookies((cleared) => {
-      console.log('clearing local cookies for the app')
+      console.tron.log('clearing local cookies for the app')
     })
 
     BackAndroid.addEventListener('hardwareBackPress', function () {
-      console.log('android back')
+      console.tron.log('android back')
  // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
  // Typically you would use the navigator here to go to the last state.
 
@@ -131,8 +131,8 @@ class Login extends Component {
    // this.forceUpdate()   makes to rerender the stuff     Got the issue of redering
   // Did the login attempt complete?
 
-    console.log('I am receving new props' + newProps.responseURL)
-    console.log('I am receving new smToken' + newProps.smToken)
+    console.tron.log('I am receving new props' + newProps.responseURL)
+    console.tron.log('I am receving new smToken' + newProps.smToken)
     var responseURL = newProps.responseURL
     if (this.props != newProps) {
       if (this.isAttempting && !newProps.fetching && newProps.error === null && responseURL) {
@@ -161,7 +161,7 @@ class Login extends Component {
         // Unauthorized User
         } else if (responseURL.includes('mob/error/accessdenied')) {
           RCTNetworking.clearCookies((cleared) => {
-            console.log('clearing local cookies for the app')
+            console.tron.log('clearing local cookies for the app')
           })
           this.props.attemptLogout()
           Alert.alert('Login', 'Please use your user ID and password to log in. You must be a Florida Blue member.',
@@ -174,7 +174,7 @@ class Login extends Component {
         // Disabled Account
         } else if (responseURL.includes('apsparam=usrlocked')) {
           RCTNetworking.clearCookies((cleared) => {
-            console.log('clearing local cookies for the app')
+            console.tron.log('clearing local cookies for the app')
           })
           this.props.attemptLogout()
 
@@ -209,9 +209,9 @@ class Login extends Component {
       } else {
         if (newProps.error == '401') {
           this.props.clearLogin()
-           console.log('coming from future contract scenarios')
+           console.tron.log('coming from future contract scenarios')
           RCTNetworking.clearCookies((cleared) => {
-            console.log('clearing local cookies for the app')
+            console.tron.log('clearing local cookies for the app')
           })
           Alert.alert('Login', 'The user ID or password you have entered is incorrect. Please try again.', [
             {
@@ -220,9 +220,9 @@ class Login extends Component {
           ])
         } else if (newProps.error != null && newProps.error != '401') {
           this.props.clearLogin()
-          console.log('coming from future contract')
+          console.tron.log('coming from future contract')
           RCTNetworking.clearCookies((cleared) => {
-            console.log('clearing local cookies for the app')
+            console.tron.log('clearing local cookies for the app')
           })
           Alert.alert('Login', 'Oops! Looks Like There\'s a, Problem. ',
            [

@@ -16,7 +16,7 @@ class NavigationDrawer extends Component {
   render () {
     const state = this.props.navigationState
     const children = state.children
-    console.log('state.type', state.contentType)
+    console.tron.log('state.type', state.contentType)
     let content
     if (state.contentType == 'menu') {
       content = <DrawerContent />

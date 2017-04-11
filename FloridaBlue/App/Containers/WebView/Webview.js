@@ -47,12 +47,12 @@ class Webview extends Component {
     var smToken = this.props.smToken
     var redirect = null
     onNavigationStateChange = (navState) => {
-      console.log(navState.url)
-      console.log(navState)
+      console.tron.log(navState.url)
+      console.tron.log(navState)
     }
     onShouldStartLoadWithRequest = (event) => {
     // Implement any custom loading logic here, don't forget to return!
-      console.log(event, 'request')
+      console.tron.log(event, 'request')
       return true
     }
 
@@ -67,7 +67,7 @@ class Webview extends Component {
         method: 'GET'
       }
     }
-    console.log('redirect' + JSON.stringify(redirect))
+    console.tron.log('redirect' + JSON.stringify(redirect))
     return (
       <View style={{
         flex: 1,

@@ -69,14 +69,14 @@ class LandingScreen extends Component {
   }
   componentDidMount () {
     BackAndroid.addEventListener('hardwareBackPress', function () {
-      console.log('android back')
+      console.tron.log('android back')
       // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
       // Typically you would use the navigator here to go to the last state.
 
       return true
     })
 
-    console.log('mount on dashboadr' + this.props.smToken)
+    console.tron.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin == 'registration') {
       this.props.attemptMember()
     }
@@ -86,7 +86,7 @@ class LandingScreen extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    console.log('dash board failure' + newProps.error)
+    console.tron.log('dash board failure' + newProps.error)
     /*
    if (!newProps.error) {
        NavigationActions.ErrorPage()

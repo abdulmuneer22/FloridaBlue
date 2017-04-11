@@ -24,7 +24,7 @@ var {height, width} = Dimensions.get('window')
 
 class MyPlanCard extends Component {
   customNavigation () {
-    console.log(this.props.data)
+    console.tron.log(this.props.data)
     var action
     if (this.props.data.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.data.tileUrl})

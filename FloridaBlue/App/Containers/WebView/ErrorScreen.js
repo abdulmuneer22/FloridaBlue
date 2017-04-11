@@ -25,7 +25,7 @@ const window = Dimensions.get('window')
 class ErrorScreen extends Component {
   componentDidMount () {
     RCTNetworking.clearCookies((cleared) => {
-      console.log('clearing local cookies for the app')
+      console.tron.log('clearing local cookies for the app')
     })
   }
 

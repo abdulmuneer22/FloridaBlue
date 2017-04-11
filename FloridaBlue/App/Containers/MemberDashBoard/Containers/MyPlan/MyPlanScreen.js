@@ -53,7 +53,7 @@ class MyPlanScreen extends Component {
     </Image>)
   }
   componentDidMount () {
-    console.log('I am my plan screen')
+    console.tron.log('I am my plan screen')
   //   this.props.attemptMyPlan()
   }
 
@@ -65,7 +65,7 @@ class MyPlanScreen extends Component {
       </View>)
     } else if (this.props.data && this.props.visibilityRules.planOverViewTiles != null && this.props.visibilityRules.planOverViewTiles.length > 0) {
 
-       console.log("message",this.props.data.errorMessage)
+       console.tron.log("message",this.props.data.errorMessage)
       var message = this.props.data.errorMessage
       return (
         <View style={styles.container}>
@@ -103,7 +103,7 @@ class MyPlanScreen extends Component {
                 const index = i + 1
                 const TileCount = this.props.visibilityRules.planOverViewTiles.length
 
-                console.log(tile)
+                console.tron.log(tile)
                 return (
                   <Card
                     i={i}
@@ -128,7 +128,7 @@ class MyPlanScreen extends Component {
 
       )
     } else if (this.props.error != null) {
-      console.log("message",this.props.data.errorMessage)
+      console.tron.log("message",this.props.data.errorMessage)
       var message = this.props.data.errorMessage
       Alert.alert(
         'My Plan Overview',
@@ -143,7 +143,7 @@ class MyPlanScreen extends Component {
   }
 
   render () {
-    console.log(this.props.data)
+    console.tron.log(this.props.data)
     return (
 
       <View style={styles.container}>
@@ -166,7 +166,7 @@ MyPlanScreen.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state is', state)
+  console.tron.log('state is', state)
   return {
     fetching: state.myplan.fetching,
     data: state.myplan.data,

@@ -40,8 +40,8 @@ class Switch extends Component {
   }
 
   render () {
-        // console.log("From Switch");
-        // console.log(this.props);
+        // console.tron.log("From Switch");
+        // console.tron.log(this.props);
     return (
       <View style={{
         flexDirection: 'row',

@@ -21,8 +21,8 @@ class Switch extends Component {
   }
 
   render () {
-    console.log('checking data from switch', this.props.data)
-    console.log(this.props)
+    console.tron.log('checking data from switch', this.props.data)
+    console.tron.log(this.props)
     var _this = this
 
     var oneTabLeftActiveStyle = {
@@ -242,7 +242,7 @@ class Switch extends Component {
       var preferredNetwork = temp1.preferredNetwork
 
       if (temp1 != null && temp1.inNetwork != null && temp1.outNetwork != null && temp1.preferredNetwork != null) {
-        console.log('preferrr', temp1.preferredNetwork)
+        console.tron.log('preferrr', temp1.preferredNetwork)
         var inNetwork = inNetwork.title['en']
         var outNetwork = outNetwork.title['en']
         var preferredNetwork = preferredNetwork.title['en']
@@ -294,7 +294,7 @@ class Switch extends Component {
           )
         } else if (temp1 != null && temp1.inNetwork != null) {
           var inNetwork = inNetwork.title['en']
-          console.log('one tab', inNetwork)
+          console.tron.log('one tab', inNetwork)
 
           return (_oneTabView(
               oneTabLeftActiveStyle,

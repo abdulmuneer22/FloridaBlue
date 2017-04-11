@@ -62,7 +62,7 @@ class SettingsContent extends Component {
   }
 
   handlePressPlans = () => {
-    console.log(this.props.data)
+    console.tron.log(this.props.data)
     var action
     if (this.props.visibilityRules.myHealthPlanTile.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.visibilityRules.myHealthPlanTile.tileUrl})
@@ -109,7 +109,7 @@ class SettingsContent extends Component {
     NavigationActions.MyView()
   }
   handlePressSupport= () => {
-    console.log(this.props.data)
+    console.tron.log(this.props.data)
     var action
     if (this.props.visibilityRules.supportTile.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.visibilityRules.supportTile.tileUrl})
@@ -121,7 +121,7 @@ class SettingsContent extends Component {
     }
   }
   handlePressPolicy= () => {
-    console.log(this.props.data)
+    console.tron.log(this.props.data)
     var action
     if (this.props.visibilityRules.touTile.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.visibilityRules.touTile.tileUrl})
@@ -135,11 +135,11 @@ class SettingsContent extends Component {
 
   handlePressLogout = () => {
     this.toggleDrawer()
-    console.log('clear the store before logout')
+    console.tron.log('clear the store before logout')
    // AsyncStorage.clear();
     this.props.clearLogin()
     RCTNetworking.clearCookies((cleared) => {
-      console.log('clearing local cookies for the app')
+      console.tron.log('clearing local cookies for the app')
     })
     this.props.attemptLogout()
     NavigationActions.login()
@@ -189,7 +189,7 @@ class SettingsContent extends Component {
                   <View>
                     { this.props.visibilityRules != undefined && this.props.visibilityRules.planOverViewTiles != undefined
               ? this.props.visibilityRules.planOverViewTiles.map((tile, i) => {
-                console.log('checking plan overview', tile)
+                console.tron.log('checking plan overview', tile)
                 onItemPress = function () {
                   var action
                   if (tile.tileType == 'webview') {
@@ -251,7 +251,7 @@ class SettingsContent extends Component {
                   this.toggleDrawer()
                 }
               }
-              // console.log("support id checking", tile);
+              // console.tron.log("support id checking", tile);
               renderItem = () => {
                 if (tile.tileId != null && tile.tileId !== 'support' && tile.tileId !== 'claims' && tile.tileId.indexOf('benefits') == -1) {
                   return (

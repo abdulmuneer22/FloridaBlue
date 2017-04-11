@@ -50,23 +50,23 @@ class MyPlanSwiper extends Component {
   }
 
   render () {
-    console.log(this.props.data)
+    console.tron.log(this.props.data)
 /*
     var myPlan = []
     // const this.props.data=this.props.data
      if (this.props.data != null && this.props.data.annualDeductible !=undefined && this.props.data.annualDeductible.pnNetwork !=undefined) {
       var pnNetwork = this.props.data.annualDeductible.pnNetwork
-      console.log(pnNetwork)
+      console.tron.log(pnNetwork)
       if (Object.keys(pnNetwork.planBenefits) > 0) {
         pnNetwork.planBenefits[0].benefit.map(function (temObj) {
-          console.log(temObj)
+          console.tron.log(temObj)
           myPlan.push(temObj)
         })
       }
     }
     if (this.props.data != null && this.props.data.annualDeductible != undefined && this.props.data.annualDeductible.inNetwork != undefined) {
       var inNetwork = this.props.data.annualDeductible.inNetwork
-      console.log(inNetwork)
+      console.tron.log(inNetwork)
       if (Object.keys(inNetwork.planBenefits) > 0) {
         inNetwork.planBenefits[0].benefit.map(function (temObj) {
           myPlan.push(temObj)
@@ -76,10 +76,10 @@ class MyPlanSwiper extends Component {
 
     if (this.props.data != null && this.props.data.annualDeductible != undefined && this.props.data.annualDeductible.outNetwork != undefined) {
       var outNetwork = this.props.data.annualDeductible.outNetwork
-      console.log(outNetwork)
+      console.tron.log(outNetwork)
       if (Object.keys(outNetwork.planBenefits) > 0) {
         outNetwork.planBenefits[0].benefit.map(function (temObj) {
-          console.log(temObj)
+          console.tron.log(temObj)
           myPlan.push(temObj)
         })
       }
@@ -87,7 +87,7 @@ class MyPlanSwiper extends Component {
 
      if (this.props.data != null && this.props.data.oop !=undefined && this.props.data.oop.pnNetwork !=undefined) {
       var pnNetwork = this.props.data.oop.pnNetwork
-      console.log(pnNetwork)
+      console.tron.log(pnNetwork)
       if (Object.keys(pnNetwork.planBenefits) > 0) {
         pnNetwork.planBenefits[0].benefit.map(function (temObj) {
           myPlan.push(temObj)
@@ -97,7 +97,7 @@ class MyPlanSwiper extends Component {
 
      if (this.props.data != null && this.props.data.oop !=undefined && this.props.data.oop.inNetwork !=undefined) {
       var inNetwork = this.props.data.oop.inNetwork
-      console.log(inNetwork)
+      console.tron.log(inNetwork)
       if (Object.keys(inNetwork.planBenefits) > 0) {
         inNetwork.planBenefits[0].benefit.map(function (temObj) {
           myPlan.push(temObj)
@@ -106,7 +106,7 @@ class MyPlanSwiper extends Component {
     }
     if (this.props.data != null && this.props.data.oop != undefined && this.props.data.oop.outNetwork != undefined) {
       var outNetwork = this.props.data.oop.outNetwork
-      console.log(outNetwork)
+      console.tron.log(outNetwork)
       if (Object.keys(outNetwork.planBenefits) > 0) {
         outNetwork.planBenefits[0].benefit.map(function (temObj) {
           myPlan.push(temObj)
@@ -118,10 +118,10 @@ class MyPlanSwiper extends Component {
     return (
       <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.42)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.44))} style={styles.wrapper} showsButtons>
         { this.getChildrenOptions(this.props.data).map((network, i) => {
-          console.log('children options are', this.getChildrenOptions(this.props.data))
-          console.log('planbenefits length', Object.keys(network.planBenefits).length)
+          console.tron.log('children options are', this.getChildrenOptions(this.props.data))
+          console.tron.log('planbenefits length', Object.keys(network.planBenefits).length)
      //      const planBenefits = _.head(network.planBenefits)
-    //       console.log('plan benefits', planBenefits)
+    //       console.tron.log('plan benefits', planBenefits)
           return (
             <View style={styles.headerStyle} key={i}>
               <Text style={styles.headerText}>

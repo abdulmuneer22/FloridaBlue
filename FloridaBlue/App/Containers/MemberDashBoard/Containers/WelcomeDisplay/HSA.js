@@ -44,7 +44,7 @@ class Hsa extends Component {
     </Image>)
   }
   componentDidMount () {
-    console.log('I am HSA screen')
+    console.tron.log('I am HSA screen')
     console.tron.log(this.props)
   //  this.props.attemptSupportScreen()
   }
@@ -118,7 +118,7 @@ class Hsa extends Component {
   }
 
   render () {
-    // console.log(this.props.error)
+    // console.tron.log(this.props.error)
     return (
       <View style={styles.container}>
         {this._renderHeader()}
@@ -138,7 +138,7 @@ Hsa.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.tron.log(state)
   return {
     fetching: state.hsa.fetching,
     data: state.hsa.data,

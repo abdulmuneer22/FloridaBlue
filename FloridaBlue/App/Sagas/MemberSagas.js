@@ -9,7 +9,7 @@ export function * member (api, {smToken}) {
   //    api.setsmTokenHeaders(smToken)
 
   const response = yield call(api.getMember)
-  console.log(JSON.stringify(response))
+  console.tron.log(JSON.stringify(response))
   if (response.status == '200') {
     // dispatch success
     var Name = response.data.data.firstName
@@ -23,9 +23,9 @@ export function * member (api, {smToken}) {
     var financialProduct = response.data.data.defaultContract.financialProduct
     var visibleDashboard = response.data.data.visibleDashboard
     var isIndividualContract = response.data.data.visibilityRule.isIndividualContract
-    console.log('visibleDashboard', visibleDashboard)
-    console.log('financialProduct4' + financialProduct)
-    console.log('termsOfUse' + termsOfUse)
+    console.tron.log('visibleDashboard', visibleDashboard)
+    console.tron.log('financialProduct4' + financialProduct)
+    console.tron.log('termsOfUse' + termsOfUse)
     var data = {
       'firstName': response.data.data.firstName,
       'lastName': response.data.data.lastName,
@@ -43,7 +43,7 @@ export function * member (api, {smToken}) {
     }
     yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, visibleDashboard, defaultContract))
   } else {
-    console.log('failure ')
+    console.tron.log('failure ')
     var error = response.status
     yield put(MemberActions.memberFailure(error))
   }

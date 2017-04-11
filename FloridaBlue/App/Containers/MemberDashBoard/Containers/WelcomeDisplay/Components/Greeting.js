@@ -47,7 +47,7 @@ class Greeting extends Component {
 /*  _getUserData(){
     axios.get('http://localhost:9000/members')
     .then((response)=>{
-      console.log(response.data.firstName + " " + response.data.lastName);
+      console.tron.log(response.data.firstName + " " + response.data.lastName);
       this.setState({
         userName : response.data.firstName + " " + response.data.lastName
       });
