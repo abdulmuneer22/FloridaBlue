@@ -10,7 +10,8 @@ import {
   Image,
   Modal,
   WebView,
-  BackAndroid
+  BackAndroid,
+  Platform
   } from 'react-native'
 import styles from './WebViewStyle'
 import NavItems from '../../Navigation/NavItems.js'
@@ -57,7 +58,7 @@ class ErrorScreen extends Component {
             <Image  style={{width: Metrics.screenWidth * 0.35,
                             backgroundColor:Colors.transparent,
                             marginLeft:Metrics.searchBarHeight,
-                            marginTop:-Metrics.textHeight,
+                            marginTop: (Platform.OS === 'ios') ? -Metrics.textHeight : null,
                             borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
                             height: Metrics.screenHeight * 0.055}} source={Images.errorBackButton} />
 
