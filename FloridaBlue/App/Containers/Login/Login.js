@@ -338,7 +338,7 @@ class Login extends Component {
           <Clouds />
           <CityScape />
 
-          <View keyboardShouldPersistTaps style={styles.container}>
+          <View keyboardShouldPersistTaps="always" style={styles.container}>
 
             <LogoView>
               <Image source={Images.clearLogo} style={styles.logo} />

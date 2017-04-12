@@ -119,7 +119,7 @@ class Screen_2 extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView keyboardShouldPersistTaps contentInset={null}>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps="always" contentInset={null}>
           <Image source={Images.registrationStep2Hdr} style={styles.headerImage} >
             <Text style={styles.headerTextStyle}>Set Up Your Account</Text>
           </Image>
