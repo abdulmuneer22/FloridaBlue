@@ -98,20 +98,18 @@ class PlanBenefits extends Component {
                   'Plan Benefits',
                   'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
         [
-                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
+                    { text: 'OK' }
 
-        ],
-                  { cancelable: false }
+        ]
                 )
     } else if (this.props.error != null) {
       Alert.alert(
                   'Plan Benefits',
                   'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
         [
-                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
+                    { text: 'OK' }
 
-        ],
-                  { cancelable: false }
+        ]
                 )
     }
   }

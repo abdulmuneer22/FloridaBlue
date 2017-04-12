@@ -161,7 +161,7 @@ class TermsofUse extends Component {
           </ScrollView>
       )
     } else if (this.props.error != null) {
-      Alert.alert( 'TOU', 'Oops! Looks like we\'re having trouble with your request. Click Support for help.', [{ text: 'OK', onPress: () => NavigationActions.login() }], { cancelable: false } )
+      Alert.alert( 'TOU', 'Oops! Looks like we\'re having trouble with your request. Click Support for help.',[ { text: 'OK'} ] )
       return(<View></View>)
     }
   }

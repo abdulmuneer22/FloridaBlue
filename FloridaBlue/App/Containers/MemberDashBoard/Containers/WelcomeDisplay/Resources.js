@@ -104,10 +104,9 @@ class Resources extends Component {
                   'Resources',
                   'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
         [
-                    { text: 'OK', onPress: () => NavigationActions.WelcomeDashBoard() }
+                    { text: 'OK'}
 
-        ],
-                  { cancelable: false }
+        ]
                 )
     }
   }
