@@ -73,7 +73,7 @@ export default StyleSheet.create({
     width: Metrics.screenWidth,
     marginTop: Metrics.baseMargin,
     paddingVertical: Metrics.smallMargin * Metrics.screenHeight * 0.0020,
-    paddingHorizontal: Metrics.doubleBaseMargin,
+    paddingHorizontal: Metrics.doubleBaseMargin * 2,
     height: Metrics.doubleBaseMargin * 4.2,
     backgroundColor: Colors.flBlue.grey1,
     alignItems: 'center',

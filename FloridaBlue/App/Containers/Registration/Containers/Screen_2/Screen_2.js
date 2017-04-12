@@ -274,9 +274,9 @@ class Screen_2 extends React.Component {
               />
             </View>
             <View style={styles.checkboxMessageView}>
-              <Text style={styles.checkboxMessageText}>{I18n.t('commElect')}
-                <Text style={styles.checkboxMessageHyperlink} onPress={() => { this._handleReadMore() }}> Read More</Text>
-              </Text>
+              <Text style={styles.checkboxMessageText}>{I18n.t('commElect')}</Text>
+              <Text style={styles.checkboxMessageHyperlink} onPress={() => { this._handleReadMore() }}>Read More</Text>
+              
             </View>
           </View> : null}
           <View style={styles.buttonRow}>
