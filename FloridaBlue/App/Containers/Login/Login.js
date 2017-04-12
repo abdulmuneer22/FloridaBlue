@@ -118,13 +118,13 @@ class Login extends Component {
       console.tron.log('clearing local cookies for the app')
     })
 
-    BackAndroid.addEventListener('hardwareBackPress', function () {
-      console.tron.log('android back')
- // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
- // Typically you would use the navigator here to go to the last state.
+    // BackAndroid.addEventListener('hardwareBackPress', function () {
+    //   console.tron.log('android back')
+    //   this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
+    //   Typically you would use the navigator here to go to the last state.
 
-      return true
-    })
+    //   return true
+    // })
   }
 
   componentWillReceiveProps (newProps) {
