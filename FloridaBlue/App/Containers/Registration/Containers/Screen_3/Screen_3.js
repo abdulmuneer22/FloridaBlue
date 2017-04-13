@@ -67,7 +67,7 @@ class Screen_3 extends React.Component {
   }
 
   componentDidUpdate () {
-    console.tron.log("Fetching Status: ", this.props.fetching)
+    console.tron.log('Fetching Status: ', this.props.fetching)
     // Step 1 - Verify registration code
     if (this.props.registrationCodeStatus && this.props.registerUserStatus === null) {
       var registrationCodeStatus = this.props.registrationCodeStatus

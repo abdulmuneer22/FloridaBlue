@@ -96,11 +96,11 @@ class TermsofUse extends Component {
     }
   }
 
-  onLoadEnd(event) {
+  onLoadEnd (event) {
     this.state.showCheckbox = true
   }
 
-  _displayCheckbox() {
+  _displayCheckbox () {
     return (
       <View>
         <View style={styles.checkViewStyle}>
@@ -111,7 +111,7 @@ class TermsofUse extends Component {
                 var checked = this.refs.agreeTermsOfUse.state.checked
                 this.props.handleChangeAgreeTermsOfUse(checked)
               }} />
-            </View>
+          </View>
           <View style={styles.checkTextView}>
             <Text style={styles.checkText}>Accept terms of use and continue.</Text>
           </View>
@@ -130,13 +130,13 @@ class TermsofUse extends Component {
     )
   }
 
-  _displayHeader() {
+  _displayHeader () {
     <Image style={styles.headerContainer} source={Images.themeHeader}>
       <Text style={styles.headerTextStyle}>Terms of Use</Text>
     </Image>
   }
 
-  _displayCondition() {
+  _displayCondition () {
     var webHtml = this.props.getTou
 
     if (this.props.fetching) {
@@ -148,26 +148,26 @@ class TermsofUse extends Component {
       )
     } else if (this.props.getTou) {
       return (
-          <ScrollView style={{flex: 1}}>
-            <WebView
+        <ScrollView style={{flex: 1}}>
+          <WebView
             style={{height: this.state.webHeight}}
             source={{html: this.props.getTou + webStyle + webScript}}
             scrollEnabled={false}
-            javaScriptEnabled={true}
+            javaScriptEnabled
             onNavigationStateChange={this.onNavigationStateChange.bind(this)}
             onLoadEnd={this.onLoadEnd.bind(this)} />
 
-            {this.state.showCheckbox && this._displayCheckbox()}
-          </ScrollView>
+          {this.state.showCheckbox && this._displayCheckbox()}
+        </ScrollView>
       )
     } else if (this.props.error != null) {
-      Alert.alert( 'TOU', 'Oops! Looks like we\'re having trouble with your request. Click Support for help.',[ { text: 'OK'} ] )
-      return(<View></View>)
+      Alert.alert('TOU', 'Oops! Looks like we\'re having trouble with your request. Click Support for help.', [ { text: 'OK'} ])
+      return (<View />)
     }
   }
 
   render () {
-    return(
+    return (
       <View style={styles.container}>
         {this._displayHeader()}
         {this._displayCondition()}

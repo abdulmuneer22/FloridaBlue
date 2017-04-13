@@ -22,7 +22,7 @@ export default StyleSheet.create({
     height: (Platform.OS === 'ios') ? Metrics.screenHeight : Metrics.screenHeight - Metrics.section,
     resizeMode: 'stretch',
    // alignItems:'center',
-    justifyContent:'center'
+    justifyContent: 'center'
   },
   container: {
     flex: 1,

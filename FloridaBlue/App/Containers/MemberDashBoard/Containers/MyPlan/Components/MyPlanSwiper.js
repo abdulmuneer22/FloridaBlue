@@ -144,23 +144,23 @@ class MyPlanSwiper extends Component {
                 </View>
                 <View style={{flex: 0.6}}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
-                    return <View style={{flexDirection: 'row',width:Metrics.screenWidth *0.85}} key={i}>
-                      <View style={{flex:0.65}}>
-                      <Text style={{marginTop: Metrics.smallMargin, 
-                      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029, 
-                      fontFamily: Fonts.type.subHeaderFont,
-                       color:Colors.flBlue.anvil
-                      }}>
-                        {benefit ? benefit.label.en : null}:
+                    return <View style={{flexDirection: 'row', width: Metrics.screenWidth * 0.85}} key={i}>
+                      <View style={{flex: 0.65}}>
+                        <Text style={{marginTop: Metrics.smallMargin,
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029,
+                          fontFamily: Fonts.type.subHeaderFont,
+                          color: Colors.flBlue.anvil
+                        }}>
+                          {benefit ? benefit.label.en : null}:
                             </Text>
-                         </View>
-                      <View style={{flex:0.35}}>
-                      <Text style={{marginTop: Metrics.smallMargin, 
-                      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030, 
-                      fontFamily: Fonts.type.subHeaderFont, 
-                      color: Colors.flBlue.grass}}>
+                      </View>
+                      <View style={{flex: 0.35}}>
+                        <Text style={{marginTop: Metrics.smallMargin,
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
+                          fontFamily: Fonts.type.subHeaderFont,
+                          color: Colors.flBlue.grass}}>
                       ${benefit ? benefit.value : null}
-                      </Text>
+                        </Text>
                       </View>
                     </View>
                   }) : <View />}

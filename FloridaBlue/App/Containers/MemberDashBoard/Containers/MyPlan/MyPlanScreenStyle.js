@@ -61,9 +61,9 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin
   },
   wrapper: {
-    backgroundColor: Colors.snow,
-    //width:Metrics.screenWidth,
-    //backgroundColor:'red'
+    backgroundColor: Colors.snow
+    // width:Metrics.screenWidth,
+    // backgroundColor:'red'
 
   },
   myplanTilesStyle: {
@@ -85,7 +85,7 @@ export default StyleSheet.create({
     // justifyContent:'center',
    // flexWrap: 'nowrap',
 //  borderWidth:2,
-    marginTop: Metrics.smallMargin,
+    marginTop: Metrics.smallMargin
    // marginLeft: 10,
   // marginRight: 15
 //  borderColor:Colors.flBlue.grey4,

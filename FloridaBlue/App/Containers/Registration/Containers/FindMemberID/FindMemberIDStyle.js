@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 0
-    },
+  },
   headerImage: {
     width: Metrics.screenWidth,
     resizeMode: 'stretch',

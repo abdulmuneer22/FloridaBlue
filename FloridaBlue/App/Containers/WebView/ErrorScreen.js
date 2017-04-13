@@ -29,8 +29,7 @@ class ErrorScreen extends Component {
     })
   }
 
-  _handlePressBack (){
-   
+  _handlePressBack () {
     NavigationActions.login()
   }
   _renderHeader () {
@@ -54,17 +53,17 @@ class ErrorScreen extends Component {
       <View style={{flex: 1}}>
         <Image style={styles.headerContainerError} source={Images.errorPage}>
 
-        <TouchableOpacity onPress={() => {this._handlePressBack()}}>
-            <Image  style={{width: Metrics.screenWidth * 0.35,
-                            backgroundColor:Colors.transparent,
-                            marginLeft:Metrics.searchBarHeight,
-                            marginTop: (Platform.OS === 'ios') ? -Metrics.textHeight : null,
-                            borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                            height: Metrics.screenHeight * 0.055}} source={Images.errorBackButton} />
+          <TouchableOpacity onPress={() => { this._handlePressBack() }}>
+            <Image style={{width: Metrics.screenWidth * 0.35,
+              backgroundColor: Colors.transparent,
+              marginLeft: Metrics.searchBarHeight,
+              marginTop: (Platform.OS === 'ios') ? -Metrics.textHeight : null,
+              borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+              height: Metrics.screenHeight * 0.055}} source={Images.errorBackButton} />
 
-        </TouchableOpacity>     
-        
-           </Image>     
+          </TouchableOpacity>
+
+        </Image>
       </View>
 
     )

@@ -64,8 +64,7 @@ class MyPlanScreen extends Component {
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.data && this.props.visibilityRules.planOverViewTiles != null && this.props.visibilityRules.planOverViewTiles.length > 0) {
-
-       console.tron.log("message",this.props.data.errorMessage)
+      console.tron.log('message', this.props.data.errorMessage)
       var message = this.props.data.errorMessage
       return (
         <View style={styles.container}>
@@ -127,7 +126,7 @@ class MyPlanScreen extends Component {
 
       )
     } else if (this.props.error != null) {
-      console.tron.log("message",this.props.data.errorMessage)
+      console.tron.log('message', this.props.data.errorMessage)
       var message = this.props.data.errorMessage
       Alert.alert(
         'My Plan Overview',
@@ -135,7 +134,7 @@ class MyPlanScreen extends Component {
         [
           { text: 'OK' }
 
-        ] )
+        ])
     }
   }
 

@@ -1,4 +1,4 @@
-import { call, put} from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects'
 import MemberActions from '../Redux/MemberRedux'
 import LoginActions from '../Redux/LoginRedux'
 import MyPlanActions from '../Redux/MyPlanRedux'
@@ -17,7 +17,7 @@ export function * member (api, {smToken}) {
     var visibilityRules = response.data.data.visibilityRule
     var termsOfUse = response.data.data.visibilityRule.termsOfUse
     var claimsRule = response.data.data.visibilityRule.claims
-    var benefitsRule = response.data.data.visibilityRule.benefits
+    var benefitsRule = response.data.data.visibilityRule.benefitss
     var hsaTrue = response.data.data.visibilityRule.hsa
     var opd = response.data.data.visibilityRule.opd
     var financialProduct = response.data.data.defaultContract.financialProduct
@@ -34,7 +34,7 @@ export function * member (api, {smToken}) {
       'dob': response.data.data.dob,
       'claimsRule': response.data.data.visibilityRule.claims,
       'benefitsRule': response.data.data.visibilityRule.benefits,
-      'isIndividualContract' : isIndividualContract
+      'isIndividualContract': isIndividualContract
     }
     yield put(SupportActions.supportRequest())
     yield put(MyPlanActions.myplanRequest(data))

@@ -40,7 +40,7 @@ var getReasonMessage = function (status) {
     '055': "Oops! Looks like we're having trouble with your request. Click Support for help.",
     '056': "Oops! Looks like we're having trouble with your request. Click Support for help.",
     '057': "Oops! Looks like we're having trouble with your request. Click Support for help.",
-    '999': "Oops! Looks like we're having trouble with your request. Click Support for help.",
+    '999': "Oops! Looks like we're having trouble with your request. Click Support for help."
   }
 
   console.tron.log(status)

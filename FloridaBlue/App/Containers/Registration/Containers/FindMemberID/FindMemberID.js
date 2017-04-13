@@ -55,7 +55,7 @@ class FindMemberID extends React.Component {
                     width: Metrics.screenWidth * 0.75,
                      // borderRadius:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0015,
                     height: Metrics.screenHeight * 0.3,
-                    resizeMode:"stretch"
+                    resizeMode: 'stretch'
                   }}
                   source={Images.idCardFront}
                 />

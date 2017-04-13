@@ -111,12 +111,12 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
     fontFamily: Fonts.type.base,
     textAlign: 'center',
-    color:Colors.flBlue.anvil
+    color: Colors.flBlue.anvil
   },
   registrationCodeParagraph: {
     fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0029,
     fontFamily: Fonts.type.base,
     textAlign: 'justify',
-    color:Colors.flBlue.anvil
+    color: Colors.flBlue.anvil
   }
 })

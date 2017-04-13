@@ -70,7 +70,7 @@ export default StyleSheet.create({
   hsaTextStyle1: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0032,
     fontFamily: Fonts.type.subHeaderFont,
-    color:Colors.flBlue.anvil
+    color: Colors.flBlue.anvil
 
     // fontWeight:'bold'
   },
@@ -87,7 +87,7 @@ export default StyleSheet.create({
     fontWeight: '500',
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.headerFont,
-    color:Colors.flBlue.anvil
+    color: Colors.flBlue.anvil
   },
   hsaText: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0033,
@@ -286,7 +286,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.headerFont,
-    color:Colors.flBlue.anvil
+    color: Colors.flBlue.anvil
     // fontWeight:'bold'
   },
 
@@ -298,7 +298,7 @@ export default StyleSheet.create({
   },
   spinnerText: {
     color: Colors.flBlue.anvil,
-    marginTop: Metrics.doubleBaseMargin,
+    marginTop: Metrics.doubleBaseMargin
 
   }
 

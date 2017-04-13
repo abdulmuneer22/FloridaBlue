@@ -209,7 +209,7 @@ class Login extends Component {
       } else {
         if (newProps.error == '401') {
           this.props.clearLogin()
-           console.tron.log('coming from future contract scenarios')
+          console.tron.log('coming from future contract scenarios')
           RCTNetworking.clearCookies((cleared) => {
             console.tron.log('clearing local cookies for the app')
           })
@@ -225,10 +225,10 @@ class Login extends Component {
             console.tron.log('clearing local cookies for the app')
           })
           Alert.alert('Login', 'Oops! Looks Like There\'s a, Problem. ',
-           [
+            [
           { text: 'OK', onPress: () => NavigationActions.login() }
 
-                ],
+            ],
         { cancelable: false }
 
           )
@@ -338,7 +338,7 @@ class Login extends Component {
           <Clouds />
           <CityScape />
 
-          <View keyboardShouldPersistTaps="always" style={styles.container}>
+          <View keyboardShouldPersistTaps='always' style={styles.container}>
 
             <LogoView>
               <Image source={Images.clearLogo} style={styles.logo} />

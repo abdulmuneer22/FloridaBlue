@@ -129,27 +129,27 @@ class LandingScreen extends Component {
                       ? styles.tileStyle
                       : styles.tileStyle1
                   }
-                  onPress={onItemPress.bind(this)} key={i}>
+                    onPress={onItemPress.bind(this)} key={i}>
 
-                  <Image source={Images[tile.backgroundImage]}
-                    style={{
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
-                      height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
-                    }}>
+                    <Image source={Images[tile.backgroundImage]}
+                      style={{
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
+                        height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
+                      }}>
 
-                    <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow}
-                    style={{ backgroundColor: Colors.transparent}} />
-                    <Text style={styles.tileTextStyle}>
-                      {tile.tileName['en']}
-                    </Text>
-                  </Image>
-                </TouchableOpacity>
+                      <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow}
+                        style={{ backgroundColor: Colors.transparent}} />
+                      <Text style={styles.tileTextStyle}>
+                        {tile.tileName['en']}
+                      </Text>
+                    </Image>
+                  </TouchableOpacity>
 
-              )
-              i += 1
-            }) : <Text />
+                )
+                i += 1
+              }) : <Text />
             }
           </View>
           { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
@@ -186,7 +186,7 @@ class LandingScreen extends Component {
         </View>
 
       )
-    } 
+    }
   }
 
   render () {

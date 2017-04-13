@@ -39,7 +39,7 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025,
    // fontStyle: 'italic',
     fontWeight: '200',
-    width:window.width
+    width: window.width
   })
   .build()
 
@@ -119,7 +119,7 @@ class Screen_2 extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <KeyboardAwareScrollView keyboardShouldPersistTaps="always" contentInset={null}>
+        <KeyboardAwareScrollView keyboardShouldPersistTaps='always' contentInset={null}>
           <Image source={Images.registrationStep2Hdr} style={styles.headerImage} >
             <Text style={styles.headerTextStyle}>Set Up Your Account</Text>
           </Image>
@@ -159,57 +159,57 @@ class Screen_2 extends React.Component {
             />
           </View> : null}
           { !this.props.emailVerified ?
-          <View>
+            <View>
+              <View style={styles.row}>
+                <TextfieldWithFloatingLabel
+                  ref='email'
+                  style={styles.textfieldWithFloatingLabel}
+                  keyboardType='email-address'
+                  editable={!this.props.emailVerified}
+                  returnKeyType='next'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  onChangeText={this.props.handleChangeEmail}
+                  underlineColorAndroid={Colors.coal}
+                  onSubmitEditing={(event) => {
+                    this.refs.confirmEmail.focus()
+                  }}
+                  placeholder={I18n.t('email')} />
+              </View>
+              <View style={styles.row}>
+                <TextfieldWithFloatingLabel
+                  ref='confirmEmail'
+                  value={this.props.confirmEmail}
+                  style={styles.textfieldWithFloatingLabel}
+                  keyboardType='email-address'
+                  returnKeyType='next'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  onChangeText={this.props.handleChangeConfirmEmail}
+                  underlineColorAndroid={Colors.coal}
+                  onSubmitEditing={(event) => {
+                    this.refs.createUserId.focus()
+                  }}
+                  placeholder={I18n.t('confirmEmail')} />
+              </View>
+            </View> :
             <View style={styles.row}>
               <TextfieldWithFloatingLabel
                 ref='email'
+                value={this.props.email}
                 style={styles.textfieldWithFloatingLabel}
                 keyboardType='email-address'
                 editable={!this.props.emailVerified}
                 returnKeyType='next'
                 autoCapitalize='none'
                 autoCorrect={false}
-                onChangeText={this.props.handleChangeEmail}
+                editable={false}
                 underlineColorAndroid={Colors.coal}
                 onSubmitEditing={(event) => {
                   this.refs.confirmEmail.focus()
                 }}
                 placeholder={I18n.t('email')} />
-            </View>
-            <View style={styles.row}>
-              <TextfieldWithFloatingLabel
-                ref='confirmEmail'
-                value={this.props.confirmEmail}
-                style={styles.textfieldWithFloatingLabel}
-                keyboardType='email-address'
-                returnKeyType='next'
-                autoCapitalize='none'
-                autoCorrect={false}
-                onChangeText={this.props.handleChangeConfirmEmail}
-                underlineColorAndroid={Colors.coal}
-                onSubmitEditing={(event) => {
-                  this.refs.createUserId.focus()
-                }}
-                placeholder={I18n.t('confirmEmail')} />
-            </View>
-          </View> :
-          <View style={styles.row}>
-            <TextfieldWithFloatingLabel
-              ref='email'
-              value={this.props.email}
-              style={styles.textfieldWithFloatingLabel}
-              keyboardType='email-address'
-              editable={!this.props.emailVerified}
-              returnKeyType='next'
-              autoCapitalize='none'
-              autoCorrect={false}
-              editable={false}
-              underlineColorAndroid={Colors.coal}
-              onSubmitEditing={(event) => {
-                this.refs.confirmEmail.focus()
-              }}
-              placeholder={I18n.t('email')} />
-          </View> }
+            </View> }
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='createUserId'
@@ -276,7 +276,7 @@ class Screen_2 extends React.Component {
             <View style={styles.checkboxMessageView}>
               <Text style={styles.checkboxMessageText}>{I18n.t('commElect')}</Text>
               <Text style={styles.checkboxMessageHyperlink} onPress={() => { this._handleReadMore() }}>Read More</Text>
-              
+
             </View>
           </View> : null}
           <View style={styles.buttonRow}>

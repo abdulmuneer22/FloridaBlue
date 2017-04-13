@@ -112,10 +112,10 @@ class DoctorServices extends Component {
             }}>
 
               <View style={{
-                flex:0.7,
-                //marginRight:5,
-                alignItems:'center'
-               
+                flex: 0.7,
+                // marginRight:5,
+                alignItems: 'center'
+
               }}>
                 <Text style={styles.doctorTextStyle}>
                   {temp1.text['en']}
@@ -124,10 +124,10 @@ class DoctorServices extends Component {
 
               <View>
                 {this.renderHeaderText() != '' ?
-                  <View style={{ flex:0.3, 
-                        marginLeft: -40,
-                        marginRight: Metrics.mediumMargin
-                        }}>
+                  <View style={{ flex: 0.3,
+                    marginLeft: -40,
+                    marginRight: Metrics.mediumMargin
+                  }}>
                     <TouchableWithoutFeedback onPress={() => {
                       this.setState({ hpActive: !this.state.hpActive })
                     }}>
@@ -136,7 +136,6 @@ class DoctorServices extends Component {
                         marginTop: Metrics.baseMargin
                         // backgroundColor: Colors.flBlue.grey4,
                       }}>
-
 
                         <View >
                           {
@@ -172,7 +171,7 @@ class DoctorServices extends Component {
                       fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
                       margin: 5,
                       textAlign: 'justify',
-                      color:Colors.flBlue.grey5
+                      color: Colors.flBlue.grey5
                     }}>{this.renderHeaderText()}</Text>
                   </View>
                   : null

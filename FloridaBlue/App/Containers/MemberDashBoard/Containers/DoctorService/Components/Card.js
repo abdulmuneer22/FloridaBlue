@@ -24,16 +24,16 @@ const HtMLstyles = StyleSheet.create({
   p: {
     fontWeight: '300',
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
-    color: Colors.flBlue.grey5,
-    
+    color: Colors.flBlue.grey5
+
   },
   a: {
     fontWeight: '300',
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.ocean,
-   textDecorationLine: 'underline'
-  },
-});
+    textDecorationLine: 'underline'
+  }
+})
 
 class Card extends Component {
   constructor () {
@@ -50,7 +50,7 @@ class Card extends Component {
     var temp = this.props.data
     var objectName = this.props.objectName
     var temp1 = temp[objectName]
-    
+
     if (this.props.leftActive) {
       if (temp1 != null && temp1.inNetwork != null && temp1.inNetwork.networkBenefits != null) {
         card = temp1.inNetwork.networkBenefits
@@ -75,7 +75,7 @@ class Card extends Component {
       card.map((network, i) => {
         var speciality = []
         speciality = network['speciality']
-        var htmvalue = '<p>'+_.get(network, 'footer_note.en', '')+'</p>'
+        var htmvalue = '<p>' + _.get(network, 'footer_note.en', '') + '</p>'
         cards.push(<View style={i % 2 == 0 ? styles.cardStyle : styles.cardStyle1} key={i} >
 
           <View style={{
@@ -110,9 +110,9 @@ class Card extends Component {
 
           {
             notesVisible
-              ? <View style={{marginLeft:10, marginRight:10}}>
+              ? <View style={{marginLeft: 10, marginRight: 10}}>
                 <HTMLView value={htmvalue}
-                 stylesheet={HtMLstyles} />
+                  stylesheet={HtMLstyles} />
               </View>
               : null
           }
