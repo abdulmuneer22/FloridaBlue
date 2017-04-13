@@ -57,7 +57,7 @@ class NavigationRouter extends Component {
             <Scene key='useridhint' component={UserIdHint} title='UserIdHint page' hideNavBar />
             <Scene key='passwordHint' component={PasswordHint} title='PasswordHint page' hideNavBar />
             <Scene key='securityHint' component={SecurityHint} title='SecurityHint page' hideNavBar />
-            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNsavBar />
+            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNsavBar type={ActionConst.RESET} />
             <Scene key='memberid' component={FindMemberID} title='MemberId page'hideNavBar />
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />
             <Scene key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
