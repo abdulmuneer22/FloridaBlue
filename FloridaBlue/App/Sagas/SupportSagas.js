@@ -18,7 +18,7 @@ export function * support (api) {
   } else {
     // dispatch successful logins
     console.tron.log('I am coming from failuer ')
-    var error = response.status
+    var error = response.problem
     yield put(SupportActions.supportFailure(error))
   }
 }
