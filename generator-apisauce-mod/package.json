@@ -1,0 +1,42 @@
+{
+  "name": "generator-apisauce-mod",
+  "version": "0.1.0",
+  "description": "Modify apisauce to expose responseURL",
+  "homepage": "https://gitlab-unit.bcbsfl.com/git-mob/mobsauce/apisauce-mod",
+  "author": {
+    "name": "FL Blue",
+    "email": "dibyendu.roy@bcbsfl.com",
+    "url": "https://gitlab-unit.bcbsfl.com/git-mob"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "apisauce",
+    "mod",
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "colors": "^1.1.2",
+    "shelljs": "^0.7.4",
+    "yeoman-generator": "^0.23.0",
+    "pluralize": "latest",
+    "string": "latest",
+    "strp": "latest",
+    "node-dir": "latest"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0"
+  },
+  "repository": "https://github.com/zerodevgroup/accelerate.git",
+  "scripts": {
+    "compile": "babel -d ./ src/",
+    "watch": "babel --watch -d ./ src/",
+    "prepublish": "npm run compile"
+  },
+  "license": "MIT"
+}
