@@ -42,10 +42,7 @@ class FindMemberID extends React.Component {
             <Text style={styles.heading}>{I18n.t('findMemberId')}</Text>
           </View>
           <View style={styles.row}>
-            <Text style={styles.description}>{I18n.t('findMemberIdDescription1')}</Text>
-          </View>
-          <View style={styles.row}>
-            <Text style={styles.description}>{I18n.t('findMemberIdDescription2')}</Text>
+            <Text style={styles.description}>{I18n.t('findMemberIdDescription')}</Text>
           </View>
           <Swiper height={Metrics.screenHeight * 0.42} style={styles.wrapper1} showsButtons>
             <View style={styles.slide}>

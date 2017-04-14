@@ -125,7 +125,9 @@ class Screen_2 extends React.Component {
           </Image>
           <View style={styles.row}>
             <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
+            <Text style={styles.subHeaderTextStyle}>{I18n.t('createUserIdAndPasswordInstruction')}</Text>
           </View>
+
           {this.props.personalInformationStatus && (this.props.personalInformationStatus != null && this.props.personalInformationStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>

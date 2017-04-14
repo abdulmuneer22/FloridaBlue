@@ -8,8 +8,8 @@ export default StyleSheet.create({
   clouds: {
     position: 'absolute',
     top: 0,
-    left: ((Metrics.screenWidth * 13) * -1),
-    width: Metrics.screenWidth * 14,
+    left: ((Metrics.screenWidth * 7) * -1),
+    width: Metrics.screenWidth * 8,
     height: Metrics.screenHeight * 0.3,
     resizeMode: 'stretch'
   },

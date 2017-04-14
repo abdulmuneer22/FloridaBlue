@@ -54,13 +54,12 @@ class ErrorScreen extends Component {
         <Image style={styles.headerContainerError} source={Images.errorPage}>
 
           <TouchableOpacity onPress={() => { this._handlePressBack() }}>
-            <Image style={{width: Metrics.screenWidth * 0.35,
+            <Image style={{width: Metrics.screenWidth * 0.45,
               backgroundColor: Colors.transparent,
               marginLeft: Metrics.searchBarHeight,
               marginTop: (Platform.OS === 'ios') ? -Metrics.textHeight : null,
               borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-              height: Metrics.screenHeight * 0.055}} source={Images.errorBackButton} />
-
+              height: Metrics.screenHeight * 0.075}} source={Images.errorBackButton} />
           </TouchableOpacity>
 
         </Image>
