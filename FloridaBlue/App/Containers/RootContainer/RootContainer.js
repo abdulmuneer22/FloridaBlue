@@ -10,8 +10,8 @@ import ReduxPersist from '../../Config/ReduxPersist'
 import LoginActions from '../../Redux/LoginRedux'
 import styles from './RootContainerStyle'
 var RCTNetworking = require('RCTNetworking')
-var inactiveTime = null
-var activeTime = null
+var inactiveTime = Date
+var activeTime = Date
 var component = null
 
 class RootContainer extends Component {
