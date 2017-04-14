@@ -10,8 +10,8 @@ import ReduxPersist from '../../Config/ReduxPersist'
 import LoginActions from '../../Redux/LoginRedux'
 import styles from './RootContainerStyle'
 var RCTNetworking = require('RCTNetworking')
-var inactiveTime = Date
-var activeTime = Date
+var inactiveTime = null
+var activeTime = null
 var component = null
 
 class RootContainer extends Component {
@@ -40,8 +40,10 @@ class RootContainer extends Component {
     var appState = AppState.currentState
     if (component.props && component.props.userName) {
       if (appState.match(/inactive|background/)) {
-        var date = new Date()
-        inactiveTime = date.getTime()
+        if (inactive != null) {
+          var date = new Date()
+          inactiveTime = date.getTime()
+        }
       } else if (appState.match(/active/)) {
         var date = new Date()
         activeTime = date.getTime()

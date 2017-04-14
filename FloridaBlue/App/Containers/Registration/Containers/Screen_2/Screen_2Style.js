@@ -31,6 +31,12 @@ export default StyleSheet.create({
     fontWeight: '400'
 
   },
+  subHeaderTextStyle: {
+    paddingTop: Metrics.doubleBaseMargin,
+    fontSize: Fonts.size.xm,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight: '200'
+  },
   messageView: {
     padding: Metrics.baseMargin,
     marginHorizontal: Metrics.doubleBaseMargin,
