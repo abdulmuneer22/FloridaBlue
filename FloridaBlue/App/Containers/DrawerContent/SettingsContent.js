@@ -177,14 +177,15 @@ class SettingsContent extends Component {
               this.state.hpActive
                 ? <View style={{marginLeft: Metrics.doubleBaseMargin}}>
 
-                  { this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined
+                  {
+                    this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined
 
-                    ? <Text style={styles.subheading} onPress={this.handlePressPlans}>
-                      {this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
-                    </Text>
-                    : null
+                      ? <View>{ this.props.visibilityRules.myHealthPlanTile.tileType != "webview" ? <Text style={styles.subheading} onPress={this.handlePressPlans}>
+                                        { this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
+                                      </Text>: <View/>}</View>
+                      : null
 
-                   }
+                  }
 
                   <View>
                     { this.props.visibilityRules != undefined && this.props.visibilityRules.planOverViewTiles != undefined
