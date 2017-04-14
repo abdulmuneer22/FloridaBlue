@@ -1,72 +1,125 @@
 // @flow
 
-import { StyleSheet } from 'react-native'
-import { Metrics, ApplicationStyles } from '../../Themes/'
+import { StyleSheet, Platform } from 'react-native'
+import { ApplicationStyles, Colors, Metrics, Fonts } from '../../Themes/'
 
 export default StyleSheet.create({
   ...ApplicationStyles.screen,
-  wrapper : {
-    //borderColor : 'black',
-    //borderWidth : 1,
-    justifyContent : 'center',
-    alignItems :'center',
-    paddingTop : 40,
-    paddingBottom : 40
+  logoView: {
+    alignItems: 'center',
+    paddingTop: Metrics.screenHeight * 0.05,
+    paddingBottom: Metrics.screenHeight * 0.05
   },
-  textInput : {
-    width : window.width - 80,
+  logo: {
+   // width: Metrics.images.logo,
+   // resizeMode: 'contain'
+    width: Metrics.screenWidth * 0.85,
+    resizeMode: 'contain',
+    height: Metrics.images.xll2 * Metrics.screenHeight * 0.0015
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    width: Metrics.screenWidth,
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.3),
+    resizeMode: 'stretch'
+  },
+  centered: {
+    alignItems: 'center'
+  },
+  loginButton: {
+    alignItems: 'center',
+    paddingTop: Metrics.screenHeight * 0.16,
+    paddingHorizontal: Metrics.doubleBaseMargin
+
+  },
+  form: {
+    backgroundColor: Colors.snow,
+  //  margin: Metrics.smallMargin,
+    borderRadius: 24,
+    marginHorizontal: Metrics.section
+  },
+  informationPopup: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    backgroundColor: Colors.flBlue.grey2,
+    height: Metrics.screenHeight * 0.31,
+    width: Metrics.screenWidth,
+    bottom: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.011 : Metrics.doubleBaseMargin * Metrics.screenWidth * 0.012
+  },
+  row: {
+    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015,
+    paddingHorizontal: Metrics.doubleBaseMargin
+  },
+  forgotRow: {
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0013,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.009
+  },
+  newSignRow: {
+    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0014,
+    paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.006
+
+  },
+  link: {
+    color: Colors.flBlue.ocean,
+   // backgroundColor:'red',
+    alignItems: 'center',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027
+  },
+  textInput: {
     height: 40,
-    borderColor: 'rgba(213, 211, 200 , 0.9)',
-    borderWidth: 1,
-    marginLeft : 40,
-    marginRight : 40,
-    marginBottom : 10,
-    marginTop : 20,
-    borderRadius : 3,
-    padding : 6
+    color: Colors.flBlue.grey6,
+    fontWeight: 'bold'
   },
-  forgotPassword : {
-    alignSelf : "flex-end",
-    marginRight : 40
+  footer: {
+    flex: 1,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: (Platform.OS === 'ios') ? Metrics.searchBarHeight1 : Metrics.searchBarHeight,
+    marginHorizontal: Metrics.textHeight1
   },
-  button : {
-    backgroundColor : 'rgba(17, 147, 203,0.9)',
-    width : 100,
-    padding : 9,
-    borderColor : 'rgba(17, 147, 203,0.9)',
-    borderRadius : 7,
-    alignItems : 'center',
-    justifyContent : 'center',
-    marginTop : 40,
-    marginBottom : 40
+  footerText: {
+    color: Colors.flBlue.grey4,
+    marginHorizontal: Metrics.section,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0030
   },
-  buttonText : {
-    color : 'rgba(242, 246, 247   ,0.9)',
-    fontWeight : 'bold'
+  footerLinks: {
+    flex: 1,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: Metrics.baseMargin,
+    marginHorizontal: Metrics.section
   },
-  regularText : {
-    color : 'rgb(86, 187, 231)'
+  popupchild: {
+    width: Metrics.screenWidth * 0.5,
+    // backgroundColor : 'yellow',
+    paddingHorizontal: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+    // marginTop: 5,
+    height: Metrics.screenHeight * 0.07,
+    flexDirection: 'row',
+    alignItems: 'center'
+
   },
-  circle: {
-    width: 40,
-    height: 40,
-    borderRadius: 40/2,
-    backgroundColor: '#58D3F7',
-    alignItems : 'center',
-    justifyContent : 'center',
-    marginTop : 20,
+  popupchildText: {
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
+    marginLeft: Metrics.smallMargin,
+    color: Colors.flBlue.anvil,
+    alignSelf: 'center'
+
   },
-  popupchild:{
-    width : window.width / 2 - 10 ,
-    //backgroundColor : 'yellow',
-    padding : 10,
-    height : 40,
-    flexDirection : 'row' ,
-    alignItems : 'center'
+  spinnerView: {
+  //  alignItems: 'center',
+  //  justifyContent: 'center',
+    alignSelf: 'center'
+
   },
-  popupchildText : {
-    fontSize : 14,
-    marginLeft : 5,
-    alignSelf : 'center'
+
+  textField: {
+    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
   }
+
 })

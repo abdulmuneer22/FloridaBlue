@@ -1,5 +1,6 @@
 // @flow
 
 import Login from './Login'
+import TermsofUse from './TermsofUse/TermsofUse'
 
-export { Login }
+export { Login, TermsofUse }
