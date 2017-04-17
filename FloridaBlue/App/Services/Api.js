@@ -27,13 +27,13 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     timeout: 60000
   })
 
-  const naviMonitor = (response) => console.tron.log('hey!  listen! ', response)
+  const naviMonitor = (response) => console.log('hey!  listen! ', response)
   api.addMonitor(naviMonitor)
 
   // Force OpenWeather API Key on all requests
 
   api.addRequestTransform((request) => {
-    console.tron.log('hey ther I am ' + JSON.stringify(request))
+    console.log('hey ther I am ' + JSON.stringify(request))
   })
 
   // Wrap api's addMonitor to allow the calling code to attach
@@ -83,8 +83,115 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   const getTOU = () => api.get('/tou')
   const getSupport = () => api.get('/support')
   const getHsa = (financialProduct) => api.get('/hsa/financialProduct/' + financialProduct)
+
   const getLogout = () => api.get('logout.fcc')
   const putTou = () => api.get('/termsOfUse')
+
+  const getStaffLanguage = (data) => api.post('/opd/languages', {
+    "language": "EN",
+    "applicationId": "OPD",
+    "who": "staff"
+  })
+
+  const getLanguage = (data) => api.post('/opd/languages', {
+    "language": "EN",
+    "applicationId": "OPD",
+    "who": "staff"
+  })
+
+  const getDoctorLanguage = (data) => api.post('/opd/languages', {
+    "language": "EN",
+    "applicationId": "OPD",
+    "who": "doctor"
+  })
+
+  const getSearchDoctor = (data) => api.post('/opd/search', {
+    "language": "EN",
+    "applicationId": "OPD",
+    "start": 1,
+    "end": 25,
+    "planCode": "MMHMO",
+    "categoryCode": "All",
+    "searchRange": "50",
+    "address": "32246",
+    "sortColumn": "PROGRAM",
+    "sortType": "ASCENDING",
+    "providerName": "",
+    "providerLanguage": "",
+    "staffLanguage": "",
+    "programsList": "",
+    "acceptingPatientsIndicator": "",
+    "inIpa": "false",
+    "gender": "",
+    "officeHours": ""
+  })
+
+  const getDoctorDetail = (data) => api.post('/opd/details', {
+    "language": "EN",
+    "applicationId": "OPD",
+    "providerKey": "1080402",
+    "addressKey": "151028",
+    "planCode": "MMHMO"
+  })
+
+  const getCareTypes = (data) => api.post('/opd/types', {
+    "applicationId": "MOB",
+    "language": "EN",
+    "planCode": "MMHMO",
+    "categoryCode": "02"
+  })
+
+  const getSpecialityTypes = (data) => api.post('/opd/types', {
+    "applicationId": "MOB",
+    "language": "EN",
+    "planCode": "MMHMO"
+  })
+
+  const postNetworkList = (data) => api.post('/opd/networks', {
+    "language": "EN",
+    "applicationId": "OPD"
+  })
+
+  const postProviderSearch = (data) => api.post('/opd/search', {
+    "applicationId": "MOB",
+    "language": "EN",
+    "planCode": "",
+    "start": data.start,
+    "end": 25,
+    "categoryCode": "ALL",
+    "searchRange": 50,
+    "address": 32256,
+    "sortColumn": "PROGRAM",
+    "sortType": "ASCENDING",
+    "subCategoryCode": "",
+    "originLatitude": 0,
+    "originLongitude": 0,
+    "zipCode": 0,
+    "state": "",
+    "city": "",
+    "county": "",
+    "acceptingPatientsIndicator": "",
+    "programsList": "",
+    "networkList": ["NWB"] ,
+    "providerLanguage": "",
+    "providerName": "",
+    "providerFirstName": "",
+    "staffLanguage": "",
+    "gender": "",
+    "officeHours": "",
+    "hospitalAffiliation": "",
+    "providerNumber": "",
+    "medicalGroup": "",
+    "inIpa": "",
+    "ipaNumber": "",
+    "pharmacyType": "",
+    "extendedSupply": "",
+    "open24Hours": false,
+    "saveLocation": "",
+    "hospitalOption": "",
+    "networksFlag": false,
+    "memberSearchRequest": {}
+  })
 
   const postIdentification = (data) => api.post('/identifications', {
     'User': {
@@ -177,6 +284,8 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     getMember,
     getPlan,
     getSupport,
+    postNetworkList,
+    postProviderSearch,
     postIdentification,
     postPersonalInformation,
     postRegistrationCode,
@@ -184,7 +293,14 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     postSecurityHints,
     getTOU,
     putTou,
-    getHsa
+    getHsa,
+    getLanguage,
+    getDoctorLanguage,
+    getStaffLanguage,
+    getDoctorDetail,
+    getSearchDoctor,
+    getCareTypes,
+    getSpecialityTypes
   }
 }
 

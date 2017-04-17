@@ -12,7 +12,17 @@ export default () => {
     myplan: require('./MyPlanRedux').reducer,
     support: require('./SupportRedux').reducer,
     hsa: require('./HsaRedux').reducer,
-    registration: require('./RegistrationRedux').reducer
+    language: require('./LanguageRedux').reducer,
+    stafflanguage: require('./StaffLanguageRedux').reducer,
+    doctorlanguage: require('./DoctorLanguageRedux').reducer,
+    doctordetail: require('./DoctorDetailRedux').reducer,
+    searchdoctor: require('./SearchDoctorRedux').reducer,
+    searchdata: require('./SearchDataRedux').reducer,
+    saveprovider: require('./SaveProviderRedux').reducer,
+  //  care: require('./CareRedux').reducer,
+    //speciality: require('./SpecialityRedux').reducer,
+    registration: require('./RegistrationRedux').reducer,
+    provider: require('./ProviderRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

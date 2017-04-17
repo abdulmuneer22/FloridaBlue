@@ -52,7 +52,11 @@ const images = {
   themeHeader: require('../Images/dashboard-hdr.png'),
   themeLogo: require('../Images/theme-logo.png'),
   tileBg: require('../Images/tile_bg.png'),
-  tagLine: require('../Images/tag-line.gif')
+  tagLine: require('../Images/tag-line.gif'),
+  saveLocationButton: require('../Images/save-location.png'),
+  saveChangesButton: require('../Images/save-changes.png'),
+  mapUnselectedIcon: require('../Images/map-unselected.png'),
+  getResultsButton: require('../Images/get-results-btn.png')
 }
 
 export default images

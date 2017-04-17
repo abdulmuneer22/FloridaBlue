@@ -31,7 +31,9 @@ import { MyPlanScreen} from '../Containers/MemberDashBoard/Containers/MyPlan'
 import { BenefitsScreen} from '../Containers/MemberDashBoard/Containers/Benefits'
 import { DoctorServices } from '../Containers/MemberDashBoard/Containers/DoctorService'
 import { AdditionalBenefits } from '../Containers/MemberDashBoard/Containers/AdditionalBenefits'
-
+import { ProviderSearch} from '../Containers/MemberDashBoard/Containers/OPD/ProviderSearch'
+import { DoctorList} from '../Containers/MemberDashBoard/Containers/OPD/DoctorList'
+import { AdvancedSearch} from '../Containers/MemberDashBoard/Containers/OPD/AdvancedSearch'
 import { ListviewExample } from '../Containers/ListviewExample'
 
 /* **************************
@@ -43,7 +45,7 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='login' component={Login} title='Login' hideNavBar type={ActionConst.RESET} />
+            <Scene initial key='login' component={Login} title='Login' hideNavBar />
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
             <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar />
@@ -57,7 +59,7 @@ class NavigationRouter extends Component {
             <Scene key='useridhint' component={UserIdHint} title='UserIdHint page' hideNavBar />
             <Scene key='passwordHint' component={PasswordHint} title='PasswordHint page' hideNavBar />
             <Scene key='securityHint' component={SecurityHint} title='SecurityHint page' hideNavBar />
-            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar type={ActionConst.RESET} />
+            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNsavBar />
             <Scene key='memberid' component={FindMemberID} title='MemberId page'hideNavBar />
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />
             <Scene key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
@@ -66,6 +68,10 @@ class NavigationRouter extends Component {
             <Scene key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page' hideNavBar />
             <Scene key='DoctorServices' component={DoctorServices} title='DoctorServices Page' hideNavBar />
             <Scene key='AdditionalServices' component={AdditionalBenefits} title='AdditionalBenefits Page' hideNavBar />
+            <Scene  key='DoctorList' component={DoctorList} title='OPD Doctor List Page' hideNavBar />
+            <Scene  key='AdvancedSearch' component={AdvancedSearch} title='OPD AdvancedSearch Page' hideNavBar />
+            <Scene key='ProviderSearch' component={ProviderSearch} title='OPD ProviderSearch Page' hideNavBar />
+
           </Scene>
         </Scene>
       </Router>

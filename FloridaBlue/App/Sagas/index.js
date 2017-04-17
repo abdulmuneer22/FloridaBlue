@@ -1,4 +1,4 @@
-import { takeLatest } from 'redux-saga/effects'
+import { takeLatest } from 'redux-saga'
 import API from '../Services/Api'
 import FixtureAPI from '../Services/FixtureApi'
 import DebugSettings from '../Config/DebugSettings'
@@ -12,7 +12,17 @@ import { MemberTypes } from '../Redux/MemberRedux'
 import { MyPlanTypes } from '../Redux/MyPlanRedux'
 import { SupportTypes } from '../Redux/SupportRedux'
 import { HsaTypes } from '../Redux/HsaRedux'
+import { LanguageTypes } from '../Redux/LanguageRedux'
+import { StaffLanguageTypes } from '../Redux/StaffLanguageRedux'
+import { DoctorLanguageTypes } from '../Redux/DoctorLanguageRedux'
+import { DoctorDetailTypes } from '../Redux/DoctorDetailRedux'
+import { ProviderList } from '../Redux/SaveProviderRedux'
+//import { CareTypes } from '../Redux/CareRedux'
+//import { SpecialityTypes } from '../Redux/SpecialityRedux'
+import { SearchDataTypes } from '../Redux/SearchDataRedux'
+import { SearchDoctorTypes } from '../Redux/SearchDoctorRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
+import { ProviderTypes } from '../Redux/ProviderRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -25,11 +35,24 @@ import { member } from './MemberSagas'
 import { myplan } from './MyPlanSagas'
 import { support } from './SupportSagas'
 import { hsa } from './HsaSagas'
+import { language } from './LanguageSagas'
+import { stafflanguage } from './StaffLanguageSagas'
+import { doctorlanguage } from './DoctorLanguageSagas'
+import { doctordetail } from './DoctorDetailSagas'
+import { addSavedProvider, removeSavedProvider } from './SaveProviderSagas'
+//import { care } from './CareSagas'
+//import { speciality } from './SpecialitySagas'
+import { searchdata } from './SearchDataSagas'
+import { searchdoctor } from './SearchDoctorSagas'
 import {sendIdentificationRequest} from './RegistrationSagas'
 import {sendPersonalInformationRequest} from './RegistrationSagas'
 import {sendRegistrationCodeRequest} from './RegistrationSagas'
 import {sendSecurityHintsRequest} from './RegistrationSagas'
 import {registerUserRequest} from './RegistrationSagas'
+import {sendNetworkListRequest} from './ProviderSagas'
+import {sendProviderSearchRequest} from './ProviderSagas'
+import {sendCareTypeRequest} from './ProviderSagas'
+import {sendSpecialityTypeRequest} from './ProviderSagas'
 // import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -57,10 +80,24 @@ export default function * root () {
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan, api),
     takeLatest(SupportTypes.SUPPORT_REQUEST, support, api),
     takeLatest(HsaTypes.HSA_REQUEST, hsa, api),
+    takeLatest(LanguageTypes.LANGUAGE_REQUEST, language, api),
+    takeLatest(StaffLanguageTypes.STAFFLANGUAGE_REQUEST, stafflanguage, api),
+    takeLatest(DoctorLanguageTypes.DOCTORLANGUAGE_REQUEST, doctorlanguage, api),
+    takeLatest(DoctorDetailTypes.DOCTORDETAIL_REQUEST, doctordetail, api),
+   // takeLatest(CareTypes.CARE_REQUEST, care, api),
+    takeLatest(ProviderList.ADD_PROVIDER_REQUEST, addSavedProvider),
+    takeLatest(ProviderList.REMOVE_PROVIDER_REQUEST, removeSavedProvider),
+    takeLatest(SearchDataTypes.SEARCHDATA_REQUEST, searchdata, api),
+    takeLatest(SearchDoctorTypes.SEARCHDOCTOR_REQUEST, searchdoctor, api),
+   // takeLatest(SpecialityTypes.SPECIALITY_REQUEST, speciality, api),
     takeLatest(RegistrationTypes.SEND_IDENTIFICATION_REQUEST, sendIdentificationRequest, apiforRegistration),
     takeLatest(RegistrationTypes.SEND_PERSONAL_INFORMATION_REQUEST, sendPersonalInformationRequest, apiforRegistration),
     takeLatest(RegistrationTypes.SEND_REGISTRATION_CODE_REQUEST, sendRegistrationCodeRequest, apiforRegistration),
     takeLatest(RegistrationTypes.SEND_SECURITY_HINTS_REQUEST, sendSecurityHintsRequest, api),
-    takeLatest(RegistrationTypes.REGISTER_USER_REQUEST, registerUserRequest, apiforRegistration)
+    takeLatest(RegistrationTypes.REGISTER_USER_REQUEST, registerUserRequest, apiforRegistration),
+    takeLatest(ProviderTypes.SEND_NETWORK_LIST_REQUEST, sendNetworkListRequest, api),
+    takeLatest(ProviderTypes.SEND_PROVIDER_SEARCH_REQUEST, sendProviderSearchRequest, api),
+    takeLatest(ProviderTypes.SEND_CARE_TYPE_REQUEST, sendCareTypeRequest, api),
+    takeLatest(ProviderTypes.SEND_SPECIALITY_TYPE_REQUEST, sendSpecialityTypeRequest, api)
   ]
 }
