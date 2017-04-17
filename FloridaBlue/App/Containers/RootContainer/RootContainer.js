@@ -40,7 +40,7 @@ class RootContainer extends Component {
     var appState = AppState.currentState
     if (component.props && component.props.userName) {
       if (appState.match(/inactive|background/)) {
-        if (inactive != null) {
+        if (inactiveTime != null) {
           var date = new Date()
           inactiveTime = date.getTime()
         }
