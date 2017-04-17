@@ -63,6 +63,16 @@ handleCall() {
       }
     });
 	}
+
+    // handleMaps() {
+	// 	Linking.canOpenURL('https://www.google.com/maps').then(supported => {
+    //   if (supported) {
+    //     Linking.openURL('https://www.google.com/maps');
+    //   } else {
+    //     console.log('Don\'t know how to open URI: ' + this.props.url);
+    //   }
+    // });
+	// }
     render() {
         console.tron.log(this.props.data)
         return (
@@ -79,7 +89,7 @@ handleCall() {
                                         <View >
                                             {providerAvailable ? <TouchableOpacity onPress={() => this.onRemoveBookmark(value)} >
                                                 <Flb name="add-bookmark"
-                                                    size={Metrics.icons.large} color="yellow" />
+                                                    size={Metrics.icons.large} color={Colors.flBlue.orange} />
                                             </TouchableOpacity> : <TouchableOpacity onPress={() => this.onPressBookmark(value)} >
                                                     <Flb name="add-bookmark"
                                                         size={Metrics.icons.large} color={Colors.flBlue.grey2} />
@@ -122,7 +132,7 @@ handleCall() {
                                         </TouchableOpacity>
 
                                         <TouchableOpacity
-                                            onPress={NavigationActions.mapview}
+                                        
                                         >
                                             <View style={styles.cardButtonView1}>
 

@@ -18,6 +18,10 @@ import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material
 
 
 class BottomCard extends Component{
+
+     _advancedSearch() {
+      NavigationActions.AdvancedSearch()
+    }
     render(){
         return(
             <View style={{
@@ -27,7 +31,7 @@ class BottomCard extends Component{
                     backgroundColor:Colors.snow
             }}>
 
-                
+                <TouchableOpacity onPress={this._advancedSearch}>
                 <View style={{
                         backgroundColor : Colors.flBlue.grass,
                         width:Metrics.screenWidth*0.5,
@@ -40,7 +44,7 @@ class BottomCard extends Component{
                         height: Metrics.textHeight2 * Metrics.screenHeight * 0.002,
                         flexDirection : 'row'
                 }}> 
-               
+               <View style={{flex:0.3, alignItems:'center'}}>
                 <Flb 
                 name='search-find'  
                 size={Metrics.icons.medium} 
@@ -48,17 +52,19 @@ class BottomCard extends Component{
                     marginRight : 0
                 }}
                 color={Colors.snow} />
-               
+               </View>
+               <View style={{flex:0.7, alignItems:'flex-start'}}>
                 <Text style={{
                     color : Colors.snow,
                     fontSize : Fonts.size.input * Metrics.screenWidth * 0.0026,
                     //marginLeft : 10,
                     textAlign:'center',
                     fontWeight:'400'
-                }}>Advanced Results</Text>
-              
+                }}>Advanced Search</Text>
+              </View>
+             
             </View>
-
+         </TouchableOpacity>
 
             <TouchableOpacity
             onPress={NavigationActions.mapview}
@@ -75,7 +81,7 @@ class BottomCard extends Component{
                     flexDirection : 'row'
                 }}> 
 
-                <Icon 
+                <Flb 
                 name='map'  
                 size={Metrics.icons.medium} 
                 style = {{
@@ -85,7 +91,7 @@ class BottomCard extends Component{
 
                 <Text style={{
                     color : 'white',
-                    fontSize : Fonts.size.input * Metrics.screenWidth * 0.0026,
+                    fontSize : Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                     marginLeft : Metrics.baseMargin,
                     fontWeight:'400'
                 }}>Map View</Text>

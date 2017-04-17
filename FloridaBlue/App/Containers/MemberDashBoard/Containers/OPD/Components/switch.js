@@ -57,12 +57,12 @@ handleClickLeft () {
       borderRightWidth : 1,
       borderTopLeftRadius: 15,
       padding: 8,
-      backgroundColor : Colors.flBlue.ocean,
+      backgroundColor : Colors.flBlue.night,
       width:167,
     }
     var twoTabRightActiveStyle = {
       borderBottomRightRadius: 15,
-      borderColor: Colors.flBlue.ocean,
+      borderColor: Colors.flBlue.night,
       borderLeftWidth : 1,
       borderTopRightRadius: 15,
       padding: 8,
@@ -74,7 +74,7 @@ handleClickLeft () {
         alignSelf:'center'
     }
     var twoTabInactiveStyle = {
-      backgroundColor : Colors.flBlue.ocean,
+      backgroundColor : Colors.flBlue.night,
       padding:8,
       backgroundColor : 'white',
       borderTopLeftRadius : 25,
@@ -82,7 +82,7 @@ handleClickLeft () {
       width:167
     }
      var twoTabRightInactiveStyle = {
-      backgroundColor : Colors.flBlue.ocean,
+      backgroundColor : Colors.flBlue.night,
       padding:8,
       backgroundColor : 'white',
       borderTopRightRadius : 25,
@@ -103,7 +103,7 @@ handleClickLeft () {
         marginTop: 15,
         borderRadius : 25,
          borderWidth : 2,
-        borderColor: Colors.flBlue.ocean
+        borderColor: Colors.flBlue.night
       }
       
 

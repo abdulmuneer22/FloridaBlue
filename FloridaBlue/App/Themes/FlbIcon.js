@@ -76,7 +76,6 @@ const glyphMap = {
   "hospital": 45,
   "stethoscope": 46,
   "calendar-1": 47,
-  "map": 58,
   "quote": 59,
   "searchdoc": 60,
   "imaging": 61,
@@ -280,8 +279,20 @@ const glyphMap = {
   "share-circle": 57523,
   "bookmark": 57519,
   "add-bookmark": 57524,
-  "directions": 57525
+  "directions": 57525,
+  "piggy-bank": 57526,
+  "urgent-care-circle": 57527,
+  "map": 58,
+  "map-circle": 57528
 };
 
-export default createIconSet(glyphMap, 'flb', 'FlbIcon.ttf');
+const iconSet = createIconSet(glyphMap, 'flb', 'FlbIcon.ttf');
+
+export default iconSet;
+
+export const Button = iconSet.Button;
+export const TabBarItem = iconSet.TabBarItem;
+export const TabBarItemIOS = iconSet.TabBarItemIOS;
+export const ToolbarAndroid = iconSet.ToolbarAndroid;
+export const getImageSource = iconSet.getImageSource;
 

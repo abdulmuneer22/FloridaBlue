@@ -24,7 +24,7 @@ react-native run-android
 
 ``` first go to the style.css file location using terminal and run the below command```
 
-````/Users/f7ro/dev/flblue-mobile/FloridaBlue/node_modules/.bin/generate-icon styles.css --componentName=FlbIcon --fontFamily=flb > FlbIcon```
+````/Users/f7ro/dev/flblue-mobile/FloridaBlue/node_modules/.bin/generate-icon styles.css --componentName=FlbIcon --fontFamily=flb > FlbIcon.js```
 
 ```after generating the FlBIcon.js file, copy that in our project under App/Themes/" ````
 ``` remove the existing flb.ttf file from IOS (got to Xcode -->Florida blue project --> resources) and replace it with new flb.ttf file and run the command "react-native link" ```

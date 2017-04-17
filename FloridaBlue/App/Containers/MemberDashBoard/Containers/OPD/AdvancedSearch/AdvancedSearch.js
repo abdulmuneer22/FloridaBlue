@@ -97,29 +97,34 @@ class AdvancedSearch extends Component {
       workingHours:"",
       programs:"",
       gender:"",
-      doctorSpeaks: 'ENG',
-      staffSpeaks: 'ENG',
+      doctorSpeaks: "",
+      staffSpeaks: "",
       radius: 10
     }
     this._timeSelected = this._timeSelected.bind(this)
-    this.onDoctorSpeaksChange = this.onDoctorSpeaksChange.bind(this);
+    this._languageSelected=this._languageSelected.bind(this)
+    //this.onDoctorSpeaksChange = this.onDoctorSpeaksChange.bind(this);
     this.onStaffSpeaksChange = this.onStaffSpeaksChange.bind(this);
   }
 
   _handleDoctordetail() {
-   // alert(JSON.stringify(this.state))
+    alert(JSON.stringify(this.state))
     this.props.attemptSearchDoctor(this.state)
     NavigationActions.DoctorList()
   }
 
-  onDoctorSpeaksChange(value) {
-    this.setState({
-      doctorSpeaks: value
-    });
-  }
+  // onDoctorSpeaksChange(value) {
+  //   this.setState({
+  //     doctorSpeaks: value
+  //   });
+  // }
+
+     _languageSelected(event, value:string) {
+     this.setState({doctorSpeaks: value})
+    }
 
   _timeSelected(event, value:string) {
-     this.setState({acceptNewPatient: value})
+     this.setState({workingHours: value})
     }
 
   onStaffSpeaksChange(value) {
@@ -155,6 +160,14 @@ class AdvancedSearch extends Component {
       )
     }
 
+     _renderDropdownRow(doctorData, rowID, highlighted) {
+      return (
+        <TouchableHighlight>
+            <Text style={styles.dropdownItem}>{doctorData}</Text>
+        </TouchableHighlight>
+      )
+    }
+
   render() {
 
     var temp=  this.props.dummydata && this.props.dummydata.workingHours.workHoursList
@@ -172,6 +185,12 @@ class AdvancedSearch extends Component {
      this.props.dummydata && this.props.dummydata.acceptingPatient.acceptPatientList.forEach(function (value) {
        acceptPatients.push(`${value.patientPreference}`);
      }, this);
+
+     const doctorData = [];
+     this.props.doctordata && this.props.doctordata.languageList.forEach(function (value) {
+       doctorData.push(`${value.label}`);
+     }, this);
+     
 
     return (
       <View style={styles.container}>
@@ -300,7 +319,7 @@ class AdvancedSearch extends Component {
                       placeholder="Check"
                       placeholderTextColor={Colors.steel}
                       tintColor={Colors.black}
-                      value={this.state.acceptNewPatient}
+                      value={this.state.workingHours}
                     />
                 </ModalDropdown>
 
@@ -322,17 +341,25 @@ class AdvancedSearch extends Component {
             </Text>
                 </View>
                 <View style={{ flex: 0.5, marginTop: 5 }}>
-                  <Picker
-                    iosHeader="Select one"
-                    mode="dropdown"
-                    selectedValue={this.state.doctorSpeaks}
-                    onValueChange={this.onDoctorSpeaksChange}>
+                   <ModalDropdown  dropdownStyle={styles.dropdown}
+                 onSelect={this._languageSelected}
+                  options={doctorData}
+                  renderRow={this._renderDropdownRow.bind(this)}
+                 // onSelect={() => false}
+                >
 
-                    {
-                      this.props.doctordata && this.props.doctordata.languageList && this.props.doctordata.languageList.map((value, i) =>
-                        <Item key={i} label={value.label} value={value.value} />)
-                    }
-                  </Picker>
+                 <MKTextField
+                      textInputStyle={{flex: 1}}
+                      style={styles.textField}
+                      editable={false}
+                      underlineColorAndroid={Colors.coal}
+                      placeholder="Check"
+                      placeholderTextColor={Colors.steel}
+                      tintColor={Colors.black}
+                      value={this.state.doctorSpeaks}
+                    />
+                </ModalDropdown>
+
 
                 </View>
               </View>
@@ -346,18 +373,25 @@ class AdvancedSearch extends Component {
                 </View>
 
                 <View style={{ flex: 0.5, marginTop: 5 }}>
-                  <Picker
-                    iosHeader="Select one"
-                    mode="dropdown"
-                    selectedValue={this.state.staffSpeaks}
-                    onValueChange={this.onStaffSpeaksChange}>
+                 
+                 <ModalDropdown  dropdownStyle={styles.dropdown}
+                 onSelect={this._languageSelected}
+                  options={doctorData}
+                  renderRow={this._renderDropdownRow.bind(this)}
+                 // onSelect={() => false}
+                >
 
-                    {
-                      this.props.staffdata && this.props.staffdata.languageList && this.props.staffdata.languageList.map((value, i) =>
-                        <Item key={i} label={value.label} value={value.value} />)
-                    }
-                  </Picker>
-
+                 <MKTextField
+                      textInputStyle={{flex: 1}}
+                      style={styles.textField}
+                      editable={false}
+                      underlineColorAndroid={Colors.coal}
+                      placeholder="Check"
+                      placeholderTextColor={Colors.steel}
+                      tintColor={Colors.black}
+                      value={this.state.doctorSpeaks}
+                    />
+                </ModalDropdown>
                 </View>
               </View>
 
