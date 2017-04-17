@@ -108,7 +108,7 @@ class AdvancedSearch extends Component {
   }
 
   _handleDoctordetail() {
-    alert(JSON.stringify(this.state))
+   // alert(JSON.stringify(this.state))
     this.props.attemptSearchDoctor(this.state)
     NavigationActions.DoctorList()
   }
