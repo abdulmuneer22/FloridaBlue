@@ -6,7 +6,7 @@ import {
   Animated,
 } from 'react-native';
 
-//import MapView from 'react-native-maps';
+import MapView from 'react-native-maps';
 import PanController from './PanController';
 import PriceMarker from './AnimatedPriceMarker';
 

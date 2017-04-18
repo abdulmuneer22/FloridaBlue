@@ -181,7 +181,7 @@ handleCall(phone) {
                 <Text style={styles.spinnerText}>Loading Please Wait
                 </Text>
             </View>
-        : <View><Text>"I am monarch"
+        : <View><Text style={{justifyContent:'center',alignItems:'center'}}>"You didn't Saved any Provider"
         </Text></View>
 }</View>
 }
