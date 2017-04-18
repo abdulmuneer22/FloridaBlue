@@ -73,9 +73,7 @@ class BottomCard extends Component{
             </View>
          </TouchableOpacity >
 
-            <TouchableOpacity
-           
-            >
+            <TouchableOpacity onPress={()=> this._mapView()}  >
             <View style={{
                     backgroundColor : Colors.flBlue.grass,
                     width:Metrics.screenWidth*0.5,

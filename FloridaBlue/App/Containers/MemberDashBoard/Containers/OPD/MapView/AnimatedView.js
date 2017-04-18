@@ -4,11 +4,17 @@ import {
   View,
   Dimensions,
   Animated,
+  Image,
+  Text,
+  TouchableOpacity
 } from 'react-native';
 
 import MapView from 'react-native-maps';
 import PanController from './PanController';
 import PriceMarker from './AnimatedPriceMarker';
+import styles from './MapViewStyle'
+import NavItems from '../../../../../Navigation/NavItems.js'
+import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 
 const screen = Dimensions.get('window');
 
@@ -299,6 +305,23 @@ class AnimatedView extends React.Component {
     // this.state.region.setValue(region);
   }
 
+
+
+   _renderHeader() {
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+      <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
+        {NavItems.backButton()}
+      </View>
+      <Text style={styles.headerTextStyle}>
+        Find Care
+      </Text>
+      <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
+        {NavItems.settingsButton()}
+      </View>
+    </Image>)
+  }
+
+
   render() {
     const {
       panX,
@@ -310,9 +333,10 @@ class AnimatedView extends React.Component {
     } = this.state;
 
     return (
-      <View style={styles.container}>
+      <View style={mapStyle.container}>
+     
         <PanController
-          style={styles.container}
+          style={mapStyle.container}
           vertical
           horizontal={canMoveHorizontal}
           xMode="snap"
@@ -326,7 +350,7 @@ class AnimatedView extends React.Component {
         >
           <MapView.Animated
             provider={this.props.provider}
-            style={styles.map}
+            style={mapStyle.map}
             region={region}
             onRegionChange={this.onRegionChange}
           >
@@ -356,7 +380,7 @@ class AnimatedView extends React.Component {
               );
             })}
           </MapView.Animated>
-          <View style={styles.itemContainer}>
+          <View style={mapStyle.itemContainer}>
             {markers.map((marker, i) => {
               const {
                 translateY,
@@ -368,7 +392,7 @@ class AnimatedView extends React.Component {
               return (
                 <Animated.View
                   key={marker.id}
-                  style={[styles.item, {
+                  style={[mapStyle.item, {
                     opacity,
                     transform: [
                       { translateY },
@@ -390,7 +414,7 @@ AnimatedView.propTypes = {
   provider: MapView.ProviderPropType,
 };
 
-const styles = StyleSheet.create({
+const mapStyle = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
   },
