@@ -69,8 +69,8 @@ class NavigationRouter extends Component {
             <Scene key='myplanbenefits' component={BenefitsScreen} title='MyPlanBenefits Page' hideNavBar />
             <Scene key='DoctorServices' component={DoctorServices} title='DoctorServices Page' hideNavBar />
             <Scene key='AdditionalServices' component={AdditionalBenefits} title='AdditionalBenefits Page' hideNavBar />
-            <Scene  key='DoctorList' component={DoctorList} title='OPD Doctor List Page' hideNavBar />
-            <Scene  key='AdvancedSearch' component={AdvancedSearch} title='OPD AdvancedSearch Page' hideNavBar />
+            <Scene key='DoctorList' component={DoctorList} title='OPD Doctor List Page' hideNavBar />
+            <Scene key='AdvancedSearch' component={AdvancedSearch} title='OPD AdvancedSearch Page' hideNavBar />
             <Scene key='ProviderSearch' component={ProviderSearch} title='OPD ProviderSearch Page' hideNavBar />
              <Scene  key='MapView' component={AnimatedView} title='Map View Page' hideNavBar />
             
