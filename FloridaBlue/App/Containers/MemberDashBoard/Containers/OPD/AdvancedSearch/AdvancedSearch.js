@@ -108,7 +108,7 @@ class AdvancedSearch extends Component {
   }
 
   _handleDoctordetail() {
-    alert(JSON.stringify(this.state))
+   // alert(JSON.stringify(this.state))
     this.props.attemptSearchDoctor(this.state)
     NavigationActions.DoctorList()
   }
@@ -163,32 +163,32 @@ class AdvancedSearch extends Component {
      _renderDropdownRow(doctorData, rowID, highlighted) {
       return (
         <TouchableHighlight>
-            <Text style={styles.dropdownItem}>{doctorData}</Text>
+            <Text style={styles.dropdownItem}>{doctorData.Text}</Text>
         </TouchableHighlight>
       )
     }
 
   render() {
 
-    var temp=  this.props.dummydata && this.props.dummydata.workingHours.workHoursList
+    var temp=  this.props.dummydata && this.props.dummydata.workingHours && this.props.dummydata.workingHours.workHoursList
      const rowData = [];
-     temp.forEach(function (value) {
+     this.props.dummydata && this.props.dummydata.workingHours && this.props.dummydata.workingHours.workHoursList.forEach(function (value) {
        rowData.push(`${value.hours}`);
      }, this);
 
      const Programs = [];
-     this.props.dummydata && this.props.dummydata.program.programList.forEach(function (value) {
+     this.props.dummydata && this.props.dummydata.program && this.props.dummydata.program.programList.forEach(function (value) {
        Programs.push(`${value.programName}`);
      }, this);
 
      const acceptPatients = [];
-     this.props.dummydata && this.props.dummydata.acceptingPatient.acceptPatientList.forEach(function (value) {
+     this.props.dummydata && this.props.dummydata.acceptingPatient && this.props.dummydata.acceptingPatient.acceptPatientList.forEach(function (value) {
        acceptPatients.push(`${value.patientPreference}`);
      }, this);
 
      const doctorData = [];
      this.props.doctordata && this.props.doctordata.languageList.forEach(function (value) {
-       doctorData.push(`${value.label}`);
+       doctorData.push({ Text: value.label, value: value.value });
      }, this);
      
 
@@ -271,7 +271,7 @@ class AdvancedSearch extends Component {
             <View style={styles.programView}>
               <View style={{ flex: 0.4 }}>
                 <Text style={styles.programText}>
-                {this.props.dummydata && this.props.dummydata.acceptingPatient.displayName}
+                {this.props.dummydata && this.props.dummydata.acceptingPatient ? this.props.dummydata.acceptingPatient.displayName : null}
                  
             </Text>
               </View>

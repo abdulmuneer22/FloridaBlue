@@ -6,7 +6,7 @@ import com.facebook.react.ReactApplication;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 
 import com.oblador.vectoricons.VectorIconsPackage;
-
+import com.airbnb.android.react.maps.MapsPackage;
 import com.i18n.reactnativei18n.ReactNativeI18n;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -34,7 +34,8 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new ReactNativeI18n(),
             new RNDeviceInfo(),
-            new ReactNativeConfigPackage()
+            new ReactNativeConfigPackage(),
+            new MapsPackage()
       );
     }
   };

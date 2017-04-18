@@ -86,6 +86,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 
   const getLogout = () => api.get('logout.fcc')
   const putTou = () => api.get('/termsOfUse')
+  const getConfig = () => api.get('/opd/config')
 
   const getStaffLanguage = (data) => api.post('/opd/languages', {
     "language": "EN",
@@ -300,7 +301,8 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     getDoctorDetail,
     getSearchDoctor,
     getCareTypes,
-    getSpecialityTypes
+    getSpecialityTypes,
+    getConfig
   }
 }
 

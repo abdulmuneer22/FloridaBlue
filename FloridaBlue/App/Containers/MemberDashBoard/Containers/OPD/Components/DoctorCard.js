@@ -40,7 +40,8 @@ const window = Dimensions.get('window')
 class DoctorCard extends Component {
     constructor(props) {
         super(props)
-        this.handleCall=this.handleCall.bind(this),
+        this.handleCall=this.handleCall.bind(this);
+        this.handleMaps=this.handleMaps.bind(this);
         this.onPressBookmark = this.onPressBookmark.bind(this);
         this.onRemoveBookmark = this.onRemoveBookmark.bind(this);
     }
@@ -54,25 +55,36 @@ class DoctorCard extends Component {
        // alert(data)
         this.props.removeProvider(data.providerKey)
     }
-handleCall() {
-		Linking.canOpenURL('tel:1-800-841-2900').then(supported => {
+handleCall(phone) {
+
+    console.log(phone)
+    const url=`tel:${phone}`
+
+    Linking.canOpenURL(url).then(supported => {
       if (supported) {
-        Linking.openURL('tel:1-800-841-2900');
+        Linking.openURL(url);
       } else {
-        console.log('Don\'t know how to open URI: ' + this.props.url);
+        console.log('Don\'t know how to open URI: ');
       }
     });
 	}
 
-    // handleMaps() {
-	// 	Linking.canOpenURL('https://www.google.com/maps').then(supported => {
-    //   if (supported) {
-    //     Linking.openURL('https://www.google.com/maps');
-    //   } else {
-    //     console.log('Don\'t know how to open URI: ' + this.props.url);
-    //   }
-    // });
-	// }
+     handleMaps(latitude, longitude) {
+
+         console.log(latitude, longitude)
+         const url=`http://maps.apple.com/?ll=${latitude},${longitude}`
+
+
+	 	Linking.canOpenURL(url).then(supported => {
+       if (supported) {
+         Linking.openURL(url);
+       } else {
+         console.log('Don\'t know how to go');
+       }
+     }).catch(err => console.error('An error occurred', err));
+	 }
+
+
     render() {
         console.tron.log(this.props.data)
         return (
@@ -81,7 +93,7 @@ handleCall() {
 
                     <View>
                         {this.props.data != undefined ? this.props.data.map((value, i) => {
-                            const providerAvailable = this.props.savedproviders.find((savedprovider) => savedprovider.providerKey === value.providerKey)
+                            const providerAvailable = this.props.savedproviders && this.props.savedproviders.find((savedprovider) => savedprovider.providerKey === value.providerKey)
 
                             return (
                                 <Card styles={card} key={i}>
@@ -111,7 +123,7 @@ handleCall() {
                                     </View>
                                     <View style={styles.cardButton}>
 
-                                        <TouchableOpacity onPress={this.handleCall()}>
+                                        <TouchableOpacity onPress={() => this.handleCall(value.telephoneNumber)}>
                                             <View style={styles.cardButtonView}>
 
                                                 <Flb
@@ -131,7 +143,7 @@ handleCall() {
                                             </View>
                                         </TouchableOpacity>
 
-                                        <TouchableOpacity
+                                        <TouchableOpacity onPress={() => this.handleMaps(value.latitude, value.longitude)}
                                         
                                         >
                                             <View style={styles.cardButtonView1}>

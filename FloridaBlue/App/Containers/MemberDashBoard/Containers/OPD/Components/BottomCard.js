@@ -15,6 +15,7 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import Flb from '../../../../../Themes/FlbIcon'
 import styles from '../DoctorList/DoctorListStyle'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+//import AnimatedViews from './AnimatedView'
 
 
 class BottomCard extends Component{
@@ -22,6 +23,12 @@ class BottomCard extends Component{
      _advancedSearch() {
       NavigationActions.AdvancedSearch()
     }
+
+    _mapView() {
+      NavigationActions.MapView()
+    }
+
+
     render(){
         return(
             <View style={{
@@ -64,10 +71,10 @@ class BottomCard extends Component{
               </View>
              
             </View>
-         </TouchableOpacity>
+         </TouchableOpacity >
 
             <TouchableOpacity
-            onPress={NavigationActions.mapview}
+            onPress={this._advancedSearch()}
             >
             <View style={{
                     backgroundColor : Colors.flBlue.grass,
