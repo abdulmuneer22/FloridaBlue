@@ -154,7 +154,7 @@ class LandingScreen extends Component {
           </View>
           { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
 
-            ? <TouchableOpacity onPress={() => NavigationActions.MyView({ responseURL: this.props.visibilityRules.opdTile.tileUrl })}>
+            ? <TouchableOpacity onPress={() => NavigationActions.ProviderSearch()}>
               <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
                 <View style={{
                   flexDirection: 'row',

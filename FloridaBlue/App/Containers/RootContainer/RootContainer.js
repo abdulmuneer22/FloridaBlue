@@ -12,6 +12,7 @@ import styles from './RootContainerStyle'
 var RCTNetworking = require('RCTNetworking')
 var inactiveTime = Date
 var activeTime = Date
+var timerStarted = false
 var component = null
 
 class RootContainer extends Component {
@@ -40,9 +41,10 @@ class RootContainer extends Component {
     var appState = AppState.currentState
     if (component.props && component.props.userName) {
       if (appState.match(/inactive|background/)) {
-        if (inactiveTime != null) {
+        if (timerStarted == false) {
           var date = new Date()
           inactiveTime = date.getTime()
+          timerStarted = true
         }
       } else if (appState.match(/active/)) {
         var date = new Date()
@@ -51,13 +53,14 @@ class RootContainer extends Component {
         var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000) // converted to minutes
         var elapsedTime = Math.abs(diffMins)
         if (elapsedTime >= 15) {
-            // Call logout logic
+          timerStarted = false
           RCTNetworking.clearCookies((cleared) => {})
           component.props.attemptLogout()
           NavigationActions.login()
         } else {
-          inactiveTime = null
-          activeTime = null
+          inactiveTime = Date
+          activeTime = Date
+          timerStarted = false
         }
       }
     }
