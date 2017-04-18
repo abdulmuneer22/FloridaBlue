@@ -3,6 +3,7 @@ package com.bcbsfl.mobile.android;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
 
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new MapsPackage(),
             new ReactMaterialKitPackage(),
             new VectorIconsPackage(),
             new ReactNativeI18n(),
