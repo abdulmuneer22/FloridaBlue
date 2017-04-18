@@ -86,10 +86,10 @@ handleCall(phone) {
 
 
     render() {
-        console.tron.log(this.props.data)
+        console.log(this.props.data)
         return (
             <View style={styles.container}>
-                {this.props.data ?
+                {this.props.data != null ?
 
                     <View>
                         {this.props.data != undefined ? this.props.data.map((value, i) => {
@@ -174,10 +174,17 @@ handleCall(phone) {
                         }
                     </View>
 
-                    : <View style={styles.spinnerView}>
-                        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                        <Text style={styles.spinnerText}>Loading Please Wait </Text>
-                    </View>}
+: <View>
+    {this.props.leftActive
+        ? <View style={styles.spinnerView}>
+                <SingleColorSpinner strokeColor={Colors.flBlue.ocean}/>
+                <Text style={styles.spinnerText}>Loading Please Wait
+                </Text>
+            </View>
+        : <View><Text>"I am monarch"
+        </Text></View>
+}</View>
+}
             </View>
         )
     }

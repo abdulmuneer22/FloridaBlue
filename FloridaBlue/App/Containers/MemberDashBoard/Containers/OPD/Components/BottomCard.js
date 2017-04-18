@@ -38,7 +38,7 @@ class BottomCard extends Component{
                     backgroundColor:Colors.snow
             }}>
 
-                <TouchableOpacity onPress={this._advancedSearch}>
+                <TouchableOpacity onPress={()=> this._advancedSearch()}>
                 <View style={{
                         backgroundColor : Colors.flBlue.grass,
                         width:Metrics.screenWidth*0.5,
@@ -74,7 +74,7 @@ class BottomCard extends Component{
          </TouchableOpacity >
 
             <TouchableOpacity
-            onPress={this._advancedSearch()}
+           
             >
             <View style={{
                     backgroundColor : Colors.flBlue.grass,

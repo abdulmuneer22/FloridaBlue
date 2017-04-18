@@ -187,9 +187,10 @@ class AdvancedSearch extends Component {
      }, this);
 
      const doctorData = [];
+     if(this.props.doctordata && this.props.doctordata.languageList){
      this.props.doctordata && this.props.doctordata.languageList.forEach(function (value) {
        doctorData.push({ Text: value.label, value: value.value });
-     }, this);
+     }, this);}
      
 
     return (
