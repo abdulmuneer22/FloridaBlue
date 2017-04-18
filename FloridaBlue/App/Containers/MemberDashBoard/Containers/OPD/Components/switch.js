@@ -58,7 +58,7 @@ handleClickLeft () {
       borderTopLeftRadius: 15,
       padding: 8,
       backgroundColor : Colors.flBlue.night,
-      width:167,
+      width:Metrics.screenWidth*0.45,
     }
     var twoTabRightActiveStyle = {
       borderBottomRightRadius: 15,
@@ -67,7 +67,7 @@ handleClickLeft () {
       borderTopRightRadius: 15,
       padding: 8,
       backgroundColor : Colors.flBlue.night,
-      width:167,
+      width:Metrics.screenWidth*0.45,
     }
     var twoTextActiveStyle = {
       color : 'white',
@@ -77,9 +77,9 @@ handleClickLeft () {
       backgroundColor : Colors.flBlue.night,
       padding:8,
       backgroundColor : 'white',
-      borderTopLeftRadius : 25,
+      borderTopLeftRadius : 30,
       borderBottomLeftRadius : 25,
-      width:167
+      width:Metrics.screenWidth*0.45
     }
      var twoTabRightInactiveStyle = {
       backgroundColor : Colors.flBlue.night,
@@ -87,7 +87,7 @@ handleClickLeft () {
       backgroundColor : 'white',
       borderTopRightRadius : 25,
       borderBottomRightRadius : 25,
-      width:167
+      width:Metrics.screenWidth*0.45
     }
     var twoTextInactiveStyle = {
         color : 'darkgrey',
@@ -99,7 +99,7 @@ handleClickLeft () {
     var twoTabHeaderStyle = {
         flexDirection: 'row',
         marginLeft:15,
-        width:Metrics.screenWidth*0.9,
+        width:Metrics.screenWidth*0.91,
         marginTop: 15,
         borderRadius : 25,
          borderWidth : 2,
