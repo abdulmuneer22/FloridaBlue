@@ -46,7 +46,7 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='login' component={Login} title='Login' hideNavBar />
+            <Scene initial key='login' component={Login} title='Login' hideNavBar type={ActionConst.RESET}/>
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
             <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar />
@@ -61,7 +61,7 @@ class NavigationRouter extends Component {
             <Scene key='passwordHint' component={PasswordHint} title='PasswordHint page' hideNavBar />
             <Scene key='securityHint' component={SecurityHint} title='SecurityHint page' hideNavBar />
             <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNsavBar />
-            <Scene key='memberid' component={FindMemberID} title='MemberId page'hideNavBar />
+            <Scene key='memberid' component={FindMemberID} title='MemberId page'hideNavBar type={ActionConst.RESET}/>
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />
             <Scene key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
             <Scene key='SupportScreen' component={SupportScreen} title='Support Page' hideNavBar />

@@ -15,6 +15,21 @@ import {
   Platform,
   BackAndroid
 } from 'react-native'
+
+import {
+    Card,
+    CardImage,
+    CardTitle,
+    CardContent,
+    CardAction
+} from 'react-native-card-view';
+
+const card = { card: { width: Metrics.screenWidth * 0.92,  
+  alignItems: 'flex-start',marginBottom: 10,flex:1, 
+  marginLeft:15,backgroundColor:'purple', borderRadius:10} };
+const cardTitle = { cardTitle: { fontSize: 40 } }
+
+
 import Switch from '../Components/switch'
 import DoctorCard from '../Components/DoctorCard'
 import BottomCard from '../Components/BottomCard'
@@ -97,6 +112,21 @@ componentDidMount () {
                   rightActive={this.props.rightActive}
                   attemptHandleLeft={this.props.attemptHandleLeft}
                   attemptHandleRight={this.props.attemptHandleRight} />
+              
+              <View style={{marginTop:Metrics.mediumMargin}}>
+              <Card styles={card}>
+              <View style={{flexDirection:'row',margin:5, alignItems:'center', justifyContent:'center'}}>
+                <View style={{flex:0.15}}>
+                <Flb name="accident" size={Metrics.icons.large} color={Colors.snow} />
+                </View>
+                <View style={{flex:0.85}}>
+                <Text style={{fontSize:Fonts.size.input * Metrics.screenWidth * 0.0028,
+                              color:Colors.snow}}> If this is an emergency, call 911.</Text>
+              </View>
+              </View>
+              </Card>
+              </View>
+                    
 
                <View style={{alignItems:'center',
                 justifyContent:'center',
