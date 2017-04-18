@@ -189,7 +189,7 @@ export default StyleSheet.create({
         
     },
      spinnerText: {
-
+      color:Colors.flBlue.anvil,
     marginTop: 20
   },
   spinnerView: {
