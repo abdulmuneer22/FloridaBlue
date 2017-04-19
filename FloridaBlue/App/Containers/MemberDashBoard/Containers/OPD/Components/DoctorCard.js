@@ -8,7 +8,8 @@ import {
     Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    Linking
+    Linking,
+    Alert
 } from 'react-native'
 
 import {
@@ -40,8 +41,8 @@ const window = Dimensions.get('window')
 class DoctorCard extends Component {
     constructor(props) {
         super(props)
-        this.handleCall=this.handleCall.bind(this);
-        this.handleMaps=this.handleMaps.bind(this);
+        this.handleCall = this.handleCall.bind(this);
+        this.handleMaps = this.handleMaps.bind(this);
         this.onPressBookmark = this.onPressBookmark.bind(this);
         this.onRemoveBookmark = this.onRemoveBookmark.bind(this);
     }
@@ -52,37 +53,55 @@ class DoctorCard extends Component {
     }
 
     onRemoveBookmark(data) {
-       // alert(data)
+        // alert(data)
         this.props.removeProvider(data.providerKey)
     }
-handleCall(phone) {
+    handleCall(phone) {
+        console.log(phone)
+        const url = `tel:${phone}`
 
-    console.log(phone)
-    const url=`tel:${phone}`
+        Alert.alert(
+            'Alert Title',
+            'leaving app',
+            [
+                { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
+                {
+                    text: 'OK', onPress: () => Linking.canOpenURL(url).then(supported => {
+                        if (supported) {
+                            Linking.openURL(url);
+                        } else {
+                            console.log('Don\'t know how to open URI: ');
+                        }
+                    })
+                },
+            ]
+        )
+    }
 
-    Linking.canOpenURL(url).then(supported => {
-      if (supported) {
-        Linking.openURL(url);
-      } else {
-        console.log('Don\'t know how to open URI: ');
-      }
-    });
-	}
+    handleMaps(latitude, longitude) {
 
-     handleMaps(latitude, longitude) {
+        console.log(latitude, longitude)
+        const url = `http://maps.apple.com/?ll=${latitude},${longitude}`
 
-         console.log(latitude, longitude)
-         const url=`http://maps.apple.com/?ll=${latitude},${longitude}`
+         Alert.alert(
+            'Alert Title',
+            'leaving app',
+            [
+                { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
+                {
+                    text: 'OK', onPress: () =>  Linking.canOpenURL(url).then(supported => {
+            if (supported) {
+                Linking.openURL(url);
+            } else {
+                console.log('Don\'t know how to go');
+            }
+        }).catch(err => console.error('An error occurred', err))
+                },
+            ]
+        )
 
-
-	 	Linking.canOpenURL(url).then(supported => {
-       if (supported) {
-         Linking.openURL(url);
-       } else {
-         console.log('Don\'t know how to go');
-       }
-     }).catch(err => console.error('An error occurred', err));
-	 }
+       
+    }
 
 
     render() {
@@ -144,7 +163,7 @@ handleCall(phone) {
                                         </TouchableOpacity>
 
                                         <TouchableOpacity onPress={() => this.handleMaps(value.latitude, value.longitude)}
-                                        
+
                                         >
                                             <View style={styles.cardButtonView1}>
 
@@ -174,17 +193,17 @@ handleCall(phone) {
                         }
                     </View>
 
-: <View>
-    {this.props.leftActive
-        ? <View style={styles.spinnerView}>
-                <SingleColorSpinner strokeColor={Colors.flBlue.ocean}/>
-                <Text style={styles.spinnerText}>Loading Please Wait
+                    : <View>
+                        {this.props.leftActive
+                            ? <View style={styles.spinnerView}>
+                                <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                                <Text style={styles.spinnerText}>Loading Please Wait
                 </Text>
-            </View>
-        : <View><Text style={{justifyContent:'center',alignItems:'center'}}>"You didn't Saved any Provider"
+                            </View>
+                            : <View><Text style={{ justifyContent: 'center', alignItems: 'center' }}>"You didn't Saved any Provider"
         </Text></View>
-}</View>
-}
+                        }</View>
+                }
             </View>
         )
     }
