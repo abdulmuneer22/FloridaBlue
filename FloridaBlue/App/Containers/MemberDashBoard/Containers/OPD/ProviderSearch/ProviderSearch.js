@@ -22,11 +22,12 @@ import NavItems from '../../../../../Navigation/NavItems.js'
 import I18n from 'react-native-i18n'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import { connect } from 'react-redux'
-import { Container, Content, Footer, FooterTab, Radio, Button, Icon, Fab } from 'native-base';
+import { Container, Content, Footer, FooterTab, Radio, Button, Icon, Fab } from 'native-base'
 import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme } from 'react-native-material-kit'
-import HideableView from 'react-native-hideable-view';
-import ModalDropdown from 'react-native-modal-dropdown';
+import HideableView from 'react-native-hideable-view'
+import ModalDropdown from 'react-native-modal-dropdown'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
+import _ from 'lodash'
 
 type ProviderSearchProps = {
   dispatch: () => any,
@@ -39,7 +40,6 @@ type ProviderSearchProps = {
 }
 
 const theme = getTheme()
-const DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
@@ -72,7 +72,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     componentDidMount() {
       this.props.attemptNetworkList()
       this.props.attemptCareTypes()
-      this.props.attemptSpecialityTypes()
     }
 
     _onChecked(event) {
@@ -87,7 +86,10 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       }
     }
 
-    _careSelected(event, value:string) {
+    _careSelected(index, value:string) {
+      var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
+      this.props.getSpecialityTypes(selectedCategoryCode)
+
       this.setState({showUnknownCare: false})
       this.setState({selectedCareType: value}, function() {
         this.setState({showUnknownCare: true})
@@ -95,7 +97,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       this.setState({showSpeciality: true})
     }
 
-    _specialitySelected(event, value:string) {
+    _specialitySelected(index, value:string) {
+      var selectedSubCategoryCode = this.props.planSubCategoryList[index].categoryCode
       this.setState({showSpeciality: false})
       this.setState({selectedSpeciality: value}, function() {
         this.setState({showSpeciality: true})
@@ -188,7 +191,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </HideableView>
 
                 <HideableView visible={this.state.showUnknownCare} removeWhenHidden={true}>
-                  <ModalDropdown options={DEMO_OPTIONS_1} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                  <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                     <MKTextField
                       ref='careType'
                       textInputStyle={{flex: 1}}
@@ -205,7 +208,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </HideableView>
 
                 <HideableView visible={this.state.showUnknownCare && this.state.showSpeciality} removeWhenHidden={true}>
-                  <ModalDropdown options={DEMO_OPTIONS_1} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                  <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                     <MKTextField
                       ref='specialityType'
                       style={styles.textField}
@@ -290,14 +293,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
   const mapStateToProps = (state) => {
     return {
-      showSavedProvider: state.showSavedProvider,
-      showKnownCare: state.showKnownCare,
-      showUnknownCare: state.showUnknownCare,
-      showSpeciality: state.showSpeciality,
-      selectedCareType: state.selectedCareType,
-      selectedSpeciality: state.selectedSpeciality,
-      showChangeLocale: state.showChangeLocale,
-      showNewLocation: state.showNewLocation
+      planCategoryList: state.provider.planCategoryList,
+      planSubCategoryList: state.provider.planSubCategoryList,
+      categoryCode: state.provider.categoryCode
     }
   }
 
@@ -305,8 +303,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     return {
       attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
       attemptCareTypes: () => dispatch(ProviderActions.sendCareTypeRequest()),
-      attemptSpecialityTypes: () => dispatch(ProviderActions.sendSpecialityTypeRequest()),
-      attemptProviderSearch: () => dispatch(ProviderActions.sendProviderSearchRequest())
+      getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
+      attemptProviderSearch: () => dispatch(ProviderActions.sendProviderSearchRequest()),
+      changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode))
     }
   }
 

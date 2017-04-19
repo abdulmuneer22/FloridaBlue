@@ -96,19 +96,16 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 
   const getLanguage = (data) => api.post('/opd/languages', {
     "language": "EN",
-    "applicationId": "OPD",
     "who": "staff"
   })
 
   const getDoctorLanguage = (data) => api.post('/opd/languages', {
     "language": "EN",
-    "applicationId": "OPD",
     "who": "doctor"
   })
 
   const getSearchDoctor = (data) => api.post('/opd/search', {
     "language": "EN",
-    "applicationId": "OPD",
     "start": 1,
     "end": 25,
     "planCode": "MMHMO",
@@ -129,23 +126,20 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 
   const getDoctorDetail = (data) => api.post('/opd/details', {
     "language": "EN",
-    "applicationId": "OPD",
     "providerKey": "1080402",
     "addressKey": "151028",
     "planCode": "MMHMO"
   })
 
   const getCareTypes = (data) => api.post('/opd/types', {
-    "applicationId": "MOB",
-    "language": "EN",
-    "planCode": "MMHMO",
-    "categoryCode": "02"
-  })
-
-  const getSpecialityTypes = (data) => api.post('/opd/types', {
-    "applicationId": "MOB",
     "language": "EN",
     "planCode": "MMHMO"
+  })
+
+  const getSpecialityTypes = (selectedCategoryCode) => api.post('/opd/specialty', {
+    "language": "EN",
+    "planCode": "MMHMO",
+    "categoryCode": selectedCategoryCode
   })
 
   const postNetworkList = (data) => api.post('/opd/networks', {
@@ -154,7 +148,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   })
 
   const postProviderSearch = (data) => api.post('/opd/search', {
-    "applicationId": "MOB",
     "language": "EN",
     "planCode": "",
     "start": data.start,
