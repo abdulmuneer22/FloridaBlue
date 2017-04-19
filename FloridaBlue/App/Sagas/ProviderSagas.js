@@ -37,12 +37,14 @@ export function * sendCareTypeRequest (api, {data}) {
   }
 }
 
-export function * sendSpecialityTypeRequest (api, {data}) {
-  const response = yield call(api.getSpecialityTypes, data)
+export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
+  console.log(data)
+  const response = yield call(api.getSpecialityTypes, selectedCategoryCode)
 
   if (response.ok) {
     var error = null
     var data = response.data
+    yield put(ProviderActions.changeCategoryCode(selectedCategoryCode))
     yield put(ProviderActions.sendSpecialityTypeSuccess(data))
   } else {
     yield put(ProviderActions.sendSpecialityTypeFailure(data))

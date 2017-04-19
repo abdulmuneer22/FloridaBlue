@@ -13,9 +13,10 @@ const { Types, Creators } = createActions({
   sendCareTypeRequest: ['data'],
   sendCareTypeSuccess: ['data'],
   sendCareTypeFailure: ['data'],
-  sendSpecialityTypeRequest: ['data'],
+  sendSpecialityTypeRequest: ['selectedCategoryCode'],
   sendSpecialityTypeSuccess: ['data'],
-  sendSpecialityTypeFailure: ['data']
+  sendSpecialityTypeFailure: ['data'],
+  changeCategoryCode: ['categoryCode']
 })
 
 export const ProviderTypes = Types
@@ -24,7 +25,10 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  data: null
+  data: null,
+  categoryCode: "",
+  planCategoryList: [],
+  planSubCategoryList: []
 })
 
 /* ------------- Reducers ------------- */
@@ -59,7 +63,7 @@ export const _sendCareTypeRequest = (state: Object) => state.merge({ fetching: t
 
 // sendCareTypeSuccess
 export const _sendCareTypeSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, planCategoryList: data.planCategoryList})
+  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, planCategoryList: data.data.planCategoryList})
 
 // sendCareTypeFailure
 export const _sendCareTypeFailure = (state: Object, {data}: Object) =>
@@ -70,11 +74,16 @@ export const _sendSpecialityTypeRequest = (state: Object) => state.merge({ fetch
 
 // sendSpecialityTypeSuccess
 export const _sendSpecialityTypeSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, planSubCategoryList: data.planSubCategoryList})
+  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, planSubCategoryList: data.data.planSubCategoryList})
 
 // sendSpecialityTypeFailure
 export const _sendSpecialityTypeFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+
+// categoryCode
+export const _changeCategoryCode = (state: Object, {categoryCode}: Object) =>
+      state.merge({fetching: false, categoryCode})
+
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -90,5 +99,6 @@ export const _sendSpecialityTypeFailure = (state: Object, {data}: Object) =>
     [Types.SEND_CARE_TYPE_FAILURE]: _sendCareTypeFailure,
     [Types.SEND_SPECIALITY_TYPE_REQUEST]: _sendSpecialityTypeRequest,
     [Types.SEND_SPECIALITY_TYPE_SUCCESS]: _sendSpecialityTypeSuccess,
-    [Types.SEND_SPECIALITY_TYPE_FAILURE]: _sendSpecialityTypeFailure
+    [Types.SEND_SPECIALITY_TYPE_FAILURE]: _sendSpecialityTypeFailure,
+    [Types.CHANGE_CATEGORY_CODE]: _changeCategoryCode
   })

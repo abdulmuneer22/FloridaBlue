@@ -138,14 +138,14 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   const getCareTypes = (data) => api.post('/opd/types', {
     "applicationId": "MOB",
     "language": "EN",
-    "planCode": "MMHMO",
-    "categoryCode": "02"
+    "planCode": "MMHMO"
   })
 
-  const getSpecialityTypes = (data) => api.post('/opd/types', {
+  const getSpecialityTypes = (selectedCategoryCode) => api.post('/opd/specialty', {
     "applicationId": "MOB",
     "language": "EN",
-    "planCode": "MMHMO"
+    "planCode": "MMHMO",
+    "categoryCode": selectedCategoryCode
   })
 
   const postNetworkList = (data) => api.post('/opd/networks', {
