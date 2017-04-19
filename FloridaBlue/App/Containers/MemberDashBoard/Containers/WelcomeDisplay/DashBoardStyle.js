@@ -87,9 +87,14 @@ export default StyleSheet.create({
     fontWeight: '300',
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.headerFont,
-    color: Colors.flBlue.grey6
-    
-    
+    color: Colors.flBlue.grey6    
+  },
+    textStyle2: {
+    fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
+    fontWeight: '300',
+    marginTop: Metrics.smallMargin,
+    fontFamily: Fonts.type.headerFont,
+    color: Colors.snow    
   },
   hsaText: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0033,
@@ -117,7 +122,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.bg2
 
   },
   greetingView: {
@@ -278,7 +283,46 @@ export default StyleSheet.create({
    padding: Metrics.mediumMargin,
     justifyContent: 'space-between',
   //  alignItems: 'center',
-      margin: 1,
+    margin:3,
+    borderRadius: 2,
+    shadowColor: "#000000",
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3,
+    } ,
+   
+  },
+
+  textBackground1: {
+    flex :1 ,
+    flexDirection: 'column',
+    backgroundColor: Colors.flBlue.lightBlue,
+    justifyContent: 'space-between',
+    padding: Metrics.mediumMargin,
+   // alignItems: 'center',
+    margin: 10,
+    borderRadius: 2,
+    shadowColor: "#000000",
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3,
+    },       
+    
+  },
+
+    textBackground2: {
+  
+    flex : 1,
+    flexDirection: 'column',
+   backgroundColor: Colors.bg2,
+   padding: Metrics.mediumMargin,
+    justifyContent: 'space-between',
+  //  alignItems: 'center',
+    
     borderRadius: 2,
     shadowColor: "#000000",
     shadowOpacity: 0.3,
@@ -290,24 +334,6 @@ export default StyleSheet.create({
          
   },
 
-  textBackground1: {
-    flex :1 ,
-    flexDirection: 'column',
-    backgroundColor: Colors.snow,
-    justifyContent: 'space-between',
-    padding: Metrics.mediumMargin,
-   // alignItems: 'center',
-    margin: 1,
-    borderRadius: 2,
-    shadowColor: "#000000",
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    shadowOffset: {
-      height: 1,
-      width: 0.3,
-    }       
-
-  },
 
   textStyle1: {
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
