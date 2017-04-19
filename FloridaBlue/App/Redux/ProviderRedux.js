@@ -16,7 +16,9 @@ const { Types, Creators } = createActions({
   sendSpecialityTypeRequest: ['selectedCategoryCode'],
   sendSpecialityTypeSuccess: ['data'],
   sendSpecialityTypeFailure: ['data'],
-  changeCategoryCode: ['categoryCode']
+  changeCategoryCode: ['categoryCode'],
+  changeSubCategoryCode: ['subCategoryCode'],
+  changeProviderName: ['providerName']
 })
 
 export const ProviderTypes = Types
@@ -26,7 +28,9 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
   data: null,
-  categoryCode: "",
+  categoryCode: "ALL",
+  subCategoryCode: "",
+  providerName: "",
   planCategoryList: [],
   planSubCategoryList: []
 })
@@ -84,6 +88,14 @@ export const _sendSpecialityTypeFailure = (state: Object, {data}: Object) =>
 export const _changeCategoryCode = (state: Object, {categoryCode}: Object) =>
       state.merge({fetching: false, categoryCode})
 
+// subCategoryCode
+export const _changeSubCategoryCode = (state: Object, {subCategoryCode}: Object) =>
+      state.merge({fetching: false, subCategoryCode})
+
+// providerName
+export const _changeProviderName = (state: Object, {providerName}: Object) =>
+      state.merge({fetching: false, providerName})
+
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -100,5 +112,7 @@ export const _changeCategoryCode = (state: Object, {categoryCode}: Object) =>
     [Types.SEND_SPECIALITY_TYPE_REQUEST]: _sendSpecialityTypeRequest,
     [Types.SEND_SPECIALITY_TYPE_SUCCESS]: _sendSpecialityTypeSuccess,
     [Types.SEND_SPECIALITY_TYPE_FAILURE]: _sendSpecialityTypeFailure,
-    [Types.CHANGE_CATEGORY_CODE]: _changeCategoryCode
+    [Types.CHANGE_CATEGORY_CODE]: _changeCategoryCode,
+    [Types.CHANGE_SUB_CATEGORY_CODE]: _changeSubCategoryCode,
+    [Types.CHANGE_PROVIDER_NAME]: _changeProviderName
   })
