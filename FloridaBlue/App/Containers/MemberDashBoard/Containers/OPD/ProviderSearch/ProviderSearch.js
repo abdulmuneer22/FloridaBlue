@@ -67,6 +67,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       this._editLocation = this._editLocation.bind(this)
       this._selectNewLocation = this._selectNewLocation.bind(this)
       this._saveLocation = this._saveLocation.bind(this)
+      this._getResults = this._getResults.bind(this)
     }
 
     componentDidMount() {
@@ -76,10 +77,15 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _onChecked(event) {
       if (event.checked) {
+        this.props.changeSubCategoryCode("")
+        this.props.changeCategoryCode("ALL")
+
         this.setState({showKnownCare: true})
         this.setState({showUnknownCare: false})
         this.setState({showSavedProvider: false})
       } else {
+        this.props.changeProviderName("")
+
         this.setState({showKnownCare: false})
         this.setState({showUnknownCare: true})
         this.setState({showSavedProvider: false})
@@ -99,6 +105,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _specialitySelected(index, value:string) {
       var selectedSubCategoryCode = this.props.planSubCategoryList[index].categoryCode
+      this.props.changeSubCategoryCode(selectedSubCategoryCode)
+
       this.setState({showSpeciality: false})
       this.setState({selectedSpeciality: value}, function() {
         this.setState({showSpeciality: true})
@@ -111,8 +119,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _getResults() {
-      this.props.attemptProviderSearch()
-      NavigationActions.DoctorList()
+      console.tron.log(this.props)
+      this.props.attemptProviderSearch(this.props)
+      // NavigationActions.DoctorList()
     }
 
     _advancedSearch() {
@@ -187,6 +196,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                     underlineColorAndroid={Colors.coal}
                     placeholder={I18n.t('providerPlaceholder')}
                     placeholderTextColor={Colors.steel}
+                    onChangeText={this.props.changeProviderName}
                   />
                 </HideableView>
 
@@ -295,7 +305,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     return {
       planCategoryList: state.provider.planCategoryList,
       planSubCategoryList: state.provider.planSubCategoryList,
-      categoryCode: state.provider.categoryCode
+      categoryCode: state.provider.categoryCode,
+      subCategoryCode: state.provider.subCategoryCode,
+      providerName: state.provider.providerName
     }
   }
 
@@ -304,8 +316,10 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
       attemptCareTypes: () => dispatch(ProviderActions.sendCareTypeRequest()),
       getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
-      attemptProviderSearch: () => dispatch(ProviderActions.sendProviderSearchRequest()),
-      changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode))
+      attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
+      changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode)),
+      changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode)),
+      changeProviderName: (providerName) => dispatch(ProviderActions.changeProviderName(providerName))
     }
   }
 
