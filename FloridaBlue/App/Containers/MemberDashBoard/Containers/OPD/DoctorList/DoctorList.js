@@ -56,19 +56,17 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 class DoctorList extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     this.saveProvider = this.saveProvider.bind(this);
     this.removeProvider = this.removeProvider.bind(this);
   }
   
 saveProvider(data){
-   
 this.props.addProviderRequest(data)
 }
 
 removeProvider(savedProviderKey){
-   
 this.props.removeProviderRequest(savedProviderKey)
 }
 

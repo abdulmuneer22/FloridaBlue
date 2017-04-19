@@ -345,11 +345,16 @@ export default StyleSheet.create({
     textAlignVertical: 'center',
   },
    dropdown: {
-    width: Metrics.screenWidth * 0.57,
+    width: Metrics.screenWidth * 0.6,
    // marginLeft: Metrics.doubleBaseMargin
   },
+  languagedropdown: {
+    width: Metrics.screenWidth * 0.5,
+    height:Metrics.screenHeight*0.5
+    //paddingRight:20
+  },
   dropdownItem: {
-    fontSize: Fonts.size.regular,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
     fontFamily: Fonts.type.base,
     fontWeight: '400',
     paddingLeft: Metrics.smallMargin,
@@ -359,6 +364,14 @@ export default StyleSheet.create({
     textField: {
     //marginTop: Metrics.doubleBaseMargin,
     width:Metrics.screenWidth * 0.6,
+
+    paddingLeft: Metrics.baseMargin,
+    paddingRight: Metrics.doubleBaseMargin,
+    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
+  },
+   languageTextField: {
+    //marginTop: Metrics.doubleBaseMargin,
+    width:Metrics.screenWidth * 0.5,
 
     paddingLeft: Metrics.baseMargin,
     paddingRight: Metrics.doubleBaseMargin,

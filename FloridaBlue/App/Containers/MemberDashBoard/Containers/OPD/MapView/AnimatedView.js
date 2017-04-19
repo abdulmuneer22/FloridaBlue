@@ -5,11 +5,13 @@ import {
     StyleSheet,
     ScrollView,
     Dimensions,
-    Image
+    Image,
+    Platform
 } from 'react-native'
 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import _ from 'lodash'
+import Swiper from 'react-native-swiper'
 import DoctorCard from '../Components/DoctorCard'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './MapViewStyle'
@@ -56,7 +58,7 @@ class AnimatedView extends Component{
       </View>
       <Text style={styles.headerTextStyle}>
         Find Care
-              </Text>
+     </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
         {NavItems.settingsButton()}
       </View>
@@ -146,12 +148,7 @@ class AnimatedView extends Component{
                             )
                         })
                     }
-                    {/*<View style={{
-                        flex : 1,
-                        backgroundColor : 'rgba(1,1,1,0.1)'
-                    }}>
-                        
-                    </View>*/}
+                   
                     
                     
 
@@ -160,7 +157,21 @@ class AnimatedView extends Component{
                         :
                         null
                     }
-                </MapView>
+</MapView>
+                    
+      <Swiper  height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.72)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.44))} style={Style.wrapper} showsButtons={true}>
+        <View style={Style.slide1}>
+          <Text style={Style.text}>Hello Swiper</Text>
+        </View>
+        <View style={Style.slide2}>
+          <Text style={Style.text}>Beautiful</Text>
+        </View>
+        <View style={Style.slide3}>
+          <Text style={Style.text}>And simple</Text>
+        </View>
+      </Swiper>
+    
+                
             </View>
         )
     }
@@ -175,7 +186,38 @@ const Style = StyleSheet.create({
     address_block : {
         marginTop : 10,
         marginBottom : 10
-    }
+    },
+     wrapper: {
+         backgroundColor:Colors.snow,
+         marginLeft:40,
+         marginRight:30
+  },
+  slide1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: '#9DD6EB',
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft:30,
+    marginRight:30
+   //backgroundColor: '#97CAE5',
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: '#92BBD9',
+  },
+  text: {
+    color: '#fff',
+    fontSize: 30,
+    fontWeight: 'bold',
+  }
 })
+
 
 export default AnimatedView

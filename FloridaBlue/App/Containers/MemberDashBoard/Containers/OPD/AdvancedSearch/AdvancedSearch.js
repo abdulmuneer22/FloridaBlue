@@ -94,7 +94,7 @@ class AdvancedSearch extends Component {
     this.radioGroup = new MKRadioButton.Group();
     this.state = {
       acceptNewPatient:"",
-      workingHours:"",
+      workingTime:"",
       programs:"",
       gender:"",
       doctorSpeaks: "",
@@ -103,8 +103,10 @@ class AdvancedSearch extends Component {
     }
     this._timeSelected = this._timeSelected.bind(this)
     this._languageSelected=this._languageSelected.bind(this)
-    //this.onDoctorSpeaksChange = this.onDoctorSpeaksChange.bind(this);
-    this.onStaffSpeaksChange = this.onStaffSpeaksChange.bind(this);
+    this._patientTypeSelected=this._patientTypeSelected.bind(this)
+    this._doctorLanguageSelected = this._doctorLanguageSelected.bind(this);
+    this._staffLanguageSelected = this._staffLanguageSelected.bind(this);
+
   }
 
   _handleDoctordetail() {
@@ -113,25 +115,34 @@ class AdvancedSearch extends Component {
     NavigationActions.DoctorList()
   }
 
-  // onDoctorSpeaksChange(value) {
-  //   this.setState({
-  //     doctorSpeaks: value
-  //   });
-  // }
-
      _languageSelected(event, value:string) {
      this.setState({doctorSpeaks: value})
     }
 
-  _timeSelected(event, value:string) {
-     this.setState({workingHours: value})
+    _patientTypeSelected(index, value:string) {
+      var selectPatientType = this.props.dummydata.acceptingPatient.acceptPatientList[index].value
+      this.setState({acceptNewPatient: value}, function() {  
+      })
     }
 
-  onStaffSpeaksChange(value) {
-    this.setState({
-      staffSpeaks: value
-    });
-  }
+ _timeSelected(index, value:string) {
+      var selectTime = this.props.dummydata.workingHours.workHoursList[index].value
+      this.setState({workingTime: value}, function() {  
+      })
+    }
+ 
+ _staffLanguageSelected(index, value:string) {
+      var selectStaffLanguage = this.props.staffdata.languageList[index].value
+      this.setState({staffSpeaks: value}, function() {  
+      })
+    }
+
+    _doctorLanguageSelected(index, value:string) {
+      var selectStaffLanguage = this.props.doctordata.languageList[index].value
+      this.setState({doctorSpeaks: value}, function() {  
+      })
+    }
+
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
@@ -152,18 +163,10 @@ class AdvancedSearch extends Component {
     //  this.props.attemptLanguage()
   }
 
-   _renderDropdownRow(rowData, rowID, highlighted) {
+     _renderDropdownRow(rowData, rowID, highlighted) {
       return (
         <TouchableHighlight>
             <Text style={styles.dropdownItem}>{rowData}</Text>
-        </TouchableHighlight>
-      )
-    }
-
-     _renderDropdownRow(doctorData, rowID, highlighted) {
-      return (
-        <TouchableHighlight>
-            <Text style={styles.dropdownItem}>{doctorData.Text}</Text>
         </TouchableHighlight>
       )
     }
@@ -279,15 +282,25 @@ class AdvancedSearch extends Component {
 
               <View style={{ flex: 0.6, marginTop: 15 }}>
 
-                <ModalDropdown style={styles.dropdown_1}
-                  dropdownStyle={{ width: 150,marginRight:10, marginTop: 10}}
-                  textStyle={styles.dropdownText}
-                  options={acceptPatients}
-                   defaultValue="Check..."
-                   onSelect={(Index,value)=>this.setState({value})}
-                />
+                <ModalDropdown 
+                   dropdownStyle={styles.dropdown}
+                  options={_.map(this.props.dummydata.acceptingPatient.acceptPatientList, 'patientPreference')}
+                  renderRow={this._renderDropdownRow.bind(this)}
+                   onSelect={this._patientTypeSelected}>
 
+                     <MKTextField
+                      ref='patientType'
+                      style={styles.textField}
+                      textInputStyle={{flex: 1}}
+                      editable={false}
+                      underlineColorAndroid={Colors.coal}
+                      placeholder="No Preference"
+                      placeholderTextColor={Colors.steel}
+                      tintColor={Colors.black}
+                      value={this.state.acceptNewPatient}
+                    />
 
+                </ModalDropdown>
               </View>
             </View>
 
@@ -305,22 +318,21 @@ class AdvancedSearch extends Component {
 
               <View style={{ flex: 0.6, marginTop: 10 }}>
 
-                <ModalDropdown  dropdownStyle={styles.dropdown}
+                <ModalDropdown   dropdownStyle={styles.dropdown}
                  onSelect={this._timeSelected}
-                  options={rowData}
-                  renderRow={this._renderDropdownRow.bind(this)}
-                 // onSelect={() => false}
-                >
+                  options={_.map(this.props.dummydata.workingHours.workHoursList, 'hours')}
+                  renderRow={this._renderDropdownRow.bind(this)} >
 
                  <MKTextField
+                      ref='Working Hours'
                       textInputStyle={{flex: 1}}
                       style={styles.textField}
                       editable={false}
                       underlineColorAndroid={Colors.coal}
-                      placeholder="Check"
+                      placeholder="No Preference"
                       placeholderTextColor={Colors.steel}
                       tintColor={Colors.black}
-                      value={this.state.workingHours}
+                      value={this.state.workingTime}
                     />
                 </ModalDropdown>
 
@@ -342,55 +354,48 @@ class AdvancedSearch extends Component {
             </Text>
                 </View>
                 <View style={{ flex: 0.5, marginTop: 5 }}>
-                   <ModalDropdown  dropdownStyle={styles.dropdown}
-                 onSelect={this._languageSelected}
-                  options={doctorData}
-                  renderRow={this._renderDropdownRow.bind(this)}
-                 // onSelect={() => false}
-                >
+                  
+                 <ModalDropdown   dropdownStyle={styles.languagedropdown}
+                   onSelect={this._doctorLanguageSelected}
+                  options={_.map(this.props.doctordata.languageList, 'label')}
+                  renderRow={this._renderDropdownRow.bind(this)} >
 
                  <MKTextField
                       textInputStyle={{flex: 1}}
-                      style={styles.textField}
+                      style={styles.languageTextField}
                       editable={false}
                       underlineColorAndroid={Colors.coal}
-                      placeholder="Check"
+                      placeholder="No Preference"
                       placeholderTextColor={Colors.steel}
                       tintColor={Colors.black}
                       value={this.state.doctorSpeaks}
                     />
                 </ModalDropdown>
-
-
                 </View>
               </View>
 
               <View style={styles.dropDownView}>
-
                 <View style={{ flex: 0.5 }}>
                   <Text style={styles.dropDownText}>
                     Staff Speaks
-            </Text>
+                  </Text>
                 </View>
 
-                <View style={{ flex: 0.5, marginTop: 5 }}>
-                 
-                 <ModalDropdown  dropdownStyle={styles.dropdown}
-                 onSelect={this._languageSelected}
-                  options={doctorData}
-                  renderRow={this._renderDropdownRow.bind(this)}
-                 // onSelect={() => false}
-                >
+                <View style={{ flex: 0.5, marginTop: 5 }}>                
+                 <ModalDropdown  dropdownStyle={styles.languagedropdown}
+                   onSelect={this._staffLanguageSelected}
+                  options={_.map(this.props.staffdata.languageList, 'label')}
+                  renderRow={this._renderDropdownRow.bind(this)} >
 
                  <MKTextField
                       textInputStyle={{flex: 1}}
-                      style={styles.textField}
+                      style={styles.languageTextField}
                       editable={false}
                       underlineColorAndroid={Colors.coal}
-                      placeholder="Check"
+                      placeholder="No Preference"
                       placeholderTextColor={Colors.steel}
                       tintColor={Colors.black}
-                      value={this.state.doctorSpeaks}
+                      value={this.state.staffSpeaks}
                     />
                 </ModalDropdown>
                 </View>
