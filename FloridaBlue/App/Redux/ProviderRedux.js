@@ -16,10 +16,23 @@ const { Types, Creators } = createActions({
   sendSpecialityTypeRequest: ['selectedCategoryCode'],
   sendSpecialityTypeSuccess: ['data'],
   sendSpecialityTypeFailure: ['data'],
+  sendDoctorLanguageRequest: ['data'],
+  sendDoctorLanguageSuccess: ['data'],
+  sendDoctorLanguageFailure: ['data'],
+  sendStaffLanguageRequest: ['data'],
+  sendStaffLanguageSuccess: ['data'],
+  sendStaffLanguageFailure: ['data'],
+  sendConfigTypeRequest: [],
+  sendConfigTypeSuccess: ['data'],
+  sendConfigTypeFailure: ['data'],
   changeCategoryCode: ['categoryCode'],
   changeSubCategoryCode: ['subCategoryCode'],
   changeProviderName: ['providerName'],
-  changePatientType: ['acceptingPatientsIndicator']
+  changePatientType: ['acceptingPatientsIndicator'],
+  changeDoctorLanguage: ['providerLanguage'],
+  changeStaffLanguage: ['staffLanguage'],
+  changeProgramType: ['programsList'],
+  changeTimeType: ['officeHours']
   
 })
 
@@ -34,6 +47,11 @@ export const INITIAL_STATE = Immutable({
   subCategoryCode: "",
   providerName: "",
   acceptingPatientsIndicator:"",
+  programsList:"",
+  staffLanguage:"",
+  providerLanguage:"",
+  programsList:"",
+  officeHours:"",
   planCategoryList: [],
   planSubCategoryList: []
 })
@@ -87,6 +105,39 @@ export const _sendSpecialityTypeSuccess = (state: Object, {data}: Object) =>
 export const _sendSpecialityTypeFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
 
+  // sendDoctorLanguageRequest
+export const _sendDoctorLanguageRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendDoctorLanguagSuccess
+export const _sendDoctorLanguageSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, providerLanguage: data.data.languageList})
+
+// sendDoctorLanguageFailure
+export const _sendDoctorLanguageFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+
+  // sendStaffLanguageRequest
+export const _sendStaffLanguageRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendStaffLanguagSuccess
+export const _sendStaffLanguageSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, staffLanguage: data.data.languageList})
+
+// sendStaffLanguageFailure
+export const _sendStaffLanguageFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+
+ // sendConfigTypeRequest
+export const _sendConfigTypeRequest = (state: Object) => state.merge({ fetching: true})
+
+// sendConfigTypeSuccess
+export const _sendConfigTypeSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false,  configData:data.data, error: null})
+
+// sendConfigTypeFailure
+export const _sendConfigTypeFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+
 // categoryCode
 export const _changeCategoryCode = (state: Object, {categoryCode}: Object) =>
       state.merge({fetching: false, categoryCode})
@@ -102,6 +153,23 @@ export const _changeProviderName = (state: Object, {providerName}: Object) =>
 // AcceptPatientType
 export const _changePatientType = (state: Object, {acceptingPatientsIndicator}: Object) =>
       state.merge({fetching: false, acceptingPatientsIndicator})      
+
+// DoctorLanguage
+export const _changeDoctorLanguage = (state: Object, {providerLanguage}: Object) =>
+      state.merge({fetching: false, providerLanguage})
+
+// StaffLanguage
+export const _changeStaffLanguage = (state: Object, {staffLanguage}: Object) =>
+      state.merge({fetching: false, staffLanguage})
+
+// ProgramList
+export const _changeProgramType = (state: Object, {programsList}: Object) =>
+      state.merge({fetching: false, programsList})
+
+// officehours
+export const _changeTimeType = (state: Object, {officeHours}: Object) =>
+      state.merge({fetching: false, officeHours})  
+
 
 
 
@@ -120,8 +188,26 @@ export const _changePatientType = (state: Object, {acceptingPatientsIndicator}: 
     [Types.SEND_SPECIALITY_TYPE_REQUEST]: _sendSpecialityTypeRequest,
     [Types.SEND_SPECIALITY_TYPE_SUCCESS]: _sendSpecialityTypeSuccess,
     [Types.SEND_SPECIALITY_TYPE_FAILURE]: _sendSpecialityTypeFailure,
+
+    [Types.SEND_DOCTOR_LANGUAGE_REQUEST]: _sendDoctorLanguageRequest,
+    [Types.SEND_DOCTOR_LANGUAGE_SUCCESS]: _sendDoctorLanguageSuccess,
+    [Types.SEND_DOCTOR_LANGUAGE_FAILURE]: _sendDoctorLanguageFailure,
+
+    [Types.SEND_STAFF_LANGUAGE_REQUEST]: _sendStaffLanguageRequest,
+    [Types.SEND_STAFF_LANGUAGE_SUCCESS]: _sendStaffLanguageSuccess,
+    [Types.SEND_STAFF_LANGUAGE_FAILURE]: _sendStaffLanguageFailure,
+
+
+    [Types.SEND_CONFIG_TYPE_REQUEST]: _sendConfigTypeRequest,
+    [Types.SEND_CONFIG_TYPE_SUCCESS]: _sendConfigTypeSuccess,
+    [Types.SEND_CONFIG_TYPE_FAILURE]: _sendConfigTypeFailure,
+
     [Types.CHANGE_CATEGORY_CODE]: _changeCategoryCode,
     [Types.CHANGE_SUB_CATEGORY_CODE]: _changeSubCategoryCode,
     [Types.CHANGE_PROVIDER_NAME]: _changeProviderName,
-    [Types.CHANGE_PATIENT_TYPE]: _changePatientType
+    [Types.CHANGE_PATIENT_TYPE]: _changePatientType,
+    [Types.CHANGE_DOCTOR_LANGUAGE]: _changeDoctorLanguage,
+    [Types.CHANGE_STAFF_LANGUAGE]: _changeStaffLanguage,
+    [Types.CHANGE_PROGRAM_TYPE]: _changeProgramType,
+    [Types.CHANGE_TIME_TYPE]: _changeTimeType
   })

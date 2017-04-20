@@ -53,6 +53,9 @@ import {sendNetworkListRequest} from './ProviderSagas'
 import {sendProviderSearchRequest} from './ProviderSagas'
 import {sendCareTypeRequest} from './ProviderSagas'
 import {sendSpecialityTypeRequest} from './ProviderSagas'
+import {sendDoctorLanguageRequest} from './ProviderSagas'
+import {sendStaffLanguageRequest} from './ProviderSagas'
+import {sendConfigTypeRequest} from './ProviderSagas'
 // import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -84,12 +87,11 @@ export default function * root () {
     takeLatest(StaffLanguageTypes.STAFFLANGUAGE_REQUEST, stafflanguage, api),
     takeLatest(DoctorLanguageTypes.DOCTORLANGUAGE_REQUEST, doctorlanguage, api),
     takeLatest(DoctorDetailTypes.DOCTORDETAIL_REQUEST, doctordetail, api),
-   // takeLatest(CareTypes.CARE_REQUEST, care, api),
+   
     takeLatest(ProviderList.ADD_PROVIDER_REQUEST, addSavedProvider),
     takeLatest(ProviderList.REMOVE_PROVIDER_REQUEST, removeSavedProvider),
     takeLatest(SearchDataTypes.SEARCHDATA_REQUEST, searchdata, api),
-    takeLatest(SearchDoctorTypes.SEARCHDOCTOR_REQUEST, searchdoctor, api),
-   // takeLatest(SpecialityTypes.SPECIALITY_REQUEST, speciality, api),
+  
     takeLatest(RegistrationTypes.SEND_IDENTIFICATION_REQUEST, sendIdentificationRequest, apiforRegistration),
     takeLatest(RegistrationTypes.SEND_PERSONAL_INFORMATION_REQUEST, sendPersonalInformationRequest, apiforRegistration),
     takeLatest(RegistrationTypes.SEND_REGISTRATION_CODE_REQUEST, sendRegistrationCodeRequest, apiforRegistration),
@@ -98,6 +100,9 @@ export default function * root () {
     takeLatest(ProviderTypes.SEND_NETWORK_LIST_REQUEST, sendNetworkListRequest, api),
     takeLatest(ProviderTypes.SEND_PROVIDER_SEARCH_REQUEST, sendProviderSearchRequest, api),
     takeLatest(ProviderTypes.SEND_CARE_TYPE_REQUEST, sendCareTypeRequest, api),
-    takeLatest(ProviderTypes.SEND_SPECIALITY_TYPE_REQUEST, sendSpecialityTypeRequest, api)
+    takeLatest(ProviderTypes.SEND_SPECIALITY_TYPE_REQUEST, sendSpecialityTypeRequest, api),
+    takeLatest(ProviderTypes.SEND_DOCTOR_LANGUAGE_REQUEST, sendDoctorLanguageRequest, api),
+    takeLatest(ProviderTypes.SEND_STAFF_LANGUAGE_REQUEST, sendStaffLanguageRequest, api),
+    takeLatest(ProviderTypes.SEND_CONFIG_TYPE_REQUEST, sendConfigTypeRequest, api)
   ]
 }

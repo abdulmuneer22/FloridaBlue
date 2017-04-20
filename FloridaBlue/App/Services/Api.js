@@ -94,10 +94,10 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     "who": "staff"
   })
 
-  const getLanguage = (data) => api.post('/opd/languages', {
-    "language": "EN",
-    "who": "staff"
-  })
+  // const getLanguage = (data) => api.post('/opd/languages', {
+  //   "language": "EN",
+  //   "who": "staff"
+  // })
 
   const getDoctorLanguage = (data) => api.post('/opd/languages', {
     "language": "EN",
@@ -164,15 +164,15 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     "state": "",
     "city": "",
     "county": "",
-    "acceptingPatientsIndicator": "",
-    "programsList": "",
+    "acceptingPatientsIndicator": data.acceptingPatientsIndicator,
+    "programsList": data.programsList,
     "networkList": ["NWB"] ,
-    "providerLanguage": "",
+    "providerLanguage": data.providerLanguage,
     "providerName": data.providerName,
     "providerFirstName": "",
-    "staffLanguage": "",
+    "staffLanguage": data.staffLanguage,
     "gender": "",
-    "officeHours": "",
+    "officeHours": data.officeHours,
     "hospitalAffiliation": "",
     "providerNumber": "",
     "medicalGroup": "",
@@ -288,7 +288,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     getTOU,
     putTou,
     getHsa,
-    getLanguage,
     getDoctorLanguage,
     getStaffLanguage,
     getDoctorDetail,

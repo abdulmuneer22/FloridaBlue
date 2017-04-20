@@ -50,3 +50,39 @@ export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
     yield put(ProviderActions.sendSpecialityTypeFailure(data))
   }
 }
+
+export function * sendDoctorLanguageRequest (api, {data}) {
+  const response = yield call(api.getDoctorLanguage, data)
+
+  if (response.ok) {
+    var error = null
+    var data = response.data
+    yield put(ProviderActions.sendDoctorLanguageSuccess(data))
+  } else {
+    yield put(ProviderActions.sendDoctorLanguageFailure(data))
+  }
+}
+
+export function * sendStaffLanguageRequest (api, {data}) {
+  const response = yield call(api.getStaffLanguage, data)
+
+  if (response.ok) {
+    var error = null
+    var data = response.data
+    yield put(ProviderActions.sendStaffLanguageSuccess(data))
+  } else {
+    yield put(ProviderActions.sendStaffLanguageFailure(data))
+  }
+}
+
+export function * sendConfigTypeRequest (api) {
+  const response = yield call(api.getConfig, data)
+
+  if (response.ok) {
+    var error = null
+    var data = response.data
+    yield put(ProviderActions.sendConfigTypeSuccess(data))
+  } else {
+    yield put(ProviderActions.sendConfigTypeFailure(data))
+  }
+}
