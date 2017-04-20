@@ -8,12 +8,12 @@ import {
   Dimensions
 } from 'react-native'
 
-import {Colors, Metrics, Fonts} from '../../../../../Themes'
+import {Colors, Metrics, Fonts} from '../../../../../../Themes'
 
 const window = Dimensions.get('window')
 
 import {connect} from 'react-redux'
-import styles from '../DoctorList/DoctorListStyle'
+import styles from '../DoctorListStyle'
 
 
 

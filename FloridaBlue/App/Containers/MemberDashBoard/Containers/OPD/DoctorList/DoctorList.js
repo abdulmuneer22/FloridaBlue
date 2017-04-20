@@ -30,9 +30,9 @@ const card = { card: { width: Metrics.screenWidth * 0.92,
 const cardTitle = { cardTitle: { fontSize: 40 } }
 
 
-import Switch from '../Components/switch'
-import DoctorCard from '../Components/DoctorCard'
-import BottomCard from '../Components/BottomCard'
+import Switch from './Components/switch'
+import DoctorCard from './Components/DoctorCard'
+import BottomCard from './Components/BottomCard'
 //import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './DoctorListStyle'

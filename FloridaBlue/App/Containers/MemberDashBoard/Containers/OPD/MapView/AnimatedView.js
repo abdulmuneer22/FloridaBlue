@@ -11,12 +11,14 @@ import {
 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import _ from 'lodash'
+import BottomCard from './Components/BottomCard'
 import Swiper from 'react-native-swiper'
 import DoctorCard from '../Components/DoctorCard'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './MapViewStyle'
 import NavItems from '../../../../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
+import { Container, Content, Footer, FooterTab } from 'native-base';
 
 const window = Dimensions.get('window')
 //const marker_image = require('./marker.png')
@@ -170,7 +172,10 @@ class AnimatedView extends Component{
           <Text style={Style.text}>And simple</Text>
         </View>
       </Swiper>
-    
+      
+                <Footer style={{height:Metrics.textHeight2 * Metrics.screenHeight * 0.0019}}>
+                <BottomCard/>
+                </Footer>
                 
             </View>
         )

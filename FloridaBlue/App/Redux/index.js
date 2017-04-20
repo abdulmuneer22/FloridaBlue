@@ -19,8 +19,6 @@ export default () => {
     searchdoctor: require('./SearchDoctorRedux').reducer,
     searchdata: require('./SearchDataRedux').reducer,
     saveprovider: require('./SaveProviderRedux').reducer,
-  //  care: require('./CareRedux').reducer,
-    //speciality: require('./SpecialityRedux').reducer,
     registration: require('./RegistrationRedux').reducer,
     provider: require('./ProviderRedux').reducer
   })

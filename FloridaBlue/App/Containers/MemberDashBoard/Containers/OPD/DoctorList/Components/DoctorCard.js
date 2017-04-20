@@ -23,14 +23,14 @@ import {
 const card = { card: { width: Metrics.screenWidth * 0.94, alignItems: 'flex-start', marginBottom: 20 } };
 const cardTitle = { cardTitle: { fontSize: 40 } }
 
-import { Colors, Metrics, Fonts } from '../../../../../Themes'
+import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import styles from '../DoctorList/DoctorListStyle'
+import styles from '../DoctorListStyle'
 import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
-import Flb from '../../../../../Themes/FlbIcon'
+import Flb from '../../../../../../Themes/FlbIcon'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)

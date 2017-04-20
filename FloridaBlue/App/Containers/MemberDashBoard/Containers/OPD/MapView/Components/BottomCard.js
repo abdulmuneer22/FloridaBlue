@@ -10,10 +10,10 @@ import {
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Colors, Metrics, Fonts } from '../../../../../Themes'
+import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-import Flb from '../../../../../Themes/FlbIcon'
-import styles from '../DoctorList/DoctorListStyle'
+import Flb from '../../../../../../Themes/FlbIcon'
+//import styles from '../DoctorListStyle'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 //import AnimatedViews from './AnimatedView'
 
@@ -24,8 +24,8 @@ class BottomCard extends Component{
       NavigationActions.AdvancedSearch()
     }
 
-    _mapView() {
-      NavigationActions.MapView()
+    _listView() {
+      NavigationActions.DoctorList()
     }
 
 
@@ -73,7 +73,7 @@ class BottomCard extends Component{
             </View>
          </TouchableOpacity >
 
-            <TouchableOpacity onPress={()=> this._mapView()}  >
+            <TouchableOpacity onPress={()=> this._listView()}  >
             <View style={{
                     backgroundColor : Colors.flBlue.grass,
                     width:Metrics.screenWidth*0.5,
@@ -87,8 +87,8 @@ class BottomCard extends Component{
                 }}> 
 
                 <Flb 
-                name='map'  
-                size={Metrics.icons.medium} 
+                name='list-bullet'  
+                size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} 
                 style = {{
                     marginRight : 0
                 }}
@@ -96,10 +96,10 @@ class BottomCard extends Component{
 
                 <Text style={{
                     color : 'white',
-                    fontSize : Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                    fontSize : Fonts.size.h6 * Metrics.screenWidth * 0.0030,
                     marginLeft : Metrics.baseMargin,
                     fontWeight:'400'
-                }}>Map View</Text>
+                }}>List View</Text>
             </View>
             </TouchableOpacity>
                 

@@ -30,8 +30,8 @@ const card = { card: { width: Metrics.screenWidth, marginLeft: 0, marginTop: 0, 
 const cardTitle = { cardTitle: { fontSize: 40 } }
 
 
-import StaffLanguageActions from '../../../../../Redux/StaffLanguageRedux'
-import DoctorLanguageActions from '../../../../../Redux/DoctorLanguageRedux'
+//import StaffLanguageActions from '../../../../../Redux/StaffLanguageRedux'
+//import DoctorLanguageActions from '../../../../../Redux/DoctorLanguageRedux'
 import SearchDoctorActions from '../../../../../Redux/SearchDoctorRedux'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import SearchDataActions from '../../../../../Redux/SearchDataRedux'
@@ -58,7 +58,7 @@ const DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 
 
 
 const doctorsGender = [
-  { text: 'Any', value: 'A' },
+  { text: 'Any', value: "" },
   { text: 'Female', value: 'F' },
   { text: 'Male', value: 'M' }
 ];
@@ -96,7 +96,7 @@ class AdvancedSearch extends Component {
       acceptNewPatient: "",
       workingTime: "",
       programs: "",
-      gender: "A",
+      gender: "",
       doctorSpeaks: "",
       staffSpeaks: "",
       radius: 10
@@ -111,7 +111,7 @@ class AdvancedSearch extends Component {
   }
 
   _handleDoctordetail() {
-    // alert(JSON.stringify(this.state))
+    alert(JSON.stringify(this.state))
     // this.props.attemptSearchDoctor(this.state)
     NavigationActions.DoctorList()
   }
@@ -121,14 +121,14 @@ class AdvancedSearch extends Component {
   }
 
   _patientTypeSelected(index, value: string) {
-    var selectPatientType = this.props.dummydata.acceptingPatient.acceptPatientList[index].value
+    var selectPatientType = this.props.configData.acceptingPatient.acceptPatientList[index].value
      this.props.changePatientType(selectPatientType)
     this.setState({ acceptNewPatient: value }, function () {
     })
   }
 
   _timeSelected(index, value: string) {
-    var selectTime = this.props.dummydata.workingHours.workHoursList[index].value
+    var selectTime = this.props.configData.workingHours.workHoursList[index].value
      this.props.changeTimeType(selectTime)
     this.setState({ workingTime: value }, function () {
     })
@@ -136,21 +136,21 @@ class AdvancedSearch extends Component {
 
   _staffLanguageSelected(index, value: string) {
     
-    var selectStaffLanguage = this.props.staffdata.languageList[index].value
+    var selectStaffLanguage = this.props.staffLanguage[index].value
      this.props.changeStaffLanguage(selectStaffLanguage)
     this.setState({ staffSpeaks: value }, function () {
     })
   }
 
   _doctorLanguageSelected(index, value: string) {
-    var selectDoctorLanguage = this.props.doctordata.languageList[index].value
-    this.props.chnageDoctorLanguage(selectDoctorLanguage)
+    var selectDoctorLanguage = this.props.providerLanguage[index].value
+    this.props.changeDoctorLanguage(selectDoctorLanguage)
     this.setState({ doctorSpeaks: value }, function () {
     })
   }
 
   _programSelected(index, value: string) {
-    var selectProgramType = this.props.dummydata.program.programList[index].value
+    var selectProgramType = this.props.configData.program.programList[index].value
     this.props.changeProgramType(selectProgramType)
     this.setState({ programs: value }, function () {
     })
@@ -173,7 +173,11 @@ class AdvancedSearch extends Component {
   componentDidMount() {
     console.log('I am Language screen')
     console.tron.log(this.props)
-    //  this.props.attemptLanguage()
+    //this.props.attemptLanguage()
+    this.props.attemptConfigData()
+    this.props.attemptStaffLanguage()
+    this.props.attemptDoctorLanguage()
+    this.props.attemptSearchData()
   }
 
   _renderDropdownRow(rowData, rowID, highlighted) {
@@ -236,7 +240,7 @@ class AdvancedSearch extends Component {
             <Slider
               value={10}
               minimumValue={0}
-              maximumValue={100}
+              maximumValue={50}
               step={0.5}
               style={{ width: Metrics.screenWidth * 0.87, marginLeft: 10 }}
               onValueChange={(value) => this.setState({ radius: value })}
@@ -244,29 +248,32 @@ class AdvancedSearch extends Component {
           </View>
 
           <View style={styles.genderView}>
+            {
+                this.props.configData !=undefined && this.props.configData.gender !=undefined ?
             <Text style={styles.doctorTextStyle}>
-              Doctor's Gender
-             </Text>
+             {this.props.configData.gender.displayName}
+             </Text>:null}
             <View style={{ flexDirection: 'row', marginLeft: 30 }}>
 
               {
-                doctorsGender.map((value, i) => <View key={i} style={{ marginRight: 30, flexDirection: 'row' }}>
+                this.props.configData !=undefined && this.props.configData.gender !=undefined ?
+                this.props.configData.gender.genderList.map((value, i) => <View key={i} style={{ marginRight: 30, flexDirection: 'row' }}>
 
                   <MKRadioButton checked={this.state.gender === value.value} onCheckedChange={() => this.setState({ gender: value.value })} />
                   <View >
-                    <Text style={styles.genderText}>{value.text}</Text>
+                    <Text style={styles.genderText}>{value.gender}</Text>
                   </View>
                 </View>
-                )
+                ): null
               }
             </View>
           </View>
 
           <View style={styles.programView}>
             <View style={{ flex: 0.4 }}>
-              {this.props.dummydata && this.props.dummydata.acceptingPatient ?
+              {this.props.configData && this.props.configData.acceptingPatient ?
                 <Text style={styles.programText}>
-                  {this.props.dummydata.acceptingPatient.displayName}
+                  {this.props.configData.acceptingPatient.displayName}
 
                 </Text> : null}
             </View>
@@ -275,8 +282,8 @@ class AdvancedSearch extends Component {
 
               <ModalDropdown
                 dropdownStyle={styles.dropdown}
-                options={this.props.dummydata != undefined && this.props.dummydata.acceptingPatient != undefined ?
-                  _.map(this.props.dummydata.acceptingPatient.acceptPatientList, 'patientPreference') : null}
+                options={this.props.configData != undefined && this.props.configData.acceptingPatient != undefined ?
+                  _.map(this.props.configData.acceptingPatient.acceptPatientList, 'patientPreference') : null}
                 renderRow={this._renderDropdownRow.bind(this)}
                 onSelect={this._patientTypeSelected}>
 
@@ -290,6 +297,7 @@ class AdvancedSearch extends Component {
                   editable={false}
                   underlineColorAndroid={Colors.coal}
                   placeholder="No Preference"
+                  //placeholder={this.state.acceptingPatientsIndicator}
                   placeholderTextColor={Colors.flBlue.ocean}
                   tintColor={Colors.black}
                   value={this.state.acceptNewPatient}
@@ -304,10 +312,11 @@ class AdvancedSearch extends Component {
           <View style={styles.programView}>
 
             <View style={{ flex: 0.4 }}>
-
+              {this.props.configData && this.props.configData.workingHours ?
               <Text style={styles.programText}>
-                Working Hours
+                {this.props.configData.workingHours.displayName}
                   </Text>
+                  :null}
 
             </View>
 
@@ -315,8 +324,8 @@ class AdvancedSearch extends Component {
 
               <ModalDropdown dropdownStyle={styles.dropdown}
                 onSelect={this._timeSelected}
-                options={this.props.dummydata != undefined && this.props.dummydata.workingHours != undefined ?
-                  _.map(this.props.dummydata.workingHours.workHoursList, 'hours') : null}
+                options={this.props.configData != undefined && this.props.configData.workingHours != undefined ?
+                  _.map(this.props.configData.workingHours.workHoursList, 'hours') : null}
                 renderRow={this._renderDropdownRow.bind(this)} >
 
                 <MKTextField
@@ -339,8 +348,6 @@ class AdvancedSearch extends Component {
 
           </View>
 
-
-
           <View style={styles.languageView}>
             <Text style={styles.languageText}>
               Language Selection
@@ -348,6 +355,7 @@ class AdvancedSearch extends Component {
 
             <View style={styles.dropDownView}>
               <View style={{ flex: 0.5 }}>
+
                 <Text style={styles.dropDownText}>
                   Doctor Speaks
             </Text>
@@ -356,8 +364,8 @@ class AdvancedSearch extends Component {
 
                 <ModalDropdown dropdownStyle={styles.languagedropdown}
                   onSelect={this._doctorLanguageSelected}
-                  options={this.props.doctordata != undefined && this.props.doctordata.languageList != undefined ?
-                    _.map(this.props.doctordata.languageList, 'label') : null}
+                  options={this.props.providerLanguage != undefined  ?
+                    _.map(this.props.providerLanguage, 'label') : null}
                   renderRow={this._renderDropdownRow.bind(this)} >
 
                   <MKTextField
@@ -387,8 +395,8 @@ class AdvancedSearch extends Component {
               <View style={{ flex: 0.5, marginTop: 5 }}>
                 <ModalDropdown dropdownStyle={styles.languagedropdown}
                   onSelect={this._staffLanguageSelected}
-                  options={this.props.staffdata != undefined && this.props.staffdata.languageList != undefined ?
-                    _.map(this.props.staffdata.languageList, 'label') : null}
+                  options={this.props.staffLanguage != undefined  ?
+                    _.map(this.props.staffLanguage, 'label') : null}
                   renderRow={this._renderDropdownRow.bind(this)} >
 
                   <MKTextField
@@ -413,16 +421,18 @@ class AdvancedSearch extends Component {
 
           <View style={styles.programView}>
             <View style={{ flex: 0.3 }}>
+                {this.props.configData && this.props.configData.program ?
               <Text style={styles.programText}>
-                Programs
+                {this.props.configData.program.displayName}
             </Text>
+            :null}
             </View>
 
             <View style={{ flex: 0.7, marginTop: 5 }}>
               <ModalDropdown dropdownStyle={styles.programdropdown}
                 onSelect={this._programSelected}
-                options={this.props.dummydata != undefined && this.props.dummydata.program != undefined ?
-                  _.map(this.props.dummydata.program.programList, 'programName') : null}
+                options={this.props.configData != undefined && this.props.configData.program != undefined ?
+                  _.map(this.props.configData.program.programList, 'programName') : null}
                 renderRow={this._renderDropdownRow.bind(this)} >
 
                 <MKTextField
@@ -465,18 +475,14 @@ class AdvancedSearch extends Component {
 
 AdvancedSearch.propTypes = {
 
-  sdata: PropTypes.object,
+ 
   attemptSearchDoctor: PropTypes.func,
-  serror: PropTypes.string,
-  doctordata: PropTypes.object,
   attemptDoctorLanguage: PropTypes.func,
-  doctorerror: PropTypes.string,
-  staffdata: PropTypes.object,
   attemptStaffLanguage: PropTypes.func,
-  stafferror: PropTypes.string,
-  dummydata: PropTypes.object,
+  attemptConfigData:PropTypes.func,
   attemptSearchData: PropTypes.func,
-  dummyerror: PropTypes.string
+  fetching: PropTypes.bool,
+  error: PropTypes.string,
 }
 
 const mapStateToProps = (state) => {
@@ -486,19 +492,11 @@ const mapStateToProps = (state) => {
     sfetching: state.searchdoctor.fetching,
     sdata: state.searchdoctor.data,
 
-    doctorerror: state.doctorlanguage.error,
-    doctorfetching: state.doctorlanguage.fetching,
-    doctordata: state.doctorlanguage.data,
-
-    stafferror: state.stafflanguage.error,
-    stafffetching: state.stafflanguage.fetching,
-    staffdata: state.stafflanguage.data,
-
-    dummyerror: state.searchdata.error,
-    dummyfetching: state.searchdata.fetching,
-    dummydata: state.searchdata.data,
-
-    acceptingPatientsIndicator: state.provider.acceptingPatientsIndicator
+    languageList:state.provider.languageList,
+    acceptingPatientsIndicator: state.provider.acceptingPatientsIndicator,
+    providerLanguage: state.provider.providerLanguage,
+    staffLanguage: state.provider.staffLanguage,
+    configData: state.provider.configData
   }
 }
 
@@ -506,11 +504,16 @@ const mapDispatchToProps = (dispatch) => {
   return {
 
    // attemptSearchDoctor: (data) => dispatch(SearchDoctorActions.searchdoctorRequest(data)),
-    attemptStaffLanguage: () => dispatch(StaffLanguageActions.stafflanguageRequest()),
-    attemptDoctorLanguage: () => dispatch(DoctorLanguageActions.doctorlanguageRequest()),
-    attemptSearchData: () => dispatch(SearchDataActions.searchdataRequest()),
+    attemptStaffLanguage: () => dispatch(ProviderActions.sendStaffLanguageRequest()),
+    attemptDoctorLanguage: () => dispatch(ProviderActions.sendDoctorLanguageRequest()),
+    attemptSearchData: (data) => dispatch(SearchDataActions.searchdataRequest(data)),
+    attemptConfigData: () => dispatch(ProviderActions.sendConfigTypeRequest()),
     attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
-    changePatientType: (acceptingPatientsIndicator) => dispatch(ProviderActions.changePatientType(acceptingPatientsIndicator))
+    changePatientType: (acceptingPatientsIndicator) => dispatch(ProviderActions.changePatientType(acceptingPatientsIndicator)),
+    changeDoctorLanguage: (providerLanguage) => dispatch(ProviderActions.changeDoctorLanguage(providerLanguage)),
+    changeStaffLanguage: (staffLanguage) => dispatch(ProviderActions.changeStaffLanguage(staffLanguage)),
+    changeProgramType: (programsList) => dispatch(ProviderActions.changeProgramType(programsList)),
+    changeTimeType: (officeHours) => dispatch(ProviderActions.changeTimeType(officeHours))
 
   }
 }
