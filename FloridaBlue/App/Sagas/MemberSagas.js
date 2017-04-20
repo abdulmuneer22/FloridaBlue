@@ -4,6 +4,9 @@ import LoginActions from '../Redux/LoginRedux'
 import MyPlanActions from '../Redux/MyPlanRedux'
 import HsaActions from '../Redux/HsaRedux'
 import SupportActions from '../Redux/SupportRedux'
+import SearchDataActions from '../Redux/SearchDataRedux'
+import StaffLanguageActions from '../Redux/StaffLanguageRedux'
+import DoctorLanguageActions from '../Redux/DoctorLanguageRedux'
 // attempts to login
 export function * member (api, {smToken}) {
   //    api.setsmTokenHeaders(smToken)
@@ -37,7 +40,10 @@ export function * member (api, {smToken}) {
       'isIndividualContract': isIndividualContract
     }
     yield put(SupportActions.supportRequest())
+     yield put(SearchDataActions.searchdataRequest())
     yield put(MyPlanActions.myplanRequest(data))
+    yield put(StaffLanguageActions.stafflanguageRequest(data))
+    yield put(DoctorLanguageActions.doctorlanguageRequest(data))
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }

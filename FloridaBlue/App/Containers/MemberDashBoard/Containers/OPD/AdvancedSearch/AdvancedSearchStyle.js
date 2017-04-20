@@ -353,10 +353,16 @@ export default StyleSheet.create({
     height:Metrics.screenHeight*0.5
     //paddingRight:20
   },
+  programdropdown: {
+    width: Metrics.screenWidth * 0.7,
+    height:Metrics.screenHeight*0.5
+    //paddingRight:20
+  },
   dropdownItem: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
     fontFamily: Fonts.type.base,
     fontWeight: '400',
+    color:Colors.flBlue.night,
     paddingLeft: Metrics.smallMargin,
     paddingTop: Metrics.smallMargin,
     paddingBottom: Metrics.smallMargin
@@ -364,7 +370,6 @@ export default StyleSheet.create({
     textField: {
     //marginTop: Metrics.doubleBaseMargin,
     width:Metrics.screenWidth * 0.6,
-
     paddingLeft: Metrics.baseMargin,
     paddingRight: Metrics.doubleBaseMargin,
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
@@ -373,6 +378,13 @@ export default StyleSheet.create({
     //marginTop: Metrics.doubleBaseMargin,
     width:Metrics.screenWidth * 0.5,
 
+    paddingLeft: Metrics.baseMargin,
+    paddingRight: Metrics.doubleBaseMargin,
+    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
+  },
+  programtextField: {
+    //marginTop: Metrics.doubleBaseMargin,
+    width:Metrics.screenWidth * 0.7,
     paddingLeft: Metrics.baseMargin,
     paddingRight: Metrics.doubleBaseMargin,
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015

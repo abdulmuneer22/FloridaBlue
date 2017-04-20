@@ -18,7 +18,9 @@ const { Types, Creators } = createActions({
   sendSpecialityTypeFailure: ['data'],
   changeCategoryCode: ['categoryCode'],
   changeSubCategoryCode: ['subCategoryCode'],
-  changeProviderName: ['providerName']
+  changeProviderName: ['providerName'],
+  changePatientType: ['acceptingPatientsIndicator']
+  
 })
 
 export const ProviderTypes = Types
@@ -31,6 +33,7 @@ export const INITIAL_STATE = Immutable({
   categoryCode: "ALL",
   subCategoryCode: "",
   providerName: "",
+  acceptingPatientsIndicator:"",
   planCategoryList: [],
   planSubCategoryList: []
 })
@@ -96,6 +99,11 @@ export const _changeSubCategoryCode = (state: Object, {subCategoryCode}: Object)
 export const _changeProviderName = (state: Object, {providerName}: Object) =>
       state.merge({fetching: false, providerName})
 
+// AcceptPatientType
+export const _changePatientType = (state: Object, {acceptingPatientsIndicator}: Object) =>
+      state.merge({fetching: false, acceptingPatientsIndicator})      
+
+
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -114,5 +122,6 @@ export const _changeProviderName = (state: Object, {providerName}: Object) =>
     [Types.SEND_SPECIALITY_TYPE_FAILURE]: _sendSpecialityTypeFailure,
     [Types.CHANGE_CATEGORY_CODE]: _changeCategoryCode,
     [Types.CHANGE_SUB_CATEGORY_CODE]: _changeSubCategoryCode,
-    [Types.CHANGE_PROVIDER_NAME]: _changeProviderName
+    [Types.CHANGE_PROVIDER_NAME]: _changeProviderName,
+    [Types.CHANGE_PATIENT_TYPE]: _changePatientType
   })

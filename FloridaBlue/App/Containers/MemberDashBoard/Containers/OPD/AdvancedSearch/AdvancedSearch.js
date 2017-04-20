@@ -33,6 +33,7 @@ const cardTitle = { cardTitle: { fontSize: 40 } }
 import StaffLanguageActions from '../../../../../Redux/StaffLanguageRedux'
 import DoctorLanguageActions from '../../../../../Redux/DoctorLanguageRedux'
 import SearchDoctorActions from '../../../../../Redux/SearchDoctorRedux'
+import ProviderActions from '../../../../../Redux/ProviderRedux'
 import SearchDataActions from '../../../../../Redux/SearchDataRedux'
 import _ from 'lodash'
 import MemberActions from '../../../../../Redux/MemberRedux'
@@ -49,6 +50,7 @@ import {
 } from 'native-base';
 import ModalDropdown from 'react-native-modal-dropdown';
 import { MKTextField, MKSlider, MKRangeSlider, MKColor, MKIconToggle, MKSpinner, getTheme, MKRadioButton, setTheme, mdl } from 'react-native-material-kit'
+
 
 const theme = getTheme()
 
@@ -75,8 +77,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
-
-
 setTheme({
   radioStyle: {
     fillColor: Colors.flBlue.ocean,
@@ -90,58 +90,71 @@ class AdvancedSearch extends Component {
 
   constructor(props) {
     super(props);
-  
+
     this.radioGroup = new MKRadioButton.Group();
     this.state = {
-      acceptNewPatient:"",
-      workingTime:"",
-      programs:"",
-      gender:"",
+      acceptNewPatient: "",
+      workingTime: "",
+      programs: "",
+      gender: "A",
       doctorSpeaks: "",
       staffSpeaks: "",
       radius: 10
     }
     this._timeSelected = this._timeSelected.bind(this)
-    this._languageSelected=this._languageSelected.bind(this)
-    this._patientTypeSelected=this._patientTypeSelected.bind(this)
+    this._languageSelected = this._languageSelected.bind(this)
+    this._patientTypeSelected = this._patientTypeSelected.bind(this)
     this._doctorLanguageSelected = this._doctorLanguageSelected.bind(this);
     this._staffLanguageSelected = this._staffLanguageSelected.bind(this);
+    this._programSelected = this._programSelected.bind(this);
 
   }
 
   _handleDoctordetail() {
-   // alert(JSON.stringify(this.state))
-    this.props.attemptSearchDoctor(this.state)
+    // alert(JSON.stringify(this.state))
+    // this.props.attemptSearchDoctor(this.state)
     NavigationActions.DoctorList()
   }
 
-     _languageSelected(event, value:string) {
-     this.setState({doctorSpeaks: value})
-    }
+  _languageSelected(event, value: string) {
+    this.setState({ doctorSpeaks: value })
+  }
 
-    _patientTypeSelected(index, value:string) {
-      var selectPatientType = this.props.dummydata.acceptingPatient.acceptPatientList[index].value
-      this.setState({acceptNewPatient: value}, function() {  
-      })
-    }
+  _patientTypeSelected(index, value: string) {
+    var selectPatientType = this.props.dummydata.acceptingPatient.acceptPatientList[index].value
+     this.props.changePatientType(selectPatientType)
+    this.setState({ acceptNewPatient: value }, function () {
+    })
+  }
 
- _timeSelected(index, value:string) {
-      var selectTime = this.props.dummydata.workingHours.workHoursList[index].value
-      this.setState({workingTime: value}, function() {  
-      })
-    }
- 
- _staffLanguageSelected(index, value:string) {
-      var selectStaffLanguage = this.props.staffdata.languageList[index].value
-      this.setState({staffSpeaks: value}, function() {  
-      })
-    }
+  _timeSelected(index, value: string) {
+    var selectTime = this.props.dummydata.workingHours.workHoursList[index].value
+     this.props.changeTimeType(selectTime)
+    this.setState({ workingTime: value }, function () {
+    })
+  }
 
-    _doctorLanguageSelected(index, value:string) {
-      var selectStaffLanguage = this.props.doctordata.languageList[index].value
-      this.setState({doctorSpeaks: value}, function() {  
-      })
-    }
+  _staffLanguageSelected(index, value: string) {
+    
+    var selectStaffLanguage = this.props.staffdata.languageList[index].value
+     this.props.changeStaffLanguage(selectStaffLanguage)
+    this.setState({ staffSpeaks: value }, function () {
+    })
+  }
+
+  _doctorLanguageSelected(index, value: string) {
+    var selectDoctorLanguage = this.props.doctordata.languageList[index].value
+    this.props.chnageDoctorLanguage(selectDoctorLanguage)
+    this.setState({ doctorSpeaks: value }, function () {
+    })
+  }
+
+  _programSelected(index, value: string) {
+    var selectProgramType = this.props.dummydata.program.programList[index].value
+    this.props.changeProgramType(selectProgramType)
+    this.setState({ programs: value }, function () {
+    })
+  }
 
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
@@ -163,44 +176,21 @@ class AdvancedSearch extends Component {
     //  this.props.attemptLanguage()
   }
 
-     _renderDropdownRow(rowData, rowID, highlighted) {
-      return (
-        <TouchableHighlight>
-            <Text style={styles.dropdownItem}>{rowData}</Text>
-        </TouchableHighlight>
-      )
-    }
+  _renderDropdownRow(rowData, rowID, highlighted) {
+    return (
+      <TouchableHighlight underlayColor='white'>
+        <Text style={styles.dropdownItem}>{rowData}</Text>
+      </TouchableHighlight>
+    )
+  }
 
   render() {
-
-    var temp=  this.props.dummydata && this.props.dummydata.workingHours && this.props.dummydata.workingHours.workHoursList
-     const rowData = [];
-     this.props.dummydata && this.props.dummydata.workingHours && this.props.dummydata.workingHours.workHoursList.forEach(function (value) {
-       rowData.push(`${value.hours}`);
-     }, this);
-
-     const Programs = [];
-     this.props.dummydata && this.props.dummydata.program && this.props.dummydata.program.programList.forEach(function (value) {
-       Programs.push(`${value.programName}`);
-     }, this);
-
-     const acceptPatients = [];
-     this.props.dummydata && this.props.dummydata.acceptingPatient && this.props.dummydata.acceptingPatient.acceptPatientList.forEach(function (value) {
-       acceptPatients.push(`${value.patientPreference}`);
-     }, this);
-
-     const doctorData = [];
-     if(this.props.doctordata && this.props.doctordata.languageList){
-     this.props.doctordata && this.props.doctordata.languageList.forEach(function (value) {
-       doctorData.push({ Text: value.label, value: value.value });
-     }, this);}
-     
 
     return (
       <View style={styles.container}>
 
         {this._renderHeader()}
-        <ScrollView style={{ flex: 1, marginBottom:20 }}>
+        <ScrollView style={{ flex: 1, marginBottom: 20 }}>
 
           <View>
             <Text style={styles.h1}>Change Location:</Text>
@@ -262,187 +252,219 @@ class AdvancedSearch extends Component {
               {
                 doctorsGender.map((value, i) => <View key={i} style={{ marginRight: 30, flexDirection: 'row' }}>
 
-                  <MKRadioButton checked={this.state.gender === value.value}  onCheckedChange={()=>this.setState({gender:value.value})} />
+                  <MKRadioButton checked={this.state.gender === value.value} onCheckedChange={() => this.setState({ gender: value.value })} />
                   <View >
                     <Text style={styles.genderText}>{value.text}</Text>
                   </View>
                 </View>
                 )
               }
-              </View>
             </View>
+          </View>
 
-            <View style={styles.programView}>
-              <View style={{ flex: 0.4 }}>
+          <View style={styles.programView}>
+            <View style={{ flex: 0.4 }}>
+              {this.props.dummydata && this.props.dummydata.acceptingPatient ?
                 <Text style={styles.programText}>
-                {this.props.dummydata && this.props.dummydata.acceptingPatient ? this.props.dummydata.acceptingPatient.displayName : null}
-                 
-            </Text>
-              </View>
+                  {this.props.dummydata.acceptingPatient.displayName}
 
-              <View style={{ flex: 0.6, marginTop: 15 }}>
-
-                <ModalDropdown 
-                   dropdownStyle={styles.dropdown}
-                  options={_.map(this.props.dummydata.acceptingPatient.acceptPatientList, 'patientPreference')}
-                  renderRow={this._renderDropdownRow.bind(this)}
-                   onSelect={this._patientTypeSelected}>
-
-                     <MKTextField
-                      ref='patientType'
-                      style={styles.textField}
-                      textInputStyle={{flex: 1}}
-                      editable={false}
-                      underlineColorAndroid={Colors.coal}
-                      placeholder="No Preference"
-                      placeholderTextColor={Colors.steel}
-                      tintColor={Colors.black}
-                      value={this.state.acceptNewPatient}
-                    />
-
-                </ModalDropdown>
-              </View>
+                </Text> : null}
             </View>
 
+            <View style={{ flex: 0.6, marginTop: 15 }}>
 
+              <ModalDropdown
+                dropdownStyle={styles.dropdown}
+                options={this.props.dummydata != undefined && this.props.dummydata.acceptingPatient != undefined ?
+                  _.map(this.props.dummydata.acceptingPatient.acceptPatientList, 'patientPreference') : null}
+                renderRow={this._renderDropdownRow.bind(this)}
+                onSelect={this._patientTypeSelected}>
 
-            <View style={styles.programView}>
-
-              <View style={{ flex: 0.4 }}>
-               
-                  <Text style={styles.programText}>
-                   Working Hours
-                  </Text>
-                  
-              </View>
-
-              <View style={{ flex: 0.6, marginTop: 10 }}>
-
-                <ModalDropdown   dropdownStyle={styles.dropdown}
-                 onSelect={this._timeSelected}
-                  options={_.map(this.props.dummydata.workingHours.workHoursList, 'hours')}
-                  renderRow={this._renderDropdownRow.bind(this)} >
-
-                 <MKTextField
-                      ref='Working Hours'
-                      textInputStyle={{flex: 1}}
-                      style={styles.textField}
-                      editable={false}
-                      underlineColorAndroid={Colors.coal}
-                      placeholder="No Preference"
-                      placeholderTextColor={Colors.steel}
-                      tintColor={Colors.black}
-                      value={this.state.workingTime}
-                    />
-                </ModalDropdown>
-
-              </View>
-
-            </View>
-
-
-
-            <View style={styles.languageView}>
-              <Text style={styles.languageText}>
-                Language Selection
-            </Text>
-
-              <View style={styles.dropDownView}>
-                <View style={{ flex: 0.5 }}>
-                  <Text style={styles.dropDownText}>
-                    Doctor Speaks
-            </Text>
-                </View>
-                <View style={{ flex: 0.5, marginTop: 5 }}>
-                  
-                 <ModalDropdown   dropdownStyle={styles.languagedropdown}
-                   onSelect={this._doctorLanguageSelected}
-                  options={_.map(this.props.doctordata.languageList, 'label')}
-                  renderRow={this._renderDropdownRow.bind(this)} >
-
-                 <MKTextField
-                      textInputStyle={{flex: 1}}
-                      style={styles.languageTextField}
-                      editable={false}
-                      underlineColorAndroid={Colors.coal}
-                      placeholder="No Preference"
-                      placeholderTextColor={Colors.steel}
-                      tintColor={Colors.black}
-                      value={this.state.doctorSpeaks}
-                    />
-                </ModalDropdown>
-                </View>
-              </View>
-
-              <View style={styles.dropDownView}>
-                <View style={{ flex: 0.5 }}>
-                  <Text style={styles.dropDownText}>
-                    Staff Speaks
-                  </Text>
-                </View>
-
-                <View style={{ flex: 0.5, marginTop: 5 }}>                
-                 <ModalDropdown  dropdownStyle={styles.languagedropdown}
-                   onSelect={this._staffLanguageSelected}
-                  options={_.map(this.props.staffdata.languageList, 'label')}
-                  renderRow={this._renderDropdownRow.bind(this)} >
-
-                 <MKTextField
-                      textInputStyle={{flex: 1}}
-                      style={styles.languageTextField}
-                      editable={false}
-                      underlineColorAndroid={Colors.coal}
-                      placeholder="No Preference"
-                      placeholderTextColor={Colors.steel}
-                      tintColor={Colors.black}
-                      value={this.state.staffSpeaks}
-                    />
-                </ModalDropdown>
-                </View>
-              </View>
-
-            </View>
-
-
-            <View style={styles.programView}>
-              <View style={{ flex: 0.3 }}>
-                <Text style={styles.programText}>
-                  Programs
-            </Text>
-              </View>
-
-              <View style={{ flex: 0.7, marginTop: 5 }}>
-                <ModalDropdown style={styles.dropdown_1}
-                textStyle={styles.programDrop}
-                dropdownStyle={{ width: 150, marginTop: 10 }}
-                options={Programs}
-                 defaultValue="Choice of Programs "
-                onSelect={(Index,value)=>this.setState({value})}
-                  
+                <MKTextField
+                  ref='patientType'
+                  style={styles.textField}
+                  textInputStyle={{
+                    flex: 1, color: Colors.flBlue.ocean,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                  }}
+                  editable={false}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder="No Preference"
+                  placeholderTextColor={Colors.flBlue.ocean}
+                  tintColor={Colors.black}
+                  value={this.state.acceptNewPatient}
                 />
+
+              </ModalDropdown>
+            </View>
+          </View>
+
+
+
+          <View style={styles.programView}>
+
+            <View style={{ flex: 0.4 }}>
+
+              <Text style={styles.programText}>
+                Working Hours
+                  </Text>
+
+            </View>
+
+            <View style={{ flex: 0.6, marginTop: 10 }}>
+
+              <ModalDropdown dropdownStyle={styles.dropdown}
+                onSelect={this._timeSelected}
+                options={this.props.dummydata != undefined && this.props.dummydata.workingHours != undefined ?
+                  _.map(this.props.dummydata.workingHours.workHoursList, 'hours') : null}
+                renderRow={this._renderDropdownRow.bind(this)} >
+
+                <MKTextField
+                  ref='Working Hours'
+                  textInputStyle={{
+                    flex: 1, color: Colors.flBlue.ocean,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                  }}
+                  style={styles.textField}
+                  editable={false}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder="No Preference"
+                  placeholderTextColor={Colors.flBlue.ocean}
+                  tintColor={Colors.black}
+                  value={this.state.workingTime}
+                />
+              </ModalDropdown>
+
+            </View>
+
+          </View>
+
+
+
+          <View style={styles.languageView}>
+            <Text style={styles.languageText}>
+              Language Selection
+            </Text>
+
+            <View style={styles.dropDownView}>
+              <View style={{ flex: 0.5 }}>
+                <Text style={styles.dropDownText}>
+                  Doctor Speaks
+            </Text>
+              </View>
+              <View style={{ flex: 0.5, marginTop: 5 }}>
+
+                <ModalDropdown dropdownStyle={styles.languagedropdown}
+                  onSelect={this._doctorLanguageSelected}
+                  options={this.props.doctordata != undefined && this.props.doctordata.languageList != undefined ?
+                    _.map(this.props.doctordata.languageList, 'label') : null}
+                  renderRow={this._renderDropdownRow.bind(this)} >
+
+                  <MKTextField
+                    textInputStyle={{
+                      flex: 1, color: Colors.flBlue.ocean,
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                    }}
+                    style={styles.languageTextField}
+                    editable={false}
+                    underlineColorAndroid={Colors.coal}
+                    placeholder="No Preference"
+                    placeholderTextColor={Colors.flBlue.ocean}
+                    tintColor={Colors.black}
+                    value={this.state.doctorSpeaks}
+                  />
+                </ModalDropdown>
               </View>
             </View>
 
-            <View style={styles.nextButton}>
-              <TouchableOpacity onPress={() => { this._handleDoctordetail()}}>
-                <Image source={Images.getResultsButton}
-                  style={{
-                    width: Metrics.screenWidth * 0.4,
-                    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                    height: Metrics.screenHeight * 0.06,
-                   
-                  }} />
-              </TouchableOpacity>
+            <View style={styles.dropDownView}>
+              <View style={{ flex: 0.5 }}>
+                <Text style={styles.dropDownText}>
+                  Staff Speaks
+                  </Text>
+              </View>
+
+              <View style={{ flex: 0.5, marginTop: 5 }}>
+                <ModalDropdown dropdownStyle={styles.languagedropdown}
+                  onSelect={this._staffLanguageSelected}
+                  options={this.props.staffdata != undefined && this.props.staffdata.languageList != undefined ?
+                    _.map(this.props.staffdata.languageList, 'label') : null}
+                  renderRow={this._renderDropdownRow.bind(this)} >
+
+                  <MKTextField
+                    textInputStyle={{
+                      flex: 1, color: Colors.flBlue.ocean,
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                    }}
+                    style={styles.languageTextField}
+                    editable={false}
+                    underlineColorAndroid={Colors.coal}
+                    placeholder="No Preference"
+                    placeholderTextColor={Colors.flBlue.ocean}
+                    tintColor={Colors.black}
+                    value={this.state.staffSpeaks}
+                  />
+                </ModalDropdown>
+              </View>
             </View>
-       
-         </ScrollView>
-        </View>
-        )
-    }
+
+          </View>
+
+
+          <View style={styles.programView}>
+            <View style={{ flex: 0.3 }}>
+              <Text style={styles.programText}>
+                Programs
+            </Text>
+            </View>
+
+            <View style={{ flex: 0.7, marginTop: 5 }}>
+              <ModalDropdown dropdownStyle={styles.programdropdown}
+                onSelect={this._programSelected}
+                options={this.props.dummydata != undefined && this.props.dummydata.program != undefined ?
+                  _.map(this.props.dummydata.program.programList, 'programName') : null}
+                renderRow={this._renderDropdownRow.bind(this)} >
+
+                <MKTextField
+                  textInputStyle={{
+                    flex: 1, color: Colors.flBlue.ocean,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                  }}
+                  style={styles.programtextField}
+                  editable={false}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder="No Preference"
+                  placeholderTextColor={Colors.flBlue.ocean}
+                  placeholderTextSize={Fonts.size.h2}
+                  tintColor={Colors.black}
+                  value={this.state.programs}
+
+                />
+              </ModalDropdown>
+
+            </View>
+          </View>
+
+          <View style={styles.nextButton}>
+            <TouchableOpacity onPress={() => { this._handleDoctordetail() }}>
+              <Image source={Images.getResultsButton}
+                style={{
+                  width: Metrics.screenWidth * 0.4,
+                  borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                  height: Metrics.screenHeight * 0.06,
+
+                }} />
+            </TouchableOpacity>
+          </View>
+
+        </ScrollView>
+      </View>
+    )
+  }
 }
 
 AdvancedSearch.propTypes = {
- 
+
   sdata: PropTypes.object,
   attemptSearchDoctor: PropTypes.func,
   serror: PropTypes.string,
@@ -459,7 +481,7 @@ AdvancedSearch.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-  
+
     serror: state.searchdoctor.error,
     sfetching: state.searchdoctor.fetching,
     sdata: state.searchdoctor.data,
@@ -475,17 +497,21 @@ const mapStateToProps = (state) => {
     dummyerror: state.searchdata.error,
     dummyfetching: state.searchdata.fetching,
     dummydata: state.searchdata.data,
+
+    acceptingPatientsIndicator: state.provider.acceptingPatientsIndicator
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-   
-    attemptSearchDoctor: (data) => dispatch(SearchDoctorActions.searchdoctorRequest(data)),
+
+   // attemptSearchDoctor: (data) => dispatch(SearchDoctorActions.searchdoctorRequest(data)),
     attemptStaffLanguage: () => dispatch(StaffLanguageActions.stafflanguageRequest()),
     attemptDoctorLanguage: () => dispatch(DoctorLanguageActions.doctorlanguageRequest()),
-    attemptSearchData: () => dispatch(SearchDataActions.searchdataRequest())
-   
+    attemptSearchData: () => dispatch(SearchDataActions.searchdataRequest()),
+    attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
+    changePatientType: (acceptingPatientsIndicator) => dispatch(ProviderActions.changePatientType(acceptingPatientsIndicator))
+
   }
 }
 
