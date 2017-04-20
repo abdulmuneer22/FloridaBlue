@@ -21,7 +21,7 @@
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleVersion</key>
-    <string>17</string>
+    <string>22</string>
     <key>LSApplicationCategoryType</key>
     <string/>
     <key>LSRequiresIPhoneOS</key>
@@ -121,6 +121,10 @@
       <string>SanFranciscoBold.ttf</string>
       <string>SanFranciscoThin.ttf</string>
       <string>Zocial.ttf</string>
+    </array>
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>location</string>
     </array>
     <key>UIRequiredDeviceCapabilities</key>
     <array>

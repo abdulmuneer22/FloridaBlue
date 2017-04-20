@@ -29,16 +29,6 @@ import ModalDropdown from 'react-native-modal-dropdown'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
 
-type ProviderSearchProps = {
-  dispatch: () => any,
-  attemptNetworkList:() => void,
-  attemptCareTypes:() => void,
-  attemptSpecialityTypes:() => void,
-  attemptProviderSearch:() => void,
-  fetching: boolean,
-  error: string
-}
-
 const theme = getTheme()
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -50,72 +40,62 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
        super(props);
        this.searchTypeGroup = new MKRadioButton.Group();
        this.locationGroup = new MKRadioButton.Group();
-       this.state = {
-         selectedCareType: "",
-         selectedSpeciality: "",
-         showSavedProvider: true,
-         showKnownCare: false,
-         showUnknownCare: false,
-         showSpeciality: false,
-         showChangeLocale: false,
-         showNewLocation: false
-      }
-
-      this._onChecked = this._onChecked.bind(this)
-      this._careSelected = this._careSelected.bind(this)
-      this._specialitySelected = this._specialitySelected.bind(this)
-      this._editLocation = this._editLocation.bind(this)
-      this._selectNewLocation = this._selectNewLocation.bind(this)
-      this._saveLocation = this._saveLocation.bind(this)
-      this._getResults = this._getResults.bind(this)
+       this._onChecked = this._onChecked.bind(this)
+       this._careSelected = this._careSelected.bind(this)
+       this._specialitySelected = this._specialitySelected.bind(this)
+       this._editLocation = this._editLocation.bind(this)
+       this._selectNewLocation = this._selectNewLocation.bind(this)
+       this._saveLocation = this._saveLocation.bind(this)
+       this._getResults = this._getResults.bind(this)
     }
 
     componentDidMount() {
+      this._resetState()
       this.props.attemptNetworkList()
       this.props.attemptCareTypes()
+
+      navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.props.changeCurrentLocation(position)
+        this.props.changeLatitude(position["coords"]["latitude"])
+        this.props.changeLongitude(position["coords"]["longitude"])
+      },
+        (error) => alert(JSON.stringify(error)),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
+      });
     }
 
     _onChecked(event) {
       if (event.checked) {
         this.props.changeSubCategoryCode("")
         this.props.changeCategoryCode("ALL")
-
-        this.setState({showKnownCare: true})
-        this.setState({showUnknownCare: false})
-        this.setState({showSavedProvider: false})
+        this.props.changeKnownCareState(true)
+        this.props.changeUnknownCareState(false)
+        this.props.changeSavedProviderState(false)
       } else {
         this.props.changeProviderName("")
-
-        this.setState({showKnownCare: false})
-        this.setState({showUnknownCare: true})
-        this.setState({showSavedProvider: false})
+        this.props.changeKnownCareState(false)
+        this.props.changeUnknownCareState(true)
+        this.props.changeSavedProviderState(false)
       }
     }
 
     _careSelected(index, value:string) {
       var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
       this.props.getSpecialityTypes(selectedCategoryCode)
-
-      this.setState({showUnknownCare: false})
-      this.setState({selectedCareType: value}, function() {
-        this.setState({showUnknownCare: true})
-      })
-      this.setState({showSpeciality: true})
+      this.props.changeCareType(value)
+      this.props.changeSpecialityState(true)
     }
 
     _specialitySelected(index, value:string) {
       var selectedSubCategoryCode = this.props.planSubCategoryList[index].categoryCode
       this.props.changeSubCategoryCode(selectedSubCategoryCode)
-
-      this.setState({showSpeciality: false})
-      this.setState({selectedSpeciality: value}, function() {
-        this.setState({showSpeciality: true})
-      })
+      this.props.changeSpecialityType(value)
     }
 
     _editLocation(event) {
-      this.setState({showChangeLocale: true})
-      this.setState({showSpeciality: false})
+      this.props.changeCurrentLocaleState(true)
+      this.props.changeSpecialityState(false)
     }
 
     _getResults() {
@@ -130,12 +110,29 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _selectNewLocation(event) {
       if (event.checked) {
-        this.setState({showNewLocation: true})
+        this.props.changeNewLocationState(true)
       }
     }
 
     _saveLocation(event) {
-      this.setState({showNewLocation: false})
+      this.props.changeNewLocationState(false)
+    }
+
+    _resetState() {
+      this.props.changeSubCategoryCode("")
+      this.props.changeCategoryCode("ALL")
+      this.props.changeProviderName("")
+      this.props.changeCareType("")
+      this.props.changeSpecialityType("")
+      this.props.changeKnownCareState(false)
+      this.props.changeUnknownCareState(false)
+      this.props.changeSavedProviderState(true)
+      this.props.changeSpecialityState(false)
+      this.props.changeCurrentLocaleState(false)
+      this.props.changeNewLocationState(false)
+      this.props.changeCurrentLocation("Unknown")
+      this.props.changeLatitude(0)
+      this.props.changeLongitude(0)
     }
 
     _renderHeader () {
@@ -176,14 +173,14 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                   <Text style={styles.radioText}>No</Text>
                 </View>
 
-                <HideableView visible={this.state.showSavedProvider} removeWhenHidden={true}>
+                <HideableView visible={this.props.savedProviderState} removeWhenHidden={true}>
                   <Text style={styles.subheading}>Already saved your providers?</Text>
                   <TouchableOpacity style={styles.savedProviderLink}>
                     <Text style={styles.savedProviderLinkText}>View Saved Providers</Text>
                   </TouchableOpacity>
                 </HideableView>
 
-                <HideableView visible={this.state.showKnownCare} removeWhenHidden={true}>
+                <HideableView visible={this.props.knownCareState} removeWhenHidden={true}>
                   <Text style={styles.h2}>Enter doctor or care facility name</Text>
                   <MKTextField
                     ref='providerName'
@@ -200,7 +197,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                   />
                 </HideableView>
 
-                <HideableView visible={this.state.showUnknownCare} removeWhenHidden={true}>
+                <HideableView visible={this.props.unknownCareState} removeWhenHidden={true}>
                   <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                     <MKTextField
                       ref='careType'
@@ -211,13 +208,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                       placeholder={I18n.t('careTypePlaceholder')}
                       placeholderTextColor={Colors.steel}
                       tintColor={Colors.black}
-                      value={this.state.selectedCareType}
+                      value={this.props.careType}
                     />
                   </ModalDropdown>
                   <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
                 </HideableView>
 
-                <HideableView visible={this.state.showUnknownCare && this.state.showSpeciality} removeWhenHidden={true}>
+                <HideableView visible={this.props.unknownCareState && this.props.specialityState} removeWhenHidden={true}>
                   <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                     <MKTextField
                       ref='specialityType'
@@ -228,13 +225,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                       placeholder={I18n.t('specialityTypePlaceholder')}
                       placeholderTextColor={Colors.steel}
                       tintColor={Colors.black}
-                      value={this.state.selectedSpeciality}
+                      value={this.props.specialityType}
                     />
                   </ModalDropdown>
                   <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
                 </HideableView>
 
-                <HideableView visible={this.state.showUnknownCare && this.state.showChangeLocale == false} removeWhenHidden={true}>
+                <HideableView visible={this.props.unknownCareState && this.props.currentLocaleState == false} removeWhenHidden={true}>
                   <View style={[styles.locationView, styles.flexColumn]}>
                     <Text style={styles.h2}>My Location:</Text>
                     <View style={styles.editButton}>
@@ -246,7 +243,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                   </View>
                 </HideableView>
 
-                <HideableView style={styles.locationView} visible={this.state.showUnknownCare && this.state.showChangeLocale} removeWhenHidden={true}>
+                <HideableView style={styles.locationView} visible={this.props.unknownCareState && this.props.currentLocaleState} removeWhenHidden={true}>
                   <View style={styles.mapIcon}>
                     <Image source={Images.mapUnselectedIcon} />
                     <Text style={styles.changeLocationHeader}>Change Location:</Text>
@@ -268,7 +265,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                   </View>
                 </HideableView>
 
-                <HideableView style={styles.locationView} visible={this.state.showUnknownCare && this.state.showNewLocation} removeWhenHidden={true}>
+                <HideableView style={styles.locationView} visible={this.props.unknownCareState && this.props.newLocationState} removeWhenHidden={true}>
                   <Text style={styles.newLocationHeader}>Enter New City or ZipCode:</Text>
                   <MKTextField
                     ref='newLocation'
@@ -285,7 +282,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                   </TouchableOpacity>
                 </HideableView>
 
-                <HideableView visible={this.state.showKnownCare||this.state.showUnknownCare} removeWhenHidden={true}>
+                <HideableView visible={this.props.knownCareState||this.props.unknownCareState} removeWhenHidden={true}>
                   <TouchableOpacity style={styles.getResults} onPress={this._getResults}>
                     <Image source={Images.getResultsButton} style={styles.getResultsButton} />
                   </TouchableOpacity>
@@ -307,7 +304,18 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       planSubCategoryList: state.provider.planSubCategoryList,
       categoryCode: state.provider.categoryCode,
       subCategoryCode: state.provider.subCategoryCode,
-      providerName: state.provider.providerName
+      providerName: state.provider.providerName,
+      careType: state.provider.careType,
+      specialityType: state.provider.specialityType,
+      knownCareState: state.provider.knownCareState,
+      unknownCareState: state.provider.unknownCareState,
+      savedProviderState: state.provider.savedProviderState,
+      specialityState: state.provider.specialityState,
+      currentLocaleState: state.provider.currentLocaleState,
+      newLocationState: state.provider.newLocationState,
+      currentLocation: state.provider.currentLocation,
+      latitude: state.provider.latitude,
+      longitude: state.provider.longitude
     }
   }
 
@@ -319,7 +327,18 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
       changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode)),
       changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode)),
-      changeProviderName: (providerName) => dispatch(ProviderActions.changeProviderName(providerName))
+      changeProviderName: (providerName) => dispatch(ProviderActions.changeProviderName(providerName)),
+      changeCareType: (careType) => dispatch(ProviderActions.changeCareType(careType)),
+      changeSpecialityType: (specialityType) => dispatch(ProviderActions.changeSpecialityType(specialityType)),
+      changeKnownCareState: (knownCareState) => dispatch(ProviderActions.changeKnownCareState(knownCareState)),
+      changeUnknownCareState: (unknownCareState) => dispatch(ProviderActions.changeUnknownCareState(unknownCareState)),
+      changeSavedProviderState: (savedProviderState) => dispatch(ProviderActions.changeSavedProviderState(savedProviderState)),
+      changeSpecialityState: (specialityState) => dispatch(ProviderActions.changeSpecialityState(specialityState)),
+      changeCurrentLocaleState: (currentLocaleState) => dispatch(ProviderActions.changeCurrentLocaleState(currentLocaleState)),
+      changeNewLocationState: (newLocationState) => dispatch(ProviderActions.changeNewLocationState(newLocationState)),
+      changeCurrentLocation: (currentLocation) => dispatch(ProviderActions.changeCurrentLocation(currentLocation)),
+      changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
+      changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude))
     }
   }
 
