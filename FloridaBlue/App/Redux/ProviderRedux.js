@@ -32,8 +32,20 @@ const { Types, Creators } = createActions({
   changeDoctorLanguage: ['providerLanguage'],
   changeStaffLanguage: ['staffLanguage'],
   changeProgramType: ['programsList'],
-  changeTimeType: ['officeHours']
-  
+  changeTimeType: ['officeHours'],
+  changeCareType: ['careType'],
+  changeSpecialityType: ['specialityType'],
+  changeKnownCareState: ['knownCareState'],
+  changeUnknownCareState: ['unknownCareState'],
+  changeSavedProviderState: ['savedProviderState'],
+  changeSpecialityState: ['specialityState'],
+  changeCurrentLocaleState: ['currentLocaleState'],
+  changeNewLocationState: ['newLocationState'],
+  changeCurrentLocation: ['currentLocation'],
+  changeLatitude: ['latitude'],
+  changeLongitude: ['longitude'],
+  changePatientType: ['acceptingPatientsIndicator']
+
 })
 
 export const ProviderTypes = Types
@@ -46,6 +58,17 @@ export const INITIAL_STATE = Immutable({
   categoryCode: "ALL",
   subCategoryCode: "",
   providerName: "",
+  careType: "",
+  specialityType: "",
+  knownCareState: false,
+  unknownCareState: false,
+  savedProviderState: true,
+  specialityState: false,
+  currentLocaleState: false,
+  newLocationState: false,
+  currentLocation: "Unknown",
+  latitude: 0,
+  longitude: 0,
   acceptingPatientsIndicator:"",
   programsList:"",
   staffLanguage:"",
@@ -139,20 +162,50 @@ export const _sendConfigTypeFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
 
 // categoryCode
-export const _changeCategoryCode = (state: Object, {categoryCode}: Object) =>
-      state.merge({fetching: false, categoryCode})
+export const _changeCategoryCode = (state: Object, {categoryCode}: Object) => state.merge({fetching: false, categoryCode})
 
 // subCategoryCode
-export const _changeSubCategoryCode = (state: Object, {subCategoryCode}: Object) =>
-      state.merge({fetching: false, subCategoryCode})
+export const _changeSubCategoryCode = (state: Object, {subCategoryCode}: Object) => state.merge({fetching: false, subCategoryCode})
 
 // providerName
-export const _changeProviderName = (state: Object, {providerName}: Object) =>
-      state.merge({fetching: false, providerName})
+export const _changeProviderName = (state: Object, {providerName}: Object) => state.merge({fetching: false, providerName})
+
+// careType
+export const _changeCareType = (state: Object, {careType}: Object) => state.merge({fetching: false, careType})
+
+// specialityType
+export const _changeSpecialityType = (state: Object, {specialityType}: Object) => state.merge({fetching: false, specialityType})
+
+// knownCareState
+export const _changeKnownCareState = (state: Object, {knownCareState}: Object) => state.merge({fetching: false, knownCareState})
+
+// unknownCareState
+export const _changeUnknownCareState = (state: Object, {unknownCareState}: Object) => state.merge({fetching: false, unknownCareState})
+
+// savedProviderState
+export const _changeSavedProviderState = (state: Object, {savedProviderState}: Object) => state.merge({fetching: false, savedProviderState})
+
+// specialityState
+export const _changeSpecialityState = (state: Object, {specialityState}: Object) => state.merge({fetching: false, specialityState})
+
+// currentLocaleState
+export const _changeCurrentLocaleState = (state: Object, {currentLocaleState}: Object) => state.merge({fetching: false, currentLocaleState})
+
+// newLocationState
+export const _changeNewLocationState = (state: Object, {newLocationState}: Object) => state.merge({fetching: false, newLocationState})
+
+// currentLocation
+export const _changeCurrentLocation = (state: Object, {currentLocation}: Object) => state.merge({fetching: false, currentLocation})
+
+// latitude
+export const _changeLatitude = (state: Object, {latitude}: Object) => state.merge({fetching: false, latitude})
+
+// longitude
+export const _changeLongitude = (state: Object, {longitude}: Object) => state.merge({fetching: false, longitude})
 
 // AcceptPatientType
 export const _changePatientType = (state: Object, {acceptingPatientsIndicator}: Object) =>
-      state.merge({fetching: false, acceptingPatientsIndicator})      
+      state.merge({fetching: false, acceptingPatientsIndicator})
 
 // DoctorLanguage
 export const _changeDoctorLanguage = (state: Object, {providerLanguage}: Object) =>
@@ -175,39 +228,45 @@ export const _changeTimeType = (state: Object, {officeHours}: Object) =>
 
 /* ------------- Hookup Reducers To Types ------------- */
 
-  export const reducer = createReducer(INITIAL_STATE, {
-    [Types.SEND_NETWORK_LIST_REQUEST]: _sendNetworkListRequest,
-    [Types.SEND_NETWORK_LIST_SUCCESS]: _sendNetworkListSuccess,
-    [Types.SEND_NETWORK_LIST_FAILURE]: _sendNetworkListFailure,
-    [Types.SEND_PROVIDER_SEARCH_REQUEST]: _sendProviderSearchRequest,
-    [Types.SEND_PROVIDER_SEARCH_SUCCESS]: _sendProviderSearchSuccess,
-    [Types.SEND_PROVIDER_SEARCH_FAILURE]: _sendProviderSearchFailure,
-    [Types.SEND_CARE_TYPE_REQUEST]: _sendCareTypeRequest,
-    [Types.SEND_CARE_TYPE_SUCCESS]: _sendCareTypeSuccess,
-    [Types.SEND_CARE_TYPE_FAILURE]: _sendCareTypeFailure,
-    [Types.SEND_SPECIALITY_TYPE_REQUEST]: _sendSpecialityTypeRequest,
-    [Types.SEND_SPECIALITY_TYPE_SUCCESS]: _sendSpecialityTypeSuccess,
-    [Types.SEND_SPECIALITY_TYPE_FAILURE]: _sendSpecialityTypeFailure,
-
-    [Types.SEND_DOCTOR_LANGUAGE_REQUEST]: _sendDoctorLanguageRequest,
-    [Types.SEND_DOCTOR_LANGUAGE_SUCCESS]: _sendDoctorLanguageSuccess,
-    [Types.SEND_DOCTOR_LANGUAGE_FAILURE]: _sendDoctorLanguageFailure,
-
-    [Types.SEND_STAFF_LANGUAGE_REQUEST]: _sendStaffLanguageRequest,
-    [Types.SEND_STAFF_LANGUAGE_SUCCESS]: _sendStaffLanguageSuccess,
-    [Types.SEND_STAFF_LANGUAGE_FAILURE]: _sendStaffLanguageFailure,
-
-
-    [Types.SEND_CONFIG_TYPE_REQUEST]: _sendConfigTypeRequest,
-    [Types.SEND_CONFIG_TYPE_SUCCESS]: _sendConfigTypeSuccess,
-    [Types.SEND_CONFIG_TYPE_FAILURE]: _sendConfigTypeFailure,
-
-    [Types.CHANGE_CATEGORY_CODE]: _changeCategoryCode,
-    [Types.CHANGE_SUB_CATEGORY_CODE]: _changeSubCategoryCode,
-    [Types.CHANGE_PROVIDER_NAME]: _changeProviderName,
-    [Types.CHANGE_PATIENT_TYPE]: _changePatientType,
-    [Types.CHANGE_DOCTOR_LANGUAGE]: _changeDoctorLanguage,
-    [Types.CHANGE_STAFF_LANGUAGE]: _changeStaffLanguage,
-    [Types.CHANGE_PROGRAM_TYPE]: _changeProgramType,
-    [Types.CHANGE_TIME_TYPE]: _changeTimeType
-  })
+export const reducer = createReducer(INITIAL_STATE, {
+  [Types.SEND_NETWORK_LIST_REQUEST]: _sendNetworkListRequest,
+  [Types.SEND_NETWORK_LIST_SUCCESS]: _sendNetworkListSuccess,
+  [Types.SEND_NETWORK_LIST_FAILURE]: _sendNetworkListFailure,
+  [Types.SEND_PROVIDER_SEARCH_REQUEST]: _sendProviderSearchRequest,
+  [Types.SEND_PROVIDER_SEARCH_SUCCESS]: _sendProviderSearchSuccess,
+  [Types.SEND_PROVIDER_SEARCH_FAILURE]: _sendProviderSearchFailure,
+  [Types.SEND_CARE_TYPE_REQUEST]: _sendCareTypeRequest,
+  [Types.SEND_CARE_TYPE_SUCCESS]: _sendCareTypeSuccess,
+  [Types.SEND_CARE_TYPE_FAILURE]: _sendCareTypeFailure,
+  [Types.SEND_SPECIALITY_TYPE_REQUEST]: _sendSpecialityTypeRequest,
+  [Types.SEND_SPECIALITY_TYPE_SUCCESS]: _sendSpecialityTypeSuccess,
+  [Types.SEND_SPECIALITY_TYPE_FAILURE]: _sendSpecialityTypeFailure,
+  [Types.SEND_DOCTOR_LANGUAGE_REQUEST]: _sendDoctorLanguageRequest,
+  [Types.SEND_DOCTOR_LANGUAGE_SUCCESS]: _sendDoctorLanguageSuccess,
+  [Types.SEND_DOCTOR_LANGUAGE_FAILURE]: _sendDoctorLanguageFailure,
+  [Types.SEND_STAFF_LANGUAGE_REQUEST]: _sendStaffLanguageRequest,
+  [Types.SEND_STAFF_LANGUAGE_SUCCESS]: _sendStaffLanguageSuccess,
+  [Types.SEND_STAFF_LANGUAGE_FAILURE]: _sendStaffLanguageFailure,
+  [Types.SEND_CONFIG_TYPE_REQUEST]: _sendConfigTypeRequest,
+  [Types.SEND_CONFIG_TYPE_SUCCESS]: _sendConfigTypeSuccess,
+  [Types.SEND_CONFIG_TYPE_FAILURE]: _sendConfigTypeFailure,
+  [Types.CHANGE_CATEGORY_CODE]: _changeCategoryCode,
+  [Types.CHANGE_SUB_CATEGORY_CODE]: _changeSubCategoryCode,
+  [Types.CHANGE_PROVIDER_NAME]: _changeProviderName,
+  [Types.CHANGE_CARE_TYPE]: _changeCareType,
+  [Types.CHANGE_SPECIALITY_TYPE]: _changeSpecialityType,
+  [Types.CHANGE_KNOWN_CARE_STATE]: _changeKnownCareState,
+  [Types.CHANGE_UNKNOWN_CARE_STATE]: _changeUnknownCareState,
+  [Types.CHANGE_SAVED_PROVIDER_STATE]: _changeSavedProviderState,
+  [Types.CHANGE_SPECIALITY_STATE]: _changeSpecialityState,
+  [Types.CHANGE_CURRENT_LOCALE_STATE]: _changeCurrentLocaleState,
+  [Types.CHANGE_NEW_LOCATION_STATE]: _changeNewLocationState,
+  [Types.CHANGE_CURRENT_LOCATION]: _changeCurrentLocation,
+  [Types.CHANGE_LATITUDE]: _changeLatitude,
+  [Types.CHANGE_LONGITUDE]: _changeLongitude,
+  [Types.CHANGE_PATIENT_TYPE]: _changePatientType,
+  [Types.CHANGE_DOCTOR_LANGUAGE]: _changeDoctorLanguage,
+  [Types.CHANGE_STAFF_LANGUAGE]: _changeStaffLanguage,
+  [Types.CHANGE_PROGRAM_TYPE]: _changeProgramType,
+  [Types.CHANGE_TIME_TYPE]: _changeTimeType
+})
