@@ -153,7 +153,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     "start": 1,
     "end": 25,
     "categoryCode": data.categoryCode,
-    "searchRange": 50,
+    "searchRange": data.searchRange,
     "address": data.address,
     "sortColumn": "PROGRAM",
     "sortType": "ASCENDING",

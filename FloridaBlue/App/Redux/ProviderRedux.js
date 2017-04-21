@@ -38,9 +38,10 @@ const { Types, Creators } = createActions({
   changeCurrentLocation: ['currentLocation'],
   changeLatitude: ['latitude'],
   changeLongitude: ['longitude'],
-  changeGenderType:['gender'],
+  changeGenderType: ['gender'],
   changeAddress: ['address'],
   changeHomeAddress: ['homeAddress'],
+  changeSearchRange: ['searchRange'],
   providerClickleft: [],
   providerClickright: []
 
@@ -68,7 +69,8 @@ export const INITIAL_STATE = Immutable({
   staffLanguage:"",
   providerLanguage:"",
   officeHours:"",
-  gender:"",
+  gender: "",
+  searchRange: 50,
   leftActive: true,
   rightActive: false,
   planCategoryList: [],
@@ -185,6 +187,9 @@ export const _changeAddress = (state: Object, {address}: Object) => state.merge(
 // homeAddress
 export const _changeHomeAddress = (state: Object, {homeAddress}: Object) => state.merge({fetching: false, homeAddress})
 
+// searchRange
+export const _changeSearchRange = (state: Object, {searchRange}: Object) => state.merge({fetching: false, searchRange})
+
 // AcceptPatientType
 export const _changePatientType = (state: Object, {acceptingPatientsIndicator}: Object) =>
       state.merge({fetching: false, acceptingPatientsIndicator})
@@ -204,10 +209,9 @@ export const _changeProgramType = (state: Object, {programsList}: Object) =>
 // officeHours
 export const _changeTimeType = (state: Object, {officeHours}: Object) =>
       state.merge({fetching: false, officeHours})
-     
- // officeHours
-export const _changeGenderType = (state: Object, {gender}: Object) =>
-      state.merge({fetching: false, gender})
+
+ // genderType
+export const _changeGenderType = (state: Object, {gender}: Object) => state.merge({fetching: false, gender})
 
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {
@@ -260,6 +264,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_PROGRAM_TYPE]: _changeProgramType,
   [Types.CHANGE_TIME_TYPE]: _changeTimeType,
   [Types.CHANGE_GENDER_TYPE]: _changeGenderType,
+  [Types.CHANGE_SEARCH_RANGE]: _changeSearchRange,
   [Types.PROVIDER_CLICKLEFT]: leftclick,
   [Types.PROVIDER_CLICKRIGHT]: rightclick
 })

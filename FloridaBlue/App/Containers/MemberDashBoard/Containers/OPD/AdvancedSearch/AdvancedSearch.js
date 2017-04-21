@@ -89,6 +89,7 @@ class AdvancedSearch extends Component {
     super(props);
 
     this.radioGroup = new MKRadioButton.Group();
+    this.genderGroup = new MKRadioButton.Group()
     this.state = {
       acceptNewPatient: "",
       workingTime: "",
@@ -184,6 +185,24 @@ class AdvancedSearch extends Component {
     }
   }
 
+  _anyGenderSelected(event) {
+    if (event.checked) {
+      this.props.changeGenderType("")
+    }
+  }
+
+  _maleGenderSelected(event) {
+    if (event.checked) {
+      this.props.changeGenderType("M")
+    }
+  }
+
+  _femaleGenderSelected(event) {
+    if (event.checked) {
+      this.props.changeGenderType("F")
+    }
+  }
+
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
@@ -266,14 +285,14 @@ class AdvancedSearch extends Component {
 
           <View style={{ marginLeft: 15, marginTop: 10 }}>
             <Text style={styles.searchText}> Search Radius:</Text>
-            <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular }}> {`${this.state.searchRange} mi.`}</Text>
+            <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular }}>{this.props.searchRange} mi</Text>
             <Slider
-              value={10}
+              value={this.props.searchRange}
               minimumValue={0}
               maximumValue={50}
-              step={0.5}
+              step={1}
               style={{ width: Metrics.screenWidth * 0.87, marginLeft: 10 }}
-              onValueChange={(value) => this.setState({ searchRange: value })}
+              onValueChange={this.props.changeSearchRange}
             />
           </View>
 
@@ -283,19 +302,20 @@ class AdvancedSearch extends Component {
             <Text style={styles.doctorTextStyle}>
              {this.props.configData.gender.displayName}
              </Text>:null}
+
             <View style={{ flexDirection: 'row', marginLeft: 30 }}>
-
-              {
-                this.props.configData !=undefined && this.props.configData.gender !=undefined ?
-                this.props.configData.gender.genderList.map((value, i) => <View key={i} style={{ marginRight: 30, flexDirection: 'row' }}>
-
-                  <MKRadioButton checked={this.state.gender === value.value} onCheckedChange={() => this.changeGenderType(value.value)} />
-                  <View >
-                    <Text style={styles.genderText}>{value.gender}</Text>
-                  </View>
-                </View>
-                ): null
-              }
+              <MKRadioButton checked={true} group={this.genderGroup} onCheckedChange={this._anyGenderSelected} />
+              <View >
+                <Text style={styles.genderText}>Any</Text>
+              </View>
+              <MKRadioButton checked={false} group={this.genderGroup} onCheckedChange={this._maleGenderSelected} />
+              <View >
+                <Text style={styles.genderText}>Male</Text>
+              </View>
+              <MKRadioButton checked={false} group={this.genderGroup} onCheckedChange={this._femaleGenderSelected} />
+              <View >
+                <Text style={styles.genderText}>Female</Text>
+              </View>
             </View>
           </View>
 
@@ -530,6 +550,8 @@ const mapStateToProps = (state) => {
     address: state.provider.address,
     newLocationState: state.provider.newLocationState,
     currentLocation: state.provider.currentLocation,
+    searchRange: state.provider.searchRange,
+    gender: state.provider.gender
   }
 }
 
@@ -547,11 +569,12 @@ const mapDispatchToProps = (dispatch) => {
     changeStaffLanguage: (staffLanguage) => dispatch(ProviderActions.changeStaffLanguage(staffLanguage)),
     changeProgramType: (programsList) => dispatch(ProviderActions.changeProgramType(programsList)),
     changeTimeType: (officeHours) => dispatch(ProviderActions.changeTimeType(officeHours)),
-    changeGenderType:(gender) => dispatch(ProviderActions.changeGenderType(gender)),
+    changeGenderType: (gender) => dispatch(ProviderActions.changeGenderType(gender)),
     changeCurrentLocation: (currentLocation) => dispatch(ProviderActions.changeCurrentLocation(currentLocation)),
     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
-    changeAddress: (address) => dispatch(ProviderActions.changeAddress(address))
+    changeAddress: (address) => dispatch(ProviderActions.changeAddress(address)),
+    changeSearchRange: (searchRange) => dispatch(ProviderActions.changeSearchRange(searchRange))
   }
 }
 
