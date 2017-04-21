@@ -100,12 +100,14 @@ export default StyleSheet.create({
   advancedSearchLinkText: {
     color: Colors.black,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    paddingLeft: Metrics.smallMargin,
     textDecorationLine: 'underline'
   },
   locationView: {
     backgroundColor: Colors.flBlue.grey1,
     paddingTop: Metrics.doubleBaseMargin,
     paddingBottom: Metrics.doubleBaseMargin,
+    flexDirection: 'row'
   },
   currentLocationText: {
     color: Colors.flBlue.sky,
@@ -115,10 +117,18 @@ export default StyleSheet.create({
     paddingLeft: Metrics.doubleBaseMargin,
     paddingTop: Metrics.smallMargin
   },
+  editLocation: {
+    alignItems: 'center',
+    marginTop: Metrics.baseMargin,
+    marginLeft: Metrics.doubleBaseMargin
+  },
   editLocationText: {
     color: Colors.black,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     textDecorationLine: 'underline',
+    paddingRight: Metrics.doubleBaseMargin
+  },
+  editLocationIcon: {
     paddingRight: Metrics.doubleBaseMargin
   },
   dropdownExampleText: {
@@ -127,10 +137,6 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     color: Colors.steel,
     fontFamily: Fonts.type.emphasis
-  },
-  editButton: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
   },
   dropdown: {
     width: Metrics.screenWidth * 0.9,
@@ -144,10 +150,15 @@ export default StyleSheet.create({
     paddingTop: Metrics.smallMargin,
     paddingBottom: Metrics.smallMargin
   },
-  flexColumn: {
-    flexDirection: 'column'
+  locationTextContainer: {
+    flexDirection: 'column',
+    flex: 0.7
   },
-  flexRow: {
+  locationButtonContainer: {
+    flexDirection: 'column',
+    flex: 0.3
+  },
+  advancedSearchContainer: {
     flexDirection: 'row'
   },
   changeLocationHeader: {

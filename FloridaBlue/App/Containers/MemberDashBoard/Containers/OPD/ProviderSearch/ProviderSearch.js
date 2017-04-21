@@ -21,6 +21,7 @@ import styles from './ProviderSearchStyle'
 import NavItems from '../../../../../Navigation/NavItems.js'
 import I18n from 'react-native-i18n'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
+import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import { Container, Content, Footer, FooterTab, Radio, Button, Icon, Fab } from 'native-base'
 import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme } from 'react-native-material-kit'
@@ -231,11 +232,14 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </HideableView>
 
                 <HideableView visible={this.props.unknownCareState && this.props.currentLocaleState == false} removeWhenHidden={true}>
-                  <View style={[styles.locationView, styles.flexColumn]}>
-                    <Text style={styles.h2}>My Location:</Text>
-                    <View style={styles.editButton}>
+                  <View style={[styles.locationView]}>
+                    <View style={styles.locationTextContainer}>
+                      <Text style={styles.h2}>My Location:</Text>
                       <Text style={styles.currentLocationText}>Jacksonville, FL 32246</Text>
+                    </View>
+                    <View style={styles.locationButtonContainer}>
                       <TouchableOpacity style={styles.editLocation} onPress={this._editLocation}>
+                        <Flb name="pencil" style={styles.editLocationIcon} size={Metrics.icons.small} color={Colors.flBlue.anvil} />
                         <Text style={styles.editLocationText}>Edit</Text>
                       </TouchableOpacity>
                     </View>
@@ -286,7 +290,10 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                     <Image source={Images.getResultsButton} style={styles.getResultsButton} />
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.advancedSearchLink} onPress={this._advancedSearch}>
-                    <Text style={styles.advancedSearchLinkText}>Advanced Search</Text>
+                    <View style={styles.advancedSearchContainer}>
+                      <Flb name="search-find" size={Metrics.icons.small} color={Colors.flBlue.anvil} />
+                      <Text style={styles.advancedSearchLinkText}>Advanced Search</Text>
+                    </View>
                   </TouchableOpacity>
                 </HideableView>
               </View>
