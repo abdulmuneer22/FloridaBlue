@@ -109,7 +109,7 @@ class AdvancedSearch extends Component {
     //alert(JSON.stringify(this.state))
     // this.props.attemptSearchDoctor(this.state)
     console.log('state data',this.state)
-    this.props.attemptProviderSearch(this.state)
+    this.props.attemptProviderSearch(this.props)
     NavigationActions.DoctorList()
   }
 
@@ -120,38 +120,34 @@ class AdvancedSearch extends Component {
   _patientTypeSelected(index, value: string) {
     var selectPatientType = this.props.configData.acceptingPatient.acceptPatientList[index].value
      this.props.changePatientType(selectPatientType)
-    this.setState({ acceptNewPatient: value }, function () {
-    })
+    
   }
 
   _timeSelected(index, value: string) {
     var selectTime = this.props.configData.workingHours.workHoursList[index].value
      this.props.changeTimeType(selectTime)
-    this.setState({ workingTime: value }, function () {
-    })
+   
   }
 
   _staffLanguageSelected(index, value: string) {
     
     var selectStaffLanguage = this.props.staffLanguage[index].value
      this.props.changeStaffLanguage(selectStaffLanguage)
-    this.setState({ staffSpeaks: value }, function () {
-    })
+    
   }
 
   _doctorLanguageSelected(index, value: string) {
     var selectDoctorLanguage = this.props.providerLanguage[index].value
     this.props.changeDoctorLanguage(selectDoctorLanguage)
-    this.setState({ doctorSpeaks: value }, function () {
-    })
   }
 
   _programSelected(index, value: string) {
     var selectProgramType = this.props.configData.program.programList[index].value
     this.props.changeProgramType(selectProgramType)
-    this.setState({ programs: value }, function () {
-    })
+    
   }
+
+  
 
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
@@ -256,7 +252,7 @@ class AdvancedSearch extends Component {
                 this.props.configData !=undefined && this.props.configData.gender !=undefined ?
                 this.props.configData.gender.genderList.map((value, i) => <View key={i} style={{ marginRight: 30, flexDirection: 'row' }}>
 
-                  <MKRadioButton checked={this.state.gender === value.value} onCheckedChange={() => this.setState({ gender: value.value })} />
+                  <MKRadioButton checked={this.state.gender === value.value} onCheckedChange={() => this.changeGenderType(value.value)} />
                   <View >
                     <Text style={styles.genderText}>{value.gender}</Text>
                   </View>
@@ -508,7 +504,8 @@ const mapDispatchToProps = (dispatch) => {
     changeDoctorLanguage: (providerLanguage) => dispatch(ProviderActions.changeDoctorLanguage(providerLanguage)),
     changeStaffLanguage: (staffLanguage) => dispatch(ProviderActions.changeStaffLanguage(staffLanguage)),
     changeProgramType: (programsList) => dispatch(ProviderActions.changeProgramType(programsList)),
-    changeTimeType: (officeHours) => dispatch(ProviderActions.changeTimeType(officeHours))
+    changeTimeType: (officeHours) => dispatch(ProviderActions.changeTimeType(officeHours)),
+    chnageGenderType:(gender) => dispatch(ProviderActions.changeGenderType(gender))
 
   }
 }

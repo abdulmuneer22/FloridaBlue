@@ -171,7 +171,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     "providerName": data.providerName,
     "providerFirstName": "",
     "staffLanguage": data.staffLanguage,
-    "gender": "",
+    "gender": data.gender,
     "officeHours": data.officeHours,
     "hospitalAffiliation": "",
     "providerNumber": "",
