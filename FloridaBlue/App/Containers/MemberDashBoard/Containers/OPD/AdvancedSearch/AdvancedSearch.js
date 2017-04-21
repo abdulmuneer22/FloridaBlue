@@ -44,6 +44,8 @@ import {
   Picker, Item
 } from 'native-base';
 import ModalDropdown from 'react-native-modal-dropdown';
+import HideableView from 'react-native-hideable-view'
+import I18n from 'react-native-i18n'
 import { MKTextField, MKSlider, MKRangeSlider, MKColor, MKIconToggle, MKSpinner, getTheme, MKRadioButton, setTheme, mdl } from 'react-native-material-kit'
 
 
@@ -94,7 +96,8 @@ class AdvancedSearch extends Component {
       gender: "",
       doctorSpeaks: "",
       staffSpeaks: "",
-      searchRange: 10
+      searchRange: 10,
+      newLocationState: false
     }
     this._timeSelected = this._timeSelected.bind(this)
     this._languageSelected = this._languageSelected.bind(this)
@@ -102,7 +105,9 @@ class AdvancedSearch extends Component {
     this._doctorLanguageSelected = this._doctorLanguageSelected.bind(this);
     this._staffLanguageSelected = this._staffLanguageSelected.bind(this);
     this._programSelected = this._programSelected.bind(this);
-
+    this._selectDifferentLocation = this._selectDifferentLocation.bind(this)
+    this._selectHomeLocation = this._selectHomeLocation.bind(this)
+    this._selectCurrentLocation = this._selectCurrentLocation.bind(this)
   }
 
   _handleDoctordetail() {
@@ -120,20 +125,20 @@ class AdvancedSearch extends Component {
   _patientTypeSelected(index, value: string) {
     var selectPatientType = this.props.configData.acceptingPatient.acceptPatientList[index].value
      this.props.changePatientType(selectPatientType)
-    
+
   }
 
   _timeSelected(index, value: string) {
     var selectTime = this.props.configData.workingHours.workHoursList[index].value
      this.props.changeTimeType(selectTime)
-   
+
   }
 
   _staffLanguageSelected(index, value: string) {
-    
+
     var selectStaffLanguage = this.props.staffLanguage[index].value
      this.props.changeStaffLanguage(selectStaffLanguage)
-    
+
   }
 
   _doctorLanguageSelected(index, value: string) {
@@ -144,10 +149,40 @@ class AdvancedSearch extends Component {
   _programSelected(index, value: string) {
     var selectProgramType = this.props.configData.program.programList[index].value
     this.props.changeProgramType(selectProgramType)
-    
+
   }
 
-  
+  _selectHomeLocation(event) {
+    if (event.checked) {
+      this.setState({newLocationState: false})
+      this.props.changeLatitude(0)
+      this.props.changeLongitude(0)
+      this.props.changeAddress(this.props.homeAddress)
+    }
+  }
+
+  _selectCurrentLocation(event) {
+    if (event.checked) {
+      this.setState({newLocationState: false})
+      navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.props.changeCurrentLocation(position)
+        this.props.changeLatitude(position["coords"]["latitude"])
+        this.props.changeLongitude(position["coords"]["longitude"])
+      },
+        (error) => alert(JSON.stringify(error)),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
+      });
+    }
+  }
+
+  _selectDifferentLocation(event) {
+    if (event.checked) {
+      this.setState({newLocationState: true})
+      this.props.changeLatitude(0)
+      this.props.changeLongitude(0)
+    }
+  }
 
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
@@ -164,8 +199,6 @@ class AdvancedSearch extends Component {
   }
 
   componentDidMount() {
-    console.log('I am Language screen')
-   
     //this.props.attemptLanguage()
     this.props.attemptConfigData()
     this.props.attemptStaffLanguage()
@@ -194,38 +227,42 @@ class AdvancedSearch extends Component {
           </View>
 
           <View style={styles.radioView}>
-            <MKRadioButton
-              checked={true}
-              group={this.radioGroup}
-            />
+            <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectCurrentLocation}/>
             <View >
               <Text style={styles.radioText}>Current Location</Text>
-              <Text style={styles.radioBottomText}>(Neptune Beach, FL 32266)</Text>
             </View>
 
           </View>
 
           <View style={styles.radioView}>
-            <MKRadioButton group={this.radioGroup} />
+            <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectHomeLocation}/>
             <View >
               <Text style={styles.radioText}>Home</Text>
               <View style={{ marginRight: Metrics.searchBarHeight }}>
-                <Text style={styles.radioBottomText}>(801 Penman Rd, Neptune Beach, FL 32266)</Text>
+                <Text style={styles.radioBottomText}>{this.props.homeAddress}</Text>
               </View>
             </View>
           </View>
 
           <View style={styles.radioView}>
-            <MKRadioButton group={this.radioGroup} />
+            <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectDifferentLocation}/>
             <View >
               <Text style={styles.radioText}>Different Location</Text>
             </View>
           </View>
 
-          <View style={{ marginLeft: 15, marginTop: 10 }}>
-            <Text style={styles.radioText}> Enter New City or Zipcode</Text>
-            <Textfield />
-          </View>
+          <HideableView style={{ marginLeft: 15, marginTop: 10 }} visible={this.state.newLocationState} removeWhenHidden={true}>
+            <Text style={styles.radioText}>{I18n.t('differentLocationMessage')}</Text>
+            <MKTextField
+              ref='newLocation'
+              textInputStyle={{flex: 1}}
+              editable={true}
+              underlineColorAndroid={Colors.coal}
+              placeholderTextColor={Colors.steel}
+              tintColor={Colors.black}
+              onChangeText={this.props.changeAddress}
+            />
+          </HideableView>
 
           <View style={{ marginLeft: 15, marginTop: 10 }}>
             <Text style={styles.searchText}> Search Radius:</Text>
@@ -468,7 +505,7 @@ class AdvancedSearch extends Component {
 
 AdvancedSearch.propTypes = {
 
- 
+
   attemptSearchDoctor: PropTypes.func,
   attemptDoctorLanguage: PropTypes.func,
   attemptStaffLanguage: PropTypes.func,
@@ -480,14 +517,19 @@ AdvancedSearch.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-
     error: state.provider.error,
     fetching: state.provider.fetching,
     languageList:state.provider.languageList,
     acceptingPatientsIndicator: state.provider.acceptingPatientsIndicator,
     providerLanguage: state.provider.providerLanguage,
     staffLanguage: state.provider.staffLanguage,
-    configData: state.provider.configData
+    configData: state.provider.configData,
+    latitude: state.provider.latitude,
+    longitude: state.provider.longitude,
+    homeAddress: state.provider.homeAddress,
+    address: state.provider.address,
+    newLocationState: state.provider.newLocationState,
+    currentLocation: state.provider.currentLocation,
   }
 }
 
@@ -505,8 +547,11 @@ const mapDispatchToProps = (dispatch) => {
     changeStaffLanguage: (staffLanguage) => dispatch(ProviderActions.changeStaffLanguage(staffLanguage)),
     changeProgramType: (programsList) => dispatch(ProviderActions.changeProgramType(programsList)),
     changeTimeType: (officeHours) => dispatch(ProviderActions.changeTimeType(officeHours)),
-    chnageGenderType:(gender) => dispatch(ProviderActions.changeGenderType(gender))
-
+    changeGenderType:(gender) => dispatch(ProviderActions.changeGenderType(gender)),
+    changeCurrentLocation: (currentLocation) => dispatch(ProviderActions.changeCurrentLocation(currentLocation)),
+    changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
+    changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
+    changeAddress: (address) => dispatch(ProviderActions.changeAddress(address))
   }
 }
 

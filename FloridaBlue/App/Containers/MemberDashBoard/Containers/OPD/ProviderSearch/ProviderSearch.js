@@ -109,7 +109,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _getResults() {
       this.props.attemptProviderSearch(this.props)
-      //NavigationActions.DoctorList()
+      NavigationActions.DoctorList()
     }
 
     _advancedSearch() {
