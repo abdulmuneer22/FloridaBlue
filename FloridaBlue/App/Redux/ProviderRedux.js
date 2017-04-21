@@ -44,7 +44,8 @@ const { Types, Creators } = createActions({
   changeCurrentLocation: ['currentLocation'],
   changeLatitude: ['latitude'],
   changeLongitude: ['longitude'],
-  changePatientType: ['acceptingPatientsIndicator']
+  providerClickleft: [],
+  providerClickright: []
 
 })
 
@@ -73,8 +74,9 @@ export const INITIAL_STATE = Immutable({
   programsList:"",
   staffLanguage:"",
   providerLanguage:"",
-  programsList:"",
   officeHours:"",
+  leftActive: true,
+  rightActive: false,
   planCategoryList: [],
   planSubCategoryList: []
 })
@@ -219,9 +221,20 @@ export const _changeStaffLanguage = (state: Object, {staffLanguage}: Object) =>
 export const _changeProgramType = (state: Object, {programsList}: Object) =>
       state.merge({fetching: false, programsList})
 
-// officehours
+// officeHours
 export const _changeTimeType = (state: Object, {officeHours}: Object) =>
       state.merge({fetching: false, officeHours})  
+ 
+// rightSwitch
+export const _rightClick = (state: Object, action: Object) => {
+  return state.merge({fetching: false, error: null, leftActive: false, rightActive: true})
+}
+
+// leftSwitch
+export const _leftClick = (state: Object, action: Object) => {
+  return state.merge({fetching: false, error: null, leftActive: true, rightActive: false})
+}
+
 
 
 
@@ -268,5 +281,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_DOCTOR_LANGUAGE]: _changeDoctorLanguage,
   [Types.CHANGE_STAFF_LANGUAGE]: _changeStaffLanguage,
   [Types.CHANGE_PROGRAM_TYPE]: _changeProgramType,
-  [Types.CHANGE_TIME_TYPE]: _changeTimeType
+  [Types.CHANGE_TIME_TYPE]: _changeTimeType,
+  [Types.SEARCH_DOCTOR_CLICK_LEFT]: _leftClick,
+  [Types.SEARCH_DOCTOR_CLICK_RIGHT]: _rightClick
 })

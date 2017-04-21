@@ -14,11 +14,13 @@ export function * sendNetworkListRequest (api, {data}) {
 }
 
 export function * sendProviderSearchRequest (api, {data}) {
+console.log(data)
   const response = yield call(api.postProviderSearch, data)
 
   if (response.ok) {
     var error = null
     var data = response.data
+    
     yield put(ProviderActions.sendProviderSearchSuccess(data))
   } else {
     yield put(ProviderActions.sendProviderSearchFailure(data))

@@ -99,7 +99,7 @@ class AdvancedSearch extends Component {
       gender: "",
       doctorSpeaks: "",
       staffSpeaks: "",
-      radius: 10
+      searchRange: 10
     }
     this._timeSelected = this._timeSelected.bind(this)
     this._languageSelected = this._languageSelected.bind(this)
@@ -111,8 +111,10 @@ class AdvancedSearch extends Component {
   }
 
   _handleDoctordetail() {
-    alert(JSON.stringify(this.state))
+    //alert(JSON.stringify(this.state))
     // this.props.attemptSearchDoctor(this.state)
+    console.log('state data',this.state)
+    this.props.attemptProviderSearch(this.state)
     NavigationActions.DoctorList()
   }
 
@@ -172,12 +174,12 @@ class AdvancedSearch extends Component {
 
   componentDidMount() {
     console.log('I am Language screen')
-    console.tron.log(this.props)
+   
     //this.props.attemptLanguage()
     this.props.attemptConfigData()
     this.props.attemptStaffLanguage()
     this.props.attemptDoctorLanguage()
-    this.props.attemptSearchData()
+    //this.props.attemptProviderSearch()
   }
 
   _renderDropdownRow(rowData, rowID, highlighted) {
@@ -236,14 +238,14 @@ class AdvancedSearch extends Component {
 
           <View style={{ marginLeft: 15, marginTop: 10 }}>
             <Text style={styles.searchText}> Search Radius:</Text>
-            <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular }}> {`${this.state.radius} mi.`}</Text>
+            <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular }}> {`${this.state.searchRange} mi.`}</Text>
             <Slider
               value={10}
               minimumValue={0}
               maximumValue={50}
               step={0.5}
               style={{ width: Metrics.screenWidth * 0.87, marginLeft: 10 }}
-              onValueChange={(value) => this.setState({ radius: value })}
+              onValueChange={(value) => this.setState({ searchRange: value })}
             />
           </View>
 

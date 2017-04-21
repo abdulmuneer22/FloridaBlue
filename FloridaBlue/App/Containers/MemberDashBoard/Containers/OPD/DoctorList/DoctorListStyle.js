@@ -18,7 +18,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: Colors.flBlue.grey1
+    backgroundColor: Colors.bg2
   },
   headerContainer: {
     flexDirection: 'row',
