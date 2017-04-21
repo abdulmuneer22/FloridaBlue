@@ -100,7 +100,7 @@ export const _sendProviderSearchRequest = (state: Object) => state.merge({ fetch
 
 // sendProviderSearchSuccess
 export const _sendProviderSearchSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, data, error: null,leftActive: true, rightActive: false})
+  state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
 
 // sendProviderSearchFailure
 export const _sendProviderSearchFailure = (state: Object, {data}: Object) =>
@@ -224,17 +224,14 @@ export const _changeTimeType = (state: Object, {officeHours}: Object) =>
       state.merge({fetching: false, officeHours})
 
 // rightSwitch
-export const _rightClick = (state: Object, action: Object) => {
+export const rightclick = (state: Object, action: Object) => {
   return state.merge({fetching: false, error: null, leftActive: false, rightActive: true})
 }
 
 // leftSwitch
-export const _leftClick = (state: Object, action: Object) => {
+export const leftclick = (state: Object, action: Object) => {
   return state.merge({fetching: false, error: null, leftActive: true, rightActive: false})
 }
-
-
-
 
 
 /* ------------- Hookup Reducers To Types ------------- */
@@ -280,6 +277,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_STAFF_LANGUAGE]: _changeStaffLanguage,
   [Types.CHANGE_PROGRAM_TYPE]: _changeProgramType,
   [Types.CHANGE_TIME_TYPE]: _changeTimeType,
-  [Types.SEARCH_DOCTOR_CLICK_LEFT]: _leftClick,
-  [Types.SEARCH_DOCTOR_CLICK_RIGHT]: _rightClick
+   [Types.SEARCHDOCTOR_CLICKLEFT]: leftclick,
+  [Types.SEARCHDOCTOR_CLICKRIGHT]: rightclick
 })

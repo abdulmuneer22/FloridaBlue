@@ -29,14 +29,9 @@ import {
 const card = { card: { width: Metrics.screenWidth, marginLeft: 0, marginTop: 0, marginBottom: 0, alignItems: 'flex-start' } };
 const cardTitle = { cardTitle: { fontSize: 40 } }
 
-
-//import StaffLanguageActions from '../../../../../Redux/StaffLanguageRedux'
-//import DoctorLanguageActions from '../../../../../Redux/DoctorLanguageRedux'
-import SearchDoctorActions from '../../../../../Redux/SearchDoctorRedux'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import SearchDataActions from '../../../../../Redux/SearchDataRedux'
 import _ from 'lodash'
-import MemberActions from '../../../../../Redux/MemberRedux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './AdvancedSearchStyle'
@@ -490,10 +485,8 @@ AdvancedSearch.propTypes = {
 const mapStateToProps = (state) => {
   return {
 
-    serror: state.searchdoctor.error,
-    sfetching: state.searchdoctor.fetching,
-    sdata: state.searchdoctor.data,
-
+    error: state.provider.error,
+    fetching: state.provider.fetching,
     languageList:state.provider.languageList,
     acceptingPatientsIndicator: state.provider.acceptingPatientsIndicator,
     providerLanguage: state.provider.providerLanguage,
