@@ -99,9 +99,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _getResults() {
-      console.tron.log(this.props)
       this.props.attemptProviderSearch(this.props)
-      // NavigationActions.DoctorList()
+      NavigationActions.DoctorList()
     }
 
     _advancedSearch() {

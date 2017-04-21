@@ -100,9 +100,7 @@ export const _sendProviderSearchRequest = (state: Object) => state.merge({ fetch
 
 // sendProviderSearchSuccess
 export const _sendProviderSearchSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, transactionId: data.transactionId, originLatitude: data.originLatitude, originLongitude: data.originLongitude, originCity: data.originCity, originStateCode: data.originStateCode,
-    originStateName: data.originStateName, originZipCode: data.originZipCode, originCountryCode: data.originCountryCode, count: data.count, totalCount: data.totalCount, providerList: data.providerList, networkOptionList: data.networkOptionList,
-    networkList: data.networkList, languageCodes: data.languageCodes, acceptedPlanList: data.acceptedPlanList, preferredPharmacyIn: data.preferredPharmacyIn, handicappedAccessIn: data.handicappedAccessIn})
+  state.merge({fetching: false, data, error: null,leftActive: true, rightActive: false})
 
 // sendProviderSearchFailure
 export const _sendProviderSearchFailure = (state: Object, {data}: Object) =>
@@ -223,8 +221,8 @@ export const _changeProgramType = (state: Object, {programsList}: Object) =>
 
 // officeHours
 export const _changeTimeType = (state: Object, {officeHours}: Object) =>
-      state.merge({fetching: false, officeHours})  
- 
+      state.merge({fetching: false, officeHours})
+
 // rightSwitch
 export const _rightClick = (state: Object, action: Object) => {
   return state.merge({fetching: false, error: null, leftActive: false, rightActive: true})

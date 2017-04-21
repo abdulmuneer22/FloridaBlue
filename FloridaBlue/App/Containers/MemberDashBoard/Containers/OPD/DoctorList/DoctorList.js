@@ -76,8 +76,8 @@ class DoctorList extends Component {
   }
 
   componentDidMount() {
-    console.log('I am DoctorList screen')
-    console.tron.log(this.props)
+    console.tron.log('I am DoctorList screen')
+    console.tron.log(this.props.provider.data)
     this.props.attemptHandleLeft()
     //this.props.attemptProviderSearch(this.props)
     //  this.props.attemptDoctordetail()
@@ -106,12 +106,12 @@ class DoctorList extends Component {
           {this._renderHeader()}
         </View>
 
-        {this.props.data ?
+        {this.props.provider.data ?
 
           <ScrollView style={{ flex: 1 }}>
 
             <Switch
-              data={this.props.data}
+              data={this.props.provider.data}
               leftActive={this.props.leftActive}
               rightActive={this.props.rightActive}
               attemptHandleLeft={this.props.attemptHandleLeft}
@@ -146,7 +146,7 @@ class DoctorList extends Component {
                     savedproviders={this.props.saveProvider}
                     saveProvider={this.saveProvider}
                     removeProvider={this.removeProvider}
-                    data={this.props.rightActive ? this.props.saveProvider : this.props.provider.providerList}
+                    data={this.props.rightActive ? this.props.saveProvider : this.props.provider.data.providerList}
                     leftActive={this.props.leftActive}
                     rightActive={this.props.rightActive}
 
@@ -198,7 +198,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
+    attemptProviderSearch: () => dispatch(ProviderActions.sendProviderSearchRequest()),
     // attemptSearchDoctor: () => dispatch(SearchDoctorActions.searchdoctorRequest()),
     attemptHandleLeft: () => dispatch(ProviderActions.providerClickleft()),
     attemptHandleRight: () => dispatch(ProviderActions.providerClickright()),

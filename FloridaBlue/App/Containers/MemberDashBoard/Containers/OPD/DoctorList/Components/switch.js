@@ -46,11 +46,9 @@ handleClickLeft () {
   }
 
    render () {
-    console.log('checking data from switch', this.props.data)
-    console.log(this.props)
     var _this = this
 
-   
+
  var twoTabLeftActiveStyle = {
       borderBottomLeftRadius: 15,
       borderColor: Colors.flBlue.night,
@@ -93,9 +91,9 @@ handleClickLeft () {
         color : 'darkgrey',
           alignSelf:'center'
     }
-  
-  
-   
+
+
+
     var twoTabHeaderStyle = {
         flexDirection: 'row',
         marginLeft:15,
@@ -105,12 +103,12 @@ handleClickLeft () {
          borderWidth : 2,
         borderColor: Colors.flBlue.night
       }
-      
+
 
     let isLeftActive = _this.props.leftActive
     let rightActive = _this.props.rightActive
-   
-    
+
+
      var _twoTabView = function (
         injectedStyle,
         inactiveStyle,
@@ -139,10 +137,10 @@ handleClickLeft () {
       </View>
       )
     }
-   
+
 
     var _tabView = function () {
-    
+
      var temp=_this.props.data
      var providerList= temp.providerList
         if (temp !=null && temp.providerList !=null ) {
@@ -154,7 +152,7 @@ handleClickLeft () {
               twoTextActiveStyle,
               twoTextInactiveStyle,
               twoTabHeaderStyle
-             
+
             )
             : _twoTabView(
             twoTabRightActiveStyle,
@@ -162,12 +160,12 @@ handleClickLeft () {
             twoTextActiveStyle,
             twoTextInactiveStyle,
             twoTabHeaderStyle
-           
+
             )
           )
-        } 
+        }
       }
-   
+
 
     return (
       <View style={{flex: 1}}>
