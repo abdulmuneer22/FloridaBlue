@@ -69,7 +69,7 @@ handleClickLeft () {
     }
     var twoTextActiveStyle = {
       color : 'white',
-        alignSelf:'center'
+      alignSelf:'center'
     }
     var twoTabInactiveStyle = {
       backgroundColor : Colors.flBlue.night,

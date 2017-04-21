@@ -45,12 +45,9 @@ import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import { Container, Content, Footer, FooterTab } from 'native-base';
-//import DoctorDetailActions from '../../../../../Redux/DoctorDetailRedux'
-//import SearchDoctorActions from '../../../../../Redux/SearchDoctorRedux'
 import SaveProviderActions from '../../../../../Redux/SaveProviderRedux'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
-import MemberActions from '../../../../../Redux/MemberRedux'
 
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 
@@ -80,7 +77,6 @@ class DoctorList extends Component {
     console.tron.log(this.props.provider.data)
     this.props.attemptHandleLeft()
     //this.props.attemptProviderSearch(this.props)
-    //  this.props.attemptDoctordetail()
   }
 
   _renderHeader() {
@@ -106,7 +102,7 @@ class DoctorList extends Component {
           {this._renderHeader()}
         </View>
 
-        {this.props.provider.data ?
+        {this.props.provider ?
 
           <ScrollView style={{ flex: 1 }}>
 
@@ -175,7 +171,7 @@ class DoctorList extends Component {
 
 DoctorList.propTypes = {
   data: PropTypes.object,
-  // attemptSearchDoctor: PropTypes.func,
+  provider:PropTypes.object,
   attemptProviderSearch: PropTypes.func,
   error: PropTypes.string,
   saveProvider: PropTypes.array,
@@ -185,9 +181,9 @@ DoctorList.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.searchdoctor.fetching,
+    fetching: state.provider.fetching,
     // data: state.searchdoctor.data,
-    error: state.searchdoctor.error,
+    error: state.provider.error,
     leftActive: state.provider.leftActive,
     rightActive: state.provider.rightActive,
     saveProvider: state.saveprovider.data,

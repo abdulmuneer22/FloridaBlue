@@ -83,19 +83,19 @@ class DoctorCard extends Component {
         console.log(latitude, longitude)
         const url = `http://maps.apple.com/?ll=${latitude},${longitude}`
 
-         Alert.alert(
+        Alert.alert(
             'Alert Title',
             'leaving app',
             [
                 { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
                 {
-                    text: 'OK', onPress: () =>  Linking.canOpenURL(url).then(supported => {
-            if (supported) {
-                Linking.openURL(url);
-            } else {
-                console.log('Don\'t know how to go');
-            }
-        }).catch(err => console.error('An error occurred', err))
+                    text: 'OK', onPress: () => Linking.canOpenURL(url).then(supported => {
+                        if (supported) {
+                            Linking.openURL(url);
+                        } else {
+                            console.log('Don\'t know how to go');
+                        }
+                    }).catch(err => console.error('An error occurred', err))
                 },
             ]
         )
@@ -115,7 +115,7 @@ class DoctorCard extends Component {
 
                             return (
                                 <Card styles={card} key={i}>
-                                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                                    <View style={{ flex: 1, flexDirection: 'row', marginRight: 20 }}>
                                         <View >
                                             {providerAvailable ? <TouchableOpacity onPress={() => this.onRemoveBookmark(value)} >
                                                 <Flb name="add-bookmark"
@@ -129,14 +129,22 @@ class DoctorCard extends Component {
                                         </View>
 
                                         <View style={{ marginTop: 5, marginRight: 30 }}>
-
+                                            {value ?
+                                            <TouchableOpacity>
                                             <Text style={styles.h1}>{value.displayName}</Text>
-                                            <Text style={styles.h2}>{value.primarySpecialty}</Text>
-                                            <Text style={styles.h4}> {value.addressLine1}, {value.addressLine2}</Text>
-                                            <Text style={styles.h4_2}> {value.city}, {value.state}</Text>
-                                            <Text style={styles.h4_2}> {value.zipCode}</Text>
-                                            <Text style={styles.h4_2}> {value.telephoneNumber}</Text>
-                                            <Text style={styles.h4_3}>{value.distance} miles</Text>
+                                            </TouchableOpacity>:null}
+                                            {value ? 
+                                            <Text style={styles.h2}>{value.primarySpecialty }</Text> : null}
+                                            {value ?
+                                            <Text style={styles.h4}> {value.addressLine1}, {value.addressLine2}</Text> : null}
+                                            {value ?
+                                            <Text style={styles.h4_2}> {value.city}, {value.state}</Text> : null }
+                                            {value ?
+                                            <Text style={styles.h4_2}> {value.zipCode}</Text> :null}
+                                            {value ?
+                                            <Text style={styles.h4_2}> {value.telephoneNumber}</Text>:null}
+                                            {value ?
+                                            <Text style={styles.h4_3}>{value.distance} miles</Text>:null}
                                         </View>
                                     </View>
                                     <View style={styles.cardButton}>
@@ -161,9 +169,7 @@ class DoctorCard extends Component {
                                             </View>
                                         </TouchableOpacity>
 
-                                        <TouchableOpacity onPress={() => this.handleMaps(value.latitude, value.longitude)}
-
-                                        >
+                                        <TouchableOpacity onPress={() => this.handleMaps(value.latitude, value.longitude)}  >
                                             <View style={styles.cardButtonView1}>
 
                                                 <Flb
@@ -197,10 +203,10 @@ class DoctorCard extends Component {
                             ? <View style={styles.spinnerView}>
                                 <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
                                 <Text style={styles.spinnerText}>Loading Please Wait
-                </Text>
+</Text>
                             </View>
                             : <View><Text style={{ justifyContent: 'center', alignItems: 'center' }}>"You didn't Saved any Provider"
-        </Text></View>
+</Text></View>
                         }</View>
                 }
             </View>

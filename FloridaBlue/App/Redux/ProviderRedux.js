@@ -277,6 +277,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_STAFF_LANGUAGE]: _changeStaffLanguage,
   [Types.CHANGE_PROGRAM_TYPE]: _changeProgramType,
   [Types.CHANGE_TIME_TYPE]: _changeTimeType,
-   [Types.SEARCHDOCTOR_CLICKLEFT]: leftclick,
-  [Types.SEARCHDOCTOR_CLICKRIGHT]: rightclick
+  [Types.PROVIDER_CLICKLEFT]: leftclick,
+  [Types.PROVIDER_CLICKRIGHT]: rightclick
 })
