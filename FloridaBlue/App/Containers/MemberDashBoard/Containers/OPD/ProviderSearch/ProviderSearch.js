@@ -213,24 +213,24 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
             {this._renderHeader()}
             <ScrollView>
               <View>
-                <Text style={styles.h1}>Do you know the name of your doctor or care facility?</Text>
+                <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
 
                 <View style={styles.radioView}>
                   <MKRadioButton group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
-                  <Text style={styles.radioText}>Yes</Text>
+                  <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
                   <MKRadioButton group={this.searchTypeGroup} />
-                  <Text style={styles.radioText}>No</Text>
+                  <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
                 </View>
 
                 <HideableView visible={this.state.savedProviderState} removeWhenHidden={true}>
-                  <Text style={styles.subheading}>Already saved your providers?</Text>
+                  <Text style={styles.subheading}>{I18n.t('savedProviderMessage')}</Text>
                   <TouchableOpacity style={styles.savedProviderLink}>
-                    <Text style={styles.savedProviderLinkText}>View Saved Providers</Text>
+                    <Text style={styles.savedProviderLinkText}>{I18n.t('savedProviderButton')}</Text>
                   </TouchableOpacity>
                 </HideableView>
 
                 <HideableView visible={this.state.knownCareState} removeWhenHidden={true}>
-                  <Text style={styles.h2}>Enter doctor or care facility name</Text>
+                  <Text style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
                   <MKTextField
                     ref='providerName'
                     style={styles.textField}
@@ -283,13 +283,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 <HideableView visible={this.state.unknownCareState && this.state.currentLocaleState == false} removeWhenHidden={true}>
                   <View style={[styles.locationView]}>
                     <View style={styles.locationTextContainer}>
-                      <Text style={styles.h2}>My Location:</Text>
+                      <Text style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
                       <Text style={styles.currentLocationText}>{this.props.address}</Text>
                     </View>
                     <View style={styles.locationButtonContainer}>
                       <TouchableOpacity style={styles.editLocation} onPress={this._editLocation}>
                         <Flb name="pencil" style={styles.editLocationIcon} size={Metrics.icons.small} color={Colors.flBlue.anvil} />
-                        <Text style={styles.editLocationText}>Edit</Text>
+                        <Text style={styles.editLocationText}>{I18n.t('editLocationButton')}</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -298,28 +298,28 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 <HideableView style={styles.editLocationView} visible={this.state.unknownCareState && this.state.currentLocaleState} removeWhenHidden={true}>
                   <View style={styles.mapIcon}>
                     <Image source={Images.mapUnselectedIcon} />
-                    <Text style={styles.changeLocationHeader}>Change Location:</Text>
+                    <Text style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
                   </View>
 
                   <View style={styles.locationRadio}>
                     <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectCurrentLocation}/>
-                    <Text style={styles.radioText}>Current Location</Text>
+                    <Text style={styles.radioText}>{I18n.t('currentLocationTitle')}</Text>
                   </View>
                   <View style={styles.locationRadio}>
                     <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectHomeLocation}/>
-                    <Text style={styles.radioText}>Home</Text>
+                    <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
                   </View>
                   <Text style={styles.locationText}>({this.props.homeAddress})</Text>
                   <View style={styles.locationRadio}>
                     <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectDifferentLocation}/>
-                    <Text style={styles.radioText}>Different Location</Text>
+                    <Text style={styles.radioText}>{I18n.t('differentLocationTitle')}</Text>
                   </View>
                 </HideableView>
 
                 <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.currentLocaleState && !this.state.newLocationState && this.state.unknownCareState} removeWhenHidden={true}></HideableView>
 
                 <HideableView style={styles.differentLocationView} visible={this.state.unknownCareState && this.state.newLocationState} removeWhenHidden={true}>
-                  <Text style={styles.newLocationHeader}>Enter New City or ZipCode:</Text>
+                  <Text style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
                   <MKTextField
                     ref='newLocation'
                     style={styles.newLocationField}
@@ -343,7 +343,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                   <TouchableOpacity style={styles.advancedSearchLink} onPress={this._advancedSearch}>
                     <View style={styles.advancedSearchContainer}>
                       <Flb name="search-find" size={Metrics.icons.small} color={Colors.flBlue.anvil} />
-                      <Text style={styles.advancedSearchLinkText}>Advanced Search</Text>
+                      <Text style={styles.advancedSearchLinkText}>{I18n.t('advancedSearchButton')}</Text>
                     </View>
                   </TouchableOpacity>
                 </HideableView>

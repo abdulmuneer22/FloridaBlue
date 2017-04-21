@@ -73,5 +73,19 @@
    "careTypePlaceholder": "Select Care Type",
    "careTypeExample": "(ex. doctor, hospital, etc)",
    "specialityTypePlaceholder": "Select Speciality",
-   "specialityTypeExample": "(ex. allergist, internist, pediatrician, etc)"
+   "specialityTypeExample": "(ex. allergist, internist, pediatrician, etc)",
+   "memberLocationTitle": "My Location:",
+   "editLocationButton": "Edit",
+   "changeLocationTitle": "Change Location:",
+   "currentLocationTitle": "Current Location",
+   "homeLocationTitle": "Home",
+   "differentLocationTitle": "Different Location",
+   "differentLocationMessage": "Enter New City or ZipCode:",
+   "advancedSearchButton": "Advanced Search",
+   "knownCareMessage": "Enter doctor or care facility name",
+   "savedProviderMessage": "Already saved your providers?",
+   "savedProviderButton": "View Saved Providers",
+   "providerSearchTitle": "Do you know the name of your doctor or care facility?",
+   "yesTitle": "Yes",
+   "noTitle": "No"
 }
