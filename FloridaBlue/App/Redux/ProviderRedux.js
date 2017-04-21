@@ -35,16 +35,12 @@ const { Types, Creators } = createActions({
   changeTimeType: ['officeHours'],
   changeCareType: ['careType'],
   changeSpecialityType: ['specialityType'],
-  changeKnownCareState: ['knownCareState'],
-  changeUnknownCareState: ['unknownCareState'],
-  changeSavedProviderState: ['savedProviderState'],
-  changeSpecialityState: ['specialityState'],
-  changeCurrentLocaleState: ['currentLocaleState'],
-  changeNewLocationState: ['newLocationState'],
   changeCurrentLocation: ['currentLocation'],
   changeLatitude: ['latitude'],
   changeLongitude: ['longitude'],
   changeGenderType:['gender'],
+  changeAddress: ['address'],
+  changeHomeAddress: ['homeAddress'],
   providerClickleft: [],
   providerClickright: []
 
@@ -62,15 +58,11 @@ export const INITIAL_STATE = Immutable({
   providerName: "",
   careType: "",
   specialityType: "",
-  knownCareState: false,
-  unknownCareState: false,
-  savedProviderState: true,
-  specialityState: false,
-  currentLocaleState: false,
-  newLocationState: false,
   currentLocation: "Unknown",
   latitude: 0,
   longitude: 0,
+  address: "",
+  homeAddress: "",
   acceptingPatientsIndicator:"",
   programsList:"",
   staffLanguage:"",
@@ -178,24 +170,6 @@ export const _changeCareType = (state: Object, {careType}: Object) => state.merg
 // specialityType
 export const _changeSpecialityType = (state: Object, {specialityType}: Object) => state.merge({fetching: false, specialityType})
 
-// knownCareState
-export const _changeKnownCareState = (state: Object, {knownCareState}: Object) => state.merge({fetching: false, knownCareState})
-
-// unknownCareState
-export const _changeUnknownCareState = (state: Object, {unknownCareState}: Object) => state.merge({fetching: false, unknownCareState})
-
-// savedProviderState
-export const _changeSavedProviderState = (state: Object, {savedProviderState}: Object) => state.merge({fetching: false, savedProviderState})
-
-// specialityState
-export const _changeSpecialityState = (state: Object, {specialityState}: Object) => state.merge({fetching: false, specialityState})
-
-// currentLocaleState
-export const _changeCurrentLocaleState = (state: Object, {currentLocaleState}: Object) => state.merge({fetching: false, currentLocaleState})
-
-// newLocationState
-export const _changeNewLocationState = (state: Object, {newLocationState}: Object) => state.merge({fetching: false, newLocationState})
-
 // currentLocation
 export const _changeCurrentLocation = (state: Object, {currentLocation}: Object) => state.merge({fetching: false, currentLocation})
 
@@ -204,6 +178,12 @@ export const _changeLatitude = (state: Object, {latitude}: Object) => state.merg
 
 // longitude
 export const _changeLongitude = (state: Object, {longitude}: Object) => state.merge({fetching: false, longitude})
+
+// address
+export const _changeAddress = (state: Object, {address}: Object) => state.merge({fetching: false, address})
+
+// homeAddress
+export const _changeHomeAddress = (state: Object, {homeAddress}: Object) => state.merge({fetching: false, homeAddress})
 
 // AcceptPatientType
 export const _changePatientType = (state: Object, {acceptingPatientsIndicator}: Object) =>
@@ -269,15 +249,11 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_PROVIDER_NAME]: _changeProviderName,
   [Types.CHANGE_CARE_TYPE]: _changeCareType,
   [Types.CHANGE_SPECIALITY_TYPE]: _changeSpecialityType,
-  [Types.CHANGE_KNOWN_CARE_STATE]: _changeKnownCareState,
-  [Types.CHANGE_UNKNOWN_CARE_STATE]: _changeUnknownCareState,
-  [Types.CHANGE_SAVED_PROVIDER_STATE]: _changeSavedProviderState,
-  [Types.CHANGE_SPECIALITY_STATE]: _changeSpecialityState,
-  [Types.CHANGE_CURRENT_LOCALE_STATE]: _changeCurrentLocaleState,
-  [Types.CHANGE_NEW_LOCATION_STATE]: _changeNewLocationState,
   [Types.CHANGE_CURRENT_LOCATION]: _changeCurrentLocation,
   [Types.CHANGE_LATITUDE]: _changeLatitude,
   [Types.CHANGE_LONGITUDE]: _changeLongitude,
+  [Types.CHANGE_ADDRESS]: _changeAddress,
+  [Types.CHANGE_HOME_ADDRESS]: _changeHomeAddress,
   [Types.CHANGE_PATIENT_TYPE]: _changePatientType,
   [Types.CHANGE_DOCTOR_LANGUAGE]: _changeDoctorLanguage,
   [Types.CHANGE_STAFF_LANGUAGE]: _changeStaffLanguage,

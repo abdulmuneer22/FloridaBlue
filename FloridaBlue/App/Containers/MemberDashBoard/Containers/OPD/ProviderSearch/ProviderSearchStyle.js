@@ -117,6 +117,14 @@ export default StyleSheet.create({
     paddingLeft: Metrics.doubleBaseMargin,
     paddingTop: Metrics.smallMargin
   },
+  differentLocationView: {
+    backgroundColor: Colors.flBlue.grey1,
+    paddingBottom: Metrics.doubleBaseMargin
+  },
+  editLocationView: {
+    backgroundColor: Colors.flBlue.grey1,
+    paddingTop: Metrics.doubleBaseMargin
+  },
   editLocation: {
     alignItems: 'center',
     marginTop: Metrics.baseMargin,
