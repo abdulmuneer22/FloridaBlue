@@ -17,7 +17,7 @@ import {
   CardAction
 } from 'react-native-card-view';
 
-const card  = {card: {width: Metrics.screenWidth * 0.92,marginLeft:15}};
+const card  = {card: {margin :25}};
 
 class MyPlanSwiper extends Component {
   getChildrenOptions (data) {
@@ -127,8 +127,8 @@ class MyPlanSwiper extends Component {
 
     return (
       <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.46)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.48))}
-       style={styles.wrapper} showsButtons dotStyle={{width: 12, height: 12, marginLeft:10, borderRadius:6,top:30, position:'relative'}} 
-       activeDotStyle={{width: 12, height: 12, borderRadius:6, marginLeft:10, top:30, position:'relative'}}>
+       showsButtons   dotStyle={{width: 10, height: 10, marginLeft:10, borderRadius:5,top:25, position:'relative'}} 
+       activeDotStyle={{width: 10, height: 10, borderRadius:5, marginLeft:10, top:25, position:'relative'}} >
         { this.getChildrenOptions(this.props.data).map((network, i) => {
           console.tron.log('children options are', this.getChildrenOptions(this.props.data))
           console.tron.log('planbenefits length', Object.keys(network.planBenefits).length)
