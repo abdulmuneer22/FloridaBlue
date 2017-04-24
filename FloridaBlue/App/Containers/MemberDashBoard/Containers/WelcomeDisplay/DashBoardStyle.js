@@ -87,14 +87,14 @@ export default StyleSheet.create({
     fontWeight: '300',
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.headerFont,
-    color: Colors.flBlue.grey6    
+    color: Colors.flBlue.grey6
   },
-    textStyle2: {
+  textStyle2: {
     fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
     fontWeight: '300',
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.headerFont,
-    color: Colors.snow    
+    color: Colors.snow
   },
   hsaText: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0033,
@@ -277,26 +277,26 @@ export default StyleSheet.create({
     // marginBottom:0
   },
   textBackground: {
-    flex : 1,
+    flex: 1,
     flexDirection: 'column',
     backgroundColor: Colors.snow,
-   padding: Metrics.mediumMargin,
+    padding: Metrics.mediumMargin,
     justifyContent: 'space-between',
   //  alignItems: 'center',
-    margin:3,
+    margin: 3,
     borderRadius: 2,
-    shadowColor: "#000000",
+    shadowColor: '#000000',
     shadowOpacity: 0.3,
     shadowRadius: 1,
     shadowOffset: {
       height: 1,
-      width: 0.3,
-    } ,
-   
+      width: 0.3
+    }
+
   },
 
   textBackground1: {
-    flex :1 ,
+    flex: 1,
     flexDirection: 'column',
     backgroundColor: Colors.flBlue.lightBlue,
     justifyContent: 'space-between',
@@ -304,15 +304,33 @@ export default StyleSheet.create({
    // alignItems: 'center',
     margin: 10,
     borderRadius: 2,
-    shadowColor: "#000000",
+    shadowColor: '#000000',
     shadowOpacity: 0.3,
     shadowRadius: 1,
     shadowOffset: {
       height: 1,
-      width: 0.3,
-    },       
-    
+      width: 0.3
+    }
+
   },
+
+  textBackground2: {
+
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: Colors.bg2,
+    padding: Metrics.mediumMargin,
+    justifyContent: 'space-between',
+  //  alignItems: 'center',
+
+    borderRadius: 2,
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3
+    }
 
     textBackground2: {
   
@@ -340,7 +358,7 @@ export default StyleSheet.create({
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.subHeaderFont,
     color: Colors.flBlue.ocean,
-    fontWeight:'300'
+    fontWeight: '300'
   },
 
   spinnerView: {

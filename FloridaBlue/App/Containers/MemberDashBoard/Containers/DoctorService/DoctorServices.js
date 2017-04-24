@@ -96,112 +96,120 @@ class DoctorServices extends Component {
       const switchItems = this.props.data.emergencyMedicalCareServices
       console.tron.log('checking for switch options', switchItems)
 
-      return (<ScrollView>
-        <View style={{ flex: 1 }}>
-          <View style={styles.doctorCardStyle}>
-            <View style={{alignItems: 'center'}}>
-              <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
-            </View>
+      return (
+        <View style={styles.textBackground2}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={{ flex: 1 }}>
+              <View style={styles.doctorCardStyle}>
+                <View style={{ alignItems: 'center' }}>
 
-            <View style={{
-            //  backgroundColor: 'purple',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center'
+                  <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+                </View>
 
-            }}>
+                <View style={{
+              // backgroundColor: 'purple',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}>
 
-              <View style={{
-                flex: 0.7,
+                  <View style={{
+                    flex: 0.7,
                 // marginRight:5,
-                alignItems: 'center'
+                    alignItems: 'center'
 
-              }}>
-                <Text style={styles.doctorTextStyle}>
-                  {temp1.text['en']}
-                </Text>
-              </View>
-
-              <View>
-                {this.renderHeaderText() != '' ?
-                  <View style={{ flex: 0.3,
-                    marginLeft: -40,
-                    marginRight: Metrics.mediumMargin
                   }}>
-                    <TouchableWithoutFeedback onPress={() => {
-                      this.setState({ hpActive: !this.state.hpActive })
-                    }}>
-                      <View style={{
-                        // flexDirection: 'row',
-                        marginTop: Metrics.baseMargin
-                        // backgroundColor: Colors.flBlue.grey4,
-                      }}>
+                    <Text style={styles.doctorTextStyle}>
+                      {temp1.text['en']}
+                    </Text>
+                  </View>
 
-                        <View >
+                  <View>
+                    {this.renderHeaderText() != '' ?
+                      <View style={{
+                        flex: 0.3,
+                        marginLeft: -40,
+                        marginRight: Metrics.mediumMargin
+
+                      }}>
+                        <TouchableWithoutFeedback onPress={() => {
+                          this.setState({ hpActive: !this.state.hpActive })
+                        }}>
+                          <View style={{
+                        // flexDirection: 'row',
+                          marginTop: Metrics.baseMargin
+                        // backgroundColor: Colors.flBlue.grey4,
+                        }}>
+
+                          <View >
                           {
 
                             !this.state.hpActive
 
-                              ? <Flb name='rd-d-arrow' size={Metrics.icons.xm} color={Colors.flBlue.anvil} />
-                              : <Flb name='rd-u-arrow' size={Metrics.icons.xm} color={Colors.flBlue.anvil} />
+                              ? <Flb name='chevron-down' size={Metrics.icons.tiny} style={{ marginTop: 7 }} color={Colors.flBlue.ocean} />
+                              : <Flb name='chevron-up' size={Metrics.icons.tiny} style={{ marginTop: 7 }} color={Colors.flBlue.ocean} />
 
                           }
                         </View>
+                        </View>
+                        </TouchableWithoutFeedback>
                       </View>
-                    </TouchableWithoutFeedback>
-                  </View>
                   : <Text />
                 }
 
-              </View>
-            </View>
+                  </View>
+                </View>
 
-            <View>
-              {
+                <View>
+                  {
                 this.state.hpActive
                   ? <View style={{
                     width: Metrics.screenWidth * 0.9,
-                    alignSelf: 'center'
+                    alignSelf: 'center',
+                    borderBottomWidth: 0.2
                     //  marginLeft : (Metrics.screenWidth * 0.15)/2,
                     // marginRight : (Metrics.screenWidth * 0.15)/2,
                     //  backgroundColor : 'yellow',
                     // alignItems : 'center',
                   }}>
+                    <View style={{borderTopWidth: 0.2}} />
                     <Text style={{
                       fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
                       margin: 5,
                       textAlign: 'justify',
                       color: Colors.flBlue.grey5
+
                     }}>{this.renderHeaderText()}</Text>
                   </View>
                   : null
               }
 
+                </View>
+                <View style={{ alignItems: 'center', marginBottom: 15}}>
+                  <Switch
+                    data={this.props.data}
+                    objectName={this.props.objectName}
+                    leftActive={this.props.leftActive}
+                    rightActive={this.props.rightActive}
+                    preferredActive={this.props.preferredActive}
+                    attemptHandleLeft={this.props.attemptHandleLeft}
+                    attemptHandleRight={this.props.attemptHandleRight}
+                    attemptHandlePreferred={this.props.attemptHandlePreferred} />
+                </View>
+              </View>
+              <View >
+                <Card
+                  data={this.props.data}
+                  objectName={this.props.objectName}
+                  leftActive={this.props.leftActive}
+                  rightActive={this.props.rightActive}
+                  preferredActive={this.props.preferredActive} 
+                  cardImage={tile[0].tileIcon}
+                  />
+              </View>
             </View>
-            <View style={{alignItems: 'center'}}>
-              <Switch
-                data={this.props.data}
-                objectName={this.props.objectName}
-                leftActive={this.props.leftActive}
-                rightActive={this.props.rightActive}
-                preferredActive={this.props.preferredActive}
-                attemptHandleLeft={this.props.attemptHandleLeft}
-                attemptHandleRight={this.props.attemptHandleRight}
-                attemptHandlePreferred={this.props.attemptHandlePreferred} />
-            </View>
-          </View>
-          <View>
-            <Card
-              data={this.props.data}
-              objectName={this.props.objectName}
-              leftActive={this.props.leftActive}
-              rightActive={this.props.rightActive}
-              preferredActive={this.props.preferredActive} />
-          </View>
+          </ScrollView>
         </View>
-
-      </ScrollView>
-
       )
     } else if (this.props.error != null) {
       Alert.alert(

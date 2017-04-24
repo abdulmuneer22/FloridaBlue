@@ -78,10 +78,7 @@ class SettingsContent extends Component {
     this.toggleDrawer()
     NavigationActions.myplanbenefits()
   }
-  handlePressClaims = () => {
-    this.toggleDrawer()
-    NavigationActions.MyView({responseURL: 'https://mws8-stga.bcbsfl.com/wps/myportal/mbs/mwe/myBenefits/claims/'})
-  }
+ 
 
   handlePressResources = () => {
     this.toggleDrawer()
@@ -102,7 +99,7 @@ class SettingsContent extends Component {
   }
   handlePressFindCare= () => {
     this.toggleDrawer()
-    NavigationActions.MyView({responseURL: 'https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/tools/findadoctor'})
+    NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})
   }
   handlePressPayment= () => {
     this.toggleDrawer()
@@ -180,9 +177,9 @@ class SettingsContent extends Component {
                   {
                     this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined
 
-                      ? <View>{ this.props.visibilityRules.myHealthPlanTile.tileType != 'webview' ? <Text style={styles.subheading} onPress={this.handlePressPlans}>
-                        { this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
-                      </Text> : <View />}</View>
+                      ? <View>{ this.props.visibilityRules.myHealthPlanTile.tileType != "webview" ? <Text style={styles.subheading} onPress={this.handlePressPlans}>
+                                        { this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
+                                      </Text>: <View/>}</View>
                       : null
 
                   }
