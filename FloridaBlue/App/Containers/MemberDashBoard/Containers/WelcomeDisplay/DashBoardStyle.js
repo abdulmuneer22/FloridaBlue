@@ -314,24 +314,6 @@ export default StyleSheet.create({
 
   },
 
-  textBackground2: {
-
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: Colors.bg2,
-    padding: Metrics.mediumMargin,
-    justifyContent: 'space-between',
-  //  alignItems: 'center',
-
-    borderRadius: 2,
-    shadowColor: '#000000',
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    shadowOffset: {
-      height: 1,
-      width: 0.3
-    }
-
     textBackground2: {
   
     flex : 1,
@@ -373,4 +355,8 @@ export default StyleSheet.create({
 
   }
 
-})
+}
+
+)
+
+
