@@ -15,10 +15,13 @@ export function * sendNetworkListRequest (api, {data}) {
 
 export function * sendProviderSearchRequest (api, {data}) {
 console.log(data)
-  if(data.sceneKey=='ProviderSearch'){
-  const response = yield call(api.postProviderSearch, data)}
-  else {
-  const response = yield call(api.postProviderSearchWithAdditionalFields, data)}
+
+ // if (data.sceneKey=='ProviderSearch'){
+   const response = yield call(api.postProviderSearch, data) 
+/*  }
+  else {*/
+   //const response = yield call(api.postProviderSearchWithAdditionalFields, data) 
+  /*}*/
   
 
   if (response.ok) {
@@ -26,7 +29,8 @@ console.log(data)
     var data = response.data
     yield put(ProviderActions.sendProviderSearchSuccess(data))
   } else {
-    yield put(ProviderActions.sendProviderSearchFailure(data))
+    var data=response.data
+        yield put(ProviderActions.sendProviderSearchFailure(data))
   }
 }
 
@@ -65,6 +69,7 @@ export function * sendDoctorLanguageRequest (api, {data}) {
     var data = response.data
     yield put(ProviderActions.sendDoctorLanguageSuccess(data))
   } else {
+    var data=response.data
     yield put(ProviderActions.sendDoctorLanguageFailure(data))
   }
 }
@@ -77,6 +82,7 @@ export function * sendStaffLanguageRequest (api, {data}) {
     var data = response.data
     yield put(ProviderActions.sendStaffLanguageSuccess(data))
   } else {
+    var data=response.data
     yield put(ProviderActions.sendStaffLanguageFailure(data))
   }
 }
@@ -89,6 +95,7 @@ export function * sendConfigTypeRequest (api) {
     var data = response.data
     yield put(ProviderActions.sendConfigTypeSuccess(data))
   } else {
+    var data=response.data
     yield put(ProviderActions.sendConfigTypeFailure(data))
   }
 }

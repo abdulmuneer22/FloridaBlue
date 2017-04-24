@@ -224,7 +224,7 @@ export default StyleSheet.create({
    // marginTop: 2,
     marginLeft: Metrics.baseMargin,
     marginRight: Metrics.baseMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',

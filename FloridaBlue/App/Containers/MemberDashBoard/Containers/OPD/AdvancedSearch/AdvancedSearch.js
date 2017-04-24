@@ -140,10 +140,10 @@ class AdvancedSearch extends Component {
 
   _timeSelected(index, value: string) {
     var selectedTime = this.props.configData.workingHours.workHoursList[index].value
-    var selectedLabel=this.props.configData.workingHours.workHoursList[index].hours
+    var selectedTimeLabel=this.props.configData.workingHours.workHoursList[index].hours
     var timeSelected={
       'selectedTime' : selectedTime,
-      'selectedLabel' : selectedLabel
+      'selectedTimeLabel' : selectedTimeLabel
     }
      this.props.changeTimeType(timeSelected)
       
@@ -481,7 +481,7 @@ class AdvancedSearch extends Component {
                   placeholder="No Preference"
                   placeholderTextColor={Colors.flBlue.ocean}
                   tintColor={Colors.black}
-                  value={this.state.workingTime}
+                  value={this.props.officeHours.selectedTimeLabel}
                 />
               </ModalDropdown>
 
@@ -650,6 +650,7 @@ const mapStateToProps = (state) => {
     subCategoryCode: state.provider.subCategoryCode,
     providerName: state.provider.providerName,
     careType: state.provider.careType,
+    officeHours: state.provider.officeHours,
     specialityType: state.provider.specialityType
   }
 }
