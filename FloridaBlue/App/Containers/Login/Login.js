@@ -92,7 +92,7 @@ class Login extends Component {
      // alert('Please enter your user ID/Password.')
     } else
     if (!username && password) {
-      Alert.alert('Login', 'Please enter your user ID', [
+      Alert.alert('Login', 'Please enter your User ID', [
         {
           text: 'OK'
         }

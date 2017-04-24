@@ -162,6 +162,11 @@ class Screen_3 extends React.Component {
           </View>
           <View style={styles.row}>
             <View>
+              <Text style={styles.footerText}>{this.props.tempRegCode}</Text>
+            </View>
+          </View>
+          <View style={styles.row}>
+            <View>
               <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
           </View>

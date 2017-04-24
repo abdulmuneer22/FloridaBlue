@@ -52,7 +52,14 @@ const images = {
   themeHeader: require('../Images/dashboard-hdr.png'),
   themeLogo: require('../Images/theme-logo.png'),
   tileBg: require('../Images/tile_bg.png'),
-  tagLine: require('../Images/tag-line.gif')
+  tagLine: require('../Images/tag-line.gif'),
+  doctor: require('../Images/doctor.gif'),
+  criticalillness: require('../Images/criticalillness.gif'),
+  lab: require('../Images/lab.gif'),
+  hospital: require('../Images/hospital.gif'),
+  pharmacy: require('../Images/pharmacy.gif'),
+  urgentcare: require('../Images/urgent-care.gif'),
+  hearthand: require('../Images/heart-hand.gif')
 }
 
 export default images

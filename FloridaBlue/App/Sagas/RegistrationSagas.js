@@ -66,9 +66,11 @@ export function * sendIdentificationRequest (api, {data}) {
   } else {
     var error = 'Invaid input provided'
     var data = {
-      'identificationStatus': '999'
+      'identificationStatus': '999',
+      'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Click Support for help.'
     }
-    data.identificationStatusMessage = getReasonMessage(data.indentificationStatus)
+   // data.identificationStatusMessage = getReasonMessage(data.indentificationStatus)
+    console.log(data)
     yield put(RegistrationActions.sendIdentificationFailure(data))
   }
 }
@@ -87,9 +89,11 @@ export function * sendPersonalInformationRequest (api, {data}) {
   } else {
     var error = 'Invaid input provided'
     var data = {
-      'personalInformationStatus': '999'
+      'identificationStatus': '999',
+      'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Click Support for help.'
     }
-    data.personalInformationStatusMessage = getReasonMessage(data.personalInformationStatus)
+    // data.personalInformationStatusMessage = getReasonMessage(data.personalInformationStatus)
+
     yield put(RegistrationActions.sendPersonalInformationFailure(data))
   }
 }
@@ -111,9 +115,10 @@ export function * sendRegistrationCodeRequest (api, {data}) {
   } else {
     var error = 'Invaid input provided'
     var data = {
-      'registrationCodeStatus': '999'
+      'identificationStatus': '999',
+      'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Click Support for help.'
     }
-    data.registrationCodeStatusMessage = getReasonMessage(data.registrationCodeStatus)
+  //  data.registrationCodeStatusMessage = getReasonMessage(data.registrationCodeStatus)
     yield put(RegistrationActions.sendRegistrationCodeFailure(data))
   }
 }
@@ -131,9 +136,10 @@ export function * sendSecurityHintsRequest (api, {data}) {
   } else {
     var error = 'Invaid input provided'
     var data = {
-      'securityHintsStatus': '999'
+      'identificationStatus': '999',
+      'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Click Support for help.'
     }
-    data.securityHintsStatusMessage = getReasonMessage(data.securityHintsStatus)
+   // data.securityHintsStatusMessage = getReasonMessage(data.securityHintsStatus)
     yield put(RegistrationActions.sendSecurityHintsFailure(data))
   }
 }
@@ -151,9 +157,10 @@ export function * registerUserRequest (api, {data, token}) {
   } else {
     var error = 'Invaid input provided'
     var data = {
-      'registerUserStatus': '999'
+      'identificationStatus': '999',
+      'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Click Support for help.'
     }
-    data.registerUserStatusMessage = getReasonMessage(data.registerUserStatus)
+  //  data.registerUserStatusMessage = getReasonMessage(data.registerUserStatus)
     yield put(RegistrationActions.registerUserFailure(data))
   }
 }
