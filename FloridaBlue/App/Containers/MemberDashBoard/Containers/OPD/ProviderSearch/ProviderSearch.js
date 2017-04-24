@@ -108,7 +108,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _getResults() {
-      this.props.attemptProviderSearch(this.props)
+      this.props.attemptProviderSearch(this.props,{'screen':'yash'})
       NavigationActions.DoctorList()
     }
 

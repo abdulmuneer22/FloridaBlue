@@ -133,32 +133,50 @@ class AdvancedSearch extends Component {
         'selectedPatientType' : selectedPatientType,
         'selectedPatientLabel' : selectedPatientLabel
     }
-    this.props.changePatientType(acceptedPatient)
-   
-    
+    this.props.changePatientType(acceptedPatient)   
   }
 
   _timeSelected(index, value: string) {
-    var selectTime = this.props.configData.workingHours.workHoursList[index].value
-     this.props.changeTimeType(selectTime)
-
+    var selectedTime = this.props.configData.workingHours.workHoursList[index].value
+    var selectedLabel=this.props.configData.workingHours.workHoursList[index].hours
+    var timeSelected={
+      'selectedTime' : selectedTime,
+      'selectedLabel' : selectedLabel
+    }
+     this.props.changeTimeType(timeSelected)
+      
   }
 
   _staffLanguageSelected(index, value: string) {
 
-    var selectStaffLanguage = this.props.staffLanguage[index].value
-     this.props.changeStaffLanguage(selectStaffLanguage)
+    var selectedStaffLanguage = this.props.staffLanguage[index].value
+    var selectedStaffLabel=this.props.staffLanguage[index].label
+    var staffLanguageSelected={
+       'selectedStaffLanguage' : selectedStaffLanguage,
+      'selectedStaffLabel' : selectedStaffLabel
+    }
+     this.props.changeStaffLanguage(staffLanguageSelected)
 
   }
 
   _doctorLanguageSelected(index, value: string) {
-    var selectDoctorLanguage = this.props.providerLanguage[index].value
-    this.props.changeDoctorLanguage(selectDoctorLanguage)
+    var selectedDoctorLanguage = this.props.providerLanguage[index].value
+    var selectedDoctorLabel=this.props.providerLanguage[index].label
+    var doctorLanguageSelected={
+      'selectedDoctorLanguage' : selectedDoctorLanguage,
+      'selectedDoctorLabel' : selectedDoctorLabel
+    }
+    this.props.changeDoctorLanguage(doctorLanguageSelected)
   }
 
   _programSelected(index, value: string) {
-    var selectProgramType = this.props.configData.program.programList[index].value
-    this.props.changeProgramType(selectProgramType)
+    var selectedProgramType = this.props.configData.program.programList[index].value
+    var selectedProgramLabel = this.props.configData.program.programList[index].programName
+    var programTypeSelected={
+      'selectedProgramType' : selectedProgramType,
+      'selectedProgramLabel' : selectedProgramLabel
+    }
+    this.props.changeProgramType(programTypeSelected)
 
   }
 
@@ -441,7 +459,7 @@ class AdvancedSearch extends Component {
                     placeholder="No Preference"
                     placeholderTextColor={Colors.flBlue.ocean}
                     tintColor={Colors.black}
-                    value={this.state.doctorSpeaks}
+                    value={this.props.providerLanguage.selectedDoctorLabel}
                   />
                 </ModalDropdown>
               </View>
@@ -457,8 +475,8 @@ class AdvancedSearch extends Component {
               <View style={{ flex: 0.5, marginTop: 5 }}>
                 <ModalDropdown dropdownStyle={styles.languagedropdown}
                   onSelect={this._staffLanguageSelected}
-                  options={this.props.staffLanguage != undefined  ?
-                    _.map(this.props.staffLanguage, 'label') : null}
+                  options={
+                    _.map(this.props.staffLanguage, 'label')}
                   renderRow={this._renderDropdownRow.bind(this)} >
 
                   <MKTextField
@@ -472,7 +490,7 @@ class AdvancedSearch extends Component {
                     placeholder="No Preference"
                     placeholderTextColor={Colors.flBlue.ocean}
                     tintColor={Colors.black}
-                    value={this.state.staffSpeaks}
+                    value={this.props.staffLanguage.selectedStaffLabel}
                   />
                 </ModalDropdown>
               </View>
@@ -509,7 +527,7 @@ class AdvancedSearch extends Component {
                   placeholderTextColor={Colors.flBlue.ocean}
                   placeholderTextSize={Fonts.size.h2}
                   tintColor={Colors.black}
-                  value={this.state.programs}
+                  value={this.props.programsList.selectedProgramLabel}
 
                 />
               </ModalDropdown>
@@ -563,7 +581,8 @@ const mapStateToProps = (state) => {
     newLocationState: state.provider.newLocationState,
     currentLocation: state.provider.currentLocation,
     searchRange: state.provider.searchRange,
-    gender: state.provider.gender
+    gender: state.provider.gender,
+    programsList:state.provider.programsList
   }
 }
 
