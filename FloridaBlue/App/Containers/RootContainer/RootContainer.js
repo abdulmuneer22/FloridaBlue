@@ -14,6 +14,7 @@ var inactiveTime = Date
 var activeTime = Date
 var timerStarted = false
 var component = null
+var timerStarted = false
 
 class RootContainer extends Component {
   constructor () {
@@ -44,7 +45,7 @@ class RootContainer extends Component {
         if (timerStarted == false) {
           var date = new Date()
           inactiveTime = date.getTime()
-          timerStarted = true
+          timerStarted = true;
         }
       } else if (appState.match(/active/)) {
         var date = new Date()
@@ -53,7 +54,8 @@ class RootContainer extends Component {
         var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000) // converted to minutes
         var elapsedTime = Math.abs(diffMins)
         if (elapsedTime >= 15) {
-          timerStarted = false
+            // Call logout logic
+          timerStarted = false;
           RCTNetworking.clearCookies((cleared) => {})
           component.props.attemptLogout()
           NavigationActions.login()

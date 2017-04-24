@@ -12,10 +12,9 @@ const theme = getTheme()
 export default StyleSheet.create({
 
   backgroundImage: {
-    position: 'absolute',
-    top: 0,
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.3),
-    resizeMode: 'stretch'
+    flex: 0.4,
+    alignSelf: 'flex-end'
+   // marginBottom:-100
   },
   logo: {
     width: Metrics.images.logo,
@@ -24,7 +23,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.bg2
   },
   headerContainer: {
     flexDirection: 'row',
@@ -49,41 +48,109 @@ export default StyleSheet.create({
   },
   doctorCardStyle: {
   //  alignItems: 'center',
-    marginTop: Metrics.baseMargin
+   // marginTop: Metrics.baseMargin,
+    backgroundColor: '#fff',
+    borderRadius: 2,
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3
+    }
+  },
+
+  textBackground2: {
+
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: Colors.bg2,
+  // padding: Metrics.mediumMargin,
+    justifyContent: 'space-between',
+  //  alignItems: 'center',
+
+    borderRadius: 2,
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3
+    }
+
+  },
+
+  textBackground3: {
+
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: Colors.bg2,
+    padding: Metrics.mediumMargin,
+    justifyContent: 'space-between',
+  //  alignItems: 'center',
+
+    borderRadius: 2,
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3
+    }
+
   },
 
   doctorTextStyle: {
     marginTop: Metrics.smallMargin,
     fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
-    color: Colors.flBlue.anvil,
+    color: Colors.flBlue.ocean,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '500',
     textAlign: 'center'
   },
+
   cardStyle: {
-    width: window.width,
-    backgroundColor: Colors.flBlue.lightBlue,
+    // width: window.width,
+    backgroundColor: Colors.snow,
+    flex: 1,
    // height : 200,
    // alignSelf: 'center',
    //  padding : Metrics.baseMargin,
-    marginTop: Metrics.baseMargin,
+  //  marginTop: Metrics.baseMargin,
   //  alignItems: 'center',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+   // borderTopWidth: 1,
+   // borderBottomWidth: 1,
 
-    borderTopColor: Colors.flBlue.grey3,
-    borderBottomColor: Colors.flBlue.grey3
-
+   // borderTopColor: Colors.flBlue.grey3,
+   // borderBottomColor: Colors.flBlue.grey3
+    margin: 10,
+    borderRadius: 2,
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3
+    }
   },
   cardStyle1: {
-    width: window.width,
+    // width: window.width,
     backgroundColor: Colors.snow,
    // height : 200,
    // alignSelf: 'center',
    //  padding : Metrics.baseMargin,
-    marginTop: Metrics.smallMargin
+    // marginTop: Metrics.smallMargin,
 
   //  alignItems: 'center',
+    margin: 10,
+    borderRadius: 2,
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3
+    }
 
   },
   h1: {
@@ -91,11 +158,12 @@ export default StyleSheet.create({
    // margin: 5,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     // fontWeight: '600',
-    color: Colors.flBlue.anvil,
-    textAlign: 'center',
-    marginTop: Metrics.mediumMargin,
+    color: Colors.flBlue.ocean,
+   // textAlign: 'center',
+   // marginTop: Metrics.mediumMargin,
     fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: '600'
+    fontWeight: '600',
+    padding: 8
   },
   footerText: {
     // flexWrap:'wrap',
