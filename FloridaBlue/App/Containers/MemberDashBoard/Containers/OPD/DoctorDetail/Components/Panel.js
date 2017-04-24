@@ -1,0 +1,132 @@
+
+import React, { Component } from 'react'
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,TouchableHighlight,
+  Animated
+} from 'react-native'
+import { Images, Colors, Metrics, Fonts } from '../../../../../../Themes'
+import Flb from '../../../../../../Themes/FlbIcon'
+
+class Panel extends Component{
+    constructor(props){
+        super(props);
+
+        this.icons = { 
+            'up'    : 'chevron-up',
+            'down'  : 'chevron-down'
+        };
+
+        this.state = {
+            title       : props.title,
+            expanded    : false,
+            animation   : new Animated.Value()
+        };
+    }
+
+    toggle(){
+        let initialValue    = this.state.expanded? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
+            finalValue      = this.state.expanded? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
+
+        this.setState({
+            expanded : !this.state.expanded
+        });
+
+        this.state.animation.setValue(initialValue);
+        Animated.spring(
+            this.state.animation,
+            {
+                toValue: finalValue
+            }
+        ).start();
+    }
+
+    _setMaxHeight(event){
+        this.setState({
+            maxHeight   : event.nativeEvent.layout.height
+        });
+    }
+
+    _setMinHeight(event){
+        this.state.animation.setValue(event.nativeEvent.layout.height);
+        this.setState({
+            minHeight   : event.nativeEvent.layout.height
+        });
+    }
+
+    render(){
+        let icon = this.icons['down'];
+
+        if(this.state.expanded){
+            icon = this.icons['up'];
+        }
+
+        return (
+            <Animated.View 
+                style={[styles.container,{height: this.state.animation}]}>
+                <View style={styles.titleContainer} onLayout={this._setMinHeight.bind(this)}>
+                    <Text style={styles.title}>{this.state.title}</Text>
+                    <TouchableHighlight 
+                        style={styles.button} 
+                        onPress={this.toggle.bind(this)}
+                        underlayColor={Colors.snow}>
+
+     <Flb name={icon} size={Metrics.icons.tiny} style={{ marginTop: 15, backgroundColor:Colors.transparent }}
+      color={Colors.flBlue.ocean} />
+                    </TouchableHighlight>
+                </View>         
+                <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
+                   <Text style={styles.h1}>
+                    {this.props.children}
+                    </Text>
+                     </View>
+
+            </Animated.View>
+        );
+    }
+}
+
+var styles = StyleSheet.create({
+    container   : {
+        backgroundColor: '#fff',
+        marginRight:10,
+        overflow:'hidden'
+    },
+    titleContainer : {
+        flexDirection: 'row'
+    },
+
+    title       : {
+        flex    : 1,
+        padding : 8,
+        fontFamily: Fonts.type.subHeaderFont,
+        fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
+       color: Colors.flBlue.ocean,
+        fontWeight:'600',
+    },
+    button      : {
+//width:20
+    },
+    buttonImage : {
+        width   : 30,
+        height  : 25
+    },
+    body        : {
+       // borderTopWidth: 0.3,
+      
+//width:Metrics.screenWidth * 0.8
+        //bottom: 10
+      // padding:10
+        //margin : 10,
+        //paddingTop  : 0
+    },
+    h1:{
+marginLeft:15,
+      fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0038
+    }
+});
+
+export default Panel;

@@ -74,7 +74,7 @@ class DoctorList extends Component {
 
   componentDidMount() {
     console.tron.log('I am DoctorList screen')
-    console.tron.log(this.props.provider.data)
+    console.tron.log(this.props.provider)
     this.props.attemptHandleLeft()
     //this.props.attemptProviderSearch(this.props)
   }

@@ -36,6 +36,7 @@ import { DoctorList} from '../Containers/MemberDashBoard/Containers/OPD/DoctorLi
 import { AdvancedSearch} from '../Containers/MemberDashBoard/Containers/OPD/AdvancedSearch'
 import { AnimatedView} from '../Containers/MemberDashBoard/Containers/OPD/MapView'
 import { ListviewExample } from '../Containers/ListviewExample'
+import { DoctorDetail} from '../Containers/MemberDashBoard/Containers/OPD/DoctorDetail'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -60,8 +61,7 @@ class NavigationRouter extends Component {
             <Scene key='useridhint' component={UserIdHint} title='UserIdHint page' hideNavBar />
             <Scene key='passwordHint' component={PasswordHint} title='PasswordHint page' hideNavBar />
             <Scene key='securityHint' component={SecurityHint} title='SecurityHint page' hideNavBar />
-            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNsavBar />
-            <Scene key='memberid' component={FindMemberID} title='MemberId page'hideNavBar type={ActionConst.RESET}/>
+            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar type={ActionConst.RESET}/>
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />
             <Scene key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
             <Scene key='SupportScreen' component={SupportScreen} title='Support Page' hideNavBar />
@@ -72,7 +72,8 @@ class NavigationRouter extends Component {
             <Scene key='DoctorList' component={DoctorList} title='OPD Doctor List Page' hideNavBar />
             <Scene key='AdvancedSearch' component={AdvancedSearch} title='OPD AdvancedSearch Page' hideNavBar />
             <Scene key='ProviderSearch' component={ProviderSearch} title='OPD ProviderSearch Page' hideNavBar />
-             <Scene  key='MapView' component={AnimatedView} title='Map View Page' hideNavBar />
+            <Scene key='MapView' component={AnimatedView} title='Map View Page' hideNavBar />
+            <Scene  key='DoctorDetail' component={DoctorDetail} title='Doctor Detail Page' hideNavBar />
             
 
           </Scene>

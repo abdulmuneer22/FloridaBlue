@@ -109,10 +109,13 @@ class AdvancedSearch extends Component {
     this._selectDifferentLocation = this._selectDifferentLocation.bind(this)
     this._selectHomeLocation = this._selectHomeLocation.bind(this)
     this._selectCurrentLocation = this._selectCurrentLocation.bind(this)
+    this._anyGenderSelected=this._anyGenderSelected.bind(this)
+    this._maleGenderSelected=this._maleGenderSelected.bind(this)
+    this._femaleGenderSelected=this._femaleGenderSelected.bind(this)
   }
 
   _handleDoctordetail() {
-    //alert(JSON.stringify(this.state))
+   // alert(JSON.stringify(this.state))
     // this.props.attemptSearchDoctor(this.state)
     console.log('state data',this.state)
     this.props.attemptProviderSearch(this.props)
@@ -187,18 +190,21 @@ class AdvancedSearch extends Component {
 
   _anyGenderSelected(event) {
     if (event.checked) {
+      this.setState({gender: true})
       this.props.changeGenderType("")
     }
   }
 
   _maleGenderSelected(event) {
     if (event.checked) {
+      this.setState({gender: false})
       this.props.changeGenderType("M")
     }
   }
 
   _femaleGenderSelected(event) {
     if (event.checked) {
+      this.setState({gender: false})
       this.props.changeGenderType("F")
     }
   }
