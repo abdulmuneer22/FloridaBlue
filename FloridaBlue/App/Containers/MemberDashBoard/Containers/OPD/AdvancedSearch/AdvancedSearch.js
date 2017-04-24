@@ -112,6 +112,8 @@ class AdvancedSearch extends Component {
     this._anyGenderSelected=this._anyGenderSelected.bind(this)
     this._maleGenderSelected=this._maleGenderSelected.bind(this)
     this._femaleGenderSelected=this._femaleGenderSelected.bind(this)
+    this._careSelected = this._careSelected.bind(this)
+    this._specialitySelected = this._specialitySelected.bind(this)
   }
 
   _handleDoctordetail() {
@@ -233,6 +235,18 @@ class AdvancedSearch extends Component {
     }
   }
 
+  _careSelected(index, value:string) {
+    var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
+    this.props.getSpecialityTypes(selectedCategoryCode)
+    this.props.changeCareType(value)
+  }
+
+  _specialitySelected(index, value:string) {
+    var selectedSubCategoryCode = this.props.planSubCategoryList[index].categoryCode
+    this.props.changeSubCategoryCode(selectedSubCategoryCode)
+    this.props.changeSpecialityType(value)
+  }
+
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
@@ -270,60 +284,107 @@ class AdvancedSearch extends Component {
 
         {this._renderHeader()}
         <ScrollView style={{ flex: 1, marginBottom: 20 }}>
+          <View style={styles.careView}>
+            <MKTextField
+              ref='providerName'
+              style={styles.careTextField}
+              textInputStyle={{flex: 1}}
+              keyboardType='default'
+              returnKeyType='next'
+              autoCapitalize='none'
+              autoCorrect={false}
+              underlineColorAndroid={Colors.coal}
+              placeholder={I18n.t('providerPlaceholder')}
+              placeholderTextColor={Colors.steel}
+              onChangeText={this.props.changeProviderName}
+            />
 
-          <View>
-            <Text style={styles.h1}>Change Location:</Text>
+            <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+              <MKTextField
+                ref='careType'
+                textInputStyle={{flex: 1}}
+                style={styles.careTextField}
+                editable={false}
+                underlineColorAndroid={Colors.coal}
+                placeholder={I18n.t('careTypePlaceholder')}
+                placeholderTextColor={Colors.steel}
+                tintColor={Colors.black}
+                value={this.props.careType}
+              />
+            </ModalDropdown>
+            <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
+
+            <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+              <MKTextField
+                ref='specialityType'
+                style={styles.careTextField}
+                textInputStyle={{flex: 1}}
+                editable={false}
+                underlineColorAndroid={Colors.coal}
+                placeholder={I18n.t('specialityTypePlaceholder')}
+                placeholderTextColor={Colors.steel}
+                tintColor={Colors.black}
+                value={this.props.specialityType}
+              />
+            </ModalDropdown>
+            <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
           </View>
 
-          <View style={styles.radioView}>
-            <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectCurrentLocation}/>
-            <View >
-              <Text style={styles.radioText}>Current Location</Text>
+          <View style={styles.locationView}>
+            <View>
+              <Text style={styles.h1}>Change Location:</Text>
             </View>
 
-          </View>
+            <View style={styles.radioView}>
+              <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectCurrentLocation}/>
+              <View >
+                <Text style={styles.radioText}>Current Location</Text>
+              </View>
 
-          <View style={styles.radioView}>
-            <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectHomeLocation}/>
-            <View >
-              <Text style={styles.radioText}>Home</Text>
-              <View style={{ marginRight: Metrics.searchBarHeight }}>
-                <Text style={styles.radioBottomText}>{this.props.homeAddress}</Text>
+            </View>
+
+            <View style={styles.radioView}>
+              <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectHomeLocation}/>
+              <View >
+                <Text style={styles.radioText}>Home</Text>
+                <View style={{ marginRight: Metrics.searchBarHeight }}>
+                  <Text style={styles.radioBottomText}>{this.props.homeAddress}</Text>
+                </View>
               </View>
             </View>
-          </View>
 
-          <View style={styles.radioView}>
-            <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectDifferentLocation}/>
-            <View >
-              <Text style={styles.radioText}>Different Location</Text>
+            <View style={styles.radioView}>
+              <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectDifferentLocation}/>
+              <View >
+                <Text style={styles.radioText}>Different Location</Text>
+              </View>
             </View>
-          </View>
 
-          <HideableView style={{ marginLeft: 15, marginTop: 10 }} visible={this.state.newLocationState} removeWhenHidden={true}>
-            <Text style={styles.radioText}>{I18n.t('differentLocationMessage')}</Text>
-            <MKTextField
-              ref='newLocation'
-              textInputStyle={{flex: 1}}
-              editable={true}
-              underlineColorAndroid={Colors.coal}
-              placeholderTextColor={Colors.steel}
-              tintColor={Colors.black}
-              onChangeText={this.props.changeAddress}
-            />
-          </HideableView>
+            <HideableView style={{ marginLeft: 15, marginTop: 10 }} visible={this.state.newLocationState} removeWhenHidden={true}>
+              <Text style={styles.radioText}>{I18n.t('differentLocationMessage')}</Text>
+              <MKTextField
+                ref='newLocation'
+                textInputStyle={{flex: 1}}
+                editable={true}
+                underlineColorAndroid={Colors.coal}
+                placeholderTextColor={Colors.steel}
+                tintColor={Colors.black}
+                onChangeText={this.props.changeAddress}
+              />
+            </HideableView>
 
-          <View style={{ marginLeft: 15, marginTop: 10 }}>
-            <Text style={styles.searchText}> Search Radius:</Text>
-            <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular }}>{this.props.searchRange} mi</Text>
-            <Slider
-              value={this.props.searchRange}
-              minimumValue={0}
-              maximumValue={50}
-              step={1}
-              style={{ width: Metrics.screenWidth * 0.87, marginLeft: 10 }}
-              onValueChange={this.props.changeSearchRange}
-            />
+            <View style={{ marginLeft: 15, marginTop: 10 }}>
+              <Text style={styles.searchText}> Search Radius:</Text>
+              <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular }}>{this.props.searchRange} mi</Text>
+              <Slider
+                value={this.props.searchRange}
+                minimumValue={0}
+                maximumValue={50}
+                step={1}
+                style={{ width: Metrics.screenWidth * 0.87, marginLeft: 10 }}
+                onValueChange={this.props.changeSearchRange}
+              />
+            </View>
           </View>
 
           <View style={styles.genderView}>
@@ -582,7 +643,14 @@ const mapStateToProps = (state) => {
     currentLocation: state.provider.currentLocation,
     searchRange: state.provider.searchRange,
     gender: state.provider.gender,
-    programsList:state.provider.programsList
+    programsList:state.provider.programsList,
+    planCategoryList: state.provider.planCategoryList,
+    planSubCategoryList: state.provider.planSubCategoryList,
+    categoryCode: state.provider.categoryCode,
+    subCategoryCode: state.provider.subCategoryCode,
+    providerName: state.provider.providerName,
+    careType: state.provider.careType,
+    specialityType: state.provider.specialityType
   }
 }
 
@@ -605,7 +673,13 @@ const mapDispatchToProps = (dispatch) => {
     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeAddress: (address) => dispatch(ProviderActions.changeAddress(address)),
-    changeSearchRange: (searchRange) => dispatch(ProviderActions.changeSearchRange(searchRange))
+    changeSearchRange: (searchRange) => dispatch(ProviderActions.changeSearchRange(searchRange)),
+    getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
+    changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode)),
+    changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode)),
+    changeProviderName: (providerName) => dispatch(ProviderActions.changeProviderName(providerName)),
+    changeCareType: (careType) => dispatch(ProviderActions.changeCareType(careType)),
+    changeSpecialityType: (specialityType) => dispatch(ProviderActions.changeSpecialityType(specialityType))
   }
 }
 
