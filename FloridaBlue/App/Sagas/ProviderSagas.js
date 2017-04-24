@@ -14,16 +14,9 @@ export function * sendNetworkListRequest (api, {data}) {
 }
 
 export function * sendProviderSearchRequest (api, {data}) {
-console.log(data)
-
- // if (data.sceneKey=='ProviderSearch'){
-   const response = yield call(api.postProviderSearch, data) 
-/*  }
-  else {*/
-   //const response = yield call(api.postProviderSearchWithAdditionalFields, data) 
-  /*}*/
-  
-
+  console.log("Provider Search",data)
+   const response = yield call(api.postProviderSearch, data)
+   console.log("I am befor response",response) 
   if (response.ok) {
     var error = null
     var data = response.data
@@ -61,7 +54,7 @@ export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
 }
 
 export function * sendDoctorLanguageRequest (api, {data}) {
-  console.log("anvesh data",data)
+ 
   const response = yield call(api.getDoctorLanguage, data)
 
   if (response.ok) {

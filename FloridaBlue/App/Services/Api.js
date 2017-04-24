@@ -33,7 +33,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   // Force OpenWeather API Key on all requests
 
   api.addRequestTransform((request) => {
-    console.log('hey ther I am ' + JSON.stringify(request))
+    console.log('hey ther I am ', request)
   })
 
   // Wrap api's addMonitor to allow the calling code to attach
@@ -106,89 +106,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 
   const getSearchDoctor = (data) => api.post('/opd/search', {
     "language": "EN",
-    "start": 1,
-    "end": 25,
-    "planCode": "MMHMO",
-    "categoryCode": "All",
-    "searchRange": "50",
-    "address": "32246",
-    "sortColumn": "PROGRAM",
-    "sortType": "ASCENDING",
-    "providerName": "",
-    "providerLanguage": "",
-    "staffLanguage": "",
-    "programsList": "",
-    "acceptingPatientsIndicator": "",
-    "inIpa": "false",
-    "gender": "",
-    "officeHours": ""
-  })
-
-  const getDoctorDetail = (data) => api.post('/opd/details', {
-    "language": "EN",
-    "providerKey": "1080402",
-    "addressKey": "151028",
-    "planCode": "MMHMO"
-  })
-
-  const getCareTypes = (data) => api.post('/opd/types', {
-    "language": "EN",
-    "planCode": "MMHMO"
-  })
-
-  const getSpecialityTypes = (selectedCategoryCode) => api.post('/opd/specialty', {
-    "language": "EN",
-    "planCode": "MMHMO",
-    "categoryCode": selectedCategoryCode
-  })
-
-  const postNetworkList = (data) => api.post('/opd/networks', {
-    "language": "EN",
-    "applicationId": "OPD"
-  })
-
-  const postProviderSearch = (data) => api.post('/opd/search', {
-    "language": "EN",
-    "planCode": "",
-    "start": 1,
-    "end": 25,
-    "categoryCode": data.categoryCode,
-    "searchRange": data.searchRange,
-    "address": data.address,
-    "sortColumn": "PROGRAM",
-    "sortType": "ASCENDING",
-    "subCategoryCode": data.subCategoryCode,
-    "originLatitude": 0,
-    "originLongitude": 0,
-    "zipCode": 0,
-    "state": "",
-    "city": "",
-    "county": "",
-    "acceptingPatientsIndicator":"",
-    "programsList": "",
-    "networkList": ["NWB"] ,
-    "providerLanguage": "",
-    "providerName": data.providerName,
-    "providerFirstName": "",
-    "staffLanguage": "",
-    "gender": "",
-    "officeHours": "",
-    "hospitalAffiliation": "",
-    "providerNumber": "",
-    "medicalGroup": "",
-    "inIpa": "",
-    "ipaNumber": "",
-    "pharmacyType": "",
-    "extendedSupply": "",
-    "open24Hours": false,
-    "saveLocation": "",
-    "hospitalOption": "",
-    "networksFlag": false,
-    "memberSearchRequest": {}
-  })
-
-  const postProviderSearchWithAdditionalFields  = (data) => api.post('/opd/search', {
-    "language": "EN",
     "planCode": "",
     "start": 1,
     "end": 25,
@@ -226,6 +143,113 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     "networksFlag": false,
     "memberSearchRequest": {}
   })
+
+  const getDoctorDetail = (data) => api.post('/opd/details', {
+    "language": "EN",
+    "providerKey": "1080402",
+    "addressKey": "151028",
+    "planCode": "MMHMO"
+  })
+
+  const getCareTypes = (data) => api.post('/opd/types', {
+    "language": "EN",
+    "planCode": "MMHMO"
+  })
+
+  const getSpecialityTypes = (selectedCategoryCode) => api.post('/opd/specialty', {
+    "language": "EN",
+    "planCode": "MMHMO",
+    "categoryCode": selectedCategoryCode
+  })
+
+  const postNetworkList = (data) => api.post('/opd/networks', {
+    "language": "EN",
+    "applicationId": "OPD"
+  })
+
+  const postProviderSearch = (data) =>
+    api.post('/opd/search', {
+    "language": "EN",
+    "planCode": "",
+    "start": 1,
+    "end": 25,
+    "categoryCode": data && data.categoryCode ? data.categoryCode : "",
+    "searchRange": data && data.searchRange ? data.searchRange : "", 
+    "address": data && data.address ? data.address :"",
+    "sortColumn": "PROGRAM",
+    "sortType": "ASCENDING",
+    "subCategoryCode":data && data.subCategoryCode ?data.subCategoryCode :"" ,
+    "originLatitude": 0,
+    "originLongitude": 0,
+    "zipCode": 0,
+    "state": "",
+    "city": "",
+    "county": "",
+    "acceptingPatientsIndicator":data && data.acceptingPatientsIndicator && data.acceptingPatientsIndicator.selectedPatientType? data.acceptingPatientsIndicator.selectedPatientType : "",
+    "programsList":data && data.programsList && data.programsList.selectedProgramType ?  data.programsList.selectedProgramType :"",
+    "networkList": ["NWB"] ,
+    "providerLanguage": data && data.providerLanguage && data.providerLanguage.selectedDoctorLanguage ? data.providerLanguage.selectedDoctorLanguage : "",
+    "providerName": data.providerName,
+    "providerFirstName": "",
+    "staffLanguage": data && data.staffLanguage && data.staffLanguage.selectedStaffLanguage ? data.staffLanguage.selectedStaffLanguage : "",
+    "gender": data && data.gender ? data.gender :"",
+    "officeHours": data && data.officeHours && data.officeHours.selectedTime ? data.officeHours.selectedTime: "",
+    "hospitalAffiliation": "",
+    "providerNumber": "",
+    "medicalGroup": "",
+    "inIpa": "",
+    "ipaNumber": "",
+    "pharmacyType": "",
+    "extendedSupply": "",
+    "open24Hours": false,
+    "saveLocation": "",
+    "hospitalOption": "",
+    "networksFlag": false,
+    "memberSearchRequest": {}
+  })
+
+
+
+/*
+  const postProviderSearch  = (data) => api.post('/opd/search', {
+    "language": "EN",
+    "planCode": "",
+    "start": 1,
+    "end": 25,
+    "categoryCode": data.categoryCode,
+    "searchRange": data.searchRange,
+    "address": data.address,
+    "sortColumn": "PROGRAM",
+    "sortType": "ASCENDING",
+    "subCategoryCode": data.subCategoryCode,
+    "originLatitude": 0,
+    "originLongitude": 0,
+    "zipCode": 0,
+    "state": "",
+    "city": "",
+    "county": "",
+    "acceptingPatientsIndicator": data.acceptingPatientsIndicator,
+    "programsList": data.programsList,
+    "networkList": ["NWB"] ,
+    "providerLanguage": data.providerLanguage,
+    "providerName": data.providerName,
+    "providerFirstName": "",
+    "staffLanguage": data.staffLanguage,
+    "gender": data.gender,
+    "officeHours": data.officeHours,
+    "hospitalAffiliation": "",
+    "providerNumber": "",
+    "medicalGroup": "",
+    "inIpa": "",
+    "ipaNumber": "",
+    "pharmacyType": "",
+    "extendedSupply": "",
+    "open24Hours": false,
+    "saveLocation": "",
+    "hospitalOption": "",
+    "networksFlag": false,
+    "memberSearchRequest": {}
+  })*/
 
   const postIdentification = (data) => api.post('/identifications', {
     'User': {

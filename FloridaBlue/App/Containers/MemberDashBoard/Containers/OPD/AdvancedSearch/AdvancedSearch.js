@@ -246,7 +246,8 @@ class AdvancedSearch extends Component {
     this.props.changeSubCategoryCode(selectedSubCategoryCode)
     this.props.changeSpecialityType(value)
   }
-
+ 
+    
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
@@ -399,12 +400,13 @@ class AdvancedSearch extends Component {
               <View >
                 <Text style={styles.genderText}>Any</Text>
               </View>
+                <View style={{flexDirection:'row',marginLeft:20}}>
               <MKRadioButton checked={false} group={this.genderGroup} onCheckedChange={this._maleGenderSelected} />
-              <View >
-                <Text style={styles.genderText}>Male</Text>
+              <Text style={styles.genderText}>Male</Text>
               </View>
+
+            <View style={{flexDirection:'row',marginLeft:20}}>
               <MKRadioButton checked={false} group={this.genderGroup} onCheckedChange={this._femaleGenderSelected} />
-              <View >
                 <Text style={styles.genderText}>Female</Text>
               </View>
             </View>
