@@ -127,9 +127,15 @@ class AdvancedSearch extends Component {
   }
 
   _patientTypeSelected(index, value: string) {
-    var selectPatientType = this.props.configData.acceptingPatient.acceptPatientList[index].value
-     this.props.changePatientType(selectPatientType)
-
+    var selectedPatientType = this.props.configData.acceptingPatient.acceptPatientList[index].value
+    var selectedPatientLabel = this.props.configData.acceptingPatient.acceptPatientList[index].patientPreference
+    var acceptedPatient ={
+        'selectedPatientType' : selectedPatientType,
+        'selectedPatientLabel' : selectedPatientLabel
+    }
+    this.props.changePatientType(acceptedPatient)
+   
+    
   }
 
   _timeSelected(index, value: string) {
@@ -356,7 +362,7 @@ class AdvancedSearch extends Component {
                   //placeholder={this.state.acceptingPatientsIndicator}
                   placeholderTextColor={Colors.flBlue.ocean}
                   tintColor={Colors.black}
-                  value={this.state.acceptNewPatient}
+                  value={this.props.acceptingPatientsIndicator.selectedPatientLabel}
                 />
 
               </ModalDropdown>

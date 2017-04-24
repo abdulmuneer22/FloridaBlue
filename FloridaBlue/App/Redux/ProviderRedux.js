@@ -64,7 +64,7 @@ export const INITIAL_STATE = Immutable({
   longitude: 0,
   address: "",
   homeAddress: "",
-  acceptingPatientsIndicator:"",
+  acceptingPatientsIndicator:{},
   programsList:"",
   staffLanguage:"",
   providerLanguage:"",

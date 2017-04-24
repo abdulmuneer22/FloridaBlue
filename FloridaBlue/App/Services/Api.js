@@ -164,7 +164,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     "state": "",
     "city": "",
     "county": "",
-    "acceptingPatientsIndicator": data.acceptingPatientsIndicator,
+    "acceptingPatientsIndicator": data.acceptingPatientsIndicator.selectedPatientType,
     "programsList": data.programsList,
     "networkList": ["NWB"] ,
     "providerLanguage": data.providerLanguage,
