@@ -58,7 +58,7 @@ export default StyleSheet.create({
   chartWrapper: {
     //   backgroundColor : 'yellow',
     flex: 2,
-    marginBottom: 15
+   // marginBottom: 15
   },
   cardStyle: {
     flexWrap: 'wrap',
