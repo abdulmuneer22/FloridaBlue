@@ -29,6 +29,7 @@ import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
+import ActionButton from 'react-native-action-button';
 
 const theme = getTheme()
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -50,6 +51,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
        this._selectCurrentLocation = this._selectCurrentLocation.bind(this)
        this._selectHomeLocation = this._selectHomeLocation.bind(this)
        this._selectDifferentLocation = this._selectDifferentLocation.bind(this)
+       this._urgentCare = this._urgentCare.bind(this)
 
         this.state = {
           knownCareState: false,
@@ -57,7 +59,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
           specialityState: false,
           currentLocaleState: false,
           newLocationState: false,
-          savedProviderState: true
+          savedProviderState: true,
+          urgentCareState: false
         }
     }
 
@@ -108,7 +111,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _getResults() {
-      this.props.attemptProviderSearch(this.props,{'screen':'yash'})
+      this.props.attemptProviderSearch(this.props)
       NavigationActions.DoctorList()
     }
 
@@ -184,6 +187,15 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       this.props.changeHomeAddress(fullAddress)
     }
 
+    _urgentCare() {
+      console.tron.log("Urgent care selected..")
+      if (this.state.urgentCareState) {
+        this.setState({urgentCareState: false})
+      } else {
+        this.setState({urgentCareState: true})
+      }
+    }
+
     _renderHeader () {
       return (
         <Image style={styles.headerContainer} source={Images.themeHeader}>
@@ -209,147 +221,160 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     render () {
       return (
         <View style={styles.container}>
-          <View>
-            {this._renderHeader()}
-            <ScrollView>
-              <View>
-                <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
+          {this._renderHeader()}
+          <ScrollView>
+            <View>
+              <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
 
-                <View style={styles.radioView}>
-                  <MKRadioButton group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
-                  <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
-                  <MKRadioButton group={this.searchTypeGroup} />
-                  <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
-                </View>
+              <View style={styles.radioView}>
+                <MKRadioButton group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
+                <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
+                <MKRadioButton group={this.searchTypeGroup} />
+                <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
+              </View>
 
-                <HideableView visible={this.state.savedProviderState} removeWhenHidden={true}>
-                  <Text style={styles.subheading}>{I18n.t('savedProviderMessage')}</Text>
-                  <TouchableOpacity style={styles.savedProviderLink}>
-                    <Text style={styles.savedProviderLinkText}>{I18n.t('savedProviderButton')}</Text>
-                  </TouchableOpacity>
-                </HideableView>
+              <HideableView visible={this.state.savedProviderState} removeWhenHidden={true}>
+                <Text style={styles.subheading}>{I18n.t('savedProviderMessage')}</Text>
+                <TouchableOpacity style={styles.savedProviderLink}>
+                  <Text style={styles.savedProviderLinkText}>{I18n.t('savedProviderButton')}</Text>
+                </TouchableOpacity>
+              </HideableView>
 
-                <HideableView visible={this.state.knownCareState} removeWhenHidden={true}>
-                  <Text style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
+              <HideableView visible={this.state.knownCareState} removeWhenHidden={true}>
+                <Text style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
+                <MKTextField
+                  ref='providerName'
+                  style={styles.textField}
+                  textInputStyle={{flex: 1}}
+                  keyboardType='default'
+                  returnKeyType='next'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder={I18n.t('providerPlaceholder')}
+                  placeholderTextColor={Colors.steel}
+                  onChangeText={this.props.changeProviderName}
+                />
+              </HideableView>
+
+              <HideableView visible={this.state.unknownCareState} removeWhenHidden={true}>
+                <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                   <MKTextField
-                    ref='providerName'
+                    ref='careType'
+                    textInputStyle={{flex: 1}}
                     style={styles.textField}
-                    textInputStyle={{flex: 1}}
-                    keyboardType='default'
-                    returnKeyType='next'
-                    autoCapitalize='none'
-                    autoCorrect={false}
+                    editable={false}
                     underlineColorAndroid={Colors.coal}
-                    placeholder={I18n.t('providerPlaceholder')}
-                    placeholderTextColor={Colors.steel}
-                    onChangeText={this.props.changeProviderName}
-                  />
-                </HideableView>
-
-                <HideableView visible={this.state.unknownCareState} removeWhenHidden={true}>
-                  <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
-                    <MKTextField
-                      ref='careType'
-                      textInputStyle={{flex: 1}}
-                      style={styles.textField}
-                      editable={false}
-                      underlineColorAndroid={Colors.coal}
-                      placeholder={I18n.t('careTypePlaceholder')}
-                      placeholderTextColor={Colors.steel}
-                      tintColor={Colors.black}
-                      value={this.props.careType}
-                    />
-                  </ModalDropdown>
-                  <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
-                </HideableView>
-
-                <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden={true}>
-                  <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
-                    <MKTextField
-                      ref='specialityType'
-                      style={styles.textField}
-                      textInputStyle={{flex: 1}}
-                      editable={false}
-                      underlineColorAndroid={Colors.coal}
-                      placeholder={I18n.t('specialityTypePlaceholder')}
-                      placeholderTextColor={Colors.steel}
-                      tintColor={Colors.black}
-                      value={this.props.specialityType}
-                    />
-                  </ModalDropdown>
-                  <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
-                </HideableView>
-
-                <HideableView visible={this.state.unknownCareState && this.state.currentLocaleState == false} removeWhenHidden={true}>
-                  <View style={[styles.locationView]}>
-                    <View style={styles.locationTextContainer}>
-                      <Text style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
-                      <Text style={styles.currentLocationText}>{this.props.address}</Text>
-                    </View>
-                    <View style={styles.locationButtonContainer}>
-                      <TouchableOpacity style={styles.editLocation} onPress={this._editLocation}>
-                        <Flb name="pencil" style={styles.editLocationIcon} size={Metrics.icons.small} color={Colors.flBlue.anvil} />
-                        <Text style={styles.editLocationText}>{I18n.t('editLocationButton')}</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </HideableView>
-
-                <HideableView style={styles.editLocationView} visible={this.state.unknownCareState && this.state.currentLocaleState} removeWhenHidden={true}>
-                  <View style={styles.mapIcon}>
-                    <Image source={Images.mapUnselectedIcon} />
-                    <Text style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
-                  </View>
-
-                  <View style={styles.locationRadio}>
-                    <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectCurrentLocation}/>
-                    <Text style={styles.radioText}>{I18n.t('currentLocationTitle')}</Text>
-                  </View>
-                  <View style={styles.locationRadio}>
-                    <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectHomeLocation}/>
-                    <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
-                  </View>
-                  <Text style={styles.locationText}>({this.props.homeAddress})</Text>
-                  <View style={styles.locationRadio}>
-                    <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectDifferentLocation}/>
-                    <Text style={styles.radioText}>{I18n.t('differentLocationTitle')}</Text>
-                  </View>
-                </HideableView>
-
-                <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.currentLocaleState && !this.state.newLocationState && this.state.unknownCareState} removeWhenHidden={true}></HideableView>
-
-                <HideableView style={styles.differentLocationView} visible={this.state.unknownCareState && this.state.newLocationState} removeWhenHidden={true}>
-                  <Text style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
-                  <MKTextField
-                    ref='newLocation'
-                    style={styles.newLocationField}
-                    textInputStyle={{flex: 1}}
-                    editable={true}
-                    underlineColorAndroid={Colors.coal}
+                    placeholder={I18n.t('careTypePlaceholder')}
                     placeholderTextColor={Colors.steel}
                     tintColor={Colors.black}
-                    onChangeText={this.props.changeAddress}
+                    value={this.props.careType}
                   />
+                </ModalDropdown>
+                <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
+              </HideableView>
 
-                  <TouchableOpacity style={styles.saveLocation} onPress={this._saveLocation}>
-                    <Image source={Images.saveLocationButton} style={styles.saveLocationButton} />
-                  </TouchableOpacity>
+              <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden={true}>
+                <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                  <MKTextField
+                    ref='specialityType'
+                    style={styles.textField}
+                    textInputStyle={{flex: 1}}
+                    editable={false}
+                    underlineColorAndroid={Colors.coal}
+                    placeholder={I18n.t('specialityTypePlaceholder')}
+                    placeholderTextColor={Colors.steel}
+                    tintColor={Colors.black}
+                    value={this.props.specialityType}
+                  />
+                </ModalDropdown>
+                <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
+              </HideableView>
+
+              <HideableView visible={this.state.unknownCareState && this.state.currentLocaleState == false} removeWhenHidden={true}>
+                <View style={[styles.locationView]}>
+                  <View style={styles.locationTextContainer}>
+                    <Text style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
+                    <Text style={styles.currentLocationText}>{this.props.address}</Text>
+                  </View>
+                  <View style={styles.locationButtonContainer}>
+                    <TouchableOpacity style={styles.editLocation} onPress={this._editLocation}>
+                      <Flb name="pencil" style={styles.editLocationIcon} size={Metrics.icons.small} color={Colors.flBlue.anvil} />
+                      <Text style={styles.editLocationText}>{I18n.t('editLocationButton')}</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </HideableView>
+
+              <HideableView style={styles.editLocationView} visible={this.state.unknownCareState && this.state.currentLocaleState} removeWhenHidden={true}>
+                <View style={styles.mapIcon}>
+                  <Image source={Images.mapUnselectedIcon} />
+                  <Text style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
+                </View>
+
+                <View style={styles.locationRadio}>
+                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectCurrentLocation}/>
+                  <Text style={styles.radioText}>{I18n.t('currentLocationTitle')}</Text>
+                </View>
+                <View style={styles.locationRadio}>
+                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectHomeLocation}/>
+                  <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
+                </View>
+                <Text style={styles.locationText}>({this.props.homeAddress})</Text>
+                <View style={styles.locationRadio}>
+                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectDifferentLocation}/>
+                  <Text style={styles.radioText}>{I18n.t('differentLocationTitle')}</Text>
+                </View>
+              </HideableView>
+
+              <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.currentLocaleState && !this.state.newLocationState && this.state.unknownCareState} removeWhenHidden={true}></HideableView>
+
+              <HideableView style={styles.differentLocationView} visible={this.state.unknownCareState && this.state.newLocationState} removeWhenHidden={true}>
+                <Text style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
+                <MKTextField
+                  ref='newLocation'
+                  style={styles.newLocationField}
+                  textInputStyle={{flex: 1}}
+                  editable={true}
+                  underlineColorAndroid={Colors.coal}
+                  placeholderTextColor={Colors.steel}
+                  tintColor={Colors.black}
+                  onChangeText={this.props.changeAddress}
+                />
+
+                <TouchableOpacity style={styles.saveLocation} onPress={this._saveLocation}>
+                  <Image source={Images.saveLocationButton} style={styles.saveLocationButton} />
+                </TouchableOpacity>
+              </HideableView>
+
+              <HideableView visible={this.state.knownCareState || this.state.unknownCareState} removeWhenHidden={true}>
+                <TouchableOpacity style={styles.getResults} onPress={this._getResults}>
+                  <Image source={Images.getResultsButton} style={styles.getResultsButton} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.advancedSearchLink} onPress={this._advancedSearch}>
+                  <View style={styles.advancedSearchContainer}>
+                    <Flb name="search-find" size={Metrics.icons.small} color={Colors.flBlue.anvil} />
+                    <Text style={styles.advancedSearchLinkText}>{I18n.t('advancedSearchButton')}</Text>
+                  </View>
+                </TouchableOpacity>
+              </HideableView>
+
+              <View style={styles.fabView}>
+                <HideableView visible={this.state.urgentCareState} removeWhenHidden={true}>
+                  <Text>Need help now?</Text>
+                  <Text>We can show you a list of urgent care centers close to you</Text>
                 </HideableView>
 
-                <HideableView visible={this.state.knownCareState || this.state.unknownCareState} removeWhenHidden={true}>
-                  <TouchableOpacity style={styles.getResults} onPress={this._getResults}>
-                    <Image source={Images.getResultsButton} style={styles.getResultsButton} />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={styles.advancedSearchLink} onPress={this._advancedSearch}>
-                    <View style={styles.advancedSearchContainer}>
-                      <Flb name="search-find" size={Metrics.icons.small} color={Colors.flBlue.anvil} />
-                      <Text style={styles.advancedSearchLinkText}>{I18n.t('advancedSearchButton')}</Text>
-                    </View>
-                  </TouchableOpacity>
-                </HideableView>
+                <ActionButton
+                  buttonColor="rgba(231,76,60,1)"
+                  onPress={this._urgentCare}
+                  position="right"
+                  offsetX={10}
+                  offsetY={50}
+                />
               </View>
-            </ScrollView>
-        </View>
+            </View>
+        </ScrollView>
       </View>
       )
     }
@@ -375,7 +400,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       longitude: state.provider.longitude,
       address: state.provider.address,
       homeAddress: state.provider.homeAddress,
-      member: state.member
+      member: state.member,
+      urgentCareState: state.urgentCareState
     }
   }
 
