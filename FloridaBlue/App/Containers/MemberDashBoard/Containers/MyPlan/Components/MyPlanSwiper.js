@@ -9,6 +9,16 @@ import SemiCircle from '../../../../../Components/SemiCircle'
 import styles from '../MyPlanScreenStyle'
 import _ from 'lodash'
 
+import {
+  Card,
+  CardImage,
+  CardTitle,
+  CardContent,
+  CardAction
+} from 'react-native-card-view';
+
+const card  = {card: {width: Metrics.screenWidth * 0.92,marginLeft:15}};
+
 class MyPlanSwiper extends Component {
   getChildrenOptions (data) {
     const {annualDeductible, oop} = data
@@ -116,14 +126,16 @@ class MyPlanSwiper extends Component {
 */
 
     return (
-      <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.42)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.44))} style={styles.wrapper} showsButtons>
+      <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.46)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.48))}
+       style={styles.wrapper} showsButtons dotStyle={{width: 12, height: 12, marginLeft:10, borderRadius:6,top:30, position:'relative'}} 
+       activeDotStyle={{width: 12, height: 12, borderRadius:6, marginLeft:10, top:30, position:'relative'}}>
         { this.getChildrenOptions(this.props.data).map((network, i) => {
           console.tron.log('children options are', this.getChildrenOptions(this.props.data))
           console.tron.log('planbenefits length', Object.keys(network.planBenefits).length)
      //      const planBenefits = _.head(network.planBenefits)
     //       console.tron.log('plan benefits', planBenefits)
           return (
-            <View style={styles.headerStyle} key={i}>
+            <Card styles={card} key={i}>
               <Text style={styles.headerText}>
                 {network.title.en}
               </Text>
@@ -131,7 +143,7 @@ class MyPlanSwiper extends Component {
                 {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].title.en : 'No Plan Benfits' }
               </Text>
               <View style={styles.dataContainer}>
-                <View style={{alignItems: 'center', justifyContent: 'center', flex: 0.4, marginTop: 30}}>
+                <View style={{ alignItems:'center',flex: 0.4, marginTop: 15}}>
                   <SemiCircle
                     pieWidth={150}
                     pieHeight={150}
@@ -142,9 +154,9 @@ class MyPlanSwiper extends Component {
                     barBottomColor={Colors.flBlue.grey2}
                     percent={Object.keys(network.planBenefits).length > 0 && network.planBenefits[0].value > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value) : 0} />
                 </View>
-                <View style={{flex: 0.6}}>
+                <View style={{flex: 0.6, marginBottom:20}}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
-                    return <View style={{flexDirection: 'row', width: Metrics.screenWidth * 0.85}} key={i}>
+                    return <View style={{flexDirection: 'row', width: Metrics.screenWidth * 0.8}} key={i}>
                       <View style={{flex: 0.65}}>
                         <Text style={{marginTop: Metrics.smallMargin,
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0029,
@@ -166,7 +178,7 @@ class MyPlanSwiper extends Component {
                   }) : <View />}
                 </View>
               </View>
-            </View>
+            </Card>
           )
           i += 1
         })}

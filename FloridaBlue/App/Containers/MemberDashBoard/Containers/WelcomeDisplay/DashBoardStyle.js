@@ -83,11 +83,18 @@ export default StyleSheet.create({
   },
 
   textStyle: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-    fontWeight: '500',
+    fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
+    fontWeight: '300',
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.headerFont,
-    color: Colors.flBlue.anvil
+    color: Colors.flBlue.grey6
+  },
+  textStyle2: {
+    fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
+    fontWeight: '300',
+    marginTop: Metrics.smallMargin,
+    fontFamily: Fonts.type.headerFont,
+    color: Colors.snow
   },
   hsaText: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0033,
@@ -115,7 +122,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.bg2
 
   },
   greetingView: {
@@ -270,24 +277,69 @@ export default StyleSheet.create({
     // marginBottom:0
   },
   textBackground: {
-    flexDirection: 'row',
+    flex: 1,
+    flexDirection: 'column',
     backgroundColor: Colors.snow,
-    padding: Metrics.mediumMargin
+    padding: Metrics.mediumMargin,
+    justifyContent: 'space-between',
+  //  alignItems: 'center',
+    margin: 3,
+    borderRadius: 2,
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3
+    }
+
   },
 
   textBackground1: {
-    flexDirection: 'row',
+    flex: 1,
+    flexDirection: 'column',
     backgroundColor: Colors.flBlue.lightBlue,
-    padding: Metrics.mediumMargin
+    justifyContent: 'space-between',
+    padding: Metrics.mediumMargin,
+   // alignItems: 'center',
+    margin: 10,
+    borderRadius: 2,
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3
+    }
+
+  },
+
+  textBackground2: {
+
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: Colors.bg2,
+    padding: Metrics.mediumMargin,
+    justifyContent: 'space-between',
+  //  alignItems: 'center',
+
+    borderRadius: 2,
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3
+    }
 
   },
 
   textStyle1: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.smallMargin,
-    fontFamily: Fonts.type.headerFont,
-    color: Colors.flBlue.anvil
-    // fontWeight:'bold'
+    fontFamily: Fonts.type.subHeaderFont,
+    color: Colors.flBlue.ocean,
+    fontWeight: '300'
   },
 
   spinnerView: {

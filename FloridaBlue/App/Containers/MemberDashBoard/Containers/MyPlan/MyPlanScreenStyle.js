@@ -29,13 +29,22 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: Colors.bg2
   },
   planNameView: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: Metrics.smallMargin,
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 3
+    //marginTop: Metrics.smallMargin,   
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.76)) / 3,
+    backgroundColor: 'white',
+    borderRadius: 2,
+    shadowColor: "#000000",
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3,
+    }
 
   },
   planNameText: {
@@ -49,7 +58,7 @@ export default StyleSheet.create({
   chartWrapper: {
     //   backgroundColor : 'yellow',
     flex: 2,
-    marginBottom: 25
+    marginBottom: 15
   },
   cardStyle: {
     flexWrap: 'wrap',
@@ -61,9 +70,24 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin
   },
   wrapper: {
-    backgroundColor: Colors.snow
-    // width:Metrics.screenWidth,
-    // backgroundColor:'red'
+    backgroundColor:Colors.bg2,
+    marginTop:10,
+    marginBottom:20,
+   // borderRadius: 2,
+    shadowColor: "#000000",
+    //shadowOpacity: 0.3,
+    //shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3,
+    }
+    //marginBottom:20,
+  
+    //marginLeft:20,
+    //marginRight:20,
+     //width:Metrics.screenWidth,
+    // backgroundColor:'red',
+   // margin:20,
 
   },
   myplanTilesStyle: {
@@ -82,14 +106,9 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
 
-    // justifyContent:'center',
-   // flexWrap: 'nowrap',
-//  borderWidth:2,
-    marginTop: Metrics.smallMargin
-   // marginLeft: 10,
-  // marginRight: 15
-//  borderColor:Colors.flBlue.grey4,
-//  backgroundColor:Colors.flBlue.grey2
+   // marginLeft:20,
+  //backgroundColor: 'white',
+    
   },
   headerText: {
     color: Colors.flBlue.anvil,
@@ -101,42 +120,8 @@ export default StyleSheet.create({
   // alignSelf:'center',
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
     fontFamily: Fonts.type.subHeaderFont
-  // backgroundColor:Colors.flBlue.ocean
   },
-  tileView: {
-    width: window.width * 0.5,
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.76),
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 6,
-    borderColor: Colors.snow
 
-    // borderTopWidth:1
-  },
-  tileStyle: {
-    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.5),
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
-    alignItems: 'center',
-    justifyContent: 'center',
-    // margin:4,
-    marginTop: 4,
-    marginBottom: 4,
-    marginRight: (Metrics.baseMargin) / 2,
-    marginLeft: Metrics.baseMargin
-
-  },
-  tileStyle1: {
-    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.5),
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
-    alignItems: 'center',
-    justifyContent: 'center',
-    // margin:4,
-    marginTop: 4,
-    marginBottom: 4,
-    marginRight: (Metrics.baseMargin),
-    marginLeft: (Metrics.baseMargin) / 2
-
-  },
   tileText: {
     marginTop: Metrics.baseMargin,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00265,
@@ -160,7 +145,7 @@ export default StyleSheet.create({
   dataContainer: {
 //  flexDirection:'row',
   // marginLeft: Metrics.doubleBaseMargin,
-  // marginRight: Metrics.doubleBaseMargin,
+   //marginRight: Metrics.doubleBaseMargin,
     // flex: 1,
 // margin: Metrics.baseMargin,
     flexWrap: 'wrap'
