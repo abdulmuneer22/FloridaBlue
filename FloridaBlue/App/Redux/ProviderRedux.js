@@ -65,10 +65,10 @@ export const INITIAL_STATE = Immutable({
   address: "",
   homeAddress: "",
   acceptingPatientsIndicator:{},
-  programsList:"",
-  staffLanguage:"",
-  providerLanguage:"",
-  officeHours:"",
+  programsList:{},
+  staffLanguage:{},
+  providerLanguage:{},
+  officeHours:{},
   gender: "",
   searchRange: 50,
   leftActive: true,
@@ -212,6 +212,7 @@ export const _changeTimeType = (state: Object, {officeHours}: Object) =>
 
  // genderType
 export const _changeGenderType = (state: Object, {gender}: Object) => state.merge({fetching: false, gender})
+
 
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {

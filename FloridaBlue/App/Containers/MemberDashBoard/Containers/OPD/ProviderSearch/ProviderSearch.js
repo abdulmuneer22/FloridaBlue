@@ -73,7 +73,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
         this.props.changeCategoryCode("ALL")
         this.setState({knownCareState: true})
         this.setState({unknownCareState: false})
-        this.setState({showSavedProvider: false})
+        this.setState({savedProviderState: false})
       } else {
         this.props.changeProviderName("")
         this.setState({knownCareState: false})
@@ -108,7 +108,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _getResults() {
-      this.props.attemptProviderSearch(this.props)
+      this.props.attemptProviderSearch(this.props,{'screen':'yash'})
       NavigationActions.DoctorList()
     }
 
@@ -336,7 +336,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                   </TouchableOpacity>
                 </HideableView>
 
-                <HideableView visible={this.state.knownCareState||this.state.unknownCareState} removeWhenHidden={true}>
+                <HideableView visible={this.state.knownCareState || this.state.unknownCareState} removeWhenHidden={true}>
                   <TouchableOpacity style={styles.getResults} onPress={this._getResults}>
                     <Image source={Images.getResultsButton} style={styles.getResultsButton} />
                   </TouchableOpacity>

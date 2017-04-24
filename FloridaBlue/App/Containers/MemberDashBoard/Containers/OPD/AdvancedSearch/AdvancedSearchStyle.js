@@ -14,7 +14,7 @@ const ACTIVE_BUTTON_TEXT_COLOR = Colors.snow
 
 
 export default StyleSheet.create({
- 
+
 
   container: {
     flex: 1,
@@ -70,6 +70,12 @@ export default StyleSheet.create({
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
 
   },
+  locationView: {
+    borderTopWidth:1,
+    borderColor:Colors.flBlue.grey1,
+    paddingTop: Metrics.baseMargin,
+    paddingBottom: Metrics.baseMargin
+  },
    genderRadioView: {
     //marginTop: Metrics.mediumMargin,
    // justifyContent: 'center',
@@ -93,6 +99,18 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
     //textAlign: 'center'
+  },
+  careView: {
+    borderTopWidth:1,
+    borderColor:Colors.flBlue.grey1,
+    paddingTop: Metrics.baseMargin,
+    paddingBottom: Metrics.baseMargin
+  },
+  careTextField: {
+    marginTop: Metrics.doubleBaseMargin,
+    paddingLeft: Metrics.doubleBaseMargin,
+    paddingRight: Metrics.doubleBaseMargin,
+    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
   },
   genderView:{
     borderTopWidth:1,
@@ -122,9 +140,9 @@ export default StyleSheet.create({
     fontWeight: '600',
      color: Colors.flBlue.grey6,
   },
-  
+
   h1: {
-    
+
     fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
    // textAlign: 'center',
     marginLeft: Metrics.doubleBaseMargin,
@@ -133,8 +151,8 @@ export default StyleSheet.create({
     fontWeight: '600',
      color: Colors.flBlue.grey6,
   },
- 
- 
+
+
   h2: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
   //  textAlign: 'center',
@@ -189,7 +207,7 @@ export default StyleSheet.create({
     marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.003,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-    
+
 
   },
    radioText: {
@@ -201,12 +219,12 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
     textAlign: 'justify'
-  },  
+  },
   radioBottomText: {
    // marginTop: 2,
     marginLeft: Metrics.baseMargin,
     marginRight: Metrics.baseMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
@@ -218,7 +236,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginLeft:15
   },
-  
+
   searchText: {
     marginTop: 5,
     marginLeft: Metrics.baseMargin,
@@ -230,7 +248,7 @@ export default StyleSheet.create({
     fontWeight: '400',
     textAlign: 'justify'
   },
- 
+
   dropDownText: {
     marginTop: Metrics.baseMargin,
     marginLeft: Metrics.doubleBaseMargin,
@@ -389,5 +407,16 @@ export default StyleSheet.create({
     paddingRight: Metrics.doubleBaseMargin,
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
   },
+  dropdownExampleText: {
+    marginTop: Metrics.smallMargin,
+    marginLeft: Metrics.doubleBaseMargin,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    color: Colors.steel,
+    fontFamily: Fonts.type.emphasis
+  },
+  dropdown: {
+    width: Metrics.screenWidth * 0.9,
+    marginLeft: Metrics.doubleBaseMargin
+  }
 
 })
