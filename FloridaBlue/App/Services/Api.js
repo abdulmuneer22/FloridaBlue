@@ -94,10 +94,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     "who": "staff"
   })
 
-  // const getLanguage = (data) => api.post('/opd/languages', {
-  //   "language": "EN",
-  //   "who": "staff"
-  // })
 
   const getDoctorLanguage = (data) => api.post('/opd/languages', {
     "language": "EN",
@@ -206,7 +202,8 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     "hospitalOption": "",
     "networksFlag": false,
     "memberSearchRequest": {}
-  })
+  }
+  )
 
 
 

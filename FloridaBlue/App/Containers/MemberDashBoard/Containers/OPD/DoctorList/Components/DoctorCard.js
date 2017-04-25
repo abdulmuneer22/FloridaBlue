@@ -81,7 +81,7 @@ class DoctorCard extends Component {
     handleMaps(latitude, longitude) {
 
         console.log(latitude, longitude)
-        const url = `http://maps.apple.com/?ll=${latitude},${longitude}`
+        const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
 
         Alert.alert(
             'Alert Title',
@@ -107,7 +107,7 @@ class DoctorCard extends Component {
     render() {
         return (
             <View style={styles.container}>
-                {this.props.data != null ?
+                {this.props.data != undefined ?
 
                     <View>
                         {this.props.data != undefined ? this.props.data.map((value, i) => {

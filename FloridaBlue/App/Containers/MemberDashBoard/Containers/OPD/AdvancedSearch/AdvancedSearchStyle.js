@@ -9,9 +9,6 @@ import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material
 
 const theme = getTheme()
 
-const BUTTON_ACTIVE_COLOR = Colors.flBlue.night
-const ACTIVE_BUTTON_TEXT_COLOR = Colors.snow
-
 
 export default StyleSheet.create({
 
@@ -36,29 +33,7 @@ export default StyleSheet.create({
     alignItems:'center',
     justifyContent:'center'
   },
-  cardButtonView: {
-    backgroundColor : Colors.flBlue.ocean,
-    width:Metrics.screenWidth*0.46,
-    justifyContent : 'center',
-    alignItems : 'center',
-   // marginRight : 1,
-    borderRightWidth:1 ,
-    borderColor:Colors.snow,
-    flex:1,
-    height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,
-    flexDirection : 'row'
-  },
-  cardButtonView1: {
-    backgroundColor : Colors.flBlue.ocean,
-    width:Metrics.screenWidth*0.46,
-    justifyContent : 'center',
-    alignItems : 'center',
-    borderLeftWidth:1 ,
-    borderColor:Colors.snow,
-    flex:1,
-    height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,
-    flexDirection : 'row'
-  },
+ 
 
   headerTextStyle: {
     color: Colors.flBlue.ocean,
@@ -164,37 +139,7 @@ export default StyleSheet.create({
     fontWeight: '600'
 
   },
-  h4: {
-   fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-  //  textAlign: 'center',
-    marginTop:Metrics.baseMargin,
-    color: Colors.flBlue.grey5,
-   // paddingTop: Metrics.smallMargin,
-    marginLeft: Metrics.doubleBaseMargin,
-    fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: '400'
-  },
-
-   h4_2: {
-   fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-  //  textAlign: 'center',
-    //marginTop:Metrics.baseMargin,
-    color: Colors.flBlue.grey5,
-   // paddingTop: Metrics.smallMargin,
-    marginLeft: Metrics.doubleBaseMargin,
-    fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: '400'
-  },
-  h4_3: {
-   fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-  //  textAlign: 'center',
-    //marginTop:Metrics.baseMargin,
-    color: Colors.flBlue.grey5,
-   // paddingTop: Metrics.smallMargin,
-    marginLeft: Metrics.doubleBaseMargin,
-    fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: 'bold'
-  },
+  
   spinnerView: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -257,7 +202,7 @@ export default StyleSheet.create({
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
-    textAlign: 'center'
+   // textAlign: 'center'
   },
 
   dropDownView: {
@@ -314,31 +259,7 @@ export default StyleSheet.create({
     borderRadius: 3,
     backgroundColor: 'cornflowerblue',
   },
-  dropdown_2_text: {
-    marginVertical: 10,
-    marginHorizontal: 6,
-    fontSize: 18,
-    color: 'white',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-  },
-  dropdown_2_dropdown: {
-    width: 150,
-    height: 300,
-    borderColor: 'cornflowerblue',
-    borderWidth: 2,
-    borderRadius: 3,
-  },
-
-    dropdown_4: {
-    margin: 8,
-    borderColor: 'lightgray',
-    borderWidth: 1,
-    borderRadius: 1,
-  },
-  dropdown_4_dropdown: {
-    width: 100,
-  },
+  
    nextButton: {
      marginTop:Metrics.mediumMargin,
     alignSelf: 'center',
@@ -413,10 +334,6 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     color: Colors.steel,
     fontFamily: Fonts.type.emphasis
-  },
-  dropdown: {
-    width: Metrics.screenWidth * 0.9,
-    marginLeft: Metrics.doubleBaseMargin
   }
 
 })

@@ -129,7 +129,7 @@ export const _sendDoctorLanguageRequest = (state: Object) => state.merge({ fetch
 
 // sendDoctorLanguagSuccess
 export const _sendDoctorLanguageSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, providerLanguage: data.data.languageList})
+  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, providerLanguages: data.data.languageList})
 
 // sendDoctorLanguageFailure
 export const _sendDoctorLanguageFailure = (state: Object, {data}: Object) =>
@@ -140,7 +140,7 @@ export const _sendStaffLanguageRequest = (state: Object) => state.merge({ fetchi
 
 // sendStaffLanguagSuccess
 export const _sendStaffLanguageSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, staffLanguage: data.data.languageList})
+  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, staffLanguages: data.data.languageList})
 
 // sendStaffLanguageFailure
 export const _sendStaffLanguageFailure = (state: Object, {data}: Object) =>

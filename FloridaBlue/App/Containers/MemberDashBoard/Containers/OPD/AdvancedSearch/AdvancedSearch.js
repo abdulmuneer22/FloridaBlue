@@ -151,8 +151,8 @@ class AdvancedSearch extends Component {
 
   _staffLanguageSelected(index, value: string) {
 
-    var selectedStaffLanguage = this.props.staffLanguage[index].value
-    var selectedStaffLabel=this.props.staffLanguage[index].label
+    var selectedStaffLanguage = this.props.staffLanguages[index].value
+    var selectedStaffLabel=this.props.staffLanguages[index].label
     var staffLanguageSelected={
        'selectedStaffLanguage' : selectedStaffLanguage,
       'selectedStaffLabel' : selectedStaffLabel
@@ -162,8 +162,8 @@ class AdvancedSearch extends Component {
   }
 
   _doctorLanguageSelected(index, value: string) {
-    var selectedDoctorLanguage = this.props.providerLanguage[index].value
-    var selectedDoctorLabel=this.props.providerLanguage[index].label
+    var selectedDoctorLanguage = this.props.providerLanguages[index].value
+    var selectedDoctorLabel=this.props.providerLanguages[index].label
     var doctorLanguageSelected={
       'selectedDoctorLanguage' : selectedDoctorLanguage,
       'selectedDoctorLabel' : selectedDoctorLabel
@@ -297,6 +297,7 @@ class AdvancedSearch extends Component {
               underlineColorAndroid={Colors.coal}
               placeholder={I18n.t('providerPlaceholder')}
               placeholderTextColor={Colors.steel}
+              tintColor={Colors.black}
               onChangeText={this.props.changeProviderName}
             />
 
@@ -349,7 +350,7 @@ class AdvancedSearch extends Component {
               <View >
                 <Text style={styles.radioText}>Home</Text>
                 <View style={{ marginRight: Metrics.searchBarHeight }}>
-                  <Text style={styles.radioBottomText}>{this.props.homeAddress}</Text>
+                  <Text style={styles.radioBottomText}>({this.props.homeAddress})</Text>
                 </View>
               </View>
             </View>
@@ -381,7 +382,7 @@ class AdvancedSearch extends Component {
                 value={this.props.searchRange}
                 minimumValue={0}
                 maximumValue={50}
-                step={1}
+                step={0.5}
                 style={{ width: Metrics.screenWidth * 0.87, marginLeft: 10 }}
                 onValueChange={this.props.changeSearchRange}
               />
@@ -497,18 +498,18 @@ class AdvancedSearch extends Component {
             </Text>
 
             <View style={styles.dropDownView}>
-              <View style={{ flex: 0.5 }}>
+              <View style={{ flex: 0.4 }}>
 
                 <Text style={styles.dropDownText}>
                   Doctor Speaks
             </Text>
               </View>
-              <View style={{ flex: 0.5, marginTop: 5 }}>
+              <View style={{ flex: 0.6, marginTop: 5 }}>
 
                 <ModalDropdown dropdownStyle={styles.languagedropdown}
                   onSelect={this._doctorLanguageSelected}
-                  options={this.props.providerLanguage != undefined  ?
-                    _.map(this.props.providerLanguage, 'label') : null}
+                  options={this.props.providerLanguage != undefined ?
+                    _.map(this.props.providerLanguages, 'label') : null}
                   renderRow={this._renderDropdownRow.bind(this)} >
 
                   <MKTextField
@@ -522,24 +523,24 @@ class AdvancedSearch extends Component {
                     placeholder="No Preference"
                     placeholderTextColor={Colors.flBlue.ocean}
                     tintColor={Colors.black}
-                    value={this.props.providerLanguage.selectedDoctorLabel}
+                   value={this.props.providerLanguage.selectedDoctorLabel}
                   />
                 </ModalDropdown>
               </View>
             </View>
 
             <View style={styles.dropDownView}>
-              <View style={{ flex: 0.5 }}>
+              <View style={{ flex: 0.4 }}>
                 <Text style={styles.dropDownText}>
                   Staff Speaks
                   </Text>
               </View>
 
-              <View style={{ flex: 0.5, marginTop: 5 }}>
+              <View style={{ flex: 0.6, marginTop: 5 }}>
                 <ModalDropdown dropdownStyle={styles.languagedropdown}
                   onSelect={this._staffLanguageSelected}
                   options={
-                    _.map(this.props.staffLanguage, 'label')}
+                    _.map(this.props.staffLanguages, 'label')}
                   renderRow={this._renderDropdownRow.bind(this)} >
 
                   <MKTextField
@@ -635,7 +636,9 @@ const mapStateToProps = (state) => {
     languageList:state.provider.languageList,
     acceptingPatientsIndicator: state.provider.acceptingPatientsIndicator,
     providerLanguage: state.provider.providerLanguage,
+    providerLanguages: state.provider.providerLanguages,
     staffLanguage: state.provider.staffLanguage,
+    staffLanguages: state.provider.staffLanguages,  
     configData: state.provider.configData,
     latitude: state.provider.latitude,
     longitude: state.provider.longitude,
