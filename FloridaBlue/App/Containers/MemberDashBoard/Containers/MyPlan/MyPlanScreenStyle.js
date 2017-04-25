@@ -111,14 +111,14 @@ export default StyleSheet.create({
     
   },
   headerText: {
-    color: Colors.flBlue.anvil,
+    color: Colors.flBlue.grey6,
     fontWeight: '500',
   // paddingBottom:Metrics.baseMargin,
     marginTop: Metrics.baseMargin,
 
   // width:window.width,
   // alignSelf:'center',
-    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0020,
     fontFamily: Fonts.type.subHeaderFont
   },
 
@@ -131,11 +131,11 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont
   },
   subHeader: {
-    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025,
-    color: Colors.flBlue.anvil,
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0021,
+    color: Colors.flBlue.grey3,
     fontFamily: Fonts.type.subHeaderFont,
-    marginBottom: Metrics.baseMargin,
-    marginTop: Metrics.smallMargin
+    marginBottom: Metrics.baseMargin
+    
   },
   listViewBg: {
     flexDirection: 'row',
