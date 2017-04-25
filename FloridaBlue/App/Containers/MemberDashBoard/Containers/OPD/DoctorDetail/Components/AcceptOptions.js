@@ -39,7 +39,7 @@ export default class AcceptOptions extends Component{
                             <View style={{
                                 flexDirection : 'row',
                                 alignItems : 'center'
-                            }}>
+                            }} key={i}>
                             <Icon 
                                 name="ios-checkmark" 
                                 size={40} 

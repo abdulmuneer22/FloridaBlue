@@ -83,7 +83,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   const getTOU = () => api.get('/tou')
   const getSupport = () => api.get('/support')
   const getHsa = (financialProduct) => api.get('/hsa/financialProduct/' + financialProduct)
-
   const getLogout = () => api.get('logout.fcc')
   const putTou = () => api.get('/termsOfUse')
   const getConfig = () => api.get('/opd/config')
@@ -98,46 +97,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   const getDoctorLanguage = (data) => api.post('/opd/languages', {
     "language": "EN",
     "who": "doctor"
-  })
-
-  const getSearchDoctor = (data) => api.post('/opd/search', {
-    "language": "EN",
-    "planCode": "",
-    "start": 1,
-    "end": 25,
-    "categoryCode": data.categoryCode,
-    "searchRange": data.searchRange,
-    "address": data.address,
-    "sortColumn": "PROGRAM",
-    "sortType": "ASCENDING",
-    "subCategoryCode": data.subCategoryCode,
-    "originLatitude": 0,
-    "originLongitude": 0,
-    "zipCode": 0,
-    "state": "",
-    "city": "",
-    "county": "",
-    "acceptingPatientsIndicator": data.acceptingPatientsIndicator,
-    "programsList": data.programsList,
-    "networkList": ["NWB"] ,
-    "providerLanguage": data.providerLanguage,
-    "providerName": data.providerName,
-    "providerFirstName": "",
-    "staffLanguage": data.staffLanguage,
-    "gender": data.gender,
-    "officeHours": data.officeHours,
-    "hospitalAffiliation": "",
-    "providerNumber": "",
-    "medicalGroup": "",
-    "inIpa": "",
-    "ipaNumber": "",
-    "pharmacyType": "",
-    "extendedSupply": "",
-    "open24Hours": false,
-    "saveLocation": "",
-    "hospitalOption": "",
-    "networksFlag": false,
-    "memberSearchRequest": {}
   })
 
   const getDoctorDetail = (data) => api.post('/opd/details', {
@@ -352,7 +311,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     getDoctorLanguage,
     getStaffLanguage,
     getDoctorDetail,
-    getSearchDoctor,
     getCareTypes,
     getSpecialityTypes,
     getConfig

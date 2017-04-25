@@ -284,8 +284,8 @@ export default StyleSheet.create({
     textAlignVertical: 'center',
   },
    dropdown: {
-    width: Metrics.screenWidth * 0.6,
-   // marginLeft: Metrics.doubleBaseMargin
+    width: Metrics.screenWidth * 0.9,
+    marginLeft: Metrics.doubleBaseMargin
   },
   languagedropdown: {
     width: Metrics.screenWidth * 0.5,

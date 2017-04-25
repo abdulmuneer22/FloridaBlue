@@ -56,6 +56,11 @@ class DoctorCard extends Component {
         // alert(data)
         this.props.removeProvider(data.providerKey)
     }
+
+    _doctorPage(){
+        NavigationActions.DoctorDetail()
+    }
+
     handleCall(phone) {
         console.log(phone)
         const url = `tel:${phone}`
@@ -130,7 +135,7 @@ class DoctorCard extends Component {
 
                                         <View style={{ marginTop: 5, marginRight: 30 }}>
                                             {value ?
-                                            <TouchableOpacity>
+                                            <TouchableOpacity onPress={()=>this._doctorPage()}>
                                             <Text style={styles.h1}>{value.displayName}</Text>
                                             </TouchableOpacity>:null}
                                             {value ? 
