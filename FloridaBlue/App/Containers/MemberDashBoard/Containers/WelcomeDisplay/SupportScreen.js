@@ -96,8 +96,8 @@ class SupportScreen extends Component {
                       }
 
                     )}</View>
-                      <View style={styles.textBackground}>
-                        {this.props.data.shoping.map(function (support, i) {
+                      <View >
+                       {this.props.data&& this.props.data.shoping ?  <View style={styles.textBackground}>{this.props.data.shoping.map(function (support, i) {
                           return (<View style={{margin: 1}} key={i}>
                             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', flexWrap: 'wrap', borderBottomWidth: 0.2}}>
                               <View style={i == 0 ? {flex: 1, flexDirection: 'row', padding: 16, justifyContent: 'center', backgroundColor: Colors.snow} : {flex: 0.6,
@@ -119,7 +119,7 @@ class SupportScreen extends Component {
                           i += 1
                         }
 
-                    )}
+                    )} </View> : <View/> } 
                       </View>
 
                     </View>
