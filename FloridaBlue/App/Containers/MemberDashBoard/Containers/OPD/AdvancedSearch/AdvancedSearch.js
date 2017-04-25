@@ -135,7 +135,7 @@ class AdvancedSearch extends Component {
         'selectedPatientType' : selectedPatientType,
         'selectedPatientLabel' : selectedPatientLabel
     }
-    this.props.changePatientType(acceptedPatient)   
+    this.props.changePatientType(acceptedPatient)
   }
 
   _timeSelected(index, value: string) {
@@ -146,7 +146,7 @@ class AdvancedSearch extends Component {
       'selectedTimeLabel' : selectedTimeLabel
     }
      this.props.changeTimeType(timeSelected)
-      
+
   }
 
   _staffLanguageSelected(index, value: string) {
@@ -246,8 +246,8 @@ class AdvancedSearch extends Component {
     this.props.changeSubCategoryCode(selectedSubCategoryCode)
     this.props.changeSpecialityType(value)
   }
- 
-    
+
+
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
@@ -381,8 +381,8 @@ class AdvancedSearch extends Component {
               <Slider
                 value={this.props.searchRange}
                 minimumValue={0}
-                maximumValue={50}
-                step={0.5}
+                maximumValue={100}
+                step={1}
                 style={{ width: Metrics.screenWidth * 0.87, marginLeft: 10 }}
                 onValueChange={this.props.changeSearchRange}
               />
@@ -638,7 +638,7 @@ const mapStateToProps = (state) => {
     providerLanguage: state.provider.providerLanguage,
     providerLanguages: state.provider.providerLanguages,
     staffLanguage: state.provider.staffLanguage,
-    staffLanguages: state.provider.staffLanguages,  
+    staffLanguages: state.provider.staffLanguages,
     configData: state.provider.configData,
     latitude: state.provider.latitude,
     longitude: state.provider.longitude,
