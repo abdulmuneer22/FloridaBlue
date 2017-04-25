@@ -68,7 +68,7 @@ class MyPlanScreen extends Component {
       var message = this.props.data.errorMessage
       return (
         <View style={styles.container}>
-
+        
           <View style={styles.planNameView}>
 
             { this.props.data.annualDeductible || this.props.data.oop
