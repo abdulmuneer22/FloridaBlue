@@ -20,7 +20,7 @@ import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material
 import Flb from '../../../../../Themes/FlbIcon'
 import HTMLView from 'react-native-htmlview'
 import Panel from './Panel'
-
+import { Card } from 'native-base'
 
 const theme = getTheme()
 
@@ -40,7 +40,7 @@ const HtMLstyles = StyleSheet.create({
   }
 })
 
-class Card extends Component {
+class CCard extends Component {
   constructor () {
     super()
 
@@ -92,20 +92,8 @@ class Card extends Component {
        
         cards.push(
 
-          <View style={styles.cardStyle} key={i} >
-            <View style={{
-              margin: 0.1,
-              alignItems: 'center',
-              shadowColor: '#000000',
-              shadowOpacity: 0.3,
-              shadowRadius: 1,
-              shadowOffset: {
-                height: 1,
-                width: 0.3
-              },
-              flexDirection: 'column'
-
-            }}>
+          <Card style={styles.cardStyle} key={i} >
+            <View >
               <View style={{
                 flex: 1,
                 flexDirection: 'row',
@@ -126,7 +114,7 @@ class Card extends Component {
              {
                 network != undefined && network.footer_note != undefined && network.footer_note != null && network.footer_note.en != undefined && network.footer_note.en != null
                   ?
-                   <View >
+                   <View style={{borderBottomWidth:0.3}} >
                   <Panel title={_.get(network, 'header_text.en', '')} >
                      <View style={{ borderTopWidth: 0.2, bottom: 10 }} />
             <View style={{ width: Metrics.screenWidth * 0.87 }}>
@@ -138,7 +126,7 @@ class Card extends Component {
                   </Panel>
                   </View>
                     :
-                    <View>
+                    <View style={{borderBottomWidth:0.3}}>
                    <Text style={styles.h1}>
                     {_.get(network, 'header_text.en', 'Benefit Details')}
                   </Text></View>
@@ -152,16 +140,7 @@ class Card extends Component {
             </View>
 
             <View style={{flex: 1, flexDirection: 'row',
-              margin: 0.1,
-
-              shadowColor: '#000000',
-              shadowOpacity: 0.3,
-              shadowRadius: 1,
-              shadowOffset: {
-                height: 1,
-                width: 0.3
-              }
-
+              margin: 0.1
             }}>
               <View style={{flex: 0.6 , margin:0.5}}>
                 {
@@ -199,9 +178,9 @@ class Card extends Component {
           }
 
               </View>
-              <Image source={Images[ImageInput]} style={styles.backgroundImage} resizeMode='stretch' />
+              <Image source={Images[ImageInput]} style={styles.backgroundImage} />
             </View>
-          </View>
+          </Card>
 
         )
         i += 1
@@ -220,4 +199,4 @@ class Card extends Component {
   }
 }
 
-export default Card
+export default CCard

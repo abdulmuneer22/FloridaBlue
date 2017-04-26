@@ -9,14 +9,9 @@ import SemiCircle from '../../../../../Components/SemiCircle'
 import styles from '../MyPlanScreenStyle'
 import _ from 'lodash'
 
-import {
-  Card,
-  CardImage,
-  CardTitle,
-  CardContent,
-  CardAction
-} from 'react-native-card-view';
 
+
+import { Card } from 'native-base'
 const card  = {card: {margin : 20}};
 
 class MyPlanSwiper extends Component {
@@ -127,9 +122,9 @@ class MyPlanSwiper extends Component {
 
     return (
       
-      <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.46)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.48))}
-       showsButtons   dotStyle={{width: 10, height: 10, marginLeft:10, borderRadius:5,top:25, position:'relative'}} 
-       activeDotStyle={{width: 10, height: 10, borderRadius:5, marginLeft:10, top:25, position:'relative'}} >
+      <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.52))}
+       showsButtons   dotStyle={{width: 10, height: 10, marginLeft:10, borderRadius:5,top:50, position:'relative'}} 
+       activeDotStyle={{width: 10, height: 10, borderRadius:5, marginLeft:10, top:50, position:'relative'}} >
        
         { this.getChildrenOptions(this.props.data).map((network, i) => {
           console.tron.log('children options are', this.getChildrenOptions(this.props.data))
@@ -137,27 +132,16 @@ class MyPlanSwiper extends Component {
      //      const planBenefits = _.head(network.planBenefits)
     //       console.tron.log('plan benefits', planBenefits)
           return (
-            <View style={{
-              flex:1,
-              margin:30,
-              borderRadius: 2,
-              backgroundColor: "#fff",
-              shadowColor: "#000000",
-              shadowOpacity: 0.3,
-              shadowRadius: 1,
-              flexDirection:'column',
-              shadowOffset: {
-                height: 1,
-                width: 0.3,
-              }}} key={i}>
+            <Card style={{margin:15}}>
               
-              <View style={{ flex: 1 ,alignItems:'center',
+              <View style={{ flex: 1 ,alignItems:'center'
                        
               } }>
+              <View style={{flex: 1 ,alignItems:'center',paddingTop:20}}>
               <Text style={styles.headerText}>
                 {network.title.en}
               </Text>
-              <View style={{borderBottomWidth:0.2}}>
+             
               <Text style={styles.subHeader}>
                 {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].title.en : 'No Plan Benfits' }
               </Text>
@@ -179,22 +163,10 @@ class MyPlanSwiper extends Component {
                     </View>
                </View> 
                <View style={{flex:1,alignItems:'center'}}>
-                
                   <View style={{flex:1, alignItems:'center',flexDirection:'row-reverse'
                   }}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
                     return (<View style={{ flex :1 ,flexDirection: 'column',alignItems:'center',margin:4,
-                     backgroundColor: Colors.flBlue.lightBlue,
-                     
-    borderRadius: 2,
-    shadowColor: "#000000",
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    shadowOffset: {
-      height: 1,
-      width: 0.3,
-    }
-                    
                     }} key={i}>
                       <View style={{flex: 0.2, alignItems:'center', justifyContent:'center'}} >
                         
@@ -207,9 +179,8 @@ class MyPlanSwiper extends Component {
                         </Text>
                                                 <Text style={{
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0020,
-                           fontWeight:'500',
                           fontFamily: Fonts.type.subHeaderFont,
-                          color: Colors.flBlue.grey6
+                          color: Colors.flBlue.grey3
                         }}>
                           {benefit ? benefit.label.en : null}
                         </Text>
@@ -217,10 +188,11 @@ class MyPlanSwiper extends Component {
                       </View>
                     </View>)
                   }) : <View />}
+                 
                   </View>
-                 <View style={{flex:0.1}}></View>
+                  <View style={{flex:2}}></View>
                 </View>
-            </View>
+            </Card>
           )
           i += 1
         })}

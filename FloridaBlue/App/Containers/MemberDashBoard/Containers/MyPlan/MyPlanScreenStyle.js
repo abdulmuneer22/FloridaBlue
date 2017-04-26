@@ -35,23 +35,13 @@ export default StyleSheet.create({
   planNameView: {
     flex: 0.1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
+   
     //marginTop: Metrics.smallMargin,   
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.76)) / 3,
-    backgroundColor: 'white',
-    borderRadius: 2,
-    shadowColor: "#000000",
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    shadowOffset: {
-      height: 1,
-      width: 0.3,
-    }
-
   },
   planNameText: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
-    color: Colors.flBlue.anvil,
+    color: Colors.flBlue.grey6,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '500',
     textAlign: 'center'
@@ -120,7 +110,7 @@ export default StyleSheet.create({
 
   // width:window.width,
   // alignSelf:'center',
-    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0020,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0023,
     fontFamily: Fonts.type.subHeaderFont
   },
 
@@ -133,7 +123,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont
   },
   subHeader: {
-    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0021,
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0018,
     color: Colors.flBlue.grey3,
     fontFamily: Fonts.type.subHeaderFont,
     marginBottom: Metrics.baseMargin,

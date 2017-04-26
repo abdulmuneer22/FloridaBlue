@@ -18,10 +18,10 @@ import Flb from '../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import MyPlanActions from '../../../../Redux/MyPlanRedux'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
-
+import { Card } from 'native-base'
 const theme = getTheme()
 
-import Card from './Components/Card'
+import CCard from './Components/Card'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -100,7 +100,7 @@ class DoctorServices extends Component {
         <View style={styles.textBackground2}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{ flex: 1 }}>
-              <View style={styles.doctorCardStyle}>
+              <Card style={styles.doctorCardStyle}>
                 <View style={{ alignItems: 'center' }}>
 
                   <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
@@ -196,9 +196,9 @@ class DoctorServices extends Component {
                     attemptHandleRight={this.props.attemptHandleRight}
                     attemptHandlePreferred={this.props.attemptHandlePreferred} />
                 </View>
-              </View>
+              </Card>
               <View >
-                <Card
+                <CCard
                   data={this.props.data}
                   objectName={this.props.objectName}
                   leftActive={this.props.leftActive}

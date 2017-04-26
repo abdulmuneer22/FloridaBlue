@@ -10,14 +10,14 @@ Dimensions,
 Image,
 Alert
 } from 'react-native'
-
+import { Card } from 'native-base'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import ToolBar from './Components/toolBar'
 import axios from 'axios'
 import SelectBox from './Components/SelectBox'
-import Card from './Components/Card'
+import CCard from './Components/Card'
 import NavItems from '../../../../Navigation/NavItems.js'
 import styles from './MyPlanScreenStyle'
 import MyPlanSwiper from './Components/MyPlanSwiper'
@@ -69,7 +69,7 @@ class MyPlanScreen extends Component {
       return (
         <View style={styles.container}>
         
-          <View style={styles.planNameView}>
+          <Card style={styles.planNameView}>
 
             { this.props.data.annualDeductible || this.props.data.oop
               ? <Text style={styles.planNameText}>
@@ -78,7 +78,7 @@ class MyPlanScreen extends Component {
 
              : <Text />
            }
-          </View>
+          </Card>
 
           <View style={styles.chartWrapper}>
             {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} />
@@ -103,7 +103,7 @@ class MyPlanScreen extends Component {
 
                 console.tron.log(tile)
                 return (
-                  <Card
+                  <CCard
                     i={i}
                     key={index}
                     title={tile.tileName['en']}

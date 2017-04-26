@@ -113,25 +113,17 @@ export default StyleSheet.create({
     // width: window.width,
     backgroundColor: Colors.snow,
     flex: 1,
+    margin:15,
    // height : 200,
    // alignSelf: 'center',
    //  padding : Metrics.baseMargin,
   //  marginTop: Metrics.baseMargin,
   //  alignItems: 'center',
    // borderTopWidth: 1,
-   // borderBottomWidth: 1,
+  //  borderBottomWidth: 1,
 
    // borderTopColor: Colors.flBlue.grey3,
    // borderBottomColor: Colors.flBlue.grey3
-    margin: 10,
-    borderRadius: 2,
-    shadowColor: '#000000',
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    shadowOffset: {
-      height: 1,
-      width: 0.3
-    }
   },
   cardStyle1: {
     // width: window.width,
