@@ -218,7 +218,7 @@ class MyPlanSwiper extends Component {
                     </View>)
                   }) : <View />}
                   </View>
-                 
+                 <View style={{flex:0.1}}></View>
                 </View>
             </View>
           )
