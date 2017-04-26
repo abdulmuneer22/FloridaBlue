@@ -134,23 +134,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
         this.setState({newLocationState: false})
         this.props.changeAddress("Using Current Address")
 
-        navigator.geolocation.getCurrentPosition(
-        (position) => {
-          console.tron.log(position)
-          this.props.changeCurrentLocation(position)
-
-          var newLat = position["coords"]["latitude"]
-          var newLong = position["coords"]["longitude"]
-
-          console.tron.log(newLat)
-          console.tron.log(newLong)
-
-          this.props.changeLatitude(newLat)
-          this.props.changeLongitude(newLong)
-        },
-          (error) => alert(JSON.stringify(error)),
-          {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
-        });
+        this._getLocation()
       }
     }
 
@@ -202,6 +186,23 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       } else {
         this.setState({urgentCareState: true})
       }
+    }
+
+    _getLocation() {
+
+      navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.props.changeCurrentLocation(position)
+
+        var newLat = position["coords"]["latitude"]
+        var newLong = position["coords"]["longitude"]
+
+        this.props.changeLatitude(newLat)
+        this.props.changeLongitude(newLong)
+      },
+        (error) => alert(JSON.stringify(error)),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
+      });
     }
 
     _renderHeader () {

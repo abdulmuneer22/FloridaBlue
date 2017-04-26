@@ -14,7 +14,7 @@ import React, { Component } from 'react'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './ProviderMapStyle'
 import NavItems from '../../../../../Navigation/NavItems.js'
-import { getTheme } from 'react-native-material-kit'
+import { getTheme, MKSpinner } from 'react-native-material-kit'
 import I18n from 'react-native-i18n'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import { connect } from 'react-redux'
@@ -22,10 +22,38 @@ import ProviderActions from '../../../../../Redux/ProviderRedux'
 import MapView from 'react-native-maps'
 
 const theme = getTheme()
+const SingleColorSpinner = MKSpinner.singleColorSpinner()
+  .withStyle(styles.spinner)
+  .build()
 
 class ProviderMap extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      latDelta: 0,
+      longDelta: 0
+    }
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+    (position) => {
+      this.props.changeCurrentLocation(position)
+
+      var newLat = position["coords"]["latitude"]
+      var newLong = position["coords"]["longitude"]
+
+      this.props.changeLatitude(newLat)
+      this.props.changeLongitude(newLong)
+    },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
+    });
+
+    // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
+    const milesOfLatAtEquator = 69
+    this.setState({latDelta: this.props.searchRange / milesOfLatAtEquator})
+    this.setState({longDelta: this.props.searchRange / (Math.cos(this.props.latitude) * milesOfLatAtEquator)})
   }
 
   _renderHeader () {
@@ -46,15 +74,23 @@ class ProviderMap extends Component {
     return(
       <View style={styles.container}>
         {this._renderHeader()}
-        <MapView
-          style={{flex: 1}}
-          initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-          }}
-        />
+
+        {this.props.latitude != 0 && this.props.longitude != 0 ?
+          <MapView
+            style={{flex: 1}}
+            initialRegion={{
+            latitude: this.props.latitude,
+            longitude: this.props.longitude,
+            latitudeDelta: this.state.latDelta,
+            longitudeDelta: this.state.longDelta,
+            }}
+          />
+          :
+          <View style={styles.spinnerView}>
+            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+            <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          </View>
+        }
       </View>
     )
   }
@@ -66,7 +102,10 @@ const mapStateToProps = (state) => {
     latitude: state.provider.latitude,
     longitude: state.provider.longitude,
     member: state.member,
-    region: state.provider.region
+    region: state.provider.region,
+    searchRange: state.provider.searchRange,
+    latDelta: state.provider.latDelta,
+    longDelta: state.provider.longDelta
   }
 }
 

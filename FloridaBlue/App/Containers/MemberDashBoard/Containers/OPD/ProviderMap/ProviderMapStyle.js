@@ -12,7 +12,7 @@ const theme = getTheme()
 
 
 export default StyleSheet.create({
- 
+
 
   container: {
     flex: 1,
@@ -120,9 +120,9 @@ export default StyleSheet.create({
     fontWeight: '600',
      color: Colors.flBlue.grey6,
   },
-  
+
   h1: {
-    
+
     fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
    // textAlign: 'center',
     marginLeft: Metrics.doubleBaseMargin,
@@ -131,8 +131,8 @@ export default StyleSheet.create({
     fontWeight: '600',
      color: Colors.flBlue.grey6,
   },
- 
- 
+
+
   h2: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
   //  textAlign: 'center',
@@ -181,13 +181,17 @@ export default StyleSheet.create({
     width: window.width,
     height: window.height
   },
+  spinnerText: {
+   color:Colors.flBlue.anvil,
+   marginTop: 20
+  },
   subheading: {
     color: Colors.flBlue.anvil,
    // fontSize: Fonts.size.h5,
     marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.003,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-    
+
 
   },
    radioText: {
@@ -199,7 +203,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
     textAlign: 'justify'
-  },  
+  },
   radioBottomText: {
    // marginTop: 2,
     marginLeft: Metrics.baseMargin,
@@ -216,7 +220,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginLeft:15
   },
-  
+
   searchText: {
     marginTop: 5,
     marginLeft: Metrics.baseMargin,
@@ -228,7 +232,7 @@ export default StyleSheet.create({
     fontWeight: '400',
     textAlign: 'justify'
   },
- 
+
   dropDownText: {
     marginTop: Metrics.baseMargin,
     marginLeft: Metrics.doubleBaseMargin,
