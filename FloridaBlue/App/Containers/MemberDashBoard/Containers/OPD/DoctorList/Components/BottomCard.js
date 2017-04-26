@@ -8,7 +8,7 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity
 } from 'react-native'
-
+import { Card } from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -61,6 +61,7 @@ class BottomCard extends Component{
                 color={Colors.snow} />
                </View>
                <View style={{flex:0.7, alignItems:'flex-start'}}>
+
                 <Text style={{
                     color : Colors.snow,
                     fontSize : Fonts.size.input * Metrics.screenWidth * 0.0026,

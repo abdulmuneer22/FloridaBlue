@@ -12,13 +12,9 @@ import {
     Alert
 } from 'react-native'
 
-import {
-    Card,
-    CardImage,
-    CardTitle,
-    CardContent,
-    CardAction
-} from 'react-native-card-view';
+
+
+import { Card } from 'native-base'
 
 const card = { card: { width: Metrics.screenWidth * 0.94, alignItems: 'flex-start', marginBottom: 20 } };
 const cardTitle = { cardTitle: { fontSize: 40 } }
@@ -119,7 +115,7 @@ class DoctorCard extends Component {
                             const providerAvailable = this.props.savedproviders && this.props.savedproviders.find((savedprovider) => savedprovider.providerKey === value.providerKey)
 
                             return (
-                                <Card styles={card} key={i}>
+                                <Card  key={i}>
                                     <View style={{ flex: 1, flexDirection: 'row', marginRight: 20 }}>
                                         <View >
                                             {providerAvailable ? <TouchableOpacity onPress={() => this.onRemoveBookmark(value)} >

@@ -16,13 +16,7 @@ import {
   BackAndroid
 } from 'react-native'
 
-import {
-  Card,
-  CardImage,
-  CardTitle,
-  CardContent,
-  CardAction
-} from 'react-native-card-view';
+import { Card } from 'native-base'
 
 const card = {
   card: {
@@ -114,7 +108,7 @@ class DoctorList extends Component {
               attemptHandleRight={this.props.attemptHandleRight} />
 
             <View style={{ marginTop: Metrics.mediumMargin }}>
-              <Card styles={card}>
+              <Card >
                 <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
                   <View style={{ flex: 0.15 }}>
                     <Flb name="accident" size={Metrics.icons.large} color={Colors.snow} />
