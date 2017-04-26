@@ -22,6 +22,9 @@ const { Types, Creators } = createActions({
   sendStaffLanguageRequest: ['data'],
   sendStaffLanguageSuccess: ['data'],
   sendStaffLanguageFailure: ['data'],
+  sendDoctorDetailRequest: ['data'],
+  sendDoctorDetailSuccess: ['data'],
+  sendDoctorDetailFailure: ['data'],
   sendConfigTypeRequest: [],
   sendConfigTypeSuccess: ['data'],
   sendConfigTypeFailure: ['data'],
@@ -146,6 +149,17 @@ export const _sendStaffLanguageSuccess = (state: Object, {data}: Object) =>
 export const _sendStaffLanguageFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
 
+  // sendDoctorDetailsRequest
+export const _sendDoctorDetailRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendStaffLanguagSuccess
+export const _sendDoctorDetailSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false, doctordetail:data.data, error:null})
+
+// sendDoctorDetailsFailure
+export const _sendDoctorDetailFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+
  // sendConfigTypeRequest
 export const _sendConfigTypeRequest = (state: Object) => state.merge({ fetching: true})
 
@@ -246,6 +260,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEND_STAFF_LANGUAGE_REQUEST]: _sendStaffLanguageRequest,
   [Types.SEND_STAFF_LANGUAGE_SUCCESS]: _sendStaffLanguageSuccess,
   [Types.SEND_STAFF_LANGUAGE_FAILURE]: _sendStaffLanguageFailure,
+  [Types.SEND_DOCTOR_DETAIL_REQUEST]: _sendDoctorDetailRequest,
+  [Types.SEND_DOCTOR_DETAIL_SUCCESS]: _sendDoctorDetailSuccess,
+  [Types.SEND_DOCTOR_DETAIL_FAILURE]: _sendDoctorDetailFailure,
   [Types.SEND_CONFIG_TYPE_REQUEST]: _sendConfigTypeRequest,
   [Types.SEND_CONFIG_TYPE_SUCCESS]: _sendConfigTypeSuccess,
   [Types.SEND_CONFIG_TYPE_FAILURE]: _sendConfigTypeFailure,

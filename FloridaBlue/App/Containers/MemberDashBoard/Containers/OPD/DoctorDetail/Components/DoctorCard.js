@@ -20,14 +20,14 @@ import {
     CardAction
 } from 'react-native-card-view';
 
-const card = { card: { width: Metrics.screenWidth * 0.94, alignItems: 'flex-start', marginBottom: 20 } };
+const card = { card: { width: Metrics.screenWidth, alignItems: 'flex-start', marginBottom: 20 } };
 const cardTitle = { cardTitle: { fontSize: 40 } }
 
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import styles from '../DoctorListStyle'
+import styles from '../DoctorDetailStyle'
 import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../../../Themes/FlbIcon'
@@ -105,111 +105,98 @@ class DoctorCard extends Component {
 
 
     render() {
+
+        const providerAvailable = this.props.savedproviders && this.props.savedproviders.find((savedprovider) => savedprovider.providerKey === this.props.data.providerKey)
         return (
             <View style={styles.container}>
-                {this.props.data != null ?
 
-                    <View>
-                        {this.props.data != undefined ? this.props.data.map((value, i) => {
-                            const providerAvailable = this.props.savedproviders && this.props.savedproviders.find((savedprovider) => savedprovider.providerKey === value.providerKey)
+                <View>
+                    {this.props.data != undefined ?
 
-                            return (
-                                <Card styles={card} key={i}>
-                                    <View style={{ flex: 1, flexDirection: 'row', marginRight: 20 }}>
-                                        <View >
-                                            {providerAvailable ? <TouchableOpacity onPress={() => this.onRemoveBookmark(value)} >
-                                                <Flb name="add-bookmark"
-                                                    size={Metrics.icons.large} color={Colors.flBlue.orange} />
-                                            </TouchableOpacity> : <TouchableOpacity onPress={() => this.onPressBookmark(value)} >
-                                                    <Flb name="add-bookmark"
-                                                        size={Metrics.icons.large} color={Colors.flBlue.grey2} />
-                                                </TouchableOpacity>
-
-                                            }
-                                        </View>
-
-                                        <View style={{ marginTop: 5, marginRight: 30 }}>
-                                            {value ?
-                                            <TouchableOpacity>
-                                            <Text style={styles.h1}>{value.displayName}</Text>
-                                            </TouchableOpacity>:null}
-                                            {value ? 
-                                            <Text style={styles.h2}>{value.primarySpecialty }</Text> : null}
-                                            {value ?
-                                            <Text style={styles.h4}> {value.addressLine1}, {value.addressLine2}</Text> : null}
-                                            {value ?
-                                            <Text style={styles.h4_2}> {value.city}, {value.state}</Text> : null }
-                                            {value ?
-                                            <Text style={styles.h4_2}> {value.zipCode}</Text> :null}
-                                            {value ?
-                                            <Text style={styles.h4_2}> {value.telephoneNumber}</Text>:null}
-                                            {value ?
-                                            <Text style={styles.h4_3}>{value.distance} miles</Text>:null}
-                                        </View>
-                                    </View>
-                                    <View style={styles.cardButton}>
-
-                                        <TouchableOpacity onPress={() => this.handleCall(value.telephoneNumber)}>
-                                            <View style={styles.cardButtonView}>
-
-                                                <Flb
-                                                    name='call-phone'
-                                                    size={Metrics.icons.medium}
-                                                    style={{
-                                                        marginRight: 2
-                                                    }}
-                                                    color={Colors.snow} />
-
-                                                <Text style={{
-                                                    color: Colors.snow,
-                                                    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
-                                                    marginLeft: Metrics.baseMargin,
-                                                    fontWeight: '400'
-                                                }}>Call</Text>
-                                            </View>
+                        <View style={styles.cardview} >
+                            <View style={{ flex: 1, flexDirection: 'row', marginRight: 20 }}>
+                                <View >
+                                    {providerAvailable ? <TouchableOpacity onPress={() => this.onRemoveBookmark(this.props.data)} >
+                                        <Flb name="add-bookmark"
+                                            size={Metrics.icons.large} color={Colors.flBlue.orange} />
+                                    </TouchableOpacity> : <TouchableOpacity onPress={() => this.onPressBookmark(this.props.data)} >
+                                            <Flb name="add-bookmark"
+                                                size={Metrics.icons.large} color={Colors.flBlue.grey2} />
                                         </TouchableOpacity>
 
-                                        <TouchableOpacity onPress={() => this.handleMaps(value.latitude, value.longitude)}  >
-                                            <View style={styles.cardButtonView1}>
+                                    }
+                                </View>
 
-                                                <Flb
-                                                    name='directions'
-                                                    size={Metrics.icons.medium}
-                                                    style={{
-                                                        marginRight: 1
-                                                    }}
-                                                    color={Colors.snow} />
+                                <View style={{ marginTop: 5, marginRight: 30 }}>
+                                    {this.props.data ?
+                                        <Text style={styles.h1}>{this.props.data.displayName}</Text>
+                                        : null}
+                                    {this.props.data ?
+                                        <Text style={styles.h2}>{this.props.data.primarySpecialty}</Text> : null}
+                                    {this.props.data && this.props.data.address[0] ?
+                                        <Text style={styles.h4}> {this.props.data.address[0].addressLine1}, {this.props.data.address[0].addressLine2}</Text> : null}
+                                    {this.props.data && this.props.data.address[0] ?
+                                        <Text style={styles.h4_2}> {this.props.data.address[0].city}, {this.props.data.address[0].state}</Text> : null}
+                                    {this.props.data && this.props.data.address[0] ?
+                                        <Text style={styles.h4_2}> {this.props.data.address[0].zipCode}</Text> : null}
+                                    {this.props.data && this.props.data.address[0] ?
+                                        <Text style={styles.h4_2}> {this.props.data.address[0].telephoneNumber}</Text> : null}
 
-                                                <Text style={{
-                                                    color: 'white',
-                                                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                                                    marginLeft: Metrics.baseMargin,
-                                                    fontWeight: '400'
-                                                }}>Directions</Text>
-                                            </View>
-                                        </TouchableOpacity>
-
-                                    </View>
-
-                                </Card>
-                            )
-                        })
-                            : null
-                        }
-                    </View>
-
-                    : <View>
-                        {this.props.leftActive
-                            ? <View style={styles.spinnerView}>
-                                <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                                <Text style={styles.spinnerText}>Loading Please Wait
-</Text>
+                                </View>
                             </View>
-                            : <View><Text style={{ justifyContent: 'center', alignItems: 'center' }}>"You didn't Saved any Provider"
-</Text></View>
-                        }</View>
-                }
+                            <View style={styles.cardButton}>
+
+                                <TouchableOpacity onPress={() => this.handleCall(this.props.data.address.telephoneNumber)}>
+                                    <View style={styles.cardButtonView}>
+
+                                        <Flb
+                                            name='call-phone'
+                                            size={Metrics.icons.medium}
+                                            style={{
+                                                marginRight: 2
+                                            }}
+                                            color={Colors.snow} />
+
+                                        <Text style={{
+                                            color: Colors.snow,
+                                            fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
+                                            marginLeft: Metrics.baseMargin,
+                                            fontWeight: '400'
+                                        }}>Call</Text>
+                                    </View>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}  >
+                                    <View style={styles.cardButtonView1}>
+
+                                        <Flb
+                                            name='directions'
+                                            size={Metrics.icons.medium}
+                                            style={{
+                                                marginRight: 1
+                                            }}
+                                            color={Colors.snow} />
+
+                                        <Text style={{
+                                            color: 'white',
+                                            fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
+                                            marginLeft: Metrics.baseMargin,
+                                            fontWeight: '400'
+                                        }}>Directions</Text>
+                                    </View>
+                                </TouchableOpacity>
+
+                            </View>
+
+                        </View>
+
+
+                        : null
+                    }
+
+                </View>
             </View>
+
         )
     }
 }

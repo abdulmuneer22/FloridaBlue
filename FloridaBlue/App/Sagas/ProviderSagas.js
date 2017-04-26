@@ -92,3 +92,16 @@ export function * sendConfigTypeRequest (api) {
     yield put(ProviderActions.sendConfigTypeFailure(data))
   }
 }
+
+export function * sendDoctorDetailRequest (api, {data}) {
+  const response = yield call(api.getDoctorDetail, data)
+
+  if (response.ok) {
+    var error = null
+    var data = response.data
+    yield put(ProviderActions.sendDoctorDetailSuccess(data))
+  } else {
+    var data=response.data
+    yield put(ProviderActions.sendDoctorDetailFailure(data))
+  }
+}

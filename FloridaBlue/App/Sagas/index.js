@@ -56,6 +56,7 @@ import {sendSpecialityTypeRequest} from './ProviderSagas'
 import {sendDoctorLanguageRequest} from './ProviderSagas'
 import {sendStaffLanguageRequest} from './ProviderSagas'
 import {sendConfigTypeRequest} from './ProviderSagas'
+import {sendDoctorDetailRequest} from './ProviderSagas'
 // import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -103,6 +104,7 @@ export default function * root () {
     takeLatest(ProviderTypes.SEND_SPECIALITY_TYPE_REQUEST, sendSpecialityTypeRequest, api),
     takeLatest(ProviderTypes.SEND_DOCTOR_LANGUAGE_REQUEST, sendDoctorLanguageRequest, api),
     takeLatest(ProviderTypes.SEND_STAFF_LANGUAGE_REQUEST, sendStaffLanguageRequest, api),
-    takeLatest(ProviderTypes.SEND_CONFIG_TYPE_REQUEST, sendConfigTypeRequest, api)
+    takeLatest(ProviderTypes.SEND_CONFIG_TYPE_REQUEST, sendConfigTypeRequest, api),
+    takeLatest(ProviderTypes.SEND_DOCTOR_DETAIL_REQUEST, sendDoctorDetailRequest, api)
   ]
 }
