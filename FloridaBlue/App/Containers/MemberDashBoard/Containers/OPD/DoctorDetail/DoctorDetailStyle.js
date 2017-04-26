@@ -32,6 +32,7 @@ export default StyleSheet.create({
     // backgroundColor: Colors.flBlue.sky
   },
   cardview:{
+    flex:1,
      backgroundColor: "#fff",
     borderRadius: 2,
     shadowColor: "#000000",
@@ -103,7 +104,7 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '600',
-     color: Colors.flBlue.ocean,
+     color: Colors.flBlue.anvil,
   },
  
  
@@ -149,6 +150,16 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: 'bold'
   },
+  plannameText: {
+   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+  //  textAlign: 'center',
+    marginTop:Metrics.baseMargin,
+    color: Colors.flBlue.grey5,
+   // paddingTop: Metrics.smallMargin,
+    //marginLeft: Metrics.doubleBaseMargin,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '500'
+  },
   spinnerView: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -161,7 +172,6 @@ export default StyleSheet.create({
     marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.003,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-    fontFamily: Fonts.type.headerFont
 
   },
   leftButton : {
@@ -204,10 +214,5 @@ export default StyleSheet.create({
       color:Colors.flBlue.anvil,
     marginTop: 20
   },
-  spinnerView: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: window.width,
-    height: window.height
-  }
+
 })

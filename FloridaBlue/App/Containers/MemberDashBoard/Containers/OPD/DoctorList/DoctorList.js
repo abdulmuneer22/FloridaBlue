@@ -26,9 +26,8 @@ import {
 
 const card = {
   card: {
-    width: Metrics.screenWidth * 0.92,
-    alignItems: 'flex-start', marginBottom: 10, flex: 1,
-    marginLeft: 15, backgroundColor: 'purple', borderRadius: 10
+    alignItems: 'flex-start', margin: 15, flex: 1,
+    backgroundColor: 'purple', borderRadius: 10
   }
 };
 const cardTitle = { cardTitle: { fontSize: 40 } }
@@ -106,6 +105,7 @@ class DoctorList extends Component {
 
           <ScrollView style={{ flex: 1 }}>
 
+            <View style={{flex:1}}>
             <Switch
               data={this.props.provider.data}
               leftActive={this.props.leftActive}
@@ -113,7 +113,9 @@ class DoctorList extends Component {
               attemptHandleLeft={this.props.attemptHandleLeft}
               attemptHandleRight={this.props.attemptHandleRight} />
 
-            <View style={{ marginTop: Metrics.mediumMargin }}>
+              </View>
+
+            <View style={{flex:1 }}>
               <Card styles={card}>
                 <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
                   <View style={{ flex: 0.15 }}>
@@ -132,12 +134,12 @@ class DoctorList extends Component {
             <View style={{
               alignItems: 'center',
               justifyContent: 'center',
-              marginTop: Metrics.baseMargin
+              flex:1
             }}>
 
-              <View style={{ marginTop: Metrics.baseMargin }}>
+              <View style={{ flex:1 }}>
 
-                {this.props.provider != undefined ?
+                {this.props.provider && this.props.provider.data && this.props.provider.data.providerList ?
                   <DoctorCard
                     savedproviders={this.props.saveProvider}
                     saveProvider={this.saveProvider}
@@ -147,7 +149,7 @@ class DoctorList extends Component {
                     rightActive={this.props.rightActive}
 
                   />
-                  : null}
+                  : <Text>No Results Found </Text>}
               </View>
 
             </View>
@@ -159,7 +161,7 @@ class DoctorList extends Component {
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>}
 
-        <Footer style={{ height: Metrics.textHeight2 * Metrics.screenHeight * 0.0019 }}>
+        <Footer style={{ height: Metrics.textHeight2 * Metrics.screenHeight * 0.0021, flex:0.15 }}>
           <BottomCard />
         </Footer>
       </View>

@@ -24,7 +24,7 @@ const card = { card: { width: Metrics.screenWidth, alignItems: 'flex-start', mar
 const cardTitle = { cardTitle: { fontSize: 40 } }
 
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import styles from '../DoctorDetailStyle'
@@ -110,7 +110,7 @@ class DoctorCard extends Component {
         return (
             <View style={styles.container}>
 
-                <View>
+                <View style={{flex:1}}>
                     {this.props.data != undefined ?
 
                         <View style={styles.cardview} >
@@ -187,7 +187,30 @@ class DoctorCard extends Component {
                                 </TouchableOpacity>
 
                             </View>
-
+                            <View style={{
+                                flexDirection : 'row',
+                                alignItems : 'center',
+                                margin:5,
+                                flex:1
+                            }}>
+                            <View style={{flex:0.2, alignItems:'center'}}>
+                            <Icon 
+                                name="ios-checkmark" 
+                                size={40} 
+                                color="#3bb324" 
+                                style={{
+                                    marginTop:10,
+                                    
+                                }}
+                            />
+                            </View>
+                            <View style={{flex:0.8}}>
+                             {this.props.data ?
+                            <Text style={styles.plannameText}> 
+                             {this.props.data.acceptingNewPatients}
+                                </Text>:null} 
+                            </View>
+                        </View>   
                         </View>
 
 
