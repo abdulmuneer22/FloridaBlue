@@ -34,6 +34,7 @@ class BottomCard extends Component{
             <View style={{
                     flexDirection : 'row',
                     alignItems:'center',
+                    flex:1,
                     justifyContent:'center',
                     backgroundColor:Colors.snow
             }}>
@@ -41,23 +42,20 @@ class BottomCard extends Component{
                 <TouchableOpacity onPress={()=> this._advancedSearch()}>
                 <View style={{
                         backgroundColor : Colors.flBlue.grass,
-                        width:Metrics.screenWidth*0.5,
+                        width:Metrics.screenWidth * 0.5,
                         justifyContent : 'center',
                         alignItems : 'center',
                         // marginRight : 1,
                         borderRightWidth:1 ,
                         borderColor:Colors.snow,
-                        //  flex:1,
+                        flex:0.5,
                         height: Metrics.textHeight2 * Metrics.screenHeight * 0.002,
                         flexDirection : 'row'
                 }}>
                <View style={{flex:0.3, alignItems:'center'}}>
                 <Flb
                 name='search-find'
-                size={Metrics.icons.medium}
-                style = {{
-                    marginRight : 0
-                }}
+                size={Metrics.icons.medium} 
                 color={Colors.snow} />
                </View>
                <View style={{flex:0.7, alignItems:'flex-start'}}>
@@ -66,7 +64,7 @@ class BottomCard extends Component{
                     color : Colors.snow,
                     fontSize : Fonts.size.input * Metrics.screenWidth * 0.0026,
                     //marginLeft : 10,
-                    textAlign:'center',
+                    //textAlign:'center',
                     fontWeight:'400'
                 }}>Advanced Search</Text>
               </View>
@@ -80,9 +78,9 @@ class BottomCard extends Component{
                     width:Metrics.screenWidth*0.5,
                     justifyContent : 'center',
                     alignItems : 'center',
-                    borderLeftWidth:1 ,
+                    borderLeftWidth: 0.5 ,
                     borderColor:Colors.snow,
-                    // flex:1,
+                    flex:1,
                     height: Metrics.textHeight2 * Metrics.screenHeight * 0.002,
                     flexDirection : 'row'
                 }}>

@@ -16,7 +16,7 @@ import {
 
 import { Card } from 'native-base'
 
-const card = { card: { width: Metrics.screenWidth * 0.94, alignItems: 'flex-start', marginBottom: 20 } };
+const card = { card: { width: Metrics.screenWidth * 0.94, alignItems: 'flex-start', marginBottom: 10 } };
 const cardTitle = { cardTitle: { fontSize: 40 } }
 
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
@@ -110,7 +110,7 @@ class DoctorCard extends Component {
             <View style={styles.container}>
                 {this.props.data != undefined ?
 
-                    <View>
+                    <View style={{flex:1}}>
                         {this.props.data != undefined ? this.props.data.map((value, i) => {
                             const providerAvailable = this.props.savedproviders && this.props.savedproviders.find((savedprovider) => savedprovider.providerKey === value.providerKey)
 
@@ -199,16 +199,19 @@ class DoctorCard extends Component {
                         }
                     </View>
 
-                    : <View>
+                    : <View style={{flex:1}}>
                         {this.props.leftActive
                             ? <View style={styles.spinnerView}>
                                 <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
                                 <Text style={styles.spinnerText}>Loading Please Wait
-</Text>
+                            </Text>
                             </View>
-                            : <View><Text style={{ justifyContent: 'center', alignItems: 'center' }}>"You didn't Saved any Provider"
-</Text></View>
-                        }</View>
+                            : <View>
+                                <Text style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                    "You didn't Saved any Provider"
+                                </Text></View>
+                        }
+                        </View>
                 }
             </View>
         )

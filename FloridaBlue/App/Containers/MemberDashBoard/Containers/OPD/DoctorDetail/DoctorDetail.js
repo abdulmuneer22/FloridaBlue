@@ -59,12 +59,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .build()
 const ClickablesOptions = [
     { name: "Other Locations", count: 22 },
-    { name: "History / Credentials" },
-    { name: "Board Certifications / Eligibility" },
-    { name: "Institutional Affiliations" },
-    { name: "Plans Accepted" },
-    { name: "Programs" },
-    { name: "Hospital Options - Applicable to BlueOptions Plan" }
+    { name: "History / Credentials" }
 ]
 
 class DoctorDetail extends Component {
@@ -136,7 +131,6 @@ class DoctorDetail extends Component {
                   />
                   
               </View>
-                        <AcceptOptions />
                         {
                             ClickablesOptions.map((clickable, i) => {
                                 return (

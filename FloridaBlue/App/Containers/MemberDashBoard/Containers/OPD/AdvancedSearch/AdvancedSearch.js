@@ -97,7 +97,7 @@ class AdvancedSearch extends Component {
       gender: "",
       doctorSpeaks: "",
       staffSpeaks: "",
-      searchRange: 10,
+      searchRange: 50,
       newLocationState: false
     }
     this._timeSelected = this._timeSelected.bind(this)

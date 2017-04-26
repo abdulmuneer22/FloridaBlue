@@ -72,7 +72,7 @@ handleClickLeft () {
       alignSelf:'center'
     }
     var twoTabInactiveStyle = {
-      backgroundColor : Colors.flBlue.night,
+      //backgroundColor : Colors.flBlue.night,
       padding:8,
       backgroundColor : 'white',
       borderTopLeftRadius : 30,
@@ -80,7 +80,7 @@ handleClickLeft () {
       width:Metrics.screenWidth*0.45
     }
      var twoTabRightInactiveStyle = {
-      backgroundColor : Colors.flBlue.night,
+    //  backgroundColor : Colors.flBlue.night,
       padding:8,
       backgroundColor : 'white',
       borderTopRightRadius : 25,
@@ -88,7 +88,7 @@ handleClickLeft () {
       width:Metrics.screenWidth*0.45
     }
     var twoTextInactiveStyle = {
-        color : 'darkgrey',
+        color : Colors.flBlue.anvil,
           alignSelf:'center'
     }
 
