@@ -25,7 +25,7 @@ class BottomCard extends Component{
     }
 
     _mapView() {
-      NavigationActions.MapView()
+      NavigationActions.ProviderMap()
     }
 
 
@@ -50,11 +50,11 @@ class BottomCard extends Component{
                         //  flex:1,
                         height: Metrics.textHeight2 * Metrics.screenHeight * 0.002,
                         flexDirection : 'row'
-                }}> 
+                }}>
                <View style={{flex:0.3, alignItems:'center'}}>
-                <Flb 
-                name='search-find'  
-                size={Metrics.icons.medium} 
+                <Flb
+                name='search-find'
+                size={Metrics.icons.medium}
                 style = {{
                     marginRight : 0
                 }}
@@ -69,7 +69,7 @@ class BottomCard extends Component{
                     fontWeight:'400'
                 }}>Advanced Search</Text>
               </View>
-             
+
             </View>
          </TouchableOpacity >
 
@@ -84,11 +84,11 @@ class BottomCard extends Component{
                     // flex:1,
                     height: Metrics.textHeight2 * Metrics.screenHeight * 0.002,
                     flexDirection : 'row'
-                }}> 
+                }}>
 
-                <Flb 
-                name='map'  
-                size={Metrics.icons.medium} 
+                <Flb
+                name='map'
+                size={Metrics.icons.medium}
                 style = {{
                     marginRight : 0
                 }}
@@ -102,7 +102,7 @@ class BottomCard extends Component{
                 }}>Map View</Text>
             </View>
             </TouchableOpacity>
-                
+
             </View>
         );
     }

@@ -136,9 +136,17 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
         navigator.geolocation.getCurrentPosition(
         (position) => {
+          console.tron.log(position)
           this.props.changeCurrentLocation(position)
-          this.props.changeLatitude(position["coords"]["latitude"])
-          this.props.changeLongitude(position["coords"]["longitude"])
+
+          var newLat = position["coords"]["latitude"]
+          var newLong = position["coords"]["longitude"]
+
+          console.tron.log(newLat)
+          console.tron.log(newLong)
+
+          this.props.changeLatitude(newLat)
+          this.props.changeLongitude(newLong)
         },
           (error) => alert(JSON.stringify(error)),
           {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
