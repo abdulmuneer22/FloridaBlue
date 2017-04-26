@@ -48,16 +48,7 @@ export default StyleSheet.create({
   },
   doctorCardStyle: {
   //  alignItems: 'center',
-   // marginTop: Metrics.baseMargin,
-    backgroundColor: '#fff',
-    borderRadius: 2,
-    shadowColor: '#000000',
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    shadowOffset: {
-      height: 1,
-      width: 0.3
-    }
+   // marginTop: Metrics.baseMargin
   },
 
   textBackground2: {

@@ -97,7 +97,8 @@ class CCard extends Component {
               <View style={{
                 flex: 1,
                 flexDirection: 'row',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+              
               // justifyContent: 'center'
 
               }}>
@@ -105,7 +106,8 @@ class CCard extends Component {
                 //  marginRight: 10,
                 // marginLeft: 10,
                   flex: 1,
-                  margin: 10
+                  
+                 // margin: 10
                 //    alignItems: 'center',
                 // justifyContent:'center'
                 }}>
@@ -114,7 +116,7 @@ class CCard extends Component {
              {
                 network != undefined && network.footer_note != undefined && network.footer_note != null && network.footer_note.en != undefined && network.footer_note.en != null
                   ?
-                   <View style={{borderBottomWidth:0.3}} >
+                   <View style={{borderBottomWidth:0.3, margin:10}} >
                   <Panel title={_.get(network, 'header_text.en', '')} >
                      <View style={{ borderTopWidth: 0.2, bottom: 10 }} />
             <View style={{ width: Metrics.screenWidth * 0.87 }}>
@@ -126,7 +128,7 @@ class CCard extends Component {
                   </Panel>
                   </View>
                     :
-                    <View style={{borderBottomWidth:0.3}}>
+                    <View style={{borderBottomWidth:0.3,margin : 10}}>
                    <Text style={styles.h1}>
                     {_.get(network, 'header_text.en', 'Benefit Details')}
                   </Text></View>
@@ -140,8 +142,11 @@ class CCard extends Component {
             </View>
 
             <View style={{flex: 1, flexDirection: 'row',
-              margin: 0.1
+              margin: 0.1,
+              marginBottom : 0
+              
             }}>
+              
               <View style={{flex: 0.6 , margin:0.5}}>
                 {
             speciality.map(specialities => {
@@ -180,6 +185,8 @@ class CCard extends Component {
               </View>
               <Image source={Images[ImageInput]} style={styles.backgroundImage} />
             </View>
+
+            
           </Card>
 
         )

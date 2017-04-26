@@ -177,7 +177,8 @@ class DoctorServices extends Component {
                       fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
                       margin: 5,
                       textAlign: 'justify',
-                      color: Colors.flBlue.grey5
+                      color: Colors.flBlue.grey5,
+                      fontWeight: '300',
 
                     }}>{this.renderHeaderText()}</Text>
                   </View>
