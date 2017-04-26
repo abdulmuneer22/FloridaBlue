@@ -163,11 +163,11 @@ class Card extends Component {
               }
 
             }}>
-              <View style={{flex: 0.6}}>
+              <View style={{flex: 0.6 , margin:0.5}}>
                 {
             speciality.map(specialities => {
               const { speciality_text, speciality_value } = specialities
-              const style1 = { marginTop: 5, width: Metrics.screenWidth }
+              const style1 = { marginTop: 5, width: Metrics.screenWidth * 0.80 }
               const style2 = { marginTop: 5, flex: 0.5 }
               return (
                 <View style={{ marginBottom: 10 }}>

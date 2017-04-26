@@ -164,8 +164,8 @@ class MyPlanSwiper extends Component {
               </View>
               </View>
               
-              <View style={{flex:2 , alignItems:'center'}}>
-                <View style={{margin:30}}>
+              <View style={{flex:1 , alignItems:'center'}}>
+                <View style={{margin:0}}>
                   <SemiCircle
                     pieWidth={150}
                     pieHeight={150}
@@ -218,7 +218,7 @@ class MyPlanSwiper extends Component {
                     </View>)
                   }) : <View />}
                   </View>
-                 
+                 <View style={{flex:0.1}}></View>
                 </View>
             </View>
           )

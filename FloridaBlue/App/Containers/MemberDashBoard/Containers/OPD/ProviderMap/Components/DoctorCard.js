@@ -27,7 +27,7 @@ import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
-import styles from '../MapViewStyle'
+import styles from '../ProviderMapStyle'
 import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../../../Themes/FlbIcon'
@@ -100,7 +100,7 @@ class DoctorCard extends Component {
             ]
         )
 
-       
+
     }
 
 

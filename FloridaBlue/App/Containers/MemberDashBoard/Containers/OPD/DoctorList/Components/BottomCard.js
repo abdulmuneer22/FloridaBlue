@@ -8,7 +8,7 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity
 } from 'react-native'
-
+import { Card } from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -25,7 +25,7 @@ class BottomCard extends Component{
     }
 
     _mapView() {
-      NavigationActions.MapView()
+      NavigationActions.ProviderMap()
     }
 
 
@@ -51,14 +51,24 @@ class BottomCard extends Component{
                         flex:0.5,
                         height: Metrics.textHeight2 * Metrics.screenHeight * 0.002,
                         flexDirection : 'row'
-                }}> 
+                }}>
                <View style={{flex:0.3, alignItems:'center'}}>
+<<<<<<< HEAD
                 <Flb 
                 name='search-find'  
                 size={Metrics.icons.medium} 
+=======
+                <Flb
+                name='search-find'
+                size={Metrics.icons.medium}
+                style = {{
+                    marginRight : 0
+                }}
+>>>>>>> fe5ca92a3406e240226b1e141dfd8816c583657c
                 color={Colors.snow} />
                </View>
                <View style={{flex:0.7, alignItems:'flex-start'}}>
+
                 <Text style={{
                     color : Colors.snow,
                     fontSize : Fonts.size.input * Metrics.screenWidth * 0.0026,
@@ -67,7 +77,7 @@ class BottomCard extends Component{
                     fontWeight:'400'
                 }}>Advanced Search</Text>
               </View>
-             
+
             </View>
          </TouchableOpacity >
 
@@ -82,11 +92,11 @@ class BottomCard extends Component{
                     flex:1,
                     height: Metrics.textHeight2 * Metrics.screenHeight * 0.002,
                     flexDirection : 'row'
-                }}> 
+                }}>
 
-                <Flb 
-                name='map'  
-                size={Metrics.icons.medium} 
+                <Flb
+                name='map'
+                size={Metrics.icons.medium}
                 style = {{
                     marginRight : 0
                 }}
@@ -100,7 +110,7 @@ class BottomCard extends Component{
                 }}>Map View</Text>
             </View>
             </TouchableOpacity>
-                
+
             </View>
         );
     }
