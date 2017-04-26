@@ -381,7 +381,7 @@ class Login extends Component {
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
               <View style={styles.forgotRow}>
-                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration-stga.bcbsfl.com/ecir/public/fps.do?channel=mobile&userType=member'})}>
+                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration.bcbsfl.com/ecir/public/fps.do?channel=mobile&userType=member'})}>
                   <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
                 </TouchableOpacity>
               </View>
