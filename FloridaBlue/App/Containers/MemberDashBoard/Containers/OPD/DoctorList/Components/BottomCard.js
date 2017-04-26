@@ -53,18 +53,9 @@ class BottomCard extends Component{
                         flexDirection : 'row'
                 }}>
                <View style={{flex:0.3, alignItems:'center'}}>
-<<<<<<< HEAD
-                <Flb 
-                name='search-find'  
-                size={Metrics.icons.medium} 
-=======
                 <Flb
                 name='search-find'
-                size={Metrics.icons.medium}
-                style = {{
-                    marginRight : 0
-                }}
->>>>>>> fe5ca92a3406e240226b1e141dfd8816c583657c
+                size={Metrics.icons.medium} 
                 color={Colors.snow} />
                </View>
                <View style={{flex:0.7, alignItems:'flex-start'}}>
