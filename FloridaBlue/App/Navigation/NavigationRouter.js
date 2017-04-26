@@ -34,7 +34,7 @@ import { AdditionalBenefits } from '../Containers/MemberDashBoard/Containers/Add
 import { ProviderSearch} from '../Containers/MemberDashBoard/Containers/OPD/ProviderSearch'
 import { DoctorList} from '../Containers/MemberDashBoard/Containers/OPD/DoctorList'
 import { AdvancedSearch} from '../Containers/MemberDashBoard/Containers/OPD/AdvancedSearch'
-import { AnimatedView} from '../Containers/MemberDashBoard/Containers/OPD/MapView'
+import { ProviderMap} from '../Containers/MemberDashBoard/Containers/OPD/ProviderMap'
 import { ListviewExample } from '../Containers/ListviewExample'
 import { DoctorDetail} from '../Containers/MemberDashBoard/Containers/OPD/DoctorDetail'
 
@@ -72,10 +72,8 @@ class NavigationRouter extends Component {
             <Scene key='DoctorList' component={DoctorList} title='OPD Doctor List Page' hideNavBar />
             <Scene key='AdvancedSearch' component={AdvancedSearch} title='OPD AdvancedSearch Page' hideNavBar />
             <Scene key='ProviderSearch' component={ProviderSearch} title='OPD ProviderSearch Page' hideNavBar />
-            <Scene key='MapView' component={AnimatedView} title='Map View Page' hideNavBar />
+            <Scene key='ProviderMap' component={ProviderMap} title='Provider Map View Page' hideNavBar />
             <Scene  key='DoctorDetail' component={DoctorDetail} title='Doctor Detail Page' hideNavBar />
-            
-
           </Scene>
         </Scene>
       </Router>
