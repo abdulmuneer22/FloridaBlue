@@ -177,7 +177,7 @@ export default StyleSheet.create({
   //  textAlign: 'center',
     color: Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
-    marginLeft: Metrics.mediumMargin,
+    marginLeft: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '600'
 
@@ -188,7 +188,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     // marginTop:Metrics.smallMargin,
     color: Colors.flBlue.grey5,
-    marginLeft: Metrics.mediumMargin,
+    marginLeft: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.headerFont
     //  marginRight:7
   //  marginBottom:5

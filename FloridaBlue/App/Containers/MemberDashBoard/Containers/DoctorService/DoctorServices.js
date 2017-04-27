@@ -118,6 +118,7 @@ class DoctorServices extends Component {
                 // marginRight:5,
                     alignItems: 'center'
 
+
                   }}>
                     <Text style={styles.doctorTextStyle}>
                       {temp1.text['en']}
@@ -179,6 +180,7 @@ class DoctorServices extends Component {
                       textAlign: 'justify',
                       color: Colors.flBlue.grey5,
                       fontWeight: '300',
+                     
 
                     }}>{this.renderHeaderText()}</Text>
                   </View>

@@ -102,7 +102,7 @@ var styles = StyleSheet.create({
 
     title       : {
         flex    : 1,
-      //  padding : 8,
+      padding : 8,
         fontFamily: Fonts.type.subHeaderFont,
         fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
        color: Colors.flBlue.ocean,

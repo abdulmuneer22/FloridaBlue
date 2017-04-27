@@ -116,7 +116,7 @@ class CCard extends Component {
              {
                 network != undefined && network.footer_note != undefined && network.footer_note != null && network.footer_note.en != undefined && network.footer_note.en != null
                   ?
-                   <View style={{borderBottomWidth:0.3, margin:10}} >
+                   <View style={{ margin:5}} >
                   <Panel title={_.get(network, 'header_text.en', '')} >
                      <View style={{ borderTopWidth: 0.2, bottom: 10 }} />
             <View style={{ width: Metrics.screenWidth * 0.87 }}>
@@ -126,14 +126,21 @@ class CCard extends Component {
             <View style={{ marginTop: 10 }} />
                   
                   </Panel>
+                  <View style={{borderBottomWidth:0.3, margin:10}}></View>
                   </View>
                     :
-                    <View style={{borderBottomWidth:0.3,margin : 10}}>
+                    <View style={{margin : 5,padding : 8}}>
+                     
                    <Text style={styles.h1}>
                     {_.get(network, 'header_text.en', 'Benefit Details')}
-                  </Text></View>
+                    
+                  </Text>
+                  
+                    <View style={{borderBottomWidth:0.3, margin:2}}></View>
+                     
+                  </View>
                   }
-
+                  
                 </View >
           
               </View>
