@@ -15,22 +15,7 @@ import {
     BackAndroid
 } from 'react-native'
 
-import {
-    Card,
-    CardImage,
-    CardTitle,
-    CardContent,
-    CardAction
-} from 'react-native-card-view';
 
-const card = {
-    card: {
-        width: Metrics.screenWidth * 0.92,
-        alignItems: 'flex-start', marginBottom: 10, flex: 1,
-        marginLeft: 15, backgroundColor: 'purple', borderRadius: 10
-    }
-};
-const cardTitle = { cardTitle: { fontSize: 40 } }
 
 
 import DoctorLocation from './Components/DoctorLocation'
@@ -125,13 +110,10 @@ class DoctorDetail extends Component {
 
                                 />
                             </View>
-                            {
-                                ClickablesOptions.map((clickable, i) => {
-                                    return (
-                                        <Clickables key={i} label={clickable.name} count={clickable.count} />
-                                    )
-                                })
-                            }
+                    
+                        <View style={{flex:1}}>                   
+                    <Clickables label={this.props.doctordetail.boardCertifications.boardName} />
+                             </View>       
 
                         </View>
                     </ScrollView>
