@@ -45,6 +45,7 @@ const { Types, Creators } = createActions({
   changeAddress: ['address'],
   changeHomeAddress: ['homeAddress'],
   changeSearchRange: ['searchRange'],
+  changeNetworkCodeList: ['networkCodeList'],
   providerClickleft: [],
   providerClickright: []
 
@@ -77,7 +78,9 @@ export const INITIAL_STATE = Immutable({
   leftActive: true,
   rightActive: false,
   planCategoryList: [],
-  planSubCategoryList: []
+  planSubCategoryList: [],
+  memberNetworkList: [],
+  networkCodeList: []
 })
 
 /* ------------- Reducers ------------- */
@@ -87,7 +90,7 @@ export const _sendNetworkListRequest = (state: Object) => state.merge({ fetching
 
 // sendNetworkListSuccess
 export const _sendNetworkListSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, transactionId: data.transactionId, memberNetworkList: data.memberNetworkList,})
+  state.merge({fetching: false, transactionId: data.data.transactionId, memberNetworkList: data.data.memberNetworkList,})
 
 // sendNetworkListFailure
 export const _sendNetworkListFailure = (state: Object, {data}: Object) =>
@@ -227,6 +230,8 @@ export const _changeTimeType = (state: Object, {officeHours}: Object) =>
  // genderType
 export const _changeGenderType = (state: Object, {gender}: Object) => state.merge({fetching: false, gender})
 
+// networkList
+export const _changeNetworkCodeList = (state: Object, {networkCodeList}: Object) => state.merge({fetching: false, networkCodeList})
 
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {
@@ -283,6 +288,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_TIME_TYPE]: _changeTimeType,
   [Types.CHANGE_GENDER_TYPE]: _changeGenderType,
   [Types.CHANGE_SEARCH_RANGE]: _changeSearchRange,
+  [Types.CHANGE_NETWORK_CODE_LIST]: _changeNetworkCodeList,
   [Types.PROVIDER_CLICKLEFT]: leftclick,
   [Types.PROVIDER_CLICKRIGHT]: rightclick
 })

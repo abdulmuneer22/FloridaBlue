@@ -60,7 +60,8 @@ const images = {
   pharmacy: require('../Images/pharmacy.gif'),
   urgentcare: require('../Images/urgent-care.gif'),
   hearthand: require('../Images/heart-hand.gif'),
-  getResultsButton: require('../Images/get-results-btn.png')
+  getResultsButton: require('../Images/get-results-btn.png'),
+  mapUnselectedPin: require('../Images/map-unselected.png')
 }
 
 export default images
