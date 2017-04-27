@@ -13,7 +13,7 @@ import { connect } from 'react-redux'
 import SupportActions from '../../../../Redux/SupportRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import Communications from 'react-native-communications';
-
+import { Card } from 'native-base'
 const window = Dimensions.get('window')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -91,7 +91,7 @@ class SupportScreen extends Component {
                {this.props.data && this.props.data.support
                     ? <View>
                       <View>{this.props.data.support.map(function (support, i) {
-                        return (<View style={styles.textBackground} key={i}>
+                        return (<Card style={styles.textBackground} key={i}>
                           <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', flexWrap: 'wrap'}}>
                             <View style={{flex: 0.6 }}>
                               <Text style={styles.textStyle}>
@@ -107,16 +107,20 @@ class SupportScreen extends Component {
                               </View>
                             </TouchableOpacity>
                           </View>
-                        </View>)
+                        </Card>)
                         i += 1
                       }
 
                     )}</View>
-                      <View style={styles.textBackground}>
-                        {this.props.data.shoping.map(function (support, i) {
-                          return (<View style={{margin: 1}} key={i}>
-                            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', flexWrap: 'wrap', borderBottomWidth: 0.2}}>
-                              <View style={i == 0 ? {flex: 1, flexDirection: 'row', padding: 16, justifyContent: 'center', backgroundColor: Colors.snow} : {flex: 0.6,
+                      <View >
+                        {this.props.data && this.props.data.shopping ?  <View>{ this.props.data.shopping.map(function (support, i) {
+                          
+                         
+                      
+                          return (<View>
+                            {support.contactNumber ?  <Card style={styles.textBackground} key={i}>
+                                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', flexWrap: 'wrap'}}>
+                              <View style={ {flex: 0.6,
                                 backgroundColor: Colors.snow }}>
                                 <Text style={styles.textStyle}>
                                   {support.contactType}
@@ -130,12 +134,26 @@ class SupportScreen extends Component {
                                   {support.contactNumber ? <Flb name='call-phone' size={Metrics.icons.xm} color={Colors.flBlue.ocean} /> : <View />}
                                 </View>
                               </TouchableOpacity> : <View />}
+                              </View>
+                            </Card> :<View style={ {height:60, alignItems:'center'
+                               
+                                 }}>
+                                <Text style={ {fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
+                                      fontWeight: '300',
+                                      marginTop: 20,
+                                      fontFamily: Fonts.type.headerFont,
+                                      color: Colors.flBlue.grey6}}>
+                                  {support.contactType}
+                                </Text>
+                              </View> }
                             </View>
-                          </View>)
+                          )
+      
+
                           i += 1
                         }
 
-                    )}
+                    )}</View>:<View/>}
                       </View>
 
                     </View>

@@ -283,15 +283,15 @@ export default StyleSheet.create({
     padding: Metrics.mediumMargin,
     justifyContent: 'space-between',
   //  alignItems: 'center',
-    margin: 3,
-    borderRadius: 2,
-    shadowColor: '#000000',
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    shadowOffset: {
-      height: 1,
-      width: 0.3
-    }
+//    margin: 3,
+//    borderRadius: 2,
+//    shadowColor: '#000000',
+ //   shadowOpacity: 0.3,
+ //   shadowRadius: 1,
+ //   shadowOffset: {
+ //     height: 1,
+ //     width: 0.3
+ //   }
 
   },
 
