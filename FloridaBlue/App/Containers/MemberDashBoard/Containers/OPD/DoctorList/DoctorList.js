@@ -29,7 +29,6 @@ const cardTitle = { cardTitle: { fontSize: 40 } }
 
 import Switch from './Components/switch'
 import DoctorCard from './Components/DoctorCard'
-import BottomCard from './Components/BottomCard'
 //import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './DoctorListStyle'
@@ -56,6 +55,14 @@ class DoctorList extends Component {
     this.saveProvider = this.saveProvider.bind(this);
     this.removeProvider = this.removeProvider.bind(this);
   }
+
+ _advancedSearch() {
+      NavigationActions.AdvancedSearch()
+    }
+
+  _mapView() {
+      NavigationActions.ProviderMap()
+    }
 
   saveProvider(data) {
     this.props.addProviderRequest(data)
@@ -91,13 +98,13 @@ class DoctorList extends Component {
     console.log(this.props.provider)
     return (
       <View style={styles.container}>
-        <View>
+        <View >
           {this._renderHeader()}
         </View>
 
         {this.props.provider ?
-
-          <ScrollView style={{ flex: 1 }}>
+          <View style={{flex:8}}>
+          <ScrollView >
 
             <View style={{flex:1}}>
             <Switch
@@ -107,8 +114,8 @@ class DoctorList extends Component {
               attemptHandleLeft={this.props.attemptHandleLeft}
               attemptHandleRight={this.props.attemptHandleRight} />
               </View>
-            <View style={{ marginTop: Metrics.mediumMargin }}>
-              <Card >
+            <View style={{flex:1, margin:15  }}>
+              <Card style={{flex:1, borderRadius:15, backgroundColor:'purple'}} >
                 <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
                   <View style={{ flex: 0.15 }}>
                     <Flb name="accident" size={Metrics.icons.large} color={Colors.snow} />
@@ -123,13 +130,7 @@ class DoctorList extends Component {
               </Card>
             </View>
 
-            <View style={{
-              alignItems: 'center',
-              justifyContent: 'center',
-              flex:1
-            }}>
-
-              <View style={{ flex:1 }}>
+            <View style={{flex:1}}>
 
                 {this.props.provider && this.props.provider.data && this.props.provider.data.providerList ?
                   <DoctorCard
@@ -142,20 +143,59 @@ class DoctorList extends Component {
 
                   />
                   : <Text>No Results Found </Text>}
-              </View>
 
             </View>
 
           </ScrollView>
+          </View>
 
           : <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>}
+        <View style={{flex:1}}>
+          <View style={{flex:1}}>
+          <View style={{flex:1,flexDirection:'row'}}>
+         <TouchableOpacity style={{flex:1}} onPress={()=> this._advancedSearch()}>
+          <View style={styles.refinesearch}>
 
-        <Footer style={{ height: Metrics.textHeight2 * Metrics.screenHeight * 0.0021, flex:0.15 }}>
-          <BottomCard />
-        </Footer>
+               <View style={{flex:0.3, alignItems:'center'}}>
+                <Flb
+                name='search-find'
+                size={Metrics.icons.medium} 
+                color={Colors.snow} />
+               </View>
+            
+            <View style={{flex:0.7, alignItems:'flex-start'}}>
+
+                <Text style={styles.footerText}>Refine Search</Text>
+              </View>
+
+          </View>
+          </TouchableOpacity>
+         <TouchableOpacity style={{flex:1}} onPress={()=> this._mapView()}>
+          <View style={styles.footerView}>
+
+               <View style={{flex:0.4, alignItems:'center'}}>
+                <Flb
+                name='map'
+                size={Metrics.icons.medium} 
+                color={Colors.snow} />
+               </View>
+            
+            <View style={{flex:0.6, 
+            alignItems:'flex-start'}}>
+
+                <Text style={styles.footerText}>Map View</Text>
+              </View>
+
+          </View>
+          </TouchableOpacity>
+        </View>
+        
+            
+        </View>
+        </View>
       </View>
 
     )

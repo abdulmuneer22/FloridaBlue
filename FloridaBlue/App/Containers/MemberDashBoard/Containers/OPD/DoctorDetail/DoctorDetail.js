@@ -36,7 +36,6 @@ const cardTitle = { cardTitle: { fontSize: 40 } }
 import DoctorLocation from './Components/DoctorLocation'
 //import Panel from './Components/Panel'
 import DoctorCard from './Components/DoctorCard'
-import AcceptOptions from './Components/AcceptOptions'
 import Clickables from './Components/Clickables'
 //import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -92,7 +91,7 @@ class DoctorDetail extends Component {
             </View>
             <Text style={styles.headerTextStyle}>
                 Find Care
-            </Text>
+</Text>
             <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
                 {NavItems.settingsButton()}
             </View>
@@ -100,7 +99,7 @@ class DoctorDetail extends Component {
     }
 
     render() {
-          console.log(this.props.doctordetail)
+        console.log(this.props.doctordetail)
         return (
 
             <View style={styles.container} >
@@ -108,43 +107,38 @@ class DoctorDetail extends Component {
                     {this._renderHeader()}
                 </View>
                 {this.props.doctordetail != undefined ?
-                <ScrollView>
-                    <View style={{
-                        flex: 1
-                    }}>
-                         
-                        <DoctorLocation
-                         data={this.props.doctordetail}
-                          />
-                       
-                       <View>
+                    <ScrollView>
+                        <View style={{
+                            flex: 1
+                        }}>
+                        <View style={{flex:1}}>
+                            <DoctorLocation />
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <DoctorCard
+                                    savedproviders={this.props.saveProvider}
+                                    saveProvider={this.saveProvider}
+                                    removeProvider={this.removeProvider}
+                                    data={this.props.doctordetail}
+                                    leftActive={this.props.leftActive}
+                                    rightActive={this.props.rightActive}
 
-                
-                  <DoctorCard
-                    savedproviders={this.props.saveProvider}
-                    saveProvider={this.saveProvider}
-                    removeProvider={this.removeProvider}
-                    data={this.props.doctordetail}
-                    leftActive={this.props.leftActive}
-                    rightActive={this.props.rightActive}
+                                />
+                            </View>
+                            {
+                                ClickablesOptions.map((clickable, i) => {
+                                    return (
+                                        <Clickables key={i} label={clickable.name} count={clickable.count} />
+                                    )
+                                })
+                            }
 
-                  />
-                  
-              </View>
-                        {
-                            ClickablesOptions.map((clickable, i) => {
-                                return (
-                                    <Clickables key={i} label={clickable.name} count={clickable.count} />
-                                )
-                            })
-                        }
-
-                    </View>
-                </ScrollView>
-                : <View style={styles.spinnerView}>
-            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-            <Text style={styles.spinnerText}>Loading Please Wait </Text>
-          </View>}
+                        </View>
+                    </ScrollView>
+                    : <View style={styles.spinnerView}>
+                        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+                    </View>}
             </View>
         );
     }

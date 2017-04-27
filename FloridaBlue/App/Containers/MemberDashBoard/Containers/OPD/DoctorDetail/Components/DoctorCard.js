@@ -12,16 +12,8 @@ import {
     Alert
 } from 'react-native'
 
-import {
-    Card,
-    CardImage,
-    CardTitle,
-    CardContent,
-    CardAction
-} from 'react-native-card-view';
+import { Card } from 'native-base'
 
-const card = { card: { width: Metrics.screenWidth, alignItems: 'flex-start', marginBottom: 20 } };
-const cardTitle = { cardTitle: { fontSize: 40 } }
 
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -99,10 +91,7 @@ class DoctorCard extends Component {
                 },
             ]
         )
-
-
     }
-
 
     render() {
 
@@ -110,16 +99,16 @@ class DoctorCard extends Component {
         return (
             <View style={styles.container}>
 
-                <View style={{flex:1}}>
+                <View style={{ flex: 1 }}>
                     {this.props.data != undefined ?
 
-                        <View style={styles.cardview} >
-                            <View style={{ flex: 1, flexDirection: 'row', marginRight: 20 }}>
-                                <View >
-                                    {providerAvailable ? <TouchableOpacity onPress={() => this.onRemoveBookmark(this.props.data)} >
+                        <Card style={{ flex: 1 }} >
+                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
+                                <View style={{ flex: 0.2 }}>
+                                    {providerAvailable ? <TouchableOpacity onPress={() => this.onRemoveBookmark(value)} >
                                         <Flb name="add-bookmark"
                                             size={Metrics.icons.large} color={Colors.flBlue.orange} />
-                                    </TouchableOpacity> : <TouchableOpacity onPress={() => this.onPressBookmark(this.props.data)} >
+                                    </TouchableOpacity> : <TouchableOpacity onPress={() => this.onPressBookmark(value)} >
                                             <Flb name="add-bookmark"
                                                 size={Metrics.icons.large} color={Colors.flBlue.grey2} />
                                         </TouchableOpacity>
@@ -127,99 +116,94 @@ class DoctorCard extends Component {
                                     }
                                 </View>
 
-                                <View style={{ marginTop: 5, marginRight: 30 }}>
+                                <View style={{ flex: 0.8, alignItems: 'flex-start' }}>
                                     {this.props.data ?
                                         <Text style={styles.h1}>{this.props.data.displayName}</Text>
                                         : null}
                                     {this.props.data ?
                                         <Text style={styles.h2}>{this.props.data.primarySpecialty}</Text> : null}
                                     {this.props.data && this.props.data.address[0] ?
-                                        <Text style={styles.h4}> {this.props.data.address[0].addressLine1}, {this.props.data.address[0].addressLine2}</Text> : null}
+                                        <Text style={styles.h4}>{this.props.data.address[0].addressLine1}, {this.props.data.address[0].addressLine2}</Text> : null}
                                     {this.props.data && this.props.data.address[0] ?
-                                        <Text style={styles.h4_2}> {this.props.data.address[0].city}, {this.props.data.address[0].state}</Text> : null}
+                                        <Text style={styles.h4_2}>{this.props.data.address[0].city}, {this.props.data.address[0].state}</Text> : null}
                                     {this.props.data && this.props.data.address[0] ?
-                                        <Text style={styles.h4_2}> {this.props.data.address[0].zipCode}</Text> : null}
+                                        <Text style={styles.h4_2}>{this.props.data.address[0].zipCode}</Text> : null}
                                     {this.props.data && this.props.data.address[0] ?
-                                        <Text style={styles.h4_2}> {this.props.data.address[0].telephoneNumber}</Text> : null}
+                                        <Text style={styles.h4_2}>{this.props.data.address[0].telephoneNumber}</Text> : null}
 
                                 </View>
                             </View>
-                            <View style={styles.cardButton}>
+                            <View style={{ flex: 1 }}>
+                                <View style={{ flex: 1, flexDirection: 'row' }}>
+                                    <TouchableOpacity style={{ flex: 1 }} onPress={() => this.handleCall(this.props.data.address.telephoneNumber)}>
+                                        <View style={styles.call}>
 
-                                <TouchableOpacity onPress={() => this.handleCall(this.props.data.address.telephoneNumber)}>
-                                    <View style={styles.cardButtonView}>
+                                            <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                                                <Flb
+                                                    name='call-phone'
+                                                    size={Metrics.icons.medium}
+                                                    color={Colors.snow} />
+                                            </View>
 
-                                        <Flb
-                                            name='call-phone'
-                                            size={Metrics.icons.medium}
-                                            style={{
-                                                marginRight: 2
-                                            }}
-                                            color={Colors.snow} />
+                                            <View style={{ flex: 1, alignItems: 'flex-start' }}>
+                                                <Text style={styles.callText}>Call</Text>
+                                            </View>
 
-                                        <Text style={{
-                                            color: Colors.snow,
-                                            fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
-                                            marginLeft: Metrics.baseMargin,
-                                            fontWeight: '400'
-                                        }}>Call</Text>
-                                    </View>
-                                </TouchableOpacity>
+                                        </View>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={{ flex: 1 }} onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}>
+                                        <View style={styles.directions}>
 
-                                <TouchableOpacity onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}  >
-                                    <View style={styles.cardButtonView1}>
+                                            <View style={{ flex: 1, alignItems: 'center' }}>
+                                                <Flb
+                                                    name='directions'
+                                                    size={Metrics.icons.medium}
+                                                    color={Colors.snow} />
+                                            </View>
 
-                                        <Flb
-                                            name='directions'
-                                            size={Metrics.icons.medium}
-                                            style={{
-                                                marginRight: 1
-                                            }}
-                                            color={Colors.snow} />
+                                            <View style={{
+                                                flex: 1,
+                                                alignItems: 'flex-start'
+                                            }}>
 
-                                        <Text style={{
-                                            color: 'white',
-                                            fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                                            marginLeft: Metrics.baseMargin,
-                                            fontWeight: '400'
-                                        }}>Directions</Text>
-                                    </View>
-                                </TouchableOpacity>
-
+                                                <Text style={styles.directionText}>Directions</Text>
+                                            </View>
+                                        </View>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
+
                             <View style={{
-                                flexDirection : 'row',
-                                alignItems : 'center',
-                                margin:5,
-                                flex:1
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                margin: 5,
+                                flex: 1
                             }}>
-                            <View style={{flex:0.2, alignItems:'center'}}>
-                            <Icon 
-                                name="ios-checkmark" 
-                                size={40} 
-                                color="#3bb324" 
-                                style={{
-                                    marginTop:10,
-                                    
-                                }}
-                            />
-                            </View>
-                            <View style={{flex:0.8}}>
-                             {this.props.data ?
-                            <Text style={styles.plannameText}> 
-                             {this.props.data.acceptingNewPatients}
-                                </Text>:null} 
-                            </View>
-                        </View>   
-                        </View>
+                                <View style={{ flex: 0.2, alignItems: 'center' }}>
+                                    <Icon
+                                        name="ios-checkmark"
+                                        size={40}
+                                        color="#3bb324"
+                                        style={{
+                                            marginTop: 10,
 
+                                        }}
+                                    />
+                                </View>
+                                <View style={{ flex: 0.8 }}>
+                                    {this.props.data ?
+                                        <Text style={styles.plannameText}>
+                                            {this.props.data.acceptingNewPatients}
+                                        </Text> : null}
+                                </View>
+                            </View>
+                        </Card>
 
                         : null
                     }
 
                 </View>
             </View>
-
         )
     }
 }

@@ -95,58 +95,40 @@ export default StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center'
   },
-  
-  h1: {
-    
+ h1: {  
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
-    //textAlign: 'center',
-   // marginLeft: Metrics.doubleBaseMargin,
     marginTop: Metrics.baseMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '600',
-     color: Colors.flBlue.anvil,
+     color: Colors.flBlue.ocean,
   },
- 
  
   h2: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
-  //  textAlign: 'center',
     marginTop:Metrics.baseMargin,
     color: Colors.flBlue.anvil,
-   // paddingTop: Metrics.smallMargin,
-    //marginLeft: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600'
 
   },
   h4: {
    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-  //  textAlign: 'center',
-    marginTop:Metrics.baseMargin,
+    marginTop:Metrics.smallMargin,
     color: Colors.flBlue.grey5,
-   // paddingTop: Metrics.smallMargin,
-    //marginLeft: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: '400'
+    fontWeight: '400',
+    textAlign:'auto'
   },
 
    h4_2: {
    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-  //  textAlign: 'center',
-    //marginTop:Metrics.baseMargin,
     color: Colors.flBlue.grey5,
-   // paddingTop: Metrics.smallMargin,
-    //marginLeft: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400'
   },
   h4_3: {
    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-  //  textAlign: 'center',
-    //marginTop:Metrics.baseMargin,
     color: Colors.flBlue.grey5,
-   // paddingTop: Metrics.smallMargin,
-    marginLeft: Metrics.baseMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: 'bold'
   },
@@ -173,46 +155,49 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
 
-  },
-  leftButton : {
-        borderTopLeftRadius : 25,
-        borderBottomLeftRadius : 25,
-        alignItems : 'center',
-        justifyContent : 'center',
-        //flex : 1,
-        // backgroundColor : 
-        
     },
-
-    activeButtonStyle : {
-        paddingTop : 10,
-        paddingBottom : 10,
-        paddingLeft : 15,
-        paddingRight : 15,
-        width : (window.width * 0.95) / 2,
-        backgroundColor : BUTTON_ACTIVE_COLOR
-        
-    },
-    rightButton : {
-        borderTopRightRadius : 25,
-        borderBottomRightRadius : 25,
-        alignItems : 'center',
-        justifyContent : 'center',
-        //flex : 1
-    },
-    inActiveButtonStyle : {
-        backgroundColor : 'rgb(255,255,255)',
-        borderWidth : 3,
-        paddingTop : 10,
-        paddingBottom : 10,
-        borderColor : BUTTON_ACTIVE_COLOR,
-        width : (window.width * 0.95) / 2,
-        // marginLeft : window.width * 0.05
-        
-    },
-     spinnerText: {
-      color:Colors.flBlue.anvil,
+    spinnerText: {
+    color:Colors.flBlue.anvil,
     marginTop: 20
-  },
+    },
 
+  refinesearch:{
+      flex:1,
+      backgroundColor : Colors.flBlue.grass,
+      justifyContent : 'center',
+      alignItems : 'center',
+      flexDirection : 'row',
+      borderRightWidth: 0.5 ,
+      borderColor:Colors.snow
+    },
+    call:{
+      flex:1,
+      backgroundColor : Colors.flBlue.ocean,
+      justifyContent : 'center',
+      alignItems : 'center',
+      flexDirection : 'row',
+      borderRightWidth:1,
+      borderColor:Colors.snow
+    },
+    directions:{
+      flex:1,
+      backgroundColor : Colors.flBlue.ocean,
+      justifyContent : 'center',
+      alignItems : 'center',
+      flexDirection : 'row',
+      borderLeftWidth:1 ,
+      borderColor:Colors.snow
+  },
+  callText:{
+      fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
+      marginLeft: Metrics.baseMargin,
+      fontWeight: '400',
+      color: Colors.snow,
+  },
+  directionText:{
+      color: 'white',
+      fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
+      marginLeft: Metrics.baseMargin,
+      fontWeight: '400'
+  }
 })

@@ -12,12 +12,7 @@ import {
     Alert
 } from 'react-native'
 
-
-
 import { Card } from 'native-base'
-
-const card = { card: { width: Metrics.screenWidth * 0.94, alignItems: 'flex-start', marginBottom: 10 } };
-const cardTitle = { cardTitle: { fontSize: 40 } }
 
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -53,7 +48,7 @@ class DoctorCard extends Component {
         this.props.removeProvider(data.providerKey)
     }
 
-    _doctorPage(){
+    _doctorPage() {
         NavigationActions.DoctorDetail()
     }
 
@@ -110,14 +105,15 @@ class DoctorCard extends Component {
             <View style={styles.container}>
                 {this.props.data != undefined ?
 
-                    <View style={{flex:1}}>
+                    <View style={{ flex: 1, margin: 15 }}>
                         {this.props.data != undefined ? this.props.data.map((value, i) => {
                             const providerAvailable = this.props.savedproviders && this.props.savedproviders.find((savedprovider) => savedprovider.providerKey === value.providerKey)
 
                             return (
-                                <Card  key={i}>
-                                    <View style={{ flex: 1, flexDirection: 'row', marginRight: 20 }}>
-                                        <View >
+                                <Card style={{ flex: 1 }} key={i}>
+
+                                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
+                                        <View style={{ flex: 0.2 }}>
                                             {providerAvailable ? <TouchableOpacity onPress={() => this.onRemoveBookmark(value)} >
                                                 <Flb name="add-bookmark"
                                                     size={Metrics.icons.large} color={Colors.flBlue.orange} />
@@ -129,67 +125,67 @@ class DoctorCard extends Component {
                                             }
                                         </View>
 
-                                        <View style={{ marginTop: 5, marginRight: 30 }}>
+                                        <View style={{ flex: 0.8, alignItems: 'flex-start' }}>
                                             {value ?
-                                            <TouchableOpacity onPress={()=>this._doctorPage()}>
-                                            <Text style={styles.h1}>{value.displayName}</Text>
-                                            </TouchableOpacity>:null}
-                                            {value ? 
-                                            <Text style={styles.h2}>{value.primarySpecialty }</Text> : null}
+                                                <TouchableOpacity onPress={() => this._doctorPage()}>
+                                                    <Text style={styles.h1}>{value.displayName}</Text>
+                                                </TouchableOpacity> : null}
                                             {value ?
-                                            <Text style={styles.h4}> {value.addressLine1}, {value.addressLine2}</Text> : null}
+                                                <Text style={styles.h2}>{value.primarySpecialty}</Text> : null}
                                             {value ?
-                                            <Text style={styles.h4_2}> {value.city}, {value.state}</Text> : null }
+                                                <Text style={styles.h4}>{value.addressLine1}, {value.addressLine2}</Text> : null}
                                             {value ?
-                                            <Text style={styles.h4_2}> {value.zipCode}</Text> :null}
+                                                <Text style={styles.h4_2}>{value.city}, {value.state}</Text> : null}
                                             {value ?
-                                            <Text style={styles.h4_2}> {value.telephoneNumber}</Text>:null}
+                                                <Text style={styles.h4_2}>{value.zipCode}</Text> : null}
                                             {value ?
-                                            <Text style={styles.h4_3}>{value.distance} miles</Text>:null}
+                                                <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
+                                            {value ?
+                                                <Text style={styles.h4_3}>{value.distance} miles</Text> : null}
                                         </View>
                                     </View>
-                                    <View style={styles.cardButton}>
 
-                                        <TouchableOpacity onPress={() => this.handleCall(value.telephoneNumber)}>
-                                            <View style={styles.cardButtonView}>
 
-                                                <Flb
-                                                    name='call-phone'
-                                                    size={Metrics.icons.medium}
-                                                    style={{
-                                                        marginRight: 2
-                                                    }}
-                                                    color={Colors.snow} />
+                                    <View style={{ flex: 1 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row' }}>
+                                            <TouchableOpacity style={{ flex: 1 }} onPress={() => this.handleCall(value.telephoneNumber)}>
+                                                <View style={styles.call}>
 
-                                                <Text style={{
-                                                    color: Colors.snow,
-                                                    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
-                                                    marginLeft: Metrics.baseMargin,
-                                                    fontWeight: '400'
-                                                }}>Call</Text>
-                                            </View>
-                                        </TouchableOpacity>
+                                                    <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                                                        <Flb
+                                                            name='call-phone'
+                                                            size={Metrics.icons.medium}
+                                                            color={Colors.snow} />
+                                                    </View>
 
-                                        <TouchableOpacity onPress={() => this.handleMaps(value.latitude, value.longitude)}  >
-                                            <View style={styles.cardButtonView1}>
+                                                    <View style={{ flex: 1, alignItems: 'flex-start' }}>
 
-                                                <Flb
-                                                    name='directions'
-                                                    size={Metrics.icons.medium}
-                                                    style={{
-                                                        marginRight: 1
-                                                    }}
-                                                    color={Colors.snow} />
+                                                        <Text style={styles.callText}>Call</Text>
+                                                    </View>
 
-                                                <Text style={{
-                                                    color: 'white',
-                                                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                                                    marginLeft: Metrics.baseMargin,
-                                                    fontWeight: '400'
-                                                }}>Directions</Text>
-                                            </View>
-                                        </TouchableOpacity>
+                                                </View>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity style={{ flex: 1 }} onPress={() => this.handleMaps(value.latitude, value.longitude)}>
+                                                <View style={styles.directions}>
 
+                                                    <View style={{ flex: 1, alignItems: 'center' }}>
+                                                        <Flb
+                                                            name='directions'
+                                                            size={Metrics.icons.medium}
+                                                            color={Colors.snow} />
+                                                    </View>
+
+                                                    <View style={{
+                                                        flex: 1,
+                                                        alignItems: 'flex-start'
+                                                    }}>
+
+                                                        <Text style={styles.directionText}>Directions</Text>
+                                                    </View>
+
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
                                     </View>
 
                                 </Card>
@@ -199,19 +195,19 @@ class DoctorCard extends Component {
                         }
                     </View>
 
-                    : <View style={{flex:1}}>
+                    : <View style={{ flex: 1 }}>
                         {this.props.leftActive
                             ? <View style={styles.spinnerView}>
                                 <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
                                 <Text style={styles.spinnerText}>Loading Please Wait
-                            </Text>
+</Text>
                             </View>
                             : <View>
                                 <Text style={{ justifyContent: 'center', alignItems: 'center' }}>
                                     "You didn't Saved any Provider"
-                                </Text></View>
+</Text></View>
                         }
-                        </View>
+                    </View>
                 }
             </View>
         )
