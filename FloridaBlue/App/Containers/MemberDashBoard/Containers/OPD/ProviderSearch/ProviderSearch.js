@@ -115,7 +115,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       } else {
           this.props.attemptProviderSearch(this.props)
       }
-
       NavigationActions.DoctorList()
     }
 
@@ -305,7 +304,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
               </HideableView>
 
-              <HideableView visible={this.state.unknownCareState && this.state.currentLocaleState == false} removeWhenHidden={true}>
+              <HideableView visible={!this.state.currentLocaleState} removeWhenHidden={true}>
                 <View style={[styles.locationView]}>
                   <View style={styles.locationTextContainer}>
                     <Text style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
@@ -320,7 +319,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </View>
               </HideableView>
 
-              <HideableView style={styles.editLocationView} visible={this.state.unknownCareState && this.state.currentLocaleState} removeWhenHidden={true}>
+              <HideableView style={styles.editLocationView} visible={this.state.currentLocaleState} removeWhenHidden={true}>
                 <View style={styles.mapIcon}>
                   <Image source={Images.mapUnselectedIcon} />
                   <Text style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
@@ -341,7 +340,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </View>
               </HideableView>
 
-              <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.currentLocaleState && !this.state.newLocationState && this.state.unknownCareState} removeWhenHidden={true}></HideableView>
+              <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.currentLocaleState && !this.state.newLocationState} removeWhenHidden={true}></HideableView>
 
               <HideableView style={styles.differentLocationView} visible={this.state.unknownCareState && this.state.newLocationState} removeWhenHidden={true}>
                 <Text style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
