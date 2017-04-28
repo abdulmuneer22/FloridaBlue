@@ -180,10 +180,10 @@ class DoctorCard extends Component {
                                 flex: 1
                             }}>
                                 <View style={{ flex: 0.2, alignItems: 'center' }}>
-                                    <Icon
-                                        name="ios-checkmark"
-                                        size={40}
-                                        color="#3bb324"
+                                    <Flb
+                                        name="check"
+                                        size={30}
+                                        color="green"
                                         style={{
                                             marginTop: 10,
 
