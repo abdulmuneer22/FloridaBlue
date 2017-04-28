@@ -23,6 +23,7 @@ import styles from './DashBoardStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import MemberActions from '../../../../Redux/MemberRedux'
+import ProviderActions from '../../../../Redux/ProviderRedux'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Flb from '../../../../Themes/FlbIcon'
@@ -35,6 +36,7 @@ type LoginScreenProps = {
   userName: string,
   visibilityRules: object,
   attemptMember: () => void,
+  attemptNetworkList: () => void,
   error: string
 }
 const theme = getTheme()
@@ -83,6 +85,8 @@ class LandingScreen extends Component {
     if (this.props.tou == 'nonregistration') {
       this.props.attemptMember()
     }
+
+    this.props.attemptNetworkList()
   }
 
   componentWillReceiveProps (newProps) {
@@ -217,7 +221,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMember: () => dispatch(MemberActions.memberRequest())
+    attemptMember: () => dispatch(MemberActions.memberRequest()),
+    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LandingScreen)

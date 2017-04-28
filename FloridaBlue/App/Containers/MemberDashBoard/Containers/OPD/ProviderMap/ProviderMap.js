@@ -26,6 +26,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
+const markerList = []
+
+
 class ProviderMap extends Component {
   constructor(props) {
     super(props)
@@ -36,6 +39,7 @@ class ProviderMap extends Component {
   }
 
   componentDidMount() {
+    console.tron.log(this.props)
     navigator.geolocation.getCurrentPosition(
     (position) => {
       this.props.changeCurrentLocation(position)
@@ -54,6 +58,28 @@ class ProviderMap extends Component {
     const milesOfLatAtEquator = 69
     this.setState({latDelta: this.props.searchRange / milesOfLatAtEquator})
     this.setState({longDelta: this.props.searchRange / (Math.cos(this.props.latitude) * milesOfLatAtEquator)})
+
+    var providerLocations = []
+    for (var i = 0; i < this.props.provider.data.providerList.length; i++) {
+      var providerItem = this.props.provider.data.providerList[i]
+      var providerData = {}
+
+      providerData["providerName"] = providerItem["displayName"]
+      providerData["practiceType"] = providerItem["primarySpecialty"]
+      providerData["latitude"] = providerItem["latitude"]
+      providerData["longitude"] = providerItem["longitude"]
+      providerData["id"] = providerItem["providerKey"]
+      providerData["distance"] = providerItem["distance"]
+
+      console.tron.log(providerData["id"])
+
+      markerList.push(providerData)
+    }
+  }
+
+  _mapCalloutSelected(event) {
+    console.tron.log("Callout selected..")
+    console.tron.log(event)
   }
 
   _renderHeader () {
@@ -79,12 +105,26 @@ class ProviderMap extends Component {
           <MapView
             style={{flex: 1}}
             initialRegion={{
-            latitude: this.props.latitude,
-            longitude: this.props.longitude,
-            latitudeDelta: this.state.latDelta,
-            longitudeDelta: this.state.longDelta,
-            }}
-          />
+              latitude: this.props.latitude,
+              longitude: this.props.longitude,
+              latitudeDelta: this.state.latDelta,
+              longitudeDelta: this.state.longDelta,
+            }}>
+            {markerList.map(marker => (
+               <MapView.Marker
+                 coordinate= {{latitude : marker.latitude,longitude: marker.longitude}}
+                 image={Images.mapUnselectedPin}
+                 key={marker.id}
+                 onPress={this._mapCalloutSelected}>
+
+                 <MapView.Callout style={styles.calloutView}>
+                  <View>
+                    <Text>Test</Text>
+                  </View>
+                 </MapView.Callout>
+               </MapView.Marker>
+             ))}
+          </MapView>
           :
           <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
@@ -105,7 +145,8 @@ const mapStateToProps = (state) => {
     region: state.provider.region,
     searchRange: state.provider.searchRange,
     latDelta: state.provider.latDelta,
-    longDelta: state.provider.longDelta
+    longDelta: state.provider.longDelta,
+    provider: state.provider.data
   }
 }
 

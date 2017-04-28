@@ -66,7 +66,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     componentDidMount() {
       this._resetState()
-      this.props.attemptNetworkList()
       this.props.attemptCareTypes()
     }
 
@@ -418,13 +417,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       address: state.provider.address,
       homeAddress: state.provider.homeAddress,
       member: state.member,
-      urgentCareState: state.urgentCareState
+      urgentCareState: state.urgentCareState,
+      networkCodeList: state.provider.networkCodeList
     }
   }
 
   const mapDispatchToProps = (dispatch) => {
     return {
-      attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
       attemptCareTypes: () => dispatch(ProviderActions.sendCareTypeRequest()),
       getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
       attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),

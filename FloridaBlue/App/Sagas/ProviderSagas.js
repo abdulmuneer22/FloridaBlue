@@ -7,6 +7,16 @@ export function * sendNetworkListRequest (api, {data}) {
   if (response.ok) {
     var error = null
     var data = response.data
+    
+    for (var i = 0; i < data.data.memberNetworkList.length; i++) {
+      var networkItem = data.data.memberNetworkList[i]
+      var networkCodeList = []
+      if (networkItem["health"]) {
+        networkCodeList.push(networkItem["networkCode"])
+      }
+    }
+
+    yield put(ProviderActions.changeNetworkCodeList(networkCodeList))
     yield put(ProviderActions.sendNetworkListSuccess(data))
   } else {
     yield put(ProviderActions.sendNetworkListFailure(data))
@@ -16,7 +26,7 @@ export function * sendNetworkListRequest (api, {data}) {
 export function * sendProviderSearchRequest (api, {data}) {
   console.log("Provider Search",data)
    const response = yield call(api.postProviderSearch, data)
-   console.log("I am befor response",response) 
+   console.log("I am befor response",response)
   if (response.ok) {
     var error = null
     var data = response.data
@@ -54,7 +64,7 @@ export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
 }
 
 export function * sendDoctorLanguageRequest (api, {data}) {
- 
+
   const response = yield call(api.getDoctorLanguage, data)
 
   if (response.ok) {
