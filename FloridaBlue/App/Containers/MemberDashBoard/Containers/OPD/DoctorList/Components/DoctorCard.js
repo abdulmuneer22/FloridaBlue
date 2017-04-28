@@ -148,7 +148,7 @@ class DoctorCard extends Component {
 
                                     <View style={{ flex: 1 }}>
                                         <View style={{ flex: 1, flexDirection: 'row' }}>
-                                            <TouchableOpacity style={{ flex: 1 }} onPress={() => this.handleCall(value.telephoneNumber)}>
+                                            <TouchableOpacity style={{ flex: 1, height:50 }} onPress={() => this.handleCall(value.telephoneNumber)}>
                                                 <View style={styles.call}>
 
                                                     <View style={{ flex: 1, alignItems: 'flex-end' }}>
@@ -165,10 +165,10 @@ class DoctorCard extends Component {
 
                                                 </View>
                                             </TouchableOpacity>
-                                            <TouchableOpacity style={{ flex: 1 }} onPress={() => this.handleMaps(value.latitude, value.longitude)}>
+                                            <TouchableOpacity style={{ flex: 1,height:50 }} onPress={() => this.handleMaps(value.latitude, value.longitude)}>
                                                 <View style={styles.directions}>
 
-                                                    <View style={{ flex: 1, alignItems: 'center' }}>
+                                                    <View style={{ flex: 0.3, alignItems: 'center' }}>
                                                         <Flb
                                                             name='directions'
                                                             size={Metrics.icons.medium}
@@ -176,7 +176,7 @@ class DoctorCard extends Component {
                                                     </View>
 
                                                     <View style={{
-                                                        flex: 1,
+                                                        flex: 0.7,
                                                         alignItems: 'flex-start'
                                                     }}>
 

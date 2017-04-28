@@ -66,7 +66,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     componentDidMount() {
       this._resetState()
-      this.props.attemptNetworkList()
       this.props.attemptCareTypes()
     }
 
@@ -231,8 +230,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       return (
         <View style={styles.container}>
           {this._renderHeader()}
+          <View style={{flex:9}}>
           <ScrollView>
-            <View>
+            <View style={{flex:1}}>
               <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
 
               <View style={styles.radioView}>
@@ -368,12 +368,20 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </TouchableOpacity>
               </HideableView>
 
-              <View style={styles.fabView}>
+             
+            </View>
+       
+        
+              
+               </ScrollView>
+               </View>
+
+                <View style={{flex:4}}>
                 <HideableView visible={this.state.urgentCareState} removeWhenHidden={true}>
                   <Text>Need help now?</Text>
                   <Text>We can show you a list of urgent care centers close to you</Text>
                 </HideableView>
-
+                <View style={{flex:1}}>
                 <ActionButton
                   buttonColor="rgba(231,76,60,1)"
                   onPress={this._urgentCare}
@@ -381,9 +389,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                   offsetX={10}
                   offsetY={50}
                 />
+                </View>
               </View>
-            </View>
-        </ScrollView>
       </View>
       )
     }
@@ -410,13 +417,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       address: state.provider.address,
       homeAddress: state.provider.homeAddress,
       member: state.member,
-      urgentCareState: state.urgentCareState
+      urgentCareState: state.urgentCareState,
+      networkCodeList: state.provider.networkCodeList
     }
   }
 
   const mapDispatchToProps = (dispatch) => {
     return {
-      attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
       attemptCareTypes: () => dispatch(ProviderActions.sendCareTypeRequest()),
       getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
       attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),

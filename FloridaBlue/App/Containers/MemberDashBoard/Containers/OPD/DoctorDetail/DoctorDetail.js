@@ -15,24 +15,9 @@ import {
     BackAndroid
 } from 'react-native'
 
-import {
-    Card,
-    CardImage,
-    CardTitle,
-    CardContent,
-    CardAction
-} from 'react-native-card-view';
-
-const card = {
-    card: {
-        width: Metrics.screenWidth * 0.92,
-        alignItems: 'flex-start', marginBottom: 10, flex: 1,
-        marginLeft: 15, backgroundColor: 'purple', borderRadius: 10
-    }
-};
-const cardTitle = { cardTitle: { fontSize: 40 } }
 
 
+import HideableView from 'react-native-hideable-view';
 import DoctorLocation from './Components/DoctorLocation'
 //import Panel from './Components/Panel'
 import DoctorCard from './Components/DoctorCard'
@@ -67,6 +52,23 @@ class DoctorDetail extends Component {
         super(props);
         this.saveProvider = this.saveProvider.bind(this);
         this.removeProvider = this.removeProvider.bind(this);
+        this.state = {
+            visible: false,
+            visible1:false
+        };
+        this.toggle1 = this.toggle1.bind(this);
+         this.toggle = this.toggle.bind(this);
+    }
+
+     toggle() {
+        this.setState({
+            visible: !this.state.visible
+        });
+    }
+     toggle1() {
+        this.setState({
+            visible1: !this.state.visible1
+        });
     }
 
     saveProvider(data) {
@@ -125,13 +127,29 @@ class DoctorDetail extends Component {
 
                                 />
                             </View>
-                            {
-                                ClickablesOptions.map((clickable, i) => {
-                                    return (
-                                        <Clickables key={i} label={clickable.name} count={clickable.count} />
-                                    )
-                                })
-                            }
+                    
+                    
+                             {this.props.doctordetail && this.props.doctordetail.certifications ?
+                             <View style={{flex:1}}> 
+                                 <View style={{flexDirection:'row'}}>                  
+                  
+
+                <TouchableOpacity onPress={this.toggle1}>
+                    <Flb name={this.state.visible1 ? 'minus' : 'plus'} color={Colors.flBlue.ocean} size={Metrics.icons.medium} />
+                </TouchableOpacity>
+                <Text style={styles.title}>
+                    Other Locations
+                </Text>
+                              </View>  
+
+                             <HideableView visible={this.state.visible1}>
+
+                    <Text>
+                     {this.props.doctordetail.certifications[0].certificationDescription}
+                    </Text>
+                </HideableView>
+                </View>
+                             : null }    
 
                         </View>
                     </ScrollView>

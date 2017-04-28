@@ -112,17 +112,7 @@ export default class Clickables extends Component{
                     }}>
                         Other locations
                     </Text>
-                    {
-                        this.props.count ?
-                            <View style={{
-                            flex : 1,
-                            //backgroundColor : 'red'
-                            }}>
-                            {this.CountLabel()}
-                            </View>
-                        :
-                        null
-                    }
+                    
                     
                     
                 </View>
