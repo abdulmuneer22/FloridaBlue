@@ -32,8 +32,8 @@ export default class DoctorLocation extends Component {
                             flex: 1,
                         }}
                         initialRegion={{
-                            latitude: 37.78825,
-                            longitude: -122.4324,
+                            latitude: 32.78825,
+                            longitude: -12.4324,
                             latitudeDelta: 0.0922,
                             longitudeDelta: 0.0421,
                         }}  >
@@ -42,7 +42,7 @@ export default class DoctorLocation extends Component {
                             height: 10
                         }}
                             //image={marker_image}
-                            coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
+                            coordinate={{ latitude: 32.78825, longitude: -12.4324 }}
                             title="Test"
 
                         />

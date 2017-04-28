@@ -287,13 +287,17 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 0.9,
     marginLeft: Metrics.doubleBaseMargin
   },
+   dropdown1: {
+    width: Metrics.screenWidth * 0.55,
+    marginLeft: Metrics.baseMargin
+  },
   languagedropdown: {
     width: Metrics.screenWidth * 0.5,
     height:Metrics.screenHeight*0.5
     //paddingRight:20
   },
   programdropdown: {
-    width: Metrics.screenWidth * 0.7,
+    width: Metrics.screenWidth * 0.65,
     height:Metrics.screenHeight*0.5
     //paddingRight:20
   },

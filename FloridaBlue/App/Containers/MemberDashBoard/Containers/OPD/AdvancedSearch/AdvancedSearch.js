@@ -426,7 +426,7 @@ class AdvancedSearch extends Component {
             <View style={{ flex: 0.6, marginTop: 15 }}>
 
               <ModalDropdown
-                dropdownStyle={styles.dropdown}
+                dropdownStyle={styles.dropdown1}
                 options={this.props.configData != undefined && this.props.configData.acceptingPatient != undefined ?
                   _.map(this.props.configData.acceptingPatient.acceptPatientList, 'patientPreference') : null}
                 renderRow={this._renderDropdownRow.bind(this)}
@@ -467,7 +467,7 @@ class AdvancedSearch extends Component {
 
             <View style={{ flex: 0.6, marginTop: 10 }}>
 
-              <ModalDropdown dropdownStyle={styles.dropdown}
+              <ModalDropdown dropdownStyle={styles.dropdown1}
                 onSelect={this._timeSelected}
                 options={this.props.configData != undefined && this.props.configData.workingHours != undefined ?
                   _.map(this.props.configData.workingHours.workHoursList, 'hours') : null}

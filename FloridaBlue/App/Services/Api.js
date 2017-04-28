@@ -89,7 +89,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 
   const getStaffLanguage = (data) => api.post('/opd/languages', {
     "language": "EN",
-    "applicationId": "OPD",
     "who": "staff"
   })
 

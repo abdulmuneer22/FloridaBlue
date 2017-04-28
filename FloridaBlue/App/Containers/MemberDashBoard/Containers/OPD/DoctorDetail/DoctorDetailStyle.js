@@ -209,7 +209,7 @@ export default StyleSheet.create({
    plusView1:{
      flexDirection:'row', flex:1,
      alignItems:'center',
-      backgroundColor:Colors.flBlue.grey2,
+      backgroundColor:Colors.flBlue.grey3,
       height:60
    },
    plusText:{
