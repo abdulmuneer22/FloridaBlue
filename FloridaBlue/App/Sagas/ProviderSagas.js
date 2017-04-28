@@ -7,7 +7,7 @@ export function * sendNetworkListRequest (api, {data}) {
   if (response.ok) {
     var error = null
     var data = response.data
-    
+
     for (var i = 0; i < data.data.memberNetworkList.length; i++) {
       var networkItem = data.data.memberNetworkList[i]
       var networkCodeList = []
@@ -24,16 +24,27 @@ export function * sendNetworkListRequest (api, {data}) {
 }
 
 export function * sendProviderSearchRequest (api, {data}) {
-  console.log("Provider Search",data)
    const response = yield call(api.postProviderSearch, data)
-   console.log("I am befor response",response)
   if (response.ok) {
     var error = null
     var data = response.data
     yield put(ProviderActions.sendProviderSearchSuccess(data))
   } else {
     var data=response.data
-        yield put(ProviderActions.sendProviderSearchFailure(data))
+    yield put(ProviderActions.sendProviderSearchFailure(data))
+  }
+}
+
+export function * sendPharmacySearchRequest (api, {data}) {
+  console.tron.log("Pharmacy Search Saga")
+  const response = yield call(api.postPharmacySearch, data)
+  if (response.ok) {
+    var error = null
+    var data = response.data
+    yield put(ProviderActions.sendPharmacySearchSuccess(data))
+  } else {
+    var data=response.data
+    yield put(ProviderActions.sendPharmacySearchFailure(data))
   }
 }
 

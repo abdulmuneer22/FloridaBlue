@@ -10,6 +10,9 @@ const { Types, Creators } = createActions({
   sendProviderSearchRequest: ['data'],
   sendProviderSearchSuccess: ['data'],
   sendProviderSearchFailure: ['data'],
+  sendPharmacySearchRequest: ['data'],
+  sendPharmacySearchSuccess: ['data'],
+  sendPharmacySearchFailure: ['data'],
   sendCareTypeRequest: ['data'],
   sendCareTypeSuccess: ['data'],
   sendCareTypeFailure: ['data'],
@@ -98,7 +101,6 @@ export const _sendNetworkListSuccess = (state: Object, {data}: Object) =>
 export const _sendNetworkListFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
 
-
 // sendProviderSearchRequest
 export const _sendProviderSearchRequest = (state: Object) => state.merge({ fetching: true })
 
@@ -108,6 +110,17 @@ export const _sendProviderSearchSuccess = (state: Object, {data}: Object) =>
 
 // sendProviderSearchFailure
 export const _sendProviderSearchFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+
+// sendPharmacySearchRequest
+export const _sendPharmacySearchRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendPharmacySearchSuccess
+export const _sendPharmacySearchSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
+
+// sendProviderSearchFailure
+export const _sendPharmacySearchFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
 
 // sendCareTypeRequest
@@ -255,6 +268,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEND_PROVIDER_SEARCH_REQUEST]: _sendProviderSearchRequest,
   [Types.SEND_PROVIDER_SEARCH_SUCCESS]: _sendProviderSearchSuccess,
   [Types.SEND_PROVIDER_SEARCH_FAILURE]: _sendProviderSearchFailure,
+  [Types.SEND_PHARMACY_SEARCH_REQUEST]: _sendPharmacySearchRequest,
+  [Types.SEND_PHARMACY_SEARCH_SUCCESS]: _sendPharmacySearchSuccess,
+  [Types.SEND_PHARMACY_SEARCH_FAILURE]: _sendPharmacySearchFailure,
   [Types.SEND_CARE_TYPE_REQUEST]: _sendCareTypeRequest,
   [Types.SEND_CARE_TYPE_SUCCESS]: _sendCareTypeSuccess,
   [Types.SEND_CARE_TYPE_FAILURE]: _sendCareTypeFailure,
