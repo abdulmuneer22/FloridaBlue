@@ -8,7 +8,8 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback, 
+  Platform
 } from 'react-native'
 
 import { Images, Colors, Metrics, Fonts } from '../../../../../Themes'
@@ -190,7 +191,7 @@ class CCard extends Component {
           }
 
               </View>
-              <Image source={Images[ImageInput]} style={styles.backgroundImage} />
+              <Image source={Images[ImageInput]} style={styles.backgroundImage} resizeMode={(Platform.OS === 'ios') ? 'contain' :'cover'}/>
             </View>
 
             
