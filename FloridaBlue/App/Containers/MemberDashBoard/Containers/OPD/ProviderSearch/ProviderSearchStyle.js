@@ -105,6 +105,7 @@ export default StyleSheet.create({
   },
   locationView: {
     backgroundColor: Colors.flBlue.grey1,
+    marginTop: Metrics.doubleBaseMargin,
     paddingTop: Metrics.doubleBaseMargin,
     paddingBottom: Metrics.doubleBaseMargin,
     flexDirection: 'row'
