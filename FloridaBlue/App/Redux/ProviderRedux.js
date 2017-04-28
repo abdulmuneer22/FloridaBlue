@@ -80,7 +80,9 @@ export const INITIAL_STATE = Immutable({
   planCategoryList: [],
   planSubCategoryList: [],
   memberNetworkList: [],
-  networkCodeList: []
+  networkCodeList: [],
+  providerKey: "1080402",
+  addressKey: "151028"
 })
 
 /* ------------- Reducers ------------- */

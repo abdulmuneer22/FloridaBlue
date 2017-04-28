@@ -21,7 +21,7 @@ export default class DoctorLocation extends Component {
     render() {
         return (
             <View style={{
-                height: Metrics.screenHeight * 0.4,
+                height: Metrics.screenHeight * 0.5,
                 flex:1
                 // backgroundColor : 'red'
             }}>

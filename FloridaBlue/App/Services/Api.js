@@ -100,8 +100,8 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 
   const getDoctorDetail = (data) => api.post('/opd/details', {
     "language": "EN",
-    "providerKey": "1080402",
-    "addressKey": "151028",
+    "providerKey": data && data.providerKey,
+    "addressKey": data && data.addressKey,
     "planCode": "MMHMO"
   })
 

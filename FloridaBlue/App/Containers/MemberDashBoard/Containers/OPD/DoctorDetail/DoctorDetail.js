@@ -82,7 +82,7 @@ class DoctorDetail extends Component {
     componentDidMount() {
         console.tron.log('I am DoctorList screen')
         console.tron.log(this.props.doctordetail)
-        this.props.attemptDoctorDetail()
+        this.props.attemptDoctorDetail(this.props)
         //this.props.attemptProviderSearch(this.props)
     }
 
@@ -101,7 +101,7 @@ class DoctorDetail extends Component {
     }
 
     render() {
-        console.log(this.props.doctordetail)
+        console.log(this.props)
         return (
 
             <View style={styles.container} >
@@ -214,14 +214,16 @@ const mapStateToProps = (state) => {
         leftActive: state.provider.leftActive,
         rightActive: state.provider.rightActive,
         saveProvider: state.saveprovider.data,
-        doctordetail: state.provider.doctordetail
+        doctordetail: state.provider.doctordetail,
+        providerKey: state.provider.providerKey,
+        addressKey: state.provider.addressKey
 
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        attemptDoctorDetail: () => dispatch(ProviderActions.sendDoctorDetailRequest()),
+        attemptDoctorDetail: (data) => dispatch(ProviderActions.sendDoctorDetailRequest(data)),
         addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
         removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey))
     }
