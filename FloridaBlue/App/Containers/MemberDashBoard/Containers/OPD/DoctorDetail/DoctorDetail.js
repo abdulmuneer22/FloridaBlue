@@ -29,7 +29,7 @@ import NavItems from '../../../../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
-import { Container, Content, Footer, FooterTab } from 'native-base';
+import { Container, Content, Footer, FooterTab, Card } from 'native-base';
 import SaveProviderActions from '../../../../../Redux/SaveProviderRedux'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
@@ -129,27 +129,62 @@ class DoctorDetail extends Component {
                             </View>
                     
                     
-                             {this.props.doctordetail && this.props.doctordetail.certifications ?
-                             <View style={{flex:1}}> 
-                                 <View style={{flexDirection:'row'}}>                  
-                  
-
+                             
+                 <View style={{flex:1}}> 
+                {this.props.doctordetail && this.props.doctordetail.certifications ?   
+                <View style={{flex:1}}>                         
                 <TouchableOpacity onPress={this.toggle1}>
-                    <Flb name={this.state.visible1 ? 'minus' : 'plus'} color={Colors.flBlue.ocean} size={Metrics.icons.medium} />
-                </TouchableOpacity>
-                <Text style={styles.title}>
+                    <Card style={this.state.visible1 ? styles.plusView1 : styles.plusView}>
+                    <Flb name={this.state.visible1 ? 'minus' : 'plus'} color={this.state.visible1 ? Colors.snow : Colors.flBlue.ocean} 
+                    style={{marginLeft:20}} size={Metrics.icons.medium} />
+                
+                <Text style={this.state.visible1 ? styles.plusText1 : styles.plusText}>
                     Other Locations
                 </Text>
-                              </View>  
+                </Card>
+                </TouchableOpacity> 
 
-                             <HideableView visible={this.state.visible1}>
-
-                    <Text>
+                { this.state.visible1 ? <HideableView visible={this.state.visible1}>
+                    <View style={{flex:1, marginLeft:80}}>
+                    <Text style={{fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                    color:Colors.flBlue.grey5,
+                                    }}>
                      {this.props.doctordetail.certifications[0].certificationDescription}
                     </Text>
-                </HideableView>
-                </View>
-                             : null }    
+                    </View>
+                </HideableView> : null}
+                </View>  
+                : null }    
+
+                 
+                <View style={{flex:1}}>  
+                     {this.props.doctordetail && this.props.doctordetail.certifications ? 
+                     <View style={{flex:1}}>                       
+                <TouchableOpacity onPress={this.toggle}>
+                    <Card style={this.state.visible ? styles.plusView1 : styles.plusView}>
+                    <Flb name={this.state.visible ? 'minus' : 'plus'} color={this.state.visible ? Colors.snow : Colors.flBlue.ocean } 
+                    style={{marginLeft:20}} size={Metrics.icons.medium} />
+                
+                <Text style={this.state.visible ? styles.plusText1 : styles.plusText}>
+                    Board Certifications / Eligibility
+                </Text>
+                </Card>
+                </TouchableOpacity> 
+
+                { this.state.visible ? <HideableView visible={this.state.visible}>
+                    <View style={{flex:1, marginLeft:80}}>
+                    <Text style={{fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                    color:Colors.flBlue.grey5,
+                                    }}>
+                     {this.props.doctordetail.certifications[0].certificationDescription}
+                    </Text>
+                    </View>
+                </HideableView> : null}
+               </View>
+                : null }    
+                 </View>  
+
+                 </View>
 
                         </View>
                     </ScrollView>

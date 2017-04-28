@@ -377,7 +377,8 @@ class AdvancedSearch extends Component {
 
             <View style={{ marginLeft: 15, marginTop: 10 }}>
               <Text style={styles.searchText}> Search Radius:</Text>
-              <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular }}>{this.props.searchRange} mi</Text>
+              <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular,
+                            color:Colors.flBlue.anvil }}>{this.props.searchRange} mi</Text>
               <Slider
                 value={this.props.searchRange}
                 minimumValue={0}
@@ -393,7 +394,7 @@ class AdvancedSearch extends Component {
             {
                 this.props.configData !=undefined && this.props.configData.gender !=undefined ?
             <Text style={styles.doctorTextStyle}>
-             {this.props.configData.gender.displayName}
+             {this.props.configData.gender.displayName}:
              </Text>:null}
 
             <View style={{ flexDirection: 'row', marginLeft: 30 }}>
