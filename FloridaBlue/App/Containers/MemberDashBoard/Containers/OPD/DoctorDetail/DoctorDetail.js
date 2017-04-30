@@ -101,7 +101,7 @@ class DoctorDetail extends Component {
     }
 
     render() {
-        console.log(this.props)
+        console.log(this.props.doctordetail)
         return (
 
             <View style={styles.container} >
@@ -114,9 +114,12 @@ class DoctorDetail extends Component {
                             flex: 1
                         }}>
                         <View style={{flex:1}}>
-                            <DoctorLocation />
+                            <DoctorLocation 
+                            data={this.props.doctordetail}/>
                             </View>
+                            
                             <View style={{ flex: 1 }}>
+                                { this.props.doctordetail.displayName  ? 
                                 <DoctorCard
                                     savedproviders={this.props.saveProvider}
                                     saveProvider={this.saveProvider}
@@ -126,12 +129,13 @@ class DoctorDetail extends Component {
                                     rightActive={this.props.rightActive}
 
                                 />
+                                :null}
                             </View>
-                    
+                            
                     
                              
                  <View style={{flex:1}}> 
-                {this.props.doctordetail && this.props.doctordetail.certifications ?   
+                {this.props.doctordetail.certifications.length > 0 ?   
                 <View style={{flex:1}}>                         
                 <TouchableOpacity onPress={this.toggle1}>
                     <Card style={this.state.visible1 ? styles.plusView1 : styles.plusView}>
@@ -158,7 +162,7 @@ class DoctorDetail extends Component {
 
                  
                 <View style={{flex:1}}>  
-                     {this.props.doctordetail && this.props.doctordetail.certifications ? 
+                     {this.props.doctordetail.certifications.length > 0 ? 
                      <View style={{flex:1}}>                       
                 <TouchableOpacity onPress={this.toggle}>
                     <Card style={this.state.visible ? styles.plusView1 : styles.plusView}>
