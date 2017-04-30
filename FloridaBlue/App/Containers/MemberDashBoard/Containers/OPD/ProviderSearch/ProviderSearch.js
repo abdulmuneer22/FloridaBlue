@@ -53,15 +53,15 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
        this._selectDifferentLocation = this._selectDifferentLocation.bind(this)
        this._urgentCare = this._urgentCare.bind(this)
 
-        this.state = {
-          knownCareState: false,
-          unknownCareState: false,
-          specialityState: false,
-          currentLocaleState: false,
-          newLocationState: false,
-          savedProviderState: true,
-          urgentCareState: false
-        }
+       this.state = {
+         knownCareState: false,
+         unknownCareState: false,
+         specialityState: false,
+         currentLocaleState: false,
+         newLocationState: false,
+         savedProviderState: true,
+         urgentCareState: false
+       }
     }
 
     componentDidMount() {
@@ -96,7 +96,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _specialitySelected(index, value:string) {
-      var selectedSubCategoryCode = this.props.planSubCategoryList[index].categoryCode
+      var selectedSubCategoryCode = this.props.planSubCategoryList[index].subCategoryCode
       this.props.changeSubCategoryCode(selectedSubCategoryCode)
       this.props.changeSpecialityType(value)
       this.setState({specialityState: false}, function() {
@@ -110,7 +110,11 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _getResults() {
-      this.props.attemptProviderSearch(this.props)
+      if (this.props.categoryCode == "07" && this.props.subCategoryCode == "700") {
+          this.props.attemptPharmacySearch(this.props)
+      } else {
+          this.props.attemptProviderSearch(this.props)
+      }
       NavigationActions.DoctorList()
     }
 
@@ -300,7 +304,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
               </HideableView>
 
-              <HideableView visible={this.state.unknownCareState && this.state.currentLocaleState == false} removeWhenHidden={true}>
+              <HideableView visible={!this.state.currentLocaleState} removeWhenHidden={true}>
                 <View style={[styles.locationView]}>
                   <View style={styles.locationTextContainer}>
                     <Text style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
@@ -315,7 +319,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </View>
               </HideableView>
 
-              <HideableView style={styles.editLocationView} visible={this.state.unknownCareState && this.state.currentLocaleState} removeWhenHidden={true}>
+              <HideableView style={styles.editLocationView} visible={this.state.currentLocaleState} removeWhenHidden={true}>
                 <View style={styles.mapIcon}>
                   <Image source={Images.mapUnselectedIcon} />
                   <Text style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
@@ -336,7 +340,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </View>
               </HideableView>
 
-              <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.currentLocaleState && !this.state.newLocationState && this.state.unknownCareState} removeWhenHidden={true}></HideableView>
+              <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.currentLocaleState && !this.state.newLocationState} removeWhenHidden={true}></HideableView>
 
               <HideableView style={styles.differentLocationView} visible={this.state.unknownCareState && this.state.newLocationState} removeWhenHidden={true}>
                 <Text style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
@@ -368,11 +372,11 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </TouchableOpacity>
               </HideableView>
 
-             
+
             </View>
-       
-        
-              
+
+
+
                </ScrollView>
                </View>
 
@@ -427,6 +431,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       attemptCareTypes: () => dispatch(ProviderActions.sendCareTypeRequest()),
       getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
       attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
+      attemptPharmacySearch: (data) => dispatch(ProviderActions.sendPharmacySearchRequest(data)),
       changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode)),
       changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode)),
       changeProviderName: (providerName) => dispatch(ProviderActions.changeProviderName(providerName)),
