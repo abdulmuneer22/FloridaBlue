@@ -24,7 +24,7 @@ import I18n from 'react-native-i18n'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
-import { Container, Content, Footer, FooterTab, Radio, Button, Fab } from 'native-base'
+import { Container, Content, Footer, FooterTab, Radio, Button, Fab, Card } from 'native-base'
 import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme } from 'react-native-material-kit'
 import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
@@ -426,12 +426,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
         {
           this.state.floatClicked ? 
-          <View style={{ width: Metrics.screenWidth * 0.85, 
+          <Card style={{ width: Metrics.screenWidth * 0.9, 
                          height: Metrics.screenWidth * 0.86,
                          flex:1, 
-                         borderWidth: 1, 
+                         backgroundColor:Colors.transparent,
+                        // borderWidth: 1, 
                          borderRadius: Metrics.screenWidth * 1,
-                         borderColor: '#708090',
+                        // borderColor: '#708090',
                          position: 'absolute',
                          bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
                          right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035,
@@ -450,7 +451,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                            marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028}}>
                            Need Help Now? </Text>
             <Text style={{ textAlign: 'left', 
-                           marginTop: 15, 
+                           marginTop: 15,
+                           color:Colors.flBlue.anvil, 
                            fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0028,  
                            marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028, 
                            marginRight: Metrics.textHeight * Metrics.screenWidth * 0.0055
@@ -459,7 +461,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                   <Image source={Images.viewListButton} style={styles.viewListButton} />
                 </TouchableOpacity>
            
-          </View>
+          </Card>
         : null
         }
 

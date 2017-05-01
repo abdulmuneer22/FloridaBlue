@@ -93,15 +93,18 @@ export default StyleSheet.create({
     height: Metrics.screenHeight * 0.064
   },
   viewListResults: {
-    marginTop: Metrics.mediumMargin,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+    backgroundColor:Colors.transparent,
     marginLeft:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035,
     marginBottom:0,
     justifyContent: 'center',
   },
   viewListButton: {
-    width: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.02,
-    borderRadius: Metrics.mediumMargin * Metrics.screenWidth * 0.0010,
-    height: Metrics.section * Metrics.screenHeight * 0.0025
+    width: Metrics.mediumMargin * Metrics.screenWidth * 0.03,
+    backgroundColor:Colors.transparent,
+    resizeMode:'contain',
+    borderRadius: Metrics.mediumMargin * Metrics.screenWidth * 0.0015,
+    height: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0036
   },
   advancedSearchLink: {
     marginTop: Metrics.doubleBaseMargin * 2,
