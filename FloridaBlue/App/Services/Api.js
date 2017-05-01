@@ -102,17 +102,17 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     "language": "EN",
     "providerKey": data && data.providerKey,
     "addressKey": data && data.addressKey,
-    "planCode": "MMHMO"
+    "planCode": ""
   })
 
   const getCareTypes = (data) => api.post('/opd/types', {
     "language": "EN",
-    "planCode": "MMHMO"
+    "planCode": ""
   })
 
   const getSpecialityTypes = (selectedCategoryCode) => api.post('/opd/specialty', {
     "language": "EN",
-    "planCode": "MMHMO",
+    "planCode": "",
     "categoryCode": selectedCategoryCode
   })
 
@@ -165,7 +165,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 
   const postPharmacySearch = (data) => api.post('/opd/pharmacy/search', {
       "language": "EN",
-      "planCode": "BOPT",
+      "planCode": "",
       "start": 1,
       "end": 25,
       "searchRange": data && data.searchRange ? data.searchRange : 50,
