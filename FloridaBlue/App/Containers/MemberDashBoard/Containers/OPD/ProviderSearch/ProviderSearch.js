@@ -65,8 +65,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
          knownCareState: false,
          unknownCareState: false,
          specialityState: false,
-         currentLocaleState: false,
-         newLocationState: false,
+         changeLocaleState: false,
+         customLocationState: false,
          savedProviderState: true,
          urgentCareState: false,
          floatClicked: false,
@@ -99,6 +99,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   }
 
     _onChecked(event) {
+      console.tron.log("Current Location State: " + this.state.changeLocaleState)
+
       if (event.checked) {
         this.props.changeSubCategoryCode("")
         this.props.changeCategoryCode("ALL")
@@ -134,7 +136,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _editLocation(event) {
-      this.setState({currentLocaleState: true})
+      this.setState({changeLocaleState: true})
       this.setState({specialityState: false})
     }
 
@@ -158,7 +160,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _selectDifferentLocation(event) {
       if (event.checked) {
-        this.setState({newLocationState: true})
+        this.setState({customLocationState: true})
         this.props.changeLatitude(0)
         this.props.changeLongitude(0)
       }
@@ -166,9 +168,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _selectCurrentLocation(event) {
       if (event.checked) {
-        this.setState({currentLocaleState: false})
+        this.setState({changeLocaleState: false})
         this.setState({specialityState: true})
-        this.setState({newLocationState: false})
+        this.setState({customLocationState: false})
         this.props.changeAddress("Using Current Address")
 
         this._getLocation()
@@ -177,9 +179,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _selectHomeLocation(event) {
       if (event.checked) {
-        this.setState({currentLocaleState: false})
+        this.setState({changeLocaleState: false})
         this.setState({specialityState: true})
-        this.setState({newLocationState: false})
+        this.setState({customLocationState: false})
         this.props.changeLatitude(0)
         this.props.changeLongitude(0)
         this.props.changeAddress(this.props.homeAddress)
@@ -187,9 +189,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _saveLocation(event) {
-      this.setState({currentLocaleState: false})
+      this.setState({changeLocaleState: false})
       this.setState({specialityState: true})
-      this.setState({newLocationState: false})
+      this.setState({customLocationState: false})
     }
 
     _resetState() {
@@ -217,7 +219,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _urgentCare() {
-      console.tron.log("Urgent care selected..")
       if (this.state.urgentCareState) {
         this.setState({urgentCareState: false})
       } else {
@@ -338,7 +339,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
               </HideableView>
 
-              <HideableView visible={!this.state.currentLocaleState} removeWhenHidden={true}>
+              <HideableView visible={!this.state.changeLocaleState && (this.state.unknownCareState || this.state.knownCareState)} removeWhenHidden={true}>
                 <View style={[styles.locationView]}>
                   <View style={styles.locationTextContainer}>
                     <Text style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
@@ -353,7 +354,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </View>
               </HideableView>
 
-              <HideableView style={styles.editLocationView} visible={this.state.currentLocaleState} removeWhenHidden={true}>
+              <HideableView style={styles.editLocationView} visible={this.state.changeLocaleState} removeWhenHidden={true}>
                 <View style={styles.mapIcon}>
                   <Image source={Images.mapUnselectedIcon} />
                   <Text style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
@@ -374,9 +375,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </View>
               </HideableView>
 
-              <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.currentLocaleState && !this.state.newLocationState} removeWhenHidden={true}></HideableView>
+              <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.changeLocaleState && !this.state.customLocationState} removeWhenHidden={true}></HideableView>
 
-              <HideableView style={styles.differentLocationView} visible={this.state.unknownCareState && this.state.newLocationState} removeWhenHidden={true}>
+              <HideableView style={styles.differentLocationView} visible={(this.state.unknownCareState || this.state.knownCareState) && this.state.customLocationState} removeWhenHidden={true}>
                 <Text style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
                 <MKTextField
                   ref='newLocation'
@@ -405,70 +406,30 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                   </View>
                 </TouchableOpacity>
               </HideableView>
-
-
             </View>
+          </ScrollView>
 
-
-               </ScrollView>
-               <View style={{flex:4}}>
-                {
-          this.state.helpStatus ?
-          <View style={{
-            flex:1,
-            position: 'absolute',
-            bottom: 5,
-            right: 10,
-          }}>
-            <Flb name="urgent-care-circle" onPress={this.handleNeedHelp.bind(this)}
-            color="red" size={Metrics.icons.large * Metrics.screenWidth * 0.0035}/>
-          </View>
-        : null
-        }
-
-        {
-          this.state.floatClicked ?
-          <View style={{ width: Metrics.screenWidth * 0.85,
-                         height: Metrics.screenWidth * 0.86,
-                         flex:1,
-                         borderWidth: 1,
-                         borderRadius: Metrics.screenWidth * 1,
-                         borderColor: '#708090',
-                         position: 'absolute',
-                         bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
-                         right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035,
-                        }}>
-            <Text style={{ marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
-                           marginTop: 30,
-                           backgroundColor:Colors.transparent}}
-                  onPress={this.dismissNeedHelp.bind(this)}>
-                  {closeIcon}
-                  </Text>
-            <Text style={{ textAlign: 'left',
-                           fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                           marginTop: 15,
-                           color: 'red',
-                           backgroundColor:Colors.transparent,
-                           marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028}}>
-                           Need Help Now? </Text>
-            <Text style={{ textAlign: 'left',
-                           marginTop: 15,
-                           fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0028,
-                           marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028,
-                           marginRight: Metrics.textHeight * Metrics.screenWidth * 0.0055
-                           }}>We can show you a list of urgent care centers closest to you. </Text>
+          <HideableView visible={this.state.savedProviderState} removeWhenHidden={true}>
+            <View style={{flex:4}}>
+            {this.state.helpStatus ?
+              <View style={styles.urgentCareCircle}>
+                <Flb name="urgent-care-circle" onPress={this.handleNeedHelp.bind(this)} color="red" size={Metrics.icons.large * Metrics.screenWidth * 0.0035}/>
+              </View>
+              : null}
+              {this.state.floatClicked ?
+              <View style={styles.urgentCareContainer}>
+                <Text style={styles.dismissUrgentIcon} onPress={this.dismissNeedHelp.bind(this)}>{closeIcon}</Text>
+                <Text style={styles.needHelpText}>Need Help Now?</Text>
+                <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
                 <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
                   <Image source={Images.viewListButton} style={styles.viewListButton} />
                 </TouchableOpacity>
-
-          </View>
-        : null
-        }
-
-
-               </View>
-
-             </View>
+              </View>
+              : null
+              }
+            </View>
+          </HideableView>
+        </View>
       </View>
       )
     }
@@ -487,8 +448,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       unknownCareState: state.provider.unknownCareState,
       savedProviderState: state.provider.savedProviderState,
       specialityState: state.provider.specialityState,
-      currentLocaleState: state.provider.currentLocaleState,
-      newLocationState: state.provider.newLocationState,
+      changeLocaleState: state.provider.changeLocaleState,
+      customLocationState: state.provider.customLocationState,
       currentLocation: state.provider.currentLocation,
       latitude: state.provider.latitude,
       longitude: state.provider.longitude,
