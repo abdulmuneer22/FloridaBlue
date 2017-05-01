@@ -32,7 +32,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.anvil,
     textAlign: 'center',
-    marginTop: Metrics.doubleBaseMargin * 2,
+    marginTop: Metrics.doubleBaseMargin ,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600'
   },
@@ -46,7 +46,7 @@ export default StyleSheet.create({
   },
   subheading: {
     color: Colors.flBlue.grey5,
-    marginTop: Metrics.doubleBaseMargin * 2,
+    marginTop: Metrics.doubleBaseMargin * 1,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     textAlign: 'center'
@@ -69,7 +69,7 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   savedProviderLink: {
-    marginTop: Metrics.doubleBaseMargin,
+    marginTop: Metrics.mediumMargin,
     alignItems: 'center'
   },
   savedProviderLinkText: {
@@ -84,13 +84,24 @@ export default StyleSheet.create({
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
   },
   getResults: {
-    marginTop: Metrics.doubleBaseMargin * 2,
+    marginTop: Metrics.doubleBaseMargin ,
     alignItems: 'center',
   },
-  getResultsButton: {
+   getResultsButton: {
     width: Metrics.screenWidth * 0.5,
     borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
     height: Metrics.screenHeight * 0.064
+  },
+  viewListResults: {
+    marginTop: Metrics.mediumMargin,
+    marginLeft:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035,
+    marginBottom:0,
+    justifyContent: 'center',
+  },
+  viewListButton: {
+    width: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.02,
+    borderRadius: Metrics.mediumMargin * Metrics.screenWidth * 0.0010,
+    height: Metrics.section * Metrics.screenHeight * 0.0025
   },
   advancedSearchLink: {
     marginTop: Metrics.doubleBaseMargin * 2,

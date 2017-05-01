@@ -30,7 +30,6 @@ const images = {
   loginButton: require('../Images/login-screen-login-btn-blue.png'),
   loginButtonGreen: require('../Images/login-btn-green.png'),
   loginLogo: require('../Images/login-logo.png'),
-  loginLogo: require('../Images/login-logo.png'),
   loginNowButton: require('../Images/login-now-btn-dk-blue.png'),
   loginNowButtonGreen: require('../Images/login-now-btn.png'),
   logo: require('../Images/ir.png'),
@@ -61,6 +60,8 @@ const images = {
   urgentcare: require('../Images/urgent-care.gif'),
   hearthand: require('../Images/heart-hand.gif'),
   getResultsButton: require('../Images/get-results-btn.png'),
+  saveLocationButton: require('../Images/save-location.png'),
+  viewListButton: require('../Images/view-list-btn.png'),
   mapUnselectedPin: require('../Images/map-unselected.png')
 }
 

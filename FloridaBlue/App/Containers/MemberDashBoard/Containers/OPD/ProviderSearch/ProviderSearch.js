@@ -18,12 +18,13 @@ import {
 import React, { Component, PropTypes } from 'react'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './ProviderSearchStyle'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavItems from '../../../../../Navigation/NavItems.js'
 import I18n from 'react-native-i18n'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
-import { Container, Content, Footer, FooterTab, Radio, Button, Icon, Fab } from 'native-base'
+import { Container, Content, Footer, FooterTab, Radio, Button, Fab } from 'native-base'
 import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme } from 'react-native-material-kit'
 import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
@@ -31,6 +32,12 @@ import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
 import ActionButton from 'react-native-action-button';
 
+const closeIcon = (<Icon name="close"
+                            size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+                            style={{backgroundColor:Colors.transparent}}
+                            color="#000000" />)
+
+const { height, width } = Dimensions.get('window');
 const theme = getTheme()
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -60,14 +67,35 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
          currentLocaleState: false,
          newLocationState: false,
          savedProviderState: true,
-         urgentCareState: false
-       }
-    }
+         urgentCareState: false,
+         floatClicked: false,
+         helpStatus: true, 
+         optionSelected: 'You selected an option'
+    };
+    this.handleNeedHelp = this.handleNeedHelp.bind(this)
+    this.dismissNeedHelp = this.dismissNeedHelp.bind(this)
+  }
 
+  onSelect(index, value){
+    this.setState({
+      helpStatus: false
+    })
+  }
     componentDidMount() {
       this._resetState()
       this.props.attemptCareTypes()
     }
+  handleNeedHelp(){
+    this.setState({
+      floatClicked: true
+    })
+  }
+
+  dismissNeedHelp(){
+    this.setState({
+      floatClicked: false
+    })
+  }
 
     _onChecked(event) {
       if (event.checked) {
@@ -115,6 +143,10 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       } else {
           this.props.attemptProviderSearch(this.props)
       }
+      NavigationActions.DoctorList()
+    }
+
+    _viewListResults() {
       NavigationActions.DoctorList()
     }
 
@@ -234,7 +266,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       return (
         <View style={styles.container}>
           {this._renderHeader()}
-          <View style={{flex:9}}>
+          <View style={{flex:11}}>
           <ScrollView>
             <View style={{flex:1}}>
               <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
@@ -375,26 +407,66 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
             </View>
 
-
-
+            
                </ScrollView>
+               <View style={{flex:4}}>
+                {
+          this.state.helpStatus ? 
+          <View style={{
+            flex:1,
+            position: 'absolute',
+            bottom: 5,
+            right: 10,
+          }}>
+            <Flb name="urgent-care-circle" onPress={this.handleNeedHelp.bind(this)} 
+            color="red" size={Metrics.icons.large * Metrics.screenWidth * 0.0035}/>
+          </View>
+        : null
+        }
+
+        {
+          this.state.floatClicked ? 
+          <View style={{ width: Metrics.screenWidth * 0.85, 
+                         height: Metrics.screenWidth * 0.86,
+                         flex:1, 
+                         borderWidth: 1, 
+                         borderRadius: Metrics.screenWidth * 1,
+                         borderColor: '#708090',
+                         position: 'absolute',
+                         bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
+                         right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035,
+                        }}>
+            <Text style={{ marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115, 
+                           marginTop: 30,
+                           backgroundColor:Colors.transparent}}
+                  onPress={this.dismissNeedHelp.bind(this)}>
+                  {closeIcon}
+                  </Text>                     
+            <Text style={{ textAlign: 'left', 
+                           fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
+                           marginTop: 15, 
+                           color: 'red', 
+                           backgroundColor:Colors.transparent,
+                           marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028}}>
+                           Need Help Now? </Text>
+            <Text style={{ textAlign: 'left', 
+                           marginTop: 15, 
+                           fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0028,  
+                           marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028, 
+                           marginRight: Metrics.textHeight * Metrics.screenWidth * 0.0055
+                           }}>We can show you a list of urgent care centers closest to you. </Text>
+                <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
+                  <Image source={Images.viewListButton} style={styles.viewListButton} />
+                </TouchableOpacity>
+           
+          </View>
+        : null
+        }
+
+
                </View>
 
-                <View style={{flex:4}}>
-                <HideableView visible={this.state.urgentCareState} removeWhenHidden={true}>
-                  <Text>Need help now?</Text>
-                  <Text>We can show you a list of urgent care centers close to you</Text>
-                </HideableView>
-                <View style={{flex:1}}>
-                <ActionButton
-                  buttonColor="rgba(231,76,60,1)"
-                  onPress={this._urgentCare}
-                  position="right"
-                  offsetX={10}
-                  offsetY={50}
-                />
-                </View>
-              </View>
+             </View>  
       </View>
       )
     }
