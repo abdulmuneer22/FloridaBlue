@@ -202,6 +202,17 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     }
   )
 
+  const postUrgentSearch = (data) => api.post('/opd/urgent/search', {
+      "language": "EN",
+      "planCode": "",
+      "start": 1,
+      "end": 25,
+      "address": data && data.address ? data.address :"",
+      "originLatitude": data.latitude,
+      "originLongitude": data.longitude,
+    }
+  )
+
   const postIdentification = (data) => api.post('/identifications', {
     'User': {
       'applicationId': APP_ID,
@@ -296,6 +307,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     postNetworkList,
     postProviderSearch,
     postPharmacySearch,
+    postUrgentSearch,
     postIdentification,
     postPersonalInformation,
     postRegistrationCode,

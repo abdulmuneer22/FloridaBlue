@@ -59,6 +59,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
        this._selectHomeLocation = this._selectHomeLocation.bind(this)
        this._selectDifferentLocation = this._selectDifferentLocation.bind(this)
        this._urgentCare = this._urgentCare.bind(this)
+       this._viewListResults = this._viewListResults.bind(this)
 
        this.state = {
          knownCareState: false,
@@ -69,7 +70,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
          savedProviderState: true,
          urgentCareState: false,
          floatClicked: false,
-         helpStatus: true, 
+         helpStatus: true,
          optionSelected: 'You selected an option'
     };
     this.handleNeedHelp = this.handleNeedHelp.bind(this)
@@ -147,7 +148,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _viewListResults() {
-      NavigationActions.DoctorList()
+      this.props.attemptUrgentSearch(this.props)
+      //NavigationActions.DoctorList()
     }
 
     _advancedSearch() {
@@ -407,58 +409,58 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
             </View>
 
-            
+
                </ScrollView>
                <View style={{flex:4}}>
                 {
-          this.state.helpStatus ? 
+          this.state.helpStatus ?
           <View style={{
             flex:1,
             position: 'absolute',
             bottom: 5,
             right: 10,
           }}>
-            <Flb name="urgent-care-circle" onPress={this.handleNeedHelp.bind(this)} 
+            <Flb name="urgent-care-circle" onPress={this.handleNeedHelp.bind(this)}
             color="red" size={Metrics.icons.large * Metrics.screenWidth * 0.0035}/>
           </View>
         : null
         }
 
         {
-          this.state.floatClicked ? 
-          <View style={{ width: Metrics.screenWidth * 0.85, 
+          this.state.floatClicked ?
+          <View style={{ width: Metrics.screenWidth * 0.85,
                          height: Metrics.screenWidth * 0.86,
-                         flex:1, 
-                         borderWidth: 1, 
+                         flex:1,
+                         borderWidth: 1,
                          borderRadius: Metrics.screenWidth * 1,
                          borderColor: '#708090',
                          position: 'absolute',
                          bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
                          right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035,
                         }}>
-            <Text style={{ marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115, 
+            <Text style={{ marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
                            marginTop: 30,
                            backgroundColor:Colors.transparent}}
                   onPress={this.dismissNeedHelp.bind(this)}>
                   {closeIcon}
-                  </Text>                     
-            <Text style={{ textAlign: 'left', 
+                  </Text>
+            <Text style={{ textAlign: 'left',
                            fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                           marginTop: 15, 
-                           color: 'red', 
+                           marginTop: 15,
+                           color: 'red',
                            backgroundColor:Colors.transparent,
                            marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028}}>
                            Need Help Now? </Text>
-            <Text style={{ textAlign: 'left', 
-                           marginTop: 15, 
-                           fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0028,  
-                           marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028, 
+            <Text style={{ textAlign: 'left',
+                           marginTop: 15,
+                           fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0028,
+                           marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028,
                            marginRight: Metrics.textHeight * Metrics.screenWidth * 0.0055
                            }}>We can show you a list of urgent care centers closest to you. </Text>
                 <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
                   <Image source={Images.viewListButton} style={styles.viewListButton} />
                 </TouchableOpacity>
-           
+
           </View>
         : null
         }
@@ -466,7 +468,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
                </View>
 
-             </View>  
+             </View>
       </View>
       )
     }
@@ -504,6 +506,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
       attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
       attemptPharmacySearch: (data) => dispatch(ProviderActions.sendPharmacySearchRequest(data)),
+      attemptUrgentSearch: (data) => dispatch(ProviderActions.sendUrgentSearchRequest(data)),
       changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode)),
       changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode)),
       changeProviderName: (providerName) => dispatch(ProviderActions.changeProviderName(providerName)),

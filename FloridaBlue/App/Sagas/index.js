@@ -52,6 +52,7 @@ import {registerUserRequest} from './RegistrationSagas'
 import {sendNetworkListRequest} from './ProviderSagas'
 import {sendProviderSearchRequest} from './ProviderSagas'
 import {sendPharmacySearchRequest} from './ProviderSagas'
+import {sendUrgentSearchRequest} from './ProviderSagas'
 import {sendCareTypeRequest} from './ProviderSagas'
 import {sendSpecialityTypeRequest} from './ProviderSagas'
 import {sendDoctorLanguageRequest} from './ProviderSagas'
@@ -102,6 +103,7 @@ export default function * root () {
     takeLatest(ProviderTypes.SEND_NETWORK_LIST_REQUEST, sendNetworkListRequest, api),
     takeLatest(ProviderTypes.SEND_PROVIDER_SEARCH_REQUEST, sendProviderSearchRequest, api),
     takeLatest(ProviderTypes.SEND_PHARMACY_SEARCH_REQUEST, sendPharmacySearchRequest, api),
+    takeLatest(ProviderTypes.SEND_URGENT_SEARCH_REQUEST, sendUrgentSearchRequest, api),
     takeLatest(ProviderTypes.SEND_CARE_TYPE_REQUEST, sendCareTypeRequest, api),
     takeLatest(ProviderTypes.SEND_SPECIALITY_TYPE_REQUEST, sendSpecialityTypeRequest, api),
     takeLatest(ProviderTypes.SEND_DOCTOR_LANGUAGE_REQUEST, sendDoctorLanguageRequest, api),
