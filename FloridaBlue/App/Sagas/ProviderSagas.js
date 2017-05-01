@@ -36,7 +36,6 @@ export function * sendProviderSearchRequest (api, {data}) {
 }
 
 export function * sendPharmacySearchRequest (api, {data}) {
-  console.tron.log("Pharmacy Search Saga")
   const response = yield call(api.postPharmacySearch, data)
   if (response.ok) {
     var error = null
@@ -45,6 +44,18 @@ export function * sendPharmacySearchRequest (api, {data}) {
   } else {
     var data=response.data
     yield put(ProviderActions.sendPharmacySearchFailure(data))
+  }
+}
+
+export function * sendUrgentSearchRequest (api, {data}) {
+  const response = yield call(api.postUrgentSearch, data)
+  if (response.ok) {
+    var error = null
+    var data = response.data
+    yield put(ProviderActions.sendUrgentSearchSuccess(data))
+  } else {
+    var data=response.data
+    yield put(ProviderActions.sendUrgentSearchFailure(data))
   }
 }
 

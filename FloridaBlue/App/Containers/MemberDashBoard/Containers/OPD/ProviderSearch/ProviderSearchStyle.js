@@ -95,6 +95,7 @@ export default StyleSheet.create({
   viewListResults: {
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
     backgroundColor:Colors.transparent,
+    width: Metrics.mediumMargin * Metrics.screenWidth * 0.03,
     marginLeft:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035,
     marginBottom:0,
     justifyContent: 'center',
@@ -233,5 +234,44 @@ export default StyleSheet.create({
   },
   fabView: {
     marginTop: Metrics.doubleBaseMargin
+  },
+  urgentCareCircle: {
+    flex:1,
+    position: 'absolute',
+    bottom: 5,
+    right: 10
+  },
+  urgentCareContainer: {
+    width: Metrics.screenWidth * 0.9, 
+    height: Metrics.screenWidth * 0.9,
+    flex:1, 
+    backgroundColor:Colors.transparent,
+    // borderWidth: 1, 
+    borderRadius: Metrics.screenWidth * 1,
+    // borderColor: '#708090',
+    position: 'absolute',
+    bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
+    right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035
+  },
+  dismissUrgentIcon: {
+    marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
+    marginTop: 30,
+    backgroundColor:Colors.transparent
+  },
+  needHelpText: {
+    textAlign: 'left',
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
+    marginTop: 20,
+    color: 'red',
+    backgroundColor:Colors.transparent,
+    marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.003
+  },
+  urgentCareMessage: {
+   textAlign: 'left', 
+    marginTop: 15,
+    color:Colors.flBlue.anvil, 
+    fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0028,  
+    marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028, 
+    marginRight: Metrics.textHeight * Metrics.screenWidth * 0.0055
   }
 })
