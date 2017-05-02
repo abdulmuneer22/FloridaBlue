@@ -8,15 +8,17 @@ const window = Dimensions.get('window')
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 
 const theme = getTheme()
-
-
+const ITEM_SPACING = 10
+const ITEM_PREVIEW = 10
+const ITEM_PREVIEW_HEIGHT = 150
+const ITEM_WIDTH = window.width - (2 * ITEM_SPACING) - (2 * ITEM_PREVIEW)
 
 export default StyleSheet.create({
-
-
   container: {
     flex: 1,
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.snow,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
   },
   headerContainer: {
     flexDirection: 'row',
@@ -35,7 +37,49 @@ export default StyleSheet.create({
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
 
   },
-  calloutView: {
-      width: 60
+  itemContainer: {
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    paddingHorizontal: (ITEM_SPACING / 2) + ITEM_PREVIEW,
+    position: 'absolute',
+    // top: screen.height - ITEM_PREVIEW_HEIGHT - 64,
+    paddingTop: window.height - ITEM_PREVIEW_HEIGHT - 64,
+    // paddingTop: !ANDROID ? 0 : screen.height - ITEM_PREVIEW_HEIGHT - 64,
+  },
+  map: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: Metrics.screenWidth,
+    height: Metrics.screenHeight
+  },
+  item: {
+    width: ITEM_WIDTH,
+    height: window.height + (2 * ITEM_PREVIEW_HEIGHT),
+    backgroundColor: 'red',
+    marginHorizontal: ITEM_SPACING / 2,
+    overflow: 'hidden',
+    borderRadius: 3,
+    borderColor: '#000',
+  },
+  locationDetailContainer: {
+    position: 'absolute',
+    top: 450,
+    height: 200,
+    width: 370
+  },
+  slide: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F8F8FF',
+  },
+  locationText: {
+    color: '#000000',
+    fontSize: 30,
+    fontWeight: 'bold',
   }
 })
