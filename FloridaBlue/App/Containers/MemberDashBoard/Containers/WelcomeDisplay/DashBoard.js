@@ -29,6 +29,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Flb from '../../../../Themes/FlbIcon'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 const window = Dimensions.get('window')
+import LinearGradient from 'react-native-linear-gradient'
 
 type LoginScreenProps = {
   dispatch: () => any,
@@ -40,6 +41,12 @@ type LoginScreenProps = {
   error: string
 }
 const theme = getTheme()
+const   gradient = {
+    '0' : ['#b258c7', '#9f2fb9'],
+    '1' : ['#3bc1d4', '#09b1c9'],
+    '2': ['#f4b441', '#f1a00f'],
+    '3' : ['#6fc35c', '#4ab332']
+  }
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -134,23 +141,28 @@ class LandingScreen extends Component {
                       : styles.tileStyle1
                   }
                     onPress={onItemPress.bind(this)} key={i}>
-
-                    <Image source={Images[tile.backgroundImage]}
-                      style={{
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                      <LinearGradient colors={tile.gradientColor}  style={{
+                     //   alignItems: 'center',
+                     //   justifyContent: 'center',
                         width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
                         height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
                       }}>
-
-                      <Flb name={tile.tileIcon} size={Metrics.icons.large * Metrics.screenWidth * 0.0027} color={Colors.snow}
-                        style={{ backgroundColor: Colors.transparent}} />
-                      <Text style={styles.tileTextStyle}>
+                      <View style={{flex:1}}>
+                      <View style = {{flex:1,alignItems:'center', justifyContent:'flex-end', }} > 
+                        <Text style={styles.tileTextStyle}>
                         {tile.tileName['en']}
-                      </Text>
-                    </Image>
+                      </Text> 
+                      </View>
+                          <View style={{flex:1, alignItems:'flex-end'
+                                                  }}>                       
+                        <Image source={Images[tile.gradientImage]} style={{flex:1, alignItems:'flex-end',
+                                                  }} resizeMode='stretch'></Image>
+                                                  </View>
+                                                  
+                      </View>
+                     </LinearGradient>
                   </TouchableOpacity>
-
+               
                 )
                 i += 1
               }) : <Text />
@@ -159,7 +171,8 @@ class LandingScreen extends Component {
           { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
 
             ? <TouchableOpacity onPress={() => NavigationActions.ProviderSearch()}>
-              <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
+             
+               <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
                 <View style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -173,10 +186,10 @@ class LandingScreen extends Component {
                       marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.003
                     }}
                     size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
-                    color={Colors.snow} />
+                    color={Colors.flBlue.grey6} />
                   <Text style={{
                     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
-                    color: Colors.snow,
+                    color: Colors.flBlue.grey6,
                     fontFamily: Fonts.type.headerFont,
                     backgroundColor: Colors.transparent
                   }}>
@@ -184,7 +197,7 @@ class LandingScreen extends Component {
                   </Text>
 
                 </View>
-              </Image>
+             </Image>
             </TouchableOpacity> : null
           }
         </View>
