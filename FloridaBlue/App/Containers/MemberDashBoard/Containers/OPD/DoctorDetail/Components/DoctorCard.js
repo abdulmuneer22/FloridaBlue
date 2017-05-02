@@ -40,23 +40,14 @@ class DoctorCard extends Component {
     handleCall(phone) {
         console.log(phone)
         const url = `tel:${phone}`
-
-        Alert.alert(
-            'Alert Title',
-            'leaving app',
-            [
-                { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
-                {
-                    text: 'OK', onPress: () => Linking.canOpenURL(url).then(supported => {
-                        if (supported) {
-                            Linking.openURL(url);
-                        } else {
-                            console.log('Don\'t know how to open URI: ');
-                        }
-                    })
-                },
-            ]
-        )
+ Linking.canOpenURL(url).then(supported => {
+    if (supported) {
+        Linking.openURL(url);
+    } else {
+        console.log('Don\'t know how to open URI: ');
+    
+    }
+});
     }
 
     handleMaps(latitude, longitude) {
@@ -64,22 +55,13 @@ class DoctorCard extends Component {
         console.log(latitude, longitude)
         const url = `http://maps.apple.com/?ll=${latitude},${longitude}`
 
-        Alert.alert(
-            'Alert Title',
-            'leaving app',
-            [
-                { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
-                {
-                    text: 'OK', onPress: () => Linking.canOpenURL(url).then(supported => {
-                        if (supported) {
-                            Linking.openURL(url);
-                        } else {
-                            console.log('Don\'t know how to go');
-                        }
-                    }).catch(err => console.error('An error occurred', err))
-                },
-            ]
-        )
+       Linking.canOpenURL(url).then(supported => {
+        if (supported) {
+            Linking.openURL(url);
+        } else {
+            console.log('Don\'t know how to go');
+        }
+       });              
     }
 
     render() {

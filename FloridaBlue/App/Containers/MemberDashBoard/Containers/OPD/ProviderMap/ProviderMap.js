@@ -53,6 +53,7 @@ class ProviderMap extends Component {
   }
 
   componentDidMount() {
+    console.tron.log(this.props)
     var providerLocations = []
     for (var i = 0; i < this.props.provider.data.providerList.length; i++) {
       var providerItem = this.props.provider.data.providerList[i]
@@ -151,7 +152,9 @@ const mapStateToProps = (state) => {
     latDelta: state.provider.latDelta,
     longDelta: state.provider.longDelta,
     provider: state.provider.data,
-    showLocationDetail: state.provider.showLocationDetail
+    showLocationDetail: state.provider.showLocationDetail,
+    addressKey: state.provider.addressKey,
+    providerKey: state.provider.providerKey
   }
 }
 
@@ -160,7 +163,8 @@ const mapDispatchToProps = (dispatch) => {
     changeCurrentLocation: (currentLocation) => dispatch(ProviderActions.changeCurrentLocation(currentLocation)),
     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
-    changeSelectedLocation: (selectedLocation) => dispatch(ProviderActions.changeSelectedLocation(selectedLocation))
+    changeAddressKey: (addressKey) => dispatch(ProviderActions.changeAddressKey(addressKey)),
+    changeProviderKey: (providerKey) => dispatch(ProviderActions.changeProviderKey(providerKey))
   }
 }
 

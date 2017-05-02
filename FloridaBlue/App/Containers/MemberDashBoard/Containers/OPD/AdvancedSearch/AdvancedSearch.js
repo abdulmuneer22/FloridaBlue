@@ -289,7 +289,10 @@ class AdvancedSearch extends Component {
             <MKTextField
               ref='providerName'
               style={styles.careTextField}
-              textInputStyle={{flex: 1}}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.ocean,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -304,7 +307,10 @@ class AdvancedSearch extends Component {
             <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
                 ref='careType'
-                textInputStyle={{flex: 1}}
+                textInputStyle={{
+                    flex: 1, color: Colors.flBlue.ocean,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                  }}
                 style={styles.careTextField}
                 editable={false}
                 underlineColorAndroid={Colors.coal}
@@ -320,7 +326,10 @@ class AdvancedSearch extends Component {
               <MKTextField
                 ref='specialityType'
                 style={styles.careTextField}
-                textInputStyle={{flex: 1}}
+                textInputStyle={{
+                    flex: 1, color: Colors.flBlue.ocean,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                  }}
                 editable={false}
                 underlineColorAndroid={Colors.coal}
                 placeholder={I18n.t('specialityTypePlaceholder')}
@@ -390,7 +399,10 @@ class AdvancedSearch extends Component {
                 minimumValue={0}
                 maximumValue={100}
                 step={1}
-                style={{ width: Metrics.screenWidth * 0.87, marginLeft: 10 }}
+                maximumTrackTintColor={Colors.flBlue.grey3} 
+                style={{ width: Metrics.screenWidth * 0.87, 
+                marginLeft: 10,
+                }}
                 onValueChange={this.props.changeSearchRange}
               />
             </View>
