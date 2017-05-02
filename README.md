@@ -50,6 +50,7 @@ NPM Install
 ```
 cd FloridaBlue
 npm install
+react-native link react-native-config
 ```
 
 Run iOS
