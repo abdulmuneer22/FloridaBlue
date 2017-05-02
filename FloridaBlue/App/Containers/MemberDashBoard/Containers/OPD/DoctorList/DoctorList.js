@@ -110,7 +110,7 @@ class DoctorList extends Component {
 
             <View style={{flex:1}}>
 
-                {this.props.provider && this.props.provider.data && this.props.provider.data.providerList ?
+                {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
                   <DoctorCard
                     savedproviders={this.props.saveProvider}
                     saveProvider={this.saveProvider}
@@ -120,7 +120,14 @@ class DoctorList extends Component {
                     rightActive={this.props.rightActive}
 
                   />
-                  : <Text>No Results Found </Text>}
+                  : <View style={{flex:1}}>
+                    <Card style={{flex:1,margin:10,justifyContent:'center'}}>
+                    <Text style={{fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                  color:Colors.flBlue.anvil,
+                                  }}>No Results Found. Please Recheck the Provider Name. </Text>
+                    </Card>
+                    </View>
+                    }
 
             </View>
 
