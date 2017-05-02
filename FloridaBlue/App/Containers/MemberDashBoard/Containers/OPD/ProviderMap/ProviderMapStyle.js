@@ -49,6 +49,7 @@ export default StyleSheet.create({
   map: {
     backgroundColor: 'transparent',
     position: 'absolute',
+    
     top: 0,
     left: 0,
     right: 0,
@@ -67,9 +68,11 @@ export default StyleSheet.create({
   },
   locationDetailContainer: {
     position: 'absolute',
-    top: 450,
-    height: 200,
-    width: 370
+    top: 310,
+    height: 280,
+    width: 350,
+    bottom:-500
+   
   },
   slide: {
     flex: 1,

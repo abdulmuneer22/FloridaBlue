@@ -115,7 +115,7 @@ class DoctorList extends Component {
                     savedproviders={this.props.saveProvider}
                     saveProvider={this.saveProvider}
                     removeProvider={this.removeProvider}
-                    data={this.props.rightActive ? this.props.saveProvider : this.props.provider.data.providerList}
+                    data={this.props.provider.data.providerList}
                     leftActive={this.props.leftActive}
                     rightActive={this.props.rightActive}
 

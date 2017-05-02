@@ -131,9 +131,13 @@ class ProviderMap extends Component {
             }}>
               {this.props.provider && markerList.map((provider) => this._renderMapMarkers(provider))}
           </MapView>
+          
           <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer}>
+         
             <DoctorCard data={this.state.selectedLocation} />
+         
           </HideableView>
+          
         </View>
       </View>
     )
