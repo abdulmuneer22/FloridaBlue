@@ -20,6 +20,7 @@ import MyPlanActions from '../../../../Redux/MyPlanRedux'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import { Card } from 'native-base'
 const theme = getTheme()
+import LinearGradient from 'react-native-linear-gradient'
 
 import CCard from './Components/Card'
 
