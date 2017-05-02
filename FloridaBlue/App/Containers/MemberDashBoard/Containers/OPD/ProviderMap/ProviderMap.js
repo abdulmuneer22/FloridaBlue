@@ -53,21 +53,6 @@ class ProviderMap extends Component {
   }
 
   componentDidMount() {
-    console.tron.log(this.props)
-    navigator.geolocation.getCurrentPosition(
-    (position) => {
-      this.props.changeCurrentLocation(position)
-
-      var newLat = position["coords"]["latitude"]
-      var newLong = position["coords"]["longitude"]
-
-      this.props.changeLatitude(newLat)
-      this.props.changeLongitude(newLong)
-    },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
-    });
-
     var providerLocations = []
     for (var i = 0; i < this.props.provider.data.providerList.length; i++) {
       var providerItem = this.props.provider.data.providerList[i]
@@ -128,11 +113,6 @@ class ProviderMap extends Component {
      )
    }
 
-   _renderLocationDetails(selectedLocation) {
-     return(
-       <DoctorCard data={this.state.selectedLocation} />
-     )
-   }
 
   render () {
     return(
@@ -152,7 +132,7 @@ class ProviderMap extends Component {
               {this.props.provider && markerList.map((provider) => this._renderMapMarkers(provider))}
           </MapView>
           <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer}>
-            {this._renderLocationDetails(this.state.selectedLocation)}
+            <DoctorCard data={this.state.selectedLocation} />
           </HideableView>
         </View>
       </View>
