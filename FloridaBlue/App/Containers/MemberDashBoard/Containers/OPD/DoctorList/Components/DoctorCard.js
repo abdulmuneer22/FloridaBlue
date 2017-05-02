@@ -34,19 +34,8 @@ class DoctorCard extends Component {
         super(props)
         this.handleCall = this.handleCall.bind(this);
         this.handleMaps = this.handleMaps.bind(this);
-        this.onPressBookmark = this.onPressBookmark.bind(this);
-        this.onRemoveBookmark = this.onRemoveBookmark.bind(this);
     }
-    onPressBookmark(data) {
-        //alert(JSON.stringify(data));
-
-        this.props.saveProvider(data)
-    }
-
-    onRemoveBookmark(data) {
-        // alert(data)
-        this.props.removeProvider(data.providerKey)
-    }
+ 
 
     _doctorPage() {
         NavigationActions.DoctorDetail()
@@ -107,25 +96,14 @@ class DoctorCard extends Component {
 
                     <View style={{ flex: 1, margin: 15 }}>
                         {this.props.data != undefined ? this.props.data.map((value, i) => {
-                            const providerAvailable = this.props.savedproviders && this.props.savedproviders.find((savedprovider) => savedprovider.providerKey === value.providerKey)
+                           
 
                             return (
                                 <Card style={{ flex: 1 }} key={i}>
 
-                                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
-                                        <View style={{ flex: 0.2 }}>
-                                            {providerAvailable ? <TouchableOpacity onPress={() => this.onRemoveBookmark(value)} >
-                                                <Flb name="add-bookmark"
-                                                    size={Metrics.icons.large} color={Colors.flBlue.orange} />
-                                            </TouchableOpacity> : <TouchableOpacity onPress={() => this.onPressBookmark(value)} >
-                                                    <Flb name="add-bookmark"
-                                                        size={Metrics.icons.large} color={Colors.flBlue.grey2} />
-                                                </TouchableOpacity>
-
-                                            }
-                                        </View>
-
-                                        <View style={{ flex: 0.8, alignItems: 'flex-start' }}>
+                                    <View style={{ flex: 1,justifyContent: 'center', marginBottom: 10 }}>
+                                
+                                        <View style={{ flex:1, paddingLeft:Metrics.doubleBaseMargin}}>
                                             {value ?
                                                 <TouchableOpacity onPress={() => this._doctorPage()}>
                                                     <Text style={styles.h1}>{value.displayName}</Text>

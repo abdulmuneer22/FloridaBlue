@@ -38,7 +38,7 @@ export default class DoctorLocation extends Component {
                             height: 10
                         }}
                         
-             coordinate={{ latitude: this.props.data.latitude, longitude: this.props.data.longitude }}
+             coordinate={{ latitude: 30.3322, longitude: 81.6557 }}
     
 
                         />

@@ -41,10 +41,7 @@ const theme = getTheme()
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
     .build()
-const ClickablesOptions = [
-    { name: "Other Locations", count: 22 },
-    { name: "History / Credentials" }
-]
+
 
 class DoctorDetail extends Component {
 
@@ -119,7 +116,7 @@ class DoctorDetail extends Component {
                             </View>
                             
                             <View style={{ flex: 1 }}>
-                                { this.props.doctordetail.displayName  ? 
+                                { this.props.doctordetail  ? 
                                 <DoctorCard
                                     savedproviders={this.props.saveProvider}
                                     saveProvider={this.saveProvider}
@@ -129,7 +126,7 @@ class DoctorDetail extends Component {
                                     rightActive={this.props.rightActive}
 
                                 />
-                                :null}
+                                :<Text>no data</Text>}
                             </View>
                             
                     
@@ -158,7 +155,7 @@ class DoctorDetail extends Component {
                     </View>
                 </HideableView> : null}
                 </View>  
-                : null }    
+                : <Text>no data</Text> }    
 
                  
                 <View style={{flex:1}}>  
@@ -185,7 +182,7 @@ class DoctorDetail extends Component {
                     </View>
                 </HideableView> : null}
                </View>
-                : null }    
+                : <Text>no data</Text> }    
                  </View>  
 
                  </View>
