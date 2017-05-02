@@ -26,8 +26,6 @@ const card = {
 };
 const cardTitle = { cardTitle: { fontSize: 40 } }
 
-
-import Switch from './Components/switch'
 import DoctorCard from './Components/DoctorCard'
 //import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -50,12 +48,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 class DoctorList extends Component {
-  constructor(props) {
-    super(props);
-    this.saveProvider = this.saveProvider.bind(this);
-    this.removeProvider = this.removeProvider.bind(this);
-  }
-
+  
  _advancedSearch() {
       NavigationActions.AdvancedSearch()
     }
@@ -64,18 +57,11 @@ class DoctorList extends Component {
       NavigationActions.ProviderMap()
     }
 
-  saveProvider(data) {
-    this.props.addProviderRequest(data)
-  }
-
-  removeProvider(savedProviderKey) {
-    this.props.removeProviderRequest(savedProviderKey)
-  }
 
   componentDidMount() {
     console.tron.log('I am DoctorList screen')
     console.tron.log(this.props.provider)
-    this.props.attemptHandleLeft()
+   // this.props.attemptHandleLeft()
     //this.props.attemptProviderSearch(this.props)
   }
 
@@ -106,14 +92,6 @@ class DoctorList extends Component {
           <View style={{flex:8}}>
           <ScrollView >
 
-            <View style={{flex:1}}>
-            <Switch
-              data={this.props.provider.data}
-              leftActive={this.props.leftActive}
-              rightActive={this.props.rightActive}
-              attemptHandleLeft={this.props.attemptHandleLeft}
-              attemptHandleRight={this.props.attemptHandleRight} />
-              </View>
             <View style={{flex:1, margin:15  }}>
               <Card style={{flex:1, borderRadius:15, backgroundColor:'purple'}} >
                 <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>

@@ -35,19 +35,8 @@ class DoctorCard extends Component {
         super(props)
         this.handleCall = this.handleCall.bind(this);
         this.handleMaps = this.handleMaps.bind(this);
-        this.onPressBookmark = this.onPressBookmark.bind(this);
-        this.onRemoveBookmark = this.onRemoveBookmark.bind(this);
     }
-    onPressBookmark(data) {
-        //alert(JSON.stringify(data));
-
-        this.props.saveProvider(data)
-    }
-
-    onRemoveBookmark(data) {
-        // alert(data)
-        this.props.removeProvider(data.providerKey)
-    }
+  
     handleCall(phone) {
         console.log(phone)
         const url = `tel:${phone}`
@@ -95,7 +84,6 @@ class DoctorCard extends Component {
 
     render() {
 
-        const providerAvailable = this.props.savedproviders && this.props.savedproviders.find((savedprovider) => savedprovider.providerKey === this.props.data.providerKey)
         return (
             <View style={styles.container}>
 
@@ -104,19 +92,8 @@ class DoctorCard extends Component {
 
                         <Card style={{ flex: 1 }} >
                             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
-                                <View style={{ flex: 0.2 }}>
-                                    {providerAvailable ? <TouchableOpacity onPress={() => this.onRemoveBookmark(value)} >
-                                        <Flb name="add-bookmark"
-                                            size={Metrics.icons.large} color={Colors.flBlue.orange} />
-                                    </TouchableOpacity> : <TouchableOpacity onPress={() => this.onPressBookmark(value)} >
-                                            <Flb name="add-bookmark"
-                                                size={Metrics.icons.large} color={Colors.flBlue.grey2} />
-                                        </TouchableOpacity>
 
-                                    }
-                                </View>
-
-                                <View style={{ flex: 0.8, alignItems: 'flex-start' }}>
+                                <View style={{ flex:1, paddingLeft:Metrics.doubleBaseMargin }}>
                                     {this.props.data ?
                                         <Text style={styles.h1}>{this.props.data.displayName}</Text>
                                         : null}
@@ -133,8 +110,11 @@ class DoctorCard extends Component {
 
                                 </View>
                             </View>
+                            { this.props.data && this.props.data.address.length > 0 ?
                             <View style={{ flex: 1 }}>
+                               
                                 <View style={{ flex: 1, flexDirection: 'row' }}>
+                                    
                                     <TouchableOpacity style={{ flex: 1, height:50 }} onPress={() => this.handleCall(this.props.data.address.telephoneNumber)}>
                                         <View style={styles.call}>
 
@@ -151,6 +131,7 @@ class DoctorCard extends Component {
 
                                         </View>
                                     </TouchableOpacity>
+                                   
                                     <TouchableOpacity style={{ flex: 1,height:50 }} onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}>
                                         <View style={styles.directions}>
 
@@ -170,9 +151,11 @@ class DoctorCard extends Component {
                                             </View>
                                         </View>
                                     </TouchableOpacity>
+                                   
                                 </View>
                             </View>
-
+                                    : null }
+                                      {this.props.data && this.props.data.acceptingNewPatients  ?
                             <View style={{
                                 flexDirection: 'row',
                                 alignItems: 'center',
@@ -191,12 +174,13 @@ class DoctorCard extends Component {
                                     />
                                 </View>
                                 <View style={{ flex: 0.8 }}>
-                                    {this.props.data ?
+                                  
                                         <Text style={styles.plannameText}>
                                             {this.props.data.acceptingNewPatients}
-                                        </Text> : null}
+                                        </Text> 
                                 </View>
                             </View>
+                            : null}
                         </Card>
 
                         : null

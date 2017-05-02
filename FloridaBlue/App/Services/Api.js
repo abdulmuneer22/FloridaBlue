@@ -89,7 +89,6 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 
   const getStaffLanguage = (data) => api.post('/opd/languages', {
     "language": "EN",
-    "applicationId": "OPD",
     "who": "staff"
   })
 
@@ -101,19 +100,19 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
 
   const getDoctorDetail = (data) => api.post('/opd/details', {
     "language": "EN",
-    "providerKey": "1080402",
-    "addressKey": "151028",
-    "planCode": "MMHMO"
+    "providerKey": data && data.providerKey,
+    "addressKey": data && data.addressKey,
+    "planCode": ""
   })
 
   const getCareTypes = (data) => api.post('/opd/types', {
     "language": "EN",
-    "planCode": "MMHMO"
+    "planCode": ""
   })
 
   const getSpecialityTypes = (selectedCategoryCode) => api.post('/opd/specialty', {
     "language": "EN",
-    "planCode": "MMHMO",
+    "planCode": "",
     "categoryCode": selectedCategoryCode
   })
 
@@ -133,15 +132,15 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     "address": data && data.address ? data.address :"",
     "sortColumn": "PROGRAM",
     "sortType": "ASCENDING",
-    "subCategoryCode":data && data.subCategoryCode ?data.subCategoryCode :"" ,
+    "subCategoryCode": data && data.subCategoryCode ?data.subCategoryCode :"" ,
     "originLatitude": data.latitude,
     "originLongitude": data.longitude,
     "zipCode": 0,
     "state": "",
     "city": "",
     "county": "",
-    "acceptingPatientsIndicator":data && data.acceptingPatientsIndicator && data.acceptingPatientsIndicator.selectedPatientType? data.acceptingPatientsIndicator.selectedPatientType : "",
-    "programsList":data && data.programsList && data.programsList.selectedProgramType ?  data.programsList.selectedProgramType :"",
+    "acceptingPatientsIndicator": data && data.acceptingPatientsIndicator && data.acceptingPatientsIndicator.selectedPatientType? data.acceptingPatientsIndicator.selectedPatientType : "",
+    "programsList": data && data.programsList && data.programsList.selectedProgramType ?  data.programsList.selectedProgramType :"",
     "networkList": data.networkCodeList,
     "providerLanguage": data && data.providerLanguage && data.providerLanguage.selectedDoctorLanguage ? data.providerLanguage.selectedDoctorLanguage : "",
     "providerName": data.providerName,
@@ -164,48 +163,55 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   }
   )
 
+  const postPharmacySearch = (data) => api.post('/opd/pharmacy/search', {
+      "language": "EN",
+      "planCode": "",
+      "start": 1,
+      "end": 25,
+      "searchRange": data && data.searchRange ? data.searchRange : 50,
+      "address": data && data.address ? data.address :"",
+      "sortColumn": "DISTANCE",
+      "sortType": "ASCENDING",
+      "originLatitude": data.latitude,
+      "originLongitude": data.longitude,
+      "zipCode": 0,
+      "state": "",
+      "city": "",
+      "county": "",
+      "acceptingPatientsIndicator": data && data.acceptingPatientsIndicator && data.acceptingPatientsIndicator.selectedPatientType? data.acceptingPatientsIndicator.selectedPatientType : "",
+      "programsList": data && data.programsList && data.programsList.selectedProgramType ?  data.programsList.selectedProgramType :"",
+      "networkList": data.networkCodeList,
+      "providerLanguage": data && data.providerLanguage && data.providerLanguage.selectedDoctorLanguage ? data.providerLanguage.selectedDoctorLanguage : "",
+      "providerName": data.providerName,
+      "providerFirstName": "",
+      "staffLanguage": data && data.staffLanguage && data.staffLanguage.selectedStaffLanguage ? data.staffLanguage.selectedStaffLanguage : "",
+      "gender": data && data.gender ? data.gender :"",
+      "officeHours": data && data.officeHours && data.officeHours.selectedTime ? data.officeHours.selectedTime: "",
+      "hospitalAffiliation": "",
+      "providerNumber": "",
+      "medicalGroup": "",
+      "inIpa": "",
+      "ipaNumber": "",
+      "pharmacyType": "",
+      "extendedSupply": "",
+      "open24Hours": false,
+      "saveLocation": "",
+      "hospitalOption": "",
+      "networksFlag": false,
+      "memberSearchRequest": {}
+    }
+  )
 
-
-/*
-  const postProviderSearch  = (data) => api.post('/opd/search', {
-    "language": "EN",
-    "planCode": "",
-    "start": 1,
-    "end": 25,
-    "categoryCode": data.categoryCode,
-    "searchRange": data.searchRange,
-    "address": data.address,
-    "sortColumn": "PROGRAM",
-    "sortType": "ASCENDING",
-    "subCategoryCode": data.subCategoryCode,
-    "originLatitude": 0,
-    "originLongitude": 0,
-    "zipCode": 0,
-    "state": "",
-    "city": "",
-    "county": "",
-    "acceptingPatientsIndicator": data.acceptingPatientsIndicator,
-    "programsList": data.programsList,
-    "networkList": ["NWB"] ,
-    "providerLanguage": data.providerLanguage,
-    "providerName": data.providerName,
-    "providerFirstName": "",
-    "staffLanguage": data.staffLanguage,
-    "gender": data.gender,
-    "officeHours": data.officeHours,
-    "hospitalAffiliation": "",
-    "providerNumber": "",
-    "medicalGroup": "",
-    "inIpa": "",
-    "ipaNumber": "",
-    "pharmacyType": "",
-    "extendedSupply": "",
-    "open24Hours": false,
-    "saveLocation": "",
-    "hospitalOption": "",
-    "networksFlag": false,
-    "memberSearchRequest": {}
-  })*/
+  const postUrgentSearch = (data) => api.post('/opd/urgent/search', {
+      "language": "EN",
+      "planCode": "",
+      "start": 1,
+      "end": 25,
+      "address": data && data.address ? data.address :"",
+      "originLatitude": data.latitude,
+      "originLongitude": data.longitude,
+    }
+  )
 
   const postIdentification = (data) => api.post('/identifications', {
     'User': {
@@ -300,6 +306,8 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     getSupport,
     postNetworkList,
     postProviderSearch,
+    postPharmacySearch,
+    postUrgentSearch,
     postIdentification,
     postPersonalInformation,
     postRegistrationCode,

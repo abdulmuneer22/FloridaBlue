@@ -338,7 +338,9 @@ class AdvancedSearch extends Component {
             </View>
 
             <View style={styles.radioView}>
-              <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectCurrentLocation}/>
+              <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      borderRadius: Metrics.section}} group={this.radioGroup} onCheckedChange={this._selectCurrentLocation}/>
               <View >
                 <Text style={styles.radioText}>Current Location</Text>
               </View>
@@ -346,7 +348,9 @@ class AdvancedSearch extends Component {
             </View>
 
             <View style={styles.radioView}>
-              <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectHomeLocation}/>
+              <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      borderRadius: Metrics.section}} group={this.radioGroup} onCheckedChange={this._selectHomeLocation}/>
               <View >
                 <Text style={styles.radioText}>Home</Text>
                 <View style={{ marginRight: Metrics.searchBarHeight }}>
@@ -356,7 +360,9 @@ class AdvancedSearch extends Component {
             </View>
 
             <View style={styles.radioView}>
-              <MKRadioButton group={this.radioGroup} onCheckedChange={this._selectDifferentLocation}/>
+              <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      borderRadius: Metrics.section}} group={this.radioGroup} onCheckedChange={this._selectDifferentLocation}/>
               <View >
                 <Text style={styles.radioText}>Different Location</Text>
               </View>
@@ -377,7 +383,8 @@ class AdvancedSearch extends Component {
 
             <View style={{ marginLeft: 15, marginTop: 10 }}>
               <Text style={styles.searchText}> Search Radius:</Text>
-              <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular }}>{this.props.searchRange} mi</Text>
+              <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular,
+                            color:Colors.flBlue.anvil }}>{this.props.searchRange} mi</Text>
               <Slider
                 value={this.props.searchRange}
                 minimumValue={0}
@@ -393,21 +400,27 @@ class AdvancedSearch extends Component {
             {
                 this.props.configData !=undefined && this.props.configData.gender !=undefined ?
             <Text style={styles.doctorTextStyle}>
-             {this.props.configData.gender.displayName}
+             {this.props.configData.gender.displayName}:
              </Text>:null}
 
             <View style={{ flexDirection: 'row', marginLeft: 30 }}>
-              <MKRadioButton checked={true} group={this.genderGroup} onCheckedChange={this._anyGenderSelected} />
+              <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      borderRadius: Metrics.section}} checked={true} group={this.genderGroup} onCheckedChange={this._anyGenderSelected} />
               <View >
                 <Text style={styles.genderText}>Any</Text>
               </View>
                 <View style={{flexDirection:'row',marginLeft:20}}>
-              <MKRadioButton checked={false} group={this.genderGroup} onCheckedChange={this._maleGenderSelected} />
+              <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      borderRadius: Metrics.section}} checked={false} group={this.genderGroup} onCheckedChange={this._maleGenderSelected} />
               <Text style={styles.genderText}>Male</Text>
               </View>
 
             <View style={{flexDirection:'row',marginLeft:20}}>
-              <MKRadioButton checked={false} group={this.genderGroup} onCheckedChange={this._femaleGenderSelected} />
+              <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      borderRadius: Metrics.section}} checked={false} group={this.genderGroup} onCheckedChange={this._femaleGenderSelected} />
                 <Text style={styles.genderText}>Female</Text>
               </View>
             </View>
@@ -425,7 +438,7 @@ class AdvancedSearch extends Component {
             <View style={{ flex: 0.6, marginTop: 15 }}>
 
               <ModalDropdown
-                dropdownStyle={styles.dropdown}
+                dropdownStyle={styles.dropdown1}
                 options={this.props.configData != undefined && this.props.configData.acceptingPatient != undefined ?
                   _.map(this.props.configData.acceptingPatient.acceptPatientList, 'patientPreference') : null}
                 renderRow={this._renderDropdownRow.bind(this)}
@@ -466,7 +479,7 @@ class AdvancedSearch extends Component {
 
             <View style={{ flex: 0.6, marginTop: 10 }}>
 
-              <ModalDropdown dropdownStyle={styles.dropdown}
+              <ModalDropdown dropdownStyle={styles.dropdown1}
                 onSelect={this._timeSelected}
                 options={this.props.configData != undefined && this.props.configData.workingHours != undefined ?
                   _.map(this.props.configData.workingHours.workHoursList, 'hours') : null}

@@ -29,7 +29,7 @@ import NavItems from '../../../../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
-import { Container, Content, Footer, FooterTab } from 'native-base';
+import { Container, Content, Footer, FooterTab, Card } from 'native-base';
 import SaveProviderActions from '../../../../../Redux/SaveProviderRedux'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
@@ -41,10 +41,7 @@ const theme = getTheme()
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
     .build()
-const ClickablesOptions = [
-    { name: "Other Locations", count: 22 },
-    { name: "History / Credentials" }
-]
+
 
 class DoctorDetail extends Component {
 
@@ -82,7 +79,7 @@ class DoctorDetail extends Component {
     componentDidMount() {
         console.tron.log('I am DoctorList screen')
         console.tron.log(this.props.doctordetail)
-        this.props.attemptDoctorDetail()
+        this.props.attemptDoctorDetail(this.props)
         //this.props.attemptProviderSearch(this.props)
     }
 
@@ -114,9 +111,12 @@ class DoctorDetail extends Component {
                             flex: 1
                         }}>
                         <View style={{flex:1}}>
-                            <DoctorLocation />
+                            <DoctorLocation 
+                            data={this.props.doctordetail}/>
                             </View>
+                            
                             <View style={{ flex: 1 }}>
+                                { this.props.doctordetail  ? 
                                 <DoctorCard
                                     savedproviders={this.props.saveProvider}
                                     saveProvider={this.saveProvider}
@@ -126,30 +126,66 @@ class DoctorDetail extends Component {
                                     rightActive={this.props.rightActive}
 
                                 />
+                                :<Text>no data</Text>}
                             </View>
+                            
                     
-                    
-                             {this.props.doctordetail && this.props.doctordetail.certifications ?
-                             <View style={{flex:1}}> 
-                                 <View style={{flexDirection:'row'}}>                  
-                  
-
+                             
+                 <View style={{flex:1}}> 
+                {this.props.doctordetail.certifications.length > 0 ?   
+                <View style={{flex:1}}>                         
                 <TouchableOpacity onPress={this.toggle1}>
-                    <Flb name={this.state.visible1 ? 'minus' : 'plus'} color={Colors.flBlue.ocean} size={Metrics.icons.medium} />
-                </TouchableOpacity>
-                <Text style={styles.title}>
+                    <Card style={this.state.visible1 ? styles.plusView1 : styles.plusView}>
+                    <Flb name={this.state.visible1 ? 'minus' : 'plus'} color={this.state.visible1 ? Colors.snow : Colors.flBlue.ocean} 
+                    style={{marginLeft:20}} size={Metrics.icons.medium} />
+                
+                <Text style={this.state.visible1 ? styles.plusText1 : styles.plusText}>
                     Other Locations
                 </Text>
-                              </View>  
+                </Card>
+                </TouchableOpacity> 
 
-                             <HideableView visible={this.state.visible1}>
-
-                    <Text>
+                { this.state.visible1 ? <HideableView visible={this.state.visible1}>
+                    <View style={{flex:1, marginLeft:80}}>
+                    <Text style={{fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                    color:Colors.flBlue.grey5,
+                                    }}>
                      {this.props.doctordetail.certifications[0].certificationDescription}
                     </Text>
-                </HideableView>
-                </View>
-                             : null }    
+                    </View>
+                </HideableView> : null}
+                </View>  
+                : <Text>no data</Text> }    
+
+                 
+                <View style={{flex:1}}>  
+                     {this.props.doctordetail.certifications.length > 0 ? 
+                     <View style={{flex:1}}>                       
+                <TouchableOpacity onPress={this.toggle}>
+                    <Card style={this.state.visible ? styles.plusView1 : styles.plusView}>
+                    <Flb name={this.state.visible ? 'minus' : 'plus'} color={this.state.visible ? Colors.snow : Colors.flBlue.ocean } 
+                    style={{marginLeft:20}} size={Metrics.icons.medium} />
+                
+                <Text style={this.state.visible ? styles.plusText1 : styles.plusText}>
+                    Board Certifications / Eligibility
+                </Text>
+                </Card>
+                </TouchableOpacity> 
+
+                { this.state.visible ? <HideableView visible={this.state.visible}>
+                    <View style={{flex:1, marginLeft:80}}>
+                    <Text style={{fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                    color:Colors.flBlue.grey5,
+                                    }}>
+                     {this.props.doctordetail.certifications[0].certificationDescription}
+                    </Text>
+                    </View>
+                </HideableView> : null}
+               </View>
+                : <Text>no data</Text> }    
+                 </View>  
+
+                 </View>
 
                         </View>
                     </ScrollView>
@@ -179,14 +215,16 @@ const mapStateToProps = (state) => {
         leftActive: state.provider.leftActive,
         rightActive: state.provider.rightActive,
         saveProvider: state.saveprovider.data,
-        doctordetail: state.provider.doctordetail
+        doctordetail: state.provider.doctordetail,
+        providerKey: state.provider.providerKey,
+        addressKey: state.provider.addressKey
 
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        attemptDoctorDetail: () => dispatch(ProviderActions.sendDoctorDetailRequest()),
+        attemptDoctorDetail: (data) => dispatch(ProviderActions.sendDoctorDetailRequest(data)),
         addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
         removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey))
     }

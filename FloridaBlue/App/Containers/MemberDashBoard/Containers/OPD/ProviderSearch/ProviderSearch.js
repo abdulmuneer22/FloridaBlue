@@ -18,19 +18,28 @@ import {
 import React, { Component, PropTypes } from 'react'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './ProviderSearchStyle'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavItems from '../../../../../Navigation/NavItems.js'
 import I18n from 'react-native-i18n'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
-import { Container, Content, Footer, FooterTab, Radio, Button, Icon, Fab } from 'native-base'
-import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme } from 'react-native-material-kit'
+import { Container, Content, Footer, FooterTab, Radio, Button, Fab, Card } from 'native-base'
+import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme, setTheme } from 'react-native-material-kit'
 import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
 import ActionButton from 'react-native-action-button';
 
+
+
+const closeIcon = (<Icon name="close"
+                            size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+                            style={{backgroundColor:Colors.transparent}}
+                            color="#000000" />)
+
+const { height, width } = Dimensions.get('window');
 const theme = getTheme()
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -52,24 +61,48 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
        this._selectHomeLocation = this._selectHomeLocation.bind(this)
        this._selectDifferentLocation = this._selectDifferentLocation.bind(this)
        this._urgentCare = this._urgentCare.bind(this)
+       this._viewListResults = this._viewListResults.bind(this)
 
-        this.state = {
-          knownCareState: false,
-          unknownCareState: false,
-          specialityState: false,
-          currentLocaleState: false,
-          newLocationState: false,
-          savedProviderState: true,
-          urgentCareState: false
-        }
-    }
+       this.state = {
+         knownCareState: false,
+         unknownCareState: false,
+         specialityState: false,
+         changeLocaleState: false,
+         customLocationState: false,
+         savedProviderState: true,
+         urgentCareState: false,
+         floatClicked: false,
+         helpStatus: true,
+         optionSelected: 'You selected an option'
+    };
+    this.handleNeedHelp = this.handleNeedHelp.bind(this)
+    this.dismissNeedHelp = this.dismissNeedHelp.bind(this)
+  }
 
+  onSelect(index, value){
+    this.setState({
+      helpStatus: false
+    })
+  }
     componentDidMount() {
       this._resetState()
       this.props.attemptCareTypes()
     }
+  handleNeedHelp(){
+    this.setState({
+      floatClicked: true
+    })
+  }
+
+  dismissNeedHelp(){
+    this.setState({
+      floatClicked: false
+    })
+  }
 
     _onChecked(event) {
+      console.tron.log("Current Location State: " + this.state.changeLocaleState)
+
       if (event.checked) {
         this.props.changeSubCategoryCode("")
         this.props.changeCategoryCode("ALL")
@@ -96,7 +129,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _specialitySelected(index, value:string) {
-      var selectedSubCategoryCode = this.props.planSubCategoryList[index].categoryCode
+      var selectedSubCategoryCode = this.props.planSubCategoryList[index].subCategoryCode
       this.props.changeSubCategoryCode(selectedSubCategoryCode)
       this.props.changeSpecialityType(value)
       this.setState({specialityState: false}, function() {
@@ -105,12 +138,21 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _editLocation(event) {
-      this.setState({currentLocaleState: true})
+      this.setState({changeLocaleState: true})
       this.setState({specialityState: false})
     }
 
     _getResults() {
-      this.props.attemptProviderSearch(this.props)
+      if (this.props.categoryCode == "07" && this.props.subCategoryCode == "700") {
+          this.props.attemptPharmacySearch(this.props)
+      } else {
+          this.props.attemptProviderSearch(this.props)
+      }
+      NavigationActions.DoctorList()
+    }
+
+    _viewListResults() {
+      this.props.attemptUrgentSearch(this.props)
       NavigationActions.DoctorList()
     }
 
@@ -120,7 +162,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _selectDifferentLocation(event) {
       if (event.checked) {
-        this.setState({newLocationState: true})
+        this.setState({customLocationState: true})
         this.props.changeLatitude(0)
         this.props.changeLongitude(0)
       }
@@ -128,9 +170,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _selectCurrentLocation(event) {
       if (event.checked) {
-        this.setState({currentLocaleState: false})
+        this.setState({changeLocaleState: false})
         this.setState({specialityState: true})
-        this.setState({newLocationState: false})
+        this.setState({customLocationState: false})
         this.props.changeAddress("Using Current Address")
 
         this._getLocation()
@@ -139,9 +181,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _selectHomeLocation(event) {
       if (event.checked) {
-        this.setState({currentLocaleState: false})
+        this.setState({changeLocaleState: false})
         this.setState({specialityState: true})
-        this.setState({newLocationState: false})
+        this.setState({customLocationState: false})
         this.props.changeLatitude(0)
         this.props.changeLongitude(0)
         this.props.changeAddress(this.props.homeAddress)
@@ -149,9 +191,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _saveLocation(event) {
-      this.setState({currentLocaleState: false})
+      this.setState({changeLocaleState: false})
       this.setState({specialityState: true})
-      this.setState({newLocationState: false})
+      this.setState({customLocationState: false})
     }
 
     _resetState() {
@@ -179,7 +221,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     }
 
     _urgentCare() {
-      console.tron.log("Urgent care selected..")
       if (this.state.urgentCareState) {
         this.setState({urgentCareState: false})
       } else {
@@ -230,15 +271,20 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       return (
         <View style={styles.container}>
           {this._renderHeader()}
-          <View style={{flex:9}}>
+          <View style={{flex:11}}>
           <ScrollView>
             <View style={{flex:1}}>
               <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
 
               <View style={styles.radioView}>
-                <MKRadioButton group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
+                <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      borderRadius: Metrics.section}} group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
                 <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
-                <MKRadioButton group={this.searchTypeGroup} />
+                <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      borderRadius: Metrics.section,
+                                      }} group={this.searchTypeGroup} />
                 <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
               </View>
 
@@ -300,7 +346,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
               </HideableView>
 
-              <HideableView visible={this.state.unknownCareState && this.state.currentLocaleState == false} removeWhenHidden={true}>
+              <HideableView visible={!this.state.changeLocaleState && (this.state.unknownCareState || this.state.knownCareState)} removeWhenHidden={true}>
                 <View style={[styles.locationView]}>
                   <View style={styles.locationTextContainer}>
                     <Text style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
@@ -315,7 +361,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </View>
               </HideableView>
 
-              <HideableView style={styles.editLocationView} visible={this.state.unknownCareState && this.state.currentLocaleState} removeWhenHidden={true}>
+              <HideableView style={styles.editLocationView} visible={this.state.changeLocaleState} removeWhenHidden={true}>
                 <View style={styles.mapIcon}>
                   <Image source={Images.mapUnselectedIcon} />
                   <Text style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
@@ -336,9 +382,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </View>
               </HideableView>
 
-              <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.currentLocaleState && !this.state.newLocationState && this.state.unknownCareState} removeWhenHidden={true}></HideableView>
+              <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.changeLocaleState && !this.state.customLocationState} removeWhenHidden={true}></HideableView>
 
-              <HideableView style={styles.differentLocationView} visible={this.state.unknownCareState && this.state.newLocationState} removeWhenHidden={true}>
+              <HideableView style={styles.differentLocationView} visible={(this.state.unknownCareState || this.state.knownCareState) && this.state.customLocationState} removeWhenHidden={true}>
                 <Text style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
                 <MKTextField
                   ref='newLocation'
@@ -362,36 +408,37 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.advancedSearchLink} onPress={this._advancedSearch}>
                   <View style={styles.advancedSearchContainer}>
-                    <Flb name="search-find" size={Metrics.icons.small} color={Colors.flBlue.anvil} />
+                    <Flb name="search-find" size={Metrics.icons.xm * Metrics.screenWidth * 0.0026} color={Colors.flBlue.anvil} />
                     <Text style={styles.advancedSearchLinkText}>{I18n.t('advancedSearchButton')}</Text>
                   </View>
                 </TouchableOpacity>
               </HideableView>
-
-             
             </View>
-       
+          </ScrollView>
+             </View>  
         
-              
-               </ScrollView>
-               </View>
-
-                <View style={{flex:4}}>
-                <HideableView visible={this.state.urgentCareState} removeWhenHidden={true}>
-                  <Text>Need help now?</Text>
-                  <Text>We can show you a list of urgent care centers close to you</Text>
-                </HideableView>
-                <View style={{flex:1}}>
-                <ActionButton
-                  buttonColor="rgba(231,76,60,1)"
-                  onPress={this._urgentCare}
-                  position="right"
-                  offsetX={10}
-                  offsetY={50}
-                />
-                </View>
+            <View style={{flex:4}}>
+            {this.state.helpStatus ?
+              <View style={styles.urgentCareCircle}>
+                 <Flb name="urgent-care-circle" onPress={this.handleNeedHelp.bind(this)} 
+            color="red" size={Metrics.icons.large * Metrics.screenWidth * 0.0035}/>
               </View>
-      </View>
+              : null}
+              {this.state.floatClicked ?
+              <Card style={styles.urgentCareContainer}>
+                <Text style={styles.dismissUrgentIcon} onPress={this.dismissNeedHelp.bind(this)}>{closeIcon}</Text>
+                <Text style={styles.needHelpText}>Need Help Now?</Text>
+                <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
+                <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
+                  <Image source={Images.viewListButton} style={styles.viewListButton} />
+                </TouchableOpacity>
+              </Card>
+              : null
+              }
+            </View>
+          
+        </View>
+     
       )
     }
   }
@@ -409,8 +456,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       unknownCareState: state.provider.unknownCareState,
       savedProviderState: state.provider.savedProviderState,
       specialityState: state.provider.specialityState,
-      currentLocaleState: state.provider.currentLocaleState,
-      newLocationState: state.provider.newLocationState,
+      changeLocaleState: state.provider.changeLocaleState,
+      customLocationState: state.provider.customLocationState,
       currentLocation: state.provider.currentLocation,
       latitude: state.provider.latitude,
       longitude: state.provider.longitude,
@@ -427,6 +474,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
       attemptCareTypes: () => dispatch(ProviderActions.sendCareTypeRequest()),
       getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
       attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
+      attemptPharmacySearch: (data) => dispatch(ProviderActions.sendPharmacySearchRequest(data)),
+      attemptUrgentSearch: (data) => dispatch(ProviderActions.sendUrgentSearchRequest(data)),
       changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode)),
       changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode)),
       changeProviderName: (providerName) => dispatch(ProviderActions.changeProviderName(providerName)),

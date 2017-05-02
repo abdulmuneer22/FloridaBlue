@@ -199,5 +199,30 @@ export default StyleSheet.create({
       fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
       marginLeft: Metrics.baseMargin,
       fontWeight: '400'
-  }
+  },
+   plusView:{
+     flexDirection:'row', flex:1,
+     alignItems:'center',
+      backgroundColor:Colors.bg2,
+      height:60
+   },
+   plusView1:{
+     flexDirection:'row', flex:1,
+     alignItems:'center',
+      backgroundColor:Colors.flBlue.grey3,
+      height:60
+   },
+   plusText:{
+     fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+     color:Colors.flBlue.ocean,
+     marginLeft:20,
+     fontWeight:'500'
+    },
+    plusText1:{
+     fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+     color:Colors.snow,
+     marginLeft:20,
+     fontWeight:'500'
+    },
+   
 })

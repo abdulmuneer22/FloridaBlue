@@ -10,6 +10,12 @@ const { Types, Creators } = createActions({
   sendProviderSearchRequest: ['data'],
   sendProviderSearchSuccess: ['data'],
   sendProviderSearchFailure: ['data'],
+  sendPharmacySearchRequest: ['data'],
+  sendPharmacySearchSuccess: ['data'],
+  sendPharmacySearchFailure: ['data'],
+  sendUrgentSearchRequest: ['data'],
+  sendUrgentSearchSuccess: ['data'],
+  sendUrgentSearchFailure: ['data'],
   sendCareTypeRequest: ['data'],
   sendCareTypeSuccess: ['data'],
   sendCareTypeFailure: ['data'],
@@ -46,6 +52,7 @@ const { Types, Creators } = createActions({
   changeHomeAddress: ['homeAddress'],
   changeSearchRange: ['searchRange'],
   changeNetworkCodeList: ['networkCodeList'],
+  changeSelectedLocation: ['selectedLocation'],
   providerClickleft: [],
   providerClickright: []
 
@@ -80,7 +87,9 @@ export const INITIAL_STATE = Immutable({
   planCategoryList: [],
   planSubCategoryList: [],
   memberNetworkList: [],
-  networkCodeList: []
+  networkCodeList: [],
+  providerKey: "",
+  addressKey: ""
 })
 
 /* ------------- Reducers ------------- */
@@ -96,7 +105,6 @@ export const _sendNetworkListSuccess = (state: Object, {data}: Object) =>
 export const _sendNetworkListFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
 
-
 // sendProviderSearchRequest
 export const _sendProviderSearchRequest = (state: Object) => state.merge({ fetching: true })
 
@@ -106,6 +114,28 @@ export const _sendProviderSearchSuccess = (state: Object, {data}: Object) =>
 
 // sendProviderSearchFailure
 export const _sendProviderSearchFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+
+// sendPharmacySearchRequest
+export const _sendPharmacySearchRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendPharmacySearchSuccess
+export const _sendPharmacySearchSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
+
+// sendPharmacySearchFailure
+export const _sendPharmacySearchFailure = (state: Object, {data}: Object) =>
+  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+
+// sendUrgentSearchRequest
+export const _sendUrgentSearchRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendUrgentSearchSuccess
+export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) =>
+  state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
+
+// sendUrgentSearchFailure
+export const _sendUrgentSearchFailure = (state: Object, {data}: Object) =>
   state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
 
 // sendCareTypeRequest
@@ -233,6 +263,9 @@ export const _changeGenderType = (state: Object, {gender}: Object) => state.merg
 // networkList
 export const _changeNetworkCodeList = (state: Object, {networkCodeList}: Object) => state.merge({fetching: false, networkCodeList})
 
+// selectedLocation
+export const _changeSelectedLocation = (state: Object, {selectedLocation}: Object) => state.merge({fetching: false, selectedLocation})
+
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {
   return state.merge({fetching: false, error: null, leftActive: false, rightActive: true})
@@ -253,6 +286,12 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEND_PROVIDER_SEARCH_REQUEST]: _sendProviderSearchRequest,
   [Types.SEND_PROVIDER_SEARCH_SUCCESS]: _sendProviderSearchSuccess,
   [Types.SEND_PROVIDER_SEARCH_FAILURE]: _sendProviderSearchFailure,
+  [Types.SEND_PHARMACY_SEARCH_REQUEST]: _sendPharmacySearchRequest,
+  [Types.SEND_PHARMACY_SEARCH_SUCCESS]: _sendPharmacySearchSuccess,
+  [Types.SEND_PHARMACY_SEARCH_FAILURE]: _sendPharmacySearchFailure,
+  [Types.SEND_URGENT_SEARCH_REQUEST]: _sendUrgentSearchRequest,
+  [Types.SEND_URGENT_SEARCH_SUCCESS]: _sendUrgentSearchSuccess,
+  [Types.SEND_URGENT_SEARCH_FAILURE]: _sendUrgentSearchFailure,
   [Types.SEND_CARE_TYPE_REQUEST]: _sendCareTypeRequest,
   [Types.SEND_CARE_TYPE_SUCCESS]: _sendCareTypeSuccess,
   [Types.SEND_CARE_TYPE_FAILURE]: _sendCareTypeFailure,
@@ -289,6 +328,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_GENDER_TYPE]: _changeGenderType,
   [Types.CHANGE_SEARCH_RANGE]: _changeSearchRange,
   [Types.CHANGE_NETWORK_CODE_LIST]: _changeNetworkCodeList,
+  [Types.CHANGE_SELECTED_LOCATION]: _changeSelectedLocation,
   [Types.PROVIDER_CLICKLEFT]: leftclick,
   [Types.PROVIDER_CLICKRIGHT]: rightclick
 })

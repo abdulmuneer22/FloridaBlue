@@ -32,7 +32,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.anvil,
     textAlign: 'center',
-    marginTop: Metrics.doubleBaseMargin * 2,
+    marginTop: Metrics.doubleBaseMargin ,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600'
   },
@@ -46,7 +46,7 @@ export default StyleSheet.create({
   },
   subheading: {
     color: Colors.flBlue.grey5,
-    marginTop: Metrics.doubleBaseMargin * 2,
+    marginTop: Metrics.doubleBaseMargin * 1,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     textAlign: 'center'
@@ -56,8 +56,8 @@ export default StyleSheet.create({
   },
   radioText: {
     marginTop: Metrics.smallMargin,
-    marginRight: Metrics.mediumMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    marginRight: Metrics.doubleBaseMargin,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
@@ -69,7 +69,7 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   savedProviderLink: {
-    marginTop: Metrics.doubleBaseMargin,
+    marginTop: Metrics.mediumMargin,
     alignItems: 'center'
   },
   savedProviderLinkText: {
@@ -84,13 +84,28 @@ export default StyleSheet.create({
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
   },
   getResults: {
-    marginTop: Metrics.doubleBaseMargin * 2,
+    marginTop: Metrics.doubleBaseMargin ,
     alignItems: 'center',
   },
-  getResultsButton: {
+   getResultsButton: {
     width: Metrics.screenWidth * 0.5,
     borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
     height: Metrics.screenHeight * 0.064
+  },
+  viewListResults: {
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+    backgroundColor:Colors.transparent,
+    width: Metrics.mediumMargin * Metrics.screenWidth * 0.03,
+    marginLeft:Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035,
+    marginBottom:0,
+    justifyContent: 'center',
+  },
+  viewListButton: {
+    width: Metrics.mediumMargin * Metrics.screenWidth * 0.03,
+    backgroundColor:Colors.transparent,
+    resizeMode:'contain',
+    borderRadius: Metrics.mediumMargin * Metrics.screenWidth * 0.0015,
+    height: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0036
   },
   advancedSearchLink: {
     marginTop: Metrics.doubleBaseMargin * 2,
@@ -99,12 +114,13 @@ export default StyleSheet.create({
   },
   advancedSearchLinkText: {
     color: Colors.black,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
     paddingLeft: Metrics.smallMargin,
     textDecorationLine: 'underline'
   },
   locationView: {
     backgroundColor: Colors.flBlue.grey1,
+    marginTop: Metrics.doubleBaseMargin,
     paddingTop: Metrics.doubleBaseMargin,
     paddingBottom: Metrics.doubleBaseMargin,
     flexDirection: 'row'
@@ -218,5 +234,44 @@ export default StyleSheet.create({
   },
   fabView: {
     marginTop: Metrics.doubleBaseMargin
+  },
+  urgentCareCircle: {
+    flex:1,
+    position: 'absolute',
+    bottom: 5,
+    right: 10
+  },
+  urgentCareContainer: {
+    width: Metrics.screenWidth * 0.9, 
+    height: Metrics.screenWidth * 0.9,
+    flex:1, 
+    backgroundColor:Colors.transparent,
+    // borderWidth: 1, 
+    borderRadius: Metrics.screenWidth * 1,
+    // borderColor: '#708090',
+    position: 'absolute',
+    bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
+    right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035
+  },
+  dismissUrgentIcon: {
+    marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
+    marginTop: 30,
+    backgroundColor:Colors.transparent
+  },
+  needHelpText: {
+    textAlign: 'left',
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
+    marginTop: 20,
+    color: 'red',
+    backgroundColor:Colors.transparent,
+    marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.003
+  },
+  urgentCareMessage: {
+   textAlign: 'left', 
+    marginTop: 15,
+    color:Colors.flBlue.anvil, 
+    fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0028,  
+    marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028, 
+    marginRight: Metrics.textHeight * Metrics.screenWidth * 0.0055
   }
 })
