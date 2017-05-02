@@ -53,6 +53,8 @@ const { Types, Creators } = createActions({
   changeSearchRange: ['searchRange'],
   changeNetworkCodeList: ['networkCodeList'],
   changeLocationPermissionStatus: ['locationStatus'],
+  changeAddressKey: ['addressKey'],
+  changeProviderKey: ['providerKey'],
   providerClickleft: [],
   providerClickright: []
 
@@ -90,7 +92,9 @@ export const INITIAL_STATE = Immutable({
   networkCodeList: [],
   providerKey: "",
   addressKey: "",
-  locationStatus: ""
+  locationStatus: "",
+  addressKey: "",
+  providerKey: ""
 })
 
 /* ------------- Reducers ------------- */
@@ -267,6 +271,12 @@ export const _changeGenderType = (state: Object, {gender}: Object) => state.merg
 // networkList
 export const _changeNetworkCodeList = (state: Object, {networkCodeList}: Object) => state.merge({fetching: false, networkCodeList})
 
+// addressKey
+export const _changeAddressKey = (state: Object, {addressKey}: Object) => state.merge({fetching: false, addressKey})
+
+// providerKey
+export const _changeProviderKey = (state: Object, {providerKey}: Object) => state.merge({fetching: false, providerKey})
+
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {
   return state.merge({fetching: false, error: null, leftActive: false, rightActive: true})
@@ -330,6 +340,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_SEARCH_RANGE]: _changeSearchRange,
   [Types.CHANGE_NETWORK_CODE_LIST]: _changeNetworkCodeList,
   [Types.CHANGE_LOCATION_PERMISSION_STATUS]: _changeLocationPermissionStatus,
+  [Types.CHANGE_ADDRESS_KEY]: _changeAddressKey,
+  [Types.CHANGE_PROVIDER_KEY]: _changeProviderKey,
   [Types.PROVIDER_CLICKLEFT]: leftclick,
   [Types.PROVIDER_CLICKRIGHT]: rightclick
 })

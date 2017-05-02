@@ -48,19 +48,19 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 class DoctorList extends Component {
-  
+
  _advancedSearch() {
       NavigationActions.AdvancedSearch()
     }
 
-  _mapView() {
-      NavigationActions.ProviderMap()
-    }
+_mapView() {
+    NavigationActions.ProviderMap()
+  }
 
 
   componentDidMount() {
     console.tron.log('I am DoctorList screen')
-    console.tron.log(this.props.provider)
+    console.tron.log(this.props)
    // this.props.attemptHandleLeft()
     //this.props.attemptProviderSearch(this.props)
   }
@@ -147,10 +147,10 @@ class DoctorList extends Component {
                <View style={{flex:0.3, alignItems:'center'}}>
                 <Flb
                 name='search-find'
-                size={Metrics.icons.medium} 
+                size={Metrics.icons.medium}
                 color={Colors.snow} />
                </View>
-            
+
             <View style={{flex:0.7, alignItems:'flex-start'}}>
 
                 <Text style={styles.footerText}>Refine Search</Text>
@@ -164,11 +164,11 @@ class DoctorList extends Component {
                <View style={{flex:0.4, alignItems:'center'}}>
                 <Flb
                 name='map'
-                size={Metrics.icons.medium} 
+                size={Metrics.icons.medium}
                 color={Colors.snow} />
                </View>
-            
-            <View style={{flex:0.6, 
+
+            <View style={{flex:0.6,
             alignItems:'flex-start'}}>
 
                 <Text style={styles.footerText}>Map View</Text>
@@ -177,8 +177,8 @@ class DoctorList extends Component {
           </View>
           </TouchableOpacity>
         </View>
-        
-            
+
+
         </View>
         </View>
       </View>
@@ -207,7 +207,6 @@ const mapStateToProps = (state) => {
     rightActive: state.provider.rightActive,
     saveProvider: state.saveprovider.data,
     provider: state.provider.data
-
   }
 }
 

@@ -14,7 +14,7 @@ const ACTIVE_BUTTON_TEXT_COLOR = Colors.snow
 
 
 export default StyleSheet.create({
- 
+
 
   container: {
     flex: 1,
@@ -95,14 +95,14 @@ export default StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center'
   },
- h1: {  
+ h1: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.baseMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '600',
      color: Colors.flBlue.ocean,
   },
- 
+
   h2: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
     marginTop:Metrics.baseMargin,
@@ -224,5 +224,12 @@ export default StyleSheet.create({
      marginLeft:20,
      fontWeight:'500'
     },
-   
+   map: {
+     height: Metrics.screenHeight * 0.5,
+     flex:1
+   },
+   mapMarker: {
+     width: 10,
+     height: 10
+   }
 })
