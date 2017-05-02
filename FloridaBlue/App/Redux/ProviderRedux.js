@@ -52,7 +52,9 @@ const { Types, Creators } = createActions({
   changeHomeAddress: ['homeAddress'],
   changeSearchRange: ['searchRange'],
   changeNetworkCodeList: ['networkCodeList'],
-  changeSelectedLocation: ['selectedLocation'],
+  changeLocationPermissionStatus: ['locationStatus'],
+  changeAddressKey: ['addressKey'],
+  changeProviderKey: ['providerKey'],
   providerClickleft: [],
   providerClickright: []
 
@@ -89,7 +91,10 @@ export const INITIAL_STATE = Immutable({
   memberNetworkList: [],
   networkCodeList: [],
   providerKey: "",
-  addressKey: ""
+  addressKey: "",
+  locationStatus: "",
+  addressKey: "",
+  providerKey: ""
 })
 
 /* ------------- Reducers ------------- */
@@ -237,6 +242,9 @@ export const _changeHomeAddress = (state: Object, {homeAddress}: Object) => stat
 // searchRange
 export const _changeSearchRange = (state: Object, {searchRange}: Object) => state.merge({fetching: false, searchRange})
 
+// locationStatus
+export const _changeLocationPermissionStatus = (state: Object, {locationStatus}: Object) => state.merge({fetching: false, locationStatus})
+
 // AcceptPatientType
 export const _changePatientType = (state: Object, {acceptingPatientsIndicator}: Object) =>
       state.merge({fetching: false, acceptingPatientsIndicator})
@@ -263,8 +271,11 @@ export const _changeGenderType = (state: Object, {gender}: Object) => state.merg
 // networkList
 export const _changeNetworkCodeList = (state: Object, {networkCodeList}: Object) => state.merge({fetching: false, networkCodeList})
 
-// selectedLocation
-export const _changeSelectedLocation = (state: Object, {selectedLocation}: Object) => state.merge({fetching: false, selectedLocation})
+// addressKey
+export const _changeAddressKey = (state: Object, {addressKey}: Object) => state.merge({fetching: false, addressKey})
+
+// providerKey
+export const _changeProviderKey = (state: Object, {providerKey}: Object) => state.merge({fetching: false, providerKey})
 
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {
@@ -328,7 +339,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_GENDER_TYPE]: _changeGenderType,
   [Types.CHANGE_SEARCH_RANGE]: _changeSearchRange,
   [Types.CHANGE_NETWORK_CODE_LIST]: _changeNetworkCodeList,
-  [Types.CHANGE_SELECTED_LOCATION]: _changeSelectedLocation,
+  [Types.CHANGE_LOCATION_PERMISSION_STATUS]: _changeLocationPermissionStatus,
+  [Types.CHANGE_ADDRESS_KEY]: _changeAddressKey,
+  [Types.CHANGE_PROVIDER_KEY]: _changeProviderKey,
   [Types.PROVIDER_CLICKLEFT]: leftclick,
   [Types.PROVIDER_CLICKRIGHT]: rightclick
 })

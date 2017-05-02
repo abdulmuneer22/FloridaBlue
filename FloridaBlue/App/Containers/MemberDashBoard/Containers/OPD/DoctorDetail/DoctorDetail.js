@@ -47,8 +47,6 @@ class DoctorDetail extends Component {
 
     constructor(props) {
         super(props);
-        this.saveProvider = this.saveProvider.bind(this);
-        this.removeProvider = this.removeProvider.bind(this);
         this.state = {
             visible: false,
             visible1:false
@@ -68,19 +66,11 @@ class DoctorDetail extends Component {
         });
     }
 
-    saveProvider(data) {
-        this.props.addProviderRequest(data)
-    }
-
-    removeProvider(savedProviderKey) {
-        this.props.removeProviderRequest(savedProviderKey)
-    }
 
     componentDidMount() {
-        console.tron.log('I am DoctorList screen')
-        console.tron.log(this.props.doctordetail)
+        console.tron.log('Doctor Detail')
+        console.tron.log(this.props)
         this.props.attemptDoctorDetail(this.props)
-        //this.props.attemptProviderSearch(this.props)
     }
 
     _renderHeader() {
@@ -98,7 +88,7 @@ class DoctorDetail extends Component {
     }
 
     render() {
-        console.log(this.props.doctordetail)
+        console.tron.log(this.props.doctordetail)
         return (
 
             <View style={styles.container} >
@@ -107,16 +97,20 @@ class DoctorDetail extends Component {
                 </View>
                 {this.props.doctordetail != undefined ?
                     <ScrollView>
+
                         <View style={{
                             flex: 1
                         }}>
+                        {this.props.doctordetail ?
                         <View style={{flex:1}}>
-                            <DoctorLocation 
+                            <DoctorLocation
                             data={this.props.doctordetail}/>
                             </View>
-                            
+                            :<Text style={{color:Colors.flBlue.anvil}}> No Data</Text>
+                        }
+
                             <View style={{ flex: 1 }}>
-                                { this.props.doctordetail  ? 
+                                { this.props.doctordetail  ?
                                 <DoctorCard
                                     savedproviders={this.props.saveProvider}
                                     saveProvider={this.saveProvider}
@@ -126,24 +120,24 @@ class DoctorDetail extends Component {
                                     rightActive={this.props.rightActive}
 
                                 />
-                                :<Text>no data</Text>}
+                                :<Text style={{color:Colors.flBlue.anvil}}>no data</Text>}
                             </View>
-                            
-                    
-                             
-                 <View style={{flex:1}}> 
-                {this.props.doctordetail.certifications.length > 0 ?   
-                <View style={{flex:1}}>                         
+
+
+
+                 <View style={{flex:1}}>
+                {this.props.doctordetail.certifications.length > 0 ?
+                <View style={{flex:1}}>
                 <TouchableOpacity onPress={this.toggle1}>
                     <Card style={this.state.visible1 ? styles.plusView1 : styles.plusView}>
-                    <Flb name={this.state.visible1 ? 'minus' : 'plus'} color={this.state.visible1 ? Colors.snow : Colors.flBlue.ocean} 
+                    <Flb name={this.state.visible1 ? 'minus' : 'plus'} color={this.state.visible1 ? Colors.snow : Colors.flBlue.ocean}
                     style={{marginLeft:20}} size={Metrics.icons.medium} />
-                
+
                 <Text style={this.state.visible1 ? styles.plusText1 : styles.plusText}>
                     Other Locations
                 </Text>
                 </Card>
-                </TouchableOpacity> 
+                </TouchableOpacity>
 
                 { this.state.visible1 ? <HideableView visible={this.state.visible1}>
                     <View style={{flex:1, marginLeft:80}}>
@@ -154,23 +148,22 @@ class DoctorDetail extends Component {
                     </Text>
                     </View>
                 </HideableView> : null}
-                </View>  
-                : <Text>no data</Text> }    
+                </View>
+                : <Text style={{color:Colors.flBlue.anvil}}>No data</Text> }
 
-                 
-                <View style={{flex:1}}>  
-                     {this.props.doctordetail.certifications.length > 0 ? 
-                     <View style={{flex:1}}>                       
+                <View style={{flex:1}}>
+                     {this.props.doctordetail.certifications.length > 0 ?
+                     <View style={{flex:1}}>
                 <TouchableOpacity onPress={this.toggle}>
                     <Card style={this.state.visible ? styles.plusView1 : styles.plusView}>
-                    <Flb name={this.state.visible ? 'minus' : 'plus'} color={this.state.visible ? Colors.snow : Colors.flBlue.ocean } 
+                    <Flb name={this.state.visible ? 'minus' : 'plus'} color={this.state.visible ? Colors.snow : Colors.flBlue.ocean }
                     style={{marginLeft:20}} size={Metrics.icons.medium} />
-                
+
                 <Text style={this.state.visible ? styles.plusText1 : styles.plusText}>
                     Board Certifications / Eligibility
                 </Text>
                 </Card>
-                </TouchableOpacity> 
+                </TouchableOpacity>
 
                 { this.state.visible ? <HideableView visible={this.state.visible}>
                     <View style={{flex:1, marginLeft:80}}>
@@ -182,8 +175,8 @@ class DoctorDetail extends Component {
                     </View>
                 </HideableView> : null}
                </View>
-                : <Text>no data</Text> }    
-                 </View>  
+                : <Text style={{color:Colors.flBlue.anvil}}>No data</Text> }
+                 </View>
 
                  </View>
 
@@ -210,15 +203,14 @@ DoctorDetail.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        fetching: state.provider.fetching,
-        error: state.provider.error,
-        leftActive: state.provider.leftActive,
-        rightActive: state.provider.rightActive,
-        saveProvider: state.saveprovider.data,
-        doctordetail: state.provider.doctordetail,
-        providerKey: state.provider.providerKey,
-        addressKey: state.provider.addressKey
-
+      fetching: state.provider.fetching,
+      error: state.provider.error,
+      leftActive: state.provider.leftActive,
+      rightActive: state.provider.rightActive,
+      saveProvider: state.saveprovider.data,
+      doctordetail: state.provider.doctordetail,
+      providerKey: state.provider.providerKey,
+      addressKey: state.provider.addressKey
     }
 }
 

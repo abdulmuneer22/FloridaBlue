@@ -22,6 +22,7 @@ import styles from '../DoctorListStyle'
 import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../../../Themes/FlbIcon'
+import ProviderActions from '../../../../../../Redux/ProviderRedux'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
@@ -35,32 +36,25 @@ class DoctorCard extends Component {
         this.handleCall = this.handleCall.bind(this);
         this.handleMaps = this.handleMaps.bind(this);
     }
- 
 
-    _doctorPage() {
-        NavigationActions.DoctorDetail()
+
+    _doctorPage(selectedProvider) {
+      this.props.changeAddressKey(selectedProvider.providerAddressKey)
+      this.props.changeProviderKey(selectedProvider.providerKey)
+      NavigationActions.DoctorDetail()
     }
 
     handleCall(phone) {
         console.log(phone)
         const url = `tel:${phone}`
 
-        Alert.alert(
-            'Alert Title',
-            'leaving app',
-            [
-                { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
-                {
-                    text: 'OK', onPress: () => Linking.canOpenURL(url).then(supported => {
-                        if (supported) {
-                            Linking.openURL(url);
-                        } else {
-                            console.log('Don\'t know how to open URI: ');
-                        }
-                    })
-                },
-            ]
-        )
+     Linking.canOpenURL(url).then(supported => {
+        if (supported) {
+            Linking.openURL(url);
+        } else {
+            console.log('Don\'t know how to open URI: ');
+        }
+     })
     }
 
     handleMaps(latitude, longitude) {
@@ -68,24 +62,13 @@ class DoctorCard extends Component {
         console.log(latitude, longitude)
         const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
 
-        Alert.alert(
-            'Alert Title',
-            'leaving app',
-            [
-                { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
-                {
-                    text: 'OK', onPress: () => Linking.canOpenURL(url).then(supported => {
-                        if (supported) {
-                            Linking.openURL(url);
-                        } else {
-                            console.log('Don\'t know how to go');
-                        }
-                    }).catch(err => console.error('An error occurred', err))
-                },
-            ]
-        )
-
-
+ Linking.canOpenURL(url).then(supported => {
+        if (supported) {
+            Linking.openURL(url);
+        } else {
+            console.log('Don\'t know how to go');
+        }
+ });
     }
 
 
@@ -96,16 +79,16 @@ class DoctorCard extends Component {
 
                     <View style={{ flex: 1, margin: 15 }}>
                         {this.props.data != undefined ? this.props.data.map((value, i) => {
-                           
+
 
                             return (
                                 <Card style={{ flex: 1 }} key={i}>
 
                                     <View style={{ flex: 1,justifyContent: 'center', marginBottom: 10 }}>
-                                
+
                                         <View style={{ flex:1, paddingLeft:Metrics.doubleBaseMargin}}>
                                             {value ?
-                                                <TouchableOpacity onPress={() => this._doctorPage()}>
+                                                <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
                                                     <Text style={styles.h1}>{value.displayName}</Text>
                                                 </TouchableOpacity> : null}
                                             {value ?
@@ -192,4 +175,19 @@ class DoctorCard extends Component {
     }
 }
 
-export default DoctorCard
+const mapStateToProps = (state) => {
+  return {
+    addressKey: state.provider.addressKey,
+    provider: state.provider.providerKey,
+    selectedProvider: state.provider.selectedLocation
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeAddressKey: (addressKey) => dispatch(ProviderActions.changeAddressKey(addressKey)),
+    changeProviderKey: (providerKey) => dispatch(ProviderActions.changeProviderKey(providerKey))
+  }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(DoctorCard)

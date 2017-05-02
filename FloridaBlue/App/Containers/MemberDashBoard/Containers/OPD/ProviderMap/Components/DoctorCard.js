@@ -23,6 +23,7 @@ import styles from './DoctorCardStyle'
 import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../../../Themes/FlbIcon'
+import ProviderActions from '../../../../../../Redux/ProviderRedux'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
@@ -33,8 +34,9 @@ const window = Dimensions.get('window')
 class DoctorCard extends Component {
     constructor(props) {
         super(props)
-        this.handleCall = this.handleCall.bind(this);
-        this.handleMaps = this.handleMaps.bind(this);
+        this.handleCall = this.handleCall.bind(this)
+        this.handleMaps = this.handleMaps.bind(this)
+        this.providerSelected = this.providerSelected.bind(this)
     }
 
     handleCall(phone) {
@@ -79,6 +81,13 @@ class DoctorCard extends Component {
         )
     }
 
+    providerSelected() {
+      console.tron.log(this.props.data)
+      this.props.changeAddressKey(this.props.data.providerAddressKey)
+      this.props.changeProviderKey(this.props.data.providerKey)
+      NavigationActions.DoctorDetail()
+    }
+
     render() {
 
         return (
@@ -92,7 +101,10 @@ class DoctorCard extends Component {
 
                                 <View style={{ flex:1, paddingLeft:Metrics.doubleBaseMargin }}>
                                     {this.props.data ?
-                                        <Text style={styles.h1}>{this.props.data.displayName}</Text> : null}
+                                        <TouchableOpacity onPress={this.providerSelected}>
+                                          <Text style={styles.h1}>{this.props.data.displayName}</Text>
+                                        </TouchableOpacity>
+                                    : null}
                                     {this.props.data ?
                                         <Text style={styles.h2}>{this.props.data.primarySpecialty}</Text> : null}
                                     {this.props.data ?
@@ -106,7 +118,7 @@ class DoctorCard extends Component {
 
                                 </View>
                             </View>
-                            
+
                         </Card>
 
                         : null}
@@ -117,4 +129,18 @@ class DoctorCard extends Component {
     }
 }
 
-export default DoctorCard
+const mapStateToProps = (state) => {
+  return {
+    addressKey: state.provider.addressKey,
+    provider: state.provider.providerKey
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeAddressKey: (addressKey) => dispatch(ProviderActions.changeAddressKey(addressKey)),
+    changeProviderKey: (providerKey) => dispatch(ProviderActions.changeProviderKey(providerKey))
+  }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(DoctorCard)
