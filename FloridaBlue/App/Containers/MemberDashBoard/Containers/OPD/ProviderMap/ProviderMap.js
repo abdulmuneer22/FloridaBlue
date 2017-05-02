@@ -110,7 +110,7 @@ class ProviderMap extends Component {
 
    _renderMapMarkers(location) {
      return (
-       <MapView.Marker key={location.id} identifier={location.providerName} coordinate={{latitude: location.latitude, longitude: location.longitude}} onSelect={this._mapCalloutSelected}></MapView.Marker>
+       <MapView.Marker key={location.id} identifier={location.providerName} coordinate={{latitude: location.latitude, longitude: location.longitude}} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin}></MapView.Marker>
      )
    }
 
