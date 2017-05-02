@@ -1,6 +1,6 @@
 import config from 'react-native-config'
 
-console.log('BASE_ENV INDEX :: ' + JSON.stringify(config))
+
 switch (config.BASE_ENV) {
     case 'test':
         module.exports = require('./config.test');
