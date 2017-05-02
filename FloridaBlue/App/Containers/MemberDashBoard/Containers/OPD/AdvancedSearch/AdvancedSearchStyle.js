@@ -95,11 +95,11 @@ export default StyleSheet.create({
   //  marginBottom:Metrics.baseMargin
   },
    genderText: {
-    marginTop: 5,
-   // marginLeft: Metrics.baseMargin,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001,
+    marginLeft: Metrics.smallMargin * Metrics.screenWidth * 0.0025,
    // marginRight: Metrics.mediumMargin,
      marginBottom:Metrics.mediumMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
@@ -156,7 +156,7 @@ export default StyleSheet.create({
 
   },
    radioText: {
-    marginTop: 5,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001,
     marginLeft: Metrics.baseMargin,
    // marginRight: Metrics.mediumMargin,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,

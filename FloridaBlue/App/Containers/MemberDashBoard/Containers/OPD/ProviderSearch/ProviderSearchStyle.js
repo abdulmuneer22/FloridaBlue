@@ -56,8 +56,8 @@ export default StyleSheet.create({
   },
   radioText: {
     marginTop: Metrics.smallMargin,
-    marginRight: Metrics.mediumMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    marginRight: Metrics.doubleBaseMargin,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
@@ -114,7 +114,7 @@ export default StyleSheet.create({
   },
   advancedSearchLinkText: {
     color: Colors.black,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
     paddingLeft: Metrics.smallMargin,
     textDecorationLine: 'underline'
   },

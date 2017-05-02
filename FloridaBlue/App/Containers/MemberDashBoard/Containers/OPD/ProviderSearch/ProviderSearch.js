@@ -25,12 +25,14 @@ import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import { Container, Content, Footer, FooterTab, Radio, Button, Fab, Card } from 'native-base'
-import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme, setTheme } from 'react-native-material-kit'
 import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
 import ActionButton from 'react-native-action-button';
+
+
 
 const closeIcon = (<Icon name="close"
                             size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
@@ -151,7 +153,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
     _viewListResults() {
       this.props.attemptUrgentSearch(this.props)
-      //NavigationActions.DoctorList()
+      NavigationActions.DoctorList()
     }
 
     _advancedSearch() {
@@ -275,9 +277,14 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
               <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
 
               <View style={styles.radioView}>
-                <MKRadioButton group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
+                <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      borderRadius: Metrics.section}} group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
                 <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
-                <MKRadioButton group={this.searchTypeGroup} />
+                <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                      borderRadius: Metrics.section,
+                                      }} group={this.searchTypeGroup} />
                 <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
               </View>
 
@@ -401,7 +408,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.advancedSearchLink} onPress={this._advancedSearch}>
                   <View style={styles.advancedSearchContainer}>
-                    <Flb name="search-find" size={Metrics.icons.small} color={Colors.flBlue.anvil} />
+                    <Flb name="search-find" size={Metrics.icons.xm * Metrics.screenWidth * 0.0026} color={Colors.flBlue.anvil} />
                     <Text style={styles.advancedSearchLinkText}>{I18n.t('advancedSearchButton')}</Text>
                   </View>
                 </TouchableOpacity>
