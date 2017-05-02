@@ -47,8 +47,6 @@ class DoctorDetail extends Component {
 
     constructor(props) {
         super(props);
-        this.saveProvider = this.saveProvider.bind(this);
-        this.removeProvider = this.removeProvider.bind(this);
         this.state = {
             visible: false,
             visible1:false
@@ -68,13 +66,6 @@ class DoctorDetail extends Component {
         });
     }
 
-    saveProvider(data) {
-        this.props.addProviderRequest(data)
-    }
-
-    removeProvider(savedProviderKey) {
-        this.props.removeProviderRequest(savedProviderKey)
-    }
 
     componentDidMount() {
         console.tron.log('I am DoctorList screen')
@@ -98,7 +89,7 @@ class DoctorDetail extends Component {
     }
 
     render() {
-        console.log(this.props.doctordetail)
+        console.tron.log(this.props.doctordetail)
         return (
 
             <View style={styles.container} >
@@ -107,14 +98,18 @@ class DoctorDetail extends Component {
                 </View>
                 {this.props.doctordetail != undefined ?
                     <ScrollView>
+
                         <View style={{
                             flex: 1
                         }}>
+                        {this.props.doctordetail ?
                         <View style={{flex:1}}>
                             <DoctorLocation 
                             data={this.props.doctordetail}/>
                             </View>
-                            
+                            :<Text style={{color:Colors.flBlue.anvil}}> No Data</Text>
+                        }
+
                             <View style={{ flex: 1 }}>
                                 { this.props.doctordetail  ? 
                                 <DoctorCard
@@ -126,7 +121,7 @@ class DoctorDetail extends Component {
                                     rightActive={this.props.rightActive}
 
                                 />
-                                :<Text>no data</Text>}
+                                :<Text style={{color:Colors.flBlue.anvil}}>no data</Text>}
                             </View>
                             
                     
@@ -155,7 +150,7 @@ class DoctorDetail extends Component {
                     </View>
                 </HideableView> : null}
                 </View>  
-                : <Text>no data</Text> }    
+                : <Text style={{color:Colors.flBlue.anvil}}>No data</Text> }    
 
                  
                 <View style={{flex:1}}>  
@@ -182,7 +177,7 @@ class DoctorDetail extends Component {
                     </View>
                 </HideableView> : null}
                </View>
-                : <Text>no data</Text> }    
+                : <Text style={{color:Colors.flBlue.anvil}}>No data</Text> }    
                  </View>  
 
                  </View>
