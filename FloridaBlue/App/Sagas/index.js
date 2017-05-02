@@ -30,6 +30,7 @@ import {sendPersonalInformationRequest} from './RegistrationSagas'
 import {sendRegistrationCodeRequest} from './RegistrationSagas'
 import {sendSecurityHintsRequest} from './RegistrationSagas'
 import {registerUserRequest} from './RegistrationSagas'
+var urlConfig = require('../UrlConfig');
 // import { getTemperature } from './TemperatureSagas'
 
 /* ------------- API ------------- */
@@ -37,10 +38,10 @@ import {registerUserRequest} from './RegistrationSagas'
 // The API we use is only used from Sagas, so we create it here and pass along
 // to the sagas which need it.
 const api = DebugSettings.useFixtures ? FixtureAPI : API.create()
-const apiforRegistration = API.create(baseURL = 'https://registration.bcbsfl.com/ers/api-public/v1/users/')
-// const apiforSecurity = API.create(baseURL = 'https://registration.bcbsfl.com/ers/api/v1/users/')
+const apiforRegistration = API.create(baseURL = urlConfig.mobApiUrl)
+// const apiforSecurity = API.create(baseURL = 'https://registration-stga.bcbsfl.com/ers/api/v1/users/')
 // const apiforRegistration = API.create(baseURL = 'http://localhost:3000/api')
-const apiforlogout = API.create(baseURL = 'https://logout.bcbsfl.com/')
+const apiforlogout = API.create(baseURL = urlConfig.logoutURL)
 
 /* ------------- Connect Types To Sagas ------------- */
 
