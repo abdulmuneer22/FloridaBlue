@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 
 // import SafariView from  'react-native-safari-view'
-
+import { Card as BCard} from 'native-base'
 const window = Dimensions.get('window')
 import {Colors, Metrics, Fonts, Images} from '../../../../../Themes'
 import styles from '../BenefitsStyle'
@@ -89,42 +89,48 @@ class Card extends Component {
         style={{
         // backgroundColor : "red",
         // width : this.props.i === this.props.CardCount ? (window.width * 0.85) : null,
-          width: this.state.CardWidth,
-          height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
+        //  width: this.state.CardWidth,
+        //  height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
           alignItems: 'center',
           justifyContent: 'center',
-          marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
+          //marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
         // marginRight :
         // marginTop : 10,
-
-          marginBottom: window.width * 0.03
+        flex :1,
+         // marginBottom: window.width * 0.03
 
         }}>
 
-        <View style={{alignItems: 'center'}}>
-          <Image style={{
-            width: this.state.CardWidth,
-            height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-            source={Images[this.props.image]}
-      >
+        <BCard style={{alignItems: 'center', flexDirection: 'row',
+          flex :1,
+         //    width: this.state.CardWidth,
+            height: Metrics.screenHeight - (Metrics.screenHeight * 0.90),
+          
+           // justifyContent: 'center'
+        
+          }}>
 
-            <Flb name={this.props.icon} style={{backgroundColor: Colors.transparent, marginTop: Metrics.baseMargin}} size={Metrics.icons.large} color={Colors.snow} />
+            <View style={{ flex :2 , alignItems:'center',   justifyContent: 'center',backgroundColor: Colors.transparent}}>
+            <Flb name={this.props.icon}  size={Metrics.icons.regular} color={Colors.flBlue.purple} />
+            </View>
+            <View style={{flex:6,alignItems:'flex-start'}}>
             <Text style={{
-              marginTop: Metrics.baseMargin,
+             // marginTop: Metrics.baseMargin,
               fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00265,
-              textAlign: 'center',
+             // textAlign: 'center',
               fontWeight: '600',
-              color: 'white',
+              color: Colors.flBlue.grey3,
               backgroundColor: Colors.transparent,
               fontFamily: Fonts.type.subHeaderFont
             }}>
               {this.props.title}
             </Text>
-          </Image>
-        </View>
+            </View>
+            <View style={{flex:1, alignItems:'flex-start',   justifyContent: 'center',backgroundColor: Colors.transparent}}>
+              <Flb name= 'chevron-right'  size={Metrics.icons.small} color={Colors.flBlue.purple} />
+              </View>
+
+        </BCard>
 
       </TouchableOpacity>
 

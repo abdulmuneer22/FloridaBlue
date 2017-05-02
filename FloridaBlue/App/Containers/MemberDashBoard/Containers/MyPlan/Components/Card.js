@@ -20,6 +20,7 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import MyPlanActions from '../../../../../Redux/MyPlanRedux'
 import { connect } from 'react-redux'
 import Flb from '../../../../../Themes/FlbIcon'
+import LinearGradient from 'react-native-linear-gradient'
 
 var image = [
   Images.dashboardGradient,
@@ -95,6 +96,8 @@ class Card extends Component {
 
         }}>
         <View style={{alignItems: 'center'}}>
+
+           <LinearGradient colors={['#b258c7','#9f2fb9']}>
           <Image style={{
             width: this.state.CardWidth,
             height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.77) : Metrics.screenHeight - (Metrics.screenHeight * 0.79),
@@ -115,6 +118,7 @@ class Card extends Component {
               {this.props.title}
             </Text>
           </Image>
+          </LinearGradient>
         </View>
 
       </TouchableOpacity>
