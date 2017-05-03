@@ -86,32 +86,8 @@ class ProviderSearch extends Component {
   }
 
   componentDidMount() {
-    this._resetState()
     this.props.attemptCareTypes()
-
-    if (this.props.locationStatus == "" || this.props.locationStatus != "authorized") {
-      var locationStatus = ""
-      Permissions.getPermissionStatus('location')
-      .then(response => {
-        locationStatus = response
-        if (response == "authorized" || response == "undetermined") {
-          this._getLocation()
-          this.props.changeLocationPermissionStatus(response)
-        } else {
-          Permissions.requestPermission('location')
-          .then(response => {
-            this.props.changeLocationPermissionStatus(response)
-            locationStatus = response
-            if (response == "authorized" || response == "undetermined") {
-              this._getLocation()
-            }
-          })
-        }
-      })
-      this.props.changeLocationPermissionStatus(locationStatus)
-    } else if (this.props.locationStatus == "authorized") {
-      this._getLocation()
-    }
+    this._getLocation()
   }
 
   componentWillReceiveProps(newProps) {
@@ -268,19 +244,47 @@ class ProviderSearch extends Component {
   }
 
   _getLocation() {
-    navigator.geolocation.getCurrentPosition(
-    (position) => {
+    var getCurrentLocation = false
 
-    var newLat = position["coords"]["latitude"]
-    var newLong = position["coords"]["longitude"]
+    if (this.props.locationStatus == "" || this.props.locationStatus != "authorized") {
+      var locationStatus = ""
+      Permissions.getPermissionStatus('location')
+      .then(response => {
+        locationStatus = response
+        if (response == "authorized" || response == "undetermined") {
+          getCurrentLocation = true
+          this.props.changeLocationPermissionStatus(response)
+        } else {
+          Permissions.requestPermission('location')
+          .then(response => {
+            this.props.changeLocationPermissionStatus(response)
+            locationStatus = response
+            if (response == "authorized" || response == "undetermined") {
+              getCurrentLocation = true
+            }
+          })
+        }
+      })
+      this.props.changeLocationPermissionStatus(locationStatus)
+    } else if (this.props.locationStatus == "authorized") {
+      getCurrentLocation = true
+    }
 
-    this.props.changeLatitude(newLat)
-    this.props.changeLongitude(newLong)
-    this.props.changeAddress("Using Current Location")
-    },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
-    });
+    if (getCurrentLocation) {
+      navigator.geolocation.getCurrentPosition(
+      (position) => {
+
+      var newLat = position["coords"]["latitude"]
+      var newLong = position["coords"]["longitude"]
+
+      this.props.changeLatitude(newLat)
+      this.props.changeLongitude(newLong)
+      this.props.changeAddress("Using Current Location")
+      },
+        (error) => alert(JSON.stringify(error)),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
+      });
+    }
   }
 
   _alertForLocationPermission() {
