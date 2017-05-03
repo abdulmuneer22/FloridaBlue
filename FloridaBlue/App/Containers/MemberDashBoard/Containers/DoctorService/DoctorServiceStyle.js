@@ -47,6 +47,7 @@ export default StyleSheet.create({
 
   },
   doctorCardStyle: {
+    flex:1
   //  alignItems: 'center',
    // marginTop: Metrics.baseMargin
   },
@@ -57,18 +58,8 @@ export default StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: Colors.bg2,
   // padding: Metrics.mediumMargin,
-    justifyContent: 'space-between',
+ //   justifyContent: 'space-between',
   //  alignItems: 'center',
-
-    borderRadius: 2,
-    shadowColor: '#000000',
-    shadowOpacity: 0.3,
-    shadowRadius: 1,
-    shadowOffset: {
-      height: 1,
-      width: 0.3
-    }
-
   },
 
   textBackground3: {
@@ -92,12 +83,17 @@ export default StyleSheet.create({
   },
 
   doctorTextStyle: {
-    marginTop: Metrics.smallMargin,
-    fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
-    color: Colors.flBlue.ocean,
+   // marginTop: Metrics.smallMargin,
+   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00265,
+             // textAlign: 'center',
+              fontWeight: '600',
+              color: Colors.flBlue.grey3,
+    
+    
     fontFamily: Fonts.type.headerFont,
-    fontWeight: '500',
-    textAlign: 'center'
+     backgroundColor: Colors.transparent,
+              fontFamily: Fonts.type.subHeaderFont
+   // textAlign: 'center'
   },
 
   cardStyle: {
@@ -141,7 +137,7 @@ export default StyleSheet.create({
    // margin: 5,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     // fontWeight: '600',
-    color: Colors.flBlue.ocean,
+    color: Colors.flBlue.purple,
    // textAlign: 'center',
    // marginTop: Metrics.mediumMargin,
     fontFamily: Fonts.type.subHeaderFont,
