@@ -192,16 +192,12 @@ class ProviderSearch extends Component {
 
   _selectCurrentLocation(event) {
     if (event.checked) {
-      console.tron.log("Checking for current location..")
       if (this.props.locationStatus == "authorized") {
-        console.tron.log("Authorized..")
         this._getLocation()
         this.props.changeAddress("Using Current Address")
       } else {
-        console.tron.log("Not Authorized..")
         Permissions.requestPermission('location')
         .then(response => {
-          console.tron.log("Location Status: " + response)
           if (response == "authorized") {
             this._getLocation()
           } else {
@@ -466,7 +462,7 @@ class ProviderSearch extends Component {
         {this.state.helpStatus ?
           <View style={styles.urgentCareCircle}>
             <TouchableOpacity onPress={this.handleNeedHelp.bind(this)}>
-             <Flb name="urgent-care-circle" 
+             <Flb name="urgent-care-circle"
         color="red" size={Metrics.icons.large * Metrics.screenWidth * 0.0035}/>
         </TouchableOpacity>
           </View>

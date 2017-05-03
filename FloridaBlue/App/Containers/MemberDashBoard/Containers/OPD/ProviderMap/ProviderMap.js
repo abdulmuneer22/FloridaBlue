@@ -26,7 +26,6 @@ import HideableView from 'react-native-hideable-view'
 
 const theme = getTheme()
 const screen = Dimensions.get('window');
-const markerList = []
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
@@ -50,22 +49,7 @@ class ProviderMap extends Component {
   }
 
   componentDidMount() {
-    console.tron.log(this.props)
 
-    var providerLocations = []
-    for (var i = 0; i < this.props.provider.data.providerList.length; i++) {
-      var providerItem = this.props.provider.data.providerList[i]
-      var providerData = {}
-
-      providerData["providerName"] = providerItem["displayName"]
-      providerData["practiceType"] = providerItem["primarySpecialty"]
-      providerData["latitude"] = providerItem["latitude"]
-      providerData["longitude"] = providerItem["longitude"]
-      providerData["id"] = providerItem["providerKey"] + "." + providerItem["providerLocationKey"]
-      providerData["distance"] = providerItem["distance"]
-
-      markerList.push(providerData)
-    }
   }
 
   _mapCalloutSelected(event) {
@@ -99,7 +83,7 @@ class ProviderMap extends Component {
 
    _renderMapMarkers(location) {
      return (
-       <MapView.Marker key={location.id} identifier={location.providerName} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} image={Images.mapUnselectedPin}></MapView.Marker>
+       <MapView.Marker key={location.id} identifier={location.displayName} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin}></MapView.Marker>
      )
    }
 
@@ -108,6 +92,7 @@ class ProviderMap extends Component {
     return(
       <View>
         {this._renderHeader()}
+        {this.props.provider.data.providerList ?
         <View style={styles.container}>
           <MapView
             style={styles.map}
@@ -118,16 +103,18 @@ class ProviderMap extends Component {
               latitudeDelta: this.props.latDelta,
               longitudeDelta: this.props.longDelta
             }}>
-              {this.props.provider && markerList.map((provider) => this._renderMapMarkers(provider))}
+              {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderMapMarkers(provider))}
           </MapView>
-          
-          <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer}>
-         
+
+          <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden={true}>
             <DoctorCard data={this.state.selectedLocation} />
-         
           </HideableView>
-          
+
         </View>
+        : <View style={styles.spinnerView}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        </View>}
       </View>
     )
   }

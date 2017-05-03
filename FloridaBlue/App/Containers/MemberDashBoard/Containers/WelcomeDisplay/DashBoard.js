@@ -126,8 +126,13 @@ class LandingScreen extends Component {
                 onItemPress = function () {
                   var action
                   if (tile.tileType == 'webview') {
-                    var webview = 'MyView'
-                    action = NavigationActions[webview]({ responseURL: tile.tileUrl })
+                    if(tile.tileId = 'idCard'){
+                      var routerName = 'MyIdCard'
+                      action = NavigationActions[routerName]()
+                    }else{
+                      var webview = 'MyView'
+                      action = NavigationActions[webview]({ responseURL: tile.tileUrl })
+                    }
                   } else if (tile.tileType == 'native') {
                     var routerName = tile.routerName
                     action = NavigationActions[routerName]()

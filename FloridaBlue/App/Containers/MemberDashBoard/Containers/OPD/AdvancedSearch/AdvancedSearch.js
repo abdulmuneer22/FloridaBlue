@@ -113,9 +113,6 @@ class AdvancedSearch extends Component {
   }
 
   _handleDoctordetail() {
-   // alert(JSON.stringify(this.state))
-    // this.props.attemptSearchDoctor(this.state)
-    console.log('state data',this.state)
     this.props.attemptProviderSearch(this.props)
     NavigationActions.DoctorList()
   }
@@ -243,6 +240,17 @@ class AdvancedSearch extends Component {
     this.props.changeSpecialityType(value)
   }
 
+  _resetState() {
+    this.props.changeSubCategoryCode("")
+    this.props.changeCategoryCode("ALL")
+    this.props.changeProviderName("")
+    this.props.changeCareType("")
+    this.props.changeSpecialityType("")
+    this.props.changeCurrentLocation("Unknown")
+    this.props.changeLatitude(0)
+    this.props.changeLongitude(0)
+  }
+
 
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
@@ -260,12 +268,10 @@ class AdvancedSearch extends Component {
 
 
   componentDidMount() {
-  
-    //this.props.attemptLanguage()
     this.props.attemptConfigData()
     this.props.attemptStaffLanguage()
     this.props.attemptDoctorLanguage()
-   // this.props.attemptProviderSearch()
+    this._resetState()
   }
 
   _renderDropdownRow(rowData, rowID, highlighted) {
@@ -277,7 +283,6 @@ class AdvancedSearch extends Component {
   }
 
   render() {
-
     return (
       <View style={styles.container}>
 
@@ -397,8 +402,8 @@ class AdvancedSearch extends Component {
                 minimumValue={0}
                 maximumValue={100}
                 step={1}
-                maximumTrackTintColor={Colors.flBlue.grey3} 
-                style={{ width: Metrics.screenWidth * 0.87, 
+                maximumTrackTintColor={Colors.flBlue.grey3}
+                style={{ width: Metrics.screenWidth * 0.87,
                 marginLeft: 10,
                 }}
                 onValueChange={this.props.changeSearchRange}
@@ -679,7 +684,8 @@ const mapStateToProps = (state) => {
     providerName: state.provider.providerName,
     careType: state.provider.careType,
     officeHours: state.provider.officeHours,
-    specialityType: state.provider.specialityType
+    specialityType: state.provider.specialityType,
+    member: state.member
   }
 }
 
