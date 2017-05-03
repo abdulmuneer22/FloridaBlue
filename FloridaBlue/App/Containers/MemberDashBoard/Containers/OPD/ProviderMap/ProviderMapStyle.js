@@ -68,10 +68,10 @@ export default StyleSheet.create({
   },
   locationDetailContainer: {
     position: 'absolute',
-    top: 310,
-    height: 280,
-    width: 350,
-    bottom:-500
+    top: Metrics.textHeight2 * Metrics.screenHeight * 0.008,
+    height: Metrics.textHeight2 * Metrics.screenHeight * 0.009,
+    width: Metrics.textHeight2 * Metrics.screenWidth * 0.0185,
+    //bottom:100
    
   },
   slide: {

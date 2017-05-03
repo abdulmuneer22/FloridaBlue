@@ -31,6 +31,7 @@ import ModalDropdown from 'react-native-modal-dropdown'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
 import ActionButton from 'react-native-action-button';
+import LinearGradient from 'react-native-linear-gradient'
 
 
 
@@ -73,8 +74,7 @@ class ProviderSearch extends Component {
      savedProviderState: true,
      urgentCareState: false,
      floatClicked: false,
-     helpStatus: true,
-     optionSelected: 'You selected an option'
+     helpStatus: true
     };
 
     this.handleNeedHelp = this.handleNeedHelp.bind(this)
@@ -115,7 +115,8 @@ class ProviderSearch extends Component {
   }
 
   handleNeedHelp(){
-    this.setState({floatClicked: true})
+    let floatClicked = this.state.floatClicked
+    this.setState({floatClicked: !floatClicked})
   }
 
   dismissNeedHelp(){
@@ -123,6 +124,8 @@ class ProviderSearch extends Component {
   }
 
   _onChecked(event) {
+    this.setState({helpStatus: false})
+    this.setState({floatClicked: false})
     if (event.checked) {
       this.props.changeSubCategoryCode("")
       this.props.changeCategoryCode("ALL")
@@ -315,7 +318,7 @@ class ProviderSearch extends Component {
   return (
     <View style={styles.container}>
       {this._renderHeader()}
-      <View style={{flex:11}}>
+      <View style={{flex:13}}>
       <ScrollView>
         <View style={{flex:1}}>
           <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
@@ -337,7 +340,8 @@ class ProviderSearch extends Component {
             <MKTextField
               ref='providerName'
               style={styles.textField}
-              textInputStyle={{flex: 1}}
+              textInputStyle={{flex: 1,color: Colors.flBlue.ocean,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -353,7 +357,8 @@ class ProviderSearch extends Component {
             <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
                 ref='careType'
-                textInputStyle={{flex: 1}}
+                textInputStyle={{flex: 1,color: Colors.flBlue.ocean,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                 style={styles.textField}
                 editable={false}
                 underlineColorAndroid={Colors.coal}
@@ -371,7 +376,8 @@ class ProviderSearch extends Component {
               <MKTextField
                 ref='specialityType'
                 style={styles.textField}
-                textInputStyle={{flex: 1}}
+                textInputStyle={{flex: 1,color: Colors.flBlue.ocean,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                 editable={false}
                 underlineColorAndroid={Colors.coal}
                 placeholder={I18n.t('specialityTypePlaceholder')}
@@ -426,7 +432,9 @@ class ProviderSearch extends Component {
             <MKTextField
               ref='newLocation'
               style={styles.newLocationField}
-              textInputStyle={{flex: 1}}
+              textInputStyle={{flex: 1,color: Colors.flBlue.ocean,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                              }}
               editable={true}
               underlineColorAndroid={Colors.coal}
               placeholderTextColor={Colors.steel}
@@ -454,13 +462,15 @@ class ProviderSearch extends Component {
       </ScrollView>
          </View>
 
-        <View style={{flex:4}}>
+        <View style={{flex:2}}>
         {this.state.helpStatus ?
           <View style={styles.urgentCareCircle}>
-             <Flb name="urgent-care-circle" onPress={this.handleNeedHelp.bind(this)}
+            <TouchableOpacity onPress={this.handleNeedHelp.bind(this)}>
+             <Flb name="urgent-care-circle" 
         color="red" size={Metrics.icons.large * Metrics.screenWidth * 0.0035}/>
+        </TouchableOpacity>
           </View>
-          : null}
+          : <View>{this.state._onChecked}</View>}
           {this.state.floatClicked ?
           <Card style={styles.urgentCareContainer}>
             <Text style={styles.dismissUrgentIcon} onPress={this.dismissNeedHelp.bind(this)}>{closeIcon}</Text>

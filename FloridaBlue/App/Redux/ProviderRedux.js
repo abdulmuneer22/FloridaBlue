@@ -94,9 +94,7 @@ export const INITIAL_STATE = Immutable({
   networkCodeList: [],
   providerKey: "",
   addressKey: "",
-  locationStatus: "",
-  addressKey: "",
-  providerKey: ""
+  locationStatus: ""
 })
 
 /* ------------- Reducers ------------- */

@@ -98,7 +98,7 @@ _mapView() {
         {this.props.provider ?
           <View style={{flex:8}}>
           <ScrollView >
-
+          
             <View style={{flex:1, margin:15  }}>
               <Card style={{flex:1, borderRadius:15, backgroundColor:'purple'}} >
                 <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
