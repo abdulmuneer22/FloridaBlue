@@ -115,8 +115,6 @@ class ProviderSearch extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.tron.log("New props received..")
-    console.tron.log(newProps)
     if (newProps.planSubCategoryList && this.state.unknownCareState) {
       this.setState({specialityState: false}, function() {
         this.setState({specialityState: true})
