@@ -31,6 +31,7 @@ const colors = {
     grass: '#43b02a',
     red: '#e40046',
     purple: '#9b26b6',
+     teal: '#09b1c9',
     orange: '#ffa300',
     lightBlue: '#def1f7',
     deepBlue: '#005b80',

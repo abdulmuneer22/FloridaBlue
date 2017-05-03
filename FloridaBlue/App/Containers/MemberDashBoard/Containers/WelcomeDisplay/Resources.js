@@ -62,13 +62,13 @@ class Resources extends Component {
           <ScrollView>
 
             <View style={{
-              flexDirection: 'row',
+             // flexDirection: 'row',
                   // backgroundColor : 'red',
               flexWrap: 'wrap',
               flex: 1,
-              marginLeft: window.width * 0.04,
-              marginRight: window.width * 0.03,
-              marginTop: window.width * 0.03
+            //  marginLeft: window.width * 0.04,
+             // marginRight: window.width * 0.03,
+             // marginTop: window.width * 0.03
 
             }}>
               { this.props.visibilityRules != undefined && this.props.visibilityRules.additionalTiles != undefined && this.props.visibilityRules.additionalTiles.length > 0

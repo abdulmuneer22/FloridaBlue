@@ -19,6 +19,7 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import MemberActions from '../../../../../Redux/MemberRedux'
 import { connect } from 'react-redux'
 import Flb from '../../../../../Themes/FlbIcon'
+import { Card as BCard} from 'native-base'
 
 var image = [
   Images.dashboardGradient,
@@ -82,41 +83,50 @@ class Card extends Component {
         style={{
         // backgroundColor : "red",
         // width : this.props.i === this.props.CardCount ? (window.width * 0.85) : null,
-          width: this.state.CardWidth,
-          height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
+    //      width: this.state.CardWidth,
+    //      height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
           alignItems: 'center',
           justifyContent: 'center',
-          marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
+          flex:1
+       //   marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
         // marginRight :
         // marginTop : 10,
 
-          marginBottom: window.width * 0.03
+          //marginBottom: window.width * 0.03
 
         }}>
+                  <BCard style={{alignItems: 'center', flexDirection: 'row',
+          flex :1,
+         //    width: this.state.CardWidth,
+            height: Metrics.screenHeight - (Metrics.screenHeight * 0.90),
+          
+           // justifyContent: 'center'
+        
+          }}>
+       
 
-        <View style={{alignItems: 'center'}}>
-          <Image style={{
-            width: this.state.CardWidth,
-            height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-            source={Images[this.props.image]} >
 
-            <Flb name={this.props.icon} style={{backgroundColor: Colors.transparent, marginTop: Metrics.baseMargin}} size={Metrics.icons.large * Metrics.screenWidth * 0.0025} color={Colors.snow} />
+            <View style={{ flex :2 , alignItems:'center',   justifyContent: 'center',backgroundColor: Colors.transparent}}>
+                          <Flb name={this.props.icon}  size={Metrics.icons.regular} color={Colors.flBlue.teal} />
+            </View>
+             <View style={{flex:6,alignItems:'flex-start'}}>
             <Text style={{
-              marginTop: Metrics.mediumMargin,
+             // marginTop: Metrics.mediumMargin,
               fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
               fontWeight: '600',
-              textAlign: 'center',
-              color: Colors.snow,
+            //  textAlign: 'center',
+              color: Colors.flBlue.grey3,
+                fontFamily: Fonts.type.subHeaderFont,
               backgroundColor: Colors.transparent
             }}>
               {this.props.title}
             </Text>
-          </Image>
+         
         </View>
-
+        <View style={{flex:1, alignItems:'flex-start',   justifyContent: 'center',backgroundColor: Colors.transparent}}>
+              <Flb name= 'chevron-right'  size={Metrics.icons.small} color={Colors.flBlue.teal} />
+              </View>
+        </BCard>
       </TouchableOpacity>
 
     )
