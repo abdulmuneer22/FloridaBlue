@@ -49,7 +49,7 @@ export default StyleSheet.create({
   map: {
     backgroundColor: 'transparent',
     position: 'absolute',
-    
+
     top: 0,
     left: 0,
     right: 0,
@@ -72,7 +72,7 @@ export default StyleSheet.create({
     height: Metrics.textHeight2 * Metrics.screenHeight * 0.009,
     width: Metrics.textHeight2 * Metrics.screenWidth * 0.0185,
     //bottom:100
-   
+
   },
   slide: {
     flex: 1,
@@ -84,5 +84,15 @@ export default StyleSheet.create({
     color: '#000000',
     fontSize: 30,
     fontWeight: 'bold',
+  },
+  spinnerView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: window.width,
+    height: window.height
+  },
+  spinnerText: {
+    color:Colors.flBlue.anvil,
+    marginTop: 20
   }
 })

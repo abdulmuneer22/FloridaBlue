@@ -68,8 +68,6 @@ class DoctorDetail extends Component {
 
 
     componentDidMount() {
-        console.tron.log('Doctor Detail')
-        console.tron.log(this.props)
         this.props.attemptDoctorDetail(this.props)
     }
 

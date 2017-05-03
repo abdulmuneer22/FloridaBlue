@@ -82,6 +82,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   const getPlan = (data) => api.post('/benefits', data.input)
   const getTOU = () => api.get('/tou')
   const getSupport = () => api.get('/support')
+  const getMyIdCard = () => api.get('/support')
   const getHsa = (financialProduct) => api.get('/hsa/financialProduct/' + financialProduct)
   const getLogout = () => api.get('logout.fcc')
   const putTou = () => api.get('/termsOfUse')
@@ -316,6 +317,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
     getTOU,
     putTou,
     getHsa,
+    getMyIdCard,
     getDoctorLanguage,
     getStaffLanguage,
     getDoctorDetail,

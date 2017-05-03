@@ -60,9 +60,6 @@ _mapView() {
 
   componentWillReceiveProps(newProps) {
     if (newProps.provider.data.originLatitude != "" && newProps.provider.data.originLongitude != "") {
-      console.tron.log('I am DoctorList screen')
-      console.tron.log(newProps)
-
       this.props.changeLatitude(newProps.provider.data.originLatitude)
       this.props.changeLongitude(newProps.provider.data.originLongitude)
     }
@@ -88,7 +85,6 @@ _mapView() {
   }
 
   render() {
-    console.log(this.props.provider)
     return (
       <View style={styles.container}>
         <View >
@@ -98,7 +94,7 @@ _mapView() {
         {this.props.provider ?
           <View style={{flex:8}}>
           <ScrollView >
-          
+
             <View style={{flex:1, margin:15  }}>
               <Card style={{flex:1, borderRadius:15, backgroundColor:'purple'}} >
                 <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
