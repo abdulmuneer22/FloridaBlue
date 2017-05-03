@@ -55,6 +55,8 @@ const { Types, Creators } = createActions({
   changeLocationPermissionStatus: ['locationStatus'],
   changeAddressKey: ['addressKey'],
   changeProviderKey: ['providerKey'],
+  changeLatDelta: ['latDelta'],
+  changeLongDelta: ['longDelta'],
   providerClickleft: [],
   providerClickright: []
 
@@ -92,9 +94,7 @@ export const INITIAL_STATE = Immutable({
   networkCodeList: [],
   providerKey: "",
   addressKey: "",
-  locationStatus: "",
-  addressKey: "",
-  providerKey: ""
+  locationStatus: ""
 })
 
 /* ------------- Reducers ------------- */
@@ -277,6 +277,12 @@ export const _changeAddressKey = (state: Object, {addressKey}: Object) => state.
 // providerKey
 export const _changeProviderKey = (state: Object, {providerKey}: Object) => state.merge({fetching: false, providerKey})
 
+// latDelta
+export const _changeLatDelta = (state: Object, {latDelta}: Object) => state.merge({fetching: false, latDelta})
+
+// longDelta
+export const _changeLongDelta = (state: Object, {longDelta}: Object) => state.merge({fetching: false, longDelta})
+
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {
   return state.merge({fetching: false, error: null, leftActive: false, rightActive: true})
@@ -342,6 +348,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_LOCATION_PERMISSION_STATUS]: _changeLocationPermissionStatus,
   [Types.CHANGE_ADDRESS_KEY]: _changeAddressKey,
   [Types.CHANGE_PROVIDER_KEY]: _changeProviderKey,
+  [Types.CHANGE_LAT_DELTA]: _changeLatDelta,
+  [Types.CHANGE_LONG_DELTA]: _changeLongDelta,
   [Types.PROVIDER_CLICKLEFT]: leftclick,
   [Types.PROVIDER_CLICKRIGHT]: rightclick
 })

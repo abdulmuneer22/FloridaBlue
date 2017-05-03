@@ -25,7 +25,7 @@ import MemberActions from '../../Redux/MemberRedux'
 import MyPlanActions from '../../Redux/MyPlanRedux'
 import SupportActions from '../../Redux/SupportRedux'
 import styles from './LoginStyle'
-import { Images, Metrics, Colors } from '../../Themes'
+import { Images, Metrics, Colors, Fonts } from '../../Themes'
 // import {FlbIcon} from'./FlbIcon'
 import I18n from 'react-native-i18n'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
@@ -349,7 +349,8 @@ class Login extends Component {
                 <MKTextField
                   ref='username'
                   style={styles.textField}
-                  textInputStyle={{flex: 1}}
+                  textInputStyle={{flex: 1,color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='next'
                   autoCapitalize='none'
@@ -366,7 +367,8 @@ class Login extends Component {
                 <MKTextField
                   ref='password'
                   style={styles.textField}
-                  textInputStyle={{flex: 1}}
+                  textInputStyle={{flex: 1,color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='done'
                   autoCapitalize='none'

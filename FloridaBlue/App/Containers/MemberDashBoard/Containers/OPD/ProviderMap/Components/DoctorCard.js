@@ -39,46 +39,32 @@ class DoctorCard extends Component {
         this.providerSelected = this.providerSelected.bind(this)
     }
 
+
     handleCall(phone) {
+        console.log(phone)
         const url = `tel:${phone}`
 
-        Alert.alert(
-            'Alert Title',
-            'leaving app',
-            [
-                { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
-                {
-                    text: 'OK', onPress: () => Linking.canOpenURL(url).then(supported => {
-                        if (supported) {
-                            Linking.openURL(url);
-                        } else {
-                            console.log('Don\'t know how to open URI: ');
-                        }
-                    })
-                },
-            ]
-        )
+     Linking.canOpenURL(url).then(supported => {
+        if (supported) {
+            Linking.openURL(url);
+        } else {
+            console.log('Don\'t know how to open URI: ');
+        }
+     })
     }
 
     handleMaps(latitude, longitude) {
-        const url = `http://maps.apple.com/?ll=${latitude},${longitude}`
 
-        Alert.alert(
-            'Alert Title',
-            'leaving app',
-            [
-                { text: 'Cancel', onPress: () => console.log('Cancel Pressed!') },
-                {
-                    text: 'OK', onPress: () => Linking.canOpenURL(url).then(supported => {
-                        if (supported) {
-                            Linking.openURL(url);
-                        } else {
-                            console.log('Don\'t know how to go');
-                        }
-                    }).catch(err => console.error('An error occurred', err))
-                },
-            ]
-        )
+        console.log(latitude, longitude)
+        const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
+
+ Linking.canOpenURL(url).then(supported => {
+        if (supported) {
+            Linking.openURL(url);
+        } else {
+            console.log('Don\'t know how to go');
+        }
+ });
     }
 
     providerSelected() {
@@ -96,7 +82,7 @@ class DoctorCard extends Component {
                 <View style={{ flex: 1 }}>
                     {this.props.data != undefined ?
 
-                        <Card style={{ flex: 1 }} >
+                        <Card style={{ flex: 1}} >
                             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
 
                                 <View style={{ flex:1, paddingLeft:Metrics.doubleBaseMargin }}>
@@ -118,7 +104,47 @@ class DoctorCard extends Component {
 
                                 </View>
                             </View>
+                             <View style={{ flex: 1, marginTop:150 }}>
+                                        <View style={{ flex: 1, flexDirection: 'row' }}>
+                                            <TouchableOpacity style={{ flex: 1, height:50 }} onPress={() => this.handleCall(this.props.data.telephoneNumber)}>
+                                                <View style={styles.call}>
 
+                                                    <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                                                        <Flb
+                                                            name='call-phone'
+                                                            size={Metrics.icons.medium}
+                                                            color={Colors.snow} />
+                                                    </View>
+
+                                                    <View style={{ flex: 1, alignItems: 'flex-start' }}>
+
+                                                        <Text style={styles.callText}>Call</Text>
+                                                    </View>
+
+                                                </View>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity style={{ flex: 1,height:50 }} onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}>
+                                                <View style={styles.directions}>
+
+                                                    <View style={{ flex: 0.3, alignItems: 'center' }}>
+                                                        <Flb
+                                                            name='directions'
+                                                            size={Metrics.icons.medium}
+                                                            color={Colors.snow} />
+                                                    </View>
+
+                                                    <View style={{
+                                                        flex: 0.7,
+                                                        alignItems: 'flex-start'
+                                                    }}>
+
+                                                        <Text style={styles.directionText}>Directions</Text>
+                                                    </View>
+
+                                                </View>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
                         </Card>
 
                         : null}

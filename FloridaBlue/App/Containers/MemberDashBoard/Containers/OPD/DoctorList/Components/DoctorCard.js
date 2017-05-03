@@ -75,7 +75,7 @@ class DoctorCard extends Component {
     render() {
         return (
             <View style={styles.container}>
-                {this.props.data != undefined ?
+                { this.props.data ?
 
                     <View style={{ flex: 1, margin: 15 }}>
                         {this.props.data != undefined ? this.props.data.map((value, i) => {
@@ -152,24 +152,20 @@ class DoctorCard extends Component {
                                 </Card>
                             )
                         })
-                            : null
+                            : <View style={styles.spinnerView}>
+                                <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                                <Text style={styles.spinnerText}>L..
+                        </Text>
+                            </View>
                         }
                     </View>
 
-                    : <View style={{ flex: 1 }}>
-                        {this.props.leftActive
-                            ? <View style={styles.spinnerView}>
+                    : <View style={styles.spinnerView}>
                                 <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                                <Text style={styles.spinnerText}>Loading Please Wait
-</Text>
+                                <Text style={styles.spinnerText}>Loading..
+                        </Text>
                             </View>
-                            : <View>
-                                <Text style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                    "You didn't Saved any Provider"
-</Text></View>
-                        }
-                    </View>
-                }
+                            }
             </View>
         )
     }

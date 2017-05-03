@@ -91,12 +91,8 @@ class AdvancedSearch extends Component {
     this.radioGroup = new MKRadioButton.Group();
     this.genderGroup = new MKRadioButton.Group()
     this.state = {
-      acceptNewPatient: "",
-      workingTime: "",
-      programs: "",
       gender: "",
       doctorSpeaks: "",
-      staffSpeaks: "",
       searchRange: 50,
       newLocationState: false
     }
@@ -262,12 +258,14 @@ class AdvancedSearch extends Component {
     </Image>)
   }
 
+
   componentDidMount() {
+  
     //this.props.attemptLanguage()
     this.props.attemptConfigData()
     this.props.attemptStaffLanguage()
     this.props.attemptDoctorLanguage()
-    //this.props.attemptProviderSearch()
+   // this.props.attemptProviderSearch()
   }
 
   _renderDropdownRow(rowData, rowID, highlighted) {
