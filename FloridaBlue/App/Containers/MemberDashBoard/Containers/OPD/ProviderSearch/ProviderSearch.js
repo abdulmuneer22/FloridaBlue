@@ -114,6 +114,16 @@ class ProviderSearch extends Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    console.tron.log("New props received..")
+    console.tron.log(newProps)
+    if (newProps.planSubCategoryList && this.state.unknownCareState) {
+      this.setState({specialityState: false}, function() {
+        this.setState({specialityState: true})
+      })
+    }
+  }
+
   handleNeedHelp(){
     let floatClicked = this.state.floatClicked
     this.setState({floatClicked: !floatClicked})
@@ -147,7 +157,6 @@ class ProviderSearch extends Component {
     this.setState({unknownCareState: false}, function() {
       this.setState({unknownCareState: true})
     })
-    this.setState({specialityState: true})
   }
 
   _specialitySelected(index, value:string) {
@@ -155,7 +164,7 @@ class ProviderSearch extends Component {
     this.props.changeSubCategoryCode(selectedSubCategoryCode)
     this.props.changeSpecialityType(value)
     this.setState({specialityState: false}, function() {
-    this.setState({specialityState: true})
+      this.setState({specialityState: true})
     })
   }
 
