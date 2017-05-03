@@ -66,7 +66,8 @@ const images = {
   getResultsButton: require('../Images/get-results-btn.png'),
   saveLocationButton: require('../Images/save-location.png'),
   viewListButton: require('../Images/view-list-btn.png'),
-  mapUnselectedPin: require('../Images/map-unselected.png')
+  mapUnselectedPin: require('../Images/map-unselected.png'),
+  mapSelectedPin: require('../Images/map-selected.png')
 }
 
 export default images
