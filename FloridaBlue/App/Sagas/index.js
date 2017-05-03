@@ -12,6 +12,7 @@ import { MemberTypes } from '../Redux/MemberRedux'
 import { MyPlanTypes } from '../Redux/MyPlanRedux'
 import { SupportTypes } from '../Redux/SupportRedux'
 import { HsaTypes } from '../Redux/HsaRedux'
+import { MyIdCardTypes } from '../Redux/MyIdCardRedux'
 import { LanguageTypes } from '../Redux/LanguageRedux'
 import { StaffLanguageTypes } from '../Redux/StaffLanguageRedux'
 import { DoctorLanguageTypes } from '../Redux/DoctorLanguageRedux'
@@ -35,6 +36,7 @@ import { member } from './MemberSagas'
 import { myplan } from './MyPlanSagas'
 import { support } from './SupportSagas'
 import { hsa } from './HsaSagas'
+import { myidcard } from './MyIdCardSagas'
 import { language } from './LanguageSagas'
 import { stafflanguage } from './StaffLanguageSagas'
 import { doctorlanguage } from './DoctorLanguageSagas'
@@ -86,6 +88,7 @@ export default function * root () {
     takeLatest(MyPlanTypes.MYPLAN_REQUEST, myplan, api),
     takeLatest(SupportTypes.SUPPORT_REQUEST, support, api),
     takeLatest(HsaTypes.HSA_REQUEST, hsa, api),
+    takeLatest(MyIdCardTypes.MY_ID_CARD_REQUEST, myidcard, api),
     takeLatest(LanguageTypes.LANGUAGE_REQUEST, language, api),
     takeLatest(StaffLanguageTypes.STAFFLANGUAGE_REQUEST, stafflanguage, api),
     takeLatest(DoctorLanguageTypes.DOCTORLANGUAGE_REQUEST, doctorlanguage, api),
