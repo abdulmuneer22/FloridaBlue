@@ -88,15 +88,13 @@ class ProviderSearch extends Component {
   componentDidMount() {
     this._resetState()
     this.props.attemptCareTypes()
-    console.tron.log(this.props)
-    console.tron.log(this.props.locationStatus)
 
     if (this.props.locationStatus == "" || this.props.locationStatus != "authorized") {
       var locationStatus = ""
       Permissions.getPermissionStatus('location')
       .then(response => {
         locationStatus = response
-        if (response == "authorized") {
+        if (response == "authorized" || response == "undetermined") {
           this._getLocation()
           this.props.changeLocationPermissionStatus(response)
         } else {
@@ -104,7 +102,7 @@ class ProviderSearch extends Component {
           .then(response => {
             this.props.changeLocationPermissionStatus(response)
             locationStatus = response
-            if (response == "authorized") {
+            if (response == "authorized" || response == "undetermined") {
               this._getLocation()
             }
           })
@@ -240,7 +238,6 @@ class ProviderSearch extends Component {
     this.props.changeCurrentLocation("Unknown")
     this.props.changeLatitude(0)
     this.props.changeLongitude(0)
-    this.props.changeAddress("Jacksonville, FL 32246")
 
     var addressLine1 = this.props.member.defaultContract.homeAddress.addressline1
     var addressLine2 = ""
@@ -253,6 +250,7 @@ class ProviderSearch extends Component {
 
     var fullAddress = addressLine1 + addressLine2 + " " + city + ", " + state + " " + zip
     this.props.changeHomeAddress(fullAddress)
+    this.props.changeAddress(fullAddress)
   }
 
   _urgentCare() {
@@ -272,6 +270,7 @@ class ProviderSearch extends Component {
 
     this.props.changeLatitude(newLat)
     this.props.changeLongitude(newLong)
+    this.props.changeAddress("Using Current Location")
     },
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
@@ -332,13 +331,6 @@ class ProviderSearch extends Component {
                                   }} group={this.searchTypeGroup} />
             <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
           </View>
-
-          <HideableView visible={this.state.savedProviderState} removeWhenHidden={true}>
-            <Text style={styles.subheading}>{I18n.t('savedProviderMessage')}</Text>
-            <TouchableOpacity style={styles.savedProviderLink}>
-              <Text style={styles.savedProviderLinkText}>{I18n.t('savedProviderButton')}</Text>
-            </TouchableOpacity>
-          </HideableView>
 
           <HideableView visible={this.state.knownCareState} removeWhenHidden={true}>
             <Text style={styles.h2}>{I18n.t('knownCareMessage')}</Text>

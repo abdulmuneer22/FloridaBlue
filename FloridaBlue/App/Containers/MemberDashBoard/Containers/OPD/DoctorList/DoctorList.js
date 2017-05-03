@@ -58,11 +58,19 @@ _mapView() {
   }
 
 
-  componentDidMount() {
-    console.tron.log('I am DoctorList screen')
-    console.tron.log(this.props)
-   // this.props.attemptHandleLeft()
-    //this.props.attemptProviderSearch(this.props)
+  componentWillReceiveProps(newProps) {
+    if (newProps.provider.data.originLatitude != "" && newProps.provider.data.originLongitude != "") {
+      console.tron.log('I am DoctorList screen')
+      console.tron.log(newProps)
+
+      this.props.changeLatitude(newProps.provider.data.originLatitude)
+      this.props.changeLongitude(newProps.provider.data.originLongitude)
+    }
+
+    // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
+    const milesOfLatAtEquator = 69
+    this.props.changeLatDelta(this.props.searchRange / milesOfLatAtEquator)
+    this.props.changeLongDelta(this.props.searchRange / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
   }
 
   _renderHeader() {
@@ -80,7 +88,6 @@ _mapView() {
   }
 
   render() {
-    //   this.props.saveProvider &&  alert(this.props.saveProvider.length)
     console.log(this.props.provider)
     return (
       <View style={styles.container}>
@@ -201,23 +208,30 @@ DoctorList.propTypes = {
 const mapStateToProps = (state) => {
   return {
     fetching: state.provider.fetching,
-    // data: state.searchdoctor.data,
     error: state.provider.error,
     leftActive: state.provider.leftActive,
     rightActive: state.provider.rightActive,
     saveProvider: state.saveprovider.data,
-    provider: state.provider.data
+    provider: state.provider.data,
+    latitude: state.provider.latitude,
+    longitude: state.provider.longitude,
+    searchRange: state.provider.searchRange,
+    latDelta: state.provider.latDelta,
+    longDelta: state.provider.longDelta
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptProviderSearch: () => dispatch(ProviderActions.sendProviderSearchRequest()),
-    // attemptSearchDoctor: () => dispatch(SearchDoctorActions.searchdoctorRequest()),
     attemptHandleLeft: () => dispatch(ProviderActions.providerClickleft()),
     attemptHandleRight: () => dispatch(ProviderActions.providerClickright()),
     addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
-    removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey))
+    removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey)),
+    changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
+    changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
+    changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),
+    changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta))
   }
 }
 

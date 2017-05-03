@@ -43,17 +43,15 @@ class ProviderMap extends Component {
     super(props)
     this.state = {
       selectedLocation: {},
-      latDelta: 0,
-      longDelta: 0,
       showLocationDetail: false
     }
 
     this._mapCalloutSelected = this._mapCalloutSelected.bind(this)
-    this._mapPressed = this._mapPressed.bind(this)
   }
 
   componentDidMount() {
     console.tron.log(this.props)
+
     var providerLocations = []
     for (var i = 0; i < this.props.provider.data.providerList.length; i++) {
       var providerItem = this.props.provider.data.providerList[i]
@@ -67,16 +65,10 @@ class ProviderMap extends Component {
       providerData["distance"] = providerItem["distance"]
 
       markerList.push(providerData)
-
-      // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
-      const milesOfLatAtEquator = 69
-      this.setState({latDelta: this.props.searchRange / milesOfLatAtEquator})
-      this.setState({longDelta: this.props.searchRange / (Math.cos(30.25) * milesOfLatAtEquator)})
     }
   }
 
   _mapCalloutSelected(event) {
-    console.tron.log("Callout selected..")
     for (var i = 0; i < this.props.provider.data.providerList.length; i++) {
       var provider = this.props.provider.data.providerList[i]
       if (provider.displayName == event.nativeEvent.id) {
@@ -84,14 +76,11 @@ class ProviderMap extends Component {
       }
     }
 
-    this.setState({showLocationDetail: true})
-    console.tron.log(this.state.showLocationDetail)
-    console.tron.log(this.state.selectedLocation)
-  }
-
-  _mapPressed() {
-    console.tron.log("Map pressed..")
-    this.setState({showLocationDetail: false})
+    if (this.state.showLocationDetail) {
+      this.setState({showLocationDetail: false})
+    } else {
+      this.setState({showLocationDetail: true})
+    }
   }
 
   _renderHeader() {
@@ -110,7 +99,7 @@ class ProviderMap extends Component {
 
    _renderMapMarkers(location) {
      return (
-       <MapView.Marker key={location.id} identifier={location.providerName} coordinate={{latitude: location.latitude, longitude: location.longitude}} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin}></MapView.Marker>
+       <MapView.Marker key={location.id} identifier={location.providerName} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} image={Images.mapUnselectedPin}></MapView.Marker>
      )
    }
 
@@ -123,12 +112,11 @@ class ProviderMap extends Component {
           <MapView
             style={styles.map}
             showsUserLocation={true}
-            onPress={this._mapPressed}
             initialRegion={{
-              latitude: 30.25,
-              longitude: -81.55,
-              latitudeDelta: this.state.latDelta,
-              longitudeDelta: this.state.longDelta,
+              latitude: this.props.latitude,
+              longitude: this.props.longitude,
+              latitudeDelta: this.props.latDelta,
+              longitudeDelta: this.props.longDelta
             }}>
               {this.props.provider && markerList.map((provider) => this._renderMapMarkers(provider))}
           </MapView>
@@ -165,8 +153,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeCurrentLocation: (currentLocation) => dispatch(ProviderActions.changeCurrentLocation(currentLocation)),
-    changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
-    changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeAddressKey: (addressKey) => dispatch(ProviderActions.changeAddressKey(addressKey)),
     changeProviderKey: (providerKey) => dispatch(ProviderActions.changeProviderKey(providerKey))
   }
