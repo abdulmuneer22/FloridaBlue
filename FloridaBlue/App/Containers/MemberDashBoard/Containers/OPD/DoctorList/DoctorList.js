@@ -144,7 +144,8 @@ _mapView() {
           : <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
-          </View>}
+          </View>
+          }
         <View style={{flex:1}}>
           <View style={{flex:1}}>
           <View style={{flex:1,flexDirection:'row'}}>

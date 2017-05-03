@@ -106,24 +106,16 @@ class DoctorDetail extends Component {
                             <DoctorLocation
                             data={this.props.doctordetail}/>
                             </View>
-                            :<Text style={{color:Colors.flBlue.anvil}}> No Data</Text>
+                            :null
                         }
 
                             <View style={{ flex: 1 }}>
                                 { this.props.doctordetail  ?
-                                <DoctorCard
-                                    savedproviders={this.props.saveProvider}
-                                    saveProvider={this.saveProvider}
-                                    removeProvider={this.removeProvider}
+                                <DoctorCard              
                                     data={this.props.doctordetail}
-                                    leftActive={this.props.leftActive}
-                                    rightActive={this.props.rightActive}
-
                                 />
-                                :<Text style={{color:Colors.flBlue.anvil}}>no data</Text>}
+                                :null}
                             </View>
-
-
 
                  <View style={{flex:1}}>
                 {this.props.doctordetail.certifications.length > 0 ?
@@ -149,7 +141,7 @@ class DoctorDetail extends Component {
                     </View>
                 </HideableView> : null}
                 </View>
-                : <Text style={{color:Colors.flBlue.anvil}}>No data</Text> }
+                : <Text style={{color:Colors.flBlue.anvil}}>Please Try After Sometime.</Text> }
 
                 <View style={{flex:1}}>
                      {this.props.doctordetail.certifications.length > 0 ?
@@ -175,7 +167,7 @@ class DoctorDetail extends Component {
                     </View>
                 </HideableView> : null}
                </View>
-                : <Text style={{color:Colors.flBlue.anvil}}>No data</Text> }
+                : null }
                  </View>
 
                  </View>
