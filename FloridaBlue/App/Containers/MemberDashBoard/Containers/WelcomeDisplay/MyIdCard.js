@@ -65,18 +65,17 @@ class MyIdCard extends Component {
         <HideableView visible={this.state.idCardHeaderVisible} removeWhenHidden={true}>
           {this._renderHeader()}
         </HideableView>
-        
-          <View style={{margin:5,flex:1,alignItems: 'center'}}>
-            <TouchableOpacity onPress={this.toggle}>
-            <Image source={{uri:this.state.idsrc}} style={{
-                flex:1,
-                transform : [{rotate:'270 deg'}],
-                width:Metrics.screenWidth*1.6,
-                resizeMode: 'contain'
-              }}>
-            </Image>
-            </TouchableOpacity>
-          </View>
+        <View style={{margin:5,flex:1,alignItems: 'center'}}>
+          <TouchableWithoutFeedback onPress={this.toggle}>
+          <Image source={{uri:this.state.idsrc}} style={{
+              flex:1,
+              transform : [{rotate:'270 deg'}],
+              width:Metrics.screenWidth*1.6,
+              resizeMode: 'contain'
+            }}>
+          </Image>
+          </TouchableWithoutFeedback>
+        </View>
         
       </View>
     )
