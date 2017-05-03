@@ -6,10 +6,10 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   sendNetworkListRequest: ['data'],
   sendNetworkListSuccess: ['data'],
-  sendNetworkListFailure: ['data'],
+  sendNetworkListFailure: ['error'],
   sendProviderSearchRequest: ['data'],
   sendProviderSearchSuccess: ['data'],
-  sendProviderSearchFailure: ['data'],
+  sendProviderSearchFailure: ['error'],
   sendPharmacySearchRequest: ['data'],
   sendPharmacySearchSuccess: ['data'],
   sendPharmacySearchFailure: ['data'],
@@ -108,7 +108,7 @@ export const _sendNetworkListSuccess = (state: Object, {data}: Object) =>
 
 // sendNetworkListFailure
 export const _sendNetworkListFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+  state.merge({ fetching: false, data:{}, error })
 
 // sendProviderSearchRequest
 export const _sendProviderSearchRequest = (state: Object) => state.merge({ fetching: true })
@@ -118,8 +118,8 @@ export const _sendProviderSearchSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
 
 // sendProviderSearchFailure
-export const _sendProviderSearchFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+export const _sendProviderSearchFailure = (state: Object, {error}: Object) =>
+  state.merge({ fetching: false, data: {}, error })
 
 // sendPharmacySearchRequest
 export const _sendPharmacySearchRequest = (state: Object) => state.merge({ fetching: true })

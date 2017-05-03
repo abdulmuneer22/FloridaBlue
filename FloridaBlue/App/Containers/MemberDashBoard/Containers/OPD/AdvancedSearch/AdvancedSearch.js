@@ -394,7 +394,7 @@ class AdvancedSearch extends Component {
             </HideableView>
 
             <View style={{ marginLeft: 15, marginTop: 10 }}>
-              <Text style={styles.searchText}> Search Radius:</Text>
+              <Text style={styles.searchText}> Search Distance:</Text>
               <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular,
                             color:Colors.flBlue.anvil }}>{this.props.searchRange} mi</Text>
               <Slider

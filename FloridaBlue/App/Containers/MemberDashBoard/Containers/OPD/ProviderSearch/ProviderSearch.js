@@ -73,7 +73,7 @@ class ProviderSearch extends Component {
      customLocationState: false,
      savedProviderState: true,
      urgentCareState: false,
-     floatClicked: false,
+     floatClicked: true,
      helpStatus: true
     };
 
@@ -124,7 +124,7 @@ class ProviderSearch extends Component {
   }
 
   _onChecked(event) {
-    this.setState({helpStatus: false})
+    //this.setState({helpStatus: false})
     this.setState({floatClicked: false})
     if (event.checked) {
       this.props.changeSubCategoryCode("")

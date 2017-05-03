@@ -5,7 +5,7 @@ export function * sendNetworkListRequest (api, {data}) {
   const response = yield call(api.postNetworkList, data)
 
   if (response.ok) {
-    var error = null
+    
     var data = response.data
 
     for (var i = 0; i < data.data.memberNetworkList.length; i++) {
@@ -19,19 +19,22 @@ export function * sendNetworkListRequest (api, {data}) {
     yield put(ProviderActions.changeNetworkCodeList(networkCodeList))
     yield put(ProviderActions.sendNetworkListSuccess(data))
   } else {
-    yield put(ProviderActions.sendNetworkListFailure(data))
+      var error = response.problem
+    yield put(ProviderActions.sendNetworkListFailure(error))
   }
 }
 
 export function * sendProviderSearchRequest (api, {data}) {
    const response = yield call(api.postProviderSearch, data)
   if (response.ok) {
-    var error = null
+    
     var data = response.data
     yield put(ProviderActions.sendProviderSearchSuccess(data))
   } else {
-    var data=response.data
-    yield put(ProviderActions.sendProviderSearchFailure(data))
+     var error = response.problem
+     console.log('im provider error' +error)
+//    var data=response.data
+    yield put(ProviderActions.sendProviderSearchFailure(error))
   }
 }
 
