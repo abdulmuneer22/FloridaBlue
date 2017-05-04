@@ -137,7 +137,30 @@ class DoctorCard extends Component {
                                 </View>
                             </View>
                                     : null }
-                                      {this.props.data && this.props.data.acceptingNewPatients  ?
+
+
+                
+                 {this.props.data && this.props.data.gender  ?
+                            <View style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                margin: 5,
+                                flex: 1
+                            }}>
+                                <View style={{ flex: 1, alignItems: 'center' }}>
+                                    <Text style={styles.plannameText}> Gender: </Text>
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                  
+                                        <Text style={styles.plannameText}>
+                                            {this.props.data.gender}
+                                        </Text> 
+                                </View>
+                            </View>
+                            : null}
+
+
+                             {this.props.data && this.props.data.acceptingNewPatients  ?
                             <View style={{
                                 flexDirection: 'row',
                                 alignItems: 'center',

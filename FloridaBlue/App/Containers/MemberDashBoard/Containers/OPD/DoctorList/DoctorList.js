@@ -97,25 +97,12 @@ _mapView() {
       return (
         <View style={styles.container}>
          {this.props.provider ?
-          <View style={{flex:8}}>
+          <View style={{flex:9}}>
+         
           <ScrollView >
-
-            <View style={{flex:1, margin:15  }}>
-              <Card style={{flex:1, borderRadius:15, backgroundColor:'purple'}} >
-                <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
-                  <View style={{ flex: 0.15 }}>
-                    <Flb name="accident" size={Metrics.icons.large} color={Colors.snow} />
-                  </View>
-                  <View style={{ flex: 0.85 }}>
-                    <Text style={{
-                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                      color: Colors.snow
-                    }}>If this is an emergency, please call 911.</Text>
-                  </View>
-                </View>
-              </Card>
-            </View>
           
+          
+
             <View style={{flex:1}}>
 
                 {this.props.provider && this.props.provider.data  && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
@@ -218,15 +205,39 @@ _mapView() {
   }
 
   render() {
+    //alert(this.props.data)
     return (
       <View style={styles.container}>
         <View >
           {this._renderHeader()}
         </View>
-
+      
+        { 
+           this.props.data ?  
+           null:
+            <View style={{flex:1, margin:15  }}>
+              <Card style={{flex:1, borderRadius:15, backgroundColor:'purple'}} >
+                <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                  <View style={{ flex: 0.15 }}>
+                    <Flb name="accident" size={Metrics.icons.large} color={Colors.snow} />
+                  </View>
+                  <View style={{ flex: 0.85 }}>
+                    <Text style={{
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
+                      color: Colors.snow
+                    }}>If this is an emergency, please call 911.</Text>
+                  </View>
+                </View>
+              </Card>
+            </View>
+            
+         }
+       
+        <View style={{flex:7}}>
        {
          this._displayCondition()
        }
+       </View>
       </View>
 
     )
@@ -235,7 +246,7 @@ _mapView() {
 
 
 DoctorList.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.string,
   provider:PropTypes.object,
   attemptProviderSearch: PropTypes.func,
   error: PropTypes.string,
