@@ -118,8 +118,7 @@ const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
   })
 
   const postNetworkList = (data) => api.post('/opd/networks', {
-    "language": "EN",
-    "applicationId": "OPD"
+    "language": "EN"
   })
 
   const postProviderSearch = (data) =>

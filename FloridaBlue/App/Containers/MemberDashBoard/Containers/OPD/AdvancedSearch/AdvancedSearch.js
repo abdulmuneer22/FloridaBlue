@@ -88,14 +88,17 @@ class AdvancedSearch extends Component {
 
   constructor(props) {
     super(props);
-
-    this.radioGroup = new MKRadioButton.Group();
+    this.searchTypeGroup = new MKRadioButton.Group()
+    this.radioGroup = new MKRadioButton.Group()
     this.genderGroup = new MKRadioButton.Group()
     this.state = {
       gender: "",
       doctorSpeaks: "",
       searchRange: 50,
-      newLocationState: false
+      newLocationState: false,
+      knownCareState: false,
+      unknownCareState: false,
+      specialityState: false
     }
     this._timeSelected = this._timeSelected.bind(this)
     this._languageSelected = this._languageSelected.bind(this)
@@ -111,6 +114,22 @@ class AdvancedSearch extends Component {
     this._femaleGenderSelected=this._femaleGenderSelected.bind(this)
     this._careSelected = this._careSelected.bind(this)
     this._specialitySelected = this._specialitySelected.bind(this)
+    this._onChecked = this._onChecked.bind(this)
+    this._careSelected = this._careSelected.bind(this)
+    this._specialitySelected = this._specialitySelected.bind(this)
+  }
+
+  _onChecked(event) {
+    if (event.checked) {
+      this.props.changeSubCategoryCode("")
+      this.props.changeCategoryCode("ALL")
+      this.setState({knownCareState: true})
+      this.setState({unknownCareState: false})
+    } else {
+      this.props.changeProviderName("")
+      this.setState({knownCareState: false})
+      this.setState({unknownCareState: true})
+    }
   }
 
   _handleDoctordetail() {
@@ -140,7 +159,6 @@ class AdvancedSearch extends Component {
       'selectedTimeLabel' : selectedTimeLabel
     }
      this.props.changeTimeType(timeSelected)
-
   }
 
   _staffLanguageSelected(index, value: string) {
@@ -296,6 +314,23 @@ class AdvancedSearch extends Component {
     }
   }
 
+  _careSelected(index, value:string) {
+    var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
+    this.props.getSpecialityTypes(selectedCategoryCode)
+    this.props.changeCareType(value)
+    this.setState({unknownCareState: false}, function() {
+      this.setState({unknownCareState: true})
+    })
+  }
+
+  _specialitySelected(index, value:string) {
+    var selectedSubCategoryCode = this.props.planSubCategoryList[index].subCategoryCode
+    this.props.changeSubCategoryCode(selectedSubCategoryCode)
+    this.props.changeSpecialityType(value)
+    this.setState({specialityState: false}, function() {
+      this.setState({specialityState: true})
+    })
+  }
 
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
@@ -319,6 +354,14 @@ class AdvancedSearch extends Component {
     this._getLocation()
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.planSubCategoryList && this.state.unknownCareState) {
+      this.setState({specialityState: false}, function() {
+        this.setState({specialityState: true})
+      })
+    }
+  }
+
   _renderDropdownRow(rowData, rowID, highlighted) {
     return (
       <TouchableHighlight underlayColor='white'>
@@ -334,59 +377,79 @@ class AdvancedSearch extends Component {
         {this._renderHeader()}
         <ScrollView style={{ flex: 1, marginBottom: 20 }}>
           <View style={styles.careView}>
-            <MKTextField
-              ref='providerName'
-              style={styles.careTextField}
-              textInputStyle={{
-                    flex: 1, color: Colors.flBlue.ocean,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                  }}
-              keyboardType='default'
-              returnKeyType='next'
-              autoCapitalize='none'
-              autoCorrect={false}
-              underlineColorAndroid={Colors.coal}
-              placeholder={I18n.t('providerPlaceholder')}
-              placeholderTextColor={Colors.steel}
-              tintColor={Colors.black}
-              onChangeText={this.props.changeProviderName}
-            />
+            <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
+            <View style={styles.searchTypeRadioView}>
+              <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                    width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                    borderRadius: Metrics.section}} group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
+              <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
+              <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
+                                    width:Metrics.section * Metrics.screenWidth * 0.0025,
+                                    borderRadius: Metrics.section,
+                                    }} group={this.searchTypeGroup} />
+              <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
+            </View>
 
-            <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
-              <MKTextField
-                ref='careType'
-                textInputStyle={{
-                    flex: 1, color: Colors.flBlue.ocean,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                  }}
-                style={styles.careTextField}
-                editable={false}
-                underlineColorAndroid={Colors.coal}
-                placeholder={I18n.t('careTypePlaceholder')}
-                placeholderTextColor={Colors.steel}
-                tintColor={Colors.black}
-                value={this.props.careType}
-              />
-            </ModalDropdown>
-            <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
 
-            <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+            <HideableView visible={this.state.knownCareState} removeWhenHidden={true}>
               <MKTextField
-                ref='specialityType'
+                ref='providerName'
                 style={styles.careTextField}
                 textInputStyle={{
-                    flex: 1, color: Colors.flBlue.ocean,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                  }}
-                editable={false}
+                      flex: 1, color: Colors.flBlue.ocean,
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                    }}
+                keyboardType='default'
+                returnKeyType='next'
+                autoCapitalize='none'
+                autoCorrect={false}
                 underlineColorAndroid={Colors.coal}
-                placeholder={I18n.t('specialityTypePlaceholder')}
+                placeholder={I18n.t('providerPlaceholder')}
                 placeholderTextColor={Colors.steel}
                 tintColor={Colors.black}
-                value={this.props.specialityType}
+                onChangeText={this.props.changeProviderName}
               />
-            </ModalDropdown>
-            <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
+            </HideableView>
+
+            <HideableView visible={this.state.unknownCareState} removeWhenHidden={true}>
+              <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                <MKTextField
+                  ref='careType'
+                  textInputStyle={{
+                      flex: 1, color: Colors.flBlue.ocean,
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                    }}
+                  style={styles.careTextField}
+                  editable={false}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder={I18n.t('careTypePlaceholder')}
+                  placeholderTextColor={Colors.steel}
+                  tintColor={Colors.black}
+                  value={this.props.careType}
+                />
+              </ModalDropdown>
+              <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
+            </HideableView>
+
+            <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden={true}>
+              <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                <MKTextField
+                  ref='specialityType'
+                  style={styles.careTextField}
+                  textInputStyle={{
+                      flex: 1, color: Colors.flBlue.ocean,
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                    }}
+                  editable={false}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder={I18n.t('specialityTypePlaceholder')}
+                  placeholderTextColor={Colors.steel}
+                  tintColor={Colors.black}
+                  value={this.props.specialityType}
+                />
+              </ModalDropdown>
+              <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
+            </HideableView>
           </View>
 
           <View style={styles.locationView}>
@@ -731,7 +794,10 @@ const mapStateToProps = (state) => {
     officeHours: state.provider.officeHours,
     specialityType: state.provider.specialityType,
     member: state.member,
-    locationStatus: state.provider.locationStatus
+    locationStatus: state.provider.locationStatus,
+    knownCareState: state.provider.knownCareState,
+    unknownCareState: state.provider.unknownCareState,
+    specialityState: state.provider.specialityState
   }
 }
 
@@ -760,7 +826,9 @@ const mapDispatchToProps = (dispatch) => {
     changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode)),
     changeProviderName: (providerName) => dispatch(ProviderActions.changeProviderName(providerName)),
     changeCareType: (careType) => dispatch(ProviderActions.changeCareType(careType)),
-    changeSpecialityType: (specialityType) => dispatch(ProviderActions.changeSpecialityType(specialityType))
+    changeSpecialityType: (specialityType) => dispatch(ProviderActions.changeSpecialityType(specialityType)),
+    changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode)),
+    changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode))
   }
 }
 

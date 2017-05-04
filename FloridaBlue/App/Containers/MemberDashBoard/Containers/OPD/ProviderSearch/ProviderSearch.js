@@ -51,8 +51,8 @@ class ProviderSearch extends Component {
 
   constructor(props) {
    super(props);
-   this.searchTypeGroup = new MKRadioButton.Group();
-   this.locationGroup = new MKRadioButton.Group();
+   this.searchTypeGroup = new MKRadioButton.Group()
+   this.locationGroup = new MKRadioButton.Group()
    this._onChecked = this._onChecked.bind(this)
    this._careSelected = this._careSelected.bind(this)
    this._specialitySelected = this._specialitySelected.bind(this)
@@ -71,7 +71,6 @@ class ProviderSearch extends Component {
      specialityState: false,
      changeLocaleState: false,
      customLocationState: false,
-     savedProviderState: true,
      urgentCareState: false,
      floatClicked: true,
      helpStatus: true
@@ -88,6 +87,19 @@ class ProviderSearch extends Component {
   componentDidMount() {
     this.props.attemptCareTypes()
     this._getLocation()
+
+    var addressLine1 = this.props.member.defaultContract.homeAddress.addressline1
+    var addressLine2 = ""
+    if (this.props.member.defaultContract.homeAddress.addressline2) {
+      var addressLine2 = this.props.member.defaultContract.homeAddress.addressline2
+    }
+    var city = this.props.member.defaultContract.homeAddress.city
+    var state = this.props.member.defaultContract.homeAddress.state
+    var zip = this.props.member.defaultContract.homeAddress.zipCode
+
+    var fullAddress = addressLine1 + addressLine2 + " " + city + ", " + state + " " + zip
+    this.props.changeHomeAddress(fullAddress)
+    this.props.changeAddress(fullAddress)
   }
 
   componentWillReceiveProps(newProps) {
@@ -108,19 +120,16 @@ class ProviderSearch extends Component {
   }
 
   _onChecked(event) {
-    //this.setState({helpStatus: false})
     this.setState({floatClicked: false})
     if (event.checked) {
       this.props.changeSubCategoryCode("")
       this.props.changeCategoryCode("ALL")
       this.setState({knownCareState: true})
       this.setState({unknownCareState: false})
-      this.setState({savedProviderState: false})
     } else {
       this.props.changeProviderName("")
       this.setState({knownCareState: false})
       this.setState({unknownCareState: true})
-      this.setState({savedProviderState: false})
     }
   }
 
@@ -220,19 +229,6 @@ class ProviderSearch extends Component {
     this.props.changeCurrentLocation("Unknown")
     this.props.changeLatitude(0)
     this.props.changeLongitude(0)
-
-    var addressLine1 = this.props.member.defaultContract.homeAddress.addressline1
-    var addressLine2 = ""
-    if (this.props.member.defaultContract.homeAddress.addressline2) {
-      var addressLine2 = this.props.member.defaultContract.homeAddress.addressline2
-    }
-    var city = this.props.member.defaultContract.homeAddress.city
-    var state = this.props.member.defaultContract.homeAddress.state
-    var zip = this.props.member.defaultContract.homeAddress.zipCode
-
-    var fullAddress = addressLine1 + addressLine2 + " " + city + ", " + state + " " + zip
-    this.props.changeHomeAddress(fullAddress)
-    this.props.changeAddress(fullAddress)
   }
 
   _urgentCare() {
@@ -507,7 +503,6 @@ const mapStateToProps = (state) => {
     specialityType: state.provider.specialityType,
     knownCareState: state.provider.knownCareState,
     unknownCareState: state.provider.unknownCareState,
-    savedProviderState: state.provider.savedProviderState,
     specialityState: state.provider.specialityState,
     changeLocaleState: state.provider.changeLocaleState,
     customLocationState: state.provider.customLocationState,
