@@ -109,6 +109,8 @@ class MyPlanScreen extends Component {
                     title={tile.tileName['en']}
                     tileType={tile.tileType}
                     icon={tile.tileIcon}
+                    gradientImage={tile.gradientImage}
+                    gradientColor={tile.gradientColor}
                     CardCount={TileCount}
                     image={tile.backgroundImage}
                     webURL={tile.tileType !== 'native' ? tile.tileUrl : null}
