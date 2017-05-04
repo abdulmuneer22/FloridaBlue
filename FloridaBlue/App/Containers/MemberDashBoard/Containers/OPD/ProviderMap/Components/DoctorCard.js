@@ -9,7 +9,8 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     Linking,
-    Alert
+    Alert,
+    Platform
 } from 'react-native'
 
 import { Card } from 'native-base'
@@ -74,19 +75,17 @@ class DoctorCard extends Component {
   render () {
     return (
       <View style={styles.container}>
-
         <View style={{ flex: 1 }}>
           {this.props.data != undefined ?
-
             <Card style={{ flex: 1}} >
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
 
-                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin }}>
+                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin *2}}>
                   {this.props.data ?
                     <TouchableOpacity onPress={this.providerSelected}>
                         <Text style={styles.h1}>{this.props.data.displayName}</Text>
                       </TouchableOpacity>
-                                    : null}
+                  : null}
                   {this.props.data ?
                     <Text style={styles.h2}>{this.props.data.primarySpecialty}</Text> : null}
                   {this.props.data ?
@@ -142,9 +141,7 @@ class DoctorCard extends Component {
                 </View>
               </View>
             </Card>
-
-                        : null}
-
+          : null}
         </View>
       </View>
     )

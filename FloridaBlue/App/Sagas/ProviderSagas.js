@@ -72,8 +72,8 @@ export function * sendCareTypeRequest (api, {data}) {
 
   if (response.ok) {
     var data = response.data
-    var allCategory = {"categoryCode": 0, "categoryName": "All"}
-    var noPrefCategory = {"categoryCode": 0, "categoryName": "No Preference"}
+    var allCategory = {"categoryCode": "ALL", "categoryName": "All"}
+    var noPrefCategory = {"categoryCode": "", "categoryName": "No Preference"}
     data.data.planCategoryList.splice(0, 0, allCategory)
     data.data.planCategoryList.push(noPrefCategory)
     yield put(ProviderActions.sendCareTypeSuccess(data))
@@ -91,8 +91,8 @@ export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
 
   if (response.ok) {
     var data = response.data
-    var allCategory = {"categoryCode": 0,"subCategoryCode": 0,"subCategoryName": "All"}
-    var noPrefCategory = {"categoryCode": 0,"subCategoryCode": 0,"subCategoryName": "No Preference"}
+    var allCategory = {"categoryCode": "ALL","subCategoryCode": "","subCategoryName": "All"}
+    var noPrefCategory = {"categoryCode": "","subCategoryCode": "","subCategoryName": "No Preference"}
     data.data.planSubCategoryList.splice(0, 0, allCategory)
     data.data.planSubCategoryList.push(noPrefCategory)
     yield put(ProviderActions.changeCategoryCode(selectedCategoryCode))

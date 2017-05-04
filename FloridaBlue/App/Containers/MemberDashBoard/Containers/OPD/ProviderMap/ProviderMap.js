@@ -23,6 +23,7 @@ import ProviderActions from '../../../../../Redux/ProviderRedux'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import DoctorCard from './Components/DoctorCard'
 import HideableView from 'react-native-hideable-view'
+import Swiper from 'react-native-swiper'
 
 const theme = getTheme()
 const screen = Dimensions.get('window')
@@ -81,9 +82,15 @@ class ProviderMap extends Component {
     </Image>)
   }
 
-  _renderMapMarkers (location) {
+  _renderMapMarkers(location) {
     return (
       <MapView.Marker identifier={location.displayName} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin} />
+    )
+  }
+
+  _renderLocationDetail(location) {
+    return(
+      <DoctorCard data={location} />
     )
   }
 
@@ -104,11 +111,11 @@ class ProviderMap extends Component {
               }}>
               {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderMapMarkers(provider))}
             </MapView>
-
             <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden>
-              <DoctorCard data={this.state.selectedLocation} />
+              <Swiper width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.10)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.52))} height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.52))} showsButtons={true} showsPagination={false}>
+                {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
+              </Swiper>
             </HideableView>
-
           </View>
         : <View style={styles.spinnerView}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
