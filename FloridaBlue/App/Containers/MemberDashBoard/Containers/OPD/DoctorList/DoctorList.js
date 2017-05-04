@@ -92,7 +92,7 @@ _mapView() {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props.provider) {
+    } else if (this.props.provider && this.props.provider.data) {
     
       return (
         <View style={styles.container}>
@@ -101,6 +101,21 @@ _mapView() {
          
           <ScrollView >
           
+          <View style={{flex:1, margin:15  }}>
+              <Card style={{flex:1, borderRadius:15, backgroundColor:'purple'}} >
+                <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                  <View style={{ flex: 0.15 }}>
+                    <Flb name="accident" size={Metrics.icons.large} color={Colors.snow} />
+                  </View>
+                  <View style={{ flex: 0.85 }}>
+                    <Text style={{
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
+                      color: Colors.snow
+                    }}>If this is an emergency, please call 911.</Text>
+                  </View>
+                </View>
+              </Card>
+            </View>
           
 
             <View style={{flex:1}}>
@@ -212,27 +227,6 @@ _mapView() {
           {this._renderHeader()}
         </View>
       
-        { 
-           this.props.data ?  
-           null:
-            <View style={{flex:1, margin:15  }}>
-              <Card style={{flex:1, borderRadius:15, backgroundColor:'purple'}} >
-                <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
-                  <View style={{ flex: 0.15 }}>
-                    <Flb name="accident" size={Metrics.icons.large} color={Colors.snow} />
-                  </View>
-                  <View style={{ flex: 0.85 }}>
-                    <Text style={{
-                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                      color: Colors.snow
-                    }}>If this is an emergency, please call 911.</Text>
-                  </View>
-                </View>
-              </Card>
-            </View>
-            
-         }
-       
         <View style={{flex:7}}>
        {
          this._displayCondition()
