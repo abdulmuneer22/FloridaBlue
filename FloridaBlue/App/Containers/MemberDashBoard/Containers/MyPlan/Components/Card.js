@@ -82,7 +82,7 @@ class Card extends Component {
           this.customNavigation()
         }}
         style={{
-        // backgroundColor : "red",
+      //   backgroundColor : "red",
         // width : this.props.i === this.props.CardCount ? (window.width * 0.85) : null,
           width: this.state.CardWidth,
           height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
@@ -95,19 +95,15 @@ class Card extends Component {
           marginBottom: window.width * 0.03
 
         }}>
-        <View style={{alignItems: 'center'}}>
-
-           <LinearGradient colors={['#b258c7','#9f2fb9']}>
-          <Image style={{
+        <View >
+           <LinearGradient colors={ this.props.i % 2 ==0 ? ['#b258c7','#9f2fb9'] : ['#3bc1d4','#09b1c9']} 
+           style={{
             width: this.state.CardWidth,
             height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.77) : Metrics.screenHeight - (Metrics.screenHeight * 0.79),
             alignItems: 'center',
             justifyContent: 'center'
           }}
-            source={Images[this.props.image]}
-      >
-
-            <Flb name={this.props.icon} style={{backgroundColor: Colors.transparent, marginTop: Metrics.baseMargin}} size={Metrics.icons.large * Metrics.screenWidth * 0.0025} color={Colors.snow} />
+           >
             <Text style={{
               marginTop: Metrics.mediumMargin,
               fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
@@ -117,7 +113,8 @@ class Card extends Component {
             }}>
               {this.props.title}
             </Text>
-          </Image>
+  
+        
           </LinearGradient>
         </View>
 

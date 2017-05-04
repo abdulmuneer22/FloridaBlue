@@ -28,9 +28,9 @@ const theme = getTheme()
 const HtMLstyles = StyleSheet.create({
   p: {
     fontWeight: '300',
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
-    color: Colors.flBlue.grey5,
-    
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0015,
+    color: Colors.flBlue.grey5
+                               
 
   },
   a: {
@@ -120,7 +120,7 @@ class CCard extends Component {
                    <View style={{ margin:5}} >
                   <Panel title={_.get(network, 'header_text.en', '')} >
                      <View style={{ borderTopWidth: 0.2, bottom: 10 }} />
-            <View style={{ width: Metrics.screenWidth * 0.87 }}>
+            <View >
               <HTMLView value={htmvalue}
                 stylesheet={HtMLstyles} />
             </View>

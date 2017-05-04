@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   Platform
 } from 'react-native'
 import Switch from './Components/switch'
@@ -101,45 +102,54 @@ class DoctorServices extends Component {
         <View style={styles.textBackground2}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{ flex: 1 }}>
-              <Card style={styles.doctorCardStyle}>
-                <View style={{ alignItems: 'center' }}>
-
-                  <Flb name={tile[0].tileIcon} size={Metrics.icons.xl * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
-                </View>
-
+              <Card style={{flex:1}}>
                 <View style={{
               // backgroundColor: 'purple',
+              flex :1,
                   flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center'
+                  height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
+            
                 }}>
-
+                <View style={{ flex :1 ,alignItems: 'center' , justifyContent: 'center', 
+                //backgroundColor:'yellow'
+                }}>
+                  <Flb name={tile[0].tileIcon} size={Metrics.icons.regular} color={Colors.flBlue.purple} />
+                </View>
                   <View style={{
-                    flex: 0.7,
+                    flex: 3,
                 // marginRight:5,
-                    alignItems: 'center'
-
+                   alignItems: 'center', 
+                   justifyContent:'center',
+               //    backgroundColor:'red'
 
                   }}>
+                  
+                    
                     <Text style={styles.doctorTextStyle}>
                       {temp1.text['en']}
                     </Text>
+                    
+                    
                   </View>
 
-                  <View>
+                  <View style={{flex:1}}>
                     {this.renderHeaderText() != '' ?
                       <View style={{
-                        flex: 0.3,
-                        marginLeft: -40,
-                        marginRight: Metrics.mediumMargin
+                        flex: 1,
+                       // marginLeft: -40,
+                       // marginRight: Metrics.mediumMargin
 
                       }}>
-                        <TouchableWithoutFeedback onPress={() => {
+                        <TouchableOpacity style={{flex:1}}onPress={() => {
+                         
                           this.setState({ hpActive: !this.state.hpActive })
                         }}>
                           <View style={{
                         // flexDirection: 'row',
-                          marginTop: Metrics.baseMargin
+                         flex:1, 
+                         // marginTop: Metrics.baseMargin,
+                          alignItems: 'center', 
+                          justifyContent:'center',
                         // backgroundColor: Colors.flBlue.grey4,
                         }}>
 
@@ -148,13 +158,13 @@ class DoctorServices extends Component {
 
                             !this.state.hpActive
 
-                              ? <Flb name='chevron-down' size={Metrics.icons.tiny} style={{ marginTop: 7 }} color={Colors.flBlue.ocean} />
-                              : <Flb name='chevron-up' size={Metrics.icons.tiny} style={{ marginTop: 7 }} color={Colors.flBlue.ocean} />
+                              ? <Flb name='chevron-down' size={Metrics.icons.tiny} style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
+                              : <Flb name='chevron-up' size={Metrics.icons.tiny} style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
 
                           }
                         </View>
                         </View>
-                        </TouchableWithoutFeedback>
+                        </TouchableOpacity>
                       </View>
                   : <Text />
                 }
@@ -162,23 +172,29 @@ class DoctorServices extends Component {
                   </View>
                 </View>
 
-                <View>
+                <View style={{flex:1 ,flexDirection:'row'}}>
+                  <View style={{flex:1}}/>
                   {
                 this.state.hpActive
                   ? <View style={{
-                    width: Metrics.screenWidth * 0.9,
+                    flex:12,
+                   // width: Metrics.screenWidth * 0.88,
                     alignSelf: 'center',
-                    borderBottomWidth: 0.2
+                    borderBottomWidth: 0.2,
+                    marginBottom:10,
+                    //borderWidth:1
+                 //   height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
+                  //  margin:10
                     //  marginLeft : (Metrics.screenWidth * 0.15)/2,
                     // marginRight : (Metrics.screenWidth * 0.15)/2,
                     //  backgroundColor : 'yellow',
                     // alignItems : 'center',
                   }}>
-                    <View style={{borderTopWidth: 0.2}} />
+                    <View style={{borderTopWidth: 0.2 }} />
                     <Text style={{
-                      fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
+                      fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0015,
                       margin: 5,
-                      textAlign: 'justify',
+                    //  textAlign: 'justify',
                       color: Colors.flBlue.grey5,
                       fontWeight: '300',
                      
@@ -187,8 +203,10 @@ class DoctorServices extends Component {
                   </View>
                   : null
               }
-
+                <View style={{flex:1}}/>
                 </View>
+                
+                </Card>
                 <View style={{ alignItems: 'center', marginBottom: 15}}>
                   <Switch
                     data={this.props.data}
@@ -200,7 +218,7 @@ class DoctorServices extends Component {
                     attemptHandleRight={this.props.attemptHandleRight}
                     attemptHandlePreferred={this.props.attemptHandlePreferred} />
                 </View>
-              </Card>
+             
               <View >
                 <CCard
                   data={this.props.data}
