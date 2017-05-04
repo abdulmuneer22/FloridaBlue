@@ -12,28 +12,28 @@ const { Types, Creators } = createActions({
   sendProviderSearchFailure: ['error'],
   sendPharmacySearchRequest: ['data'],
   sendPharmacySearchSuccess: ['data'],
-  sendPharmacySearchFailure: ['data'],
+  sendPharmacySearchFailure: ['error'],
   sendUrgentSearchRequest: ['data'],
   sendUrgentSearchSuccess: ['data'],
-  sendUrgentSearchFailure: ['data'],
+  sendUrgentSearchFailure: ['error'],
   sendCareTypeRequest: ['data'],
   sendCareTypeSuccess: ['data'],
-  sendCareTypeFailure: ['data'],
+  sendCareTypeFailure: ['error'],
   sendSpecialityTypeRequest: ['selectedCategoryCode'],
   sendSpecialityTypeSuccess: ['data'],
-  sendSpecialityTypeFailure: ['data'],
+  sendSpecialityTypeFailure: ['error'],
   sendDoctorLanguageRequest: ['data'],
   sendDoctorLanguageSuccess: ['data'],
-  sendDoctorLanguageFailure: ['data'],
+  sendDoctorLanguageFailure: ['error'],
   sendStaffLanguageRequest: ['data'],
   sendStaffLanguageSuccess: ['data'],
-  sendStaffLanguageFailure: ['data'],
+  sendStaffLanguageFailure: ['error'],
   sendDoctorDetailRequest: ['data'],
   sendDoctorDetailSuccess: ['data'],
-  sendDoctorDetailFailure: ['data'],
+  sendDoctorDetailFailure: ['error'],
   sendConfigTypeRequest: [],
   sendConfigTypeSuccess: ['data'],
-  sendConfigTypeFailure: ['data'],
+  sendConfigTypeFailure: ['error'],
   changeCategoryCode: ['categoryCode'],
   changeSubCategoryCode: ['subCategoryCode'],
   changeProviderName: ['providerName'],
@@ -107,7 +107,7 @@ export const _sendNetworkListSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, transactionId: data.data.transactionId, memberNetworkList: data.data.memberNetworkList,})
 
 // sendNetworkListFailure
-export const _sendNetworkListFailure = (state: Object, {data}: Object) =>
+export const _sendNetworkListFailure = (state: Object, {error}: Object) =>
   state.merge({ fetching: false, data:{}, error })
 
 // sendProviderSearchRequest
@@ -129,8 +129,8 @@ export const _sendPharmacySearchSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
 
 // sendPharmacySearchFailure
-export const _sendPharmacySearchFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+export const _sendPharmacySearchFailure = (state: Object, {error}: Object) =>
+  state.merge({ fetching: false, error, data:{} })
 
 // sendUrgentSearchRequest
 export const _sendUrgentSearchRequest = (state: Object) => state.merge({ fetching: true })
@@ -140,8 +140,8 @@ export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
 
 // sendUrgentSearchFailure
-export const _sendUrgentSearchFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+export const _sendUrgentSearchFailure = (state: Object, {error}: Object) =>
+  state.merge({ fetching: false, error, data:{} })
 
 // sendCareTypeRequest
 export const _sendCareTypeRequest = (state: Object) => state.merge({ fetching: true })
@@ -151,8 +151,8 @@ export const _sendCareTypeSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, planCategoryList: data.data.planCategoryList})
 
 // sendCareTypeFailure
-export const _sendCareTypeFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+export const _sendCareTypeFailure = (state: Object, {error}: Object) =>
+  state.merge({ fetching: false, error, data:{} })
 
 // sendSpecialityTypeRequest
 export const _sendSpecialityTypeRequest = (state: Object) => state.merge({ fetching: true })
@@ -162,8 +162,8 @@ export const _sendSpecialityTypeSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, planSubCategoryList: data.data.planSubCategoryList})
 
 // sendSpecialityTypeFailure
-export const _sendSpecialityTypeFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+export const _sendSpecialityTypeFailure = (state: Object, {error}: Object) =>
+  state.merge({ fetching: false, error, data:{} })
 
   // sendDoctorLanguageRequest
 export const _sendDoctorLanguageRequest = (state: Object) => state.merge({ fetching: true })
@@ -173,8 +173,8 @@ export const _sendDoctorLanguageSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, providerLanguages: data.data.languageList})
 
 // sendDoctorLanguageFailure
-export const _sendDoctorLanguageFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+export const _sendDoctorLanguageFailure = (state: Object, {error}: Object) =>
+  state.merge({ fetching: false, error, data:{} })
 
   // sendStaffLanguageRequest
 export const _sendStaffLanguageRequest = (state: Object) => state.merge({ fetching: true })
@@ -184,8 +184,8 @@ export const _sendStaffLanguageSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, staffLanguages: data.data.languageList})
 
 // sendStaffLanguageFailure
-export const _sendStaffLanguageFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+export const _sendStaffLanguageFailure = (state: Object, {error}: Object) =>
+  state.merge({ fetching: false, error, data:{} })
 
   // sendDoctorDetailsRequest
 export const _sendDoctorDetailRequest = (state: Object) => state.merge({ fetching: true })
@@ -195,8 +195,8 @@ export const _sendDoctorDetailSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, doctordetail:data.data, error:null})
 
 // sendDoctorDetailsFailure
-export const _sendDoctorDetailFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+export const _sendDoctorDetailFailure = (state: Object, {error}: Object) =>
+  state.merge({ fetching: false, error, data:{} })
 
  // sendConfigTypeRequest
 export const _sendConfigTypeRequest = (state: Object) => state.merge({ fetching: true})
@@ -206,8 +206,8 @@ export const _sendConfigTypeSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false,  configData:data.data, error: null})
 
 // sendConfigTypeFailure
-export const _sendConfigTypeFailure = (state: Object, {data}: Object) =>
-  state.merge({ fetching: false, code: data.status.code, message: data.status.message, error: data.status.error })
+export const _sendConfigTypeFailure = (state: Object, {error}: Object) =>
+  state.merge({ fetching: false, error, data:{} })
 
 // categoryCode
 export const _changeCategoryCode = (state: Object, {categoryCode}: Object) => state.merge({fetching: false, categoryCode})

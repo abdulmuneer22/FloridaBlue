@@ -179,7 +179,7 @@ class ProviderSearch extends Component {
     } else {
       this.props.attemptProviderSearch(this.props)
     }
-    NavigationActions.DoctorList()
+    NavigationActions.DoctorList('fromResults')
   }
 
   _viewListResults() {

@@ -111,6 +111,21 @@ export default StyleSheet.create({
     fontWeight: '600'
 
   },
+  h5: {
+   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    marginTop:Metrics.smallMargin,
+    color: Colors.flBlue.purple,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400',
+    textAlign:'auto'
+  },
+
+   h5_2: {
+   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    color: Colors.flBlue.purple,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400'
+  },
   h4: {
    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     marginTop:Metrics.smallMargin,
@@ -133,7 +148,7 @@ export default StyleSheet.create({
     fontWeight: 'bold'
   },
   plannameText: {
-   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+   fontSize: Fonts.size.input * Metrics.screenWidth * 0.0027,
   //  textAlign: 'center',
     marginTop:Metrics.baseMargin,
     color: Colors.flBlue.grey5,
@@ -200,17 +215,32 @@ export default StyleSheet.create({
       marginLeft: Metrics.baseMargin,
       fontWeight: '400'
   },
+  cardStyle:{
+    flex:1,
+    backgroundColor:Colors.flBlue.grey3,
+  },
+  cardStyle1:{
+    flex:1,
+    backgroundColor:Colors.bg2
+  },
    plusView:{
-     flexDirection:'row', flex:1,
+     flexDirection:'row', 
+     flex:1,
      alignItems:'center',
-      backgroundColor:Colors.bg2,
-      height:60
+     margin:10,
+    // justifyContent:'flex-start',
+    //  backgroundColor:Colors.bg2,
+      //height: Metrics.screenHeight - (Metrics.screenHeight * 0.89)
+//margin:10
+      //height:60
    },
    plusView1:{
-     flexDirection:'row', flex:1,
+     flexDirection:'row', 
+     flex:1,
      alignItems:'center',
-      backgroundColor:Colors.flBlue.grey3,
-      height:60
+     margin:10,
+      
+      //height:60
    },
    plusText:{
      fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
@@ -224,6 +254,29 @@ export default StyleSheet.create({
      marginLeft:20,
      fontWeight:'500'
     },
+    addressText:{
+      fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+     color:Colors.snow,
+     marginLeft:20,
+     fontWeight:'500',
+    // textAlign:'center'
+  },
+  addressView:{ 
+    flex: 2, 
+    width:50, 
+    marginRight:10,
+    padding:5,
+    borderRadius:10,
+    backgroundColor:Colors.flBlue.ocean 
+  },
+  addressView1:{ 
+    flex: 2, 
+    width:50, 
+    marginRight:10,
+    padding:5,
+    borderRadius:10,
+    backgroundColor:Colors.flBlue.grey6 
+  },
    map: {
      height: Metrics.screenHeight * 0.5,
      flex:1
