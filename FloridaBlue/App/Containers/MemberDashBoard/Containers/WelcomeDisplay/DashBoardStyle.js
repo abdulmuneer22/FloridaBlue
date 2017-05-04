@@ -86,8 +86,9 @@ export default StyleSheet.create({
     fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0030,
     fontWeight: '600',
     marginTop: Metrics.smallMargin,
-    fontFamily: Fonts.type.headerFont,
-    color: Colors.flBlue.grey3
+    fontFamily: Fonts.type.subHeaderFont,
+    color: Colors.flBlue.grey3,
+    backgroundColor: Colors.transparent
   },
   textStyle2: {
     fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
