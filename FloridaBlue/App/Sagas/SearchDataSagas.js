@@ -1,6 +1,6 @@
 import { put, call } from 'redux-saga/effects'
 import SearchDataActions from '../Redux/SearchDataRedux'
-//import axios from 'axios'
+// import axios from 'axios'
 
 export function * searchdata (api) {
   console.log('I am coming from searchdoctor sagas')
@@ -12,7 +12,6 @@ export function * searchdata (api) {
     // dispatch success
     var data = response.data.data
     yield put(SearchDataActions.searchdataSuccess(data))
-    
   } else {
     // dispatch successful logins
     console.log('I am coming from failuer ')

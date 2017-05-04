@@ -8,7 +8,7 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  TouchableWithoutFeedback, 
+  TouchableWithoutFeedback,
   Platform
 } from 'react-native'
 
@@ -30,7 +30,6 @@ const HtMLstyles = StyleSheet.create({
     fontWeight: '300',
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0015,
     color: Colors.flBlue.grey5
-                               
 
   },
   a: {
@@ -44,7 +43,6 @@ const HtMLstyles = StyleSheet.create({
 class CCard extends Component {
   constructor () {
     super()
-
   }
 
   render () {
@@ -54,7 +52,7 @@ class CCard extends Component {
     var temp = this.props.data
     var objectName = this.props.objectName
     var temp1 = temp[objectName]
-    console.log('cardImage'+this.props.cardImage)
+    console.log('cardImage' + this.props.cardImage)
     if (this.props.leftActive) {
       if (temp1 != null && temp1.inNetwork != null && temp1.inNetwork.networkBenefits != null) {
         card = temp1.inNetwork.networkBenefits
@@ -81,16 +79,15 @@ class CCard extends Component {
         speciality = network['speciality']
         var htmvalue = '<p>' + _.get(network, 'footer_note.en', '') + '</p>'
         var notesVisible = true
-        if(this.props.cardImage){
+        if (this.props.cardImage) {
           var cardImage = this.props.cardImage
-          if(cardImage == 'urgent-care' || cardImage=='heart-hand'){
-            var ImageInput= cardImage.replace("-","")
-          }else {
-            var ImageInput= this.props.cardImage
+          if (cardImage == 'urgent-care' || cardImage == 'heart-hand') {
+            var ImageInput = cardImage.replace('-', '')
+          } else {
+            var ImageInput = this.props.cardImage
           }
         }
-        
-       
+
         cards.push(
 
           <Card style={styles.cardStyle} key={i} >
@@ -98,64 +95,62 @@ class CCard extends Component {
               <View style={{
                 flex: 1,
                 flexDirection: 'row',
-                justifyContent: 'space-between',
-              
+                justifyContent: 'space-between'
+
               // justifyContent: 'center'
 
               }}>
                 <View style={{
                 //  marginRight: 10,
                 // marginLeft: 10,
-                  flex: 1,
-                  
+                  flex: 1
+
                  // margin: 10
                 //    alignItems: 'center',
                 // justifyContent:'center'
                 }}>
 
-                  
-             {
+                  {
                 network != undefined && network.footer_note != undefined && network.footer_note != null && network.footer_note.en != undefined && network.footer_note.en != null
                   ?
-                   <View style={{ margin:5}} >
-                  <Panel title={_.get(network, 'header_text.en', '')} >
-                     <View style={{ borderTopWidth: 0.2, bottom: 10 }} />
-            <View >
-              <HTMLView value={htmvalue}
-                stylesheet={HtMLstyles} />
-            </View>
-            <View style={{ marginTop: 10 }} />
-                  
-                  </Panel>
-                  <View style={{borderBottomWidth:0.3, margin:10}}></View>
-                  </View>
+                    <View style={{ margin: 5}} >
+                      <Panel title={_.get(network, 'header_text.en', '')} >
+                        <View style={{ borderTopWidth: 0.2, bottom: 10 }} />
+                        <View >
+                          <HTMLView value={htmvalue}
+                            stylesheet={HtMLstyles} />
+                        </View>
+                        <View style={{ marginTop: 10 }} />
+
+                      </Panel>
+                      <View style={{borderBottomWidth: 0.3, margin: 10}} />
+                    </View>
                     :
-                    <View style={{margin : 5,padding : 8}}>
-                     
-                   <Text style={styles.h1}>
-                    {_.get(network, 'header_text.en', 'Benefit Details')}
-                    
-                  </Text>
-                  
-                    <View style={{borderBottomWidth:0.3, margin:2}}></View>
-                     
-                  </View>
+                    <View style={{margin: 5, padding: 8}}>
+
+                      <Text style={styles.h1}>
+                        {_.get(network, 'header_text.en', 'Benefit Details')}
+
+                      </Text>
+
+                      <View style={{borderBottomWidth: 0.3, margin: 2}} />
+
+                    </View>
                   }
-                  
+
                 </View >
-          
+
               </View>
-              <View>
-              </View>
+              <View />
             </View>
 
             <View style={{flex: 1, flexDirection: 'row',
               margin: 0.1,
-              marginBottom : 0
-              
+              marginBottom: 0
+
             }}>
-              
-              <View style={{flex: 0.6 , margin:0.5}}>
+
+              <View style={{flex: 0.6, margin: 0.5}}>
                 {
             speciality.map(specialities => {
               const { speciality_text, speciality_value } = specialities
@@ -191,10 +186,9 @@ class CCard extends Component {
           }
 
               </View>
-              <Image source={Images[ImageInput]} style={styles.backgroundImage} resizeMode={(Platform.OS === 'ios') ? 'contain' :'cover'}/>
+              <Image source={Images[ImageInput]} style={styles.backgroundImage} resizeMode={(Platform.OS === 'ios') ? 'contain' : 'cover'} />
             </View>
 
-            
           </Card>
 
         )

@@ -87,45 +87,43 @@ class Card extends Component {
     //      height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
           alignItems: 'center',
           justifyContent: 'center',
-          flex:1
+          flex: 1
        //   marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
         // marginRight :
         // marginTop : 10,
 
-          //marginBottom: window.width * 0.03
+          // marginBottom: window.width * 0.03
 
         }}>
-                  <BCard style={{alignItems: 'center', flexDirection: 'row',
-          flex :1,
+        <BCard style={{alignItems: 'center', flexDirection: 'row',
+          flex: 1,
          //    width: this.state.CardWidth,
-            height: Metrics.screenHeight - (Metrics.screenHeight * 0.90),
-          
+          height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
+
            // justifyContent: 'center'
-        
-          }}>
-       
 
+        }}>
 
-            <View style={{ flex :2 , alignItems:'center',   justifyContent: 'center',backgroundColor: Colors.transparent}}>
-                          <Flb name={this.props.icon}  size={Metrics.icons.regular} color={Colors.flBlue.teal} />
-            </View>
-             <View style={{flex:6,alignItems:'flex-start'}}>
+          <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.transparent}}>
+            <Flb name={this.props.icon} size={Metrics.icons.regular} color={Colors.flBlue.teal} />
+          </View>
+          <View style={{flex: 6, alignItems: 'flex-start'}}>
             <Text style={{
              // marginTop: Metrics.mediumMargin,
               fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
               fontWeight: '600',
             //  textAlign: 'center',
               color: Colors.flBlue.grey3,
-                fontFamily: Fonts.type.subHeaderFont,
+              fontFamily: Fonts.type.subHeaderFont,
               backgroundColor: Colors.transparent
             }}>
               {this.props.title}
             </Text>
-         
-        </View>
-        <View style={{flex:1, alignItems:'flex-start',   justifyContent: 'center',backgroundColor: Colors.transparent}}>
-              <Flb name= 'chevron-right'  size={Metrics.icons.small} color={Colors.flBlue.teal} />
-              </View>
+
+          </View>
+          <View style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center', backgroundColor: Colors.transparent}}>
+            <Flb name='chevron-right' size={Metrics.icons.small} color={Colors.flBlue.teal} />
+          </View>
         </BCard>
       </TouchableOpacity>
 

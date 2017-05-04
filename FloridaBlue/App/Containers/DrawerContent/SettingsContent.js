@@ -78,7 +78,6 @@ class SettingsContent extends Component {
     this.toggleDrawer()
     NavigationActions.myplanbenefits()
   }
- 
 
   handlePressResources = () => {
     this.toggleDrawer()
@@ -177,9 +176,9 @@ class SettingsContent extends Component {
                   {
                     this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined
 
-                      ? <View>{ this.props.visibilityRules.myHealthPlanTile.tileType != "webview" ? <Text style={styles.subheading} onPress={this.handlePressPlans}>
-                                        { this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
-                                      </Text>: <View/>}</View>
+                      ? <View>{ this.props.visibilityRules.myHealthPlanTile.tileType != 'webview' ? <Text style={styles.subheading} onPress={this.handlePressPlans}>
+                        { this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
+                      </Text> : <View />}</View>
                       : null
 
                   }

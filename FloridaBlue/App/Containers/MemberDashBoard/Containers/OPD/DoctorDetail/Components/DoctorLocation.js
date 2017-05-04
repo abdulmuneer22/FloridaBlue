@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
     Text,
     View,
@@ -14,41 +14,40 @@ const window = Dimensions.get('window')
 
 class DoctorLocation extends Component {
 
-    constructor(props) {
-        super(props)
+  constructor (props) {
+    super(props)
+  }
 
-    }
-
-    render() {
-        console.tron.log("Doctor Location")
-        console.tron.log(this.props.data)
-        return (
-            <View style={{
-                height: Metrics.screenHeight * 0.5,
-                flex:1
+  render () {
+    console.tron.log('Doctor Location')
+    console.tron.log(this.props.data)
+    return (
+      <View style={{
+        height: Metrics.screenHeight * 0.5,
+        flex: 1
                 // backgroundColor : 'red'
-            }}>
-              <MapView style={{flex: 1}}
-                initialRegion={{
-                  latitude: this.props.originLatitude,
-                  longitude: this.props.originLongitude,
-                  latitudeDelta: this.props.latDelta,
-                  longitudeDelta: this.props.longDelta
-                }}>
-                  <MapView.Marker style={{width: 10,height: 10}} coordinate={{ latitude: this.props.data.latitude, longitude: this.props.data.longitude }} image={Images.mapSelectedPin}/>
-              </MapView>
-            </View>
-        );
-    }
+      }}>
+        <MapView style={{flex: 1}}
+          initialRegion={{
+            latitude: this.props.originLatitude,
+            longitude: this.props.originLongitude,
+            latitudeDelta: this.props.latDelta,
+            longitudeDelta: this.props.longDelta
+          }}>
+          <MapView.Marker style={{width: 10, height: 10}} coordinate={{ latitude: this.props.data.latitude, longitude: this.props.data.longitude }} image={Images.mapSelectedPin} />
+        </MapView>
+      </View>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
-    return {
-      originLatitude: state.provider.latitude,
-      originLongitude: state.provider.longitude,
-      latDelta: state.provider.latDelta,
-      longDelta: state.provider.longDelta
-    }
+  return {
+    originLatitude: state.provider.latitude,
+    originLongitude: state.provider.longitude,
+    latDelta: state.provider.latDelta,
+    longDelta: state.provider.longDelta
+  }
 }
 
 export default connect(mapStateToProps)(DoctorLocation)

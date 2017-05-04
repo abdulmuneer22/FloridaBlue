@@ -83,11 +83,11 @@ export default StyleSheet.create({
   },
 
   textStyle: {
-    fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
-    fontWeight: '300',
+    fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0030,
+    fontWeight: '600',
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.headerFont,
-    color: Colors.flBlue.grey6
+    color: Colors.flBlue.grey3
   },
   textStyle2: {
     fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
@@ -268,7 +268,7 @@ export default StyleSheet.create({
    // height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.87),
      // height : window.height * 0.5,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   //  alignSelf: 'stretch',
   //  resizeMode: 'stretch',
   //  width: Metrics.screenWidth,
@@ -281,7 +281,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: Colors.snow,
     padding: Metrics.mediumMargin,
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   //  alignItems: 'center',
 //    margin: 3,
 //    borderRadius: 2,
@@ -314,26 +314,25 @@ export default StyleSheet.create({
 
   },
 
-    textBackground2: {
-  
-    flex : 1,
+  textBackground2: {
+
+    flex: 1,
     flexDirection: 'column',
-   backgroundColor: Colors.bg2,
-   padding: Metrics.mediumMargin,
+    backgroundColor: Colors.bg2,
+    padding: Metrics.mediumMargin,
     justifyContent: 'space-between',
   //  alignItems: 'center',
-    
+
     borderRadius: 2,
-    shadowColor: "#000000",
+    shadowColor: '#000000',
     shadowOpacity: 0.3,
     shadowRadius: 1,
     shadowOffset: {
       height: 1,
-      width: 0.3,
-    } 
-         
-  },
+      width: 0.3
+    }
 
+  },
 
   textStyle1: {
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
@@ -355,9 +354,7 @@ export default StyleSheet.create({
 
   }
 
-
 }
 
 )
-
 

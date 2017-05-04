@@ -9,10 +9,8 @@ import SemiCircle from '../../../../../Components/SemiCircle'
 import styles from '../MyPlanScreenStyle'
 import _ from 'lodash'
 
-
-
 import { Card } from 'native-base'
-const card  = {card: {margin : 20}};
+const card = {card: {margin: 20}}
 
 class MyPlanSwiper extends Component {
   getChildrenOptions (data) {
@@ -121,82 +119,82 @@ class MyPlanSwiper extends Component {
 */
 
     return (
-      
+
       <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.52))}
-       showsButtons   dotStyle={{width: 10, height: 10, marginLeft:10, borderRadius:5,top:50, position:'relative'}} 
-       activeDotStyle={{width: 10, height: 10, borderRadius:5, marginLeft:10, top:50, position:'relative'}} >
-       
+        showsButtons dotStyle={{width: 10, height: 10, marginLeft: 10, borderRadius: 5, top: 50, position: 'relative'}}
+        activeDotStyle={{width: 10, height: 10, borderRadius: 5, marginLeft: 10, top: 50, position: 'relative'}} >
+
         { this.getChildrenOptions(this.props.data).map((network, i) => {
           console.tron.log('children options are', this.getChildrenOptions(this.props.data))
           console.tron.log('planbenefits length', Object.keys(network.planBenefits).length)
      //      const planBenefits = _.head(network.planBenefits)
     //       console.tron.log('plan benefits', planBenefits)
           return (
-            <Card style={{margin:15}}>
-              
-              <View style={{ flex: 1 ,alignItems:'center'
-                       
-              } }>
-              <View style={{flex: 1 ,alignItems:'center',paddingTop:20}}>
-              <Text style={styles.headerText}>
-                {network.title.en}
-              </Text>
-             
-              <Text style={styles.subHeader}>
-                {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].title.en : 'No Plan Benfits' }
-              </Text>
+            <Card style={{margin: 15}}>
+
+              <View style={{ flex: 1, alignItems: 'center'
+
+              }}>
+                <View style={{flex: 1, alignItems: 'center', paddingTop: 20}}>
+                  <Text style={styles.headerText}>
+                    {network.title.en}
+                  </Text>
+
+                  <Text style={styles.subHeader}>
+                    {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].title.en : 'No Plan Benfits' }
+                  </Text>
+                </View>
               </View>
-              </View>
-              
-              <View style={{flex:1 , alignItems:'center'}}>
-                <View style={{margin:0}}>
+
+              <View style={{flex: 1, alignItems: 'center'}}>
+                <View style={{margin: 0}}>
                   <SemiCircle
                     pieWidth={150}
                     pieHeight={150}
                     width={250}
                     height={185}
                     barWidth={10}
-                    
+
                     barTopColor={Colors.flBlue.grass}
                     barBottomColor={Colors.flBlue.grey2}
                     percent={Object.keys(network.planBenefits).length > 0 && network.planBenefits[0].value > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value) : 0} />
-                    </View>
-               </View> 
-               <View style={{flex:1,alignItems:'center'}}>
-                  <View style={{flex:1, alignItems:'center',flexDirection:'row-reverse'
-                  }}>
+                </View>
+              </View>
+              <View style={{flex: 1, alignItems: 'center'}}>
+                <View style={{flex: 1, alignItems: 'center', flexDirection: 'row-reverse'
+                }}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
-                    return (<View style={{ flex :1 ,flexDirection: 'column',alignItems:'center',margin:4,
+                    return (<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', margin: 4
                     }} key={i}>
-                      <View style={{flex: 0.2, alignItems:'center', justifyContent:'center'}} >
-                        
+                      <View style={{flex: 0.2, alignItems: 'center', justifyContent: 'center'}} >
+
                         <Text style={{
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
-                          fontWeight:'500',
+                          fontWeight: '500',
                           fontFamily: Fonts.type.subHeaderFont,
                           color: Colors.flBlue.grass}}>
                       ${benefit ? benefit.value : null}
                         </Text>
-                                                <Text style={{
+                        <Text style={{
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0020,
                           fontFamily: Fonts.type.subHeaderFont,
                           color: Colors.flBlue.grey3
                         }}>
                           {benefit ? benefit.label.en : null}
                         </Text>
-                        
+
                       </View>
                     </View>)
                   }) : <View />}
-                 
-                  </View>
-                  <View style={{flex:2}}></View>
+
                 </View>
+                <View style={{flex: 2}} />
+              </View>
             </Card>
           )
           i += 1
         })}
-      
+
       </Swiper>
     )
   }

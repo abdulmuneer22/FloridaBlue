@@ -12,7 +12,7 @@ import Flb from '../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import MyIdCardActions from '../../../../Redux/MyIdCardRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
-import Communications from 'react-native-communications';
+import Communications from 'react-native-communications'
 import { Card } from 'native-base'
 const window = Dimensions.get('window')
 
@@ -25,10 +25,10 @@ class MyIdCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      idCardHeaderVisible : false,
-      idsrc : idCardData
-    };
-   this.toggle = this.toggle.bind(this);
+      idCardHeaderVisible: false,
+      idsrc: idCardData
+    }
+    this.toggle = this.toggle.bind(this)
   }
 
   _renderHeader () {
@@ -45,35 +45,33 @@ class MyIdCard extends Component {
     </Image>)
   }
 
-
   componentDidMount () {
-    console.tron.log('I am Id Card screen');
+    console.tron.log('I am Id Card screen')
   }
 
-  toggle() {
-       this.setState({
-            idCardHeaderVisible: !this.state.idCardHeaderVisible
-        });
+  toggle () {
+    this.setState({
+      idCardHeaderVisible: !this.state.idCardHeaderVisible
+    })
   }
 
   render () {
     return (
-      <View style={[styles.container, {backgroundColor:Colors.steel}]}>
-        <HideableView visible={this.state.idCardHeaderVisible} removeWhenHidden={true}>
+      <View style={[styles.container, {backgroundColor: Colors.steel}]}>
+        <HideableView visible={this.state.idCardHeaderVisible} removeWhenHidden>
           {this._renderHeader()}
         </HideableView>
-        <View style={{margin:5,flex:1,alignItems: 'center'}}>
+        <View style={{margin: 5, flex: 1, alignItems: 'center'}}>
           <TouchableWithoutFeedback onPress={this.toggle}>
-          <Image source={{uri:this.state.idsrc}} style={{
-              flex:1,
-              transform : [{rotate:'270 deg'}],
-              width:Metrics.screenWidth*1.6,
+            <Image source={{uri: this.state.idsrc}} style={{
+              flex: 1,
+              transform: [{rotate: '270 deg'}],
+              width: Metrics.screenWidth * 1.6,
               resizeMode: 'contain'
-            }}>
-          </Image>
+            }} />
           </TouchableWithoutFeedback>
         </View>
-        
+
       </View>
     )
   }

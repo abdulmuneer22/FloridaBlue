@@ -41,12 +41,12 @@ type LoginScreenProps = {
   error: string
 }
 const theme = getTheme()
-const   gradient = {
-    '0' : ['#b258c7', '#9f2fb9'],
-    '1' : ['#3bc1d4', '#09b1c9'],
-    '2': ['#f4b441', '#f1a00f'],
-    '3' : ['#6fc35c', '#4ab332']
-  }
+const gradient = {
+  '0': ['#b258c7', '#9f2fb9'],
+  '1': ['#3bc1d4', '#09b1c9'],
+  '2': ['#f4b441', '#f1a00f'],
+  '3': ['#6fc35c', '#4ab332']
+}
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -126,10 +126,10 @@ class LandingScreen extends Component {
                 onItemPress = function () {
                   var action
                   if (tile.tileType == 'webview') {
-                    if(tile.tileId = 'idCard'){
+                    if (tile.tileId = 'idCard') {
                       var routerName = 'MyIdCard'
                       action = NavigationActions[routerName]()
-                    }else{
+                    } else {
                       var webview = 'MyView'
                       action = NavigationActions[webview]({ responseURL: tile.tileUrl })
                     }
@@ -146,28 +146,28 @@ class LandingScreen extends Component {
                       : styles.tileStyle1
                   }
                     onPress={onItemPress.bind(this)} key={i}>
-                      <LinearGradient colors={tile.gradientColor}  style={{
+                    <LinearGradient colors={tile.gradientColor} style={{
                      //   alignItems: 'center',
                      //   justifyContent: 'center',
-                        width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
-                        height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
-                      }}>
-                      <View style={{flex:1}}>
-                      <View style = {{flex:1,alignItems:'center', justifyContent:'flex-end', }} > 
-                        <Text style={styles.tileTextStyle}>
-                        {tile.tileName['en']}
-                      </Text> 
+                      width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
+                      height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
+                    }}>
+                      <View style={{flex: 1}}>
+                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-end' }} >
+                          <Text style={styles.tileTextStyle}>
+                            {tile.tileName['en']}
+                          </Text>
+                        </View>
+                        <View style={{flex: 1, alignItems: 'flex-end'
+                        }}>
+                          <Image source={Images[tile.gradientImage]} style={{flex: 1, alignItems: 'flex-end'
+                          }} resizeMode='stretch' />
+                        </View>
+
                       </View>
-                          <View style={{flex:1, alignItems:'flex-end'
-                                                  }}>                       
-                        <Image source={Images[tile.gradientImage]} style={{flex:1, alignItems:'flex-end',
-                                                  }} resizeMode='stretch'></Image>
-                                                  </View>
-                                                  
-                      </View>
-                     </LinearGradient>
+                    </LinearGradient>
                   </TouchableOpacity>
-               
+
                 )
                 i += 1
               }) : <Text />
@@ -175,57 +175,54 @@ class LandingScreen extends Component {
           </View>
           { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
 
-            ? <TouchableOpacity onPress={() => NavigationActions.ProviderSearch()} style={{flex:1}}>
-             <LinearGradient  colors={['#ECE9E6', '#FFFFFF']} style={{
-                 height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.87),
+            ? <TouchableOpacity onPress={() => NavigationActions.ProviderSearch()} style={{flex: 1}}>
+              <LinearGradient colors={['#ECE9E6', '#FFFFFF']} style={{
+                height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.87),
      // height : window.height * 0.5,
-    justifyContent: 'center',
-    alignItems: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
   //  alignSelf: 'stretch',
-  flex :1,
-    width: Metrics.screenWidth,
-    marginTop: 4
-             }
+                flex: 1,
+                width: Metrics.screenWidth,
+                marginTop: 4
+              }}>
 
-             }>
-               
                 <View style={{
-                  flex :1 ,
+                  flex: 1,
                   flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center'
                   // marginTop:27.5
                 }}>
-                <View style={{flex:1 , }}>
-                <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={{flex:1}} resizeMode='stretch' >
-                </Image>
-                </View>
-                <View style={{flex:4 ,  flexDirection:'row'}}>
-                  <View style={{flex:1,alignItems:'center',justifyContent:'flex-start'}}>
-                  <Flb name={this.props.visibilityRules.opdTile.tileIcon}
-                    style={{
-                      
-                     backgroundColor: Colors.transparent,
+                  <View style={{flex: 1 }}>
+                    <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={{flex: 1}} resizeMode='stretch' />
+                  </View>
+                  <View style={{flex: 4, flexDirection: 'row'}}>
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-start'}}>
+                      <Flb name={this.props.visibilityRules.opdTile.tileIcon}
+                        style={{
+
+                          backgroundColor: Colors.transparent
                   // marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.004
-                    }}
-                    size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
-                    color={Colors.flBlue.grey3} />
+                        }}
+                        size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
+                        color={Colors.flBlue.grey3} />
                     </View>
-                    <View style={{flex:3}}>
-                  <Text style={{
-                    
-                    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
-                    color: Colors.flBlue.grey3,
-                    fontFamily: Fonts.type.headerFont,
-                   backgroundColor: Colors.transparent
-                  }}>
-                    {this.props.visibilityRules.opdTile.tileName['en']}
-                  </Text>
-                  </View>
+                    <View style={{flex: 3}}>
+                      <Text style={{
+
+                        fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
+                        color: Colors.flBlue.grey3,
+                        fontFamily: Fonts.type.headerFont,
+                        backgroundColor: Colors.transparent
+                      }}>
+                        {this.props.visibilityRules.opdTile.tileName['en']}
+                      </Text>
+                    </View>
                   </View>
                 </View>
-            
-             </LinearGradient>
+
+              </LinearGradient>
             </TouchableOpacity> : null
           }
         </View>

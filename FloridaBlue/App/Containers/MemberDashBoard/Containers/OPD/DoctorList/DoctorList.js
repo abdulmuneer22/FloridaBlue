@@ -23,18 +23,18 @@ const card = {
     alignItems: 'flex-start', margin: 15, flex: 1,
     backgroundColor: 'purple', borderRadius: 10
   }
-};
+}
 const cardTitle = { cardTitle: { fontSize: 40 } }
 
 import DoctorCard from './Components/DoctorCard'
-//import Icon from 'react-native-vector-icons/FontAwesome'
+// import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './DoctorListStyle'
 import NavItems from '../../../../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
-import { Container, Content, Footer, FooterTab } from 'native-base';
+import { Container, Content, Footer, FooterTab } from 'native-base'
 import SaveProviderActions from '../../../../../Redux/SaveProviderRedux'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
@@ -49,19 +49,19 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
 class DoctorList extends Component {
 
- _advancedSearch() {
-      NavigationActions.AdvancedSearch()
-    }
+  _advancedSearch () {
+    NavigationActions.AdvancedSearch()
+  }
 
-_mapView() {
+  _mapView () {
     NavigationActions.ProviderMap()
   }
- componentDidMount(){
+  componentDidMount () {
 
- }
+  }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != "" && newProps.provider.data.originLongitude != "") {
+  componentWillReceiveProps (newProps) {
+    if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
       this.props.changeLatitude(newProps.provider.data.originLatitude)
       this.props.changeLongitude(newProps.provider.data.originLongitude)
     }
@@ -72,7 +72,7 @@ _mapView() {
     this.props.changeLongDelta(this.props.searchRange / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
   }
 
-  _renderHeader() {
+  _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
@@ -86,129 +86,124 @@ _mapView() {
     </Image>)
   }
 
-   _displayCondition () {
+  _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.provider && this.props.provider.data) {
-    
       return (
         <View style={styles.container}>
-         {this.props.provider ?
-          <View style={{flex:9}}>
-         
-          <ScrollView >
-          
-          <View style={{flex:1, margin:15  }}>
-              <Card style={{flex:1, borderRadius:15, backgroundColor:'purple'}} >
-                <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
-                  <View style={{ flex: 0.15 }}>
-                    <Flb name="accident" size={Metrics.icons.large} color={Colors.snow} />
-                  </View>
-                  <View style={{ flex: 0.85 }}>
-                    <Text style={{
-                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                      color: Colors.snow
-                    }}>If this is an emergency, please call 911.</Text>
-                  </View>
+          {this.props.provider ?
+            <View style={{flex: 9}}>
+
+              <ScrollView >
+
+                <View style={{flex: 1, margin: 15 }}>
+                  <Card style={{flex: 1, borderRadius: 15, backgroundColor: 'purple'}} >
+                     <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                      <View style={{ flex: 0.15 }}>
+                        <Flb name='accident' size={Metrics.icons.large} color={Colors.snow} />
+                      </View>
+                      <View style={{ flex: 0.85 }}>
+                        <Text style={{
+                          fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
+                          color: Colors.snow
+                        }}>If this is an emergency, please call 911.</Text>
+                      </View>
+                    </View>
+                   </Card>
                 </View>
-              </Card>
-            </View>
-          
 
-            <View style={{flex:1}}>
+                <View style={{flex: 1}}>
 
-                {this.props.provider && this.props.provider.data  && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
-                  <DoctorCard
-                    savedproviders={this.props.saveProvider}
-                    saveProvider={this.saveProvider}
-                    removeProvider={this.removeProvider}
-                    data={this.props.provider.data.providerList}
-                    leftActive={this.props.leftActive}
-                    rightActive={this.props.rightActive}
+                  {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
+                     <DoctorCard
+                      savedproviders={this.props.saveProvider}
+                      saveProvider={this.saveProvider}
+                      removeProvider={this.removeProvider}
+                      data={this.props.provider.data.providerList}
+                      leftActive={this.props.leftActive}
+                      rightActive={this.props.rightActive}
 
                   />
                   :
-                    <LinearGradient style={{flex:1,margin:15, borderRadius:20}} colors={['#EECDA3','#EF629F']}>
-                   <View style={{flex:1,margin:15}}>
-                  
-                    <Card style={{flex:1, borderRadius:20, justifyContent:'center'}}>
-                        
-                      <View style={{flex:1, margin:15}}>
-                        
-                    <Text style={{fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-                                  color:Colors.flBlue.anvil,
-                                  }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
-                   
-                    </View>
-                    
-                    </Card>
-                    
-                    </View>
-                    </LinearGradient>
+                      <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
+                        <View style={{flex: 1, margin: 15}}>
+
+                          <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
+
+                           <View style={{flex: 1, margin: 15}}>
+
+                            <Text style={{fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                            color: Colors.flBlue.anvil
+                          }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
+
+                          </View>
+
+                         </Card>
+
+                        </View>
+                      </LinearGradient>
                     }
 
-            </View>
-            
+                </View>
 
-          </ScrollView>
-          </View>
+              </ScrollView>
+            </View>
 
           : <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
           </View>
           }
-        <View style={{flex:1}}>
-          <View style={{flex:1}}>
-          <View style={{flex:1,flexDirection:'row'}}>
-         <TouchableOpacity style={{flex:1}} onPress={()=> this._advancedSearch()}>
-          <View style={styles.refinesearch}>
+          <View style={{flex: 1}}>
+            <View style={{flex: 1}}>
+              <View style={{flex: 1, flexDirection: 'row'}}>
+                <TouchableOpacity style={{flex: 1}} onPress={() => this._advancedSearch()}>
+                  <View style={styles.refinesearch}>
 
-               <View style={{flex:0.3, alignItems:'center'}}>
-                <Flb
-                name='search-find'
-                size={Metrics.icons.medium}
-                color={Colors.snow} />
-               </View>
+                     <View style={{flex: 0.3, alignItems: 'center'}}>
+                      <Flb
+                        name='search-find'
+                        size={Metrics.icons.medium}
+                        color={Colors.snow} />
+                    </View>
 
-            <View style={{flex:0.7, alignItems:'flex-start'}}>
+                     <View style={{flex: 0.7, alignItems: 'flex-start'}}>
 
-                <Text style={styles.footerText}>Refine Search</Text>
+                      <Text style={styles.footerText}>Refine Search</Text>
+                    </View>
+
+                   </View>
+                </TouchableOpacity>
+                <TouchableOpacity style={{flex: 1}} onPress={() => this._mapView()}>
+                  <View style={styles.footerView}>
+
+                     <View style={{flex: 0.4, alignItems: 'center'}}>
+                      <Flb
+                        name='map'
+                        size={Metrics.icons.medium}
+                        color={Colors.snow} />
+                    </View>
+
+                     <View style={{flex: 0.6,
+                      alignItems: 'flex-start'}}>
+
+                      <Text style={styles.footerText}>Map View</Text>
+                    </View>
+
+                   </View>
+                </TouchableOpacity>
               </View>
 
+            </View>
           </View>
-          </TouchableOpacity>
-         <TouchableOpacity style={{flex:1}} onPress={()=> this._mapView()}>
-          <View style={styles.footerView}>
 
-               <View style={{flex:0.4, alignItems:'center'}}>
-                <Flb
-                name='map'
-                size={Metrics.icons.medium}
-                color={Colors.snow} />
-               </View>
-
-            <View style={{flex:0.6,
-            alignItems:'flex-start'}}>
-
-                <Text style={styles.footerText}>Map View</Text>
-              </View>
-
-          </View>
-          </TouchableOpacity>
-        </View>
-
-
-        </View>
-        </View>
-       
         </View>
       )
     } else if (this.props.error != null) {
-     
       Alert.alert(
         'Find care',
        'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
@@ -219,29 +214,28 @@ _mapView() {
     }
   }
 
-  render() {
-    //alert(this.props.data)
+  render () {
+    // alert(this.props.data)
     return (
       <View style={styles.container}>
         <View >
           {this._renderHeader()}
         </View>
-      
-        <View style={{flex:7}}>
-       {
+
+        <View style={{flex: 7}}>
+          {
          this._displayCondition()
        }
-       </View>
+        </View>
       </View>
 
     )
   }
 }
 
-
 DoctorList.propTypes = {
   data: PropTypes.string,
-  provider:PropTypes.object,
+  provider: PropTypes.object,
   attemptProviderSearch: PropTypes.func,
   error: PropTypes.string,
   saveProvider: PropTypes.array,
