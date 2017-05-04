@@ -47,4 +47,4 @@ export const reducer = createReducer(INITIAL_STATE, {
 /* ------------- Selectors ------------- */
 
 // Is the current user logged in?
-export const isMyIdCardIn = (myIdCardState: Object) => myIdCardState.myIdCard.data !== null
+export const isMyIdCardIn = (myIdCardState: Object) => myIdCardState.myidcard.data !== null
