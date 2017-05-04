@@ -108,7 +108,8 @@ class Card extends Component {
             <View style={{flex: 1}}>
               <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
                 <Text style={{
-                  marginTop: Metrics.mediumMargin,
+                  //marginTop: Metrics.mediumMargin,
+                   marginBottom:-15,
                   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
                   fontWeight: (Platform.OS === 'ios') ? '600' : '400',
                   color: Colors.snow,
