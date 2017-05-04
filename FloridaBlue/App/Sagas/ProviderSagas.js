@@ -107,9 +107,10 @@ export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
 
 export function * sendDoctorLanguageRequest (api, {data}) {
   const response = yield call(api.getDoctorLanguage, data)
-
   if (response.ok) {
     var data = response.data
+    var noPrefCategory = {"value": "","label": "No Preference"}
+    data.data.languageList.splice(0, 0, noPrefCategory)
     yield put(ProviderActions.sendDoctorLanguageSuccess(data))
   } else {
     var error = response.problem
@@ -121,9 +122,10 @@ export function * sendDoctorLanguageRequest (api, {data}) {
 
 export function * sendStaffLanguageRequest (api, {data}) {
   const response = yield call(api.getStaffLanguage, data)
-
   if (response.ok) {
     var data = response.data
+    var noPrefCategory = {"value": "","label": "No Preference"}
+    data.data.languageList.splice(0, 0, noPrefCategory)
     yield put(ProviderActions.sendStaffLanguageSuccess(data))
   } else {
     var error = response.problem
