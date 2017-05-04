@@ -209,7 +209,8 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     'end': 25,
     'address': data && data.address ? data.address : '',
     'originLatitude': data.latitude,
-    'originLongitude': data.longitude
+    'originLongitude': data.longitude,
+    'networkList': data.networkCodeList
   }
   )
 
