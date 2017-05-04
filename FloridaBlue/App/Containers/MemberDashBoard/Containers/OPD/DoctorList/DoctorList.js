@@ -100,6 +100,7 @@ class DoctorList extends Component {
 
               <ScrollView >
 
+              {this.props.showUrgentCareBanner ?
                 <View style={{flex: 1, margin: 15 }}>
                   <Card style={{flex: 1, borderRadius: 15, backgroundColor: 'purple'}} >
                      <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
@@ -115,6 +116,7 @@ class DoctorList extends Component {
                     </View>
                    </Card>
                 </View>
+              : null}
 
                 <View style={{flex: 1}}>
 
@@ -255,7 +257,8 @@ const mapStateToProps = (state) => {
     longitude: state.provider.longitude,
     searchRange: state.provider.searchRange,
     latDelta: state.provider.latDelta,
-    longDelta: state.provider.longDelta
+    longDelta: state.provider.longDelta,
+    showUrgentCareBanner: state.provider.showUrgentCareBanner
   }
 }
 

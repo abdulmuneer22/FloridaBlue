@@ -1,11 +1,12 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
+var urlConfig = require('../UrlConfig');
 global.Buffer = global.Buffer || require('buffer').Buffer
 
 const APP_ID = '1001'
 
 // our "constructor"
-const create = (baseURL = 'https://mobapi-stga.bcbsfl.com/mob/api/v1/') => {
+const create = (baseURL = urlConfig.mobApiUrl) => {
 // const create = (baseURL = 'http://localhost:9000/mob/api/v1/') => {
 
   // ------

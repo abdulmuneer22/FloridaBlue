@@ -155,15 +155,19 @@ class ProviderSearch extends Component {
   }
 
   _getResults () {
+    this.props.changeUrgentCareBanner(false)
+
     if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
       this.props.attemptPharmacySearch(this.props)
     } else {
       this.props.attemptProviderSearch(this.props)
     }
+    
     NavigationActions.DoctorList()
   }
 
   _viewListResults () {
+    this.props.changeUrgentCareBanner(true)
     this.props.attemptUrgentSearch(this.props)
     NavigationActions.DoctorList()
   }
@@ -472,14 +476,17 @@ class ProviderSearch extends Component {
             </View>
           : <View>{this.state._onChecked}</View>}
           {this.state.floatClicked ?
-            <Card style={styles.urgentCareContainer}>
-              <Text style={styles.dismissUrgentIcon} onPress={this.dismissNeedHelp.bind(this)}>{closeIcon}</Text>
-              <Text style={styles.needHelpText}>Need Help Now?</Text>
-              <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
-              <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
-                <Image source={Images.viewListButton} style={styles.viewListButton} />
-              </TouchableOpacity>
-            </Card>
+          <Card style={styles.urgentCareContainer}>
+
+            <TouchableOpacity onPress={this.dismissNeedHelp.bind(this)}>
+            <Text style={styles.dismissUrgentIcon} onPress={this.dismissNeedHelp.bind(this)}>{closeIcon}</Text>
+            </TouchableOpacity>
+            <Text style={styles.needHelpText}>Need Help Now?</Text>
+            <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
+            <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
+              <Image source={Images.viewListButton} style={styles.viewListButton} />
+            </TouchableOpacity>
+          </Card>
           : null
           }
         </View>
@@ -511,7 +518,8 @@ const mapStateToProps = (state) => {
     member: state.member,
     urgentCareState: state.urgentCareState,
     networkCodeList: state.provider.networkCodeList,
-    locationStatus: state.provider.locationStatus
+    locationStatus: state.provider.locationStatus,
+    showUrgentCareBanner: state.provider.showUrgentCareBanner
   }
 }
 
@@ -532,7 +540,8 @@ const mapDispatchToProps = (dispatch) => {
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeAddress: (address) => dispatch(ProviderActions.changeAddress(address)),
     changeHomeAddress: (homeAddress) => dispatch(ProviderActions.changeHomeAddress(homeAddress)),
-    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus))
+    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus)),
+    changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner))
   }
 }
 
