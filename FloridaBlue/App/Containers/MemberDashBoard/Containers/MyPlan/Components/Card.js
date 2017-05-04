@@ -75,6 +75,7 @@ class Card extends Component {
   }
 
   render () {
+    console.tron.log(this.props.gradientImage)
     return (
 
       <TouchableOpacity
@@ -96,25 +97,32 @@ class Card extends Component {
 
         }}>
         <View >
-           <LinearGradient colors={ this.props.i % 2 ==0 ? ['#b258c7','#9f2fb9'] : ['#3bc1d4','#09b1c9']} 
-           style={{
-            width: this.state.CardWidth,
-            height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.77) : Metrics.screenHeight - (Metrics.screenHeight * 0.79),
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
+          <LinearGradient colors={this.props.gradientColor}
+            style={{
+              width: this.state.CardWidth,
+              height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.77) : Metrics.screenHeight - (Metrics.screenHeight * 0.79)
+        //    alignItems: 'center',
+        //    justifyContent: 'center'
+            }}
            >
-            <Text style={{
-              marginTop: Metrics.mediumMargin,
-              fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
-              fontWeight: (Platform.OS === 'ios') ? '600' : '400',
-              color: Colors.snow,
-              backgroundColor: Colors.transparent
-            }}>
-              {this.props.title}
-            </Text>
-  
-        
+            <View style={{flex: 1}}>
+              <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
+                <Text style={{
+                  marginTop: Metrics.mediumMargin,
+                  fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
+                  fontWeight: (Platform.OS === 'ios') ? '600' : '400',
+                  color: Colors.snow,
+                  backgroundColor: Colors.transparent
+                }}>
+                  {this.props.title}
+                </Text>
+              </View>
+              <View style={{flex: 1, alignItems: 'flex-end'}}>
+                <Image source={Images[this.props.gradientImage]} style={{flex: 1, alignItems: 'flex-end'
+                }} resizeMode='stretch' />
+
+              </View>
+            </View>
           </LinearGradient>
         </View>
 

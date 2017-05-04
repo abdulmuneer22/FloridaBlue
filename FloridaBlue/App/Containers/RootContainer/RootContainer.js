@@ -45,7 +45,7 @@ class RootContainer extends Component {
         if (timerStarted == false) {
           var date = new Date()
           inactiveTime = date.getTime()
-          timerStarted = true;
+          timerStarted = true
         }
       } else if (appState.match(/active/)) {
         var date = new Date()
@@ -55,7 +55,7 @@ class RootContainer extends Component {
         var elapsedTime = Math.abs(diffMins)
         if (elapsedTime >= 15) {
             // Call logout logic
-          timerStarted = false;
+          timerStarted = false
           RCTNetworking.clearCookies((cleared) => {})
           component.props.attemptLogout()
           NavigationActions.login()

@@ -1,6 +1,7 @@
 apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
@@ -111,7 +112,7 @@ android {
         applicationId "com.bcbsfl.mobile.android"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 79
+        versionCode 80
         versionName "3.5"
         ndk {
             abiFilters "armeabi-v7a", "x86"

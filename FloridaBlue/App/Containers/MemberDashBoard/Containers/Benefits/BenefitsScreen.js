@@ -58,9 +58,9 @@ class PlanBenefits extends Component {
 
           <View style={{
            // flexDirection: 'row',
-              backgroundColor : Colors.bg2,
+            backgroundColor: Colors.bg2,
             flexWrap: 'wrap',
-            flex: 1,
+            flex: 1
           //  marginLeft: window.width * 0.04,
           //  marginRight: window.width * 0.03,
           //  marginTop: window.width * 0.03

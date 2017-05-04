@@ -29,15 +29,15 @@ export default StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: Colors.bg2, 
-    flexDirection:'column'
+    backgroundColor: Colors.bg2,
+    flexDirection: 'column'
   },
   planNameView: {
     flex: 0.1,
     alignItems: 'center',
     justifyContent: 'center'
-   
-    //marginTop: Metrics.smallMargin,   
+
+    // marginTop: Metrics.smallMargin,
   },
   planNameText: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
@@ -48,8 +48,8 @@ export default StyleSheet.create({
   },
 
   chartWrapper: {
-     //backgroundColor : 'yellow',
-    flex: 0.6,
+     // backgroundColor : 'yellow',
+    flex: 0.6
    // marginBottom: 15
   },
   cardStyle: {
@@ -62,22 +62,22 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin
   },
   wrapper: {
-    backgroundColor:Colors.bg2,
-    marginTop:10,
-    marginBottom:20,
+    backgroundColor: Colors.bg2,
+    marginTop: 10,
+    marginBottom: 20,
    // borderRadius: 2,
-    shadowColor: "#000000",
-    //shadowOpacity: 0.3,
-    //shadowRadius: 1,
+    shadowColor: '#000000',
+    // shadowOpacity: 0.3,
+    // shadowRadius: 1,
     shadowOffset: {
       height: 1,
-      width: 0.3,
+      width: 0.3
     }
-    //marginBottom:20,
-  
-    //marginLeft:20,
-    //marginRight:20,
-     //width:Metrics.screenWidth,
+    // marginBottom:20,
+
+    // marginLeft:20,
+    // marginRight:20,
+     // width:Metrics.screenWidth,
     // backgroundColor:'red',
    // margin:20,
 
@@ -86,7 +86,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     // backgroundColor : 'red',
     flexWrap: 'wrap',
-    flex :0.3,
+    flex: 0.3,
     marginLeft: window.width * 0.04,
     marginRight: window.width * 0.03,
     marginTop: window.width * 0.04,
@@ -96,11 +96,11 @@ export default StyleSheet.create({
 
   headerStyle: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center'
 
    // marginLeft:20,
-  //backgroundColor: 'white',
-    
+  // backgroundColor: 'white',
+
   },
   headerText: {
     color: Colors.flBlue.grey6,
@@ -126,9 +126,8 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0018,
     color: Colors.flBlue.grey3,
     fontFamily: Fonts.type.subHeaderFont,
-    marginBottom: Metrics.baseMargin,
-  
-    
+    marginBottom: Metrics.baseMargin
+
   },
   listViewBg: {
     flexDirection: 'row',
@@ -136,11 +135,11 @@ export default StyleSheet.create({
     marginRight: Metrics.mediumMargin
   },
   dataContainer: {
-    flex : -1,
+    flex: -1,
  // flexDirection:'row',
-   alignItems:'center',
+    alignItems: 'center'
   // marginLeft: Metrics.doubleBaseMargin,
-   //marginRight: Metrics.doubleBaseMargin,
+   // marginRight: Metrics.doubleBaseMargin,
     // flex: 1,
 // margin: Metrics.baseMargin,
   //  flexWrap: 'wrap'

@@ -93,27 +93,27 @@ class Card extends Component {
         //  height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
           alignItems: 'center',
           justifyContent: 'center',
-          //marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
+          // marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
         // marginRight :
         // marginTop : 10,
-        flex :1,
+          flex: 1
          // marginBottom: window.width * 0.03
 
         }}>
 
         <BCard style={{alignItems: 'center', flexDirection: 'row',
-          flex :1,
+          flex: 1,
          //    width: this.state.CardWidth,
-            height: Metrics.screenHeight - (Metrics.screenHeight * 0.90),
-          
-           // justifyContent: 'center'
-        
-          }}>
+          height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
 
-            <View style={{ flex :2 , alignItems:'center',   justifyContent: 'center',backgroundColor: Colors.transparent}}>
-            <Flb name={this.props.icon}  size={Metrics.icons.regular} color={Colors.flBlue.purple} />
-            </View>
-            <View style={{flex:6,alignItems:'flex-start'}}>
+           // justifyContent: 'center'
+
+        }}>
+
+          <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.transparent}}>
+            <Flb name={this.props.icon} size={Metrics.icons.regular} color={Colors.flBlue.purple} />
+          </View>
+          <View style={{flex: 6, alignItems: 'flex-start'}}>
             <Text style={{
              // marginTop: Metrics.baseMargin,
               fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00265,
@@ -125,10 +125,10 @@ class Card extends Component {
             }}>
               {this.props.title}
             </Text>
-            </View>
-            <View style={{flex:1, alignItems:'flex-start',   justifyContent: 'center',backgroundColor: Colors.transparent}}>
-              <Flb name= 'chevron-right'  size={Metrics.icons.small} color={Colors.flBlue.purple} />
-              </View>
+          </View>
+          <View style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center', backgroundColor: Colors.transparent}}>
+            <Flb name='chevron-right' size={Metrics.icons.small} color={Colors.flBlue.purple} />
+          </View>
 
         </BCard>
 

@@ -13,6 +13,7 @@ import {
   BackAndroid,
   TouchableWithoutFeedback
 } from 'react-native'
+var urlConfig = require('../../UrlConfig');
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 var RCTNetworking = require('RCTNetworking')
@@ -243,7 +244,7 @@ class Login extends Component {
       <View style={styles.informationPopup}>
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/web-accessibility'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL})}>
             <Text style={styles.popupchildText}>
               Accessibility
             </Text>
@@ -252,7 +253,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/ndnotice'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.ndnoticeURL})}>
             <Text style={styles.popupchildText}>
               Nondiscrimination
             </Text>
@@ -261,7 +262,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/terms-of-use'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.termsOfUseURL})}>
             <Text style={styles.popupchildText}>
               Terms of Use
             </Text>
@@ -270,7 +271,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/internet-privacy-statement'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.internetStatementURL})}>
             <Text style={styles.popupchildText}>
               Privacy Policy
             </Text>
@@ -279,7 +280,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://providersearch.floridablue.com/providersearch/pub/index.htm'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL})}>
             <Text style={styles.popupchildText}>
               Browse for Doctors
             </Text>
@@ -288,7 +289,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/general/contact-us'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.supportURL})}>
             <Text style={styles.popupchildText}>
               Support
             </Text>
@@ -297,7 +298,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.floridaBlueURL})}>
             <Text style={styles.popupchildText}>
               Floridablue.com
             </Text>
@@ -306,7 +307,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es'})}>
+          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.anotherLanguageURL})}>
             <Text style={styles.popupchildText}>
               Speak Another Language?
             </Text>
@@ -349,7 +350,7 @@ class Login extends Component {
                 <MKTextField
                   ref='username'
                   style={styles.textField}
-                  textInputStyle={{flex: 1,color: Colors.flBlue.anvil,
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='next'
@@ -367,7 +368,7 @@ class Login extends Component {
                 <MKTextField
                   ref='password'
                   style={styles.textField}
-                  textInputStyle={{flex: 1,color: Colors.flBlue.anvil,
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='done'
@@ -383,7 +384,7 @@ class Login extends Component {
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
               <View style={styles.forgotRow}>
-                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://registration-stga.bcbsfl.com/ecir/public/fps.do?channel=mobile&userType=member'})}>
+                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
                   <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
                 </TouchableOpacity>
               </View>

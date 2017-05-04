@@ -20,12 +20,12 @@ import I18n from 'react-native-i18n'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import { connect } from 'react-redux'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
-import MapView, { PROVIDER_GOOGLE }  from 'react-native-maps'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import DoctorCard from './Components/DoctorCard'
 import HideableView from 'react-native-hideable-view'
 
 const theme = getTheme()
-const screen = Dimensions.get('window');
+const screen = Dimensions.get('window')
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
@@ -38,7 +38,7 @@ var region = {
 }
 
 class ProviderMap extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       selectedLocation: {},
@@ -48,11 +48,11 @@ class ProviderMap extends Component {
     this._mapCalloutSelected = this._mapCalloutSelected.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
 
   }
 
-  _mapCalloutSelected(event) {
+  _mapCalloutSelected (event) {
     for (var i = 0; i < this.props.provider.data.providerList.length; i++) {
       var provider = this.props.provider.data.providerList[i]
       if (provider.displayName == event.nativeEvent.id) {
@@ -67,50 +67,49 @@ class ProviderMap extends Component {
     }
   }
 
-  _renderHeader() {
-     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
-       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
-         {NavItems.backButton()}
-       </View>
-       <Text style={styles.headerTextStyle}>
+  _renderHeader () {
+    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+      <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
+        {NavItems.backButton()}
+      </View>
+      <Text style={styles.headerTextStyle}>
          Find Care
       </Text>
-       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
-         {NavItems.settingsButton()}
-       </View>
-     </Image>)
-   }
+      <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
+        {NavItems.settingsButton()}
+      </View>
+    </Image>)
+  }
 
-   _renderMapMarkers(location) {
-     return (
-       <MapView.Marker key={location.id} identifier={location.displayName} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin}></MapView.Marker>
-     )
-   }
-
+  _renderMapMarkers (location) {
+    return (
+      <MapView.Marker identifier={location.displayName} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin} />
+    )
+  }
 
   render () {
-    return(
+    return (
       <View>
         {this._renderHeader()}
         {this.props.provider.data.providerList ?
-        <View style={styles.container}>
-          <MapView
-            style={styles.map}
-            showsUserLocation={true}
-            initialRegion={{
-              latitude: this.props.latitude,
-              longitude: this.props.longitude,
-              latitudeDelta: this.props.latDelta,
-              longitudeDelta: this.props.longDelta
-            }}>
+          <View style={styles.container}>
+            <MapView
+              style={styles.map}
+              showsUserLocation
+              initialRegion={{
+                latitude: this.props.latitude,
+                longitude: this.props.longitude,
+                latitudeDelta: this.props.latDelta,
+                longitudeDelta: this.props.longDelta
+              }}>
               {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderMapMarkers(provider))}
-          </MapView>
+            </MapView>
 
-          <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden={true}>
-            <DoctorCard data={this.state.selectedLocation} />
-          </HideableView>
+            <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden>
+              <DoctorCard data={this.state.selectedLocation} />
+            </HideableView>
 
-        </View>
+          </View>
         : <View style={styles.spinnerView}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text style={styles.spinnerText}>Loading Please Wait </Text>
@@ -145,4 +144,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(ProviderMap)
+export default connect(mapStateToProps, mapDispatchToProps)(ProviderMap)

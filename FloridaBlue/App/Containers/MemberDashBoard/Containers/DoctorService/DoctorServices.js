@@ -102,59 +102,56 @@ class DoctorServices extends Component {
         <View style={styles.textBackground2}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{ flex: 1 }}>
-              <Card style={{flex:1}}>
+              <Card style={{flex: 1}}>
                 <View style={{
               // backgroundColor: 'purple',
-              flex :1,
+                  flex: 1,
                   flexDirection: 'row',
                   height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
-            
+
                 }}>
-                <View style={{ flex :1 ,alignItems: 'center' , justifyContent: 'center', 
-                //backgroundColor:'yellow'
-                }}>
-                  <Flb name={tile[0].tileIcon} size={Metrics.icons.regular} color={Colors.flBlue.purple} />
-                </View>
+                  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'
+                // backgroundColor:'yellow'
+                  }}>
+                    <Flb name={tile[0].tileIcon} size={Metrics.icons.regular} color={Colors.flBlue.purple} />
+                  </View>
                   <View style={{
                     flex: 3,
                 // marginRight:5,
-                   alignItems: 'center', 
-                   justifyContent:'center',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                //    backgroundColor:'red'
 
                   }}>
-                  
-                    
+
                     <Text style={styles.doctorTextStyle}>
                       {temp1.text['en']}
                     </Text>
-                    
-                    
+
                   </View>
 
-                  <View style={{flex:1}}>
+                  <View style={{flex: 1}}>
                     {this.renderHeaderText() != '' ?
                       <View style={{
-                        flex: 1,
+                        flex: 1
                        // marginLeft: -40,
                        // marginRight: Metrics.mediumMargin
 
                       }}>
-                        <TouchableOpacity style={{flex:1}}onPress={() => {
-                         
+                        <TouchableOpacity style={{flex: 1}}onPress={() => {
                           this.setState({ hpActive: !this.state.hpActive })
                         }}>
                           <View style={{
                         // flexDirection: 'row',
-                         flex:1, 
+                            flex: 1,
                          // marginTop: Metrics.baseMargin,
-                          alignItems: 'center', 
-                          justifyContent:'center',
+                            alignItems: 'center',
+                            justifyContent: 'center'
                         // backgroundColor: Colors.flBlue.grey4,
-                        }}>
+                          }}>
 
-                          <View >
-                          {
+                            <View >
+                              {
 
                             !this.state.hpActive
 
@@ -162,8 +159,8 @@ class DoctorServices extends Component {
                               : <Flb name='chevron-up' size={Metrics.icons.tiny} style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
 
                           }
-                        </View>
-                        </View>
+                            </View>
+                          </View>
                         </TouchableOpacity>
                       </View>
                   : <Text />
@@ -172,17 +169,17 @@ class DoctorServices extends Component {
                   </View>
                 </View>
 
-                <View style={{flex:1 ,flexDirection:'row'}}>
-                  <View style={{flex:1}}/>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                  <View style={{flex: 1}} />
                   {
                 this.state.hpActive
                   ? <View style={{
-                    flex:12,
+                    flex: 12,
                    // width: Metrics.screenWidth * 0.88,
                     alignSelf: 'center',
                     borderBottomWidth: 0.2,
-                    marginBottom:10,
-                    //borderWidth:1
+                    marginBottom: 10
+                    // borderWidth:1
                  //   height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
                   //  margin:10
                     //  marginLeft : (Metrics.screenWidth * 0.15)/2,
@@ -196,36 +193,35 @@ class DoctorServices extends Component {
                       margin: 5,
                     //  textAlign: 'justify',
                       color: Colors.flBlue.grey5,
-                      fontWeight: '300',
-                     
+                      fontWeight: '300'
 
                     }}>{this.renderHeaderText()}</Text>
                   </View>
                   : null
               }
-                <View style={{flex:1}}/>
+                  <View style={{flex: 1}} />
                 </View>
-                
-                </Card>
-                <View style={{ alignItems: 'center', marginBottom: 15}}>
-                  <Switch
-                    data={this.props.data}
-                    objectName={this.props.objectName}
-                    leftActive={this.props.leftActive}
-                    rightActive={this.props.rightActive}
-                    preferredActive={this.props.preferredActive}
-                    attemptHandleLeft={this.props.attemptHandleLeft}
-                    attemptHandleRight={this.props.attemptHandleRight}
-                    attemptHandlePreferred={this.props.attemptHandlePreferred} />
-                </View>
-             
+
+              </Card>
+              <View style={{ alignItems: 'center', marginBottom: 15}}>
+                <Switch
+                  data={this.props.data}
+                  objectName={this.props.objectName}
+                  leftActive={this.props.leftActive}
+                  rightActive={this.props.rightActive}
+                  preferredActive={this.props.preferredActive}
+                  attemptHandleLeft={this.props.attemptHandleLeft}
+                  attemptHandleRight={this.props.attemptHandleRight}
+                  attemptHandlePreferred={this.props.attemptHandlePreferred} />
+              </View>
+
               <View >
                 <CCard
                   data={this.props.data}
                   objectName={this.props.objectName}
                   leftActive={this.props.leftActive}
                   rightActive={this.props.rightActive}
-                  preferredActive={this.props.preferredActive} 
+                  preferredActive={this.props.preferredActive}
                   cardImage={tile[0].tileIcon}
                   />
               </View>

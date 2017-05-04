@@ -23,7 +23,7 @@ export const INITIAL_STATE = Immutable({
   fetching: false,
   error: null,
   leftActive: true,
-  rightActive: false,
+  rightActive: false
 })
 
 /* ------------- Reducers ------------- */

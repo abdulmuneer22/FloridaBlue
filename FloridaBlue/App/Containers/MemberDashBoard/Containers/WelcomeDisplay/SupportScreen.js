@@ -12,7 +12,7 @@ import Flb from '../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import SupportActions from '../../../../Redux/SupportRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
-import Communications from 'react-native-communications';
+import Communications from 'react-native-communications'
 import { Card } from 'native-base'
 const window = Dimensions.get('window')
 
@@ -41,26 +41,24 @@ class SupportScreen extends Component {
     </Image>)
   }
 
-
   componentDidMount () {
     console.tron.log('I am Support screen')
     console.tron.log(this.props)
   //  this.props.attemptSupportScreen()
-}
+  }
 
-     _handleCall(phone) {
-
+  _handleCall (phone) {
     console.log(phone)
-    const url=`tel:${phone}`
+    const url = `tel:${phone}`
 
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
-        Linking.openURL(url);
+        Linking.openURL(url)
       } else {
-        console.log('Don\'t know how to open URI: ');
+        console.log('Don\'t know how to open URI: ')
       }
-    });
-	}
+    })
+  }
 
   _handleCall (phone) {
     console.log(phone)
@@ -68,7 +66,7 @@ class SupportScreen extends Component {
 
     Linking.canOpenURL('tel:1-800-841-2900').then(supported => {
       if (supported) {
-         Linking.openURL('tel:1-800-841-2900');
+        Linking.openURL('tel:1-800-841-2900')
       } else {
         console.log('Don\'t know how to open URI: ')
       }
@@ -76,7 +74,6 @@ class SupportScreen extends Component {
   }
 
   render () {
- 
     var texts = []
     var i = 0
     return (
@@ -98,7 +95,7 @@ class SupportScreen extends Component {
                                 {support.contactType}
                               </Text>
                             </View>
-                            <TouchableOpacity onPress={ () => Communications.phonecall(support.contactNumber, true) }>
+                            <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)}>
                               <View style={{flex: 0.4, flexDirection: 'row', justifyContent: 'space-between'}}>
                                 <Text style={styles.textStyle1}>
                                   {support.contactNumber}
@@ -113,47 +110,43 @@ class SupportScreen extends Component {
 
                     )}</View>
                       <View >
-                        {this.props.data && this.props.data.shopping ?  <View>{ this.props.data.shopping.map(function (support, i) {
-                          
-                         
-                      
+                        {this.props.data && this.props.data.shopping ? <View>{ this.props.data.shopping.map(function (support, i) {
                           return (<View>
-                            {support.contactNumber ?  <Card style={styles.textBackground} key={i}>
-                                <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', flexWrap: 'wrap'}}>
-                              <View style={ {flex: 0.6,
-                                backgroundColor: Colors.snow }}>
-                                <Text style={styles.textStyle}>
-                                  {support.contactType}
-                                </Text>
-                              </View>
-                              {support.contactNumber ? <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)}>
-                                <View style={{flex: 0.4, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: Colors.snow}}>
-                                  <Text style={styles.textStyle1}>
-                                    {support.contactNumber}
+                            {support.contactNumber ? <Card style={styles.textBackground} key={i}>
+                              <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', flexWrap: 'wrap'}}>
+                                <View style={{flex: 0.6,
+                                  backgroundColor: Colors.snow }}>
+                                  <Text style={styles.textStyle}>
+                                    {support.contactType}
                                   </Text>
-                                  {support.contactNumber ? <Flb name='call-phone' size={Metrics.icons.xm} color={Colors.flBlue.ocean} /> : <View />}
                                 </View>
-                              </TouchableOpacity> : <View />}
+                                {support.contactNumber ? <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)}>
+                                  <View style={{flex: 0.4, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: Colors.snow}}>
+                                    <Text style={styles.textStyle1}>
+                                      {support.contactNumber}
+                                    </Text>
+                                    {support.contactNumber ? <Flb name='call-phone' size={Metrics.icons.small} color={Colors.flBlue.ocean} /> : <View />}
+                                  </View>
+                                </TouchableOpacity> : <View />}
                               </View>
-                            </Card> :<View style={ {height:60, alignItems:'center'
-                               
-                                 }}>
-                                <Text style={ {fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
-                                      fontWeight: '300',
-                                      marginTop: 20,
-                                      fontFamily: Fonts.type.headerFont,
-                                      color: Colors.flBlue.grey6}}>
-                                  {support.contactType}
-                                </Text>
-                              </View> }
-                            </View>
+                            </Card> : <View style={{height: 60, alignItems: 'center'
+
+                            }}>
+                              <Text style={{fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
+                                fontWeight: '300',
+                                marginTop: 20,
+                                fontFamily: Fonts.type.headerFont,
+                                color: Colors.flBlue.grey6}}>
+                                {support.contactType}
+                              </Text>
+                            </View> }
+                          </View>
                           )
-      
 
                           i += 1
                         }
 
-                    )}</View>:<View/>}
+                    )}</View> : <View />}
                       </View>
 
                     </View>
