@@ -16,7 +16,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.snow,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -121,6 +121,7 @@ export default StyleSheet.create({
   h5_2: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.purple,
+     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400'
   },
@@ -212,6 +213,14 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
     marginLeft: Metrics.baseMargin,
     fontWeight: '400'
+  },
+  directionText1: {
+    color: Colors.flBlue.ocean,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
+    //marginLeft: Metrics.baseMargin,
+    fontWeight: '400',
+    textDecorationLine:'underline',
+    textDecorationColor:Colors.flBlue.ocean
   },
   cardStyle: {
     flex: 1,
