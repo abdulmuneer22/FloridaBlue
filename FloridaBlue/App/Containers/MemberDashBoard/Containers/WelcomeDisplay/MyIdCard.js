@@ -28,7 +28,7 @@ class MyIdCard extends Component {
       idCardHeaderVisible : false,
       idsrc : idCardData
     };
-   this.toggle = this.toggle.bind(this); 
+   this.toggle = this.toggle.bind(this);
   }
 
   _renderHeader () {
@@ -47,13 +47,10 @@ class MyIdCard extends Component {
 
 
   componentDidMount () {
-    console.tron.log('I am Id Card screen')
-    console.tron.log('Hello!!!'+JSON.stringify(this.state))
-    console.tron.log('Screen Size:  width' + Metrics.screenWidth + '   Height:' + Metrics.screenHeight)
+    console.tron.log('I am Id Card screen');
   }
 
   toggle() {
-        console.tron.log('Toggling the view ' + this.state.idCardHeaderVisible);
        this.setState({
             idCardHeaderVisible: !this.state.idCardHeaderVisible
         });
@@ -61,7 +58,7 @@ class MyIdCard extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {backgroundColor:Colors.steel}]}>
         <HideableView visible={this.state.idCardHeaderVisible} removeWhenHidden={true}>
           {this._renderHeader()}
         </HideableView>
