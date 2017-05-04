@@ -33,7 +33,7 @@ export default StyleSheet.create({
     alignItems:'center',
     justifyContent:'center'
   },
- 
+
 
   headerTextStyle: {
     color: Colors.flBlue.ocean,
@@ -139,7 +139,7 @@ export default StyleSheet.create({
     fontWeight: '600'
 
   },
-  
+
   spinnerView: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -181,7 +181,12 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginLeft:15
   },
-
+  searchTypeRadioView: {
+    marginTop: Metrics.mediumMargin,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginLeft:15
+  },
   searchText: {
     marginTop: 5,
     marginLeft: Metrics.baseMargin,
@@ -259,7 +264,7 @@ export default StyleSheet.create({
     borderRadius: 3,
     backgroundColor: 'cornflowerblue',
   },
-  
+
    nextButton: {
      marginTop:Metrics.mediumMargin,
     alignSelf: 'center',
