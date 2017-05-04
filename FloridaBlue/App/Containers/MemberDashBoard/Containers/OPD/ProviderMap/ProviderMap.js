@@ -112,7 +112,7 @@ class ProviderMap extends Component {
               {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderMapMarkers(provider))}
             </MapView>
             <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden>
-              <Swiper width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.10)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.52))} height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.52))} showsButtons={true} showsPagination={false}>
+              <Swiper style={{marginBottom:40, marginTop:-5}} width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))} height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))} showsButtons={true} showsPagination={false}>
                 {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
               </Swiper>
             </HideableView>

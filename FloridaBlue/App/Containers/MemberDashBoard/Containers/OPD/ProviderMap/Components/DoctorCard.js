@@ -83,19 +83,17 @@ class DoctorCard extends Component {
                 <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin *2}}>
                   {this.props.data ?
                     <TouchableOpacity onPress={this.providerSelected}>
-                        <Text style={styles.h1}>{this.props.data.displayName}</Text>
+                        <Text style={styles.mapHeaderText}>{this.props.data.displayName}</Text>
                       </TouchableOpacity>
                   : null}
                   {this.props.data ?
-                    <Text style={styles.h2}>{this.props.data.primarySpecialty}</Text> : null}
+                    <Text style={styles.mapSubText}>{this.props.data.primarySpecialty}</Text> : null}
                   {this.props.data ?
                     <Text style={styles.h4}>{this.props.data.addressLine1}, {this.props.data.addressLine2}</Text> : null}
                   {this.props.data ?
-                    <Text style={styles.h4_2}>{this.props.data.city}, {this.props.data.state}</Text> : null}
+                    <Text style={styles.mapAdressText}>{this.props.data.city}, {this.props.data.state}, {this.props.data.zipCode}</Text> : null}
                   {this.props.data ?
-                    <Text style={styles.h4_2}>{this.props.data.zipCode}</Text> : null}
-                  {this.props.data ?
-                    <Text style={styles.h4_2}>{this.props.data.telephoneNumber}</Text> : null}
+                    <Text style={styles.mapAdressText}>{this.props.data.telephoneNumber}</Text> : null}
 
                 </View>
               </View>

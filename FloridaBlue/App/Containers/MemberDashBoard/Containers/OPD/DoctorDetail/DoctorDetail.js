@@ -12,6 +12,7 @@ import {
     ScrollView,
     Alert,
     Platform,
+    Linking,
     BackAndroid
 } from 'react-native'
 
@@ -103,6 +104,18 @@ class DoctorDetail extends Component {
     })
   }
 
+ handleMaps (latitude, longitude) {
+    console.log(latitude, longitude)
+    const url = `http://maps.apple.com/?ll=${latitude},${longitude}`
+
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url)
+      } else {
+        console.log('Don\'t know how to go')
+      }
+    })
+  }
   componentDidMount () {
     this.props.attemptDoctorDetail(this.props)
   }
@@ -138,7 +151,8 @@ class DoctorDetail extends Component {
 
               <View style={{
                 flex: 1,
-                marginBottom: 20
+                marginBottom: 20,
+                
               }}>
                 {this.props.doctordetail ?
                   <View style={{ flex: 1 }}>
@@ -194,15 +208,18 @@ class DoctorDetail extends Component {
                                     {value ?
                                         <Text style={styles.h5}>{value.addressLine1}, {value.addressLine2}</Text> : null}
                                     {value ?
-                                        <Text style={styles.h5_2}>{value.city}, {value.state}</Text> : null}
-                                    {value ?
-                                        <Text style={styles.h5_2}>{value.zipCode}</Text> : null}
+                                        <Text style={styles.h5_2}>{value.city}, {value.state}, {value.zipCode}</Text> : null}
+                                   
                                     {value ?
                                         <Text style={styles.h5_2}>{value.county} </Text> : null}
                                     {value ?
                                         <Text style={styles.h5_2}>{value.telephoneNumber}</Text> : null}
-
+                                    {/*<TouchableOpacity style={{ flex:1}} onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}>
+                                  <Text style={styles.directionText1}>Map Location</Text>
+                                    </TouchableOpacity>*/}
+                                  
                                   </View>
+                                 
                               </Card>
                           )
                           })
@@ -212,20 +229,91 @@ class DoctorDetail extends Component {
                       </HideableView> : null}
                     </View>
 
-                        : <Card>
-                          <View style={{flex: 1, margin: 15}}>
-                            <Text style={{ color: Colors.flBlue.anvil,
-                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                              textAlign: 'center'
-                            }}>
-                            No Record Found
-                            </Text>
-                          </View>
-                        </Card>
+                        : null
                         }
-
+                        
                   <View style={{ flex: 1 }}>
-                  {this.props.doctordetail.contractedSpecialties.length > 0 ?
+
+                    {this.props.doctordetail.address[0].officeHoursList.length > 0 ?
+                      <View style={{ flex: 1 }}>
+                        <TouchableOpacity onPress={this.toggle4.bind(this)}>
+                          <Card style={this.state.visible4 ? styles.cardStyle : styles.cardStyle1} >
+                            <View style={this.state.visible4 ? styles.plusView1 : styles.plusView}>
+                            <View style={{ flex: 2, alignItems: 'center' }}>
+                            <Flb name={this.state.visible4 ? 'minus' : 'plus'} color={this.state.visible4 ? Colors.snow : Colors.flBlue.ocean}
+                                size={Metrics.icons.medium} />
+                          </View>
+                            <View style={{ flex: 9 }}>
+                            <Text style={this.state.visible4 ? styles.plusText1 : styles.plusText}>
+                                                Office Hours
+                                            </Text>
+                          </View>
+                          </View>
+                          </Card>
+                        </TouchableOpacity>
+
+                        {this.state.visible4 ? <HideableView visible={this.state.visible4}>
+                          <View style={{ flex: 1, flexDirection: 'row' }}>
+                           
+                            <View style={{ flex:1, margin:5 }}>
+                              {this.props.doctordetail && this.props.doctordetail.address ?
+                                <View style={{Flex:1}}>
+                            {this.props.doctordetail.address[0].officeHoursList.map((value, i) => {
+                              return(
+
+                                <View key={i} style={{flex: 1, flexDirection:'row'}}>
+                                  <View style={{flex:1}}>
+                                <Text style={{
+                                    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                    color: Colors.flBlue.ocean,
+                                    margin:5
+                                  }}>
+                                    {value.dayOfWeek}
+                                  </Text>
+                                  </View>
+                                  <View style={{flex:1}}>
+                                   <Text style={{
+                                    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                    color: Colors.flBlue.grey5,
+                                    margin:5
+                                  }}>
+                                    {value.beginHour}
+                                  </Text>
+                                  </View>
+
+                                 
+                                   <Text style={{
+                                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00258,
+                                    color: Colors.flBlue.grey5,
+                                    margin:5
+                                  }}>
+                                    -
+                                  </Text>
+                                
+                                  <View style={{flex:1}}>
+                                   <Text style={{
+                                    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                    color: Colors.flBlue.grey5,
+                                    margin:5
+                                  }}>
+                                    {value.endHour}
+                                  </Text>
+                                  </View>
+                              </View>
+                              )
+                            })}
+                          </View>
+                          : null }
+                          </View>
+                          </View>
+                        </HideableView> : null}
+                      </View>
+                            :
+                      null
+                            }
+
+
+                  { this.props.doctordetail.contractedSpecialties ||  this.props.doctordetail.servicesOffered ?
                       <View style={{ flex: 1 }}>
                         <TouchableOpacity onPress={this.toggle2.bind(this)}>
                           <Card style={this.state.visible2 ? styles.cardStyle : styles.cardStyle1} >
@@ -244,9 +332,24 @@ class DoctorDetail extends Component {
                         </TouchableOpacity>
 
                         {this.state.visible2 ? <HideableView visible={this.state.visible2}>
-                          <View style={{ flex: 1, flexDirection: 'row' }}>
+                          
+                           {this.props.doctordetail && this.props.doctordetail.contractedSpecialties.length > 0 ?
+                          <View style={{flex:1}}>
+                           <View style={{ flex: 1, flexDirection: 'row' }}>
                             <View style={{ flex: 3 }} />
-                            <View style={{ flex: 9 }}>
+                          <View style={{ flex:9 }}>
+                            <Text style={{
+                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                            color: Colors.flBlue.purple
+                          }}>
+                           Contracted Specialties:
+                          </Text>
+                          </View>
+                          </View>
+                          <View style={{ flex: 1, flexDirection: 'row', margin:5 }}>
+                            <View style={{ flex: 3 }} />
+                            
+                            <View style={{ flex: 7 }}>
                             <Text style={{
                             fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                             color: Colors.flBlue.grey5
@@ -255,19 +358,45 @@ class DoctorDetail extends Component {
                           </Text>
                           </View>
                           </View>
+                          </View>
+                          :null}
+
+
+                           {this.props.doctordetail && this.props.doctordetail.servicesOffered.length > 0 ?
+                           <View style={{flex:1}}>
+                          <View style={{ flex: 1, flexDirection: 'row' }}>
+                            <View style={{ flex: 3 }} />
+                          <View style={{ flex:9 }}>
+                            <Text style={{
+                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                            color: Colors.flBlue.purple
+                          }}>
+                           Services Offered:
+                          </Text>
+                          </View>
+                          </View>
+                           {this.props.doctordetail && this.props.doctordetail.servicesOffered ? this.props.doctordetail.servicesOffered.map((value, i) => {
+                          return( <View style={{ flex: 1, flexDirection: 'row', margin:5 }}>
+                            
+                            <View style={{ flex: 3 }} />                            
+                            <View style={{ flex: 7 }}>             
+                            <Text style={{
+                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                            color: Colors.flBlue.grey5
+                          }}>
+                            {value.service}
+                          </Text>
+                          </View>
+                          </View>
+                          )}) : null }
+                          </View>
+                          : null }
+
+
                         </HideableView> : null}
                       </View>
                             :
-                      <Card>
-                        <View style={{flex: 1, margin: 15}}>
-                        <Text style={{ color: Colors.flBlue.anvil,
-                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                        textAlign: 'center'
-                      }}>
-                            No Record Found
-                            </Text>
-                      </View>
-                      </Card>
+                      null
                             }
                 </View>
 
@@ -305,16 +434,7 @@ class DoctorDetail extends Component {
                         </HideableView> : null}
                       </View>
                             :
-                      <Card>
-                        <View style={{flex: 1, margin: 15}}>
-                        <Text style={{ color: Colors.flBlue.anvil,
-                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                        textAlign: 'center'
-                      }}>
-                            No Record Found
-                            </Text>
-                      </View>
-                      </Card>
+                     null
                             }
                 </View>
 
@@ -352,83 +472,10 @@ class DoctorDetail extends Component {
                         </HideableView> : null}
                       </View>
                             :
-                      <Card>
-                        <View style={{flex: 1, margin: 15}}>
-                        <Text style={{ color: Colors.flBlue.anvil,
-                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                        textAlign: 'center'
-                      }}>
-                            No Record Found
-                            </Text>
-                      </View>
-                      </Card>
+                      null
                             }
                 </View>
 
-                  <View style={{ flex: 1 }}>
-                  {this.props.doctordetail.certifications.length > 0 ?
-                      <View style={{ flex: 1 }}>
-                        <TouchableOpacity onPress={this.toggle4.bind(this)}>
-                          <Card style={this.state.visible4 ? styles.cardStyle : styles.cardStyle1} >
-                            <View style={this.state.visible4 ? styles.plusView1 : styles.plusView}>
-                            <View style={{ flex: 2, alignItems: 'center' }}>
-                            <Flb name={this.state.visible4 ? 'minus' : 'plus'} color={this.state.visible4 ? Colors.snow : Colors.flBlue.ocean}
-                                size={Metrics.icons.medium} />
-                          </View>
-                            <View style={{ flex: 9 }}>
-                            <Text style={this.state.visible4 ? styles.plusText1 : styles.plusText}>
-                                                Plans Accepted
-                                            </Text>
-                          </View>
-                          </View>
-                          </Card>
-                        </TouchableOpacity>
-
-                        {this.state.visible4 ? <HideableView visible={this.state.visible4}>
-                          <View style={{ flex: 1, flexDirection: 'row' }}>
-
-                            <View style={{ flex: 1 }}>
-                            {this.props.doctordetail && this.props.doctordetail.acceptedPlanList ? this.props.doctordetail.acceptedPlanList.map((value, i) => {
-                            return (
-
-                                <Card key={i} style={{flex: 1, margin: 15, backgroundColor: Colors.ricePaper}}>
-                                    <View style={{flex: 1, margin: 15, flexDirection: 'row'}}>
-                                        <View style={{flex: 8}}>
-                                            {value ?
-                                                <Text style={styles.h5}>
-                                                    {value.planName}
-                                                  </Text>
-
-                                                :
-                                                null
-                                                }
-                                          </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Flb name='check' size={20} color='green' style={{margin: 5}} />
-                                          </View>
-
-                                      </View>
-                                  </Card>
-                              )
-                          })
-                                            : null}
-                          </View>
-                          </View>
-                        </HideableView> : null}
-                      </View>
-                            :
-                      <Card>
-                        <View style={{flex: 1, margin: 15}}>
-                        <Text style={{ color: Colors.flBlue.anvil,
-                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                        textAlign: 'center'
-                      }}>
-                            No Record Found
-                            </Text>
-                      </View>
-                      </Card>
-                            }
-                </View>
 
                   <View style={{ flex: 1 }}>
                   {this.props.doctordetail.programList.length > 0 ?
@@ -470,16 +517,7 @@ class DoctorDetail extends Component {
                         </HideableView> : null}
                       </View>
                             :
-                      <Card>
-                        <View style={{flex: 1, margin: 15}}>
-                        <Text style={{ color: Colors.flBlue.anvil,
-                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                        textAlign: 'center'
-                      }}>
-                            No Record Found
-                            </Text>
-                      </View>
-                      </Card>
+                     null
                             }
                 </View>
 
@@ -517,16 +555,7 @@ class DoctorDetail extends Component {
                         </HideableView> : null}
                       </View>
                             :
-                      <Card>
-                        <View style={{flex: 1, margin: 15}}>
-                        <Text style={{ color: Colors.flBlue.anvil,
-                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                        textAlign: 'center'
-                      }}>
-                            No Record Found
-                            </Text>
-                      </View>
-                      </Card>
+                     null
                             }
                 </View>
 

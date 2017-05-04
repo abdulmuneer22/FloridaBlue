@@ -80,9 +80,7 @@ class DoctorCard extends Component {
                   {this.props.data && this.props.data.address[0] ?
                     <Text style={styles.h4}>{this.props.data.address[0].addressLine1}, {this.props.data.address[0].addressLine2}</Text> : null}
                   {this.props.data && this.props.data.address[0] ?
-                    <Text style={styles.h4_2}>{this.props.data.address[0].city}, {this.props.data.address[0].state}</Text> : null}
-                  {this.props.data && this.props.data.address[0] ?
-                    <Text style={styles.h4_2}>{this.props.data.address[0].zipCode}</Text> : null}
+                    <Text style={styles.h4_2}>{this.props.data.address[0].city}, {this.props.data.address[0].state}, {this.props.data.address[0].zipCode}</Text> : null}
                   {this.props.data && this.props.data.address[0] ?
                     <Text style={styles.h4_2}>{this.props.data.address[0].telephoneNumber}</Text> : null}
 
@@ -135,23 +133,33 @@ class DoctorCard extends Component {
                                     : null }
 
               {this.props.data && this.props.data.gender ?
+              <View style={{flex:1}}>
                 <View style={{
                   flexDirection: 'row',
                   alignItems: 'center',
-                  margin: 5,
-                  flex: 1
-                }}>
-                  <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text style={styles.plannameText}> Gender: </Text>
-                  </View>
-                  <View style={{ flex: 1 }}>
+                  flex: 1,
+                  margin: 5
+                }}> 
+                <View style={{ flex: 0.2,alignItems:'center' }}>
+                    <Flb
+                        name='check'
+                        size={30}
+                        color='green'
+                        style={{
+                            marginTop: 10
 
+                          }}
+                                    />
+                    </View>
+                  <View style={{ flex: 0.8, flexDirection:'row' }}>
+                    <Text style={styles.plannameText}> Gender: </Text>
                     <Text style={styles.plannameText}>
                         {this.props.data.gender}
                       </Text>
                   </View>
                 </View>
-                            : null}
+                </View>
+               : null}
 
               {this.props.data && this.props.data.acceptingNewPatients ?
                 <View style={{

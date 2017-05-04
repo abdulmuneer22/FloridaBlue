@@ -109,6 +109,29 @@ export default StyleSheet.create({
     fontWeight: '600'
 
   },
+  mapHeaderText:{
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
+    marginTop: Metrics.baseMargin,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight: '600',
+    color: Colors.flBlue.ocean
+  },
+  
+   mapSubText: {
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
+    marginTop: Metrics.smallMargin,
+    color: Colors.flBlue.anvil,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '600'
+
+  },
+  mapAdressText: {
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    color: Colors.flBlue.grey5,
+    marginTop:5,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400'
+  },
   h4: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.smallMargin,
