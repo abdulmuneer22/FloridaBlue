@@ -103,7 +103,7 @@ export default StyleSheet.create({
 
   },
   headerText: {
-    color: Colors.flBlue.grey6,
+    color: Colors.snow,
     fontWeight: '500',
   // paddingBottom:Metrics.baseMargin,
     marginTop: Metrics.baseMargin,
@@ -124,7 +124,7 @@ export default StyleSheet.create({
   },
   subHeader: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0018,
-    color: Colors.flBlue.grey3,
+    color: Colors.snow,
     fontFamily: Fonts.type.subHeaderFont,
     marginBottom: Metrics.baseMargin
 
