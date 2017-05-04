@@ -155,15 +155,19 @@ class ProviderSearch extends Component {
   }
 
   _getResults () {
+    this.props.changeUrgentCareBanner(false)
+
     if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
       this.props.attemptPharmacySearch(this.props)
     } else {
       this.props.attemptProviderSearch(this.props)
     }
+    
     NavigationActions.DoctorList()
   }
 
   _viewListResults () {
+    this.props.changeUrgentCareBanner(true)
     this.props.attemptUrgentSearch(this.props)
     NavigationActions.DoctorList()
   }
@@ -511,7 +515,8 @@ const mapStateToProps = (state) => {
     member: state.member,
     urgentCareState: state.urgentCareState,
     networkCodeList: state.provider.networkCodeList,
-    locationStatus: state.provider.locationStatus
+    locationStatus: state.provider.locationStatus,
+    showUrgentCareBanner: state.provider.showUrgentCareBanner
   }
 }
 
@@ -532,7 +537,8 @@ const mapDispatchToProps = (dispatch) => {
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeAddress: (address) => dispatch(ProviderActions.changeAddress(address)),
     changeHomeAddress: (homeAddress) => dispatch(ProviderActions.changeHomeAddress(homeAddress)),
-    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus))
+    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus)),
+    changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner))
   }
 }
 

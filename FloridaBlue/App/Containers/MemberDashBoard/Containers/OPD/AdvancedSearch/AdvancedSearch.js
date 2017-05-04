@@ -129,6 +129,7 @@ class AdvancedSearch extends Component {
   }
 
   _handleDoctordetail () {
+    this.props.changeUrgentCareBanner(false)
     this.props.attemptProviderSearch(this.props)
     NavigationActions.DoctorList()
   }
@@ -789,8 +790,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
-   // attemptSearchDoctor: (data) => dispatch(SearchDoctorActions.searchdoctorRequest(data)),
     attemptStaffLanguage: () => dispatch(ProviderActions.sendStaffLanguageRequest()),
     attemptDoctorLanguage: () => dispatch(ProviderActions.sendDoctorLanguageRequest()),
     attemptSearchData: (data) => dispatch(SearchDataActions.searchdataRequest(data)),
@@ -814,7 +813,8 @@ const mapDispatchToProps = (dispatch) => {
     changeCareType: (careType) => dispatch(ProviderActions.changeCareType(careType)),
     changeSpecialityType: (specialityType) => dispatch(ProviderActions.changeSpecialityType(specialityType)),
     changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode)),
-    changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode))
+    changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode)),
+    changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner))
   }
 }
 
