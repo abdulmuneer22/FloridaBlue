@@ -476,7 +476,10 @@ class ProviderSearch extends Component {
           : <View>{this.state._onChecked}</View>}
           {this.state.floatClicked ?
           <Card style={styles.urgentCareContainer}>
+
+            <TouchableOpacity onPress={this.dismissNeedHelp.bind(this)}>
             <Text style={styles.dismissUrgentIcon} onPress={this.dismissNeedHelp.bind(this)}>{closeIcon}</Text>
+            </TouchableOpacity>
             <Text style={styles.needHelpText}>Need Help Now?</Text>
             <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
             <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
