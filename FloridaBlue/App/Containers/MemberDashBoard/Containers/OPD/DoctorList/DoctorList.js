@@ -15,7 +15,7 @@ import {
   Platform,
   BackAndroid
 } from 'react-native'
-
+import LinearGradient from 'react-native-linear-gradient'
 import { Card } from 'native-base'
 
 const card = {
@@ -56,10 +56,12 @@ class DoctorList extends Component {
 _mapView() {
     NavigationActions.ProviderMap()
   }
+ componentDidMount(){
 
+ }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.provider.data.originLatitude != "" && newProps.provider.data.originLongitude != "") {
+    if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != "" && newProps.provider.data.originLongitude != "") {
       this.props.changeLatitude(newProps.provider.data.originLatitude)
       this.props.changeLongitude(newProps.provider.data.originLongitude)
     }
@@ -84,14 +86,17 @@ _mapView() {
     </Image>)
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View >
-          {this._renderHeader()}
-        </View>
-
-        {this.props.provider ?
+   _displayCondition () {
+    if (this.props.fetching) {
+      return (<View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>)
+    } else if (this.props.provider) {
+    
+      return (
+        <View style={styles.container}>
+         {this.props.provider ?
           <View style={{flex:8}}>
           <ScrollView >
 
@@ -105,15 +110,15 @@ _mapView() {
                     <Text style={{
                       fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
                       color: Colors.snow
-                    }}> If this is an emergency, call 911.</Text>
+                    }}>If this is an emergency, please call 911.</Text>
                   </View>
                 </View>
               </Card>
             </View>
-
+          
             <View style={{flex:1}}>
 
-                {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
+                {this.props.provider && this.props.provider.data  && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
                   <DoctorCard
                     savedproviders={this.props.saveProvider}
                     saveProvider={this.saveProvider}
@@ -123,16 +128,28 @@ _mapView() {
                     rightActive={this.props.rightActive}
 
                   />
-                  : <View style={{flex:1}}>
-                    <Card style={{flex:1,margin:10,justifyContent:'center'}}>
+                  :
+                    <LinearGradient style={{flex:1,margin:15, borderRadius:20}} colors={['#EECDA3','#EF629F']}>
+                   <View style={{flex:1,margin:15}}>
+                  
+                    <Card style={{flex:1, borderRadius:20, justifyContent:'center'}}>
+                        
+                      <View style={{flex:1, margin:15}}>
+                        
                     <Text style={{fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                   color:Colors.flBlue.anvil,
-                                  }}>No Results Found. Please Recheck the Provider Name. </Text>
-                    </Card>
+                                  }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
+                   
                     </View>
+                    
+                    </Card>
+                    
+                    </View>
+                    </LinearGradient>
                     }
 
             </View>
+            
 
           </ScrollView>
           </View>
@@ -185,6 +202,31 @@ _mapView() {
 
         </View>
         </View>
+       
+        </View>
+      )
+    } else if (this.props.error != null) {
+     
+      Alert.alert(
+        'Find care',
+       'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+        [
+          { text: 'OK' }
+
+        ])
+    }
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View >
+          {this._renderHeader()}
+        </View>
+
+       {
+         this._displayCondition()
+       }
       </View>
 
     )

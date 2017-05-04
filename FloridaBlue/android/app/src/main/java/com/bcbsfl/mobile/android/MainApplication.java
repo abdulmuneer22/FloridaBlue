@@ -7,7 +7,7 @@ import com.BV.LinearGradient.LinearGradientPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
-
+import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 
 import com.i18n.reactnativei18n.ReactNativeI18n;
@@ -40,7 +40,8 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new ReactNativeI18n(),
             new RNDeviceInfo(),
-            new ReactNativeConfigPackage()          
+            new ReactNativeConfigPackage(),
+            new ReactNativePermissionsPackage()
       );
     }
   };

@@ -154,7 +154,7 @@ class DoctorCard extends Component {
                         })
                             : <View style={styles.spinnerView}>
                                 <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                                <Text style={styles.spinnerText}>L..
+                                <Text style={styles.spinnerText}>Load
                         </Text>
                             </View>
                         }

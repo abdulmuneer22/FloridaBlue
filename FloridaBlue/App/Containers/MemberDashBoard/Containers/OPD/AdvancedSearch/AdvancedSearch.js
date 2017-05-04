@@ -28,6 +28,7 @@ import {
 
 const card = { card: { width: Metrics.screenWidth, marginLeft: 0, marginTop: 0, marginBottom: 0, alignItems: 'flex-start' } };
 const cardTitle = { cardTitle: { fontSize: 40 } }
+const Permissions = require('react-native-permissions');
 
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import SearchDataActions from '../../../../../Redux/SearchDataRedux'
@@ -251,6 +252,50 @@ class AdvancedSearch extends Component {
     this.props.changeLongitude(0)
   }
 
+  _getLocation() {
+    var getCurrentLocation = false
+
+    if (this.props.locationStatus == "" || this.props.locationStatus != "authorized") {
+      var locationStatus = ""
+      Permissions.getPermissionStatus('location')
+      .then(response => {
+        locationStatus = response
+        if (response == "authorized" || response == "undetermined") {
+          getCurrentLocation = true
+          this.props.changeLocationPermissionStatus(response)
+        } else {
+          Permissions.requestPermission('location')
+          .then(response => {
+            this.props.changeLocationPermissionStatus(response)
+            locationStatus = response
+            if (response == "authorized" || response == "undetermined") {
+              getCurrentLocation = true
+            }
+          })
+        }
+      })
+      this.props.changeLocationPermissionStatus(locationStatus)
+    } else if (this.props.locationStatus == "authorized") {
+      getCurrentLocation = true
+    }
+
+    if (getCurrentLocation) {
+      navigator.geolocation.getCurrentPosition(
+      (position) => {
+
+      var newLat = position["coords"]["latitude"]
+      var newLong = position["coords"]["longitude"]
+
+      this.props.changeLatitude(newLat)
+      this.props.changeLongitude(newLong)
+      this.props.changeAddress("Using Current Location")
+      },
+        (error) => alert(JSON.stringify(error)),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
+      });
+    }
+  }
+
 
   _renderHeader() {
     return (<Image style={styles.headerContainer} source={Images.themeHeader}>
@@ -271,7 +316,7 @@ class AdvancedSearch extends Component {
     this.props.attemptConfigData()
     this.props.attemptStaffLanguage()
     this.props.attemptDoctorLanguage()
-    this._resetState()
+    this._getLocation()
   }
 
   _renderDropdownRow(rowData, rowID, highlighted) {
@@ -394,7 +439,7 @@ class AdvancedSearch extends Component {
             </HideableView>
 
             <View style={{ marginLeft: 15, marginTop: 10 }}>
-              <Text style={styles.searchText}> Search Radius:</Text>
+              <Text style={styles.searchText}> Search Distance:</Text>
               <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular,
                             color:Colors.flBlue.anvil }}>{this.props.searchRange} mi</Text>
               <Slider
@@ -685,7 +730,8 @@ const mapStateToProps = (state) => {
     careType: state.provider.careType,
     officeHours: state.provider.officeHours,
     specialityType: state.provider.specialityType,
-    member: state.member
+    member: state.member,
+    locationStatus: state.provider.locationStatus
   }
 }
 

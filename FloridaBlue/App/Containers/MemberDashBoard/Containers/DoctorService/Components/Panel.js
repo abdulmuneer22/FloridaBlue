@@ -75,7 +75,7 @@ class Panel extends Component{
                         underlayColor={Colors.snow}>
 
      <Flb name={icon} size={Metrics.icons.tiny} style={{ marginTop: 15, backgroundColor:Colors.transparent }}
-      color={Colors.flBlue.ocean} />
+      color={Colors.flBlue.purple} />
                     </TouchableHighlight>
                 </View>
             
@@ -105,7 +105,7 @@ var styles = StyleSheet.create({
       padding : 8,
         fontFamily: Fonts.type.subHeaderFont,
         fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
-       color: Colors.flBlue.ocean,
+       color: Colors.flBlue.purple,
         fontWeight:'600',
     },
     button      : {

@@ -246,7 +246,7 @@ export default StyleSheet.create({
     height: Metrics.screenWidth * 0.9,
     flex:1, 
     zIndex:-1,
-    backgroundColor:Colors.transparent,
+    //backgroundColor:Colors.transparent,
     // borderWidth: 1, 
     borderRadius: Metrics.screenWidth * 1,
     // borderColor: '#708090',

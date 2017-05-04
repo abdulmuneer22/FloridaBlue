@@ -63,7 +63,7 @@ class Resources extends Component {
 
             <View style={{
              // flexDirection: 'row',
-                  // backgroundColor : 'red',
+                 backgroundColor : Colors.flBlue.bg2,
               flexWrap: 'wrap',
               flex: 1,
             //  marginLeft: window.width * 0.04,
