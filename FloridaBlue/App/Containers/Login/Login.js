@@ -350,7 +350,7 @@ class Login extends Component {
                 <MKTextField
                   ref='username'
                   style={styles.textField}
-                  textInputStyle={{flex: 1,color: Colors.flBlue.anvil,
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='next'
@@ -368,7 +368,7 @@ class Login extends Component {
                 <MKTextField
                   ref='password'
                   style={styles.textField}
-                  textInputStyle={{flex: 1,color: Colors.flBlue.anvil,
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='done'

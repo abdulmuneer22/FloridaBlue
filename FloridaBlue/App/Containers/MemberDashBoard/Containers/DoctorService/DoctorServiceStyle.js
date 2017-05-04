@@ -47,7 +47,7 @@ export default StyleSheet.create({
 
   },
   doctorCardStyle: {
-    flex:1
+    flex: 1
   //  alignItems: 'center',
    // marginTop: Metrics.baseMargin
   },
@@ -56,7 +56,7 @@ export default StyleSheet.create({
 
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: Colors.bg2,
+    backgroundColor: Colors.bg2
   // padding: Metrics.mediumMargin,
  //   justifyContent: 'space-between',
   //  alignItems: 'center',
@@ -84,15 +84,14 @@ export default StyleSheet.create({
 
   doctorTextStyle: {
    // marginTop: Metrics.smallMargin,
-   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00265,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00265,
              // textAlign: 'center',
-              fontWeight: '600',
-              color: Colors.flBlue.grey3,
-    
-    
+    fontWeight: '600',
+    color: Colors.flBlue.grey3,
+
     fontFamily: Fonts.type.headerFont,
-     backgroundColor: Colors.transparent,
-              fontFamily: Fonts.type.subHeaderFont
+    backgroundColor: Colors.transparent,
+    fontFamily: Fonts.type.subHeaderFont
    // textAlign: 'center'
   },
 
@@ -100,7 +99,7 @@ export default StyleSheet.create({
     // width: window.width,
     backgroundColor: Colors.snow,
     flex: 1,
-    margin:15,
+    margin: 15
    // height : 200,
    // alignSelf: 'center',
    //  padding : Metrics.baseMargin,

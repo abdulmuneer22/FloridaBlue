@@ -17,7 +17,6 @@ export function * searchdoctor (api, {data}) {
     // dispatch success
     var responseData = response.data.data
     yield put(SearchDoctorActions.searchdoctorSuccess(responseData))
-    
   } else {
     // dispatch successful logins
     console.log('I am coming from failuer ')

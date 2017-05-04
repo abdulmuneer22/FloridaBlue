@@ -18,7 +18,7 @@ import {
 import React, { Component, PropTypes } from 'react'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './ProviderSearchStyle'
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import NavItems from '../../../../../Navigation/NavItems.js'
 import I18n from 'react-native-i18n'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
@@ -30,66 +30,64 @@ import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
 import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
-import ActionButton from 'react-native-action-button';
+import ActionButton from 'react-native-action-button'
 import LinearGradient from 'react-native-linear-gradient'
 
+const closeIcon = (<Icon name='close'
+  size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+  style={{backgroundColor: Colors.transparent}}
+  color='#000000' />)
 
-
-const closeIcon = (<Icon name="close"
-                            size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
-                            style={{backgroundColor:Colors.transparent}}
-                            color="#000000" />)
-
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window')
 const theme = getTheme()
-const Permissions = require('react-native-permissions');
+const Permissions = require('react-native-permissions')
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
 class ProviderSearch extends Component {
 
-  constructor(props) {
-   super(props);
-   this.searchTypeGroup = new MKRadioButton.Group()
-   this.locationGroup = new MKRadioButton.Group()
-   this._onChecked = this._onChecked.bind(this)
-   this._careSelected = this._careSelected.bind(this)
-   this._specialitySelected = this._specialitySelected.bind(this)
-   this._editLocation = this._editLocation.bind(this)
-   this._saveLocation = this._saveLocation.bind(this)
-   this._getResults = this._getResults.bind(this)
-   this._selectCurrentLocation = this._selectCurrentLocation.bind(this)
-   this._selectHomeLocation = this._selectHomeLocation.bind(this)
-   this._selectDifferentLocation = this._selectDifferentLocation.bind(this)
-   this._urgentCare = this._urgentCare.bind(this)
-   this._viewListResults = this._viewListResults.bind(this)
+  constructor (props) {
+    super(props)
+    this.searchTypeGroup = new MKRadioButton.Group()
+    this.locationGroup = new MKRadioButton.Group()
+    this._onChecked = this._onChecked.bind(this)
+    this._careSelected = this._careSelected.bind(this)
+    this._specialitySelected = this._specialitySelected.bind(this)
+    this._editLocation = this._editLocation.bind(this)
+    this._saveLocation = this._saveLocation.bind(this)
+    this._getResults = this._getResults.bind(this)
+    this._selectCurrentLocation = this._selectCurrentLocation.bind(this)
+    this._selectHomeLocation = this._selectHomeLocation.bind(this)
+    this._selectDifferentLocation = this._selectDifferentLocation.bind(this)
+    this._urgentCare = this._urgentCare.bind(this)
+    this._viewListResults = this._viewListResults.bind(this)
 
-   this.state = {
-     knownCareState: false,
-     unknownCareState: false,
-     specialityState: false,
-     changeLocaleState: false,
-     customLocationState: false,
-     urgentCareState: false,
-     floatClicked: true,
-     helpStatus: true
-    };
+    this.state = {
+      knownCareState: false,
+      unknownCareState: false,
+      specialityState: false,
+      changeLocaleState: false,
+      customLocationState: false,
+      urgentCareState: false,
+      floatClicked: true,
+      helpStatus: true
+    }
 
     this.handleNeedHelp = this.handleNeedHelp.bind(this)
     this.dismissNeedHelp = this.dismissNeedHelp.bind(this)
   }
 
-  onSelect(index, value){
+  onSelect (index, value) {
     this.setState({helpStatus: false})
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.attemptCareTypes()
     this._getLocation()
 
     var addressLine1 = this.props.member.defaultContract.homeAddress.addressline1
-    var addressLine2 = ""
+    var addressLine2 = ''
     if (this.props.member.defaultContract.homeAddress.addressline2) {
       var addressLine2 = this.props.member.defaultContract.homeAddress.addressline2
     }
@@ -97,84 +95,84 @@ class ProviderSearch extends Component {
     var state = this.props.member.defaultContract.homeAddress.state
     var zip = this.props.member.defaultContract.homeAddress.zipCode
 
-    var fullAddress = addressLine1 + addressLine2 + " " + city + ", " + state + " " + zip
+    var fullAddress = addressLine1 + addressLine2 + ' ' + city + ', ' + state + ' ' + zip
     this.props.changeHomeAddress(fullAddress)
     this.props.changeAddress(fullAddress)
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps (newProps) {
     if (newProps.planSubCategoryList && this.state.unknownCareState) {
-      this.setState({specialityState: false}, function() {
+      this.setState({specialityState: false}, function () {
         this.setState({specialityState: true})
       })
     }
   }
 
-  handleNeedHelp(){
+  handleNeedHelp () {
     let floatClicked = this.state.floatClicked
     this.setState({floatClicked: !floatClicked})
   }
 
-  dismissNeedHelp(){
+  dismissNeedHelp () {
     this.setState({floatClicked: false})
   }
 
-  _onChecked(event) {
+  _onChecked (event) {
     this.setState({floatClicked: false})
     if (event.checked) {
-      this.props.changeSubCategoryCode("")
-      this.props.changeCategoryCode("ALL")
+      this.props.changeSubCategoryCode('')
+      this.props.changeCategoryCode('ALL')
       this.setState({knownCareState: true})
       this.setState({unknownCareState: false})
     } else {
-      this.props.changeProviderName("")
+      this.props.changeProviderName('')
       this.setState({knownCareState: false})
       this.setState({unknownCareState: true})
     }
   }
 
-  _careSelected(index, value:string) {
+  _careSelected (index, value:string) {
     var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
     this.props.getSpecialityTypes(selectedCategoryCode)
     this.props.changeCareType(value)
-    this.setState({unknownCareState: false}, function() {
+    this.setState({unknownCareState: false}, function () {
       this.setState({unknownCareState: true})
     })
   }
 
-  _specialitySelected(index, value:string) {
+  _specialitySelected (index, value:string) {
     var selectedSubCategoryCode = this.props.planSubCategoryList[index].subCategoryCode
     this.props.changeSubCategoryCode(selectedSubCategoryCode)
     this.props.changeSpecialityType(value)
-    this.setState({specialityState: false}, function() {
+    this.setState({specialityState: false}, function () {
       this.setState({specialityState: true})
     })
   }
 
-  _editLocation(event) {
+  _editLocation (event) {
     this.setState({changeLocaleState: true})
     this.setState({specialityState: false})
   }
 
-  _getResults() {
-    if (this.props.categoryCode == "07" && this.props.subCategoryCode == "700") {
+  _getResults () {
+    if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
       this.props.attemptPharmacySearch(this.props)
     } else {
       this.props.attemptProviderSearch(this.props)
     }
-    NavigationActions.DoctorList('fromResults')
+    NavigationActions.DoctorList()
   }
 
-  _viewListResults() {
+  _viewListResults () {
     this.props.attemptUrgentSearch(this.props)
     NavigationActions.DoctorList()
   }
 
-  _advancedSearch() {
+  _advancedSearch () {
     NavigationActions.AdvancedSearch()
   }
 
-  _selectDifferentLocation(event) {
+  _selectDifferentLocation (event) {
     if (event.checked) {
       this.setState({customLocationState: true})
       this.props.changeLatitude(0)
@@ -182,15 +180,15 @@ class ProviderSearch extends Component {
     }
   }
 
-  _selectCurrentLocation(event) {
+  _selectCurrentLocation (event) {
     if (event.checked) {
-      if (this.props.locationStatus == "authorized") {
+      if (this.props.locationStatus == 'authorized') {
         this._getLocation()
-        this.props.changeAddress("Using Current Address")
+        this.props.changeAddress('Using Current Address')
       } else {
         Permissions.requestPermission('location')
         .then(response => {
-          if (response == "authorized") {
+          if (response == 'authorized') {
             this._getLocation()
           } else {
             this._alertForLocationPermission()
@@ -203,7 +201,7 @@ class ProviderSearch extends Component {
     }
   }
 
-  _selectHomeLocation(event) {
+  _selectHomeLocation (event) {
     if (event.checked) {
       this.setState({changeLocaleState: false})
       this.setState({specialityState: true})
@@ -214,24 +212,24 @@ class ProviderSearch extends Component {
     }
   }
 
-  _saveLocation(event) {
+  _saveLocation (event) {
     this.setState({changeLocaleState: false})
     this.setState({specialityState: true})
     this.setState({customLocationState: false})
   }
 
-  _resetState() {
-    this.props.changeSubCategoryCode("")
-    this.props.changeCategoryCode("ALL")
-    this.props.changeProviderName("")
-    this.props.changeCareType("")
-    this.props.changeSpecialityType("")
-    this.props.changeCurrentLocation("Unknown")
+  _resetState () {
+    this.props.changeSubCategoryCode('')
+    this.props.changeCategoryCode('ALL')
+    this.props.changeProviderName('')
+    this.props.changeCareType('')
+    this.props.changeSpecialityType('')
+    this.props.changeCurrentLocation('Unknown')
     this.props.changeLatitude(0)
     this.props.changeLongitude(0)
   }
 
-  _urgentCare() {
+  _urgentCare () {
     if (this.state.urgentCareState) {
       this.setState({urgentCareState: false})
     } else {
@@ -239,15 +237,15 @@ class ProviderSearch extends Component {
     }
   }
 
-  _getLocation() {
+  _getLocation () {
     var getCurrentLocation = false
 
-    if (this.props.locationStatus == "" || this.props.locationStatus != "authorized") {
-      var locationStatus = ""
+    if (this.props.locationStatus == '' || this.props.locationStatus != 'authorized') {
+      var locationStatus = ''
       Permissions.getPermissionStatus('location')
       .then(response => {
         locationStatus = response
-        if (response == "authorized" || response == "undetermined") {
+        if (response == 'authorized' || response == 'undetermined') {
           getCurrentLocation = true
           this.props.changeLocationPermissionStatus(response)
         } else {
@@ -255,41 +253,40 @@ class ProviderSearch extends Component {
           .then(response => {
             this.props.changeLocationPermissionStatus(response)
             locationStatus = response
-            if (response == "authorized" || response == "undetermined") {
+            if (response == 'authorized' || response == 'undetermined') {
               getCurrentLocation = true
             }
           })
         }
       })
       this.props.changeLocationPermissionStatus(locationStatus)
-    } else if (this.props.locationStatus == "authorized") {
+    } else if (this.props.locationStatus == 'authorized') {
       getCurrentLocation = true
     }
 
     if (getCurrentLocation) {
       navigator.geolocation.getCurrentPosition(
       (position) => {
+        var newLat = position['coords']['latitude']
+        var newLong = position['coords']['longitude']
 
-      var newLat = position["coords"]["latitude"]
-      var newLong = position["coords"]["longitude"]
-
-      this.props.changeLatitude(newLat)
-      this.props.changeLongitude(newLong)
-      this.props.changeAddress("Using Current Location")
+        this.props.changeLatitude(newLat)
+        this.props.changeLongitude(newLong)
+        this.props.changeAddress('Using Current Location')
       },
         (error) => alert(JSON.stringify(error)),
         {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
-      });
+        })
     }
   }
 
-  _alertForLocationPermission() {
+  _alertForLocationPermission () {
     Alert.alert(
       'Can we access your current location?',
       'We need access so you can see provider data near your location',
       [
         {text: 'No way', onPress: () => console.log('permission denied'), style: 'cancel'},
-        this.state.photoPermission == 'undetermined'?
+        this.state.photoPermission == 'undetermined' ?
         {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
       ]
     )
@@ -309,185 +306,185 @@ class ProviderSearch extends Component {
     )
   }
 
-  _renderDropdownRow(rowData, rowID, highlighted) {
+  _renderDropdownRow (rowData, rowID, highlighted) {
     return (
       <TouchableHighlight underlayColor={Colors.snow}>
-          <Text style={styles.dropdownItem}>{rowData}</Text>
+        <Text style={styles.dropdownItem}>{rowData}</Text>
       </TouchableHighlight>
     )
   }
 
   render () {
-  return (
-    <View style={styles.container}>
-      {this._renderHeader()}
-      <View style={{flex:13}}>
-      <ScrollView>
-        <View style={{flex:1}}>
-          <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
+    return (
+      <View style={styles.container}>
+        {this._renderHeader()}
+        <View style={{flex: 13}}>
+          <ScrollView>
+            <View style={{flex: 1}}>
+              <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
 
-          <View style={styles.radioView}>
-            <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
-                                  width:Metrics.section * Metrics.screenWidth * 0.0025,
-                                  borderRadius: Metrics.section}} group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
-            <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
-            <MKRadioButton style={{height:Metrics.section * Metrics.screenWidth * 0.0025,
-                                  width:Metrics.section * Metrics.screenWidth * 0.0025,
-                                  borderRadius: Metrics.section,
-                                  }} group={this.searchTypeGroup} />
-            <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
-          </View>
+              <View style={styles.radioView}>
+                <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                  width: Metrics.section * Metrics.screenWidth * 0.0025,
+                  borderRadius: Metrics.section}} group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
+                <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
+                <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                  width: Metrics.section * Metrics.screenWidth * 0.0025,
+                  borderRadius: Metrics.section
+                }} group={this.searchTypeGroup} />
+                <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
+              </View>
 
-          <HideableView visible={this.state.knownCareState} removeWhenHidden={true}>
-            <Text style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
-            <MKTextField
-              ref='providerName'
-              style={styles.textField}
-              textInputStyle={{flex: 1,color: Colors.flBlue.ocean,
+              <HideableView visible={this.state.knownCareState} removeWhenHidden>
+                <Text style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
+                <MKTextField
+                  ref='providerName'
+                  style={styles.textField}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.ocean,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-              keyboardType='default'
-              returnKeyType='next'
-              autoCapitalize='none'
-              autoCorrect={false}
-              underlineColorAndroid={Colors.coal}
-              placeholder={I18n.t('providerPlaceholder')}
-              placeholderTextColor={Colors.steel}
-              onChangeText={this.props.changeProviderName}
+                  keyboardType='default'
+                  returnKeyType='next'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder={I18n.t('providerPlaceholder')}
+                  placeholderTextColor={Colors.steel}
+                  onChangeText={this.props.changeProviderName}
             />
-          </HideableView>
+              </HideableView>
 
-          <HideableView visible={this.state.unknownCareState} removeWhenHidden={true}>
-            <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
-              <MKTextField
-                ref='careType'
-                textInputStyle={{flex: 1,color: Colors.flBlue.ocean,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                style={styles.textField}
-                editable={false}
-                underlineColorAndroid={Colors.coal}
-                placeholder={I18n.t('careTypePlaceholder')}
-                placeholderTextColor={Colors.steel}
-                tintColor={Colors.black}
-                value={this.props.careType}
+              <HideableView visible={this.state.unknownCareState} removeWhenHidden>
+                <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                  <MKTextField
+                    ref='careType'
+                    textInputStyle={{flex: 1, color: Colors.flBlue.ocean,
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                    style={styles.textField}
+                    editable={false}
+                    underlineColorAndroid={Colors.coal}
+                    placeholder={I18n.t('careTypePlaceholder')}
+                    placeholderTextColor={Colors.steel}
+                    tintColor={Colors.black}
+                    value={this.props.careType}
               />
-            </ModalDropdown>
-            <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
-          </HideableView>
+                </ModalDropdown>
+                <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
+              </HideableView>
 
-          <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden={true}>
-            <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
-              <MKTextField
-                ref='specialityType'
-                style={styles.textField}
-                textInputStyle={{flex: 1,color: Colors.flBlue.ocean,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                editable={false}
-                underlineColorAndroid={Colors.coal}
-                placeholder={I18n.t('specialityTypePlaceholder')}
-                placeholderTextColor={Colors.steel}
-                tintColor={Colors.black}
-                value={this.props.specialityType}
+              <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
+                <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                  <MKTextField
+                    ref='specialityType'
+                    style={styles.textField}
+                    textInputStyle={{flex: 1, color: Colors.flBlue.ocean,
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                    editable={false}
+                    underlineColorAndroid={Colors.coal}
+                    placeholder={I18n.t('specialityTypePlaceholder')}
+                    placeholderTextColor={Colors.steel}
+                    tintColor={Colors.black}
+                    value={this.props.specialityType}
               />
-            </ModalDropdown>
-            <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
-          </HideableView>
+                </ModalDropdown>
+                <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
+              </HideableView>
 
-          <HideableView visible={!this.state.changeLocaleState && (this.state.unknownCareState || this.state.knownCareState)} removeWhenHidden={true}>
-            <View style={[styles.locationView]}>
-              <View style={styles.locationTextContainer}>
-                <Text style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
-                <Text style={styles.currentLocationText}>{this.props.address}</Text>
-              </View>
-              <View style={styles.locationButtonContainer}>
-                <TouchableOpacity style={styles.editLocation} onPress={this._editLocation}>
-                  <Flb name="pencil" style={styles.editLocationIcon} size={Metrics.icons.small} color={Colors.flBlue.anvil} />
-                  <Text style={styles.editLocationText}>{I18n.t('editLocationButton')}</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </HideableView>
+              <HideableView visible={!this.state.changeLocaleState && (this.state.unknownCareState || this.state.knownCareState)} removeWhenHidden>
+                <View style={[styles.locationView]}>
+                  <View style={styles.locationTextContainer}>
+                    <Text style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
+                    <Text style={styles.currentLocationText}>{this.props.address}</Text>
+                  </View>
+                  <View style={styles.locationButtonContainer}>
+                    <TouchableOpacity style={styles.editLocation} onPress={this._editLocation}>
+                      <Flb name='pencil' style={styles.editLocationIcon} size={Metrics.icons.small} color={Colors.flBlue.anvil} />
+                      <Text style={styles.editLocationText}>{I18n.t('editLocationButton')}</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </HideableView>
 
-          <HideableView style={styles.editLocationView} visible={this.state.changeLocaleState} removeWhenHidden={true}>
-            <View style={styles.mapIcon}>
-              <Image source={Images.mapUnselectedIcon} />
-              <Text style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
-            </View>
+              <HideableView style={styles.editLocationView} visible={this.state.changeLocaleState} removeWhenHidden>
+                <View style={styles.mapIcon}>
+                  <Image source={Images.mapUnselectedIcon} />
+                  <Text style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
+                </View>
 
-            <View style={styles.locationRadio}>
-              <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectCurrentLocation}/>
-              <Text style={styles.radioText}>{I18n.t('currentLocationTitle')}</Text>
-            </View>
-            <View style={styles.locationRadio}>
-              <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectHomeLocation}/>
-              <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
-            </View>
-            <Text style={styles.locationText}>({this.props.homeAddress})</Text>
-            <View style={styles.locationRadio}>
-              <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectDifferentLocation}/>
-              <Text style={styles.radioText}>{I18n.t('differentLocationTitle')}</Text>
-            </View>
-          </HideableView>
+                <View style={styles.locationRadio}>
+                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
+                  <Text style={styles.radioText}>{I18n.t('currentLocationTitle')}</Text>
+                </View>
+                <View style={styles.locationRadio}>
+                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectHomeLocation} />
+                  <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
+                </View>
+                <Text style={styles.locationText}>({this.props.homeAddress})</Text>
+                <View style={styles.locationRadio}>
+                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectDifferentLocation} />
+                  <Text style={styles.radioText}>{I18n.t('differentLocationTitle')}</Text>
+                </View>
+              </HideableView>
 
-          <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.changeLocaleState && !this.state.customLocationState} removeWhenHidden={true}></HideableView>
+              <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.changeLocaleState && !this.state.customLocationState} removeWhenHidden />
 
-          <HideableView style={styles.differentLocationView} visible={(this.state.unknownCareState || this.state.knownCareState) && this.state.customLocationState} removeWhenHidden={true}>
-            <Text style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
-            <MKTextField
-              ref='newLocation'
-              style={styles.newLocationField}
-              textInputStyle={{flex: 1,color: Colors.flBlue.ocean,
+              <HideableView style={styles.differentLocationView} visible={(this.state.unknownCareState || this.state.knownCareState) && this.state.customLocationState} removeWhenHidden>
+                <Text style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
+                <MKTextField
+                  ref='newLocation'
+                  style={styles.newLocationField}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.ocean,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                              }}
-              editable={true}
-              underlineColorAndroid={Colors.coal}
-              placeholderTextColor={Colors.steel}
-              tintColor={Colors.black}
-              onChangeText={this.props.changeAddress}
+                  }}
+                  editable
+                  underlineColorAndroid={Colors.coal}
+                  placeholderTextColor={Colors.steel}
+                  tintColor={Colors.black}
+                  onChangeText={this.props.changeAddress}
             />
 
-            <TouchableOpacity style={styles.saveLocation} onPress={this._saveLocation}>
-              <Image source={Images.saveLocationButton} style={styles.saveLocationButton} />
-            </TouchableOpacity>
-          </HideableView>
+                <TouchableOpacity style={styles.saveLocation} onPress={this._saveLocation}>
+                  <Image source={Images.saveLocationButton} style={styles.saveLocationButton} />
+                </TouchableOpacity>
+              </HideableView>
 
-          <HideableView visible={this.state.knownCareState || this.state.unknownCareState} removeWhenHidden={true}>
-            <TouchableOpacity style={styles.getResults} onPress={this._getResults}>
-              <Image source={Images.getResultsButton} style={styles.getResultsButton} />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.advancedSearchLink} onPress={this._advancedSearch}>
-              <View style={styles.advancedSearchContainer}>
-                <Flb name="search-find" size={Metrics.icons.xm * Metrics.screenWidth * 0.0026} color={Colors.flBlue.anvil} />
-                <Text style={styles.advancedSearchLinkText}>{I18n.t('advancedSearchButton')}</Text>
-              </View>
-            </TouchableOpacity>
-          </HideableView>
+              <HideableView visible={this.state.knownCareState || this.state.unknownCareState} removeWhenHidden>
+                <TouchableOpacity style={styles.getResults} onPress={this._getResults}>
+                  <Image source={Images.getResultsButton} style={styles.getResultsButton} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.advancedSearchLink} onPress={this._advancedSearch}>
+                  <View style={styles.advancedSearchContainer}>
+                    <Flb name='search-find' size={Metrics.icons.xm * Metrics.screenWidth * 0.0026} color={Colors.flBlue.anvil} />
+                    <Text style={styles.advancedSearchLinkText}>{I18n.t('advancedSearchButton')}</Text>
+                  </View>
+                </TouchableOpacity>
+              </HideableView>
+            </View>
+          </ScrollView>
         </View>
-      </ScrollView>
-         </View>
 
-        <View style={{flex:2}}>
-        {this.state.helpStatus ?
-          <View style={styles.urgentCareCircle}>
-            <TouchableOpacity onPress={this.handleNeedHelp.bind(this)}>
-             <Flb name="urgent-care-circle"
-        color="red" size={Metrics.icons.large * Metrics.screenWidth * 0.0035}/>
-        </TouchableOpacity>
-          </View>
+        <View style={{flex: 2}}>
+          {this.state.helpStatus ?
+            <View style={styles.urgentCareCircle}>
+              <TouchableOpacity onPress={this.handleNeedHelp.bind(this)}>
+                <Flb name='urgent-care-circle'
+                  color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+              </TouchableOpacity>
+            </View>
           : <View>{this.state._onChecked}</View>}
           {this.state.floatClicked ?
-          <Card style={styles.urgentCareContainer}>
-            <Text style={styles.dismissUrgentIcon} onPress={this.dismissNeedHelp.bind(this)}>{closeIcon}</Text>
-            <Text style={styles.needHelpText}>Need Help Now?</Text>
-            <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
-            <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
-              <Image source={Images.viewListButton} style={styles.viewListButton} />
-            </TouchableOpacity>
-          </Card>
+            <Card style={styles.urgentCareContainer}>
+              <Text style={styles.dismissUrgentIcon} onPress={this.dismissNeedHelp.bind(this)}>{closeIcon}</Text>
+              <Text style={styles.needHelpText}>Need Help Now?</Text>
+              <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
+              <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
+                <Image source={Images.viewListButton} style={styles.viewListButton} />
+              </TouchableOpacity>
+            </Card>
           : null
           }
         </View>
 
-    </View>
+      </View>
     )
   }
 }
@@ -535,8 +532,8 @@ const mapDispatchToProps = (dispatch) => {
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeAddress: (address) => dispatch(ProviderActions.changeAddress(address)),
     changeHomeAddress: (homeAddress) => dispatch(ProviderActions.changeHomeAddress(homeAddress)),
-    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus)),
+    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus))
   }
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(ProviderSearch)
+export default connect(mapStateToProps, mapDispatchToProps)(ProviderSearch)

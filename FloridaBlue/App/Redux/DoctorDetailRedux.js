@@ -8,7 +8,7 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   doctordetailRequest: [],
   doctordetailSuccess: ['data'],
-  doctordetailFailure: ['error'],
+  doctordetailFailure: ['error']
 
 })
 
@@ -35,7 +35,6 @@ export const success = (state: Object, {data}:Object) => {
 // we've had a problem logging in
 export const failure = (state: Object, {error}: Object) =>
   state.merge({ fetching: false, error, data: {}})
-
 
 /* ------------- Hookup Reducers To Types ------------- */
 

@@ -68,7 +68,7 @@ class MyPlanScreen extends Component {
       var message = this.props.data.errorMessage
       return (
         <View style={styles.container}>
-        
+
           <Card style={styles.planNameView}>
 
             { this.props.data.annualDeductible || this.props.data.oop
@@ -109,6 +109,8 @@ class MyPlanScreen extends Component {
                     title={tile.tileName['en']}
                     tileType={tile.tileType}
                     icon={tile.tileIcon}
+                    gradientImage={tile.gradientImage}
+                    gradientColor={tile.gradientColor}
                     CardCount={TileCount}
                     image={tile.backgroundImage}
                     webURL={tile.tileType !== 'native' ? tile.tileUrl : null}

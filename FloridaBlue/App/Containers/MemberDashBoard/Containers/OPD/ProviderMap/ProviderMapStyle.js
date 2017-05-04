@@ -43,7 +43,7 @@ export default StyleSheet.create({
     paddingHorizontal: (ITEM_SPACING / 2) + ITEM_PREVIEW,
     position: 'absolute',
     // top: screen.height - ITEM_PREVIEW_HEIGHT - 64,
-    paddingTop: window.height - ITEM_PREVIEW_HEIGHT - 64,
+    paddingTop: window.height - ITEM_PREVIEW_HEIGHT - 64
     // paddingTop: !ANDROID ? 0 : screen.height - ITEM_PREVIEW_HEIGHT - 64,
   },
   map: {
@@ -64,26 +64,26 @@ export default StyleSheet.create({
     marginHorizontal: ITEM_SPACING / 2,
     overflow: 'hidden',
     borderRadius: 3,
-    borderColor: '#000',
+    borderColor: '#000'
   },
   locationDetailContainer: {
     position: 'absolute',
     top: Metrics.textHeight2 * Metrics.screenHeight * 0.008,
     height: Metrics.textHeight2 * Metrics.screenHeight * 0.009,
-    width: Metrics.textHeight2 * Metrics.screenWidth * 0.0185,
-    //bottom:100
+    width: Metrics.textHeight2 * Metrics.screenWidth * 0.0185
+    // bottom:100
 
   },
   slide: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F8F8FF',
+    backgroundColor: '#F8F8FF'
   },
   locationText: {
     color: '#000000',
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   spinnerView: {
     alignItems: 'center',
@@ -92,7 +92,7 @@ export default StyleSheet.create({
     height: window.height
   },
   spinnerText: {
-    color:Colors.flBlue.anvil,
+    color: Colors.flBlue.anvil,
     marginTop: 20
   }
 })

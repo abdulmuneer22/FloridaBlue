@@ -90,128 +90,127 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getConfig = () => api.get('/opd/config')
 
   const getStaffLanguage = (data) => api.post('/opd/languages', {
-    "language": "EN",
-    "who": "staff"
+    'language': 'EN',
+    'who': 'staff'
   })
 
-
   const getDoctorLanguage = (data) => api.post('/opd/languages', {
-    "language": "EN",
-    "who": "doctor"
+    'language': 'EN',
+    'who': 'doctor'
   })
 
   const getDoctorDetail = (data) => api.post('/opd/details', {
-    "language": "EN",
-    "providerKey": data && data.providerKey,
-    "addressKey": data && data.addressKey,
-    "planCode": ""
+    'language': 'EN',
+    'providerKey': data && data.providerKey,
+    'addressKey': data && data.addressKey,
+    'planCode': ''
   })
 
   const getCareTypes = (data) => api.post('/opd/types', {
-    "language": "EN",
-    "planCode": ""
+    'language': 'EN',
+    'planCode': ''
   })
 
   const getSpecialityTypes = (selectedCategoryCode) => api.post('/opd/specialty', {
-    "language": "EN",
-    "planCode": "",
-    "categoryCode": selectedCategoryCode
+    'language': 'EN',
+    'planCode': '',
+    'categoryCode': selectedCategoryCode
   })
 
   const postNetworkList = (data) => api.post('/opd/networks', {
-    "language": "EN"
+    'language': 'EN'
   })
 
   const postProviderSearch = (data) =>
     api.post('/opd/search', {
-    "language": "EN",
-    "planCode": "",
-    "start": 1,
-    "end": 25,
-    "categoryCode": data && data.categoryCode ? data.categoryCode : "",
-    "searchRange": data && data.searchRange ? data.searchRange : 50,
-    "address": data && data.address ? data.address :"",
-    "sortColumn": "PROGRAM",
-    "sortType": "ASCENDING",
-    "subCategoryCode": data && data.subCategoryCode ?data.subCategoryCode :"" ,
-    "originLatitude": data.latitude,
-    "originLongitude": data.longitude,
-    "zipCode": 0,
-    "state": "",
-    "city": "",
-    "county": "",
-    "acceptingPatientsIndicator": data && data.acceptingPatientsIndicator && data.acceptingPatientsIndicator.selectedPatientType? data.acceptingPatientsIndicator.selectedPatientType : "",
-    "programsList": data && data.programsList && data.programsList.selectedProgramType ?  data.programsList.selectedProgramType :"",
-    "networkList": data.networkCodeList,
-    "providerLanguage": data && data.providerLanguage && data.providerLanguage.selectedDoctorLanguage ? data.providerLanguage.selectedDoctorLanguage : "",
-    "providerName": data.providerName,
-    "providerFirstName": "",
-    "staffLanguage": data && data.staffLanguage && data.staffLanguage.selectedStaffLanguage ? data.staffLanguage.selectedStaffLanguage : "",
-    "gender": data && data.gender ? data.gender :"",
-    "officeHours": data && data.officeHours && data.officeHours.selectedTime ? data.officeHours.selectedTime: "",
-    "hospitalAffiliation": "",
-    "providerNumber": "",
-    "medicalGroup": "",
-    "inIpa": "",
-    "ipaNumber": "",
-    "pharmacyType": "",
-    "extendedSupply": "",
-    "open24Hours": false,
-    "saveLocation": "",
-    "hospitalOption": "",
-    "networksFlag": false,
-    "memberSearchRequest": {}
-  }
+      'language': 'EN',
+      'planCode': '',
+      'start': 1,
+      'end': 25,
+      'categoryCode': data && data.categoryCode ? data.categoryCode : '',
+      'searchRange': data && data.searchRange ? data.searchRange : 50,
+      'address': data && data.address ? data.address : '',
+      'sortColumn': 'PROGRAM',
+      'sortType': 'ASCENDING',
+      'subCategoryCode': data && data.subCategoryCode ? data.subCategoryCode : '',
+      'originLatitude': data.latitude,
+      'originLongitude': data.longitude,
+      'zipCode': 0,
+      'state': '',
+      'city': '',
+      'county': '',
+      'acceptingPatientsIndicator': data && data.acceptingPatientsIndicator && data.acceptingPatientsIndicator.selectedPatientType ? data.acceptingPatientsIndicator.selectedPatientType : '',
+      'programsList': data && data.programsList && data.programsList.selectedProgramType ? data.programsList.selectedProgramType : '',
+      'networkList': data.networkCodeList,
+      'providerLanguage': data && data.providerLanguage && data.providerLanguage.selectedDoctorLanguage ? data.providerLanguage.selectedDoctorLanguage : '',
+      'providerName': data.providerName,
+      'providerFirstName': '',
+      'staffLanguage': data && data.staffLanguage && data.staffLanguage.selectedStaffLanguage ? data.staffLanguage.selectedStaffLanguage : '',
+      'gender': data && data.gender ? data.gender : '',
+      'officeHours': data && data.officeHours && data.officeHours.selectedTime ? data.officeHours.selectedTime : '',
+      'hospitalAffiliation': '',
+      'providerNumber': '',
+      'medicalGroup': '',
+      'inIpa': '',
+      'ipaNumber': '',
+      'pharmacyType': '',
+      'extendedSupply': '',
+      'open24Hours': false,
+      'saveLocation': '',
+      'hospitalOption': '',
+      'networksFlag': false,
+      'memberSearchRequest': {}
+    }
   )
 
   const postPharmacySearch = (data) => api.post('/opd/pharmacy/search', {
-      "language": "EN",
-      "planCode": "",
-      "start": 1,
-      "end": 25,
-      "searchRange": data && data.searchRange ? data.searchRange : 50,
-      "address": data && data.address ? data.address :"",
-      "sortColumn": "DISTANCE",
-      "sortType": "ASCENDING",
-      "originLatitude": data.latitude,
-      "originLongitude": data.longitude,
-      "zipCode": 0,
-      "state": "",
-      "city": "",
-      "county": "",
-      "acceptingPatientsIndicator": data && data.acceptingPatientsIndicator && data.acceptingPatientsIndicator.selectedPatientType? data.acceptingPatientsIndicator.selectedPatientType : "",
-      "programsList": data && data.programsList && data.programsList.selectedProgramType ?  data.programsList.selectedProgramType :"",
-      "networkList": data.networkCodeList,
-      "providerLanguage": data && data.providerLanguage && data.providerLanguage.selectedDoctorLanguage ? data.providerLanguage.selectedDoctorLanguage : "",
-      "providerName": data.providerName,
-      "providerFirstName": "",
-      "staffLanguage": data && data.staffLanguage && data.staffLanguage.selectedStaffLanguage ? data.staffLanguage.selectedStaffLanguage : "",
-      "gender": data && data.gender ? data.gender :"",
-      "officeHours": data && data.officeHours && data.officeHours.selectedTime ? data.officeHours.selectedTime: "",
-      "hospitalAffiliation": "",
-      "providerNumber": "",
-      "medicalGroup": "",
-      "inIpa": "",
-      "ipaNumber": "",
-      "pharmacyType": "",
-      "extendedSupply": "",
-      "open24Hours": false,
-      "saveLocation": "",
-      "hospitalOption": "",
-      "networksFlag": false,
-      "memberSearchRequest": {}
-    }
+    'language': 'EN',
+    'planCode': '',
+    'start': 1,
+    'end': 25,
+    'searchRange': data && data.searchRange ? data.searchRange : 50,
+    'address': data && data.address ? data.address : '',
+    'sortColumn': 'DISTANCE',
+    'sortType': 'ASCENDING',
+    'originLatitude': data.latitude,
+    'originLongitude': data.longitude,
+    'zipCode': 0,
+    'state': '',
+    'city': '',
+    'county': '',
+    'acceptingPatientsIndicator': data && data.acceptingPatientsIndicator && data.acceptingPatientsIndicator.selectedPatientType ? data.acceptingPatientsIndicator.selectedPatientType : '',
+    'programsList': data && data.programsList && data.programsList.selectedProgramType ? data.programsList.selectedProgramType : '',
+    'networkList': data.networkCodeList,
+    'providerLanguage': data && data.providerLanguage && data.providerLanguage.selectedDoctorLanguage ? data.providerLanguage.selectedDoctorLanguage : '',
+    'providerName': data.providerName,
+    'providerFirstName': '',
+    'staffLanguage': data && data.staffLanguage && data.staffLanguage.selectedStaffLanguage ? data.staffLanguage.selectedStaffLanguage : '',
+    'gender': data && data.gender ? data.gender : '',
+    'officeHours': data && data.officeHours && data.officeHours.selectedTime ? data.officeHours.selectedTime : '',
+    'hospitalAffiliation': '',
+    'providerNumber': '',
+    'medicalGroup': '',
+    'inIpa': '',
+    'ipaNumber': '',
+    'pharmacyType': '',
+    'extendedSupply': '',
+    'open24Hours': false,
+    'saveLocation': '',
+    'hospitalOption': '',
+    'networksFlag': false,
+    'memberSearchRequest': {}
+  }
   )
 
   const postUrgentSearch = (data) => api.post('/opd/urgent/search', {
-      "language": "EN",
-      "planCode": "",
-      "start": 1,
-      "end": 25,
-      "address": data && data.address ? data.address :"",
-      "originLatitude": data.latitude,
-      "originLongitude": data.longitude,
-    }
+    'language': 'EN',
+    'planCode': '',
+    'start': 1,
+    'end': 25,
+    'address': data && data.address ? data.address : '',
+    'originLatitude': data.latitude,
+    'originLongitude': data.longitude
+  }
   )
 
   const postIdentification = (data) => api.post('/identifications', {
