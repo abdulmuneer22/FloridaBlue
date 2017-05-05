@@ -14,6 +14,7 @@ import SupportActions from '../../../../Redux/SupportRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import Communications from 'react-native-communications'
 import { Card } from 'native-base'
+import LinearGradient from 'react-native-linear-gradient'
 const window = Dimensions.get('window')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -88,69 +89,54 @@ class SupportScreen extends Component {
                {this.props.data && this.props.data.support
                     ? <View>
                       <View>{this.props.data.support.map(function (support, i) {
-                        return (<Card style={styles.textBackground} key={i}>
-                          <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', flexWrap: 'wrap'}}>
-                            <View style={{flex: 0.6 }}>
+                        return (
+                          
+                          <View>
+                          {support.contactNumber ?
+                          
+                          
+                          <Card style={styles.textBackground} key={i}>
+                          <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)} style={styles.textBackground} >
+                          <View style={ {flex: 2 , alignItems:'center', justifyContent:'center'}}>
+                           {support.contactNumber ? <Flb name='call-phone' size={Metrics.icons.regular} color={Colors.flBlue.ocean} /> : <View />}
+                           </View>
+                          <View style={{flex:8}}>
+                            <View style={ {flex:1 , alignItems:'flex-start', justifyContent:'center' }}>
                               <Text style={styles.textStyle}>
-                                {support.contactType}
+                                {support.contactType ? support.contactType :null}
                               </Text>
                             </View>
-                            <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)}>
-                              <View style={{flex: 0.4, flexDirection: 'row', justifyContent: 'space-between'}}>
+                            
+                            
+                              <View style={{flex: 1, alignItems:'flex-start', justifyContent:'center'}}>
                                 <Text style={styles.textStyle1}>
-                                  {support.contactNumber}
+                                     {support.contactNumber ? support.contactNumber : null}
                                 </Text>
-                                <Flb name='call-phone' size={Metrics.icons.xm} color={Colors.flBlue.ocean} />
                               </View>
-                            </TouchableOpacity>
-                          </View>
-                        </Card>)
+                            
+                           </View>   
+                           </TouchableOpacity>                       
+                        </Card> :
+                        <LinearGradient colors={['#ECE9E6', '#FFFFFF']} style={styles.textBackground1}>
+
+                          <View style={{flex:1}}>
+                            <View style={ {flex:1 , alignItems:'center', justifyContent:'center' }}>
+                              <Text style={styles.textStyle}>
+                                {support.contactType ? support.contactType :null}
+                              </Text>
+                            </View>
+                           </View> 
+
+
+                            </LinearGradient> 
+                            }
+                        </View>
+                        )
                         i += 1
                       }
 
                     )}</View>
-                      <View >
-                        {this.props.data && this.props.data.shopping ? <View>{ this.props.data.shopping.map(function (support, i) {
-                          return (<View>
-                            {support.contactNumber ? <Card style={styles.textBackground} key={i}>
-                              <View style={{flex: 1, flexDirection: 'column', justifyContent: 'space-between', flexWrap: 'wrap'}}>
-                                <View style={{flex: 0.6,
-                                  backgroundColor: Colors.snow }}>
-                                  <Text style={styles.textStyle}>
-                                    {support.contactType}
-                                  </Text>
-                                </View>
-                                {support.contactNumber ? <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)}>
-                                  <View style={{flex: 0.4, flexDirection: 'row', justifyContent: 'space-between', backgroundColor: Colors.snow}}>
-                                    <Text style={styles.textStyle1}>
-                                      {support.contactNumber}
-                                    </Text>
-                                    {support.contactNumber ? <Flb name='call-phone' size={Metrics.icons.small} color={Colors.flBlue.ocean} /> : <View />}
-                                  </View>
-                                </TouchableOpacity> : <View />}
-                              </View>
-                            </Card> : <View style={{height: 60, alignItems: 'center'
-
-                            }}>
-                              <Text style={{fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0027,
-                                fontWeight: '300',
-                                marginTop: 20,
-                                fontFamily: Fonts.type.headerFont,
-                                color: Colors.flBlue.grey6}}>
-                                {support.contactType}
-                              </Text>
-                            </View> }
-                          </View>
-                          )
-
-                          i += 1
-                        }
-
-                    )}</View> : <View />}
-                      </View>
-
                     </View>
-
                     : <Text>
                            Loading ..
                          </Text>}

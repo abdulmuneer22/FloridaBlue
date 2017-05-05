@@ -56,7 +56,9 @@ class LandingScreen extends Component {
   isAttempting: boolean
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+    return (
+     <LinearGradient colors={['#ECE9E6', '#FFFFFF']}>
+    <Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{
         alignItems: 'center',
         marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
@@ -74,7 +76,10 @@ class LandingScreen extends Component {
         {NavItems.settingsButton()}
       </View>
 
-    </Image>)
+    </Image>
+    </LinearGradient>
+    
+    )
   }
   componentDidMount () {
     // BackAndroid.addEventListener('hardwareBackPress', function () {
