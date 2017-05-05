@@ -100,6 +100,7 @@ class SupportScreen extends Component {
                           <View style={ {flex: 2 , alignItems:'center', justifyContent:'center'}}>
                            {support.contactNumber ? <Flb name='call-phone' size={Metrics.icons.regular} color={Colors.flBlue.ocean} /> : <View />}
                            </View>
+
                           <View style={{flex:8}}>
                             <View style={ {flex:1 , alignItems:'flex-start', justifyContent:'center' }}>
                               <Text style={styles.textStyle}>
@@ -114,12 +115,13 @@ class SupportScreen extends Component {
                                 </Text>
                               </View>
                             
-                           </View>   
+                           </View>  
+                           
+                            
                            </TouchableOpacity>                       
                         </Card> :
-                        <LinearGradient colors={['#ECE9E6', '#FFFFFF']} style={styles.textBackground1}>
-
-                          <View style={{flex:1}}>
+                       
+                          <View style={{flex:1}} style={styles.textBackground1}>
                             <View style={ {flex:1 , alignItems:'center', justifyContent:'center' }}>
                               <Text style={styles.textStyle}>
                                 {support.contactType ? support.contactType :null}
@@ -128,7 +130,7 @@ class SupportScreen extends Component {
                            </View> 
 
 
-                            </LinearGradient> 
+                          
                             }
                         </View>
                         )
