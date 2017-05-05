@@ -289,7 +289,7 @@ class ProviderSearch extends Component {
       'Can we access your current location?',
       'We need access so you can see provider data near your location',
       [
-        {text: 'No way', onPress: () => console.log('permission denied'), style: 'cancel'},
+        {text: 'No way', onPress: () => console.tron.log('permission denied'), style: 'cancel'},
         this.state.photoPermission == 'undetermined' ?
         {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
       ]
@@ -469,7 +469,7 @@ class ProviderSearch extends Component {
         <View style={{flex: 2}}>
           {this.state.helpStatus ?
             <View style={styles.urgentCareCircle}>
-              <TouchableOpacity onPress={this.handleNeedHelp.bind(this)}>
+              <TouchableOpacity onPress={this.handleNeedHelp}>
                 <Flb name='urgent-care-circle'
                   color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
               </TouchableOpacity>
@@ -478,9 +478,11 @@ class ProviderSearch extends Component {
           {this.state.floatClicked ?
           <Card style={styles.urgentCareContainer}>
 
-            <TouchableOpacity onPress={this.dismissNeedHelp.bind(this)}>
-            <Text style={styles.dismissUrgentIcon} >{closeIcon}</Text>
-            </TouchableOpacity>
+            
+            <Flb name='close-delete' style={styles.dismissUrgentIcon}
+                  color="red" size={Metrics.icons.small * Metrics.screenWidth * 0.0035} 
+                  onPress={this.dismissNeedHelp} />
+            
             <Text style={styles.needHelpText}>Need Help Now?</Text>
             <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
             <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>

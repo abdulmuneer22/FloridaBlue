@@ -17,7 +17,7 @@ export function* addSavedProvider (action) {
 export function* removeSavedProvider (action) {
   const { savedProviderKey } = action
     // make the call to the api
-  console.log(savedProviderKey)
+  console.tron.log(savedProviderKey)
   const indexOfsavedProviderToDelete = savedProviders.findIndex(savedProvider => {
     savedProvider.providerKey === savedProviderKey
   })

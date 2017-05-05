@@ -49,27 +49,27 @@ class SupportScreen extends Component {
   }
 
   _handleCall (phone) {
-    console.log(phone)
+    console.tron.log(phone)
     const url = `tel:${phone}`
 
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
         Linking.openURL(url)
       } else {
-        console.log('Don\'t know how to open URI: ')
+        console.tron.log('Don\'t know how to open URI: ')
       }
     })
   }
 
   _handleCall (phone) {
-    console.log(phone)
+    console.tron.log(phone)
     const url = `tel:${phone}`
 
     Linking.canOpenURL('tel:1-800-841-2900').then(supported => {
       if (supported) {
         Linking.openURL('tel:1-800-841-2900')
       } else {
-        console.log('Don\'t know how to open URI: ')
+        console.tron.log('Don\'t know how to open URI: ')
       }
     })
   }

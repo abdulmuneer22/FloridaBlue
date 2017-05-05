@@ -501,7 +501,7 @@ class AdvancedSearch extends Component {
                 minimumValue={0}
                 maximumValue={100}
                 step={1}
-                maximumTrackTintColor={Colors.flBlue.grey3}
+                maximumTrackTintColor={Colors.flBlue.night}
                 style={{ width: Metrics.screenWidth * 0.87,
                   marginLeft: 10
                 }}

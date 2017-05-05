@@ -134,7 +134,7 @@ class Switch extends Component {
       var temp = _this.props.data
       var providerList = temp.providerList
       if (temp != null && temp.providerList != null) {
-        console.log('left', temp.providerList)
+        console.tron.log('left', temp.providerList)
         return (_this.props.leftActive
               ? _twoTabView(
               twoTabLeftActiveStyle,

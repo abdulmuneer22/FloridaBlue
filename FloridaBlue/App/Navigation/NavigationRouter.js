@@ -38,6 +38,7 @@ import { AdvancedSearch} from '../Containers/MemberDashBoard/Containers/OPD/Adva
 import { ProviderMap} from '../Containers/MemberDashBoard/Containers/OPD/ProviderMap'
 import { ListviewExample } from '../Containers/ListviewExample'
 import { DoctorDetail} from '../Containers/MemberDashBoard/Containers/OPD/DoctorDetail'
+import { ProgramDetail} from '../Containers/MemberDashBoard/Containers/OPD/ProgramDetail'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -76,6 +77,7 @@ class NavigationRouter extends Component {
             <Scene key='ProviderSearch' component={ProviderSearch} title='OPD ProviderSearch Page' hideNavBar />
             <Scene key='ProviderMap' component={ProviderMap} title='Provider Map View Page' hideNavBar />
             <Scene key='DoctorDetail' component={DoctorDetail} title='Doctor Detail Page' hideNavBar />
+            <Scene key='ProgramDetail' component={ProgramDetail} title='Program Detail Page' hideNavBar />
           </Scene>
         </Scene>
       </Router>

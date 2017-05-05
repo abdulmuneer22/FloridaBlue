@@ -163,7 +163,8 @@ export default StyleSheet.create({
   },
   dropdown: {
     width: Metrics.screenWidth * 0.9,
-    marginLeft: Metrics.doubleBaseMargin
+    marginLeft: Metrics.doubleBaseMargin,
+   
   },
   dropdownItem: {
     fontSize: Fonts.size.regular,
@@ -171,7 +172,8 @@ export default StyleSheet.create({
     fontWeight: '400',
     paddingLeft: Metrics.smallMargin,
     paddingTop: Metrics.smallMargin,
-    paddingBottom: Metrics.smallMargin
+    paddingBottom: Metrics.smallMargin,
+    color:Colors.flBlue.night
   },
   locationTextContainer: {
     flexDirection: 'column',
@@ -256,7 +258,7 @@ export default StyleSheet.create({
   dismissUrgentIcon: {
     marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
     marginTop: 30,
-    backgroundColor: Colors.transparent
+    backgroundColor: Colors.transprent
   },
   needHelpText: {
     textAlign: 'left',
