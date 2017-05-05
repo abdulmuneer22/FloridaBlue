@@ -152,8 +152,8 @@ export default StyleSheet.create({
   },
   radioText: {
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001,
-    marginLeft: Metrics.baseMargin,
-   // marginRight: Metrics.mediumMargin,
+   // marginLeft: Metrics.baseMargin,
+    marginRight: Metrics.mediumMargin,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.subHeaderFont,
@@ -180,7 +180,7 @@ export default StyleSheet.create({
     marginTop: Metrics.mediumMargin,
     justifyContent: 'center',
     flexDirection: 'row',
-    marginLeft: 15
+   // marginLeft: 10
   },
   searchText: {
     marginTop: 5,
