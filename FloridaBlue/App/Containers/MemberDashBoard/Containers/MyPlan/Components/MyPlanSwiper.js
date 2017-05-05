@@ -8,8 +8,8 @@ import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import SemiCircle from '../../../../../Components/SemiCircle'
 import styles from '../MyPlanScreenStyle'
 import _ from 'lodash'
-
-import { Card } from 'native-base'
+import LinearGradient from 'react-native-linear-gradient'
+import { Card ,CardItem,Body} from 'native-base'
 const card = {card: {margin: 20}}
 
 class MyPlanSwiper extends Component {
@@ -130,24 +130,30 @@ class MyPlanSwiper extends Component {
      //      const planBenefits = _.head(network.planBenefits)
     //       console.tron.log('plan benefits', planBenefits)
           return (
-            <Card style={{margin: 15}}>
-
+           
+             
+                          
+             <LinearGradient colors={['#414345', '#232526']} style={{ flex: 1, alignItems: 'center',
+              margin:15
+              }} >
               <View style={{ flex: 1, alignItems: 'center'
 
               }}>
+                
                 <View style={{flex: 1, alignItems: 'center', paddingTop: 20}}>
+                  
                   <Text style={styles.headerText}>
                     {network.title.en}
                   </Text>
-
+                  
                   <Text style={styles.subHeader}>
                     {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].title.en : 'No Plan Benfits' }
                   </Text>
                 </View>
               </View>
-
+               <View style={{flex:1}}/>
               <View style={{flex: 1, alignItems: 'center'}}>
-                <View style={{margin: 0}}>
+                   <View style={{margin: 0}}>
                   <SemiCircle
                     pieWidth={150}
                     pieHeight={150}
@@ -160,14 +166,28 @@ class MyPlanSwiper extends Component {
                     percent={Object.keys(network.planBenefits).length > 0 && network.planBenefits[0].value > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value) : 0} />
                 </View>
               </View>
+                   <View style={{flex:1}}/>
               <View style={{flex: 1, alignItems: 'center'}}>
                 <View style={{flex: 1, alignItems: 'center', flexDirection: 'row-reverse'
                 }}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
                     return (<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', margin: 4
                     }} key={i}>
-                      <View style={{flex: 0.2, alignItems: 'center', justifyContent: 'center'}} >
-
+                      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} >
+                        <View style={{flex :3 , 
+                         borderBottomWidth: 1,
+                        borderBottomColor:Colors.flBlue.grass, 
+                      
+                        }}>
+                         <Text style={{
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0020,
+                          fontFamily: Fonts.type.subHeaderFont,
+                          color: Colors.snow
+                        }}>
+                          {benefit ? benefit.label.en : null}
+                        </Text>
+                        </View>
+                        <View style={{flex :1}}>
                         <Text style={{
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                           fontWeight: '500',
@@ -175,22 +195,19 @@ class MyPlanSwiper extends Component {
                           color: Colors.flBlue.grass}}>
                       ${benefit ? benefit.value : null}
                         </Text>
-                        <Text style={{
-                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0020,
-                          fontFamily: Fonts.type.subHeaderFont,
-                          color: Colors.flBlue.grey3
-                        }}>
-                          {benefit ? benefit.label.en : null}
-                        </Text>
+                       </View>
 
                       </View>
                     </View>)
                   }) : <View />}
 
                 </View>
-                <View style={{flex: 2}} />
+               <View style={{flex:1}}/>
               </View>
-            </Card>
+              </LinearGradient>
+              
+                        
+           
           )
           i += 1
         })}
