@@ -179,8 +179,8 @@ class LandingScreen extends Component {
             }
           </View>
           { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
-
-            ? <TouchableOpacity onPress={() => NavigationActions.ProviderSearch()} style={{flex: 1}}>
+              
+            ? <TouchableOpacity onPress={() => NavigationActions[this.props.visibilityRules.opdTile.routerName]()} style={{flex: 1}}>
               <LinearGradient colors={['#ECE9E6', '#FFFFFF']} style={{
                 height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.87),
      // height : window.height * 0.5,
