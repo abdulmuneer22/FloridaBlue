@@ -376,7 +376,7 @@ class DoctorDetail extends Component {
                           </View>
                           </View>
                            {this.props.doctordetail && this.props.doctordetail.servicesOffered ? this.props.doctordetail.servicesOffered.map((value, i) => {
-                          return( <View style={{ flex: 1, flexDirection: 'row', margin:5 }}>
+                          return( <View key={i} style={{ flex: 1, flexDirection: 'row', margin:5 }}>
                             
                             <View style={{ flex: 3 }} />                            
                             <View style={{ flex: 7 }}>             
@@ -400,84 +400,7 @@ class DoctorDetail extends Component {
                             }
                 </View>
 
-                  <View style={{ flex: 1 }}>
-                  {this.props.doctordetail.boardCertifications.length > 0 ?
-                      <View style={{ flex: 1 }}>
-                        <TouchableOpacity onPress={this.toggle.bind(this)}>
-                          <Card style={this.state.visible ? styles.cardStyle : styles.cardStyle1} >
-                            <View style={this.state.visible ? styles.plusView1 : styles.plusView}>
-                            <View style={{ flex: 2, alignItems: 'center' }}>
-                            <Flb name={this.state.visible ? 'minus' : 'plus'} color={this.state.visible ? Colors.snow : Colors.flBlue.ocean}
-                                size={Metrics.icons.medium} />
-                          </View>
-                            <View style={{ flex: 9 }}>
-                            <Text style={this.state.visible ? styles.plusText1 : styles.plusText}>
-                                                Board Certifications / Eligibility
-                                            </Text>
-                          </View>
-                          </View>
-                          </Card>
-                        </TouchableOpacity>
-
-                        {this.state.visible ? <HideableView visible={this.state.visible}>
-                          <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <View style={{ flex: 3 }} />
-                            <View style={{ flex: 9 }}>
-                            <Text style={{
-                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-                            color: Colors.flBlue.grey5
-                          }}>
-                            {this.props.doctordetail.boardCertifications[0].boardName}
-                          </Text>
-                          </View>
-                          </View>
-                        </HideableView> : null}
-                      </View>
-                            :
-                     null
-                            }
-                </View>
-
-                  <View style={{ flex: 1 }}>
-                  {this.props.doctordetail.certifications.length > 0 ?
-                      <View style={{ flex: 1 }}>
-                        <TouchableOpacity onPress={this.toggle3.bind(this)}>
-                          <Card style={this.state.visible3 ? styles.cardStyle : styles.cardStyle1} >
-                            <View style={this.state.visible3 ? styles.plusView1 : styles.plusView}>
-                            <View style={{ flex: 2, alignItems: 'center' }}>
-                            <Flb name={this.state.visible3 ? 'minus' : 'plus'} color={this.state.visible3 ? Colors.snow : Colors.flBlue.ocean}
-                                size={Metrics.icons.medium} />
-                          </View>
-                            <View style={{ flex: 9 }}>
-                            <Text style={this.state.visible3 ? styles.plusText1 : styles.plusText}>
-                                                Institutional Affiliations
-                                            </Text>
-                          </View>
-                          </View>
-                          </Card>
-                        </TouchableOpacity>
-
-                        {this.state.visible3 ? <HideableView visible={this.state.visible3}>
-                          <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <View style={{ flex: 3 }} />
-                            <View style={{ flex: 9 }}>
-                            <Text style={{
-                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-                            color: Colors.flBlue.grey5
-                          }}>
-                            {this.props.doctordetail.certifications[0].certificationDescription}
-                          </Text>
-                          </View>
-                          </View>
-                        </HideableView> : null}
-                      </View>
-                            :
-                      null
-                            }
-                </View>
-
-
-                  <View style={{ flex: 1 }}>
+                <View style={{ flex: 1 }}>
                   {this.props.doctordetail.programList.length > 0 ?
                       <View style={{ flex: 1 }}>
                         <TouchableOpacity onPress={this.toggle5.bind(this)}>
@@ -512,44 +435,6 @@ class DoctorDetail extends Component {
                               )
                           })
                                             : null}
-                          </View>
-                          </View>
-                        </HideableView> : null}
-                      </View>
-                            :
-                     null
-                            }
-                </View>
-
-                  <View style={{ flex: 1 }}>
-                  {this.props.doctordetail.certifications.length > 0 ?
-                      <View style={{ flex: 1 }}>
-                        <TouchableOpacity onPress={this.toggle6.bind(this)}>
-                          <Card style={this.state.visible6 ? styles.cardStyle : styles.cardStyle1} >
-                            <View style={this.state.visible6 ? styles.plusView1 : styles.plusView}>
-                            <View style={{ flex: 2, alignItems: 'center' }}>
-                            <Flb name={this.state.visible6 ? 'minus' : 'plus'} color={this.state.visible6 ? Colors.snow : Colors.flBlue.ocean}
-                                size={Metrics.icons.medium} />
-                          </View>
-                            <View style={{ flex: 9 }}>
-                            <Text style={this.state.visible6 ? styles.plusText1 : styles.plusText}>
-                                                Hospital Options - Applicable to BlueOptions
-                                            </Text>
-                          </View>
-                          </View>
-                          </Card>
-                        </TouchableOpacity>
-
-                        {this.state.visible6 ? <HideableView visible={this.state.visible6}>
-                          <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <View style={{ flex: 3 }} />
-                            <View style={{ flex: 9 }}>
-                            <Text style={{
-                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-                            color: Colors.flBlue.grey5
-                          }}>
-                            {this.props.doctordetail.certifications[0].certificationDescription}
-                          </Text>
                           </View>
                           </View>
                         </HideableView> : null}

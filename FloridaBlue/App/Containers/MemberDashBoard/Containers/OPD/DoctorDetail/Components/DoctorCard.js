@@ -66,7 +66,7 @@ class DoctorCard extends Component {
       <View style={styles.container}>
 
         <View style={{ flex: 1 }}>
-          {this.props.data != undefined ?
+          { this.props.data ?
 
             <Card style={{ flex: 1 }} >
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
@@ -130,7 +130,7 @@ class DoctorCard extends Component {
 
                   </View>
                 </View>
-                                    : null }
+               : null }
 
               {this.props.data && this.props.data.gender ?
               <View style={{flex:1}}>
@@ -152,7 +152,7 @@ class DoctorCard extends Component {
                                     />
                     </View>
                   <View style={{ flex: 0.8, flexDirection:'row' }}>
-                    <Text style={styles.plannameText}> Gender: </Text>
+                    <Text style={styles.plannameText}>Gender: </Text>
                     <Text style={styles.plannameText}>
                         {this.props.data.gender}
                       </Text>
@@ -160,6 +160,83 @@ class DoctorCard extends Component {
                 </View>
                 </View>
                : null}
+              
+               {this.props.data && this.props.data.languageCodes.length > 0 ?
+              <View style={{flex:1}}>
+                <View style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  flex: 1,
+                  margin: 5
+                }}> 
+                <View style={{ flex: 0.2,alignItems:'center' }}>
+                    <Flb
+                        name='check'
+                        size={30}
+                        color='green'
+                        style={{
+                            marginTop: 10
+
+                          }}
+                                    />
+                    </View>
+                  <View style={{ flex: 0.8, flexDirection:'row' }}>
+                    <View style={{flex:0.4}}>
+                    <Text style={styles.plannameText}>Doctor Also Speaks: </Text>
+                    </View>
+                    <View style={{flex:0.4}}>
+                    {this.props.data && this.props.data.languageCodes ? this.props.data.languageCodes.map((value, i) => {
+                   return(<View style={{flex:1}} key={i}> 
+                     
+                     <Text style={styles.plannameText}>
+                        {value.desc}
+                      </Text>
+
+                      </View>
+                     
+                   )}
+                      ): null}
+                      </View>
+                  </View>
+                </View>
+                </View>
+               : null}
+
+
+               {this.props.data && this.props.data.staffLanguageCodes.length > 0 ?
+              <View style={{flex:1}}>
+                <View style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  flex: 1,
+                  margin: 5
+                }}> 
+                <View style={{ flex: 0.2,alignItems:'center' }}>
+                    <Flb
+                        name='check'
+                        size={30}
+                        color='green'
+                        style={{
+                            marginTop: 10
+
+                          }}
+                                    />
+                    </View>
+                  <View style={{ flex: 0.8, flexDirection:'row' }}>
+                    <Text style={styles.plannameText}> Staff Speaks: </Text>
+                    {this.props.data && this.props.data.staffLanguageCodes ? this.props.data.staffLanguageCodes.map((value, i) => {
+                   return(<View style={{flex:1}} key={i}> 
+                     <Text style={styles.plannameText}>
+                        {value.desc}
+                      </Text>
+                      </View>
+                   )}
+                      ): null}
+                  </View>
+                </View>
+                </View>
+               : null}
+
 
               {this.props.data && this.props.data.acceptingNewPatients ?
                 <View style={{
