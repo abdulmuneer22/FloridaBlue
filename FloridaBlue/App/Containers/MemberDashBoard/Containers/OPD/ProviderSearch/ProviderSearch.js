@@ -479,7 +479,7 @@ class ProviderSearch extends Component {
           <Card style={styles.urgentCareContainer}>
 
             <TouchableOpacity onPress={this.dismissNeedHelp.bind(this)}>
-            <Text style={styles.dismissUrgentIcon} onPress={this.dismissNeedHelp.bind(this)}>{closeIcon}</Text>
+            <Text style={styles.dismissUrgentIcon} >{closeIcon}</Text>
             </TouchableOpacity>
             <Text style={styles.needHelpText}>Need Help Now?</Text>
             <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
