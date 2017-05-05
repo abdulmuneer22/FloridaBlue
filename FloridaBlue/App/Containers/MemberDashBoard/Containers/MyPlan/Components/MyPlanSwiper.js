@@ -133,7 +133,7 @@ class MyPlanSwiper extends Component {
            
              
                           
-             <LinearGradient colors={['#414345', '#232526']} style={{ flex: 1, alignItems: 'center',
+             <LinearGradient colors={['#ECE9E6', '#FFFFFF']} style={{ flex: 1, alignItems: 'center',
               margin:15
               }} >
               <View style={{ flex: 1, alignItems: 'center'
@@ -161,8 +161,8 @@ class MyPlanSwiper extends Component {
                     height={185}
                     barWidth={10}
 
-                    barTopColor={Colors.flBlue.grass}
-                    barBottomColor={Colors.flBlue.grey2}
+                    barTopColor={Colors.snow}
+                    barBottomColor={Colors.flBlue.grass}
                     percent={Object.keys(network.planBenefits).length > 0 && network.planBenefits[0].value > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value) : 0} />
                 </View>
               </View>
@@ -182,8 +182,7 @@ class MyPlanSwiper extends Component {
                          <Text style={{
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0020,
                           fontFamily: Fonts.type.subHeaderFont,
-                          color: Colors.snow
-                        }}>
+                          color: Colors.flBlue.grey4                        }}>
                           {benefit ? benefit.label.en : null}
                         </Text>
                         </View>
