@@ -70,7 +70,7 @@ class ProviderSearch extends Component {
       changeLocaleState: false,
       customLocationState: false,
       urgentCareState: false,
-      floatClicked: true,
+      floatClicked: false,
       helpStatus: true
     }
 
@@ -109,8 +109,8 @@ class ProviderSearch extends Component {
   }
 
   handleNeedHelp () {
-    let floatClicked = this.state.floatClicked
-    this.setState({floatClicked: !floatClicked})
+    let floatClicked1 = this.state.floatClicked
+    this.setState({floatClicked: !floatClicked1})
   }
 
   dismissNeedHelp () {
@@ -118,7 +118,8 @@ class ProviderSearch extends Component {
   }
 
   _onChecked (event) {
-    this.setState({floatClicked: false})
+    this.setState({floatClicked: true})
+    //this.handleNeedHelp()
     if (event.checked) {
       this.props.changeSubCategoryCode('')
       this.props.changeCategoryCode('ALL')
@@ -467,30 +468,44 @@ class ProviderSearch extends Component {
         </View>
 
         <View style={{flex: 2}}>
-          {this.state.helpStatus ?
+          {
+            this.state.floatClicked ?
+
+            this.state.helpStatus ?
             <View style={styles.urgentCareCircle}>
               <TouchableOpacity onPress={this.handleNeedHelp}>
                 <Flb name='urgent-care-circle'
                   color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
               </TouchableOpacity>
             </View>
-          : <View>{this.state._onChecked}</View>}
-          {this.state.floatClicked ?
-          <Card style={styles.urgentCareContainer}>
+          : <View>{this.state._onChecked}</View>
+
+          : <Card style={styles.urgentCareContainer}>
 
             
             <Flb name='close-delete' style={styles.dismissUrgentIcon}
-                  color="red" size={Metrics.icons.small * Metrics.screenWidth * 0.0035} 
-                  onPress={this.dismissNeedHelp} />
+                  color={Colors.flBlue.anvil} size={Metrics.icons.small * Metrics.screenWidth * 0.0035} 
+                  onPress={this.handleNeedHelp} />
             
             <Text style={styles.needHelpText}>Need Help Now?</Text>
             <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
+            <View style={{flexDirection:'row'}}>
+              <View>
             <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
               <Image source={Images.viewListButton} style={styles.viewListButton} />
             </TouchableOpacity>
+            </View>
+          <View style={{marginTop: (Platform.OS === 'ios') ? 23 : 37,marginLeft:7}}>
+            <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
+                  color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+          </View>
+          </View>
           </Card>
-          : null
+
+
           }
+          
+          
         </View>
 
       </View>
