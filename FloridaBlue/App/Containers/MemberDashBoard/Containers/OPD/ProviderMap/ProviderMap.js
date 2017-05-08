@@ -110,7 +110,7 @@ class ProviderMap extends Component {
 
   render () {
     return (
-      <View>
+      <View style={{flex:1}}>
         {this._renderHeader()}
         {this.props.provider.data.providerList ?
           <View style={styles.container}>
@@ -128,7 +128,9 @@ class ProviderMap extends Component {
             <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden>
               <Swiper index={this.state.selectedLocation.uniqueId} loop={false} style={{marginBottom:40, marginTop:-5}} showsButtons={true} showsPagination={false}
                 width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
-                height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
+                height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.57))}
+                bottom={ (Platform.OS === 'ios') ? 0 : -25 }
+                
                 onMomentumScrollEnd={this._locationSwiped} >
 
                 {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
@@ -171,3 +173,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProviderMap)
+

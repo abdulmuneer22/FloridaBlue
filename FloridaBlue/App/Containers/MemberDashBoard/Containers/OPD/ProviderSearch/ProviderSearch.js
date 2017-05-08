@@ -70,7 +70,7 @@ class ProviderSearch extends Component {
       changeLocaleState: false,
       customLocationState: false,
       urgentCareState: false,
-      floatClicked: true,
+      floatClicked: false,
       helpStatus: true
     }
 
@@ -85,6 +85,7 @@ class ProviderSearch extends Component {
   componentDidMount () {
     this.props.attemptCareTypes()
     this._getLocation()
+    this._resetState()
 
     var addressLine1 = this.props.member.defaultContract.homeAddress.addressline1
     var addressLine2 = ''
@@ -98,6 +99,10 @@ class ProviderSearch extends Component {
     var fullAddress = addressLine1 + addressLine2 + ' ' + city + ', ' + state + ' ' + zip
     this.props.changeHomeAddress(fullAddress)
     this.props.changeAddress(fullAddress)
+
+    if (this.props.categoryCode != 'ALL') {
+      this.setState({specialityState: true})
+    }
   }
 
   componentWillReceiveProps (newProps) {
@@ -109,8 +114,8 @@ class ProviderSearch extends Component {
   }
 
   handleNeedHelp () {
-    let floatClicked = this.state.floatClicked
-    this.setState({floatClicked: !floatClicked})
+    let floatClicked1 = this.state.floatClicked
+    this.setState({floatClicked: !floatClicked1})
   }
 
   dismissNeedHelp () {
@@ -118,7 +123,8 @@ class ProviderSearch extends Component {
   }
 
   _onChecked (event) {
-    this.setState({floatClicked: false})
+    this.setState({floatClicked: true})
+    //this.handleNeedHelp()
     if (event.checked) {
       this.props.changeSubCategoryCode('')
       this.props.changeCategoryCode('ALL')
@@ -135,6 +141,8 @@ class ProviderSearch extends Component {
     var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
     this.props.getSpecialityTypes(selectedCategoryCode)
     this.props.changeCareType(value)
+    this.props.changeSubCategoryCode('')
+    this.props.changeSpecialityType('')
     this.setState({unknownCareState: false}, function () {
       this.setState({unknownCareState: true})
     })
@@ -162,7 +170,7 @@ class ProviderSearch extends Component {
     } else {
       this.props.attemptProviderSearch(this.props)
     }
-    
+
     NavigationActions.DoctorList()
   }
 
@@ -242,46 +250,42 @@ class ProviderSearch extends Component {
   }
 
   _getLocation () {
-    var getCurrentLocation = false
-
     if (this.props.locationStatus == '' || this.props.locationStatus != 'authorized') {
       var locationStatus = ''
       Permissions.getPermissionStatus('location')
       .then(response => {
         locationStatus = response
         if (response == 'authorized' || response == 'undetermined') {
-          getCurrentLocation = true
           this.props.changeLocationPermissionStatus(response)
+          this._getPosition()
         } else {
           Permissions.requestPermission('location')
           .then(response => {
             this.props.changeLocationPermissionStatus(response)
             locationStatus = response
             if (response == 'authorized' || response == 'undetermined') {
-              getCurrentLocation = true
+              this._getPosition()
             }
           })
         }
       })
       this.props.changeLocationPermissionStatus(locationStatus)
     } else if (this.props.locationStatus == 'authorized') {
-      getCurrentLocation = true
+      this._getPosition()
     }
+  }
 
-    if (getCurrentLocation) {
-      navigator.geolocation.getCurrentPosition(
-      (position) => {
-        var newLat = position['coords']['latitude']
-        var newLong = position['coords']['longitude']
+  _getPosition() {
+    navigator.geolocation.getCurrentPosition(
+    (position) => {
+      var newLat = position['coords']['latitude']
+      var newLong = position['coords']['longitude']
 
-        this.props.changeLatitude(newLat)
-        this.props.changeLongitude(newLong)
-        this.props.changeAddress('Using Current Location')
-      },
-        (error) => alert(JSON.stringify(error)),
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
-        })
-    }
+      this.props.changeLatitude(newLat)
+      this.props.changeLongitude(newLong)
+      this.props.changeAddress('Using Current Location')
+    },
+      (error) => alert(JSON.stringify(error)))
   }
 
   _alertForLocationPermission () {
@@ -289,7 +293,7 @@ class ProviderSearch extends Component {
       'Can we access your current location?',
       'We need access so you can see provider data near your location',
       [
-        {text: 'No way', onPress: () => console.log('permission denied'), style: 'cancel'},
+        {text: 'No way', onPress: () => console.tron.log('permission denied'), style: 'cancel'},
         this.state.photoPermission == 'undetermined' ?
         {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
       ]
@@ -467,28 +471,44 @@ class ProviderSearch extends Component {
         </View>
 
         <View style={{flex: 2}}>
-          {this.state.helpStatus ?
+          {
+            this.state.floatClicked ?
+
+            this.state.helpStatus ?
             <View style={styles.urgentCareCircle}>
-              <TouchableOpacity onPress={this.handleNeedHelp.bind(this)}>
+              <TouchableOpacity onPress={this.handleNeedHelp}>
                 <Flb name='urgent-care-circle'
                   color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
               </TouchableOpacity>
             </View>
-          : <View>{this.state._onChecked}</View>}
-          {this.state.floatClicked ?
-          <Card style={styles.urgentCareContainer}>
+          : <View>{this.state._onChecked}</View>
 
-            <TouchableOpacity onPress={this.dismissNeedHelp.bind(this)}>
-            <Text style={styles.dismissUrgentIcon} >{closeIcon}</Text>
-            </TouchableOpacity>
+          : <Card style={styles.urgentCareContainer}>
+
+
+            <Flb name='close-delete' style={styles.dismissUrgentIcon}
+                  color={Colors.flBlue.anvil} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+                  onPress={this.handleNeedHelp} />
+
             <Text style={styles.needHelpText}>Need Help Now?</Text>
             <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
+            <View style={{flexDirection:'row'}}>
+              <View>
             <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
               <Image source={Images.viewListButton} style={styles.viewListButton} />
             </TouchableOpacity>
+            </View>
+          <View style={{marginTop: (Platform.OS === 'ios') ? 23 : 37,marginLeft:7}}>
+            <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
+                  color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+          </View>
+          </View>
           </Card>
-          : null
+
+
           }
+
+
         </View>
 
       </View>

@@ -311,6 +311,8 @@ class AdvancedSearch extends Component {
     var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
     this.props.getSpecialityTypes(selectedCategoryCode)
     this.props.changeCareType(value)
+    this.props.changeSubCategoryCode('')
+    this.props.changeSpecialityType('')
     this.setState({unknownCareState: false}, function () {
       this.setState({unknownCareState: true})
     })
@@ -344,6 +346,10 @@ class AdvancedSearch extends Component {
     this.props.attemptStaffLanguage()
     this.props.attemptDoctorLanguage()
     this._getLocation()
+
+    if (this.props.categoryCode != 'ALL') {
+      this.setState({specialityState: true})
+    }
   }
 
   componentWillReceiveProps (newProps) {
@@ -501,9 +507,11 @@ class AdvancedSearch extends Component {
                 minimumValue={0}
                 maximumValue={100}
                 step={1}
-                maximumTrackTintColor={Colors.flBlue.grey3}
+                maximumTrackTintColor={(Platform.OS === 'ios') ? Colors.flBlue.anvil : Colors.flBlue.ocean}
+                minimumTrackTintColor={(Platform.OS === 'ios') ?Colors.flBlue.ocean : Colors.flBlue.night}
                 style={{ width: Metrics.screenWidth * 0.87,
-                  marginLeft: 10
+                  marginLeft: 10,
+                  backgroundColor:Colors.snow
                 }}
                 onValueChange={this.props.changeSearchRange}
               />
@@ -540,13 +548,14 @@ class AdvancedSearch extends Component {
             </View>
           </View>
 
+           {this.props.configData && this.props.configData.acceptingPatient ?
           <View style={styles.programView}>
             <View style={{ flex: 0.4 }}>
-              {this.props.configData && this.props.configData.acceptingPatient ?
+
                 <Text style={styles.programText}>
                   {this.props.configData.acceptingPatient.displayName}
 
-                </Text> : null}
+                </Text>
             </View>
 
             <View style={{ flex: 0.6, marginTop: 15 }}>
@@ -562,7 +571,12 @@ class AdvancedSearch extends Component {
                   ref='patientType'
                   style={styles.textField}
                   textInputStyle={{
-                    flex: 1, color: Colors.flBlue.ocean,
+                    flex: 1,
+                     color: Colors.flBlue.ocean,
+                   // textAlign:'center',
+                    //alignItems:'center',
+                   // marginRight:30,
+
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                   }}
                   editable={false}
@@ -577,15 +591,17 @@ class AdvancedSearch extends Component {
               </ModalDropdown>
             </View>
           </View>
+          : null}
 
+          {this.props.configData && this.props.configData.workingHours ?
           <View style={styles.programView}>
 
             <View style={{ flex: 0.4 }}>
-              {this.props.configData && this.props.configData.workingHours ?
+
                 <Text style={styles.programText}>
                   {this.props.configData.workingHours.displayName}
                 </Text>
-                  : null}
+
 
             </View>
 
@@ -601,6 +617,8 @@ class AdvancedSearch extends Component {
                   ref='Working Hours'
                   textInputStyle={{
                     flex: 1, color: Colors.flBlue.ocean,
+                    //marginLeft:100,
+                    marginRight:-100,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                   }}
                   style={styles.textField}
@@ -616,7 +634,7 @@ class AdvancedSearch extends Component {
             </View>
 
           </View>
-
+           : null}
           <View style={styles.languageView}>
             <Text style={styles.languageText}>
               Language Selection
@@ -686,14 +704,14 @@ class AdvancedSearch extends Component {
             </View>
 
           </View>
-
+      {this.props.configData && this.props.configData.program ?
           <View style={styles.programView}>
             <View style={{ flex: 0.3 }}>
-              {this.props.configData && this.props.configData.program ?
+
                 <Text style={styles.programText}>
                   {this.props.configData.program.displayName}
                 </Text>
-            : null}
+
             </View>
 
             <View style={{ flex: 0.7, marginTop: 5 }}>
@@ -722,7 +740,7 @@ class AdvancedSearch extends Component {
 
             </View>
           </View>
-
+          : null}
           <View style={styles.nextButton}>
             <TouchableOpacity onPress={() => { this._handleDoctordetail() }}>
               <Image source={Images.getResultsButton}

@@ -105,14 +105,14 @@ class DoctorDetail extends Component {
   }
 
  handleMaps (latitude, longitude) {
-    console.log(latitude, longitude)
+    console.tron.log(latitude, longitude)
     const url = `http://maps.apple.com/?ll=${latitude},${longitude}`
 
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
         Linking.openURL(url)
       } else {
-        console.log('Don\'t know how to go')
+        console.tron.log('Don\'t know how to go')
       }
     })
   }
@@ -136,8 +136,7 @@ class DoctorDetail extends Component {
 
   _displayCondition () {
     if (this.props.fetching) {
-      console.tron.log('im fetching' + fetching)
-      console.log('im fetching' + fetching)
+      
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
@@ -173,7 +172,7 @@ class DoctorDetail extends Component {
                 <View style={{ flex: 1 }}>
                   {this.props.doctordetail.otherAddressList.length > 0 ?
                   <View style={{ flex: 1 }}>
-                      <TouchableOpacity onPress={this.toggle1.bind(this)}>
+                      <TouchableOpacity onPress={this.toggle1}>
                         <Card style={this.state.visible1 ? styles.cardStyle : styles.cardStyle1} >
                           <View style={this.state.visible1 ? styles.plusView1 : styles.plusView}>
                             <View style={{ flex: 2, alignItems: 'center' }}>
@@ -236,7 +235,7 @@ class DoctorDetail extends Component {
 
                     {this.props.doctordetail.address[0].officeHoursList.length > 0 ?
                       <View style={{ flex: 1 }}>
-                        <TouchableOpacity onPress={this.toggle4.bind(this)}>
+                        <TouchableOpacity onPress={this.toggle4}>
                           <Card style={this.state.visible4 ? styles.cardStyle : styles.cardStyle1} >
                             <View style={this.state.visible4 ? styles.plusView1 : styles.plusView}>
                             <View style={{ flex: 2, alignItems: 'center' }}>
@@ -315,7 +314,7 @@ class DoctorDetail extends Component {
 
                   { this.props.doctordetail.contractedSpecialties ||  this.props.doctordetail.servicesOffered ?
                       <View style={{ flex: 1 }}>
-                        <TouchableOpacity onPress={this.toggle2.bind(this)}>
+                        <TouchableOpacity onPress={this.toggle2}>
                           <Card style={this.state.visible2 ? styles.cardStyle : styles.cardStyle1} >
                             <View style={this.state.visible2 ? styles.plusView1 : styles.plusView}>
                             <View style={{ flex: 2, alignItems: 'center' }}>
@@ -403,7 +402,7 @@ class DoctorDetail extends Component {
                 <View style={{ flex: 1 }}>
                   {this.props.doctordetail.programList.length > 0 ?
                       <View style={{ flex: 1 }}>
-                        <TouchableOpacity onPress={this.toggle5.bind(this)}>
+                        <TouchableOpacity onPress={this.toggle5}>
                           <Card style={this.state.visible5 ? styles.cardStyle : styles.cardStyle1} >
                             <View style={this.state.visible5 ? styles.plusView1 : styles.plusView}>
                             <View style={{ flex: 2, alignItems: 'center' }}>

@@ -6,13 +6,14 @@ export function * sendNetworkListRequest (api, {data}) {
 
   if (response.ok) {
     var data = response.data
-    console.log('im network data' + data)
-    console.tron.log('im network data' + data)
-    for (var i = 0; i < data.data.memberNetworkList.length; i++) {
-      var networkItem = data.data.memberNetworkList[i]
-      var networkCodeList = []
-      if (networkItem['health']) {
-        networkCodeList.push(networkItem['networkCode'])
+      console.tron.log('im network data' + data)
+    if (data.data.memberNetworkList) {
+      for (var i = 0; i < data.data.memberNetworkList.length; i++) {
+        var networkItem = data.data.memberNetworkList[i]
+        var networkCodeList = []
+        if (networkItem['health']) {
+          networkCodeList.push(networkItem['networkCode'])
+        }
       }
     }
 
@@ -20,8 +21,7 @@ export function * sendNetworkListRequest (api, {data}) {
     yield put(ProviderActions.sendNetworkListSuccess(data))
   } else {
     var error = response.problem
-    console.log('im network error' + error)
-    console.tron.log('im network error' + error)
+        console.tron.log('im network error' + error)
     yield put(ProviderActions.sendNetworkListFailure(error))
   }
 }
@@ -48,7 +48,7 @@ export function * sendPharmacySearchRequest (api, {data}) {
     yield put(ProviderActions.sendPharmacySearchSuccess(data))
   } else {
     var error = response.problem
-    console.log('im pharmacy error' + error)
+
     console.tron.log('im pharmacy error' + error)
     yield put(ProviderActions.sendPharmacySearchFailure(error))
   }
@@ -58,12 +58,10 @@ export function * sendUrgentSearchRequest (api, {data}) {
   const response = yield call(api.postUrgentSearch, data)
   if (response.ok) {
     var data = response.data
-    console.log('im urgent data' + data)
-    console.tron.log('im urgent data' + data)
+     console.tron.log('im urgent data' + data)
     yield put(ProviderActions.sendUrgentSearchSuccess(data))
   } else {
     var error = response.problem
-    console.log('im urgent search error' + error)
     console.tron.log('im urgent search error' + error)
     yield put(ProviderActions.sendUrgentSearchFailure(error))
   }
@@ -75,21 +73,17 @@ export function * sendCareTypeRequest (api, {data}) {
   if (response.ok) {
     var data = response.data
     var allCategory = {"categoryCode": "ALL", "categoryName": "All"}
-    var noPrefCategory = {"categoryCode": "", "categoryName": "No Preference"}
     data.data.planCategoryList.splice(0, 0, allCategory)
-    data.data.planCategoryList.push(noPrefCategory)
     yield put(ProviderActions.sendCareTypeSuccess(data))
   } else {
     var error = response.problem
-    console.log('im care error' + error)
-    console.tron.log('im care error' + error)
+     console.tron.log('im care error' + error)
     yield put(ProviderActions.sendCareTypeFailure(error))
   }
 }
 
 export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
-  console.log(data)
-  const response = yield call(api.getSpecialityTypes, selectedCategoryCode)
+const response = yield call(api.getSpecialityTypes, selectedCategoryCode)
 
   if (response.ok) {
     var data = response.data
@@ -101,7 +95,6 @@ export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
     yield put(ProviderActions.sendSpecialityTypeSuccess(data))
   } else {
     var error = response.problem
-    console.log('im speciality error' + error)
     console.tron.log('im speciality error' + error)
     yield put(ProviderActions.sendSpecialityTypeFailure(error))
   }
@@ -116,7 +109,6 @@ export function * sendDoctorLanguageRequest (api, {data}) {
     yield put(ProviderActions.sendDoctorLanguageSuccess(data))
   } else {
     var error = response.problem
-    console.log('im doctor lang error' + error)
     console.tron.log('im doctor lang error' + error)
     yield put(ProviderActions.sendDoctorLanguageFailure(error))
   }
@@ -131,7 +123,6 @@ export function * sendStaffLanguageRequest (api, {data}) {
     yield put(ProviderActions.sendStaffLanguageSuccess(data))
   } else {
     var error = response.problem
-    console.log('im staff lang error' + error)
     console.tron.log('im staff lang error' + error)
     yield put(ProviderActions.sendStaffLanguageFailure(error))
   }
@@ -145,8 +136,7 @@ export function * sendConfigTypeRequest (api) {
     yield put(ProviderActions.sendConfigTypeSuccess(data))
   } else {
     var error = response.problem
-    console.log('im Config error' + error)
-    console.tron.log('im Config error' + error)
+       console.tron.log('im Config error' + error)
     yield put(ProviderActions.sendConfigTypeFailure(error))
   }
 }
@@ -159,7 +149,6 @@ export function * sendDoctorDetailRequest (api, {data}) {
     yield put(ProviderActions.sendDoctorDetailSuccess(data))
   } else {
     var error = response.problem
-    console.log('im doctor detail error' + error)
     console.tron.log('im doctor detail error' + error)
     yield put(ProviderActions.sendDoctorDetailFailure(error))
   }

@@ -98,7 +98,7 @@ class SettingsContent extends Component {
   }
   handlePressFindCare= () => {
     this.toggleDrawer()
-    NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})
+   NavigationActions[this.props.visibilityRules.opdTile.routerName]()
   }
   handlePressPayment= () => {
     this.toggleDrawer()

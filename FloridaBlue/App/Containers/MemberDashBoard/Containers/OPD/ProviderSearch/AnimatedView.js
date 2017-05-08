@@ -101,7 +101,7 @@ class AnimatedView extends Component {
         // alert(doctor_id)
     var doctor = _.find(markerList, {id: doctor_id})
     if (doctor) {
-      console.log(doctor)
+      console.tron.log(doctor)
       this.setState({
         selectedDoctor: doctor
       })

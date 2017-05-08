@@ -28,13 +28,13 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     timeout: 60000
   })
 
-  const naviMonitor = (response) => console.log('hey!  listen! ', response)
+  const naviMonitor = (response) => console.tron.log('hey!  listen! ', response)
   api.addMonitor(naviMonitor)
 
   // Force OpenWeather API Key on all requests
 
   api.addRequestTransform((request) => {
-    console.log('hey ther I am ', request)
+    console.tron.log('hey ther I am ', request)
   })
 
   // Wrap api's addMonitor to allow the calling code to attach

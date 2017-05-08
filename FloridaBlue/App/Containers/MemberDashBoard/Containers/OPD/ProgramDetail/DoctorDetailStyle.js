@@ -16,7 +16,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: Colors.bg2
+    backgroundColor: Colors.snow,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -29,19 +29,31 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.sky
   },
+  cardview: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderRadius: 2,
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowRadius: 1,
+    shadowOffset: {
+      height: 1,
+      width: 0.3
+    }
+
+  },
   cardButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.snow,
     marginTop: 10
-    // flex:1
    // height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,
    // marginBottom:-3
   },
   cardButtonView: {
     backgroundColor: Colors.flBlue.ocean,
-    width: Metrics.screenWidth * 0.47,
+    width: Metrics.screenWidth * 0.5,
     justifyContent: 'center',
     alignItems: 'center',
    // marginRight : 1,
@@ -53,7 +65,7 @@ export default StyleSheet.create({
   },
   cardButtonView1: {
     backgroundColor: Colors.flBlue.ocean,
-    width: Metrics.screenWidth * 0.47,
+    width: Metrics.screenWidth * 0.5,
     justifyContent: 'center',
     alignItems: 'center',
     borderLeftWidth: 1,
@@ -81,7 +93,6 @@ export default StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center'
   },
-
   h1: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.baseMargin,
@@ -97,6 +108,22 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600'
 
+  },
+  h5: {
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    marginTop: Metrics.smallMargin,
+    color: Colors.flBlue.purple,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400',
+    textAlign: 'auto'
+  },
+
+  h5_2: {
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    color: Colors.flBlue.purple,
+     marginTop: Metrics.smallMargin,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400'
   },
   h4: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
@@ -119,6 +146,16 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: 'bold'
   },
+  plannameText: {
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0027,
+  //  textAlign: 'center',
+    marginTop: Metrics.baseMargin,
+    color: Colors.flBlue.grey5,
+   // paddingTop: Metrics.smallMargin,
+    // marginLeft: Metrics.doubleBaseMargin,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '500'
+  },
   spinnerView: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -127,28 +164,17 @@ export default StyleSheet.create({
   },
   subheading: {
     color: Colors.flBlue.anvil,
+   // fontSize: Fonts.size.h5,
     marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.003,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029
+
   },
   spinnerText: {
     color: Colors.flBlue.anvil,
     marginTop: 20
   },
-  footerView: {
-    flex: 1,
-   // backgroundColor: Colors.flBlue.grass,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderLeftWidth: 0.5,
-    borderColor: Colors.snow,
-    flexDirection: 'row'
-  },
-  footerText: {
-    color: Colors.snow,
-    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-    fontWeight: '500'
-  },
+
   refinesearch: {
     flex: 1,
     backgroundColor: Colors.flBlue.grass,
@@ -187,5 +213,83 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
     marginLeft: Metrics.baseMargin,
     fontWeight: '400'
+  },
+  directionText1: {
+    color: Colors.flBlue.ocean,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
+    //marginLeft: Metrics.baseMargin,
+    fontWeight: '400',
+    textDecorationLine:'underline',
+    textDecorationColor:Colors.flBlue.ocean
+  },
+  cardStyle: {
+    flex: 1,
+    backgroundColor: Colors.flBlue.grey3
+  },
+  cardStyle1: {
+    flex: 1,
+    backgroundColor: Colors.bg2
+  },
+  plusView: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    margin: 10
+    // justifyContent:'flex-start',
+    //  backgroundColor:Colors.bg2,
+      // height: Metrics.screenHeight - (Metrics.screenHeight * 0.89)
+// margin:10
+      // height:60
+  },
+  plusView1: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+    margin: 10
+
+      // height:60
+  },
+  plusText: {
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+    color: Colors.flBlue.ocean,
+    marginLeft: 20,
+    fontWeight: '500'
+  },
+  plusText1: {
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+    color: Colors.snow,
+    marginLeft: 20,
+    fontWeight: '500'
+  },
+  addressText: {
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+    color: Colors.snow,
+    marginLeft: 20,
+    fontWeight: '500'
+    // textAlign:'center'
+  },
+  addressView: {
+    flex: 2,
+    width: 50,
+    marginRight: 10,
+    padding: 5,
+    borderRadius: 10,
+    backgroundColor: Colors.flBlue.ocean
+  },
+  addressView1: {
+    flex: 2,
+    width: 50,
+    marginRight: 10,
+    padding: 5,
+    borderRadius: 10,
+    backgroundColor: Colors.flBlue.grey6
+  },
+  map: {
+    height: Metrics.screenHeight * 0.5,
+    flex: 1
+  },
+  mapMarker: {
+    width: 10,
+    height: 10
   }
 })

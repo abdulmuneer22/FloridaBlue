@@ -180,7 +180,7 @@ class DoctorList extends Component {
 
                    </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={{flex: 1}} onPress={() => this._mapView()}>
+                <TouchableOpacity style={{flex: 1, backgroundColor:Colors.flBlue.grass}} onPress={() => this._mapView()}>
                   <View style={styles.footerView}>
 
                      <View style={{flex: 0.4, alignItems: 'center'}}>

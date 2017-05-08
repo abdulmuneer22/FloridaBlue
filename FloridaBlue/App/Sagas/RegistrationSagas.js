@@ -70,7 +70,7 @@ export function * sendIdentificationRequest (api, {data}) {
       'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Click Support for help.'
     }
    // data.identificationStatusMessage = getReasonMessage(data.indentificationStatus)
-    console.log(data)
+    console.tron.log(data)
     yield put(RegistrationActions.sendIdentificationFailure(data))
   }
 }

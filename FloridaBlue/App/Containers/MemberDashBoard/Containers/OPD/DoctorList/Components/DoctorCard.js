@@ -44,27 +44,27 @@ class DoctorCard extends Component {
   }
 
   handleCall (phone) {
-    console.log(phone)
+    console.tron.log(phone)
     const url = `tel:${phone}`
 
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
         Linking.openURL(url)
       } else {
-        console.log('Don\'t know how to open URI: ')
+        console.tron.log('Don\'t know how to open URI: ')
       }
     })
   }
 
   handleMaps (latitude, longitude) {
-    console.log(latitude, longitude)
+    console.tron.log(latitude, longitude)
     const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
 
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
         Linking.openURL(url)
       } else {
-        console.log('Don\'t know how to go')
+        console.tron.log('Don\'t know how to go')
       }
     })
   }

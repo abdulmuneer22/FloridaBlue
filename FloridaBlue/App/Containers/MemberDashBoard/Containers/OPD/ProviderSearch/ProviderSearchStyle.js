@@ -28,7 +28,7 @@ export default StyleSheet.create({
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
   },
   h1: {
-    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
+    fontSize: (Platform.OS === 'ios') ? Fonts.size.h5 * Metrics.screenWidth * 0.0025 : Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.anvil,
     textAlign: 'center',
     marginTop: Metrics.doubleBaseMargin,
@@ -163,7 +163,8 @@ export default StyleSheet.create({
   },
   dropdown: {
     width: Metrics.screenWidth * 0.9,
-    marginLeft: Metrics.doubleBaseMargin
+    marginLeft: Metrics.doubleBaseMargin,
+   
   },
   dropdownItem: {
     fontSize: Fonts.size.regular,
@@ -171,7 +172,8 @@ export default StyleSheet.create({
     fontWeight: '400',
     paddingLeft: Metrics.smallMargin,
     paddingTop: Metrics.smallMargin,
-    paddingBottom: Metrics.smallMargin
+    paddingBottom: Metrics.smallMargin,
+    color:Colors.flBlue.night
   },
   locationTextContainer: {
     flexDirection: 'column',
@@ -244,8 +246,8 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 0.9,
     height: Metrics.screenWidth * 0.9,
     flex: 1,
-    zIndex: -1,
-    // backgroundColor:Colors.transparent,
+   // zIndex: -1,
+    // backgroundColor:Colors.snow,
     // borderWidth: 1,
     borderRadius: Metrics.screenWidth * 1,
     // borderColor: '#708090',

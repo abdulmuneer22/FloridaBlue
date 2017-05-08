@@ -52,7 +52,7 @@ class CCard extends Component {
     var temp = this.props.data
     var objectName = this.props.objectName
     var temp1 = temp[objectName]
-    console.log('cardImage' + this.props.cardImage)
+    console.tron.log('cardImage' + this.props.cardImage)
     if (this.props.leftActive) {
       if (temp1 != null && temp1.inNetwork != null && temp1.inNetwork.networkBenefits != null) {
         card = temp1.inNetwork.networkBenefits

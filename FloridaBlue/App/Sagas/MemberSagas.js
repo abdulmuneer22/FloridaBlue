@@ -45,7 +45,7 @@ export function * member (api, {smToken}) {
     yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, visibleDashboard, defaultContract))
   } else {
     console.tron.log('failure ')
-    console.log(response)
+    console.tron.log(response)
     var error = response.problem
     yield put(MemberActions.memberFailure(error))
   }
