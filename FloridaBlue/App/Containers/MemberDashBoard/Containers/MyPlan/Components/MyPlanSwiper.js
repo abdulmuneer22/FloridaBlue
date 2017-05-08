@@ -133,14 +133,14 @@ class MyPlanSwiper extends Component {
            
              
                           
-             <LinearGradient colors={['#ECE9E6', '#FFFFFF']} style={{ flex: 1, alignItems: 'center',
+             <Card  style={{ flex: 1, alignItems: 'center',
               margin:15
               }} >
-              <View style={{ flex: 1, alignItems: 'center'
-
+              <View style={{ flex: 1, alignItems: 'center',
+               
               }}>
                 
-                <View style={{flex: 1, alignItems: 'center', paddingTop: 20}}>
+                <View style={{flex: 1, alignItems: 'center', paddingTop: 20 , }}>
                   
                   <Text style={styles.headerText}>
                     {network.title.en}
@@ -151,24 +151,21 @@ class MyPlanSwiper extends Component {
                   </Text>
                 </View>
               </View>
-               <View style={{flex:1}}/>
-              <View style={{flex: 1, alignItems: 'center'}}>
-                   <View style={{margin: 0}}>
+              
+              <View style={{flex: 1, alignItems: 'center'} }>
+                   
                   <SemiCircle
-                    pieWidth={150}
-                    pieHeight={150}
-                    width={250}
-                    height={185}
-                    barWidth={10}
-
-                    barTopColor={Colors.snow}
-                    barBottomColor={Colors.flBlue.grass}
+                    width={(Metrics.screenWidth)-(Metrics.screenWidth * 0.65)}
+                    height={(Metrics.screenHeight)-(Metrics.screenHeight *0.8)}
+                    barWidth={1}
+                    barTopColor={Colors.flBlue.grass}
+                    barBottomColor={Colors.flBlue.night}
                     percent={Object.keys(network.planBenefits).length > 0 && network.planBenefits[0].value > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value) : 0} />
-                </View>
+                
               </View>
-                   <View style={{flex:1}}/>
+              <View style={{flex:1}}/>
               <View style={{flex: 1, alignItems: 'center'}}>
-                <View style={{flex: 1, alignItems: 'center', flexDirection: 'row-reverse'
+                <View style={{flex: 1, alignItems: 'center', flexDirection: 'row'
                 }}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
                     return (<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', margin: 4
@@ -203,7 +200,7 @@ class MyPlanSwiper extends Component {
                 </View>
                <View style={{flex:1}}/>
               </View>
-              </LinearGradient>
+              </Card>
               
                         
            
