@@ -117,7 +117,6 @@ class DoctorDetail extends Component {
     })
   }
   componentDidMount () {
-    console.log(this.props)
     this.props.attemptDoctorDetail(this.props)
   }
 
@@ -136,7 +135,6 @@ class DoctorDetail extends Component {
   }
 
   _displayCondition () {
-    console.tron.log("DETAILS FETCHING :: "+this.props.fetching)
     if (this.props.fetching) {
       
       return (<View style={styles.spinnerView}>
@@ -235,7 +233,7 @@ class DoctorDetail extends Component {
                         
                   <View style={{ flex: 1 }}>
 
-                    {this.props.doctordetail.address[0].officeHoursList.length > 0 ?
+                    {this.props.doctordetail && this.props.doctordetail.address[0] && this.props.doctordetail.address[0].officeHoursList && this.props.doctordetail.address[0].officeHoursList.length > 0 ?
                       <View style={{ flex: 1 }}>
                         <TouchableOpacity onPress={this.toggle4}>
                           <Card style={this.state.visible4 ? styles.cardStyle : styles.cardStyle1} >
@@ -334,7 +332,7 @@ class DoctorDetail extends Component {
 
                         {this.state.visible2 ? <HideableView visible={this.state.visible2}>
                           
-                           {this.props.doctordetail && this.props.doctordetail.contractedSpecialties.length > 0 ?
+                           {this.props.doctordetail && this.props.doctordetail.contractedSpecialties && this.props.doctordetail.contractedSpecialties.length > 0 ?
                           <View style={{flex:1}}>
                            <View style={{ flex: 1, flexDirection: 'row' }}>
                             <View style={{ flex: 3 }} />
@@ -363,7 +361,7 @@ class DoctorDetail extends Component {
                           :null}
 
 
-                           {this.props.doctordetail && this.props.doctordetail.servicesOffered.length > 0 ?
+                           {this.props.doctordetail && this.props.doctordetail.servicesOffered && this.props.doctordetail.servicesOffered.length > 0 ?
                            <View style={{flex:1}}>
                           <View style={{ flex: 1, flexDirection: 'row' }}>
                             <View style={{ flex: 3 }} />
@@ -402,7 +400,7 @@ class DoctorDetail extends Component {
                 </View>
 
                 <View style={{ flex: 1 }}>
-                  {this.props.doctordetail.programList.length > 0 ?
+                  {this.props.doctordetail && this.props.doctordetail.programList && this.props.doctordetail.programList.length > 0 ?
                       <View style={{ flex: 1 }}>
                         <TouchableOpacity onPress={this.toggle5}>
                           <Card style={this.state.visible5 ? styles.cardStyle : styles.cardStyle1} >
@@ -472,10 +470,13 @@ class DoctorDetail extends Component {
     return (
 
       <View style={styles.container} >
-        <View>
-          {this._renderHeader()}
-        </View>
-        {this._displayCondition()}
+        
+            {this._renderHeader()}
+            <View style={{flex:1}}>
+              {this._displayCondition()}
+              </View>
+
+            
       </View>
     )
   }
@@ -485,13 +486,19 @@ DoctorDetail.propTypes = {
   data: PropTypes.object,
   provider: PropTypes.object,
   attemptDoctorDetail: PropTypes.func,
-  error: PropTypes.string
+  error: PropTypes.string,
+  saveProvider: PropTypes.array,
+  attemptHandleLeft: PropTypes.func,
+  attemptHandleRight: PropTypes.func
 }
 
 const mapStateToProps = (state) => {
   return {
     fetching: state.provider.fetching,
     error: state.provider.error,
+    leftActive: state.provider.leftActive,
+    rightActive: state.provider.rightActive,
+    saveProvider: state.saveprovider.data,
     doctordetail: state.provider.doctordetail,
     providerKey: state.provider.providerKey,
     addressKey: state.provider.addressKey
@@ -501,7 +508,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptDoctorDetail: (data) => dispatch(ProviderActions.sendDoctorDetailRequest(data)),
-   
+    addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
+    removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey))
   }
 }
 

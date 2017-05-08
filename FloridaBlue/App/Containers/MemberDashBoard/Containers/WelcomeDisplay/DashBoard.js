@@ -57,7 +57,7 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-     <LinearGradient colors={['#ECE9E6', '#FFFFFF']}>
+     
     <Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{
         alignItems: 'center',
@@ -77,7 +77,7 @@ class LandingScreen extends Component {
       </View>
 
     </Image>
-    </LinearGradient>
+   
     
     )
   }
