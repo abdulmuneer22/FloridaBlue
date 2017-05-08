@@ -109,78 +109,64 @@ export const INITIAL_STATE = Immutable({
 export const _sendNetworkListRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendNetworkListSuccess
-export const _sendNetworkListSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, transactionId: data.data.transactionId, memberNetworkList: data.data.memberNetworkList })
+export const _sendNetworkListSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, transactionId: data.data.transactionId, memberNetworkList: data.data.memberNetworkList })
 
 // sendNetworkListFailure
-export const _sendNetworkListFailure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, data: {}, error })
+export const _sendNetworkListFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, data: {}, error })
 
 // sendProviderSearchRequest
 export const _sendProviderSearchRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendProviderSearchSuccess
-export const _sendProviderSearchSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
+export const _sendProviderSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
 
 // sendProviderSearchFailure
-export const _sendProviderSearchFailure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, data: {}, error })
+export const _sendProviderSearchFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, data: {}, error })
 
 // sendPharmacySearchRequest
 export const _sendPharmacySearchRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendPharmacySearchSuccess
-export const _sendPharmacySearchSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
+export const _sendPharmacySearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
 
 // sendPharmacySearchFailure
-export const _sendPharmacySearchFailure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error, data: {} })
+export const _sendPharmacySearchFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
 // sendUrgentSearchRequest
 export const _sendUrgentSearchRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendUrgentSearchSuccess
-export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
+export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
 
 // sendUrgentSearchFailure
-export const _sendUrgentSearchFailure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error, data: {} })
+export const _sendUrgentSearchFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
 // sendCareTypeRequest
 export const _sendCareTypeRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendCareTypeSuccess
-export const _sendCareTypeSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, planCategoryList: data.data.planCategoryList})
+export const _sendCareTypeSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, planCategoryList: data.data.planCategoryList})
 
 // sendCareTypeFailure
-export const _sendCareTypeFailure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error, data: {} })
+export const _sendCareTypeFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
 // sendSpecialityTypeRequest
 export const _sendSpecialityTypeRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendSpecialityTypeSuccess
-export const _sendSpecialityTypeSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, planSubCategoryList: data.data.planSubCategoryList})
+export const _sendSpecialityTypeSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, planSubCategoryList: data.data.planSubCategoryList})
 
 // sendSpecialityTypeFailure
-export const _sendSpecialityTypeFailure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error, data: {} })
+export const _sendSpecialityTypeFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
   // sendDoctorLanguageRequest
 export const _sendDoctorLanguageRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendDoctorLanguagSuccess
-export const _sendDoctorLanguageSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, providerLanguages: data.data.languageList})
+export const _sendDoctorLanguageSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, providerLanguages: data.data.languageList})
 
 // sendDoctorLanguageFailure
-export const _sendDoctorLanguageFailure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error, data: {} })
+export const _sendDoctorLanguageFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
   // sendStaffLanguageRequest
 export const _sendStaffLanguageRequest = (state: Object) => state.merge({ fetching: true })
@@ -196,12 +182,10 @@ export const _sendStaffLanguageFailure = (state: Object, {error}: Object) => sta
 export const _sendDoctorDetailRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendStaffLanguagSuccess
-export const _sendDoctorDetailSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, doctordetail: data.data, error: null})
+export const _sendDoctorDetailSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, doctordetail: data.data, error: null})
 
 // sendDoctorDetailsFailure
-export const _sendDoctorDetailFailure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error, data: {} })
+export const _sendDoctorDetailFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
  // sendConfigTypeRequest
 export const _sendConfigTypeRequest = (state: Object) => state.merge({ fetching: true})

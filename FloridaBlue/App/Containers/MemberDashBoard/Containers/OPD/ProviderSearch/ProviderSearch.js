@@ -71,7 +71,8 @@ class ProviderSearch extends Component {
       customLocationState: false,
       urgentCareState: false,
       floatClicked: false,
-      helpStatus: true
+      helpStatus: true,
+      userWantsResults: false
     }
 
     this.handleNeedHelp = this.handleNeedHelp.bind(this)
@@ -110,6 +111,10 @@ class ProviderSearch extends Component {
       this.setState({specialityState: false}, function () {
         this.setState({specialityState: true})
       })
+    }
+
+    if (newProps.member && this.state.userWantsResults) {
+      this._getResults()
     }
   }
 
@@ -164,14 +169,20 @@ class ProviderSearch extends Component {
 
   _getResults () {
     this.props.changeUrgentCareBanner(false)
+    this.setState({userWantsResults: true})
 
-    if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
-      this.props.attemptPharmacySearch(this.props)
+    if (this.props.member) {
+      if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
+        this.props.attemptPharmacySearch(this.props)
+      } else {
+        this.props.attemptProviderSearch(this.props)
+      }
+
+      NavigationActions.DoctorList()
+      this.setState({userWantsResults: false})
     } else {
-      this.props.attemptProviderSearch(this.props)
+      this.props.attemptNetworkList()
     }
-
-    NavigationActions.DoctorList()
   }
 
   _viewListResults () {
@@ -561,7 +572,8 @@ const mapDispatchToProps = (dispatch) => {
     changeAddress: (address) => dispatch(ProviderActions.changeAddress(address)),
     changeHomeAddress: (homeAddress) => dispatch(ProviderActions.changeHomeAddress(homeAddress)),
     changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus)),
-    changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner))
+    changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner)),
+    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
   }
 }
 

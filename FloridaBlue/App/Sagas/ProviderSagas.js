@@ -6,7 +6,7 @@ export function * sendNetworkListRequest (api, {data}) {
 
   if (response.ok) {
     var data = response.data
-      console.tron.log('im network data' + data)
+    
     if (data.data.memberNetworkList) {
       for (var i = 0; i < data.data.memberNetworkList.length; i++) {
         var networkItem = data.data.memberNetworkList[i]
