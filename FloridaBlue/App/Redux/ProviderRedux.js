@@ -188,8 +188,7 @@ export const _sendStaffLanguageSuccess = (state: Object, {data}: Object) =>
   state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, staffLanguages: data.data.languageList})
 
 // sendStaffLanguageFailure
-export const _sendStaffLanguageFailure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error, data: {} })
+export const _sendStaffLanguageFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
   // sendDoctorDetailsRequest
 export const _sendDoctorDetailRequest = (state: Object) => state.merge({ fetching: true })
@@ -206,89 +205,82 @@ export const _sendDoctorDetailFailure = (state: Object, {error}: Object) =>
 export const _sendConfigTypeRequest = (state: Object) => state.merge({ fetching: true})
 
 // sendConfigTypeSuccess
-export const _sendConfigTypeSuccess = (state: Object, {data}: Object) =>
-  state.merge({fetching: false, configData: data.data, error: null})
+export const _sendConfigTypeSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, configData: data.data, error: null})
 
 // sendConfigTypeFailure
-export const _sendConfigTypeFailure = (state: Object, {error}: Object) =>
-  state.merge({ fetching: false, error, data: {} })
+export const _sendConfigTypeFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
 // categoryCode
-export const _changeCategoryCode = (state: Object, {categoryCode}: Object) => state.merge({fetching: false, categoryCode})
+export const _changeCategoryCode = (state: Object, {categoryCode}: Object) => state.merge({categoryCode})
 
 // subCategoryCode
-export const _changeSubCategoryCode = (state: Object, {subCategoryCode}: Object) => state.merge({fetching: false, subCategoryCode})
+export const _changeSubCategoryCode = (state: Object, {subCategoryCode}: Object) => state.merge({subCategoryCode})
 
 // providerName
-export const _changeProviderName = (state: Object, {providerName}: Object) => state.merge({fetching: false, providerName})
+export const _changeProviderName = (state: Object, {providerName}: Object) => state.merge({providerName})
 
 // careType
-export const _changeCareType = (state: Object, {careType}: Object) => state.merge({fetching: false, careType})
+export const _changeCareType = (state: Object, {careType}: Object) => state.merge({careType})
 
 // specialityType
-export const _changeSpecialityType = (state: Object, {specialityType}: Object) => state.merge({fetching: false, specialityType})
+export const _changeSpecialityType = (state: Object, {specialityType}: Object) => state.merge({specialityType})
 
 // currentLocation
-export const _changeCurrentLocation = (state: Object, {currentLocation}: Object) => state.merge({fetching: false, currentLocation})
+export const _changeCurrentLocation = (state: Object, {currentLocation}: Object) => state.merge({currentLocation})
 
 // latitude
-export const _changeLatitude = (state: Object, {latitude}: Object) => state.merge({fetching: false, latitude})
+export const _changeLatitude = (state: Object, {latitude}: Object) => state.merge({latitude})
 
 // longitude
-export const _changeLongitude = (state: Object, {longitude}: Object) => state.merge({fetching: false, longitude})
+export const _changeLongitude = (state: Object, {longitude}: Object) => state.merge({longitude})
 
 // address
-export const _changeAddress = (state: Object, {address}: Object) => state.merge({fetching: false, address})
+export const _changeAddress = (state: Object, {address}: Object) => state.merge({address})
 
 // homeAddress
-export const _changeHomeAddress = (state: Object, {homeAddress}: Object) => state.merge({fetching: false, homeAddress})
+export const _changeHomeAddress = (state: Object, {homeAddress}: Object) => state.merge({homeAddress})
 
 // searchRange
-export const _changeSearchRange = (state: Object, {searchRange}: Object) => state.merge({fetching: false, searchRange})
+export const _changeSearchRange = (state: Object, {searchRange}: Object) => state.merge({searchRange})
 
 // locationStatus
-export const _changeLocationPermissionStatus = (state: Object, {locationStatus}: Object) => state.merge({fetching: false, locationStatus})
+export const _changeLocationPermissionStatus = (state: Object, {locationStatus}: Object) => state.merge({locationStatus})
 
 // AcceptPatientType
-export const _changePatientType = (state: Object, {acceptingPatientsIndicator}: Object) =>
-      state.merge({fetching: false, acceptingPatientsIndicator})
+export const _changePatientType = (state: Object, {acceptingPatientsIndicator}: Object) => state.merge({acceptingPatientsIndicator})
 
 // DoctorLanguage
-export const _changeDoctorLanguage = (state: Object, {providerLanguage}: Object) =>
-      state.merge({fetching: false, providerLanguage})
+export const _changeDoctorLanguage = (state: Object, {providerLanguage}: Object) => state.merge({providerLanguage})
 
 // StaffLanguage
-export const _changeStaffLanguage = (state: Object, {staffLanguage}: Object) =>
-      state.merge({fetching: false, staffLanguage})
+export const _changeStaffLanguage = (state: Object, {staffLanguage}: Object) => state.merge({staffLanguage})
 
 // ProgramList
-export const _changeProgramType = (state: Object, {programsList}: Object) =>
-      state.merge({fetching: false, programsList})
+export const _changeProgramType = (state: Object, {programsList}: Object) => state.merge({programsList})
 
 // officeHours
-export const _changeTimeType = (state: Object, {officeHours}: Object) =>
-      state.merge({fetching: false, officeHours})
+export const _changeTimeType = (state: Object, {officeHours}: Object) => state.merge({officeHours})
 
  // genderType
-export const _changeGenderType = (state: Object, {gender}: Object) => state.merge({fetching: false, gender})
+export const _changeGenderType = (state: Object, {gender}: Object) => state.merge({gender})
 
 // networkList
-export const _changeNetworkCodeList = (state: Object, {networkCodeList}: Object) => state.merge({fetching: false, networkCodeList})
+export const _changeNetworkCodeList = (state: Object, {networkCodeList}: Object) => state.merge({networkCodeList})
 
 // addressKey
-export const _changeAddressKey = (state: Object, {addressKey}: Object) => state.merge({fetching: false, addressKey})
+export const _changeAddressKey = (state: Object, {addressKey}: Object) => state.merge({addressKey})
 
 // providerKey
-export const _changeProviderKey = (state: Object, {providerKey}: Object) => state.merge({fetching: false, providerKey})
+export const _changeProviderKey = (state: Object, {providerKey}: Object) => state.merge({providerKey})
 
 // latDelta
-export const _changeLatDelta = (state: Object, {latDelta}: Object) => state.merge({fetching: false, latDelta})
+export const _changeLatDelta = (state: Object, {latDelta}: Object) => state.merge({latDelta})
 
 // longDelta
-export const _changeLongDelta = (state: Object, {longDelta}: Object) => state.merge({fetching: false, longDelta})
+export const _changeLongDelta = (state: Object, {longDelta}: Object) => state.merge({longDelta})
 
 // showUrgentBanner
-export const _changeUrgentCareBanner = (state: Object, {showUrgentCareBanner}: Object) => state.merge({fetching: false, showUrgentCareBanner})
+export const _changeUrgentCareBanner = (state: Object, {showUrgentCareBanner}: Object) => state.merge({showUrgentCareBanner})
 
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {
