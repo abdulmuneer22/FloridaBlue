@@ -85,6 +85,7 @@ class ProviderSearch extends Component {
   componentDidMount () {
     this.props.attemptCareTypes()
     this._getLocation()
+    this._resetState()
 
     var addressLine1 = this.props.member.defaultContract.homeAddress.addressline1
     var addressLine2 = ''
@@ -98,6 +99,10 @@ class ProviderSearch extends Component {
     var fullAddress = addressLine1 + addressLine2 + ' ' + city + ', ' + state + ' ' + zip
     this.props.changeHomeAddress(fullAddress)
     this.props.changeAddress(fullAddress)
+
+    if (this.props.categoryCode != 'ALL') {
+      this.setState({specialityState: true})
+    }
   }
 
   componentWillReceiveProps (newProps) {
@@ -136,6 +141,8 @@ class ProviderSearch extends Component {
     var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
     this.props.getSpecialityTypes(selectedCategoryCode)
     this.props.changeCareType(value)
+    this.props.changeSubCategoryCode('')
+    this.props.changeSpecialityType('')
     this.setState({unknownCareState: false}, function () {
       this.setState({unknownCareState: true})
     })
@@ -163,7 +170,7 @@ class ProviderSearch extends Component {
     } else {
       this.props.attemptProviderSearch(this.props)
     }
-    
+
     NavigationActions.DoctorList()
   }
 
@@ -243,46 +250,42 @@ class ProviderSearch extends Component {
   }
 
   _getLocation () {
-    var getCurrentLocation = false
-
     if (this.props.locationStatus == '' || this.props.locationStatus != 'authorized') {
       var locationStatus = ''
       Permissions.getPermissionStatus('location')
       .then(response => {
         locationStatus = response
         if (response == 'authorized' || response == 'undetermined') {
-          getCurrentLocation = true
           this.props.changeLocationPermissionStatus(response)
+          this._getPosition()
         } else {
           Permissions.requestPermission('location')
           .then(response => {
             this.props.changeLocationPermissionStatus(response)
             locationStatus = response
             if (response == 'authorized' || response == 'undetermined') {
-              getCurrentLocation = true
+              this._getPosition()
             }
           })
         }
       })
       this.props.changeLocationPermissionStatus(locationStatus)
     } else if (this.props.locationStatus == 'authorized') {
-      getCurrentLocation = true
+      this._getPosition()
     }
+  }
 
-    if (getCurrentLocation) {
-      navigator.geolocation.getCurrentPosition(
-      (position) => {
-        var newLat = position['coords']['latitude']
-        var newLong = position['coords']['longitude']
+  _getPosition() {
+    navigator.geolocation.getCurrentPosition(
+    (position) => {
+      var newLat = position['coords']['latitude']
+      var newLong = position['coords']['longitude']
 
-        this.props.changeLatitude(newLat)
-        this.props.changeLongitude(newLong)
-        this.props.changeAddress('Using Current Location')
-      },
-        (error) => alert(JSON.stringify(error)),
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
-        })
-    }
+      this.props.changeLatitude(newLat)
+      this.props.changeLongitude(newLong)
+      this.props.changeAddress('Using Current Location')
+    },
+      (error) => alert(JSON.stringify(error)))
   }
 
   _alertForLocationPermission () {
@@ -482,11 +485,11 @@ class ProviderSearch extends Component {
 
           : <Card style={styles.urgentCareContainer}>
 
-            
+
             <Flb name='close-delete' style={styles.dismissUrgentIcon}
-                  color={Colors.flBlue.anvil} size={Metrics.icons.small * Metrics.screenWidth * 0.0035} 
+                  color={Colors.flBlue.anvil} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
                   onPress={this.handleNeedHelp} />
-            
+
             <Text style={styles.needHelpText}>Need Help Now?</Text>
             <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
             <View style={{flexDirection:'row'}}>
@@ -504,8 +507,8 @@ class ProviderSearch extends Component {
 
 
           }
-          
-          
+
+
         </View>
 
       </View>

@@ -7,11 +7,13 @@ export function * sendNetworkListRequest (api, {data}) {
   if (response.ok) {
     var data = response.data
       console.tron.log('im network data' + data)
-    for (var i = 0; i < data.data.memberNetworkList.length; i++) {
-      var networkItem = data.data.memberNetworkList[i]
-      var networkCodeList = []
-      if (networkItem['health']) {
-        networkCodeList.push(networkItem['networkCode'])
+    if (data.data.memberNetworkList) {
+      for (var i = 0; i < data.data.memberNetworkList.length; i++) {
+        var networkItem = data.data.memberNetworkList[i]
+        var networkCodeList = []
+        if (networkItem['health']) {
+          networkCodeList.push(networkItem['networkCode'])
+        }
       }
     }
 
@@ -46,7 +48,7 @@ export function * sendPharmacySearchRequest (api, {data}) {
     yield put(ProviderActions.sendPharmacySearchSuccess(data))
   } else {
     var error = response.problem
-    
+
     console.tron.log('im pharmacy error' + error)
     yield put(ProviderActions.sendPharmacySearchFailure(error))
   }
@@ -71,9 +73,7 @@ export function * sendCareTypeRequest (api, {data}) {
   if (response.ok) {
     var data = response.data
     var allCategory = {"categoryCode": "ALL", "categoryName": "All"}
-    var noPrefCategory = {"categoryCode": "", "categoryName": "No Preference"}
     data.data.planCategoryList.splice(0, 0, allCategory)
-    data.data.planCategoryList.push(noPrefCategory)
     yield put(ProviderActions.sendCareTypeSuccess(data))
   } else {
     var error = response.problem

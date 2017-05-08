@@ -311,6 +311,8 @@ class AdvancedSearch extends Component {
     var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
     this.props.getSpecialityTypes(selectedCategoryCode)
     this.props.changeCareType(value)
+    this.props.changeSubCategoryCode('')
+    this.props.changeSpecialityType('')
     this.setState({unknownCareState: false}, function () {
       this.setState({unknownCareState: true})
     })
@@ -344,6 +346,10 @@ class AdvancedSearch extends Component {
     this.props.attemptStaffLanguage()
     this.props.attemptDoctorLanguage()
     this._getLocation()
+
+    if (this.props.categoryCode != 'ALL') {
+      this.setState({specialityState: true})
+    }
   }
 
   componentWillReceiveProps (newProps) {
@@ -545,11 +551,11 @@ class AdvancedSearch extends Component {
            {this.props.configData && this.props.configData.acceptingPatient ?
           <View style={styles.programView}>
             <View style={{ flex: 0.4 }}>
-             
+
                 <Text style={styles.programText}>
                   {this.props.configData.acceptingPatient.displayName}
 
-                </Text> 
+                </Text>
             </View>
 
             <View style={{ flex: 0.6, marginTop: 15 }}>
@@ -570,7 +576,7 @@ class AdvancedSearch extends Component {
                    // textAlign:'center',
                     //alignItems:'center',
                    // marginRight:30,
-                   
+
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                   }}
                   editable={false}
@@ -591,11 +597,11 @@ class AdvancedSearch extends Component {
           <View style={styles.programView}>
 
             <View style={{ flex: 0.4 }}>
-              
+
                 <Text style={styles.programText}>
                   {this.props.configData.workingHours.displayName}
                 </Text>
-                 
+
 
             </View>
 
@@ -701,11 +707,11 @@ class AdvancedSearch extends Component {
       {this.props.configData && this.props.configData.program ?
           <View style={styles.programView}>
             <View style={{ flex: 0.3 }}>
-              
+
                 <Text style={styles.programText}>
                   {this.props.configData.program.displayName}
                 </Text>
-            
+
             </View>
 
             <View style={{ flex: 0.7, marginTop: 5 }}>

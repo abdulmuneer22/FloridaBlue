@@ -19,7 +19,9 @@ import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
+import LoginActions from '../../Redux/LoginRedux'
 var RCTNetworking = require('RCTNetworking')
+
 const window = Dimensions.get('window')
 
 class ErrorScreen extends Component {
@@ -30,6 +32,11 @@ class ErrorScreen extends Component {
   }
 
   _handlePressBack () {
+    RCTNetworking.clearCookies((cleared) => {
+      console.tron.log('clearing local cookies for the app')
+    })
+    this.props.clearLogin()
+    this.props.attemptLogout()
     NavigationActions.login()
   }
   _renderHeader () {
@@ -69,4 +76,20 @@ class ErrorScreen extends Component {
   }
 }
 
-export default ErrorScreen
+ErrorScreen.propTypes = {
+  attemptLogout: PropTypes.func,
+  clearLogin: PropTypes.func
+}
+
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptLogout: () => dispatch(LoginActions.logoutRequest()),
+    clearLogin: () => dispatch(LoginActions.logout())
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(ErrorScreen)
