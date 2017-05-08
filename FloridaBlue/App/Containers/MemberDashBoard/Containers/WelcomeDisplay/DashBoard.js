@@ -41,12 +41,7 @@ type LoginScreenProps = {
   error: string
 }
 const theme = getTheme()
-const gradient = {
-  '0': ['#b258c7', '#9f2fb9'],
-  '1': ['#3bc1d4', '#09b1c9'],
-  '2': ['#f4b441', '#f1a00f'],
-  '3': ['#6fc35c', '#4ab332']
-}
+
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -57,7 +52,7 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-     <LinearGradient colors={['#ECE9E6', '#FFFFFF']}>
+    
     <Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{
         alignItems: 'center',
@@ -77,7 +72,7 @@ class LandingScreen extends Component {
       </View>
 
     </Image>
-    </LinearGradient>
+   
     
     )
   }
