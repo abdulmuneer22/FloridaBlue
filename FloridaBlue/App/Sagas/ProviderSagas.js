@@ -46,7 +46,7 @@ export function * sendPharmacySearchRequest (api, {data}) {
     yield put(ProviderActions.sendPharmacySearchSuccess(data))
   } else {
     var error = response.problem
-    
+
     console.tron.log('im pharmacy error' + error)
     yield put(ProviderActions.sendPharmacySearchFailure(error))
   }
@@ -71,9 +71,7 @@ export function * sendCareTypeRequest (api, {data}) {
   if (response.ok) {
     var data = response.data
     var allCategory = {"categoryCode": "ALL", "categoryName": "All"}
-    var noPrefCategory = {"categoryCode": "", "categoryName": "No Preference"}
     data.data.planCategoryList.splice(0, 0, allCategory)
-    data.data.planCategoryList.push(noPrefCategory)
     yield put(ProviderActions.sendCareTypeSuccess(data))
   } else {
     var error = response.problem
