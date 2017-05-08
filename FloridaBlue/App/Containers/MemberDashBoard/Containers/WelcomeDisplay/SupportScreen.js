@@ -34,7 +34,7 @@ class SupportScreen extends Component {
         {NavItems.backButton()}
       </View>
       <Text style={styles.headerTextStyle}>
-                Contact Us
+                Support
               </Text>
       <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}

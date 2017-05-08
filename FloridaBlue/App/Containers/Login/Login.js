@@ -282,7 +282,7 @@ class Login extends Component {
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL})}>
             <Text style={styles.popupchildText}>
-              Browse for Doctors
+              Find Care             
             </Text>
           </TouchableOpacity>
         </View>

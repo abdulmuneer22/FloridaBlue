@@ -117,6 +117,7 @@ class DoctorDetail extends Component {
     })
   }
   componentDidMount () {
+    console.log(this.props)
     this.props.attemptDoctorDetail(this.props)
   }
 
@@ -135,6 +136,7 @@ class DoctorDetail extends Component {
   }
 
   _displayCondition () {
+    console.tron.log("DETAILS FETCHING :: "+this.props.fetching)
     if (this.props.fetching) {
       
       return (<View style={styles.spinnerView}>
@@ -457,7 +459,7 @@ class DoctorDetail extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
         'Doctor Detail',
-       'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+        'Oops! Looks like we`re having trouble with your request. Please try again later.',
         [
           { text: 'OK' }
 
@@ -483,19 +485,13 @@ DoctorDetail.propTypes = {
   data: PropTypes.object,
   provider: PropTypes.object,
   attemptDoctorDetail: PropTypes.func,
-  error: PropTypes.string,
-  saveProvider: PropTypes.array,
-  attemptHandleLeft: PropTypes.func,
-  attemptHandleRight: PropTypes.func
+  error: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
     fetching: state.provider.fetching,
     error: state.provider.error,
-    leftActive: state.provider.leftActive,
-    rightActive: state.provider.rightActive,
-    saveProvider: state.saveprovider.data,
     doctordetail: state.provider.doctordetail,
     providerKey: state.provider.providerKey,
     addressKey: state.provider.addressKey
@@ -505,8 +501,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptDoctorDetail: (data) => dispatch(ProviderActions.sendDoctorDetailRequest(data)),
-    addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
-    removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey))
+   
   }
 }
 

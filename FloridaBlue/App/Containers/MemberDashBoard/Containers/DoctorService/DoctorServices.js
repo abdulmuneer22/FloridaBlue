@@ -232,7 +232,7 @@ class DoctorServices extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
         'Plan Benefits',
-        'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+         'Oops! Looks like we`re having trouble with your request. Please try again later.',
         [
           { text: 'OK' }
 

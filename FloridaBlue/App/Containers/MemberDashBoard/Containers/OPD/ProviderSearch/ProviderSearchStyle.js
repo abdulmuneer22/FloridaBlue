@@ -258,7 +258,8 @@ export default StyleSheet.create({
   dismissUrgentIcon: {
     marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
     marginTop: 30,
-    backgroundColor: Colors.transparent
+    backgroundColor: Colors.transparent,
+  
   },
   needHelpText: {
     textAlign: 'left',
