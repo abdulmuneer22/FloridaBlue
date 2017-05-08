@@ -85,6 +85,7 @@ class ProviderSearch extends Component {
   componentDidMount () {
     this.props.attemptCareTypes()
     this._getLocation()
+    this._resetState()
 
     var addressLine1 = this.props.member.defaultContract.homeAddress.addressline1
     var addressLine2 = ''
@@ -98,6 +99,10 @@ class ProviderSearch extends Component {
     var fullAddress = addressLine1 + addressLine2 + ' ' + city + ', ' + state + ' ' + zip
     this.props.changeHomeAddress(fullAddress)
     this.props.changeAddress(fullAddress)
+
+    if (this.props.categoryCode != 'ALL') {
+      this.setState({specialityState: true})
+    }
   }
 
   componentWillReceiveProps (newProps) {
@@ -136,6 +141,8 @@ class ProviderSearch extends Component {
     var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
     this.props.getSpecialityTypes(selectedCategoryCode)
     this.props.changeCareType(value)
+    this.props.changeSubCategoryCode('')
+    this.props.changeSpecialityType('')
     this.setState({unknownCareState: false}, function () {
       this.setState({unknownCareState: true})
     })
@@ -273,8 +280,7 @@ class ProviderSearch extends Component {
     (position) => {
       var newLat = position['coords']['latitude']
       var newLong = position['coords']['longitude']
-      console.log("Current Location..")
-      console.log(position)
+
       this.props.changeLatitude(newLat)
       this.props.changeLongitude(newLong)
       this.props.changeAddress('Using Current Location')
