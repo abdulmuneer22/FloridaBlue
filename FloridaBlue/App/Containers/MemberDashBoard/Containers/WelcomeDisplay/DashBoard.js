@@ -52,11 +52,7 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-<<<<<<< HEAD
-     
-=======
     
->>>>>>> 694e37cf0740ec7d42a66cc47d5ded7188909773
     <Image style={styles.headerContainer} source={Images.themeHeader}>
       <View style={{
         alignItems: 'center',
