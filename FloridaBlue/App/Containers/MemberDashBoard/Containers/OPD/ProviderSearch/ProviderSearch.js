@@ -163,7 +163,7 @@ class ProviderSearch extends Component {
     } else {
       this.props.attemptProviderSearch(this.props)
     }
-    
+
     NavigationActions.DoctorList()
   }
 
@@ -243,46 +243,43 @@ class ProviderSearch extends Component {
   }
 
   _getLocation () {
-    var getCurrentLocation = false
-
     if (this.props.locationStatus == '' || this.props.locationStatus != 'authorized') {
       var locationStatus = ''
       Permissions.getPermissionStatus('location')
       .then(response => {
         locationStatus = response
         if (response == 'authorized' || response == 'undetermined') {
-          getCurrentLocation = true
           this.props.changeLocationPermissionStatus(response)
+          this._getPosition()
         } else {
           Permissions.requestPermission('location')
           .then(response => {
             this.props.changeLocationPermissionStatus(response)
             locationStatus = response
             if (response == 'authorized' || response == 'undetermined') {
-              getCurrentLocation = true
+              this._getPosition()
             }
           })
         }
       })
       this.props.changeLocationPermissionStatus(locationStatus)
     } else if (this.props.locationStatus == 'authorized') {
-      getCurrentLocation = true
+      this._getPosition()
     }
+  }
 
-    if (getCurrentLocation) {
-      navigator.geolocation.getCurrentPosition(
-      (position) => {
-        var newLat = position['coords']['latitude']
-        var newLong = position['coords']['longitude']
-
-        this.props.changeLatitude(newLat)
-        this.props.changeLongitude(newLong)
-        this.props.changeAddress('Using Current Location')
-      },
-        (error) => alert(JSON.stringify(error)),
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
-        })
-    }
+  _getPosition() {
+    navigator.geolocation.getCurrentPosition(
+    (position) => {
+      var newLat = position['coords']['latitude']
+      var newLong = position['coords']['longitude']
+      console.log("Current Location..")
+      console.log(position)
+      this.props.changeLatitude(newLat)
+      this.props.changeLongitude(newLong)
+      this.props.changeAddress('Using Current Location')
+    },
+      (error) => alert(JSON.stringify(error)))
   }
 
   _alertForLocationPermission () {
@@ -482,11 +479,11 @@ class ProviderSearch extends Component {
 
           : <Card style={styles.urgentCareContainer}>
 
-            
+
             <Flb name='close-delete' style={styles.dismissUrgentIcon}
-                  color={Colors.flBlue.anvil} size={Metrics.icons.small * Metrics.screenWidth * 0.0035} 
+                  color={Colors.flBlue.anvil} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
                   onPress={this.handleNeedHelp} />
-            
+
             <Text style={styles.needHelpText}>Need Help Now?</Text>
             <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
             <View style={{flexDirection:'row'}}>
@@ -504,8 +501,8 @@ class ProviderSearch extends Component {
 
 
           }
-          
-          
+
+
         </View>
 
       </View>
