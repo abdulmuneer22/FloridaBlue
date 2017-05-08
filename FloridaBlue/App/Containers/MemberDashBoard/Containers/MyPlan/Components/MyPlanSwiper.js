@@ -171,9 +171,13 @@ class MyPlanSwiper extends Component {
                     return (<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', margin: 4
                     }} key={i}>
                       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} >
-                        <View style={{flex :3 , 
+                        <View style={ i==0 ? {flex :3 , 
                          borderBottomWidth: 1,
-                        borderBottomColor:Colors.flBlue.grass, 
+                         borderBottomColor:Colors.flBlue.night, 
+                      
+                        } :  {flex :3 , 
+                         borderBottomWidth: 1,
+                         borderBottomColor:Colors.flBlue.grass, 
                       
                         }}>
                          <Text style={{
@@ -184,7 +188,12 @@ class MyPlanSwiper extends Component {
                         </Text>
                         </View>
                         <View style={{flex :1}}>
-                        <Text style={{
+                        <Text style={ i ==0 ? {
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+                          fontWeight: '500',
+                          fontFamily: Fonts.type.subHeaderFont,
+                          color: Colors.flBlue.night}:
+                          {
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                           fontWeight: '500',
                           fontFamily: Fonts.type.subHeaderFont,
