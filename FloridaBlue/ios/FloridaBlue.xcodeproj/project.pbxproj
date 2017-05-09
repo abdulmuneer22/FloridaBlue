@@ -58,6 +58,12 @@
 		C5DFF3311EA6C5D400217018 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5DFF3301EA6C5AC00217018 /* libAirMaps.a */; };
 		DBEABF5DBDBE4FF1B0BDF054 /* Times New Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3DA9584374142D2A6E4F53F /* Times New Roman.ttf */; };
 		E649A137A5A8440382FA8E3C /* Andale Mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E6E05672A8840FE8AC77949 /* Andale Mono.ttf */; };
+		F2C73FF31EC20888007EAB45 /* TouchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C73FF21EC20888007EAB45 /* TouchManager.m */; };
+		F2C740191EC2089B007EAB45 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C740181EC2089B007EAB45 /* LocalAuthentication.framework */; };
+		F2C7405D1EC239C8007EAB45 /* NSString+Cookie.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C7405A1EC239C8007EAB45 /* NSString+Cookie.m */; };
+		F2C7405E1EC239C8007EAB45 /* YWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C7405C1EC239C8007EAB45 /* YWebView.m */; };
+		F2C740851EC23A4E007EAB45 /* WebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C740841EC23A4E007EAB45 /* WebViewManager.m */; };
+		F2C740881EC24392007EAB45 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C740871EC24392007EAB45 /* KeychainWrapper.m */; };
 		F3E1FF3903FF4256A235E174 /* Comic Sans MS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76D1C2D47CD444D2938A1997 /* Comic Sans MS.ttf */; };
 		FEB19F786E27456CB8C5BD65 /* Georgia.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 244FB5CC0A4A41D2A6D4A160 /* Georgia.ttf */; };
 /* End PBXBuildFile section */
@@ -384,6 +390,17 @@
 		E3EFD237A64C41FB8BFEAD8B /* Skia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Skia.ttf; path = "../node_modules/native-base/Fonts/Skia.ttf"; sourceTree = "<group>"; };
 		E91744ECF40D451DB4773616 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		EA92F5BB84D44A309623ADEF /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
+		F2C73FF11EC20888007EAB45 /* TouchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchManager.h; path = FloridaBlue/TouchManager.h; sourceTree = "<group>"; };
+		F2C73FF21EC20888007EAB45 /* TouchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchManager.m; path = FloridaBlue/TouchManager.m; sourceTree = "<group>"; };
+		F2C740181EC2089B007EAB45 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		F2C740591EC239C8007EAB45 /* NSString+Cookie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Cookie.h"; sourceTree = "<group>"; };
+		F2C7405A1EC239C8007EAB45 /* NSString+Cookie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Cookie.m"; sourceTree = "<group>"; };
+		F2C7405B1EC239C8007EAB45 /* YWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWebView.h; sourceTree = "<group>"; };
+		F2C7405C1EC239C8007EAB45 /* YWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWebView.m; sourceTree = "<group>"; };
+		F2C740831EC23A4E007EAB45 /* WebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewManager.h; path = FloridaBlue/WebViewManager.h; sourceTree = "<group>"; };
+		F2C740841EC23A4E007EAB45 /* WebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewManager.m; path = FloridaBlue/WebViewManager.m; sourceTree = "<group>"; };
+		F2C740861EC24392007EAB45 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
+		F2C740871EC24392007EAB45 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		FF9200345B53450A81E5D7E7 /* Arial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Arial.ttf; path = "../node_modules/native-base/Fonts/Arial.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -400,6 +417,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2C740191EC2089B007EAB45 /* LocalAuthentication.framework in Frameworks */,
 				25AF92B91E9BE2E800EEFA47 /* libyoga.a in Frameworks */,
 				25AF92B81E9BE2E100EEFA47 /* libjschelpers.a in Frameworks */,
 				25AF929D1E9BE2D900EEFA47 /* libcxxreact.a in Frameworks */,
@@ -513,6 +531,16 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				F2C73FF11EC20888007EAB45 /* TouchManager.h */,
+				F2C73FF21EC20888007EAB45 /* TouchManager.m */,
+				F2C740861EC24392007EAB45 /* KeychainWrapper.h */,
+				F2C740871EC24392007EAB45 /* KeychainWrapper.m */,
+				F2C740831EC23A4E007EAB45 /* WebViewManager.h */,
+				F2C740841EC23A4E007EAB45 /* WebViewManager.m */,
+				F2C740591EC239C8007EAB45 /* NSString+Cookie.h */,
+				F2C7405A1EC239C8007EAB45 /* NSString+Cookie.m */,
+				F2C7405B1EC239C8007EAB45 /* YWebView.h */,
+				F2C7405C1EC239C8007EAB45 /* YWebView.m */,
 				C5CDD6EC1E52831D00DDB34E /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -546,6 +574,7 @@
 		259133AE1E69F9CE005C5412 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F2C740181EC2089B007EAB45 /* LocalAuthentication.framework */,
 				259133AF1E69F9CE005C5412 /* SafariServices.framework */,
 			);
 			name = Frameworks;
@@ -1228,7 +1257,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2C7405E1EC239C8007EAB45 /* YWebView.m in Sources */,
+				F2C740851EC23A4E007EAB45 /* WebViewManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				F2C7405D1EC239C8007EAB45 /* NSString+Cookie.m in Sources */,
+				F2C740881EC24392007EAB45 /* KeychainWrapper.m in Sources */,
+				F2C73FF31EC20888007EAB45 /* TouchManager.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
