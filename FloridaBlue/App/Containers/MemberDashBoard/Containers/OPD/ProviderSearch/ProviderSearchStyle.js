@@ -2,7 +2,7 @@
 
 import { StyleSheet, Dimensions, Platform } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../../Themes/'
-import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme, setTheme } from 'react-native-material-kit'
 var {height, width} = Dimensions.get('window')
 const window = Dimensions.get('window')
 const theme = getTheme()
@@ -28,12 +28,13 @@ export default StyleSheet.create({
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
   },
   h1: {
-    fontSize: (Platform.OS === 'ios') ? Fonts.size.h5 * Metrics.screenWidth * 0.0025 : Fonts.size.h5 * Metrics.screenWidth * 0.0025,
+    fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.anvil,
-    textAlign: 'center',
+    //textAlign: 'justify',
     marginTop: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.subHeaderFont,
-    fontWeight: '600'
+    fontWeight: '600',
+    margin:10
   },
   h2: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
@@ -41,6 +42,7 @@ export default StyleSheet.create({
     textAlign: 'left',
     fontFamily: Fonts.type.base,
     fontWeight: '600',
+    marginTop:10,
     paddingLeft: Metrics.doubleBaseMargin
   },
   subheading: {
@@ -51,7 +53,10 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   radio: {
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.snow,
+    height: Metrics.section * Metrics.screenWidth * 0.0025,
+    width: Metrics.section * Metrics.screenWidth * 0.0025,
+    borderRadius: Metrics.section
   },
   radioText: {
     marginTop: Metrics.smallMargin,
@@ -230,8 +235,9 @@ export default StyleSheet.create({
   },
   saveLocationButton: {
     width: Metrics.screenWidth * 0.5,
-    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-    height: Metrics.screenHeight * 0.066
+    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.001,
+    height: Metrics.screenHeight * 0.073,
+    resizeMode:'contain'
   },
   fabView: {
     marginTop: Metrics.doubleBaseMargin

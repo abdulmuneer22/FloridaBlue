@@ -129,7 +129,7 @@ class ProviderMap extends Component {
               <Swiper index={this.state.selectedLocation.uniqueId} loop={false} style={{marginBottom:40, marginTop:-5}} showsButtons={true} showsPagination={false}
                 width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
                 height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.57))}
-                bottom={ (Platform.OS === 'ios') ? 0 : -25 }
+                bottom={ (Platform.OS === 'ios') ? 0 : -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001 }
                 
                 onMomentumScrollEnd={this._locationSwiped} >
 

@@ -154,7 +154,7 @@ class CCard extends Component {
                 {
             speciality.map(specialities => {
               const { speciality_text, speciality_value } = specialities
-              const style1 = { marginTop: 5, width: Metrics.screenWidth * 0.80 }
+              const style1 = { marginTop: 5, width: Metrics.screenWidth * 0.65 }
               const style2 = { marginTop: 5, flex: 0.5 }
               return (
                 <View style={{ marginBottom: 10 }}>
@@ -174,8 +174,8 @@ class CCard extends Component {
                       speciality_value.map(value => {
                         return (
                           <Text style={styles.h4}>
-                            {value['en']} </Text>
-
+                            {value['en']} 
+                          </Text>
                         )
                       })
                     }

@@ -10,7 +10,8 @@ import {
   Image,
   Modal,
   WebView,
-  Platform
+  Platform,
+  requireNativeComponent
   } from 'react-native'
 import styles from './WebViewStyle'
 import NavItems from '../../Navigation/NavItems.js'
@@ -22,6 +23,7 @@ import WKWebView from 'react-native-wkwebview-reborn'
 const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
 var btoa = require('btoa')
+module.exports = requireNativeComponent('WebViewManager', null);
 
 
 class Webview extends Component {

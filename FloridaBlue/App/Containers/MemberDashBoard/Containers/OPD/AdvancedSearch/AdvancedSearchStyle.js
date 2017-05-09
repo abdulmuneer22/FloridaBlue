@@ -73,7 +73,8 @@ export default StyleSheet.create({
     // textAlign: 'center'
   },
   careView: {
-    borderTopWidth: 1,
+   // borderTopWidth: 1,
+    margin:10,
     borderColor: Colors.flBlue.grey1,
     paddingTop: Metrics.baseMargin,
     paddingBottom: Metrics.baseMargin
@@ -115,12 +116,13 @@ export default StyleSheet.create({
 
   h1: {
 
-    fontSize:(Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0025 : Fonts.size.h5 * Metrics.screenWidth * 0.0025,
+    fontSize:(Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
    // textAlign: 'center',
     marginLeft: Metrics.doubleBaseMargin,
     marginTop: Metrics.baseMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '500',
+    //margin:10,
     color: Colors.flBlue.grey6
   },
 
