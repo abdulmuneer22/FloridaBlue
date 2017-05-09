@@ -30,10 +30,15 @@ export function * sendProviderSearchRequest (api, {data}) {
   const response = yield call(api.postProviderSearch, data)
   if (response.ok) {
     var data = response.data
-    for (var i = 0; i < data.data.providerList.length; i++) {
+
+if (data.data.providerList) {
+       for (var i = 0; i < data.data.providerList.length; i++) {
       var providerItem = data.data.providerList[i]
       providerItem["uniqueId"] = i
     }
+    }
+
+   
     yield put(ProviderActions.sendProviderSearchSuccess(data))
   } else {
     var error = response.problem
