@@ -30,14 +30,14 @@ RCT_EXPORT_METHOD(retrieveCredentials:(RCTResponseSenderBlock)callback) {
 
 RCT_EXPORT_METHOD(enableTouchID:(NSString *)username password:(NSString *)password:(RCTResponseSenderBlock)callback) {
   RCTLogInfo(@"Pretending to create an event %@ at %@", username, password);
-//  NSString *touchEnabled = @"YES";
-//  [[NSUserDefaults standardUserDefaults] setObject:touchEnabled forKey:@"touchEnabled"];
-//  [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
-//  [[NSUserDefaults standardUserDefaults] synchronize];
-//  
-//  KeychainWrapper *keychain = [[KeychainWrapper alloc] init];
-//  [keychain setValue:password forKey:@"password"];
-//  [keychain writeToKeychain];
+  NSString *touchEnabled = @"YES";
+  [[NSUserDefaults standardUserDefaults] setObject:touchEnabled forKey:@"touchEnabled"];
+  [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  
+  KeychainWrapper *keychain = [[KeychainWrapper alloc] init];
+  [keychain setValue:password forKey:@"password"];
+  [keychain writeToKeychain];
   
   callback(@[[NSNull null], @[@"YES"]]);
 }
