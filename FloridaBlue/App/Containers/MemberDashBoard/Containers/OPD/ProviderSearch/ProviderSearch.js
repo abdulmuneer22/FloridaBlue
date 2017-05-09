@@ -122,7 +122,7 @@ class ProviderSearch extends Component {
       })
     }
 
-    if (newProps.member && this.state.userWantsResults) {
+    if (newProps.networkCodeList && this.state.userWantsResults) {
       this._getResults()
     }
   }
@@ -180,7 +180,7 @@ class ProviderSearch extends Component {
     this.props.changeUrgentCareBanner(false)
     this.setState({userWantsResults: true})
 
-    if (this.props.member) {
+    if (this.props.networkCodeList) {
       if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
         this.props.attemptPharmacySearch(this.props)
       } else {
