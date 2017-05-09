@@ -10,7 +10,8 @@ import {
   Image,
   Modal,
   WebView,
-  Platform
+  Platform,
+  requireNativeComponent
   } from 'react-native'
 import styles from './WebViewStyle'
 import NavItems from '../../Navigation/NavItems.js'
@@ -20,6 +21,7 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
 var btoa = require('btoa')
+module.exports = requireNativeComponent('WebViewManager', null);
 
 class Webview extends Component {
   _renderHeader () {
