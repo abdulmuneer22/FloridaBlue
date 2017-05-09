@@ -169,13 +169,13 @@ class CCard extends Component {
                     }
                   </View>
 
-                  <View style={!speciality_text['en'] ? style1 : style2}>
+                  <View style={!speciality_text['en'] ? style1 : style2, {flexDirection: 'row',alignItems:'center'}}>
                     {
                       speciality_value.map(value => {
                         return (
                           <Text style={styles.h4}>
-                            {value['en']} </Text>
-
+                            {value['en']} 
+                          </Text>
                         )
                       })
                     }
