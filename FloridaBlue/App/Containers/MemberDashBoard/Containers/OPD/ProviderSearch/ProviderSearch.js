@@ -440,22 +440,16 @@ class ProviderSearch extends Component {
                 </View>
 
                 <View style={styles.locationRadio}>
-                  <MKRadioButton style={styles.radio} style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
+                  <MKRadioButton style={styles.radio}  group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
                   <Text style={styles.radioText}>{I18n.t('currentLocationTitle')}</Text>
                 </View>
                 <View style={styles.locationRadio}>
-                  <MKRadioButton style={styles.radio}  style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} group={this.locationGroup} onCheckedChange={this._selectHomeLocation} />
+                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectHomeLocation} />
                   <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
                 </View>
                 <Text style={styles.locationText}>({this.props.homeAddress})</Text>
                 <View style={styles.locationRadio}>
-                  <MKRadioButton style={styles.radio} style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} group={this.locationGroup} onCheckedChange={this._selectDifferentLocation} />
+                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectDifferentLocation} />
                   <Text style={styles.radioText}>{I18n.t('differentLocationTitle')}</Text>
                 </View>
               </HideableView>

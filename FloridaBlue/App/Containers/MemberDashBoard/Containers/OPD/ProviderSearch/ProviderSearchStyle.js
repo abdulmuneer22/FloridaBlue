@@ -53,7 +53,10 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   radio: {
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.snow,
+    height: Metrics.section * Metrics.screenWidth * 0.0025,
+    width: Metrics.section * Metrics.screenWidth * 0.0025,
+    borderRadius: Metrics.section
   },
   radioText: {
     marginTop: Metrics.smallMargin,
