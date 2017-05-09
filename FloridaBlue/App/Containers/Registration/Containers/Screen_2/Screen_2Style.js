@@ -35,7 +35,8 @@ export default StyleSheet.create({
     paddingTop: Metrics.doubleBaseMargin,
     fontSize: Fonts.size.xm,
     fontFamily: Fonts.type.headerFont,
-    fontWeight: '200'
+    fontWeight: '200',
+    color:Colors.flBlue.anvil
   },
   messageView: {
     padding: Metrics.baseMargin,

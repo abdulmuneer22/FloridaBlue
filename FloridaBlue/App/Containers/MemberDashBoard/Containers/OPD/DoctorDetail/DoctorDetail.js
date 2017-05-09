@@ -145,7 +145,7 @@ class DoctorDetail extends Component {
       return (
         <View style={styles.container}>
 
-          {this.props.doctordetail != undefined ?
+          {this.props.doctordetail ?
             <ScrollView>
 
               <View style={{

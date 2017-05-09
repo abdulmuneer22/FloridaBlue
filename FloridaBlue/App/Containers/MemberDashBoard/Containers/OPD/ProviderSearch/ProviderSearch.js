@@ -45,6 +45,15 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
+  setTheme({
+  radioStyle: {
+    fillColor: Colors.flBlue.ocean,
+    borderOnColor: Colors.flBlue.ocean,
+    borderOffColor: Colors.flBlue.grey2
+    // rippleColor: `rgba(${MKColor.RGBTeal},.18)`,
+  }
+})
+
 class ProviderSearch extends Component {
 
   constructor (props) {
@@ -340,6 +349,7 @@ class ProviderSearch extends Component {
         <View style={{flex: 13}}>
           <ScrollView>
             <View style={{flex: 1}}>
+              <View style={{flex:1, margin:10}}>
               <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
 
               <View style={styles.radioView}>
@@ -353,7 +363,7 @@ class ProviderSearch extends Component {
                 }} group={this.searchTypeGroup} />
                 <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
               </View>
-
+              </View>
               <HideableView visible={this.state.knownCareState} removeWhenHidden>
                 <Text style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
                 <MKTextField
@@ -430,16 +440,22 @@ class ProviderSearch extends Component {
                 </View>
 
                 <View style={styles.locationRadio}>
-                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
+                  <MKRadioButton style={styles.radio} style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                width: Metrics.section * Metrics.screenWidth * 0.0025,
+                borderRadius: Metrics.section}} group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
                   <Text style={styles.radioText}>{I18n.t('currentLocationTitle')}</Text>
                 </View>
                 <View style={styles.locationRadio}>
-                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectHomeLocation} />
+                  <MKRadioButton style={styles.radio}  style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                width: Metrics.section * Metrics.screenWidth * 0.0025,
+                borderRadius: Metrics.section}} group={this.locationGroup} onCheckedChange={this._selectHomeLocation} />
                   <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
                 </View>
                 <Text style={styles.locationText}>({this.props.homeAddress})</Text>
                 <View style={styles.locationRadio}>
-                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectDifferentLocation} />
+                  <MKRadioButton style={styles.radio} style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                width: Metrics.section * Metrics.screenWidth * 0.0025,
+                borderRadius: Metrics.section}} group={this.locationGroup} onCheckedChange={this._selectDifferentLocation} />
                   <Text style={styles.radioText}>{I18n.t('differentLocationTitle')}</Text>
                 </View>
               </HideableView>
