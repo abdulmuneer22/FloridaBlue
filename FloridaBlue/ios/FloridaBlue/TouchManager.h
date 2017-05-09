@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <React/RCTBridgeModule.h>
+#import <React/RCTLog.h>
 #import <LocalAuthentication/LocalAuthentication.h>
 #import "KeychainWrapper.h"
 
