@@ -52,6 +52,7 @@
 		8D91A70B913942249ACA0EC6 /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF9200345B53450A81E5D7E7 /* Arial.ttf */; };
 		9A486EFED34A4D528270C7E4 /* FlbIcon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36ADCA1590B047AD905AD32D /* FlbIcon.ttf */; };
 		9B814EC910F24321ACE1B58F /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7414AC2454741448D6142A1 /* libBVLinearGradient.a */; };
+		C54719761EC3553700D64CA6 /* YWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C54719751EC3553700D64CA6 /* YWebViewManager.m */; };
 		C5BFD4061EA5058D00E5C88F /* flb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C5BFD4051EA5058D00E5C88F /* flb.ttf */; };
 		C5CDD6ED1E52831D00DDB34E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CDD6EC1E52831D00DDB34E /* Images.xcassets */; };
 		C5DF0C541E5242E90006B909 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
@@ -63,7 +64,6 @@
 		F2C740191EC2089B007EAB45 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C740181EC2089B007EAB45 /* LocalAuthentication.framework */; };
 		F2C7405D1EC239C8007EAB45 /* NSString+Cookie.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C7405A1EC239C8007EAB45 /* NSString+Cookie.m */; };
 		F2C7405E1EC239C8007EAB45 /* YWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C7405C1EC239C8007EAB45 /* YWebView.m */; };
-		F2C740851EC23A4E007EAB45 /* WebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C740841EC23A4E007EAB45 /* WebViewManager.m */; };
 		F2C740881EC24392007EAB45 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C740871EC24392007EAB45 /* KeychainWrapper.m */; };
 		F3E1FF3903FF4256A235E174 /* Comic Sans MS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76D1C2D47CD444D2938A1997 /* Comic Sans MS.ttf */; };
 		FEB19F786E27456CB8C5BD65 /* Georgia.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 244FB5CC0A4A41D2A6D4A160 /* Georgia.ttf */; };
@@ -391,6 +391,8 @@
 		B7414AC2454741448D6142A1 /* libBVLinearGradient.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libBVLinearGradient.a; sourceTree = "<group>"; };
 		C1047D3917D44B56B25F3B55 /* libRNCookieManagerIOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCookieManagerIOS.a; sourceTree = "<group>"; };
 		C3DA9584374142D2A6E4F53F /* Times New Roman.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Times New Roman.ttf"; path = "../node_modules/native-base/Fonts/Times New Roman.ttf"; sourceTree = "<group>"; };
+		C54719741EC3553700D64CA6 /* YWebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YWebViewManager.h; path = FloridaBlue/YWebViewManager.h; sourceTree = "<group>"; };
+		C54719751EC3553700D64CA6 /* YWebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YWebViewManager.m; path = FloridaBlue/YWebViewManager.m; sourceTree = "<group>"; };
 		C5BFD4051EA5058D00E5C88F /* flb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = flb.ttf; sourceTree = "<group>"; };
 		C5CDD6EC1E52831D00DDB34E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FloridaBlue/Images.xcassets; sourceTree = "<group>"; };
 		C5DFF32B1EA6C5AC00217018 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
@@ -407,8 +409,6 @@
 		F2C7405A1EC239C8007EAB45 /* NSString+Cookie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Cookie.m"; sourceTree = "<group>"; };
 		F2C7405B1EC239C8007EAB45 /* YWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWebView.h; sourceTree = "<group>"; };
 		F2C7405C1EC239C8007EAB45 /* YWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWebView.m; sourceTree = "<group>"; };
-		F2C740831EC23A4E007EAB45 /* WebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewManager.h; path = FloridaBlue/WebViewManager.h; sourceTree = "<group>"; };
-		F2C740841EC23A4E007EAB45 /* WebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewManager.m; path = FloridaBlue/WebViewManager.m; sourceTree = "<group>"; };
 		F2C740861EC24392007EAB45 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		F2C740871EC24392007EAB45 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		FF9200345B53450A81E5D7E7 /* Arial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Arial.ttf; path = "../node_modules/native-base/Fonts/Arial.ttf"; sourceTree = "<group>"; };
@@ -546,8 +546,6 @@
 				F2C73FF21EC20888007EAB45 /* TouchManager.m */,
 				F2C740861EC24392007EAB45 /* KeychainWrapper.h */,
 				F2C740871EC24392007EAB45 /* KeychainWrapper.m */,
-				F2C740831EC23A4E007EAB45 /* WebViewManager.h */,
-				F2C740841EC23A4E007EAB45 /* WebViewManager.m */,
 				F2C740591EC239C8007EAB45 /* NSString+Cookie.h */,
 				F2C7405A1EC239C8007EAB45 /* NSString+Cookie.m */,
 				F2C7405B1EC239C8007EAB45 /* YWebView.h */,
@@ -730,6 +728,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				C54719741EC3553700D64CA6 /* YWebViewManager.h */,
+				C54719751EC3553700D64CA6 /* YWebViewManager.m */,
 				2BEF36CF1DF2046500A9CB66 /* Resources */,
 				13B07FAE1A68108700A75B9A /* FloridaBlue */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1289,7 +1289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2C7405E1EC239C8007EAB45 /* YWebView.m in Sources */,
-				F2C740851EC23A4E007EAB45 /* WebViewManager.m in Sources */,
+				C54719761EC3553700D64CA6 /* YWebViewManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				F2C7405D1EC239C8007EAB45 /* NSString+Cookie.m in Sources */,
 				F2C740881EC24392007EAB45 /* KeychainWrapper.m in Sources */,
