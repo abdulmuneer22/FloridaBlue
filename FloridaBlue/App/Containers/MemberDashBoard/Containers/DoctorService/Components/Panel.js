@@ -12,20 +12,21 @@ import { Images, Colors, Metrics, Fonts } from '../../../../../Themes'
 import Flb from '../../../../../Themes/FlbIcon'
 
 class Panel extends Component {
+
   constructor (props) {
     super(props)
-
     this.icons = {
       'up': 'chevron-up',
       'down': 'chevron-down'
     }
-
     this.state = {
+      firstTimeCollapse : false,
       title: props.title,
       expanded: false,
       animation: new Animated.Value()
     }
   }
+
 
   toggle () {
     let initialValue = this.state.expanded ? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
@@ -51,7 +52,11 @@ class Panel extends Component {
   }
 
   _setMinHeight (event) {
-    this.state.animation.setValue(event.nativeEvent.layout.height)
+    //alert(this.state.firstTimeCollapse)
+    if(!this.state.firstTimeCollapse){
+      this.state.animation.setValue(event.nativeEvent.layout.height)
+      this.setState({firstTimeCollapse: !this.state.firstTimeCollapse})
+    }
     this.setState({
       minHeight: event.nativeEvent.layout.height
     })
