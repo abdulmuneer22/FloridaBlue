@@ -11,7 +11,7 @@ const { Types, Creators } = createActions({
   changeAgreeTermsOfUse: ['agreeTermsOfUse'],
   getTou: [],
   updateTou: ['getTou'],
-  logoutRequest: [],
+  logoutRequest: ['logoutUrl'],
   loginFailure: ['error'],
   sendConfirm: [],
   logout: [],

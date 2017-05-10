@@ -85,7 +85,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getSupport = () => api.get('/support')
   const getMyIdCard = () => api.get('/support')
   const getHsa = (financialProduct) => api.get('/hsa/financialProduct/' + financialProduct)
-  const getLogout = () => api.get('logout.fcc')
+  const getLogout = () => api.get('')
   const putTou = () => api.get('/termsOfUse')
   const getConfig = () => api.get('/opd/config')
 

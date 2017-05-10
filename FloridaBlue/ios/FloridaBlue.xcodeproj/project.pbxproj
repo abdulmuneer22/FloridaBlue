@@ -60,6 +60,7 @@
 		D47FDB42034B4138B7516EEB /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1047D3917D44B56B25F3B55 /* libRNCookieManagerIOS.a */; };
 		DBEABF5DBDBE4FF1B0BDF054 /* Times New Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3DA9584374142D2A6E4F53F /* Times New Roman.ttf */; };
 		E649A137A5A8440382FA8E3C /* Andale Mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E6E05672A8840FE8AC77949 /* Andale Mono.ttf */; };
+		F29493711EC3540400D137DF /* YWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F29493701EC3540400D137DF /* YWebViewManager.m */; };
 		F2C73FF31EC20888007EAB45 /* TouchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C73FF21EC20888007EAB45 /* TouchManager.m */; };
 		F2C740191EC2089B007EAB45 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C740181EC2089B007EAB45 /* LocalAuthentication.framework */; };
 		F2C7405D1EC239C8007EAB45 /* NSString+Cookie.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C7405A1EC239C8007EAB45 /* NSString+Cookie.m */; };
@@ -402,6 +403,8 @@
 		E715547EB10A4485B49FC1E4 /* RNCookieManagerIOS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCookieManagerIOS.xcodeproj; path = "../node_modules/react-native-cookies/RNCookieManagerIOS.xcodeproj"; sourceTree = "<group>"; };
 		E91744ECF40D451DB4773616 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		EA92F5BB84D44A309623ADEF /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
+		F294936F1EC3540400D137DF /* YWebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YWebViewManager.h; path = FloridaBlue/YWebViewManager.h; sourceTree = "<group>"; };
+		F29493701EC3540400D137DF /* YWebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YWebViewManager.m; path = FloridaBlue/YWebViewManager.m; sourceTree = "<group>"; };
 		F2C73FF11EC20888007EAB45 /* TouchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchManager.h; path = FloridaBlue/TouchManager.h; sourceTree = "<group>"; };
 		F2C73FF21EC20888007EAB45 /* TouchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchManager.m; path = FloridaBlue/TouchManager.m; sourceTree = "<group>"; };
 		F2C740181EC2089B007EAB45 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -539,6 +542,8 @@
 		13B07FAE1A68108700A75B9A /* FloridaBlue */ = {
 			isa = PBXGroup;
 			children = (
+				F294936F1EC3540400D137DF /* YWebViewManager.h */,
+				F29493701EC3540400D137DF /* YWebViewManager.m */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1289,7 +1294,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2C7405E1EC239C8007EAB45 /* YWebView.m in Sources */,
+<<<<<<< HEAD
 				C54719761EC3553700D64CA6 /* YWebViewManager.m in Sources */,
+=======
+				F29493711EC3540400D137DF /* YWebViewManager.m in Sources */,
+>>>>>>> f711bbbbd626dff6749ca8546a520dab16d5ad30
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				F2C7405D1EC239C8007EAB45 /* NSString+Cookie.m in Sources */,
 				F2C740881EC24392007EAB45 /* KeychainWrapper.m in Sources */,

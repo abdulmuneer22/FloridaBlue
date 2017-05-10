@@ -12,7 +12,8 @@ import {
   Dimensions,
   BackAndroid,
   TouchableWithoutFeedback,
-  NativeModules
+  NativeModules,
+  Platform
 } from 'react-native'
 var urlConfig = require('../../UrlConfig');
 var TouchManager = NativeModules.TouchManager
@@ -113,7 +114,7 @@ class Login extends Component {
     var password = this.props.password
 
     if (!username && !password) {
-      Alert.alert('Login', 'Please enter your User ID/Password.', [
+      Alert.alert('Login', 'Please enter your User ID/Password', [
         {
           text: 'OK'
         }
@@ -128,19 +129,13 @@ class Login extends Component {
       ])
     } else
     if (username && !password) {
-      Alert.alert('Login', 'Please enter your Password.', [
+      Alert.alert('Login', 'Please enter your Password', [
         {
           text: 'OK'
         }
       ])
     } else {
-      TouchManager.enableTouchID(username, password, (error, info) => {
-        if (error) {
-          // handle error..
-        } else {
-          this._authenticateUser()
-        }
-      })
+      TouchManager.enableTouchID(username, password)
     }
   }
 
@@ -189,8 +184,8 @@ class Login extends Component {
       if (error) {
         // handle error..
       } else {
-        var username = credentials[0]
-        var password = credentials[1]
+        var password = credentials[0]
+        var username = credentials[1]
         this.isAttempting = true
         this.props.attemptLogin(username, password)
       }
@@ -521,7 +516,7 @@ class Login extends Component {
                 <Text style={styles.link}>{I18n.t('signUp')}</Text>
               </TouchableOpacity>
             </SignUpView>
-
+            {Platform.OS === 'ios' ?
             <View style={styles.touchButton}>
               <TouchableOpacity onPress={() => { this._handleTouchID() }}>
                 <Image style={{width: Metrics.screenWidth * 0.5,
@@ -530,6 +525,7 @@ class Login extends Component {
                   source={Images.touchIdButton} />
               </TouchableOpacity>
             </View>
+            : null}
           </View>
 
           {this.state.modalVisible && this._moreInfo()}

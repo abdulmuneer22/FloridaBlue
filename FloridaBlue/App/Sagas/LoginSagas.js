@@ -2,6 +2,7 @@ import { call, put} from 'redux-saga/effects'
 import LoginActions from '../Redux/LoginRedux'
 import MemberActions from '../Redux/MemberRedux'
 import SupportActions from '../Redux/SupportRedux'
+import apiIndex from '../Services/Api'
 // attempts to login
 export function * login (api, {username, password}) {
   var username = username
@@ -42,8 +43,10 @@ export function * login (api, {username, password}) {
   }
 }
 
-export function * logout (apiforlogout) {
-  const response = yield call(apiforlogout.getLogout)
+export function * logout (api,{logoutUrl}) {
+  
+  const logout = apiIndex.create(baseURL = logoutUrl)
+  const response = yield call(logout.getLogout)
   console.tron.log('response of logout' + response)
   if (response.status == '200') {
     yield put(LoginActions.logout())
