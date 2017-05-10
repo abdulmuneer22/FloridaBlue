@@ -52,7 +52,6 @@ class Panel extends Component {
   }
 
   _setMinHeight (event) {
-    //alert(this.state.firstTimeCollapse)
     if(!this.state.firstTimeCollapse){
       this.state.animation.setValue(event.nativeEvent.layout.height)
       this.setState({firstTimeCollapse: !this.state.firstTimeCollapse})
