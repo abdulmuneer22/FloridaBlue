@@ -63,7 +63,7 @@
 		F2C740191EC2089B007EAB45 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C740181EC2089B007EAB45 /* LocalAuthentication.framework */; };
 		F2C7405D1EC239C8007EAB45 /* NSString+Cookie.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C7405A1EC239C8007EAB45 /* NSString+Cookie.m */; };
 		F2C7405E1EC239C8007EAB45 /* YWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C7405C1EC239C8007EAB45 /* YWebView.m */; };
-		F2C740851EC23A4E007EAB45 /* WebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C740841EC23A4E007EAB45 /* WebViewManager.m */; };
+		F2C740851EC23A4E007EAB45 /* YWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C740841EC23A4E007EAB45 /* YWebViewManager.m */; };
 		F2C740881EC24392007EAB45 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C740871EC24392007EAB45 /* KeychainWrapper.m */; };
 		F3E1FF3903FF4256A235E174 /* Comic Sans MS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76D1C2D47CD444D2938A1997 /* Comic Sans MS.ttf */; };
 		FEB19F786E27456CB8C5BD65 /* Georgia.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 244FB5CC0A4A41D2A6D4A160 /* Georgia.ttf */; };
@@ -407,8 +407,8 @@
 		F2C7405A1EC239C8007EAB45 /* NSString+Cookie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Cookie.m"; sourceTree = "<group>"; };
 		F2C7405B1EC239C8007EAB45 /* YWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWebView.h; sourceTree = "<group>"; };
 		F2C7405C1EC239C8007EAB45 /* YWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWebView.m; sourceTree = "<group>"; };
-		F2C740831EC23A4E007EAB45 /* WebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewManager.h; path = FloridaBlue/WebViewManager.h; sourceTree = "<group>"; };
-		F2C740841EC23A4E007EAB45 /* WebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewManager.m; path = FloridaBlue/WebViewManager.m; sourceTree = "<group>"; };
+		F2C740831EC23A4E007EAB45 /* YWebViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YWebViewManager.h; path = FloridaBlue/YWebViewManager.h; sourceTree = "<group>"; };
+		F2C740841EC23A4E007EAB45 /* YWebViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YWebViewManager.m; path = FloridaBlue/YWebViewManager.m; sourceTree = "<group>"; };
 		F2C740861EC24392007EAB45 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		F2C740871EC24392007EAB45 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		FF9200345B53450A81E5D7E7 /* Arial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Arial.ttf; path = "../node_modules/native-base/Fonts/Arial.ttf"; sourceTree = "<group>"; };
@@ -546,8 +546,8 @@
 				F2C73FF21EC20888007EAB45 /* TouchManager.m */,
 				F2C740861EC24392007EAB45 /* KeychainWrapper.h */,
 				F2C740871EC24392007EAB45 /* KeychainWrapper.m */,
-				F2C740831EC23A4E007EAB45 /* WebViewManager.h */,
-				F2C740841EC23A4E007EAB45 /* WebViewManager.m */,
+				F2C740831EC23A4E007EAB45 /* YWebViewManager.h */,
+				F2C740841EC23A4E007EAB45 /* YWebViewManager.m */,
 				F2C740591EC239C8007EAB45 /* NSString+Cookie.h */,
 				F2C7405A1EC239C8007EAB45 /* NSString+Cookie.m */,
 				F2C7405B1EC239C8007EAB45 /* YWebView.h */,
@@ -1289,7 +1289,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2C7405E1EC239C8007EAB45 /* YWebView.m in Sources */,
-				F2C740851EC23A4E007EAB45 /* WebViewManager.m in Sources */,
+				F2C740851EC23A4E007EAB45 /* YWebViewManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				F2C7405D1EC239C8007EAB45 /* NSString+Cookie.m in Sources */,
 				F2C740881EC24392007EAB45 /* KeychainWrapper.m in Sources */,
