@@ -19,7 +19,7 @@ RCT_EXPORT_METHOD(storeCredentials:(NSString *)username location:(NSString *)pas
 RCT_EXPORT_METHOD(retrieveCredentials:(RCTResponseSenderBlock)callback) {
   KeychainWrapper *keychain = [[KeychainWrapper alloc] init];
   NSMutableArray *callbackArray = [NSMutableArray new];
-  NSString *password = [keychain myObjectForKey:@"password"];
+  NSString *password = [keychain myObjectForKey:(id)kSecValueData];
   NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
   
   [callbackArray addObject:password];
@@ -28,7 +28,7 @@ RCT_EXPORT_METHOD(retrieveCredentials:(RCTResponseSenderBlock)callback) {
   callback(@[[NSNull null], callbackArray]);
 }
 
-RCT_EXPORT_METHOD(enableTouchID:(NSString *)username password:(NSString *)password:(RCTResponseSenderBlock)callback) {
+RCT_EXPORT_METHOD(enableTouchID:(NSString *)username password:(NSString *)password) {
   RCTLogInfo(@"Pretending to create an event %@ at %@", username, password);
   NSString *touchEnabled = @"YES";
   [[NSUserDefaults standardUserDefaults] setObject:touchEnabled forKey:@"touchEnabled"];
@@ -36,10 +36,8 @@ RCT_EXPORT_METHOD(enableTouchID:(NSString *)username password:(NSString *)passwo
   [[NSUserDefaults standardUserDefaults] synchronize];
   
   KeychainWrapper *keychain = [[KeychainWrapper alloc] init];
-  [keychain setValue:password forKey:@"password"];
+  [keychain mySetObject:password forKey:(id)kSecValueData];
   [keychain writeToKeychain];
-  
-  callback(@[[NSNull null], @[@"YES"]]);
 }
 
 RCT_EXPORT_METHOD(checkTouchStatus:(RCTResponseSenderBlock)callback) {
