@@ -49,6 +49,16 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
 class DoctorList extends Component {
 
+constructor(props){
+         super(props);
+         this.state = {
+          listLimit : 10,
+          totalNumberOfCardPerScreen : 100
+      }
+      this.loadMore = this.loadMore.bind(this)
+   }
+
+
   _advancedSearch () {
     NavigationActions.AdvancedSearch()
   }
@@ -86,6 +96,28 @@ class DoctorList extends Component {
     </Image>)
   }
 
+    loadMore(){
+       var currentLimit = this.state.listLimit
+        console.log("currentLimit=>" , currentLimit)
+        var newLimit = currentLimit 
+        console.log("new limit =>" , newLimit)
+
+        this.setState({
+            listLimit : newLimit + 10
+        })
+
+        if(this.state.totalNumberOfCardPerScreen < newLimit){
+          this.props.changeStart(totalNumberOfCardPerScreen + 1)
+          this.props.changeEnd(totalNumberOfCardPerScreen + 101)
+          this.props.attemptProviderSearch(this.props)
+         // alert("Make another call")
+            this.setState({
+                listLimit : this.state.totalNumberOfCardPerScreen,
+                totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen 
+            })
+         }
+     }
+
   _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
@@ -122,13 +154,14 @@ class DoctorList extends Component {
 
                   {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
                      <DoctorCard
+                      cardLimit = {this.state.listLimit}
                       savedproviders={this.props.saveProvider}
                       saveProvider={this.saveProvider}
                       removeProvider={this.removeProvider}
                       data={this.props.provider.data.providerList}
                       leftActive={this.props.leftActive}
                       rightActive={this.props.rightActive}
-
+                      
                   />
                   :
                       <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
@@ -151,6 +184,25 @@ class DoctorList extends Component {
                     }
 
                 </View>
+
+                 <TouchableOpacity 
+            onPress = {this.loadMore}
+            style={{
+                backgroundColor : 'grey',
+                paddingLeft : 14,
+                paddingRight : 14,
+                paddingTop: 10,
+                paddingBottom : 10,
+                width : window.width * 0.4,
+                alignSelf : 'center',
+                margin : window.height * 0.02,
+                alignItems : 'center',
+                borderRadius : 5
+            }}>
+                <Text style={{
+                    color : 'white'
+                }}>Load More</Text>
+            </TouchableOpacity>
 
               </ScrollView>
             </View>
@@ -242,7 +294,8 @@ DoctorList.propTypes = {
   error: PropTypes.string,
   saveProvider: PropTypes.array,
   attemptHandleLeft: PropTypes.func,
-  attemptHandleRight: PropTypes.func
+  attemptHandleRight: PropTypes.func,
+  
 }
 
 const mapStateToProps = (state) => {
@@ -258,13 +311,15 @@ const mapStateToProps = (state) => {
     searchRange: state.provider.searchRange,
     latDelta: state.provider.latDelta,
     longDelta: state.provider.longDelta,
+    start:state.provider.start,
+    end:state.provider.end,
     showUrgentCareBanner: state.provider.showUrgentCareBanner
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptProviderSearch: () => dispatch(ProviderActions.sendProviderSearchRequest()),
+    attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
     attemptHandleLeft: () => dispatch(ProviderActions.providerClickleft()),
     attemptHandleRight: () => dispatch(ProviderActions.providerClickright()),
     addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
@@ -272,7 +327,9 @@ const mapDispatchToProps = (dispatch) => {
     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),
-    changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta))
+    changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta)),
+    changeStart: (start) => dispatch(ProviderActions.changeStart(start)),
+    changeEnd: (end) => dispatch(ProviderActions.changeEnd(end))
   }
 }
 
