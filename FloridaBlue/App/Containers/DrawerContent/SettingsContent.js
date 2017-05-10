@@ -137,7 +137,7 @@ class SettingsContent extends Component {
     RCTNetworking.clearCookies((cleared) => {
       console.tron.log('clearing local cookies for the app')
     })
-    this.props.attemptLogout()
+    this.props.attemptLogout(this.props.logoutUrl)
     NavigationActions.login()
   }
 
@@ -342,14 +342,15 @@ const mapStateToProps = (state) => {
     data: state.myplan.data,
     responseURL: state.login.responseURL,
     smToken: state.login.smToken,
-    visibilityRules: state.member.visibilityRules
+    visibilityRules: state.member.visibilityRules,
+    logoutUrl: state.member.logoutUrl
 
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogout: () => dispatch(LoginActions.logoutRequest()),
+    attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),    
     attemptMember: () => dispatch(MemberActions.memberRequest()),
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
     clearLogin: () => dispatch(LoginActions.logout())
