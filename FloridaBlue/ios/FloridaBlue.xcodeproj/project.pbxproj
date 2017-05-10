@@ -1294,11 +1294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2C7405E1EC239C8007EAB45 /* YWebView.m in Sources */,
-<<<<<<< HEAD
-				C54719761EC3553700D64CA6 /* YWebViewManager.m in Sources */,
-=======
 				F29493711EC3540400D137DF /* YWebViewManager.m in Sources */,
->>>>>>> f711bbbbd626dff6749ca8546a520dab16d5ad30
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				F2C7405D1EC239C8007EAB45 /* NSString+Cookie.m in Sources */,
 				F2C740881EC24392007EAB45 /* KeychainWrapper.m in Sources */,
