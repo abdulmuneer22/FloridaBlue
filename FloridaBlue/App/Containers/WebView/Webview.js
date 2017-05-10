@@ -19,11 +19,11 @@ import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import WKWebView from 'react-native-wkwebview-reborn'
-
+import WebViewManager from './Ywebviews'
 const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
 var btoa = require('btoa')
-module.exports = requireNativeComponent('WebViewManager', null);
+
 
 
 class Webview extends Component {
@@ -79,10 +79,8 @@ class Webview extends Component {
         backgroundColor: 'white'
       }}>
         {this._renderHeader()}
-          <WKWebView
-          customUserAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239eSafari/602.1" 
-          sendCookies={false}
-          source={redirect}
+          <WebViewManager
+          
           />
       </View>
     )

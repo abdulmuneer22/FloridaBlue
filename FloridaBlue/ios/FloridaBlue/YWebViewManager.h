@@ -10,6 +10,6 @@
 #import "YWebView.h"
 #import <React/RCTViewManager.h>
 
-@interface WebViewManager : RCTViewManager
+@interface YWebViewManager : RCTViewManager
 
 @end

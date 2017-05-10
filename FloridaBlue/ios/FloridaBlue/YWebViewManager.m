@@ -6,17 +6,18 @@
 //  Copyright © 2017 Facebook. All rights reserved.
 //
 
-#import "WebViewManager.h"
-
-@interface WebViewManager ()
+#import "YWebViewManager.h"
+#import <React/RCTBridge.h>
+@interface YWebViewManager ()
 @end
 
-@implementation WebViewManager
+@implementation YWebViewManager
 
 RCT_EXPORT_MODULE()
 
-- (YWebView *)webView
+- (UIView *)view
 {
+  NSLog(@"Rendering YWebView..");
   YWebView *webView = [[YWebView alloc] init];
   NSURL* url = [NSURL URLWithString:@"http://www.bing.com"];
   NSURLRequest* request = [NSURLRequest requestWithURL:url];
