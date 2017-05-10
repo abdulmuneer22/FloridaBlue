@@ -31,7 +31,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingTop: Metrics.screenHeight * 0.16,
     paddingHorizontal: Metrics.doubleBaseMargin
-
+  },
+  touchButton: {
+    alignItems: 'center',
+    paddingHorizontal: Metrics.doubleBaseMargin
   },
   form: {
     backgroundColor: Colors.snow,

@@ -122,7 +122,7 @@ class ProviderSearch extends Component {
       })
     }
 
-    if (newProps.member && this.state.userWantsResults) {
+    if (newProps.networkCodeList && this.state.userWantsResults) {
       this._getResults()
     }
   }
@@ -180,7 +180,7 @@ class ProviderSearch extends Component {
     this.props.changeUrgentCareBanner(false)
     this.setState({userWantsResults: true})
 
-    if (this.props.member) {
+    if (this.props.networkCodeList) {
       if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
         this.props.attemptPharmacySearch(this.props)
       } else {
@@ -519,7 +519,7 @@ class ProviderSearch extends Component {
               <Image source={Images.viewListButton} style={styles.viewListButton} />
             </TouchableOpacity>
             </View>
-          <View style={{marginTop: (Platform.OS === 'ios') ? 23 : 37,marginLeft:7}}>
+          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.001 : Metrics.section * Metrics.screenHeight * 0.00127, marginLeft:7}}>
             <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
                   color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
           </View>

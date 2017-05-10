@@ -172,32 +172,33 @@ class MyPlanSwiper extends Component {
                     }} key={i}>
                       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} >
                         <View style={ i==0 ? {flex :3 , 
-                         borderBottomWidth: 1,
+                         borderBottomWidth: 3,
                          borderBottomColor:Colors.flBlue.night, 
                       
                         } :  {flex :3 , 
-                         borderBottomWidth: 1,
+                         borderBottomWidth: 3,
                          borderBottomColor:Colors.flBlue.grass, 
                       
                         }}>
                          <Text style={{
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0020,
+                           fontWeight: '500',
                           fontFamily: Fonts.type.subHeaderFont,
-                          color: Colors.flBlue.grey4                        }}>
+                          color: Colors.flBlue.grey6                        }}>
                           {benefit ? benefit.label.en : null}
                         </Text>
                         </View>
-                        <View style={{flex :1}}>
+                        <View style={{flex :1 , marginTop:2}}>
                         <Text style={ i ==0 ? {
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                           fontWeight: '500',
                           fontFamily: Fonts.type.subHeaderFont,
-                          color: Colors.flBlue.night}:
+                          color: Colors.flBlue.grey6}:
                           {
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                           fontWeight: '500',
                           fontFamily: Fonts.type.subHeaderFont,
-                          color: Colors.flBlue.grass}}>
+                          color: Colors.flBlue.grey6}}>
                       ${benefit ? benefit.value : null}
                         </Text>
                        </View>

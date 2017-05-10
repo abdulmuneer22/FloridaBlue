@@ -11,9 +11,11 @@ import {
   Modal,
   Dimensions,
   BackAndroid,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  NativeModules
 } from 'react-native'
 var urlConfig = require('../../UrlConfig');
+var TouchManager = NativeModules.TouchManager
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 var RCTNetworking = require('RCTNetworking')
@@ -71,10 +73,128 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
+      authStatus: '',
+      touchEnabled: false,
       modalVisible: false
     }
 
     this.isAttempting = false
+  }
+
+  _handleTouchID() {
+    TouchManager.checkTouchStatus((error, touchInfo) => {
+      if (error) {
+        console.tron.log(error)
+      } else {
+        var touchStatus = touchInfo[0]
+        if (touchStatus == "YES") {
+          this.setState({touchEnabled: true})
+          this._authenticateUser()
+        } else {
+          this.setState({touchEnabled: false})
+          Alert.alert(
+            'Touch ID Not Configured',
+            'Would you like to configure Touch ID for login on this device?',
+            [
+              {text: 'No', onPress: () => console.tron.log('Cancel Pressed'), style: 'cancel'},
+              {text: 'Yes', onPress: () => this._turnOnTouchID()},
+            ],
+            { cancelable: false }
+          )
+        }
+      }
+    })
+  }
+
+  _turnOnTouchID() {
+    RCTNetworking.clearCookies((cleared) => {})
+    Keyboard.dismiss()
+    var username = this.props.username
+    var password = this.props.password
+
+    if (!username && !password) {
+      Alert.alert('Login', 'Please enter your User ID/Password.', [
+        {
+          text: 'OK'
+        }
+      ])
+     // alert('Please enter your user ID/Password.')
+    } else
+    if (!username && password) {
+      Alert.alert('Login', 'Please enter your User ID', [
+        {
+          text: 'OK'
+        }
+      ])
+    } else
+    if (username && !password) {
+      Alert.alert('Login', 'Please enter your Password.', [
+        {
+          text: 'OK'
+        }
+      ])
+    } else {
+      TouchManager.enableTouchID(username, password, (error, info) => {
+        if (error) {
+          // handle error..
+        } else {
+          this._authenticateUser()
+        }
+      })
+    }
+  }
+
+  _authenticateUser() {
+    TouchManager.authenticateUser((error, authInfo) => {
+      if (error) {
+        this.setState({authStatus: "Failure"})
+      } else {
+        var authObject = authInfo[0]
+        var authStatus = authObject["authStatus"]
+        if (authStatus == "YES") {
+          this.setState({authStatus: "Success"})
+          this._secureLogin()
+        } else {
+          this.setState({authStatus: "Failure"})
+          var errorMessage = ""
+          var errorTitle = "Oops!"
+          var errorCode = authObject["authErrorCode"]
+          console.tron.log(errorCode)
+          switch(errorCode) {
+              case "999":
+                  errorMessage = "Touch ID is not configured on your device. Please visit your settings to configure Touch ID."
+                  break;
+              case "01":
+                  errorMessage = "Sorry, authentication failed. Please ensure you are using the correct fingerprint."
+                  break;
+              default:
+                  code block
+          }
+
+          Alert.alert(
+            errorTitle,
+            errorMessage,
+            [
+              {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'},
+            ],
+            { cancelable: false }
+          )
+        }
+      }
+    })
+  }
+
+  _secureLogin() {
+    TouchManager.retrieveCredentials((error, credentials) => {
+      if (error) {
+        // handle error..
+      } else {
+        var username = credentials[0]
+        var password = credentials[1]
+        this.isAttempting = true
+        this.props.attemptLogin(username, password)
+      }
+    })
   }
 
   _handleLogin () {
@@ -106,9 +226,7 @@ class Login extends Component {
         }
       ])
     } else {
-        // const { username, password } = this.state
       this.isAttempting = true
-        // attempt a login - a saga is listening to pick it up from here.
       this.props.attemptLogin(username, password)
     }
   }
@@ -282,7 +400,7 @@ class Login extends Component {
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL})}>
             <Text style={styles.popupchildText}>
-              Find Care             
+              Find Care
             </Text>
           </TouchableOpacity>
         </View>
@@ -404,6 +522,14 @@ class Login extends Component {
               </TouchableOpacity>
             </SignUpView>
 
+            <View style={styles.touchButton}>
+              <TouchableOpacity onPress={() => { this._handleTouchID() }}>
+                <Image style={{width: Metrics.screenWidth * 0.5,
+                  borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
+                  height: Metrics.screenHeight * 0.064}}
+                  source={Images.touchIdButton} />
+              </TouchableOpacity>
+            </View>
           </View>
 
           {this.state.modalVisible && this._moreInfo()}
@@ -442,7 +568,8 @@ const mapStateToProps = (state) => {
     merror: state.member.error,
     username: state.login.username,
     password: state.login.password,
-    visibleDashboard: state.member.visibleDashboard
+    visibleDashboard: state.member.visibleDashboard,
+    authStatus: state.login.authStatus
   }
 }
 

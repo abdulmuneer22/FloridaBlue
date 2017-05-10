@@ -77,8 +77,8 @@ export function * sendCareTypeRequest (api, {data}) {
 
   if (response.ok) {
     var data = response.data
-    var allCategory = {"categoryCode": "ALL", "categoryName": "All"}
-    data.data.planCategoryList.splice(0, 0, allCategory)
+    //var allCategory = {"categoryCode": "ALL", "categoryName": ""}
+   // data.data.planCategoryList.splice(0, 0, allCategory)
     yield put(ProviderActions.sendCareTypeSuccess(data))
   } else {
     var error = response.problem
@@ -93,9 +93,9 @@ const response = yield call(api.getSpecialityTypes, selectedCategoryCode)
   if (response.ok) {
     var data = response.data
     var allCategory = {"categoryCode": "ALL","subCategoryCode": "","subCategoryName": "All"}
-    var noPrefCategory = {"categoryCode": "","subCategoryCode": "","subCategoryName": "No Preference"}
+   // var noPrefCategory = {"categoryCode": "","subCategoryCode": "","subCategoryName": ""}
     data.data.planSubCategoryList.splice(0, 0, allCategory)
-    data.data.planSubCategoryList.push(noPrefCategory)
+   // data.data.planSubCategoryList.push(noPrefCategory)
     yield put(ProviderActions.changeCategoryCode(selectedCategoryCode))
     yield put(ProviderActions.sendSpecialityTypeSuccess(data))
   } else {
