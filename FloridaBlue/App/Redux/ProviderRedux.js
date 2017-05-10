@@ -59,7 +59,7 @@ const { Types, Creators } = createActions({
   changeLongDelta: ['longDelta'],
   changeUrgentCareBanner: ['showUrgentCareBanner'],
   changeStart:['start'],
-  ChangeEnd:['end'],
+  changeEnd:['end'],
   providerClickleft: [],
   providerClickright: []
 

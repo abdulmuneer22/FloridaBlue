@@ -53,7 +53,8 @@ constructor(props){
          super(props);
          this.state = {
           listLimit : 10,
-          totalNumberOfCardPerScreen : 100
+          totalNumberOfCardPerScreen : 100,
+          isFetchingMore: false
       }
       this.loadMore = this.loadMore.bind(this)
    }
@@ -71,6 +72,12 @@ constructor(props){
   }
 
   componentWillReceiveProps (newProps) {
+    console.tron.log(newProps)
+    if (this.state.isFetchingMore) {
+      this.props.attemptProviderSearch(this.props)
+      this.setState({isFetchingMore: false})
+    }
+
     if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
       this.props.changeLatitude(newProps.provider.data.originLatitude)
       this.props.changeLongitude(newProps.provider.data.originLongitude)
@@ -89,33 +96,33 @@ constructor(props){
       </View>
       <Text style={styles.headerTextStyle}>
         Find Care
-              </Text>
+      </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
         {NavItems.settingsButton()}
       </View>
     </Image>)
   }
 
-    loadMore(){
+    loadMore() {
        var currentLimit = this.state.listLimit
         console.log("currentLimit=>" , currentLimit)
-        var newLimit = currentLimit 
+        var newLimit = currentLimit
         console.log("new limit =>" , newLimit)
 
         this.setState({
             listLimit : newLimit + 10
         })
 
-        if(this.state.totalNumberOfCardPerScreen < newLimit){
-          this.props.changeStart(totalNumberOfCardPerScreen + 1)
-          this.props.changeEnd(totalNumberOfCardPerScreen + 101)
-          this.props.attemptProviderSearch(this.props)
-         // alert("Make another call")
-            this.setState({
-                listLimit : this.state.totalNumberOfCardPerScreen,
-                totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen 
-            })
-         }
+        if(this.state.totalNumberOfCardPerScreen < newLimit) {
+          this.props.changeStart(this.state.totalNumberOfCardPerScreen + 1)
+          this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 101)
+          this.state.isFetchingMore = true
+
+          this.setState({
+              listLimit : this.state.totalNumberOfCardPerScreen,
+              totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen
+          })
+        }
      }
 
   _displayCondition () {
@@ -161,7 +168,7 @@ constructor(props){
                       data={this.props.provider.data.providerList}
                       leftActive={this.props.leftActive}
                       rightActive={this.props.rightActive}
-                      
+
                   />
                   :
                       <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
@@ -185,7 +192,7 @@ constructor(props){
 
                 </View>
 
-                 <TouchableOpacity 
+                 <TouchableOpacity
             onPress = {this.loadMore}
             style={{
                 backgroundColor : 'grey',
@@ -295,7 +302,7 @@ DoctorList.propTypes = {
   saveProvider: PropTypes.array,
   attemptHandleLeft: PropTypes.func,
   attemptHandleRight: PropTypes.func,
-  
+
 }
 
 const mapStateToProps = (state) => {
