@@ -168,7 +168,7 @@ class Login extends Component {
                   errorMessage = "Sorry, authentication failed. Please ensure you are using the correct fingerprint."
                   break;
               default:
-                  code block
+                  errorMessage = "Sorry, authentication failed. Please ensure you are using the correct fingerprint."
           }
 
           Alert.alert(
