@@ -280,15 +280,15 @@ class AdvancedSearch extends Component {
       Permissions.getPermissionStatus('location')
       .then(response => {
         locationStatus = response
-        if (response == 'authorized' || response == 'undetermined') {
+        if (response == 'authorized') {
           getCurrentLocation = true
           this.props.changeLocationPermissionStatus(response)
-        } else {
+        } else if(response == 'undetermined') {
           Permissions.requestPermission('location')
           .then(response => {
             this.props.changeLocationPermissionStatus(response)
             locationStatus = response
-            if (response == 'authorized' || response == 'undetermined') {
+            if (response == 'authorized') {
               getCurrentLocation = true
             }
           })

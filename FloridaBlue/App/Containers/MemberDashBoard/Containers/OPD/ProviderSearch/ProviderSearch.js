@@ -275,15 +275,15 @@ class ProviderSearch extends Component {
       Permissions.getPermissionStatus('location')
       .then(response => {
         locationStatus = response
-        if (response == 'authorized' || response == 'undetermined') {
+        if (response == 'authorized') {
           this.props.changeLocationPermissionStatus(response)
           this._getPosition()
-        } else {
+        } else if (response == 'undetermined') {
           Permissions.requestPermission('location')
           .then(response => {
             this.props.changeLocationPermissionStatus(response)
             locationStatus = response
-            if (response == 'authorized' || response == 'undetermined') {
+            if (response == 'authorized') {
               this._getPosition()
             }
           })
