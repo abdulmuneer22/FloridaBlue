@@ -89,5 +89,6 @@
    "savedProviderButton": "View Saved Providers",
    "providerSearchTitle": "Do you know the name of your doctor or care facility?",
    "yesTitle": "Yes",
-   "noTitle": "No"
+   "noTitle": "No",
+   "enableTouchID": "Enable Touch ID"
 }
