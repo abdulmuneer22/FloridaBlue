@@ -68,7 +68,7 @@ class Screen_1 extends React.Component {
     var zipCodeTest = new RegExp('^(^\\d{5}$)|(^\\d{5}-\\d{4}$)$')
     if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
       this.props.handleChangeIdentificationStatus('999')
-      this.props.handleChangeIdentificationStatusMessage('Please enter values in all fields')
+      this.props.handleChangeIdentificationStatusMessage('Please enter all information.')
     } else if (!dateTest.test(dateOfBirth)) {
       this.props.handleChangeIdentificationStatus('999')
       this.props.handleChangeIdentificationStatusMessage('Please enter a valid date - MM/DD/YYYY')
@@ -136,6 +136,10 @@ class Screen_1 extends React.Component {
               ref='contractNumber'
               value={this.props.contractNumber}
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -165,6 +169,10 @@ class Screen_1 extends React.Component {
               ref='firstName'
               value={this.props.firstName}
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -181,6 +189,10 @@ class Screen_1 extends React.Component {
               ref='lastName'
               value={this.props.lastName}
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -197,6 +209,10 @@ class Screen_1 extends React.Component {
               ref='dateOfBirth'
               value={this.props.dateOfBirth}
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -213,6 +229,10 @@ class Screen_1 extends React.Component {
               ref='zipCode'
               value={this.props.zipCode}
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='done'
               autoCapitalize='none'

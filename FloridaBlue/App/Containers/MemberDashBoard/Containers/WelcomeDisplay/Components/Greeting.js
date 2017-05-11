@@ -30,15 +30,15 @@ class Greeting extends Component {
     // alert(hours)
     if (hours < 12) {
       // alert("Good Morning")
-      this.setState({ greetText: 'Good Morning' })
+      this.setState({ greetText: 'Good Morning,' })
     } else {
       if (hours >= 12) {
         if (hours < 17) {
           // alert("Good Afternoon")
-          this.setState({ greetText: 'Good Afternoon' })
+          this.setState({ greetText: 'Good Afternoon,' })
         } else {
           // alert("Good evening")
-          this.setState({ greetText: 'Good Evening' })
+          this.setState({ greetText: 'Good Evening,' })
         }
       }
     }
@@ -65,7 +65,7 @@ class Greeting extends Component {
       <View >
         <View style={styles.greetingView}>
           <Text style={styles.greetingText}>
-            {this.state.greetText} {this.props.userName ? this.props.userName : ''}
+            {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
           </Text>
 
         </View>

@@ -7,7 +7,7 @@ var getReasonMessage = function (status) {
   let messages = {
     '000': 'Success',
     '-1000': "Oops! Looks like we`re having trouble with your request. Please try again later.",
-    '002': "Looks like you're already signed up. Enter your user ID and password to log in.",
+    '002': "Looks like you're already signed up. Enter your User ID and Password to log in.",
     '004': "Oops! We can't find you in our system based on your response. Click Support for help.",
     '005': "Oops! Looks like we`re having trouble with your request. Please try again later.",
     '006': "Oops! Looks like we`re having trouble with your request. Please try again later.",

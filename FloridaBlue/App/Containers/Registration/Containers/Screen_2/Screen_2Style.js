@@ -33,7 +33,7 @@ export default StyleSheet.create({
   },
   subHeaderTextStyle: {
     paddingTop: Metrics.doubleBaseMargin,
-    fontSize: Fonts.size.xm,
+    fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '200',
     color:Colors.flBlue.anvil

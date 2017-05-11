@@ -69,13 +69,13 @@ class Screen_2 extends React.Component {
 
     if (!(createUserId && password && confirmPassword)) {
       this.props.handleChangePersonalInformationStatus('999')
-      this.props.handleChangePersonalInformationStatusMessage('Please enter values in all fields')
+      this.props.handleChangePersonalInformationStatusMessage('Please enter all information.')
     } else if (confirmPassword != password) {
       this.props.handleChangePersonalInformationStatus('999')
-      this.props.handleChangePersonalInformationStatusMessage('Your passwords do not match. Please enter matching passwords')
+      this.props.handleChangePersonalInformationStatusMessage('Your passwords do not match. Please enter matching passwords.')
     } else if (!this.props.emailVerified && confirmEmail != email) {
       this.props.handleChangePersonalInformationStatus('999')
-      this.props.handleChangePersonalInformationStatusMessage('Your emails do not match. Please enter the correct email')
+      this.props.handleChangePersonalInformationStatusMessage('Your emails do not match. Please enter the correct email.')
     } else {
       this.props.verifyPersonalInformation(this.props)
     }
@@ -144,6 +144,12 @@ class Screen_2 extends React.Component {
               ref='phoneNumber'
               value={this.props.phoneNumber}
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.ocean,
+                    //marginLeft:100,
+                    //marginRight:-100,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                  }}
               keyboardType='numbers-and-punctuation'
               returnKeyType='next'
               autoCapitalize='none'
@@ -167,6 +173,10 @@ class Screen_2 extends React.Component {
                   ref='email'
                   style={styles.textfieldWithFloatingLabel}
                   keyboardType='email-address'
+                  textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
                   editable={!this.props.emailVerified}
                   returnKeyType='next'
                   autoCapitalize='none'
@@ -182,6 +192,10 @@ class Screen_2 extends React.Component {
                 <TextfieldWithFloatingLabel
                   ref='confirmEmail'
                   value={this.props.confirmEmail}
+                  textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
                   style={styles.textfieldWithFloatingLabel}
                   keyboardType='email-address'
                   returnKeyType='next'
@@ -202,6 +216,10 @@ class Screen_2 extends React.Component {
                 style={styles.textfieldWithFloatingLabel}
                 keyboardType='email-address'
                 editable={!this.props.emailVerified}
+                textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
                 returnKeyType='next'
                 autoCapitalize='none'
                 autoCorrect={false}
@@ -220,6 +238,10 @@ class Screen_2 extends React.Component {
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               autoCorrect={false}
               onChangeText={this.props.handleChangeCreateUserId}
               underlineColorAndroid={Colors.coal}
@@ -227,17 +249,21 @@ class Screen_2 extends React.Component {
                 this.refs.password.focus()
               }}
               placeholder={I18n.t('createUserId')} />
-            <Text style={styles.hintLink} onPress={() => { this._handleUserIdHint() }}>Hint</Text>
+            <Text style={styles.hintLink} onPress={() => { this._handleUserIdHint() }}>Hints</Text>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
-              ref='password'
+              ref=' Create Password'
               value={this.props.password}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
               autoCorrect={false}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               password
               onChangeText={this.props.handleChangePassword}
               underlineColorAndroid={Colors.coal}
@@ -246,7 +272,7 @@ class Screen_2 extends React.Component {
               }}
               placeholder={I18n.t('password')}
             />
-            <Text style={styles.hintLink} onPress={() => { this._handlePasswordHint() }}>Hint</Text>
+            <Text style={styles.hintLink} onPress={() => { this._handlePasswordHint() }}>Hints</Text>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
@@ -256,6 +282,10 @@ class Screen_2 extends React.Component {
               keyboardType='default'
               returnKeyType='done'
               autoCapitalize='none'
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               autoCorrect={false}
               password
               onChangeText={this.props.handleChangeConfirmPassword}
@@ -296,7 +326,7 @@ class Screen_2 extends React.Component {
                 <Image source={Images.nextButtonGreen}
                   style={{width: Metrics.screenWidth * 0.35,
                     borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                    height: Metrics.screenHeight * 0.055}} />
+                    height: Metrics.screenHeight * 0.058}} />
               </TouchableOpacity>
             </View>}
           </View>
