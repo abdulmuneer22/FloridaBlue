@@ -55,7 +55,7 @@ class Screen_3 extends React.Component {
     var enterCode = this.props.enterCode
 
     if (!enterCode) {
-      alert('Please enter a registration code')
+      alert('Please enter a registration code.')
     } else {
       this.props.verifyRegistrationCode(this.props)
     }
@@ -134,6 +134,10 @@ class Screen_3 extends React.Component {
               keyboardType='numbers-and-punctuation'
               returnKeyType='done'
               value={this.props.enterCode}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               autoCapitalize='none'
               autoCorrect={false}
               onChangeText={this.props.handleChangeEnterCode}

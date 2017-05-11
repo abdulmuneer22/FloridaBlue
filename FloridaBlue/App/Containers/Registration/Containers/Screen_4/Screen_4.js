@@ -62,13 +62,13 @@ class Screen_4 extends React.Component {
 
     if (!(securityHint1 && securityAnswer1 && securityHint2 && securityAnswer2 && securityHint3 && securityAnswer3)) {
       this.props.handleChangeSecurityHintsStatus('999')
-      this.props.handleChangeSecurityHintsStatusMessage('Please enter values in all fields')
+      this.props.handleChangeSecurityHintsStatusMessage('Please enter all information.')
     } else if (securityHint1.length < 4 || securityHint2.length < 4 || securityHint3.length < 4) {
       this.props.handleChangeSecurityHintsStatus('999')
-      this.props.handleChangeSecurityHintsStatusMessage('All hints must be at least four characters in length')
+      this.props.handleChangeSecurityHintsStatusMessage('All hints must be at least four characters in length.')
     } else if (securityAnswer1.length < 3 || securityAnswer2.length < 3 || securityAnswer3.length < 3) {
       this.props.handleChangeSecurityHintsStatus('999')
-      this.props.handleChangeSecurityHintsStatusMessage('All answers must be at least three characters in length')
+      this.props.handleChangeSecurityHintsStatusMessage('All answers must be at least three characters in length.')
     } else {
       this.props.verifySecurityHints(this.props)
     }
@@ -135,6 +135,10 @@ class Screen_4 extends React.Component {
             <TextfieldWithFloatingLabel
               ref='securityHint1'
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -151,6 +155,10 @@ class Screen_4 extends React.Component {
             <TextfieldWithFloatingLabel
               ref='securityAnswer1'
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -173,6 +181,10 @@ class Screen_4 extends React.Component {
             <TextfieldWithFloatingLabel
               ref='securityHint2'
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -189,6 +201,10 @@ class Screen_4 extends React.Component {
             <TextfieldWithFloatingLabel
               ref='securityAnswer2'
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -211,6 +227,10 @@ class Screen_4 extends React.Component {
             <TextfieldWithFloatingLabel
               ref='securityHint3'
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
@@ -227,6 +247,10 @@ class Screen_4 extends React.Component {
             <TextfieldWithFloatingLabel
               ref='securityAnswer3'
               style={styles.textfieldWithFloatingLabel}
+              textInputStyle={{
+                    flex: 1, color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                  }}
               keyboardType='default'
               returnKeyType='next'
               autoCapitalize='none'
