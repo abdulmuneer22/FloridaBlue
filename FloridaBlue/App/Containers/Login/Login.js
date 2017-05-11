@@ -74,7 +74,6 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      authStatus: '',
       touchEnabled: false,
       modalVisible: false
     }
@@ -98,7 +97,7 @@ class Login extends Component {
             'Would you like to configure Touch ID for login on this device?',
             [
               {text: 'No', onPress: () => console.tron.log('Cancel Pressed'), style: 'cancel'},
-              {text: 'Yes', onPress: () => this._turnOnTouchID()},
+              {text: 'Yes', onPress: () => NavigationActions.TouchTOU()},
             ],
             { cancelable: false }
           )
@@ -108,39 +107,35 @@ class Login extends Component {
   }
 
   _turnOnTouchID() {
+    RCTNetworking.clearCookies((cleared) => {})
+    Keyboard.dismiss()
+    var username = this.props.username
+    var password = this.props.password
 
+    if (!username && !password) {
+      Alert.alert('Login', 'Please enter your User ID/Password', [
+        {
+          text: 'OK'
+        }
+      ])
+     // alert('Please enter your user ID/Password.')
+    } else if (!username && password) {
+      Alert.alert('Login', 'Please enter your User ID', [
+        {
+          text: 'OK'
+        }
+      ])
+    } else if (username && !password) {
+      Alert.alert('Login', 'Please enter your Password', [
+        {
+          text: 'OK'
+        }
+      ])
+    } else {
+      TouchManager.enableTouchID(username, password)
+    }
+}
 
-
-    // RCTNetworking.clearCookies((cleared) => {})
-    // Keyboard.dismiss()
-    // var username = this.props.username
-    // var password = this.props.password
-    //
-    // if (!username && !password) {
-    //   Alert.alert('Login', 'Please enter your User ID/Password', [
-    //     {
-    //       text: 'OK'
-    //     }
-    //   ])
-    //  // alert('Please enter your user ID/Password.')
-    // } else
-    // if (!username && password) {
-    //   Alert.alert('Login', 'Please enter your User ID', [
-    //     {
-    //       text: 'OK'
-    //     }
-    //   ])
-    // } else
-    // if (username && !password) {
-    //   Alert.alert('Login', 'Please enter your Password', [
-    //     {
-    //       text: 'OK'
-    //     }
-    //   ])
-    // } else {
-    //   TouchManager.enableTouchID(username, password)
-    // }
-  }
 
   _authenticateUser() {
     TouchManager.authenticateUser((error, authInfo) => {
@@ -150,14 +145,14 @@ class Login extends Component {
         var authObject = authInfo[0]
         var authStatus = authObject["authStatus"]
         if (authStatus == "YES") {
-          this.setState({authStatus: "Success"})
+          this.setState({touchEnabled: true})
           this._secureLogin()
         } else {
-          this.setState({authStatus: "Failure"})
+          this.setState({touchEnabled: false})
           var errorMessage = ""
           var errorTitle = "Oops!"
           var errorCode = authObject["authErrorCode"]
-          console.tron.log(errorCode)
+
           switch(errorCode) {
               case "999":
                   errorMessage = "Touch ID is not configured on your device. Please visit your settings to configure Touch ID."
@@ -580,8 +575,7 @@ const mapStateToProps = (state) => {
     merror: state.member.error,
     username: state.login.username,
     password: state.login.password,
-    visibleDashboard: state.member.visibleDashboard,
-    authStatus: state.login.authStatus
+    visibleDashboard: state.member.visibleDashboard
   }
 }
 
