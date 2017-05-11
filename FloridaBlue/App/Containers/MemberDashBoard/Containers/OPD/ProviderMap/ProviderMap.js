@@ -25,6 +25,7 @@ import DoctorCard from './Components/DoctorCard'
 import HideableView from 'react-native-hideable-view'
 import Swiper from 'react-native-swiper'
 
+
 const theme = getTheme()
 const screen = Dimensions.get('window')
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -45,11 +46,18 @@ class ProviderMap extends Component {
       selectedLocation: {},
       showLocationDetail: true,
       currentLat: 0,
-      currentLong: 0
+      currentLong: 0,
+      region : {
+      latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+        }
     }
 
     this._mapCalloutSelected = this._mapCalloutSelected.bind(this)
     this._locationSwiped = this._locationSwiped.bind(this)
+    this._onRegionChange = this._onRegionChange.bind(this)
   }
 
   componentWillMount () {
@@ -58,10 +66,18 @@ class ProviderMap extends Component {
     this.setState({currentLong: this.props.longitude})
   }
 
+  _onRegionChange(event,region) {
+      this.setState({region:region });
+  }
   _locationSwiped(event, state, context) {
     this.setState({selectedLocation: this.props.provider.data.providerList[state.index]})
     this.setState({currentLat: this.props.provider.data.providerList[state.index].latitude})
     this.setState({currentLong: this.props.provider.data.providerList[state.index].longitude})
+
+    const milesOfLatAtEquator = 69
+    this.props.changeLatDelta(2 / milesOfLatAtEquator)
+    this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[state.index].latitude) * milesOfLatAtEquator))
+
     this.setState({showLocationDetail: false}, function () {
       this.setState({showLocationDetail: true})
     })
@@ -117,7 +133,8 @@ class ProviderMap extends Component {
             <MapView
               style={styles.map}
               showsUserLocation
-              initialRegion={{
+              onRegionChange={this._onRegionChange}
+              region={{
                 latitude: this.state.currentLat,
                 longitude: this.state.currentLong,
                 latitudeDelta: this.props.latDelta,
@@ -160,7 +177,8 @@ const mapStateToProps = (state) => {
     addressKey: state.provider.addressKey,
     providerKey: state.provider.providerKey,
     selectedLocation: state.provider.selectedLocation,
-    showLocationDetail: state.provider.showLocationDetail
+    showLocationDetail: state.provider.showLocationDetail,
+    
   }
 }
 
@@ -168,7 +186,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     changeCurrentLocation: (currentLocation) => dispatch(ProviderActions.changeCurrentLocation(currentLocation)),
     changeAddressKey: (addressKey) => dispatch(ProviderActions.changeAddressKey(addressKey)),
-    changeProviderKey: (providerKey) => dispatch(ProviderActions.changeProviderKey(providerKey))
+    changeProviderKey: (providerKey) => dispatch(ProviderActions.changeProviderKey(providerKey)),
+    changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),
+    changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta))
   }
 }
 
