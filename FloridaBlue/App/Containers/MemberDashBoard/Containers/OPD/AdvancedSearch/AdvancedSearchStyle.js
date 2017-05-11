@@ -125,6 +125,17 @@ export default StyleSheet.create({
     //margin:10,
     color: Colors.flBlue.grey6
   },
+  h1_1: {
+
+    fontSize:(Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
+   // textAlign: 'center',
+    marginLeft: Metrics.doubleBaseMargin,
+    marginTop: Metrics.baseMargin,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight: '400',
+    //margin:10,
+    color: Colors.flBlue.grey6
+  },
 
   h2: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,

@@ -36,6 +36,15 @@ export default StyleSheet.create({
     fontWeight: '600',
     margin:10
   },
+   h1_1: {
+    fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
+    color: Colors.flBlue.anvil,
+    //textAlign: 'justify',
+    marginTop: Metrics.doubleBaseMargin,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400',
+    margin:10
+  },
   h2: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.anvil,

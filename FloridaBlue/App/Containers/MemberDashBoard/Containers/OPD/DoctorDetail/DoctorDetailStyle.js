@@ -109,10 +109,44 @@ export default StyleSheet.create({
     fontWeight: '600'
 
   },
+   h7: {
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
+    marginTop: Metrics.baseMargin,
+    color: Colors.flBlue.anvil,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400',
+    textAlign:'justify',
+    margin:10
+
+  },
+  h7_1: {
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0027,
+    marginTop: Metrics.baseMargin,
+    color: Colors.flBlue.ocean,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400',
+    textAlign:'justify',
+    margin:10,
+    textDecorationColor:Colors.flBlue.ocean,
+    textDecorationLine:'underline'
+
+  },
+   h7_2: {
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0027,
+    marginTop: Metrics.baseMargin,
+    color: Colors.flBlue.ocean,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400',
+    // textAlign:'justify',
+    // margin:10,
+    textDecorationColor:Colors.flBlue.ocean,
+    textDecorationLine:'underline'
+
+  },
   h5: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.smallMargin,
-    color: Colors.flBlue.purple,
+    color: Colors.flBlue.ocean,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
     textAlign: 'auto'
@@ -120,7 +154,7 @@ export default StyleSheet.create({
 
   h5_2: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-    color: Colors.flBlue.purple,
+    color: Colors.flBlue.ocean,
      marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400'

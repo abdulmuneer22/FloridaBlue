@@ -16,8 +16,8 @@ const { Types, Creators } = createActions({
   sendConfirm: [],
   logout: [],
   changeUserName: ['username'],
-  changePassword: ['password']
-
+  changePassword: ['password'],
+  changeTouchEnabled:['touchEnabled'],
 })
 
 export const LoginTypes = Types
@@ -33,8 +33,8 @@ export const INITIAL_STATE = Immutable({
   smToken: null,
   agreeTermsOfUse: null,
   getTou: null,
-  fetching: false
-
+  fetching: false,
+  touchEnabled: false
 })
 
 /* ------------- Reducers ------------- */
@@ -71,6 +71,9 @@ export const username = (state: Object, {username} : Object) =>
 export const password = (state: Object, {password} : Object) =>
   state.merge({password})
 
+  // we are change touchEnabled
+  export const _changeTouchEnabled = (state: Object, {touchEnabled} : Object) => state.merge({touchEnabled})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -84,7 +87,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_AGREE_TERMS_OF_USE]: _changeAgreeTermsOfUse,
   [Types.SEND_CONFIRM]: request,
   [Types.LOGIN_FAILURE]: failure,
-  [Types.LOGOUT]: logout
+  [Types.LOGOUT]: logout,
+  [Types.CHANGE_TOUCH_ENABLED]: _changeTouchEnabled
 })
 
 /* ------------- Selectors ------------- */

@@ -91,7 +91,7 @@ class DoctorCard extends Component {
 
                   <View style={{ flex: 1, flexDirection: 'row' }}>
 
-                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(this.props.data.address.telephoneNumber)}>
+                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(this.props.data && this.props.data.address && this.props.data.address.telephoneNumber)}>
                         <View style={styles.call}>
 
                             <View style={{ flex: 1, alignItems: 'flex-end' }}>
@@ -108,7 +108,7 @@ class DoctorCard extends Component {
                           </View>
                       </TouchableOpacity>
 
-                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}>
+                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(this.props.data && this.props.data.latitude, this.props.data && this.props.data.longitude)}>
                         <View style={styles.directions}>
 
                             <View style={{ flex: 0.3, alignItems: 'center' }}>

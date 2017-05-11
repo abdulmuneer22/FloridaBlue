@@ -74,90 +74,49 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      authStatus: '',
-      touchEnabled: false,
-      modalVisible: false
+      modalVisible: false,
+      touchCheckboxVisible: false,
+      touchChecked: false
     }
-
     this.isAttempting = false
   }
 
   _handleTouchID() {
-    TouchManager.checkTouchStatus((error, touchInfo) => {
-      if (error) {
-        console.tron.log(error)
-      } else {
-        var touchStatus = touchInfo[0]
-        if (touchStatus == "YES") {
-          this.setState({touchEnabled: true})
-          this._authenticateUser()
-        } else {
-          this.setState({touchEnabled: false})
-          Alert.alert(
-            'Touch ID Not Configured',
-            'Would you like to configure Touch ID for login on this device?',
-            [
-              {text: 'No', onPress: () => console.tron.log('Cancel Pressed'), style: 'cancel'},
-              {text: 'Yes', onPress: () => this._turnOnTouchID()},
-            ],
-            { cancelable: false }
-          )
-        }
-      }
-    })
+    if (this.props.touchEnabled) {
+      this.setState({touchChecked: false})
+      this.props.changeTouchEnabled(false)
+    } else {
+      this.setState({touchChecked: true})
+      this.props.changeTouchEnabled(true)
+    }
   }
 
-  _turnOnTouchID() {
-
-
-
-    // RCTNetworking.clearCookies((cleared) => {})
-    // Keyboard.dismiss()
-    // var username = this.props.username
-    // var password = this.props.password
-    //
-    // if (!username && !password) {
-    //   Alert.alert('Login', 'Please enter your User ID/Password', [
-    //     {
-    //       text: 'OK'
-    //     }
-    //   ])
-    //  // alert('Please enter your user ID/Password.')
-    // } else
-    // if (!username && password) {
-    //   Alert.alert('Login', 'Please enter your User ID', [
-    //     {
-    //       text: 'OK'
-    //     }
-    //   ])
-    // } else
-    // if (username && !password) {
-    //   Alert.alert('Login', 'Please enter your Password', [
-    //     {
-    //       text: 'OK'
-    //     }
-    //   ])
-    // } else {
-    //   TouchManager.enableTouchID(username, password)
-    // }
-  }
-
-  _authenticateUser() {
+  _authenticateUserWithTouch() {
     TouchManager.authenticateUser((error, authInfo) => {
       if (error) {
-        this.setState({authStatus: "Failure"})
+        // Handle error..
+        this.props.changeTouchEnabled(false)
+        Alert.alert(
+          "Oops!",
+          "Sorry, authentication failed. Please ensure you are using the correct fingerprint.",
+          [
+            {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'},
+          ],
+          { cancelable: false }
+        )
       } else {
         var authObject = authInfo[0]
         var authStatus = authObject["authStatus"]
         if (authStatus == "YES") {
-          this.setState({authStatus: "Success"})
+          this.props.changeTouchEnabled(true)
           this._secureLogin()
         } else {
-          this.setState({authStatus: "Failure"})
+          this.props.changeTouchEnabled(false)
+          var showError = true
           var errorMessage = ""
           var errorTitle = "Oops!"
           var errorCode = authObject["authErrorCode"]
-          console.tron.log(errorCode)
+
           switch(errorCode) {
               case "999":
                   errorMessage = "Touch ID is not configured on your device. Please visit your settings to configure Touch ID."
@@ -165,18 +124,23 @@ class Login extends Component {
               case "01":
                   errorMessage = "Sorry, authentication failed. Please ensure you are using the correct fingerprint."
                   break;
+              case "02":
+                  showError = false
+                  break;
               default:
                   errorMessage = "Sorry, authentication failed. Please ensure you are using the correct fingerprint."
           }
 
-          Alert.alert(
-            errorTitle,
-            errorMessage,
-            [
-              {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'},
-            ],
-            { cancelable: false }
-          )
+          if (showError) {
+            Alert.alert(
+              errorTitle,
+              errorMessage,
+              [
+                {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'},
+              ],
+              { cancelable: false }
+            )
+          }
         }
       }
     })
@@ -225,7 +189,12 @@ class Login extends Component {
       ])
     } else {
       this.isAttempting = true
-      this.props.attemptLogin(username, password)
+      if (this.props.touchEnabled) {
+        TouchManager.enableTouchID(username, password)
+        NavigationActions.TouchTOU()
+      } else {
+        this.props.attemptLogin(username, password)
+      }
     }
   }
 
@@ -248,20 +217,17 @@ class Login extends Component {
         console.tron.log(error)
       } else {
         var touchStatus = touchInfo[0]
-        console.tron.log(touchStatus)
         if (touchStatus == "YES") {
-          this.setState({touchEnabled: true})
+          this.props.changeTouchEnabled(true)
+          this.setState({touchCheckboxVisible: false})
+          this._authenticateUserWithTouch()
         } else {
-          this.setState({touchEnabled: false})
+          this.props.changeTouchEnabled(false)
+          this.setState({touchCheckboxVisible: true})
+          this.setState({touchChecked: false})
         }
       }
     })
-
-    console.tron.log(this.state.touchEnabled)
-  }
-
-  componentWillMount () {
-
   }
 
   componentWillReceiveProps (newProps) {
@@ -516,12 +482,12 @@ class Login extends Component {
                   placeholderTextColor={Colors.steel} />
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
-              {Platform.OS === 'ios' && !this.state.touchEnabled ?
+              {Platform.OS === 'ios' && this.state.touchCheckboxVisible ?
               <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchID() }}>
-                <MKCheckbox style={styles.radio} checked={this.state.touchEnabled} />
+                <MKCheckbox style={styles.radio} checked={this.props.touchEnabled} onPress={() => { this._handleTouchID() }}/>
                 <Text style={styles.link}>{I18n.t('enableTouchID')}</Text>
               </TouchableOpacity>
-              : null}
+              : <View style={styles.spaceRow} />}
             </LoginView>
 
             <LoginButtonView>
@@ -581,7 +547,8 @@ const mapStateToProps = (state) => {
     username: state.login.username,
     password: state.login.password,
     visibleDashboard: state.member.visibleDashboard,
-    authStatus: state.login.authStatus
+    touchEnabled: state.login.touchEnabled,
+    touchCheckboxVisible: state.login.touchCheckboxVisible
   }
 }
 
@@ -594,7 +561,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
     attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
     attemptLogout: () => dispatch(LoginActions.logoutRequest()),
-    clearLogin: () => dispatch(LoginActions.logout())
+    clearLogin: () => dispatch(LoginActions.logout()),
+    changeTouchEnabled: (touchEnabled) => dispatch(LoginActions.changeTouchEnabled(touchEnabled))
   }
 }
 

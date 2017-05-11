@@ -97,7 +97,9 @@ class AdvancedSearch extends Component {
       unknownCareState: false,
       specialityState: false,
       isDifferentLocationSelected:false,
-      differentLocationText:false
+      differentLocationText:false,
+      comingFromBackButton : false
+
     }
     this._timeSelected = this._timeSelected.bind(this)
     this._languageSelected = this._languageSelected.bind(this)
@@ -206,17 +208,34 @@ class AdvancedSearch extends Component {
 
   _selectCurrentLocation (event) {
     if (event.checked) {
-      this.setState({newLocationState: false})
-      navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.props.changeCurrentLocation(position)
-        this.props.changeLatitude(position['coords']['latitude'])
-        this.props.changeLongitude(position['coords']['longitude'])
-      },
-        (error) => alert(JSON.stringify(error)),
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000
+      if (this.props.locationStatus == 'authorized') {
+        this._getLocation()
+        this.props.changeAddress('Using Current Address')
+      } else {
+        Permissions.requestPermission('location')
+        .then(response => {
+          if (response == 'authorized') {
+            this._getLocation()
+          } else {
+            this._alertForLocationPermission()
+          }
         })
+      }
+      this.setState({specialityState: true})
+      //this.setState({customLocationState: false})
     }
+  }
+
+  _alertForLocationPermission () {
+    Alert.alert(
+      'Can we access your current location?',
+      'We need access so you can see provider data near your location',
+      [
+        {text: 'No way', onPress: () => console.tron.log('permission denied'), style: 'cancel'},
+        this.state.photoPermission == 'undetermined' ?
+        {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
+      ]
+    )
   }
 
   _selectDifferentLocation (event) {
@@ -270,6 +289,20 @@ class AdvancedSearch extends Component {
     this.props.changeCurrentLocation('Unknown')
     this.props.changeLatitude(0)
     this.props.changeLongitude(0)
+    if(!this.state.comingFromBackButton) {
+      
+    let timeSelected = {
+      'selectedTime': '',
+      'selectedTimeLabel': ''
+    }
+    this.props.changeTimeType(timeSelected)
+    let  acceptedPatient = {
+        'selectedPatientType': '',
+        'selectedPatientLabel': ''
+    }
+    this.props.changePatientType(acceptedPatient)
+
+    }
   }
 
   _getLocation () {
@@ -350,11 +383,12 @@ class AdvancedSearch extends Component {
   }
 
   componentDidMount () {
+    this._resetState ()
     this.props.attemptConfigData()
     this.props.attemptStaffLanguage()
     this.props.attemptDoctorLanguage()
     this._getLocation()
-
+    
     if (this.props.categoryCode != 'ALL') {
       this.setState({specialityState: true})
     }

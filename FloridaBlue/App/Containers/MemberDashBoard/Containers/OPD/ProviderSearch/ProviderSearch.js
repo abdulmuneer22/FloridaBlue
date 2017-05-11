@@ -54,6 +54,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   }
 })
 
+  
+
 class ProviderSearch extends Component {
 
   constructor (props) {
@@ -345,6 +347,14 @@ class ProviderSearch extends Component {
     )
   }
 
+   _dropdown_3_adjustFrame(style) {
+    console.log(`frameStyle={width:${style.width}, height:${style.height}, top:${style.top}, left:${style.left}, right:${style.right}}`);
+   // style.top -= 15;
+   // style.left += 150;
+   style.height -=140
+    return style;
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -353,7 +363,7 @@ class ProviderSearch extends Component {
           <ScrollView>
             <View style={{flex: 1}}>
               <View style={{flex:1, margin:10}}>
-              <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
+              <Text style={styles.h1_1}>{I18n.t('providerSearchTitle')}</Text>
 
               <View style={styles.radioView}>
                 <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
@@ -404,7 +414,11 @@ class ProviderSearch extends Component {
               </HideableView>
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
-                <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} 
+                onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} 
+                renderRow={this._renderDropdownRow.bind(this)} 
+                //adjustFrame={style => this._dropdown_3_adjustFrame(style)}
+                >
                   <MKTextField
                     ref='specialityType'
                     style={styles.textField}
