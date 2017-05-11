@@ -73,16 +73,25 @@ class Webview extends Component {
       }
     }
     console.tron.log('redirect' + JSON.stringify(redirect))
-    return (
+    return (      
       <View style={{
         flex: 1,
         backgroundColor: 'white'
       }}>
         {this._renderHeader()}
-          <WebViewManager
-          
-          />
+          <WebView
+          source={redirect}
+          javaScriptEnabled
+          domStorageEnabled
+          startInLoadingState
+       //   customUserAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239eSafari/602.1" 
+       //   sendCookies={true}
+       // Below functions for debugging
+       //   onNavigationStateChange={onNavigationStateChange}
+       //   onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
+            />
       </View>
+    
     )
   }
 }
