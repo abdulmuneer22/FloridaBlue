@@ -68,7 +68,8 @@ const images = {
   viewListButton: require('../Images/view-list-btn.png'),
   mapUnselectedPin: require('../Images/map-unselected.png'),
   mapSelectedPin: require('../Images/map-selected.png'),
-  touchIdButton: require('../Images/touch-id-btn.png')
+  touchIdButton: require('../Images/touch-id-btn.png'),
+  newHeaderImage: require('../Images/hdr-cityscape.png')
 }
 
 export default images

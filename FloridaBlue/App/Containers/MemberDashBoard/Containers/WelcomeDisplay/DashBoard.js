@@ -150,7 +150,7 @@ class LandingScreen extends Component {
                      
                           <View style={{flex:1}}>
                           <Image source={Images[tile.gradientImage]}  
-                           style={{flex:1, justifyContent:'center',width:(Metrics.screenWidth)- (Metrics.screenWidth * 0.547)}} resizeMode='contain' >
+                           style={{flex:1, justifyContent:'center',width:(Metrics.screenWidth)- (Metrics.screenWidth * 0.54)}} resizeMode='contain' >
 
                             <View style={{alignItems: 'center'}} >
                           <Text style={styles.tileTextStyle}>
