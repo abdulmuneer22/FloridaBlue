@@ -34,7 +34,7 @@ import ProviderActions from '../../../../../Redux/ProviderRedux'
 import _ from 'lodash'
 
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
-
+var urlConfig = require('../../../../../UrlConfig');
 const theme = getTheme()
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -52,7 +52,8 @@ class DoctorDetail extends Component {
       visible3: false,
       visible4: false,
       visible5: false,
-      visible6: false
+      visible6: false,
+      visible7:false
     }
     this.toggle = this.toggle.bind(this)
     this.toggle1 = this.toggle1.bind(this)
@@ -61,6 +62,7 @@ class DoctorDetail extends Component {
     this.toggle4 = this.toggle4.bind(this)
     this.toggle5 = this.toggle5.bind(this)
     this.toggle6 = this.toggle6.bind(this)
+    this.toggle7 = this.toggle7.bind(this)
   }
 
   toggle () {
@@ -101,6 +103,12 @@ class DoctorDetail extends Component {
   toggle6 () {
     this.setState({
       visible6: !this.state.visible6
+    })
+  }
+
+   toggle7 () {
+    this.setState({
+      visible7: !this.state.visible7
     })
   }
 
@@ -312,7 +320,10 @@ class DoctorDetail extends Component {
                             }
 
 
-                  { this.props.doctordetail.contractedSpecialties ||  this.props.doctordetail.servicesOffered ?
+                
+
+
+                      { this.props.doctordetail.contractedSpecialties ||  this.props.doctordetail.servicesOffered ?
                       <View style={{ flex: 1 }}>
                         <TouchableOpacity onPress={this.toggle2}>
                           <Card style={this.state.visible2 ? styles.cardStyle : styles.cardStyle1} >
@@ -339,7 +350,7 @@ class DoctorDetail extends Component {
                           <View style={{ flex:9 }}>
                             <Text style={{
                             fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-                            color: Colors.flBlue.purple
+                            color: Colors.flBlue.ocean
                           }}>
                            Contracted Specialties:
                           </Text>
@@ -368,7 +379,7 @@ class DoctorDetail extends Component {
                           <View style={{ flex:9 }}>
                             <Text style={{
                             fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-                            color: Colors.flBlue.purple
+                            color: Colors.flBlue.ocean
                           }}>
                            Services Offered:
                           </Text>
@@ -397,6 +408,11 @@ class DoctorDetail extends Component {
                             :
                       null
                             }
+
+
+                
+
+      
                 </View>
 
                 <View style={{ flex: 1 }}>
@@ -442,6 +458,154 @@ class DoctorDetail extends Component {
                      null
                             }
                 </View>
+
+                  { this.props.doctordetail.bcbsfProviderID ||  this.props.doctordetail.nationalProviderNumber ?
+                      <View style={{ flex: 1 }}>
+                        <TouchableOpacity onPress={this.toggle7}>
+                          <Card style={this.state.visible7 ? styles.cardStyle : styles.cardStyle1} >
+                            <View style={this.state.visible7 ? styles.plusView1 : styles.plusView}>
+                            <View style={{ flex: 2, alignItems: 'center' }}>
+                            <Flb name={this.state.visible7 ? 'minus' : 'plus'} color={this.state.visible7 ? Colors.snow : Colors.flBlue.ocean}
+                                size={Metrics.icons.medium} />
+                          </View>
+                            <View style={{ flex: 9 }}>
+                            <Text style={this.state.visible7 ? styles.plusText1 : styles.plusText}>
+                             More Info                  
+                            </Text>
+                          </View>
+                          </View>
+                          </Card>
+                        </TouchableOpacity>
+
+                        {this.state.visible7 ? <HideableView visible={this.state.visible7}>
+                          
+                           {this.props.doctordetail && this.props.doctordetail.bcbsfProviderID ?
+                          <View style={{flex:1}}>
+                           <View style={{ flex: 1, flexDirection: 'row', margin:10 }}>
+                      
+                          <View style={{ flex:1, alignItems:'center' }}>
+                            <Text style={{
+                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                            color: Colors.flBlue.ocean
+                          }}>
+                           Provider # 
+                          </Text>
+                          </View>
+                    
+                            <View style={{ flex: 1 }}>
+                            <Text style={{
+                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                            color: Colors.flBlue.grey5
+                          }}>
+                            {this.props.doctordetail.bcbsfProviderID}
+                          </Text>
+                          </View>
+                          </View>
+                          </View>
+                          :null}
+
+
+                            {this.props.doctordetail && this.props.doctordetail.nationalProviderNumber ?
+                          <View style={{flex:1}}>
+                           <View style={{ flex: 1, flexDirection: 'row' }}>
+                           
+                          <View style={{ flex:1, alignItems:'center' }}>
+                            <Text style={{
+                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                            color: Colors.flBlue.ocean
+                          }}>
+                           NPI #
+                          </Text>
+                          </View>
+                           
+                            <View style={{ flex: 1 }}>
+                            <Text style={{
+                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                            color: Colors.flBlue.grey5
+                          }}>
+                            {this.props.doctordetail.nationalProviderNumber}
+                          </Text>
+                          </View>
+                          </View>
+                          </View>
+                          :null}
+
+                          <View style={{flex:1}}>
+                           
+                              <View style={{flex:1}}>
+                            <Text style={styles.h7}>
+                              To view more information about this provider at The Florida Department of Health, please <Text style={styles.h7_2}>
+                             click here
+                            </Text>
+                            </Text>
+                          
+                           
+                            </View>
+                             <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://mwe.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/Disclaimer/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziTSxCQ4MtvJxCDY38nAwcnV18TMx9fIzcfYz0w_EpMHAz1o8iSb'})}>
+                             <Text style={styles.h7_1}>
+                              Doctors & Hospitals Nationally
+                            </Text>
+                            </TouchableOpacity>
+
+                            <Text style={styles.h7_1}>
+                              Doctors & Hospitals Worldwide
+                            </Text>
+
+                            <Text style={styles.h7_1}>
+                              Find a Dentist
+                            </Text>
+
+                            <Text style={styles.h7_1}>
+                             Mental Health and Substance Abuse
+                            </Text>
+
+                            <Text style={styles.h7_1}>
+                              Vision Nationally
+                            </Text>
+
+                            <Text style={styles.h7_1}>
+                              Create a Directory
+                            </Text>
+
+                            <Text style={styles.h7_1}>
+                              Vaccine Network-Individuals Under 65 and Group
+                            </Text>
+
+                            <Text style={styles.h7_1}>
+                              Vaccine Network Blue Select-Individuals Under 65 and Group
+                            </Text>
+                            <Text style={styles.h7_1}>
+                              Medical Coverage Guidelines
+                            </Text>
+                            <Text style={styles.h7_1}>
+                              Sources of Information
+                            </Text>
+                            <Text style={styles.h7_1}>
+                             Frequently Asked Questions
+                            </Text>
+
+                            <Text style={styles.h7}>
+                            Provider information contained in this directory is refreshed nightly.
+                            </Text>
+
+                            <Text style={styles.h7}>
+                              Note: Please refer to your benefit booklet for details, as not all searches may be applicable to your plan.
+                            </Text>
+
+                            <Text style={styles.h7}>
+                             <Text style={styles.h7_2}>
+                             click here
+                            </Text> for full Online Provider Directory
+                            </Text>
+
+                            </View>
+
+                        </HideableView> : null}
+                      </View>
+                            :
+                      null
+                            }
+
 
                 </View>
 

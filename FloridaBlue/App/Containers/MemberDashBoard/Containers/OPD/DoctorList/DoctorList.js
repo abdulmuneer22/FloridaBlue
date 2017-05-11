@@ -53,7 +53,7 @@ constructor(props){
          super(props);
          this.state = {
           listLimit : 10,
-          totalNumberOfCardPerScreen : 100,
+          totalNumberOfCardPerScreen : 30,
           isFetchingMore: false
       }
       this.loadMore = this.loadMore.bind(this)
@@ -74,7 +74,7 @@ constructor(props){
   componentWillReceiveProps (newProps) {
     console.tron.log(newProps)
     if (this.state.isFetchingMore) {
-      this.props.attemptProviderSearch(this.props)
+      this.props.attemptProviderSearch(newProps)
       this.setState({isFetchingMore: false})
     }
 
@@ -113,14 +113,13 @@ constructor(props){
             listLimit : newLimit + 10
         })
 
-        if(this.state.totalNumberOfCardPerScreen < newLimit) {
-          this.props.changeStart(this.state.totalNumberOfCardPerScreen + 1)
-          this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 101)
+        if(this.state.totalNumberOfCardPerScreen == newLimit) {
+          this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
           this.state.isFetchingMore = true
 
           this.setState({
-              listLimit : this.state.totalNumberOfCardPerScreen,
-              totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen
+             // listLimit : this.state.totalNumberOfCardPerScreen,
+              totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30
           })
         }
      }
@@ -162,12 +161,12 @@ constructor(props){
                   {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
                      <DoctorCard
                       cardLimit = {this.state.listLimit}
-                      savedproviders={this.props.saveProvider}
-                      saveProvider={this.saveProvider}
-                      removeProvider={this.removeProvider}
                       data={this.props.provider.data.providerList}
-                      leftActive={this.props.leftActive}
-                      rightActive={this.props.rightActive}
+                    //savedproviders={this.props.saveProvider}
+                    //saveProvider={this.saveProvider}
+                    //removeProvider={this.removeProvider}
+                    //leftActive={this.props.leftActive}
+                    //rightActive={this.props.rightActive}
 
                   />
                   :
@@ -191,7 +190,8 @@ constructor(props){
                     }
 
                 </View>
-
+                 {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
+                <View style={{flex:1}}>
                  <TouchableOpacity
             onPress = {this.loadMore}
             style={{
@@ -210,7 +210,7 @@ constructor(props){
                     color : 'white'
                 }}>Load More</Text>
             </TouchableOpacity>
-
+            </View> : null}
               </ScrollView>
             </View>
 
@@ -309,9 +309,9 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.provider.fetching,
     error: state.provider.error,
-    leftActive: state.provider.leftActive,
-    rightActive: state.provider.rightActive,
-    saveProvider: state.saveprovider.data,
+   // leftActive: state.provider.leftActive,
+    //rightActive: state.provider.rightActive,
+    //saveProvider: state.saveprovider.data,
     provider: state.provider.data,
     latitude: state.provider.latitude,
     longitude: state.provider.longitude,
@@ -320,23 +320,54 @@ const mapStateToProps = (state) => {
     longDelta: state.provider.longDelta,
     start:state.provider.start,
     end:state.provider.end,
-    showUrgentCareBanner: state.provider.showUrgentCareBanner
+    networkCodeList: state.provider.networkCodeList,
+    showUrgentCareBanner: state.provider.showUrgentCareBanner,
+    planCategoryList: state.provider.planCategoryList,
+    planSubCategoryList: state.provider.planSubCategoryList,
+    categoryCode: state.provider.categoryCode,
+    subCategoryCode: state.provider.subCategoryCode,
+    providerName: state.provider.providerName,
+    careType: state.provider.careType,
+    specialityType: state.provider.specialityType,
+    knownCareState: state.provider.knownCareState,
+    unknownCareState: state.provider.unknownCareState,
+    specialityState: state.provider.specialityState,
+    changeLocaleState: state.provider.changeLocaleState,
+    customLocationState: state.provider.customLocationState,
+    currentLocation: state.provider.currentLocation,
+    address: state.provider.address,
+    homeAddress: state.provider.homeAddress,
+    member: state.member,
+    urgentCareState: state.urgentCareState,
+    locationStatus: state.provider.locationStatus,
+    acceptingPatientsIndicator: state.provider.acceptingPatientsIndicator,
+    providerLanguage: state.provider.providerLanguage,
+    providerLanguages: state.provider.providerLanguages,
+    staffLanguage: state.provider.staffLanguage,
+    staffLanguages: state.provider.staffLanguages,
+    configData: state.provider.configData,
+    newLocationState: state.provider.newLocationState,
+    gender: state.provider.gender,
+    programsList: state.provider.programsList,
+    officeHours: state.provider.officeHours
+  
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
-    attemptHandleLeft: () => dispatch(ProviderActions.providerClickleft()),
-    attemptHandleRight: () => dispatch(ProviderActions.providerClickright()),
-    addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
-    removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey)),
-    changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
+    // attemptHandleLeft: () => dispatch(ProviderActions.providerClickleft()),
+    // attemptHandleRight: () => dispatch(ProviderActions.providerClickright()),
+    // addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
+    // removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey)),
+     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),
     changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta)),
-    changeStart: (start) => dispatch(ProviderActions.changeStart(start)),
-    changeEnd: (end) => dispatch(ProviderActions.changeEnd(end))
+  // changeStart: (start) => dispatch(ProviderActions.changeStart(start)),
+    changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
+     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
   }
 }
 

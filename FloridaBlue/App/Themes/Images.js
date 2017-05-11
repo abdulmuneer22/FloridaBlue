@@ -16,7 +16,7 @@ const images = {
   benefits: require('../Images/benefits.png'),
   claims: require('../Images/claims.png'),
   hsa: require('../Images/hsa.png'),
-  idcard: require('../Images/idcard.png'),
+  idcard: require('../Images/id-card.png'),
   payment: require('../Images/payment.png'),
   myaccount: require('../Images/payment.png'),
   resources: require('../Images/resources.png'),

@@ -93,11 +93,11 @@ class ProviderMap extends Component {
   _renderMapMarkers(location) {
     if (location.uniqueId == this.state.selectedLocation.uniqueId) {
       return (
-        <MapView.Marker key={location.uniqueId} identifier={location.uniqueId.toString()} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapSelectedPin} />
+        <MapView.Marker key={location.uniqueId} identifier={(location!=null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapSelectedPin} />
       )
     } else {
       return (
-        <MapView.Marker key={location.uniqueId} identifier={location.uniqueId.toString()} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin} />
+        <MapView.Marker key={location.uniqueId} identifier={(location!=null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin} />
       )
     }
   }
@@ -126,10 +126,10 @@ class ProviderMap extends Component {
               {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderMapMarkers(provider))}
             </MapView>
             <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden>
-              <Swiper index={this.state.selectedLocation.uniqueId} loop={false} style={{marginBottom:40, marginTop:-5}} showsButtons={true} showsPagination={false}
+              <Swiper index={this.state.selectedLocation.uniqueId} loop={false} style={{marginBottom:Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003, marginTop:-5}} showsButtons={true} showsPagination={false}
                 width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
                 height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.57))}
-                bottom={ (Platform.OS === 'ios') ? 0 : -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001 }
+                bottom={ (Platform.OS === 'ios') ? 0 : -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002 }
                 
                 onMomentumScrollEnd={this._locationSwiped} >
 

@@ -152,19 +152,21 @@ class LandingScreen extends Component {
                       width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
                       height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
                     }}>
-                      <View style={{flex: 1}}>
-                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-end' }} >
+                     
+                          <View style={{flex:1}}>
+                          <Image source={Images[tile.gradientImage]}  
+                           style={{flex:1, justifyContent:'center',width:(Metrics.screenWidth)- (Metrics.screenWidth * 0.547)}} resizeMode='contain' >
+
+                            <View style={{alignItems: 'center'}} >
                           <Text style={styles.tileTextStyle}>
                             {tile.tileName['en']}
                           </Text>
                         </View>
-                        <View style={{flex: 1, alignItems: 'flex-end'
-                        }}>
-                          <Image source={Images[tile.gradientImage]} style={{flex: 1, alignItems: 'flex-end'
-                          }} resizeMode='stretch' />
-                        </View>
 
-                      </View>
+                           </Image>
+                           </View>
+                       
+
                     </LinearGradient>
                   </TouchableOpacity>
 

@@ -195,7 +195,7 @@ export default StyleSheet.create({
   },
   tileTextStyle: {
   //  marginTop: Metrics.baseMargin,
-    marginBottom:-15,
+  //  marginBottom:-15,
     fontSize: (Platform.OS === 'ios') ? Fonts.size.h6 * Metrics.screenWidth * 0.0029 : Fonts.size.h6 * Metrics.screenWidth * 0.0029,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: (Platform.OS === 'ios') ? '600' : '400',
