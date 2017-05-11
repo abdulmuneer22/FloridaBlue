@@ -212,22 +212,24 @@ class Login extends Component {
     //   return true
     // })
 
-    TouchManager.checkTouchStatus((error, touchInfo) => {
-      if (error) {
-        console.tron.log(error)
-      } else {
-        var touchStatus = touchInfo[0]
-        if (touchStatus == "YES") {
-          this.props.changeTouchEnabled(true)
-          this.setState({touchCheckboxVisible: false})
-          this._authenticateUserWithTouch()
+    if (Platform.OS === 'ios') {
+      TouchManager.checkTouchStatus((error, touchInfo) => {
+        if (error) {
+          console.tron.log(error)
         } else {
-          this.props.changeTouchEnabled(false)
-          this.setState({touchCheckboxVisible: true})
-          this.setState({touchChecked: false})
+          var touchStatus = touchInfo[0]
+          if (touchStatus == "YES") {
+            this.props.changeTouchEnabled(true)
+            this.setState({touchCheckboxVisible: false})
+            this._authenticateUserWithTouch()
+          } else {
+            this.props.changeTouchEnabled(false)
+            this.setState({touchCheckboxVisible: true})
+            this.setState({touchChecked: false})
+          }
         }
-      }
-    })
+      })
+    }
   }
 
   componentWillReceiveProps (newProps) {
