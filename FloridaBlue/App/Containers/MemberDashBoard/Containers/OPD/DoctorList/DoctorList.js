@@ -87,8 +87,8 @@ constructor(props){
 
     // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
     const milesOfLatAtEquator = 69
-    this.props.changeLatDelta(this.props.searchRange / milesOfLatAtEquator)
-    this.props.changeLongDelta(this.props.searchRange / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
+    this.props.changeLatDelta(2 / milesOfLatAtEquator)
+    this.props.changeLongDelta(2 / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
   }
 
   _renderHeader () {

@@ -65,6 +65,10 @@ export default StyleSheet.create({
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0013,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.009
   },
+  spaceRow: {
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0024,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.009
+  },
   newSignRow: {
     paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0014,
     paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.006

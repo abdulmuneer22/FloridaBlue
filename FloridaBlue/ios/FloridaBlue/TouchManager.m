@@ -12,6 +12,23 @@
 
 RCT_EXPORT_MODULE();
 
+RCT_EXPORT_METHOD(removeCredentials:(RCTResponseSenderBlock)callback) {
+  NSMutableArray *callbackArray = [NSMutableArray new];
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"touchEnabled"];
+  NSMutableDictionary * queryPrivateKey = [[NSMutableDictionary alloc] init];
+  [queryPrivateKey setObject:(__bridge id)kSecValueData forKey:(__bridge id)kSecValueData];
+  OSStatus deleteStatus = SecItemDelete((__bridge CFDictionaryRef)queryPrivateKey);
+  
+  if (deleteStatus == errSecSuccess) {
+    [callbackArray addObject:@"FAILURE"];
+  } else {
+    [callbackArray addObject:@"SUCCESS"];
+  }
+  
+  callback(@[[NSNull null], callbackArray]);
+}
+
 RCT_EXPORT_METHOD(storeCredentials:(NSString *)username location:(NSString *)password) {
   RCTLogInfo(@"Storing credentials %@ and %@", username, password);
 }
@@ -29,7 +46,6 @@ RCT_EXPORT_METHOD(retrieveCredentials:(RCTResponseSenderBlock)callback) {
 }
 
 RCT_EXPORT_METHOD(enableTouchID:(NSString *)username password:(NSString *)password) {
-  RCTLogInfo(@"Pretending to create an event %@ at %@", username, password);
   NSString *touchEnabled = @"YES";
   [[NSUserDefaults standardUserDefaults] setObject:touchEnabled forKey:@"touchEnabled"];
   [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
