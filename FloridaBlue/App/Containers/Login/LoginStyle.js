@@ -58,6 +58,13 @@ export default StyleSheet.create({
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0013,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.009
   },
+  touchRow: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0013,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.009
+  },
   newSignRow: {
     paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0014,
     paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.006
@@ -65,7 +72,6 @@ export default StyleSheet.create({
   },
   link: {
     color: Colors.flBlue.ocean,
-   // backgroundColor:'red',
     alignItems: 'center',
     textAlign: 'center',
     fontWeight: 'bold',
@@ -123,6 +129,11 @@ export default StyleSheet.create({
 
   textField: {
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
+  },
+  radio: {
+    backgroundColor: Colors.snow,
+    height: Metrics.section * Metrics.screenWidth * 0.0020,
+    width: Metrics.section * Metrics.screenWidth * 0.0020,
   }
 
 })
