@@ -58,6 +58,8 @@ const { Types, Creators } = createActions({
   changeLatDelta: ['latDelta'],
   changeLongDelta: ['longDelta'],
   changeUrgentCareBanner: ['showUrgentCareBanner'],
+  changeStart:['start'],
+  changeEnd:['end'],
   providerClickleft: [],
   providerClickright: []
 
@@ -101,6 +103,8 @@ export const INITIAL_STATE = Immutable({
   locationStatus: '',
   fetching: false,
   error: null,
+  start:1,
+  end:100
 })
 
 /* ------------- Reducers ------------- */
@@ -268,6 +272,10 @@ export const _changeLongDelta = (state: Object, {longDelta}: Object) => state.me
 // showUrgentBanner
 export const _changeUrgentCareBanner = (state: Object, {showUrgentCareBanner}: Object) => state.merge({showUrgentCareBanner})
 
+export const _changeStart = (state: Object, {start}: Object) => state.merge({start})
+
+export const _changeEnd = (state: Object, {end}: Object) => state.merge({end})
+
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {
   return state.merge({fetching: false, error: null, leftActive: false, rightActive: true})
@@ -334,6 +342,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_PROVIDER_KEY]: _changeProviderKey,
   [Types.CHANGE_LAT_DELTA]: _changeLatDelta,
   [Types.CHANGE_LONG_DELTA]: _changeLongDelta,
+  [Types.CHANGE_START]: _changeStart,
+  [Types.CHANGE_END]: _changeEnd,
   [Types.CHANGE_URGENT_CARE_BANNER]: _changeUrgentCareBanner,
   [Types.PROVIDER_CLICKLEFT]: leftclick,
   [Types.PROVIDER_CLICKRIGHT]: rightclick

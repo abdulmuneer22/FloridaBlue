@@ -33,6 +33,9 @@ const window = Dimensions.get('window')
 class DoctorCard extends Component {
   constructor (props) {
     super(props)
+    this.state={
+      cardLimit : this.props.cardLimit
+    }
     this.handleCall = this.handleCall.bind(this)
     this.handleMaps = this.handleMaps.bind(this)
   }
@@ -56,6 +59,12 @@ class DoctorCard extends Component {
     })
   }
 
+  componentWillReceiveProps(nextProps){
+        if(nextProps.cardLimit){
+            this.setState({cardLimit : nextProps.cardLimit})
+        }
+    }
+
   handleMaps (latitude, longitude) {
     console.tron.log(latitude, longitude)
     const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
@@ -70,13 +79,16 @@ class DoctorCard extends Component {
   }
 
   render () {
+     console.log("limit from state =>" , this.state.cardLimit)
     return (
       <View style={styles.container}>
         { this.props.data ?
 
           <View style={{ flex: 1, margin: 15 }}>
             {this.props.data != undefined ? this.props.data.map((value, i) => {
-              return (
+              if(i < this.state.cardLimit){
+
+                 return (
                 <Card style={{ flex: 1 }} key={i}>
 
                   <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10 }}>
@@ -145,6 +157,10 @@ class DoctorCard extends Component {
 
                 </Card>
               )
+
+
+              }
+             
             })
                             : <View style={styles.spinnerView}>
                               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />

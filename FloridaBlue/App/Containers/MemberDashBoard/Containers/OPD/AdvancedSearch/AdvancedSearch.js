@@ -82,6 +82,7 @@ setTheme({
 
 class AdvancedSearch extends Component {
 
+
   constructor (props) {
     super(props)
     this.searchTypeGroup = new MKRadioButton.Group()
@@ -94,7 +95,9 @@ class AdvancedSearch extends Component {
       newLocationState: false,
       knownCareState: false,
       unknownCareState: false,
-      specialityState: false
+      specialityState: false,
+      isDifferentLocationSelected:false,
+      differentLocationText:false
     }
     this._timeSelected = this._timeSelected.bind(this)
     this._languageSelected = this._languageSelected.bind(this)
@@ -129,9 +132,13 @@ class AdvancedSearch extends Component {
   }
 
   _handleDoctordetail () {
+    if (this.state.isDifferentLocationSelected && ! this.state.differentLocationText){
+       alert("please enter Zip Code or City")
+    }else{
     this.props.changeUrgentCareBanner(false)
     this.props.attemptProviderSearch(this.props)
     NavigationActions.DoctorList()
+  }
   }
 
   _languageSelected (event, value: string) {
@@ -214,6 +221,7 @@ class AdvancedSearch extends Component {
 
   _selectDifferentLocation (event) {
     if (event.checked) {
+      this.setState({isDifferentLocationSelected:true})
       this.setState({newLocationState: true})
       this.props.changeLatitude(0)
       this.props.changeLongitude(0)
@@ -272,15 +280,15 @@ class AdvancedSearch extends Component {
       Permissions.getPermissionStatus('location')
       .then(response => {
         locationStatus = response
-        if (response == 'authorized' || response == 'undetermined') {
+        if (response == 'authorized') {
           getCurrentLocation = true
           this.props.changeLocationPermissionStatus(response)
-        } else {
+        } else if(response == 'undetermined') {
           Permissions.requestPermission('location')
           .then(response => {
             this.props.changeLocationPermissionStatus(response)
             locationStatus = response
-            if (response == 'authorized' || response == 'undetermined') {
+            if (response == 'authorized') {
               getCurrentLocation = true
             }
           })
@@ -494,7 +502,8 @@ class AdvancedSearch extends Component {
                 underlineColorAndroid={Colors.coal}
                 placeholderTextColor={Colors.steel}
                 tintColor={Colors.black}
-                onChangeText={this.props.changeAddress}
+                onChangeText= {this.props.changeAddress}
+                  
               />
             </HideableView>
 
@@ -830,9 +839,8 @@ const mapDispatchToProps = (dispatch) => {
     changeProviderName: (providerName) => dispatch(ProviderActions.changeProviderName(providerName)),
     changeCareType: (careType) => dispatch(ProviderActions.changeCareType(careType)),
     changeSpecialityType: (specialityType) => dispatch(ProviderActions.changeSpecialityType(specialityType)),
-    changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode)),
-    changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode)),
-    changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner))
+    changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner)),
+    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus)),
   }
 }
 
