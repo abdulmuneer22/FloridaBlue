@@ -64,10 +64,12 @@ constructor(props){
   }
 
   _mapView () {
-    NavigationActions.ProviderMap()
+      if(this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0){
+          NavigationActions.ProviderMap()
+      }
   }
   componentDidMount () {
-
+  
   }
 
   componentWillReceiveProps (newProps) {
@@ -232,7 +234,11 @@ constructor(props){
 
                    </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={{flex: 1, backgroundColor:Colors.flBlue.grass}} onPress={() => this._mapView()}>
+                <TouchableOpacity style={
+                  this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
+                  {flex: 1, backgroundColor:Colors.flBlue.grass}:{flex: 1, backgroundColor:Colors.flBlue.grey3}
+                }
+                onPress={() => this._mapView()}>
                   <View style={styles.footerView}>
 
                      <View style={{flex: 0.4, alignItems: 'center'}}>
