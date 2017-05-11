@@ -7,6 +7,7 @@ import NavItems from './NavItems'
 import CustomNavBar from '../Navigation/CustomNavBar'
 // screens identified by the router
 import { Login } from '../Containers/Login'
+import { TouchTOU } from '../Containers/Login/TouchTOU'
 import { Webview } from '../Containers/WebView'
 import { ErrorScreen } from '../Containers/WebView'
 import { Home } from '../Containers/Home'
@@ -50,6 +51,7 @@ class NavigationRouter extends Component {
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
             <Scene initial key='login' component={Login} title='Login' hideNavBar type={ActionConst.RESET} />
+            <Scene key='touchTOU' component={TouchTOU} title="Touch TOU" hideNavBar />
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
             <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar />

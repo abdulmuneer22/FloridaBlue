@@ -275,15 +275,15 @@ class ProviderSearch extends Component {
       Permissions.getPermissionStatus('location')
       .then(response => {
         locationStatus = response
-        if (response == 'authorized' || response == 'undetermined') {
+        if (response == 'authorized') {
           this.props.changeLocationPermissionStatus(response)
           this._getPosition()
-        } else {
+        } else if (response == 'undetermined') {
           Permissions.requestPermission('location')
           .then(response => {
             this.props.changeLocationPermissionStatus(response)
             locationStatus = response
-            if (response == 'authorized' || response == 'undetermined') {
+            if (response == 'authorized') {
               this._getPosition()
             }
           })
@@ -305,7 +305,10 @@ class ProviderSearch extends Component {
       this.props.changeLongitude(newLong)
       this.props.changeAddress('Using Current Location')
     },
-      (error) => alert(JSON.stringify(error)))
+      (error) => alert("No GPS location found."))
+      this.props.changeAddress(this.props.homeAddress)
+      this.props.changeLatitude(0)
+      this.props.changeLongitude(0)
   }
 
   _alertForLocationPermission () {

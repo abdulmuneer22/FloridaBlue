@@ -32,7 +32,7 @@ import styles from './LoginStyle'
 import { Images, Metrics, Colors, Fonts } from '../../Themes'
 // import {FlbIcon} from'./FlbIcon'
 import I18n from 'react-native-i18n'
-import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+import { MKTextField, MKColor, MKSpinner, MKCheckbox } from 'react-native-material-kit'
 import LoginView from './LoginView'
 import LoginButtonView from './LoginButtonView'
 import LogoView from './LogoView'
@@ -74,7 +74,6 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      authStatus: '',
       touchEnabled: false,
       modalVisible: false
     }
@@ -98,7 +97,7 @@ class Login extends Component {
             'Would you like to configure Touch ID for login on this device?',
             [
               {text: 'No', onPress: () => console.tron.log('Cancel Pressed'), style: 'cancel'},
-              {text: 'Yes', onPress: () => this._turnOnTouchID()},
+              {text: 'Yes', onPress: () => NavigationActions.TouchTOU()},
             ],
             { cancelable: false }
           )
@@ -120,15 +119,13 @@ class Login extends Component {
         }
       ])
      // alert('Please enter your user ID/Password.')
-    } else
-    if (!username && password) {
+    } else if (!username && password) {
       Alert.alert('Login', 'Please enter your User ID', [
         {
           text: 'OK'
         }
       ])
-    } else
-    if (username && !password) {
+    } else if (username && !password) {
       Alert.alert('Login', 'Please enter your Password', [
         {
           text: 'OK'
@@ -137,7 +134,8 @@ class Login extends Component {
     } else {
       TouchManager.enableTouchID(username, password)
     }
-  }
+}
+
 
   _authenticateUser() {
     TouchManager.authenticateUser((error, authInfo) => {
@@ -147,14 +145,14 @@ class Login extends Component {
         var authObject = authInfo[0]
         var authStatus = authObject["authStatus"]
         if (authStatus == "YES") {
-          this.setState({authStatus: "Success"})
+          this.setState({touchEnabled: true})
           this._secureLogin()
         } else {
-          this.setState({authStatus: "Failure"})
+          this.setState({touchEnabled: false})
           var errorMessage = ""
           var errorTitle = "Oops!"
           var errorCode = authObject["authErrorCode"]
-          console.tron.log(errorCode)
+
           switch(errorCode) {
               case "999":
                   errorMessage = "Touch ID is not configured on your device. Please visit your settings to configure Touch ID."
@@ -239,14 +237,31 @@ class Login extends Component {
 
     //   return true
     // })
+
+    TouchManager.checkTouchStatus((error, touchInfo) => {
+      if (error) {
+        console.tron.log(error)
+      } else {
+        var touchStatus = touchInfo[0]
+        console.tron.log(touchStatus)
+        if (touchStatus == "YES") {
+          this.setState({touchEnabled: true})
+        } else {
+          this.setState({touchEnabled: false})
+        }
+      }
+    })
+
+    console.tron.log(this.state.touchEnabled)
+  }
+
+  componentWillMount () {
+
   }
 
   componentWillReceiveProps (newProps) {
    // this.forceUpdate()   makes to rerender the stuff     Got the issue of redering
   // Did the login attempt complete?
-
-    console.tron.log('I am receving new props' + newProps.responseURL)
-    console.tron.log('I am receving new smToken' + newProps.smToken)
     var responseURL = newProps.responseURL
     if (this.props != newProps) {
       if (this.isAttempting && !newProps.fetching && newProps.error === null && responseURL) {
@@ -496,11 +511,12 @@ class Login extends Component {
                   placeholderTextColor={Colors.steel} />
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
-              <View style={styles.forgotRow}>
-                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
-                  <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
-                </TouchableOpacity>
-              </View>
+              {Platform.OS === 'ios' && !this.state.touchEnabled ?
+              <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchID() }}>
+                <MKCheckbox style={styles.radio} checked={this.state.touchEnabled} />
+                <Text style={styles.link}>{I18n.t('enableTouchID')}</Text>
+              </TouchableOpacity>
+              : null}
             </LoginView>
 
             <LoginButtonView>
@@ -516,16 +532,11 @@ class Login extends Component {
                 <Text style={styles.link}>{I18n.t('signUp')}</Text>
               </TouchableOpacity>
             </SignUpView>
-            {Platform.OS === 'ios' ?
-            <View style={styles.touchButton}>
-              <TouchableOpacity onPress={() => { this._handleTouchID() }}>
-                <Image style={{width: Metrics.screenWidth * 0.5,
-                  borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-                  height: Metrics.screenHeight * 0.064}}
-                  source={Images.touchIdButton} />
+            <View style={styles.forgotRow}>
+              <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
+                <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
               </TouchableOpacity>
             </View>
-            : null}
           </View>
 
           {this.state.modalVisible && this._moreInfo()}
@@ -564,8 +575,7 @@ const mapStateToProps = (state) => {
     merror: state.member.error,
     username: state.login.username,
     password: state.login.password,
-    visibleDashboard: state.member.visibleDashboard,
-    authStatus: state.login.authStatus
+    visibleDashboard: state.member.visibleDashboard
   }
 }
 
