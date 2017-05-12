@@ -121,7 +121,7 @@ export default StyleSheet.create({
     marginLeft: Metrics.doubleBaseMargin,
     marginTop: Metrics.baseMargin,
     fontFamily: Fonts.type.headerFont,
-    fontWeight: '500',
+    fontWeight: '400',
     //margin:10,
     color: Colors.flBlue.grey6
   },
