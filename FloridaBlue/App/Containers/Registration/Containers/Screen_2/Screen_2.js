@@ -245,7 +245,7 @@ class Screen_2 extends React.Component {
               autoCorrect={false}
               onChangeText={this.props.handleChangeCreateUserId}
               underlineColorAndroid={Colors.coal}
-              onSubmitEditing={(event) => {
+              onSubmitEditing={(event) => {                
                 this.refs.password.focus()
               }}
               placeholder={I18n.t('createUserId')} />
@@ -253,7 +253,7 @@ class Screen_2 extends React.Component {
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
-              ref=' Create Password'
+              ref='password'
               value={this.props.password}
               style={styles.textfieldWithFloatingLabel}
               keyboardType='default'
