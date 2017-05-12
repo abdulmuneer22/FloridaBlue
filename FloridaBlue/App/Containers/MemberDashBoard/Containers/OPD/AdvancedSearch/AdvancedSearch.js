@@ -134,13 +134,11 @@ class AdvancedSearch extends Component {
   }
 
   _handleDoctordetail () {
-    if (this.state.isDifferentLocationSelected && ! this.state.differentLocationText){
-       alert("please enter Zip Code or City")
-    }else{
+    
     this.props.changeUrgentCareBanner(false)
     this.props.attemptProviderSearch(this.props)
     NavigationActions.DoctorList()
-  }
+  
   }
 
   _languageSelected (event, value: string) {
@@ -498,11 +496,11 @@ class AdvancedSearch extends Component {
             </View>
 
             <View style={styles.radioView}>
-              <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+              <MKRadioButton ref='currentLocation' style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                 width: Metrics.section * Metrics.screenWidth * 0.0025,
                 borderRadius: Metrics.section}} group={this.radioGroup} onCheckedChange={this._selectCurrentLocation} />
               <View >
-                <Text style={styles.radioText}>Current Location</Text>
+                <Text style={styles.radioText} onPress={() => {if(!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle()}}>Current Location</Text>
               </View>
 
             </View>
@@ -510,9 +508,9 @@ class AdvancedSearch extends Component {
             <View style={styles.radioView}>
               <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                 width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} group={this.radioGroup} onCheckedChange={this._selectHomeLocation} />
+                borderRadius: Metrics.section}} ref='homeLocation' group={this.radioGroup} onCheckedChange={this._selectHomeLocation} />
               <View >
-                <Text style={styles.radioText}>Home</Text>
+                <Text style={styles.radioText} onPress={() => {if(!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle()}}>Home</Text>
                 <View style={{ marginRight: Metrics.searchBarHeight }}>
                   <Text style={styles.radioBottomText}>({this.props.homeAddress})</Text>
                 </View>
@@ -522,14 +520,14 @@ class AdvancedSearch extends Component {
             <View style={styles.radioView}>
               <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                 width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} group={this.radioGroup} onCheckedChange={this._selectDifferentLocation} />
+                borderRadius: Metrics.section}}  ref='differentLocation' group={this.radioGroup} onCheckedChange={this._selectDifferentLocation} />
               <View >
-                <Text style={styles.radioText}>Different Location</Text>
+                <Text style={styles.radioText} onPress={() => {if(!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle()}} >Different Location</Text>
               </View>
             </View>
 
             <HideableView style={{ marginLeft: 15, marginTop: 10 }} visible={this.state.newLocationState} removeWhenHidden>
-              <Text style={styles.radioText}>{I18n.t('differentLocationMessage')}</Text>
+              <Text for="" style={styles.radioText}>{I18n.t('differentLocationMessage')}</Text>
               <MKTextField
                 ref='newLocation'
                 textInputStyle={{flex: 1}}
