@@ -401,7 +401,7 @@ class Login extends Component {
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.floridaBlueURL})}>
             <Text style={styles.popupchildText}>
-              Floridablue.com
+              floridablue.com
             </Text>
           </TouchableOpacity>
         </View>

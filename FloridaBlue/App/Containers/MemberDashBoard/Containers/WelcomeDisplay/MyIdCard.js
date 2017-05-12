@@ -29,7 +29,7 @@ class MyIdCard extends Component {
   }
 
   _renderHeader () {
-    return (<Image source={Images.themeHeader} style={styles.headerContainer}>
+    return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>

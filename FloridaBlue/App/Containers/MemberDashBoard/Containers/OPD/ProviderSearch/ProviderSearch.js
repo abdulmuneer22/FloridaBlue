@@ -203,7 +203,7 @@ class ProviderSearch extends Component {
   }
 
   _advancedSearch () {
-    NavigationActions.AdvancedSearch()
+    NavigationActions.AdvancedSearch({navigatingFrom: 'providerSearch'})
   }
 
   _selectDifferentLocation (event) {
@@ -327,7 +327,7 @@ class ProviderSearch extends Component {
 
   _renderHeader () {
     return (
-      <Image style={styles.headerContainer} source={Images.themeHeader}>
+      <Image style={styles.headerContainer} source={Images.newHeaderImage}>
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
           {NavItems.backButton()}
         </View>
