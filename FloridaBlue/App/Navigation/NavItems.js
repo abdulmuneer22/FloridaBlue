@@ -60,7 +60,7 @@ export default {
         size={Metrics.icons.xm * Metrics.screenHeight * 0.0016}
         style={{color: Colors.flBlue.ocean,
           backgroundColor: Colors.transparent,
-          marginTop: Metrics.doubleBaseMargin}}
+          marginTop: 15}}
     />
     </TouchableOpacity>
   },

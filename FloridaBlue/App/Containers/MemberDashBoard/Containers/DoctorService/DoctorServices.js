@@ -102,7 +102,9 @@ class DoctorServices extends Component {
         <View style={styles.textBackground2}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{ flex: 1 }}>
-              <Card style={{flex: 1}}>
+              <TouchableOpacity onPress={() => {
+                          this.setState({ hpActive: !this.state.hpActive })}} >
+              <Card style={{flex: 1, marginTop:-0}} >
                 <View style={{
               // backgroundColor: 'purple',
                   flex: 1,
@@ -110,7 +112,7 @@ class DoctorServices extends Component {
                   height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
 
                 }}>
-                  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'
+                  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop:10
                 // backgroundColor:'yellow'
                   }}>
                     <Flb name={tile[0].tileIcon} size={Metrics.icons.regular} color={Colors.flBlue.purple} />
@@ -119,7 +121,8 @@ class DoctorServices extends Component {
                     flex: 3,
                 // marginRight:5,
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    marginTop:10
                //    backgroundColor:'red'
 
                   }}>
@@ -133,14 +136,13 @@ class DoctorServices extends Component {
                   <View style={{flex: 1}}>
                     {this.renderHeaderText() != '' ?
                       <View style={{
-                        flex: 1
+                        flex: 1,
+                        marginTop:5
                        // marginLeft: -40,
                        // marginRight: Metrics.mediumMargin
 
                       }}>
-                        <TouchableOpacity style={{flex: 1}}onPress={() => {
-                          this.setState({ hpActive: !this.state.hpActive })
-                        }}>
+                       
                           <View style={{
                         // flexDirection: 'row',
                             flex: 1,
@@ -161,7 +163,7 @@ class DoctorServices extends Component {
                           }
                             </View>
                           </View>
-                        </TouchableOpacity>
+                        
                       </View>
                   : <Text />
                 }
@@ -177,7 +179,7 @@ class DoctorServices extends Component {
                     flex: 12,
                    // width: Metrics.screenWidth * 0.88,
                     alignSelf: 'center',
-                    borderBottomWidth: 0.2,
+                   // borderBottomWidth: 0.2,
                     marginBottom: 10
                     // borderWidth:1
                  //   height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
@@ -203,6 +205,7 @@ class DoctorServices extends Component {
                 </View>
 
               </Card>
+              </TouchableOpacity>
               <View style={{ alignItems: 'center', marginBottom: 15}}>
                 <Switch
                   data={this.props.data}

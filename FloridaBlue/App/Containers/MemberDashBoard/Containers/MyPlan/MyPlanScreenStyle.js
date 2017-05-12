@@ -22,7 +22,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025,
    // marginLeft: Metrics.baseMargin,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
     fontFamily: Fonts.type.headerFont,
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
 
@@ -35,9 +35,8 @@ export default StyleSheet.create({
   planNameView: {
     flex: 0.1,
     alignItems: 'center',
-    justifyContent: 'center'
-
-    // marginTop: Metrics.smallMargin,
+    justifyContent: 'center',
+    marginTop: -0,
   },
   planNameText: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,

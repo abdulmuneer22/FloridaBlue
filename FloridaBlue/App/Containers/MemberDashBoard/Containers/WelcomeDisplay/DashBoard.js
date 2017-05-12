@@ -56,7 +56,7 @@ class LandingScreen extends Component {
     <Image style={styles.headerContainer} source={Images.newHeaderImage}>
       <View style={{
         alignItems: 'center',
-        marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+        marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
         marginLeft: Metrics.images.xm * Metrics.screenWidth * 0.003
       }}>
         <Image source={Images.themeLogo} style={{
@@ -193,7 +193,7 @@ class LandingScreen extends Component {
                   // marginTop:27.5
                 }}>
                   <View style={{flex: 1 }}>
-                    <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={{flex: 1}} resizeMode='stretch' />
+                    <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={{flex: 1}} />
                   </View>
                   <View style={{flex: 4, flexDirection: 'row'}}>
                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-start'}}>

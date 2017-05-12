@@ -13,8 +13,8 @@ export default StyleSheet.create({
 
   backgroundImage: {
     flex: 0.4,
-    alignSelf: 'flex-end'
-   // marginBottom:-100
+    alignSelf: 'flex-end',
+    marginBottom:-6.5
   },
   logo: {
     width: Metrics.images.logo,
@@ -41,7 +41,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0025,
    // marginLeft: Metrics.baseMargin,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0023,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
     fontFamily: Fonts.type.headerFont,
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
 
@@ -88,8 +88,6 @@ export default StyleSheet.create({
              // textAlign: 'center',
     fontWeight: '600',
     color: Colors.flBlue.grey3,
-
-    fontFamily: Fonts.type.headerFont,
     backgroundColor: Colors.transparent,
     fontFamily: Fonts.type.subHeaderFont
    // textAlign: 'center'

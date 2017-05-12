@@ -29,7 +29,16 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.sky
   },
-  
+  headerTextStyle: {
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.transparent,
+    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0025,
+   // marginLeft: Metrics.baseMargin,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
+    fontFamily: Fonts.type.headerFont,
+    fontWeight: (Platform.OS === 'ios') ? '500' : '400'
+
+  },
   h1: {
     fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0030,
     marginTop: Metrics.baseMargin,

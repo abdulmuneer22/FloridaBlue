@@ -12,7 +12,7 @@ const images = {
   cityscape: require('../Images/cityscape.png'),
   confirmationUser: require('../Images/user-id-icon-yellow.png'),
   confirmationLogin: require('../Images/green-continue-btn.png'),
-  findCare: require('../Images/care-finder-1x.png'),
+ // findCare: require('../Images/care-finder-1x.png'),
   benefits: require('../Images/benefits.png'),
   claims: require('../Images/claims.png'),
   hsa: require('../Images/hsa.png'),
@@ -69,7 +69,8 @@ const images = {
   mapUnselectedPin: require('../Images/map-unselected.png'),
   mapSelectedPin: require('../Images/map-selected.png'),
   touchIdButton: require('../Images/touch-id-btn.png'),
-  newHeaderImage: require('../Images/header-bkgrd.png')
+  newHeaderImage: require('../Images/header-bkgrd.png'),
+  findCare: require('../Images/care-finder.png')
 }
 
 export default images
