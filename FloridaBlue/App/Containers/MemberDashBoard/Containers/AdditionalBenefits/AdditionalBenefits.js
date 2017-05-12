@@ -34,7 +34,7 @@ class AdditionalBenefits extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
       {NavItems.backButton()}
       <Text style={styles.headerTextStyle}>Plan Benefits</Text>
       {NavItems.settingsButton()}

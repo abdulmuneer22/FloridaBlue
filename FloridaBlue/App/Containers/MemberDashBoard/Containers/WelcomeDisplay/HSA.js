@@ -31,7 +31,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
 class Hsa extends Component {
   _renderHeader () {
-    return (<Image style={styles.hsaHeader} source={Images.themeHeader}>
+    return (<Image style={styles.hsaHeader} source={Images.newHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>

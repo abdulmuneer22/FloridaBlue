@@ -98,7 +98,8 @@ class AdvancedSearch extends Component {
       specialityState: false,
       isDifferentLocationSelected:false,
       differentLocationText:false,
-      comingFromBackButton : false
+      comingFromBackButton : false,
+      searchFrom:this.props.navigatingFrom
 
     }
     this._timeSelected = this._timeSelected.bind(this)
@@ -118,6 +119,7 @@ class AdvancedSearch extends Component {
     this._onChecked = this._onChecked.bind(this)
     this._careSelected = this._careSelected.bind(this)
     this._specialitySelected = this._specialitySelected.bind(this)
+    console.tron.log('*****************'+this.props.navigatingFrom)
   }
 
   _onChecked (event) {
@@ -287,19 +289,34 @@ class AdvancedSearch extends Component {
     this.props.changeCurrentLocation('Unknown')
     this.props.changeLatitude(0)
     this.props.changeLongitude(0)
-    if(!this.state.comingFromBackButton) {
-      
-    let timeSelected = {
-      'selectedTime': '',
-      'selectedTimeLabel': ''
-    }
-    this.props.changeTimeType(timeSelected)
-    let  acceptedPatient = {
-        'selectedPatientType': '',
-        'selectedPatientLabel': ''
-    }
-    this.props.changePatientType(acceptedPatient)
-
+    console.tron.log('*****Page from '+ this.state.searchFrom)
+    if(this.state.searchFrom == 'providerSearch') {
+       console.tron.log('*****Resttting Form *****');
+        let timeSelected = {
+          'selectedTime': '',
+          'selectedTimeLabel': ''
+        }
+        this.props.changeTimeType(timeSelected)
+        let  acceptedPatient = {
+            'selectedPatientType': '',
+            'selectedPatientLabel': ''
+        }
+        this.props.changePatientType(acceptedPatient)
+        let programTypeSelected = {
+          'selectedProgramType': '',
+          'selectedProgramLabel': ''
+        }
+        this.props.changeProgramType(programTypeSelected)
+        let staffLanguageSelected = {
+          'selectedStaffLanguage': '',
+          'selectedStaffLabel': ''
+        }
+        this.props.changeStaffLanguage(staffLanguageSelected)
+        let doctorLanguageSelected = {
+          'selectedDoctorLanguage': '',
+          'selectedDoctorLabel': ''
+        }
+        this.props.changeDoctorLanguage(doctorLanguageSelected)
     }
   }
 
@@ -368,7 +385,7 @@ class AdvancedSearch extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>

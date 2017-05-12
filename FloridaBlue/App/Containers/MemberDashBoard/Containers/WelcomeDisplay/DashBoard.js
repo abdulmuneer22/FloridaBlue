@@ -53,7 +53,7 @@ class LandingScreen extends Component {
   _renderHeader () {
     return (
     
-    <Image style={styles.headerContainer} source={Images.themeHeader}>
+    <Image style={styles.headerContainer} source={Images.newHeaderImage}>
       <View style={{
         alignItems: 'center',
         marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
@@ -77,13 +77,13 @@ class LandingScreen extends Component {
     )
   }
   componentDidMount () {
-    // BackAndroid.addEventListener('hardwareBackPress', function () {
+   //  BackAndroid.addEventListener('hardwareBackPress', function () {
     //   console.tron.log('android back')
     //   // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
     //   // Typically you would use the navigator here to go to the last state.
 
-    //   return true
-    // })
+     //  return true
+     //})
 
     console.tron.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin == 'registration') {
@@ -150,7 +150,8 @@ class LandingScreen extends Component {
                      
                           <View style={{flex:1}}>
                           <Image source={Images[tile.gradientImage]}  
-                           style={{flex:1, justifyContent:'center',width:(Metrics.screenWidth)- (Metrics.screenWidth * 0.54)}} resizeMode='contain' >
+                           style={{flex:1, justifyContent:'center',
+                           width:Platform.OS== 'ios' ? (Metrics.screenWidth)- (Metrics.screenWidth * 0.54) : (Metrics.screenWidth)- (Metrics.screenWidth * 0.51) }} resizeMode='contain' >
 
                             <View style={{alignItems: 'center'}} >
                           <Text style={styles.tileTextStyle}>

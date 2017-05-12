@@ -44,7 +44,7 @@ class ErrorScreen extends Component {
     NavigationActions.login()
   }
   _renderHeader () {
-    return (<Image style={styles.headerContainerError} source={Images.themeHeader}>
+    return (<Image style={styles.headerContainerError} source={Images.newHeaderImage}>
 
       <Text style={{color: Colors.flBlue.ocean,
         alignSelf: 'center',

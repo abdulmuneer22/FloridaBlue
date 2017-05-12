@@ -53,7 +53,7 @@ class AnimatedView extends Component {
     }
   }
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.themeHeader}>
+    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>

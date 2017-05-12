@@ -105,9 +105,14 @@ class Card extends Component {
         //    justifyContent: 'center'
             }}
            >
-            <View style={{flex: 1}}>
-              <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
-                <Text style={{
+
+             <View style={{flex:1}}>
+                          <Image source={Images[this.props.gradientImage]}  
+                           style={{flex:1, justifyContent:'center',
+                          width: Platform.OS== 'ios' ? (Metrics.screenWidth)- (Metrics.screenWidth * 0.54) : (Metrics.screenWidth)- (Metrics.screenWidth * 0.49) }} resizeMode='contain' >
+
+                            <View style={{alignItems: 'center'}} >
+                          <Text style={{
                   //marginTop: Metrics.mediumMargin,
                    marginBottom:-15,
                   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
@@ -115,15 +120,13 @@ class Card extends Component {
                   color: Colors.snow,
                   backgroundColor: Colors.transparent
                 }}>
-                  {this.props.title}
-                </Text>
-              </View>
-              <View style={{flex: 1, alignItems: 'flex-end'}}>
-                <Image source={Images[this.props.gradientImage]} style={{flex: 1, alignItems: 'flex-end'
-                }} resizeMode='stretch' />
+                           {this.props.title}
+                          </Text>
+                        </View>
 
-              </View>
-            </View>
+                           </Image>
+                           </View>
+
           </LinearGradient>
         </View>
 

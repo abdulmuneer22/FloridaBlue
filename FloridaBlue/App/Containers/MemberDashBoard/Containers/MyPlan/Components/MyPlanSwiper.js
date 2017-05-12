@@ -152,11 +152,11 @@ class MyPlanSwiper extends Component {
                 </View>
               </View>
               
-              <View style={{flex: 1, alignItems: 'center'} }>
+              <View style={{flex: 1, alignItems: 'center', marginTop:15} }>
                    
                   <SemiCircle
-                    width={(Metrics.screenWidth)-(Metrics.screenWidth * 0.65)}
-                    height={(Metrics.screenHeight)-(Metrics.screenHeight *0.8)}
+                    width={Platform.OS=='ios' ? (Metrics.screenWidth)-(Metrics.screenWidth * 0.65) : (Metrics.screenWidth)-(Metrics.screenWidth * 0.75)}
+                    height={Platform.OS=='ios' ? (Metrics.screenHeight)-(Metrics.screenHeight *0.8) : (Metrics.screenHeight)-(Metrics.screenHeight *0.85)}
                     barWidth={1}
                     barTopColor={Colors.flBlue.grass}
                     barBottomColor={Colors.flBlue.night}

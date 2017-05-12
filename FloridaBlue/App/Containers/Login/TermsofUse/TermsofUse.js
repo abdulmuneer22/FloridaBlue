@@ -131,7 +131,7 @@ class TermsofUse extends Component {
   }
 
   _displayHeader () {
-    <Image style={styles.headerContainer} source={Images.themeHeader}>
+    <Image style={styles.headerContainer} source={Images.newHeaderImage}>
       <Text style={styles.headerTextStyle}>Terms of Use</Text>
     </Image>
   }
