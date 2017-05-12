@@ -457,17 +457,17 @@ class ProviderSearch extends Component {
                 </View>
 
                 <View style={styles.locationRadio}>
-                  <MKRadioButton style={styles.radio}  group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
-                  <Text style={styles.radioText}>{I18n.t('currentLocationTitle')}</Text>
+                  <MKRadioButton ref='currentLocation' style={styles.radio}  group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
+                  <Text style={styles.radioText} onPress={() => {if(!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle()}} >{I18n.t('currentLocationTitle')}</Text>
                 </View>
                 <View style={styles.locationRadio}>
-                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectHomeLocation} />
-                  <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
+                  <MKRadioButton style={styles.radio} ref='homeLocation' group={this.locationGroup} onCheckedChange={this._selectHomeLocation} />
+                  <Text style={styles.radioText} onPress={() => {if(!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle()}}>{I18n.t('homeLocationTitle')}</Text>
                 </View>
                 <Text style={styles.locationText}>({this.props.homeAddress})</Text>
                 <View style={styles.locationRadio}>
-                  <MKRadioButton style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectDifferentLocation} />
-                  <Text style={styles.radioText}>{I18n.t('differentLocationTitle')}</Text>
+                  <MKRadioButton style={styles.radio} ref='differentLocation' group={this.locationGroup} onCheckedChange={this._selectDifferentLocation} />
+                  <Text style={styles.radioText} onPress={() => {if(!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle()}}>{I18n.t('differentLocationTitle')}</Text>
                 </View>
               </HideableView>
 
