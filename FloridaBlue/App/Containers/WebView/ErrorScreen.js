@@ -25,6 +25,9 @@ var RCTNetworking = require('RCTNetworking')
 const window = Dimensions.get('window')
 
 class ErrorScreen extends Component {
+  constructor () {
+    super()
+  }
   componentDidMount () {
     RCTNetworking.clearCookies((cleared) => {
       console.tron.log('clearing local cookies for the app')
@@ -36,7 +39,8 @@ class ErrorScreen extends Component {
       console.tron.log('clearing local cookies for the app')
     })
     this.props.clearLogin()
-    this.props.attemptLogout()
+    
+    this.props.attemptLogout(this.props.logoutUrl)
     NavigationActions.login()
   }
   _renderHeader () {
@@ -83,12 +87,13 @@ ErrorScreen.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    logoutUrl: state.login.logoutUrl
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogout: () => dispatch(LoginActions.logoutRequest()),
+    attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     clearLogin: () => dispatch(LoginActions.logout())
   }
 }

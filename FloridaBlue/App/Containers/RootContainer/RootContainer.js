@@ -57,7 +57,7 @@ class RootContainer extends Component {
             // Call logout logic
           timerStarted = false
           RCTNetworking.clearCookies((cleared) => {})
-          component.props.attemptLogout()
+          component.props.attemptLogout(this.props.logoutUrl)
           NavigationActions.login()
         } else {
           inactiveTime = Date
@@ -84,12 +84,13 @@ RootContainer.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    userName: state.login.username
+    userName: state.login.username,
+    logoutUrl: state.login.logoutUrl
   }
 }
 const mapDispatchToProps = (dispatch) => ({
   startup: () => dispatch(StartupActions.startup()),
-  attemptLogout: () => dispatch(LoginActions.logoutRequest())
+  attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RootContainer)
