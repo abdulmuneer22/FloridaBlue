@@ -67,6 +67,7 @@ class DoctorCard extends Component {
 
   handleMaps (latitude, longitude) {
     console.tron.log(latitude, longitude)
+    console.log(latitude,longitude)
     const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
 
     Linking.canOpenURL(url).then(supported => {

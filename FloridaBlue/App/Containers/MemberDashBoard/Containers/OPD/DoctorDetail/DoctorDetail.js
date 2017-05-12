@@ -20,7 +20,7 @@ import HideableView from 'react-native-hideable-view'
 import DoctorLocation from './Components/DoctorLocation'
 // import Panel from './Components/Panel'
 import DoctorCard from './Components/DoctorCard'
-import Clickables from './Components/Clickables'
+//import Clickables from './Components/Clickables'
 // import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './DoctorDetailStyle'
@@ -541,7 +541,7 @@ class DoctorDetail extends Component {
                           
                            
                             </View>
-                             <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: 'https://mwe.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/Disclaimer/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziTSxCQ4MtvJxCDY38nAwcnV18TMx9fIzcfYz0w_EpMHAz1o8iSb'})}>
+                             <TouchableOpacity >
                              <Text style={styles.h7_1}>
                               Doctors & Hospitals Nationally
                             </Text>

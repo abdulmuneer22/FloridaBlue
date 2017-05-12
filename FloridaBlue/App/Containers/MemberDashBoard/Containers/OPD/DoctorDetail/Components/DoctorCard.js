@@ -38,6 +38,7 @@ class DoctorCard extends Component {
 
   handleCall (phone) {
     console.tron.log(phone)
+    console.log("im number" +phone)
     const url = `tel:${phone}`
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
@@ -50,7 +51,8 @@ class DoctorCard extends Component {
 
   handleMaps (latitude, longitude) {
     console.tron.log(latitude, longitude)
-    const url = `http://maps.apple.com/?ll=${latitude},${longitude}`
+    console.log(latitude, longitude)
+    const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
 
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
@@ -87,11 +89,12 @@ class DoctorCard extends Component {
                 </View>
               </View>
               { this.props.data && this.props.data.address.length > 0 ?
+             
                 <View style={{ flex: 1 }}>
 
                   <View style={{ flex: 1, flexDirection: 'row' }}>
-
-                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(this.props.data && this.props.data.address && this.props.data.address.telephoneNumber)}>
+                  
+                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(this.props.data && this.props.data.address[0] ? this.props.data.address[0].telephoneNumber : '')}>
                         <View style={styles.call}>
 
                             <View style={{ flex: 1, alignItems: 'flex-end' }}>
@@ -108,7 +111,7 @@ class DoctorCard extends Component {
                           </View>
                       </TouchableOpacity>
 
-                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(this.props.data && this.props.data.latitude, this.props.data && this.props.data.longitude)}>
+                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(this.props.data ? this.props.data.latitude : '', this.props.data ? this.props.data.longitude : '')}>
                         <View style={styles.directions}>
 
                             <View style={{ flex: 0.3, alignItems: 'center' }}>
