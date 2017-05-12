@@ -3,7 +3,7 @@ module.exports = {
   mobApiUrl: 'https://mobapi.bcbsfl.com/mob/api/v1/',
   registrationURL: 'https://registration.bcbsfl.com/ers/api-public/v1/users/',
   forgotPwdURL: 'https://registration.bcbsfl.com/ecir/public/fps.do?channel=mobile&userType=member',
-  logoutURL: 'https://logout.bcbsfl.com/',
+  logoutURL: 'https://logout.bcbsfl.com/logout.fcc',
   webAccessibilityURL: 'https://www.floridablue.com/general/web-accessibility',
   ndnoticeURL: 'https://www.floridablue.com/ndnotice',
   termsOfUseURL: 'https://www.floridablue.com/terms-of-use',

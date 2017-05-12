@@ -265,7 +265,7 @@ class Login extends Component {
           RCTNetworking.clearCookies((cleared) => {
             console.tron.log('clearing local cookies for the app')
           })
-          this.props.attemptLogout()
+          this.props.attemptLogout(this.props.logoutUrl)
           Alert.alert('Login', 'Please use your user ID and password to log in. You must be a Florida Blue member.',
             [
               {
@@ -278,7 +278,7 @@ class Login extends Component {
           RCTNetworking.clearCookies((cleared) => {
             console.tron.log('clearing local cookies for the app')
           })
-          this.props.attemptLogout()
+          this.props.attemptLogout(this.props.logoutUrl)
 
           Alert.alert('Login', 'Your account is locked.  Click Support for help', [
             {
@@ -550,7 +550,8 @@ const mapStateToProps = (state) => {
     password: state.login.password,
     visibleDashboard: state.member.visibleDashboard,
     touchEnabled: state.login.touchEnabled,
-    touchCheckboxVisible: state.login.touchCheckboxVisible
+    touchCheckboxVisible: state.login.touchCheckboxVisible,
+    logoutUrl: state.login.logoutUrl
   }
 }
 
@@ -562,7 +563,7 @@ const mapDispatchToProps = (dispatch) => {
     attemptMember: () => dispatch(MemberActions.memberRequest()),
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
     attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
-    attemptLogout: () => dispatch(LoginActions.logoutRequest()),
+    attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(LoginActions.changeTouchEnabled(touchEnabled))
   }
