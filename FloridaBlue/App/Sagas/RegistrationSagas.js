@@ -67,7 +67,7 @@ export function * sendIdentificationRequest (api, {data}) {
     var error = 'Invaid input provided'
     var data = {
       'identificationStatus': '999',
-      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later '
+      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
     }
    // data.identificationStatusMessage = getReasonMessage(data.indentificationStatus)
     console.tron.log(data)
@@ -90,7 +90,7 @@ export function * sendPersonalInformationRequest (api, {data}) {
     var error = 'Invaid input provided'
     var data = {
       'identificationStatus': '999',
-      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later '
+      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
     }
     // data.personalInformationStatusMessage = getReasonMessage(data.personalInformationStatus)
 
@@ -116,7 +116,7 @@ export function * sendRegistrationCodeRequest (api, {data}) {
     var error = 'Invaid input provided'
     var data = {
       'identificationStatus': '999',
-      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later '
+      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
     }
   //  data.registrationCodeStatusMessage = getReasonMessage(data.registrationCodeStatus)
     yield put(RegistrationActions.sendRegistrationCodeFailure(data))
@@ -137,7 +137,7 @@ export function * sendSecurityHintsRequest (api, {data}) {
     var error = 'Invaid input provided'
     var data = {
       'identificationStatus': '999',
-      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later '
+      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
     }
    // data.securityHintsStatusMessage = getReasonMessage(data.securityHintsStatus)
     yield put(RegistrationActions.sendSecurityHintsFailure(data))
@@ -158,7 +158,7 @@ export function * registerUserRequest (api, {data, token}) {
     var error = 'Invaid input provided'
     var data = {
       'identificationStatus': '999',
-      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later '
+      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
     }
   //  data.registerUserStatusMessage = getReasonMessage(data.registerUserStatus)
     yield put(RegistrationActions.registerUserFailure(data))
