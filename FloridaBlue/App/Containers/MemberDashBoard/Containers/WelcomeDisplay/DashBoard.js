@@ -77,6 +77,7 @@ class LandingScreen extends Component {
     )
   }
   componentDidMount () {
+    console.log(this.props.navigatingFrom)
    //  BackAndroid.addEventListener('hardwareBackPress', function () {
     //   console.tron.log('android back')
     //   // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
@@ -173,54 +174,51 @@ class LandingScreen extends Component {
           </View>
           { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
               
-            ? <TouchableOpacity onPress={() => NavigationActions[this.props.visibilityRules.opdTile.routerName]()} style={{flex: 1}}>
-              <LinearGradient colors={['#ECE9E6', '#FFFFFF']} style={{
-                height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.87),
+            ? <TouchableOpacity onPress={() => NavigationActions[this.props.visibilityRules.opdTile.routerName]()} 
+              style={{flex:1,
+             // backgroundColor:'red',
+               // flexDirection: 'row',
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
      // height : window.height * 0.5,
-                justifyContent: 'center',
-                alignItems: 'center',
-  //  alignSelf: 'stretch',
-                flex: 1,
-                width: Metrics.screenWidth,
-                marginTop: 4
-              }}>
-
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Metrics.screenWidth,
+    marginTop: (Platform.OS === 'ios') ?  4 : 0,
+    // marginBottom:0}}
+              }}
+    >
+          
+               <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
                 <View style={{
-                  flex: 1,
                   flexDirection: 'row',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  flex:1
                   // marginTop:27.5
                 }}>
-                  <View style={{flex: 1 }}>
-                    <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={{flex: 1}} />
-                  </View>
-                  <View style={{flex: 4, flexDirection: 'row'}}>
-                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'flex-start'}}>
-                      <Flb name={this.props.visibilityRules.opdTile.tileIcon}
-                        style={{
-
-                          backgroundColor: Colors.transparent
-                  // marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.004
-                        }}
-                        size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
-                        color={Colors.flBlue.grey3} />
+                <View style={{flex:0.45, alignItems:'flex-end'}}>
+                  <Flb name={this.props.visibilityRules.opdTile.tileIcon}
+                    style={{
+                      backgroundColor: Colors.transparent,
+                      marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.003
+                    }}
+                    size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
+                    color={Colors.flBlue.grey5} />
                     </View>
-                    <View style={{flex: 3}}>
-                      <Text style={{
-
-                        fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
-                        color: Colors.flBlue.grey3,
-                        fontFamily: Fonts.type.headerFont,
-                        backgroundColor: Colors.transparent
-                      }}>
-                        {this.props.visibilityRules.opdTile.tileName['en']}
-                      </Text>
-                    </View>
+                    <View style={{flex:0.55, alignItems:'flex-start'}}>
+                  <Text style={{
+                    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
+                    color: Colors.flBlue.grey5,
+                    fontFamily: Fonts.type.headerFont,
+                    backgroundColor: Colors.transparent
+                  }}>
+                    {this.props.visibilityRules.opdTile.tileName['en']}
+                  </Text>
                   </View>
                 </View>
+              </Image>
 
-              </LinearGradient>
+             
             </TouchableOpacity> : null
           }
         </View>

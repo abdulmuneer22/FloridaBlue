@@ -98,7 +98,7 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '600',
-    color: Colors.flBlue.ocean
+    color: Colors.flBlue.anvil
   },
 
   h2: {

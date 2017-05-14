@@ -458,16 +458,26 @@ class ProviderSearch extends Component {
 
                 <View style={styles.locationRadio}>
                   <MKRadioButton ref='currentLocation' style={styles.radio}  group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
-                  <Text style={styles.radioText} onPress={() => {if(!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle()}} >{I18n.t('currentLocationTitle')}</Text>
+                  <View style={{width:Metrics.screenWidth}}>
+                <TouchableOpacity style={{width:Metrics.screenWidth}} onPress={() => {if(!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle()}}>
+                <Text style={styles.radioText} >Current Location</Text>
+                </TouchableOpacity>
+              </View>
                 </View>
                 <View style={styles.locationRadio}>
                   <MKRadioButton style={styles.radio} ref='homeLocation' group={this.locationGroup} onCheckedChange={this._selectHomeLocation} />
-                  <Text style={styles.radioText} onPress={() => {if(!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle()}}>{I18n.t('homeLocationTitle')}</Text>
+                  <TouchableOpacity style={{width:Metrics.screenWidth}} onPress={() => {if(!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle()}}>
+                  <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
+                  </TouchableOpacity>
                 </View>
                 <Text style={styles.locationText}>({this.props.homeAddress})</Text>
                 <View style={styles.locationRadio}>
                   <MKRadioButton style={styles.radio} ref='differentLocation' group={this.locationGroup} onCheckedChange={this._selectDifferentLocation} />
-                  <Text style={styles.radioText} onPress={() => {if(!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle()}}>{I18n.t('differentLocationTitle')}</Text>
+                  <View style={{width:Metrics.screenWidth}}>
+                <TouchableOpacity style={{width:Metrics.screenWidth}} onPress={() => {if(!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle()}}>
+                  <Text style={styles.radioText} >{I18n.t('differentLocationTitle')}</Text>
+                  </TouchableOpacity>
+                  </View>
                 </View>
               </HideableView>
 

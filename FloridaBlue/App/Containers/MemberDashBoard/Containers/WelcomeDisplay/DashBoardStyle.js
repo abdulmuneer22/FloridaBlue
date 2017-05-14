@@ -266,16 +266,15 @@ export default StyleSheet.create({
 
   },
   footerImage: {
-    // flexDirection: 'row',
-   // height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.87),
+     // flexDirection: 'row',
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.84) : Metrics.screenHeight - (Metrics.screenHeight * 0.88),
      // height : window.height * 0.5,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   //  alignSelf: 'stretch',
-  //  resizeMode: 'stretch',
-  //  width: Metrics.screenWidth,
-   // marginTop: 4
-
+    resizeMode: 'stretch',
+    width: Metrics.screenWidth,
+    //marginTop: 4
     // marginBottom:0
   },
   textBackground: {

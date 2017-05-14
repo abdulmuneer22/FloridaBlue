@@ -516,8 +516,10 @@ class AdvancedSearch extends Component {
               <MKRadioButton ref='currentLocation' style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                 width: Metrics.section * Metrics.screenWidth * 0.0025,
                 borderRadius: Metrics.section}} group={this.radioGroup} onCheckedChange={this._selectCurrentLocation} />
-              <View >
-                <Text style={styles.radioText} onPress={() => {if(!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle()}}>Current Location</Text>
+              <View style={{width:Metrics.screenWidth}}>
+                <TouchableOpacity style={{width:Metrics.screenWidth}} onPress={() => {if(!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle()}}>
+                <Text style={styles.radioText} >Current Location</Text>
+                </TouchableOpacity>
               </View>
 
             </View>
@@ -526,11 +528,13 @@ class AdvancedSearch extends Component {
               <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                 width: Metrics.section * Metrics.screenWidth * 0.0025,
                 borderRadius: Metrics.section}} ref='homeLocation' group={this.radioGroup} onCheckedChange={this._selectHomeLocation} />
-              <View >
-                <Text style={styles.radioText} onPress={() => {if(!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle()}}>Home</Text>
+              <View style={{width:Metrics.screenWidth}}>
+                <TouchableOpacity style={{width:Metrics.screenWidth}} onPress={() => {if(!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle()}}>
+                <Text style={styles.radioText} >Home</Text>
                 <View style={{ marginRight: Metrics.searchBarHeight }}>
                   <Text style={styles.radioBottomText}>({this.props.homeAddress})</Text>
                 </View>
+                </TouchableOpacity>
               </View>
             </View>
 
@@ -538,8 +542,10 @@ class AdvancedSearch extends Component {
               <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                 width: Metrics.section * Metrics.screenWidth * 0.0025,
                 borderRadius: Metrics.section}}  ref='differentLocation' group={this.radioGroup} onCheckedChange={this._selectDifferentLocation} />
-              <View >
-                <Text style={styles.radioText} onPress={() => {if(!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle()}} >Different Location</Text>
+              <View style={{width:Metrics.screenWidth}}>
+                <TouchableOpacity style={{width:Metrics.screenWidth}} onPress={() => {if(!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle()}}>
+                <Text style={styles.radioText} >Different Location</Text>
+                </TouchableOpacity>
               </View>
             </View>
 
