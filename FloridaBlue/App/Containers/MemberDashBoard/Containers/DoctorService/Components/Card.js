@@ -113,20 +113,20 @@ class CCard extends Component {
                   {
                 network != undefined && network.footer_note != undefined && network.footer_note != null && network.footer_note.en != undefined && network.footer_note.en != null
                   ?
-                    <View style={{ margin: 5}} >
+                    <View style={{ margin: 0}} >
                       <Panel title={_.get(network, 'header_text.en', '')} >
                         <View style={{ borderTopWidth: 0.2, bottom: 10 }} />
-                        <View >
+                        <View style={{bottom:10}}>
                           <HTMLView value={htmvalue}
                             stylesheet={HtMLstyles} />
                         </View>
                         <View style={{ marginTop: 10 }} />
 
                       </Panel>
-                      <View style={{borderBottomWidth: 0.3, margin: 10}} />
+                      <View style={{borderBottomWidth: 0.3, marginTop:-10, margin: 10}} />
                     </View>
                     :
-                    <View style={{margin: 5, padding: 8}}>
+                    <View style={{margin: 5, marginTop:-3, padding: 8}}>
 
                       <Text style={styles.h1}>
                         {_.get(network, 'header_text.en', 'Benefit Details')}
@@ -157,7 +157,7 @@ class CCard extends Component {
               const style1 = { marginTop: 5, width: Metrics.screenWidth * 0.65 }
               const style2 = { marginTop: 5, flex: 0.5 }
               return (
-                <View style={{ marginBottom: 10 }}>
+                <View style={{ marginBottom: 0 }}>
                   <View>
 
                     {speciality_text['en']

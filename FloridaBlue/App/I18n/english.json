@@ -32,6 +32,7 @@
    "memberId": "Member ID",
    "noItems": "No Items",
    "password": "Create Password",
+   "userpassword": "Password",
    "personalInformation": "Personal Information",
    "phoneNumber": "Phone Number",
    "progressiveImageComponent": "Progressive Image Component",

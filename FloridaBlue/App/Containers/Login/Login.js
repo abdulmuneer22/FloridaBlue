@@ -470,7 +470,7 @@ class Login extends Component {
                   ref='password'
                   style={styles.textField}
                   textInputStyle={{flex: 1, color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='done'
                   autoCapitalize='none'
@@ -480,7 +480,7 @@ class Login extends Component {
                   onChangeText={this.props.handleChangePassword}
                   value={this.props.password}
                   underlineColorAndroid={Colors.coal}
-                  placeholder={I18n.t('password')}
+                  placeholder={I18n.t('userpassword')}
                   placeholderTextColor={Colors.steel} />
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
