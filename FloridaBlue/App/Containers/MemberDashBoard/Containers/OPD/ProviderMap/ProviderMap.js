@@ -133,7 +133,7 @@ class ProviderMap extends Component {
             <MapView
               style={styles.map}
               showsUserLocation
-              onRegionChange={this._onRegionChange}
+             // onRegionChange={this._onRegionChange}
               region={{
                 latitude: this.state.currentLat,
                 longitude: this.state.currentLong,
