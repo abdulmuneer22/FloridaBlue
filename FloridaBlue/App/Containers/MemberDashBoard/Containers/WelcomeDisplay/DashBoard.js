@@ -129,10 +129,10 @@ class LandingScreen extends Component {
                   if (tile.tileType == 'webview') {
                       var webview = 'MyView'
                       action = NavigationActions[webview]({ responseURL: tile.tileUrl })
-                      if (tile.tileId == 'idCard') {
+                      /*if (tile.tileId == 'idCard') {
                           var idCardRouter = 'MyIdCard'
                           action = NavigationActions[idCardRouter]()
-                      }                      
+                      } */                     
                   } else if (tile.tileType == 'native') {
                     var routerName = tile.routerName
                     action = NavigationActions[routerName]()
