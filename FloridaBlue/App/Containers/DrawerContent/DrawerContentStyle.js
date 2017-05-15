@@ -1,7 +1,8 @@
 // @flow
 import {StyleSheet} from 'react-native'
 import { Fonts, Colors, Metrics } from '../../Themes/'
-
+import { getTheme,
+  setTheme } from 'react-native-material-kit'
 export default {
   container: {
     flex: 1,
@@ -110,5 +111,14 @@ export default {
     height: Metrics.screenHeight * 0.055,
     // width:160,
     alignSelf: 'center'
-  }
+  },
+  toggleText: {
+    fontSize: 16,
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    color: '#616161',
+  },
+  toggleOnText: {
+    color: getTheme().primaryColor,
+  },
 }
