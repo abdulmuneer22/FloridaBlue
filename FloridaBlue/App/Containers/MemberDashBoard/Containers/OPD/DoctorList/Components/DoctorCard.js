@@ -90,11 +90,11 @@ class DoctorCard extends Component {
               if(i < this.state.cardLimit){
 
                  return (
-                <Card style={{ flex: 1 }} key={i}>
+                <Card style={{ flex: 1}} key={i}>
 
-                  <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10 }}>
+                  <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop:10 }}>
 
-                    <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin}}>
+                    <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight:10}}>
                         {value ?
                             <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
                                 <Text style={styles.h1}>{value.displayName}</Text>
@@ -119,14 +119,14 @@ class DoctorCard extends Component {
                         <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(value.telephoneNumber)}>
                             <View style={styles.call}>
 
-                                <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                                <View style={{ flex: 0.45, alignItems: 'flex-end' }}>
                                     <Flb
                                         name='call-phone'
                                         size={Metrics.icons.medium}
                                         color={Colors.snow} />
                                   </View>
 
-                                <View style={{ flex: 1, alignItems: 'flex-start' }}>
+                                <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
 
                                     <Text style={styles.callText}>Call</Text>
                                   </View>
@@ -136,7 +136,7 @@ class DoctorCard extends Component {
                         <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(value.latitude, value.longitude)}>
                             <View style={styles.directions}>
 
-                                <View style={{ flex: 0.3, alignItems: 'center' }}>
+                                <View style={{ flex: 0.28, alignItems: 'flex-end' }}>
                                     <Flb
                                         name='directions'
                                         size={Metrics.icons.medium}
@@ -144,7 +144,7 @@ class DoctorCard extends Component {
                                   </View>
 
                                 <View style={{
-                                    flex: 0.7,
+                                    flex: 0.72,
                                     alignItems: 'flex-start'
                                   }}>
 

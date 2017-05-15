@@ -164,7 +164,7 @@ class DoctorDetail extends Component {
                 
               }}>
                 {this.props.doctordetail ?
-                  <View style={{ flex: 1 }}>
+                  <View style={{ flex: 1}}>
                   <DoctorLocation
                       data={this.props.doctordetail} />
                 </View>
@@ -628,7 +628,8 @@ const mapStateToProps = (state) => {
     doctordetail: state.provider.doctordetail,
     providerKey: state.provider.providerKey,
     addressKey: state.provider.addressKey,
-    configData: state.provider.configData
+    configData: state.provider.configData,
+    networkCodeList: state.provider.networkCodeList,
   }
 }
 

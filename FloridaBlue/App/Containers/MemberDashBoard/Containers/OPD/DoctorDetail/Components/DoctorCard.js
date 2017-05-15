@@ -67,7 +67,7 @@ class DoctorCard extends Component {
     return (
       <View style={styles.container}>
 
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, marginTop:-5 }}>
           { this.props.data ?
 
             <Card style={{ flex: 1 }} >

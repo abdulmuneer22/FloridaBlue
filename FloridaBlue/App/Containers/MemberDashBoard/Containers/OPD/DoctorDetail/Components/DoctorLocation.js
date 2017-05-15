@@ -23,7 +23,7 @@ class DoctorLocation extends Component {
     console.tron.log(this.props.data)
     return (
       <View style={{
-        height: Metrics.screenHeight * 0.5,
+        height: Metrics.screenHeight * 0.3,
         flex: 1
                 // backgroundColor : 'red'
       }}>

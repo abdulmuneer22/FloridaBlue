@@ -28,7 +28,7 @@ const theme = getTheme()
 const HtMLstyles = StyleSheet.create({
   p: {
     fontWeight: '300',
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0015,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.grey5
 
   },
@@ -150,14 +150,14 @@ class CCard extends Component {
 
             }}>
 
-              <View style={{flex: 0.6, margin: 0.5}}>
+              <View style={{flex: 0.6, margin: 0.5, marginBottom:20}}>
                 {
             speciality.map(specialities => {
               const { speciality_text, speciality_value } = specialities
               const style1 = { marginTop: 5, width: Metrics.screenWidth * 0.65 }
               const style2 = { marginTop: 5, flex: 0.5 }
               return (
-                <View style={{ marginBottom: 0 }}>
+                <View style={{ marginBottom: 5 }}>
                   <View>
 
                     {speciality_text['en']

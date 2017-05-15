@@ -99,14 +99,14 @@ class ProviderSearch extends Component {
     this._getLocation()
     this._resetState()
 
-    var addressLine1 = this.props.member.defaultContract.homeAddress.addressline1
+    var addressLine1 = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.addressline1
     var addressLine2 = ''
-    if (this.props.member.defaultContract.homeAddress.addressline2) {
-      var addressLine2 = this.props.member.defaultContract.homeAddress.addressline2
+    if (this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.addressline2) {
+      var addressLine2 = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.addressline2
     }
-    var city = this.props.member.defaultContract.homeAddress.city
-    var state = this.props.member.defaultContract.homeAddress.state
-    var zip = this.props.member.defaultContract.homeAddress.zipCode
+    var city = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.city
+    var state = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.state
+    var zip = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.zipCode
 
     var fullAddress = addressLine1 + addressLine2 + ' ' + city + ', ' + state + ' ' + zip
     this.props.changeHomeAddress(fullAddress)
@@ -362,7 +362,7 @@ class ProviderSearch extends Component {
         <View style={{flex: 13}}>
           <ScrollView>
             <View style={{flex: 1}}>
-              <View style={{flex:1, margin:10}}>
+              <View style={{flex:1, marginTop:20}}>
               <Text style={styles.h1_1}>{I18n.t('providerSearchTitle')}</Text>
 
               <View style={styles.radioView}>
@@ -518,7 +518,7 @@ class ProviderSearch extends Component {
           </ScrollView>
         </View>
 
-        <View style={{flex: 2}}>
+        <View style={{flex: 2, borderTopWidth:0.5, borderColor:Colors.flBlue.grey1}}>
           {
             this.state.floatClicked ?
 
@@ -526,7 +526,7 @@ class ProviderSearch extends Component {
             <View style={styles.urgentCareCircle}>
               <TouchableOpacity onPress={this.handleNeedHelp}>
                 <Flb name='urgent-care-circle'
-                  color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+                  color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
               </TouchableOpacity>
             </View>
           : <View>{this.state._onChecked}</View>
@@ -535,7 +535,7 @@ class ProviderSearch extends Component {
 
 
             <Flb name='close-delete' style={styles.dismissUrgentIcon}
-                  color={Colors.flBlue.anvil} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+                  color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
                   onPress={this.handleNeedHelp} />
 
             <Text style={styles.needHelpText}>Need Help Now?</Text>
@@ -546,9 +546,10 @@ class ProviderSearch extends Component {
               <Image source={Images.viewListButton} style={styles.viewListButton} />
             </TouchableOpacity>
             </View>
-          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.001 : Metrics.section * Metrics.screenHeight * 0.00127, marginLeft:7}}>
+          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.00127, 
+                                                                    marginLeft:Metrics.smallMargin * Metrics.screenWidth * 0.0035}}>
             <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
-                  color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+                  color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
           </View>
           </View>
           </Card>
