@@ -559,12 +559,6 @@ class DoctorDetail extends Component {
                               Note: Please refer to your benefit booklet for details, as not all searches may be applicable to your plan.
                             </Text>
 
-                            <Text style={styles.h7}>
-                             <Text style={styles.h7_2}>
-                             click here
-                            </Text> for full Online Provider Directory
-                            </Text>
-
                             </View>
 
                         </HideableView> : null}

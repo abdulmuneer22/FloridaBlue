@@ -14,7 +14,7 @@ export default StyleSheet.create({
   backgroundImage: {
     flex: 0.4,
     alignSelf: 'flex-end',
-    marginBottom:-6.5
+    marginBottom:-Metrics.smallMargin * Metrics.screenHeight * 0.0001
   },
   logo: {
     width: Metrics.images.logo,
