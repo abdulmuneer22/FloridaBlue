@@ -102,9 +102,15 @@ class Confirmation extends Component {
 
           <TouchableOpacity onPress={() => { NavigationActions.WelcomeDashBoard({'origin': 'registration'}) }}>
             <Image source={Images.confirmationLogin} style={styles.buttonStyle} />
-
           </TouchableOpacity>
-
+          <View>
+           <TouchableOpacity  style={{alignItems:'center',
+                                      justifyContent:'center'
+                                      
+           }} onPress={() => { NavigationActions.TouchTOU({'origin': 'registration'}) }}>
+                 <Text>Set up your Touch ID</Text>
+          </TouchableOpacity>
+          </View>
           <View style={styles.row}>
             <View>
               <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
