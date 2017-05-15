@@ -126,6 +126,8 @@ class DoctorDetail extends Component {
   }
   componentDidMount () {
     this.props.attemptDoctorDetail(this.props)
+     this.props.attemptConfigData()
+    
   }
 
   _renderHeader () {
@@ -531,59 +533,24 @@ class DoctorDetail extends Component {
                           :null}
 
                           <View style={{flex:1}}>
-                           
-                              <View style={{flex:1}}>
-                            <Text style={styles.h7}>
-                              To view more information about this provider at The Florida Department of Health, please <Text style={styles.h7_2}>
-                             click here
-                            </Text>
-                            </Text>
+                           {
+                             this.props.configData && this.props.configData.links && this.props.configData.links.providerInfoList && this.props.configData.links.providerInfoList.length > 0 ?
+                            this.props.configData.links.providerInfoList.map((value, i) => {
+                               console.log('urlsss' +value.url)
+                              return(
+                               
+                                <View key={i} style={{flex:1}}>
+                                  <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: value ? value.url:''})}>
+                                  <Text style={styles.h7_1}>
+                                    {value.title}
+                                  </Text>
+                                  </TouchableOpacity>
+                                </View>
+                              )
+
+                            }): null }
+                             
                           
-                           
-                            </View>
-                             <TouchableOpacity >
-                             <Text style={styles.h7_1}>
-                              Doctors & Hospitals Nationally
-                            </Text>
-                            </TouchableOpacity>
-
-                            <Text style={styles.h7_1}>
-                              Doctors & Hospitals Worldwide
-                            </Text>
-
-                            <Text style={styles.h7_1}>
-                              Find a Dentist
-                            </Text>
-
-                            <Text style={styles.h7_1}>
-                             Mental Health and Substance Abuse
-                            </Text>
-
-                            <Text style={styles.h7_1}>
-                              Vision Nationally
-                            </Text>
-
-                            <Text style={styles.h7_1}>
-                              Create a Directory
-                            </Text>
-
-                            <Text style={styles.h7_1}>
-                              Vaccine Network-Individuals Under 65 and Group
-                            </Text>
-
-                            <Text style={styles.h7_1}>
-                              Vaccine Network Blue Select-Individuals Under 65 and Group
-                            </Text>
-                            <Text style={styles.h7_1}>
-                              Medical Coverage Guidelines
-                            </Text>
-                            <Text style={styles.h7_1}>
-                              Sources of Information
-                            </Text>
-                            <Text style={styles.h7_1}>
-                             Frequently Asked Questions
-                            </Text>
-
                             <Text style={styles.h7}>
                             Provider information contained in this directory is refreshed nightly.
                             </Text>
@@ -650,6 +617,7 @@ DoctorDetail.propTypes = {
   data: PropTypes.object,
   provider: PropTypes.object,
   attemptDoctorDetail: PropTypes.func,
+  attemptConfigData: PropTypes.func,
   error: PropTypes.string,
   saveProvider: PropTypes.array,
   attemptHandleLeft: PropTypes.func,
@@ -665,12 +633,14 @@ const mapStateToProps = (state) => {
     saveProvider: state.saveprovider.data,
     doctordetail: state.provider.doctordetail,
     providerKey: state.provider.providerKey,
-    addressKey: state.provider.addressKey
+    addressKey: state.provider.addressKey,
+    configData: state.provider.configData
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    attemptConfigData: () => dispatch(ProviderActions.sendConfigTypeRequest()),
     attemptDoctorDetail: (data) => dispatch(ProviderActions.sendDoctorDetailRequest(data)),
     addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
     removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey))
