@@ -887,7 +887,8 @@ const mapStateToProps = (state) => {
     locationStatus: state.provider.locationStatus,
     knownCareState: state.provider.knownCareState,
     unknownCareState: state.provider.unknownCareState,
-    specialityState: state.provider.specialityState
+    specialityState: state.provider.specialityState,
+    networkCodeList: state.provider.networkCodeList,
   }
 }
 
