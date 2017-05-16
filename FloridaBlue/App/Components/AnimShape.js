@@ -133,7 +133,7 @@ export default class AnimShape extends React.Component {
       <Shape
         d={path}
         stroke={'white'}
-        strokeWidth={1}  
+        strokeWidth={1}
         fill={this.props.color}
          />
     )

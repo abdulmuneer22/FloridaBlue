@@ -104,12 +104,12 @@ class Confirmation extends Component {
             <Image source={Images.confirmationLogin} style={styles.buttonStyle} />
           </TouchableOpacity>
           <View>
-           <TouchableOpacity  style={{alignItems:'center',
-                                      justifyContent:'center'
-                                      
-           }} onPress={() => { NavigationActions.TouchTOU({'origin': 'registration'}) }}>
-                 <Text>Set up your Touch ID</Text>
-          </TouchableOpacity>
+            <TouchableOpacity style={{alignItems: 'center',
+              justifyContent: 'center'
+
+            }} onPress={() => { NavigationActions.TouchTOU({'origin': 'registration'}) }}>
+              <Text>Set up your Touch ID</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.row}>
             <View>

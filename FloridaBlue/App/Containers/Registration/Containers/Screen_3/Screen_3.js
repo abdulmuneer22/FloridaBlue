@@ -135,9 +135,9 @@ class Screen_3 extends React.Component {
               returnKeyType='done'
               value={this.props.enterCode}
               textInputStyle={{
-                    flex: 1, color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
-                  }}
+                flex: 1, color: Colors.flBlue.anvil,
+                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+              }}
               autoCapitalize='none'
               autoCorrect={false}
               onChangeText={this.props.handleChangeEnterCode}

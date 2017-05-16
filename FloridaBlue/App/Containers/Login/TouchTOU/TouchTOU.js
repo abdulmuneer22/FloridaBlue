@@ -30,7 +30,7 @@ class TouchTOU extends Component {
         // handle error..
       } else {
         var status = credentials[0]
-        if (status == "SUCCESS") {
+        if (status == 'SUCCESS') {
           this.props.changeTouchEnabled(false)
           NavigationActions.pop()
         }
@@ -81,7 +81,7 @@ class TouchTOU extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    touchEnabled: state.login.touchEnabled,
+    touchEnabled: state.login.touchEnabled
   }
 }
 

@@ -58,8 +58,8 @@ const { Types, Creators } = createActions({
   changeLatDelta: ['latDelta'],
   changeLongDelta: ['longDelta'],
   changeUrgentCareBanner: ['showUrgentCareBanner'],
-  changeStart:['start'],
-  changeEnd:['end'],
+  changeStart: ['start'],
+  changeEnd: ['end'],
   providerClickleft: [],
   providerClickright: []
 
@@ -103,8 +103,8 @@ export const INITIAL_STATE = Immutable({
   locationStatus: '',
   fetching: false,
   error: null,
-  start:1,
-  end:100
+  start: 1,
+  end: 100
 })
 
 /* ------------- Reducers ------------- */

@@ -26,7 +26,7 @@ import MemberActions from '../../Redux/MemberRedux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { AsyncStorage } from 'react-native'
 var RCTNetworking = require('RCTNetworking')
-import { MKIconToggle,MKColor, MKSwitch } from 'react-native-material-kit'
+import { MKIconToggle, MKColor, MKSwitch } from 'react-native-material-kit'
 
 var {height, width} = Dimensions.get('window')
 const window = Dimensions.get('window')
@@ -99,7 +99,7 @@ class SettingsContent extends Component {
   }
   handlePressFindCare= () => {
     this.toggleDrawer()
-   NavigationActions[this.props.visibilityRules.opdTile.routerName]()
+    NavigationActions[this.props.visibilityRules.opdTile.routerName]()
   }
   handlePressPayment= () => {
     this.toggleDrawer()
@@ -148,37 +148,36 @@ class SettingsContent extends Component {
     return (
       <ScrollView style={[styles.wrapper]}>
         <View style={styles.options}>
-          <Divider/>
-          <View style={{flexDirection:'row'}}>
+          <Divider />
+          <View style={{flexDirection: 'row'}}>
             <View style={{
-              alignItems:'flex-start',
-              justifyContent:'center',
-              width:Metrics.screenWidth *0.63
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+              width: Metrics.screenWidth * 0.63
             }}
             >
-          <Text style={styles.heading}>Enable TouchID</Text>
-          </View>
-          <View style={{
-              alignItems:'flex-end',
-              justifyContent:'flex-end',
-          }}>
-            <MKSwitch style={styles.appleSwitch}
-                        trackSize={Metrics.screenWidth- (Metrics.screenWidth * 0.93)}
-                        trackLength={Metrics.screenWidth- (Metrics.screenWidth * 0.87)}
-                        onColor= {Colors.flBlue.grass}
-                        thumbOnColor={Colors.flBlue.grass}
-                        rippleColor={Colors.flBlue.grass}
-                        onPress={() => console.log('orange switch pressed')}
-                        onCheckedChange={(e) => console.log('orange switch checked', e)}
+              <Text style={styles.heading}>Enable TouchID</Text>
+            </View>
+            <View style={{
+              alignItems: 'flex-end',
+              justifyContent: 'flex-end'
+            }}>
+              <MKSwitch style={styles.appleSwitch}
+                trackSize={Metrics.screenWidth - (Metrics.screenWidth * 0.93)}
+                trackLength={Metrics.screenWidth - (Metrics.screenWidth * 0.87)}
+                onColor={Colors.flBlue.grass}
+                thumbOnColor={Colors.flBlue.grass}
+                rippleColor={Colors.flBlue.grass}
+                onPress={() => console.log('orange switch pressed')}
+                onCheckedChange={(e) => console.log('orange switch checked', e)}
               />
-           
+
+            </View>
           </View>
-        </View>
-          <Divider/>
+          <Divider />
           <Text style={styles.heading} onPress={this.handlePressDashBoard}>Dashboard</Text>
           <Divider />
-          
-            
+
           { this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined
             ? <View>
 
@@ -382,7 +381,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),    
+    attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     attemptMember: () => dispatch(MemberActions.memberRequest()),
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
     clearLogin: () => dispatch(LoginActions.logout())

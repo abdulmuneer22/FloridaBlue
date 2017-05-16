@@ -273,8 +273,8 @@ export default StyleSheet.create({
     alignItems: 'center',
   //  alignSelf: 'stretch',
     resizeMode: 'stretch',
-    width: Metrics.screenWidth,
-    //marginTop: 4
+    width: Metrics.screenWidth
+    // marginTop: 4
     // marginBottom:0
   },
   textBackground: {
@@ -302,10 +302,8 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
-   
 
    // alignItems: 'center',
-   
 
   },
 
@@ -313,12 +311,10 @@ export default StyleSheet.create({
 
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: Colors.bg2,
+    backgroundColor: Colors.bg2
    // padding: Metrics.mediumMargin,
   //  justifyContent: 'space-between',
   //  alignItems: 'center',
-
-   
 
   },
 

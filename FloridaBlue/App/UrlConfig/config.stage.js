@@ -12,4 +12,4 @@ module.exports = {
   supportURL: 'https://www.floridablue.com/general/contact-us',
   floridaBlueURL: 'https://www.floridablue.com/',
   anotherLanguageURL: 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es'
-};
+}

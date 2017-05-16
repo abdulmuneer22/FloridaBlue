@@ -106,26 +106,26 @@ class Card extends Component {
             }}
            >
 
-             <View style={{flex:1}}>
-                          <Image source={Images[this.props.gradientImage]}  
-                           style={{flex:1, justifyContent:'center',
-                          width: Platform.OS== 'ios' ? (Metrics.screenWidth)- (Metrics.screenWidth * 0.54) : (Metrics.screenWidth)- (Metrics.screenWidth * 0.49) }} resizeMode='contain' >
+            <View style={{flex: 1}}>
+              <Image source={Images[this.props.gradientImage]}
+                style={{flex: 1, justifyContent: 'center',
+                  width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.54) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.49) }} resizeMode='contain' >
 
-                            <View style={{alignItems: 'center'}} >
-                          <Text style={{
-                  //marginTop: Metrics.mediumMargin,
-                   marginBottom:-15,
-                  fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
-                  fontWeight: (Platform.OS === 'ios') ? '600' : '400',
-                  color: Colors.snow,
-                  backgroundColor: Colors.transparent
-                }}>
-                           {this.props.title}
-                          </Text>
-                        </View>
+                <View style={{alignItems: 'center'}} >
+                  <Text style={{
+                  // marginTop: Metrics.mediumMargin,
+                    marginBottom: -15,
+                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
+                    fontWeight: (Platform.OS === 'ios') ? '600' : '400',
+                    color: Colors.snow,
+                    backgroundColor: Colors.transparent
+                  }}>
+                    {this.props.title}
+                  </Text>
+                </View>
 
-                           </Image>
-                           </View>
+              </Image>
+            </View>
 
           </LinearGradient>
         </View>

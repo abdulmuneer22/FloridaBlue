@@ -1,3 +1,3 @@
 
-import { requireNativeComponent } from 'react-native';
-module.exports = requireNativeComponent('YWebViewManager', null);
+import { requireNativeComponent } from 'react-native'
+module.exports = requireNativeComponent('YWebViewManager', null)

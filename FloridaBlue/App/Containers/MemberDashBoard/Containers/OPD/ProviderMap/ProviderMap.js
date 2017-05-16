@@ -25,7 +25,6 @@ import DoctorCard from './Components/DoctorCard'
 import HideableView from 'react-native-hideable-view'
 import Swiper from 'react-native-swiper'
 
-
 const theme = getTheme()
 const screen = Dimensions.get('window')
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -47,12 +46,12 @@ class ProviderMap extends Component {
       showLocationDetail: true,
       currentLat: 0,
       currentLong: 0,
-      region : {
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-        }
+      region: {
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
+      }
     }
 
     this._mapCalloutSelected = this._mapCalloutSelected.bind(this)
@@ -66,10 +65,10 @@ class ProviderMap extends Component {
     this.setState({currentLong: this.props.longitude})
   }
 
-  _onRegionChange(event,region) {
-      this.setState({region:region });
+  _onRegionChange (event, region) {
+    this.setState({region: region })
   }
-  _locationSwiped(event, state, context) {
+  _locationSwiped (event, state, context) {
     this.setState({selectedLocation: this.props.provider.data.providerList[state.index]})
     this.setState({currentLat: this.props.provider.data.providerList[state.index].latitude})
     this.setState({currentLong: this.props.provider.data.providerList[state.index].longitude})
@@ -106,27 +105,27 @@ class ProviderMap extends Component {
     </Image>)
   }
 
-  _renderMapMarkers(location) {
+  _renderMapMarkers (location) {
     if (location.uniqueId == this.state.selectedLocation.uniqueId) {
       return (
-        <MapView.Marker key={location.uniqueId} identifier={(location!=null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapSelectedPin} />
+        <MapView.Marker key={location.uniqueId} identifier={(location != null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapSelectedPin} />
       )
     } else {
       return (
-        <MapView.Marker key={location.uniqueId} identifier={(location!=null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin} />
+        <MapView.Marker key={location.uniqueId} identifier={(location != null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin} />
       )
     }
   }
 
-  _renderLocationDetail(location) {
-    return(
+  _renderLocationDetail (location) {
+    return (
       <DoctorCard data={location} />
     )
   }
 
   render () {
     return (
-      <View style={{flex:1}}>
+      <View style={{flex: 1}}>
         {this._renderHeader()}
         {this.props.provider.data.providerList ?
           <View style={styles.container}>
@@ -143,11 +142,11 @@ class ProviderMap extends Component {
               {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderMapMarkers(provider))}
             </MapView>
             <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden>
-              <Swiper index={this.state.selectedLocation.uniqueId} loop={false} style={{marginBottom:Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003, marginTop:-5}} showsButtons={true} showsPagination={false}
+              <Swiper index={this.state.selectedLocation.uniqueId} loop={false} style={{marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003, marginTop: -5}} showsButtons showsPagination={false}
                 width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
                 height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.57))}
-                bottom={ (Platform.OS === 'ios') ? 0 : -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002 }
-                
+                bottom={(Platform.OS === 'ios') ? 0 : -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002}
+
                 onMomentumScrollEnd={this._locationSwiped} >
 
                 {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
@@ -177,8 +176,8 @@ const mapStateToProps = (state) => {
     addressKey: state.provider.addressKey,
     providerKey: state.provider.providerKey,
     selectedLocation: state.provider.selectedLocation,
-    showLocationDetail: state.provider.showLocationDetail,
-    
+    showLocationDetail: state.provider.showLocationDetail
+
   }
 }
 

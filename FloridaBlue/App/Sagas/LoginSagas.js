@@ -3,22 +3,22 @@ import LoginActions from '../Redux/LoginRedux'
 import MemberActions from '../Redux/MemberRedux'
 import SupportActions from '../Redux/SupportRedux'
 import apiIndex from '../Services/Api'
-var urlConfig = require('../UrlConfig');
+var urlConfig = require('../UrlConfig')
 // attempts to login
 export function * login (api, {username, password}) {
   var username = username
   var password = password
   var setLogin
   console.tron.log('username+password' + JSON.stringify(username) + password)
-  
+
   const response = yield call(api.getUser, username, password)
-  
+
   if (response.status == '200') {
     var responseURL = response.responseURL
     var smToken = response.headers['set-cookie']
-    let logoutUrl = '';
+    let logoutUrl = ''
     if (response.data.data) {
-      logoutUrl = response.data.data.logoutUrl;
+      logoutUrl = response.data.data.logoutUrl
       if (response.data.data.Login) {
         setLogin = response.data.data.Login
       } else {
@@ -33,8 +33,8 @@ export function * login (api, {username, password}) {
       responseURL = 'login'
       var error = null
     }
-    
-    yield put(LoginActions.loginSuccess(username, responseURL,smToken,logoutUrl))
+
+    yield put(LoginActions.loginSuccess(username, responseURL, smToken, logoutUrl))
   } else if (response.status == '401') {
     // dispatch failure
     console.tron.log('I am coming from failuer ')
@@ -48,11 +48,9 @@ export function * login (api, {username, password}) {
   }
 }
 
-export function * logout (api,{logoutUrl}) {
-  
-  if(logoutUrl == undefined || logoutUrl == null)
-  {
-   logoutUrl = urlConfig.logoutURL
+export function * logout (api, {logoutUrl}) {
+  if (logoutUrl == undefined || logoutUrl == null) {
+    logoutUrl = urlConfig.logoutURL
   }
   const logout = apiIndex.create(baseURL = logoutUrl)
   const response = yield call(logout.getLogout)
@@ -60,7 +58,6 @@ export function * logout (api,{logoutUrl}) {
   if (response.status == '200') {
     yield put(LoginActions.logout())
   } else {
-    
     var error = 'Not Successfully Logout'
     yield put(LoginActions.loginFailure(error))
   }
