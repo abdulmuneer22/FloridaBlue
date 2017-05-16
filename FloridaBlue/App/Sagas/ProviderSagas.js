@@ -63,6 +63,12 @@ export function * sendUrgentSearchRequest (api, {data}) {
   const response = yield call(api.postUrgentSearch, data)
   if (response.ok) {
     var data = response.data
+    if (data.data.providerList) {
+       for (var i = 0; i < data.data.providerList.length; i++) {
+      var providerItem = data.data.providerList[i]
+      providerItem["uniqueId"] = i
+    }
+    }
      console.tron.log('im urgent data' + data)
     yield put(ProviderActions.sendUrgentSearchSuccess(data))
   } else {

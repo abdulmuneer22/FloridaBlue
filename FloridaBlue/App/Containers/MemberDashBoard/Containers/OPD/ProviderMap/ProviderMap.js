@@ -85,8 +85,8 @@ class ProviderMap extends Component {
 
   _mapCalloutSelected (event) {
     this.setState({selectedLocation: this.props.provider.data.providerList[event.nativeEvent.id]})
-    this.setState({currentLat: this.props.provider.data.providerList[event.nativeEvent.id].latitude})
-    this.setState({currentLong: this.props.provider.data.providerList[event.nativeEvent.id].longitude})
+    this.setState({currentLat: this.props.provider && this.props.provider.data && this.props.provider.data.providerList[event.nativeEvent.id] && this.props.provider.data.providerList[event.nativeEvent.id].latitude})
+    this.setState({currentLong: this.props.provider && this.props.provider.data && this.props.provider.data.providerList[event.nativeEvent.id] && this.props.provider.data.providerList[event.nativeEvent.id].longitude})
     this.setState({showLocationDetail: false}, function () {
       this.setState({showLocationDetail: true})
     })
@@ -107,7 +107,7 @@ class ProviderMap extends Component {
   }
 
   _renderMapMarkers(location) {
-    if (location.uniqueId == this.state.selectedLocation.uniqueId) {
+    if ( location && location.uniqueId && location.uniqueId == this.state.selectedLocation.uniqueId) {
       return (
         <MapView.Marker key={location.uniqueId} identifier={(location!=null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapSelectedPin} />
       )
@@ -125,6 +125,7 @@ class ProviderMap extends Component {
   }
 
   render () {
+    console.tron.log("id" + this.state.selectedLocation.uniqueId)
     return (
       <View style={{flex:1}}>
         {this._renderHeader()}
@@ -140,10 +141,10 @@ class ProviderMap extends Component {
                 latitudeDelta: this.props.latDelta,
                 longitudeDelta: this.props.longDelta
               }}>
-              {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderMapMarkers(provider))}
+              {this.props.provider && this.props.provider.data.providerList.map((provider, index) => this._renderMapMarkers(provider, index))}
             </MapView>
             <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden>
-              <Swiper index={this.state.selectedLocation.uniqueId} loop={false} style={{marginBottom:Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003, marginTop:-5}} showsButtons={true} showsPagination={false}
+              <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom:Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003, marginTop:-5}} showsButtons={true} showsPagination={false}
                 width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
                 height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.57))}
                 bottom={ (Platform.OS === 'ios') ? 0 : -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002 }

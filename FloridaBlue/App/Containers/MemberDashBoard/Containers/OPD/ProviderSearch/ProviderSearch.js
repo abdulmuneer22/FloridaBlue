@@ -518,7 +518,7 @@ class ProviderSearch extends Component {
           </ScrollView>
         </View>
 
-        <View style={{flex: 2, borderTopWidth:0.5, borderColor:Colors.flBlue.grey1}}>
+        <View style={{flex: 2}}>
           {
             this.state.floatClicked ?
 

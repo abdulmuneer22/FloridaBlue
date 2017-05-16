@@ -99,7 +99,8 @@ class AdvancedSearch extends Component {
       isDifferentLocationSelected:false,
       differentLocationText:false,
       comingFromBackButton : false,
-      searchFrom:this.props.navigatingFrom
+      searchFrom:this.props.navigatingFrom,
+      diffLocation:false
 
     }
     this._timeSelected = this._timeSelected.bind(this)
@@ -136,11 +137,23 @@ class AdvancedSearch extends Component {
   }
 
   _handleDoctordetail () {
-    
-    this.props.changeUrgentCareBanner(false)
-    this.props.attemptProviderSearch(this.props)
-    NavigationActions.DoctorList()
-  
+
+    if (this.state.isDifferentLocationSelected) {
+      if (this.state.diffLocation) {
+        console.tron.log("diff location" + this.props.changeAddress)
+        this.props.changeUrgentCareBanner(false)
+        this.props.attemptProviderSearch(this.props)
+        NavigationActions.DoctorList()
+      } else {
+        alert("Please Enter Zip Code or City")
+      }
+    } else {
+
+      console.tron.log("diff location" + this.props.changeAddress)
+      this.props.changeUrgentCareBanner(false)
+      this.props.attemptProviderSearch(this.props)
+      NavigationActions.DoctorList()
+    }
   }
 
   _languageSelected (event, value: string) {
@@ -245,6 +258,14 @@ class AdvancedSearch extends Component {
       this.props.changeLatitude(0)
       this.props.changeLongitude(0)
     }
+  }
+  _addDiffLocation(address){ 
+  if(address){ 
+  this.props.changeAddress(address) 
+  this.setState({ 
+  diffLocation: true 
+  }) 
+  } 
   }
 
   _anyGenderSelected (event) {
@@ -400,6 +421,7 @@ class AdvancedSearch extends Component {
 
   componentDidMount () {
     this._resetState ()
+
     this.props.attemptConfigData()
     this.props.attemptStaffLanguage()
     this.props.attemptDoctorLanguage()
@@ -558,7 +580,8 @@ class AdvancedSearch extends Component {
                 underlineColorAndroid={Colors.coal}
                 placeholderTextColor={Colors.steel}
                 tintColor={Colors.black}
-                onChangeText= {this.props.changeAddress}
+                
+                onChangeText= {(address) => this._addDiffLocation(address)}
                   
               />
             </HideableView>
