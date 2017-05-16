@@ -51,7 +51,7 @@ export default StyleSheet.create({
   h2: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.baseMargin,
-    color: Colors.flBlue.purple,
+    color: Colors.flBlue.night,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600',
     margin: 10
@@ -69,7 +69,7 @@ export default StyleSheet.create({
 
   h5_2: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-    color: Colors.flBlue.purple,
+    color: Colors.flBlue.night,
     marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400'

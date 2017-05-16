@@ -345,14 +345,6 @@ class ProviderSearch extends Component {
     )
   }
 
-  _dropdown_3_adjustFrame (style) {
-    console.log(`frameStyle={width:${style.width}, height:${style.height}, top:${style.top}, left:${style.left}, right:${style.right}}`)
-   // style.top -= 15;
-   // style.left += 150;
-    style.height -= 140
-    return style
-  }
-
   render () {
     return (
       <View style={styles.container}>
@@ -516,7 +508,7 @@ class ProviderSearch extends Component {
           </ScrollView>
         </View>
 
-        <View style={{flex: 2}}>
+        <View style={{flex: 1}}>
           {
             this.state.floatClicked ?
 
@@ -524,6 +516,7 @@ class ProviderSearch extends Component {
             <View style={styles.urgentCareCircle}>
               <TouchableOpacity onPress={this.handleNeedHelp}>
                 <Flb name='urgent-care-circle'
+                style={{backgroundColor:Colors.transparent}}
                   color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
               </TouchableOpacity>
             </View>
@@ -543,8 +536,8 @@ class ProviderSearch extends Component {
               <Image source={Images.viewListButton} style={styles.viewListButton} />
             </TouchableOpacity>
             </View>
-          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.00127, 
-                                                                    marginLeft:Metrics.smallMargin * Metrics.screenWidth * 0.0035}}>
+          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.002, 
+                                                                    marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
             <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
                   color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
           </View>

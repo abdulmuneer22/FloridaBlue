@@ -150,12 +150,12 @@ class CCard extends Component {
 
             }}>
 
-              <View style={{flex: 0.6, margin: 0.5, marginBottom:20}}>
+              <View style={{flex: 0.6, marginBottom:20}}>
                 {
             speciality.map(specialities => {
               const { speciality_text, speciality_value } = specialities
               const style1 = { marginTop: 5, width: Metrics.screenWidth * 0.65 }
-              const style2 = { marginTop: 5, flex: 0.5 }
+              const style2 = { marginTop: 5 }
               return (
                 <View style={{ marginBottom: 5 }}>
                   <View>

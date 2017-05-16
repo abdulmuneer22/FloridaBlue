@@ -73,7 +73,7 @@ class DoctorCard extends Component {
             <Card style={{ flex: 1 }} >
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
 
-                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin }}>
+                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight:Metrics.baseMargin }}>
                   {this.props.data ?
                     <Text style={styles.h1}>{this.props.data.displayName}</Text>
                                         : null}

@@ -57,7 +57,7 @@ class RootContainer extends Component {
             // Call logout logic
           timerStarted = false
           RCTNetworking.clearCookies((cleared) => {})
-          component.props.attemptLogout(this.props.logoutUrl)
+          component.props.attemptLogout(component.props.logoutUrl)
           NavigationActions.login()
         } else {
           inactiveTime = Date

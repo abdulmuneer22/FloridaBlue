@@ -168,7 +168,7 @@ export default StyleSheet.create({
   },
 
   h2: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    fontSize:Platform.OS === 'ios' ? Fonts.size.regular * Metrics.screenWidth * 0.0025 : Fonts.size.regular * Metrics.screenWidth * 0.0024,
   //  textAlign: 'center',
     color: Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
@@ -178,24 +178,16 @@ export default StyleSheet.create({
 
   },
   h4: {
-    // textAlign: 'center',
-    // paddingBottom: Metrics.mediumMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
-    // marginTop:Metrics.smallMargin,
+    fontSize:Platform.OS === 'ios' ? Fonts.size.regular * Metrics.screenWidth * 0.0025 : Fonts.size.regular * Metrics.screenWidth * 0.0023,
     color: Colors.flBlue.grey5,
     marginLeft: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.headerFont
-    //  marginRight:7
-  //  marginBottom:5
-
+   
   },
   h4_2: {
-    // paddingBottom: Metrics.mediumMargin,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
     marginTop: Metrics.smallMargin,
     color: Colors.flBlue.grey5,
-    // marginLeft:Metrics.baseMargin,
-  //  backgroundColor:'red',
     fontFamily: Fonts.type.headerFont,
     textAlign: 'center'
   },
@@ -207,11 +199,9 @@ export default StyleSheet.create({
   },
   subheading: {
     color: Colors.flBlue.anvil,
-   // fontSize: Fonts.size.h5,
     marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.003,
     fontFamily: Fonts.type.subHeaderFont,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
-    fontFamily: Fonts.type.headerFont
 
   }
 

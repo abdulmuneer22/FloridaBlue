@@ -644,7 +644,7 @@ class AdvancedSearch extends Component {
                 </Text>
               </View>
 
-              <View style={{ flex: 0.6, marginTop: 15 }}>
+              <View style={{ flex: 0.6, marginTop: 15, marginLeft:15 }}>
 
                 <ModalDropdown
                   dropdownStyle={styles.dropdown1}
@@ -690,7 +690,7 @@ class AdvancedSearch extends Component {
 
               </View>
 
-              <View style={{ flex: 0.6, marginTop: 10 }}>
+              <View style={{ flex: 0.6, marginTop: 10, marginLeft:15 }}>
 
                 <ModalDropdown dropdownStyle={styles.dropdown1}
                   onSelect={this._timeSelected}

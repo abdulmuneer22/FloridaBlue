@@ -425,11 +425,24 @@ class DoctorDetail extends Component {
                         </TouchableOpacity>
 
                         {this.state.visible5 ? <HideableView visible={this.state.visible5}>
+                          <View style={{flex:1,margin:5,marginTop:10, flexDirection:'row'}}>
+                            <View style={{flex:1, alignItems:'center'}}>
+                              <Text style={{color:Colors.flBlue.anvil,
+                                            fontSize:Fonts.size.h5 * Metrics.screenWidth * 0.0029}}>
+                              Program Detail
+                              </Text>
+                            </View>
+                            <View style={{flex:1, alignItems:'center'}}>
+                              <TouchableOpacity onPress={()=> NavigationActions.ProgramDetail()}>
+                              <Image source={Images.infoIcon} />
+                              </TouchableOpacity>
+                            </View>
+                          </View>
                           <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <View style={{ flex: 3 }} />
-                            <View style={{ flex: 9 }}>
+                            <View style={{ flex: 1 }} />
+                            <View style={{ flex: 11, margin:5 }}>
                               {this.props.doctordetail && this.props.doctordetail.programList ? this.props.doctordetail.programList.map((value, i) => {
-                                return (<View key={i} style={{flex: 1}}>
+                                return (<View key={i} style={{flex: 1, margin:5, marginTop:10}}>
                                   <Text style={{
                                     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                     color: Colors.flBlue.grey5
@@ -519,6 +532,19 @@ class DoctorDetail extends Component {
                           </View>
                           : null}
 
+              { this.props.configData && this.props.configData.links && this.props.configData.links.deptHealth  ?
+                            
+                           <View style={{flex:1}}>
+                             
+                            <Text style={styles.h7}>
+                             {this.props.configData.links.deptHealth.title1} <Text onPress={() => NavigationActions.MyView({responseURL: this.props.configData.links.deptHealth ? this.props.configData.links.deptHealth.url : ''})} style={styles.h7_2}>
+                             {this.props.configData.links.deptHealth.title2}
+                            </Text>
+                            </Text>
+                          
+                           
+                            </View> : null }
+
                         <View style={{flex: 1}}>
                           {
                              this.props.configData && this.props.configData.links && this.props.configData.links.providerInfoList && this.props.configData.links.providerInfoList.length > 0 ?
@@ -543,6 +569,12 @@ class DoctorDetail extends Component {
                           <Text style={styles.h7}>
                               Note: Please refer to your benefit booklet for details, as not all searches may be applicable to your plan.
                             </Text>
+                              { this.props.configData && this.props.configData.links && this.props.configData.links.providerDirectory  ?
+                            <Text style={styles.h7}>
+                             <Text style={styles.h7_2} onPress={() => NavigationActions.MyView({responseURL: this.props.configData.links.providerDirectory ? this.props.configData.links.providerDirectory.url : ''})}>
+                             {this.props.configData.links.providerDirectory.title1} 
+                            </Text>{this.props.configData.links.providerDirectory.title2} 
+                            </Text> : null }
 
                         </View>
 
