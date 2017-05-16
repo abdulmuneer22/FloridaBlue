@@ -97,16 +97,16 @@ class ProviderSearch extends Component {
     this._getLocation()
     this._resetState()
 
-    var addressLine1 = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.addressline1
+    var addressLine1 = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress ? this.props.member.defaultContract.homeAddress.addressline1 : ''
     var addressLine2 = ''
     if (this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.addressline2) {
-      var addressLine2 = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.addressline2
+      var addressLine2 = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress ? this.props.member.defaultContract.homeAddress.addressline2 : ''
     }
-    var city = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.city
-    var state = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.state
-    var zip = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.zipCode
+    var city = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress ? this.props.member.defaultContract.homeAddress.city : ''
+    var state = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress ? this.props.member.defaultContract.homeAddress.state : ''
+    var zip = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress ? this.props.member.defaultContract.homeAddress.zipCode : ''
 
-    var fullAddress = addressLine1 + addressLine2 + ' ' + city + ', ' + state + ' ' + zip
+    var fullAddress = addressLine1 + ',' + addressLine2 + ' ' + city + ', ' + state + ' ' + zip
     this.props.changeHomeAddress(fullAddress)
     this.props.changeAddress(fullAddress)
 
