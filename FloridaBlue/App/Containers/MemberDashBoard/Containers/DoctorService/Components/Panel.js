@@ -20,13 +20,12 @@ class Panel extends Component {
       'down': 'chevron-down'
     }
     this.state = {
-      firstTimeCollapse : false,
+      firstTimeCollapse: false,
       title: props.title,
       expanded: false,
       animation: new Animated.Value()
     }
   }
-
 
   toggle () {
     let initialValue = this.state.expanded ? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
@@ -52,7 +51,7 @@ class Panel extends Component {
   }
 
   _setMinHeight (event) {
-    if(!this.state.firstTimeCollapse){
+    if (!this.state.firstTimeCollapse) {
       this.state.animation.setValue(event.nativeEvent.layout.height)
       this.setState({firstTimeCollapse: !this.state.firstTimeCollapse})
     }

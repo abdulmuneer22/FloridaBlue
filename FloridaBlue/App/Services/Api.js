@@ -1,6 +1,6 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
-var urlConfig = require('../UrlConfig');
+var urlConfig = require('../UrlConfig')
 global.Buffer = global.Buffer || require('buffer').Buffer
 
 const APP_ID = '1001'

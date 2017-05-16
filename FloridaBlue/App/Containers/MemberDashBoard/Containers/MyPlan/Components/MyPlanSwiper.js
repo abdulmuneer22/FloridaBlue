@@ -9,7 +9,7 @@ import SemiCircle from '../../../../../Components/SemiCircle'
 import styles from '../MyPlanScreenStyle'
 import _ from 'lodash'
 import LinearGradient from 'react-native-linear-gradient'
-import { Card ,CardItem,Body} from 'native-base'
+import { Card, CardItem, Body} from 'native-base'
 const card = {card: {margin: 20}}
 
 class MyPlanSwiper extends Component {
@@ -130,40 +130,38 @@ class MyPlanSwiper extends Component {
      //      const planBenefits = _.head(network.planBenefits)
     //       console.tron.log('plan benefits', planBenefits)
           return (
-           
-             
-                          
-             <Card  style={{ flex: 1, alignItems: 'center',
-              margin:15
-              }} >
-              <View style={{ flex: 1, alignItems: 'center',
-               
+
+            <Card style={{ flex: 1, alignItems: 'center',
+              margin: 15
+            }} >
+              <View style={{ flex: 1, alignItems: 'center'
+
               }}>
-                
-                <View style={{flex: 1, alignItems: 'center', paddingTop: 20 , }}>
-                  
+
+                <View style={{flex: 1, alignItems: 'center', paddingTop: 20 }}>
+
                   <Text style={styles.headerText}>
                     {network.title.en}
                   </Text>
-                  
+
                   <Text style={styles.subHeader}>
                     {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].title.en : 'No Plan Benfits' }
                   </Text>
                 </View>
               </View>
-              
-              <View style={{flex: 1, alignItems: 'center', marginTop:15} }>
-                   
-                  <SemiCircle
-                    width={Platform.OS=='ios' ? (Metrics.screenWidth)-(Metrics.screenWidth * 0.65) : (Metrics.screenWidth)-(Metrics.screenWidth * 0.75)}
-                    height={Platform.OS=='ios' ? (Metrics.screenHeight)-(Metrics.screenHeight *0.8) : (Metrics.screenHeight)-(Metrics.screenHeight *0.85)}
-                    barWidth={1}
-                    barTopColor={Colors.flBlue.grass}
-                    barBottomColor={Colors.flBlue.night}
-                    percent={Object.keys(network.planBenefits).length > 0 && network.planBenefits[0].value > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value) : 0} />
-                
+
+              <View style={{flex: 1, alignItems: 'center', marginTop: 15}}>
+
+                <SemiCircle
+                  width={Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.75)}
+                  height={Platform.OS == 'ios' ? (Metrics.screenHeight) - (Metrics.screenHeight * 0.8) : (Metrics.screenHeight) - (Metrics.screenHeight * 0.85)}
+                  barWidth={1}
+                  barTopColor={Colors.flBlue.grass}
+                  barBottomColor={Colors.flBlue.night}
+                  percent={Object.keys(network.planBenefits).length > 0 && network.planBenefits[0].value > 0 ? (network.planBenefits[0].used / network.planBenefits[0].value) : 0} />
+
               </View>
-              <View style={{flex:1}}/>
+              <View style={{flex: 1}} />
               <View style={{flex: 1, alignItems: 'center'}}>
                 <View style={{flex: 1, alignItems: 'center', flexDirection: 'row'
                 }}>
@@ -171,49 +169,47 @@ class MyPlanSwiper extends Component {
                     return (<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', margin: 4
                     }} key={i}>
                       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} >
-                        <View style={ i==0 ? {flex :3 , 
-                         borderBottomWidth: 3,
-                         borderBottomColor:Colors.flBlue.night, 
-                      
-                        } :  {flex :3 , 
-                         borderBottomWidth: 3,
-                         borderBottomColor:Colors.flBlue.grass, 
-                      
+                        <View style={i == 0 ? {flex: 3,
+                          borderBottomWidth: 3,
+                          borderBottomColor: Colors.flBlue.night
+
+                        } : {flex: 3,
+                          borderBottomWidth: 3,
+                          borderBottomColor: Colors.flBlue.grass
+
                         }}>
-                         <Text style={{
-                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0020,
-                           fontWeight: '500',
-                          fontFamily: Fonts.type.subHeaderFont,
-                          color: Colors.flBlue.grey6                        }}>
-                          {benefit ? benefit.label.en : null}
-                        </Text>
+                          <Text style={{
+                            fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0020,
+                            fontWeight: '500',
+                            fontFamily: Fonts.type.subHeaderFont,
+                            color: Colors.flBlue.grey6 }}>
+                            {benefit ? benefit.label.en : null}
+                          </Text>
                         </View>
-                        <View style={{flex :1 , marginTop:2}}>
-                        <Text style={ i ==0 ? {
-                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
-                          fontWeight: '500',
-                          fontFamily: Fonts.type.subHeaderFont,
-                          color: Colors.flBlue.grey6}:
-                          {
-                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
-                          fontWeight: '500',
-                          fontFamily: Fonts.type.subHeaderFont,
-                          color: Colors.flBlue.grey6}}>
+                        <View style={{flex: 1, marginTop: 2}}>
+                          <Text style={i == 0 ? {
+                            fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+                            fontWeight: '500',
+                            fontFamily: Fonts.type.subHeaderFont,
+                            color: Colors.flBlue.grey6} :
+                            {
+                              fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+                              fontWeight: '500',
+                              fontFamily: Fonts.type.subHeaderFont,
+                              color: Colors.flBlue.grey6}}>
                       ${benefit ? benefit.value : null}
-                        </Text>
-                       </View>
+                          </Text>
+                        </View>
 
                       </View>
                     </View>)
                   }) : <View />}
 
                 </View>
-               <View style={{flex:1}}/>
+                <View style={{flex: 1}} />
               </View>
-              </Card>
-              
-                        
-           
+            </Card>
+
           )
           i += 1
         })}

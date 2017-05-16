@@ -23,7 +23,7 @@ class MyIdCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      idCardHeaderVisible: false,
+      idCardHeaderVisible: false
     }
     this.toggle = this.toggle.bind(this)
   }

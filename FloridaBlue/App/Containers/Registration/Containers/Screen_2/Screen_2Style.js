@@ -36,7 +36,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0025,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '200',
-    color:Colors.flBlue.anvil
+    color: Colors.flBlue.anvil
   },
   messageView: {
     padding: Metrics.baseMargin,

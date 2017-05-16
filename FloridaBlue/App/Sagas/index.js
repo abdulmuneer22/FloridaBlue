@@ -62,7 +62,7 @@ import {sendStaffLanguageRequest} from './ProviderSagas'
 import {sendConfigTypeRequest} from './ProviderSagas'
 import {sendDoctorDetailRequest} from './ProviderSagas'
 // import { getTemperature } from './TemperatureSagas'
-var urlConfig = require('../UrlConfig');
+var urlConfig = require('../UrlConfig')
 
 /* ------------- API ------------- */
 

@@ -36,7 +36,7 @@ export default StyleSheet.create({
     flex: 0.1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -0,
+    marginTop: -0
   },
   planNameText: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,

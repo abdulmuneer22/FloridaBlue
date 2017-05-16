@@ -116,9 +116,9 @@ export default {
     fontSize: 16,
     fontStyle: 'italic',
     fontWeight: 'bold',
-    color: '#616161',
+    color: '#616161'
   },
   toggleOnText: {
-    color: getTheme().primaryColor,
-  },
+    color: getTheme().primaryColor
+  }
 }

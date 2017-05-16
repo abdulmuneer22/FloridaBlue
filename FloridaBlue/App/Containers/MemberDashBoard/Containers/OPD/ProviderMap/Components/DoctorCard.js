@@ -80,11 +80,11 @@ class DoctorCard extends Component {
             <Card style={{ flex: 1}} >
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
 
-                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin *2}}>
+                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2}}>
                   {this.props.data ?
                     <TouchableOpacity onPress={this.providerSelected}>
-                        <Text style={styles.mapHeaderText}>{this.props.data.displayName}</Text>
-                      </TouchableOpacity>
+                      <Text style={styles.mapHeaderText}>{this.props.data.displayName}</Text>
+                    </TouchableOpacity>
                   : null}
                   {this.props.data ?
                     <Text style={styles.mapSubText}>{this.props.data.primarySpecialty}</Text> : null}
@@ -102,39 +102,39 @@ class DoctorCard extends Component {
                   <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(this.props.data.telephoneNumber)}>
                     <View style={styles.call}>
 
-                        <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                            <Flb
-                                name='call-phone'
-                                size={Metrics.icons.medium}
-                                color={Colors.snow} />
-                          </View>
-
-                        <View style={{ flex: 1, alignItems: 'flex-start' }}>
-
-                            <Text style={styles.callText}>Call</Text>
-                          </View>
-
+                      <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                        <Flb
+                          name='call-phone'
+                          size={Metrics.icons.medium}
+                          color={Colors.snow} />
                       </View>
+
+                      <View style={{ flex: 1, alignItems: 'flex-start' }}>
+
+                        <Text style={styles.callText}>Call</Text>
+                      </View>
+
+                    </View>
                   </TouchableOpacity>
                   <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}>
                     <View style={styles.directions}>
 
-                        <View style={{ flex: 0.3, alignItems: 'center' }}>
-                            <Flb
-                                name='directions'
-                                size={Metrics.icons.medium}
-                                color={Colors.snow} />
-                          </View>
-
-                        <View style={{
-                            flex: 0.7,
-                            alignItems: 'flex-start'
-                          }}>
-
-                            <Text style={styles.directionText}>Directions</Text>
-                          </View>
-
+                      <View style={{ flex: 0.3, alignItems: 'center' }}>
+                        <Flb
+                          name='directions'
+                          size={Metrics.icons.medium}
+                          color={Colors.snow} />
                       </View>
+
+                      <View style={{
+                        flex: 0.7,
+                        alignItems: 'flex-start'
+                      }}>
+
+                        <Text style={styles.directionText}>Directions</Text>
+                      </View>
+
+                    </View>
                   </TouchableOpacity>
                 </View>
               </View>

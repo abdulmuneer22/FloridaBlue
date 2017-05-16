@@ -145,11 +145,11 @@ class Screen_2 extends React.Component {
               value={this.props.phoneNumber}
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                    flex: 1, color: Colors.flBlue.ocean,
-                    //marginLeft:100,
-                    //marginRight:-100,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                  }}
+                flex: 1, color: Colors.flBlue.ocean,
+                    // marginLeft:100,
+                    // marginRight:-100,
+                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+              }}
               keyboardType='numbers-and-punctuation'
               returnKeyType='next'
               autoCapitalize='none'
@@ -217,9 +217,9 @@ class Screen_2 extends React.Component {
                 keyboardType='email-address'
                 editable={!this.props.emailVerified}
                 textInputStyle={{
-                    flex: 1, color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
-                  }}
+                  flex: 1, color: Colors.flBlue.anvil,
+                  fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+                }}
                 returnKeyType='next'
                 autoCapitalize='none'
                 autoCorrect={false}
@@ -239,13 +239,13 @@ class Screen_2 extends React.Component {
               returnKeyType='next'
               autoCapitalize='none'
               textInputStyle={{
-                    flex: 1, color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
-                  }}
+                flex: 1, color: Colors.flBlue.anvil,
+                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+              }}
               autoCorrect={false}
               onChangeText={this.props.handleChangeCreateUserId}
               underlineColorAndroid={Colors.coal}
-              onSubmitEditing={(event) => {                
+              onSubmitEditing={(event) => {
                 this.refs.password.focus()
               }}
               placeholder={I18n.t('createUserId')} />
@@ -261,9 +261,9 @@ class Screen_2 extends React.Component {
               autoCapitalize='none'
               autoCorrect={false}
               textInputStyle={{
-                    flex: 1, color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
-                  }}
+                flex: 1, color: Colors.flBlue.anvil,
+                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+              }}
               password
               onChangeText={this.props.handleChangePassword}
               underlineColorAndroid={Colors.coal}
@@ -283,9 +283,9 @@ class Screen_2 extends React.Component {
               returnKeyType='done'
               autoCapitalize='none'
               textInputStyle={{
-                    flex: 1, color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
-                  }}
+                flex: 1, color: Colors.flBlue.anvil,
+                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
+              }}
               autoCorrect={false}
               password
               onChangeText={this.props.handleChangeConfirmPassword}

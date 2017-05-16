@@ -14,8 +14,8 @@ export default StyleSheet.create({
   backgroundImage: {
     flex: 0.4,
     alignSelf: 'flex-end',
-    height:Metrics.screenHeight -(Metrics.screenHeight * 0.814),
-    //width:200
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.814)
+    // width:200
    // marginBottom:-Metrics.smallMargin * Metrics.screenHeight * 0.0001
   },
   logo: {

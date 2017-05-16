@@ -74,7 +74,7 @@ export default StyleSheet.create({
   },
   careView: {
    // borderTopWidth: 1,
-    margin:10,
+    margin: 10,
     borderColor: Colors.flBlue.grey1,
     paddingTop: Metrics.baseMargin,
     paddingBottom: Metrics.baseMargin
@@ -116,24 +116,24 @@ export default StyleSheet.create({
 
   h1: {
 
-    fontSize:(Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
+    fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
    // textAlign: 'center',
     marginLeft: Metrics.doubleBaseMargin,
     marginTop: Metrics.baseMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '400',
-    //margin:10,
+    // margin:10,
     color: Colors.flBlue.grey6
   },
   h1_1: {
 
-    fontSize:(Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
+    fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
    // textAlign: 'center',
     marginLeft: Metrics.doubleBaseMargin,
     marginTop: Metrics.baseMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '400',
-    //margin:10,
+    // margin:10,
     color: Colors.flBlue.grey6
   },
 
@@ -192,7 +192,7 @@ export default StyleSheet.create({
   searchTypeRadioView: {
     marginTop: Metrics.mediumMargin,
     justifyContent: 'center',
-    flexDirection: 'row',
+    flexDirection: 'row'
    // marginLeft: 10
   },
   searchText: {
@@ -326,9 +326,9 @@ export default StyleSheet.create({
   textField: {
     // marginTop: Metrics.doubleBaseMargin,
     width: Metrics.screenWidth * 0.6,
-    //alignItems:'center',
-    //paddingLeft: Metrics.baseMargin,
-    //paddingRight: Metrics.doubleBaseMargin,
+    // alignItems:'center',
+    // paddingLeft: Metrics.baseMargin,
+    // paddingRight: Metrics.doubleBaseMargin,
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
   },
   languageTextField: {
@@ -343,7 +343,7 @@ export default StyleSheet.create({
     // marginTop: Metrics.doubleBaseMargin,
     width: Metrics.screenWidth * 0.7,
     paddingLeft: Metrics.baseMargin,
-    //paddingRight: Metrics.doubleBaseMargin,
+    // paddingRight: Metrics.doubleBaseMargin,
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
   },
   dropdownExampleText: {

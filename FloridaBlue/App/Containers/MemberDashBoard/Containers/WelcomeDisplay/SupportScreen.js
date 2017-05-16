@@ -90,7 +90,7 @@ class SupportScreen extends Component {
                     ? <View>
                       <View>{this.props.data.support.map(function (support, i) {
                         return (
-                          
+
                           <View>
                           {support.contactNumber ?
                           
@@ -130,7 +130,7 @@ class SupportScreen extends Component {
 
                           
                             }
-                        </View>
+                          </View>
                         )
                         i += 1
                       }

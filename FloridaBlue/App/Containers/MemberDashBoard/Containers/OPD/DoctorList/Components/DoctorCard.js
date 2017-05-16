@@ -33,8 +33,8 @@ const window = Dimensions.get('window')
 class DoctorCard extends Component {
   constructor (props) {
     super(props)
-    this.state={
-      cardLimit : this.props.cardLimit
+    this.state = {
+      cardLimit: this.props.cardLimit
     }
     this.handleCall = this.handleCall.bind(this)
     this.handleMaps = this.handleMaps.bind(this)
@@ -59,15 +59,15 @@ class DoctorCard extends Component {
     })
   }
 
-  componentWillReceiveProps(nextProps){
-        if(nextProps.cardLimit){
-            this.setState({cardLimit : nextProps.cardLimit})
-        }
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.cardLimit) {
+      this.setState({cardLimit: nextProps.cardLimit})
     }
+  }
 
   handleMaps (latitude, longitude) {
     console.tron.log(latitude, longitude)
-    console.log(latitude,longitude)
+    console.log(latitude, longitude)
     const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
 
     Linking.canOpenURL(url).then(supported => {
@@ -80,7 +80,7 @@ class DoctorCard extends Component {
   }
 
   render () {
-     console.log("limit from state =>" , this.state.cardLimit)
+    console.log('limit from state =>', this.state.cardLimit)
     return (
       <View style={styles.container}>
         { this.props.data ?
@@ -96,28 +96,28 @@ class DoctorCard extends Component {
 
                     <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight:10}}>
                         {value ?
-                            <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
-                                <Text style={styles.h1}>{value.displayName}</Text>
-                              </TouchableOpacity> : null}
+                          <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
+                            <Text style={styles.h1}>{value.displayName}</Text>
+                          </TouchableOpacity> : null}
                         {value ?
-                            <Text style={styles.h2}>{value.primarySpecialty}</Text> : null}
+                          <Text style={styles.h2}>{value.primarySpecialty}</Text> : null}
                         {value ?
-                            <Text style={styles.h4}>{value.addressLine1}, {value.addressLine2}</Text> : null}
+                          <Text style={styles.h4}>{value.addressLine1}, {value.addressLine2}</Text> : null}
                         {value ?
-                            <Text style={styles.h4_2}>{value.city}, {value.state}</Text> : null}
+                          <Text style={styles.h4_2}>{value.city}, {value.state}</Text> : null}
                         {value ?
-                            <Text style={styles.h4_2}>{value.zipCode}</Text> : null}
+                          <Text style={styles.h4_2}>{value.zipCode}</Text> : null}
                         {value ?
-                            <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
+                          <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
                         {value ?
-                            <Text style={styles.h4_3}>{value.distance} miles</Text> : null}
+                          <Text style={styles.h4_3}>{value.distance} miles</Text> : null}
                       </View>
-                  </View>
+                    </View>
 
-                  <View style={{ flex: 1 }}>
-                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <View style={{ flex: 1 }}>
+                      <View style={{ flex: 1, flexDirection: 'row' }}>
                         <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(value.telephoneNumber)}>
-                            <View style={styles.call}>
+                          <View style={styles.call}>
 
                                 <View style={{ flex: 0.45, alignItems: 'flex-end' }}>
                                     <Flb
@@ -128,13 +128,13 @@ class DoctorCard extends Component {
 
                                 <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
 
-                                    <Text style={styles.callText}>Call</Text>
-                                  </View>
+                              <Text style={styles.callText}>Call</Text>
+                            </View>
 
-                              </View>
-                          </TouchableOpacity>
+                          </View>
+                        </TouchableOpacity>
                         <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(value.latitude, value.longitude)}>
-                            <View style={styles.directions}>
+                          <View style={styles.directions}>
 
                                 <View style={{ flex: 0.28, alignItems: 'flex-end' }}>
                                     <Flb
@@ -148,20 +148,17 @@ class DoctorCard extends Component {
                                     alignItems: 'flex-start'
                                   }}>
 
-                                    <Text style={styles.directionText}>Directions</Text>
-                                  </View>
+                              <Text style={styles.directionText}>Directions</Text>
+                            </View>
 
-                              </View>
-                          </TouchableOpacity>
+                          </View>
+                        </TouchableOpacity>
                       </View>
-                  </View>
+                    </View>
 
-                </Card>
-              )
-
-
+                  </Card>
+                )
               }
-             
             })
                             : <View style={styles.spinnerView}>
                               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
