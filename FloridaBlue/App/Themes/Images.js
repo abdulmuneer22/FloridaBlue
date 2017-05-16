@@ -18,7 +18,7 @@ const images = {
   hsa: require('../Images/hsa.png'),
   idcard: require('../Images/id-card.png'),
   payment: require('../Images/payment.png'),
-  myaccount: require('../Images/payment.png'),
+  myaccount: require('../Images/my-account.png'),
   resources: require('../Images/resources.png'),
   support: require('../Images/support.png'),
   findItButton: require('../Images/find-it-btn.png'),

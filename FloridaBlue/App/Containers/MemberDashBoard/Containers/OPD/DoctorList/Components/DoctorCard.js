@@ -87,6 +87,7 @@ class DoctorCard extends Component {
 
           <View style={{ flex: 1, margin: 15 }}>
             {this.props.data != undefined ? this.props.data.map((value, i) => {
+<<<<<<< HEAD
               if (i < this.state.cardLimit) {
                 return (
                   <Card style={{ flex: 1 }} key={i}>
@@ -94,6 +95,16 @@ class DoctorCard extends Component {
                     <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10 }}>
 
                       <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin}}>
+=======
+              if(i < this.state.cardLimit){
+
+                 return (
+                <Card style={{ flex: 1}} key={i}>
+
+                  <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop:10 }}>
+
+                    <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight:10}}>
+>>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
                         {value ?
                           <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
                             <Text style={styles.h1}>{value.displayName}</Text>
@@ -118,6 +129,7 @@ class DoctorCard extends Component {
                         <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(value.telephoneNumber)}>
                           <View style={styles.call}>
 
+<<<<<<< HEAD
                             <View style={{ flex: 1, alignItems: 'flex-end' }}>
                               <Flb
                                 name='call-phone'
@@ -126,6 +138,16 @@ class DoctorCard extends Component {
                             </View>
 
                             <View style={{ flex: 1, alignItems: 'flex-start' }}>
+=======
+                                <View style={{ flex: 0.45, alignItems: 'flex-end' }}>
+                                    <Flb
+                                        name='call-phone'
+                                        size={Metrics.icons.medium}
+                                        color={Colors.snow} />
+                                  </View>
+
+                                <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
+>>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
 
                               <Text style={styles.callText}>Call</Text>
                             </View>
@@ -135,6 +157,7 @@ class DoctorCard extends Component {
                         <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(value.latitude, value.longitude)}>
                           <View style={styles.directions}>
 
+<<<<<<< HEAD
                             <View style={{ flex: 0.3, alignItems: 'center' }}>
                               <Flb
                                 name='directions'
@@ -146,6 +169,19 @@ class DoctorCard extends Component {
                               flex: 0.7,
                               alignItems: 'flex-start'
                             }}>
+=======
+                                <View style={{ flex: 0.28, alignItems: 'flex-end' }}>
+                                    <Flb
+                                        name='directions'
+                                        size={Metrics.icons.medium}
+                                        color={Colors.snow} />
+                                  </View>
+
+                                <View style={{
+                                    flex: 0.72,
+                                    alignItems: 'flex-start'
+                                  }}>
+>>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
 
                               <Text style={styles.directionText}>Directions</Text>
                             </View>

@@ -103,6 +103,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     'language': 'EN',
     'providerKey': data && data.providerKey,
     'addressKey': data && data.addressKey,
+    'networkList': data.networkCodeList,
     'planCode': ''
   })
 

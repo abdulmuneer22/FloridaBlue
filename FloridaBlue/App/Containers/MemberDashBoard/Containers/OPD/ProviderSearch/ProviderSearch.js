@@ -97,14 +97,14 @@ class ProviderSearch extends Component {
     this._getLocation()
     this._resetState()
 
-    var addressLine1 = this.props.member.defaultContract.homeAddress.addressline1
+    var addressLine1 = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.addressline1
     var addressLine2 = ''
-    if (this.props.member.defaultContract.homeAddress.addressline2) {
-      var addressLine2 = this.props.member.defaultContract.homeAddress.addressline2
+    if (this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.addressline2) {
+      var addressLine2 = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.addressline2
     }
-    var city = this.props.member.defaultContract.homeAddress.city
-    var state = this.props.member.defaultContract.homeAddress.state
-    var zip = this.props.member.defaultContract.homeAddress.zipCode
+    var city = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.city
+    var state = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.state
+    var zip = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.zipCode
 
     var fullAddress = addressLine1 + addressLine2 + ' ' + city + ', ' + state + ' ' + zip
     this.props.changeHomeAddress(fullAddress)
@@ -360,6 +360,7 @@ class ProviderSearch extends Component {
         <View style={{flex: 13}}>
           <ScrollView>
             <View style={{flex: 1}}>
+<<<<<<< HEAD
               <View style={{flex: 1, margin: 10}}>
                 <Text style={styles.h1_1}>{I18n.t('providerSearchTitle')}</Text>
 
@@ -374,6 +375,22 @@ class ProviderSearch extends Component {
                   }} group={this.searchTypeGroup} />
                   <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
                 </View>
+=======
+              <View style={{flex:1, marginTop:20}}>
+              <Text style={styles.h1_1}>{I18n.t('providerSearchTitle')}</Text>
+
+              <View style={styles.radioView}>
+                <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                  width: Metrics.section * Metrics.screenWidth * 0.0025,
+                  borderRadius: Metrics.section}} group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
+                <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
+                <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                  width: Metrics.section * Metrics.screenWidth * 0.0025,
+                  borderRadius: Metrics.section
+                }} group={this.searchTypeGroup} />
+                <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
+              </View>
+>>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
               </View>
               <HideableView visible={this.state.knownCareState} removeWhenHidden>
                 <Text style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
@@ -516,29 +533,44 @@ class ProviderSearch extends Component {
           </ScrollView>
         </View>
 
-        <View style={{flex: 2}}>
+        <View style={{flex: 2, borderTopWidth:0.5, borderColor:Colors.flBlue.grey1}}>
           {
             this.state.floatClicked ?
 
             this.state.helpStatus ?
+<<<<<<< HEAD
               <View style={styles.urgentCareCircle}>
                 <TouchableOpacity onPress={this.handleNeedHelp}>
                   <Flb name='urgent-care-circle'
                     color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
                 </TouchableOpacity>
               </View>
+=======
+            <View style={styles.urgentCareCircle}>
+              <TouchableOpacity onPress={this.handleNeedHelp}>
+                <Flb name='urgent-care-circle'
+                  color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+              </TouchableOpacity>
+            </View>
+>>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
           : <View>{this.state._onChecked}</View>
 
           : <Card style={styles.urgentCareContainer}>
 
             <Flb name='close-delete' style={styles.dismissUrgentIcon}
+<<<<<<< HEAD
               color={Colors.flBlue.anvil} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
               onPress={this.handleNeedHelp} />
+=======
+                  color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+                  onPress={this.handleNeedHelp} />
+>>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
 
             <Text style={styles.needHelpText}>Need Help Now?</Text>
             <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
             <View style={{flexDirection: 'row'}}>
               <View>
+<<<<<<< HEAD
                 <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
                   <Image source={Images.viewListButton} style={styles.viewListButton} />
                 </TouchableOpacity>
@@ -548,6 +580,18 @@ class ProviderSearch extends Component {
                   color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
               </View>
             </View>
+=======
+            <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
+              <Image source={Images.viewListButton} style={styles.viewListButton} />
+            </TouchableOpacity>
+            </View>
+          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.00127, 
+                                                                    marginLeft:Metrics.smallMargin * Metrics.screenWidth * 0.0035}}>
+            <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
+                  color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+          </View>
+          </View>
+>>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
           </Card>
 
           }

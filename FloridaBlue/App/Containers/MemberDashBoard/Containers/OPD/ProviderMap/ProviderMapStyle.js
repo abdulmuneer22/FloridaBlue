@@ -47,15 +47,15 @@ export default StyleSheet.create({
     // paddingTop: !ANDROID ? 0 : screen.height - ITEM_PREVIEW_HEIGHT - 64,
   },
   map: {
+    flex:8,
     backgroundColor: 'transparent',
     position: 'absolute',
-
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     width: Metrics.screenWidth,
-    height: Metrics.screenHeight
+    height: Metrics.screenHeight -(Metrics.screenHeight *0.56)
   },
   item: {
     width: ITEM_WIDTH,

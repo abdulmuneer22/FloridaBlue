@@ -36,10 +36,17 @@ export default StyleSheet.create({
     fontWeight: '600',
     margin: 10
   },
+<<<<<<< HEAD
   h1_1: {
     fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.anvil,
     // textAlign: 'justify',
+=======
+   h1_1: {
+    fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0023 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
+    color: Colors.flBlue.anvil,
+    textAlign: 'center',
+>>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
     marginTop: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
@@ -86,7 +93,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   savedProviderLinkText: {
-    color: Colors.flBlue.sky,
+    color: Colors.flBlue.ocean,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     textDecorationLine: 'underline'
   },
@@ -139,7 +146,7 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   currentLocationText: {
-    color: Colors.flBlue.sky,
+    color: Colors.flBlue.ocean,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0024,
     fontFamily: Fonts.type.base,
     fontWeight: '800',
@@ -280,7 +287,7 @@ export default StyleSheet.create({
     textAlign: 'left',
     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
     marginTop: 20,
-    color: 'red',
+    color: Colors.flBlue.red,
     backgroundColor: Colors.transparent,
     marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.003
   },
