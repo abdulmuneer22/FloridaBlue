@@ -92,42 +92,6 @@ class SupportScreen extends Component {
                         return (
 
                           <View>
-<<<<<<< HEAD
-                            {support.contactNumber ?
-
-                              <Card style={styles.textBackground} key={i}>
-                                <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)} style={styles.textBackground} >
-                                  <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-                                    {support.contactNumber ? <Flb name='call-phone' size={Metrics.icons.regular} color={Colors.flBlue.ocean} /> : <View />}
-                                  </View>
-
-                                  <View style={{flex: 8}}>
-                                    <View style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center' }}>
-                                      <Text style={styles.textStyle}>
-                                        {support.contactType ? support.contactType : null}
-                                      </Text>
-                                    </View>
-
-                                    <View style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center'}}>
-                                      <Text style={styles.textStyle1}>
-                                        {support.contactNumber ? support.contactNumber : null}
-                                      </Text>
-                                    </View>
-
-                                  </View>
-
-                                </TouchableOpacity>
-                              </Card> :
-
-                              <View style={{flex: 1}} style={styles.textBackground1}>
-                                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                                  <Text style={styles.textStyle}>
-                                    {support.contactType ? support.contactType : null}
-                                  </Text>
-                                </View>
-                              </View>
-
-=======
                           {support.contactNumber ?
                           
                           
@@ -165,7 +129,6 @@ class SupportScreen extends Component {
 
 
                           
->>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
                             }
                           </View>
                         )

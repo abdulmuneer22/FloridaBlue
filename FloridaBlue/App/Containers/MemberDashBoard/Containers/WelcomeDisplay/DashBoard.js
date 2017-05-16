@@ -197,26 +197,6 @@ class LandingScreen extends Component {
                   flex: 1
                   // marginTop:27.5
                 }}>
-<<<<<<< HEAD
-                  <View style={{flex: 0.45, alignItems: 'flex-end'}}>
-                    <Flb name={this.props.visibilityRules.opdTile.tileIcon}
-                      style={{
-                        backgroundColor: Colors.transparent,
-                        marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.003
-                      }}
-                      size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
-                      color={Colors.flBlue.grey5} />
-                  </View>
-                  <View style={{flex: 0.55, alignItems: 'flex-start'}}>
-                    <Text style={{
-                      fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
-                      color: Colors.flBlue.grey5,
-                      fontFamily: Fonts.type.headerFont,
-                      backgroundColor: Colors.transparent
-                    }}>
-                      {this.props.visibilityRules.opdTile.tileName['en']}
-                    </Text>
-=======
                 <View style={{flex:0.4, alignItems:'flex-end'}}>
                   <Flb name={this.props.visibilityRules.opdTile.tileIcon}
                     style={{
@@ -235,7 +215,6 @@ class LandingScreen extends Component {
                   }}>
                     {this.props.visibilityRules.opdTile.tileName['en']}
                   </Text>
->>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
                   </View>
                 </View>
               </Image>

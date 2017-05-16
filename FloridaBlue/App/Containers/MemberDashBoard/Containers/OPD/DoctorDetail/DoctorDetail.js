@@ -162,13 +162,8 @@ class DoctorDetail extends Component {
 
               }}>
                 {this.props.doctordetail ?
-<<<<<<< HEAD
-                  <View style={{ flex: 1 }}>
-                    <DoctorLocation
-=======
                   <View style={{ flex: 1}}>
                   <DoctorLocation
->>>>>>> 3f8c75ff49d9f3aef6e62509bbd650b6e0afbffd
                       data={this.props.doctordetail} />
                   </View>
                     : null
