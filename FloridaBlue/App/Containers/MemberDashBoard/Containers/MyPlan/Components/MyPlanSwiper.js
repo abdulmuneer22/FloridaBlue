@@ -121,8 +121,17 @@ class MyPlanSwiper extends Component {
     return (
 
       <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.52))}
-        showsButtons dotStyle={{width: 10, height: 10, marginLeft: 10, borderRadius: 5, top: 50, position: 'relative'}}
-        activeDotStyle={{width: 10, height: 10, borderRadius: 5, marginLeft: 10, top: 50, position: 'relative'}} >
+       showsButtons 
+       dotStyle={{width: 10, height: 10, marginLeft: 10, borderRadius: 5, top: 50, position: 'relative'}}
+        activeDotStyle={{width: 10, height: 10, borderRadius: 5, marginLeft: 10, top: 50, position: 'relative'}}
+        nextButton={<Text style={{fontSize: 100,
+    color: Colors.flBlue.grey1,
+    fontFamily:Fonts.type.base }}>›</Text>} 
+        prevButton ={<Text style={{fontSize: 100,
+    color: Colors.flBlue.grey1,
+    fontFamily: Fonts.type.base}}>‹</Text>}
+   // autoplay={true}
+         >
 
         { this.getChildrenOptions(this.props.data).map((network, i) => {
           console.tron.log('children options are', this.getChildrenOptions(this.props.data))
@@ -138,7 +147,7 @@ class MyPlanSwiper extends Component {
 
               }}>
 
-                <View style={{flex: 1, alignItems: 'center', paddingTop: 20 }}>
+                <View style={{flex: 1, alignItems: 'center', paddingTop: 10 }}>
 
                   <Text style={styles.headerText}>
                     {network.title.en}
@@ -150,11 +159,11 @@ class MyPlanSwiper extends Component {
                 </View>
               </View>
 
-              <View style={{flex: 1, alignItems: 'center', marginTop: 15}}>
+              <View style={{flex: 1, alignItems: 'center'}}>
 
                 <SemiCircle
-                  width={Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.75)}
-                  height={Platform.OS == 'ios' ? (Metrics.screenHeight) - (Metrics.screenHeight * 0.8) : (Metrics.screenHeight) - (Metrics.screenHeight * 0.85)}
+                  width={Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.50) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.50)}
+                  height={Platform.OS == 'ios' ? (Metrics.screenHeight) - (Metrics.screenHeight * 0.72) : (Metrics.screenHeight) - (Metrics.screenHeight * 0.70)}
                   barWidth={1}
                   barTopColor={Colors.flBlue.grass}
                   barBottomColor={Colors.flBlue.night}
@@ -166,9 +175,9 @@ class MyPlanSwiper extends Component {
                 <View style={{flex: 1, alignItems: 'center', flexDirection: 'row'
                 }}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
-                    return (<View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', margin: 4
+                    return (<View style={{ flex: 1, flexDirection: 'column', margin: 4
                     }} key={i}>
-                      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} >
+                      <View style={i == 0 ?{ marginRight:(Metrics.screenWidth) - (Metrics.screenWidth * 0.85), flex: 1, alignItems: 'center', justifyContent: 'flex-start'}:{flex: 1,marginLeft:(Metrics.screenWidth) - (Metrics.screenWidth * 0.85) ,alignItems: 'center', justifyContent: 'center'}} >
                         <View style={i == 0 ? {flex: 3,
                           borderBottomWidth: 3,
                           borderBottomColor: Colors.flBlue.night

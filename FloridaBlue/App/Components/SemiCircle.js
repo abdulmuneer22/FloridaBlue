@@ -77,8 +77,8 @@ class SemiCircle extends React.Component {
     var endAngle = Math.PI * 2 - (Math.PI * 2 * percent)
 
     var arc = d3.shape.arc()
-      .innerRadius(this.props.height / 2 * 0.75)
-      .outerRadius(this.props.width / 2)
+      .innerRadius(this.props.height/2 *0.75)
+      .outerRadius(this.props.width/2)
       .startAngle(startAngle)
       .endAngle(endAngle)
     var path = arc()

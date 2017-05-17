@@ -103,13 +103,13 @@ export default StyleSheet.create({
   },
   headerText: {
     color: Colors.flBlue.grey6,
-    fontWeight: '500',
+    fontWeight: '600',
   // paddingBottom:Metrics.baseMargin,
     marginTop: Metrics.baseMargin,
 
   // width:window.width,
   // alignSelf:'center',
-    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0023,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     fontFamily: Fonts.type.subHeaderFont
   },
 

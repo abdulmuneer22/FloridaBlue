@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react'
 import ReactNative, {
+    StyleSheet,
   Image,
   Keyboard,
   Text,
@@ -43,6 +44,22 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .build()
+
+const HtMLstyles = StyleSheet.create({
+  p: {
+    color: Colors.snow,
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
+
+  },
+  a: {
+    color: Colors.snow,
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
+    fontWeight: '300',
+    textDecorationLine: 'underline'
+  }
+})
 
 class Screen_3 extends React.Component {
   _handleBack () {
@@ -99,9 +116,10 @@ class Screen_3 extends React.Component {
 
           {this.props.registrationCodeStatus && (this.props.registrationCodeStatus != null && this.props.registrationCodeStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
-            <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.registrationCodeStatusMessage}</Text></View>
-            </View>
+
+                        <View>
+              <HTMLView value={'<p>'+this.props.registrationCodeStatusMessage+'</P>'} stylesheet={HtMLstyles}/> 
+              </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangeRegistrationCodeStatus(null) }}>
                 <Image source={Images.closeIconWhite} />

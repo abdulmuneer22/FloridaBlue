@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react'
 import ReactNative, {
+  StyleSheet,
   Image,
   KeyboardAvoidingView,
   ScrollView,
@@ -27,6 +28,21 @@ import I18n from 'react-native-i18n'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import Swiper from 'react-native-swiper'
+const HtMLstyles = StyleSheet.create({
+  p: {
+    color: Colors.snow,
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
+
+  },
+  a: {
+    color: Colors.snow,
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
+    fontWeight: '300',
+    textDecorationLine: 'underline'
+  }
+})
 
 class SecurityHint extends React.Component {
   _handleClose () {
