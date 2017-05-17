@@ -77,7 +77,7 @@ class Panel extends Component {
             onPress={this.toggle.bind(this)}
             underlayColor={Colors.snow}>
 
-            <Flb name={icon} size={Metrics.icons.tiny} style={{ marginTop: 15, backgroundColor: Colors.transparent }}
+            <Flb name={icon} size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 15, backgroundColor: Colors.transparent }}
               color={Colors.flBlue.purple} />
           </TouchableHighlight>
         </View>

@@ -339,7 +339,7 @@ class DoctorDetail extends Component {
                         {this.state.visible2 ? <HideableView visible={this.state.visible2}>
 
                           {this.props.doctordetail && this.props.doctordetail.contractedSpecialties && this.props.doctordetail.contractedSpecialties.length > 0 ?
-                            <View style={{flex: 1}}>
+                            <View style={{flex: 1, marginTop:10, marginBottom:10}}>
                               <View style={{ flex: 1, flexDirection: 'row' }}>
                                 <View style={{ flex: 3 }} />
                                 <View style={{ flex: 9 }}>
@@ -425,24 +425,26 @@ class DoctorDetail extends Component {
                         </TouchableOpacity>
 
                         {this.state.visible5 ? <HideableView visible={this.state.visible5}>
-                          <View style={{flex:1,margin:5,marginTop:10, flexDirection:'row'}}>
+                         
+                          <View style={{flex:1,margin:5,marginTop:20, flexDirection:'row'}}>
+                              <View style={{ flex: 0.5 }} />
                             <View style={{flex:1, alignItems:'center'}}>
                               <Text style={{color:Colors.flBlue.anvil,
                                             fontSize:Fonts.size.h5 * Metrics.screenWidth * 0.0029}}>
                               Program Detail
                               </Text>
                             </View>
-                            <View style={{flex:1, alignItems:'center'}}>
+                            <View style={{flex:1, alignItems:'center', marginTop:15}}>
                               <TouchableOpacity onPress={()=> NavigationActions.ProgramDetail()}>
                               <Image source={Images.infoIcon} />
                               </TouchableOpacity>
                             </View>
                           </View>
                           <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <View style={{ flex: 1 }} />
-                            <View style={{ flex: 11, margin:5 }}>
+                            <View style={{ flex: 2.5 }} />
+                            <View style={{ flex: 9.5, margin:5 }}>
                               {this.props.doctordetail && this.props.doctordetail.programList ? this.props.doctordetail.programList.map((value, i) => {
-                                return (<View key={i} style={{flex: 1, margin:5, marginTop:10}}>
+                                return (<View key={i} style={{flex: 1, margin:5, marginTop:10, marginBottom:10}}>
                                   <Text style={{
                                     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                     color: Colors.flBlue.grey5

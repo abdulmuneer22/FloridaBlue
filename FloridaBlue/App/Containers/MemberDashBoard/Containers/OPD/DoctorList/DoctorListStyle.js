@@ -85,6 +85,7 @@ export default StyleSheet.create({
   h1: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.baseMargin,
+    marginLeft:10,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '600',
     color: Colors.flBlue.ocean
@@ -94,6 +95,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.baseMargin,
     color: Colors.flBlue.anvil,
+    marginLeft:10,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600'
 
@@ -102,6 +104,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.smallMargin,
     color: Colors.flBlue.grey5,
+    marginLeft:10,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
     textAlign: 'auto'
@@ -110,12 +113,14 @@ export default StyleSheet.create({
   h4_2: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.grey5,
+    marginLeft:10,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400'
   },
   h4_3: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.grey5,
+    marginLeft:10,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: 'bold'
   },
@@ -140,7 +145,7 @@ export default StyleSheet.create({
    // backgroundColor: Colors.flBlue.grass,
     justifyContent: 'center',
     alignItems: 'center',
-    borderLeftWidth: 0.5,
+    borderLeftWidth: 1,
     borderColor: Colors.snow,
     flexDirection: 'row'
   },

@@ -106,10 +106,10 @@ class Card extends Component {
             }}
            >
 
-            <View style={{flex: 1}}>
+            <View style={{flex: 1, justifyContent: 'center',alignItems:'center',}}>
               <Image source={Images[this.props.gradientImage]}
-                style={{flex: 1, justifyContent: 'center',
-                  width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.54) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.49) }} resizeMode='contain' >
+                style={{flex: 1, justifyContent: 'center',alignItems:'center',
+                  width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.55) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.49)}} >
 
                 <View style={{alignItems: 'center'}} >
                   <Text style={{

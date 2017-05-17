@@ -105,7 +105,7 @@ class Card extends Component {
         }}>
 
           <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.transparent}}>
-            <Flb name={this.props.icon} size={Metrics.icons.regular} color={Colors.flBlue.teal} />
+            <Flb name={this.props.icon} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.teal} />
           </View>
           <View style={{flex: 6, alignItems: 'flex-start'}}>
             <Text style={{
@@ -122,7 +122,7 @@ class Card extends Component {
 
           </View>
           <View style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center', backgroundColor: Colors.transparent}}>
-            <Flb name='chevron-right' size={Metrics.icons.small} color={Colors.flBlue.teal} />
+            <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.teal} />
           </View>
         </BCard>
       </TouchableOpacity>

@@ -49,10 +49,10 @@ class DoctorCard extends Component {
     })
   }
 
-  handleMaps (latitude, longitude) {
-    console.tron.log(latitude, longitude)
-    console.log(latitude, longitude)
-    const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
+  handleMaps (address) {
+   
+    const url = `http://maps.apple.com/?daddr=`+address.addressLine1+" "+address.addressLine2+" "+address.city+" "+address.state+
+    " "+address.zipCode;
 
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
@@ -94,30 +94,30 @@ class DoctorCard extends Component {
 
                   <View style={{ flex: 1, flexDirection: 'row' }}>
 
-                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(this.props.data && this.props.data.address[0] ? this.props.data.address[0].telephoneNumber : '')}>
+                    <TouchableOpacity style={{ flex: 1, height: Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleCall(this.props.data && this.props.data.address[0] ? this.props.data.address[0].telephoneNumber : '')}>
                       <View style={styles.call}>
 
-                        <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                        <View style={{ flex: 0.4, alignItems: 'flex-end' }}>
                           <Flb
                             name='call-phone'
-                            size={Metrics.icons.medium}
+                            size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
                             color={Colors.snow} />
                         </View>
 
-                        <View style={{ flex: 1, alignItems: 'flex-start' }}>
+                        <View style={{ flex: 0.6, alignItems: 'flex-start' }}>
                           <Text style={styles.callText}>Call</Text>
                         </View>
 
                       </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(this.props.data ? this.props.data.latitude : '', this.props.data ? this.props.data.longitude : '')}>
+                    <TouchableOpacity style={{ flex: 1, height: Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleMaps(this.props.data ? this.props.data.address[0] : '')}>
                       <View style={styles.directions}>
 
-                        <View style={{ flex: 0.3, alignItems: 'center' }}>
+                        <View style={{ flex: 0.3, alignItems: 'flex-end' }}>
                           <Flb
                             name='directions'
-                            size={Metrics.icons.medium}
+                            size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
                             color={Colors.snow} />
                         </View>
 

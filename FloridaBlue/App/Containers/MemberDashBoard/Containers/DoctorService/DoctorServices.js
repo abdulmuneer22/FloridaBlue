@@ -116,7 +116,7 @@ class DoctorServices extends Component {
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10
                 // backgroundColor:'yellow'
                     }}>
-                      <Flb name={tile[0].tileIcon} size={Metrics.icons.regular} color={Colors.flBlue.purple} />
+                      <Flb name={tile[0].tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.purple} />
                     </View>
                     <View style={{
                       flex: 3,
@@ -158,8 +158,8 @@ class DoctorServices extends Component {
 
                             !this.state.hpActive
 
-                              ? <Flb name='chevron-down' size={Metrics.icons.tiny} style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
-                              : <Flb name='chevron-up' size={Metrics.icons.tiny} style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
+                              ? <Flb name='chevron-down' size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025 } style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
+                              : <Flb name='chevron-up' size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025 } style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
 
                           }
                             </View>

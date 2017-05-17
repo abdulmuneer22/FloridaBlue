@@ -151,10 +151,12 @@ class LandingScreen extends Component {
                       height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
                     }}>
 
-                      <View style={{flex: 1}}>
+                      <View style={{flex: 1, alignItems:'center', justifyContent:'center'}}>
                         <Image source={Images[tile.gradientImage]}
-                          style={{flex: 1, justifyContent: 'center',
-                            width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.54) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.51) }} resizeMode='contain' >
+                          style={{flex: 1, justifyContent: 'center',alignItems:'center',
+                         // resizeMode:Platform.OS == 'ios' ?'' :'cover',
+                            width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.52) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.51),
+                             }} >
 
                           <View style={{alignItems: 'center'}} >
                             <Text style={styles.tileTextStyle}>
@@ -228,6 +230,8 @@ class LandingScreen extends Component {
   }
 
   render () {
+    console.tron.log("ipad Height" + Metrics.screenHeight)
+    console.tron.log("ipad Width" + Metrics.screenWidth)
     var image = [
       Images.dashboardGradient,
       Images.dashboardGradient2,

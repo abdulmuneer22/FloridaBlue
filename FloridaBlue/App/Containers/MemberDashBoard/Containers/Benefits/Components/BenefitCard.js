@@ -104,20 +104,21 @@ class Card extends Component {
         <BCard style={{alignItems: 'center', flexDirection: 'row',
           flex: 1,
          //    width: this.state.CardWidth,
-          height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
-
+          height: Metrics.screenHeight - (Metrics.screenHeight * 0.88)
+          
            // justifyContent: 'center'
 
         }}>
 
           <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.transparent}}>
-            <Flb name={this.props.icon} size={Metrics.icons.regular} color={Colors.flBlue.purple} />
+            <Flb name={this.props.icon} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.purple} />
           </View>
           <View style={{flex: 6, alignItems: 'flex-start'}}>
             <Text style={{
              // marginTop: Metrics.baseMargin,
-              fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00265,
+              fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
              // textAlign: 'center',
+            
               fontWeight: '600',
               color: Colors.flBlue.grey3,
               backgroundColor: Colors.transparent,
@@ -127,7 +128,7 @@ class Card extends Component {
             </Text>
           </View>
           <View style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center', backgroundColor: Colors.transparent}}>
-            <Flb name='chevron-right' size={Metrics.icons.small} color={Colors.flBlue.purple} />
+            <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth* 0.002} color={Colors.flBlue.purple} />
           </View>
 
         </BCard>

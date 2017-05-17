@@ -433,7 +433,7 @@ class ProviderSearch extends Component {
                   </View>
                   <View style={styles.locationButtonContainer}>
                     <TouchableOpacity style={styles.editLocation} onPress={this._editLocation}>
-                      <Flb name='pencil' style={styles.editLocationIcon} size={Metrics.icons.small} color={Colors.flBlue.anvil} />
+                      <Flb name='pencil' style={styles.editLocationIcon} size={Metrics.icons.small * Metrics.screenWidth * 0.0025} color={Colors.flBlue.anvil} />
                       <Text style={styles.editLocationText}>{I18n.t('editLocationButton')}</Text>
                     </TouchableOpacity>
                   </View>

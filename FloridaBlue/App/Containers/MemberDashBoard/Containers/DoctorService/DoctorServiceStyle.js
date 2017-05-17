@@ -12,10 +12,10 @@ const theme = getTheme()
 export default StyleSheet.create({
 
   backgroundImage: {
-    flex: 0.4,
+    flex: 0.5,
     alignSelf: 'flex-end',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.814)
-    // width:200
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.768),
+     //width:Metrics.screenWidth - (Metrics.screenWidth * 0.88)
    // marginBottom:-Metrics.smallMargin * Metrics.screenHeight * 0.0001
   },
   logo: {
@@ -99,7 +99,8 @@ export default StyleSheet.create({
     // width: window.width,
     backgroundColor: Colors.snow,
     flex: 1,
-    margin: 15
+    margin: 15,
+   // marginTop:20
    // height : 200,
    // alignSelf: 'center',
    //  padding : Metrics.baseMargin,

@@ -272,7 +272,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   //  alignSelf: 'stretch',
-    resizeMode: 'stretch',
+   // resizeMode: 'stretch',
     width: Metrics.screenWidth
     // marginTop: 4
     // marginBottom:0

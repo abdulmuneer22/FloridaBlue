@@ -55,7 +55,7 @@ export default StyleSheet.create({
     right: 0,
     bottom: 0,
     width: Metrics.screenWidth,
-    height: Metrics.screenHeight -(Metrics.screenHeight *0.56)
+    height:(Platform.OS === 'ios') ?  Metrics.screenHeight -(Metrics.screenHeight *0.55) : Metrics.screenHeight -(Metrics.screenHeight *0.5655)
   },
   item: {
     width: ITEM_WIDTH,

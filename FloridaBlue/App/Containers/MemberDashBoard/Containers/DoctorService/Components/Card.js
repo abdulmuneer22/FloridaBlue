@@ -91,19 +91,21 @@ class CCard extends Component {
         cards.push(
 
           <Card style={styles.cardStyle} key={i} >
-            <View >
+            <View style={{flex:1, marginLeft:Metrics.mediumMargin * Metrics.screenWidth * 0.001, marginRight:Metrics.mediumMargin * Metrics.screenWidth * 0.001, 
+            marginTop:Metrics.baseMargin * Metrics.screenHeight * 0.001}} >
               <View style={{
                 flex: 1,
                 flexDirection: 'row',
-                justifyContent: 'space-between'
-
+                justifyContent: 'space-between',
+                
               // justifyContent: 'center'
 
               }}>
                 <View style={{
                 //  marginRight: 10,
                 // marginLeft: 10,
-                  flex: 1
+                  flex: 1,
+                 // backgroundColor:'red'
 
                  // margin: 10
                 //    alignItems: 'center',
@@ -150,7 +152,7 @@ class CCard extends Component {
 
             }}>
 
-              <View style={{flex: 0.6, marginBottom:20}}>
+              <View style={{flex: 0.5, marginBottom:20, marginLeft:Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
                 {
             speciality.map(specialities => {
               const { speciality_text, speciality_value } = specialities
@@ -186,7 +188,7 @@ class CCard extends Component {
           }
 
               </View>
-              <Image source={Images[ImageInput]} style={styles.backgroundImage} resizeMode={(Platform.OS === 'ios') ? 'contain' : 'cover'} />
+              <Image source={Images[ImageInput]} style={styles.backgroundImage} resizeMode={(Platform.OS === 'ios') ? '' : 'cover'} />
             </View>
 
           </Card>

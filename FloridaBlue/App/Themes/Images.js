@@ -22,6 +22,7 @@ const images = {
   resources: require('../Images/resources.png'),
   support: require('../Images/support.png'),
   findItButton: require('../Images/find-it-btn.png'),
+  forms: require('../Images/forms.png'),
  // healthPlan: require('../Images/health-plan-circle-icon.png'),
   hsaBg: require('../Images/hsa-graphic.png'),
   hsaHeader: require('../Images/hsa-hdr.png'),

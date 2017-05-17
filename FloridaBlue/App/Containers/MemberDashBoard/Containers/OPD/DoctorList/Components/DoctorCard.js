@@ -65,10 +65,10 @@ class DoctorCard extends Component {
     }
   }
 
-  handleMaps (latitude, longitude) {
-    console.tron.log(latitude, longitude)
-    console.log(latitude, longitude)
-    const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
+  handleMaps (address) {
+   
+    const url = `http://maps.apple.com/?daddr=`+address.addressLine1+" "+address.addressLine2+" "+address.city+" "+address.state+
+    " "+address.zipCode;
 
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
@@ -78,7 +78,6 @@ class DoctorCard extends Component {
       }
     })
   }
-
   render () {
     console.log('limit from state =>', this.state.cardLimit)
     return (
@@ -116,13 +115,13 @@ class DoctorCard extends Component {
 
                     <View style={{ flex: 1 }}>
                       <View style={{ flex: 1, flexDirection: 'row' }}>
-                        <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(value.telephoneNumber)}>
+                        <TouchableOpacity style={{ flex: 1, height: Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleCall(value.telephoneNumber)}>
                           <View style={styles.call}>
 
                                 <View style={{ flex: 0.45, alignItems: 'flex-end' }}>
                                     <Flb
                                         name='call-phone'
-                                        size={Metrics.icons.medium}
+                                        size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
                                         color={Colors.snow} />
                                   </View>
 
@@ -133,13 +132,13 @@ class DoctorCard extends Component {
 
                           </View>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(value.latitude, value.longitude)}>
+                        <TouchableOpacity style={{ flex: 1, height: Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleMaps(value)}>
                           <View style={styles.directions}>
 
                                 <View style={{ flex: 0.28, alignItems: 'flex-end' }}>
                                     <Flb
                                         name='directions'
-                                        size={Metrics.icons.medium}
+                                        size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
                                         color={Colors.snow} />
                                   </View>
 

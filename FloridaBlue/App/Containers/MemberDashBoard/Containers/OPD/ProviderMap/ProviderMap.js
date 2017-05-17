@@ -106,7 +106,7 @@ class ProviderMap extends Component {
   }
 
   _renderMapMarkers(location) {
-    if ( location && location.uniqueId && location.uniqueId == this.state.selectedLocation.uniqueId) {
+    if ( location && location.uniqueId == this.state.selectedLocation.uniqueId) {
       return (
         <MapView.Marker key={location.uniqueId} identifier={(location != null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapSelectedPin} />
       )
@@ -119,7 +119,12 @@ class ProviderMap extends Component {
 
   _renderLocationDetail (location) {
     return (
+      <View style={{flex:1, marginTop:(Platform.OS === 'ios') ? 10 : -5,
+      marginBottom:(Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenHeight * 0.0025 : 0
+      }}
+      >
       <DoctorCard data={location} />
+      </View>
     )
   }
 
@@ -143,12 +148,23 @@ class ProviderMap extends Component {
               {this.props.provider && this.props.provider.data.providerList.map((provider, index) => this._renderMapMarkers(provider, index))}
             </MapView>
             <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden>
-              <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom:Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003, marginTop:-5}} showsButtons={true} showsPagination={false}
+              <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom:Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003}} showsButtons={true} showsPagination={false}
                 width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
-                height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.57))}
-                bottom={(Platform.OS === 'ios') ? 0 : -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002}
-
-                onMomentumScrollEnd={this._locationSwiped} >
+                height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.48)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.59))}
+                bottom={(Platform.OS === 'ios') ? 0 : -Metrics.section * Metrics.screenHeight * 0.0013}
+                nextButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
+                                           fontWeight:'400', 
+                                           color:Colors.flBlue.ocean, 
+                                           marginBottom:Metrics.textHeight * Metrics.screenHeight * 0.0035}}>›</Text>}
+                onMomentumScrollEnd={this._locationSwiped} 
+                prevButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
+                                           fontWeight:'400',
+                                           marginLeft:-10, 
+                                           color:Colors.flBlue.ocean, 
+                                           marginBottom:Metrics.textHeight * Metrics.screenHeight * 0.0035}}>‹</Text>}
+                
+                
+                >
 
                 {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
               </Swiper>
