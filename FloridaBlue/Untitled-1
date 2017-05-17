@@ -1,0 +1,23 @@
+     BackAndroid.addEventListener('hardwareBackPress', function () {
+
+    //   this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
+    //   Typically you would use the navigator here to go to the last state.'
+    if(component.props.sceneKey && component.props.sceneKey=='login'){
+          Alert.alert(
+        'Logout',
+        'You\'r are about to logout',
+        [
+          {text: 'OK', onPress: () => {    component.props.clearLogin()
+    RCTNetworking.clearCookies((cleared) => {
+      console.tron.log('clearing local cookies for the app')
+    })
+    component.props.attemptLogout(component.props.logoutUrl)
+    NavigationActions.login()} },  
+          {text: 'Cancel', onPress: () =>{true}, style: 'cancel'},
+        ],
+        { cancelable: false }
+      )
+    
+    }
+      return true   
+     })
