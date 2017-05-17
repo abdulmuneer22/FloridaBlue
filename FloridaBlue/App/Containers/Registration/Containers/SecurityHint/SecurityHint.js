@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react'
 import ReactNative, {
+  StyleSheet,
   Image,
   KeyboardAvoidingView,
   ScrollView,
