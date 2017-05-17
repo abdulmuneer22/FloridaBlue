@@ -147,7 +147,7 @@ class MyPlanSwiper extends Component {
 
               }}>
 
-                <View style={{flex: 1, alignItems: 'center', paddingTop: 0 }}>
+                <View style={{flex: 1, alignItems: 'center', paddingTop: 10 }}>
 
                   <Text style={styles.headerText}>
                     {network.title.en}
