@@ -301,7 +301,7 @@ export default StyleSheet.create({
   textBackground1: {
     flex: 1,
     flexDirection: 'column',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.92)
    
 
    // alignItems: 'center',
