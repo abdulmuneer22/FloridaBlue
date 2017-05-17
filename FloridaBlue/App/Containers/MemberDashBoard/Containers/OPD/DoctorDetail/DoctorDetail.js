@@ -204,7 +204,7 @@ class DoctorDetail extends Component {
                       </TouchableOpacity>
 
                       {this.state.visible1 ? <HideableView visible={this.state.visible1}>
-                        <View style={{ flex: 1, flexDirection: 'row' }}>
+                        <View style={{ flex: 1, marginTop:10,marginBottom:10, flexDirection: 'row' }}>
 
                           <View style={{ flex: 1 }}>
                             {this.props.doctordetail && this.props.doctordetail.otherAddressList ? this.props.doctordetail.otherAddressList.map((value, i) => {
@@ -260,7 +260,7 @@ class DoctorDetail extends Component {
                         </TouchableOpacity>
 
                         {this.state.visible4 ? <HideableView visible={this.state.visible4}>
-                          <View style={{ flex: 1, flexDirection: 'row' }}>
+                          <View style={{ flex: 1, flexDirection: 'row', marginBottom:10, marginTop:10 }}>
 
                             <View style={{ flex: 1, margin: 5 }}>
                               {this.props.doctordetail && this.props.doctordetail.address ?
@@ -434,7 +434,7 @@ class DoctorDetail extends Component {
                               Program Detail
                               </Text>
                             </View>
-                            <View style={{flex:1, alignItems:'center', marginTop:15}}>
+                            <View style={{flex:1, alignItems:'center', marginTop:Metrics.mediumMargin * Metrics.screenHeight * 0.0001}}>
                               <TouchableOpacity onPress={()=> NavigationActions.ProgramDetail()}>
                               <Image source={Images.infoIcon} />
                               </TouchableOpacity>
@@ -485,7 +485,7 @@ class DoctorDetail extends Component {
                       {this.state.visible7 ? <HideableView visible={this.state.visible7}>
 
                         {this.props.doctordetail && this.props.doctordetail.bcbsfProviderID ?
-                          <View style={{flex: 1}}>
+                          <View style={{flex: 1, marginTop:10}}>
                             <View style={{ flex: 1, flexDirection: 'row', margin: 10 }}>
 
                               <View style={{ flex: 1, alignItems: 'center' }}>
@@ -512,8 +512,8 @@ class DoctorDetail extends Component {
                         {this.props.doctordetail && this.props.doctordetail.nationalProviderNumber ?
                           <View style={{flex: 1}}>
                             <View style={{ flex: 1, flexDirection: 'row' }}>
-
-                              <View style={{ flex: 1, alignItems: 'center' }}>
+                            <View style={{flex:0.33}} />
+                              <View style={{ flex: 1 }}>
                                 <Text style={{
                                   fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                   color: Colors.flBlue.ocean
@@ -522,7 +522,7 @@ class DoctorDetail extends Component {
                           </Text>
                               </View>
 
-                              <View style={{ flex: 1 }}>
+                              <View style={{ flex: 1.15, marginLeft:-25 }}>
                                 <Text style={{
                                   fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                   color: Colors.flBlue.grey5
@@ -536,18 +536,20 @@ class DoctorDetail extends Component {
 
               { this.props.configData && this.props.configData.links && this.props.configData.links.deptHealth  ?
                             
-                           <View style={{flex:1}}>
-                             
+                           <View style={{flex:1, flexDirection:'row'}}>
+                             <View style={{flex:1}}/>
+                             <View style={{flex:8}}>
                             <Text style={styles.h7}>
                              {this.props.configData.links.deptHealth.title1} <Text onPress={() => NavigationActions.MyView({responseURL: this.props.configData.links.deptHealth ? this.props.configData.links.deptHealth.url : ''})} style={styles.h7_2}>
                              {this.props.configData.links.deptHealth.title2}
                             </Text>
                             </Text>
-                          
+                          </View>
                            
                             </View> : null }
 
-                        <View style={{flex: 1}}>
+                        <View style={{flex: 1, marginLeft:40}}>
+                          
                           {
                              this.props.configData && this.props.configData.links && this.props.configData.links.providerInfoList && this.props.configData.links.providerInfoList.length > 0 ?
                             this.props.configData.links.providerInfoList.map((value, i) => {

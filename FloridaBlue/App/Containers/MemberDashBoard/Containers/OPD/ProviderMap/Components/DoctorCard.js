@@ -75,9 +75,9 @@ class DoctorCard extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, marginTop:-5}}>
           {this.props.data != undefined ?
-            <Card style={{ flex: 1}} >
+            <Card style={{ flex: 1,}} >
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
 
                 <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2, paddingRight:10}}>
@@ -94,7 +94,8 @@ class DoctorCard extends Component {
                     <Text style={styles.mapAdressText}>{this.props.data.city}, {this.props.data.state}, {this.props.data.zipCode}</Text> : null}
                   {this.props.data ?
                     <Text style={styles.mapAdressText}>{this.props.data.telephoneNumber}</Text> : null}
-
+                   {this.props.data ?
+                          <Text style={styles.mapAdressText}>{this.props.data.distance} miles</Text> : null}
                 </View>
               </View>
               <View style={{ flex: 1, marginTop: Metrics.textHeight * Metrics.screenHeight * 0.0065 }}>

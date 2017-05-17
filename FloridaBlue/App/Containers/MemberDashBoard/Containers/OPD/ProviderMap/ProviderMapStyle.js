@@ -16,7 +16,7 @@ const ITEM_WIDTH = window.width - (2 * ITEM_SPACING) - (2 * ITEM_PREVIEW)
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.snow,
+    backgroundColor:Colors.flBlue.grey1,
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
@@ -67,6 +67,7 @@ export default StyleSheet.create({
     borderColor: '#000'
   },
   locationDetailContainer: {
+    //backgroundColor:Colors.flBlue.ocean,
     position: 'absolute',
     top: (Platform.OS === 'ios') ? Metrics.textHeight2 * Metrics.screenHeight * 0.009 : Metrics.textHeight2 * Metrics.screenHeight * 0.008
    // height: Metrics.textHeight2 * Metrics.screenHeight * 0.009,

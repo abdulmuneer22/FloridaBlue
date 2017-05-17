@@ -118,7 +118,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
 
     fontWeight: '400',
-    textAlign: 'justify',
+    //textAlign: 'justify',
     margin: 10
 
   },
@@ -128,7 +128,7 @@ export default StyleSheet.create({
     color: Colors.flBlue.ocean,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
-    textAlign: 'justify',
+   // textAlign: 'justify',
     margin: 10,
     textDecorationColor: Colors.flBlue.ocean,
     textDecorationLine: 'underline'

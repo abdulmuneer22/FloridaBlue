@@ -111,7 +111,7 @@ export default StyleSheet.create({
   },
   mapHeaderText: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
-    marginTop: Metrics.section,
+    marginTop: Metrics.mediumMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '600',
     color: Colors.flBlue.ocean
@@ -129,7 +129,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.grey5,
     marginTop: 5,
-    marginBottom:10,
+   // marginBottom:10,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400'
   },

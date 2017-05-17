@@ -70,7 +70,7 @@ class DoctorCard extends Component {
         <View style={{ flex: 1, marginTop:-5 }}>
           { this.props.data ?
 
-            <Card style={{ flex: 1 }} >
+            <View style={{ flex: 1, marginBottom:10 }} >
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
 
                 <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight:Metrics.baseMargin }}>
@@ -267,7 +267,7 @@ class DoctorCard extends Component {
                   </View>
                 </View>
                             : null}
-            </Card>
+            </View>
 
                         : null
                     }
