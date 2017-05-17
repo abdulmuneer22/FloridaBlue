@@ -147,7 +147,7 @@ class MyPlanSwiper extends Component {
 
               }}>
 
-                <View style={{flex: 1, alignItems: 'center', paddingTop: 20 }}>
+                <View style={{flex: 1, alignItems: 'center', paddingTop: 0 }}>
 
                   <Text style={styles.headerText}>
                     {network.title.en}
@@ -159,11 +159,11 @@ class MyPlanSwiper extends Component {
                 </View>
               </View>
 
-              <View style={{flex: 1, alignItems: 'center', marginTop: 15}}>
+              <View style={{flex: 1, alignItems: 'center'}}>
 
                 <SemiCircle
-                  width={Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.75)}
-                  height={Platform.OS == 'ios' ? (Metrics.screenHeight) - (Metrics.screenHeight * 0.8) : (Metrics.screenHeight) - (Metrics.screenHeight * 0.85)}
+                  width={Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.50) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.75)}
+                  height={Platform.OS == 'ios' ? (Metrics.screenHeight) - (Metrics.screenHeight * 0.72) : (Metrics.screenHeight) - (Metrics.screenHeight * 0.85)}
                   barWidth={1}
                   barTopColor={Colors.flBlue.grass}
                   barBottomColor={Colors.flBlue.night}
@@ -177,7 +177,7 @@ class MyPlanSwiper extends Component {
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
                     return (<View style={{ flex: 1, flexDirection: 'column', margin: 4
                     }} key={i}>
-                      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}} >
+                      <View style={i == 0 ?{ marginRight:(Metrics.screenWidth) - (Metrics.screenWidth * 0.85), flex: 1, alignItems: 'center', justifyContent: 'flex-start'}:{flex: 1,marginLeft:(Metrics.screenWidth) - (Metrics.screenWidth * 0.85) ,alignItems: 'center', justifyContent: 'center'}} >
                         <View style={i == 0 ? {flex: 3,
                           borderBottomWidth: 3,
                           borderBottomColor: Colors.flBlue.night
