@@ -43,7 +43,21 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .build()
+const HtMLstyles = StyleSheet.create({
+  p: {
+    color: Colors.snow,
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
 
+  },
+  a: {
+    color: Colors.snow,
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
+    fontWeight: '300',
+    textDecorationLine: 'underline'
+  }
+})
 class Screen_4 extends React.Component {
   _handleBack () {
     Keyboard.dismiss()
@@ -116,9 +130,11 @@ class Screen_4 extends React.Component {
           </View>
           {this.props.securityHintsStatus && (this.props.securityHintsStatus != null && this.props.securityHintsStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
-            <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.securityHintsStatusMessage}</Text></View>
-            </View>
+ 
+            
+                        <View>
+              <HTMLView value={'<p>'+this.props.securityHintsStatusMessage+'</P>'} stylesheet={HtMLstyles}/> 
+              </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangeSecurityHintsStatus(null) }}>
                 <Image source={Images.closeIconWhite} />

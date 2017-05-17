@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react'
 import ReactNative, {
+  StyleSheet,
   Button,
   Image,
   Keyboard,
@@ -18,7 +19,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
+import HTMLView from 'react-native-htmlview'
 // Styles
 import styles from './Screen_1Style'
 
@@ -43,6 +44,22 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .build()
+
+const HtMLstyles = StyleSheet.create({
+  p: {
+    color: Colors.snow,
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
+
+  },
+  a: {
+    color: Colors.snow,
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
+    fontWeight: '300',
+    textDecorationLine: 'underline'
+  }
+})
 
 class Screen_1 extends React.Component {
   constructor (props) {
@@ -123,7 +140,9 @@ class Screen_1 extends React.Component {
           {this.props.identificationStatus && (this.props.identificationStatus != null && this.props.identificationStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.identificationStatusMessage}</Text></View>
+              <View>
+              <HTMLView value={'<p>'+this.props.identificationStatusMessage+'</P>'} stylesheet={HtMLstyles}/> 
+              </View>
             </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangeIdentificationStatus(null) }}>
