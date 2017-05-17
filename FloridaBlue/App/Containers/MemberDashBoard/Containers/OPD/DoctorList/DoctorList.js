@@ -46,7 +46,7 @@ const theme = getTheme()
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
-
+ 
 class DoctorList extends Component {
 
 constructor(props){
@@ -54,7 +54,10 @@ constructor(props){
          this.state = {
           listLimit : 10,
           totalNumberOfCardPerScreen : 30,
-          isFetchingMore: false
+          isFetchingMore: false,
+          loadingMore:true,
+          initialCount:0,
+          finalCount:0
       }
       this.loadMore = this.loadMore.bind(this)
    }
@@ -74,10 +77,13 @@ constructor(props){
   }
 
   componentWillReceiveProps (newProps) {
-    console.tron.log(newProps)
+    console.tron.log("displaying new props****", newProps)
     if (this.state.isFetchingMore) {
-      this.props.attemptProviderSearch(newProps)
+
+    this.props.attemptProviderSearch(newProps)
       this.setState({isFetchingMore: false})
+
+     
     }
 
     if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
@@ -115,15 +121,17 @@ constructor(props){
             listLimit : newLimit + 10
         })
 
-        if(this.state.totalNumberOfCardPerScreen == newLimit) {
-          this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
-          this.state.isFetchingMore = true
+       
+            if(this.state.totalNumberOfCardPerScreen == newLimit) {
+           this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
+           this.state.isFetchingMore = true
 
-          this.setState({
-             // listLimit : this.state.totalNumberOfCardPerScreen,
-              totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30
-          })
-        }
+           this.setState({
+        //      // listLimit : this.state.totalNumberOfCardPerScreen,
+               totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30
+           })
+         }
+ 
      }
 
   _displayCondition () {
@@ -133,16 +141,18 @@ constructor(props){
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.provider && this.props.provider.data) {
+   
       return (
         <View style={styles.container}>
           {this.props.provider ?
             <View style={{flex: 9}}>
 
               <ScrollView >
+ 
 
               {this.props.showUrgentCareBanner ?
                 <View style={{flex: 1, margin: 15 }}>
-                  <Card style={{flex: 1, borderRadius: 15, backgroundColor: 'purple'}} >
+                  <Card style={{flex: 1, borderRadius: 15, backgroundColor:Colors.flBlue.red}} >
                      <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
                       <View style={{ flex: 0.15 }}>
                         <Flb name='accident' size={Metrics.icons.large} color={Colors.snow} />
@@ -158,18 +168,12 @@ constructor(props){
                 </View>
               : null}
 
-                <View style={{flex: 1}}>
+                <View style={{flex: 1, marginTop:-20}}>
 
                   {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
                      <DoctorCard
                       cardLimit = {this.state.listLimit}
                       data={this.props.provider.data.providerList}
-                    //savedproviders={this.props.saveProvider}
-                    //saveProvider={this.saveProvider}
-                    //removeProvider={this.removeProvider}
-                    //leftActive={this.props.leftActive}
-                    //rightActive={this.props.rightActive}
-
                   />
                   :
                       <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
@@ -192,28 +196,28 @@ constructor(props){
                     }
 
                 </View>
-                 {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
-                <View style={{flex:1}}>
-                 <TouchableOpacity
-            onPress = {this.loadMore}
-            style={{
-                backgroundColor : 'grey',
-                paddingLeft : 14,
-                paddingRight : 14,
-                paddingTop: 10,
-                paddingBottom : 10,
-                width : window.width * 0.4,
-                alignSelf : 'center',
-                margin : window.height * 0.02,
-                alignItems : 'center',
-                borderRadius : 5
-            }}>
-                <Text style={{
-                    color : 'white'
-                }}>Load More</Text>
-            </TouchableOpacity>
-            </View> : null}
-              </ScrollView>
+              {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
+                  <View style={{flex: 1,marginBottom:10}}>
+                    <TouchableOpacity
+                      onPress={this.loadMore}
+                      style={{
+                        backgroundColor: 'grey',
+                        paddingLeft: 14,
+                        paddingRight: 14,
+                        paddingTop: 10,
+                        paddingBottom: 10,
+                        width: window.width * 0.4,
+                        alignSelf: 'center',
+                        margin: window.height * 0.02,
+                        alignItems: 'center',
+                        borderRadius: 5
+                      }}>
+                      <Text style={{
+                        color: 'white'
+                      }}>Load More</Text>
+                    </TouchableOpacity>
+                  </View> : null} 
+                </ScrollView>
             </View>
 
           : <View style={styles.spinnerView}>
@@ -289,7 +293,7 @@ constructor(props){
           {this._renderHeader()}
         </View>
 
-        <View style={{flex: 7}}>
+        <View style={{flex: 7,marginTop:10}}>
           {
          this._displayCondition()
        }
@@ -367,13 +371,13 @@ const mapDispatchToProps = (dispatch) => {
     // attemptHandleRight: () => dispatch(ProviderActions.providerClickright()),
     // addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
     // removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey)),
-     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
+    changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),
     changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta)),
   // changeStart: (start) => dispatch(ProviderActions.changeStart(start)),
     changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
-     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
+    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
   }
 }
 

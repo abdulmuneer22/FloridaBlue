@@ -39,7 +39,7 @@ class ErrorScreen extends Component {
       console.tron.log('clearing local cookies for the app')
     })
     this.props.clearLogin()
-    
+
     this.props.attemptLogout(this.props.logoutUrl)
     NavigationActions.login()
   }
@@ -97,4 +97,4 @@ const mapDispatchToProps = (dispatch) => {
     clearLogin: () => dispatch(LoginActions.logout())
   }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(ErrorScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorScreen)

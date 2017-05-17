@@ -6,7 +6,7 @@ export function * sendNetworkListRequest (api, {data}) {
 
   if (response.ok) {
     var data = response.data
-    
+
     if (data.data.memberNetworkList) {
       for (var i = 0; i < data.data.memberNetworkList.length; i++) {
         var networkItem = data.data.memberNetworkList[i]
@@ -21,7 +21,7 @@ export function * sendNetworkListRequest (api, {data}) {
     yield put(ProviderActions.sendNetworkListSuccess(data))
   } else {
     var error = response.problem
-        console.tron.log('im network error' + error)
+    console.tron.log('im network error' + error)
     yield put(ProviderActions.sendNetworkListFailure(error))
   }
 }
@@ -31,14 +31,13 @@ export function * sendProviderSearchRequest (api, {data}) {
   if (response.ok) {
     var data = response.data
 
-if (data.data.providerList) {
-       for (var i = 0; i < data.data.providerList.length; i++) {
-      var providerItem = data.data.providerList[i]
-      providerItem["uniqueId"] = i
-    }
+    if (data.data.providerList) {
+      for (var i = 0; i < data.data.providerList.length; i++) {
+        var providerItem = data.data.providerList[i]
+        providerItem['uniqueId'] = i
+      }
     }
 
-   
     yield put(ProviderActions.sendProviderSearchSuccess(data))
   } else {
     var error = response.problem
@@ -63,6 +62,12 @@ export function * sendUrgentSearchRequest (api, {data}) {
   const response = yield call(api.postUrgentSearch, data)
   if (response.ok) {
     var data = response.data
+    if (data.data.providerList) {
+       for (var i = 0; i < data.data.providerList.length; i++) {
+      var providerItem = data.data.providerList[i]
+      providerItem["uniqueId"] = i
+    }
+    }
      console.tron.log('im urgent data' + data)
     yield put(ProviderActions.sendUrgentSearchSuccess(data))
   } else {
@@ -77,22 +82,22 @@ export function * sendCareTypeRequest (api, {data}) {
 
   if (response.ok) {
     var data = response.data
-    //var allCategory = {"categoryCode": "ALL", "categoryName": ""}
+    // var allCategory = {"categoryCode": "ALL", "categoryName": ""}
    // data.data.planCategoryList.splice(0, 0, allCategory)
     yield put(ProviderActions.sendCareTypeSuccess(data))
   } else {
     var error = response.problem
-     console.tron.log('im care error' + error)
+    console.tron.log('im care error' + error)
     yield put(ProviderActions.sendCareTypeFailure(error))
   }
 }
 
 export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
-const response = yield call(api.getSpecialityTypes, selectedCategoryCode)
+  const response = yield call(api.getSpecialityTypes, selectedCategoryCode)
 
   if (response.ok) {
     var data = response.data
-    var allCategory = {"categoryCode": "ALL","subCategoryCode": "","subCategoryName": "All"}
+    var allCategory = {'categoryCode': 'ALL', 'subCategoryCode': '', 'subCategoryName': 'All'}
    // var noPrefCategory = {"categoryCode": "","subCategoryCode": "","subCategoryName": ""}
     data.data.planSubCategoryList.splice(0, 0, allCategory)
    // data.data.planSubCategoryList.push(noPrefCategory)
@@ -109,7 +114,7 @@ export function * sendDoctorLanguageRequest (api, {data}) {
   const response = yield call(api.getDoctorLanguage, data)
   if (response.ok) {
     var data = response.data
-    var noPrefCategory = {"value": "","label": "No Preference"}
+    var noPrefCategory = {'value': '', 'label': 'No Preference'}
     data.data.languageList.splice(0, 0, noPrefCategory)
     yield put(ProviderActions.sendDoctorLanguageSuccess(data))
   } else {
@@ -123,7 +128,7 @@ export function * sendStaffLanguageRequest (api, {data}) {
   const response = yield call(api.getStaffLanguage, data)
   if (response.ok) {
     var data = response.data
-    var noPrefCategory = {"value": "","label": "No Preference"}
+    var noPrefCategory = {'value': '', 'label': 'No Preference'}
     data.data.languageList.splice(0, 0, noPrefCategory)
     yield put(ProviderActions.sendStaffLanguageSuccess(data))
   } else {
@@ -141,7 +146,7 @@ export function * sendConfigTypeRequest (api) {
     yield put(ProviderActions.sendConfigTypeSuccess(data))
   } else {
     var error = response.problem
-       console.tron.log('im Config error' + error)
+    console.tron.log('im Config error' + error)
     yield put(ProviderActions.sendConfigTypeFailure(error))
   }
 }

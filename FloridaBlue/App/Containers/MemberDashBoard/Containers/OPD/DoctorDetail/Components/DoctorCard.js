@@ -38,7 +38,7 @@ class DoctorCard extends Component {
 
   handleCall (phone) {
     console.tron.log(phone)
-    console.log("im number" +phone)
+    console.log('im number' + phone)
     const url = `tel:${phone}`
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
@@ -67,13 +67,13 @@ class DoctorCard extends Component {
     return (
       <View style={styles.container}>
 
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, marginTop:-5 }}>
           { this.props.data ?
 
             <Card style={{ flex: 1 }} >
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: 10 }}>
 
-                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin }}>
+                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight:Metrics.baseMargin }}>
                   {this.props.data ?
                     <Text style={styles.h1}>{this.props.data.displayName}</Text>
                                         : null}
@@ -89,157 +89,157 @@ class DoctorCard extends Component {
                 </View>
               </View>
               { this.props.data && this.props.data.address.length > 0 ?
-             
+
                 <View style={{ flex: 1 }}>
 
                   <View style={{ flex: 1, flexDirection: 'row' }}>
-                  
+
                     <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleCall(this.props.data && this.props.data.address[0] ? this.props.data.address[0].telephoneNumber : '')}>
-                        <View style={styles.call}>
+                      <View style={styles.call}>
 
-                            <View style={{ flex: 1, alignItems: 'flex-end' }}>
-                                <Flb
-                                    name='call-phone'
-                                    size={Metrics.icons.medium}
-                                    color={Colors.snow} />
-                              </View>
+                        <View style={{ flex: 1, alignItems: 'flex-end' }}>
+                          <Flb
+                            name='call-phone'
+                            size={Metrics.icons.medium}
+                            color={Colors.snow} />
+                        </View>
 
-                            <View style={{ flex: 1, alignItems: 'flex-start' }}>
-                                <Text style={styles.callText}>Call</Text>
-                              </View>
+                        <View style={{ flex: 1, alignItems: 'flex-start' }}>
+                          <Text style={styles.callText}>Call</Text>
+                        </View>
 
-                          </View>
-                      </TouchableOpacity>
+                      </View>
+                    </TouchableOpacity>
 
                     <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={() => this.handleMaps(this.props.data ? this.props.data.latitude : '', this.props.data ? this.props.data.longitude : '')}>
-                        <View style={styles.directions}>
+                      <View style={styles.directions}>
 
-                            <View style={{ flex: 0.3, alignItems: 'center' }}>
-                                <Flb
-                                    name='directions'
-                                    size={Metrics.icons.medium}
-                                    color={Colors.snow} />
-                              </View>
+                        <View style={{ flex: 0.3, alignItems: 'center' }}>
+                          <Flb
+                            name='directions'
+                            size={Metrics.icons.medium}
+                            color={Colors.snow} />
+                        </View>
 
-                            <View style={{
-                                flex: 0.7,
-                                alignItems: 'flex-start'
-                              }}>
+                        <View style={{
+                          flex: 0.7,
+                          alignItems: 'flex-start'
+                        }}>
 
-                                <Text style={styles.directionText}>Directions</Text>
-                              </View>
-                          </View>
-                      </TouchableOpacity>
+                          <Text style={styles.directionText}>Directions</Text>
+                        </View>
+                      </View>
+                    </TouchableOpacity>
 
                   </View>
                 </View>
                : null }
 
               {this.props.data && this.props.data.gender ?
-              <View style={{flex:1}}>
-                <View style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  flex: 1,
-                  margin: 5
-                }}> 
-                <View style={{ flex: 0.2,alignItems:'center' }}>
-                    <Flb
+                <View style={{flex: 1}}>
+                  <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    flex: 1,
+                    margin: 5
+                  }}>
+                    <View style={{ flex: 0.2, alignItems: 'center' }}>
+                      <Flb
                         name='check'
                         size={30}
                         color='green'
                         style={{
-                            marginTop: 10
+                          marginTop: 10
 
-                          }}
+                        }}
                                     />
                     </View>
-                  <View style={{ flex: 0.8, flexDirection:'row' }}>
-                    <Text style={styles.plannameText}>Gender: </Text>
-                    <Text style={styles.plannameText}>
+                    <View style={{ flex: 0.8, flexDirection: 'row' }}>
+                      <Text style={styles.plannameText}>Gender: </Text>
+                      <Text style={styles.plannameText}>
                         {this.props.data.gender}
                       </Text>
+                    </View>
                   </View>
                 </View>
-                </View>
                : null}
-              
-               {this.props.data && this.props.data.languageCodes.length > 0 ?
-              <View style={{flex:1}}>
-                <View style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  flex: 1,
-                  margin: 5
-                }}> 
-                <View style={{ flex: 0.2,alignItems:'center' }}>
-                    <Flb
+
+              {this.props.data && this.props.data.languageCodes.length > 0 ?
+                <View style={{flex: 1}}>
+                  <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    flex: 1,
+                    margin: 5
+                  }}>
+                    <View style={{ flex: 0.2, alignItems: 'center' }}>
+                      <Flb
                         name='check'
                         size={30}
                         color='green'
                         style={{
-                            marginTop: 10
+                          marginTop: 10
 
-                          }}
+                        }}
                                     />
                     </View>
-                  <View style={{ flex: 0.8, flexDirection:'row' }}>
-                    <View style={{flex:0.4}}>
-                    <Text style={styles.plannameText}>Doctor Also Speaks: </Text>
-                    </View>
-                    <View style={{flex:0.4}}>
-                    {this.props.data && this.props.data.languageCodes ? this.props.data.languageCodes.map((value, i) => {
-                   return(<View style={{flex:1}} key={i}> 
-                     
-                     <Text style={styles.plannameText}>
-                        {value.desc}
-                      </Text>
+                    <View style={{ flex: 0.8, flexDirection: 'row' }}>
+                      <View style={{flex: 0.4}}>
+                        <Text style={styles.plannameText}>Doctor Also Speaks: </Text>
+                      </View>
+                      <View style={{flex: 0.4}}>
+                        {this.props.data && this.props.data.languageCodes ? this.props.data.languageCodes.map((value, i) => {
+                          return (<View style={{flex: 1}} key={i}>
 
+                            <Text style={styles.plannameText}>
+                              {value.desc}
+                            </Text>
+
+                          </View>
+
+                          )
+                        }
+                      ) : null}
                       </View>
-                     
-                   )}
-                      ): null}
-                      </View>
+                    </View>
                   </View>
-                </View>
                 </View>
                : null}
 
-
-               {this.props.data && this.props.data.staffLanguageCodes.length > 0 ?
-              <View style={{flex:1}}>
-                <View style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  flex: 1,
-                  margin: 5
-                }}> 
-                <View style={{ flex: 0.2,alignItems:'center' }}>
-                    <Flb
+              {this.props.data && this.props.data.staffLanguageCodes.length > 0 ?
+                <View style={{flex: 1}}>
+                  <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    flex: 1,
+                    margin: 5
+                  }}>
+                    <View style={{ flex: 0.2, alignItems: 'center' }}>
+                      <Flb
                         name='check'
                         size={30}
                         color='green'
                         style={{
-                            marginTop: 10
+                          marginTop: 10
 
-                          }}
+                        }}
                                     />
                     </View>
-                  <View style={{ flex: 0.8, flexDirection:'row' }}>
-                    <Text style={styles.plannameText}> Staff Speaks: </Text>
-                    {this.props.data && this.props.data.staffLanguageCodes ? this.props.data.staffLanguageCodes.map((value, i) => {
-                   return(<View style={{flex:1}} key={i}> 
-                     <Text style={styles.plannameText}>
-                        {value.desc}
-                      </Text>
-                      </View>
-                   )}
-                      ): null}
+                    <View style={{ flex: 0.8, flexDirection: 'row' }}>
+                      <Text style={styles.plannameText}> Staff Speaks: </Text>
+                      {this.props.data && this.props.data.staffLanguageCodes ? this.props.data.staffLanguageCodes.map((value, i) => {
+                        return (<View style={{flex: 1}} key={i}>
+                          <Text style={styles.plannameText}>
+                            {value.desc}
+                          </Text>
+                        </View>
+                        )
+                      }
+                      ) : null}
+                    </View>
                   </View>
                 </View>
-                </View>
                : null}
-
 
               {this.props.data && this.props.data.acceptingNewPatients ?
                 <View style={{
@@ -250,20 +250,20 @@ class DoctorCard extends Component {
                 }}>
                   <View style={{ flex: 0.2, alignItems: 'center' }}>
                     <Flb
-                        name='check'
-                        size={30}
-                        color='green'
-                        style={{
-                            marginTop: 10
+                      name='check'
+                      size={30}
+                      color='green'
+                      style={{
+                        marginTop: 10
 
-                          }}
+                      }}
                                     />
                   </View>
                   <View style={{ flex: 0.8 }}>
 
                     <Text style={styles.plannameText}>
-                        {this.props.data.acceptingNewPatients}
-                      </Text>
+                      {this.props.data.acceptingNewPatients}
+                    </Text>
                   </View>
                 </View>
                             : null}

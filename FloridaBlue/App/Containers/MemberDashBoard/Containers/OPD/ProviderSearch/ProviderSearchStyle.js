@@ -30,20 +30,20 @@ export default StyleSheet.create({
   h1: {
     fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.anvil,
-    //textAlign: 'justify',
+    // textAlign: 'justify',
     marginTop: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600',
-    margin:10
+    margin: 10
   },
    h1_1: {
-    fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0027 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
+    fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0023 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.anvil,
-    //textAlign: 'justify',
+    textAlign: 'center',
     marginTop: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
-    margin:10
+    margin: 10
   },
   h2: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
@@ -51,7 +51,7 @@ export default StyleSheet.create({
     textAlign: 'left',
     fontFamily: Fonts.type.base,
     fontWeight: '600',
-    marginTop:10,
+    marginTop: 10,
     paddingLeft: Metrics.doubleBaseMargin
   },
   subheading: {
@@ -86,7 +86,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   savedProviderLinkText: {
-    color: Colors.flBlue.sky,
+    color: Colors.flBlue.ocean,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     textDecorationLine: 'underline'
   },
@@ -139,7 +139,7 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   currentLocationText: {
-    color: Colors.flBlue.sky,
+    color: Colors.flBlue.ocean,
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0024,
     fontFamily: Fonts.type.base,
     fontWeight: '800',
@@ -177,8 +177,8 @@ export default StyleSheet.create({
   },
   dropdown: {
     width: Metrics.screenWidth * 0.9,
-    marginLeft: Metrics.doubleBaseMargin,
-   
+    marginLeft: Metrics.doubleBaseMargin
+
   },
   dropdownItem: {
     fontSize: Fonts.size.regular,
@@ -187,7 +187,7 @@ export default StyleSheet.create({
     paddingLeft: Metrics.smallMargin,
     paddingTop: Metrics.smallMargin,
     paddingBottom: Metrics.smallMargin,
-    color:Colors.flBlue.night
+    color: Colors.flBlue.night
   },
   locationTextContainer: {
     flexDirection: 'column',
@@ -246,7 +246,7 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 0.5,
     borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.001,
     height: Metrics.screenHeight * 0.073,
-    resizeMode:'contain'
+    resizeMode: 'contain'
   },
   fabView: {
     marginTop: Metrics.doubleBaseMargin
@@ -273,14 +273,14 @@ export default StyleSheet.create({
   dismissUrgentIcon: {
     marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
     marginTop: 30,
-    backgroundColor: Colors.transparent,
-  
+    backgroundColor: Colors.transparent
+
   },
   needHelpText: {
     textAlign: 'left',
     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
     marginTop: 20,
-    color: 'red',
+    color: Colors.flBlue.red,
     backgroundColor: Colors.transparent,
     marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.003
   },

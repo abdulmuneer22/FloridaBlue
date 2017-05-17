@@ -16,7 +16,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: Colors.snow,
+    backgroundColor: Colors.snow
   },
   headerContainer: {
     flexDirection: 'row',
@@ -44,17 +44,17 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '600',
-    margin:10,
+    margin: 10,
     color: Colors.snow
   },
 
   h2: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.baseMargin,
-    color: Colors.flBlue.purple,
+    color: Colors.flBlue.night,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600',
-    margin:10
+    margin: 10
 
   },
   h5: {
@@ -64,13 +64,13 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
     textAlign: 'justify',
-    margin:10
+    margin: 10
   },
 
   h5_2: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
-    color: Colors.flBlue.purple,
-     marginTop: Metrics.smallMargin,
+    color: Colors.flBlue.night,
+    marginTop: Metrics.smallMargin,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400'
   },
@@ -78,7 +78,7 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.smallMargin,
     color: Colors.flBlue.ocean,
-    margin:10,
+    margin: 10,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600',
     textAlign: 'justify'
@@ -96,7 +96,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: 'bold'
   },
- 
+
   spinnerView: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -107,7 +107,6 @@ export default StyleSheet.create({
   spinnerText: {
     color: Colors.flBlue.anvil,
     marginTop: 20
-  },
+  }
 
-  
 })

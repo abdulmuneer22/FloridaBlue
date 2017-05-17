@@ -42,7 +42,6 @@ type LoginScreenProps = {
 }
 const theme = getTheme()
 
-
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
@@ -52,28 +51,27 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-    
-    <Image style={styles.headerContainer} source={Images.newHeaderImage}>
-      <View style={{
-        alignItems: 'center',
-        marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
-        marginLeft: Metrics.images.xm * Metrics.screenWidth * 0.003
-      }}>
-        <Image source={Images.themeLogo} style={{
-          width: Metrics.screenWidth * 0.65,
-          resizeMode: 'contain',
-          height: Metrics.images.xm1
-        }}
+
+      <Image style={styles.headerContainer} source={Images.newHeaderImage}>
+        <View style={{
+          alignItems: 'center',
+          marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
+          marginLeft: Metrics.images.xm * Metrics.screenWidth * 0.003
+        }}>
+          <Image source={Images.themeLogo} style={{
+            width: Metrics.screenWidth * 0.65,
+            resizeMode: 'contain',
+            height: Metrics.images.xm1
+          }}
         />
-      </View>
+        </View>
 
-      <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.003 }}>
-        {NavItems.settingsButton()}
-      </View>
+        <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.003 }}>
+          {NavItems.settingsButton()}
+        </View>
 
-    </Image>
-   
-    
+      </Image>
+
     )
   }
   componentDidMount () {
@@ -84,7 +82,7 @@ class LandingScreen extends Component {
     //   // Typically you would use the navigator here to go to the last state.
 
      //  return true
-     //})
+     // })
 
     console.tron.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin == 'registration') {
@@ -127,12 +125,12 @@ class LandingScreen extends Component {
                 onItemPress = function () {
                   var action
                   if (tile.tileType == 'webview') {
-                      var webview = 'MyView'
-                      action = NavigationActions[webview]({ responseURL: tile.tileUrl })
-                      /*if (tile.tileId == 'idCard') {
+                    var webview = 'MyView'
+                    action = NavigationActions[webview]({ responseURL: tile.tileUrl })
+                      /* if (tile.tileId == 'idCard') {
                           var idCardRouter = 'MyIdCard'
                           action = NavigationActions[idCardRouter]()
-                      } */                     
+                      } */
                   } else if (tile.tileType == 'native') {
                     var routerName = tile.routerName
                     action = NavigationActions[routerName]()
@@ -152,21 +150,20 @@ class LandingScreen extends Component {
                       width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
                       height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
                     }}>
-                     
-                          <View style={{flex:1}}>
-                          <Image source={Images[tile.gradientImage]}  
-                           style={{flex:1, justifyContent:'center',
-                           width:Platform.OS== 'ios' ? (Metrics.screenWidth)- (Metrics.screenWidth * 0.54) : (Metrics.screenWidth)- (Metrics.screenWidth * 0.51) }} resizeMode='contain' >
 
-                            <View style={{alignItems: 'center'}} >
-                          <Text style={styles.tileTextStyle}>
-                            {tile.tileName['en']}
-                          </Text>
-                        </View>
+                      <View style={{flex: 1}}>
+                        <Image source={Images[tile.gradientImage]}
+                          style={{flex: 1, justifyContent: 'center',
+                            width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.54) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.51) }} resizeMode='contain' >
 
-                           </Image>
-                           </View>
-                       
+                          <View style={{alignItems: 'center'}} >
+                            <Text style={styles.tileTextStyle}>
+                              {tile.tileName['en']}
+                            </Text>
+                          </View>
+
+                        </Image>
+                      </View>
 
                     </LinearGradient>
                   </TouchableOpacity>
@@ -177,30 +174,30 @@ class LandingScreen extends Component {
             }
           </View>
           { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
-              
-            ? <TouchableOpacity onPress={() => NavigationActions[this.props.visibilityRules.opdTile.routerName]()} 
-              style={{flex:1,
+
+            ? <TouchableOpacity onPress={() => NavigationActions[this.props.visibilityRules.opdTile.routerName]()}
+              style={{flex: 1,
              // backgroundColor:'red',
                // flexDirection: 'row',
-    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
+                height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
      // height : window.height * 0.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: Metrics.screenWidth,
-    marginTop: (Platform.OS === 'ios') ?  4 : 0,
+                justifyContent: 'center',
+                alignItems: 'center',
+                width: Metrics.screenWidth,
+                marginTop: (Platform.OS === 'ios') ? 4 : 0
     // marginBottom:0}}
               }}
     >
-          
-               <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
+
+              <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
                 <View style={{
                   flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  flex:1
+                  flex: 1
                   // marginTop:27.5
                 }}>
-                <View style={{flex:0.45, alignItems:'flex-end'}}>
+                <View style={{flex:0.4, alignItems:'flex-end'}}>
                   <Flb name={this.props.visibilityRules.opdTile.tileIcon}
                     style={{
                       backgroundColor: Colors.transparent,
@@ -209,7 +206,7 @@ class LandingScreen extends Component {
                     size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
                     color={Colors.flBlue.grey5} />
                     </View>
-                    <View style={{flex:0.55, alignItems:'flex-start'}}>
+                    <View style={{flex:0.6, alignItems:'flex-start'}}>
                   <Text style={{
                     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
                     color: Colors.flBlue.grey5,
@@ -222,7 +219,6 @@ class LandingScreen extends Component {
                 </View>
               </Image>
 
-             
             </TouchableOpacity> : null
           }
         </View>

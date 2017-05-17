@@ -137,7 +137,7 @@ export default StyleSheet.create({
   radio: {
     backgroundColor: Colors.snow,
     height: Metrics.section * Metrics.screenWidth * 0.0020,
-    width: Metrics.section * Metrics.screenWidth * 0.0020,
+    width: Metrics.section * Metrics.screenWidth * 0.0020
   }
 
 })

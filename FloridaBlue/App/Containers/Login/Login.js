@@ -15,7 +15,7 @@ import {
   NativeModules,
   Platform
 } from 'react-native'
-var urlConfig = require('../../UrlConfig');
+var urlConfig = require('../../UrlConfig')
 var TouchManager = NativeModules.TouchManager
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
@@ -65,6 +65,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
 
+var component = null
+
 class Login extends Component {
   props: LoginScreenProps
   isAttempting : boolean
@@ -79,9 +81,10 @@ class Login extends Component {
       touchChecked: false
     }
     this.isAttempting = false
+    component = this;
   }
 
-  _handleTouchID() {
+  _handleTouchID () {
     if (this.props.touchEnabled) {
       this.setState({touchChecked: false})
       this.props.changeTouchEnabled(false)
@@ -91,44 +94,44 @@ class Login extends Component {
     }
   }
 
-  _authenticateUserWithTouch() {
+  _authenticateUserWithTouch () {
     TouchManager.authenticateUser((error, authInfo) => {
       if (error) {
         // Handle error..
         this.props.changeTouchEnabled(false)
         Alert.alert(
-          "Oops!",
-          "Sorry, authentication failed. Please ensure you are using the correct fingerprint.",
+          'Oops!',
+          'Sorry, authentication failed. Please ensure you are using the correct fingerprint.',
           [
-            {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'},
+            {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
           ],
           { cancelable: false }
         )
       } else {
         var authObject = authInfo[0]
-        var authStatus = authObject["authStatus"]
-        if (authStatus == "YES") {
+        var authStatus = authObject['authStatus']
+        if (authStatus == 'YES') {
           this.props.changeTouchEnabled(true)
           this._secureLogin()
         } else {
           this.props.changeTouchEnabled(false)
           var showError = true
-          var errorMessage = ""
-          var errorTitle = "Oops!"
-          var errorCode = authObject["authErrorCode"]
+          var errorMessage = ''
+          var errorTitle = 'Oops!'
+          var errorCode = authObject['authErrorCode']
 
-          switch(errorCode) {
-              case "999":
-                  errorMessage = "Touch ID is not configured on your device. Please visit your settings to configure Touch ID."
-                  break;
-              case "01":
-                  errorMessage = "Sorry, authentication failed. Please ensure you are using the correct fingerprint."
-                  break;
-              case "02":
-                  showError = false
-                  break;
-              default:
-                  errorMessage = "Sorry, authentication failed. Please ensure you are using the correct fingerprint."
+          switch (errorCode) {
+            case '999':
+              errorMessage = 'Touch ID is not configured on your device. Please visit your settings to configure Touch ID.'
+              break
+            case '01':
+              errorMessage = 'Sorry, authentication failed. Please ensure you are using the correct fingerprint.'
+              break
+            case '02':
+              showError = false
+              break
+            default:
+              errorMessage = 'Sorry, authentication failed. Please ensure you are using the correct fingerprint.'
           }
 
           if (showError) {
@@ -136,7 +139,7 @@ class Login extends Component {
               errorTitle,
               errorMessage,
               [
-                {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'},
+                {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
               ],
               { cancelable: false }
             )
@@ -146,7 +149,7 @@ class Login extends Component {
     })
   }
 
-  _secureLogin() {
+  _secureLogin () {
     TouchManager.retrieveCredentials((error, credentials) => {
       if (error) {
         // handle error..
@@ -198,19 +201,16 @@ class Login extends Component {
     }
   }
 
+  handleBackButton() {
+         return true
+  }
   componentDidMount () {
     this.props.clearLogin()
     RCTNetworking.clearCookies((cleared) => {
       console.tron.log('clearing local cookies for the app')
     })
 
-    // BackAndroid.addEventListener('hardwareBackPress', function () {
-    //   console.tron.log('android back')
-    //   this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
-    //   Typically you would use the navigator here to go to the last state.
-
-    //   return true
-    // })
+    BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
 
     if (Platform.OS === 'ios') {
       TouchManager.checkTouchStatus((error, touchInfo) => {
@@ -218,7 +218,7 @@ class Login extends Component {
           console.tron.log(error)
         } else {
           var touchStatus = touchInfo[0]
-          if (touchStatus == "YES") {
+          if (touchStatus == 'YES') {
             this.props.changeTouchEnabled(true)
             this.setState({touchCheckboxVisible: false})
             this._authenticateUserWithTouch()
@@ -470,7 +470,7 @@ class Login extends Component {
                   ref='password'
                   style={styles.textField}
                   textInputStyle={{flex: 1, color: Colors.flBlue.anvil,
-                  fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='done'
                   autoCapitalize='none'
@@ -485,10 +485,10 @@ class Login extends Component {
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
               {Platform.OS === 'ios' && this.state.touchCheckboxVisible ?
-              <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchID() }}>
-                <MKCheckbox style={styles.radio} checked={this.props.touchEnabled} onPress={() => { this._handleTouchID() }}/>
-                <Text style={styles.link}>{I18n.t('enableTouchID')}</Text>
-              </TouchableOpacity>
+                <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchID() }}>
+                  <MKCheckbox style={styles.radio} checked={this.props.touchEnabled} onPress={() => { this._handleTouchID() }} />
+                  <Text style={styles.link}>{I18n.t('enableTouchID')}</Text>
+                </TouchableOpacity>
               : <View style={styles.spaceRow} />}
             </LoginView>
 

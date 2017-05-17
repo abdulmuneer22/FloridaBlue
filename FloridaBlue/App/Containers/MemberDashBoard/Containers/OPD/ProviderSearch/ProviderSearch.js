@@ -45,7 +45,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
-  setTheme({
+setTheme({
   radioStyle: {
     fillColor: Colors.flBlue.ocean,
     borderOnColor: Colors.flBlue.ocean,
@@ -53,8 +53,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     // rippleColor: `rgba(${MKColor.RGBTeal},.18)`,
   }
 })
-
-  
 
 class ProviderSearch extends Component {
 
@@ -99,16 +97,16 @@ class ProviderSearch extends Component {
     this._getLocation()
     this._resetState()
 
-    var addressLine1 = this.props.member.defaultContract.homeAddress.addressline1
+    var addressLine1 = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress ? this.props.member.defaultContract.homeAddress.addressline1 : ''
     var addressLine2 = ''
-    if (this.props.member.defaultContract.homeAddress.addressline2) {
-      var addressLine2 = this.props.member.defaultContract.homeAddress.addressline2
+    if (this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress && this.props.member.defaultContract.homeAddress.addressline2) {
+      var addressLine2 = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress ? this.props.member.defaultContract.homeAddress.addressline2 : ''
     }
-    var city = this.props.member.defaultContract.homeAddress.city
-    var state = this.props.member.defaultContract.homeAddress.state
-    var zip = this.props.member.defaultContract.homeAddress.zipCode
+    var city = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress ? this.props.member.defaultContract.homeAddress.city : ''
+    var state = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress ? this.props.member.defaultContract.homeAddress.state : ''
+    var zip = this.props.member && this.props.member.defaultContract && this.props.member.defaultContract.homeAddress ? this.props.member.defaultContract.homeAddress.zipCode : ''
 
-    var fullAddress = addressLine1 + addressLine2 + ' ' + city + ', ' + state + ' ' + zip
+    var fullAddress = addressLine1 + ',' + addressLine2 + ' ' + city + ', ' + state + ' ' + zip
     this.props.changeHomeAddress(fullAddress)
     this.props.changeAddress(fullAddress)
 
@@ -140,7 +138,7 @@ class ProviderSearch extends Component {
 
   _onChecked (event) {
     this.setState({floatClicked: true})
-    //this.handleNeedHelp()
+    // this.handleNeedHelp()
     if (event.checked) {
       this.props.changeSubCategoryCode('')
       this.props.changeCategoryCode('ALL')
@@ -297,7 +295,7 @@ class ProviderSearch extends Component {
     }
   }
 
-  _getPosition() {
+  _getPosition () {
     navigator.geolocation.getCurrentPosition(
     (position) => {
       var newLat = position['coords']['latitude']
@@ -307,10 +305,10 @@ class ProviderSearch extends Component {
       this.props.changeLongitude(newLong)
       this.props.changeAddress('Using Current Location')
     },
-      (error) => alert("No GPS location found."))
-      this.props.changeAddress(this.props.homeAddress)
-      this.props.changeLatitude(0)
-      this.props.changeLongitude(0)
+      (error) => alert('No GPS location found.'))
+    this.props.changeAddress(this.props.homeAddress)
+    this.props.changeLatitude(0)
+    this.props.changeLongitude(0)
   }
 
   _alertForLocationPermission () {
@@ -347,14 +345,6 @@ class ProviderSearch extends Component {
     )
   }
 
-   _dropdown_3_adjustFrame(style) {
-    console.log(`frameStyle={width:${style.width}, height:${style.height}, top:${style.top}, left:${style.left}, right:${style.right}}`);
-   // style.top -= 15;
-   // style.left += 150;
-   style.height -=140
-    return style;
-  }
-
   render () {
     return (
       <View style={styles.container}>
@@ -362,7 +352,7 @@ class ProviderSearch extends Component {
         <View style={{flex: 13}}>
           <ScrollView>
             <View style={{flex: 1}}>
-              <View style={{flex:1, margin:10}}>
+              <View style={{flex:1, marginTop:20}}>
               <Text style={styles.h1_1}>{I18n.t('providerSearchTitle')}</Text>
 
               <View style={styles.radioView}>
@@ -414,10 +404,10 @@ class ProviderSearch extends Component {
               </HideableView>
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
-                <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} 
-                onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} 
-                renderRow={this._renderDropdownRow.bind(this)} 
-                //adjustFrame={style => this._dropdown_3_adjustFrame(style)}
+                <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')}
+                  onSelect={this._specialitySelected} dropdownStyle={styles.dropdown}
+                  renderRow={this._renderDropdownRow.bind(this)}
+                // adjustFrame={style => this._dropdown_3_adjustFrame(style)}
                 >
                   <MKTextField
                     ref='specialityType'
@@ -457,26 +447,26 @@ class ProviderSearch extends Component {
                 </View>
 
                 <View style={styles.locationRadio}>
-                  <MKRadioButton ref='currentLocation' style={styles.radio}  group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
-                  <View style={{width:Metrics.screenWidth}}>
-                <TouchableOpacity style={{width:Metrics.screenWidth}} onPress={() => {if(!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle()}}>
-                <Text style={styles.radioText} >Current Location</Text>
-                </TouchableOpacity>
-              </View>
+                  <MKRadioButton ref='currentLocation' style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
+                  <View style={{width: Metrics.screenWidth}}>
+                    <TouchableOpacity style={{width: Metrics.screenWidth}} onPress={() => { if (!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle() }}>
+                      <Text style={styles.radioText} >Current Location</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
                 <View style={styles.locationRadio}>
                   <MKRadioButton style={styles.radio} ref='homeLocation' group={this.locationGroup} onCheckedChange={this._selectHomeLocation} />
-                  <TouchableOpacity style={{width:Metrics.screenWidth}} onPress={() => {if(!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle()}}>
-                  <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
+                  <TouchableOpacity style={{width: Metrics.screenWidth}} onPress={() => { if (!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle() }}>
+                    <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.locationText}>({this.props.homeAddress})</Text>
                 <View style={styles.locationRadio}>
                   <MKRadioButton style={styles.radio} ref='differentLocation' group={this.locationGroup} onCheckedChange={this._selectDifferentLocation} />
-                  <View style={{width:Metrics.screenWidth}}>
-                <TouchableOpacity style={{width:Metrics.screenWidth}} onPress={() => {if(!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle()}}>
-                  <Text style={styles.radioText} >{I18n.t('differentLocationTitle')}</Text>
-                  </TouchableOpacity>
+                  <View style={{width: Metrics.screenWidth}}>
+                    <TouchableOpacity style={{width: Metrics.screenWidth}} onPress={() => { if (!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle() }}>
+                      <Text style={styles.radioText} >{I18n.t('differentLocationTitle')}</Text>
+                    </TouchableOpacity>
                   </View>
                 </View>
               </HideableView>
@@ -518,7 +508,7 @@ class ProviderSearch extends Component {
           </ScrollView>
         </View>
 
-        <View style={{flex: 2}}>
+        <View style={{flex: 1}}>
           {
             this.state.floatClicked ?
 
@@ -526,36 +516,35 @@ class ProviderSearch extends Component {
             <View style={styles.urgentCareCircle}>
               <TouchableOpacity onPress={this.handleNeedHelp}>
                 <Flb name='urgent-care-circle'
-                  color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+                style={{backgroundColor:Colors.transparent}}
+                  color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
               </TouchableOpacity>
             </View>
           : <View>{this.state._onChecked}</View>
 
           : <Card style={styles.urgentCareContainer}>
 
-
             <Flb name='close-delete' style={styles.dismissUrgentIcon}
-                  color={Colors.flBlue.anvil} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+                  color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
                   onPress={this.handleNeedHelp} />
 
             <Text style={styles.needHelpText}>Need Help Now?</Text>
             <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
-            <View style={{flexDirection:'row'}}>
+            <View style={{flexDirection: 'row'}}>
               <View>
             <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
               <Image source={Images.viewListButton} style={styles.viewListButton} />
             </TouchableOpacity>
             </View>
-          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.001 : Metrics.section * Metrics.screenHeight * 0.00127, marginLeft:7}}>
+          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.002, 
+                                                                    marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
             <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
-                  color='red' size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+                  color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
           </View>
           </View>
           </Card>
 
-
           }
-
 
         </View>
 

@@ -273,8 +273,8 @@ export default StyleSheet.create({
     alignItems: 'center',
   //  alignSelf: 'stretch',
     resizeMode: 'stretch',
-    width: Metrics.screenWidth,
-    //marginTop: 4
+    width: Metrics.screenWidth
+    // marginTop: 4
     // marginBottom:0
   },
   textBackground: {
@@ -282,30 +282,20 @@ export default StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: Colors.snow,
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
- //   height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
-  //  padding: Metrics.mediumMargin,
- //   justifyContent: 'space-between'
-  //  alignItems: 'center',
-//    margin: 3,
-//    borderRadius: 2,
-//    shadowColor: '#000000',
- //   shadowOpacity: 0.3,
- //   shadowRadius: 1,
- //   shadowOffset: {
- //     height: 1,
- //     width: 0.3
- //   }
-
-  },
+   },
+   textBackground3: {
+    flex: 1,
+    //flexDirection: 'row',
+    backgroundColor: Colors.snow,
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.88)
+   },
 
   textBackground1: {
     flex: 1,
     flexDirection: 'column',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.92)
-   
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
 
    // alignItems: 'center',
-   
 
   },
 
@@ -313,12 +303,10 @@ export default StyleSheet.create({
 
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: Colors.bg2,
+    backgroundColor: Colors.bg2
    // padding: Metrics.mediumMargin,
   //  justifyContent: 'space-between',
   //  alignItems: 'center',
-
-   
 
   },
 

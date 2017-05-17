@@ -43,7 +43,7 @@ export function * member (api, {smToken}) {
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }
-    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, visibleDashboard, defaultContract,logoutUrl))
+    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, visibleDashboard, defaultContract, logoutUrl))
   } else {
     console.tron.log('failure ')
     console.tron.log(response)
