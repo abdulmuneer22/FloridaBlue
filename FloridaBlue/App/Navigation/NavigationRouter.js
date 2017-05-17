@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react'
+import { BackAndroid } from 'react-native'
 import { Scene, Router, ActionConst } from 'react-native-router-flux'
 import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
@@ -50,7 +51,7 @@ class NavigationRouter extends Component {
       <Router>
             <Scene key='drawer' component={NavigationDrawer} open={false}>
             <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='login' component={Login} title='Login' hideNavBar panHandlers={null} />
+            <Scene initial key='login' component={Login} title='Login' hideNavBar panHandlers={null} type={ActionConst.RESET} />
             <Scene key='TouchTOU' component={TouchTOU} title="Touch TOU" hideNavBar />
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
@@ -65,7 +66,7 @@ class NavigationRouter extends Component {
             <Scene key='useridhint' component={UserIdHint} title='UserIdHint page' hideNavBar />
             <Scene key='passwordHint' component={PasswordHint} title='PasswordHint page' hideNavBar />
             <Scene key='securityHint' component={SecurityHint} title='SecurityHint page' hideNavBar />
-            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar type={ActionConst.RESET} />
+            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar type={ActionConst.RESET}/>
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />
             <Scene key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
             <Scene key='SupportScreen' component={SupportScreen} title='Support Page' hideNavBar />
