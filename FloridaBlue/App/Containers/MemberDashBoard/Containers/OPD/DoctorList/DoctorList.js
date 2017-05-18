@@ -79,11 +79,8 @@ constructor(props){
   componentWillReceiveProps (newProps) {
     console.tron.log("displaying new props****", newProps)
     if (this.state.isFetchingMore) {
-
       this.props.attemptProviderSearch(newProps)
       this.setState({isFetchingMore: false})
-
-     
     }
 
     if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
@@ -111,27 +108,21 @@ constructor(props){
     </Image>)
   }
 
-    loadMore() {
-       var currentLimit = this.state.listLimit
-        console.log("currentLimit=>" , currentLimit)
+  loadMore() {
+        var currentLimit = this.state.listLimit
         var newLimit = currentLimit
-        console.log("new limit =>" , newLimit)
-
+        var numberOfCardsPerscreen = this.state.totalNumberOfCardPerScreen
         this.setState({
             listLimit : newLimit + 10
         })
-
-            if(this.state.totalNumberOfCardPerScreen == newLimit) {
+       if(this.state.totalNumberOfCardPerScreen == newLimit) {
            this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
            this.state.isFetchingMore = true
-
            this.setState({
-        //      // listLimit : this.state.totalNumberOfCardPerScreen,
                totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30
            })
-         }
-
-          }
+      }
+  }
 
   _displayCondition () {
     if (this.props.fetching) {
@@ -140,15 +131,11 @@ constructor(props){
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.provider && this.props.provider.data) {
- 
       return (
         <View style={styles.container}>
           {this.props.provider ?
             <View style={{flex: 9}}>
-
               <ScrollView >
- 
-
               {this.props.showUrgentCareBanner ?
                 <View style={{flex: 1, margin: 15, marginTop:-5 }}>
                   <Card style={{flex: 1, borderRadius: 15, backgroundColor:Colors.flBlue.red, paddingLeft:10}} >
@@ -166,14 +153,11 @@ constructor(props){
                    </Card>
                 </View>
               : null}
-
                 <View style={{flex: 1, marginTop:-20}}>
-
-                  {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
+                  {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 && (this.state.listLimit % 10 == 0) ?
                      <DoctorCard
                       cardLimit = {this.state.listLimit}
                       data={this.props.provider.data.providerList}
-                   
                   />
                   :
                       <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
@@ -196,7 +180,11 @@ constructor(props){
                     }
 
                 </View>
-               {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
+                
+               {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10 
+                  && !(this.state.listLimit > this.props.provider.data.providerList.length)
+                  && !(this.props.provider.data.providerList.length == 300 && this.props.provider.data.providerList.length == this.state.listLimit)
+                  ?
                   <View style={{flex: 1,marginBottom:10}}>
                     <TouchableOpacity
                       onPress={this.loadMore}
@@ -229,19 +217,15 @@ constructor(props){
               <View style={{flex: 1, flexDirection: 'row'}}>
                 <TouchableOpacity style={{flex: 1, alignItems:'center'}} onPress={() => this._advancedSearch()}>
                   <View style={styles.refinesearch}>
-
                      <View style={{flex: 0.25, alignItems: 'flex-end', marginRight:Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
                       <Flb
                         name='search-find'
                         size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
                         color={Colors.snow} />
                     </View>
-
                      <View style={{flex: 0.75, alignItems: 'flex-start'}}>
-
                       <Text style={styles.footerText}>Refine Search</Text>
                     </View>
-
                    </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={
