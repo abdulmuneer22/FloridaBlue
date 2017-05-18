@@ -341,8 +341,8 @@ class DoctorDetail extends Component {
                           {this.props.doctordetail && this.props.doctordetail.contractedSpecialties && this.props.doctordetail.contractedSpecialties.length > 0 ?
                             <View style={{flex: 1, marginTop:10, marginBottom:10}}>
                               <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <View style={{ flex: 3 }} />
-                                <View style={{ flex: 9 }}>
+                                <View style={{ flex: 2.5 }} />
+                                <View style={{ flex: 9.5 }}>
                                   <Text style={{
                                     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                     color: Colors.flBlue.ocean
@@ -352,9 +352,9 @@ class DoctorDetail extends Component {
                                 </View>
                               </View>
                               <View style={{ flex: 1, flexDirection: 'row', margin: 5 }}>
-                                <View style={{ flex: 3 }} />
+                                <View style={{ flex: 2.5 }} />
 
-                                <View style={{ flex: 7 }}>
+                                <View style={{ flex: 9.5 }}>
                                   <Text style={{
                                     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                     color: Colors.flBlue.grey5
@@ -369,8 +369,8 @@ class DoctorDetail extends Component {
                           {this.props.doctordetail && this.props.doctordetail.servicesOffered && this.props.doctordetail.servicesOffered.length > 0 ?
                             <View style={{flex: 1}}>
                               <View style={{ flex: 1, flexDirection: 'row' }}>
-                                <View style={{ flex: 3 }} />
-                                <View style={{ flex: 9 }}>
+                                <View style={{ flex: 2.5 }} />
+                                <View style={{ flex: 9.5 }}>
                                   <Text style={{
                                     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                     color: Colors.flBlue.ocean
@@ -382,13 +382,75 @@ class DoctorDetail extends Component {
                               {this.props.doctordetail && this.props.doctordetail.servicesOffered ? this.props.doctordetail.servicesOffered.map((value, i) => {
                                 return (<View key={i} style={{ flex: 1, flexDirection: 'row', margin: 5 }}>
 
-                                  <View style={{ flex: 3 }} />
-                                  <View style={{ flex: 7 }}>
+                                  <View style={{ flex: 2.5 }} />
+                                  <View style={{ flex: 9.5 }}>
                                     <Text style={{
                                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                       color: Colors.flBlue.grey5
                                     }}>
                                       {value.service}
+                                    </Text>
+                                  </View>
+                                </View>
+                                )
+                              }) : null }
+                            </View>
+                          : null }
+
+                           {this.props.doctordetail && this.props.doctordetail.physicianGroupAffiliations && this.props.doctordetail.physicianGroupAffiliations.length > 0 ?
+                            <View style={{flex: 1}}>
+                              <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <View style={{ flex: 2.5 }} />
+                                <View style={{ flex: 9.5 }}>
+                                  <Text style={{
+                                    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                    color: Colors.flBlue.ocean
+                                  }}>
+                           Physician Group Affiliations
+                          </Text>
+                                </View>
+                              </View>
+                              {this.props.doctordetail && this.props.doctordetail.physicianGroupAffiliations ? this.props.doctordetail.physicianGroupAffiliations.map((value, i) => {
+                                return (<View key={i} style={{ flex: 1, flexDirection: 'row', margin: 5 }}>
+
+                                  <View style={{ flex: 2.5 }} />
+                                  <View style={{ flex: 9.5 }}>
+                                    <Text style={{
+                                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                      color: Colors.flBlue.grey5
+                                    }}>
+                                      {value.displayName}
+                                    </Text>
+                                  </View>
+                                </View>
+                                )
+                              }) : null }
+                            </View>
+                          : null }
+
+                          {this.props.doctordetail && this.props.doctordetail.groupPhysicianAffiliations && this.props.doctordetail.groupPhysicianAffiliations.length > 0 ?
+                            <View style={{flex: 1}}>
+                              <View style={{ flex: 1, flexDirection: 'row' }}>
+                                <View style={{ flex: 2.5 }} />
+                                <View style={{ flex: 9.5 }}>
+                                  <Text style={{
+                                    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                    color: Colors.flBlue.ocean
+                                  }}>
+                           Physicians and Other Providers
+                          </Text>
+                                </View>
+                              </View>
+                              {this.props.doctordetail && this.props.doctordetail.groupPhysicianAffiliations ? this.props.doctordetail.groupPhysicianAffiliations.map((value, i) => {
+                                return (<View key={i} style={{ flex: 1, flexDirection: 'row', margin: 5 }}>
+
+                                  <View style={{ flex: 2.5 }} />
+                                  <View style={{ flex: 9.5 }}>
+                                    <Text style={{
+                                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                      color: Colors.flBlue.grey5
+                                    }}>
+                                      {value.displayName}
                                     </Text>
                                   </View>
                                 </View>
@@ -403,6 +465,58 @@ class DoctorDetail extends Component {
                       null
                             }
 
+                  </View>
+
+                    <View style={{ flex: 1 }}>
+                    {this.props.doctordetail && this.props.doctordetail.hospitalAffiliations && this.props.doctordetail.hospitalAffiliations.length > 0 ?
+                      <View style={{ flex: 1 }}>
+                        <TouchableOpacity onPress={this.toggle3}>
+                          <Card style={this.state.visible3 ? styles.cardStyle : styles.cardStyle1} >
+                            <View style={this.state.visible3 ? styles.plusView1 : styles.plusView}>
+                              <View style={{ flex: 2, alignItems: 'center' }}>
+                                <Flb name={this.state.visible3 ? 'minus' : 'plus'} color={this.state.visible3 ? Colors.snow : Colors.flBlue.ocean}
+                                  size={Metrics.icons.medium} />
+                              </View>
+                              <View style={{ flex: 9 }}>
+                                <Text style={this.state.visible3 ? styles.plusText1 : styles.plusText}>
+                                                Institutional Affiliations
+                                  </Text>
+                              </View>
+                            </View>
+                          </Card>
+                        </TouchableOpacity>
+
+                        {this.state.visible3 ? <HideableView visible={this.state.visible3}>
+                         
+                          <View style={{ flex: 1, flexDirection: 'row' }}>
+                            <View style={{ flex:2}} />
+                            <View style={{ flex:10, margin:5 }}>
+                              {this.props.doctordetail && this.props.doctordetail.hospitalAffiliations ? this.props.doctordetail.hospitalAffiliations.map((value, i) => {
+                                return (<View key={i} style={{flex: 1, margin:5, marginTop:10, marginBottom:10}}>
+                                  <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight:10}}>
+                        {value ?
+                         
+                            <Text style={styles.h1}>{value ? value.displayName : null}</Text>:null}
+                          <Text style={styles.h4}>{value? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text> 
+                          <Text style={styles.h4_2}>{value ? value.city:null}, {value ? value.state : null}</Text>
+                        {value ?
+                          <Text style={styles.h4_2}>{value ? value.zipCode : null}</Text> : null}
+                        {value ?
+                          <Text style={styles.h4_2}>{value ? value.telephoneNumber : null}</Text> : null}
+                      
+                      </View>
+                   
+                                </View>
+                                )
+                              })
+                                            : null}
+                            </View>
+                          </View>
+                        </HideableView> : null}
+                      </View>
+                            :
+                     null
+                            }
                   </View>
 
                   <View style={{ flex: 1 }}>

@@ -99,7 +99,14 @@ class SettingsContent extends Component {
   }
   handlePressFindCare= () => {
     this.toggleDrawer()
+    //NavigationActions[this.props.visibilityRules.opdTile.routerName]()
+     if (this.props.visibilityRules.opdTile.tileType == 'webview') {
+    NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})
+
+    } else if (this.props.visibilityRules.opdTile.tileType == 'native') {    
     NavigationActions[this.props.visibilityRules.opdTile.routerName]()
+
+    }
   }
   handlePressPayment= () => {
     this.toggleDrawer()

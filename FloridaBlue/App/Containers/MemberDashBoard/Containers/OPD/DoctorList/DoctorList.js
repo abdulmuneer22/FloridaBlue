@@ -197,7 +197,8 @@ class DoctorList extends Component {
                       data={this.props.provider.data.providerList}
 
                   />
-                  :   <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
+                  :
+                   
                         <View style={{flex: 1, margin: 15}}>
                           <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
                            <View style={{flex: 1, margin: 15}}>
@@ -207,8 +208,9 @@ class DoctorList extends Component {
                           </View>
                          </Card>
                         </View>
-                      </LinearGradient>
-                  }
+                    
+                    }
+
                 </View>
                 
                {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10 
@@ -332,9 +334,6 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.provider.fetching,
     error: state.provider.error,
-   // leftActive: state.provider.leftActive,
-    //rightActive: state.provider.rightActive,
-    //saveProvider: state.saveprovider.data,
     provider: state.provider.data,
     latitude: state.provider.latitude,
     longitude: state.provider.longitude,
@@ -381,15 +380,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
     attemptUrgentSearch: (data) => dispatch(ProviderActions.sendUrgentSearchRequest(data)),
-    // attemptHandleLeft: () => dispatch(ProviderActions.providerClickleft()),
-    // attemptHandleRight: () => dispatch(ProviderActions.providerClickright()),
-    // addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
-    // removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey)),
     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),
     changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta)),
-  // changeStart: (start) => dispatch(ProviderActions.changeStart(start)),
     changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
   }

@@ -73,6 +73,7 @@ class DoctorCard extends Component {
   }
 
   render () {
+   
     return (
       <View style={styles.container}>
         <View style={{ flex: 1, marginTop:-5}}>
@@ -86,12 +87,19 @@ class DoctorCard extends Component {
                       <Text style={styles.mapHeaderText}>{this.props.data.displayName}</Text>
                     </TouchableOpacity>
                   : null}
+                  <View style={{flexDirection:'row'}}>
                   {this.props.data ?
-                    <Text style={styles.mapSubText}>{this.props.data.primarySpecialty}</Text> : null}
-                  {this.props.data ?
-                    <Text style={styles.h4}>{this.props.data.addressLine1}, {this.props.data.addressLine2}</Text> : null}
-                  {this.props.data ?
-                    <Text style={styles.mapAdressText}>{this.props.data.city}, {this.props.data.state}, {this.props.data.zipCode}</Text> : null}
+                  <View >
+                    <Text style={styles.mapSubText}>{this.props.data.primarySpecialty}</Text> 
+                    </View>: null}
+                    <View style={{marginTop:Metrics.baseMargin * Metrics.screenHeight * 0.0015, marginLeft:Metrics.section * Metrics.screenWidth * 0.005}}>
+                       {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y' ?
+                      <Flb name="accessibility"  size={20} color={Colors.flBlue.ocean}/>  : null}
+                      </View>
+                    </View>   
+                    <Text style={styles.h4}>{this.props.data ? this.props.data.addressLine1 : null}, {this.props.data ? this.props.data.addressLine2 : null}</Text> 
+                  
+                    <Text style={styles.mapAdressText}>{this.props.data ? this.props.data.city : null}, { this.props.data ? this.props.data.state : null}, {this.props.data ? this.props.data.zipCode : null}</Text>
                   {this.props.data ?
                     <Text style={styles.mapAdressText}>{this.props.data.telephoneNumber}</Text> : null}
                    {this.props.data ?
