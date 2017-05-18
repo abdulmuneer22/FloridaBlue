@@ -103,7 +103,7 @@ class DoctorList extends Component {
     const milesOfLatAtEquator = 69
     this.props.changeLatDelta(2 / milesOfLatAtEquator)
     this.props.changeLongDelta(2 / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
-    console.tron.log('provider.data.providerList.length ==>' + newProps.provider.data.providerList.length )
+   
   }
 
   _renderHeader () {
