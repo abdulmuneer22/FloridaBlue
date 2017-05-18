@@ -453,20 +453,7 @@ class AdvancedSearch extends Component {
         {this._renderHeader()}
         <ScrollView style={{ flex: 1, marginBottom: 20 }}>
           <View style={styles.careView}>
-            <Text style={styles.h1}>{I18n.t('providerSearchTitle')}</Text>
-            <View style={styles.searchTypeRadioView}>
-              <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
-              <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
-              <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section
-              }} group={this.searchTypeGroup} />
-              <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
-            </View>
-
-            <HideableView visible={this.state.knownCareState} removeWhenHidden>
+           
               <MKTextField
                 ref='providerName'
                 style={styles.careTextField}
@@ -484,9 +471,9 @@ class AdvancedSearch extends Component {
                 tintColor={Colors.black}
                 onChangeText={this.props.changeProviderName}
               />
-            </HideableView>
+           
 
-            <HideableView visible={this.state.unknownCareState} removeWhenHidden>
+          
               <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                 <MKTextField
                   ref='careType'
@@ -504,7 +491,6 @@ class AdvancedSearch extends Component {
                 />
               </ModalDropdown>
               <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
-            </HideableView>
 
             <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
               <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>

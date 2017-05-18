@@ -35,45 +35,54 @@ class Switch extends Component {
     }
 
     var twoTabLeftActiveStyle = {
-      borderBottomLeftRadius: 15,
+      borderBottomLeftRadius: Metrics.mediumMargin * Metrics.screenHeight * 0.002,
       borderColor: Colors.flBlue.ocean,
       borderRightWidth: 1,
-      borderTopLeftRadius: 15,
-      padding: 4,
+      borderTopLeftRadius: Metrics.mediumMargin * Metrics.screenHeight * 0.002,
+      padding: Metrics.smallMargin * Metrics.screenHeight * 0.002,
       backgroundColor: Colors.flBlue.ocean,
-      width: Metrics.screenWidth * 0.40
+      width: Metrics.screenWidth * 0.45
     }
 
     var twoTabRightActiveStyle = {
-      borderBottomRightRadius: 15,
+      borderBottomRightRadius: Metrics.mediumMargin * Metrics.screenHeight * 0.002,
       borderColor: Colors.flBlue.ocean,
       borderLeftWidth: 1,
-      borderTopRightRadius: 15,
-      padding: 4,
+      borderTopRightRadius: Metrics.mediumMargin * Metrics.screenHeight * 0.002,
+      padding: Metrics.smallMargin * Metrics.screenHeight * 0.002,
       backgroundColor: Colors.flBlue.ocean,
-      width: Metrics.screenWidth * 0.40
+      width: Metrics.screenWidth * 0.45
     }
     var oneTextActiveStyle = {
       color: 'white',
-      alignSelf: 'center'
+      alignSelf: 'center',
+      fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025
     }
     var twoTextActiveStyle = {
       color: 'white',
-      alignSelf: 'center'
+      alignSelf: 'center',
+      fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025
     }
     var oneTabInactiveStyle = {
-      backgroundColor: Colors.flBlue.ocean,
-      padding: 4,
+     // backgroundColor: Colors.flBlue.ocean,
+      padding: Metrics.smallMargin * Metrics.screenHeight * 0.002,
       backgroundColor: 'white',
-      borderRadius: 25,
-      width: Metrics.screenWidth * 0.40
+      borderRadius: Metrics.section * Metrics.screenHeight * 0.002,
+      width: Metrics.screenWidth * 0.5
     }
     var twoTabInactiveStyle = {
-      backgroundColor: Colors.flBlue.ocean,
-      padding: 4,
-      backgroundColor: 'white',
-      borderRadius: 25,
-      width: Metrics.screenWidth * 0.40
+      borderBottomRightRadius: Metrics.mediumMargin * Metrics.screenHeight * 0.002,
+      borderTopRightRadius: Metrics.mediumMargin * Metrics.screenHeight * 0.002,
+      backgroundColor: Colors.snow,
+      padding: Metrics.smallMargin * Metrics.screenHeight * 0.002,
+      width: Metrics.screenWidth * 0.45
+    }
+    var twoTabLeftInactiveStyle = {
+      borderBottomLeftRadius: Metrics.mediumMargin * Metrics.screenHeight * 0.002,
+      borderTopLeftRadius: Metrics.mediumMargin * Metrics.screenHeight * 0.002,
+      backgroundColor: Colors.snow,
+      padding: Metrics.smallMargin * Metrics.screenHeight * 0.002,
+      width: Metrics.screenWidth * 0.45
     }
 
     var oneTextInactiveStyle = {
@@ -82,7 +91,8 @@ class Switch extends Component {
     }
     var twoTextInactiveStyle = {
       color: 'darkgrey',
-      alignSelf: 'center'
+      alignSelf: 'center',
+      fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025
     }
 
     var threeTabActiveStyle = {
@@ -110,16 +120,16 @@ class Switch extends Component {
     }
 
     var oneTabHeaderStyle = {
-      marginTop: 15,
-      borderRadius: 25,
+      marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.002,
+      borderRadius: Metrics.section * Metrics.screenHeight * 0.002,
       borderWidth: 6,
       borderColor: Colors.flBlue.ocean
     }
 
     var twoTabHeaderStyle = {
       flexDirection: 'row',
-      marginTop: 15,
-      borderRadius: 25,
+      marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.002,
+      borderRadius: Metrics.section * Metrics.screenHeight * 0.002,
       borderWidth: 2,
       borderColor: Colors.flBlue.ocean
     }
@@ -284,7 +294,7 @@ class Switch extends Component {
             )
             : _twoTabView(
             twoTabRightActiveStyle,
-            twoTabInactiveStyle,
+            twoTabLeftInactiveStyle,
             twoTextActiveStyle,
             twoTextInactiveStyle,
             twoTabHeaderStyle,

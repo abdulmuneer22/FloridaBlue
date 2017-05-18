@@ -153,7 +153,7 @@ constructor(props){
                 <View style={{flex: 1, margin: 15, marginTop:-5 }}>
                   <Card style={{flex: 1, borderRadius: 15, backgroundColor:Colors.flBlue.red, paddingLeft:10}} >
                      <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
-                      <View style={{ flex: 0.15 }}>
+                      <View style={{ flex: 0.15,marginRight:10 }}>
                         <Flb name='accident' size={Metrics.icons.large} color={Colors.snow} />
                       </View>
                       <View style={{ flex: 0.85 }}>

@@ -536,7 +536,7 @@ class ProviderSearch extends Component {
               <Image source={Images.viewListButton} style={styles.viewListButton} />
             </TouchableOpacity>
             </View>
-          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.002, 
+          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016, 
                                                                     marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
             <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
                   color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />

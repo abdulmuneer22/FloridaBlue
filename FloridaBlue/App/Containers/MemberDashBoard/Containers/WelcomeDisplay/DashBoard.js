@@ -182,14 +182,12 @@ class LandingScreen extends Component {
              // backgroundColor:'red',
                // flexDirection: 'row',
                 height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
-     // height : window.height * 0.5,
                 justifyContent: 'center',
                 alignItems: 'center',
                 width: Metrics.screenWidth,
-                marginTop: (Platform.OS === 'ios') ? 4 : 0
-    // marginBottom:0}}
-              }}
-    >
+                marginTop: 4
+
+              }} >
 
               <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
                 <View style={{

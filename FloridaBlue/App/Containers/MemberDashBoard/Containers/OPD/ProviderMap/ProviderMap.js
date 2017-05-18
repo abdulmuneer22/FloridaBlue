@@ -120,7 +120,7 @@ class ProviderMap extends Component {
   _renderLocationDetail (location) {
     return (
       <View style={{flex:1, marginTop:(Platform.OS === 'ios') ? 10 : -5,
-      marginBottom:(Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0027 : 0
+      marginBottom:(Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.002 : 0
       }}
       >
       <DoctorCard data={location} />
@@ -151,18 +151,18 @@ class ProviderMap extends Component {
               <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom:Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003}} showsButtons={true} showsPagination={false}
                 width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
                 height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.49)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.59))}
-                bottom={(Platform.OS === 'ios') ? 0 : -Metrics.section * Metrics.screenHeight * 0.0013}
+                bottom={(Platform.OS === 'ios') ? 0 : -Metrics.section * Metrics.screenHeight * 0.0002}
                 nextButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
                                           // fontWeight:'400',
-                                           marginRight:-Metrics.baseMargin * Metrics.screenWidth * 0.002, 
-                                           color:Colors.flBlue.ocean, 
-                                           marginBottom:Metrics.textHeight * Metrics.screenHeight * 0.003}}>›</Text>}
+                                           marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : 0, 
+                                           color:Colors.flBlue.grey3, 
+                                           marginBottom:(Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
                 onMomentumScrollEnd={this._locationSwiped} 
                 prevButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
                                            //fontWeight:'400',
-                                           marginLeft:-Metrics.baseMargin * Metrics.screenWidth * 0.002, 
-                                           color:Colors.flBlue.ocean, 
-                                           marginBottom:Metrics.textHeight * Metrics.screenHeight * 0.003}}>‹</Text>}
+                                           marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : 0, 
+                                           color:Colors.flBlue.grey3, 
+                                           marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
                 
                 
                 >
