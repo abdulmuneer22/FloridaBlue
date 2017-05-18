@@ -197,8 +197,7 @@ class DoctorList extends Component {
                       data={this.props.provider.data.providerList}
 
                   />
-                  :
-                      <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
+                  :   <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
                         <View style={{flex: 1, margin: 15}}>
                           <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
                            <View style={{flex: 1, margin: 15}}>
