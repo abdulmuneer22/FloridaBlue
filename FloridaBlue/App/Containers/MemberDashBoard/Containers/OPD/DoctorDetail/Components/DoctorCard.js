@@ -77,12 +77,22 @@ class DoctorCard extends Component {
                   {this.props.data ?
                     <Text style={styles.h1}>{this.props.data.displayName}</Text>
                                         : null}
+
+
+                <View style={{flex:1, flexDirection:'row'}}>
+                  <View style={{flex:1}}>
                   {this.props.data ?
                     <Text style={styles.h2}>{this.props.data.primarySpecialty}</Text> : null}
-                  {this.props.data && this.props.data.address[0] ?
-                    <Text style={styles.h4}>{this.props.data.address[0].addressLine1}, {this.props.data.address[0].addressLine2}</Text> : null}
-                  {this.props.data && this.props.data.address[0] ?
-                    <Text style={styles.h4_2}>{this.props.data.address[0].city}, {this.props.data.address[0].state}, {this.props.data.address[0].zipCode}</Text> : null}
+                    </View>
+                    {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y' ?
+                    <View style={{flex:1,alignItems:'center', marginTop:10}}>
+                      <Flb name="accessibility" size={Metrics.icons.medium * Metrics.screenWidth* 0.002} color={Colors.flBlue.ocean}/> 
+                    </View>: null }
+                   </View> 
+                 
+                    <Text style={styles.h4}>{this.props.data && this.props.data.address[0] ? this.props.data.address[0].addressLine1 : null}, {this.props.data && this.props.data.address[0] ? this.props.data.address[0].addressLine2 : null}</Text> 
+                  
+                    <Text style={styles.h4_2}>{this.props.data && this.props.data.address[0] ? this.props.data.address[0].city : null}, { this.props.data && this.props.data.address[0] ? this.props.data.address[0].state : null}, {this.props.data && this.props.data.address[0] ? this.props.data.address[0].zipCode : null}</Text>
                   {this.props.data && this.props.data.address[0] ?
                     <Text style={styles.h4_2}>{this.props.data.address[0].telephoneNumber}</Text> : null}
 

@@ -176,7 +176,7 @@ constructor(props){
                    
                   />
                   :
-                      <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
+                   
                         <View style={{flex: 1, margin: 15}}>
 
                           <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
@@ -192,7 +192,7 @@ constructor(props){
                          </Card>
 
                         </View>
-                      </LinearGradient>
+                    
                     }
 
                 </View>
