@@ -121,7 +121,7 @@ export default StyleSheet.create({
     height: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0036
   },
   advancedSearchLink: {
-    marginTop: Metrics.doubleBaseMargin * 2,
+    marginTop: Metrics.mediumMargin * 2,
     paddingBottom: Metrics.doubleBaseMargin * 2,
     alignItems: 'center'
   },

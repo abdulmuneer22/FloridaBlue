@@ -124,10 +124,10 @@ class MyPlanSwiper extends Component {
        showsButtons 
        dotStyle={{width: 10, height: 10, marginLeft: 10, borderRadius: 5, top: 50, position: 'relative'}}
         activeDotStyle={{width: 10, height: 10, borderRadius: 5, marginLeft: 10, top: 50, position: 'relative'}}
-        nextButton={<Text style={{fontSize: 100,
+        nextButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
     color: Colors.flBlue.grey1,
     fontFamily:Fonts.type.base }}>›</Text>} 
-        prevButton ={<Text style={{fontSize: 100,
+        prevButton ={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
     color: Colors.flBlue.grey1,
     fontFamily: Fonts.type.base}}>‹</Text>}
    // autoplay={true}
