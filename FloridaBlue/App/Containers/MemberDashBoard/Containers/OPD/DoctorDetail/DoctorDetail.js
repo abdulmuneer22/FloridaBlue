@@ -468,7 +468,7 @@ class DoctorDetail extends Component {
                   </View>
 
                     <View style={{ flex: 1 }}>
-                    {!this.props.doctordetail && this.props.doctordetail.hospitalAffiliations && this.props.doctordetail.hospitalAffiliations.length > 0 ?
+                    {this.props.doctordetail && this.props.doctordetail.hospitalAffiliations && this.props.doctordetail.hospitalAffiliations.length > 0 ?
                       <View style={{ flex: 1 }}>
                         <TouchableOpacity onPress={this.toggle3}>
                           <Card style={this.state.visible3 ? styles.cardStyle : styles.cardStyle1} >
@@ -489,8 +489,8 @@ class DoctorDetail extends Component {
                         {this.state.visible3 ? <HideableView visible={this.state.visible3}>
                          
                           <View style={{ flex: 1, flexDirection: 'row' }}>
-                            <View style={{ flex: 2.5 }} />
-                            <View style={{ flex: 9.5, margin:5 }}>
+                            <View style={{ flex:2}} />
+                            <View style={{ flex:10, margin:5 }}>
                               {this.props.doctordetail && this.props.doctordetail.hospitalAffiliations ? this.props.doctordetail.hospitalAffiliations.map((value, i) => {
                                 return (<View key={i} style={{flex: 1, margin:5, marginTop:10, marginBottom:10}}>
                                   <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight:10}}>
@@ -503,8 +503,7 @@ class DoctorDetail extends Component {
                           <Text style={styles.h4_2}>{value ? value.zipCode : null}</Text> : null}
                         {value ?
                           <Text style={styles.h4_2}>{value ? value.telephoneNumber : null}</Text> : null}
-                        {value ?
-                          <Text style={styles.h4_3}>{value.distance} miles</Text> : null}
+                      
                       </View>
                    
                                 </View>
