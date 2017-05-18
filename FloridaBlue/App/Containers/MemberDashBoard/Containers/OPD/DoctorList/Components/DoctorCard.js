@@ -98,12 +98,21 @@ class DoctorCard extends Component {
                           <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
                             <Text style={styles.h1}>{value.displayName}</Text>
                           </TouchableOpacity> : null}
+                         <View style={{flex:1, flexDirection:'row'}}>
+                         
                         {value ?
-                          <Text style={styles.h2}>{value.primarySpecialty}</Text> : null}
-                        {value ?
-                          <Text style={styles.h4}>{value.addressLine1}, {value.addressLine2}</Text> : null}
-                        {value ?
-                          <Text style={styles.h4_2}>{value.city}, {value.state}</Text> : null}
+                        <View style={{flex:0.7}}> 
+                          <Text style={styles.h2}>{value.primarySpecialty}</Text> 
+                          </View>: null}
+                          {value && value.handicappedAccessIn && value.handicappedAccessIn == 'Y' ?
+                    <View style={{flex:0.3,alignItems:'center', marginTop:10}}>
+                      <Flb name="accessibility" size={Metrics.icons.medium * Metrics.screenWidth* 0.002} color={Colors.flBlue.ocean}/> 
+                    </View>: null }
+                   </View> 
+                       
+                          <Text style={styles.h4}>{value ? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text>
+                       
+                          <Text style={styles.h4_2}>{value ? value.city :null}, {value ? value.state : null}</Text> 
                         {value ?
                           <Text style={styles.h4_2}>{value.zipCode}</Text> : null}
                         {value ?
