@@ -82,12 +82,10 @@ constructor(props){
       this.props.attemptProviderSearch(newProps)
       this.setState({isFetchingMore: false})
     }
-
     if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
       this.props.changeLatitude(newProps.provider.data.originLatitude)
       this.props.changeLongitude(newProps.provider.data.originLongitude)
     }
-
     // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
     const milesOfLatAtEquator = 69
     this.props.changeLatDelta(2 / milesOfLatAtEquator)
@@ -154,7 +152,8 @@ constructor(props){
                 </View>
               : null}
                 <View style={{flex: 1, marginTop:-20}}>
-                  {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 && (this.state.listLimit % 10 == 0) ?
+                  {
+                     this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 && (this.state.listLimit % 10 == 0) ?
                      <DoctorCard
                       cardLimit = {this.state.listLimit}
                       data={this.props.provider.data.providerList}
@@ -162,23 +161,16 @@ constructor(props){
                   :
                       <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
                         <View style={{flex: 1, margin: 15}}>
-
                           <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
-
                            <View style={{flex: 1, margin: 15}}>
-
                             <Text style={{fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                             color: Colors.flBlue.anvil
                           }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
-
                           </View>
-
                          </Card>
-
                         </View>
                       </LinearGradient>
-                    }
-
+                  }
                 </View>
                 
                {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10 
@@ -189,7 +181,7 @@ constructor(props){
                     <TouchableOpacity
                       onPress={this.loadMore}
                       style={{
-                        backgroundColor: 'grey',
+                        backgroundColor: Colors.flBlue.ocean,
                         paddingLeft: 14,
                         paddingRight: 14,
                         paddingTop: 10,
@@ -202,7 +194,7 @@ constructor(props){
                       }}>
                       <Text style={{
                         color: 'white'
-                      }}>Load More</Text>
+                      }}>Show More</Text>
                     </TouchableOpacity>
                   </View> : null} 
                 </ScrollView>
