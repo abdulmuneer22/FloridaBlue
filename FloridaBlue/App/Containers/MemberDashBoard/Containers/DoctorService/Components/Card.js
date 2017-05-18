@@ -28,7 +28,7 @@ const theme = getTheme()
 const HtMLstyles = StyleSheet.create({
   p: {
     fontWeight: '300',
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0015,
     color: Colors.flBlue.grey5
 
   },

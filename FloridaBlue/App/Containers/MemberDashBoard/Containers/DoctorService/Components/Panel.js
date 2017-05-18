@@ -68,18 +68,19 @@ class Panel extends Component {
     }
 
     return (
+                <TouchableOpacity
+            style={styles.button}
+            onPress={this.toggle.bind(this)}
+            underlayColor={Colors.snow}>
       <Animated.View
         style={[styles.container, {height: this.state.animation}]}>
         <View style={styles.titleContainer} onLayout={this._setMinHeight.bind(this)}>
           <Text style={styles.title}>{this.state.title}</Text>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={this.toggle.bind(this)}
-            underlayColor={Colors.snow}>
+
 
             <Flb name={icon} size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 15, backgroundColor: Colors.transparent }}
               color={Colors.flBlue.purple} />
-          </TouchableHighlight>
+        
         </View>
 
         <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
@@ -88,6 +89,7 @@ class Panel extends Component {
         </View>
 
       </Animated.View>
+        </TouchableOpacity>
     )
   }
 }
@@ -124,7 +126,7 @@ var styles = StyleSheet.create({
         // bottom: 10
 
     margin: 10,
-    paddingTop: 0
+    paddingTop: 10
   }
 })
 
