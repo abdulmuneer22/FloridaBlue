@@ -58,7 +58,8 @@ class DoctorList extends Component {
           loadingMore:true,
           initialCount:0,
           finalCount:0,
-          asynCall : true
+          asynCall : true,
+          displayBannerInfo : false
 
       }
       this.loadMore = this.loadMore.bind(this)
@@ -76,20 +77,20 @@ class DoctorList extends Component {
   }
 
   async providerSearchList(){
-
     this.props.changeEnd(300);
-    this.props.attemptProviderSearch(this.props)
-    //console.tron.log('providerSearchList Called Length :: '+ this.props.provider.data.providerList.length);
+    if(this.props.showUrgentCareBanner){
+       this.props.attemptUrgentSearch(this.props)
+    }else{
+      this.props.attemptProviderSearch(this.props)
+    }
   }
 
   componentDidMount () {
-      //console.tron.log('componentDidMount Called');
       //Call asynchronously to get more data
       this.providerSearchList();
   }
 
   componentWillReceiveProps (newProps) {
-    console.tron.log("****ComponentWillReceiveProps Displaying new props****")
     /*if (this.state.isFetchingMore) {
       this.props.attemptProviderSearch(newProps)
       this.setState({isFetchingMore: false})
@@ -103,7 +104,6 @@ class DoctorList extends Component {
     const milesOfLatAtEquator = 69
     this.props.changeLatDelta(2 / milesOfLatAtEquator)
     this.props.changeLongDelta(2 / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
-    console.tron.log('provider.data.providerList.length ==>' + newProps.provider.data.providerList.length )
   }
 
   _renderHeader () {
@@ -127,13 +127,13 @@ class DoctorList extends Component {
         this.setState({
             listLimit : newLimit + 10
         })
-       if(this.state.totalNumberOfCardPerScreen == newLimit) {
+       /*if(this.state.totalNumberOfCardPerScreen == newLimit) {
            //this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
            //this.state.isFetchingMore = true
            this.setState({
                totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30
            })
-      }
+      }*/
   }
 
   _displayCondition () {
@@ -165,13 +165,37 @@ class DoctorList extends Component {
                    </Card>
                 </View>
               : null}
-                { console.tron.log ('Number records begining' + this.props.provider.data.providerList.length )}
+                {  
+                  this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 300 ?
+                    <View style={{flex: 1, margin: 15, marginTop:-5 }}>
+                      <Card style={{flex: 1, borderRadius: 15, backgroundColor:Colors.flBlue.deepBlue, paddingLeft:10}} >
+                        <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                          <View style={{ flex: 0.15 }}>
+                            <Flb name='flag' size={Metrics.icons.medium} color={Colors.snow} />
+                          </View>
+                          <View style={{ flex: 0.85 }}>
+                            <Text style={{
+                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                              color: Colors.snow
+                            }}>
+                            <Text style={{
+                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                              color: Colors.snow,fontWeight:'700'
+                            }}>Please Note:</Text>Your inquiry resulted in a very large list of providers. For now, we have limited your display to only the first 300 providers.</Text>
+                          </View>
+                        </View>
+                      </Card>
+                    </View>
+                  : null
+                }
+
                 <View style={{flex: 1, marginTop:-20}}>
-                  {
-                     this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 && (this.state.listLimit % 10 == 0) ?
+                  {                 
+                     this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
                      <DoctorCard
                       cardLimit = {this.state.listLimit}
                       data={this.props.provider.data.providerList}
+
                   />
                   :
                       <LinearGradient style={{flex: 1, margin: 15, borderRadius: 20}} colors={['#EECDA3', '#EF629F']}>
@@ -357,6 +381,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
+    attemptUrgentSearch: (data) => dispatch(ProviderActions.sendUrgentSearchRequest(data)),
     // attemptHandleLeft: () => dispatch(ProviderActions.providerClickleft()),
     // attemptHandleRight: () => dispatch(ProviderActions.providerClickright()),
     // addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
