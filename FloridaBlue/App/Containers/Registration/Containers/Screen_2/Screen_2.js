@@ -31,6 +31,7 @@ import I18n from 'react-native-i18n'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import RegistrationActions from '../../../../Redux/RegistrationRedux'
+import HTMLView from 'react-native-htmlview'
 
 const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
@@ -145,8 +146,10 @@ class Screen_2 extends React.Component {
 
           {this.props.personalInformationStatus && (this.props.personalInformationStatus != null && this.props.personalInformationStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
+             <View style={styles.messagePadding}>
             <View>
               <HTMLView value={'<p>'+this.props.personalInformationStatusMessage+'</P>'} stylesheet={HtMLstyles}/> 
+              </View>
               </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangePersonalInformationStatus(null) }}>

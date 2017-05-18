@@ -82,8 +82,6 @@ export function * sendCareTypeRequest (api, {data}) {
 
   if (response.ok) {
     var data = response.data
-    // var allCategory = {"categoryCode": "ALL", "categoryName": ""}
-   // data.data.planCategoryList.splice(0, 0, allCategory)
     yield put(ProviderActions.sendCareTypeSuccess(data))
   } else {
     var error = response.problem
@@ -98,9 +96,13 @@ export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
   if (response.ok) {
     var data = response.data
     var allCategory = {'categoryCode': 'ALL', 'subCategoryCode': '', 'subCategoryName': 'All'}
-   // var noPrefCategory = {"categoryCode": "","subCategoryCode": "","subCategoryName": ""}
     data.data.planSubCategoryList.splice(0, 0, allCategory)
-   // data.data.planSubCategoryList.push(noPrefCategory)
+    
+    if (selectedCategoryCode == "07") {
+      var mailOrderCateogry = {'categoryCode': '07', 'subCategoryCode': '999', 'subCategoryName': 'Mail Order'}
+      data.data.planSubCategoryList.push(mailOrderCateogry)
+    }
+
     yield put(ProviderActions.changeCategoryCode(selectedCategoryCode))
     yield put(ProviderActions.sendSpecialityTypeSuccess(data))
   } else {

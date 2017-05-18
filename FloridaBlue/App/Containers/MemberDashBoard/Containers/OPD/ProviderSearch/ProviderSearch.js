@@ -164,11 +164,17 @@ class ProviderSearch extends Component {
 
   _specialitySelected (index, value:string) {
     var selectedSubCategoryCode = this.props.planSubCategoryList[index].subCategoryCode
-    this.props.changeSubCategoryCode(selectedSubCategoryCode)
-    this.props.changeSpecialityType(value)
-    this.setState({specialityState: false}, function () {
-      this.setState({specialityState: true})
-    })
+
+    if (this.props.categoryCode == "07" && selectedSubCategoryCode == "999" || selectedSubCategoryCode == "701") {
+      this.props.changeSubCategoryCode(selectedSubCategoryCode)
+      NavigationActions.ProviderTypeInfo()
+    } else {
+      this.props.changeSubCategoryCode(selectedSubCategoryCode)
+      this.props.changeSpecialityType(value)
+      this.setState({specialityState: false}, function () {
+        this.setState({specialityState: true})
+      })
+    }
   }
 
   _editLocation (event) {
@@ -536,7 +542,7 @@ class ProviderSearch extends Component {
               <Image source={Images.viewListButton} style={styles.viewListButton} />
             </TouchableOpacity>
             </View>
-          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016, 
+          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
                                                                     marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
             <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
                   color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />

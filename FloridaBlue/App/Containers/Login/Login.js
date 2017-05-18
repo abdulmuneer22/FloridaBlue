@@ -212,24 +212,24 @@ class Login extends Component {
 
     BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
 
-    if (Platform.OS === 'ios') {
-      TouchManager.checkTouchStatus((error, touchInfo) => {
-        if (error) {
-          console.tron.log(error)
-        } else {
-          var touchStatus = touchInfo[0]
-          if (touchStatus == 'YES') {
-            this.props.changeTouchEnabled(true)
-            this.setState({touchCheckboxVisible: false})
-            this._authenticateUserWithTouch()
-          } else {
-            this.props.changeTouchEnabled(false)
-            this.setState({touchCheckboxVisible: true})
-            this.setState({touchChecked: false})
-          }
-        }
-      })
-    }
+    // if (Platform.OS === 'ios') {
+    //   TouchManager.checkTouchStatus((error, touchInfo) => {
+    //     if (error) {
+    //       console.tron.log(error)
+    //     } else {
+    //       var touchStatus = touchInfo[0]
+    //       if (touchStatus == 'YES') {
+    //         this.props.changeTouchEnabled(true)
+    //         this.setState({touchCheckboxVisible: false})
+    //         this._authenticateUserWithTouch()
+    //       } else {
+    //         this.props.changeTouchEnabled(false)
+    //         this.setState({touchCheckboxVisible: true})
+    //         this.setState({touchChecked: false})
+    //       }
+    //     }
+    //   })
+    // }
   }
 
   componentWillReceiveProps (newProps) {
@@ -484,12 +484,19 @@ class Login extends Component {
                   placeholderTextColor={Colors.steel} />
               </View>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
-              {Platform.OS === 'ios' && this.state.touchCheckboxVisible ?
-                <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchID() }}>
-                  <MKCheckbox style={styles.radio} checked={this.props.touchEnabled} onPress={() => { this._handleTouchID() }} />
-                  <Text style={styles.link}>{I18n.t('enableTouchID')}</Text>
+              {/*
+                {Platform.OS === 'ios' && this.state.touchCheckboxVisible ?
+                  <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchID() }}>
+                    <MKCheckbox style={styles.radio} checked={this.props.touchEnabled} onPress={() => { this._handleTouchID() }} />
+                    <Text style={styles.link}>{I18n.t('enableTouchID')}</Text>
+                  </TouchableOpacity>
+                : <View style={styles.spaceRow} />}
+              */}
+              <View style={styles.forgotRow}>
+                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
+                  <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
                 </TouchableOpacity>
-              : <View style={styles.spaceRow} />}
+              </View>
             </LoginView>
 
             <LoginButtonView>
@@ -505,11 +512,6 @@ class Login extends Component {
                 <Text style={styles.link}>{I18n.t('signUp')}</Text>
               </TouchableOpacity>
             </SignUpView>
-            <View style={styles.forgotRow}>
-              <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
-                <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
-              </TouchableOpacity>
-            </View>
           </View>
 
           {this.state.modalVisible && this._moreInfo()}

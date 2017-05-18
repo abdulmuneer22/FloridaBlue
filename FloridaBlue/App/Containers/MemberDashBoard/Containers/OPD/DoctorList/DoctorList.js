@@ -49,7 +49,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
  
 class DoctorList extends Component {
 
-constructor(props){
+  constructor(props){
          super(props);
          this.state = {
           listLimit : 10,
@@ -57,7 +57,10 @@ constructor(props){
           isFetchingMore: false,
           loadingMore:true,
           initialCount:0,
-          finalCount:0
+          finalCount:0,
+          asynCall : true,
+          displayBannerInfo : false
+
       }
       this.loadMore = this.loadMore.bind(this)
    }
@@ -72,25 +75,31 @@ constructor(props){
           NavigationActions.ProviderMap()
       }
   }
+
+  async providerSearchList(){
+    this.props.changeEnd(300);
+    if(this.props.showUrgentCareBanner){
+       this.props.attemptUrgentSearch(this.props)
+    }else{
+      this.props.attemptProviderSearch(this.props)
+    }
+  }
+
   componentDidMount () {
-  
+      //Call asynchronously to get more data
+      this.providerSearchList();
   }
 
   componentWillReceiveProps (newProps) {
-    console.tron.log("displaying new props****", newProps)
-    if (this.state.isFetchingMore) {
-
+    /*if (this.state.isFetchingMore) {
       this.props.attemptProviderSearch(newProps)
       this.setState({isFetchingMore: false})
-
-     
-    }
+    }*/
 
     if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
       this.props.changeLatitude(newProps.provider.data.originLatitude)
       this.props.changeLongitude(newProps.provider.data.originLongitude)
     }
-
     // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
     const milesOfLatAtEquator = 69
     this.props.changeLatDelta(2 / milesOfLatAtEquator)
@@ -111,27 +120,21 @@ constructor(props){
     </Image>)
   }
 
-    loadMore() {
-       var currentLimit = this.state.listLimit
-        console.log("currentLimit=>" , currentLimit)
+  loadMore() {
+        var currentLimit = this.state.listLimit
         var newLimit = currentLimit
-        console.log("new limit =>" , newLimit)
-
+        var numberOfCardsPerscreen = this.state.totalNumberOfCardPerScreen
         this.setState({
             listLimit : newLimit + 10
         })
-
-            if(this.state.totalNumberOfCardPerScreen == newLimit) {
-           this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
-           this.state.isFetchingMore = true
-
+       /*if(this.state.totalNumberOfCardPerScreen == newLimit) {
+           //this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
+           //this.state.isFetchingMore = true
            this.setState({
-        //      // listLimit : this.state.totalNumberOfCardPerScreen,
                totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30
            })
-         }
-
-          }
+      }*/
+  }
 
   _displayCondition () {
     if (this.props.fetching) {
@@ -140,15 +143,11 @@ constructor(props){
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.provider && this.props.provider.data) {
- 
       return (
         <View style={styles.container}>
           {this.props.provider ?
             <View style={{flex: 9}}>
-
               <ScrollView >
- 
-
               {this.props.showUrgentCareBanner ?
                 <View style={{flex: 1, margin: 15, marginTop:-5 }}>
                   <Card style={{flex: 1, borderRadius: 15, backgroundColor:Colors.flBlue.red, paddingLeft:10}} >
@@ -166,42 +165,63 @@ constructor(props){
                    </Card>
                 </View>
               : null}
+                {  
+                  this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 300 ?
+                    <View style={{flex: 1, margin: 15, marginTop:-5 }}>
+                      <Card style={{flex: 1, borderRadius: 15, backgroundColor:Colors.flBlue.deepBlue, paddingLeft:10}} >
+                        <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                          <View style={{ flex: 0.15 }}>
+                            <Flb name='flag' size={Metrics.icons.medium} color={Colors.snow} />
+                          </View>
+                          <View style={{ flex: 0.85 }}>
+                            <Text style={{
+                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                              color: Colors.snow
+                            }}>
+                            <Text style={{
+                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                              color: Colors.snow,fontWeight:'700'
+                            }}>Please Note:</Text>Your inquiry resulted in a very large list of providers. For now, we have limited your display to only the first 300 providers.</Text>
+                          </View>
+                        </View>
+                      </Card>
+                    </View>
+                  : null
+                }
 
                 <View style={{flex: 1, marginTop:-20}}>
-
-                  {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
+                  {                 
+                     this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
                      <DoctorCard
                       cardLimit = {this.state.listLimit}
                       data={this.props.provider.data.providerList}
-                   
+
                   />
                   :
                    
                         <View style={{flex: 1, margin: 15}}>
-
                           <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
-
                            <View style={{flex: 1, margin: 15}}>
-
                             <Text style={{fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                             color: Colors.flBlue.anvil
                           }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
-
                           </View>
-
                          </Card>
-
                         </View>
                     
                     }
 
                 </View>
-               {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
+                
+               {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10 
+                  && !(this.state.listLimit > this.props.provider.data.providerList.length)
+                  && !(this.props.provider.data.providerList.length == 300 && this.props.provider.data.providerList.length == this.state.listLimit)
+                  ?
                   <View style={{flex: 1,marginBottom:10}}>
                     <TouchableOpacity
                       onPress={this.loadMore}
                       style={{
-                        backgroundColor: 'grey',
+                        backgroundColor: Colors.flBlue.ocean,
                         paddingLeft: 14,
                         paddingRight: 14,
                         paddingTop: 10,
@@ -214,7 +234,7 @@ constructor(props){
                       }}>
                       <Text style={{
                         color: 'white'
-                      }}>Load More</Text>
+                      }}>Show More</Text>
                     </TouchableOpacity>
                   </View> : null} 
                 </ScrollView>
@@ -229,19 +249,15 @@ constructor(props){
               <View style={{flex: 1, flexDirection: 'row'}}>
                 <TouchableOpacity style={{flex: 1, alignItems:'center'}} onPress={() => this._advancedSearch()}>
                   <View style={styles.refinesearch}>
-
                      <View style={{flex: 0.25, alignItems: 'flex-end', marginRight:Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
                       <Flb
                         name='search-find'
                         size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
                         color={Colors.snow} />
                     </View>
-
                      <View style={{flex: 0.75, alignItems: 'flex-start'}}>
-
                       <Text style={styles.footerText}>Refine Search</Text>
                     </View>
-
                    </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={
@@ -318,9 +334,6 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.provider.fetching,
     error: state.provider.error,
-   // leftActive: state.provider.leftActive,
-    //rightActive: state.provider.rightActive,
-    //saveProvider: state.saveprovider.data,
     provider: state.provider.data,
     latitude: state.provider.latitude,
     longitude: state.provider.longitude,
@@ -366,15 +379,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
-    // attemptHandleLeft: () => dispatch(ProviderActions.providerClickleft()),
-    // attemptHandleRight: () => dispatch(ProviderActions.providerClickright()),
-    // addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
-    // removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey)),
+    attemptUrgentSearch: (data) => dispatch(ProviderActions.sendUrgentSearchRequest(data)),
     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),
     changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta)),
-  // changeStart: (start) => dispatch(ProviderActions.changeStart(start)),
     changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
   }

@@ -190,7 +190,7 @@ class DoctorServices extends Component {
                     //  backgroundColor : 'yellow',
                     // alignItems : 'center',
                   }}>
-                    <View style={{borderTopWidth: 0.2 }} />
+                    <View style={this.renderHeaderText() != '' ? {borderTopWidth: 0.2 }: {}} />
                     <Text style={{
                       fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0015,
                       margin: 5,
