@@ -30,17 +30,18 @@ class Webview extends Component {
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
         {NavItems.backButton()}
       </View>
-      <Text style={{color: Colors.flBlue.ocean,
-        backgroundColor: Colors.transparent,
-        fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0025,
-                  // marginLeft: Metrics.baseMargin,
+      <View style={{
+        alignItems: 'center',
         marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
-        fontFamily: Fonts.type.headerFont,
-        fontWeight: (Platform.OS === 'ios') ? '500' : '400',
-        marginRight: Metrics.screenWidth * 0.30
+        marginRight: Metrics.images.xm * Metrics.screenWidth * 0.0028
       }}>
-                      Florida Blue
-        </Text>
+        <Image source={Images.themeLogo} style={{
+          width: Metrics.screenWidth * 0.65,
+          resizeMode: 'contain',
+          height: Metrics.images.xm1
+        }}
+      />
+      </View>
 
     </Image>)
   }
