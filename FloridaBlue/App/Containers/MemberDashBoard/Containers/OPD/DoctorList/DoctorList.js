@@ -49,7 +49,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
  
 class DoctorList extends Component {
 
-constructor(props){
+  constructor(props){
          super(props);
          this.state = {
           listLimit : 10,
@@ -57,7 +57,9 @@ constructor(props){
           isFetchingMore: false,
           loadingMore:true,
           initialCount:0,
-          finalCount:0
+          finalCount:0,
+          asynCall : true
+
       }
       this.loadMore = this.loadMore.bind(this)
    }
@@ -72,16 +74,27 @@ constructor(props){
           NavigationActions.ProviderMap()
       }
   }
+
+  async providerSearchList(){
+
+    this.props.changeEnd(300);
+    this.props.attemptProviderSearch(this.props)
+    //console.tron.log('providerSearchList Called Length :: '+ this.props.provider.data.providerList.length);
+  }
+
   componentDidMount () {
-  
+      //console.tron.log('componentDidMount Called');
+      //Call asynchronously to get more data
+      this.providerSearchList();
   }
 
   componentWillReceiveProps (newProps) {
-    console.tron.log("displaying new props****", newProps)
-    if (this.state.isFetchingMore) {
+    console.tron.log("****ComponentWillReceiveProps Displaying new props****")
+    /*if (this.state.isFetchingMore) {
       this.props.attemptProviderSearch(newProps)
       this.setState({isFetchingMore: false})
-    }
+    }*/
+
     if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
       this.props.changeLatitude(newProps.provider.data.originLatitude)
       this.props.changeLongitude(newProps.provider.data.originLongitude)
@@ -90,6 +103,7 @@ constructor(props){
     const milesOfLatAtEquator = 69
     this.props.changeLatDelta(2 / milesOfLatAtEquator)
     this.props.changeLongDelta(2 / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
+    console.tron.log('provider.data.providerList.length ==>' + newProps.provider.data.providerList.length )
   }
 
   _renderHeader () {
@@ -114,8 +128,8 @@ constructor(props){
             listLimit : newLimit + 10
         })
        if(this.state.totalNumberOfCardPerScreen == newLimit) {
-           this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
-           this.state.isFetchingMore = true
+           //this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
+           //this.state.isFetchingMore = true
            this.setState({
                totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30
            })
@@ -151,6 +165,7 @@ constructor(props){
                    </Card>
                 </View>
               : null}
+                { console.tron.log ('Number records begining' + this.props.provider.data.providerList.length )}
                 <View style={{flex: 1, marginTop:-20}}>
                   {
                      this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 && (this.state.listLimit % 10 == 0) ?
