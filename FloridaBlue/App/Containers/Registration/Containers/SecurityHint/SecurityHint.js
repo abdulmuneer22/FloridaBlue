@@ -28,6 +28,7 @@ import I18n from 'react-native-i18n'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import Swiper from 'react-native-swiper'
+import HTMLView from 'react-native-htmlview'
 const HtMLstyles = StyleSheet.create({
   p: {
     color: Colors.snow,
