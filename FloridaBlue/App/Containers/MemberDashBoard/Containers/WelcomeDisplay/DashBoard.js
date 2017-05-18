@@ -104,6 +104,16 @@ class LandingScreen extends Component {
    */
   }
 
+  handleOPDTileView= () => {
+    if (this.props.visibilityRules.opdTile.tileType == 'webview') {
+    NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})
+
+    } else if (this.props.visibilityRules.opdTile.tileType == 'native') {    
+    NavigationActions[this.props.visibilityRules.opdTile.routerName]()
+
+    }
+  }
+
   _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
@@ -177,7 +187,7 @@ class LandingScreen extends Component {
           </View>
           { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
 
-            ? <TouchableOpacity onPress={() => NavigationActions[this.props.visibilityRules.opdTile.routerName]()}
+            ? <TouchableOpacity onPress={this.handleOPDTileView}
               style={{flex: 1,
              // backgroundColor:'red',
                // flexDirection: 'row',
