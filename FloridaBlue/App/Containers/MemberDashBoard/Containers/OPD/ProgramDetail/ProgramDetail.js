@@ -62,7 +62,7 @@ class ProgramDetail extends Component {
             <View style={{flex:1}}>
         {this.props.configData && this.props.configData.programDetails && this.props.configData.programDetails.length>0 ? this.props.configData.programDetails.map((value, i)=>{
 
-        return( <View style={{flex: 1}}>
+        return( <View key={i} style={{flex: 1}}>
           <View style={{flex: 1, backgroundColor:Colors.flBlue.ocean}}>
               <Text style={styles.h1}>
           {value.headerText_en}
@@ -71,7 +71,7 @@ class ProgramDetail extends Component {
          {value.program ?value.program.map((programText, j) => {
             return(
            
-            <View style={{flex:1}}>
+            <View key={j} style={{flex:1}}>
               { programText.title_en ? 
               <Text style={styles.h2}>
                   {programText.title_en}

@@ -480,7 +480,7 @@ class DoctorDetail extends Component {
                               <View style={{ flex: 9 }}>
                                 <Text style={this.state.visible3 ? styles.plusText1 : styles.plusText}>
                                                 Institutional Affiliations
-                                            </Text>
+                                  </Text>
                               </View>
                             </View>
                           </Card>
