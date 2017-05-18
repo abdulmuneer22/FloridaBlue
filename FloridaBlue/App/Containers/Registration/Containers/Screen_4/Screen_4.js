@@ -132,9 +132,10 @@ class Screen_4 extends React.Component {
           {this.props.securityHintsStatus && (this.props.securityHintsStatus != null && this.props.securityHintsStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
  
-            
+               <View style={styles.messagePadding}>
                         <View>
               <HTMLView value={'<p>'+this.props.securityHintsStatusMessage+'</P>'} stylesheet={HtMLstyles}/> 
+              </View>
               </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangeSecurityHintsStatus(null) }}>

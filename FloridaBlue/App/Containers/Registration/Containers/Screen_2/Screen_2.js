@@ -146,8 +146,10 @@ class Screen_2 extends React.Component {
 
           {this.props.personalInformationStatus && (this.props.personalInformationStatus != null && this.props.personalInformationStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
+             <View style={styles.messagePadding}>
             <View>
               <HTMLView value={'<p>'+this.props.personalInformationStatusMessage+'</P>'} stylesheet={HtMLstyles}/> 
+              </View>
               </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangePersonalInformationStatus(null) }}>
