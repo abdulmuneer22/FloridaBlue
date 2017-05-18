@@ -207,7 +207,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     'language': 'EN',
     'planCode': '',
     'start': 1,
-    'end': 25,
+    'end': data && data.end ? data.end : 30,
     'address': data && data.address ? data.address : '',
     'originLatitude': data.latitude,
     'originLongitude': data.longitude,
