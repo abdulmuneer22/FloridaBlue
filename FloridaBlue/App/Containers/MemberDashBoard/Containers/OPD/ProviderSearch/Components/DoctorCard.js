@@ -23,7 +23,7 @@ import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../../../Themes/FlbIcon'
 import ProviderActions from '../../../../../../Redux/ProviderRedux'
-var specialityData = require('./pharmacySpecialityData.json');
+var specialityData = require('./pharmacySpecialityData');
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
