@@ -81,7 +81,7 @@ class DoctorList extends Component {
     if(this.props.error == undefined || this.props.error == null)
     {    
       if(this.props.showUrgentCareBanner){
-        this.props.attemptUrgentSearch(this.props)
+        this.props.attemptAsyncUrgentSearch(this.props)
       }else{
 
       if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
@@ -333,6 +333,7 @@ DoctorList.propTypes = {
   provider: PropTypes.object,
   attemptAsyncProviderSearch: PropTypes.func,
   attemptAsyncPharmacySearch: PropTypes.func,
+  attemptAsyncUrgentSearch: PropTypes.func,
   error: PropTypes.string,
   saveProvider: PropTypes.array,
   attemptHandleLeft: PropTypes.func,
@@ -390,7 +391,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     attemptAsyncProviderSearch: (data) => dispatch(ProviderActions.sendAsyncProviderSearchRequest(data)),
     attemptAsyncPharmacySearch: (data) => dispatch(ProviderActions.sendAsyncPharmacySearchRequest(data)),
-    attemptUrgentSearch: (data) => dispatch(ProviderActions.sendUrgentSearchRequest(data)),
+    attemptAsyncUrgentSearch: (data) => dispatch(ProviderActions.sendAsyncUrgentSearchRequest(data)),
     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),

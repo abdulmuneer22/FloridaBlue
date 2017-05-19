@@ -63,7 +63,8 @@ const { Types, Creators } = createActions({
   providerClickleft: [],
   providerClickright: [],
   sendAsyncProviderSearchRequest: ['data'],
-  sendAsyncPharmacySearchRequest: ['data']
+  sendAsyncPharmacySearchRequest: ['data'],
+  sendAsyncUrgentSearchRequest: ['data']
 
 })
 
@@ -146,6 +147,9 @@ export const _sendPharmacySearchFailure = (state: Object, {error}: Object) => st
 
 // sendUrgentSearchRequest
 export const _sendUrgentSearchRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendAsyncUrgentSearchRequest
+export const _sendAsyncUrgentSearchRequest = (state: Object) => state.merge({ fetching: false })
 
 // sendUrgentSearchSuccess
 export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
@@ -356,5 +360,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.PROVIDER_CLICKLEFT]: leftclick,
   [Types.PROVIDER_CLICKRIGHT]: rightclick,
   [Types.SEND_ASYNC_PROVIDER_SEARCH_REQUEST]: _sendAsyncProviderSearchRequest,
-  [Types.SEND_ASYNC_PHARMACY_SEARCH_REQUEST]: _sendAsyncPharmacySearchRequest
+  [Types.SEND_ASYNC_PHARMACY_SEARCH_REQUEST]: _sendAsyncPharmacySearchRequest,
+  [Types.SEND_ASYNC_URGENT_SEARCH_REQUEST]: _sendAsyncUrgentSearchRequest
 })
