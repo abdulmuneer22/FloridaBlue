@@ -10,7 +10,7 @@ export function * member (api, {smToken}) {
   //    api.setsmTokenHeaders(smToken)
 
   const response = yield call(api.getMember)
-  console.tron.log(JSON.stringify(response))
+  console.tron.log("MEMBER")
   if (response.status == '200') {
     // dispatch success
     var Name = response.data.data.firstName
@@ -38,12 +38,24 @@ export function * member (api, {smToken}) {
       'benefitsRule': response.data.data.visibilityRule.benefits,
       'isIndividualContract': isIndividualContract
     }
+
+    var dobArray = response.data.data.dob.split('-');
+    var memberSearchRequest = {
+      "memberContractNo": response.data.data.defaultContract.contractNumber,
+      "memberFirstName": response.data.data.firstName,
+      "memberLastName": response.data.data.lastName,
+      "memberGender": "",
+      "memberDateOfBirthYear": dobArray[2],
+      "memberDateOfBirthMonth": dobArray[0],
+      "memberDateOfBirthDay": dobArray[1]
+    }
+    console.tron.log(memberSearchRequest)
     yield put(SupportActions.supportRequest())
     yield put(MyPlanActions.myplanRequest(data))
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }
-    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, visibleDashboard, defaultContract, logoutUrl))
+    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, visibleDashboard, defaultContract, logoutUrl, memberSearchRequest))
   } else {
     console.tron.log('failure ')
     console.tron.log(response)

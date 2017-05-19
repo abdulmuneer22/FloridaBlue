@@ -199,7 +199,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     'saveLocation': '',
     'hospitalOption': '',
     'networksFlag': false,
-    'memberSearchRequest': {}
+    'memberSearchRequest': data.member.memberSearchRequest
   }
   )
 
