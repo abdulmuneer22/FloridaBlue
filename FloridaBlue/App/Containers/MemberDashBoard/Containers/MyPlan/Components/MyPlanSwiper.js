@@ -120,10 +120,15 @@ class MyPlanSwiper extends Component {
 
     return (
 
-      <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.52))}
-       showsButtons 
-       dotStyle={{width: 10, height: 10, marginLeft: 10, borderRadius: 5, top: 50, position: 'relative'}}
-        activeDotStyle={{width: 10, height: 10, borderRadius: 5, marginLeft: 10, top: 50, position: 'relative'}}
+      <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.47))}
+       showsButtons
+       showsPagination={true}
+       paginationStyle={{
+         bottom: Platform.OS === 'ios' ? -Metrics.searchBarHeight * Metrics.screenHeight * 0.0015 : 0,
+      position:'absolute'
+       }}
+     //  dotStyle={{width: 10, height: 10, marginLeft: 10, borderRadius: 5, top: 50, position: 'relative'}}
+     //   activeDotStyle={{width: 10, height: 10, borderRadius: 5, marginLeft: 10, top: 50, position: 'relative'}}
         nextButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
     color: Colors.flBlue.grey1,
     fontFamily:Fonts.type.base }}>›</Text>} 
@@ -141,7 +146,8 @@ class MyPlanSwiper extends Component {
           return (
 
             <Card style={{ flex: 1, alignItems: 'center',
-              margin: 15
+              margin: 15,
+              marginBottom : Platform.OS === 'ios' ? 0 : 30
             }} >
               <View style={{ flex: 1, alignItems: 'center'
 

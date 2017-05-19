@@ -24,6 +24,7 @@ import I18n from 'react-native-i18n'
 
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import HideableView from 'react-native-hideable-view'
+var urlConfig = require('../../../../../../UrlConfig')
 
 class ProviderTypeInfo extends React.Component {
   constructor (props) {
@@ -76,14 +77,11 @@ class ProviderTypeInfo extends React.Component {
               <View style={styles.row}>
                 <Text style={styles.heading}>{I18n.t('providerTypeMailOrderTitle')}</Text>
               </View>
-              <TouchableOpacity style={styles.row} onPress={() => this.handleLink("https://mws8-stga.bcbsfl.com/wps/wcm/myconnect/mbs/mwe_publiccontent/SI_MWEPublic/SA_Doc_Library/CT_PrimeMailBrochure")}>
+              <TouchableOpacity style={styles.row} onPress={() => this.handleLink(urlConfig.mailOrderLearnLink)}>
                 <Text style={styles.linkText}>{I18n.t('mailOrderLearnLink')}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.row} onPress={() => this.handleLink("https://mws8-stga.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/Disclaimer?param1Name=mailOrder&sk=1&nw=1")}>
+              <TouchableOpacity style={styles.row} onPress={() => this.handleLink(urlConfig.primeMailOrderLink)}>
                 <Text style={styles.linkText}>{I18n.t('primeMailOrderLink')}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.row} onPress={() => this.handleLink("")}>
-                <Text style={styles.linkText}>{I18n.t('medicarePlansLink')}</Text>
               </TouchableOpacity>
               <View style={styles.row}>
                 <Text style={styles.text}>{I18n.t('mailOrderNote')}</Text>
