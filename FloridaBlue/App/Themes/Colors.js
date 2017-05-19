@@ -23,6 +23,7 @@ const colors = {
   bg1: '#1791C9',
   bg2: '#F5F5F5',
   drawer: 'rgba(30, 30, 29, 0.95)',
+  orange: '#ff8300',
 
   flBlue: {
 

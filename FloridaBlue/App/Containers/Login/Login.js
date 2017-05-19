@@ -39,6 +39,7 @@ import LogoView from './LogoView'
 import SignUpView from './SignUpView'
 import Clouds from './Clouds'
 import CityScape from './CityScape'
+import { Spinner } from 'native-base';
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 var logo = require('./logo.png')
@@ -434,9 +435,11 @@ class Login extends Component {
         opacity: transparent,
         backgroundColor: Colors.snow
       }} >
-
+  
         <View style={styles.container}>
+            
           <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+         
           <Clouds />
           <CityScape />
 
@@ -448,6 +451,7 @@ class Login extends Component {
 
             <LoginView>
               <View style={styles.row}>
+               
                 <MKTextField
                   ref='username'
                   style={styles.textField}
@@ -483,7 +487,7 @@ class Login extends Component {
                   placeholder={I18n.t('userpassword')}
                   placeholderTextColor={Colors.steel} />
               </View>
-              {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.flBlue.ocean} style={styles.spinnerView} /> : <View />}
+             
               {/*
                 {Platform.OS === 'ios' && this.state.touchCheckboxVisible ?
                   <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchID() }}>
@@ -500,12 +504,12 @@ class Login extends Component {
             </LoginView>
 
             <LoginButtonView>
-              <TouchableOpacity onPress={() => { this._handleLogin() }}>
+             {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} /> : <TouchableOpacity onPress={() => { this._handleLogin() }}>
                 <Image style={{width: Metrics.screenWidth * 0.5,
                   borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
                   height: Metrics.screenHeight * 0.064}}
-                  source={Images.loginButtonGreen} />
-              </TouchableOpacity>
+                  source={Images.loginButtonGreen}/>
+              </TouchableOpacity> }
             </LoginButtonView>
             <SignUpView>
               <TouchableOpacity onPress={() => NavigationActions.screen_1()}>
