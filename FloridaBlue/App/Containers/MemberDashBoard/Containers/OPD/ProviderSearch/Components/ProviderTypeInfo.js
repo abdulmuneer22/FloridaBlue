@@ -37,7 +37,6 @@ class ProviderTypeInfo extends React.Component {
   }
 
   componentWillMount() {
-    console.tron.log(this.props.subCategoryCode)
     if (this.props.subCategoryCode == "999") {
       this.setState({mailOrderState: true})
     } else if (this.props.subCategoryCode == "701") {
@@ -46,7 +45,6 @@ class ProviderTypeInfo extends React.Component {
   }
 
   handleLink(url) {
-    console.tron.log(url)
     NavigationActions.MyView({
       responseURL: url + '?channel=mobile'
     })
@@ -82,6 +80,9 @@ class ProviderTypeInfo extends React.Component {
               </TouchableOpacity>
               <TouchableOpacity style={styles.row} onPress={() => this.handleLink(urlConfig.primeMailOrderLink)}>
                 <Text style={styles.linkText}>{I18n.t('primeMailOrderLink')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.row} onPress={() => this.handleLink(urlConfig.medicarePlansLink)}>
+                <Text style={styles.linkText}>{I18n.t('medicarePlansLink')}</Text>
               </TouchableOpacity>
               <View style={styles.row}>
                 <Text style={styles.text}>{I18n.t('mailOrderNote')}</Text>
