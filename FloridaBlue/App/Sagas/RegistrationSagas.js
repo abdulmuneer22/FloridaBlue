@@ -6,7 +6,7 @@ import RegistrationActions from '../Redux/RegistrationRedux'
 var getReasonMessage = function (status) {
   let messages = {
     '000': 'Success',
-    '-1000': 'Oops! Looks like we`re having trouble with your request. Please try again later.',
+    '-1000': 'Oops! Looks like we\'re having trouble with your request. Please try again later.',
     '002': "Looks like you're already signed up. Enter your User ID and Password to log in.",
     '004': "Oops! We can't find you in our system based on your response. Click <a href=\'https://www.floridablue.com/general/contact-us\'>Support</a> for help.",
     '005': 'Oops! Looks like we\'re having trouble with your request. Click <a href=\'https://www.floridablue.com/general/contact-us\'>Support</a> for help',
@@ -20,27 +20,27 @@ var getReasonMessage = function (status) {
     '015': 'Oops! Looks like we\'re having trouble with your request. Click <a href=\'https://www.floridablue.com/general/contact-us\'>Support</a> for help',
     '018': 'Having trouble? For help, please click Support below.',
     '020': 'Oops! You must be at least 18 to use this app. Check your birthday and try again.',
-    '032': 'Oops! Looks like we`re having trouble with your request. Please try again later.',
-    '034': 'Oops! Looks like we`re having trouble with your request. Please try again later.',
+    '032': 'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+    '034': 'Oops! Looks like we\'re having trouble with your request. Please try again later.',
     '035': "Oops! Looks like you've entered an invalid code. Please try again, or Click <a href=\'https://www.floridablue.com/general/contact-us\'>Support</a> for help.",
     '036': 'Oops! Looks like we\'re having trouble with your request. Please check Hints and try again.',
     '037': "Oops! Looks like we\'re having trouble with your request. Please check Hints and try again",
     '038': "Oops! Looks like we\'re having trouble with your request. Please check Hints and try again.",
     '040': 'Oops! Looks like that user ID is already registered. Please choose another one.',
-    '041': 'Oops! Looks like we`re having trouble with your request. Please try again later.',
-    '042': 'Oops! Looks like we`re having trouble with your request. Please try again later.',
+    '041': 'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+    '042': 'Oops! Looks like we\'re having trouble with your request. Please try again later.',
     '043': "Oops! Looks like that's not a valid email address. Please try again.",
-    '046': 'Oops! Looks like we`re having trouble with your request. Please try again later.',
+    '046': 'Oops! Looks like we\'re having trouble with your request. Please try again later.',
     '048': 'Oops! Your security answers must be different from your hints. Please try again.',
     '049': 'Oops! Looks like you used invalid characters for your security hints. Click Helpful Hints for more info.',
-    '050': 'Oops! Looks like we`re having trouble with your request. Please try again later.',
+    '050': 'Oops! Looks like we\'re having trouble with your request. Please try again later.',
     '052': 'Please head to floridablue.com or bluemedicarefl.com to sign up for your member account.',
     '053': 'Please head to floridablue.com or bluemedicarefl.com to sign up for your member account.',
     '021': 'Please head to floridablue.com or bluemedicarefl.com to sign up for your member account.',
-    '055': 'Oops! Looks like we`re having trouble with your request. Please try again later.',
-    '056': 'Oops! Looks like we`re having trouble with your request. Please try again later.',
-    '057': 'Oops! Looks like we`re having trouble with your request. Please try again later.',
-    '999': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
+    '055': 'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+    '056': 'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+    '057': 'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+    '999': 'Oops! Looks like we\'re having trouble with your request. Please try again later.'
   }
 
   console.tron.log(status)
@@ -67,7 +67,7 @@ export function * sendIdentificationRequest (api, {data}) {
     var error = 'Invaid input provided'
     var data = {
       'identificationStatus': '999',
-      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
+      'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Please try again later.'
     }
    // data.identificationStatusMessage = getReasonMessage(data.indentificationStatus)
     console.tron.log(data)
@@ -90,7 +90,7 @@ export function * sendPersonalInformationRequest (api, {data}) {
     var error = 'Invaid input provided'
     var data = {
       'identificationStatus': '999',
-      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
+      'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Please try again later.'
     }
     // data.personalInformationStatusMessage = getReasonMessage(data.personalInformationStatus)
 
@@ -116,7 +116,7 @@ export function * sendRegistrationCodeRequest (api, {data}) {
     var error = 'Invaid input provided'
     var data = {
       'identificationStatus': '999',
-      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
+      'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Please try again later.'
     }
   //  data.registrationCodeStatusMessage = getReasonMessage(data.registrationCodeStatus)
     yield put(RegistrationActions.sendRegistrationCodeFailure(data))
@@ -137,7 +137,7 @@ export function * sendSecurityHintsRequest (api, {data}) {
     var error = 'Invaid input provided'
     var data = {
       'identificationStatus': '999',
-      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
+      'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Please try again later.'
     }
    // data.securityHintsStatusMessage = getReasonMessage(data.securityHintsStatus)
     yield put(RegistrationActions.sendSecurityHintsFailure(data))
@@ -158,7 +158,7 @@ export function * registerUserRequest (api, {data, token}) {
     var error = 'Invaid input provided'
     var data = {
       'identificationStatus': '999',
-      'identificationStatusMessage': 'Oops! Looks like we`re having trouble with your request. Please try again later.'
+      'identificationStatusMessage': 'Oops! Looks like we\'re having trouble with your request. Please try again later.'
     }
   //  data.registerUserStatusMessage = getReasonMessage(data.registerUserStatus)
     yield put(RegistrationActions.registerUserFailure(data))

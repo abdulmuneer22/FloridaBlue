@@ -264,7 +264,7 @@ class DoctorDetail extends Component {
 
                             <View style={{ flex: 1, margin: 5 }}>
                               {this.props.doctordetail && this.props.doctordetail.address ?
-                                <View style={{Flex: 1}}>
+                                <View style={{flex: 1}}>
                                   {this.props.doctordetail.address[0].officeHoursList.map((value, i) => {
                                     return (
 
@@ -716,7 +716,7 @@ class DoctorDetail extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
         'Doctor Detail',
-        'Oops! Looks like we`re having trouble with your request. Please try again later.',
+        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
         [
           { text: 'OK' }
 
