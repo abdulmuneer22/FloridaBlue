@@ -95,7 +95,7 @@ class Hsa extends Component {
       } else {
         Alert.alert(
                   'HSA',
-                  'Oops! Looks like we`re having trouble with your request. Please try again later.',
+                  'Oops! Looks like we\'re having trouble with your request. Please try again later.',
           [
                     { text: 'OK'}
 
