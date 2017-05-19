@@ -78,10 +78,19 @@ class DoctorList extends Component {
 
   async providerSearchList(){
     this.props.changeEnd(300);
-    if(this.props.showUrgentCareBanner){
-       this.props.attemptUrgentSearch(this.props)
-    }else{
-      this.props.attemptProviderSearch(this.props)
+    if(this.props.error == undefined || this.props.error == null)
+    {    
+      if(this.props.showUrgentCareBanner){
+        this.props.attemptAsyncUrgentSearch(this.props)
+      }else{
+
+      if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
+        this.props.attemptAsyncPharmacySearch(this.props)
+      } else {
+        this.props.attemptAsyncProviderSearch(this.props)
+      }
+        //this.props.attemptProviderSearch(this.props)
+      }
     }
   }
 
@@ -140,7 +149,7 @@ class DoctorList extends Component {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        <Text style={styles.spinnerText}>Loading Please Wait</Text>
       </View>)
     } else if (this.props.provider && this.props.provider.data) {
       return (
@@ -166,7 +175,7 @@ class DoctorList extends Component {
                 </View>
               : null}
                 {  
-                  this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 300 ?
+                  this.props.provider && this.props.provider.data && this.props.provider.data && this.props.provider.data.totalCount >= 300 ?
                     <View style={{flex: 1, margin: 15, marginTop:-5 }}>
                       <Card style={{flex: 1, borderRadius: 15, backgroundColor:Colors.flBlue.deepBlue, paddingLeft:10}} >
                         <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
@@ -292,7 +301,7 @@ class DoctorList extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
         'Find care',
-       'Oops! Looks like we`re having trouble with your request. Please try again later.',
+       'Oops! Looks like we\'re having trouble with your request. Please try again later.',
         [
           { text: 'OK' }
 
@@ -322,7 +331,9 @@ class DoctorList extends Component {
 DoctorList.propTypes = {
   data: PropTypes.string,
   provider: PropTypes.object,
-  attemptProviderSearch: PropTypes.func,
+  attemptAsyncProviderSearch: PropTypes.func,
+  attemptAsyncPharmacySearch: PropTypes.func,
+  attemptAsyncUrgentSearch: PropTypes.func,
   error: PropTypes.string,
   saveProvider: PropTypes.array,
   attemptHandleLeft: PropTypes.func,
@@ -378,8 +389,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
-    attemptUrgentSearch: (data) => dispatch(ProviderActions.sendUrgentSearchRequest(data)),
+    attemptAsyncProviderSearch: (data) => dispatch(ProviderActions.sendAsyncProviderSearchRequest(data)),
+    attemptAsyncPharmacySearch: (data) => dispatch(ProviderActions.sendAsyncPharmacySearchRequest(data)),
+    attemptAsyncUrgentSearch: (data) => dispatch(ProviderActions.sendAsyncUrgentSearchRequest(data)),
     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),

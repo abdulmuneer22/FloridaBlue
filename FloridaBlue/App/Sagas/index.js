@@ -113,6 +113,9 @@ export default function * root () {
     takeLatest(ProviderTypes.SEND_DOCTOR_LANGUAGE_REQUEST, sendDoctorLanguageRequest, api),
     takeLatest(ProviderTypes.SEND_STAFF_LANGUAGE_REQUEST, sendStaffLanguageRequest, api),
     takeLatest(ProviderTypes.SEND_CONFIG_TYPE_REQUEST, sendConfigTypeRequest, api),
-    takeLatest(ProviderTypes.SEND_DOCTOR_DETAIL_REQUEST, sendDoctorDetailRequest, api)
+    takeLatest(ProviderTypes.SEND_DOCTOR_DETAIL_REQUEST, sendDoctorDetailRequest, api),
+    takeLatest(ProviderTypes.SEND_ASYNC_PROVIDER_SEARCH_REQUEST, sendProviderSearchRequest, api),
+    takeLatest(ProviderTypes.SEND_ASYNC_PHARMACY_SEARCH_REQUEST, sendPharmacySearchRequest, api),
+    takeLatest(ProviderTypes.SEND_ASYNC_URGENT_SEARCH_REQUEST, sendUrgentSearchRequest, api)
   ]
 }

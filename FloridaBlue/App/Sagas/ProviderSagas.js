@@ -95,12 +95,13 @@ export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
 
   if (response.ok) {
     var data = response.data
-    var allCategory = {'categoryCode': 'ALL', 'subCategoryCode': '', 'subCategoryName': 'All'}
-    data.data.planSubCategoryList.splice(0, 0, allCategory)
-    
+
     if (selectedCategoryCode == "07") {
       var mailOrderCateogry = {'categoryCode': '07', 'subCategoryCode': '999', 'subCategoryName': 'Mail Order'}
       data.data.planSubCategoryList.push(mailOrderCateogry)
+    } else {
+      var allCategory = {'categoryCode': 'ALL', 'subCategoryCode': '', 'subCategoryName': 'All'}
+      data.data.planSubCategoryList.splice(0, 0, allCategory)
     }
 
     yield put(ProviderActions.changeCategoryCode(selectedCategoryCode))

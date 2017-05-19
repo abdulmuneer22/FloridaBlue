@@ -102,7 +102,7 @@ class Resources extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
                   'Resources',
-                   'Oops! Looks like we`re having trouble with your request. Please try again later.',
+                   'Oops! Looks like we\'re having trouble with your request. Please try again later.',
         [
                     { text: 'OK'}
 

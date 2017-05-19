@@ -85,7 +85,7 @@ class MyPlanScreen extends Component {
 
               : Alert.alert(
         'My Plan Overview',
-        'Oops! Looks like we`re having trouble with your request. Please try again later.'
+        'Oops! Looks like we\'re having trouble with your request. Please try again later.'
                 [
           { text: 'OK' }
 
@@ -132,7 +132,7 @@ class MyPlanScreen extends Component {
       var message = this.props.data.errorMessage
       Alert.alert(
         'My Plan Overview',
-       'Oops! Looks like we`re having trouble with your request. Please try again later ',
+       'Oops! Looks like we\'re having trouble with your request. Please try again later ',
         [
           { text: 'OK' }
 
