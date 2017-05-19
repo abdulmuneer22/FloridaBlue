@@ -83,9 +83,6 @@ class ProviderTypeInfo extends React.Component {
               <TouchableOpacity style={styles.row} onPress={() => this.handleLink(urlConfig.primeMailOrderLink)}>
                 <Text style={styles.linkText}>{I18n.t('primeMailOrderLink')}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.row} onPress={() => this.handleLink("")}>
-                <Text style={styles.linkText}>{I18n.t('medicarePlansLink')}</Text>
-              </TouchableOpacity>
               <View style={styles.row}>
                 <Text style={styles.text}>{I18n.t('mailOrderNote')}</Text>
               </View>
