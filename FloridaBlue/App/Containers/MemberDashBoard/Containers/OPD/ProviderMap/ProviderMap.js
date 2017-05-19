@@ -61,8 +61,8 @@ class ProviderMap extends Component {
 
   componentWillMount () {
     this.setState({selectedLocation: this.props.provider.data.providerList[0]})
-    this.setState({currentLat: this.props.latitude})
-    this.setState({currentLong: this.props.longitude})
+    this.setState({currentLat: this.props.provider.data.providerList[0].latitude})
+    this.setState({currentLong: this.props.provider.data.providerList[0].longitude})
   }
 
   _onRegionChange (event, region) {
@@ -154,17 +154,17 @@ class ProviderMap extends Component {
                 bottom={(Platform.OS === 'ios') ? 0 : -Metrics.section * Metrics.screenHeight * 0.0002}
                 nextButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
                                           // fontWeight:'400',
-                                           marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : 0, 
-                                           color:Colors.flBlue.grey3, 
+                                           marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : 0,
+                                           color:Colors.flBlue.grey3,
                                            marginBottom:(Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
-                onMomentumScrollEnd={this._locationSwiped} 
+                onMomentumScrollEnd={this._locationSwiped}
                 prevButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
                                            //fontWeight:'400',
-                                           marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : 0, 
-                                           color:Colors.flBlue.grey3, 
+                                           marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : 0,
+                                           color:Colors.flBlue.grey3,
                                            marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
-                
-                
+
+
                 >
 
                 {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
@@ -210,4 +210,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProviderMap)
-
