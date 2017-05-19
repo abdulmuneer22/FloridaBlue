@@ -41,10 +41,10 @@ export function * member (api, {smToken}) {
 
     var dobArray = response.data.data.dob.split('-');
     var memberSearchRequest = {
-      "memberContractNo": response.data.data.defaultContract.contractNumber,
+      "memberContractNo": response.data.data.defaultContract.hccId,
       "memberFirstName": response.data.data.firstName,
       "memberLastName": response.data.data.lastName,
-      "memberGender": "",
+      "memberGender": response.data.data.defaultContract.gender,
       "memberDateOfBirthYear": dobArray[2],
       "memberDateOfBirthMonth": dobArray[0],
       "memberDateOfBirthDay": dobArray[1]
