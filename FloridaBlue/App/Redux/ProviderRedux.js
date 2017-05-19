@@ -61,7 +61,10 @@ const { Types, Creators } = createActions({
   changeStart: ['start'],
   changeEnd: ['end'],
   providerClickleft: [],
-  providerClickright: []
+  providerClickright: [],
+  sendAsyncProviderSearchRequest: ['data'],
+  sendAsyncPharmacySearchRequest: ['data'],
+  sendAsyncUrgentSearchRequest: ['data']
 
 })
 
@@ -121,6 +124,9 @@ export const _sendNetworkListFailure = (state: Object, {error}: Object) => state
 // sendProviderSearchRequest
 export const _sendProviderSearchRequest = (state: Object) => state.merge({ fetching: true })
 
+// sendProviderSearchRequest
+export const _sendAsyncProviderSearchRequest = (state: Object) => state.merge({ fetching: false })
+
 // sendProviderSearchSuccess
 export const _sendProviderSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
 
@@ -130,6 +136,9 @@ export const _sendProviderSearchFailure = (state: Object, {error}: Object) => st
 // sendPharmacySearchRequest
 export const _sendPharmacySearchRequest = (state: Object) => state.merge({ fetching: true })
 
+// sendPharmacySearchRequest
+export const _sendAsyncPharmacySearchRequest = (state: Object) => state.merge({ fetching: false })
+
 // sendPharmacySearchSuccess
 export const _sendPharmacySearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
 
@@ -138,6 +147,9 @@ export const _sendPharmacySearchFailure = (state: Object, {error}: Object) => st
 
 // sendUrgentSearchRequest
 export const _sendUrgentSearchRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendAsyncUrgentSearchRequest
+export const _sendAsyncUrgentSearchRequest = (state: Object) => state.merge({ fetching: false })
 
 // sendUrgentSearchSuccess
 export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
@@ -346,5 +358,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_END]: _changeEnd,
   [Types.CHANGE_URGENT_CARE_BANNER]: _changeUrgentCareBanner,
   [Types.PROVIDER_CLICKLEFT]: leftclick,
-  [Types.PROVIDER_CLICKRIGHT]: rightclick
+  [Types.PROVIDER_CLICKRIGHT]: rightclick,
+  [Types.SEND_ASYNC_PROVIDER_SEARCH_REQUEST]: _sendAsyncProviderSearchRequest,
+  [Types.SEND_ASYNC_PHARMACY_SEARCH_REQUEST]: _sendAsyncPharmacySearchRequest,
+  [Types.SEND_ASYNC_URGENT_SEARCH_REQUEST]: _sendAsyncUrgentSearchRequest
 })
