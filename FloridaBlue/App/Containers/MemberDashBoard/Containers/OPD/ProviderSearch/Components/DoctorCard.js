@@ -23,7 +23,7 @@ import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../../../Themes/FlbIcon'
 import ProviderActions from '../../../../../../Redux/ProviderRedux'
-var specialityData = require('./pharmacySpecialityData');
+var specialityData = require('./pharmacySpecialityData')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
@@ -51,7 +51,7 @@ class DoctorCard extends Component {
     })
   }
 
-  handleUrl(url) {
+  handleUrl (url) {
     console.tron.log(url)
     NavigationActions.MyView({
       responseURL: url + '?channel=mobile'
@@ -65,46 +65,46 @@ class DoctorCard extends Component {
 
           <View style={{ flex: 1, margin: 15 }}>
             {specialityData != undefined ? specialityData.providerList.map((value, i) => {
-            return (
+              return (
                 <Card style={{ flex: 1}} key={i}>
-                  <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop:10 }}>
-                    <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight:10}}>
-                        {value ?
-                          <Text style={styles.h1}>{value.displayName}</Text> : null}
-                        {value ?
-                          <Text style={styles.h2}>{value.primarySpecialty}</Text> : null}
-                        {value ?
-                          <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
-                        {value ?
-                          <Text style={styles.h4_2}>{value.faxNumber}</Text> : null}
-                          {value ?
-                            <TouchableOpacity onPress={() => this.handleUrl(value.link)}>
-                              <Text style={styles.h4_link}>{value.linkTitle}</Text>
-                            </TouchableOpacity> : null }
-                      </View>
+                  <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop: 10 }}>
+                    <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
+                      {value ?
+                        <Text style={styles.h1}>{value.displayName}</Text> : null}
+                      {value ?
+                        <Text style={styles.h2}>{value.primarySpecialty}</Text> : null}
+                      {value ?
+                        <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
+                      {value ?
+                        <Text style={styles.h4_2}>{value.faxNumber}</Text> : null}
+                      {value ?
+                        <TouchableOpacity onPress={() => this.handleUrl(value.link)}>
+                          <Text style={styles.h4_link}>{value.linkTitle}</Text>
+                        </TouchableOpacity> : null }
                     </View>
+                  </View>
 
-                    <View style={{ flex: 1 }}>
-                      <View style={{ flex: 1, flexDirection: 'row' }}>
-                        <TouchableOpacity style={{ flex: 1, height: Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleCall(value.telephoneNumber)}>
-                          <View style={styles.call}>
-                            <View style={{ flex: 0.45, alignItems: 'flex-end' }}>
-                              <Flb name='call-phone' size={Metrics.icons.medium * Metrics.screenWidth * 0.002} color={Colors.snow} />
-                            </View>
-                            <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
-                              <Text style={styles.callText}>Call</Text>
-                            </View>
+                  <View style={{ flex: 1 }}>
+                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                      <TouchableOpacity style={{ flex: 1, height: Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleCall(value.telephoneNumber)}>
+                        <View style={styles.call}>
+                          <View style={{ flex: 0.45, alignItems: 'flex-end' }}>
+                            <Flb name='call-phone' size={Metrics.icons.medium * Metrics.screenWidth * 0.002} color={Colors.snow} />
                           </View>
-                        </TouchableOpacity>
-                      </View>
+                          <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
+                            <Text style={styles.callText}>Call</Text>
+                          </View>
+                        </View>
+                      </TouchableOpacity>
                     </View>
-                  </Card>
-                )
+                  </View>
+                </Card>
+              )
             }) :
-            <View style={styles.spinnerView}>
-              <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-              <Text style={styles.spinnerText}>Load</Text>
-            </View>
+                <View style={styles.spinnerView}>
+                  <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                  <Text style={styles.spinnerText}>Load</Text>
+                </View>
           }
           </View> :
           <View style={styles.spinnerView}>

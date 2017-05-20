@@ -121,20 +121,20 @@ class MyPlanSwiper extends Component {
     return (
 
       <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.47))}
-       showsButtons
-       showsPagination={true}
-       paginationStyle={{
-         bottom: Platform.OS === 'ios' ? -Metrics.searchBarHeight * Metrics.screenHeight * 0.0015 : 0,
-      position:'absolute'
-       }}
+        showsButtons
+        showsPagination
+        paginationStyle={{
+          bottom: Platform.OS === 'ios' ? -Metrics.searchBarHeight * Metrics.screenHeight * 0.0015 : 0,
+          position: 'absolute'
+        }}
      //  dotStyle={{width: 10, height: 10, marginLeft: 10, borderRadius: 5, top: 50, position: 'relative'}}
      //   activeDotStyle={{width: 10, height: 10, borderRadius: 5, marginLeft: 10, top: 50, position: 'relative'}}
         nextButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
-    color: Colors.flBlue.grey1,
-    fontFamily:Fonts.type.base }}>›</Text>} 
-        prevButton ={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
-    color: Colors.flBlue.grey1,
-    fontFamily: Fonts.type.base}}>‹</Text>}
+          color: Colors.flBlue.grey1,
+          fontFamily: Fonts.type.base }}>›</Text>}
+        prevButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
+          color: Colors.flBlue.grey1,
+          fontFamily: Fonts.type.base}}>‹</Text>}
    // autoplay={true}
          >
 
@@ -147,7 +147,7 @@ class MyPlanSwiper extends Component {
 
             <Card style={{ flex: 1, alignItems: 'center',
               margin: 15,
-              marginBottom : Platform.OS === 'ios' ? 0 : 30
+              marginBottom: Platform.OS === 'ios' ? 0 : 30
             }} >
               <View style={{ flex: 1, alignItems: 'center'
 
@@ -183,7 +183,7 @@ class MyPlanSwiper extends Component {
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
                     return (<View style={{ flex: 1, flexDirection: 'column', margin: 4
                     }} key={i}>
-                      <View style={i == 0 ?{ marginRight:(Metrics.screenWidth) - (Metrics.screenWidth * 0.85), flex: 1, alignItems: 'center', justifyContent: 'flex-start'}:{flex: 1,marginLeft:(Metrics.screenWidth) - (Metrics.screenWidth * 0.85) ,alignItems: 'center', justifyContent: 'center'}} >
+                      <View style={i == 0 ? { marginRight: (Metrics.screenWidth) - (Metrics.screenWidth * 0.85), flex: 1, alignItems: 'center', justifyContent: 'flex-start'} : {flex: 1, marginLeft: (Metrics.screenWidth) - (Metrics.screenWidth * 0.85), alignItems: 'center', justifyContent: 'center'}} >
                         <View style={i == 0 ? {flex: 3,
                           borderBottomWidth: 3,
                           borderBottomColor: Colors.flBlue.night

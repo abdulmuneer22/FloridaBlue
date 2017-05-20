@@ -92,43 +92,40 @@ class SupportScreen extends Component {
                         return (
 
                           <View>
-                          {support.contactNumber ?
-                          
-                          
-                          <Card style={styles.textBackground3} key={i}>
-                           
-                            <View style={{flex:1}}>
-                          <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)} style={styles.textBackground3} >
+                            {support.contactNumber ?
 
-                          <View style={ {flex:1 , marginLeft:20, justifyContent:'center' }}>
-                              <Text style={styles.textStyle}>
-                                {support.contactType ? support.contactType :null}
-                              </Text>
-                            </View>
-                            <View style={{flex:1, flexDirection:'row'}}>
-                          <View style={ {flex: 0.2, alignItems:'center', justifyContent:'center'}}>
-                           {support.contactNumber ? <Flb name='call-phone' size={Metrics.icons.xm * Metrics.screenWidth * 0.0028} color={Colors.flBlue.ocean} /> : <View />}
-                           </View>
-                              <View style={{flex: 0.8, alignItems:'flex-start', justifyContent:'center'}}>
-                                <Text style={styles.textStyle1}>
-                                     {support.contactNumber ? support.contactNumber : null}
-                                </Text>
+                              <Card style={styles.textBackground3} key={i}>
+
+                                <View style={{flex: 1}}>
+                                  <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)} style={styles.textBackground3} >
+
+                                    <View style={{flex: 1, marginLeft: 20, justifyContent: 'center' }}>
+                                      <Text style={styles.textStyle}>
+                                        {support.contactType ? support.contactType : null}
+                                      </Text>
+                                    </View>
+                                    <View style={{flex: 1, flexDirection: 'row'}}>
+                                      <View style={{flex: 0.2, alignItems: 'center', justifyContent: 'center'}}>
+                                        {support.contactNumber ? <Flb name='call-phone' size={Metrics.icons.xm * Metrics.screenWidth * 0.0028} color={Colors.flBlue.ocean} /> : <View />}
+                                      </View>
+                                      <View style={{flex: 0.8, alignItems: 'flex-start', justifyContent: 'center'}}>
+                                        <Text style={styles.textStyle1}>
+                                          {support.contactNumber ? support.contactNumber : null}
+                                        </Text>
+                                      </View>
+                                    </View>
+                                  </TouchableOpacity>
+                                </View>
+                              </Card> :
+
+                              <View style={{flex: 1}} style={styles.textBackground1}>
+                                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                                  <Text style={styles.textStyle}>
+                                    {support.contactType ? support.contactType : null}
+                                  </Text>
+                                </View>
                               </View>
-                            </View>
-                           </TouchableOpacity> 
-                           </View>                      
-                        </Card> :
-                       
-                          <View style={{flex:1}} style={styles.textBackground1}>
-                            <View style={ {flex:1 , alignItems:'center', justifyContent:'center' }}>
-                              <Text style={styles.textStyle}>
-                                {support.contactType ? support.contactType :null}
-                              </Text>
-                            </View>
-                           </View> 
 
-
-                          
                             }
                           </View>
                         )

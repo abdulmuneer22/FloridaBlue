@@ -165,7 +165,7 @@ class ProviderSearch extends Component {
   _specialitySelected (index, value:string) {
     var selectedSubCategoryCode = this.props.planSubCategoryList[index].subCategoryCode
 
-    if (this.props.categoryCode == "07" && selectedSubCategoryCode == "999" || selectedSubCategoryCode == "701") {
+    if (this.props.categoryCode == '07' && selectedSubCategoryCode == '999' || selectedSubCategoryCode == '701') {
       this.props.changeSubCategoryCode(selectedSubCategoryCode)
       NavigationActions.ProviderTypeInfo()
     } else {
@@ -358,20 +358,20 @@ class ProviderSearch extends Component {
         <View style={{flex: 13}}>
           <ScrollView>
             <View style={{flex: 1}}>
-              <View style={{flex:1, marginTop:20}}>
-              <Text style={styles.h1_1}>{I18n.t('providerSearchTitle')}</Text>
+              <View style={{flex: 1, marginTop: 20}}>
+                <Text style={styles.h1_1}>{I18n.t('providerSearchTitle')}</Text>
 
-              <View style={styles.radioView}>
-                <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                  width: Metrics.section * Metrics.screenWidth * 0.0025,
-                  borderRadius: Metrics.section}} group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
-                <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
-                <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                  width: Metrics.section * Metrics.screenWidth * 0.0025,
-                  borderRadius: Metrics.section
-                }} group={this.searchTypeGroup} />
-                <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
-              </View>
+                <View style={styles.radioView}>
+                  <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                    width: Metrics.section * Metrics.screenWidth * 0.0025,
+                    borderRadius: Metrics.section}} group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
+                  <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
+                  <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                    width: Metrics.section * Metrics.screenWidth * 0.0025,
+                    borderRadius: Metrics.section
+                  }} group={this.searchTypeGroup} />
+                  <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
+                </View>
               </View>
               <HideableView visible={this.state.knownCareState} removeWhenHidden>
                 <Text style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
@@ -514,47 +514,45 @@ class ProviderSearch extends Component {
           </ScrollView>
         </View>
 
-       
-          {
+        {
             this.state.floatClicked ?
 
             this.state.helpStatus ?
-            <View style={styles.urgentCareCircle}>
-              <TouchableOpacity onPress={this.handleNeedHelp}>
-                <Flb name='urgent-care-circle'
-                style={{backgroundColor:Colors.transparent}}
-                  color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
-              </TouchableOpacity>
-            </View>
+              <View style={styles.urgentCareCircle}>
+                <TouchableOpacity onPress={this.handleNeedHelp}>
+                  <Flb name='urgent-care-circle'
+                    style={{backgroundColor: Colors.transparent}}
+                    color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+                </TouchableOpacity>
+              </View>
           : <View>{this.state._onChecked}</View>
 
           : <Card style={styles.urgentCareContainer}>
 
             <Flb name='close-delete' style={styles.dismissUrgentIcon}
-                  color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
-                  onPress={this.handleNeedHelp} />
+              color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+              onPress={this.handleNeedHelp} />
 
             <Text style={styles.needHelpText}>Need Help Now?</Text>
             <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
             <View style={{flexDirection: 'row'}}>
               <View>
-            <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
-              <Image source={Images.viewListButton} style={styles.viewListButton} />
-            </TouchableOpacity>
-            </View>
-          <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
-                                                                    marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
-            <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
+                <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
+                  <Image source={Images.viewListButton} style={styles.viewListButton} />
+                </TouchableOpacity>
+              </View>
+              <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
+                marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
+                <Flb name='urgent-care-circle' onPress={this.handleNeedHelp}
                   color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
-          </View>
-          </View>
+              </View>
+            </View>
           </Card>
 
           }
 
-        </View>
+      </View>
 
-     
     )
   }
 }

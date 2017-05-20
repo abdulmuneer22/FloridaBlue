@@ -68,28 +68,27 @@ class Panel extends Component {
     }
 
     return (
-                <TouchableOpacity
-            style={styles.button}
-            onPress={this.toggle.bind(this)}
-            underlayColor={Colors.snow}>
-      <Animated.View
-        style={[styles.container, {height: this.state.animation}]}>
-        <View style={styles.titleContainer} onLayout={this._setMinHeight.bind(this)}>
-          <Text style={styles.title}>{this.state.title}</Text>
-
+      <TouchableOpacity
+        style={styles.button}
+        onPress={this.toggle.bind(this)}
+        underlayColor={Colors.snow}>
+        <Animated.View
+          style={[styles.container, {height: this.state.animation}]}>
+          <View style={styles.titleContainer} onLayout={this._setMinHeight.bind(this)}>
+            <Text style={styles.title}>{this.state.title}</Text>
 
             <Flb name={icon} size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 15, backgroundColor: Colors.transparent }}
               color={Colors.flBlue.purple} />
-        
-        </View>
 
-        <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
+          </View>
 
-          {this.props.children}
-        </View>
+          <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
 
-      </Animated.View>
-        </TouchableOpacity>
+            {this.props.children}
+          </View>
+
+        </Animated.View>
+      </TouchableOpacity>
     )
   }
 }

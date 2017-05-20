@@ -54,7 +54,7 @@ export function * logout (api, {logoutUrl}) {
   }
   const logout = apiIndex.create(baseURL = logoutUrl)
   const response = yield call(logout.getLogout)
-  console.tron.log('response of logout' + response)
+  console.tron.log('response of logout',response)
   if (response.status == '200') {
     yield put(LoginActions.logout())
   } else {

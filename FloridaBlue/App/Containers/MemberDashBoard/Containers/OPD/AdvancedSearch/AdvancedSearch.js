@@ -95,11 +95,11 @@ class AdvancedSearch extends Component {
       knownCareState: false,
       unknownCareState: false,
       specialityState: false,
-      isDifferentLocationSelected:false,
-      differentLocationText:false,
-      comingFromBackButton : false,
-      searchFrom:this.props.navigatingFrom,
-      diffLocation:false
+      isDifferentLocationSelected: false,
+      differentLocationText: false,
+      comingFromBackButton: false,
+      searchFrom: this.props.navigatingFrom,
+      diffLocation: false
 
     }
     this._timeSelected = this._timeSelected.bind(this)
@@ -136,19 +136,17 @@ class AdvancedSearch extends Component {
   }
 
   _handleDoctordetail () {
-
     if (this.state.isDifferentLocationSelected) {
       if (this.state.diffLocation) {
-        console.tron.log("diff location" + this.props.changeAddress)
+        console.tron.log('diff location' + this.props.changeAddress)
         this.props.changeUrgentCareBanner(false)
         this.props.attemptProviderSearch(this.props)
         NavigationActions.DoctorList()
       } else {
-        alert("Please Enter Zip Code or City")
+        alert('Please Enter Zip Code or City')
       }
     } else {
-
-      console.tron.log("diff location" + this.props.changeAddress)
+      console.tron.log('diff location' + this.props.changeAddress)
       this.props.changeUrgentCareBanner(false)
       this.props.attemptProviderSearch(this.props)
       NavigationActions.DoctorList()
@@ -258,13 +256,13 @@ class AdvancedSearch extends Component {
       this.props.changeLongitude(0)
     }
   }
-  _addDiffLocation(address){ 
-  if(address){ 
-  this.props.changeAddress(address) 
-  this.setState({ 
-  diffLocation: true 
-  }) 
-  } 
+  _addDiffLocation (address) {
+    if (address) {
+      this.props.changeAddress(address)
+      this.setState({
+        diffLocation: true
+      })
+    }
   }
 
   _anyGenderSelected (event) {
@@ -419,7 +417,7 @@ class AdvancedSearch extends Component {
   }
 
   componentDidMount () {
-    this._resetState ()
+    this._resetState()
     this.props.attemptConfigData()
     this.props.attemptStaffLanguage()
     this.props.attemptDoctorLanguage()
@@ -453,44 +451,42 @@ class AdvancedSearch extends Component {
         {this._renderHeader()}
         <ScrollView style={{ flex: 1, marginBottom: 20 }}>
           <View style={styles.careView}>
-           
+
+            <MKTextField
+              ref='providerName'
+              style={styles.careTextField}
+              textInputStyle={{
+                flex: 1, color: Colors.flBlue.ocean,
+                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+              }}
+              keyboardType='default'
+              returnKeyType='next'
+              autoCapitalize='none'
+              autoCorrect={false}
+              underlineColorAndroid={Colors.coal}
+              placeholder={I18n.t('providerPlaceholder')}
+              placeholderTextColor={Colors.steel}
+              tintColor={Colors.black}
+              onChangeText={this.props.changeProviderName}
+              />
+
+            <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
-                ref='providerName'
-                style={styles.careTextField}
+                ref='careType'
                 textInputStyle={{
                   flex: 1, color: Colors.flBlue.ocean,
                   fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                 }}
-                keyboardType='default'
-                returnKeyType='next'
-                autoCapitalize='none'
-                autoCorrect={false}
+                style={styles.careTextField}
+                editable={false}
                 underlineColorAndroid={Colors.coal}
-                placeholder={I18n.t('providerPlaceholder')}
+                placeholder={I18n.t('careTypePlaceholder')}
                 placeholderTextColor={Colors.steel}
                 tintColor={Colors.black}
-                onChangeText={this.props.changeProviderName}
-              />
-           
-
-          
-              <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
-                <MKTextField
-                  ref='careType'
-                  textInputStyle={{
-                    flex: 1, color: Colors.flBlue.ocean,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                  }}
-                  style={styles.careTextField}
-                  editable={false}
-                  underlineColorAndroid={Colors.coal}
-                  placeholder={I18n.t('careTypePlaceholder')}
-                  placeholderTextColor={Colors.steel}
-                  tintColor={Colors.black}
-                  value={this.props.careType}
+                value={this.props.careType}
                 />
-              </ModalDropdown>
-              <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
+            </ModalDropdown>
+            <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
 
             <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
               <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
@@ -564,9 +560,9 @@ class AdvancedSearch extends Component {
                 underlineColorAndroid={Colors.coal}
                 placeholderTextColor={Colors.steel}
                 tintColor={Colors.black}
-                
-                onChangeText= {(address) => this._addDiffLocation(address)}
-                  
+
+                onChangeText={(address) => this._addDiffLocation(address)}
+
               />
             </HideableView>
 
@@ -630,7 +626,7 @@ class AdvancedSearch extends Component {
                 </Text>
               </View>
 
-              <View style={{ flex: 0.6, marginTop: 15, marginLeft:15 }}>
+              <View style={{ flex: 0.6, marginTop: 15, marginLeft: 15 }}>
 
                 <ModalDropdown
                   dropdownStyle={styles.dropdown1}
@@ -676,7 +672,7 @@ class AdvancedSearch extends Component {
 
               </View>
 
-              <View style={{ flex: 0.6, marginTop: 10, marginLeft:15 }}>
+              <View style={{ flex: 0.6, marginTop: 10, marginLeft: 15 }}>
 
                 <ModalDropdown dropdownStyle={styles.dropdown1}
                   onSelect={this._timeSelected}
@@ -874,7 +870,7 @@ const mapStateToProps = (state) => {
     knownCareState: state.provider.knownCareState,
     unknownCareState: state.provider.unknownCareState,
     specialityState: state.provider.specialityState,
-    networkCodeList: state.provider.networkCodeList,
+    networkCodeList: state.provider.networkCodeList
   }
 }
 

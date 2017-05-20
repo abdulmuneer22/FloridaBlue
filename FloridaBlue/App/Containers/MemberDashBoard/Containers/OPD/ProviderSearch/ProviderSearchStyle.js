@@ -36,7 +36,7 @@ export default StyleSheet.create({
     fontWeight: '600',
     margin: 10
   },
-   h1_1: {
+  h1_1: {
     fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0023 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.anvil,
     textAlign: 'center',

@@ -66,9 +66,8 @@ class DoctorCard extends Component {
   }
 
   handleMaps (address) {
-   
-    const url = `http://maps.apple.com/?daddr=`+address.addressLine1+" "+address.addressLine2+" "+address.city+" "+address.state+
-    " "+address.zipCode;
+    const url = `http://maps.apple.com/?daddr=` + address.addressLine1 + ' ' + address.addressLine2 + ' ' + address.city + ' ' + address.state +
+    ' ' + address.zipCode
 
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
@@ -86,33 +85,32 @@ class DoctorCard extends Component {
 
           <View style={{ flex: 1, margin: 15 }}>
             {this.props.data != undefined ? this.props.data.map((value, i) => {
-              if(i < this.state.cardLimit){
+              if (i < this.state.cardLimit) {
+                return (
+                  <Card style={{ flex: 1}} key={i}>
 
-                 return (
-                <Card style={{ flex: 1}} key={i}>
+                    <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop: 10 }}>
 
-                  <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop:10 }}>
-
-                    <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight:10}}>
+                      <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
                         {value ?
                           <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
                             <Text style={styles.h1}>{value.displayName}</Text>
                           </TouchableOpacity> : null}
-                         <View style={{flex:1, flexDirection:'row'}}>
-                         
-                        {value ?
-                        <View style={{flex:0.7}}> 
-                          <Text style={styles.h2}>{value.primarySpecialty}</Text> 
-                          </View>: null}
+                        <View style={{flex: 1, flexDirection: 'row'}}>
+
+                          {value ?
+                            <View style={{flex: 0.7}}>
+                              <Text style={styles.h2}>{value.primarySpecialty}</Text>
+                            </View> : null}
                           {value && value.handicappedAccessIn && value.handicappedAccessIn == 'Y' ?
-                    <View style={{flex:0.3,alignItems:'center', marginTop:10}}>
-                      <Flb name="accessibility" size={Metrics.icons.medium * Metrics.screenWidth* 0.002} color={Colors.flBlue.ocean}/> 
-                    </View>: null }
-                   </View> 
-                       
-                          <Text style={styles.h4}>{value ? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text>
-                       
-                          <Text style={styles.h4_2}>{value ? value.city :null}, {value ? value.state : null}</Text> 
+                            <View style={{flex: 0.3, alignItems: 'center', marginTop: 10}}>
+                              <Flb name='accessibility' size={Metrics.icons.medium * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
+                            </View> : null }
+                        </View>
+
+                        <Text style={styles.h4}>{value ? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text>
+
+                        <Text style={styles.h4_2}>{value ? value.city : null}, {value ? value.state : null}</Text>
                         {value ?
                           <Text style={styles.h4_2}>{value.zipCode}</Text> : null}
                         {value ?
@@ -127,14 +125,14 @@ class DoctorCard extends Component {
                         <TouchableOpacity style={{ flex: 1, height: Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleCall(value.telephoneNumber)}>
                           <View style={styles.call}>
 
-                                <View style={{ flex: 0.45, alignItems: 'flex-end' }}>
-                                    <Flb
-                                        name='call-phone'
-                                        size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
-                                        color={Colors.snow} />
-                                  </View>
+                            <View style={{ flex: 0.45, alignItems: 'flex-end' }}>
+                              <Flb
+                                name='call-phone'
+                                size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
+                                color={Colors.snow} />
+                            </View>
 
-                                <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
+                            <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
 
                               <Text style={styles.callText}>Call</Text>
                             </View>
@@ -144,17 +142,17 @@ class DoctorCard extends Component {
                         <TouchableOpacity style={{ flex: 1, height: Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleMaps(value)}>
                           <View style={styles.directions}>
 
-                                <View style={{ flex: 0.28, alignItems: 'flex-end' }}>
-                                    <Flb
-                                        name='directions'
-                                        size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
-                                        color={Colors.snow} />
-                                  </View>
+                            <View style={{ flex: 0.28, alignItems: 'flex-end' }}>
+                              <Flb
+                                name='directions'
+                                size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
+                                color={Colors.snow} />
+                            </View>
 
-                                <View style={{
-                                    flex: 0.72,
-                                    alignItems: 'flex-start'
-                                  }}>
+                            <View style={{
+                              flex: 0.72,
+                              alignItems: 'flex-start'
+                            }}>
 
                               <Text style={styles.directionText}>Directions</Text>
                             </View>

@@ -98,7 +98,7 @@ export default StyleSheet.create({
     marginTop: Metrics.mediumMargin,
     fontFamily: Fonts.type.headerFont,
     fontWeight: '600',
-    marginLeft:10,
+    marginLeft: 10,
     color: Colors.flBlue.anvil
   },
 
@@ -107,7 +107,7 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin,
     color: Colors.flBlue.anvil,
     fontFamily: Fonts.type.subHeaderFont,
-    marginLeft:10,
+    marginLeft: 10,
     fontWeight: '600'
 
   },
@@ -118,7 +118,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
 
     fontWeight: '400',
-    //textAlign: 'justify',
+    // textAlign: 'justify',
     margin: 10
 
   },
@@ -168,14 +168,14 @@ export default StyleSheet.create({
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
-    marginLeft:10,
+    marginLeft: 10,
     textAlign: 'auto'
   },
 
   h4_2: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.grey5,
-    marginLeft:10,
+    marginLeft: 10,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400'
   },

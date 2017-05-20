@@ -99,13 +99,11 @@ class SettingsContent extends Component {
   }
   handlePressFindCare= () => {
     this.toggleDrawer()
-    //NavigationActions[this.props.visibilityRules.opdTile.routerName]()
-     if (this.props.visibilityRules.opdTile.tileType == 'webview') {
-    NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})
-
-    } else if (this.props.visibilityRules.opdTile.tileType == 'native') {    
-    NavigationActions[this.props.visibilityRules.opdTile.routerName]()
-
+    // NavigationActions[this.props.visibilityRules.opdTile.routerName]()
+    if (this.props.visibilityRules.opdTile.tileType == 'webview') {
+      NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})
+    } else if (this.props.visibilityRules.opdTile.tileType == 'native') {
+      NavigationActions[this.props.visibilityRules.opdTile.routerName]()
     }
   }
   handlePressPayment= () => {
@@ -155,7 +153,6 @@ class SettingsContent extends Component {
     return (
       <ScrollView style={[styles.wrapper]}>
         <View style={styles.options}>
-
 
           <Text style={styles.heading} onPress={this.handlePressDashBoard}>Dashboard</Text>
           <Divider />

@@ -56,12 +56,12 @@ class Switch extends Component {
     var oneTextActiveStyle = {
       color: 'white',
       alignSelf: 'center',
-      fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025
+      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025
     }
     var twoTextActiveStyle = {
       color: 'white',
       alignSelf: 'center',
-      fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025
+      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025
     }
     var oneTabInactiveStyle = {
      // backgroundColor: Colors.flBlue.ocean,
@@ -92,7 +92,7 @@ class Switch extends Component {
     var twoTextInactiveStyle = {
       color: 'darkgrey',
       alignSelf: 'center',
-      fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025
+      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025
     }
 
     var threeTabActiveStyle = {

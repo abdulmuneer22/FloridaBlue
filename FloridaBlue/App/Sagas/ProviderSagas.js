@@ -63,12 +63,12 @@ export function * sendUrgentSearchRequest (api, {data}) {
   if (response.ok) {
     var data = response.data
     if (data.data.providerList) {
-       for (var i = 0; i < data.data.providerList.length; i++) {
-      var providerItem = data.data.providerList[i]
-      providerItem["uniqueId"] = i
+      for (var i = 0; i < data.data.providerList.length; i++) {
+        var providerItem = data.data.providerList[i]
+        providerItem['uniqueId'] = i
+      }
     }
-    }
-     console.tron.log('im urgent data' + data)
+    console.tron.log('im urgent data' + data)
     yield put(ProviderActions.sendUrgentSearchSuccess(data))
   } else {
     var error = response.problem
@@ -96,7 +96,7 @@ export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
   if (response.ok) {
     var data = response.data
 
-    if (selectedCategoryCode == "07") {
+    if (selectedCategoryCode == '07') {
       var mailOrderCateogry = {'categoryCode': '07', 'subCategoryCode': '999', 'subCategoryName': 'Mail Order'}
       data.data.planSubCategoryList.push(mailOrderCateogry)
     } else {

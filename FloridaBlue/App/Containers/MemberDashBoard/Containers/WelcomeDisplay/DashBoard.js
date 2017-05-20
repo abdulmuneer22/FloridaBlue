@@ -106,11 +106,9 @@ class LandingScreen extends Component {
 
   handleOPDTileView= () => {
     if (this.props.visibilityRules.opdTile.tileType == 'webview') {
-    NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})
-
-    } else if (this.props.visibilityRules.opdTile.tileType == 'native') {    
-    NavigationActions[this.props.visibilityRules.opdTile.routerName]()
-
+      NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})
+    } else if (this.props.visibilityRules.opdTile.tileType == 'native') {
+      NavigationActions[this.props.visibilityRules.opdTile.routerName]()
     }
   }
 
@@ -161,12 +159,12 @@ class LandingScreen extends Component {
                       height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
                     }}>
 
-                      <View style={{flex: 1, alignItems:'center', justifyContent:'center'}}>
+                      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         <Image source={Images[tile.gradientImage]}
-                          style={{flex: 1, justifyContent: 'center',alignItems:'center',
+                          style={{flex: 1, justifyContent: 'center', alignItems: 'center',
                          // resizeMode:Platform.OS == 'ios' ?'' :'cover',
-                            width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.52) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.51),
-                             }} >
+                            width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.52) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.51)
+                          }} >
 
                           <View style={{alignItems: 'center'}} >
                             <Text style={styles.tileTextStyle}>
@@ -207,24 +205,24 @@ class LandingScreen extends Component {
                   flex: 1
                   // marginTop:27.5
                 }}>
-                <View style={{flex:0.4, alignItems:'flex-end'}}>
-                  <Flb name={this.props.visibilityRules.opdTile.tileIcon}
-                    style={{
-                      backgroundColor: Colors.transparent,
-                      marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.003
-                    }}
-                    size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
-                    color={Colors.flBlue.grey5} />
-                    </View>
-                    <View style={{flex:0.6, alignItems:'flex-start'}}>
-                  <Text style={{
-                    fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
-                    color: Colors.flBlue.grey5,
-                    fontFamily: Fonts.type.headerFont,
-                    backgroundColor: Colors.transparent
-                  }}>
-                    {this.props.visibilityRules.opdTile.tileName['en']}
-                  </Text>
+                  <View style={{flex: 0.4, alignItems: 'flex-end'}}>
+                    <Flb name={this.props.visibilityRules.opdTile.tileIcon}
+                      style={{
+                        backgroundColor: Colors.transparent,
+                        marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.003
+                      }}
+                      size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
+                      color={Colors.flBlue.grey5} />
+                  </View>
+                  <View style={{flex: 0.6, alignItems: 'flex-start'}}>
+                    <Text style={{
+                      fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
+                      color: Colors.flBlue.grey5,
+                      fontFamily: Fonts.type.headerFont,
+                      backgroundColor: Colors.transparent
+                    }}>
+                      {this.props.visibilityRules.opdTile.tileName['en']}
+                    </Text>
                   </View>
                 </View>
               </Image>
@@ -238,8 +236,8 @@ class LandingScreen extends Component {
   }
 
   render () {
-    console.tron.log("ipad Height" + Metrics.screenHeight)
-    console.tron.log("ipad Width" + Metrics.screenWidth)
+    console.tron.log('ipad Height' + Metrics.screenHeight)
+    console.tron.log('ipad Width' + Metrics.screenWidth)
     var image = [
       Images.dashboardGradient,
       Images.dashboardGradient2,

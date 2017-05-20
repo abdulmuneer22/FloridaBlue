@@ -106,9 +106,9 @@ class Card extends Component {
             }}
            >
 
-            <View style={{flex: 1, justifyContent: 'center',alignItems:'center',}}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Image source={Images[this.props.gradientImage]}
-                style={{flex: 1, justifyContent: 'center',alignItems:'center',
+                style={{flex: 1, justifyContent: 'center', alignItems: 'center',
                   width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.55) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.56)}} >
 
                 <View style={{alignItems: 'center'}} >

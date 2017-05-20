@@ -49,7 +49,7 @@ const HtMLstyles = StyleSheet.create({
   p: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025
 
   },
   a: {
@@ -141,7 +141,7 @@ class Screen_1 extends React.Component {
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
               <View>
-              <HTMLView value={'<p>'+this.props.identificationStatusMessage+'</P>'} stylesheet={HtMLstyles}/> 
+                <HTMLView value={'<p>' + this.props.identificationStatusMessage + '</P>'} stylesheet={HtMLstyles} />
               </View>
             </View>
             <View>

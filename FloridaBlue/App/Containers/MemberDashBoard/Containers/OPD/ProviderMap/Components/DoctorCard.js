@@ -73,37 +73,36 @@ class DoctorCard extends Component {
   }
 
   render () {
-   
     return (
       <View style={styles.container}>
-        <View style={{ flex: 1, marginTop:-5}}>
+        <View style={{ flex: 1, marginTop: -5}}>
           {this.props.data != undefined ?
-            <Card style={{ flex: 1,}} >
+            <Card style={{ flex: 1 }} >
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: (Platform.OS === 'ios') ? 10 : 10 }}>
 
-                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2, paddingRight:10}}>
+                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2, paddingRight: 10}}>
                   {this.props.data ?
                     <TouchableOpacity onPress={this.providerSelected}>
                       <Text style={styles.mapHeaderText}>{this.props.data.displayName}</Text>
                     </TouchableOpacity>
                   : null}
-                  <View style={{flexDirection:'row'}}>
-                  {this.props.data ?
-                  <View >
-                    <Text style={styles.mapSubText}>{this.props.data.primarySpecialty}</Text> 
-                    </View>: null}
-                    <View style={{marginTop:Metrics.baseMargin * Metrics.screenHeight * 0.0015, marginLeft:Metrics.section * Metrics.screenWidth * 0.005}}>
-                       {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y' ?
-                      <Flb name="accessibility"  size={20} color={Colors.flBlue.ocean}/>  : null}
-                      </View>
-                    </View>   
-                    <Text style={styles.h4}>{this.props.data ? this.props.data.addressLine1 : null}, {this.props.data ? this.props.data.addressLine2 : null}</Text> 
-                  
-                    <Text style={styles.mapAdressText}>{this.props.data ? this.props.data.city : null}, { this.props.data ? this.props.data.state : null}, {this.props.data ? this.props.data.zipCode : null}</Text>
+                  <View style={{flexDirection: 'row'}}>
+                    {this.props.data ?
+                      <View >
+                        <Text style={styles.mapSubText}>{this.props.data.primarySpecialty}</Text>
+                      </View> : null}
+                    <View style={{marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0015, marginLeft: Metrics.section * Metrics.screenWidth * 0.005}}>
+                      {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y' ?
+                        <Flb name='accessibility' size={20} color={Colors.flBlue.ocean} /> : null}
+                    </View>
+                  </View>
+                  <Text style={styles.h4}>{this.props.data ? this.props.data.addressLine1 : null}, {this.props.data ? this.props.data.addressLine2 : null}</Text>
+
+                  <Text style={styles.mapAdressText}>{this.props.data ? this.props.data.city : null}, { this.props.data ? this.props.data.state : null}, {this.props.data ? this.props.data.zipCode : null}</Text>
                   {this.props.data ?
                     <Text style={styles.mapAdressText}>{this.props.data.telephoneNumber}</Text> : null}
-                   {this.props.data ?
-                          <Text style={styles.mapAdressText}>{this.props.data.distance} miles</Text> : null}
+                  {this.props.data ?
+                    <Text style={styles.mapAdressText}>{this.props.data.distance} miles</Text> : null}
                 </View>
               </View>
               <View style={{ flex: 1, marginTop: Metrics.textHeight * Metrics.screenHeight * 0.0065 }}>
@@ -114,7 +113,7 @@ class DoctorCard extends Component {
                       <View style={{ flex: 0.4, alignItems: 'flex-end' }}>
                         <Flb
                           name='call-phone'
-                          size={Metrics.icons.medium * Metrics.screenWidth * 0.002} 
+                          size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
                           color={Colors.snow} />
                       </View>
 

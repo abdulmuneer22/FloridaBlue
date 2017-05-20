@@ -282,13 +282,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: Colors.snow,
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
-   },
-   textBackground3: {
+  },
+  textBackground3: {
     flex: 1,
-    //flexDirection: 'row',
+    // flexDirection: 'row',
     backgroundColor: Colors.snow,
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.88)
-   },
+  },
 
   textBackground1: {
     flex: 1,
