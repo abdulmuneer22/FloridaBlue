@@ -83,7 +83,7 @@ class ProviderMap extends Component {
   }
 
   _mapCalloutSelected (event) {
-    this.setState({selectedLocation: this.props.provider.data.providerList[event.nativeEvent.id]})
+    this.setState({selectedLocation: this.props.provider && this.props.provider.data && this.props.provider.data.providerList[event.nativeEvent.id]})
     this.setState({currentLat: this.props.provider && this.props.provider.data && this.props.provider.data.providerList[event.nativeEvent.id] && this.props.provider.data.providerList[event.nativeEvent.id].latitude})
     this.setState({currentLong: this.props.provider && this.props.provider.data && this.props.provider.data.providerList[event.nativeEvent.id] && this.props.provider.data.providerList[event.nativeEvent.id].longitude})
     this.setState({showLocationDetail: false}, function () {
