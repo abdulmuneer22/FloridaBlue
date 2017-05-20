@@ -52,10 +52,11 @@ class DoctorCard extends Component {
     })
   }
 
-  handleMaps (latitude, longitude) {
-    console.tron.log(latitude, longitude)
-    const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`
-
+ 
+  handleMaps (address) {
+   
+    const url = `http://maps.apple.com/?daddr=`+address.addressLine1+" "+address.addressLine2+" "+address.city+" "+address.state+
+    " "+address.zipCode;
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
         Linking.openURL(url)
@@ -77,7 +78,7 @@ class DoctorCard extends Component {
       <View style={styles.container}>
         <View style={{ flex: 1, marginTop: -5}}>
           {this.props.data != undefined ?
-            <Card style={{ flex: 1 }} >
+            <Card style={{ flex: 1,}}>
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: (Platform.OS === 'ios') ? 10 : 10 }}>
 
                 <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2, paddingRight: 10}}>
@@ -107,7 +108,7 @@ class DoctorCard extends Component {
               </View>
               <View style={{ flex: 1, marginTop: Metrics.textHeight * Metrics.screenHeight * 0.0065 }}>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
-                  <TouchableOpacity style={{ flex: 1, height: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.0015 : Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleCall(this.props.data.telephoneNumber)}>
+                  <TouchableOpacity style={{ flex: 1, height: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.0015 : Metrics.textHeight * Metrics.screenHeight * 0.0016 }} onPress={() => this.handleCall(this.props.data.telephoneNumber)}>
                     <View style={styles.call}>
 
                       <View style={{ flex: 0.4, alignItems: 'flex-end' }}>
@@ -124,7 +125,7 @@ class DoctorCard extends Component {
 
                     </View>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{ flex: 1, height: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.0015 : Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}>
+                  <TouchableOpacity style={{ flex: 1, height: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.0015 : Metrics.textHeight * Metrics.screenHeight * 0.0016 }} onPress={() => this.handleMaps(this.props.data ? this.props.data : '')}>
                     <View style={styles.directions}>
 
                       <View style={{ flex: 0.3, alignItems: 'flex-end' }}>

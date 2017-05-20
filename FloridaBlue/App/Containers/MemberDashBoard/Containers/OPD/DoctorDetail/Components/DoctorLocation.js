@@ -11,6 +11,7 @@ import { Colors, Metrics, Fonts, Images } from '../../../../../../Themes'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import { connect } from 'react-redux'
 const window = Dimensions.get('window')
+const milesOfLatAtEquator = 69
 
 class DoctorLocation extends Component {
 
@@ -18,9 +19,11 @@ class DoctorLocation extends Component {
     super(props)
   }
 
+  componentDidMount() {
+    console.tron.log(this.props)
+  }
+
   render () {
-    console.tron.log('Doctor Location')
-    console.tron.log(this.props.data)
     return (
       <View style={{
         height: Metrics.screenHeight * 0.3,
@@ -29,10 +32,10 @@ class DoctorLocation extends Component {
       }}>
         <MapView style={{flex: 1}}
           initialRegion={{
-            latitude: this.props.originLatitude,
-            longitude: this.props.originLongitude,
-            latitudeDelta: this.props.latDelta,
-            longitudeDelta: this.props.longDelta
+            latitude: this.props.data.latitude,
+            longitude:  this.props.data.longitude,
+            latitudeDelta: 2 / milesOfLatAtEquator,
+            longitudeDelta: 2 / (Math.cos(this.props.data.latitude) * milesOfLatAtEquator)
           }}>
           <MapView.Marker style={{width: 10, height: 10}} coordinate={{ latitude: this.props.data && this.props.data.latitude ? this.props.data.latitude : '', longitude: this.props.data && this.props.data.longitude ? this.props.data.longitude : '' }} image={Images.mapSelectedPin} />
         </MapView>
