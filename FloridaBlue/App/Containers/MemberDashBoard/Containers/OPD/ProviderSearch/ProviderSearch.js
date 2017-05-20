@@ -188,6 +188,7 @@ class ProviderSearch extends Component {
 
     if (this.props.networkCodeList) {
       if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
+        console.tron.log("pharmacy props :: "+JSON.stringify(this.props))
         this.props.attemptPharmacySearch(this.props)
       } else {
         this.props.attemptProviderSearch(this.props)
@@ -586,7 +587,8 @@ const mapStateToProps = (state) => {
     urgentCareState: state.urgentCareState,
     networkCodeList: state.provider.networkCodeList,
     locationStatus: state.provider.locationStatus,
-    showUrgentCareBanner: state.provider.showUrgentCareBanner
+    showUrgentCareBanner: state.provider.showUrgentCareBanner,
+    searchRange: state.provider.searchRange,
   }
 }
 

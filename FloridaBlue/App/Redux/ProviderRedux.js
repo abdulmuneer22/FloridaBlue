@@ -93,7 +93,7 @@ export const INITIAL_STATE = Immutable({
   providerLanguage: {},
   officeHours: {},
   gender: '',
-  searchRange: 25,
+  searchRange: 20,
   leftActive: true,
   rightActive: false,
   showUrgentCareBanner: false,
