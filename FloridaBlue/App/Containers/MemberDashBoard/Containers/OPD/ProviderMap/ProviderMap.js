@@ -120,9 +120,8 @@ class ProviderMap extends Component {
   _renderLocationDetail (location) {
     return (
       <View style={{flex: 1, marginTop: (Platform.OS === 'ios') ? 10 : -5,
-        marginBottom: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.002 : 0
-      }}
-      >
+        marginBottom: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.002 :  Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
+      }} >
         <DoctorCard data={location} />
       </View>
     )
@@ -154,7 +153,7 @@ class ProviderMap extends Component {
                 bottom={(Platform.OS === 'ios') ? 0 : -Metrics.textHeight * Metrics.screenHeight * 0.0013}
                 nextButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
                                           // fontWeight:'400',
-                                           marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
+                                           marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
                                            color:Colors.flBlue.grey3,
                                            marginBottom:(Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
                 onMomentumScrollEnd={this._locationSwiped}

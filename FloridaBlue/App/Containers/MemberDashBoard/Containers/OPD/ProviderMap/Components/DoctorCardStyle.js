@@ -134,9 +134,10 @@ export default StyleSheet.create({
     fontWeight: '400'
   },
   h4: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     marginTop: Metrics.smallMargin,
     color: Colors.flBlue.grey5,
+    //marginRight:10,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '400',
     textAlign: 'auto'

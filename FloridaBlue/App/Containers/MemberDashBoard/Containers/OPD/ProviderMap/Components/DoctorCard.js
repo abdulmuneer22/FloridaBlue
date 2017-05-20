@@ -94,7 +94,7 @@ class DoctorCard extends Component {
                       </View> : null}
                     <View style={{marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0015, marginLeft: Metrics.section * Metrics.screenWidth * 0.005}}>
                       {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y' ?
-                        <Flb name='accessibility' size={20} color={Colors.flBlue.ocean} /> : null}
+                        <Flb name='accessibility' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} /> : null}
                     </View>
                   </View>
                   <Text style={styles.h4}>{this.props.data ? this.props.data.addressLine1 : null}, {this.props.data ? this.props.data.addressLine2 : null}</Text>
