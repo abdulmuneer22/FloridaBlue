@@ -55,7 +55,7 @@ import { ProgramDetail} from '../Containers/MemberDashBoard/Containers/OPD/Progr
 const onExitApp = () => {
   Alert.alert(
     'Exit',
-    'Are you sure you want to exit this app',
+    'Are you sure you want to exit this app ?',
     [
       { text: 'Cancel', onPress: () => {} },
       { text: 'YES', onPress: () => BackAndroid.exitApp() }
@@ -77,30 +77,30 @@ class NavigationRouter extends Component {
         console.log('currentscence', component.props.currentSceneValue)
         Alert.alert(
               'Exit',
-              'Are you sure you want to exit this app',
+              'Are you sure you want to exit this app?',
           [
-                { text: 'Cancel', onPress: () => {} },
-                { text: 'YES', onPress: () => BackAndroid.exitApp() }
+                { text: 'No', onPress: () => {} },
+                { text: 'Yes', onPress: () => BackAndroid.exitApp() }
           ]
             )
       }else if(component.props.currentSceneValue &&component.props.currentSceneValue === 'login'){
           console.log('currentscence', component.props.currentSceneValue)
         Alert.alert(
               'Exit',
-              'Are you sure you want to exit this app',
+              'Are you sure you want to exit this app?',
           [
-                { text: 'Cancel', onPress: () => {} },
-                { text: 'YES', onPress: () => BackAndroid.exitApp() }
+                { text: 'No', onPress: () => {} },
+                { text: 'Yes', onPress: () => BackAndroid.exitApp() }
           ]
             )
       } else if (component.props.currentSceneValue === 'WelcomeDashBoard') {
         console.log('currentscence', component.props.currentSceneValue)
         Alert.alert(
               'Logout',
-              'Are you sure you want to logout',
+              'Are you sure you want to logout?',
           [
-                { text: 'Cancel', onPress: () => {} },
-            { text: 'YES', onPress: () => {
+                { text: 'No', onPress: () => {} },
+            { text: 'Yes', onPress: () => {
               component.props.clearLogin()
               RCTNetworking.clearCookies((cleared) => {
                 console.tron.log('clearing local cookies for the app')
