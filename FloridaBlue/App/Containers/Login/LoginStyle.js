@@ -127,7 +127,7 @@ export default StyleSheet.create({
   spinnerView: {
   //  alignItems: 'center',
   //  justifyContent: 'center',
-    alignSelf: 'center',
+    alignSelf: 'center'
    // height:Metrics.screenHeight
 
   },

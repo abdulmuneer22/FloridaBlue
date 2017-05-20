@@ -14,8 +14,8 @@ export default StyleSheet.create({
   backgroundImage: {
     flex: 0.5,
     alignSelf: 'flex-end',
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.768),
-     //width:Metrics.screenWidth - (Metrics.screenWidth * 0.88)
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.768)
+     // width:Metrics.screenWidth - (Metrics.screenWidth * 0.88)
    // marginBottom:-Metrics.smallMargin * Metrics.screenHeight * 0.0001
   },
   logo: {
@@ -99,7 +99,7 @@ export default StyleSheet.create({
     // width: window.width,
     backgroundColor: Colors.snow,
     flex: 1,
-    margin: 15,
+    margin: 15
    // marginTop:20
    // height : 200,
    // alignSelf: 'center',
@@ -169,7 +169,7 @@ export default StyleSheet.create({
   },
 
   h2: {
-    fontSize:Platform.OS === 'ios' ? Fonts.size.regular * Metrics.screenWidth * 0.0025 : Fonts.size.regular * Metrics.screenWidth * 0.0024,
+    fontSize: Platform.OS === 'ios' ? Fonts.size.regular * Metrics.screenWidth * 0.0025 : Fonts.size.regular * Metrics.screenWidth * 0.0024,
   //  textAlign: 'center',
     color: Colors.flBlue.anvil,
     paddingTop: Metrics.baseMargin,
@@ -179,11 +179,11 @@ export default StyleSheet.create({
 
   },
   h4: {
-    fontSize:Platform.OS === 'ios' ? Fonts.size.regular * Metrics.screenWidth * 0.0025 : Fonts.size.regular * Metrics.screenWidth * 0.0023,
+    fontSize: Platform.OS === 'ios' ? Fonts.size.regular * Metrics.screenWidth * 0.0025 : Fonts.size.regular * Metrics.screenWidth * 0.0023,
     color: Colors.flBlue.grey5,
     marginLeft: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.headerFont
-   
+
   },
   h4_2: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
@@ -202,7 +202,7 @@ export default StyleSheet.create({
     color: Colors.flBlue.anvil,
     marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.003,
     fontFamily: Fonts.type.subHeaderFont,
-    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029
 
   }
 

@@ -17,7 +17,8 @@ const { Types, Creators } = createActions({
   logout: [],
   changeUserName: ['username'],
   changePassword: ['password'],
-  changeTouchEnabled: ['touchEnabled']
+  changeTouchEnabled: ['touchEnabled'],
+  currentScene: ['currentSceneValue']
 })
 
 export const LoginTypes = Types
@@ -35,7 +36,8 @@ export const INITIAL_STATE = Immutable({
   getTou: null,
   fetching: false,
   touchEnabled: false,
-  logoutUrl: null
+  logoutUrl: null,
+  currentSceneValue: null
 })
 
 /* ------------- Reducers ------------- */
@@ -56,7 +58,18 @@ export const _changeAgreeTermsOfUse = (state: Object, {agreeTermsOfUse}: Object)
       state.merge({fetching: false, agreeTermsOfUse})
 
 // we've logged out
-export const logout = (state: Object) => INITIAL_STATE
+export const logout = (state: Object) =>  state.merge({
+  username: null,
+  password: null,
+  error: null,
+  responseURL: null,
+  smToken: null,
+  agreeTermsOfUse: null,
+  getTou: null,
+  fetching: false,
+  touchEnabled: false,
+  logoutUrl: null,
+})
 
 // we're getting TOu Markup
 export const getTOU = (state: Object) => state.merge({ fetching: true, responseURL: 'login'})
@@ -75,6 +88,9 @@ export const password = (state: Object, {password} : Object) =>
   // we are change touchEnabled
 export const _changeTouchEnabled = (state: Object, {touchEnabled} : Object) => state.merge({touchEnabled})
 
+  // we are updating currentScence
+export const _changeCurrentSceneValue = (state: Object, {currentSceneValue} : Object) => state.merge({currentSceneValue})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -89,7 +105,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEND_CONFIRM]: request,
   [Types.LOGIN_FAILURE]: failure,
   [Types.LOGOUT]: logout,
-  [Types.CHANGE_TOUCH_ENABLED]: _changeTouchEnabled
+  [Types.CHANGE_TOUCH_ENABLED]: _changeTouchEnabled,
+  [Types.CURRENT_SCENE]: _changeCurrentSceneValue
 })
 
 /* ------------- Selectors ------------- */

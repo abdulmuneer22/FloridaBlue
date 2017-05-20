@@ -33,7 +33,7 @@ const HtMLstyles = StyleSheet.create({
   p: {
     color: Colors.snow,
     fontFamily: Fonts.type.base,
-    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025
 
   },
   a: {

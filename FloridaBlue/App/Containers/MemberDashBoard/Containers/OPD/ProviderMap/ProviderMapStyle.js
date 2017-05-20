@@ -16,7 +16,7 @@ const ITEM_WIDTH = window.width - (2 * ITEM_SPACING) - (2 * ITEM_PREVIEW)
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:Colors.flBlue.grey1,
+    backgroundColor: Colors.flBlue.grey1,
     justifyContent: 'flex-end',
     alignItems: 'center'
   },
@@ -47,7 +47,7 @@ export default StyleSheet.create({
     // paddingTop: !ANDROID ? 0 : screen.height - ITEM_PREVIEW_HEIGHT - 64,
   },
   map: {
-    flex:8,
+    flex: 8,
     backgroundColor: 'transparent',
     position: 'absolute',
     top: 0,
@@ -55,7 +55,7 @@ export default StyleSheet.create({
     right: 0,
     bottom: 0,
     width: Metrics.screenWidth,
-    height:(Platform.OS === 'ios') ?  Metrics.screenHeight -(Metrics.screenHeight *0.55) : Metrics.screenHeight -(Metrics.screenHeight *0.5655)
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.55) : Metrics.screenHeight - (Metrics.screenHeight * 0.5655)
   },
   item: {
     width: ITEM_WIDTH,
@@ -67,7 +67,7 @@ export default StyleSheet.create({
     borderColor: '#000'
   },
   locationDetailContainer: {
-    //backgroundColor:Colors.flBlue.ocean,
+    // backgroundColor:Colors.flBlue.ocean,
     position: 'absolute',
     top: (Platform.OS === 'ios') ? Metrics.textHeight2 * Metrics.screenHeight * 0.009 : Metrics.textHeight2 * Metrics.screenHeight * 0.008
    // height: Metrics.textHeight2 * Metrics.screenHeight * 0.009,

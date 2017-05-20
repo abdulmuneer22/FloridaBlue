@@ -54,5 +54,5 @@ export default StyleSheet.create({
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0026,
     textAlign: 'justify',
     color: Colors.flBlue.anvil
-  },
+  }
 })

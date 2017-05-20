@@ -46,64 +46,61 @@ const theme = getTheme()
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
- 
+
 class DoctorList extends Component {
 
-  constructor(props){
-         super(props);
-         this.state = {
-          listLimit : 10,
-          totalNumberOfCardPerScreen : 30,
-          isFetchingMore: false,
-          loadingMore:true,
-          initialCount:0,
-          finalCount:0,
-          asynCall : true,
-          displayBannerInfo : false
+  constructor (props) {
+    super(props)
+    this.state = {
+      listLimit: 10,
+      totalNumberOfCardPerScreen: 30,
+      isFetchingMore: false,
+      loadingMore: true,
+      initialCount: 0,
+      finalCount: 0,
+      asynCall: true,
+      displayBannerInfo: false
 
-      }
-      this.loadMore = this.loadMore.bind(this)
-   }
-
+    }
+    this.loadMore = this.loadMore.bind(this)
+  }
 
   _advancedSearch () {
-    NavigationActions.AdvancedSearch({navigatingFrom: 'doctorsListPage'});
+    NavigationActions.AdvancedSearch({navigatingFrom: 'doctorsListPage'})
   }
 
   _mapView () {
-      if(this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0){
-          NavigationActions.ProviderMap()
-      }
+    if (this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0) {
+      NavigationActions.ProviderMap()
+    }
   }
 
-  async providerSearchList(){
-    this.props.changeEnd(300);
-    if(this.props.error == undefined || this.props.error == null)
-    {    
-      if(this.props.showUrgentCareBanner){
+  async providerSearchList () {
+    this.props.changeEnd(300)
+    if (this.props.error == undefined || this.props.error == null) {
+      if (this.props.showUrgentCareBanner) {
         this.props.attemptAsyncUrgentSearch(this.props)
-      }else{
-
-      if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
-        this.props.attemptAsyncPharmacySearch(this.props)
       } else {
-        this.props.attemptAsyncProviderSearch(this.props)
-      }
-        //this.props.attemptProviderSearch(this.props)
+        if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
+          this.props.attemptAsyncPharmacySearch(this.props)
+        } else {
+          this.props.attemptAsyncProviderSearch(this.props)
+        }
+        // this.props.attemptProviderSearch(this.props)
       }
     }
   }
 
   componentDidMount () {
-      //Call asynchronously to get more data
-      this.providerSearchList();
+      // Call asynchronously to get more data
+    this.providerSearchList()
   }
 
   componentWillReceiveProps (newProps) {
-    /*if (this.state.isFetchingMore) {
+    /* if (this.state.isFetchingMore) {
       this.props.attemptProviderSearch(newProps)
       this.setState({isFetchingMore: false})
-    }*/
+    } */
 
     if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
       this.props.changeLatitude(newProps.provider.data.originLatitude)
@@ -129,20 +126,20 @@ class DoctorList extends Component {
     </Image>)
   }
 
-  loadMore() {
-        var currentLimit = this.state.listLimit
-        var newLimit = currentLimit
-        var numberOfCardsPerscreen = this.state.totalNumberOfCardPerScreen
-        this.setState({
-            listLimit : newLimit + 10
-        })
-       /*if(this.state.totalNumberOfCardPerScreen == newLimit) {
+  loadMore () {
+    var currentLimit = this.state.listLimit
+    var newLimit = currentLimit
+    var numberOfCardsPerscreen = this.state.totalNumberOfCardPerScreen
+    this.setState({
+      listLimit: newLimit + 10
+    })
+       /* if(this.state.totalNumberOfCardPerScreen == newLimit) {
            //this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
            //this.state.isFetchingMore = true
            this.setState({
                totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30
            })
-      }*/
+      } */
   }
 
   _displayCondition () {
@@ -157,27 +154,27 @@ class DoctorList extends Component {
           {this.props.provider ?
             <View style={{flex: 9}}>
               <ScrollView >
-              {this.props.showUrgentCareBanner ?
-                <View style={{flex: 1, margin: 15, marginTop:-5 }}>
-                  <Card style={{flex: 1, borderRadius: 15, backgroundColor:Colors.flBlue.red, paddingLeft:10}} >
-                     <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
-                      <View style={{ flex: 0.15,marginRight:10 }}>
-                        <Flb name='accident' size={Metrics.icons.large} color={Colors.snow} />
+                {this.props.showUrgentCareBanner ?
+                  <View style={{flex: 1, margin: 15, marginTop: -5 }}>
+                    <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.red, paddingLeft: 10}} >
+                      <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                        <View style={{ flex: 0.15, marginRight: 10 }}>
+                          <Flb name='accident' size={Metrics.icons.large} color={Colors.snow} />
+                        </View>
+                        <View style={{ flex: 0.85 }}>
+                          <Text style={{
+                            fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
+                            color: Colors.snow
+                          }}>If this is an emergency, please call 911.</Text>
+                        </View>
                       </View>
-                      <View style={{ flex: 0.85 }}>
-                        <Text style={{
-                          fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                          color: Colors.snow
-                        }}>If this is an emergency, please call 911.</Text>
-                      </View>
-                    </View>
-                   </Card>
-                </View>
+                    </Card>
+                  </View>
               : null}
-                {  
+                {
                   this.props.provider && this.props.provider.data && this.props.provider.data && this.props.provider.data.totalCount >= 300 ?
-                    <View style={{flex: 1, margin: 15, marginTop:-5 }}>
-                      <Card style={{flex: 1, borderRadius: 15, backgroundColor:Colors.flBlue.deepBlue, paddingLeft:10}} >
+                    <View style={{flex: 1, margin: 15, marginTop: -5 }}>
+                      <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.deepBlue, paddingLeft: 10}} >
                         <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
                           <View style={{ flex: 0.15 }}>
                             <Flb name='flag' size={Metrics.icons.medium} color={Colors.snow} />
@@ -187,10 +184,10 @@ class DoctorList extends Component {
                               fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
                               color: Colors.snow
                             }}>
-                            <Text style={{
-                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
-                              color: Colors.snow,fontWeight:'700'
-                            }}>Please Note:</Text>Your inquiry resulted in a very large list of providers. For now, we have limited your display to only the first 300 providers.</Text>
+                              <Text style={{
+                                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                                color: Colors.snow, fontWeight: '700'
+                              }}>Please Note:</Text>Your inquiry resulted in a very large list of providers. For now, we have limited your display to only the first 300 providers.</Text>
                           </View>
                         </View>
                       </Card>
@@ -198,56 +195,56 @@ class DoctorList extends Component {
                   : null
                 }
 
-                <View style={{flex: 1, marginTop:-20}}>
-                  {                 
+                <View style={{flex: 1, marginTop: -20}}>
+                  {
                      this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
-                     <DoctorCard
-                      cardLimit = {this.state.listLimit}
-                      data={this.props.provider.data.providerList}
+                       <DoctorCard
+                         cardLimit={this.state.listLimit}
+                         data={this.props.provider.data.providerList}
 
                   />
                   :
-                   
-                        <View style={{flex: 1, margin: 15}}>
-                          <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
-                           <View style={{flex: 1, margin: 15}}>
-                            <Text style={{fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-                            color: Colors.flBlue.anvil
-                          }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
-                          </View>
-                         </Card>
-                        </View>
-                    
+
+                         <View style={{flex: 1, margin: 15}}>
+                           <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
+                             <View style={{flex: 1, margin: 15}}>
+                               <Text style={{fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                                 color: Colors.flBlue.anvil
+                               }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
+                             </View>
+                           </Card>
+                         </View>
+
                     }
 
                 </View>
-                
-               {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10 
+
+                {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10
                   && !(this.state.listLimit > this.props.provider.data.providerList.length)
                   && !(this.props.provider.data.providerList.length == 300 && this.props.provider.data.providerList.length == this.state.listLimit)
                   ?
-                  <View style={{flex: 1,marginBottom:10}}>
-                    <TouchableOpacity
-                      onPress={this.loadMore}
-                      style={{
-                        backgroundColor: Colors.flBlue.ocean,
-                        paddingLeft: 14,
-                        paddingRight: 14,
-                        paddingTop: 10,
-                        paddingBottom: 10,
-                        width: window.width * 0.4,
-                        alignSelf: 'center',
-                        margin: window.height * 0.02,
-                        alignItems: 'center',
-                        borderRadius: 5
-                      }}>
-                      <Text style={{
-                        color: 'white'
-                      }}>Show More</Text>
-                    </TouchableOpacity>
-                  </View> : null} 
-                </ScrollView>
-                </View>
+                    <View style={{flex: 1, marginBottom: 10}}>
+                      <TouchableOpacity
+                        onPress={this.loadMore}
+                        style={{
+                          backgroundColor: Colors.flBlue.ocean,
+                          paddingLeft: 14,
+                          paddingRight: 14,
+                          paddingTop: 10,
+                          paddingBottom: 10,
+                          width: window.width * 0.4,
+                          alignSelf: 'center',
+                          margin: window.height * 0.02,
+                          alignItems: 'center',
+                          borderRadius: 5
+                        }}>
+                        <Text style={{
+                          color: 'white'
+                        }}>Show More</Text>
+                      </TouchableOpacity>
+                    </View> : null}
+              </ScrollView>
+            </View>
           : <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
             <Text style={styles.spinnerText}>Loading Please Wait </Text>
@@ -256,40 +253,40 @@ class DoctorList extends Component {
           <View style={{flex: 1}}>
             <View style={{flex: 1}}>
               <View style={{flex: 1, flexDirection: 'row'}}>
-                <TouchableOpacity style={{flex: 1, alignItems:'center'}} onPress={() => this._advancedSearch()}>
+                <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={() => this._advancedSearch()}>
                   <View style={styles.refinesearch}>
-                     <View style={{flex: 0.25, alignItems: 'flex-end', marginRight:Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
+                    <View style={{flex: 0.25, alignItems: 'flex-end', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
                       <Flb
                         name='search-find'
                         size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
                         color={Colors.snow} />
                     </View>
-                     <View style={{flex: 0.75, alignItems: 'flex-start'}}>
+                    <View style={{flex: 0.75, alignItems: 'flex-start'}}>
                       <Text style={styles.footerText}>Refine Search</Text>
                     </View>
-                   </View>
+                  </View>
                 </TouchableOpacity>
                 <TouchableOpacity style={
                   this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
-                  {flex: 1, backgroundColor:Colors.flBlue.grass}:{flex: 1, backgroundColor:Colors.flBlue.grey3}
+                  {flex: 1, backgroundColor: Colors.flBlue.grass} : {flex: 1, backgroundColor: Colors.flBlue.grey3}
                 }
-                onPress={() => this._mapView()}>
+                  onPress={() => this._mapView()}>
                   <View style={styles.footerView}>
 
-                     <View style={{flex: 0.35, alignItems: 'flex-end', marginRight:Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
+                    <View style={{flex: 0.35, alignItems: 'flex-end', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
                       <Flb
                         name='map'
                         size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
                         color={Colors.snow} />
                     </View>
 
-                     <View style={{flex: 0.65,
+                    <View style={{flex: 0.65,
                       alignItems: 'flex-start'}}>
 
                       <Text style={styles.footerText}>Map View</Text>
                     </View>
 
-                   </View>
+                  </View>
                 </TouchableOpacity>
               </View>
 
@@ -317,7 +314,7 @@ class DoctorList extends Component {
           {this._renderHeader()}
         </View>
 
-        <View style={{flex: 7,marginTop:10}}>
+        <View style={{flex: 7, marginTop: 10}}>
           {
          this._displayCondition()
        }
@@ -337,7 +334,7 @@ DoctorList.propTypes = {
   error: PropTypes.string,
   saveProvider: PropTypes.array,
   attemptHandleLeft: PropTypes.func,
-  attemptHandleRight: PropTypes.func,
+  attemptHandleRight: PropTypes.func
 
 }
 
@@ -351,8 +348,8 @@ const mapStateToProps = (state) => {
     searchRange: state.provider.searchRange,
     latDelta: state.provider.latDelta,
     longDelta: state.provider.longDelta,
-    start:state.provider.start,
-    end:state.provider.end,
+    start: state.provider.start,
+    end: state.provider.end,
     networkCodeList: state.provider.networkCodeList,
     showUrgentCareBanner: state.provider.showUrgentCareBanner,
     planCategoryList: state.provider.planCategoryList,
@@ -383,7 +380,7 @@ const mapStateToProps = (state) => {
     gender: state.provider.gender,
     programsList: state.provider.programsList,
     officeHours: state.provider.officeHours
-  
+
   }
 }
 

@@ -36,15 +36,15 @@ class ProviderTypeInfo extends React.Component {
     }
   }
 
-  componentWillMount() {
-    if (this.props.subCategoryCode == "999") {
+  componentWillMount () {
+    if (this.props.subCategoryCode == '999') {
       this.setState({mailOrderState: true})
-    } else if (this.props.subCategoryCode == "701") {
+    } else if (this.props.subCategoryCode == '701') {
       this.setState({specialityState: true})
     }
   }
 
-  handleLink(url) {
+  handleLink (url) {
     NavigationActions.MyView({
       responseURL: url + '?channel=mobile'
     })
@@ -67,11 +67,11 @@ class ProviderTypeInfo extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-      {this._renderHeader()}
+        {this._renderHeader()}
         <ScrollView>
           <View>
 
-            <HideableView visible={this.state.mailOrderState} removeWhenHidden={true}>
+            <HideableView visible={this.state.mailOrderState} removeWhenHidden>
               <View style={styles.row}>
                 <Text style={styles.heading}>{I18n.t('providerTypeMailOrderTitle')}</Text>
               </View>
@@ -89,7 +89,7 @@ class ProviderTypeInfo extends React.Component {
               </View>
             </HideableView>
 
-            <HideableView visible={this.state.specialityState} removeWhenHidden={true}>
+            <HideableView visible={this.state.specialityState} removeWhenHidden>
               <View style={styles.row}>
                 <Text style={styles.heading}>{I18n.t('providerTypeSpecialityTitle')}</Text>
               </View>
@@ -124,6 +124,5 @@ const mapStateToProps = (state) => {
     subCategoryCode: state.provider.subCategoryCode
   }
 }
-
 
 export default connect(mapStateToProps)(ProviderTypeInfo)
