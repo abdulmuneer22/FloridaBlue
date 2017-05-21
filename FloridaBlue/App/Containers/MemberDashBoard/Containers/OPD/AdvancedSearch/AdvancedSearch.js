@@ -135,20 +135,35 @@ class AdvancedSearch extends Component {
     }
   }
 
-  _handleDoctordetail () {
-    if (this.state.isDifferentLocationSelected) {
-      if (this.state.diffLocation) {
-        console.tron.log('diff location' + this.props.changeAddress)
-        this.props.changeUrgentCareBanner(false)
-        this.props.attemptProviderSearch(this.props)
-        NavigationActions.DoctorList()
+  _handleDoctordetail() {
+
+    if (this.props.networkCodeList) {
+      if (this.state.isDifferentLocationSelected) {
+        if (this.state.diffLocation) {
+          
+          this.props.changeUrgentCareBanner(false)
+          if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {           
+            this.props.attemptPharmacySearch(this.props)
+          } else {
+            this.props.attemptProviderSearch(this.props)
+          }
+          NavigationActions.DoctorList()
+        } else {
+          alert('Please Enter Zip Code or City')
+        }
       } else {
-        alert('Please Enter Zip Code or City')
+        
+        this.props.changeUrgentCareBanner(false)
+        if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
+         
+          this.props.attemptPharmacySearch(this.props)
+        } else {
+          this.props.attemptProviderSearch(this.props)
+        }
+        NavigationActions.DoctorList()
       }
     } else {
-      console.tron.log('diff location' + this.props.changeAddress)
-      this.props.changeUrgentCareBanner(false)
-      this.props.attemptProviderSearch(this.props)
+      this.props.attemptNetworkList()
       NavigationActions.DoctorList()
     }
   }
@@ -395,11 +410,17 @@ class AdvancedSearch extends Component {
 
   _specialitySelected (index, value:string) {
     var selectedSubCategoryCode = this.props.planSubCategoryList[index].subCategoryCode
+    if (this.props.categoryCode == '07' && selectedSubCategoryCode == '999' || selectedSubCategoryCode == '701') {
+      this.props.changeSubCategoryCode(selectedSubCategoryCode)
+      NavigationActions.ProviderTypeInfo()
+    } else
+    {    
     this.props.changeSubCategoryCode(selectedSubCategoryCode)
     this.props.changeSpecialityType(value)
     this.setState({specialityState: false}, function () {
       this.setState({specialityState: true})
     })
+    }
   }
 
   _renderHeader () {
@@ -884,6 +905,7 @@ const mapDispatchToProps = (dispatch) => {
     attemptSearchData: (data) => dispatch(SearchDataActions.searchdataRequest(data)),
     attemptConfigData: () => dispatch(ProviderActions.sendConfigTypeRequest()),
     attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
+    attemptPharmacySearch: (data) => dispatch(ProviderActions.sendPharmacySearchRequest(data)),
     changePatientType: (acceptingPatientsIndicator) => dispatch(ProviderActions.changePatientType(acceptingPatientsIndicator)),
     changeDoctorLanguage: (providerLanguage) => dispatch(ProviderActions.changeDoctorLanguage(providerLanguage)),
     changeStaffLanguage: (staffLanguage) => dispatch(ProviderActions.changeStaffLanguage(staffLanguage)),
@@ -902,7 +924,8 @@ const mapDispatchToProps = (dispatch) => {
     changeCareType: (careType) => dispatch(ProviderActions.changeCareType(careType)),
     changeSpecialityType: (specialityType) => dispatch(ProviderActions.changeSpecialityType(specialityType)),
     changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner)),
-    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus))
+    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus)),
+    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
   }
 }
 

@@ -198,6 +198,7 @@ class ProviderSearch extends Component {
       this.setState({userWantsResults: false})
     } else {
       this.props.attemptNetworkList()
+      NavigationActions.DoctorList()
     }
   }
 

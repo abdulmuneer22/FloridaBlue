@@ -295,7 +295,11 @@ class DoctorList extends Component {
 
         </View>
       )
-    } else if (this.props.error != null) {
+    } else if ((this.props.error != null) ||
+     ( this.props.provider ==null || 
+     (this.props.provider != null && 
+     (this.props.provider.data == null || this.props.provider.data.length ==0 )
+      ) ) ) {
       Alert.alert(
         'Find care',
        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
