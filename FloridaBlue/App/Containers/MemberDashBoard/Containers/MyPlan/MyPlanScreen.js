@@ -83,15 +83,13 @@ class MyPlanScreen extends Component {
           <View style={styles.chartWrapper}>
             {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} />
 
-              : Alert.alert(
+              :Alert.alert(
         'My Plan Overview',
-        'Oops! Looks like we\'re having trouble with your request. Please try again later.'
-                [
+       'Oops! Looks like we\'re having trouble with your request. Please try again later ',
+        [
           { text: 'OK' }
 
-                ]
-      )
-
+        ])
               }
           </View>
 
