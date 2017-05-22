@@ -1,16 +1,11 @@
 
-import React, { Component, PropTypes } from 'react'
-import { Alert, BackAndroid } from 'react-native'
-import { Scene, Router, ActionConst, Reducer } from 'react-native-router-flux'
+import React, { Component } from 'react'
+import { BackAndroid } from 'react-native'
+import { Scene, Router, ActionConst } from 'react-native-router-flux'
 import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
 import NavItems from './NavItems'
-import { connect } from 'react-redux'
-import LoginActions from '../Redux/LoginRedux'
-import {Actions as NavigationActions} from 'react-native-router-flux'
 import CustomNavBar from '../Navigation/CustomNavBar'
-var RCTNetworking = require('RCTNetworking')
-
 // screens identified by the router
 import { Login } from '../Containers/Login'
 import { TouchTOU } from '../Containers/Login/TouchTOU'
@@ -51,119 +46,14 @@ import { ProgramDetail} from '../Containers/MemberDashBoard/Containers/OPD/Progr
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
 ***************************/
-
-const onExitApp = () => {
-  Alert.alert(
-    'Exit',
-    'Are you sure you want to exit this app ?',
-    [
-      { text: 'Cancel', onPress: () => {} },
-      { text: 'YES', onPress: () => BackAndroid.exitApp() }
-    ]
-  )
-  return true
-}
 class NavigationRouter extends Component {
-  constructor () {
-    super()
-    component = this
-  }
-
-  componentDidMount () {
-    BackAndroid.addEventListener('hardwareBackPress', function () {
-      console.log('inside back handler', component.props.currentSceneValue)
-
-      if (component.props.currentSceneValue &&component.props.currentSceneValue === 'drawer') {
-        console.log('currentscence', component.props.currentSceneValue)
-        Alert.alert(
-              'Exit',
-              'Are you sure you want to exit this app?',
-          [
-                { text: 'No', onPress: () => {} },
-                { text: 'Yes', onPress: () => BackAndroid.exitApp() }
-          ]
-            )
-      }else if(component.props.currentSceneValue &&component.props.currentSceneValue === 'login'){
-          console.log('currentscence', component.props.currentSceneValue)
-        Alert.alert(
-              'Exit',
-              'Are you sure you want to exit this app?',
-          [
-                { text: 'No', onPress: () => {} },
-                { text: 'Yes', onPress: () => BackAndroid.exitApp() }
-          ]
-            )
-      } else if (component.props.currentSceneValue === 'WelcomeDashBoard') {
-        console.log('currentscence', component.props.currentSceneValue)
-        Alert.alert(
-              'Logout',
-              'Are you sure you want to logout?',
-          [
-                { text: 'No', onPress: () => {} },
-            { text: 'Yes', onPress: () => {
-              component.props.clearLogin()
-              RCTNetworking.clearCookies((cleared) => {
-                console.tron.log('clearing local cookies for the app')
-              })
-              component.props.attemptLogout(component.props.logoutUrl)
-              NavigationActions.login()
-            }}
-          ]
-            )
-      } else {
-        return false
-      }
-
-      return true
-    })
-  }
-
   render () {
-    this.reducerCreate = params => {
-      const defaultReducer = Reducer(params); return (state, action) => {
-        console.log('ACTION:', action)
-        if (action.type == ActionConst.FOCUS) {
-          let scene = action.scene; this.currentScene = scene.sceneKey
-          console.log('current', this.currentScene)
-          this.props.currentScene(this.currentScene)
-        }
-        return defaultReducer(state, action)
-      }
-    }
-/*
-    backAndroidHandler = (currentSceneValue) =>{
-     {
-
-       BackAndroid.addEventListener('hardwareBackPress', function (currentSceneValue) {
-           console.log('currentSceneValue',currentSceneValue)
-         console.log('inside back handler',this.props.currentSceneValue)
-
-          if((this.props.currentSceneValue !='login') && this.props.currentSceneValue!='WelcomeDashBoard'){
-            console.log('currentscence',this.props.currentSceneValue)
-                Alert.alert(
-              'Exit',
-              'Are you sure you want to exit this app',
-              [
-                { text: 'Cancel', onPress: () => {} },
-                { text: 'YES', onPress: () => BackAndroid.exitApp() },
-              ]
-            );
-          }
-      return true
-     })
-
-    }
-    }
-
-*/
-
     return (
-      <Router createReducer={this.reducerCreate}>
-
-        <Scene key='drawer' component={NavigationDrawer} open={false}>
-          <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='login' component={Login} title='Login' hideNavBar panHandlers={null} />
-            <Scene key='TouchTOU' component={TouchTOU} title='Touch TOU' hideNavBar />
+      <Router>
+            <Scene key='drawer' component={NavigationDrawer} open={false}>
+            <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
+            <Scene initial key='login' component={Login} title='Login' hideNavBar panHandlers={null} type={ActionConst.RESET} />
+            <Scene key='TouchTOU' component={TouchTOU} title="Touch TOU" hideNavBar />
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
             <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar />
@@ -177,7 +67,7 @@ class NavigationRouter extends Component {
             <Scene key='useridhint' component={UserIdHint} title='UserIdHint page' hideNavBar />
             <Scene key='passwordHint' component={PasswordHint} title='PasswordHint page' hideNavBar />
             <Scene key='securityHint' component={SecurityHint} title='SecurityHint page' hideNavBar />
-            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar panHandlers={null} />
+            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar type={ActionConst.RESET}/>
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />
             <Scene key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
             <Scene key='SupportScreen' component={SupportScreen} title='Support Page' hideNavBar />
@@ -200,26 +90,4 @@ class NavigationRouter extends Component {
   }
 }
 
-NavigationRouter.propTypes = {
-  currentScene: PropTypes.func,
-  currentSceneValue: PropTypes.string,
-  logoutUrl:PropTypes.string,
-  attemptLogout:PropTypes.func,
-  clearLogin:PropTypes.func
-}
-
-const mapStateToProps = (state) => {
-  return {
-    currentSceneValue: state.login.currentSceneValue,
-     logoutUrl: state.member.logoutUrl
-  }
-}
-const mapDispatchToProps = (dispatch) => {
-  return {
-    currentScene: (currentSceneValue) => dispatch(LoginActions.currentScene(currentSceneValue)),
-     clearLogin: () => dispatch(LoginActions.logout()),
-      attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationRouter)
+export default NavigationRouter
