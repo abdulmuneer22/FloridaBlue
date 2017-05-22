@@ -590,6 +590,8 @@ const mapStateToProps = (state) => {
     locationStatus: state.provider.locationStatus,
     showUrgentCareBanner: state.provider.showUrgentCareBanner,
     searchRange: state.provider.searchRange,
+    start: state.provider.start,
+    end: state.provider.end
   }
 }
 
