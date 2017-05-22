@@ -605,7 +605,8 @@ class AdvancedSearch extends Component {
                   marginLeft: 10,
                   backgroundColor: Colors.snow
                 }}
-                onValueChange={this.props.changeSearchRange}
+                //onValueChange={this.props.changeSearchRange}
+                onSlidingComplete = { this.props.changeSearchRange }
               />
             </View>
           </View>
