@@ -186,7 +186,7 @@ class ProviderSearch extends Component {
     this.props.changeUrgentCareBanner(false)
     this.setState({userWantsResults: true})
 
-    if (this.props.networkCodeList) {
+    if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
       if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
         console.tron.log("pharmacy props :: "+JSON.stringify(this.props))
         this.props.attemptPharmacySearch(this.props)

@@ -7,7 +7,7 @@ export function * sendNetworkListRequest (api, {data}) {
   if (response.ok) {
     var data = response.data
 
-    if (data.data.memberNetworkList) {
+    if (data.data.memberNetworkList && data.data.memberNetworkList.length > 0) {
       for (var i = 0; i < data.data.memberNetworkList.length; i++) {
         var networkItem = data.data.memberNetworkList[i]
         var networkCodeList = []
