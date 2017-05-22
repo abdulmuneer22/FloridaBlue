@@ -96,7 +96,7 @@ class Card extends Component {
           marginBottom: window.width * 0.03
 
         }}>
-        <View >
+        <View style={{flex:1}} >
           <LinearGradient colors={this.props.gradientColor}
             style={{
               width: this.state.CardWidth,

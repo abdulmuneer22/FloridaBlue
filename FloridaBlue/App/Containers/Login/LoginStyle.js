@@ -52,11 +52,11 @@ export default StyleSheet.create({
   },
   row: {
     paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015,
-    paddingHorizontal: Metrics.doubleBaseMargin
+    paddingHorizontal: Metrics.doubleBaseMargin 
   },
   forgotRow: {
-    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0013,
-    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.009
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0015,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002
   },
   touchRow: {
     justifyContent: 'center',
