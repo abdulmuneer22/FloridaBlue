@@ -174,9 +174,9 @@ export default StyleSheet.create({
     textAlign: 'justify'
   },
   radioBottomText: {
-   // marginTop: 2,
-    marginLeft: Metrics.baseMargin,
-    marginRight: Metrics.baseMargin,
+   paddingRight: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+   // marginLeft: Metrics.baseMargin,
+    marginRight: Metrics.doubleBaseMargin,
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.subHeaderFont,
