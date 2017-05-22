@@ -65,7 +65,10 @@ const images = {
   mapSelectedPin: require('../Images/map-selected.png'),
   touchIdButton: require('../Images/touch-id-btn.png'),
   newHeaderImage: require('../Images/header-bkgrd.png'),
-  findCare: require('../Images/care-finder.png')
+  findCare: require('../Images/care-finder.png'),
+  eventscalendar: require('../Images/events.png'),
+  rxtool: require('../Images/rx-tool.png'),
+  findretailcenter: require('../Images/retail-center.png')
 }
 
 export default images
