@@ -92,6 +92,11 @@ class ProviderMap extends Component {
     this.setState({currentLat: this.props.provider.data.providerList[state.index].latitude})
     this.setState({currentLong: this.props.provider.data.providerList[state.index].longitude})
 
+    // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
+    const milesOfLatAtEquator = 69
+    this.props.changeLatDelta(2 / milesOfLatAtEquator)
+    this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[state.index].longitude) * milesOfLatAtEquator))
+
     this.setState({showLocationDetail: false}, function () {
       this.setState({showLocationDetail: true})
     })
@@ -101,6 +106,11 @@ class ProviderMap extends Component {
     this.setState({selectedLocation: this.props.provider.data.providerList[event.nativeEvent.id]})
     this.setState({currentLat: this.props.provider.data.providerList[event.nativeEvent.id].latitude})
     this.setState({currentLong: this.props.provider.data.providerList[event.nativeEvent.id].longitude})
+
+    // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
+    const milesOfLatAtEquator = 69
+    this.props.changeLatDelta(2 / milesOfLatAtEquator)
+    this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[event.nativeEvent.id].longitude) * milesOfLatAtEquator))
 
     this.setState({showLocationDetail: false}, function () {
       this.setState({showLocationDetail: true})
