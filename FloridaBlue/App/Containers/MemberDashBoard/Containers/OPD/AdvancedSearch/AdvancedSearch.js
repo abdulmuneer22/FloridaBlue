@@ -99,7 +99,9 @@ class AdvancedSearch extends Component {
       differentLocationText: false,
       comingFromBackButton: false,
       searchFrom: this.props.navigatingFrom,
-      diffLocation: false
+      diffLocation: false,
+      homeLocation: false,
+      currentLocation : false
 
     }
     this._timeSelected = this._timeSelected.bind(this)
@@ -137,10 +139,9 @@ class AdvancedSearch extends Component {
 
   _handleDoctordetail() {
 
-    if (this.props.networkCodeList) {
+    if (this.props.networkCodeList  && this.props.networkCodeList.length > 0) {
       if (this.state.isDifferentLocationSelected) {
         if (this.state.diffLocation) {
-          
           this.props.changeUrgentCareBanner(false)
           if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {           
             this.props.attemptPharmacySearch(this.props)
@@ -155,7 +156,6 @@ class AdvancedSearch extends Component {
         
         this.props.changeUrgentCareBanner(false)
         if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
-         
           this.props.attemptPharmacySearch(this.props)
         } else {
           this.props.attemptProviderSearch(this.props)
@@ -163,8 +163,12 @@ class AdvancedSearch extends Component {
         NavigationActions.DoctorList()
       }
     } else {
-      this.props.attemptNetworkList()
-      NavigationActions.DoctorList()
+        Alert.alert(
+          'Find care',
+        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+          [
+            { text: 'OK' }
+          ])   
     }
   }
 
@@ -224,7 +228,10 @@ class AdvancedSearch extends Component {
 
   _selectHomeLocation (event) {
     if (event.checked) {
+      this.setState({currentLocation : false});
+      this.setState({homeLocation: true})
       this.setState({newLocationState: false})
+      this.setState({isDifferentLocationSelected: false})
       this.props.changeLatitude(0)
       this.props.changeLongitude(0)
       this.props.changeAddress(this.props.homeAddress)
@@ -246,7 +253,11 @@ class AdvancedSearch extends Component {
           }
         })
       }
+      this.setState({currentLocation : true});
       this.setState({specialityState: true})
+      this.setState({newLocationState: false})
+      this.setState({isDifferentLocationSelected: false})
+      this.setState({homeLocation: false})
       // this.setState({customLocationState: false})
     }
   }
@@ -267,6 +278,8 @@ class AdvancedSearch extends Component {
     if (event.checked) {
       this.setState({isDifferentLocationSelected: true})
       this.setState({newLocationState: true})
+      this.setState({homeLocation: false})
+      this.setState({currentLocation : false});
       this.props.changeLatitude(0)
       this.props.changeLongitude(0)
     }
