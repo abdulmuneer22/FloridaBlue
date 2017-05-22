@@ -52,8 +52,7 @@ class ProviderMap extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
       },
-      uniqueLocations: [],
-      limitLocations: []
+      polygon: []
     }
 
     this._mapCalloutSelected = this._mapCalloutSelected.bind(this)
@@ -62,34 +61,19 @@ class ProviderMap extends Component {
   }
 
   componentWillMount () {
-    //Check all values in the incoming array and eliminate any duplicates
-    var uniqueLocations = [] //Create a new array to be returned with unique values
-    var limitLocations = []
-    //Iterate through all values in the array passed to this function
-    o:for(var i = 0, n = this.props.listLimit; i < n; i++) {
-      //Iterate through any values in the array to be returned
-      limitLocations.push(this.props.provider.data.providerList[i])
-      for(var x = 0, y = uniqueLocations.length; x < y; x++) {
-         //Compare the current value in the return array with the current value in the incoming array
-         if ( uniqueLocations[x].latitude == this.props.provider.data.providerList[i].latitude) {
-            //If they match, then the incoming array value is a duplicate and should be skipped
-            continue o
-         }
-      }
-      //If the value hasn't already been added to the return array (not a duplicate) then add it
-      uniqueLocations.push(this.props.provider.data.providerList[i])
-    }
-
-    console.tron.log(limitLocations)
-    this.setState({uniqueLocations: uniqueLocations})
-    this.setState({limitLocations: limitLocations})
+    console.tron.log(this.props)
     this.setState({selectedLocation: this.props.provider.data.providerList[0]})
     this.setState({currentLat: this.props.provider.data.providerList[0].latitude})
     this.setState({currentLong: this.props.provider.data.providerList[0].longitude})
   }
 
-  _onRegionChange (event, region) {
-    this.setState({region: region })
+  _onRegionChange (region) {
+    console.tron.log(region)
+    var mapExtInMiles = region.latitudeDelta * 69
+
+
+
+    //this.setState({polygon: []})
   }
 
   _locationSwiped (event, state, context) {
@@ -162,15 +146,17 @@ class ProviderMap extends Component {
           <View style={styles.container}>
             <MapView
               style={styles.map}
-              showsUserLocation
-             // onRegionChange={this._onRegionChange}
+              showsUserLocation={true}
+              loadingEnabled={true}
+              onRegionChangeComplete={this._onRegionChange}
               region={{
                 latitude: this.state.currentLat,
                 longitude: this.state.currentLong,
                 latitudeDelta: this.props.latDelta,
                 longitudeDelta: this.props.longDelta
               }}>
-              {this.props.provider && this.state.uniqueLocations.map((provider, index) => this._renderMapMarkers(provider, index))}
+              {this.props.provider && this.props.provider.data.providerLocationList.map((provider, index) => this._renderMapMarkers(provider, index))}
+
             </MapView>
             <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden>
               <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003}} showsButtons showsPagination={false}
@@ -192,7 +178,7 @@ class ProviderMap extends Component {
 
                 >
 
-                {this.props.provider && this.state.limitLocations.map((provider) => this._renderLocationDetail(provider))}
+                {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
               </Swiper>
             </HideableView>
           </View>
