@@ -122,9 +122,9 @@ class ProviderSearch extends Component {
       })
     }
 
-    if (newProps.networkCodeList && this.state.userWantsResults) {
-      this._getResults()
-    }
+    /*if (newProps.networkCodeList && this.state.userWantsResults) {
+      //this._getResults()
+    }*/
   }
 
   handleNeedHelp () {
@@ -185,7 +185,6 @@ class ProviderSearch extends Component {
   _getResults () {
     this.props.changeUrgentCareBanner(false)
     this.setState({userWantsResults: true})
-
     if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
       if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
         console.tron.log("pharmacy props :: "+JSON.stringify(this.props))
@@ -197,8 +196,16 @@ class ProviderSearch extends Component {
       NavigationActions.DoctorList()
       this.setState({userWantsResults: false})
     } else {
-      this.props.attemptNetworkList()
-      NavigationActions.DoctorList()
+       
+        Alert.alert(
+          'Find care',
+        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+          [
+            { text: 'OK' }
+          ])      
+       
+      //this.props.attemptNetworkList()
+      //NavigationActions.DoctorList()
     }
   }
 
