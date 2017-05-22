@@ -52,7 +52,8 @@ class ProviderMap extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
       },
-      uniqueLocations: []
+      uniqueLocations: [],
+      limitLocations: []
     }
 
     this._mapCalloutSelected = this._mapCalloutSelected.bind(this)
@@ -63,9 +64,11 @@ class ProviderMap extends Component {
   componentWillMount () {
     //Check all values in the incoming array and eliminate any duplicates
     var uniqueLocations = [] //Create a new array to be returned with unique values
+    var limitLocations = []
     //Iterate through all values in the array passed to this function
     o:for(var i = 0, n = this.props.listLimit; i < n; i++) {
       //Iterate through any values in the array to be returned
+      limitLocations.push(this.props.provider.data.providerList[i])
       for(var x = 0, y = uniqueLocations.length; x < y; x++) {
          //Compare the current value in the return array with the current value in the incoming array
          if ( uniqueLocations[x].latitude == this.props.provider.data.providerList[i].latitude) {
@@ -77,7 +80,9 @@ class ProviderMap extends Component {
       uniqueLocations.push(this.props.provider.data.providerList[i])
     }
 
+    console.tron.log(limitLocations)
     this.setState({uniqueLocations: uniqueLocations})
+    this.setState({limitLocations: limitLocations})
     this.setState({selectedLocation: this.props.provider.data.providerList[0]})
     this.setState({currentLat: this.props.provider.data.providerList[0].latitude})
     this.setState({currentLong: this.props.provider.data.providerList[0].longitude})
@@ -187,7 +192,7 @@ class ProviderMap extends Component {
 
                 >
 
-                {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
+                {this.props.provider && this.state.limitLocations.map((provider) => this._renderLocationDetail(provider))}
               </Swiper>
             </HideableView>
           </View>
