@@ -51,7 +51,8 @@ class ProviderMap extends Component {
         longitude: -122.4324,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
-      }
+      },
+      uniqueLocations: []
     }
 
     this._mapCalloutSelected = this._mapCalloutSelected.bind(this)
@@ -60,6 +61,23 @@ class ProviderMap extends Component {
   }
 
   componentWillMount () {
+    //Check all values in the incoming array and eliminate any duplicates
+    var uniqueLocations = [] //Create a new array to be returned with unique values
+    //Iterate through all values in the array passed to this function
+    o:for(var i = 0, n = this.props.provider.data.providerList.length; i < n; i++) {
+      //Iterate through any values in the array to be returned
+      for(var x = 0, y = uniqueLocations.length; x < y; x++) {
+         //Compare the current value in the return array with the current value in the incoming array
+         if ( uniqueLocations[x].latitude == this.props.provider.data.providerList[i].latitude) {
+            //If they match, then the incoming array value is a duplicate and should be skipped
+            continue o
+         }
+      }
+      //If the value hasn't already been added to the return array (not a duplicate) then add it
+      uniqueLocations.push(this.props.provider.data.providerList[i])
+    }
+
+    this.setState({uniqueLocations: uniqueLocations})
     this.setState({selectedLocation: this.props.provider.data.providerList[0]})
     this.setState({currentLat: this.props.provider.data.providerList[0].latitude})
     this.setState({currentLong: this.props.provider.data.providerList[0].longitude})
@@ -68,14 +86,11 @@ class ProviderMap extends Component {
   _onRegionChange (event, region) {
     this.setState({region: region })
   }
+
   _locationSwiped (event, state, context) {
     this.setState({selectedLocation: this.props.provider.data.providerList[state.index]})
     this.setState({currentLat: this.props.provider.data.providerList[state.index].latitude})
     this.setState({currentLong: this.props.provider.data.providerList[state.index].longitude})
-
-    const milesOfLatAtEquator = 69
-    this.props.changeLatDelta(2 / milesOfLatAtEquator)
-    this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[state.index].latitude) * milesOfLatAtEquator))
 
     this.setState({showLocationDetail: false}, function () {
       this.setState({showLocationDetail: true})
@@ -83,9 +98,10 @@ class ProviderMap extends Component {
   }
 
   _mapCalloutSelected (event) {
-    this.setState({selectedLocation: this.props.provider && this.props.provider.data && this.props.provider.data.providerList[event.nativeEvent.id]})
-    this.setState({currentLat: this.props.provider && this.props.provider.data && this.props.provider.data.providerList[event.nativeEvent.id] && this.props.provider.data.providerList[event.nativeEvent.id].latitude})
-    this.setState({currentLong: this.props.provider && this.props.provider.data && this.props.provider.data.providerList[event.nativeEvent.id] && this.props.provider.data.providerList[event.nativeEvent.id].longitude})
+    this.setState({selectedLocation: this.props.provider.data.providerList[event.nativeEvent.id]})
+    this.setState({currentLat: this.props.provider.data.providerList[event.nativeEvent.id].latitude})
+    this.setState({currentLong: this.props.provider.data.providerList[event.nativeEvent.id].longitude})
+
     this.setState({showLocationDetail: false}, function () {
       this.setState({showLocationDetail: true})
     })
@@ -106,7 +122,7 @@ class ProviderMap extends Component {
   }
 
   _renderMapMarkers (location) {
-    if (location && location.uniqueId == this.state.selectedLocation.uniqueId) {
+    if (location && location.latitude == this.state.selectedLocation.latitude) {
       return (
         <MapView.Marker key={location.uniqueId} identifier={(location != null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapSelectedPin} />
       )
@@ -119,7 +135,7 @@ class ProviderMap extends Component {
 
   _renderLocationDetail (location) {
     return (
-      <View style={{flex: 1, marginTop: (Platform.OS === 'ios') ? 10 : -5,
+      <View key={location.uniqueId} style={{flex: 1, marginTop: (Platform.OS === 'ios') ? 10 : -5,
         marginBottom: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.002 :  Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
       }} >
         <DoctorCard data={location} />
@@ -144,7 +160,7 @@ class ProviderMap extends Component {
                 latitudeDelta: this.props.latDelta,
                 longitudeDelta: this.props.longDelta
               }}>
-              {this.props.provider && this.props.provider.data.providerList.map((provider, index) => this._renderMapMarkers(provider, index))}
+              {this.props.provider && this.state.uniqueLocations.map((provider, index) => this._renderMapMarkers(provider, index))}
             </MapView>
             <HideableView visible={this.state.showLocationDetail} style={styles.locationDetailContainer} removeWhenHidden>
               <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003}} showsButtons showsPagination={false}
