@@ -64,7 +64,7 @@ class ProviderMap extends Component {
     //Check all values in the incoming array and eliminate any duplicates
     var uniqueLocations = [] //Create a new array to be returned with unique values
     //Iterate through all values in the array passed to this function
-    o:for(var i = 0, n = this.props.provider.data.providerList.length; i < n; i++) {
+    o:for(var i = 0, n = this.props.listLimit; i < n; i++) {
       //Iterate through any values in the array to be returned
       for(var x = 0, y = uniqueLocations.length; x < y; x++) {
          //Compare the current value in the return array with the current value in the incoming array
@@ -96,10 +96,6 @@ class ProviderMap extends Component {
     const milesOfLatAtEquator = 69
     this.props.changeLatDelta(2 / milesOfLatAtEquator)
     this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[state.index].longitude) * milesOfLatAtEquator))
-
-    this.setState({showLocationDetail: false}, function () {
-      this.setState({showLocationDetail: true})
-    })
   }
 
   _mapCalloutSelected (event) {
@@ -110,7 +106,7 @@ class ProviderMap extends Component {
     // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
     const milesOfLatAtEquator = 69
     this.props.changeLatDelta(2 / milesOfLatAtEquator)
-    this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[event.nativeEvent.id].longitude) * milesOfLatAtEquator))
+    this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[state.index].longitude) * milesOfLatAtEquator))
 
     this.setState({showLocationDetail: false}, function () {
       this.setState({showLocationDetail: true})
@@ -154,7 +150,6 @@ class ProviderMap extends Component {
   }
 
   render () {
-    console.tron.log('id' + this.state.selectedLocation.uniqueId)
     return (
       <View style={{flex: 1 }}>
         {this._renderHeader()}
@@ -219,8 +214,8 @@ const mapStateToProps = (state) => {
     addressKey: state.provider.addressKey,
     providerKey: state.provider.providerKey,
     selectedLocation: state.provider.selectedLocation,
-    showLocationDetail: state.provider.showLocationDetail
-
+    showLocationDetail: state.provider.showLocationDetail,
+    listLimit: state.provider.listLimit
   }
 }
 

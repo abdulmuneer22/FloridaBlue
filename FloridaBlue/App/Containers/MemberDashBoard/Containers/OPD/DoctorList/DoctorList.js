@@ -94,6 +94,7 @@ class DoctorList extends Component {
   componentDidMount () {
       // Call asynchronously to get more data
     this.providerSearchList()
+    console.tron.log(this.props)
   }
 
   componentWillReceiveProps (newProps) {
@@ -133,6 +134,8 @@ class DoctorList extends Component {
     this.setState({
       listLimit: newLimit + 10
     })
+
+    this.props.changeListLimit(newLimit+10)
        /* if(this.state.totalNumberOfCardPerScreen == newLimit) {
            //this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
            //this.state.isFetchingMore = true
@@ -296,8 +299,8 @@ class DoctorList extends Component {
         </View>
       )
     } else if ((this.props.error != null) ||
-     ( this.props.provider ==null || 
-     (this.props.provider != null && 
+     ( this.props.provider ==null ||
+     (this.props.provider != null &&
      (this.props.provider.data == null || this.props.provider.data.length ==0 )
       ) ) ) {
       Alert.alert(
@@ -384,7 +387,6 @@ const mapStateToProps = (state) => {
     gender: state.provider.gender,
     programsList: state.provider.programsList,
     officeHours: state.provider.officeHours
-
   }
 }
 
@@ -398,6 +400,7 @@ const mapDispatchToProps = (dispatch) => {
     changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),
     changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta)),
     changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
+    changeListLimit: (listLimit) => dispatch(ProviderActions.changeListLimit(listLimit)),
     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
   }
 }
