@@ -449,7 +449,7 @@ class Login extends Component {
 
         <View style={styles.container}>
 
-          <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+          <Image source={Images.background} style={styles.backgroundImage} />
 
           <Clouds />
           <CityScape />
