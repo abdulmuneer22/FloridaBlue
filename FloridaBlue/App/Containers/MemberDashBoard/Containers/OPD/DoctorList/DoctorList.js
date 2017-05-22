@@ -76,24 +76,26 @@ class DoctorList extends Component {
   }
 
   async providerSearchList () {
-    this.props.changeEnd(300)
-    if (this.props.error == undefined || this.props.error == null) {
-      if (this.props.showUrgentCareBanner) {
-        this.props.attemptAsyncUrgentSearch(this.props)
-      } else {
-        if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
-          this.props.attemptAsyncPharmacySearch(this.props)
-        } else {
-          this.props.attemptAsyncProviderSearch(this.props)
+      if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
+        this.props.changeEnd(300)
+        if (this.props.error == undefined || this.props.error == null) {
+          if (this.props.showUrgentCareBanner) {
+            this.props.attemptAsyncUrgentSearch(this.props)
+          } else {
+            if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
+              this.props.attemptAsyncPharmacySearch(this.props)
+            } else {
+              this.props.attemptAsyncProviderSearch(this.props)
+            }
+          }
         }
-        // this.props.attemptProviderSearch(this.props)
       }
-    }
   }
 
   componentDidMount () {
       // Call asynchronously to get more data
     this.providerSearchList()
+    console.tron.log(this.props)
   }
 
   componentWillReceiveProps (newProps) {
@@ -101,15 +103,16 @@ class DoctorList extends Component {
       this.props.attemptProviderSearch(newProps)
       this.setState({isFetchingMore: false})
     } */
-
-    if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
-      this.props.changeLatitude(newProps.provider.data.originLatitude)
-      this.props.changeLongitude(newProps.provider.data.originLongitude)
+     if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
+        if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
+          this.props.changeLatitude(newProps.provider.data.originLatitude)
+          this.props.changeLongitude(newProps.provider.data.originLongitude)
+        }
+        // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
+        const milesOfLatAtEquator = 69
+        this.props.changeLatDelta(2 / milesOfLatAtEquator)
+        this.props.changeLongDelta(2 / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
     }
-    // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
-    const milesOfLatAtEquator = 69
-    this.props.changeLatDelta(2 / milesOfLatAtEquator)
-    this.props.changeLongDelta(2 / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
   }
 
   _renderHeader () {
@@ -133,6 +136,8 @@ class DoctorList extends Component {
     this.setState({
       listLimit: newLimit + 10
     })
+
+    this.props.changeListLimit(newLimit+10)
        /* if(this.state.totalNumberOfCardPerScreen == newLimit) {
            //this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
            //this.state.isFetchingMore = true
@@ -201,8 +206,7 @@ class DoctorList extends Component {
                        <DoctorCard
                          cardLimit={this.state.listLimit}
                          data={this.props.provider.data.providerList}
-
-                  />
+                      />
                   :
 
                          <View style={{flex: 1, margin: 15}}>
@@ -296,8 +300,8 @@ class DoctorList extends Component {
         </View>
       )
     } else if ((this.props.error != null) ||
-     ( this.props.provider ==null || 
-     (this.props.provider != null && 
+     ( this.props.provider ==null ||
+     (this.props.provider != null &&
      (this.props.provider.data == null || this.props.provider.data.length ==0 )
       ) ) ) {
       Alert.alert(
@@ -305,7 +309,6 @@ class DoctorList extends Component {
        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
         [
           { text: 'OK' }
-
         ])
     }
   }
@@ -384,7 +387,6 @@ const mapStateToProps = (state) => {
     gender: state.provider.gender,
     programsList: state.provider.programsList,
     officeHours: state.provider.officeHours
-
   }
 }
 
@@ -398,6 +400,7 @@ const mapDispatchToProps = (dispatch) => {
     changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),
     changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta)),
     changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
+    changeListLimit: (listLimit) => dispatch(ProviderActions.changeListLimit(listLimit)),
     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
   }
 }

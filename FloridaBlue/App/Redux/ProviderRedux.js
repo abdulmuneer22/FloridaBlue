@@ -60,6 +60,7 @@ const { Types, Creators } = createActions({
   changeUrgentCareBanner: ['showUrgentCareBanner'],
   changeStart: ['start'],
   changeEnd: ['end'],
+  changeListLimit: ['listLimit'],
   providerClickleft: [],
   providerClickright: [],
   sendAsyncProviderSearchRequest: ['data'],
@@ -107,7 +108,8 @@ export const INITIAL_STATE = Immutable({
   fetching: false,
   error: null,
   start: 1,
-  end: 100
+  end: 100,
+  listLimit: 10
 })
 
 /* ------------- Reducers ------------- */
@@ -288,6 +290,8 @@ export const _changeStart = (state: Object, {start}: Object) => state.merge({sta
 
 export const _changeEnd = (state: Object, {end}: Object) => state.merge({end})
 
+export const _changeListLimit = (state: Object, {listLimit}: Object) => state.merge({listLimit})
+
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {
   return state.merge({fetching: false, error: null, leftActive: false, rightActive: true})
@@ -356,6 +360,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_LONG_DELTA]: _changeLongDelta,
   [Types.CHANGE_START]: _changeStart,
   [Types.CHANGE_END]: _changeEnd,
+  [Types.CHANGE_LIST_LIMIT]: _changeListLimit,
   [Types.CHANGE_URGENT_CARE_BANNER]: _changeUrgentCareBanner,
   [Types.PROVIDER_CLICKLEFT]: leftclick,
   [Types.PROVIDER_CLICKRIGHT]: rightclick,
