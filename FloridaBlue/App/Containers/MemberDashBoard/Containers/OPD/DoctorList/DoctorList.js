@@ -79,7 +79,7 @@ class DoctorList extends Component {
       if (newProps.networkCodeList && newProps.networkCodeList.length > 0) {
         if (newProps.error == undefined || newProps.error == null) {
           if (newProps.showUrgentCareBanner) {
-            newProps.attemptAsyncUrgentSearch(newPropss)
+            newProps.attemptAsyncUrgentSearch(newProps)
           } else {
             if (newProps.categoryCode == '07' && newProps.subCategoryCode == '700') {
               newProps.attemptAsyncPharmacySearch(newProps)
