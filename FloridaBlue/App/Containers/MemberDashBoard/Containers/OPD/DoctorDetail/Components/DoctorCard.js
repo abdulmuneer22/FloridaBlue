@@ -183,10 +183,10 @@ class DoctorCard extends Component {
                     <View style={{ flex: 0.2, alignItems: 'center' }}>
                       <Flb
                         name='check'
-                        size={30}
+                        size={Metrics.icons.medium * Metrics.screenWidth * 0.0030}
                         color='green'
                         style={{
-                          marginTop: 10
+                          marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0008
 
                         }}
                                     />
@@ -225,16 +225,19 @@ class DoctorCard extends Component {
                     <View style={{ flex: 0.2, alignItems: 'center' }}>
                       <Flb
                         name='check'
-                        size={30}
+                        size={Metrics.icons.medium * Metrics.screenWidth * 0.0030}
                         color='green'
                         style={{
-                          marginTop: 10
+                           marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0008
 
                         }}
                                     />
                     </View>
                     <View style={{ flex: 0.8, flexDirection: 'row' }}>
-                      <Text style={styles.plannameText}> Staff Speaks: </Text>
+                       <View style={{flex: 0.4}}>
+                        <Text style={styles.plannameText}>Staff Speaks: </Text>
+                      </View>
+                      <View style={{flex: 0.4}}>
                       {this.props.data && this.props.data.staffLanguageCodes ? this.props.data.staffLanguageCodes.map((value, i) => {
                         return (<View style={{flex: 1}} key={i}>
                           <Text style={styles.plannameText}>
@@ -244,6 +247,7 @@ class DoctorCard extends Component {
                         )
                       }
                       ) : null}
+                     </View>
                     </View>
                   </View>
                 </View>

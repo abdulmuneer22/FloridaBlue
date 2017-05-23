@@ -176,7 +176,7 @@ export default StyleSheet.create({
   radioBottomText: {
    paddingRight: Metrics.baseMargin * Metrics.screenWidth * 0.002,
    // marginLeft: Metrics.baseMargin,
-    marginRight: Metrics.doubleBaseMargin,
+    marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002,
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.subHeaderFont,
