@@ -61,6 +61,8 @@ const { Types, Creators } = createActions({
   changeStart: ['start'],
   changeEnd: ['end'],
   changeListLimit: ['listLimit'],
+  changeSelectedLocation: ['selectedLocation'],
+  onTabSelect:['selectedTab'],
   providerClickleft: [],
   providerClickright: [],
   sendAsyncProviderSearchRequest: ['data'],
@@ -109,7 +111,9 @@ export const INITIAL_STATE = Immutable({
   error: null,
   start: 1,
   end: 100,
-  listLimit: 10
+  listLimit: 10,
+  selectedTab: 'listView',
+  selectedLocation: {}
 })
 
 /* ------------- Reducers ------------- */
@@ -292,6 +296,10 @@ export const _changeEnd = (state: Object, {end}: Object) => state.merge({end})
 
 export const _changeListLimit = (state: Object, {listLimit}: Object) => state.merge({listLimit})
 
+export const _onTabSelect = (state: Object, {selectedTab}: Object) => state.merge({selectedTab})
+
+export const _changeSelectedLocation = (state: Object, {selectedLocation}: Object) => state.merge({selectedLocation})
+
 // rightSwitch
 export const rightclick = (state: Object, action: Object) => {
   return state.merge({fetching: false, error: null, leftActive: false, rightActive: true})
@@ -361,6 +369,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_START]: _changeStart,
   [Types.CHANGE_END]: _changeEnd,
   [Types.CHANGE_LIST_LIMIT]: _changeListLimit,
+  [Types.CHANGE_SELECTED_LOCATION]: _changeSelectedLocation,
+  [Types.ON_TAB_SELECT]: _onTabSelect,
   [Types.CHANGE_URGENT_CARE_BANNER]: _changeUrgentCareBanner,
   [Types.PROVIDER_CLICKLEFT]: leftclick,
   [Types.PROVIDER_CLICKRIGHT]: rightclick,

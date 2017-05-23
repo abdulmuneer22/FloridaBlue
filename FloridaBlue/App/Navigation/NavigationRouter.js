@@ -36,7 +36,8 @@ import { DoctorServices } from '../Containers/MemberDashBoard/Containers/DoctorS
 import { AdditionalBenefits } from '../Containers/MemberDashBoard/Containers/AdditionalBenefits'
 import { ProviderSearch} from '../Containers/MemberDashBoard/Containers/OPD/ProviderSearch'
 import { ProviderTypeInfo } from '../Containers/MemberDashBoard/Containers/OPD/ProviderSearch'
-import { DoctorList} from '../Containers/MemberDashBoard/Containers/OPD/DoctorList'
+import { DoctorList } from '../Containers/MemberDashBoard/Containers/OPD/DoctorList'
+import { ProviderList } from '../Containers/MemberDashBoard/Containers/OPD/ProviderList'
 import { AdvancedSearch} from '../Containers/MemberDashBoard/Containers/OPD/AdvancedSearch'
 import { ProviderMap} from '../Containers/MemberDashBoard/Containers/OPD/ProviderMap'
 import { ListviewExample } from '../Containers/ListviewExample'
@@ -77,6 +78,7 @@ class NavigationRouter extends Component {
             <Scene key='DoctorServices' component={DoctorServices} title='DoctorServices Page' hideNavBar />
             <Scene key='AdditionalServices' component={AdditionalBenefits} title='AdditionalBenefits Page' hideNavBar />
             <Scene key='DoctorList' component={DoctorList} title='OPD Doctor List Page' hideNavBar />
+            <Scene key='ProviderList' component={ProviderList} title='Provider List Page' hideNavBar />
             <Scene key='AdvancedSearch' component={AdvancedSearch} title='OPD AdvancedSearch Page' hideNavBar />
             <Scene key='ProviderSearch' component={ProviderSearch} title='OPD ProviderSearch Page' hideNavBar />
             <Scene key='ProviderTypeInfo' component={ProviderTypeInfo} title='OPD ProviderTypeInfo Page' hideNavBar />

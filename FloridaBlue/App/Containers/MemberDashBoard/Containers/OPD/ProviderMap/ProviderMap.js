@@ -60,7 +60,7 @@ class ProviderMap extends Component {
     this._onRegionChange = this._onRegionChange.bind(this)
   }
 
-  componentWillMount () {
+  componentDidMount () {
     console.tron.log(this.props)
     this.setState({selectedLocation: this.props.provider.data.providerList[0]})
     this.setState({currentLat: this.props.provider.data.providerList[0].latitude})
@@ -69,11 +69,6 @@ class ProviderMap extends Component {
 
   _onRegionChange (region) {
     console.tron.log(region)
-    var mapExtInMiles = region.latitudeDelta * 69
-
-
-
-    //this.setState({polygon: []})
   }
 
   _locationSwiped (event, state, context) {
@@ -95,7 +90,7 @@ class ProviderMap extends Component {
     // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
     const milesOfLatAtEquator = 69
     this.props.changeLatDelta(2 / milesOfLatAtEquator)
-    this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[state.index].longitude) * milesOfLatAtEquator))
+    this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[event.nativeEvent.id].longitude) * milesOfLatAtEquator))
 
     this.setState({showLocationDetail: false}, function () {
       this.setState({showLocationDetail: true})
@@ -119,11 +114,11 @@ class ProviderMap extends Component {
   _renderMapMarkers (location) {
     if (location && location.latitude == this.state.selectedLocation.latitude) {
       return (
-        <MapView.Marker key={location.uniqueId} identifier={(location != null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapSelectedPin} />
+        <MapView.Marker key={location.locationIndex} identifier={(location != null && location.locationIndex != null ? location.locationIndex.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapSelectedPin} />
       )
     } else {
       return (
-        <MapView.Marker key={location.uniqueId} identifier={(location != null && location.uniqueId != null ? location.uniqueId.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin} />
+        <MapView.Marker key={location.locationIndex} identifier={(location != null && location.locationIndex != null ? location.locationIndex.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapUnselectedPin} />
       )
     }
   }
