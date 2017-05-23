@@ -12,7 +12,7 @@ module.exports = {
   supportURL: 'https://www.floridablue.com/general/contact-us',
   floridaBlueURL: 'https://www.floridablue.com/',
   anotherLanguageURL: 'https://www.floridablue.com/languageservices?_ga=1.102498241.1713434787.1485183405#es',
-  mailOrderLearnLink: 'https://mwe-stga.bcbsfl.com/wps/contenthandler/mbs/!ut/p/digest!30_AP8jv7LJcY31ofAxfMg/war/mwe8_base_theme/themes/html/mwe8_base_theme/web/viewer.html?file=https%3A%2F%2Fmwe-stga.bcbsfl.com%2Fwps%2Fwcm%2Fmyconnect%2Fmbs%2Facfb35004e04f4adb575f5b454b86f09%2F5737-A%2BFL_PrimeMail_Brochure%2B10-15.pdf%3FMOD%3DAJPERES%26CACHEID%3DROOTWORKSPACE.Z18_40KC14K0LG1EB0APNR4HKP20U6acfb35004e04f4adb575f5b454b86f09',
+  mailOrderLearnLink: 'https://mwe-stga.bcbsfl.com/wps/contenthandler/mbs/%21ut/p/digest%2130_AP8jv7LJcY31ofAxfMg/war/mwe8_base_theme/themes/html/mwe8_base_theme/web/viewer.html?file=https%3A%2F%2Fmwe-stga.bcbsfl.com%2Fwps%2Fwcm%2Fmyconnect%2Fmbs%2Facfb35004e04f4adb575f5b454b86f09%2F5737-A%2520FL_PrimeMail_Brochure%252010-15.pdf%3FMOD%3DAJPERES',
   primeMailOrderLink: 'https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/Disclaimer?param1Name=mailOrder&sk=1&nw=1',
   medicarePlansLink: 'https://www.walgreens.com/topic/s/mail_service_pharmacy_primemail.jsp',
   caremarkSpecialty: 'https://mwe-stga.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/Disclaimer?nw=1&param1Name=https://www.caremark.com/wps/portal/SPECIALTY_PHARMACY',

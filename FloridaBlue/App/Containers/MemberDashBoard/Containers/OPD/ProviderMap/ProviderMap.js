@@ -79,6 +79,7 @@ class ProviderMap extends Component {
     if (this.state.currentLocationIndex != newLocationIndex) {
       this.setState({currentLat: provider.latitude})
       this.setState({currentLong: provider.longitude})
+      this.setState({currentLocationIndex: state.index})
 
       // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
       const milesOfLatAtEquator = 69

@@ -186,25 +186,35 @@ class ProviderSearch extends Component {
     this.props.changeUrgentCareBanner(false)
     this.setState({userWantsResults: true})
     if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
-      if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
-        console.tron.log("pharmacy props :: "+JSON.stringify(this.props))
-        this.props.attemptPharmacySearch(this.props)
+      if((this.props.member && this.props.member.visibilityRules && this.props.member.visibilityRules.isStateGroup
+            && (this.props.categoryCode == '07' || (this.props.subCategoryCode== '702' || this.props.subCategoryCode == '700'
+            || this.props.subCategoryCode == '701')))){
+                  Alert.alert(
+                  'Find care',
+                    'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+                  [
+                    { text: 'OK' }
+                  ])
+              return
+        }
+        if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
+          console.tron.log("pharmacy props :: "+JSON.stringify(this.props))
+          this.props.attemptPharmacySearch(this.props)
+        } else {
+          this.props.changeEnd(30);
+          this.props.attemptProviderSearch(this.props)
+        }
+        NavigationActions.DoctorList()
+        this.setState({userWantsResults: false})
       } else {
-        this.props.changeEnd(30);
-        this.props.attemptProviderSearch(this.props)
-      }
 
-      NavigationActions.DoctorList()
-      this.setState({userWantsResults: false})
-    } else {
-       
         Alert.alert(
           'Find care',
         'Oops! Looks like we\'re having trouble with your request. Please try again later.',
           [
             { text: 'OK' }
-          ])      
-       
+          ])
+
       //this.props.attemptNetworkList()
       //NavigationActions.DoctorList()
     }
