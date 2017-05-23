@@ -93,7 +93,7 @@ class ProviderSearch extends Component {
   }
 
   componentDidMount () {
-    this.props.attemptCareTypes()
+    this.props.attemptCareTypes(this.props.member)
     this._getLocation()
     this._resetState()
 
@@ -614,7 +614,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptCareTypes: () => dispatch(ProviderActions.sendCareTypeRequest()),
+    attemptCareTypes: (member) => dispatch(ProviderActions.sendCareTypeRequest(member)),
     changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
     getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
     attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
