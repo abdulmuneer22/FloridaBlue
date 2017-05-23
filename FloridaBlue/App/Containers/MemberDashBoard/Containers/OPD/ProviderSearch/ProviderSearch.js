@@ -191,7 +191,7 @@ class ProviderSearch extends Component {
             || this.props.subCategoryCode == '701')))){
                   Alert.alert(
                   'Find care',
-                  'Error fetching the Category',
+                    'Oops! Looks like we\'re having trouble with your request. Please try again later.',
                   [
                     { text: 'OK' }
                   ])
@@ -207,14 +207,14 @@ class ProviderSearch extends Component {
         NavigationActions.DoctorList()
         this.setState({userWantsResults: false})
       } else {
-       
+
         Alert.alert(
           'Find care',
         'Oops! Looks like we\'re having trouble with your request. Please try again later.',
           [
             { text: 'OK' }
-          ])      
-       
+          ])
+
       //this.props.attemptNetworkList()
       //NavigationActions.DoctorList()
     }
