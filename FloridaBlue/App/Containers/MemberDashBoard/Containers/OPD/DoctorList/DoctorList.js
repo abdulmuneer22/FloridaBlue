@@ -42,7 +42,6 @@ import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 
 const theme = getTheme()
-
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
@@ -99,7 +98,7 @@ class DoctorList extends Component {
 
   componentWillReceiveProps (newProps) {
      if (this.state.isFetchingMore) {
-        //this.props.attemptProviderSearch(newProps)     
+        //this.props.attemptProviderSearch(newProps)
         this.providerSearchList(newProps);
         this.setState({
           isFetchingMore: false
@@ -223,16 +222,16 @@ class DoctorList extends Component {
 
                 </View>
                  {
-                          this.props.asyncfetching ?  
+                          this.props.asyncfetching ?
                           <View style={{flex: 1,alignSelf: 'center',}}>
                             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
                           </View> : null
-                }  
-                        
+                }
+
                 {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10
                   && !(this.state.listLimit > this.props.provider.data.providerList.length)
                   && !(this.props.provider.data.providerList.length == 300 && this.props.provider.data.providerList.length == this.state.listLimit)
-                  ?                                      
+                  ?
                     <View style={{flex: 1, marginBottom: 10}}>
                       <TouchableOpacity
                         onPress={this.loadMore}
@@ -254,7 +253,7 @@ class DoctorList extends Component {
                       </TouchableOpacity>
                     </View> : null
                 }
- 
+
               </ScrollView>
             </View>
           : <View style={styles.spinnerView}>

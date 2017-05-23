@@ -224,7 +224,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.emphasis,
     fontWeight: '400',
     marginLeft: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002,
-    marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.001,
+    marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002,
     paddingLeft: Metrics.doubleBaseMargin * 2.8
   },
   newLocationField: {
