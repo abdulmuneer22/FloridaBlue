@@ -108,6 +108,7 @@ export const INITIAL_STATE = Immutable({
   addressKey: '',
   locationStatus: '',
   fetching: false,
+  asyncfetching: false, 
   error: null,
   start: 1,
   end: 100,
@@ -131,10 +132,10 @@ export const _sendNetworkListFailure = (state: Object, {error}: Object) => state
 export const _sendProviderSearchRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendProviderSearchRequest
-export const _sendAsyncProviderSearchRequest = (state: Object) => state.merge({ })
+export const _sendAsyncProviderSearchRequest = (state: Object) => state.merge({asyncfetching: true })
 
 // sendProviderSearchSuccess
-export const _sendProviderSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
+export const _sendProviderSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, asyncfetching:false, data, error: null, leftActive: true, rightActive: false})
 
 // sendProviderSearchFailure
 export const _sendProviderSearchFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, data: {}, error })
@@ -143,10 +144,10 @@ export const _sendProviderSearchFailure = (state: Object, {error}: Object) => st
 export const _sendPharmacySearchRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendPharmacySearchRequest
-export const _sendAsyncPharmacySearchRequest = (state: Object) => state.merge({ })
+export const _sendAsyncPharmacySearchRequest = (state: Object) => state.merge({ asyncfetching: true })
 
 // sendPharmacySearchSuccess
-export const _sendPharmacySearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
+export const _sendPharmacySearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, asyncfetching: false, data, error: null, leftActive: true, rightActive: false})
 
 // sendPharmacySearchFailure
 export const _sendPharmacySearchFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
@@ -155,10 +156,10 @@ export const _sendPharmacySearchFailure = (state: Object, {error}: Object) => st
 export const _sendUrgentSearchRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendAsyncUrgentSearchRequest
-export const _sendAsyncUrgentSearchRequest = (state: Object) => state.merge({ })
+export const _sendAsyncUrgentSearchRequest = (state: Object) => state.merge({ asyncfetching : true})
 
 // sendUrgentSearchSuccess
-export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, data, error: null, leftActive: true, rightActive: false})
+export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, asyncfetching : true, data, error: null, leftActive: true, rightActive: false})
 
 // sendUrgentSearchFailure
 export const _sendUrgentSearchFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
