@@ -99,10 +99,12 @@ class DoctorList extends Component {
 
   componentWillReceiveProps (newProps) {
      if (this.state.isFetchingMore) {
-      //this.props.attemptProviderSearch(newProps)
-      this.providerSearchList(newProps)
-      this.setState({isFetchingMore: false})
-    }
+        //this.props.attemptProviderSearch(newProps)     
+        this.providerSearchList(newProps);
+        this.setState({
+          isFetchingMore: false
+        });
+     }
      if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
         if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
           this.props.changeLatitude(newProps.provider.data.originLatitude)
@@ -112,7 +114,6 @@ class DoctorList extends Component {
         const milesOfLatAtEquator = 69
         this.props.changeLatDelta(2 / milesOfLatAtEquator)
         this.props.changeLongDelta(2 / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
-        this.props.changeEnd(300);
     }
   }
 
@@ -137,11 +138,11 @@ class DoctorList extends Component {
     this.setState({
       listLimit: newLimit + 10
     })
-
     this.props.changeListLimit(newLimit+10)
     if(this.state.totalNumberOfCardPerScreen == newLimit) {
            this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
            this.state.isFetchingMore = true
+           this.setState({isFetchingMore : true});
            this.setState({totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30});
     }
   }
@@ -191,7 +192,7 @@ class DoctorList extends Component {
                               <Text style={{
                                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
                                 color: Colors.snow, fontWeight: '700'
-                              }}>Please Note:</Text>Your inquiry resulted in a very large list of providers. For now, we have limited your display to only the first 300 providers.</Text>
+                              }}>Please Note: </Text>Your inquiry resulted in a very large list of providers. For now, we have limited your display to only the first 300 providers.</Text>
                           </View>
                         </View>
                       </Card>
@@ -221,11 +222,17 @@ class DoctorList extends Component {
                     }
 
                 </View>
-
+                 {
+                          this.props.asyncfetching ?  
+                          <View style={{flex: 1,alignSelf: 'center',}}>
+                            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                          </View> : null
+                }  
+                        
                 {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10
                   && !(this.state.listLimit > this.props.provider.data.providerList.length)
                   && !(this.props.provider.data.providerList.length == 300 && this.props.provider.data.providerList.length == this.state.listLimit)
-                  ?
+                  ?                                      
                     <View style={{flex: 1, marginBottom: 10}}>
                       <TouchableOpacity
                         onPress={this.loadMore}
@@ -245,7 +252,9 @@ class DoctorList extends Component {
                           color: 'white'
                         }}>Show More</Text>
                       </TouchableOpacity>
-                    </View> : null}
+                    </View> : null
+                }
+ 
               </ScrollView>
             </View>
           : <View style={styles.spinnerView}>
@@ -347,6 +356,7 @@ DoctorList.propTypes = {
 const mapStateToProps = (state) => {
   return {
     fetching: state.provider.fetching,
+    asyncfetching : state.provider.asyncfetching,
     error: state.provider.error,
     provider: state.provider.data,
     latitude: state.provider.latitude,
