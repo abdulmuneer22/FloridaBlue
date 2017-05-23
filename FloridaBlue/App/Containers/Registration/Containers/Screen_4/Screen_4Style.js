@@ -7,7 +7,7 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   container: {
     flex: 1,
-    paddingTop: 0
+    //paddingTop: 0
   },
   headerImage: {
     width: Metrics.screenWidth,
