@@ -100,7 +100,7 @@ class Card extends Component {
           <LinearGradient colors={this.props.gradientColor}
             style={{
               width: this.state.CardWidth,
-              height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.77) : Metrics.screenHeight - (Metrics.screenHeight * 0.79)
+              height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.76) : Metrics.screenHeight - (Metrics.screenHeight * 0.78)
         //    alignItems: 'center',
         //    justifyContent: 'center'
             }}
@@ -109,7 +109,8 @@ class Card extends Component {
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Image source={Images[this.props.gradientImage]}
                 style={{flex: 1, justifyContent: 'center', alignItems: 'center',
-                  width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.55) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.56)}} >
+                  width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.55) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.56),
+                 }} >
 
                 <View style={{alignItems: 'center'}} >
                   <Text style={{

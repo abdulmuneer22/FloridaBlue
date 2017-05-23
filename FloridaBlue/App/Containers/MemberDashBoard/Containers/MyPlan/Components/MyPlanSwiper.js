@@ -120,7 +120,7 @@ class MyPlanSwiper extends Component {
 
     return (
 
-      <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.47))}
+      <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.48))}
         showsButtons
         showsPagination
         paginationStyle={{
