@@ -128,7 +128,7 @@ class AdvancedSearch extends Component {
             || this.props.subCategoryCode == '701')))){
                   Alert.alert(
                   'Find care',
-                  'Error fetching the Category',
+                    'Oops! Looks like we\'re having trouble with your request. Please try again later.',
                   [
                     { text: 'OK' }
                   ])
@@ -137,7 +137,7 @@ class AdvancedSearch extends Component {
       if (this.state.isDifferentLocationSelected) {
         if (this.state.diffLocation) {
           this.props.changeUrgentCareBanner(false)
-          if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {           
+          if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
             this.props.attemptPharmacySearch(this.props)
           } else {
             this.props.attemptProviderSearch(this.props)
@@ -147,7 +147,7 @@ class AdvancedSearch extends Component {
           alert('Please Enter Zip Code or City')
         }
       } else {
-        
+
         this.props.changeUrgentCareBanner(false)
         if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
           this.props.attemptPharmacySearch(this.props)
@@ -162,7 +162,7 @@ class AdvancedSearch extends Component {
         'Oops! Looks like we\'re having trouble with your request. Please try again later.',
           [
             { text: 'OK' }
-          ])   
+          ])
     }
   }
 
@@ -410,7 +410,7 @@ class AdvancedSearch extends Component {
       this.props.changeSubCategoryCode(selectedSubCategoryCode)
       NavigationActions.ProviderTypeInfo()
     } else
-    {    
+    {
     this.props.changeSubCategoryCode(selectedSubCategoryCode)
     this.props.changeSpecialityType(value)
     this.setState({specialityState: false}, function () {
@@ -506,11 +506,11 @@ class AdvancedSearch extends Component {
             <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
 
             <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
-              <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected} 
-              dropdownStyle={{ 
+              <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected}
+              dropdownStyle={{
                 //height:33*_.map(this.props.planSubCategoryList, 'subCategoryName').length,
               width: Metrics.screenWidth * 0.9,
-              marginLeft: Metrics.doubleBaseMargin}} 
+              marginLeft: Metrics.doubleBaseMargin}}
               renderRow={this._renderDropdownRow.bind(this)}>
                 <MKTextField
                   ref='specialityType'
