@@ -24,6 +24,7 @@ import MapView from 'react-native-maps'
 import DoctorCard from './Components/DoctorCard'
 import HideableView from 'react-native-hideable-view'
 import Swiper from 'react-native-swiper'
+import _ from 'lodash'
 
 const theme = getTheme()
 const screen = Dimensions.get('window')
@@ -52,7 +53,7 @@ class ProviderMap extends Component {
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421
       },
-      polygon: []
+      currentLocationIndex: 0
     }
 
     this._mapCalloutSelected = this._mapCalloutSelected.bind(this)
@@ -61,7 +62,6 @@ class ProviderMap extends Component {
   }
 
   componentDidMount () {
-    console.tron.log(this.props)
     this.setState({selectedLocation: this.props.provider.data.providerList[0]})
     this.setState({currentLat: this.props.provider.data.providerList[0].latitude})
     this.setState({currentLong: this.props.provider.data.providerList[0].longitude})
@@ -72,25 +72,32 @@ class ProviderMap extends Component {
   }
 
   _locationSwiped (event, state, context) {
-    this.setState({selectedLocation: this.props.provider.data.providerList[state.index]})
-    this.setState({currentLat: this.props.provider.data.providerList[state.index].latitude})
-    this.setState({currentLong: this.props.provider.data.providerList[state.index].longitude})
+    let provider = _.find(this.props.provider.data.providerList, { uniqueId: state.index})
+    let newLocationIndex = provider.locationIndex
+    this.setState({selectedLocation: provider})
 
-    // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
-    const milesOfLatAtEquator = 69
-    this.props.changeLatDelta(2 / milesOfLatAtEquator)
-    this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[state.index].longitude) * milesOfLatAtEquator))
+    if (this.state.currentLocationIndex != newLocationIndex) {
+      this.setState({currentLat: provider.latitude})
+      this.setState({currentLong: provider.longitude})
+
+      // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
+      const milesOfLatAtEquator = 69
+      this.props.changeLatDelta(2 / milesOfLatAtEquator)
+      this.props.changeLongDelta(2 / (Math.cos(this.state.currentLong) * milesOfLatAtEquator))
+    }
   }
 
   _mapCalloutSelected (event) {
-    this.setState({selectedLocation: this.props.provider.data.providerList[event.nativeEvent.id]})
-    this.setState({currentLat: this.props.provider.data.providerList[event.nativeEvent.id].latitude})
-    this.setState({currentLong: this.props.provider.data.providerList[event.nativeEvent.id].longitude})
+    var newLocationIndex = parseInt(event.nativeEvent.id)
+    let provider = _.find(this.props.provider.data.providerList, { locationIndex: newLocationIndex})
+    this.setState({selectedLocation: provider})
+    this.setState({currentLat: provider.latitude})
+    this.setState({currentLong: provider.longitude})
 
     // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
     const milesOfLatAtEquator = 69
     this.props.changeLatDelta(2 / milesOfLatAtEquator)
-    this.props.changeLongDelta(2 / (Math.cos(this.props.provider.data.providerList[event.nativeEvent.id].longitude) * milesOfLatAtEquator))
+    this.props.changeLongDelta(2 / (Math.cos(this.state.currentLong) * milesOfLatAtEquator))
 
     this.setState({showLocationDetail: false}, function () {
       this.setState({showLocationDetail: true})
@@ -112,7 +119,7 @@ class ProviderMap extends Component {
   }
 
   _renderMapMarkers (location) {
-    if (location && location.latitude == this.state.selectedLocation.latitude) {
+    if (location && location.locationIndex == this.state.selectedLocation.locationIndex) {
       return (
         <MapView.Marker key={location.locationIndex} identifier={(location != null && location.locationIndex != null ? location.locationIndex.toString() : '')} coordinate={{latitude: location.latitude, longitude: location.longitude}} onPress={this._mapCalloutSelected} onSelect={this._mapCalloutSelected} image={Images.mapSelectedPin} />
       )
@@ -125,7 +132,7 @@ class ProviderMap extends Component {
 
   _renderLocationDetail (location) {
     return (
-      <View key={location.uniqueId} style={{flex: 1, marginTop: (Platform.OS === 'ios') ? 10 : -5,
+      <View key={location.locationIndex} style={{flex: 1, marginTop: (Platform.OS === 'ios') ? 10 : -5,
         marginBottom: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.002 :  Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
       }} >
         <DoctorCard data={location} />
