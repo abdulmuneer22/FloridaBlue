@@ -119,22 +119,7 @@ class AdvancedSearch extends Component {
     this._careSelected = this._careSelected.bind(this)
     this._specialitySelected = this._specialitySelected.bind(this)
     this._onChecked = this._onChecked.bind(this)
-    this._careSelected = this._careSelected.bind(this)
-    this._specialitySelected = this._specialitySelected.bind(this)
     console.tron.log('*****************' + this.props.navigatingFrom)
-  }
-
-  _onChecked (event) {
-    if (event.checked) {
-      this.props.changeSubCategoryCode('')
-      this.props.changeCategoryCode('ALL')
-      this.setState({knownCareState: true})
-      this.setState({unknownCareState: false})
-    } else {
-      this.props.changeProviderName('')
-      this.setState({knownCareState: false})
-      this.setState({unknownCareState: true})
-    }
   }
 
   _handleDoctordetail() {
@@ -314,17 +299,6 @@ class AdvancedSearch extends Component {
     }
   }
 
-  _careSelected (index, value:string) {
-    var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
-    this.props.getSpecialityTypes(selectedCategoryCode)
-    this.props.changeCareType(value)
-  }
-
-  _specialitySelected (index, value:string) {
-    var selectedSubCategoryCode = this.props.planSubCategoryList[index].categoryCode
-    this.props.changeSubCategoryCode(selectedSubCategoryCode)
-    this.props.changeSpecialityType(value)
-  }
 
   _resetState () {
     this.props.changeSubCategoryCode('')
