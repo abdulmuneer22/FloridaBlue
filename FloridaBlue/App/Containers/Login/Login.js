@@ -210,6 +210,8 @@ class Login extends Component {
     RCTNetworking.clearCookies((cleared) => {
       console.tron.log('clearing local cookies for the app login')
     })
+
+   BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
     /*
     BackAndroid.addEventListener('hardwareBackPress', function () {
          console.log('inside back handler',component.props.currentSceneValue)
@@ -518,7 +520,8 @@ class Login extends Component {
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} /> : <TouchableOpacity onPress={() => { this._handleLogin() }}>
                 <Image style={{width: Metrics.screenWidth * 0.5,
                   borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-                  height: Metrics.screenHeight * 0.064}}
+                  height: Metrics.screenHeight * 0.064, 
+                  marginTop: Metrics.smallMargin * Metrics.screenHeight * 0.001}}
                   source={Images.loginButtonGreen} />
               </TouchableOpacity> }
             </LoginButtonView>

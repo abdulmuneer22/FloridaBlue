@@ -51,11 +51,11 @@ export default StyleSheet.create({
     bottom: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.011 : Metrics.doubleBaseMargin * Metrics.screenWidth * 0.012
   },
   row: {
-    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015,
+    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0016,
     paddingHorizontal: Metrics.doubleBaseMargin 
   },
   forgotRow: {
-    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0015,
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.002,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002
   },
   touchRow: {
