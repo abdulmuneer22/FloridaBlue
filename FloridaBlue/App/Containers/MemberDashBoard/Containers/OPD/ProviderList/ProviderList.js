@@ -502,7 +502,7 @@ const mapStateToProps = (state) => {
     gender: state.provider.gender,
     programsList: state.provider.programsList,
     officeHours: state.provider.officeHours,
-    selectedLocation: state.provider.selectedLocation
+   
   }
 }
 
