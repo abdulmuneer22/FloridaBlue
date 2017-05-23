@@ -93,8 +93,8 @@ class DoctorList extends Component {
 
   componentDidMount () {
       // Call asynchronously to get more data
-    this.props.changeEnd(300)
-    this.setState({isFetchingMore : true});
+    //this.props.changeEnd(300)
+    //this.setState({isFetchingMore : true});
   }
 
   componentWillReceiveProps (newProps) {
@@ -139,13 +139,11 @@ class DoctorList extends Component {
     })
 
     this.props.changeListLimit(newLimit+10)
-       /* if(this.state.totalNumberOfCardPerScreen == newLimit) {
-           //this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
-           //this.state.isFetchingMore = true
-           this.setState({
-               totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30
-           })
-      } */
+    if(this.state.totalNumberOfCardPerScreen == newLimit) {
+           this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
+           this.state.isFetchingMore = true
+           this.setState({totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30});
+    }
   }
 
   _displayCondition () {
