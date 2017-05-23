@@ -75,7 +75,7 @@ class LandingScreen extends Component {
     )
   }
   componentDidMount () {
-    console.log(this.props.navigatingFrom)
+   // console.log(this.props.navigatingFrom)
    //  BackAndroid.addEventListener('hardwareBackPress', function () {
     //   console.tron.log('android back')
     //   // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here

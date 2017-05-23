@@ -118,13 +118,22 @@ class AdvancedSearch extends Component {
     this._femaleGenderSelected = this._femaleGenderSelected.bind(this)
     this._careSelected = this._careSelected.bind(this)
     this._specialitySelected = this._specialitySelected.bind(this)
-    this._onChecked = this._onChecked.bind(this)
-    console.tron.log('*****************' + this.props.navigatingFrom)
   }
 
   _handleDoctordetail() {
 
     if (this.props.networkCodeList  && this.props.networkCodeList.length > 0) {
+          if((this.props.member && this.props.member.visibilityRules && this.props.member.visibilityRules.isStateGroup
+            && (this.props.categoryCode == '07' || (this.props.subCategoryCode== '702' || this.props.subCategoryCode == '700'
+            || this.props.subCategoryCode == '701')))){
+                  Alert.alert(
+                  'Find care',
+                  'Error fetching the Category',
+                  [
+                    { text: 'OK' }
+                  ])
+              return
+        }
       if (this.state.isDifferentLocationSelected) {
         if (this.state.diffLocation) {
           this.props.changeUrgentCareBanner(false)
