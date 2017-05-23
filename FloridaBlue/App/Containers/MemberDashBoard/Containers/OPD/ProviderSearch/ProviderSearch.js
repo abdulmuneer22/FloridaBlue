@@ -190,6 +190,7 @@ class ProviderSearch extends Component {
         console.tron.log("pharmacy props :: "+JSON.stringify(this.props))
         this.props.attemptPharmacySearch(this.props)
       } else {
+        this.props.changeEnd(30);
         this.props.attemptProviderSearch(this.props)
       }
 
@@ -597,14 +598,14 @@ const mapStateToProps = (state) => {
     locationStatus: state.provider.locationStatus,
     showUrgentCareBanner: state.provider.showUrgentCareBanner,
     searchRange: state.provider.searchRange,
-    start: state.provider.start,
-    end: state.provider.end
+    start: state.provider.start
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptCareTypes: () => dispatch(ProviderActions.sendCareTypeRequest()),
+    changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
     getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
     attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
     attemptPharmacySearch: (data) => dispatch(ProviderActions.sendPharmacySearchRequest(data)),

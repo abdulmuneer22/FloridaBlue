@@ -75,17 +75,16 @@ class DoctorList extends Component {
     }
   }
 
-  async providerSearchList () {
-      if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
-        this.props.changeEnd(300)
-        if (this.props.error == undefined || this.props.error == null) {
-          if (this.props.showUrgentCareBanner) {
-            this.props.attemptAsyncUrgentSearch(this.props)
+  async providerSearchList (newProps) {
+      if (newProps.networkCodeList && newProps.networkCodeList.length > 0) {
+        if (newProps.error == undefined || newProps.error == null) {
+          if (newProps.showUrgentCareBanner) {
+            newProps.attemptAsyncUrgentSearch(newProps)
           } else {
-            if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
-              this.props.attemptAsyncPharmacySearch(this.props)
+            if (newProps.categoryCode == '07' && newProps.subCategoryCode == '700') {
+              newProps.attemptAsyncPharmacySearch(newProps)
             } else {
-              this.props.attemptAsyncProviderSearch(this.props)
+              newProps.attemptAsyncProviderSearch(newProps)
             }
           }
         }
@@ -94,15 +93,16 @@ class DoctorList extends Component {
 
   componentDidMount () {
       // Call asynchronously to get more data
-    this.providerSearchList()
-    console.tron.log(this.props)
+    this.props.changeEnd(300)
+    this.setState({isFetchingMore : true});
   }
 
   componentWillReceiveProps (newProps) {
-    /* if (this.state.isFetchingMore) {
-      this.props.attemptProviderSearch(newProps)
+     if (this.state.isFetchingMore) {
+      //this.props.attemptProviderSearch(newProps)
+      this.providerSearchList(newProps)
       this.setState({isFetchingMore: false})
-    } */
+    }
      if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
         if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
           this.props.changeLatitude(newProps.provider.data.originLatitude)
@@ -112,6 +112,7 @@ class DoctorList extends Component {
         const milesOfLatAtEquator = 69
         this.props.changeLatDelta(2 / milesOfLatAtEquator)
         this.props.changeLongDelta(2 / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
+        this.props.changeEnd(300);
     }
   }
 
