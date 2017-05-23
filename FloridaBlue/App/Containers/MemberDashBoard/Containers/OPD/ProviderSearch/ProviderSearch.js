@@ -191,7 +191,7 @@ class ProviderSearch extends Component {
             || this.props.subCategoryCode == '701')))){
                   Alert.alert(
                   'Find care',
-                    'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+                    'Not Available.',
                   [
                     { text: 'OK' }
                   ])

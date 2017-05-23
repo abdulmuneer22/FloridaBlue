@@ -269,7 +269,7 @@ class DoctorDetail extends Component {
                                     return (
 
                                       <View key={i} style={{flex: 1, flexDirection: 'row'}}>
-                                        <View style={{flex: 1}}>
+                                        <View style={{flex: 0.4}}>
                                           <Text style={{
                                             fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                             color: Colors.flBlue.ocean,
@@ -278,7 +278,7 @@ class DoctorDetail extends Component {
                                             {value.dayOfWeek}
                                           </Text>
                                         </View>
-                                        <View style={{flex: 1}}>
+                                        <View style={{flex: 0.3}}>
                                           <Text style={{
                                             fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                             color: Colors.flBlue.grey5,
@@ -296,7 +296,7 @@ class DoctorDetail extends Component {
                                     -
                                   </Text>
 
-                                        <View style={{flex: 1}}>
+                                        <View style={{flex: 0.3}}>
                                           <Text style={{
                                             fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                             color: Colors.flBlue.grey5,
