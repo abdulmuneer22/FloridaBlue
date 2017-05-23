@@ -85,10 +85,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     // backgroundColor : 'red',
     flexWrap: 'wrap',
-    flex: 0.3,
+    flex: (Platform.OS === 'ios') ? 0.3 : 0.25,
     marginLeft: window.width * 0.04,
     marginRight: window.width * 0.03,
-    marginTop: window.width * 0.04,
+    marginTop: (Platform.OS === 'ios') ? window.width * 0.05 : 0,
     marginBottom: window.width * 0.01
 
   },
