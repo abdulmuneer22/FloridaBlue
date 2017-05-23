@@ -16,7 +16,7 @@ const { Types, Creators } = createActions({
   sendUrgentSearchRequest: ['data'],
   sendUrgentSearchSuccess: ['data'],
   sendUrgentSearchFailure: ['error'],
-  sendCareTypeRequest: ['data'],
+  sendCareTypeRequest: ['member'],
   sendCareTypeSuccess: ['data'],
   sendCareTypeFailure: ['error'],
   sendSpecialityTypeRequest: ['selectedCategoryCode'],

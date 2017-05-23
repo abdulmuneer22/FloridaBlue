@@ -76,11 +76,14 @@ export function * sendUrgentSearchRequest (api, {data}) {
   }
 }
 
-export function * sendCareTypeRequest (api, {data}) {
-  const response = yield call(api.getCareTypes, data)
-
+export function * sendCareTypeRequest (api, {member}) {
+  const response = yield call(api.getCareTypes, member)
+  console.tron.log(member)
   if (response.ok) {
     var data = response.data
+    if (member && member.visibilityRules && member.visibilityRules.isStateGroup) {
+      data.data.planCategoryList.splice(3,1)
+    }
     yield put(ProviderActions.sendCareTypeSuccess(data))
   } else {
     var error = response.problem
