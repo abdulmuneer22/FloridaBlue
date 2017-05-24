@@ -116,15 +116,11 @@ class ProviderSearch extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    if (newProps.planSubCategoryList && this.state.unknownCareState) {
+    if (newProps.planSubCategoryList.length > 0 && this.state.unknownCareState) {
       this.setState({specialityState: false}, function () {
         this.setState({specialityState: true})
       })
     }
-
-    /*if (newProps.networkCodeList && this.state.userWantsResults) {
-      //this._getResults()
-    }*/
   }
 
   handleNeedHelp () {
