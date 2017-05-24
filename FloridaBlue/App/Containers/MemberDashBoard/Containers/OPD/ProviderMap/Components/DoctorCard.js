@@ -17,7 +17,7 @@ import { Card } from 'native-base'
 
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import Icon from 'react-native-vector-icons/Ionicons'
-import { Actions as NavigationActions } from 'react-native-router-flux'
+import { Actions as NavigationActions, ActionConst } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import styles from './DoctorCardStyle'
 import _ from 'lodash'
@@ -70,7 +70,7 @@ class DoctorCard extends Component {
     console.tron.log(this.props.data)
     this.props.changeAddressKey(this.props.data.providerAddressKey)
     this.props.changeProviderKey(this.props.data.providerKey)
-    NavigationActions.DoctorDetail()
+    NavigationActions.DoctorDetail({type: ActionConst.REPLACE})
   }
 
   render () {
