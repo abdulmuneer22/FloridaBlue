@@ -43,11 +43,6 @@ class DoctorLocation extends Component {
             <MapView.Marker style={{width: 10, height: 10}} coordinate={{ latitude: this.props.data && this.props.data.latitude ? this.props.data.latitude : '', longitude: this.props.data && this.props.data.longitude ? this.props.data.longitude : '' }} image={Images.mapSelectedPin} />
           </MapView>
         </View>
-        :
-        <View style={styles.spinnerView}>
-          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>
       </View>
     )
   }
