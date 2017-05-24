@@ -521,7 +521,7 @@ class Login extends Component {
                 <Image style={{width: Metrics.screenWidth * 0.5,
                   borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
                   height: Metrics.screenHeight * 0.064, 
-                  marginTop: Metrics.smallMargin * Metrics.screenHeight * 0.001}}
+                  marginTop: Platform.OS == 'ios' ? Metrics.smallMargin * Metrics.screenHeight * 0.001 : Metrics.smallMargin * Metrics.screenHeight * 0.0001}}
                   source={Images.loginButtonGreen} />
               </TouchableOpacity> }
             </LoginButtonView>
