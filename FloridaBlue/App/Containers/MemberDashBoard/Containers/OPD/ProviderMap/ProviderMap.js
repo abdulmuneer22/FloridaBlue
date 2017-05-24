@@ -32,6 +32,10 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
+const ASPECT_RATIO = screen.width / screen.height;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
 var region = {
   latitude: 0,
   longitude: 0,
@@ -155,8 +159,8 @@ class ProviderMap extends Component {
               region={{
                 latitude: this.state.currentLat,
                 longitude: this.state.currentLong,
-                latitudeDelta: this.props.latDelta,
-                longitudeDelta: this.props.longDelta
+                latitudeDelta: LATITUDE_DELTA,
+                longitudeDelta: LONGITUDE_DELTA
               }}>
               {this.props.provider && this.props.provider.data.providerLocationList.map((provider, index) => this._renderMapMarkers(provider, index))}
 
