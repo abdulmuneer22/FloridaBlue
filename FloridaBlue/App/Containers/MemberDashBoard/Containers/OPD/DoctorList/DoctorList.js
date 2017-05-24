@@ -357,8 +357,6 @@ const mapStateToProps = (state) => {
     latitude: state.provider.latitude,
     longitude: state.provider.longitude,
     searchRange: state.provider.searchRange,
-    latDelta: state.provider.latDelta,
-    longDelta: state.provider.longDelta,
     start: state.provider.start,
     end: state.provider.end,
     networkCodeList: state.provider.networkCodeList,
@@ -401,8 +399,6 @@ const mapDispatchToProps = (dispatch) => {
     attemptAsyncUrgentSearch: (data) => dispatch(ProviderActions.sendAsyncUrgentSearchRequest(data)),
     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
-    changeLatDelta: (latDelta) => dispatch(ProviderActions.changeLatDelta(latDelta)),
-    changeLongDelta: (longDelta) => dispatch(ProviderActions.changeLongDelta(longDelta)),
     changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
     changeListLimit: (listLimit) => dispatch(ProviderActions.changeListLimit(listLimit)),
     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())

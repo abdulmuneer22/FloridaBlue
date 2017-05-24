@@ -94,11 +94,6 @@ class ProviderMap extends Component {
     this.setState({currentLat: provider.latitude})
     this.setState({currentLong: provider.longitude})
 
-    // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
-    const milesOfLatAtEquator = 69
-    this.props.changeLatDelta(2 / milesOfLatAtEquator)
-    this.props.changeLongDelta(2 / (Math.cos(this.state.currentLong) * milesOfLatAtEquator))
-
     this.setState({showLocationDetail: false}, function () {
       this.setState({showLocationDetail: true})
     })
@@ -201,8 +196,6 @@ const mapStateToProps = (state) => {
     member: state.member,
     region: state.provider.region,
     searchRange: state.provider.searchRange,
-    latDelta: state.provider.latDelta,
-    longDelta: state.provider.longDelta,
     provider: state.provider.data,
     addressKey: state.provider.addressKey,
     providerKey: state.provider.providerKey,
