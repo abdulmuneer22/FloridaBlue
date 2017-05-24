@@ -27,21 +27,6 @@ class DoctorLocation extends Component {
 
   constructor (props) {
     super(props)
-    this.state = {
-      latitudeDelta: 0,
-      longitudeDelta: 0
-    }
-  }
-
-  componentDidMount() {
-    // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
-    const milesOfLatAtEquator = 69
-    let latDelta = 2 / milesOfLatAtEquator
-    let longDelta = 2 / (Math.cos(this.props.data.latitude) * milesOfLatAtEquator)
-
-    this.setState({ latitudeDelta: latDelta })
-    this.setState({ longitudeDelta: longDelta })
-
   }
 
   render () {

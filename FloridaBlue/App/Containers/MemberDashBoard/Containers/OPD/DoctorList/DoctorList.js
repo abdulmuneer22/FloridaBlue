@@ -109,10 +109,6 @@ class DoctorList extends Component {
           this.props.changeLatitude(newProps.provider.data.originLatitude)
           this.props.changeLongitude(newProps.provider.data.originLongitude)
         }
-        // This math calculates the zoom level based on the user-set search range.. Fancy GIS math
-        const milesOfLatAtEquator = 69
-        this.props.changeLatDelta(2 / milesOfLatAtEquator)
-        this.props.changeLongDelta(2 / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
     }
   }
 
