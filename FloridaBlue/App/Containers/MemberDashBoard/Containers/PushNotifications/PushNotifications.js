@@ -19,7 +19,7 @@ import {
 
 
 import { Card } from 'native-base'
-import NotificationCard from './Components/NotificationCard'
+//import NotificationCard from './Components/NotificationCard'
 import { Colors, Metrics, Fonts, Images } from '../../../../Themes'
 import styles from './PushNotificationsStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
