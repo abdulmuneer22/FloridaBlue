@@ -1,7 +1,7 @@
 // @flow
 
 import { StyleSheet, Dimensions, Platform } from 'react-native'
-import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../Themes/'
+import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../../../Themes/'
 var {height, width} = Dimensions.get('window')
 const window = Dimensions.get('window')
 

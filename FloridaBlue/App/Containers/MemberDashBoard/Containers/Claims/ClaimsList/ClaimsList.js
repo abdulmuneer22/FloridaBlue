@@ -5,10 +5,10 @@ import { AppRegistry, StyleSheet, Text, View, TextInput, Dimensions, TouchableOp
 import styles from './ClaimsStyle'
 import ClaimsCard from './Components/ClaimsCard'
 import axios from 'axios'
-import { Colors, Metrics, Fonts, Images } from '../../../../Themes'
-import NavItems from '../../../../Navigation/NavItems.js'
+import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
+import NavItems from '../../../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
-import Flb from '../../../../Themes/FlbIcon'
+import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
@@ -21,7 +21,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
-class Claims extends Component {
+class ClaimsList extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -66,4 +66,4 @@ class Claims extends Component {
 }
 
 
-export default Claims
+export default ClaimsList
