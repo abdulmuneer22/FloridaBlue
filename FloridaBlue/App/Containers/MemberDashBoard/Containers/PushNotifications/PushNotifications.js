@@ -153,7 +153,7 @@ class PushNotifications extends Component {
                   style={{
                     flex: 1,
                     borderBottomLeftRadius: 10 ,
-                    marginBottom: 10,
+                    marginBottom: 15,
                     // borderBottomRightRadi
                     //height:35
                   }}>
@@ -194,7 +194,7 @@ class PushNotifications extends Component {
                     borderRadius: 20,
                   backgroundColor: 'green',
                   right: 0,
-        }} onPress = { _ => this.deleteRow(secId, rowId, rowMap) } >
+                  }} onPress = { _ => this.deleteRow(secId, rowId, rowMap) } >
                 <View style={{
                   flex: 1, alignItems: 'flex-end',
                   //bottom: 0,

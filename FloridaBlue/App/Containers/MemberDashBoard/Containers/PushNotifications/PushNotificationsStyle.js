@@ -69,6 +69,7 @@ export default StyleSheet.create({
 		backgroundColor: '#FFF',
 		//height: 180,
 		borderRadius: 10,
+    marginTop:5,
     flex:1
 	},
 	rowBack: {
