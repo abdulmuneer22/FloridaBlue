@@ -44,6 +44,7 @@ import { ListviewExample } from '../Containers/ListviewExample'
 import { DoctorDetail} from '../Containers/MemberDashBoard/Containers/OPD/DoctorDetail'
 import { ProgramDetail} from '../Containers/MemberDashBoard/Containers/OPD/ProgramDetail'
 import { PushNotifications } from '../Containers/MemberDashBoard/Containers/PushNotifications'
+import { Claims} from '../Containers/MemberDashBoard/Containers/Claims'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -55,7 +56,7 @@ class NavigationRouter extends Component {
       <Router>
             <Scene key='drawer' component={NavigationDrawer} open={false}>
             <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='login' component={Login} title='Login' hideNavBar panHandlers={null} type={ActionConst.RESET} />
+            <Scene  key='login' component={Login} title='Login' hideNavBar panHandlers={null} type={ActionConst.RESET} />
             <Scene key='TouchTOU' component={TouchTOU} title="Touch TOU" hideNavBar />
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar type={ActionConst.RESET}/>
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
@@ -88,6 +89,7 @@ class NavigationRouter extends Component {
             <Scene key='DoctorDetail' component={DoctorDetail} title='Doctor Detail Page' hideNavBar />
             <Scene key='ProgramDetail' component={ProgramDetail} title='Program Detail Page' hideNavBar />
             <Scene  key='PushNotifications' component={PushNotifications} title='Push Notifications Page' hideNavBar />
+            <Scene initial key='Claims' component={Claims} title='Claims Page' hideNavBar />
           </Scene>
         </Scene>
       </Router>
