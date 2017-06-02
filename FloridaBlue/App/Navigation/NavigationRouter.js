@@ -12,6 +12,7 @@ import { TouchTOU } from '../Containers/Login/TouchTOU'
 import { Webview } from '../Containers/WebView'
 import { ErrorScreen } from '../Containers/WebView'
 import { Home } from '../Containers/Home'
+import { Settings} from '../Containers/Settings'
 import { Resources } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import { HSA } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import { SupportScreen } from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
@@ -61,6 +62,7 @@ class NavigationRouter extends Component {
             <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar type={ActionConst.RESET}/>
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
             <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar type={ActionConst.RESET}/>
+            <Scene key='Settings' component={Settings} title="Settings page" hideNavBar />
             <Scene key='screen_1' component={Screen_1} title='first page' hideNavBar />
             <Scene key='screen_2' component={Screen_2} title='create username page' hideNavBar />
             <Scene key='ReadMore' component={ReadMore} title='readmore page' hideNavBar />

@@ -32,9 +32,13 @@ export default StyleSheet.create({
     paddingTop: Metrics.screenHeight * 0.16,
     paddingHorizontal: Metrics.doubleBaseMargin
   },
-  touchButton: {
-    alignItems: 'center',
-    paddingHorizontal: Metrics.doubleBaseMargin
+  touchCoin: {
+    width: 70,
+    height: 70
+  },
+  touchRow: {
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.001,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.001
   },
   form: {
     backgroundColor: Colors.snow,
@@ -52,7 +56,7 @@ export default StyleSheet.create({
   },
   row: {
     paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0016,
-    paddingHorizontal: Metrics.doubleBaseMargin 
+    paddingHorizontal: Metrics.doubleBaseMargin
   },
   forgotRow: {
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.002,

@@ -92,6 +92,29 @@ export function * sendCareTypeRequest (api, {member}) {
   }
 }
 
+export function * sendAdvancedSpecialityTypeRequest (api, {selectedCategoryCode}) {
+  const response = yield call(api.getSpecialityTypes, selectedCategoryCode)
+
+  if (response.ok) {
+    var data = response.data
+    console.tron.log(data)
+    if (selectedCategoryCode == '07') {
+      var mailOrderCateogry = {'categoryCode': '07', 'subCategoryCode': '999', 'subCategoryName': 'Mail Order'}
+      data.data.planSubCategoryList.push(mailOrderCateogry)
+    } else {
+      var allCategory = {'categoryCode': 'ALL', 'subCategoryCode': '', 'subCategoryName': 'All'}
+      data.data.planSubCategoryList.splice(0, 0, allCategory)
+    }
+
+    yield put(ProviderActions.changeCategoryCode(selectedCategoryCode))
+    yield put(ProviderActions.sendAdvancedSpecialityTypeSuccess(data))
+  } else {
+    var error = response.problem
+    console.tron.log('im speciality error' + error)
+    yield put(ProviderActions.sendAdvancedSpecialityTypeFailure(error))
+  }
+}
+
 export function * sendSpecialityTypeRequest (api, {selectedCategoryCode}) {
   const response = yield call(api.getSpecialityTypes, selectedCategoryCode)
 
