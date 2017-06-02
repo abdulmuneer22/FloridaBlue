@@ -25,6 +25,7 @@ import { SearchDoctorTypes } from '../Redux/SearchDoctorRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
 import { ProviderTypes } from '../Redux/ProviderRedux'
 import { ClaimsListTypes } from '../Redux/ClaimsListRedux'
+import { ClaimDetailTypes } from '../Redux/ClaimDetailRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -58,11 +59,13 @@ import {sendPharmacySearchRequest} from './ProviderSagas'
 import {sendUrgentSearchRequest} from './ProviderSagas'
 import {sendCareTypeRequest} from './ProviderSagas'
 import {sendSpecialityTypeRequest} from './ProviderSagas'
+import {sendAdvancedSpecialityTypeRequest} from './ProviderSagas'
 import {sendDoctorLanguageRequest} from './ProviderSagas'
 import {sendStaffLanguageRequest} from './ProviderSagas'
 import {sendConfigTypeRequest} from './ProviderSagas'
 import {sendDoctorDetailRequest} from './ProviderSagas'
 import {claimslist} from './ClaimsListSagas'
+import {claimdetail} from './ClaimDetailSagas'
 // import { getTemperature } from './TemperatureSagas'
 var urlConfig = require('../UrlConfig')
 
@@ -112,6 +115,7 @@ export default function * root () {
     takeLatest(ProviderTypes.SEND_URGENT_SEARCH_REQUEST, sendUrgentSearchRequest, api),
     takeLatest(ProviderTypes.SEND_CARE_TYPE_REQUEST, sendCareTypeRequest, api),
     takeLatest(ProviderTypes.SEND_SPECIALITY_TYPE_REQUEST, sendSpecialityTypeRequest, api),
+    takeLatest(ProviderTypes.SEND_ADVANCED_SPECIALITY_TYPE_REQUEST, sendAdvancedSpecialityTypeRequest, api),
     takeLatest(ProviderTypes.SEND_DOCTOR_LANGUAGE_REQUEST, sendDoctorLanguageRequest, api),
     takeLatest(ProviderTypes.SEND_STAFF_LANGUAGE_REQUEST, sendStaffLanguageRequest, api),
     takeLatest(ProviderTypes.SEND_CONFIG_TYPE_REQUEST, sendConfigTypeRequest, api),
@@ -119,6 +123,7 @@ export default function * root () {
     takeLatest(ProviderTypes.SEND_ASYNC_PROVIDER_SEARCH_REQUEST, sendProviderSearchRequest, api),
     takeLatest(ProviderTypes.SEND_ASYNC_PHARMACY_SEARCH_REQUEST, sendPharmacySearchRequest, api),
     takeLatest(ProviderTypes.SEND_ASYNC_URGENT_SEARCH_REQUEST, sendUrgentSearchRequest, api),
-    takeLatest(ClaimsListTypes.CLAIMS_LIST_REQUEST, claimslist, api)
+    takeLatest(ClaimsListTypes.CLAIMS_LIST_REQUEST, claimslist, api),
+    takeLatest(ClaimDetailTypes.CLAIM_DETAIL_REQUEST, claimdetail, api),
   ]
 }

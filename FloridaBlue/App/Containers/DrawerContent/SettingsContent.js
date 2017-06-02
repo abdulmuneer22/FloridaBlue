@@ -12,7 +12,8 @@ import {
   WebView,
   TouchableWithoutFeedback,
   TouchableOpacity,
-  Navigator
+  Navigator,
+  Platform
 } from 'react-native'
 import styles from './DrawerContentStyle'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
@@ -84,10 +85,12 @@ class SettingsContent extends Component {
     this.toggleDrawer()
     NavigationActions.Resources()
   }
+
   handlePressId= () => {
     this.toggleDrawer()
     NavigationActions.MyView()
   }
+
   handlePressHSA= () => {
     this.toggleDrawer()
     NavigationActions.Hsa()
@@ -97,6 +100,7 @@ class SettingsContent extends Component {
     this.toggleDrawer()
     NavigationActions.SupportScreen()
   }
+
   handlePressFindCare= () => {
     this.toggleDrawer()
     // NavigationActions[this.props.visibilityRules.opdTile.routerName]()
@@ -106,10 +110,17 @@ class SettingsContent extends Component {
       NavigationActions[this.props.visibilityRules.opdTile.routerName]()
     }
   }
+
   handlePressPayment= () => {
     this.toggleDrawer()
     NavigationActions.MyView()
   }
+
+  handlePressSettings= () => {
+    this.toggleDrawer()
+    NavigationActions.Settings()
+  }
+
   handlePressSupport= () => {
     console.tron.log(this.props.data)
     var action
@@ -122,6 +133,7 @@ class SettingsContent extends Component {
       this.toggleDrawer()
     }
   }
+
   handlePressPolicy= () => {
     console.tron.log(this.props.data)
     var action
@@ -144,7 +156,7 @@ class SettingsContent extends Component {
       console.tron.log('clearing local cookies for the app')
     })
     this.props.attemptLogout(this.props.logoutUrl)
-    NavigationActions.login()
+    NavigationActions.login({'origin': 'logout'})
   }
 
   render () {
@@ -302,11 +314,22 @@ class SettingsContent extends Component {
         </View>
         <View style={styles.settings}>
 
+          { Platform.OS === 'ios' && this.props.showSettings ?
+              <View style={styles.myAccountStyle}>
+                <View >
+                  <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+                </View>
+                <Text style={styles.heading2} onPress={this.handlePressSettings}>Settings</Text>
+              </View>
+            :
+              null
+          }
+
           { this.props.visibilityRules != undefined && this.props.visibilityRules.supportTile != undefined
 
             ? <View style={styles.myAccountStyle}>
               <View >
-                <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
+                <Flb name='support' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
               </View>
               <Text style={styles.heading2} onPress={this.handlePressSupport}>{this.props.visibilityRules.supportTile.tileName['en']}</Text>
             </View>
@@ -353,8 +376,8 @@ const mapStateToProps = (state) => {
     responseURL: state.login.responseURL,
     smToken: state.login.smToken,
     visibilityRules: state.member.visibilityRules,
-    logoutUrl: state.member.logoutUrl
-
+    logoutUrl: state.member.logoutUrl,
+    showSettings: state.login.showSettings
   }
 }
 

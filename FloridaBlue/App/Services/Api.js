@@ -89,6 +89,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const putTou = () => api.get('/termsOfUse')
   const getConfig = () => api.get('/opd/config')
   const getClaimsList = () => api.get('/claims/list')
+  const getClaimDetail = (claimid) => api.get('claims/detail/' + claimid)
 
   const getStaffLanguage = (data) => api.post('/opd/languages', {
     'language': 'EN',
@@ -326,7 +327,8 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     getCareTypes,
     getSpecialityTypes,
     getConfig,
-    getClaimsList
+    getClaimsList,
+    getClaimDetail
   }
 }
 

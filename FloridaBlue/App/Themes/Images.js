@@ -64,6 +64,7 @@ const images = {
   mapUnselectedPin: require('../Images/map-unselected.png'),
   mapSelectedPin: require('../Images/map-selected.png'),
   touchIdButton: require('../Images/touch-id-btn.png'),
+  touchIdCoin: require('../Images/touch-id-coin.png'),
   newHeaderImage: require('../Images/header-bkgrd.png'),
   findCare: require('../Images/care-finder.png'),
   eventscalendar: require('../Images/events.png'),

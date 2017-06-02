@@ -73,5 +73,8 @@ export default StyleSheet.create({
     paddingHorizontal: Metrics.doubleBaseMargin,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  spinnerView: {
+    alignSelf: 'center'
   }
 })

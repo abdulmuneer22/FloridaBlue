@@ -90,6 +90,14 @@ export default StyleSheet.create({
     fontWeight: '600',
     color: Colors.flBlue.ocean
   },
+  h1_1: {
+   fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
+   marginTop: Metrics.baseMargin,
+   marginLeft: 10,
+   fontFamily: Fonts.type.headerFont,
+   fontWeight: '600',
+   color: Colors.flBlue.anvil
+ },
 
   h2: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
