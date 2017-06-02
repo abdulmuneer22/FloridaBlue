@@ -18,7 +18,9 @@ const { Types, Creators } = createActions({
   changeUserName: ['username'],
   changePassword: ['password'],
   changeTouchEnabled: ['touchEnabled'],
-  currentScene: ['currentSceneValue']
+  currentScene: ['currentSceneValue'],
+  changeCredentialStored: ['credentialStored'],
+  changeShowSettings: ['showSettings']
 })
 
 export const LoginTypes = Types
@@ -37,7 +39,9 @@ export const INITIAL_STATE = Immutable({
   fetching: false,
   touchEnabled: false,
   logoutUrl: null,
-  currentSceneValue: null
+  currentSceneValue: null,
+  credentialStored: false,
+  showSettings: false
 })
 
 /* ------------- Reducers ------------- */
@@ -67,8 +71,7 @@ export const logout = (state: Object) =>  state.merge({
   agreeTermsOfUse: null,
   getTou: null,
   fetching: false,
-  touchEnabled: false,
-  logoutUrl: null,
+  logoutUrl: null
 })
 
 // we're getting TOu Markup
@@ -91,6 +94,12 @@ export const _changeTouchEnabled = (state: Object, {touchEnabled} : Object) => s
   // we are updating currentScence
 export const _changeCurrentSceneValue = (state: Object, {currentSceneValue} : Object) => state.merge({currentSceneValue})
 
+// we are change credentialStored
+export const _changeCredentialStored = (state: Object, {credentialStored} : Object) => state.merge({credentialStored})
+
+// we are change showSettings
+export const _changeShowSettings = (state: Object, {showSettings} : Object) => state.merge({showSettings})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -106,7 +115,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_FAILURE]: failure,
   [Types.LOGOUT]: logout,
   [Types.CHANGE_TOUCH_ENABLED]: _changeTouchEnabled,
-  [Types.CURRENT_SCENE]: _changeCurrentSceneValue
+  [Types.CURRENT_SCENE]: _changeCurrentSceneValue,
+  [Types.CHANGE_CREDENTIAL_STORED]: _changeCredentialStored,
+  [Types.CHANGE_SHOW_SETTINGS]: _changeShowSettings
 })
 
 /* ------------- Selectors ------------- */

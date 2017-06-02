@@ -151,7 +151,7 @@ class DoctorList extends Component {
     } else if (this.props.provider && this.props.provider.data) {
       return (
         <View style={styles.container}>
-          {this.props.provider ?
+          {this.props.provider && this.props.provider.data?
             <View style={{flex: 9}}>
               <ScrollView >
                 {this.props.showUrgentCareBanner ?

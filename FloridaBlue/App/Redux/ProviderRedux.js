@@ -22,6 +22,9 @@ const { Types, Creators } = createActions({
   sendSpecialityTypeRequest: ['selectedCategoryCode'],
   sendSpecialityTypeSuccess: ['data'],
   sendSpecialityTypeFailure: ['error'],
+  sendAdvancedSpecialityTypeRequest: ['selectedCategoryCode'],
+  sendAdvancedSpecialityTypeSuccess: ['data'],
+  sendAdvancedSpecialityTypeFailure: ['error'],
   sendDoctorLanguageRequest: ['data'],
   sendDoctorLanguageSuccess: ['data'],
   sendDoctorLanguageFailure: ['error'],
@@ -44,6 +47,7 @@ const { Types, Creators } = createActions({
   changeTimeType: ['officeHours'],
   changeCareType: ['careType'],
   changeSpecialityType: ['specialityType'],
+  changeAdvancedSpecialityType: ['advancedSpecialityType'],
   changeCurrentLocation: ['currentLocation'],
   changeLatitude: ['latitude'],
   changeLongitude: ['longitude'],
@@ -83,6 +87,7 @@ export const INITIAL_STATE = Immutable({
   providerName: '',
   careType: '',
   specialityType: '',
+  advancedSpecialityType: '',
   currentLocation: 'Unknown',
   latitude: 0,
   longitude: 0,
@@ -102,13 +107,14 @@ export const INITIAL_STATE = Immutable({
   showUrgentCareBanner: false,
   planCategoryList: [],
   planSubCategoryList: [],
+  advancedPlanSubCategoryList: [],
   memberNetworkList: [],
   networkCodeList: [],
   providerKey: '',
   addressKey: '',
   locationStatus: '',
   fetching: false,
-  asyncfetching: false, 
+  asyncfetching: false,
   error: null,
   start: 1,
   end: 100,
@@ -159,7 +165,7 @@ export const _sendUrgentSearchRequest = (state: Object) => state.merge({ fetchin
 export const _sendAsyncUrgentSearchRequest = (state: Object) => state.merge({ asyncfetching : true})
 
 // sendUrgentSearchSuccess
-export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, asyncfetching : true, data, error: null, leftActive: true, rightActive: false})
+export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, asyncfetching : false, data, error: null, leftActive: true, rightActive: false})
 
 // sendUrgentSearchFailure
 export const _sendUrgentSearchFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
@@ -181,6 +187,15 @@ export const _sendSpecialityTypeSuccess = (state: Object, {data}: Object) => sta
 
 // sendSpecialityTypeFailure
 export const _sendSpecialityTypeFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
+
+// sendAdvancedSpecialityTypeRequest
+export const _sendAdvancedSpecialityTypeRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendAdvancedSpecialityTypeSuccess
+export const _sendAdvancedSpecialityTypeSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, transactionId: data.transactionId, totalCount: data.totalCount, more: data.more, advancedPlanSubCategoryList: data.data.planSubCategoryList})
+
+// sendAdvancedSpecialityTypeFailure
+export const _sendAdvancedSpecialityTypeFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
   // sendDoctorLanguageRequest
 export const _sendDoctorLanguageRequest = (state: Object) => state.merge({ fetching: true })
@@ -233,6 +248,9 @@ export const _changeCareType = (state: Object, {careType}: Object) => state.merg
 
 // specialityType
 export const _changeSpecialityType = (state: Object, {specialityType}: Object) => state.merge({specialityType})
+
+// advancedSpecialityType
+export const _changeAdvancedSpecialityType = (state: Object, {advancedSpecialityType}: Object) => state.merge({advancedSpecialityType})
 
 // currentLocation
 export const _changeCurrentLocation = (state: Object, {currentLocation}: Object) => state.merge({currentLocation})
@@ -332,6 +350,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEND_SPECIALITY_TYPE_REQUEST]: _sendSpecialityTypeRequest,
   [Types.SEND_SPECIALITY_TYPE_SUCCESS]: _sendSpecialityTypeSuccess,
   [Types.SEND_SPECIALITY_TYPE_FAILURE]: _sendSpecialityTypeFailure,
+  [Types.SEND_ADVANCED_SPECIALITY_TYPE_REQUEST]: _sendAdvancedSpecialityTypeRequest,
+  [Types.SEND_ADVANCED_SPECIALITY_TYPE_SUCCESS]: _sendAdvancedSpecialityTypeSuccess,
+  [Types.SEND_ADVANCED_SPECIALITY_TYPE_FAILURE]: _sendAdvancedSpecialityTypeFailure,
   [Types.SEND_DOCTOR_LANGUAGE_REQUEST]: _sendDoctorLanguageRequest,
   [Types.SEND_DOCTOR_LANGUAGE_SUCCESS]: _sendDoctorLanguageSuccess,
   [Types.SEND_DOCTOR_LANGUAGE_FAILURE]: _sendDoctorLanguageFailure,
@@ -349,6 +370,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_PROVIDER_NAME]: _changeProviderName,
   [Types.CHANGE_CARE_TYPE]: _changeCareType,
   [Types.CHANGE_SPECIALITY_TYPE]: _changeSpecialityType,
+  [Types.CHANGE_ADVANCED_SPECIALITY_TYPE]: _changeAdvancedSpecialityType,
   [Types.CHANGE_CURRENT_LOCATION]: _changeCurrentLocation,
   [Types.CHANGE_LATITUDE]: _changeLatitude,
   [Types.CHANGE_LONGITUDE]: _changeLongitude,

@@ -77,141 +77,38 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      modalVisible: false,
-      touchCheckboxVisible: false,
-      touchChecked: false
+      modalVisible: false
     }
     this.isAttempting = false
     component = this
   }
 
-  _handleTouchID () {
-    if (this.props.touchEnabled) {
-      this.setState({touchChecked: false})
-      this.props.changeTouchEnabled(false)
-    } else {
-      this.setState({touchChecked: true})
-      this.props.changeTouchEnabled(true)
-    }
-  }
-
-  _authenticateUserWithTouch () {
-    TouchManager.authenticateUser((error, authInfo) => {
-      if (error) {
-        // Handle error..
-        this.props.changeTouchEnabled(false)
-        Alert.alert(
-          'Oops!',
-          'Sorry, authentication failed. Please ensure you are using the correct fingerprint.',
-          [
-            {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
-          ],
-          { cancelable: false }
-        )
-      } else {
-        var authObject = authInfo[0]
-        var authStatus = authObject['authStatus']
-        if (authStatus == 'YES') {
-          this.props.changeTouchEnabled(true)
-          this._secureLogin()
-        } else {
-          this.props.changeTouchEnabled(false)
-          var showError = true
-          var errorMessage = ''
-          var errorTitle = 'Oops!'
-          var errorCode = authObject['authErrorCode']
-
-          switch (errorCode) {
-            case '999':
-              errorMessage = 'Touch ID is not configured on your device. Please visit your settings to configure Touch ID.'
-              break
-            case '01':
-              errorMessage = 'Sorry, authentication failed. Please ensure you are using the correct fingerprint.'
-              break
-            case '02':
-              showError = false
-              break
-            default:
-              errorMessage = 'Sorry, authentication failed. Please ensure you are using the correct fingerprint.'
-          }
-
-          if (showError) {
-            Alert.alert(
-              errorTitle,
-              errorMessage,
-              [
-                {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
-              ],
-              { cancelable: false }
-            )
-          }
-        }
-      }
-    })
-  }
-
-  _secureLogin () {
-    TouchManager.retrieveCredentials((error, credentials) => {
-      if (error) {
-        // handle error..
-      } else {
-        var password = credentials[0]
-        var username = credentials[1]
-        this.isAttempting = true
-        this.props.attemptLogin(username, password)
-      }
-    })
-  }
-
-  _handleLogin () {
-    // clearing local cookies before going to PMI
-    RCTNetworking.clearCookies((cleared) => {})
-    Keyboard.dismiss()
-    var username = this.props.username
-    var password = this.props.password
-
-    if (!username && !password) {
-      Alert.alert('Login', 'Please enter your User ID/Password.', [
-        {
-          text: 'OK'
-        }
-      ])
-     // alert('Please enter your user ID/Password.')
-    } else
-    if (!username && password) {
-      Alert.alert('Login', 'Please enter your User ID', [
-        {
-          text: 'OK'
-        }
-      ])
-    } else
-    if (username && !password) {
-      Alert.alert('Login', 'Please enter your Password.', [
-        {
-          text: 'OK'
-        }
-      ])
-    } else {
-      this.isAttempting = true
-      if (this.props.touchEnabled) {
-        TouchManager.enableTouchID(username, password)
-        NavigationActions.TouchTOU()
-      } else {
-        this.props.attemptLogin(username, password)
-      }
-    }
-  }
-
-  handleBackButton () {
-    return true
-  }
-  componentDidMount () {
+  componentDidMount() {
     this.props.clearLogin()
     RCTNetworking.clearCookies((cleared) => {
       console.tron.log('clearing local cookies for the app login')
     })
 
-   BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
+    BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
+
+    if (Platform.OS === 'ios') {
+      TouchManager.checkTouchStatus((error, touchInfo) => {
+        var touchStatus = touchInfo[0]
+        if (touchStatus == "AUTHENTICATED") {
+          this.props.changeCredentialStored(true)
+          this.props.changeTouchEnabled(true)
+          if (this.props.origin != 'logout') {
+            this._authenticateUserWithTouch()
+          }
+        } else if (touchStatus == "ENABLED") {
+          this.props.changeCredentialStored(false)
+          this.props.changeTouchEnabled(true)
+        } else {
+          this.props.changeCredentialStored(false)
+          this.props.changeTouchEnabled(false)
+        }
+      })
+    }
     /*
     BackAndroid.addEventListener('hardwareBackPress', function () {
          console.log('inside back handler',component.props.currentSceneValue)
@@ -247,25 +144,39 @@ class Login extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-   // this.forceUpdate()   makes to rerender the stuff     Got the issue of redering
-  // Did the login attempt complete?
     var responseURL = newProps.responseURL
     if (this.props != newProps) {
       if (this.isAttempting && !newProps.fetching && newProps.error === null && responseURL) {
-   // if (this.props.responseURL != newProps.responseURL) {
-      // login path
+        // Successfully logged in..
         if (responseURL == 'login') {
           if (!newProps.mfetching) {
             if (!newProps.merror) {
-              // Need to work on the applicaiton
-
+              // Successfully fetched the member data..
               if (newProps.termsOfUse) {
+                // User has accepted the TOU..
                 if (newProps.visibleDashboard) {
-                  NavigationActions.WelcomeDashBoard()
+                  if (newProps.touchEnabled && !newProps.credentialStored) {
+                    NavigationActions.TouchTOU()
+                  } else {
+                    var storedUser = ""
+                    TouchManager.retrieveCredentials((error, credentials) => {
+                      storedUser = credentials[1]
+                      console.tron.log(storedUser)
+                      console.tron.log(newProps.username)
+                      if (storedUser == newProps.username) {
+                        this.props.changeShowSettings(true)
+                      } else {
+                        this.props.changeShowSettings(false)
+                      }
+                    })
+
+                    NavigationActions.WelcomeDashBoard()
+                  }
                 } else {
                   NavigationActions.ErrorPage()
                 }
               } else {
+                // User has not accepted the TOU..
                 NavigationActions.Termsofuse({'origin': 'login'})
               }
             } else {
@@ -280,6 +191,10 @@ class Login extends Component {
             console.tron.log('clearing local cookies for the app')
           })
           this.props.attemptLogout(this.props.logoutUrl)
+          if (newProps.credentialStored) {
+            this._disableTouchID()
+          }
+
           Alert.alert('Login', 'Please use your user ID and password to log in. You must be a Florida Blue member.',
             [
               {
@@ -293,6 +208,9 @@ class Login extends Component {
             console.tron.log('clearing local cookies for the app')
           })
           this.props.attemptLogout(this.props.logoutUrl)
+          if (newProps.credentialStored) {
+            this._disableTouchID()
+          }
 
           Alert.alert('Login', 'Your account is locked.  Click Support for help', [
             {
@@ -306,6 +224,10 @@ class Login extends Component {
         // Password About to Expire
         } else {
           this.props.clearLogin()
+          if (newProps.credentialStored) {
+            this._disableTouchID()
+          }
+
           if (responseURL.includes('updatePassword.do')) {
             Alert.alert('Login', 'You must change your password now.', [
               {
@@ -321,10 +243,12 @@ class Login extends Component {
             })
           }
         }
-    // }
       } else {
         if (newProps.error == '401') {
           this.props.clearLogin()
+          if (newProps.credentialStored) {
+            this._disableTouchID()
+          }
           console.tron.log('coming from future contract scenarios')
           RCTNetworking.clearCookies((cleared) => {
             console.tron.log('clearing local cookies for the app')
@@ -336,11 +260,14 @@ class Login extends Component {
           ])
         } else if (newProps.error != null && newProps.error != '401') {
           this.props.clearLogin()
+          if (newProps.credentialStored) {
+            this._disableTouchID()
+          }
           console.tron.log('coming from future contract')
           RCTNetworking.clearCookies((cleared) => {
             console.tron.log('clearing local cookies for the app')
           })
-          Alert.alert('Login', 'Oops! Looks Like There\'s a, Problem. ',
+          Alert.alert('Login', 'Oops! Looks like we\'re having trouble with your request. Please try again later',
             [
           { text: 'OK', onPress: () => NavigationActions.login() }
 
@@ -352,6 +279,106 @@ class Login extends Component {
       }
     }
   // end of IF condition
+  }
+
+  _handleTouchCheckbox () {
+    if (this.props.touchEnabled) {
+      this.props.changeTouchEnabled(false)
+    } else {
+      this.props.changeTouchEnabled(true)
+    }
+  }
+
+  _authenticateUserWithTouch () {
+    TouchManager.authenticateUser((error, authInfo) => {
+      var authObject = authInfo[0]
+      var authStatus = authObject['authStatus']
+      if (authStatus == 'YES') {
+        TouchManager.retrieveCredentials((error, credentials) => {
+          var password = credentials[0]
+          var username = credentials[1]
+          this.isAttempting = true
+          this.props.attemptLogin(username, password)
+        })
+      } else {
+        var showError = true
+        var errorMessage = ''
+        var errorTitle = 'Oops!'
+        var errorCode = authObject['authErrorCode']
+
+        switch (errorCode) {
+          case '999':
+            errorMessage = 'Touch ID is not configured on your device. Please visit your settings to configure Touch ID.'
+            break
+          case '001':
+            errorMessage = 'Sorry, authentication failed. Please ensure you are using the correct fingerprint.'
+            break
+          case '002':
+            showError = false
+            break
+          default:
+            errorMessage = 'Sorry, authentication failed. Please ensure you are using the correct fingerprint.'
+        }
+
+        if (showError) {
+          Alert.alert(
+            errorTitle,
+            errorMessage,
+            [
+              {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
+            ],
+            { cancelable: false }
+          )
+        }
+      }
+    })
+  }
+
+  _disableTouchID() {
+    TouchManager.removeCredentials((error, credentials) => {
+      var status = credentials[0]
+      if (status == 'SUCCESS') {
+        this.props.changeTouchEnabled(false)
+        this.props.changeCredentialStored(false)
+        NavigationActions.pop()
+      }
+    })
+  }
+
+  _handleLogin () {
+    // clearing local cookies before going to PMI
+    RCTNetworking.clearCookies((cleared) => {})
+    Keyboard.dismiss()
+    var username = this.props.username
+    var password = this.props.password
+
+    if (!username && !password) {
+      Alert.alert('Login', 'Please enter your User ID/Password.', [
+        {
+          text: 'OK'
+        }
+      ])
+     // alert('Please enter your user ID/Password.')
+    } else if (!username && password) {
+      Alert.alert('Login', 'Please enter your User ID', [
+        {
+          text: 'OK'
+        }
+      ])
+    } else if (username && !password) {
+      Alert.alert('Login', 'Please enter your Password.', [
+        {
+          text: 'OK'
+        }
+      ])
+    } else {
+      this.isAttempting = true
+      this.props.attemptLogin(username, password)
+    }
+  }
+
+  handleBackButton () {
+    return true
   }
 
   _moreInfo () {
@@ -439,6 +466,7 @@ class Login extends Component {
     } else {
       transparent = 1
     }
+
     return (
       <View style={{position: 'absolute',
         top: 0,
@@ -464,7 +492,6 @@ class Login extends Component {
 
             <LoginView>
               <View style={styles.row}>
-
                 <MKTextField
                   ref='username'
                   style={styles.textField}
@@ -501,26 +528,24 @@ class Login extends Component {
                   placeholderTextColor={Colors.steel} />
               </View>
 
-              {/*
-                {Platform.OS === 'ios' && this.state.touchCheckboxVisible ?
-                  <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchID() }}>
-                    <MKCheckbox style={styles.radio} checked={this.props.touchEnabled} onPress={() => { this._handleTouchID() }} />
+                {Platform.OS === 'ios' && !this.props.credentialStored ?
+                  <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchCheckbox() }}>
+                    <MKCheckbox style={styles.radio} checked={this.props.touchEnabled} disabled={true} />
                     <Text style={styles.link}>{I18n.t('enableTouchID')}</Text>
                   </TouchableOpacity>
-                : <View style={styles.spaceRow} />}
-              */}
-              <View style={styles.forgotRow}>
-                <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
-                  <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
-                </TouchableOpacity>
-              </View>
+                :
+                  <View style={styles.forgotRow}>
+                    <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
+                      <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
+                    </TouchableOpacity>
+                  </View> }
             </LoginView>
 
             <LoginButtonView>
               {this.props.mfetching ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} /> : <TouchableOpacity onPress={() => { this._handleLogin() }}>
                 <Image style={{width: Metrics.screenWidth * 0.5,
                   borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-                  height: Metrics.screenHeight * 0.064, 
+                  height: Metrics.screenHeight * 0.064,
                   marginTop: Platform.OS == 'ios' ? Metrics.smallMargin * Metrics.screenHeight * 0.001 : Metrics.smallMargin * Metrics.screenHeight * 0.0001}}
                   source={Images.loginButtonGreen} />
               </TouchableOpacity> }
@@ -529,6 +554,25 @@ class Login extends Component {
               <TouchableOpacity onPress={() => NavigationActions.screen_1()}>
                 <Text style={styles.link}>{I18n.t('signUp')}</Text>
               </TouchableOpacity>
+              { Platform.OS === 'ios' && this.props.credentialStored ?
+                  <View style={styles.touchRow}>
+                    <TouchableOpacity onPress={() => { this._authenticateUserWithTouch() }}>
+                      <Image style={styles.touchCoin} source={Images.touchIdCoin} />
+                    </TouchableOpacity>
+                  </View>
+                :
+                  null
+              }
+
+              { Platform.OS === 'ios' && !this.props.credentialStored ?
+                  <View style={styles.forgotRow}>
+                    <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
+                      <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
+                    </TouchableOpacity>
+                  </View>
+                :
+                  null
+              }
             </SignUpView>
           </View>
 
@@ -571,7 +615,9 @@ const mapStateToProps = (state) => {
     visibleDashboard: state.member.visibleDashboard,
     touchEnabled: state.login.touchEnabled,
     touchCheckboxVisible: state.login.touchCheckboxVisible,
-    logoutUrl: state.login.logoutUrl
+    logoutUrl: state.login.logoutUrl,
+    credentialStored: state.login.credentialStored,
+    showSettings: state.login.showSettings
   }
 }
 
@@ -585,7 +631,9 @@ const mapDispatchToProps = (dispatch) => {
     attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
     attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     clearLogin: () => dispatch(LoginActions.logout()),
-    changeTouchEnabled: (touchEnabled) => dispatch(LoginActions.changeTouchEnabled(touchEnabled))
+    changeTouchEnabled: (touchEnabled) => dispatch(LoginActions.changeTouchEnabled(touchEnabled)),
+    changeCredentialStored: (credentialStored) => dispatch(LoginActions.changeCredentialStored(credentialStored)),
+    changeShowSettings: (showSettings) => dispatch(LoginActions.changeShowSettings(showSettings))
   }
 }
 

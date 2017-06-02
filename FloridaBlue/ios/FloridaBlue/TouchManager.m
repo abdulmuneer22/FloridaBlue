@@ -29,10 +29,6 @@ RCT_EXPORT_METHOD(removeCredentials:(RCTResponseSenderBlock)callback) {
   callback(@[[NSNull null], callbackArray]);
 }
 
-RCT_EXPORT_METHOD(storeCredentials:(NSString *)username location:(NSString *)password) {
-  RCTLogInfo(@"Storing credentials %@ and %@", username, password);
-}
-
 RCT_EXPORT_METHOD(retrieveCredentials:(RCTResponseSenderBlock)callback) {
   KeychainWrapper *keychain = [[KeychainWrapper alloc] init];
   NSMutableArray *callbackArray = [NSMutableArray new];
@@ -45,7 +41,7 @@ RCT_EXPORT_METHOD(retrieveCredentials:(RCTResponseSenderBlock)callback) {
   callback(@[[NSNull null], callbackArray]);
 }
 
-RCT_EXPORT_METHOD(enableTouchID:(NSString *)username password:(NSString *)password) {
+RCT_EXPORT_METHOD(storeCredentials:(NSString *)username password:(NSString *)password) {
   NSString *touchEnabled = @"YES";
   [[NSUserDefaults standardUserDefaults] setObject:touchEnabled forKey:@"touchEnabled"];
   [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
@@ -56,14 +52,28 @@ RCT_EXPORT_METHOD(enableTouchID:(NSString *)username password:(NSString *)passwo
   [keychain writeToKeychain];
 }
 
+RCT_EXPORT_METHOD(enableTouchID:(RCTResponseSenderBlock)callback) {
+  NSString *touchEnabled = @"YES";
+  [[NSUserDefaults standardUserDefaults] setObject:touchEnabled forKey:@"touchEnabled"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  
+  NSMutableArray *callbackArray = [NSMutableArray new];
+  [callbackArray addObject:@"ENABLED"];
+  
+  callback(@[[NSNull null], callbackArray]);
+}
+
 RCT_EXPORT_METHOD(checkTouchStatus:(RCTResponseSenderBlock)callback) {
   BOOL touchEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchEnabled"];
+  NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
   NSMutableArray *callbackArray = [NSMutableArray new];
   
-  if (touchEnabled) {
-    [callbackArray addObject:@"YES"];
+  if (touchEnabled && username != nil) {
+    [callbackArray addObject:@"AUTHENTICATED"];
+  } else if (touchEnabled && username == nil) {
+    [callbackArray addObject:@"ENABLED"];
   } else {
-    [callbackArray addObject:@"NO"];
+    [callbackArray addObject:@"DISABLED"];
   }
   
   callback(@[[NSNull null], callbackArray]);

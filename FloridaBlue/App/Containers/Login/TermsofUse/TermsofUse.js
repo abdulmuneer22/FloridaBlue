@@ -80,7 +80,11 @@ class TermsofUse extends Component {
         NavigationActions.confirmation()
       } else {
         this.props.sendConfirm()
-        NavigationActions.WelcomeDashBoard({'tou': 'nonregistration'})
+        if (this.props.touchEnabled && !this.props.credentialStored) {
+          NavigationActions.TouchTOU({'tou': 'nonregistration'})
+        } else {
+          NavigationActions.WelcomeDashBoard({'tou': 'nonregistration'})
+        }
       }
     }
   }
@@ -199,7 +203,9 @@ const mapStateToProps = (state) => {
     confirm: state.login.confirm,
     error: state.login.error,
     agreeTermsOfUse: state.login.agreeTermsOfUse,
-    getTou: state.login.getTou
+    getTou: state.login.getTou,
+    touchEnabled: state.login.touchEnabled,
+    credentialStored: state.login.credentialStored
   }
 }
 
