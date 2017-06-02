@@ -56,7 +56,7 @@ class ClaimsList extends Component {
    this.props.attemptClaimsList(this.props)
   }
 
-  
+
 
   render () {
      console.log("claims list data" +this.props.claimsdata.data)
@@ -65,12 +65,12 @@ class ClaimsList extends Component {
         <View>
           {this._renderHeader()}
         </View>
-      
+
          <View style={{flex:1}}>
-          
+
          <ClaimsCard
-         data={this.props.claimsdata.data} /> 
-        </View>   
+         data={this.props.claimsdata.data} />
+        </View>
       </View>
     )
   }
