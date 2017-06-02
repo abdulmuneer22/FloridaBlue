@@ -5,6 +5,7 @@ import { AppRegistry, StyleSheet, Text, View, TextInput, Dimensions, TouchableOp
 import styles from './ClaimsStyle'
 import ClaimsCard from './Components/ClaimsCard'
 import axios from 'axios'
+import ClaimsListActions from '../../../../../Redux/ClaimsListRedux'
 import { Colors, Metrics, Fonts, Images } from '../../../../../Themes'
 import NavItems from '../../../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -24,8 +25,16 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 class ClaimsList extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-    }
+   // this.state = {
+    //   listLimit: 10,
+    //   totalNumberofCardPerScreen: 30,
+    //   isFetchingMore: false,
+    //   loadingMore: true,
+    //   initialCount: 0,
+    //   finalCount: 0,
+    //   displayBannerInfo: false
+    // }
+    // this.loadMore = this.loadMore.bind(this)
   }
 
   _renderHeader () {
@@ -34,7 +43,7 @@ class ClaimsList extends Component {
         {NavItems.backButton()}
       </View>
       <Text style={styles.headerTextStyle}>
-                Claims
+                Plan Claims
               </Text>
       <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
@@ -43,14 +52,14 @@ class ClaimsList extends Component {
   }
 
   componentDidMount () {
-    console.tron.log('I am Support screen')
-    console.tron.log(this.props)
-  //  this.props.attemptSupportScreen()
+    console.tron.log('I am Claims List screen')
+   this.props.attemptClaimsList(this.props)
   }
 
   
 
   render () {
+     console.log("claims list data" +this.props.claimsdata.data)
     return (
       <View style={styles.container}>
         <View>
@@ -58,7 +67,9 @@ class ClaimsList extends Component {
         </View>
       
          <View style={{flex:1}}>
-         <ClaimsCard />
+          
+         <ClaimsCard
+         data={this.props.claimsdata.data} /> 
         </View>   
       </View>
     )
@@ -66,4 +77,24 @@ class ClaimsList extends Component {
 }
 
 
-export default ClaimsList
+ClaimsList.propTypes = {
+  data: PropTypes.object,
+  attemptClaimsList: PropTypes.func,
+  error: PropTypes.string
+}
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.claimslist.fetching,
+    claimsdata: state.claimslist.data,
+    error: state.claimslist.error
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptClaimsList: () => dispatch(ClaimsListActions.claimsListRequest())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClaimsList)
