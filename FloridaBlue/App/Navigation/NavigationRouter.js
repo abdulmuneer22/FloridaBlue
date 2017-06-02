@@ -47,6 +47,7 @@ import { DoctorDetail} from '../Containers/MemberDashBoard/Containers/OPD/Doctor
 import { ProgramDetail} from '../Containers/MemberDashBoard/Containers/OPD/ProgramDetail'
 import { PushNotifications } from '../Containers/MemberDashBoard/Containers/PushNotifications'
 import { ClaimsList} from '../Containers/MemberDashBoard/Containers/Claims/ClaimsList'
+import { ClaimDetail} from '../Containers/MemberDashBoard/Containers/Claims/ClaimDetail'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -93,6 +94,7 @@ class NavigationRouter extends Component {
             <Scene key='ProgramDetail' component={ProgramDetail} title='Program Detail Page' hideNavBar />
             <Scene key='PushNotifications' component={PushNotifications} title='Push Notifications Page' hideNavBar />
             <Scene key='ClaimsList' component={ClaimsList} title='Claims Page' hideNavBar />
+            <Scene key='ClaimDetail' component={ClaimDetail} title='Claims Page' hideNavBar />
           </Scene>
         </Scene>
       </Router>

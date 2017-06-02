@@ -24,6 +24,8 @@ import { SearchDataTypes } from '../Redux/SearchDataRedux'
 import { SearchDoctorTypes } from '../Redux/SearchDoctorRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
 import { ProviderTypes } from '../Redux/ProviderRedux'
+import { ClaimsListTypes } from '../Redux/ClaimsListRedux'
+import { ClaimDetailTypes } from '../Redux/ClaimDetailRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -62,6 +64,8 @@ import {sendDoctorLanguageRequest} from './ProviderSagas'
 import {sendStaffLanguageRequest} from './ProviderSagas'
 import {sendConfigTypeRequest} from './ProviderSagas'
 import {sendDoctorDetailRequest} from './ProviderSagas'
+import {claimslist} from './ClaimsListSagas'
+import {claimdetail} from './ClaimDetailSagas'
 // import { getTemperature } from './TemperatureSagas'
 var urlConfig = require('../UrlConfig')
 
@@ -118,6 +122,8 @@ export default function * root () {
     takeLatest(ProviderTypes.SEND_DOCTOR_DETAIL_REQUEST, sendDoctorDetailRequest, api),
     takeLatest(ProviderTypes.SEND_ASYNC_PROVIDER_SEARCH_REQUEST, sendProviderSearchRequest, api),
     takeLatest(ProviderTypes.SEND_ASYNC_PHARMACY_SEARCH_REQUEST, sendPharmacySearchRequest, api),
-    takeLatest(ProviderTypes.SEND_ASYNC_URGENT_SEARCH_REQUEST, sendUrgentSearchRequest, api)
+    takeLatest(ProviderTypes.SEND_ASYNC_URGENT_SEARCH_REQUEST, sendUrgentSearchRequest, api),
+    takeLatest(ClaimsListTypes.CLAIMS_LIST_REQUEST, claimslist, api),
+    takeLatest(ClaimDetailTypes.CLAIM_DETAIL_REQUEST, claimdetail, api),
   ]
 }

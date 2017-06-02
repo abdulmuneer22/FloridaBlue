@@ -3,6 +3,7 @@ package com.bcbsfl.mobile.android;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.evollu.react.fcm.FIRMessagingPackage;
 import com.psykar.cookiemanager.CookieManagerPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -34,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new FIRMessagingPackage(),
             new CookieManagerPackage(),
             new LinearGradientPackage(),
             new LinearGradientPackage(),
