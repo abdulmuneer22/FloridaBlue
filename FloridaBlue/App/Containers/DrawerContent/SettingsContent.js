@@ -314,7 +314,7 @@ class SettingsContent extends Component {
         </View>
         <View style={styles.settings}>
 
-          { Platform.OS === 'ios' && this.props.showSettings ?
+          { Platform.OS === 'ios' ?
               <View style={styles.myAccountStyle}>
                 <View >
                   <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
@@ -376,8 +376,7 @@ const mapStateToProps = (state) => {
     responseURL: state.login.responseURL,
     smToken: state.login.smToken,
     visibilityRules: state.member.visibilityRules,
-    logoutUrl: state.member.logoutUrl,
-    showSettings: state.login.showSettings
+    logoutUrl: state.member.logoutUrl
   }
 }
 
