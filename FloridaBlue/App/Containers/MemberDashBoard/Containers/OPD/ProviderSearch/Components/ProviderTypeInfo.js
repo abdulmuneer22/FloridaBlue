@@ -37,6 +37,7 @@ class ProviderTypeInfo extends React.Component {
   }
 
   componentWillMount () {
+    console.tron.log(this.props.configData)
     if (this.props.subCategoryCode == '999') {
       this.setState({mailOrderState: true})
     } else if (this.props.subCategoryCode == '701') {
@@ -64,50 +65,53 @@ class ProviderTypeInfo extends React.Component {
     )
   }
 
+  _renderMailLinks (mailOrderLink, index) {
+    return (
+      <TouchableOpacity style={styles.row} onPress={() => this.handleLink(mailOrderLink.link)}>
+        <Text style={styles.linkText}>{mailOrderLink.text}</Text>
+      </TouchableOpacity>
+    )
+  }
+
+  _renderProviderSpeciality (providerType, index) {
+    return (
+      <View style={styles.row}>
+        <Text style={styles.text}>{providerType}</Text>
+      </View>
+    )
+  }
+
   render () {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
         <ScrollView>
           <View>
-
             <HideableView visible={this.state.mailOrderState} removeWhenHidden>
               <View style={styles.row}>
-                <Text style={styles.heading}>{I18n.t('providerTypeMailOrderTitle')}</Text>
+                <Text style={styles.heading}>{this.props.configData.pharmacyMailOrder.title}</Text>
               </View>
-              <TouchableOpacity style={styles.row} onPress={() => this.handleLink(urlConfig.mailOrderLearnLink)}>
-                <Text style={styles.linkText}>{I18n.t('mailOrderLearnLink')}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.row} onPress={() => this.handleLink(urlConfig.primeMailOrderLink)}>
-                <Text style={styles.linkText}>{I18n.t('primeMailOrderLink')}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.row} onPress={() => this.handleLink(urlConfig.medicarePlansLink)}>
-                <Text style={styles.linkText}>{I18n.t('medicarePlansLink')}</Text>
-              </TouchableOpacity>
+              {this.props.configData.pharmacyMailOrder && this.props.configData.pharmacyMailOrder.mailOrderLinks.map((mailOrderLink, index) => this._renderMailLinks(mailOrderLink, index))}
               <View style={styles.row}>
-                <Text style={styles.text}>{I18n.t('mailOrderNote')}</Text>
+                <Text style={styles.text}>{this.props.configData.pharmacyMailOrder.note}</Text>
               </View>
             </HideableView>
 
             <HideableView visible={this.state.specialityState} removeWhenHidden>
               <View style={styles.row}>
-                <Text style={styles.heading}>{I18n.t('providerTypeSpecialityTitle')}</Text>
+                <Text style={styles.heading}>{this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[0].title}</Text>
               </View>
+
+              {this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[0] &&
+                this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[0].description.map((providerType, index) => this._renderProviderSpeciality(providerType, index))}
+
+
               <View style={styles.row}>
-                <Text style={styles.text}>{I18n.t('providerTypeSpecility1')}</Text>
+                <Text style={styles.heading}>{this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[1].title}</Text>
               </View>
-              <View style={styles.row}>
-                <Text style={styles.text}>{I18n.t('providerTypeSpecility2')}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={styles.text}>{I18n.t('providerTypeSpecility3')}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={styles.heading}>{I18n.t('providerTypeParticipationTitle')}</Text>
-              </View>
-              <View style={styles.row}>
-                <Text style={styles.text}>{I18n.t('providerTypeSpecialityParticipationBody')}</Text>
-              </View>
+
+              {this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[1] &&
+                this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[1].description.map((providerType, index) => this._renderProviderSpeciality(providerType, index))}
 
               <DoctorCard />
 
@@ -121,7 +125,8 @@ class ProviderTypeInfo extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    subCategoryCode: state.provider.subCategoryCode
+    subCategoryCode: state.provider.subCategoryCode,
+    configData: state.provider.configData
   }
 }
 

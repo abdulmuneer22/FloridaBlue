@@ -93,6 +93,7 @@ class ProviderSearch extends Component {
   }
 
   componentDidMount () {
+    this.props.attemptConfigData()
     this.props.attemptCareTypes(this.props.member)
     this._getLocation()
     this._resetState()
@@ -604,12 +605,14 @@ const mapStateToProps = (state) => {
     locationStatus: state.provider.locationStatus,
     showUrgentCareBanner: state.provider.showUrgentCareBanner,
     searchRange: state.provider.searchRange,
-    start: state.provider.start
+    start: state.provider.start,
+    configData: state.provider.configData
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    attemptConfigData: () => dispatch(ProviderActions.sendConfigTypeRequest()),
     attemptCareTypes: (member) => dispatch(ProviderActions.sendCareTypeRequest(member)),
     changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
     getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),

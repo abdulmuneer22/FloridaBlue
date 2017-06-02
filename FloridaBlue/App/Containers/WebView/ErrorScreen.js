@@ -41,7 +41,7 @@ class ErrorScreen extends Component {
     this.props.clearLogin()
 
     this.props.attemptLogout(this.props.logoutUrl)
-    NavigationActions.login()
+    NavigationActions.login({'origin': 'logout'})
   }
   _renderHeader () {
     return (<Image style={styles.headerContainerError} source={Images.newHeaderImage}>

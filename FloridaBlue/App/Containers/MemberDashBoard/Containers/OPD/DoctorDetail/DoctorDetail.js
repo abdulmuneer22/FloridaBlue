@@ -149,11 +149,12 @@ class DoctorDetail extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props.doctordetail) {
+    } else if (this.props.doctordetail){
+      if(this.props.doctordetail && this.props.doctordetail.displayName && this.props.doctordetail.displayName.length != 0) {
       return (
         <View style={styles.container}>
 
-          {this.props.doctordetail ?
+          {this.props.doctordetail && this.props.doctordetail.displayName && this.props.doctordetail.displayName.length != 0 ?
             <ScrollView>
 
               <View style={{
@@ -161,7 +162,8 @@ class DoctorDetail extends Component {
                 marginBottom: 20
 
               }}>
-                {this.props.doctordetail ?
+                {this.props.doctordetail && (this.props.doctordetail.longitude != undefined || this.props.doctordetail.longitude.length != 0 ||
+                                                this.props.doctordetail.latitude != undefined || this.props.doctordetail.latitude.length != 0) ?
                   <View style={{ flex: 1}}>
                     <DoctorLocation
                       data={this.props.doctordetail} />
@@ -178,7 +180,7 @@ class DoctorDetail extends Component {
                 </View>
 
                 <View style={{ flex: 1 }}>
-                  {this.props.doctordetail.otherAddressList.length > 0 ?
+                  {this.props.doctordetail && this.props.doctordetail.otherAddressList && this.props.doctordetail.otherAddressList.length > 0 ?
                     <View style={{ flex: 1 }}>
                       <TouchableOpacity onPress={this.toggle1}>
                         <Card style={this.state.visible1 ? styles.cardStyle : styles.cardStyle1} >
@@ -702,18 +704,34 @@ class DoctorDetail extends Component {
                       null
                             }
 
+
                 </View>
 
               </View>
             </ScrollView>
-        : <View style={styles.spinnerView}>
-          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>}
+
+
+        :null}
 
         </View>
       )
-    } else if (this.props.error != null) {
+    } else {
+       return(
+         <View style={{flex:1, margin:20}}>
+           <Card style={{flex:1}}>
+             <View style={{flex:1, margin:10}}>
+           <Text style={{color:Colors.flBlue.anvil,
+                          fontSize:Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
+                      Oops! Looks like we're having trouble with your request. Please try again later.
+             </Text>
+             </View>
+            </Card>
+            <View style={{flex:5.5}}/>
+         </View>
+       )
+      }
+  }
+  else if (this.props.error != null) {
       Alert.alert(
         'Doctor Detail',
         'Oops! Looks like we\'re having trouble with your request. Please try again later.',
@@ -722,6 +740,7 @@ class DoctorDetail extends Component {
 
         ])
     }
+
   }
 
   render () {

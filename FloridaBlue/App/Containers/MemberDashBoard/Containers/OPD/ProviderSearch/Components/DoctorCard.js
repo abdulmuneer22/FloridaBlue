@@ -13,7 +13,6 @@ import {
 } from 'react-native'
 
 import { Card } from 'native-base'
-
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -23,7 +22,6 @@ import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../../../Themes/FlbIcon'
 import ProviderActions from '../../../../../../Redux/ProviderRedux'
-var specialityData = require('./pharmacySpecialityData')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
@@ -61,10 +59,10 @@ class DoctorCard extends Component {
   render () {
     return (
       <View style={styles.container}>
-        { specialityData ?
+        { this.props.configData.pharmacySpecialityType ?
 
           <View style={{ flex: 1, margin: 15 }}>
-            {specialityData != undefined ? specialityData.providerList.map((value, i) => {
+            {this.props.configData.pharmacySpecialityType != null ? this.props.configData.pharmacySpecialityType.providerTypeSpecilityList.map((value, i) => {
               return (
                 <Card style={{ flex: 1}} key={i}>
                   <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop: 10 }}>
@@ -117,4 +115,10 @@ class DoctorCard extends Component {
   }
 }
 
-export default DoctorCard
+const mapStateToProps = (state) => {
+  return {
+    configData: state.provider.configData
+  }
+}
+
+export default connect(mapStateToProps)(DoctorCard)

@@ -51,8 +51,6 @@ import { MKTextField, MKSlider, MKRangeSlider, MKColor, MKIconToggle, MKSpinner,
 
 const theme = getTheme()
 
-const DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9']
-
 const doctorsGender = [
   { text: 'Any', value: '' },
   { text: 'Female', value: 'F' },
@@ -105,7 +103,6 @@ class AdvancedSearch extends Component {
 
     }
     this._timeSelected = this._timeSelected.bind(this)
-    this._languageSelected = this._languageSelected.bind(this)
     this._patientTypeSelected = this._patientTypeSelected.bind(this)
     this._doctorLanguageSelected = this._doctorLanguageSelected.bind(this)
     this._staffLanguageSelected = this._staffLanguageSelected.bind(this)
@@ -164,10 +161,6 @@ class AdvancedSearch extends Component {
             { text: 'OK' }
           ])
     }
-  }
-
-  _languageSelected (event, value: string) {
-    this.setState({ doctorSpeaks: value })
   }
 
   _patientTypeSelected (index, value: string) {
@@ -314,13 +307,11 @@ class AdvancedSearch extends Component {
     this.props.changeCategoryCode('ALL')
     this.props.changeProviderName('')
     this.props.changeCareType('')
-    this.props.changeSpecialityType('')
+    this.props.changeAdvancedSpecialityType('')
     this.props.changeCurrentLocation('Unknown')
     this.props.changeLatitude(0)
     this.props.changeLongitude(0)
-    console.tron.log('*****Page from ' + this.state.searchFrom)
     if (this.state.searchFrom == 'providerSearch') {
-      console.tron.log('*****Resttting Form *****')
       let timeSelected = {
         'selectedTime': '',
         'selectedTimeLabel': ''
@@ -395,24 +386,24 @@ class AdvancedSearch extends Component {
 
   _careSelected (index, value:string) {
     var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
-    this.props.getSpecialityTypes(selectedCategoryCode)
+    this.props.attemptAdvancedSpecialityTypes(selectedCategoryCode)
     this.props.changeCareType(value)
     this.props.changeSubCategoryCode('')
-    this.props.changeSpecialityType('')
+    this.props.changeAdvancedSpecialityType('')
     this.setState({unknownCareState: false}, function () {
       this.setState({unknownCareState: true})
     })
   }
 
   _specialitySelected (index, value:string) {
-    var selectedSubCategoryCode = this.props.planSubCategoryList[index].subCategoryCode
+    var selectedSubCategoryCode = this.props.advancedPlanSubCategoryList[index].subCategoryCode
     if (this.props.categoryCode == '07' && selectedSubCategoryCode == '999' || selectedSubCategoryCode == '701') {
       this.props.changeSubCategoryCode(selectedSubCategoryCode)
       NavigationActions.ProviderTypeInfo()
     } else
     {
     this.props.changeSubCategoryCode(selectedSubCategoryCode)
-    this.props.changeSpecialityType(value)
+    this.props.changeAdvancedSpecialityType(value)
     this.setState({specialityState: false}, function () {
       this.setState({specialityState: true})
     })
@@ -446,7 +437,8 @@ class AdvancedSearch extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    if (newProps.planSubCategoryList && this.state.unknownCareState) {
+    console.tron.log(newProps)
+    if (newProps.advancedPlanSubCategoryList.length > 0 && this.state.unknownCareState) {
       this.setState({specialityState: false}, function () {
         this.setState({specialityState: true})
       })
@@ -467,6 +459,7 @@ class AdvancedSearch extends Component {
 
         {this._renderHeader()}
         <ScrollView style={{ flex: 1, marginBottom: 20 }}>
+          <View style={{flex:1}}>
           <View style={styles.careView}>
 
             <MKTextField
@@ -506,14 +499,14 @@ class AdvancedSearch extends Component {
             <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
 
             <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
-              <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected}
+              <ModalDropdown options={_.map(this.props.advancedPlanSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected}
               dropdownStyle={{
                 //height:33*_.map(this.props.planSubCategoryList, 'subCategoryName').length,
               width: Metrics.screenWidth * 0.9,
               marginLeft: Metrics.doubleBaseMargin}}
               renderRow={this._renderDropdownRow.bind(this)}>
                 <MKTextField
-                  ref='specialityType'
+                  ref='advancedSpecialityType'
                   style={styles.careTextField}
                   textInputStyle={{
                     flex: 1, color: Colors.flBlue.ocean,
@@ -524,7 +517,7 @@ class AdvancedSearch extends Component {
                   placeholder={I18n.t('specialityTypePlaceholder')}
                   placeholderTextColor={Colors.steel}
                   tintColor={Colors.black}
-                  value={this.props.specialityType}
+                  value={this.props.advancedSpecialityType}
                 />
               </ModalDropdown>
               <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
@@ -532,16 +525,18 @@ class AdvancedSearch extends Component {
           </View>
 
           <View style={styles.locationView}>
-            <View>
+            <View style={{flex:1}}>
               <Text style={styles.h1}>Change Location:</Text>
             </View>
 
             <View style={styles.radioView}>
+              <View style={{flex:0.15}}>
               <MKRadioButton ref='currentLocation' style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                 width: Metrics.section * Metrics.screenWidth * 0.0025,
                 borderRadius: Metrics.section}} group={this.radioGroup} onCheckedChange={this._selectCurrentLocation} />
-              <View style={{width: Metrics.screenWidth}}>
-                <TouchableOpacity style={{width: Metrics.screenWidth}} onPress={() => { if (!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle() }}>
+              </View>  
+              <View style={{width: Metrics.screenWidth, flex:0.85}}>
+                <TouchableOpacity style={{width: Metrics.screenWidth, flex:1}} onPress={() => { if (!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle() }}>
                   <Text style={styles.radioText} >Current Location</Text>
                 </TouchableOpacity>
               </View>
@@ -549,13 +544,15 @@ class AdvancedSearch extends Component {
             </View>
 
             <View style={styles.radioView}>
+              <View style={{flex:0.15}}>
               <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                 width: Metrics.section * Metrics.screenWidth * 0.0025,
                 borderRadius: Metrics.section}} ref='homeLocation' group={this.radioGroup} onCheckedChange={this._selectHomeLocation} />
-              <View style={{width: Metrics.screenWidth}}>
-                <TouchableOpacity style={{width: Metrics.screenWidth}} onPress={() => { if (!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle() }}>
+              </View>  
+              <View style={{width: Metrics.screenWidth, flex:0.85}}>
+                <TouchableOpacity style={{width: Metrics.screenWidth, flex:1}} onPress={() => { if (!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle() }}>
                   <Text style={styles.radioText} >Home</Text>
-                  <View style={{ marginRight: Metrics.searchBarHeight }}>
+                  <View style={{ marginRight: Metrics.searchBarHeight * Metrics.screenWidth * 0.008, flex:1 }}>
                     <Text style={styles.radioBottomText}>({this.props.homeAddress})</Text>
                   </View>
                 </TouchableOpacity>
@@ -563,17 +560,19 @@ class AdvancedSearch extends Component {
             </View>
 
             <View style={styles.radioView}>
+              <View style={{flex:0.15}}>
               <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                 width: Metrics.section * Metrics.screenWidth * 0.0025,
                 borderRadius: Metrics.section}} ref='differentLocation' group={this.radioGroup} onCheckedChange={this._selectDifferentLocation} />
-              <View style={{width: Metrics.screenWidth}}>
-                <TouchableOpacity style={{width: Metrics.screenWidth}} onPress={() => { if (!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle() }}>
+              </View>
+              <View style={{width: Metrics.screenWidth, flex:0.85}}>
+                <TouchableOpacity style={{width: Metrics.screenWidth, flex:1}} onPress={() => { if (!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle() }}>
                   <Text style={styles.radioText} >Different Location</Text>
                 </TouchableOpacity>
               </View>
             </View>
 
-            <HideableView style={{ marginLeft: 15, marginTop: 10 }} visible={this.state.newLocationState} removeWhenHidden>
+            <HideableView style={{ marginLeft: 15, marginTop: 10, flex:1 }} visible={this.state.newLocationState} removeWhenHidden>
               <Text for='' style={styles.radioText}>{I18n.t('differentLocationMessage')}</Text>
               <MKTextField
                 ref='newLocation'
@@ -582,13 +581,12 @@ class AdvancedSearch extends Component {
                 underlineColorAndroid={Colors.coal}
                 placeholderTextColor={Colors.steel}
                 tintColor={Colors.black}
-
                 onChangeText={(address) => this._addDiffLocation(address)}
 
               />
             </HideableView>
 
-            <View style={{ marginLeft: 15, marginTop: 10 }}>
+            <View style={{ marginLeft: 15, marginTop: 10, flex:1 }}>
               <Text style={styles.searchText}> Search Distance:</Text>
               <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular,
                 color: Colors.flBlue.anvil }}>{this.props.searchRange} mi</Text>
@@ -615,26 +613,25 @@ class AdvancedSearch extends Component {
                   <Text style={styles.doctorTextStyle}>
                     {this.props.configData.gender.displayName}:
              </Text> : null}
-
-            <View style={{ flexDirection: 'row', marginLeft: 30 }}>
+             <View style={{flex:1}}>
+            <View style={{ flexDirection: 'row', marginLeft: 20, flex:0.3}}>
               <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                 width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} checked group={this.genderGroup} onCheckedChange={this._anyGenderSelected} />
-              <View >
+                borderRadius: Metrics.section}} checked group={this.genderGroup} onCheckedChange={this._anyGenderSelected} />       
                 <Text style={styles.genderText}>Any</Text>
-              </View>
-              <View style={{flexDirection: 'row', marginLeft: 20}}>
+              <View style={{flexDirection: 'row', marginLeft: 20, flex:0.3}}>
                 <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                   width: Metrics.section * Metrics.screenWidth * 0.0025,
                   borderRadius: Metrics.section}} checked={false} group={this.genderGroup} onCheckedChange={this._maleGenderSelected} />
                 <Text style={styles.genderText}>Male</Text>
               </View>
 
-              <View style={{flexDirection: 'row', marginLeft: 20}}>
+              <View style={{flexDirection: 'row', marginLeft: 20, flex:0.4}}>
                 <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                   width: Metrics.section * Metrics.screenWidth * 0.0025,
                   borderRadius: Metrics.section}} checked={false} group={this.genderGroup} onCheckedChange={this._femaleGenderSelected} />
                 <Text style={styles.genderText}>Female</Text>
+              </View>
               </View>
             </View>
           </View>
@@ -664,10 +661,6 @@ class AdvancedSearch extends Component {
                     textInputStyle={{
                       flex: 1,
                       color: Colors.flBlue.ocean,
-                   // textAlign:'center',
-                    // alignItems:'center',
-                   // marginRight:30,
-
                       fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                     }}
                     editable={false}
@@ -686,9 +679,7 @@ class AdvancedSearch extends Component {
 
           {this.props.configData && this.props.configData.workingHours ?
             <View style={styles.programView}>
-
               <View style={{ flex: 0.4 }}>
-
                 <Text style={styles.programText}>
                   {this.props.configData.workingHours.displayName}
                 </Text>
@@ -831,10 +822,12 @@ class AdvancedSearch extends Component {
               </View>
             </View>
           : null}
+         
           <View style={styles.nextButton}>
             <TouchableOpacity onPress={() => { this._handleDoctordetail() }}>
               <Image source={Images.getResultsButton}
                 style={{
+                  flex:1,
                   width: Metrics.screenWidth * 0.4,
                   borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
                   height: Metrics.screenHeight * 0.06
@@ -842,7 +835,7 @@ class AdvancedSearch extends Component {
                 }} />
             </TouchableOpacity>
           </View>
-
+         </View>
         </ScrollView>
       </View>
     )
@@ -881,13 +874,13 @@ const mapStateToProps = (state) => {
     gender: state.provider.gender,
     programsList: state.provider.programsList,
     planCategoryList: state.provider.planCategoryList,
-    planSubCategoryList: state.provider.planSubCategoryList,
+    advancedPlanSubCategoryList: state.provider.advancedPlanSubCategoryList,
     categoryCode: state.provider.categoryCode,
     subCategoryCode: state.provider.subCategoryCode,
     providerName: state.provider.providerName,
     careType: state.provider.careType,
     officeHours: state.provider.officeHours,
-    specialityType: state.provider.specialityType,
+    advancedSpecialityType: state.provider.advancedSpecialityType,
     member: state.member,
     locationStatus: state.provider.locationStatus,
     knownCareState: state.provider.knownCareState,
@@ -905,6 +898,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptConfigData: () => dispatch(ProviderActions.sendConfigTypeRequest()),
     attemptProviderSearch: (data) => dispatch(ProviderActions.sendProviderSearchRequest(data)),
     attemptPharmacySearch: (data) => dispatch(ProviderActions.sendPharmacySearchRequest(data)),
+    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
+    attemptAdvancedSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendAdvancedSpecialityTypeRequest(selectedCategoryCode)),
     changePatientType: (acceptingPatientsIndicator) => dispatch(ProviderActions.changePatientType(acceptingPatientsIndicator)),
     changeDoctorLanguage: (providerLanguage) => dispatch(ProviderActions.changeDoctorLanguage(providerLanguage)),
     changeStaffLanguage: (staffLanguage) => dispatch(ProviderActions.changeStaffLanguage(staffLanguage)),
@@ -916,15 +911,13 @@ const mapDispatchToProps = (dispatch) => {
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeAddress: (address) => dispatch(ProviderActions.changeAddress(address)),
     changeSearchRange: (searchRange) => dispatch(ProviderActions.changeSearchRange(searchRange)),
-    getSpecialityTypes: (selectedCategoryCode) => dispatch(ProviderActions.sendSpecialityTypeRequest(selectedCategoryCode)),
     changeCategoryCode: (categoryCode) => dispatch(ProviderActions.changeCategoryCode(categoryCode)),
     changeSubCategoryCode: (subCategoryCode) => dispatch(ProviderActions.changeSubCategoryCode(subCategoryCode)),
     changeProviderName: (providerName) => dispatch(ProviderActions.changeProviderName(providerName)),
     changeCareType: (careType) => dispatch(ProviderActions.changeCareType(careType)),
-    changeSpecialityType: (specialityType) => dispatch(ProviderActions.changeSpecialityType(specialityType)),
+    changeAdvancedSpecialityType: (advancedSpecialityType) => dispatch(ProviderActions.changeAdvancedSpecialityType(advancedSpecialityType)),
     changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner)),
     changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus)),
-    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
   }
 }
 
