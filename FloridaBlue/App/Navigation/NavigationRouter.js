@@ -56,14 +56,14 @@ class NavigationRouter extends Component {
   render () {
     return (
       <Router>
-            <Scene key='drawer' component={NavigationDrawer} open={false}>
-            <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
+        <Scene key='drawer' component={NavigationDrawer} open={false}>
+          <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
             <Scene initial key='login' component={Login} title='Login' hideNavBar panHandlers={null} type={ActionConst.RESET} />
-            <Scene key='TouchTOU' component={TouchTOU} title="Touch TOU" hideNavBar />
-            <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar type={ActionConst.RESET}/>
+            <Scene key='TouchTOU' component={TouchTOU} title='Touch TOU' hideNavBar />
+            <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar type={ActionConst.RESET} />
             <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
-            <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar type={ActionConst.RESET}/>
-            <Scene key='Settings' component={Settings} title="Settings page" hideNavBar />
+            <Scene key='ErrorPage' component={ErrorScreen} title='Error page' hideNavBar type={ActionConst.RESET} />
+            <Scene key='Settings' component={Settings} title='Settings page' hideNavBar />
             <Scene key='screen_1' component={Screen_1} title='first page' hideNavBar />
             <Scene key='screen_2' component={Screen_2} title='create username page' hideNavBar />
             <Scene key='ReadMore' component={ReadMore} title='readmore page' hideNavBar />
@@ -74,7 +74,7 @@ class NavigationRouter extends Component {
             <Scene key='useridhint' component={UserIdHint} title='UserIdHint page' hideNavBar />
             <Scene key='passwordHint' component={PasswordHint} title='PasswordHint page' hideNavBar />
             <Scene key='securityHint' component={SecurityHint} title='SecurityHint page' hideNavBar />
-            <Scene key='NotificationView' component={NotificationView} title='Florida Blue' hideNavBar type={ActionConst.RESET} />
+            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar type={ActionConst.RESET} />
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />
             <Scene key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
             <Scene key='SupportScreen' component={SupportScreen} title='Support Page' hideNavBar />
@@ -91,8 +91,8 @@ class NavigationRouter extends Component {
             <Scene key='ProviderMap' component={ProviderMap} title='Provider Map View Page' hideNavBar />
             <Scene key='DoctorDetail' component={DoctorDetail} title='Doctor Detail Page' hideNavBar />
             <Scene key='ProgramDetail' component={ProgramDetail} title='Program Detail Page' hideNavBar />
-            <Scene  key='PushNotifications' component={PushNotifications} title='Push Notifications Page' hideNavBar />
-            <Scene  key='ClaimsList' component={ClaimsList} title='Claims Page' hideNavBar />
+            <Scene key='PushNotifications' component={PushNotifications} title='Push Notifications Page' hideNavBar />
+            <Scene key='ClaimsList' component={ClaimsList} title='Claims Page' hideNavBar />
           </Scene>
         </Scene>
       </Router>
