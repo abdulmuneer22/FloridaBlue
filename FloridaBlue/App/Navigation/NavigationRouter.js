@@ -31,6 +31,7 @@ import { SecurityHint } from '../Containers/Registration/Containers/SecurityHint
 import { Confirmation} from '../Containers/Registration/Containers/Confirmation'
 // import { WelcomeDisplay} from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import { DashBoard} from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
+import { NotificationView } from '../Containers/Notifications'
 import { MyPlanScreen} from '../Containers/MemberDashBoard/Containers/MyPlan'
 import { BenefitsScreen} from '../Containers/MemberDashBoard/Containers/Benefits'
 import { DoctorServices } from '../Containers/MemberDashBoard/Containers/DoctorService'
@@ -73,7 +74,7 @@ class NavigationRouter extends Component {
             <Scene key='useridhint' component={UserIdHint} title='UserIdHint page' hideNavBar />
             <Scene key='passwordHint' component={PasswordHint} title='PasswordHint page' hideNavBar />
             <Scene key='securityHint' component={SecurityHint} title='SecurityHint page' hideNavBar />
-            <Scene key='WelcomeDashBoard' component={DashBoard} title='Florida Blue' hideNavBar type={ActionConst.RESET}/>
+            <Scene key='NotificationView' component={NotificationView} title='Florida Blue' hideNavBar type={ActionConst.RESET} />
             <Scene key='Resources' component={Resources} title='Resource WebView' hideNavBar />
             <Scene key='Hsa' component={HSA} title='Health Savings Account Page' hideNavBar />
             <Scene key='SupportScreen' component={SupportScreen} title='Support Page' hideNavBar />
