@@ -8,7 +8,8 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   claimsListRequest: [],
   claimsListSuccess: ['data'],
-  claimsListFailure: ['error']
+  claimsListFailure: ['error'],
+  // changeListLimit: ['listLimit']
 })
 
 export const ClaimsListTypes = Types
@@ -19,7 +20,9 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   data: {},
   fetching: false,
-  error: null
+  error: null,
+  // listLimit: 10,
+  // claimsListCount: []
 })
 
 /* ------------- Reducers ------------- */
