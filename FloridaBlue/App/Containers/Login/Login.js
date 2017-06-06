@@ -158,17 +158,7 @@ class Login extends Component {
                   if (newProps.touchEnabled && !newProps.credentialStored) {
                     NavigationActions.TouchTOU()
                   } else {
-                    var storedUser = ""
-                    TouchManager.retrieveCredentials((error, credentials) => {
-                      storedUser = credentials[1]
-                      console.tron.log(storedUser)
-                      console.tron.log(newProps.username)
-                      if (storedUser == newProps.username) {
-                        this.props.changeShowSettings(true)
-                      } else {
-                        this.props.changeShowSettings(false)
-                      }
-                    })
+                    
 
                     NavigationActions.WelcomeDashBoard()
                   }
@@ -295,10 +285,24 @@ class Login extends Component {
       var authStatus = authObject['authStatus']
       if (authStatus == 'YES') {
         TouchManager.retrieveCredentials((error, credentials) => {
-          var password = credentials[0]
-          var username = credentials[1]
-          this.isAttempting = true
-          this.props.attemptLogin(username, password)
+
+           if (error) {
+            this._disableTouchID()
+            Alert.alert(
+              'Oops!',
+              'An error occured retrieving your credentials. We\'ve reset your securly stored data. Please login normally to re-enable Touch ID.',
+              [
+                {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
+              ],
+              { cancelable: false }
+            )
+          } else {
+            var password = credentials[0]
+            var username = credentials[1]
+            this.isAttempting = true
+            this.props.attemptLogin(username, password)
+          }         
+          
         })
       } else {
         var showError = true
@@ -616,8 +620,7 @@ const mapStateToProps = (state) => {
     touchEnabled: state.login.touchEnabled,
     touchCheckboxVisible: state.login.touchCheckboxVisible,
     logoutUrl: state.login.logoutUrl,
-    credentialStored: state.login.credentialStored,
-    showSettings: state.login.showSettings
+    credentialStored: state.login.credentialStored
   }
 }
 
@@ -632,8 +635,7 @@ const mapDispatchToProps = (dispatch) => {
     attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(LoginActions.changeTouchEnabled(touchEnabled)),
-    changeCredentialStored: (credentialStored) => dispatch(LoginActions.changeCredentialStored(credentialStored)),
-    changeShowSettings: (showSettings) => dispatch(LoginActions.changeShowSettings(showSettings))
+    changeCredentialStored: (credentialStored) => dispatch(LoginActions.changeCredentialStored(credentialStored))
   }
 }
 

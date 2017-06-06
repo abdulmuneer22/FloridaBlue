@@ -16,7 +16,6 @@ import { Button, Card } from 'native-base'
 
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { ClaimsListActions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import styles from '../ClaimsStyle'
 import _ from 'lodash'
@@ -30,6 +29,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 const window = Dimensions.get('window')
 
 class ClaimsCard extends Component {
+  constructor (props) {
+    super(props)
+  }
 
   // sortBy(field) {
   //   this.setState({
@@ -153,4 +155,3 @@ class ClaimsCard extends Component {
 
 
 export default ClaimsCard
-
