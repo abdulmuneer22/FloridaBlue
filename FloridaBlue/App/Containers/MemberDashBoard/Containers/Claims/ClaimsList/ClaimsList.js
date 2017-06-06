@@ -11,10 +11,10 @@ import NavItems from '../../../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
-
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import Communications from 'react-native-communications'
-import { Card } from 'native-base'
+import { Button, Card } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 const window = Dimensions.get('window')
 
@@ -184,15 +184,57 @@ class ClaimsList extends Component {
         <View>
           {this._renderHeader()}
         </View>
+        <View style={{flex: 1}}>
+          <View style={{flex: .2}}>
 
-         <View style={{flex:1}}>
-           {/*{
-             this._displayCondition()
-           }*/}
+            <View style={{flex: .3, backgroundColor: 'white'}}>
+                <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 10, margin: 10}}>
+                  <Text style={{fontSize: 20, paddingLeft: 15}}>Claims List</Text>
+                  <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
+                    <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
+                  </Button>
+                </View>
+            </View>
 
-         <ClaimsCard
-         data={this.props.claimsdata.data} />
+            <View style={{margin:10, marginBottom: 15}}>
+              <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginBottom: -15}}>
+                    <View style={{flex:0.27, alignItems:'center'}}>
+                      <TouchableOpacity><Text style={{fontWeight: 'bold'}}> Date</Text></TouchableOpacity>
+                    </View>
+                    <View style={{flex:0.33, alignItems:'center'}}>
+                      <TouchableOpacity><Text style={{fontWeight: 'bold'}}> Member</Text></TouchableOpacity>
+                    </View>
+                    <View style={{flex:0.34, alignItems:'center'}}>
+                      <TouchableOpacity><Text style={{fontWeight: 'bold'}}> Providers</Text></TouchableOpacity>
+                    </View>
+              </View>
+            </View>
+            
+             <View style={{flex:0}}>
+                {/*{
+                  this._displayCondition()
+                }*/}
+                
+                    <ClaimsCard
+                      data={this.props.claimsdata.data} />
+
+                
+             </View>
+
+             {/*If 10+ Claims, Show More Button*/}
+
+            {this.props.claimsdata.data.length > 10 ?
+             <View style={{flex: 0, margin: 14}}>
+               <Text style={{textAlign: 'center', opacity: 0.6}}>Showing 10 out of 20 Claims</Text>
+               <TouchableOpacity>
+                 <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
+               </TouchableOpacity>
+              </View> : null }
+
+
+          </View>
         </View>
+        
       </View>
     )
   }
