@@ -66,7 +66,9 @@ class Card extends Component {
   customNavigation () {
     console.tron.log(this.props)
     var action
-    if (this.props.tileType == 'webview') {
+    if (this.props.title === 'Claims') {
+      action = NavigationActions.ClaimsList()
+    } else  if (this.props.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.webURL})
     } else if (this.props.tileType == 'native') {
       var routerName = this.props.routerName
