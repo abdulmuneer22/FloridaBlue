@@ -44,7 +44,7 @@ class ClaimsSummary extends Component {
   }
 
   viewCliamsList(){
-    this.props.attemptClaimsList()
+    //this.props.attemptClaimsList()
     NavigationActions.ClaimsList()
   }
 
@@ -55,7 +55,7 @@ class ClaimsSummary extends Component {
           {NavItems.backButton()}
         </View>
         <Text style={styles.headerTextStyle}>
-            Plan Claims
+            Claims
         </Text>
         <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
           {NavItems.settingsButton()}
@@ -64,9 +64,7 @@ class ClaimsSummary extends Component {
     )
   }
 
-_getResults(){
-  NavigationActions.ClaimsList()
-}
+
   componentDidMount () {
     console.tron.log('I am in Claims Summary screen')
     console.tron.log(this.props)
@@ -93,8 +91,7 @@ _getResults(){
                     <Pie
                       pieWidth={Metrics.textHeight2 * Metrics.screenWidth * 0.007}
                       pieHeight={Metrics.textHeight2 * Metrics.screenHeight * 0.0044}
-                      colors={["#1f77b4", "#ff7f0e", "#d62728", "#9467bd",
-                               "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]}
+                      colors={["#1f77b4", "#ff7f0e", "#d62728"]}
                       width={width}
                       height={height}
                       data={this.props.claimsSummaryData.claimsBreakDown}
@@ -116,16 +113,26 @@ _getResults(){
                             </View>
                         }
                   </View>
-                  <View style={{flex:1.5}} >
-                      <View style={{flex:0.5,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
-                          <Text style={styles.totalClaimsText}>You have  </Text>
-                          <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.count}</Text>
-                          <Text style={styles.totalClaimsText}> Claims</Text>
-                      </View>
-                      <TouchableOpacity style={styles.getResults} onPress={this.viewCliamsList}>
-                        <Image source={Images.getResultsButton} style={styles.getResultsButton} />
-                      </TouchableOpacity>
-                  </View>
+                  {
+                    this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.count>0
+                    ?
+                    <View style={{flex:1.5}} >
+                        <View style={{flex:0.5,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+                            <Text style={styles.totalClaimsText}>You have  </Text>
+                            <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.count}</Text>
+                            <Text style={styles.totalClaimsText}> Claims</Text>
+                        </View>
+                        <View style={{flex:0.4}}>
+                          <Button rounded style={{flex: 0.3, backgroundColor: Colors.flBlue.grass, alignSelf: 'center'}}  onPress={this.viewCliamsList}>
+                            <Text style={{color: Colors.snow, fontWeight: '500', width:Metrics.textHeight2 * Metrics.screenWidth *0.01 , textAlign:'center'}}>View Claim List</Text>
+                          </Button>
+                        </View>
+                        <View style={{flex:0.1}}>
+                        </View>
+                      
+                    </View>
+                    :null
+                  }
               </View>
           </View> // Main View
           
