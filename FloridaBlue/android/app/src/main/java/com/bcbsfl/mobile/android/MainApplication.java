@@ -1,8 +1,12 @@
 package com.bcbsfl.mobile.android;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.facebook.react.ReactApplication;
+import com.evollu.react.fcm.FIRMessagingPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.psykar.cookiemanager.CookieManagerPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -22,8 +26,10 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
+import android.support.multidex.MultiDexApplication;
 
-public class MainApplication extends Application implements ReactApplication {
+
+public class MainApplication  extends MultiDexApplication  implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -36,14 +42,13 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new FIRMessagingPackage(),
+            new RNDeviceInfo(),
             new CookieManagerPackage(),
-            new LinearGradientPackage(),
             new LinearGradientPackage(),
             new MapsPackage(),
             new ReactMaterialKitPackage(),
             new VectorIconsPackage(),
             new ReactNativeI18n(),
-            new RNDeviceInfo(),
             new ReactNativeConfigPackage(),
             new ReactNativePermissionsPackage()
       );
@@ -60,4 +65,12 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
   }
+
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
 }
