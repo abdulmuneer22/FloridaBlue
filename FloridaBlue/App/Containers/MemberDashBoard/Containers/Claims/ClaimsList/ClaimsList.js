@@ -264,7 +264,7 @@ class ClaimsList extends Component {
 
              {/*If 10+ Claims, Show More Button*/}
 
-            {this.props.claimsdata.data.length > 10 ?
+            {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 10 ?
              <View style={{flex: 0, margin: 14}}>
                <Text style={{textAlign: 'center', opacity: 0.6}}>Showing 10 out of 20 Claims</Text>
                <TouchableOpacity>

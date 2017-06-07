@@ -67,7 +67,7 @@ class Card extends Component {
     console.tron.log(this.props)
     var action
     if (this.props.title === 'Claims') {
-      action = NavigationActions.ClaimsList()
+      action = NavigationActions.ClaimsSummary()
     } else  if (this.props.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.webURL})
     } else if (this.props.tileType == 'native') {

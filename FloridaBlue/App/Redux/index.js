@@ -23,7 +23,8 @@ export default () => {
     registration: require('./RegistrationRedux').reducer,
     provider: require('./ProviderRedux').reducer,
     claimslist: require('./ClaimsListRedux').reducer,
-    claimdetail: require('./ClaimDetailRedux').reducer
+    claimdetail: require('./ClaimDetailRedux').reducer,
+    claimsSummary: require('./ClaimsSummaryRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)
