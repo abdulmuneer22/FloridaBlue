@@ -62,7 +62,7 @@ class Pie extends React.Component {
 
   // methods used to tranform data into piechart:
   // TODO: Expose them as part of the interface
-  _value(item) { return item.number; }
+  _value(item) { return item.amount; }
 
   _label(item) { return item.name; }
 
@@ -72,7 +72,7 @@ class Pie extends React.Component {
 
     var arcs = d3.shape.pie()
         .value(this._value)
-        (this.props.data);
+        (this.props.data.slice(0, 3));
 
     var hightlightedArc = d3.shape.arc()
       .outerRadius(this.props.pieWidth/2 + 10)
@@ -104,7 +104,7 @@ class Pie extends React.Component {
            <Group x={x} y={y}>
            {
              this.props.data ?
-              this.props.data.map( (item, index) =>
+              this.props.data.slice(0, 3).map( (item, index) =>
               (<AnimShape
                  key={'pie_shape_' + index}
                  color={this._color(index)} 
@@ -122,9 +122,15 @@ class Pie extends React.Component {
             {
               return (
                   <View style={{flex: 1, flexDirection:'row', width :  Metrics.screenWidth * 0.80, alignItems:'center'}}>
-                        <View style={{flex: 0.1}} >
-                            <Icon name="stop" size={Metrics.icons.medium * Metrics.screenWidth * 0.0017} color={this._color(index)} backgroundColor={this._color(index)}/>
-                        </View>
+                        {
+                          index < 3 ?
+                          <View style={{flex: 0.1}} >
+                              <Icon name="stop" size={Metrics.icons.medium * Metrics.screenWidth * 0.0017} color={this._color(index)} backgroundColor={this._color(index)}/>
+                          </View>
+                          :
+                          <View style={{flex: 0.1}} >
+                          </View>
+                        }
                         <View style={{flex: 0.6}} >
                             <Text style={[{color: 'grey', fontWeight: 'normal'}]}>{this._label(item)}: </Text>
                         </View>
@@ -135,7 +141,8 @@ class Pie extends React.Component {
               );
             }) : null
           }
-          <View style={{flex:1.5, marginTop:Metrics.smallMargin*Metrics.screenHeight*0.0015}}>
+          
+          {/*<View style={{flex:1.5, marginTop:Metrics.smallMargin*Metrics.screenHeight*0.0015}}>
             <View style={{flex:0.75,flexDirection:'row'}}>
                   <Icon name="stop" size={Metrics.icons.medium * Metrics.screenWidth * 0.0017}/>
                   <Text style={[{color: 'grey', fontWeight: 'normal', marginLeft:5}]}>Your Savings:  </Text>
@@ -143,7 +150,7 @@ class Pie extends React.Component {
             <View style={{flex:0.75, marginLeft:20,marginTop:Metrics.smallMargin*Metrics.screenHeight*0.001, marginBottom:Metrics.smallMargin*Metrics.screenHeight*0.002}}>
                <Text style={[{color: 'grey', fontWeight: 'normal'}]}> Total Billed:  </Text>
             </View>
-          </View>
+          </View>*/}
         </View>
       </View> 
     );
