@@ -192,5 +192,55 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
     marginLeft: Metrics.baseMargin,
     fontWeight: '400'
-  }
+  },
+  searchContainer: {
+    top: 0,
+    left: 0,
+    right: 0,
+    position: 'absolute',
+    paddingTop: Metrics.doubleBaseMargin,
+    backgroundColor: Colors.snow
+  },
+  searchTitle: {
+    fontSize: Fonts.size.regular,
+    fontFamily: Fonts.type.base,
+    fontWeight: '400',
+    paddingTop: Metrics.doubleBaseMargin,
+    paddingLeft: Metrics.doubleBaseMargin,
+    color: Colors.flBlue.night
+  },
+  searchButton: {
+    backgroundColor: '#00003f',
+    marginTop: Metrics.doubleBaseMargin * 2,
+    marginBottom: Metrics.doubleBaseMargin * 2,
+    width: Metrics.screenWidth * 0.9,
+    alignSelf: 'center'
+  },
+  closeSearchButton: {
+    alignSelf: 'flex-end',
+    marginRight: Metrics.baseMargin
+  },
+  startDateButton: {
+    marginTop: Metrics.doubleBaseMargin * 2,
+    marginLeft: Metrics.doubleBaseMargin
+  },
+  dropdown: {
+    width: Metrics.screenWidth * 0.9,
+    marginLeft: Metrics.doubleBaseMargin
+  },
+  dropdownItem: {
+    fontSize: Fonts.size.regular,
+    fontFamily: Fonts.type.base,
+    fontWeight: '400',
+    paddingLeft: Metrics.smallMargin,
+    paddingTop: Metrics.smallMargin,
+    paddingBottom: Metrics.smallMargin,
+    color: Colors.flBlue.night
+  },
+  textField: {
+    marginTop: Metrics.doubleBaseMargin * 2,
+    paddingLeft: Metrics.doubleBaseMargin,
+    paddingRight: Metrics.doubleBaseMargin,
+    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
+  },
 })
