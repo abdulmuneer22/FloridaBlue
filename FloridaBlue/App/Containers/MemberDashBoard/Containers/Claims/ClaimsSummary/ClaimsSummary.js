@@ -64,6 +64,9 @@ class ClaimsSummary extends Component {
     )
   }
 
+_getResults(){
+  NavigationActions.ClaimsList()
+}
   componentDidMount () {
     console.tron.log('I am in Claims Summary screen')
     console.tron.log(this.props)
