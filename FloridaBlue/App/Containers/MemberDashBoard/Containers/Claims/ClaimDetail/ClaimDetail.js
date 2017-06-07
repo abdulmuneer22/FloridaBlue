@@ -62,7 +62,7 @@ class ClaimDetail extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props.claimdetaildata && this.props.claimdetaildata.memberFirstName && this.props.claimdetaildata.memberFirstName.length !=0) {
+    } else if (this.props.claimdetaildata && this.props.claimdetaildata.claimNumber && this.props.claimdetaildata.claimNumber.length !=0) {
       return (
         <View style={styles.container}>
            <ScrollView style={{flex:1}}>  
