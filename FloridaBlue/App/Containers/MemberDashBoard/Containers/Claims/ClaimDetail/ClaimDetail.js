@@ -8,6 +8,7 @@ import { AppRegistry,
     Dimensions, 
     TouchableOpacity, 
     Image, 
+    Alert,
     TouchableWithoutFeedback, 
     ScrollView, 
     Linking
@@ -53,8 +54,7 @@ class ClaimDetail extends Component {
   }
 
   componentDidMount () {
-      console.log("im claims screen")
-   this.props.attemptClaimDetail()
+    console.tron.log("im claims screen ")
   }
  _displayCondition () {
     if (this.props.fetching) {
