@@ -13,15 +13,8 @@ import { MyPlanTypes } from '../Redux/MyPlanRedux'
 import { SupportTypes } from '../Redux/SupportRedux'
 import { HsaTypes } from '../Redux/HsaRedux'
 import { MyIdCardTypes } from '../Redux/MyIdCardRedux'
-import { LanguageTypes } from '../Redux/LanguageRedux'
-import { StaffLanguageTypes } from '../Redux/StaffLanguageRedux'
-import { DoctorLanguageTypes } from '../Redux/DoctorLanguageRedux'
-import { DoctorDetailTypes } from '../Redux/DoctorDetailRedux'
 import { ProviderList } from '../Redux/SaveProviderRedux'
-// import { CareTypes } from '../Redux/CareRedux'
-// import { SpecialityTypes } from '../Redux/SpecialityRedux'
 import { SearchDataTypes } from '../Redux/SearchDataRedux'
-import { SearchDoctorTypes } from '../Redux/SearchDoctorRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
 import { ProviderTypes } from '../Redux/ProviderRedux'
 import { ClaimsListTypes } from '../Redux/ClaimsListRedux'
@@ -40,15 +33,8 @@ import { myplan } from './MyPlanSagas'
 import { support } from './SupportSagas'
 import { hsa } from './HsaSagas'
 import { myidcard } from './MyIdCardSagas'
-import { language } from './LanguageSagas'
-import { stafflanguage } from './StaffLanguageSagas'
-import { doctorlanguage } from './DoctorLanguageSagas'
-import { doctordetail } from './DoctorDetailSagas'
 import { addSavedProvider, removeSavedProvider } from './SaveProviderSagas'
-// import { care } from './CareSagas'
-// import { speciality } from './SpecialitySagas'
 import { searchdata } from './SearchDataSagas'
-import { searchdoctor } from './SearchDoctorSagas'
 import {sendIdentificationRequest} from './RegistrationSagas'
 import {sendPersonalInformationRequest} from './RegistrationSagas'
 import {sendRegistrationCodeRequest} from './RegistrationSagas'
@@ -97,15 +83,9 @@ export default function * root () {
     takeLatest(SupportTypes.SUPPORT_REQUEST, support, api),
     takeLatest(HsaTypes.HSA_REQUEST, hsa, api),
     takeLatest(MyIdCardTypes.MY_ID_CARD_REQUEST, myidcard, api),
-    takeLatest(LanguageTypes.LANGUAGE_REQUEST, language, api),
-    takeLatest(StaffLanguageTypes.STAFFLANGUAGE_REQUEST, stafflanguage, api),
-    takeLatest(DoctorLanguageTypes.DOCTORLANGUAGE_REQUEST, doctorlanguage, api),
-    takeLatest(DoctorDetailTypes.DOCTORDETAIL_REQUEST, doctordetail, api),
-
     takeLatest(ProviderList.ADD_PROVIDER_REQUEST, addSavedProvider),
     takeLatest(ProviderList.REMOVE_PROVIDER_REQUEST, removeSavedProvider),
     takeLatest(SearchDataTypes.SEARCHDATA_REQUEST, searchdata, api),
-
     takeLatest(RegistrationTypes.SEND_IDENTIFICATION_REQUEST, sendIdentificationRequest, apiforRegistration),
     takeLatest(RegistrationTypes.SEND_PERSONAL_INFORMATION_REQUEST, sendPersonalInformationRequest, apiforRegistration),
     takeLatest(RegistrationTypes.SEND_REGISTRATION_CODE_REQUEST, sendRegistrationCodeRequest, apiforRegistration),
