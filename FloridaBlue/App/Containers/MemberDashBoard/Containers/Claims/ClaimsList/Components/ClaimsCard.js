@@ -29,22 +29,13 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 const window = Dimensions.get('window')
 
 class ClaimsCard extends Component {
-  constructor (props) {
-    super(props)
-  }
 
-  // sortBy(field) {
-  //   this.setState({
-  //     claims: _.sortBy(this.props.claimsdata.data, field)
-  //   });
-  // }
   
   render () {
 
-  
+
   
     return (
-
       // Header
       /*List View*/
 
@@ -53,7 +44,7 @@ class ClaimsCard extends Component {
 
               
                 {this.props.data !=undefined ? this.props.data
-                                                              .filter((value, i) => (i < 7))
+                                                              //.filter((value, i) => (i < 7))
                                                               .map((value, i)=>{
                     
                     return(
@@ -83,7 +74,7 @@ class ClaimsCard extends Component {
 
                   }) : null}
 
-                  
+               
                     
               </View>           
 
@@ -96,5 +87,6 @@ class ClaimsCard extends Component {
   }
 
 
-
 export default ClaimsCard
+
+
