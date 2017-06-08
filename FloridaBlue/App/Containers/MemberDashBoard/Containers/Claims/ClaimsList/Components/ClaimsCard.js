@@ -62,7 +62,6 @@ class ClaimsCard extends Component {
           <ScrollView>
             <View>
 
-              <TouchableOpacity style={{flex: 1}} onPress={() => this.viewClaimsDetails(this.props.claimNumber)}>
 
                 {this.props.data !=undefined ? this.props.data
                                                               //.filter((value, i) => (i < 7))
@@ -70,7 +69,8 @@ class ClaimsCard extends Component {
                     
                     return(
                       <View style={{}}>
-                        <Card style={{flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, marginBottom: 1}} key={i}>
+                        <TouchableOpacity onPress={() => this.viewClaimsDetails(this.props.claimNumber)}>
+                        <Card style={{flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, marginBottom: 1}} key={i} >
                           
                           <View style={{flex: .33, alignItems: 'center'}}>
                             <Text style={styles.textStyle}>
@@ -90,12 +90,12 @@ class ClaimsCard extends Component {
                             </Text>
                           </View>
                         </Card>
+                        </TouchableOpacity>
                       </View>
                       ) 
 
                   }) : null}
 
-               </TouchableOpacity>
                     
               </View>           
 
