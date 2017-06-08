@@ -188,7 +188,7 @@ class CCard extends Component {
           }
 
               </View>
-              <Image source={Images[ImageInput]} style={styles.backgroundImage} resizeMode={(Platform.OS === 'ios') ? '' : 'cover'} />
+              <Image source={Images[ImageInput]} style={styles.backgroundImage} resizeMode={(Platform.OS === 'ios') ? 'stretch' : 'cover'} />
             </View>
 
           </Card>
