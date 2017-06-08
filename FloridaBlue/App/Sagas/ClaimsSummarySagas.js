@@ -12,9 +12,11 @@ export function * claimsSummary (api) {
     var data = response.data.data;
     data = {
       claimsBreakDown: [
-        {"number": 2250.00, "name": 'Your Discount'},
-        {"number": 2250.00, "name": 'Florida Blue Paid'},
-        {"number": 700.00, "name": 'Your Responsibility'}
+        {"amount": 2250.00, "name": 'Your Discount'},
+        {"amount": 2250.00, "name": 'Florida Blue Paid'},
+        {"amount": 700.00, "name": 'Your Responsibility'},
+        {"amount": 2250.00, "name": 'Your Savings'},
+        {"amount": 2250.00, "name": 'Total Billed'}
       ]
     }
     console.tron.log('Data ' + JSON.stringify(data));

@@ -88,7 +88,7 @@ render () {
 }
 
 ClaimsCard.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.array,
   attemptClaimDetail: PropTypes.func,
   error: PropTypes.string
 }

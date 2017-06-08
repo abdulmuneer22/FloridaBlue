@@ -13,9 +13,10 @@ import {
 } from 'react-native'
 
 import { Button, Card } from 'native-base'
-
+import ClaimDetailActions from '../../../../../../Redux/ClaimDetailRedux'
 import { Colors, Metrics, Fonts } from '../../../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import styles from '../ClaimsStyle'
 import _ from 'lodash'
@@ -29,40 +30,51 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 const window = Dimensions.get('window')
 
 class ClaimsCard extends Component {
-  constructor (props) {
-    super(props)
+
+  constructor(props) {
+    super(props);
+    this.formatDate = this.formatDate.bind(this);
+    this.viewClaimsDetails = this.viewClaimsDetails.bind(this);
   }
 
-  // sortBy(field) {
-  //   this.setState({
-  //     claims: _.sortBy(this.props.claimsdata.data, field)
-  //   });
-  // }
+    formatDate(date) {
+    date = new Date(date);
+    let day = ('0' + date.getDate()).slice(-2);
+    let month = ('0' + (date.getMonth() + 1)).slice(-2);
+    let year = date.getFullYear();
+    return month + '-' + day + '-' + year;
+  }
+
+    viewClaimsDetails(claimNumber){
+    console.tron.log('claimNumber'+ claimNumber)
+    this.props.attemptClaimDetail(claimNumber);
+    NavigationActions.ClaimDetail()
+  }
   
   render () {
 
-  
+
   
     return (
-
       // Header
       /*List View*/
 
           <ScrollView>
             <View>
 
-              
+
                 {this.props.data !=undefined ? this.props.data
-                                                              .filter((value, i) => (i < 7))
+                                                              //.filter((value, i) => (i < 7))
                                                               .map((value, i)=>{
                     
                     return(
                       <View style={{}}>
-                        <Card style={{flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, marginBottom: 1}} key={i}>
+                        <TouchableOpacity onPress={() => this.viewClaimsDetails(this.props.claimNumber)}>
+                        <Card style={{flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, marginBottom: 1}} key={i} >
                           
                           <View style={{flex: .33, alignItems: 'center'}}>
                             <Text style={styles.textStyle}>
-                              {value.dateOfService}
+                             {this.formatDate(value.dateOfService)}
                             </Text>
                           </View>
 
@@ -78,12 +90,12 @@ class ClaimsCard extends Component {
                             </Text>
                           </View>
                         </Card>
+                        </TouchableOpacity>
                       </View>
                       ) 
 
                   }) : null}
 
-                  
                     
               </View>           
 
@@ -94,7 +106,24 @@ class ClaimsCard extends Component {
       )
     }
   }
+  
+
+  
 
 
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.claimdetail.fetching,
+    claimdetaildata: state.claimdetail.data,
+    error: state.claimdetail.error
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptClaimDetail: (data) => dispatch(ClaimDetailActions.claimDetailRequest(data))
+  }
+}
 
-export default ClaimsCard
+export default connect(mapStateToProps, mapDispatchToProps)(ClaimsCard)
+
+
