@@ -33,21 +33,18 @@ class ClaimsList extends Component {
   constructor (props) {
     super(props)
    this.state = {
-      listLimit: 10,
-      totalNumberOfCardPerScreen: 10,
-      isFetchingMore: false,
-      loadingMore: true,
-      initialCount: 0,
-      finalCount: 0,
-      displayBannerInfo: false,
-      searchVisible: false,
-      isDatePickerVisible: false
+      
     }
     this.loadMore = this.loadMore.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleDatePicked = this.handleDatePicked.bind(this)
     this.hideDatePicker = this.hideDatePicker.bind(this)
     this.showDatePicker = this.showDatePicker.bind(this)
+  }
+
+  viewClaimsList(){
+    // this.props.attemptClaimsList()
+    NavigationActions.ClaimsList()
   }
 
   _renderHeader () {
@@ -88,24 +85,6 @@ class ClaimsList extends Component {
     }
   }
 
-<<<<<<< HEAD
-  // _sortClaims () {
-  //   let sortedClaims = this.props.claimsdata.data.sort((a,b) => {
-  //     if (a.memberName < b.memberName) {
-  //       return -1;
-  //     }
-  //     if (a.memberName > b.memberName) {
-  //       return 1;
-  //     } 
-  //     return 0;
-  //   });
-  //   let dataSource = dataSource.cloneWithRows(sortedClaims)
-  //   this.setState({
-  //     dataSource: dataSource
-  //   });
-  // }
-
-=======
   handleSearch() {
     if (this.state.searchVisible) {
       this.setState({searchVisible: false})
@@ -126,7 +105,6 @@ class ClaimsList extends Component {
     this.setState({isDatePickerVisible: false})
     console.tron.log(date)
   }
->>>>>>> 1cbb743225056c33c33a11551deef3c477b188a5
 
   componentDidMount () {
     console.tron.log('I am Claims List screen')
@@ -229,17 +207,10 @@ class ClaimsList extends Component {
         <View style={{flex: 1}}>
           <View style={{flex: .2}}>
 
-<<<<<<< HEAD
             <View style={{flex: .2, backgroundColor: 'white'}}>
                 <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, margin: 10}}>
                   <Text style={{fontSize: 20, paddingLeft: 15, opacity: .9}}>Claims List</Text>
                   <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
-=======
-            <View style={{flex: .3, backgroundColor: 'white'}}>
-                <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 10, margin: 10}}>
-                  <Text style={{fontSize: 20, paddingLeft: 15}}>Claims List</Text>
-                  <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}} onPress={this.handleSearch}>
->>>>>>> 1cbb743225056c33c33a11551deef3c477b188a5
                     <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
                   </Button>
                 </View>
@@ -258,13 +229,8 @@ class ClaimsList extends Component {
                     </View>
               </View>
             </View>
-<<<<<<< HEAD
             
              <View style={{flex:1}}>
-=======
-
-             <View style={{flex:0}}>
->>>>>>> 1cbb743225056c33c33a11551deef3c477b188a5
                 {/*{
                   this._displayCondition()
                 }*/}
