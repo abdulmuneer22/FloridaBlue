@@ -1,6 +1,19 @@
 import React, { Component, PropTypes } from 'react'
 
-import { AppRegistry, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, TouchableHighlight, Image, TouchableWithoutFeedback, ScrollView, Linking} from 'react-native'
+import { 
+  AppRegistry, 
+  StyleSheet, 
+  Text, 
+  View, 
+  TextInput, 
+  Dimensions, 
+  TouchableOpacity, 
+  TouchableHighlight, 
+  Image, 
+  TouchableWithoutFeedback, 
+  ScrollView, 
+  Linking
+} from 'react-native'
 
 import styles from './ClaimsStyle'
 import ClaimsCard from './Components/ClaimsCard'
@@ -112,86 +125,115 @@ class ClaimsList extends Component {
   }
 
   _displayCondition () {
+    const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60);
+    const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60); 
+   console.tron.log(this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length+ " this.props.claimsdata.data" + JSON.stringify(this.props.claimsdata));
+   console.tron.log('this.props.fetching'+this.props.fetching)
     if (this.props.fetching) {
-      return (<View style={styles.spinnerView}>
-        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait</Text>
-      </View>)
-    } else if (this.props.claimsdata && this.props.claimsdata.data) {
       return (
+        <View style={styles.spinnerView}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        </View>)
+      } else if (this.props.claimsSummaryData && this.props.claimsSummaryData &&  this.props.claimsSummaryData.claimsBreakDown && this.props.claimsSummaryData.claimsBreakDown.length !=0) {
+        return (
         <View style={styles.container}>
+          <View>
+            {this._renderHeader()}
+          </View>
+          <View style={{flex: 1}}>
+            <View style={{flex: .2}}>
 
-                <View style={{flex: 1, marginTop: -20}}>
+              <View style={{flex: .2, backgroundColor: 'white'}}>
+                  <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, margin: 10}}>
+                    <Text style={{fontSize: 20, paddingLeft: 15, opacity: .9}}>Claims List</Text>
+                    <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
+                      <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
+                    </Button>
+                  </View>
+              </View>
 
-                  {
-                     this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 0 ?
-                       <ClaimsCard
-                         cardLimit={this.state.listLimit}
-                         data={this.props.claimsdata.data}
-                      />
-                  :
-
-                         <View style={{flex: 1, margin: 15}}>
-                           <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
-                             <View style={{flex: 1, margin: 15}}>
-                               <Text style={{fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-                                 color: Colors.flBlue.anvil
-                               }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
-                             </View>
-                           </Card>
-                         </View>
-
-                    }
-
+              <View style={{margin:10, marginBottom: 15, paddingTop: 5}}>
+                <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginBottom: -15}}>
+                      <View style={{flex:0.27, alignItems:'center'}}>
+                        <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: .9}}> Date</Text></TouchableOpacity>
+                      </View>
+                      <View style={{flex:0.33, alignItems:'center'}}>
+                        <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={{fontWeight: 'bold'}}> Member</Text></TouchableOpacity>
+                      </View>
+                      <View style={{flex:0.34, alignItems:'center'}}>
+                        <TouchableOpacity><Text style={{fontWeight: 'bold'}}> Providers</Text></TouchableOpacity>
+                      </View>
                 </View>
+              </View>
+              
+              <View style={{flex:1}}>
+                  {/*{
+                    this._displayCondition()
+                  }*/}
 
-                 {/*{
-                          this.props.asyncfetching ?
-                          <View style={{flex: 1,alignSelf: 'center',}}>
-                            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                          </View> : null
-                }*/}
+                      <ClaimsCard
+                        data={this.props.claimsdata.data}
+                      />
 
-                {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length >= 10
-                  && !(this.state.listLimit > this.props.claimsdata.data.length)
-                  ?
-                    <View style={{flex: 1, marginBottom: 10}}>
-                      <TouchableOpacity
-                        onPress={this.loadMore}
-                        style={{
-                          backgroundColor: Colors.flBlue.ocean,
-                          paddingLeft: 14,
-                          paddingRight: 14,
-                          paddingTop: 10,
-                          paddingBottom: 10,
-                          width: window.width * 0.4,
-                          alignSelf: 'center',
-                          margin: window.height * 0.02,
-                          alignItems: 'center',
-                          borderRadius: 5
-                        }}>
-                        <Text style={{
-                          color: 'white'
-                        }}>Show More</Text>
-                      </TouchableOpacity>
-                    </View> : null
-                }
 
-         
+              </View>
+
+              {/*If 10+ Claims, Show More Button*/}
+
+              {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 10 ?
+              <View style={{flex: 0, margin: 14}}>
+                <Text style={{textAlign: 'center', opacity: 0.6}}>Showing 10 out of {this.props.claimsdata.count} Claims</Text>
+                <TouchableOpacity>
+                  <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
+                </TouchableOpacity>
+                </View> : null }
+
+
+            </View>
+          </View>
+          <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden={true} duration={200}>
+            <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearch}>
+              <Flb name="remove" size={20} />
+            </TouchableOpacity>
+            <Text style={styles.searchTitle}>Search for a claim by filling out the fields below:</Text>
+            <MKTextField
+              ref='providerName'
+              style={styles.textField}
+              textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+              editable={true}
+              underlineColorAndroid={Colors.coal}
+              placeholder={"Provider Name"}
+              placeholderTextColor={Colors.steel}
+              tintColor={Colors.black}
+            />
+            <ModalDropdown options={_.map(memberList, 'memberName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+              <MKTextField
+                ref='careType'
+                textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                style={styles.textField}
+                editable={false}
+                underlineColorAndroid={Colors.coal}
+                placeholder={"Member Name"}
+                placeholderTextColor={Colors.steel}
+                tintColor={Colors.black}
+                value={""}
+              />
+            </ModalDropdown>
+            <TouchableOpacity style={styles.startDateButton} onPress={this.showDatePicker}>
+              <Text>Start Date</Text>
+            </TouchableOpacity>
+            <DateTimePicker
+              isVisible={this.state.isDatePickerVisible}
+              onConfirm={this.handleDatePicked}
+              onCancel={this.hideDatePicker}
+            />
+            <Button rounded style={styles.searchButton} onPress={this.handleSearch}>
+              <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
+            </Button>
+          </HideableView>
         </View>
       )
-
-    } else if ((this.props.error != null) ||
-     ( this.props.claimsdata ==null ||
-     (this.props.claimsdata != null &&
-     (this.props.claimsdata.data == null || this.props.claimsdata.data.length ==0 )
-      ) ) ) {
-      Alert.alert(
-        'Claims List',
-       'Oops! Looks like we\'re having trouble with your request. Please try again later.',
-        [
-          { text: 'OK' }
-        ])
     }
   }
 
@@ -209,7 +251,7 @@ class ClaimsList extends Component {
 
             <View style={{flex: .2, backgroundColor: 'white'}}>
                 <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, margin: 10}}>
-                  <Text style={{fontSize: 20, paddingLeft: 15, opacity: .9}}>Claims List</Text>
+                  <Text style={{fontSize: 20, paddingLeft: 15, opacity: .9, color: Colors.flBlue.anvil}}>Claims List</Text>
                   <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
                     <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
                   </Button>
@@ -219,13 +261,13 @@ class ClaimsList extends Component {
             <View style={{margin:10, marginBottom: 15, paddingTop: 5}}>
               <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginBottom: -15}}>
                     <View style={{flex:0.27, alignItems:'center'}}>
-                      <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: .9}}> Date</Text></TouchableOpacity>
+                      <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: .9, color: Colors.flBlue.anvil}}> Date</Text></TouchableOpacity>
                     </View>
                     <View style={{flex:0.33, alignItems:'center'}}>
-                      <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={{fontWeight: 'bold'}}> Member</Text></TouchableOpacity>
+                      <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={{fontWeight: 'bold', color: Colors.flBlue.anvil}}> Member</Text></TouchableOpacity>
                     </View>
                     <View style={{flex:0.34, alignItems:'center'}}>
-                      <TouchableOpacity><Text style={{fontWeight: 'bold'}}> Providers</Text></TouchableOpacity>
+                      <TouchableOpacity><Text style={{fontWeight: 'bold', color: Colors.flBlue.anvil}}> Providers</Text></TouchableOpacity>
                     </View>
               </View>
             </View>
@@ -246,7 +288,7 @@ class ClaimsList extends Component {
 
             {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 10 ?
              <View style={{flex: 0, margin: 14}}>
-               <Text style={{textAlign: 'center', opacity: 0.6}}>Showing 10 out of {this.props.claimsdata.count} Claims</Text>
+               <Text style={{textAlign: 'center', opacity: 0.6, color: Colors.flBlue.anvil}}>Showing 10 out of {this.props.claimsdata.count} Claims</Text>
                <TouchableOpacity>
                  <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
                </TouchableOpacity>

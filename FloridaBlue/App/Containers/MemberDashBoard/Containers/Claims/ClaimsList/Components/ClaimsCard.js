@@ -73,19 +73,19 @@ class ClaimsCard extends Component {
                         <Card style={{flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, marginBottom: 1}} key={i} >
                           
                           <View style={{flex: .33, alignItems: 'center'}}>
-                            <Text style={styles.textStyle}>
+                            <Text style={{color: Colors.flBlue.anvil}}>
                              {this.formatDate(value.dateOfService)}
                             </Text>
                           </View>
 
                           <View style={{flex: .33, alignItems: 'center'}}>
-                            <Text style={styles.textStyle}>
+                            <Text style={{color: Colors.flBlue.anvil}}>
                               {value.providerName}
                             </Text>
                           </View>
 
                           <View style={{flex: .34, alignItems: 'center'}}>
-                            <Text style={styles.textStyle}>
+                            <Text style={{color: Colors.flBlue.anvil}}>
                               {value.claimType}
                             </Text>
                           </View>
