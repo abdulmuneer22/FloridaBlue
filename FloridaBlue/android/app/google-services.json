@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "999706634779",
+    "firebase_url": "https://mobile-test-16fce.firebaseio.com",
+    "project_id": "mobile-test-16fce",
+    "storage_bucket": "mobile-test-16fce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999706634779:android:2f000a73b3081610",
+        "android_client_info": {
+          "package_name": "com.bcbsfl.mobile.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999706634779-49ovcinn4gg2d37qcd0460fp1eqs30gh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bcbsfl.mobile.android",
+            "certificate_hash": "425f74b82c41c258d4741cfeb4e209b2332c4f00"
+          }
+        },
+        {
+          "client_id": "999706634779-rh18qog70tao2jn3j6qo2odptpr6ca6b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bcbsfl.mobile.android",
+            "certificate_hash": "b96c8528156a22b92d12d84d9e4b35c92bd3bc21"
+          }
+        },
+        {
+          "client_id": "999706634779-qe4vgmco939hlj40irnge8vbrqf22tpd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtoTTDB2VZzsqskZ_W1Aed97wwFRg9bPU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999706634779-h04gnhrmichebkf06llh4ibmil4l30sr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bcbsfl.mobile.floridablue.Florida-Blue",
+                "app_store_id": "433457624"
+              }
+            },
+            {
+              "client_id": "999706634779-qe4vgmco939hlj40irnge8vbrqf22tpd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
