@@ -17,6 +17,7 @@ export default () => {
     saveprovider: require('./SaveProviderRedux').reducer,
     registration: require('./RegistrationRedux').reducer,
     provider: require('./ProviderRedux').reducer,
+    claims: require('./ClaimsRedux.js').reducer,
     claimslist: require('./ClaimsListRedux').reducer,
     claimdetail: require('./ClaimDetailRedux').reducer,
     claimsSummary: require('./ClaimsSummaryRedux').reducer
