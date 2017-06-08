@@ -76,7 +76,8 @@ class ClaimsSummary extends Component {
    console.tron.log(this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length+ " this.props.claimsdata.data" + JSON.stringify(this.props.claimsdata));
    console.tron.log('this.props.fetching'+this.props.fetching)
     if (this.props.fetching) {
-      return (<View style={styles.spinnerView}>
+      return (
+      <View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
@@ -124,7 +125,7 @@ class ClaimsSummary extends Component {
                         </View>
                         <View style={{flex:0.4}}>
                           <Button rounded style={{flex: 0.3, backgroundColor: Colors.flBlue.grass, alignSelf: 'center'}}  onPress={this.viewCliamsList}>
-                            <Text style={{color: Colors.snow, fontWeight: '500', width:Metrics.textHeight2 * Metrics.screenWidth *0.01 , textAlign:'center'}}>View Claim List</Text>
+                            <Text style={{color: Colors.snow, fontWeight: '500', width:Metrics.textHeight2 * Metrics.screenWidth *0.01 , textAlign:'center'}}>View Claims List</Text>
                           </Button>
                         </View>
                         <View style={{flex:0.1}}>
