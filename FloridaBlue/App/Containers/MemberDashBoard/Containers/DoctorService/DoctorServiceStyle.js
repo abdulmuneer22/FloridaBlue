@@ -16,7 +16,7 @@ export default StyleSheet.create({
     alignSelf: 'flex-end',
     //backgroundColor:Colors.transparent,
     //marginRight:-50,
-    height: Platform.OS == 'ios' ? (Metrics.screenHeight - Metrics.screenHeight * 0.7 ) : (Metrics.screenHeight - Metrics.screenHeight * 0.76),
+    height: Platform.OS == 'ios' ? (Metrics.screenHeight - Metrics.screenHeight * 0.7) : (Metrics.screenHeight - Metrics.screenHeight * 0.76),
      // width:Metrics.screenWidth - (Metrics.screenWidth * 0.88)
    // marginBottom:-Metrics.smallMargin * Metrics.screenHeight * 0.0001
   },
