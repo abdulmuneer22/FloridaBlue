@@ -36,7 +36,7 @@ class Settings extends Component {
 
   }
 
-  _disableTouchID() {
+  _disableTouchID () {
     TouchManager.removeCredentials((error, credentials) => {
       var status = credentials[0]
       if (status == 'SUCCESS') {
@@ -50,7 +50,7 @@ class Settings extends Component {
     })
   }
 
-  _enableTouch() {
+  _enableTouch () {
     TouchManager.enableTouchID((error, status) => {
       var status = status[0]
       if (status == 'ENABLED') {
@@ -78,7 +78,7 @@ class Settings extends Component {
     )
   }
 
-  _handleSwitchToggle(e) {
+  _handleSwitchToggle (e) {
     if (e.checked) {
       this._enableTouch()
     } else {
@@ -100,9 +100,9 @@ class Settings extends Component {
             checked={this.props.touchEnabled}
             trackSize={30}
             trackLength={52}
-            onColor="rgba(255,152,0,.3)"
+            onColor='rgba(255,152,0,.3)'
             thumbOnColor={MKColor.Orange}
-            rippleColor="rgba(255,152,0,.2)"
+            rippleColor='rgba(255,152,0,.2)'
             onCheckedChange={(e) => this._handleSwitchToggle(e)}
           />
         </View>

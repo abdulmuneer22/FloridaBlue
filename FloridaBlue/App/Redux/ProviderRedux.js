@@ -66,7 +66,7 @@ const { Types, Creators } = createActions({
   changeEnd: ['end'],
   changeListLimit: ['listLimit'],
   changeSelectedLocation: ['selectedLocation'],
-  onTabSelect:['selectedTab'],
+  onTabSelect: ['selectedTab'],
   providerClickleft: [],
   providerClickright: [],
   sendAsyncProviderSearchRequest: ['data'],
@@ -141,7 +141,7 @@ export const _sendProviderSearchRequest = (state: Object) => state.merge({ fetch
 export const _sendAsyncProviderSearchRequest = (state: Object) => state.merge({asyncfetching: true })
 
 // sendProviderSearchSuccess
-export const _sendProviderSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, asyncfetching:false, data, error: null, leftActive: true, rightActive: false})
+export const _sendProviderSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, asyncfetching: false, data, error: null, leftActive: true, rightActive: false})
 
 // sendProviderSearchFailure
 export const _sendProviderSearchFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, data: {}, error })
@@ -162,10 +162,10 @@ export const _sendPharmacySearchFailure = (state: Object, {error}: Object) => st
 export const _sendUrgentSearchRequest = (state: Object) => state.merge({ fetching: true })
 
 // sendAsyncUrgentSearchRequest
-export const _sendAsyncUrgentSearchRequest = (state: Object) => state.merge({ asyncfetching : true})
+export const _sendAsyncUrgentSearchRequest = (state: Object) => state.merge({ asyncfetching: true})
 
 // sendUrgentSearchSuccess
-export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, asyncfetching : false, data, error: null, leftActive: true, rightActive: false})
+export const _sendUrgentSearchSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, asyncfetching: false, data, error: null, leftActive: true, rightActive: false})
 
 // sendUrgentSearchFailure
 export const _sendUrgentSearchFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
