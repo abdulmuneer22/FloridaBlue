@@ -157,65 +157,9 @@ class ClaimsList extends Component {
     this.props.changeDatePickerVisible(true)
   }
 
-  _displayCondition () {
-    const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60);
-    const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60); 
-   console.tron.log(this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length+ " this.props.claimsdata.data" + JSON.stringify(this.props.claimsdata));
-   console.tron.log('this.props.fetching'+this.props.fetching)
-    if (this.props.fetching) {
-      return (
-        <View style={styles.spinnerView}>
-          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>)
-      } else if (this.props.claimsdata && this.props.claimsdata &&  this.props.claimsdata.data && this.props.claimsdata.data.length !=0) {
-        return (
-        <View style={styles.container}>
-          <View>
-            {this._renderHeader()}
-          </View>
-          <View style={{flex: 1}}>
-            <View style={{flex: .2}}>
-
-              <View style={{flex: .2, backgroundColor: 'white'}}>
-                  <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, margin: 10}}>
-                    <Text style={{fontSize: 20, paddingLeft: 15, opacity: .9}}>Claims List</Text>
-                    <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
-                      <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-                    </Button>
-                  </View>
-              </View>
-
-              <View style={{margin:10, marginBottom: 15, paddingTop: 5}}>
-                <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginBottom: -15}}>
-                      <View style={{flex:0.27, alignItems:'center'}}>
-                        <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: .9}}> Date</Text></TouchableOpacity>
-                      </View>
-                      <View style={{flex:0.33, alignItems:'center'}}>
-                        <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={{fontWeight: 'bold'}}> Member</Text></TouchableOpacity>
-                      </View>
-                      <View style={{flex:0.34, alignItems:'center'}}>
-                        <TouchableOpacity><Text style={{fontWeight: 'bold'}}> Providers</Text></TouchableOpacity>
-                      </View>
-                </View>
-              </View>
-              
-              <View style={{flex:1}}>
-                  {/*{
-                    this._displayCondition()
-                  }*/}
-
-                      <ClaimsCard
-                        data={this.props.claimsdata.data}
-                        cardLimit={this.state.listLimit}
-                      />
-
-
-              </View>
-
-  hideDatePicker() {
-      this.props.changeDatePickerVisible(false)
-    }
+   hideDatePicker() {
+    this.props.changeDatePickerVisible(false)
+  }
 
   handleDatePicked(date) {
     this.hideDatePicker()
@@ -261,6 +205,77 @@ class ClaimsList extends Component {
     }
   }
 
+   memberSelected(index, value:string) {
+    let selectedMember = memberList[index]
+    this.props.changeMemberName(selectedMember)
+    this.setState({searchVisible: false}, function () {
+      this.setState({searchVisible: true})
+    })
+  }
+
+  componentDidMount () {
+    this.props.attemptClaimsList(this.props)
+  }
+
+  _displayCondition () {
+    const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60);
+    const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60); 
+   console.tron.log(this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length+ " this.props.claimsdata.data" + JSON.stringify(this.props.claimsdata));
+   console.tron.log('this.props.fetching'+this.props.fetching)
+    if (this.props.fetching) {
+      return (
+        <View style={styles.spinnerView}>
+          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        </View>)
+      } else if (this.props.claimsdata && this.props.claimsdata &&  this.props.claimsdata.data && this.props.claimsdata.data.length !=0) {
+        return (
+        <View style={styles.container}>
+          <View>
+            {this._renderHeader()}
+          </View>
+          <View style={{flex: .3}}>
+            <View style={{flex: .2}}>
+              <View style={{flex: .2, backgroundColor: 'white'}}>
+                  <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, margin: 10}}>
+                    <Text style={{fontSize: 20, paddingLeft: 15, opacity: .9}}>Claims List</Text>
+                    <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
+                      <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
+                    </Button>
+                  </View>
+              </View>
+            </View>
+
+              <View style={{margin:10, marginBottom: 15, paddingTop: 5}}>
+                <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginBottom: -15}}>
+                      <View style={{flex:0.27, alignItems:'center'}}>
+                        <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: .9}}> Date</Text></TouchableOpacity>
+                      </View>
+                      <View style={{flex:0.33, alignItems:'center'}}>
+                        <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={{fontWeight: 'bold'}}> Member</Text></TouchableOpacity>
+                      </View>
+                      <View style={{flex:0.34, alignItems:'center'}}>
+                        <TouchableOpacity><Text style={{fontWeight: 'bold'}}> Providers</Text></TouchableOpacity>
+                      </View>
+                </View>
+              </View>
+            </View>
+              
+              <View style={{flex:1}}>
+                  {/*{
+                    this._displayCondition()
+                  }*/}
+
+                      <ClaimsCard
+                        data={this.props.claimsdata.data}
+                        cardLimit={this.state.listLimit}
+                      />
+
+
+              </View>
+
+ 
+
             {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length >= 10
                   && !(this.state.listLimit > this.props.claimsdata.data.length)
                   && !(this.props.claimsdata.data.length == 300 && this.props.claimsdata.data.length == this.state.listLimit)
@@ -271,18 +286,14 @@ class ClaimsList extends Component {
                   <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
                 </TouchableOpacity>
                 </View> : null }
-  memberSelected(index, value:string) {
-    let selectedMember = memberList[index]
-    this.props.changeMemberName(selectedMember)
-    this.setState({searchVisible: false}, function () {
-      this.setState({searchVisible: true})
-    })
-  }
+
+            </View>
+        )
+      }
+}
 
 
-  componentDidMount () {
-    this.props.attemptClaimsList(this.props)
-  }
+  
 
   render () {
      console.log("claims list data" +this.props.datePickerVisible)
@@ -301,7 +312,7 @@ class ClaimsList extends Component {
 
             </View>
 
-        </View>
+         </View>
 
              
     )

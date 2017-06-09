@@ -60,6 +60,7 @@ class ClaimsCard extends Component {
     NavigationActions.ClaimDetail()
   }
 
+  render(){
     return (
       // Header
       /*List View*/
