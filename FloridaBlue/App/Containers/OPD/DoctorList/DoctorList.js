@@ -75,40 +75,40 @@ class DoctorList extends Component {
   }
 
   async providerSearchList (newProps) {
-      if (newProps.networkCodeList && newProps.networkCodeList.length > 0) {
-        if (newProps.error == undefined || newProps.error == null) {
-          if (newProps.showUrgentCareBanner) {
-            newProps.attemptAsyncUrgentSearch(newProps)
+    if (newProps.networkCodeList && newProps.networkCodeList.length > 0) {
+      if (newProps.error == undefined || newProps.error == null) {
+        if (newProps.showUrgentCareBanner) {
+          newProps.attemptAsyncUrgentSearch(newProps)
+        } else {
+          if (newProps.categoryCode == '07' && newProps.subCategoryCode == '700') {
+            newProps.attemptAsyncPharmacySearch(newProps)
           } else {
-            if (newProps.categoryCode == '07' && newProps.subCategoryCode == '700') {
-              newProps.attemptAsyncPharmacySearch(newProps)
-            } else {
-              newProps.attemptAsyncProviderSearch(newProps)
-            }
+            newProps.attemptAsyncProviderSearch(newProps)
           }
         }
       }
+    }
   }
 
   componentDidMount () {
       // Call asynchronously to get more data
-    //this.props.changeEnd(300)
-    //this.setState({isFetchingMore : true});
+    // this.props.changeEnd(300)
+    // this.setState({isFetchingMore : true});
   }
 
   componentWillReceiveProps (newProps) {
-     if (this.state.isFetchingMore) {
-        //this.props.attemptProviderSearch(newProps)
-        this.providerSearchList(newProps);
-        this.setState({
-          isFetchingMore: false
-        });
-     }
-     if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
-        if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
-          this.props.changeLatitude(newProps.provider.data.originLatitude)
-          this.props.changeLongitude(newProps.provider.data.originLongitude)
-        }
+    if (this.state.isFetchingMore) {
+        // this.props.attemptProviderSearch(newProps)
+      this.providerSearchList(newProps)
+      this.setState({
+        isFetchingMore: false
+      })
+    }
+    if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
+      if (newProps.provider && newProps.provider.data && newProps.provider.data.originLatitude != '' && newProps.provider.data.originLongitude != '') {
+        this.props.changeLatitude(newProps.provider.data.originLatitude)
+        this.props.changeLongitude(newProps.provider.data.originLongitude)
+      }
     }
   }
 
@@ -133,12 +133,12 @@ class DoctorList extends Component {
     this.setState({
       listLimit: newLimit + 10
     })
-    this.props.changeListLimit(newLimit+10)
-    if(this.state.totalNumberOfCardPerScreen == newLimit) {
-           this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
-           this.state.isFetchingMore = true
-           this.setState({isFetchingMore : true});
-           this.setState({totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 30});
+    this.props.changeListLimit(newLimit + 10)
+    if (this.state.totalNumberOfCardPerScreen == newLimit) {
+      this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 30)
+      this.state.isFetchingMore = true
+      this.setState({isFetchingMore: true})
+      this.setState({totalNumberOfCardPerScreen: this.state.totalNumberOfCardPerScreen + 30})
     }
   }
 
@@ -151,7 +151,7 @@ class DoctorList extends Component {
     } else if (this.props.provider && this.props.provider.data) {
       return (
         <View style={styles.container}>
-          {this.props.provider && this.props.provider.data?
+          {this.props.provider && this.props.provider.data ?
             <View style={{flex: 9}}>
               <ScrollView >
                 {this.props.showUrgentCareBanner ?
@@ -217,11 +217,11 @@ class DoctorList extends Component {
                     }
 
                 </View>
-                 {
+                {
                           this.props.asyncfetching ?
-                          <View style={{flex: 1,alignSelf: 'center',}}>
-                            <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                          </View> : null
+                            <View style={{flex: 1, alignSelf: 'center' }}>
+                              <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                            </View> : null
                 }
 
                 {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10
@@ -303,10 +303,10 @@ class DoctorList extends Component {
         </View>
       )
     } else if ((this.props.error != null) ||
-     ( this.props.provider ==null ||
+     (this.props.provider == null ||
      (this.props.provider != null &&
-     (this.props.provider.data == null || this.props.provider.data.length ==0 )
-      ) ) ) {
+     (this.props.provider.data == null || this.props.provider.data.length == 0)
+      ))) {
       Alert.alert(
         'Find care',
        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
@@ -351,7 +351,7 @@ DoctorList.propTypes = {
 const mapStateToProps = (state) => {
   return {
     fetching: state.provider.fetching,
-    asyncfetching : state.provider.asyncfetching,
+    asyncfetching: state.provider.asyncfetching,
     error: state.provider.error,
     provider: state.provider.data,
     latitude: state.provider.latitude,

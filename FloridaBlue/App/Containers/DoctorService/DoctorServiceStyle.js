@@ -14,9 +14,9 @@ export default StyleSheet.create({
   backgroundImage: {
     flex: 0.5,
     alignSelf: 'flex-end',
-    //backgroundColor:Colors.transparent,
-    //marginRight:-50,
-    height: Platform.OS == 'ios' ? (Metrics.screenHeight - Metrics.screenHeight * 0.75) : (Metrics.screenHeight - Metrics.screenHeight * 0.76),
+    // backgroundColor:Colors.transparent,
+    // marginRight:-50,
+    height: Platform.OS == 'ios' ? (Metrics.screenHeight - Metrics.screenHeight * 0.75) : (Metrics.screenHeight - Metrics.screenHeight * 0.76)
      // width:Metrics.screenWidth - (Metrics.screenWidth * 0.88)
    // marginBottom:-Metrics.smallMargin * Metrics.screenHeight * 0.0001
   },
@@ -177,7 +177,7 @@ export default StyleSheet.create({
     paddingTop: Metrics.baseMargin,
     marginLeft: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.headerFont,
-    //marginRight:10,
+    // marginRight:10,
     fontWeight: '600'
 
   },
@@ -186,7 +186,7 @@ export default StyleSheet.create({
     color: Colors.flBlue.grey5,
     marginLeft: Metrics.doubleBaseMargin,
     fontFamily: Fonts.type.headerFont,
-    marginRight:30
+    marginRight: 30
 
   },
   h4_2: {

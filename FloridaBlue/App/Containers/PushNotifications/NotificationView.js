@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-
 import { AppRegistry, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView, Linking} from 'react-native'
-
 import axios from 'axios'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import NavItems from '../../Navigation/NavItems.js'

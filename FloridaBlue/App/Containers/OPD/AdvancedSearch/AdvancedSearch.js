@@ -99,7 +99,7 @@ class AdvancedSearch extends Component {
       searchFrom: this.props.navigatingFrom,
       diffLocation: false,
       homeLocation: false,
-      currentLocation : false
+      currentLocation: false
 
     }
     this._timeSelected = this._timeSelected.bind(this)
@@ -117,20 +117,19 @@ class AdvancedSearch extends Component {
     this._specialitySelected = this._specialitySelected.bind(this)
   }
 
-  _handleDoctordetail() {
-
-    if (this.props.networkCodeList  && this.props.networkCodeList.length > 0) {
-          if((this.props.member && this.props.member.visibilityRules && this.props.member.visibilityRules.isStateGroup
-            && (this.props.categoryCode == '07' || (this.props.subCategoryCode== '702' || this.props.subCategoryCode == '700'
-            || this.props.subCategoryCode == '701')))){
-                  Alert.alert(
+  _handleDoctordetail () {
+    if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
+      if ((this.props.member && this.props.member.visibilityRules && this.props.member.visibilityRules.isStateGroup
+            && (this.props.categoryCode == '07' || (this.props.subCategoryCode == '702' || this.props.subCategoryCode == '700'
+            || this.props.subCategoryCode == '701')))) {
+        Alert.alert(
                   'Find care',
                     'Not Available.',
-                  [
+          [
                     { text: 'OK' }
-                  ])
-              return
-        }
+          ])
+        return
+      }
       if (this.state.isDifferentLocationSelected) {
         if (this.state.diffLocation) {
           this.props.changeUrgentCareBanner(false)
@@ -144,7 +143,6 @@ class AdvancedSearch extends Component {
           alert('Please Enter Zip Code or City')
         }
       } else {
-
         this.props.changeUrgentCareBanner(false)
         if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
           this.props.attemptPharmacySearch(this.props)
@@ -154,12 +152,12 @@ class AdvancedSearch extends Component {
         NavigationActions.DoctorList()
       }
     } else {
-        Alert.alert(
+      Alert.alert(
           'Find care',
         'Oops! Looks like we\'re having trouble with your request. Please try again later.',
-          [
+        [
             { text: 'OK' }
-          ])
+        ])
     }
   }
 
@@ -215,7 +213,7 @@ class AdvancedSearch extends Component {
 
   _selectHomeLocation (event) {
     if (event.checked) {
-      this.setState({currentLocation : false});
+      this.setState({currentLocation: false})
       this.setState({homeLocation: true})
       this.setState({newLocationState: false})
       this.setState({isDifferentLocationSelected: false})
@@ -240,7 +238,7 @@ class AdvancedSearch extends Component {
           }
         })
       }
-      this.setState({currentLocation : true});
+      this.setState({currentLocation: true})
       this.setState({specialityState: true})
       this.setState({newLocationState: false})
       this.setState({isDifferentLocationSelected: false})
@@ -266,7 +264,7 @@ class AdvancedSearch extends Component {
       this.setState({isDifferentLocationSelected: true})
       this.setState({newLocationState: true})
       this.setState({homeLocation: false})
-      this.setState({currentLocation : false});
+      this.setState({currentLocation: false})
       this.props.changeLatitude(0)
       this.props.changeLongitude(0)
     }
@@ -300,7 +298,6 @@ class AdvancedSearch extends Component {
       this.props.changeGenderType('F')
     }
   }
-
 
   _resetState () {
     this.props.changeSubCategoryCode('')
@@ -400,13 +397,12 @@ class AdvancedSearch extends Component {
     if (this.props.categoryCode == '07' && selectedSubCategoryCode == '999' || selectedSubCategoryCode == '701') {
       this.props.changeSubCategoryCode(selectedSubCategoryCode)
       NavigationActions.ProviderTypeInfo()
-    } else
-    {
-    this.props.changeSubCategoryCode(selectedSubCategoryCode)
-    this.props.changeAdvancedSpecialityType(value)
-    this.setState({specialityState: false}, function () {
-      this.setState({specialityState: true})
-    })
+    } else {
+      this.props.changeSubCategoryCode(selectedSubCategoryCode)
+      this.props.changeAdvancedSpecialityType(value)
+      this.setState({specialityState: false}, function () {
+        this.setState({specialityState: true})
+      })
     }
   }
 
@@ -459,383 +455,383 @@ class AdvancedSearch extends Component {
 
         {this._renderHeader()}
         <ScrollView style={{ flex: 1, marginBottom: 20 }}>
-          <View style={{flex:1}}>
-          <View style={styles.careView}>
+          <View style={{flex: 1}}>
+            <View style={styles.careView}>
 
-            <MKTextField
-              ref='providerName'
-              style={styles.careTextField}
-              textInputStyle={{
-                flex: 1, color: Colors.flBlue.ocean,
-                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-              }}
-              keyboardType='default'
-              returnKeyType='next'
-              autoCapitalize='none'
-              autoCorrect={false}
-              underlineColorAndroid={Colors.coal}
-              placeholder={I18n.t('providerPlaceholder')}
-              placeholderTextColor={Colors.steel}
-              tintColor={Colors.black}
-              onChangeText={this.props.changeProviderName}
-              />
-
-            <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
-                ref='careType'
+                ref='providerName'
+                style={styles.careTextField}
                 textInputStyle={{
                   flex: 1, color: Colors.flBlue.ocean,
                   fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                 }}
-                style={styles.careTextField}
-                editable={false}
+                keyboardType='default'
+                returnKeyType='next'
+                autoCapitalize='none'
+                autoCorrect={false}
                 underlineColorAndroid={Colors.coal}
-                placeholder={I18n.t('careTypePlaceholder')}
+                placeholder={I18n.t('providerPlaceholder')}
                 placeholderTextColor={Colors.steel}
                 tintColor={Colors.black}
-                value={this.props.careType}
-                />
-            </ModalDropdown>
-            <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
+                onChangeText={this.props.changeProviderName}
+              />
 
-            <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
-              <ModalDropdown options={_.map(this.props.advancedPlanSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected}
-              dropdownStyle={{
-                //height:33*_.map(this.props.planSubCategoryList, 'subCategoryName').length,
-              width: Metrics.screenWidth * 0.9,
-              marginLeft: Metrics.doubleBaseMargin}}
-              renderRow={this._renderDropdownRow.bind(this)}>
+              <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                 <MKTextField
-                  ref='advancedSpecialityType'
-                  style={styles.careTextField}
+                  ref='careType'
                   textInputStyle={{
                     flex: 1, color: Colors.flBlue.ocean,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                   }}
+                  style={styles.careTextField}
                   editable={false}
                   underlineColorAndroid={Colors.coal}
-                  placeholder={I18n.t('specialityTypePlaceholder')}
+                  placeholder={I18n.t('careTypePlaceholder')}
                   placeholderTextColor={Colors.steel}
                   tintColor={Colors.black}
-                  value={this.props.advancedSpecialityType}
+                  value={this.props.careType}
                 />
               </ModalDropdown>
-              <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
-            </HideableView>
-          </View>
+              <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
 
-          <View style={styles.locationView}>
-            <View style={{flex:1}}>
-              <Text style={styles.h1}>Change Location:</Text>
+              <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
+                <ModalDropdown options={_.map(this.props.advancedPlanSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected}
+                  dropdownStyle={{
+                // height:33*_.map(this.props.planSubCategoryList, 'subCategoryName').length,
+                    width: Metrics.screenWidth * 0.9,
+                    marginLeft: Metrics.doubleBaseMargin}}
+                  renderRow={this._renderDropdownRow.bind(this)}>
+                  <MKTextField
+                    ref='advancedSpecialityType'
+                    style={styles.careTextField}
+                    textInputStyle={{
+                      flex: 1, color: Colors.flBlue.ocean,
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                    }}
+                    editable={false}
+                    underlineColorAndroid={Colors.coal}
+                    placeholder={I18n.t('specialityTypePlaceholder')}
+                    placeholderTextColor={Colors.steel}
+                    tintColor={Colors.black}
+                    value={this.props.advancedSpecialityType}
+                />
+                </ModalDropdown>
+                <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
+              </HideableView>
             </View>
 
-            <View style={styles.radioView}>
-              <View style={{flex:0.15}}>
-              <MKRadioButton ref='currentLocation' style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} group={this.radioGroup} onCheckedChange={this._selectCurrentLocation} />
-              </View>  
-              <View style={{width: Metrics.screenWidth, flex:0.85}}>
-                <TouchableOpacity style={{width: Metrics.screenWidth, flex:1}} onPress={() => { if (!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle() }}>
-                  <Text style={styles.radioText} >Current Location</Text>
-                </TouchableOpacity>
+            <View style={styles.locationView}>
+              <View style={{flex: 1}}>
+                <Text style={styles.h1}>Change Location:</Text>
               </View>
 
-            </View>
+              <View style={styles.radioView}>
+                <View style={{flex: 0.15}}>
+                  <MKRadioButton ref='currentLocation' style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                    width: Metrics.section * Metrics.screenWidth * 0.0025,
+                    borderRadius: Metrics.section}} group={this.radioGroup} onCheckedChange={this._selectCurrentLocation} />
+                </View>
+                <View style={{width: Metrics.screenWidth, flex: 0.85}}>
+                  <TouchableOpacity style={{width: Metrics.screenWidth, flex: 1}} onPress={() => { if (!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle() }}>
+                    <Text style={styles.radioText} >Current Location</Text>
+                  </TouchableOpacity>
+                </View>
 
-            <View style={styles.radioView}>
-              <View style={{flex:0.15}}>
-              <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} ref='homeLocation' group={this.radioGroup} onCheckedChange={this._selectHomeLocation} />
-              </View>  
-              <View style={{width: Metrics.screenWidth, flex:0.85}}>
-                <TouchableOpacity style={{width: Metrics.screenWidth, flex:1}} onPress={() => { if (!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle() }}>
-                  <Text style={styles.radioText} >Home</Text>
-                  <View style={{ marginRight: Metrics.searchBarHeight * Metrics.screenWidth * 0.008, flex:1 }}>
-                    <Text style={styles.radioBottomText}>({this.props.homeAddress})</Text>
-                  </View>
-                </TouchableOpacity>
               </View>
-            </View>
 
-            <View style={styles.radioView}>
-              <View style={{flex:0.15}}>
-              <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} ref='differentLocation' group={this.radioGroup} onCheckedChange={this._selectDifferentLocation} />
+              <View style={styles.radioView}>
+                <View style={{flex: 0.15}}>
+                  <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                    width: Metrics.section * Metrics.screenWidth * 0.0025,
+                    borderRadius: Metrics.section}} ref='homeLocation' group={this.radioGroup} onCheckedChange={this._selectHomeLocation} />
+                </View>
+                <View style={{width: Metrics.screenWidth, flex: 0.85}}>
+                  <TouchableOpacity style={{width: Metrics.screenWidth, flex: 1}} onPress={() => { if (!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle() }}>
+                    <Text style={styles.radioText} >Home</Text>
+                    <View style={{ marginRight: Metrics.searchBarHeight * Metrics.screenWidth * 0.008, flex: 1 }}>
+                      <Text style={styles.radioBottomText}>({this.props.homeAddress})</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
               </View>
-              <View style={{width: Metrics.screenWidth, flex:0.85}}>
-                <TouchableOpacity style={{width: Metrics.screenWidth, flex:1}} onPress={() => { if (!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle() }}>
-                  <Text style={styles.radioText} >Different Location</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
 
-            <HideableView style={{ marginLeft: 15, marginTop: 10, flex:1 }} visible={this.state.newLocationState} removeWhenHidden>
-              <Text for='' style={styles.radioText}>{I18n.t('differentLocationMessage')}</Text>
-              <MKTextField
-                ref='newLocation'
-                textInputStyle={{flex: 1}}
-                editable
-                underlineColorAndroid={Colors.coal}
-                placeholderTextColor={Colors.steel}
-                tintColor={Colors.black}
-                onChangeText={(address) => this._addDiffLocation(address)}
+              <View style={styles.radioView}>
+                <View style={{flex: 0.15}}>
+                  <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                    width: Metrics.section * Metrics.screenWidth * 0.0025,
+                    borderRadius: Metrics.section}} ref='differentLocation' group={this.radioGroup} onCheckedChange={this._selectDifferentLocation} />
+                </View>
+                <View style={{width: Metrics.screenWidth, flex: 0.85}}>
+                  <TouchableOpacity style={{width: Metrics.screenWidth, flex: 1}} onPress={() => { if (!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle() }}>
+                    <Text style={styles.radioText} >Different Location</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              <HideableView style={{ marginLeft: 15, marginTop: 10, flex: 1 }} visible={this.state.newLocationState} removeWhenHidden>
+                <Text for='' style={styles.radioText}>{I18n.t('differentLocationMessage')}</Text>
+                <MKTextField
+                  ref='newLocation'
+                  textInputStyle={{flex: 1}}
+                  editable
+                  underlineColorAndroid={Colors.coal}
+                  placeholderTextColor={Colors.steel}
+                  tintColor={Colors.black}
+                  onChangeText={(address) => this._addDiffLocation(address)}
 
               />
-            </HideableView>
+              </HideableView>
 
-            <View style={{ marginLeft: 15, marginTop: 10, flex:1 }}>
-              <Text style={styles.searchText}> Search Distance:</Text>
-              <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular,
-                color: Colors.flBlue.anvil }}>{this.props.searchRange} mi</Text>
-              <Slider
-                value={this.props.searchRange}
-                minimumValue={0}
-                maximumValue={100}
-                step={1}
-                maximumTrackTintColor={(Platform.OS === 'ios') ? Colors.flBlue.anvil : Colors.flBlue.ocean}
-                minimumTrackTintColor={(Platform.OS === 'ios') ? Colors.flBlue.ocean : Colors.flBlue.night}
-                style={{ width: Metrics.screenWidth * 0.87,
-                  marginLeft: 10,
-                  backgroundColor: Colors.snow
-                }}
-                //onValueChange={this.props.changeSearchRange}
-                onSlidingComplete = { this.props.changeSearchRange }
+              <View style={{ marginLeft: 15, marginTop: 10, flex: 1 }}>
+                <Text style={styles.searchText}> Search Distance:</Text>
+                <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular,
+                  color: Colors.flBlue.anvil }}>{this.props.searchRange} mi</Text>
+                <Slider
+                  value={this.props.searchRange}
+                  minimumValue={0}
+                  maximumValue={100}
+                  step={1}
+                  maximumTrackTintColor={(Platform.OS === 'ios') ? Colors.flBlue.anvil : Colors.flBlue.ocean}
+                  minimumTrackTintColor={(Platform.OS === 'ios') ? Colors.flBlue.ocean : Colors.flBlue.night}
+                  style={{ width: Metrics.screenWidth * 0.87,
+                    marginLeft: 10,
+                    backgroundColor: Colors.snow
+                  }}
+                // onValueChange={this.props.changeSearchRange}
+                  onSlidingComplete={this.props.changeSearchRange}
               />
+              </View>
             </View>
-          </View>
 
-          <View style={styles.genderView}>
-            {
+            <View style={styles.genderView}>
+              {
                 this.props.configData != undefined && this.props.configData.gender != undefined ?
                   <Text style={styles.doctorTextStyle}>
                     {this.props.configData.gender.displayName}:
              </Text> : null}
-             <View style={{flex:1}}>
-            <View style={{ flexDirection: 'row', marginLeft: 20, flex:0.3}}>
-              <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                width: Metrics.section * Metrics.screenWidth * 0.0025,
-                borderRadius: Metrics.section}} checked group={this.genderGroup} onCheckedChange={this._anyGenderSelected} />       
-                <Text style={styles.genderText}>Any</Text>
-              <View style={{flexDirection: 'row', marginLeft: 20, flex:0.3}}>
-                <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                  width: Metrics.section * Metrics.screenWidth * 0.0025,
-                  borderRadius: Metrics.section}} checked={false} group={this.genderGroup} onCheckedChange={this._maleGenderSelected} />
-                <Text style={styles.genderText}>Male</Text>
-              </View>
+              <View style={{flex: 1}}>
+                <View style={{ flexDirection: 'row', marginLeft: 20, flex: 0.3}}>
+                  <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                    width: Metrics.section * Metrics.screenWidth * 0.0025,
+                    borderRadius: Metrics.section}} checked group={this.genderGroup} onCheckedChange={this._anyGenderSelected} />
+                  <Text style={styles.genderText}>Any</Text>
+                  <View style={{flexDirection: 'row', marginLeft: 20, flex: 0.3}}>
+                    <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                      width: Metrics.section * Metrics.screenWidth * 0.0025,
+                      borderRadius: Metrics.section}} checked={false} group={this.genderGroup} onCheckedChange={this._maleGenderSelected} />
+                    <Text style={styles.genderText}>Male</Text>
+                  </View>
 
-              <View style={{flexDirection: 'row', marginLeft: 20, flex:0.4}}>
-                <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
-                  width: Metrics.section * Metrics.screenWidth * 0.0025,
-                  borderRadius: Metrics.section}} checked={false} group={this.genderGroup} onCheckedChange={this._femaleGenderSelected} />
-                <Text style={styles.genderText}>Female</Text>
-              </View>
+                  <View style={{flexDirection: 'row', marginLeft: 20, flex: 0.4}}>
+                    <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
+                      width: Metrics.section * Metrics.screenWidth * 0.0025,
+                      borderRadius: Metrics.section}} checked={false} group={this.genderGroup} onCheckedChange={this._femaleGenderSelected} />
+                    <Text style={styles.genderText}>Female</Text>
+                  </View>
+                </View>
               </View>
             </View>
-          </View>
 
-          {this.props.configData && this.props.configData.acceptingPatient ?
-            <View style={styles.programView}>
-              <View style={{ flex: 0.4 }}>
+            {this.props.configData && this.props.configData.acceptingPatient ?
+              <View style={styles.programView}>
+                <View style={{ flex: 0.4 }}>
 
-                <Text style={styles.programText}>
-                  {this.props.configData.acceptingPatient.displayName}
+                  <Text style={styles.programText}>
+                    {this.props.configData.acceptingPatient.displayName}
 
-                </Text>
-              </View>
+                  </Text>
+                </View>
 
-              <View style={{ flex: 0.6, marginTop: 15, marginLeft: 15 }}>
+                <View style={{ flex: 0.6, marginTop: 15, marginLeft: 15 }}>
 
-                <ModalDropdown
-                  dropdownStyle={styles.dropdown1}
-                  options={this.props.configData != undefined && this.props.configData.acceptingPatient != undefined ?
+                  <ModalDropdown
+                    dropdownStyle={styles.dropdown1}
+                    options={this.props.configData != undefined && this.props.configData.acceptingPatient != undefined ?
                   _.map(this.props.configData.acceptingPatient.acceptPatientList, 'patientPreference') : null}
-                  renderRow={this._renderDropdownRow.bind(this)}
-                  onSelect={this._patientTypeSelected}>
+                    renderRow={this._renderDropdownRow.bind(this)}
+                    onSelect={this._patientTypeSelected}>
 
-                  <MKTextField
-                    ref='patientType'
-                    style={styles.textField}
-                    textInputStyle={{
-                      flex: 1,
-                      color: Colors.flBlue.ocean,
-                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                    }}
-                    editable={false}
-                    underlineColorAndroid={Colors.coal}
-                    placeholder='No Preference'
+                    <MKTextField
+                      ref='patientType'
+                      style={styles.textField}
+                      textInputStyle={{
+                        flex: 1,
+                        color: Colors.flBlue.ocean,
+                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                      }}
+                      editable={false}
+                      underlineColorAndroid={Colors.coal}
+                      placeholder='No Preference'
                   // placeholder={this.state.acceptingPatientsIndicator}
-                    placeholderTextColor={Colors.flBlue.ocean}
-                    tintColor={Colors.black}
-                    value={this.props.acceptingPatientsIndicator.selectedPatientLabel}
+                      placeholderTextColor={Colors.flBlue.ocean}
+                      tintColor={Colors.black}
+                      value={this.props.acceptingPatientsIndicator.selectedPatientLabel}
                 />
 
-                </ModalDropdown>
+                  </ModalDropdown>
+                </View>
               </View>
-            </View>
           : null}
 
-          {this.props.configData && this.props.configData.workingHours ?
-            <View style={styles.programView}>
-              <View style={{ flex: 0.4 }}>
-                <Text style={styles.programText}>
-                  {this.props.configData.workingHours.displayName}
-                </Text>
+            {this.props.configData && this.props.configData.workingHours ?
+              <View style={styles.programView}>
+                <View style={{ flex: 0.4 }}>
+                  <Text style={styles.programText}>
+                    {this.props.configData.workingHours.displayName}
+                  </Text>
 
-              </View>
+                </View>
 
-              <View style={{ flex: 0.6, marginTop: 10, marginLeft: 15 }}>
+                <View style={{ flex: 0.6, marginTop: 10, marginLeft: 15 }}>
 
-                <ModalDropdown dropdownStyle={styles.dropdown1}
-                  onSelect={this._timeSelected}
-                  options={this.props.configData != undefined && this.props.configData.workingHours != undefined ?
+                  <ModalDropdown dropdownStyle={styles.dropdown1}
+                    onSelect={this._timeSelected}
+                    options={this.props.configData != undefined && this.props.configData.workingHours != undefined ?
                   _.map(this.props.configData.workingHours.workHoursList, 'hours') : null}
-                  renderRow={this._renderDropdownRow.bind(this)} >
+                    renderRow={this._renderDropdownRow.bind(this)} >
 
-                  <MKTextField
-                    ref='Working Hours'
-                    textInputStyle={{
-                      flex: 1, color: Colors.flBlue.ocean,
+                    <MKTextField
+                      ref='Working Hours'
+                      textInputStyle={{
+                        flex: 1, color: Colors.flBlue.ocean,
                     // marginLeft:100,
-                      marginRight: -100,
-                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                    }}
-                    style={styles.textField}
-                    editable={false}
-                    underlineColorAndroid={Colors.coal}
-                    placeholder='No Preference'
-                    placeholderTextColor={Colors.flBlue.ocean}
-                    tintColor={Colors.black}
-                    value={this.props.officeHours.selectedTimeLabel}
+                        marginRight: -100,
+                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                      }}
+                      style={styles.textField}
+                      editable={false}
+                      underlineColorAndroid={Colors.coal}
+                      placeholder='No Preference'
+                      placeholderTextColor={Colors.flBlue.ocean}
+                      tintColor={Colors.black}
+                      value={this.props.officeHours.selectedTimeLabel}
                 />
-                </ModalDropdown>
+                  </ModalDropdown>
+
+                </View>
 
               </View>
-
-            </View>
            : null}
-          <View style={styles.languageView}>
-            <Text style={styles.languageText}>
+            <View style={styles.languageView}>
+              <Text style={styles.languageText}>
               Language Selection
             </Text>
 
-            <View style={styles.dropDownView}>
-              <View style={{ flex: 0.4 }}>
+              <View style={styles.dropDownView}>
+                <View style={{ flex: 0.4 }}>
 
-                <Text style={styles.dropDownText}>
+                  <Text style={styles.dropDownText}>
                   Doctor Speaks
             </Text>
-              </View>
-              <View style={{ flex: 0.6, marginTop: 5 }}>
+                </View>
+                <View style={{ flex: 0.6, marginTop: 5 }}>
 
-                <ModalDropdown dropdownStyle={styles.languagedropdown}
-                  onSelect={this._doctorLanguageSelected}
-                  options={this.props.providerLanguage != undefined ?
+                  <ModalDropdown dropdownStyle={styles.languagedropdown}
+                    onSelect={this._doctorLanguageSelected}
+                    options={this.props.providerLanguage != undefined ?
                     _.map(this.props.providerLanguages, 'label') : null}
-                  renderRow={this._renderDropdownRow.bind(this)} >
+                    renderRow={this._renderDropdownRow.bind(this)} >
 
-                  <MKTextField
-                    textInputStyle={{
-                      flex: 1, color: Colors.flBlue.ocean,
-                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                    }}
-                    style={styles.languageTextField}
-                    editable={false}
-                    underlineColorAndroid={Colors.coal}
-                    placeholder='No Preference'
-                    placeholderTextColor={Colors.flBlue.ocean}
-                    tintColor={Colors.black}
-                    value={this.props.providerLanguage.selectedDoctorLabel}
+                    <MKTextField
+                      textInputStyle={{
+                        flex: 1, color: Colors.flBlue.ocean,
+                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                      }}
+                      style={styles.languageTextField}
+                      editable={false}
+                      underlineColorAndroid={Colors.coal}
+                      placeholder='No Preference'
+                      placeholderTextColor={Colors.flBlue.ocean}
+                      tintColor={Colors.black}
+                      value={this.props.providerLanguage.selectedDoctorLabel}
                   />
-                </ModalDropdown>
+                  </ModalDropdown>
+                </View>
               </View>
-            </View>
 
-            <View style={styles.dropDownView}>
-              <View style={{ flex: 0.4 }}>
-                <Text style={styles.dropDownText}>
+              <View style={styles.dropDownView}>
+                <View style={{ flex: 0.4 }}>
+                  <Text style={styles.dropDownText}>
                   Staff Speaks
                   </Text>
-              </View>
+                </View>
 
-              <View style={{ flex: 0.6, marginTop: 5 }}>
-                <ModalDropdown dropdownStyle={styles.languagedropdown}
-                  onSelect={this._staffLanguageSelected}
-                  options={
+                <View style={{ flex: 0.6, marginTop: 5 }}>
+                  <ModalDropdown dropdownStyle={styles.languagedropdown}
+                    onSelect={this._staffLanguageSelected}
+                    options={
                     _.map(this.props.staffLanguages, 'label')}
-                  renderRow={this._renderDropdownRow.bind(this)} >
+                    renderRow={this._renderDropdownRow.bind(this)} >
 
-                  <MKTextField
-                    textInputStyle={{
-                      flex: 1, color: Colors.flBlue.ocean,
-                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                    }}
-                    style={styles.languageTextField}
-                    editable={false}
-                    underlineColorAndroid={Colors.coal}
-                    placeholder='No Preference'
-                    placeholderTextColor={Colors.flBlue.ocean}
-                    tintColor={Colors.black}
-                    value={this.props.staffLanguage.selectedStaffLabel}
+                    <MKTextField
+                      textInputStyle={{
+                        flex: 1, color: Colors.flBlue.ocean,
+                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                      }}
+                      style={styles.languageTextField}
+                      editable={false}
+                      underlineColorAndroid={Colors.coal}
+                      placeholder='No Preference'
+                      placeholderTextColor={Colors.flBlue.ocean}
+                      tintColor={Colors.black}
+                      value={this.props.staffLanguage.selectedStaffLabel}
                   />
-                </ModalDropdown>
+                  </ModalDropdown>
+                </View>
               </View>
+
             </View>
+            {this.props.configData && this.props.configData.program ?
+              <View style={styles.programView}>
+                <View style={{ flex: 0.3 }}>
 
-          </View>
-          {this.props.configData && this.props.configData.program ?
-            <View style={styles.programView}>
-              <View style={{ flex: 0.3 }}>
+                  <Text style={styles.programText}>
+                    {this.props.configData.program.displayName}
+                  </Text>
 
-                <Text style={styles.programText}>
-                  {this.props.configData.program.displayName}
-                </Text>
+                </View>
 
-              </View>
-
-              <View style={{ flex: 0.7, marginTop: 5 }}>
-                <ModalDropdown dropdownStyle={styles.programdropdown}
-                  onSelect={this._programSelected}
-                  options={this.props.configData != undefined && this.props.configData.program != undefined ?
+                <View style={{ flex: 0.7, marginTop: 5 }}>
+                  <ModalDropdown dropdownStyle={styles.programdropdown}
+                    onSelect={this._programSelected}
+                    options={this.props.configData != undefined && this.props.configData.program != undefined ?
                   _.map(this.props.configData.program.programList, 'programName') : null}
-                  renderRow={this._renderDropdownRow.bind(this)} >
+                    renderRow={this._renderDropdownRow.bind(this)} >
 
-                  <MKTextField
-                    textInputStyle={{
-                      flex: 1, color: Colors.flBlue.ocean,
-                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
-                    }}
-                    style={styles.programtextField}
-                    editable={false}
-                    underlineColorAndroid={Colors.coal}
-                    placeholder='No Preference'
-                    placeholderTextColor={Colors.flBlue.ocean}
-                    placeholderTextSize={Fonts.size.h2}
-                    tintColor={Colors.black}
-                    value={this.props.programsList.selectedProgramLabel}
+                    <MKTextField
+                      textInputStyle={{
+                        flex: 1, color: Colors.flBlue.ocean,
+                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
+                      }}
+                      style={styles.programtextField}
+                      editable={false}
+                      underlineColorAndroid={Colors.coal}
+                      placeholder='No Preference'
+                      placeholderTextColor={Colors.flBlue.ocean}
+                      placeholderTextSize={Fonts.size.h2}
+                      tintColor={Colors.black}
+                      value={this.props.programsList.selectedProgramLabel}
 
                 />
-                </ModalDropdown>
+                  </ModalDropdown>
 
+                </View>
               </View>
-            </View>
           : null}
-         
-          <View style={styles.nextButton}>
-            <TouchableOpacity onPress={() => { this._handleDoctordetail() }}>
-              <Image source={Images.getResultsButton}
-                style={{
-                  flex:1,
-                  width: Metrics.screenWidth * 0.4,
-                  borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                  height: Metrics.screenHeight * 0.06
 
-                }} />
-            </TouchableOpacity>
+            <View style={styles.nextButton}>
+              <TouchableOpacity onPress={() => { this._handleDoctordetail() }}>
+                <Image source={Images.getResultsButton}
+                  style={{
+                    flex: 1,
+                    width: Metrics.screenWidth * 0.4,
+                    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
+                    height: Metrics.screenHeight * 0.06
+
+                  }} />
+              </TouchableOpacity>
+            </View>
           </View>
-         </View>
         </ScrollView>
       </View>
     )
@@ -917,7 +913,7 @@ const mapDispatchToProps = (dispatch) => {
     changeCareType: (careType) => dispatch(ProviderActions.changeCareType(careType)),
     changeAdvancedSpecialityType: (advancedSpecialityType) => dispatch(ProviderActions.changeAdvancedSpecialityType(advancedSpecialityType)),
     changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner)),
-    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus)),
+    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus))
   }
 }
 

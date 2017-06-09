@@ -42,6 +42,6 @@ export default StyleSheet.create({
   touchStatusSwitch: {
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
-    marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.0030,
+    marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.0030
   }
 })

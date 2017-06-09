@@ -105,7 +105,6 @@ class ProviderTypeInfo extends React.Component {
               {this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[0] &&
                 this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[0].description.map((providerType, index) => this._renderProviderSpeciality(providerType, index))}
 
-
               <View style={styles.row}>
                 <Text style={styles.heading}>{this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[1].title}</Text>
               </View>

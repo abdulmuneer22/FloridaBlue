@@ -17,9 +17,8 @@ import {
   BackAndroid
 } from 'react-native'
 
-
 import { Card } from 'native-base'
-//import NotificationCard from './Components/NotificationCard'
+// import NotificationCard from './Components/NotificationCard'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import styles from './PushNotificationsStyle'
 import NavItems from '../../Navigation/NavItems.js'
@@ -29,9 +28,8 @@ import Flb from '../../Themes/FlbIcon'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 const window = Dimensions.get('window')
 import LinearGradient from 'react-native-linear-gradient'
-import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-
+import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const theme = getTheme()
 
@@ -41,9 +39,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
 class PushNotifications extends Component {
 
-  constructor(props) {
-    super(props);
-    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+  constructor (props) {
+    super(props)
+    this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     this.state = {
       basic: true,
       listViewData: Array(1).fill('').map((_, i) => `item #${i}`),
@@ -55,18 +53,17 @@ class PushNotifications extends Component {
         description: 'You earned 10 points',
         saved: true
       }
-    };
+    }
   }
 
-
-  deleteRow(secId, rowId, rowMap) {
-    rowMap[`${secId}${rowId}`].closeRow();
-    const newData = [...this.state.listViewData];
-    newData.splice(rowId, 1);
-    this.setState({ listViewData: newData });
+  deleteRow (secId, rowId, rowMap) {
+    rowMap[`${secId}${rowId}`].closeRow()
+    const newData = [...this.state.listViewData]
+    newData.splice(rowId, 1)
+    this.setState({ listViewData: newData })
   }
 
-  _renderHeader() {
+  _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
       {NavItems.backButton()}
       <Text style={styles.headerTextStyle}>Notifications</Text>
@@ -75,8 +72,7 @@ class PushNotifications extends Component {
     </Image>)
   }
 
-
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
@@ -89,7 +85,7 @@ class PushNotifications extends Component {
                 <View style={{ flex: 1, marginTop: 10 }}>
                   <View style={{ flexDirection: 'row', marginLeft: 20, marginTop: 10, alignItems: 'center', flex: 1 }}>
 
-                    <Flb name="talk-chat" size={Metrics.icons.small * Metrics.screenWidth * 0.002} />
+                    <Flb name='talk-chat' size={Metrics.icons.small * Metrics.screenWidth * 0.002} />
 
                     <Text style={{
                       color: Colors.flBlue.anvil,
@@ -106,7 +102,7 @@ class PushNotifications extends Component {
                     }}>· {this.state.messageInfo.time} min. ago
                       </Text>
 
-                    <Flb name="chevron-down" style={{ marginLeft: 10 }} size={Metrics.icons.small * Metrics.screenWidth * 0.002} />
+                    <Flb name='chevron-down' style={{ marginLeft: 10 }} size={Metrics.icons.small * Metrics.screenWidth * 0.002} />
                   </View>
                   <View style={{ flex: 1 }}>
                     <View style={{
@@ -115,9 +111,8 @@ class PushNotifications extends Component {
                       marginRight: 10, flex: 1
                     }}>
 
-
                       <View style={{ marginLeft: 10, paddingTop: 5, flex: 0.2 }}>
-                        <Flb name="doctor-coin" size={Metrics.icons.large * Metrics.screenWidth * 0.0025} />
+                        <Flb name='doctor-coin' size={Metrics.icons.large * Metrics.screenWidth * 0.0025} />
                       </View>
 
                       <View style={{ flex: 0.8, marginRight: 10 }}>
@@ -147,15 +142,15 @@ class PushNotifications extends Component {
                       marginTop: 5,
                       // marginBottom:10,
                       backgroundColor: Colors.flBlue.sky
-                    }}  >
+                    }}>
 
                       <TouchableOpacity onPress={() => alert('Hello')}
                         style={{
                           flex: 1,
                           borderBottomLeftRadius: 10,
-                          marginBottom: 15,
+                          marginBottom: 15
                           // borderBottomRightRadi
-                          //height:35
+                          // height:35
                         }}>
 
                         <View style={{ flex: 1, marginTop: 10 }}>
@@ -169,7 +164,7 @@ class PushNotifications extends Component {
 
                             </View>
                             <View style={{ flex: 1 }}>
-                              <Flb name="chevron-right" style={{ marginLeft: 20 }}
+                              <Flb name='chevron-right' style={{ marginLeft: 20 }}
                                 size={Metrics.icons.small * Metrics.screenWidth * 0.002} />
                             </View>
                           </View>
@@ -179,7 +174,6 @@ class PushNotifications extends Component {
                     </View>
 
                   </View>
-
 
                 </View>
               </View>
@@ -196,12 +190,12 @@ class PushNotifications extends Component {
                   flex: 1,
                   borderRadius: 20,
                   backgroundColor: 'green',
-                  right: 0,
+                  right: 0
                 }} onPress={_ => this.deleteRow(secId, rowId, rowMap)} >
                   <View style={{
                     flex: 1, alignItems: 'flex-end',
-                    //bottom: 0,
-                    justifyContent: 'center',
+                    // bottom: 0,
+                    justifyContent: 'center'
                   }}>
                     <Text style={{
                       color: Colors.snow,
