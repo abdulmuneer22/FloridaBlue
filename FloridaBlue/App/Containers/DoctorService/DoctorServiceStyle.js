@@ -14,9 +14,15 @@ export default StyleSheet.create({
   backgroundImage: {
     flex: 0.5,
     alignSelf: 'flex-end',
+<<<<<<< HEAD
     // backgroundColor:Colors.transparent,
     // marginRight:-50,
     height: Platform.OS == 'ios' ? (Metrics.screenHeight - Metrics.screenHeight * 0.7) : (Metrics.screenHeight - Metrics.screenHeight * 0.76)
+=======
+    //backgroundColor:Colors.transparent,
+    //marginRight:-50,
+    height: Platform.OS == 'ios' ? (Metrics.screenHeight - Metrics.screenHeight * 0.75) : (Metrics.screenHeight - Metrics.screenHeight * 0.76),
+>>>>>>> 30dd4bc69c396258d82bb3d747a1f86726195738
      // width:Metrics.screenWidth - (Metrics.screenWidth * 0.88)
    // marginBottom:-Metrics.smallMargin * Metrics.screenHeight * 0.0001
   },
