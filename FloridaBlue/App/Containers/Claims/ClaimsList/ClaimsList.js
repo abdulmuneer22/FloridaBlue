@@ -12,7 +12,8 @@ import {
   Image, 
   TouchableWithoutFeedback, 
   ScrollView, 
-  Linking
+  Linking,
+  Platform
 } from 'react-native'
 
 import styles from './ClaimsStyle'
@@ -46,9 +47,16 @@ class ClaimsList extends Component {
   constructor (props) {
     super(props)
    this.state = {
-      
+      listLimit: 10,
+      totalNumberOfCardPerScreen: 10,
+      isFetchingMore: false,
+      loadingMore: true,
+      initialCount: 0,
+      finalCount: 0,
+      asynCall: true,
+      displayBannerInfo: false
     }
-    this.loadMore = this.loadMore.bind(this)
+    this.viewMore = this.viewMore.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleDatePicked = this.handleDatePicked.bind(this)
     this.hideDatePicker = this.hideDatePicker.bind(this)
@@ -82,7 +90,9 @@ class ClaimsList extends Component {
     )
   }
 
-  loadMore () {
+  
+
+  viewMore () {
     var currentLimit = this.state.listLimit
     var newLimit = currentLimit
     var numberOfCardsPerscreen = this.state.totalNumberOfCardPerScreen
@@ -96,6 +106,25 @@ class ClaimsList extends Component {
            this.setState({isFetchingMore : true});
            this.setState({totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 10});
     }
+  }
+
+  async claimsListRequest (newProps) {
+      if (newProps.claimsdata && newProps.claimsdata.length > 0) {
+        if (newProps.error == undefined || newProps.error == null) {
+            newProps.attemptClaimsList(newProps)
+            }
+          }
+        }
+      
+
+  componentWillReceiveProps (newProps) {
+     if (this.state.isFetchingMore) {
+        //this.props.attemptProviderSearch(newProps)
+        this.claimsListRequest(newProps);
+        this.setState({
+          isFetchingMore: false
+        });
+     }
   }
 
   handleSearch() {
@@ -135,7 +164,7 @@ class ClaimsList extends Component {
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>)
-      } else if (this.props.claimsSummaryData && this.props.claimsSummaryData &&  this.props.claimsSummaryData.claimsBreakDown && this.props.claimsSummaryData.claimsBreakDown.length !=0) {
+      } else if (this.props.claimsdata && this.props.claimsdata &&  this.props.claimsdata.data && this.props.claimsdata.data.length !=0) {
         return (
         <View style={styles.container}>
           <View>
@@ -174,6 +203,7 @@ class ClaimsList extends Component {
 
                       <ClaimsCard
                         data={this.props.claimsdata.data}
+                        cardLimit={this.state.listLimit}
                       />
 
 
@@ -181,10 +211,13 @@ class ClaimsList extends Component {
 
               {/*If 10+ Claims, Show More Button*/}
 
-              {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 10 ?
+            {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length >= 10
+                  && !(this.state.listLimit > this.props.claimsdata.data.length)
+                  && !(this.props.claimsdata.data.length == 300 && this.props.claimsdata.data.length == this.state.listLimit)
+                  ?
               <View style={{flex: 0, margin: 14}}>
-                <Text style={{textAlign: 'center', opacity: 0.6}}>Showing 10 out of {this.props.claimsdata.count} Claims</Text>
-                <TouchableOpacity>
+                <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit} out of {this.props.claimsdata.count} Claims</Text>
+                <TouchableOpacity onPress={this.viewMore}>
                   <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
                 </TouchableOpacity>
                 </View> : null }
@@ -243,100 +276,21 @@ class ClaimsList extends Component {
      console.log("claims list data" +this.props.claimsdata.data)
     return (
       <View style={styles.container}>
-        <View>
-          {this._renderHeader()}
-        </View>
-        <View style={{flex: 1}}>
-          <View style={{flex: .2}}>
-
-            <View style={{flex: .2, backgroundColor: 'white'}}>
-                <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, margin: 10}}>
-                  <Text style={{fontSize: 20, paddingLeft: 15, opacity: .9, color: Colors.flBlue.anvil}}>Claims List</Text>
-                  <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
-                    <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-                  </Button>
-                </View>
-            </View>
-
-            <View style={{margin:10, marginBottom: 15, paddingTop: 5}}>
-              <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginBottom: -15}}>
-                    <View style={{flex:0.27, alignItems:'center'}}>
-                      <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: .9, color: Colors.flBlue.anvil}}> Date</Text></TouchableOpacity>
-                    </View>
-                    <View style={{flex:0.33, alignItems:'center'}}>
-                      <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={{fontWeight: 'bold', color: Colors.flBlue.anvil}}> Member</Text></TouchableOpacity>
-                    </View>
-                    <View style={{flex:0.34, alignItems:'center'}}>
-                      <TouchableOpacity><Text style={{fontWeight: 'bold', color: Colors.flBlue.anvil}}> Providers</Text></TouchableOpacity>
-                    </View>
-              </View>
-            </View>
+        
             
              <View style={{flex:1}}>
-                {/*{
+                {
                   this._displayCondition()
-                }*/}
+                }
 
-                    <ClaimsCard
+                    {/*<ClaimsCard
                       data={this.props.claimsdata.data}
-                     />
+                     />*/}
 
 
              </View>
 
-             {/*If 10+ Claims, Show More Button*/}
-
-            {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 10 ?
-             <View style={{flex: 0, margin: 14}}>
-               <Text style={{textAlign: 'center', opacity: 0.6, color: Colors.flBlue.anvil}}>Showing 10 out of {this.props.claimsdata.count} Claims</Text>
-               <TouchableOpacity>
-                 <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
-               </TouchableOpacity>
-              </View> : null }
-
-
-          </View>
-        </View>
-        <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden={true} duration={200}>
-          <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearch}>
-            <Flb name="remove" size={20} />
-          </TouchableOpacity>
-          <Text style={styles.searchTitle}>Search for a claim by filling out the fields below:</Text>
-          <MKTextField
-            ref='providerName'
-            style={styles.textField}
-            textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-            editable={true}
-            underlineColorAndroid={Colors.coal}
-            placeholder={"Provider Name"}
-            placeholderTextColor={Colors.steel}
-            tintColor={Colors.black}
-          />
-          <ModalDropdown options={_.map(memberList, 'memberName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
-            <MKTextField
-              ref='careType'
-              textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-              style={styles.textField}
-              editable={false}
-              underlineColorAndroid={Colors.coal}
-              placeholder={"Member Name"}
-              placeholderTextColor={Colors.steel}
-              tintColor={Colors.black}
-              value={""}
-            />
-          </ModalDropdown>
-          <TouchableOpacity style={styles.startDateButton} onPress={this.showDatePicker}>
-            <Text>Start Date</Text>
-          </TouchableOpacity>
-          <DateTimePicker
-            isVisible={this.state.isDatePickerVisible}
-            onConfirm={this.handleDatePicked}
-            onCancel={this.hideDatePicker}
-          />
-          <Button rounded style={styles.searchButton} onPress={this.handleSearch}>
-            <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-          </Button>
-        </HideableView>
+             
       </View>
     )
   }

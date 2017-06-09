@@ -35,6 +35,9 @@ class ClaimsCard extends Component {
     super(props);
     this.formatDate = this.formatDate.bind(this);
     this.viewClaimsDetails = this.viewClaimsDetails.bind(this);
+    this.state = {
+      cardLimit: this.props.cardLimit
+    }
   }
 
     formatDate(date) {
@@ -45,6 +48,12 @@ class ClaimsCard extends Component {
     return month + '-' + day + '-' + year;
   }
 
+    componentWillReceiveProps (nextProps) {
+      if (nextProps.cardLimit) {
+        this.setState({cardLimit: nextProps.cardLimit})
+      }
+    }
+
     viewClaimsDetails(claimNumber){
     console.tron.log('claimNumber'+ claimNumber)
     this.props.attemptClaimDetail(claimNumber);
@@ -54,7 +63,6 @@ class ClaimsCard extends Component {
   render () {
 
 
-  
     return (
       // Header
       /*List View*/
@@ -66,7 +74,7 @@ class ClaimsCard extends Component {
                 {this.props.data !=undefined ? this.props.data
                                                               //.filter((value, i) => (i < 7))
                                                               .map((value, i)=>{
-                    
+                  if (i < this.state.cardLimit) {
                     return(
                       <View style={{}}>
                         <TouchableOpacity onPress={() => this.viewClaimsDetails(this.props.claimNumber)}>
@@ -92,7 +100,7 @@ class ClaimsCard extends Component {
                         </Card>
                         </TouchableOpacity>
                       </View>
-                      ) 
+                      )  }
 
                   }) : null}
 
@@ -105,7 +113,7 @@ class ClaimsCard extends Component {
 
       )
     }
-  }
+}
   
 
   
