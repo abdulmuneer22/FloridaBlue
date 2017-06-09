@@ -31,7 +31,7 @@ import { SecurityHint } from '../Containers/Registration/Containers/SecurityHint
 import { Confirmation} from '../Containers/Registration/Containers/Confirmation'
 // import { WelcomeDisplay} from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import { DashBoard} from '../Containers/WelcomeDisplay'
-import { NotificationView } from '../Containers/Notifications'
+import { NotificationView } from '../Containers/PushNotifications'
 import { MyPlanScreen} from '../Containers/MyPlan'
 import { BenefitsScreen} from '../Containers/Benefits'
 import { DoctorServices } from '../Containers/DoctorService'
@@ -94,7 +94,7 @@ class NavigationRouter extends Component {
             <Scene key='PushNotifications' component={PushNotifications} title='Push Notifications Page' hideNavBar />
             <Scene key='ClaimsList' component={ClaimsList} title='Claims Page' hideNavBar />
             <Scene key='ClaimDetail' component={ClaimDetail} title='Claims Page' hideNavBar />
-            <Scene  key='ClaimsSummary' component={ClaimsSummary} title='Claims Summary Page' hideNavBar />
+            <Scene key='ClaimsSummary' component={ClaimsSummary} title='Claims Summary Page' hideNavBar />
           </Scene>
         </Scene>
       </Router>
