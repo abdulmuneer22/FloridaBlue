@@ -32,8 +32,8 @@ class TouchTOU extends Component {
       if (status == 'SUCCESS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
-        this.props.handleChangeUserName("")
-        this.props.handleChangePassword("")
+        this.props.handleChangeUserName('')
+        this.props.handleChangePassword('')
         NavigationActions.WelcomeDashBoard()
       }
     })
@@ -46,8 +46,8 @@ class TouchTOU extends Component {
       if (authStatus == 'YES') {
         TouchManager.storeCredentials(this.props.username, this.props.password)
         this.props.changeCredentialStored(true)
-        this.props.handleChangeUserName("")
-        this.props.handleChangePassword("")
+        this.props.handleChangeUserName('')
+        this.props.handleChangePassword('')
         NavigationActions.WelcomeDashBoard()
       } else {
         var showError = true
@@ -84,8 +84,8 @@ class TouchTOU extends Component {
           if (status == 'SUCCESS') {
             this.props.changeTouchEnabled(false)
             this.props.changeCredentialStored(false)
-            this.props.handleChangeUserName("")
-            this.props.handleChangePassword("")
+            this.props.handleChangeUserName('')
+            this.props.handleChangePassword('')
             NavigationActions.WelcomeDashBoard()
           }
         })

@@ -23,14 +23,14 @@ const images = {
   findItButton: require('../Images/find-it-btn.png'),
   forms: require('../Images/forms.png'),
   hsaBg: require('../Images/hsa-graphic.png'),
-  //hsaHeader: require('../Images/hsa-hdr.png'),
+  // hsaHeader: require('../Images/hsa-hdr.png'),
   iAgree: require('../Images/agree-btn.png'),
   idCardBack: require('../Images/id-card-back.png'),
   idCardFront: require('../Images/id-card-front.png'),
   infoIcon: require('../Images/info-icon-gray.png'),
   errorPage: require('../Images/error-pg.png'),
   errorBackButton: require('../Images/error-go-back-btn.png'),
-  //loginButton: require('../Images/login-screen-login-btn-blue.png'),
+  // loginButton: require('../Images/login-screen-login-btn-blue.png'),
   loginButtonGreen: require('../Images/login-btn-green.png'),
   loginLogo: require('../Images/login-logo.png'),
  // loginNowButton: require('../Images/login-now-btn-dk-blue.png'),
@@ -69,7 +69,13 @@ const images = {
   findCare: require('../Images/care-finder.png'),
   eventscalendar: require('../Images/events.png'),
   rxtool: require('../Images/rx-tool.png'),
-  findretailcenter: require('../Images/retail-center.png')
+  findretailcenter: require('../Images/retail-center.png'),
+  cliamlistbutton: require('../Images/back-to-list-btn.png'),
+  claimdetailheaderred: require('../Images/detail-hdr-bkgrd-red.png'),
+  claimdetailheaderyellow: require('../Images/detail-hdr-bkgrd-yellow.png'),
+  claimdetailheaderblue: require('../Images/detail-hdr-bkgrd-teal.png'),
+  claimlistsearch: require('../Images/search-btn-small.png'),
+  datesearch: require('../Images/search-btn-large.png'),
 }
 
 export default images

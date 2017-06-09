@@ -82,7 +82,7 @@ export function * sendCareTypeRequest (api, {member}) {
   if (response.ok) {
     var data = response.data
     if (member && member.visibilityRules && member.visibilityRules.isStateGroup) {
-      data.data.planCategoryList.splice(3,1)
+      data.data.planCategoryList.splice(3, 1)
     }
     yield put(ProviderActions.sendCareTypeSuccess(data))
   } else {
