@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-
 import {
   AppRegistry,
   StyleSheet,
@@ -12,13 +11,15 @@ import {
   Image,
   TouchableWithoutFeedback,
   ScrollView,
-  Linking
+  Linking,
+  Alert
 } from 'react-native'
 
 import styles from './ClaimsStyle'
 import ClaimsCard from './Components/ClaimsCard'
 import axios from 'axios'
 import ClaimsListActions from '../../../Redux/ClaimsListRedux'
+import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -35,24 +36,35 @@ import ModalDropdown from 'react-native-modal-dropdown'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
 const window = Dimensions.get('window')
-
-const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
+let memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
+let moment = require('moment');
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
 class ClaimsList extends Component {
+  //const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
   constructor (props) {
     super(props)
     this.state = {
-
+      listLimit: 10,
+      totalNumberOfCardPerScreen: 10,
+      isFetchingMore: false,
+      loadingMore: true,
+      initialCount: 0,
+      finalCount: 0,
+      displayBannerInfo: false,
+      searchVisible: false,
+      endDateSelected: false
     }
     this.loadMore = this.loadMore.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleDatePicked = this.handleDatePicked.bind(this)
     this.hideDatePicker = this.hideDatePicker.bind(this)
-    this.showDatePicker = this.showDatePicker.bind(this)
+    this.addStartDate = this.addStartDate.bind(this)
+    this.addEndDate = this.addEndDate.bind(this)
+    this.memberSelected = this.memberSelected.bind(this)
   }
 
   viewClaimsList () {
@@ -75,6 +87,7 @@ class ClaimsList extends Component {
   }
 
   _renderDropdownRow (rowData, rowID, highlighted) {
+    console.tron.log(rowData)
     return (
       <TouchableHighlight underlayColor={Colors.snow}>
         <Text style={styles.dropdownItem}>{rowData}</Text>
@@ -106,137 +119,83 @@ class ClaimsList extends Component {
     }
   }
 
-  showDatePicker () {
-    this.setState({isDatePickerVisible: true})
-  }
-
   hideDatePicker () {
     this.setState({isDatePickerVisible: false})
   }
 
-  handleDatePicked (date) {
-    this.setState({isDatePickerVisible: false})
-    console.tron.log(date)
+  addStartDate() {
+    this.setState({endDateSelected: false})
+    this.props.changeDatePickerVisible(true)
   }
 
-  componentDidMount () {
-    console.tron.log('I am Claims List screen')
-    this.props.attemptClaimsList(this.props)
+  addEndDate() {
+    this.setState({endDateSelected: true})
+    this.props.changeDatePickerVisible(true)
   }
 
-  _displayCondition () {
-    const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
-    const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
-    console.tron.log(this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length + ' this.props.claimsdata.data' + JSON.stringify(this.props.claimsdata))
-    console.tron.log('this.props.fetching' + this.props.fetching)
-    if (this.props.fetching) {
-      return (
-        <View style={styles.spinnerView}>
-          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>)
-    } else if (this.props.claimsSummaryData && this.props.claimsSummaryData && this.props.claimsSummaryData.claimsBreakDown && this.props.claimsSummaryData.claimsBreakDown.length != 0) {
-      return (
-        <View style={styles.container}>
-          <View>
-            {this._renderHeader()}
-          </View>
-          <View style={{flex: 1}}>
-            <View style={{flex: 0.2}}>
+  hideDatePicker() {
+    this.props.changeDatePickerVisible(false)
+  }
 
-              <View style={{flex: 0.2, backgroundColor: 'white'}}>
-                <View style={{flex: 0.1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, margin: 10}}>
-                  <Text style={{fontSize: 20, paddingLeft: 15, opacity: 0.9}}>Claims List</Text>
-                  <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
-                    <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-                  </Button>
-                </View>
-              </View>
+  handleDatePicked(date) {
+    this.hideDatePicker()
+    let selectedDate = moment(date).format('MMM Do YYYY')
 
-              <View style={{margin: 10, marginBottom: 15, paddingTop: 5}}>
-                <View style={{flex: 0, flexDirection: 'row', justifyContent: 'flex-start', marginBottom: -15}}>
-                  <View style={{flex: 0.27, alignItems: 'center'}}>
-                    <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: 0.9}}> Date</Text></TouchableOpacity>
-                  </View>
-                  <View style={{flex: 0.33, alignItems: 'center'}}>
-                    <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={{fontWeight: 'bold'}}> Member</Text></TouchableOpacity>
-                  </View>
-                  <View style={{flex: 0.34, alignItems: 'center'}}>
-                    <TouchableOpacity><Text style={{fontWeight: 'bold'}}> Providers</Text></TouchableOpacity>
-                  </View>
-                </View>
-              </View>
-
-              <View style={{flex: 1}}>
-                {/* {
-                    this._displayCondition()
-                  } */}
-
-                <ClaimsCard
-                  data={this.props.claimsdata.data}
-                      />
-
-              </View>
-
-              {/* If 10+ Claims, Show More Button */}
-
-              {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 10 ?
-                <View style={{flex: 0, margin: 14}}>
-                  <Text style={{textAlign: 'center', opacity: 0.6}}>Showing 10 out of {this.props.claimsdata.count} Claims</Text>
-                  <TouchableOpacity>
-                    <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name='chevron-down' /></Text>
-                  </TouchableOpacity>
-                </View> : null }
-
-            </View>
-          </View>
-          <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
-            <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearch}>
-              <Flb name='remove' size={20} />
-            </TouchableOpacity>
-            <Text style={styles.searchTitle}>Search for a claim by filling out the fields below:</Text>
-            <MKTextField
-              ref='providerName'
-              style={styles.textField}
-              textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-              editable
-              underlineColorAndroid={Colors.coal}
-              placeholder={'Provider Name'}
-              placeholderTextColor={Colors.steel}
-              tintColor={Colors.black}
-            />
-            <ModalDropdown options={_.map(memberList, 'memberName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
-              <MKTextField
-                ref='careType'
-                textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                style={styles.textField}
-                editable={false}
-                underlineColorAndroid={Colors.coal}
-                placeholder={'Member Name'}
-                placeholderTextColor={Colors.steel}
-                tintColor={Colors.black}
-                value={''}
-              />
-            </ModalDropdown>
-            <TouchableOpacity style={styles.startDateButton} onPress={this.showDatePicker}>
-              <Text>Start Date</Text>
-            </TouchableOpacity>
-            <DateTimePicker
-              isVisible={this.state.isDatePickerVisible}
-              onConfirm={this.handleDatePicked}
-              onCancel={this.hideDatePicker}
-            />
-            <Button rounded style={styles.searchButton} onPress={this.handleSearch}>
-              <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-            </Button>
-          </HideableView>
-        </View>
-      )
+    if (this.state.endDateSelected) {
+      let startTime = new Date(this.props.startDate)
+      if (this.props.endDate == "End Date" || moment(selectedDate).isAfter(startTime)) {
+        this.props.changeEndDate(selectedDate)
+        this.setState({searchVisible: false}, function () {
+          this.setState({searchVisible: true})
+        })
+      } else {
+        Alert.alert(
+          'Invalid date range',
+          'Oops! The end date you selected is not after your selected start date.',
+          [
+            { text: 'OK' }
+          ])
+      }
+    } else {
+      if (this.props.endDate != "End Date") {
+        let endTime = new Date(this.props.endDate)
+        if (moment(selectedDate).isBefore(endTime)) {
+          this.props.changeStartDate(selectedDate)
+          this.setState({searchVisible: false}, function () {
+            this.setState({searchVisible: true})
+          })
+        } else {
+          Alert.alert(
+            'Invalid date range',
+            'Oops! The start date you selected is not before your selected end date.',
+            [
+              { text: 'OK' }
+            ])
+        }
+      } else {
+        this.props.changeStartDate(selectedDate)
+        this.setState({searchVisible: false}, function () {
+          this.setState({searchVisible: true})
+        })
+      }
     }
   }
 
+  memberSelected(index, value:string) {
+    let selectedMember = memberList[index]
+    this.props.changeMemberName(selectedMember)
+    this.setState({searchVisible: false}, function () {
+      this.setState({searchVisible: true})
+    })
+  }
+
+
+  componentDidMount () {
+    this.props.attemptClaimsList(this.props)
+  }
+
   render () {
-    console.log('claims list data' + this.props.claimsdata.data)
+     console.log("claims list data" +this.props.datePickerVisible)
     return (
       <View style={styles.container}>
         <View>
@@ -248,7 +207,7 @@ class ClaimsList extends Component {
             <View style={{flex: 0.2, backgroundColor: 'white'}}>
               <View style={{flex: 0.1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, margin: 10}}>
                 <Text style={{fontSize: 20, paddingLeft: 15, opacity: 0.9, color: Colors.flBlue.anvil}}>Claims List</Text>
-                <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
+                <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}} onPress={this.handleSearch}>
                   <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
                 </Button>
               </View>
@@ -267,11 +226,7 @@ class ClaimsList extends Component {
                 </View>
               </View>
             </View>
-
-            <View style={{flex: 1}}>
-              {/* {
-                  this._displayCondition()
-                } */}
+             <View style={{flex:1}}>
 
               <ClaimsCard
                 data={this.props.claimsdata.data}
@@ -293,7 +248,7 @@ class ClaimsList extends Component {
         </View>
         <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
           <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearch}>
-            <Flb name='remove' size={20} />
+            <Flb color={Colors.flBlue.anvil} name="remove" size={20} />
           </TouchableOpacity>
           <Text style={styles.searchTitle}>Search for a claim by filling out the fields below:</Text>
           <MKTextField
@@ -305,10 +260,12 @@ class ClaimsList extends Component {
             placeholder={'Provider Name'}
             placeholderTextColor={Colors.steel}
             tintColor={Colors.black}
+            onChangeText={this.props.changeProviderName}
+            value={this.props.providerName}
           />
-          <ModalDropdown options={_.map(memberList, 'memberName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+          <ModalDropdown options={_.map(memberList)} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
             <MKTextField
-              ref='careType'
+              ref='memberName'
               textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
               style={styles.textField}
               editable={false}
@@ -316,21 +273,44 @@ class ClaimsList extends Component {
               placeholder={'Member Name'}
               placeholderTextColor={Colors.steel}
               tintColor={Colors.black}
-              value={''}
+              value={this.props.memberName}s
             />
           </ModalDropdown>
-          <TouchableOpacity style={styles.startDateButton} onPress={this.showDatePicker}>
-            <Text>Start Date</Text>
-          </TouchableOpacity>
-          <DateTimePicker
-            isVisible={this.state.isDatePickerVisible}
-            onConfirm={this.handleDatePicked}
-            onCancel={this.hideDatePicker}
-          />
-          <Button rounded style={styles.searchButton} onPress={this.handleSearch}>
+          <View style={styles.dateContainer}>
+            <TouchableOpacity style={styles.startDateButton} onPress={this.addStartDate}>
+              <Text style={styles.dateText}>{this.props.startDate}
+                <Text>     </Text>
+                <Flb style={styles.calendarIcon} color={Colors.flBlue.grey3} name="calendar" size={15} />
+              </Text>
+            </TouchableOpacity>
+            <HideableView visible={!this.state.endDateSelected} removeWhenHidden={true}>
+              <TouchableOpacity style={styles.endDateButton} onPress={this.addEndDate}>
+                <Flb style={styles.addEndDateIcon} color={Colors.flBlue.ocean} name="plus" size={15} />
+                <Text style={styles.addEndDateText}>Add End Date</Text>
+              </TouchableOpacity>
+            </HideableView>
+            <HideableView visible={this.state.endDateSelected} removeWhenHidden={true}>
+              <TouchableOpacity style={styles.endDateButton} onPress={this.addEndDate}>
+                <Text style={styles.dateText}>{this.props.endDate}
+                  <Text>     </Text>
+                  <Flb color={Colors.flBlue.grey3} name="calendar" size={15} />
+                </Text>
+              </TouchableOpacity>
+            </HideableView>
+          </View>
+          <Button rounded style={styles.searchButton} onPress={()=>{this.handleSearch()}}>
             <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
           </Button>
         </HideableView>
+
+        <DateTimePicker
+          isVisible={this.props.datePickerVisible}
+          onConfirm={this.handleDatePicked}
+          onCancel={this.hideDatePicker}
+          datePickerModeAndroid='spinner'
+          date={new Date()}
+          mode='date'
+        />
       </View>
     )
   }
@@ -347,14 +327,24 @@ const mapStateToProps = (state) => {
     fetching: state.claimslist.fetching,
     claimsdata: state.claimslist.data,
     error: state.claimslist.error,
-    claimsListCount: state.claimslist.count
+    claimsListCount: state.claimslist.count,
+    datePickerVisible: state.claims.datePickerVisible,
+    startDate: state.claims.startDate,
+    endDate: state.claims.endDate,
+    providerName: state.claims.providerName,
+    memberName: state.claims.memberName
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptClaimsList: () => dispatch(ClaimsListActions.claimsListRequest()),
-    changeListLimit: (listLimit) => dispatch(ClaimsListActions.changeListLimit(listLimit))
+    changeListLimit: (listLimit) => dispatch(ClaimsListActions.changeListLimit(listLimit)),
+    changeDatePickerVisible: (datePickerVisible) => dispatch(ClaimsActions.changeDatePickerVisible(datePickerVisible)),
+    changeStartDate: (startDate) => dispatch(ClaimsActions.changeStartDate(startDate)),
+    changeEndDate: (endDate) => dispatch(ClaimsActions.changeEndDate(endDate)),
+    changeProviderName: (providerName) => dispatch(ClaimsActions.changeProviderName(providerName)),
+    changeMemberName: (memberName) => dispatch(ClaimsActions.changeMemberName(memberName))
   }
 }
 

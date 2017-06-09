@@ -207,7 +207,7 @@ export default StyleSheet.create({
     fontWeight: '400',
     paddingTop: Metrics.doubleBaseMargin,
     paddingLeft: Metrics.doubleBaseMargin,
-    color: Colors.flBlue.night
+    color: Colors.flBlue.anvil
   },
   searchButton: {
     backgroundColor: '#00003f',
@@ -220,9 +220,42 @@ export default StyleSheet.create({
     alignSelf: 'flex-end',
     marginRight: Metrics.baseMargin
   },
+  dateContainer: {
+    flex: 1,
+    flexDirection: 'row'
+  },
   startDateButton: {
     marginTop: Metrics.doubleBaseMargin * 2,
-    marginLeft: Metrics.doubleBaseMargin
+    marginLeft: Metrics.doubleBaseMargin,
+    flex: 1,
+    flexDirection: 'row'
+  },
+  addEndDateIcon: {
+    paddingTop: Metrics.smallMargin * 0.5,
+    paddingRight: Metrics.smallMargin
+  },
+  calendarIcon: {
+    paddingLeft: Metrics.smallMargin
+  },
+  endDateButton: {
+    marginTop: Metrics.doubleBaseMargin * 2,
+    marginRight: Metrics.doubleBaseMargin,
+    flex: 1,
+    flexDirection: 'row'
+  },
+  dateText: {
+    fontSize: Fonts.size.xr,
+    fontFamily: Fonts.type.base,
+    fontWeight: '400',
+    color: Colors.flBlue.grey3,
+    textDecorationLine: 'underline'
+  },
+  addEndDateText: {
+    fontSize: Fonts.size.xr,
+    fontFamily: Fonts.type.base,
+    fontWeight: '400',
+    color: Colors.flBlue.ocean,
+    textDecorationLine: 'underline'
   },
   dropdown: {
     width: Metrics.screenWidth * 0.9,
