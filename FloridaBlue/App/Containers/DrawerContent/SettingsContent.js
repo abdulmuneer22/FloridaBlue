@@ -315,12 +315,12 @@ class SettingsContent extends Component {
         <View style={styles.settings}>
 
           { Platform.OS === 'ios' && this.props.showSettings ?
-              <View style={styles.myAccountStyle}>
-                <View >
-                  <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
-                </View>
-                <Text style={styles.heading2} onPress={this.handlePressSettings}>Settings</Text>
+            <View style={styles.myAccountStyle}>
+              <View >
+                <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
               </View>
+              <Text style={styles.heading2} onPress={this.handlePressSettings}>Settings</Text>
+            </View>
             :
               null
           }

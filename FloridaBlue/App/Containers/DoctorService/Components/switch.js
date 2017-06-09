@@ -28,7 +28,7 @@ class Switch extends Component {
     var oneTabLeftActiveStyle = {
     //  borderBottomLeftRadius: 15,
       borderColor: Colors.flBlue.ocean,
-      borderRadius:Metrics.mediumMargin*Metrics.screenWidth * 0.001,
+      borderRadius: Metrics.mediumMargin * Metrics.screenWidth * 0.001,
     //  borderTopLeftRadius: 15,
       padding: 2,
       backgroundColor: Colors.flBlue.ocean,

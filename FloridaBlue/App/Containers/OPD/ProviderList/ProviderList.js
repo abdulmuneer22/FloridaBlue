@@ -78,7 +78,7 @@ class ProviderList extends Component {
     // Call asynchronously to get more data
     console.tron.log(this.props)
     this.props.changeEnd(300)
-    this.setState({isFetchingMore : true});
+    this.setState({isFetchingMore: true})
   }
 
   componentWillReceiveProps (newProps) {
@@ -101,7 +101,7 @@ class ProviderList extends Component {
       const milesOfLatAtEquator = 69
       this.props.changeLatDelta(2 / milesOfLatAtEquator)
       this.props.changeLongDelta(2 / (Math.cos(this.props.latitude) * milesOfLatAtEquator))
-      this.props.changeEnd(300);
+      this.props.changeEnd(300)
     }
   }
 
@@ -133,7 +133,7 @@ class ProviderList extends Component {
       listLimit: newLimit + 10
     })
 
-    this.props.changeListLimit(newLimit+10)
+    this.props.changeListLimit(newLimit + 10)
   }
 
   _locationSwiped (event, state, context) {
@@ -195,7 +195,7 @@ class ProviderList extends Component {
   _renderLocationDetail (location) {
     return (
       <View key={location.uniqueId} style={{flex: 1, marginTop: (Platform.OS === 'ios') ? 10 : -5,
-        marginBottom: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.002 :  Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
+        marginBottom: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.002 : Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
       }} >
         <DoctorCard data={location} />
       </View>
@@ -212,28 +212,28 @@ class ProviderList extends Component {
       if (this.props.selectedTab == 'listView') {
         return (
           <View style={{flex: 1 }}>
-          <View style={styles.container}>
-            {this.props.provider ?
-              <View style={{flex: 9}}>
-                <ScrollView >
-                  {this.props.showUrgentCareBanner ?
-                    <View style={{flex: 1, margin: 15, marginTop: -5 }}>
-                      <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.red, paddingLeft: 10}} >
-                        <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
-                          <View style={{ flex: 0.15, marginRight: 10 }}>
-                            <Flb name='accident' size={Metrics.icons.large} color={Colors.snow} />
-                          </View>
-                          <View style={{ flex: 0.85 }}>
-                            <Text style={{
+            <View style={styles.container}>
+              {this.props.provider ?
+                <View style={{flex: 9}}>
+                  <ScrollView >
+                    {this.props.showUrgentCareBanner ?
+                      <View style={{flex: 1, margin: 15, marginTop: -5 }}>
+                        <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.red, paddingLeft: 10}} >
+                          <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                            <View style={{ flex: 0.15, marginRight: 10 }}>
+                              <Flb name='accident' size={Metrics.icons.large} color={Colors.snow} />
+                            </View>
+                            <View style={{ flex: 0.85 }}>
+                              <Text style={{
                               fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
                               color: Colors.snow
                             }}>If this is an emergency, please call 911.</Text>
+                            </View>
                           </View>
-                        </View>
-                      </Card>
-                    </View>
+                        </Card>
+                      </View>
                 : null}
-                  {
+                    {
                     this.props.provider && this.props.provider.data && this.props.provider.data && this.props.provider.data.totalCount >= 300 ?
                       <View style={{flex: 1, margin: 15, marginTop: -5 }}>
                         <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.deepBlue, paddingLeft: 10}} >
@@ -257,27 +257,27 @@ class ProviderList extends Component {
                     : null
                   }
 
-                  <View style={{flex: 1, marginTop: -20}}>
-                    {
+                    <View style={{flex: 1, marginTop: -20}}>
+                      {
                        this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
                        {doctorCard}
                     :
 
+                       <View style={{flex: 1, margin: 15}}>
+                         <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
                            <View style={{flex: 1, margin: 15}}>
-                             <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
-                               <View style={{flex: 1, margin: 15}}>
-                                 <Text style={{fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
-                                   color: Colors.flBlue.anvil
-                                 }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
-                               </View>
-                             </Card>
+                             <Text style={{fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                               color: Colors.flBlue.anvil
+                             }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
                            </View>
+                         </Card>
+                       </View>
 
                       }
 
-                  </View>
+                    </View>
 
-                  {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10
+                    {this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length >= 10
                     && !(this.state.listLimit > this.props.provider.data.providerList.length)
                     && !(this.props.provider.data.providerList.length == 300 && this.props.provider.data.providerList.length == this.state.listLimit)
                     ?
@@ -301,57 +301,57 @@ class ProviderList extends Component {
                           }}>Show More</Text>
                         </TouchableOpacity>
                       </View> : null}
-                </ScrollView>
-              </View>
+                  </ScrollView>
+                </View>
             : <View style={styles.spinnerView}>
               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
               <Text style={styles.spinnerText}>Loading Please Wait </Text>
             </View>
             }
-            <View style={{flex: 1}}>
               <View style={{flex: 1}}>
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                  <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={() => this._advancedSearch()}>
-                    <View style={styles.refinesearch}>
-                      <View style={{flex: 0.25, alignItems: 'flex-end', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
-                        <Flb
-                          name='search-find'
-                          size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
-                          color={Colors.snow} />
+                <View style={{flex: 1}}>
+                  <View style={{flex: 1, flexDirection: 'row'}}>
+                    <TouchableOpacity style={{flex: 1, alignItems: 'center'}} onPress={() => this._advancedSearch()}>
+                      <View style={styles.refinesearch}>
+                        <View style={{flex: 0.25, alignItems: 'flex-end', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
+                          <Flb
+                            name='search-find'
+                            size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
+                            color={Colors.snow} />
+                        </View>
+                        <View style={{flex: 0.75, alignItems: 'flex-start'}}>
+                          <Text style={styles.footerText}>Refine Search</Text>
+                        </View>
                       </View>
-                      <View style={{flex: 0.75, alignItems: 'flex-start'}}>
-                        <Text style={styles.footerText}>Refine Search</Text>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={
+                    </TouchableOpacity>
+                    <TouchableOpacity style={
                     this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0 ?
                     {flex: 1, backgroundColor: Colors.flBlue.grass} : {flex: 1, backgroundColor: Colors.flBlue.grey3}
                   }
-                    onPress={() => this._mapView()}>
-                    <View style={styles.footerView}>
+                      onPress={() => this._mapView()}>
+                      <View style={styles.footerView}>
 
-                      <View style={{flex: 0.35, alignItems: 'flex-end', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
-                        <Flb
-                          name='map'
-                          size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
-                          color={Colors.snow} />
+                        <View style={{flex: 0.35, alignItems: 'flex-end', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
+                          <Flb
+                            name='map'
+                            size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
+                            color={Colors.snow} />
+                        </View>
+
+                        <View style={{flex: 0.65,
+                          alignItems: 'flex-start'}}>
+
+                          <Text style={styles.footerText}>Map View</Text>
+                        </View>
+
                       </View>
+                    </TouchableOpacity>
+                  </View>
 
-                      <View style={{flex: 0.65,
-                        alignItems: 'flex-start'}}>
-
-                        <Text style={styles.footerText}>Map View</Text>
-                      </View>
-
-                    </View>
-                  </TouchableOpacity>
                 </View>
-
               </View>
-            </View>
 
-          </View>
+            </View>
           </View>
         )
       } else {
@@ -361,8 +361,8 @@ class ProviderList extends Component {
               <View style={styles.container}>
                 <MapView
                   style={styles.map}
-                  showsUserLocation={true}
-                  loadingEnabled={true}
+                  showsUserLocation
+                  loadingEnabled
                   onRegionChangeComplete={this._onRegionChange}
                   region={{
                     latitude: this.props.latitude,
@@ -379,23 +379,19 @@ class ProviderList extends Component {
                     width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
                     height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.49)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
                     bottom={(Platform.OS === 'ios') ? 0 : -Metrics.textHeight * Metrics.screenHeight * 0.0013}
-                    nextButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
+                    nextButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
                                               // fontWeight:'400',
-                                               marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
-                                               color:Colors.flBlue.grey3,
-                                               marginBottom:(Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
+                      marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
+                      color: Colors.flBlue.grey3,
+                      marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
                     onMomentumScrollEnd={this._locationSwiped}
-                    prevButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
-                                               //fontWeight:'400',
-                                               marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 :  -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
-                                               color:Colors.flBlue.grey3,
-                                               marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
+                    prevButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
+                                               // fontWeight:'400',
+                      marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
+                      color: Colors.flBlue.grey3,
+                      marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
 
-
-                    >
-
-
-                  </Swiper>
+                     />
                 </HideableView>
               </View>
             : <View style={styles.spinnerView}>
@@ -406,10 +402,10 @@ class ProviderList extends Component {
         )
       }
     } else if ((this.props.error != null) ||
-     ( this.props.provider ==null ||
+     (this.props.provider == null ||
      (this.props.provider != null &&
-     (this.props.provider.data == null || this.props.provider.data.length ==0 )
-      ) ) ) {
+     (this.props.provider.data == null || this.props.provider.data.length == 0)
+      ))) {
       Alert.alert(
         'Find care',
        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
@@ -420,11 +416,11 @@ class ProviderList extends Component {
   }
 
   render () {
-  let  doctorCard = []
-    {this.props.provider && this.props.provider.data && this.props.provider.data.providerList.map((provider) => {
+    let doctorCard = []
+    { this.props.provider && this.props.provider.data && this.props.provider.data.providerList.map((provider) => {
       masterCard = this._renderLocationDetail(provider)
     })
-  }
+    }
     return (
       <View style={styles.container}>
         <View >
@@ -501,8 +497,8 @@ const mapStateToProps = (state) => {
     newLocationState: state.provider.newLocationState,
     gender: state.provider.gender,
     programsList: state.provider.programsList,
-    officeHours: state.provider.officeHours,
-   
+    officeHours: state.provider.officeHours
+
   }
 }
 

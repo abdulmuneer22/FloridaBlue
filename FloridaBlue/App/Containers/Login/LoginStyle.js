@@ -137,8 +137,8 @@ export default StyleSheet.create({
   },
 
   textField: {
-    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015,
-    //width: Metrics.searchBarHeight * Metrics.screenWidth * 0.024
+    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
+    // width: Metrics.searchBarHeight * Metrics.screenWidth * 0.024
   },
   radio: {
     backgroundColor: Colors.snow,

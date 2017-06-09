@@ -9,17 +9,17 @@ export function * claimsSummary (api) {
   const response = yield call(api.getClaimsSummary)
   if (response.status == '200') {
     // dispatch success
-    var data = response.data.data;
+    var data = response.data.data
     data = {
       claimsBreakDown: [
-        {"amount": 2250.00, "name": 'Your Discount'},
-        {"amount": 2250.00, "name": 'Florida Blue Paid'},
-        {"amount": 700.00, "name": 'Your Responsibility'},
-        {"amount": 2250.00, "name": 'Your Savings'},
-        {"amount": 2250.00, "name": 'Total Billed'}
+        {'amount': 2250.00, 'name': 'Your Discount'},
+        {'amount': 2250.00, 'name': 'Florida Blue Paid'},
+        {'amount': 700.00, 'name': 'Your Responsibility'},
+        {'amount': 2250.00, 'name': 'Your Savings'},
+        {'amount': 2250.00, 'name': 'Total Billed'}
       ]
     }
-    console.tron.log('Data ' + JSON.stringify(data));
+    console.tron.log('Data ' + JSON.stringify(data))
     yield put(ClaimsSummaryActions.claimsSummarySuccess(data))
   } else {
     // dispatch successful logins

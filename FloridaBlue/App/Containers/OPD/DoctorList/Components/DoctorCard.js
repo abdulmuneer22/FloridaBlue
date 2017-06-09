@@ -92,13 +92,13 @@ class DoctorCard extends Component {
                     <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop: 10 }}>
 
                       <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
-                      {
+                        {
 
-                           value  ? [ value.categoryCode != '07' ?
-                           <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
-                             <Text style={styles.h1}>{value.displayName}</Text>
-                           </TouchableOpacity> :
-                           <Text style={styles.h1_1}>{value.displayName}</Text>] : null
+                           value ? [ value.categoryCode != '07' ?
+                             <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
+                               <Text style={styles.h1}>{value.displayName}</Text>
+                             </TouchableOpacity> :
+                             <Text style={styles.h1_1}>{value.displayName}</Text>] : null
                          }
                         <View style={{flex: 1, flexDirection: 'row'}}>
 

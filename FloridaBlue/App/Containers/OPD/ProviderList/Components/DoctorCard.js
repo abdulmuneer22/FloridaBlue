@@ -168,7 +168,7 @@ class DoctorCard extends Component {
         <View style={styles.container}>
           <View style={{ flex: 1, marginTop: -5}}>
             {this.props.data != undefined ?
-              <Card style={{ flex: 1,}}>
+              <Card style={{ flex: 1 }}>
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: (Platform.OS === 'ios') ? 10 : 10 }}>
 
                   <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2, paddingRight: 10}}>

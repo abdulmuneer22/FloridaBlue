@@ -183,37 +183,36 @@ class ProviderSearch extends Component {
     this.props.changeUrgentCareBanner(false)
     this.setState({userWantsResults: true})
     if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
-      if((this.props.member && this.props.member.visibilityRules && this.props.member.visibilityRules.isStateGroup
-            && (this.props.categoryCode == '07' || (this.props.subCategoryCode== '702' || this.props.subCategoryCode == '700'
-            || this.props.subCategoryCode == '701')))){
-                  Alert.alert(
+      if ((this.props.member && this.props.member.visibilityRules && this.props.member.visibilityRules.isStateGroup
+            && (this.props.categoryCode == '07' || (this.props.subCategoryCode == '702' || this.props.subCategoryCode == '700'
+            || this.props.subCategoryCode == '701')))) {
+        Alert.alert(
                   'Find care',
                     'Not Available.',
-                  [
+          [
                     { text: 'OK' }
-                  ])
-              return
-        }
-        if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
-          console.tron.log("pharmacy props :: "+JSON.stringify(this.props))
-          this.props.attemptPharmacySearch(this.props)
-        } else {
-          this.props.changeEnd(30);
-          this.props.attemptProviderSearch(this.props)
-        }
-        NavigationActions.DoctorList()
-        this.setState({userWantsResults: false})
+          ])
+        return
+      }
+      if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
+        console.tron.log('pharmacy props :: ' + JSON.stringify(this.props))
+        this.props.attemptPharmacySearch(this.props)
       } else {
-
-        Alert.alert(
+        this.props.changeEnd(30)
+        this.props.attemptProviderSearch(this.props)
+      }
+      NavigationActions.DoctorList()
+      this.setState({userWantsResults: false})
+    } else {
+      Alert.alert(
           'Find care',
         'Oops! Looks like we\'re having trouble with your request. Please try again later.',
-          [
+        [
             { text: 'OK' }
-          ])
+        ])
 
-      //this.props.attemptNetworkList()
-      //NavigationActions.DoctorList()
+      // this.props.attemptNetworkList()
+      // NavigationActions.DoctorList()
     }
   }
 
@@ -431,7 +430,7 @@ class ProviderSearch extends Component {
                   onSelect={this._specialitySelected} dropdownStyle={{
                    // height:(Metrics.screenHeight - Metrics.screenHeight * 0.989)*_.map(this.props.planSubCategoryList, 'subCategoryName').length,
                     width: Metrics.screenWidth * 0.9,
-                      marginLeft: Metrics.doubleBaseMargin
+                    marginLeft: Metrics.doubleBaseMargin
                   }}
                   renderRow={this._renderDropdownRow.bind(this)}
                 // adjustFrame={style => this._dropdown_3_adjustFrame(style)}
@@ -535,7 +534,7 @@ class ProviderSearch extends Component {
           </ScrollView>
         </View>
 
-       <View style={{flex:1}}>
+        <View style={{flex: 1}}>
           {
             this.state.floatClicked ?
 
@@ -572,7 +571,7 @@ class ProviderSearch extends Component {
           </Card>
 
           }
-          </View>
+        </View>
 
       </View>
 

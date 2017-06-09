@@ -242,5 +242,5 @@ export default StyleSheet.create({
     paddingLeft: Metrics.doubleBaseMargin,
     paddingRight: Metrics.doubleBaseMargin,
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
-  },
+  }
 })

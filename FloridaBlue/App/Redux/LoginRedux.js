@@ -60,7 +60,7 @@ export const _changeAgreeTermsOfUse = (state: Object, {agreeTermsOfUse}: Object)
       state.merge({fetching: false, agreeTermsOfUse})
 
 // we've logged out
-export const logout = (state: Object) =>  state.merge({
+export const logout = (state: Object) => state.merge({
   username: null,
   password: null,
   error: null,
@@ -94,8 +94,6 @@ export const _changeCurrentSceneValue = (state: Object, {currentSceneValue} : Ob
 
 // we are change credentialStored
 export const _changeCredentialStored = (state: Object, {credentialStored} : Object) => state.merge({credentialStored})
-
-
 
 /* ------------- Hookup Reducers To Types ------------- */
 

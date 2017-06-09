@@ -43,7 +43,7 @@ export default StyleSheet.create({
 
   },
   locationView: {
-    flex:1,
+    flex: 1,
     borderTopWidth: 1,
     borderColor: Colors.flBlue.grey1,
     paddingTop: Metrics.baseMargin,
@@ -58,7 +58,7 @@ export default StyleSheet.create({
 
   languageView: {
     borderTopWidth: 1,
-    flex:1,
+    flex: 1,
   //  borderBottomWidth:1,
     borderColor: Colors.flBlue.grey1
    // marginTop:Metrics.baseMargin,
@@ -76,7 +76,7 @@ export default StyleSheet.create({
   },
   careView: {
    // borderTopWidth: 1,
-   flex:1,
+    flex: 1,
     margin: 5,
     borderColor: Colors.flBlue.grey1,
     paddingTop: Metrics.baseMargin,
@@ -90,7 +90,7 @@ export default StyleSheet.create({
   },
   genderView: {
     borderTopWidth: 1,
-    flex:1,
+    flex: 1,
   //  borderBottomWidth:1,
     borderColor: Colors.flBlue.grey1
    // marginTop:Metrics.baseMargin,
@@ -178,7 +178,7 @@ export default StyleSheet.create({
     textAlign: 'justify'
   },
   radioBottomText: {
-   paddingRight: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+    paddingRight: Metrics.baseMargin * Metrics.screenWidth * 0.002,
    // marginLeft: Metrics.baseMargin,
     marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002,
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025,
@@ -192,7 +192,7 @@ export default StyleSheet.create({
    // justifyContent: 'center',
     flexDirection: 'row',
     marginLeft: 15,
-    flex:1
+    flex: 1
   },
   searchTypeRadioView: {
     marginTop: Metrics.mediumMargin,
@@ -279,7 +279,7 @@ export default StyleSheet.create({
   },
 
   nextButton: {
-    flex:1,
+    flex: 1,
     marginTop: Metrics.mediumMargin,
     alignSelf: 'center',
     justifyContent: 'center',
