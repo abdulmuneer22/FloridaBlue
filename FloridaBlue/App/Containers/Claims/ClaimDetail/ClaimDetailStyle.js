@@ -16,7 +16,7 @@ export default StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: Colors.snow
+    backgroundColor: Colors.bg2
   },
   headerContainer: {
     flexDirection: 'row',

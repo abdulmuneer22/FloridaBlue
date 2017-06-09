@@ -69,7 +69,13 @@ const images = {
   findCare: require('../Images/care-finder.png'),
   eventscalendar: require('../Images/events.png'),
   rxtool: require('../Images/rx-tool.png'),
-  findretailcenter: require('../Images/retail-center.png')
+  findretailcenter: require('../Images/retail-center.png'),
+  cliamlistbutton: require('../Images/back-to-list-btn.png'),
+  claimdetailheaderred: require('../Images/detail-hdr-bkgrd-red.png'),
+  claimdetailheaderyellow: require('../Images/detail-hdr-bkgrd-yellow.png'),
+  claimdetailheaderblue: require('../Images/detail-hdr-bkgrd-teal.png'),
+  claimlistsearch: require('../Images/search-btn-small.png'),
+  datesearch: require('../Images/search-btn-large.png'),
 }
 
 export default images
