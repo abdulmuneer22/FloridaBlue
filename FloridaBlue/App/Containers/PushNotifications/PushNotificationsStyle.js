@@ -29,7 +29,6 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.sky
   },
- 
 
   headerTextStyle: {
     color: Colors.flBlue.ocean,
@@ -41,7 +40,7 @@ export default StyleSheet.create({
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
 
   },
- 
+
   h1: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.baseMargin,
@@ -50,52 +49,52 @@ export default StyleSheet.create({
     fontWeight: '600',
     color: Colors.flBlue.ocean
   },
- 
+
   spinnerView: {
     alignItems: 'center',
     justifyContent: 'center',
     width: window.width,
     height: window.height
   },
-  
+
   spinnerText: {
     color: Colors.flBlue.anvil,
     marginTop: 20
   },
  	backTextWhite: {
-		color: '#FFF'
-	},
-	rowFront: {
-		backgroundColor: '#FFF',
-		//height: 180,
-		borderRadius: 10,
-    marginTop:5,
-    flex:1
-	},
-	rowBack: {
-		alignItems: 'center',
-		//backgroundColor: 'red',
-		flex: 1,
+   color: '#FFF'
+ },
+  rowFront: {
+    backgroundColor: '#FFF',
+		// height: 180,
+    borderRadius: 10,
+    marginTop: 5,
+    flex: 1
+  },
+  rowBack: {
+    alignItems: 'center',
+		// backgroundColor: 'red',
+    flex: 1,
    // marginRight:10,
-		flexDirection: 'row',
+    flexDirection: 'row',
 	//	justifyContent: 'space-between',
 	//	paddingLeft: 15,
-		borderRadius: 20
-	},
-	backRightBtn: {
-		alignItems: 'center',
-		bottom: 0,
-		justifyContent: 'center',
-		position: 'absolute',
-		top: 0,
-		width:100,
-		borderRadius: 20,
-	},
+    borderRadius: 20
+  },
+  backRightBtn: {
+    alignItems: 'center',
+    bottom: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    width: 100,
+    borderRadius: 20
+  },
 
-	backRightBtnRight: {
-		backgroundColor: 'green',
-		right: 0,
-    borderRadius:20
-	},
-	
+  backRightBtnRight: {
+    backgroundColor: 'green',
+    right: 0,
+    borderRadius: 20
+  }
+
 })

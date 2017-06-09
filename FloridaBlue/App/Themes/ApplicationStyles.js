@@ -22,8 +22,8 @@ const ApplicationStyles = {
       right: 0
     },
     container: {
-      flex: 1,
-      //paddingTop: Metrics.baseMargin
+      flex: 1
+      // paddingTop: Metrics.baseMargin
     },
     section: {
       margin: Metrics.section,

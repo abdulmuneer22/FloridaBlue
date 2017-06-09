@@ -31,58 +31,58 @@ const window = Dimensions.get('window')
 
 class ClaimsCard extends Component {
 
-  constructor(props) {
-    super(props);
-    this.formatDate = this.formatDate.bind(this);
-    this.viewCliamsDetails = this.viewCliamsDetails.bind(this);
+  constructor (props) {
+    super(props)
+    this.formatDate = this.formatDate.bind(this)
+    this.viewCliamsDetails = this.viewCliamsDetails.bind(this)
   }
 
-formatDate(date) {
-  date = new Date(date);
-  let day = ('0' + date.getDate()).slice(-2);
-  let month = ('0' + (date.getMonth() + 1)).slice(-2);
-  let year = date.getFullYear();
-  return month + '-' + day + '-' + year;
-}
+  formatDate (date) {
+    date = new Date(date)
+    let day = ('0' + date.getDate()).slice(-2)
+    let month = ('0' + (date.getMonth() + 1)).slice(-2)
+    let year = date.getFullYear()
+    return month + '-' + day + '-' + year
+  }
 
-viewCliamsDetails(claimNumber){
-  console.tron.log('claimNumber'+ claimNumber)
-  this.props.attemptClaimDetail(claimNumber);
-  NavigationActions.ClaimDetail()
-}
+  viewCliamsDetails (claimNumber) {
+    console.tron.log('claimNumber' + claimNumber)
+    this.props.attemptClaimDetail(claimNumber)
+    NavigationActions.ClaimDetail()
+  }
 
-render () {
+  render () {
     return (
-    <View style={{flex: 1}}>
-          <View style={{flex: 1}}>
-            {this.props.data !=undefined ? this.props.data.map((value, i)=>{
-                return(
-                  
-                    <TouchableOpacity style={{flex: 1}} onPress={() => this.viewCliamsDetails(value.claimNumber)}>
-                    <Card style={{flex:1,justifyContent:'center',margin:10}} key={i}>
-                        <View style={{flex:1,flexDirection: 'row', justifyContent: 'center'}}>
-                            <View style={{flex: 0.3, alignItems: 'center',justifyContent:'center'}}>
-                              <Text style={styles.textStyle}>
-                                {this.formatDate(value.dateOfService)}
-                              </Text>
-                            </View>
-                            <View style={{flex:0.4, alignItems: 'center',justifyContent:'center'}}>
-                              <Text style={styles.textStyle}>
-                                {value.providerName}
-                              </Text>
-                            </View>
-                            <View style={{flex:0.3, alignItems: 'center',justifyContent:'center'}}>
-                              <Text style={styles.textStyle}>
-                                {value.claimType}
-                              </Text>
-                            </View>
-                        </View>
-                    </Card>
-                  </TouchableOpacity>
-                  )
-              }) : null}
-            </View>
-    </View>
+      <View style={{flex: 1}}>
+        <View style={{flex: 1}}>
+          {this.props.data != undefined ? this.props.data.map((value, i) => {
+            return (
+
+              <TouchableOpacity style={{flex: 1}} onPress={() => this.viewCliamsDetails(value.claimNumber)}>
+                <Card style={{flex: 1, justifyContent: 'center', margin: 10}} key={i}>
+                  <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+                    <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.textStyle}>
+                        {this.formatDate(value.dateOfService)}
+                      </Text>
+                  </View>
+                    <View style={{flex: 0.4, alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.textStyle}>
+                        {value.providerName}
+                      </Text>
+                  </View>
+                    <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
+                    <Text style={styles.textStyle}>
+                        {value.claimType}
+                      </Text>
+                  </View>
+                  </View>
+                </Card>
+              </TouchableOpacity>
+            )
+          }) : null}
+        </View>
+      </View>
     )
   }
 }

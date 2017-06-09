@@ -68,7 +68,7 @@ class Card extends Component {
     var action
     if (this.props.title === 'Claims') {
       action = NavigationActions.ClaimsSummary()
-    } else  if (this.props.tileType == 'webview') {
+    } else if (this.props.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.webURL})
     } else if (this.props.tileType == 'native') {
       var routerName = this.props.routerName
@@ -98,7 +98,7 @@ class Card extends Component {
           marginBottom: window.width * 0.03
 
         }}>
-        <View style={{flex:1}} >
+        <View style={{flex: 1}} >
           <LinearGradient colors={this.props.gradientColor}
             style={{
               width: this.state.CardWidth,
@@ -111,8 +111,8 @@ class Card extends Component {
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Image source={Images[this.props.gradientImage]}
                 style={{flex: 1, justifyContent: 'center', alignItems: 'center',
-                  width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.55) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.56),
-                 }} >
+                  width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.55) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.56)
+                }} >
 
                 <View style={{alignItems: 'center'}} >
                   <Text style={{

@@ -83,7 +83,7 @@ class Login extends Component {
     component = this
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.clearLogin()
     RCTNetworking.clearCookies((cleared) => {
       console.tron.log('clearing local cookies for the app login')
@@ -94,13 +94,13 @@ class Login extends Component {
     if (Platform.OS === 'ios') {
       TouchManager.checkTouchStatus((error, touchInfo) => {
         var touchStatus = touchInfo[0]
-        if (touchStatus == "AUTHENTICATED") {
+        if (touchStatus == 'AUTHENTICATED') {
           this.props.changeCredentialStored(true)
           this.props.changeTouchEnabled(true)
           if (this.props.origin != 'logout') {
             this._authenticateUserWithTouch()
           }
-        } else if (touchStatus == "ENABLED") {
+        } else if (touchStatus == 'ENABLED') {
           this.props.changeCredentialStored(false)
           this.props.changeTouchEnabled(true)
         } else {
@@ -158,8 +158,6 @@ class Login extends Component {
                   if (newProps.touchEnabled && !newProps.credentialStored) {
                     NavigationActions.TouchTOU()
                   } else {
-                    
-
                     NavigationActions.WelcomeDashBoard()
                   }
                 } else {
@@ -285,8 +283,7 @@ class Login extends Component {
       var authStatus = authObject['authStatus']
       if (authStatus == 'YES') {
         TouchManager.retrieveCredentials((error, credentials) => {
-
-           if (error) {
+          if (error) {
             this._disableTouchID()
             Alert.alert(
               'Oops!',
@@ -301,8 +298,7 @@ class Login extends Component {
             var username = credentials[1]
             this.isAttempting = true
             this.props.attemptLogin(username, password)
-          }         
-          
+          }
         })
       } else {
         var showError = true
@@ -338,7 +334,7 @@ class Login extends Component {
     })
   }
 
-  _disableTouchID() {
+  _disableTouchID () {
     TouchManager.removeCredentials((error, credentials) => {
       var status = credentials[0]
       if (status == 'SUCCESS') {
@@ -532,17 +528,17 @@ class Login extends Component {
                   placeholderTextColor={Colors.steel} />
               </View>
 
-                {Platform.OS === 'ios' && !this.props.credentialStored ?
-                  <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchCheckbox() }}>
-                    <MKCheckbox style={styles.radio} checked={this.props.touchEnabled} disabled={true} />
-                    <Text style={styles.link}>{I18n.t('enableTouchID')}</Text>
-                  </TouchableOpacity>
+              {Platform.OS === 'ios' && !this.props.credentialStored ?
+                <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchCheckbox() }}>
+                  <MKCheckbox style={styles.radio} checked={this.props.touchEnabled} disabled />
+                  <Text style={styles.link}>{I18n.t('enableTouchID')}</Text>
+                </TouchableOpacity>
                 :
-                  <View style={styles.forgotRow}>
-                    <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
-                      <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
-                    </TouchableOpacity>
-                  </View> }
+                <View style={styles.forgotRow}>
+                  <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
+                    <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
+                  </TouchableOpacity>
+                </View> }
             </LoginView>
 
             <LoginButtonView>
@@ -559,21 +555,21 @@ class Login extends Component {
                 <Text style={styles.link}>{I18n.t('signUp')}</Text>
               </TouchableOpacity>
               { Platform.OS === 'ios' && this.props.credentialStored ?
-                  <View style={styles.touchRow}>
-                    <TouchableOpacity onPress={() => { this._authenticateUserWithTouch() }}>
-                      <Image style={styles.touchCoin} source={Images.touchIdCoin} />
-                    </TouchableOpacity>
-                  </View>
+                <View style={styles.touchRow}>
+                  <TouchableOpacity onPress={() => { this._authenticateUserWithTouch() }}>
+                    <Image style={styles.touchCoin} source={Images.touchIdCoin} />
+                  </TouchableOpacity>
+                </View>
                 :
                   null
               }
 
               { Platform.OS === 'ios' && !this.props.credentialStored ?
-                  <View style={styles.forgotRow}>
-                    <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
-                      <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
-                    </TouchableOpacity>
-                  </View>
+                <View style={styles.forgotRow}>
+                  <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
+                    <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
+                  </TouchableOpacity>
+                </View>
                 :
                   null
               }

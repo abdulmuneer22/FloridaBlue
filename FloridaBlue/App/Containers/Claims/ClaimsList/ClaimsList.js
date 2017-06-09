@@ -13,13 +13,15 @@ import {
   TouchableWithoutFeedback, 
   ScrollView, 
   Linking,
-  Platform
+  Platform,
+  Alert
 } from 'react-native'
 
 import styles from './ClaimsStyle'
 import ClaimsCard from './Components/ClaimsCard'
 import axios from 'axios'
 import ClaimsListActions from '../../../Redux/ClaimsListRedux'
+import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -33,17 +35,18 @@ import { Button, Card } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
-import DateTimePicker from 'react-native-modal-datetime-picker';
+import DateTimePicker from 'react-native-modal-datetime-picker'
 
 const window = Dimensions.get('window')
-
-const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
+let memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
+let moment = require('moment');
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
 class ClaimsList extends Component {
+  //const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
   constructor (props) {
     super(props)
    this.state = {
@@ -54,16 +57,20 @@ class ClaimsList extends Component {
       initialCount: 0,
       finalCount: 0,
       asynCall: true,
-      displayBannerInfo: false
+      displayBannerInfo: false,
+      searchVisible: false,
+      endDateSelected: false
     }
     this.viewMore = this.viewMore.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleDatePicked = this.handleDatePicked.bind(this)
     this.hideDatePicker = this.hideDatePicker.bind(this)
-    this.showDatePicker = this.showDatePicker.bind(this)
+    this.addStartDate = this.addStartDate.bind(this)
+    this.addEndDate = this.addEndDate.bind(this)
+    this.memberSelected = this.memberSelected.bind(this)
   }
 
-  viewClaimsList(){
+  viewClaimsList () {
     // this.props.attemptClaimsList()
     NavigationActions.ClaimsList()
   }
@@ -83,6 +90,7 @@ class ClaimsList extends Component {
   }
 
   _renderDropdownRow (rowData, rowID, highlighted) {
+    console.tron.log(rowData)
     return (
       <TouchableHighlight underlayColor={Colors.snow}>
         <Text style={styles.dropdownItem}>{rowData}</Text>
@@ -99,12 +107,12 @@ class ClaimsList extends Component {
     this.setState({
       listLimit: newLimit + 10
     })
-    this.props.changeListLimit(newLimit+10)
-    if(this.state.totalNumberOfCardPerScreen == newLimit) {
-           this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 10)
-           this.state.isFetchingMore = true
-           this.setState({isFetchingMore : true});
-           this.setState({totalNumberOfCardPerScreen : this.state.totalNumberOfCardPerScreen + 10});
+    this.props.changeListLimit(newLimit + 10)
+    if (this.state.totalNumberOfCardPerScreen == newLimit) {
+      this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 10)
+      this.state.isFetchingMore = true
+      this.setState({isFetchingMore: true})
+      this.setState({totalNumberOfCardPerScreen: this.state.totalNumberOfCardPerScreen + 10})
     }
   }
 
@@ -135,22 +143,18 @@ class ClaimsList extends Component {
     }
   }
 
-  showDatePicker() {
-    this.setState({isDatePickerVisible: true})
-  }
-
-  hideDatePicker() {
+  hideDatePicker () {
     this.setState({isDatePickerVisible: false})
   }
 
-  handleDatePicked(date) {
-    this.setState({isDatePickerVisible: false})
-    console.tron.log(date)
+  addStartDate() {
+    this.setState({endDateSelected: false})
+    this.props.changeDatePickerVisible(true)
   }
 
-  componentDidMount () {
-    console.tron.log('I am Claims List screen')
-    this.props.attemptClaimsList(this.props)
+  addEndDate() {
+    this.setState({endDateSelected: true})
+    this.props.changeDatePickerVisible(true)
   }
 
   _displayCondition () {
@@ -209,7 +213,53 @@ class ClaimsList extends Component {
 
               </View>
 
-              {/*If 10+ Claims, Show More Button*/}
+  hideDatePicker() {
+      this.props.changeDatePickerVisible(false)
+    }
+
+  handleDatePicked(date) {
+    this.hideDatePicker()
+    let selectedDate = moment(date).format('MMM Do YYYY')
+
+    if (this.state.endDateSelected) {
+      let startTime = new Date(this.props.startDate)
+      if (this.props.endDate == "End Date" || moment(selectedDate).isAfter(startTime)) {
+        this.props.changeEndDate(selectedDate)
+        this.setState({searchVisible: false}, function () {
+          this.setState({searchVisible: true})
+        })
+      } else {
+        Alert.alert(
+          'Invalid date range',
+          'Oops! The end date you selected is not after your selected start date.',
+          [
+            { text: 'OK' }
+          ])
+      }
+    } else {
+      if (this.props.endDate != "End Date") {
+        let endTime = new Date(this.props.endDate)
+        if (moment(selectedDate).isBefore(endTime)) {
+          this.props.changeStartDate(selectedDate)
+          this.setState({searchVisible: false}, function () {
+            this.setState({searchVisible: true})
+          })
+        } else {
+          Alert.alert(
+            'Invalid date range',
+            'Oops! The start date you selected is not before your selected end date.',
+            [
+              { text: 'OK' }
+            ])
+        }
+      } else {
+        this.props.changeStartDate(selectedDate)
+        this.setState({searchVisible: false}, function () {
+          this.setState({searchVisible: true})
+        })
+      }
+    }
+  }
 
             {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length >= 10
                   && !(this.state.listLimit > this.props.claimsdata.data.length)
@@ -221,59 +271,21 @@ class ClaimsList extends Component {
                   <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
                 </TouchableOpacity>
                 </View> : null }
-
-
-            </View>
-          </View>
-          <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden={true} duration={200}>
-            <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearch}>
-              <Flb name="remove" size={20} />
-            </TouchableOpacity>
-            <Text style={styles.searchTitle}>Search for a claim by filling out the fields below:</Text>
-            <MKTextField
-              ref='providerName'
-              style={styles.textField}
-              textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-              editable={true}
-              underlineColorAndroid={Colors.coal}
-              placeholder={"Provider Name"}
-              placeholderTextColor={Colors.steel}
-              tintColor={Colors.black}
-            />
-            <ModalDropdown options={_.map(memberList, 'memberName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
-              <MKTextField
-                ref='careType'
-                textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                style={styles.textField}
-                editable={false}
-                underlineColorAndroid={Colors.coal}
-                placeholder={"Member Name"}
-                placeholderTextColor={Colors.steel}
-                tintColor={Colors.black}
-                value={""}
-              />
-            </ModalDropdown>
-            <TouchableOpacity style={styles.startDateButton} onPress={this.showDatePicker}>
-              <Text>Start Date</Text>
-            </TouchableOpacity>
-            <DateTimePicker
-              isVisible={this.state.isDatePickerVisible}
-              onConfirm={this.handleDatePicked}
-              onCancel={this.hideDatePicker}
-            />
-            <Button rounded style={styles.searchButton} onPress={this.handleSearch}>
-              <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-            </Button>
-          </HideableView>
-        </View>
-      )
-    }
+  memberSelected(index, value:string) {
+    let selectedMember = memberList[index]
+    this.props.changeMemberName(selectedMember)
+    this.setState({searchVisible: false}, function () {
+      this.setState({searchVisible: true})
+    })
   }
 
-  
+
+  componentDidMount () {
+    this.props.attemptClaimsList(this.props)
+  }
 
   render () {
-     console.log("claims list data" +this.props.claimsdata.data)
+     console.log("claims list data" +this.props.datePickerVisible)
     return (
       <View style={styles.container}>
         
@@ -287,15 +299,14 @@ class ClaimsList extends Component {
                       data={this.props.claimsdata.data}
                      />*/}
 
+            </View>
 
-             </View>
+        </View>
 
              
-      </View>
     )
   }
 }
-
 
 ClaimsList.propTypes = {
   data: PropTypes.object,
@@ -308,14 +319,24 @@ const mapStateToProps = (state) => {
     fetching: state.claimslist.fetching,
     claimsdata: state.claimslist.data,
     error: state.claimslist.error,
-    claimsListCount: state.claimslist.count
+    claimsListCount: state.claimslist.count,
+    datePickerVisible: state.claims.datePickerVisible,
+    startDate: state.claims.startDate,
+    endDate: state.claims.endDate,
+    providerName: state.claims.providerName,
+    memberName: state.claims.memberName
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptClaimsList: () => dispatch(ClaimsListActions.claimsListRequest()),
-    changeListLimit: (listLimit) => dispatch(ClaimsListActions.changeListLimit(listLimit))
+    changeListLimit: (listLimit) => dispatch(ClaimsListActions.changeListLimit(listLimit)),
+    changeDatePickerVisible: (datePickerVisible) => dispatch(ClaimsActions.changeDatePickerVisible(datePickerVisible)),
+    changeStartDate: (startDate) => dispatch(ClaimsActions.changeStartDate(startDate)),
+    changeEndDate: (endDate) => dispatch(ClaimsActions.changeEndDate(endDate)),
+    changeProviderName: (providerName) => dispatch(ClaimsActions.changeProviderName(providerName)),
+    changeMemberName: (memberName) => dispatch(ClaimsActions.changeMemberName(memberName))
   }
 }
 

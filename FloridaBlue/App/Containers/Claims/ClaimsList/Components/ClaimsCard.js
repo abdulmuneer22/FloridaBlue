@@ -40,12 +40,12 @@ class ClaimsCard extends Component {
     }
   }
 
-    formatDate(date) {
-    date = new Date(date);
-    let day = ('0' + date.getDate()).slice(-2);
-    let month = ('0' + (date.getMonth() + 1)).slice(-2);
-    let year = date.getFullYear();
-    return month + '-' + day + '-' + year;
+  formatDate (date) {
+    date = new Date(date)
+    let day = ('0' + date.getDate()).slice(-2)
+    let month = ('0' + (date.getMonth() + 1)).slice(-2)
+    let year = date.getFullYear()
+    return month + '-' + day + '-' + year
   }
 
     componentWillReceiveProps (nextProps) {
@@ -59,9 +59,6 @@ class ClaimsCard extends Component {
     this.props.attemptClaimDetail(claimNumber);
     NavigationActions.ClaimDetail()
   }
-  
-  render () {
-
 
     return (
       // Header
@@ -133,5 +130,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClaimsCard)
-
 

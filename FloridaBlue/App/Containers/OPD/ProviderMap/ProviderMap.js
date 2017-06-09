@@ -32,9 +32,9 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
-const ASPECT_RATIO = screen.width / screen.height;
-const LATITUDE_DELTA = 0.0922;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const ASPECT_RATIO = screen.width / screen.height
+const LATITUDE_DELTA = 0.0922
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 var region = {
   latitude: 0,
@@ -128,7 +128,7 @@ class ProviderMap extends Component {
   _renderLocationDetail (location) {
     return (
       <View key={location.locationIndex} style={{flex: 1, marginTop: (Platform.OS === 'ios') ? 10 : -5,
-        marginBottom: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.002 :  Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
+        marginBottom: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.002 : Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
       }} >
         <DoctorCard data={location} />
       </View>
@@ -143,8 +143,8 @@ class ProviderMap extends Component {
           <View style={styles.container}>
             <MapView
               style={styles.map}
-              showsUserLocation={true}
-              loadingEnabled={true}
+              showsUserLocation
+              loadingEnabled
               onRegionChangeComplete={this._onRegionChange}
               region={{
                 latitude: this.state.currentLat,
@@ -160,18 +160,17 @@ class ProviderMap extends Component {
                 width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
                 height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.49)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
                 bottom={(Platform.OS === 'ios') ? 0 : -Metrics.textHeight * Metrics.screenHeight * 0.0013}
-                nextButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
+                nextButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
                                           // fontWeight:'400',
-                                           marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
-                                           color:Colors.flBlue.grey3,
-                                           marginBottom:(Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
+                  marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
+                  color: Colors.flBlue.grey3,
+                  marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
                 onMomentumScrollEnd={this._locationSwiped}
-                prevButton={<Text style={{fontSize:Fonts.size.h1 * Metrics.screenWidth* 0.0045,
-                                           //fontWeight:'400',
-                                           marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 :  -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
-                                           color:Colors.flBlue.grey3,
-                                           marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
-
+                prevButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
+                                           // fontWeight:'400',
+                  marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
+                  color: Colors.flBlue.grey3,
+                  marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
 
                 >
 

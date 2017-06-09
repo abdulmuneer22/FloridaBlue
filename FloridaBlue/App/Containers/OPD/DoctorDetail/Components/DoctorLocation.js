@@ -20,8 +20,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 const ASPECT_RATIO = Metrics.screenWidth / Metrics.screenHeight
-const LATITUDE_DELTA = 0.0922;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+const LATITUDE_DELTA = 0.0922
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 class DoctorLocation extends Component {
 
@@ -38,7 +38,7 @@ class DoctorLocation extends Component {
               latitude: this.props.data.latitude,
               longitude: this.props.data.longitude,
               latitudeDelta: LATITUDE_DELTA,
-              longitudeDelta: LONGITUDE_DELTA,
+              longitudeDelta: LONGITUDE_DELTA
             }} >
             <MapView.Marker style={{width: 10, height: 10}} coordinate={{ latitude: this.props.data && this.props.data.latitude ? this.props.data.latitude : '', longitude: this.props.data && this.props.data.longitude ? this.props.data.longitude : '' }} image={Images.mapSelectedPin} />
           </MapView>

@@ -52,11 +52,9 @@ class DoctorCard extends Component {
     })
   }
 
- 
   handleMaps (address) {
-   
-    const url = `http://maps.apple.com/?daddr=`+address.addressLine1+" "+address.addressLine2+" "+address.city+" "+address.state+
-    " "+address.zipCode;
+    const url = `http://maps.apple.com/?daddr=` + address.addressLine1 + ' ' + address.addressLine2 + ' ' + address.city + ' ' + address.state +
+    ' ' + address.zipCode
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
         Linking.openURL(url)
@@ -78,7 +76,7 @@ class DoctorCard extends Component {
       <View style={styles.container}>
         <View style={{ flex: 1, marginTop: -5}}>
           {this.props.data != undefined ?
-            <Card style={{ flex: 1,}}>
+            <Card style={{ flex: 1 }}>
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: (Platform.OS === 'ios') ? 10 : 10 }}>
 
                 <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2, paddingRight: 10}}>
