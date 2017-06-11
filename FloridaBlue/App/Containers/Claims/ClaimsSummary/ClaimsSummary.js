@@ -89,8 +89,8 @@ class ClaimsSummary extends Component {
             </View>
             <View style={{flex: 5, alignItems: 'center'}}>
               <Pie
-                pieWidth={Metrics.textHeight2 * Metrics.screenWidth * 0.007}
-                pieHeight={Metrics.textHeight2 * Metrics.screenHeight * 0.0044}
+                pieWidth={Metrics.screenWidth - Metrics.screenWidth * 0.7}
+                pieHeight={Metrics.screenWidth -Metrics.screenWidth * 0.69}
                 colors={['#1f77b4', '#ff7f0e', '#d62728']}
                 width={width}
                 height={height}
@@ -99,7 +99,7 @@ class ClaimsSummary extends Component {
             </View>
 
             <View style={styles.recentClaimsView} >
-              <View style={{flex: 1, marginLeft: 20, marginTop: 10}}>
+              <View style={{flex: 1, marginLeft: Metrics.doubleBaseMargin*Metrics.screenHeight*0.001, marginTop: Metrics.baseMargin*Metrics.screenHeight*0.001}}>
                 <Text style={styles.recentClaimsText} >Recent Claims</Text>
               </View>
               {
@@ -118,7 +118,7 @@ class ClaimsSummary extends Component {
                     ?
                       <View style={{flex: 1.5}} >
                         <View style={{flex: 0.5, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                          <Text style={styles.totalClaimsText}>You have                      </Text>
+                          <Text style={styles.totalClaimsText}>You have </Text>
                           <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.count}</Text>
                           <Text style={styles.totalClaimsText}> Claims</Text>
                         </View>
