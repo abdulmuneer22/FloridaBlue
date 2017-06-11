@@ -37,14 +37,14 @@ import DateTimePicker from 'react-native-modal-datetime-picker'
 
 const window = Dimensions.get('window')
 let memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
-let moment = require('moment');
+let moment = require('moment')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
 class ClaimsList extends Component {
-  //const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
+  // const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
   constructor (props) {
     super(props)
     this.state = {
@@ -123,27 +123,27 @@ class ClaimsList extends Component {
     this.setState({isDatePickerVisible: false})
   }
 
-  addStartDate() {
+  addStartDate () {
     this.setState({endDateSelected: false})
     this.props.changeDatePickerVisible(true)
   }
 
-  addEndDate() {
+  addEndDate () {
     this.setState({endDateSelected: true})
     this.props.changeDatePickerVisible(true)
   }
 
-  hideDatePicker() {
+  hideDatePicker () {
     this.props.changeDatePickerVisible(false)
   }
 
-  handleDatePicked(date) {
+  handleDatePicked (date) {
     this.hideDatePicker()
     let selectedDate = moment(date).format('MMM Do YYYY')
 
     if (this.state.endDateSelected) {
       let startTime = new Date(this.props.startDate)
-      if (this.props.endDate == "End Date" || moment(selectedDate).isAfter(startTime)) {
+      if (this.props.endDate == 'End Date' || moment(selectedDate).isAfter(startTime)) {
         this.props.changeEndDate(selectedDate)
         this.setState({searchVisible: false}, function () {
           this.setState({searchVisible: true})
@@ -157,7 +157,7 @@ class ClaimsList extends Component {
           ])
       }
     } else {
-      if (this.props.endDate != "End Date") {
+      if (this.props.endDate != 'End Date') {
         let endTime = new Date(this.props.endDate)
         if (moment(selectedDate).isBefore(endTime)) {
           this.props.changeStartDate(selectedDate)
@@ -181,7 +181,7 @@ class ClaimsList extends Component {
     }
   }
 
-  memberSelected(index, value:string) {
+  memberSelected (index, value:string) {
     let selectedMember = memberList[index]
     this.props.changeMemberName(selectedMember)
     this.setState({searchVisible: false}, function () {
@@ -189,13 +189,12 @@ class ClaimsList extends Component {
     })
   }
 
-
   componentDidMount () {
     this.props.attemptClaimsList(this.props)
   }
 
   render () {
-     console.log("claims list data" +this.props.datePickerVisible)
+    console.log('claims list data' + this.props.datePickerVisible)
     return (
       <View style={styles.container}>
         <View>
@@ -226,7 +225,7 @@ class ClaimsList extends Component {
                 </View>
               </View>
             </View>
-             <View style={{flex:1}}>
+            <View style={{flex: 1}}>
 
               <ClaimsCard
                 data={this.props.claimsdata.data}
@@ -248,7 +247,7 @@ class ClaimsList extends Component {
         </View>
         <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
           <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearch}>
-            <Flb color={Colors.flBlue.anvil} name="remove" size={20} />
+            <Flb color={Colors.flBlue.anvil} name='remove' size={20} />
           </TouchableOpacity>
           <Text style={styles.searchTitle}>Search for a claim by filling out the fields below:</Text>
           <MKTextField
@@ -279,26 +278,26 @@ class ClaimsList extends Component {
           <View style={styles.dateContainer}>
             <TouchableOpacity style={styles.startDateButton} onPress={this.addStartDate}>
               <Text style={styles.dateText}>{this.props.startDate}
-                <Text>     </Text>
-                <Flb style={styles.calendarIcon} color={Colors.flBlue.grey3} name="calendar" size={15} />
+                <Text />
+                <Flb style={styles.calendarIcon} color={Colors.flBlue.grey3} name='calendar' size={15} />
               </Text>
             </TouchableOpacity>
-            <HideableView visible={!this.state.endDateSelected} removeWhenHidden={true}>
+            <HideableView visible={!this.state.endDateSelected} removeWhenHidden>
               <TouchableOpacity style={styles.endDateButton} onPress={this.addEndDate}>
-                <Flb style={styles.addEndDateIcon} color={Colors.flBlue.ocean} name="plus" size={15} />
+                <Flb style={styles.addEndDateIcon} color={Colors.flBlue.ocean} name='plus' size={15} />
                 <Text style={styles.addEndDateText}>Add End Date</Text>
               </TouchableOpacity>
             </HideableView>
-            <HideableView visible={this.state.endDateSelected} removeWhenHidden={true}>
+            <HideableView visible={this.state.endDateSelected} removeWhenHidden>
               <TouchableOpacity style={styles.endDateButton} onPress={this.addEndDate}>
                 <Text style={styles.dateText}>{this.props.endDate}
-                  <Text>     </Text>
-                  <Flb color={Colors.flBlue.grey3} name="calendar" size={15} />
+                  <Text />
+                  <Flb color={Colors.flBlue.grey3} name='calendar' size={15} />
                 </Text>
               </TouchableOpacity>
             </HideableView>
           </View>
-          <Button rounded style={styles.searchButton} onPress={()=>{this.handleSearch()}}>
+          <Button rounded style={styles.searchButton} onPress={() => { this.handleSearch() }}>
             <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
           </Button>
         </HideableView>
