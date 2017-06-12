@@ -73,9 +73,9 @@ class MyIdCard extends Component {
            
               
             }} >
-                        <View style={{flex:1,}}>
+            <View style={{flex:1,}}>
               <View style={{flex:1,  flexDirection:'row',alignItems:'center'}}>  
-                  <View style={{flex:0.45,height:(Metrics.screenHeight-(Metrics.screenHeight*0.73)),marginLeft: Metrics.screenWidth * 0.1,  alignItems:'flex-start', marginTop:20}}>
+                  <View style={{flex:0.45,height:this.state.idCardHeaderVisible ? (Metrics.screenHeight-(Metrics.screenHeight*0.73)) : (Metrics.screenHeight-(Metrics.screenHeight*0.7)),marginLeft: Metrics.screenWidth * 0.1,  alignItems:'flex-start', marginTop:20}}>
                     <View style={{flex:0.2,marginTop:5}}>
                       <Text style={{color:'white', backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> JASON LAITNER</Text> 
                     </View>
@@ -93,7 +93,7 @@ class MyIdCard extends Component {
                     </View>
                   </View>
 
-                  <View style={{flex:0.55,  marginLeft: Metrics.screenWidth * 0.3, height:(Metrics.screenHeight-(Metrics.screenHeight*0.73)), alignItems:'flex-start', marginTop:20}}>
+                  <View style={{flex:0.55,  marginLeft: Metrics.screenWidth * 0.3, height:this.state.idCardHeaderVisible ? (Metrics.screenHeight-(Metrics.screenHeight*0.73)) : (Metrics.screenHeight-(Metrics.screenHeight*0.7)), alignItems:'flex-start', marginTop:20}}>
                     <View style={{flex:0.2,marginTop:5}}>
                       <Text style={{color:'white', backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> BC 090 BS 590 </Text> 
                     </View>
