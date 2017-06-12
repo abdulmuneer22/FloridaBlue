@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -25,7 +26,6 @@
 		25AF929D1E9BE2D900EEFA47 /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2524A01C1E983A8D005D9132 /* libcxxreact.a */; };
 		25AF92B81E9BE2E100EEFA47 /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2524A0201E983A8D005D9132 /* libjschelpers.a */; };
 		25AF92B91E9BE2E800EEFA47 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2524A0181E983A8D005D9132 /* libyoga.a */; };
-		25B21AFE1EEF18E40048B1BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25B21AFD1EEF18E40048B1BB /* GoogleService-Info.plist */; };
 		25B21B551EEF2C2E0048B1BB /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B21B4F1EEF2C2E0048B1BB /* FirebaseAnalytics.framework */; };
 		25B21B561EEF2C2E0048B1BB /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B21B501EEF2C2E0048B1BB /* FirebaseCore.framework */; };
 		25B21B571EEF2C2E0048B1BB /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B21B511EEF2C2E0048B1BB /* FirebaseCoreDiagnostics.framework */; };
@@ -34,6 +34,7 @@
 		25B21B5A1EEF2C2E0048B1BB /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B21B541EEF2C2E0048B1BB /* GoogleToolboxForMac.framework */; };
 		25B21B5D1EEF2C3B0048B1BB /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B21B5B1EEF2C3B0048B1BB /* FirebaseMessaging.framework */; };
 		25B21B5E1EEF2C3B0048B1BB /* Protobuf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B21B5C1EEF2C3B0048B1BB /* Protobuf.framework */; };
+		25B21BE81EEF388A0048B1BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25B21BE71EEF388A0048B1BB /* GoogleService-Info.plist */; };
 		2660A998F0A744329C307867 /* Courier New.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87F710A093154FC898130555 /* Courier New.ttf */; };
 		2B6D86BC1E5E17C300077093 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6D86A01E5E178600077093 /* libART.a */; };
 		2BEF36FC1DF205C800A9CB66 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2BEF36F31DF205C800A9CB66 /* Entypo.ttf */; };
@@ -375,7 +376,6 @@
 		1E29C068A80E4FE88FA69CB6 /* Arial Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Arial Black.ttf"; path = "../node_modules/native-base/Fonts/Arial Black.ttf"; sourceTree = "<group>"; };
 		244FB5CC0A4A41D2A6D4A160 /* Georgia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Georgia.ttf; path = "../node_modules/native-base/Fonts/Georgia.ttf"; sourceTree = "<group>"; };
 		259133AF1E69F9CE005C5412 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
-		25B21AFD1EEF18E40048B1BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		25B21B4F1EEF2C2E0048B1BB /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = ../../../../Desktop/Firebase/Analytics/FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		25B21B501EEF2C2E0048B1BB /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = ../../../../Desktop/Firebase/Analytics/FirebaseCore.framework; sourceTree = "<group>"; };
 		25B21B511EEF2C2E0048B1BB /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = ../../../../Desktop/Firebase/Analytics/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
@@ -386,6 +386,7 @@
 		25B21B5C1EEF2C3B0048B1BB /* Protobuf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Protobuf.framework; path = ../../../../Desktop/Firebase/Messaging/Protobuf.framework; sourceTree = "<group>"; };
 		25B21B5F1EEF2C590048B1BB /* Firebase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = ../../../../Desktop/Firebase/Firebase.h; sourceTree = "<group>"; };
 		25B21B601EEF2C650048B1BB /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = ../../../../Desktop/Firebase/module.modulemap; sourceTree = "<group>"; };
+		25B21BE71EEF388A0048B1BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "FloridaBlue/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		25B980891ED76FB3005C6922 /* FloridaBlue.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FloridaBlue.entitlements; path = FloridaBlue/FloridaBlue.entitlements; sourceTree = "<group>"; };
 		2B6D869B1E5E178600077093 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		2BEF36F31DF205C800A9CB66 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
@@ -569,9 +570,9 @@
 		13B07FAE1A68108700A75B9A /* FloridaBlue */ = {
 			isa = PBXGroup;
 			children = (
+				25B21BE71EEF388A0048B1BB /* GoogleService-Info.plist */,
 				25B21B601EEF2C650048B1BB /* module.modulemap */,
 				25B21B5F1EEF2C590048B1BB /* Firebase.h */,
-				25B21AFD1EEF18E40048B1BB /* GoogleService-Info.plist */,
 				25B980891ED76FB3005C6922 /* FloridaBlue.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -1304,7 +1305,7 @@
 				2BEF36FC1DF205C800A9CB66 /* Entypo.ttf in Resources */,
 				9A486EFED34A4D528270C7E4 /* FlbIcon.ttf in Resources */,
 				38DEE345C8704F2FB2566C5C /* MaterialCommunityIcons.ttf in Resources */,
-				25B21AFE1EEF18E40048B1BB /* GoogleService-Info.plist in Resources */,
+				25B21BE81EEF388A0048B1BB /* GoogleService-Info.plist in Resources */,
 				E649A137A5A8440382FA8E3C /* Andale Mono.ttf in Resources */,
 				666633DD0A56404DA19FE053 /* Arial Black.ttf in Resources */,
 				8D91A70B913942249ACA0EC6 /* Arial.ttf in Resources */,
