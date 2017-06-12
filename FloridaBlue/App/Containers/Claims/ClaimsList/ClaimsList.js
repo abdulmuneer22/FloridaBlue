@@ -235,19 +235,17 @@ class ClaimsList extends Component {
             {this._renderHeader()}
           </View>
           <View style={{flex: .3}}>
-            <View style={{flex: .2}}>
+            <View style={{flex: .2, marginBottom: 20}}>
               <View style={{flex: .2, backgroundColor: 'white'}}>
-                  <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, margin: 10}}>
+                  <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 0, margin: 10}}>
                     <Text style={{fontSize: 20, paddingLeft: 15, opacity: .9}}>Claims List</Text>
-                    <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
-                      <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-                    </Button>
+                      <Image source={Images.claimlistsearch} />
                   </View>
               </View>
             </View>
 
-              <View style={{margin:10, marginBottom: 15, paddingTop: 5}}>
-                <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginBottom: -15}}>
+              <View style={{margin:10, marginBottom: 0, paddingTop: 5}}>
+                <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginTop: -15}}>
                       <View style={{flex:0.27, alignItems:'center'}}>
                         <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: .9}}> Date</Text></TouchableOpacity>
                       </View>
