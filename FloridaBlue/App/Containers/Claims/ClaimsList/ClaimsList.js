@@ -114,7 +114,7 @@ class ClaimsList extends Component {
     }
   }
 
-  async claimsListRequest (newProps) {
+   claimsListRequest (newProps) {
       if (newProps.claimsdata && newProps.claimsdata.length > 0) {
         if (newProps.error == undefined || newProps.error == null) {
             newProps.attemptClaimsList(newProps)
@@ -212,7 +212,7 @@ class ClaimsList extends Component {
   }
 
   componentDidMount () {
-    this.props.attemptClaimsList(this.props)
+    // this.props.attemptClaimsList(this.props)
   }
 
   _displayCondition () {
@@ -257,7 +257,7 @@ class ClaimsList extends Component {
               </View>
             </View>
               
-              <View style={styles.container}>
+              <View style={{flex: 1.5}}>
                   {/*{
                     this._displayCondition()
                   }*/}
