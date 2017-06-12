@@ -1,8 +1,7 @@
 // @flow
 
 import PushController from './PushController'
-import NotificationView from './NotificationView'
-import PushNotifications from './PushNotifications'
+import NotificationsView from './NotificationsView'
 
-export { PushController, NotificationView }
-export { PushNotifications }
+export { PushController }
+export { NotificationsView }
