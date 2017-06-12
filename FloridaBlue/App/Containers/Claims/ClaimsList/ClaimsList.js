@@ -226,12 +226,14 @@ class ClaimsList extends Component {
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>)
-      } else if (this.props.claimsdata && this.props.claimsdata &&  this.props.claimsdata.data && this.props.claimsdata.data.length !=0) {
+      } else if (this.props.claimsdata &&  this.props.claimsdata.data && this.props.claimsdata.data.length !=0) {
         return (
         <View style={styles.container}>
+
           <View>
             {this._renderHeader()}
           </View>
+
           <View style={styles.claimsListHeader1}>
             <View style={styles.claimsListHeader2}>
               <View style={styles.claimsListHeader3}>
@@ -242,7 +244,7 @@ class ClaimsList extends Component {
               </View>
             </View>
 
-              <View style={styles.claimsCategories1}>
+             <View style={styles.claimsCategories1}>
                 <View style={styles.claimsCategories2}>
                       <View style={styles.claimsCardRow1}>
                         <TouchableOpacity><Text style={styles.claimsCategoryText}> Date</Text></TouchableOpacity>
@@ -254,37 +256,21 @@ class ClaimsList extends Component {
                         <TouchableOpacity><Text style={styles.claimsCategoryText}> Providers</Text></TouchableOpacity>
                       </View>
                 </View>
-              </View>
-            </View>
+              </View> 
+
+           </View>
               
-              <View style={styles.claimsCardContainer}>
-                  {/*{
-                    this._displayCondition()
-                  }*/}
+          <View style={styles.claimsCardContainer}>
 
-                      <ClaimsCard
-                        data={this.props.claimsdata.data}
-                        cardLimit={this.state.listLimit}
-                        claimsCount={this.props.claimsdata.count}
-                        viewMore={this.viewMore}
-                      />
+            <ClaimsCard
+              data={this.props.claimsdata.data}
+              cardLimit={this.state.listLimit}
+              claimsCount={this.props.claimsdata.count}
+              viewMore={this.viewMore}
+            />
+          </View>
 
-
-              </View>
-
- 
-
-            {/*{this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length >= 10
-                  && !(this.state.listLimit > this.props.claimsdata.data.length)
-                  ?
-              <View style={{flex: 0, margin: 14}}>
-                <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit} out of {this.props.claimsdata.count} Claims</Text>
-                <TouchableOpacity onPress={this.viewMore}>
-                  <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
-                </TouchableOpacity>
-                </View> : null }*/}
-
-            </View>
+        </View>
         )
       }
 }
@@ -295,23 +281,14 @@ class ClaimsList extends Component {
   render () {
      console.log("claims list data" +this.props.datePickerVisible)
     return (
-      <View style={styles.container}>
-        
-            
-             <View style={styles.container}>
-                {
-                  this._displayCondition()
-                }
-
-                    {/*<ClaimsCard
-                      data={this.props.claimsdata.data}
-                     />*/}
-
-            </View>
-
-         </View>
-
-             
+      <View style={styles.container}>  
+        <View style={styles.container}>
+          {
+            this._displayCondition()
+          }
+        </View>
+      </View>
+          
     )
   }
 }

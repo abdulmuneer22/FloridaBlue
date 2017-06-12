@@ -48,6 +48,11 @@ class ClaimsCard extends Component {
     return month + '-' + day + '-' + year
   }
 
+  formatName (name) {
+    var firstName = name.split(' ').slice(0, -1).join(' ');
+    return firstName;
+  }
+
   componentWillReceiveProps (nextProps) {
     if (nextProps.cardLimit) {
       this.setState({cardLimit: nextProps.cardLimit})
@@ -86,7 +91,7 @@ class ClaimsCard extends Component {
 
                           <View style={styles.claimsCardRow2}>
                             <Text style={styles.claimsCardText}>
-                              {value.providerName}
+                              {this.formatName(value.providerName)}
                             </Text>
                           </View>
 

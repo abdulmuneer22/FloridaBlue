@@ -32,7 +32,7 @@ export default StyleSheet.create({
   claimsListCard: {
     flexDirection: 'row', 
     justifyContent: 'center', 
-    padding: 5, 
+    padding: 9, 
     margin: 10, 
     marginBottom: 1,
     alignItems: 'center'
