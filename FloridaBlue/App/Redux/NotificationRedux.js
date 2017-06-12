@@ -38,11 +38,13 @@ export const success = (state: Object, {notificaton}: Object) =>
 export const failure = (state: Object, { error }: Object) =>
   state.merge({ fetching: false, error })
 
+export const FCMToken = (state : Object, {FCMToken}: Object) => state.merge({FCMToken})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.ON_CHANGE_FCMToken]: request,
-  [Types.REFRESH_TOKEN_TO_UNSUBSCRIBE]: request
+  [Types.ON_CHANGE_F_C_M_TOKEN]: FCMToken,
+  [Types.REFRESH_TOKEN_TO_UNSUBSCRIBE]: FCMToken
 })
 
 /* ------------- Selectors ------------- */

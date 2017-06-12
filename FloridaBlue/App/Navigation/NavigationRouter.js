@@ -31,7 +31,7 @@ import {SecurityHint } from '../Containers/Registration/Containers/SecurityHint'
 import {Confirmation} from '../Containers/Registration/Containers/Confirmation'
 // import { WelcomeDisplay} from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import {DashBoard} from '../Containers/WelcomeDisplay'
-import {NotificationView } from '../Containers/PushNotifications'
+
 import {MyPlanScreen} from '../Containers/MyPlan'
 import {BenefitsScreen} from '../Containers/Benefits'
 import {DoctorServices } from '../Containers/DoctorService'
@@ -43,7 +43,7 @@ import {AdvancedSearch} from '../Containers/OPD/AdvancedSearch'
 import {ProviderMap} from '../Containers/OPD/ProviderMap'
 import {DoctorDetail} from '../Containers/OPD/DoctorDetail'
 import {ProgramDetail} from '../Containers/OPD/ProgramDetail'
-import {PushNotifications } from '../Containers/PushNotifications'
+import {NotificationsView } from '../Containers/PushNotifications'
 import {ClaimsList} from '../Containers/Claims/ClaimsList'
 import {ClaimDetail} from '../Containers/Claims/ClaimDetail'
 import {ClaimsSummary} from '../Containers/Claims/ClaimsSummary'
@@ -90,7 +90,7 @@ class NavigationRouter extends Component {
             <Scene key='ProviderMap' component={ProviderMap} title='Provider Map View Page' hideNavBar />
             <Scene key='DoctorDetail' component={DoctorDetail} title='Doctor Detail Page' hideNavBar />
             <Scene key='ProgramDetail' component={ProgramDetail} title='Program Detail Page' hideNavBar />
-            <Scene key='PushNotifications' component={PushNotifications} title='Push Notifications Page' hideNavBar />
+            <Scene key='PushNotifications' component={NotificationsView} title='Push Notifications Page' hideNavBar />
             <Scene key='ClaimsList' component={ClaimsList} title='Claims Page' hideNavBar />
             <Scene key='ClaimDetail' component={ClaimDetail} title='Claims Page' hideNavBar />
             <Scene key='ClaimsSummary' component={ClaimsSummary} title='Claims Summary Page' hideNavBar />

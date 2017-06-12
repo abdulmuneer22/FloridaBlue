@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import NotificationActions from '../../Redux/NotificationRedux'
 
 class PushController extends Component {
+
   componentDidMount () {
     FCM.requestPermissions()
 
@@ -48,7 +49,7 @@ class PushController extends Component {
 
     this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
       console.log('TOKEN (refreshUnsubscribe)', token)
-      this.props.onChangeToken(token)
+      this.props.onFCMRefreshToken(token)
     })
   }
 
@@ -92,7 +93,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChangeToken: (FCMToken) => dispatch(NotificationActions.onChangeFCMToken(FCMToken))
+    onChangeToken: (FCMToken) => dispatch(NotificationActions.onChangeFCMToken(FCMToken)),
+    onFCMRefreshToken: (FCMRefreshToken) => dispatch(NotificationActions.refreshTokenToUnsubscribe(FCMRefreshToken))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PushController)
