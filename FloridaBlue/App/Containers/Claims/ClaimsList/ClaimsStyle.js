@@ -32,7 +32,7 @@ export default StyleSheet.create({
   claimsListCard: {
     flexDirection: 'row', 
     justifyContent: 'center', 
-    padding: 10, 
+    padding: 5, 
     margin: 10, 
     marginBottom: 1,
     alignItems: 'center'
@@ -64,7 +64,8 @@ export default StyleSheet.create({
   claimsCategories1: {
     margin:10, 
     marginBottom: 0, 
-    paddingTop: 5
+    paddingTop: 5,
+    paddingBottom: 5
   },
   claimsCategories2: {
     flex:0, 
