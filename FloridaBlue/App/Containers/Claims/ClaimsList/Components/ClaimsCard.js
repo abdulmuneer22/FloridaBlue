@@ -63,7 +63,6 @@ class ClaimsCard extends Component {
   render () {
     return (
       // Header
-<<<<<<< HEAD
       /*List View*/
 
           <ScrollView>
@@ -118,49 +117,6 @@ class ClaimsCard extends Component {
           </ScrollView>
 
          
-=======
-      /* List View */
-
-      <ScrollView>
-        <View>
-
-          {this.props.data != undefined ? this.props.data
-                                                              // .filter((value, i) => (i < 7))
-                                                              .map((value, i) => {
-                                                                if (i < this.state.cardLimit) {
-                                                                  return (
-                                                                    <View style={{}}>
-                                                                      <TouchableOpacity onPress={() => this.viewClaimsDetails(this.props.claimNumber)}>
-                                                                        <Card style={{flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, marginBottom: 1}} key={i} >
-
-                                                                          <View style={{flex: 0.33, alignItems: 'center'}}>
-                                                                            <Text style={{color: Colors.flBlue.anvil}}>
-                                                                              {this.formatDate(value.dateOfService)}
-                                                                            </Text>
-                                                                          </View>
-
-                                                                          <View style={{flex: 0.33, alignItems: 'center'}}>
-                                                                            <Text style={{color: Colors.flBlue.anvil}}>
-                                                                              {value.providerName}
-                                                                            </Text>
-                                                                          </View>
-
-                                                                          <View style={{flex: 0.34, alignItems: 'center'}}>
-                                                                            <Text style={{color: Colors.flBlue.anvil}}>
-                                                                              {value.claimType}
-                                                                            </Text>
-                                                                          </View>
-                                                                        </Card>
-                                                                      </TouchableOpacity>
-                                                                    </View>
-                                                                  )
-                                                                }
-                                                              }) : null}
-
-        </View>
-
-      </ScrollView>
->>>>>>> e72fcd06f7ca323d2c25b5e228579a1bcee3a366
 
       )
   }
