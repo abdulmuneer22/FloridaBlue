@@ -19,7 +19,6 @@ import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import WKWebView from 'react-native-wkwebview-reborn'
-import WebViewManager from './Ywebviews'
 const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
 var btoa = require('btoa')

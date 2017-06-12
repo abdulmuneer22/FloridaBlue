@@ -7,7 +7,9 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   onChangeFCMToken: ['FCMToken'],
-  refreshTokenToUnsubscribe: ['refreshToken']
+  refreshTokenToUnsubscribe: ['refreshToken'],
+  onOpenedFromTray: ['openedFromTray'],
+  onLocalNotificaton: ['localNotification']
 })
 
 export const NotificationActions = Types
@@ -19,8 +21,8 @@ export const INITIAL_STATE = Immutable({
   FCMToken: null,
   refreshToken: null,
   notification: null,
-  local_notification: null,
-  opened_from_tray: null,
+  localNotification: false,
+  openedFromTray: false,
   error: null,
   fetching: false
 })
@@ -38,13 +40,23 @@ export const success = (state: Object, {notificaton}: Object) =>
 export const failure = (state: Object, { error }: Object) =>
   state.merge({ fetching: false, error })
 
+// we've had to set FCM Token
 export const FCMToken = (state : Object, {FCMToken}: Object) => state.merge({FCMToken})
+
+// we've had to set remote notificaiton tray if true
+export const onOpenedFromTray = (state : Object, {onOpenedFromTray}: Object) => state.merge({onOpenedFromTray})
+
+// we've had to set remote notificaiton tray if true
+export const localNotification = (state : Object, {localNotification}: Object) => state.merge({localNotification})
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.ON_CHANGE_F_C_M_TOKEN]: FCMToken,
-  [Types.REFRESH_TOKEN_TO_UNSUBSCRIBE]: FCMToken
+  [Types.REFRESH_TOKEN_TO_UNSUBSCRIBE]: FCMToken,
+  [Types.ON_OPENED_FROM_TRAY]: onOpenedFromTray,
+  [Types.ON_LOCAL_NOTIFICATION]: localNotification
+
 })
 
 /* ------------- Selectors ------------- */
