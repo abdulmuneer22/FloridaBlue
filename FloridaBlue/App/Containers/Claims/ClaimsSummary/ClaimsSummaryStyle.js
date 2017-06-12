@@ -77,7 +77,7 @@ export default StyleSheet.create({
   },
   textStyle: {
     marginTop: Metrics.smallMargin,
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002,
     color: Colors.flBlue.grey5,
     fontFamily: Fonts.type.headerFont
   }

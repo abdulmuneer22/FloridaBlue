@@ -16,7 +16,10 @@ const { Types, Creators } = createActions({
   claimsSummarySuccess: ['data'],
   claimsSummaryFailure: ['error'],
   changeDatePickerVisible: ['datePickerVisible'],
-  changeStartDate: ['startDate']
+  changeStartDate: ['startDate'],
+  changeEndDate: ['endDate'],
+  changeProviderName: ['providerName'],
+  changeMemberName: ['memberName']
 })
 
 export const ClaimsTypes = Types
@@ -29,7 +32,10 @@ export const INITIAL_STATE = Immutable({
   fetching: false,
   error: null,
   datePickerVisible: false,
-  startDate: new Date()
+  startDate: 'Start Date',
+  endDate: 'End Date',
+  providerName: '',
+  memberName: ''
 })
 
 /* ------------- Reducers ------------- */
@@ -68,8 +74,17 @@ export const _claimSummaryFailure = (state: Object, {error}: Object) => state.me
 // datePickerVisible
 export const _changeDatePickerVisible = (state: Object, {datePickerVisible}: Object) => state.merge({datePickerVisible})
 
-// datePickerVisible
+// startDate
 export const _changeStartDate = (state: Object, {startDate}: Object) => state.merge({startDate})
+
+// endDate
+export const _changeEndDate = (state: Object, {endDate}: Object) => state.merge({endDate})
+
+// providerName
+export const _changeProviderName = (state: Object, {providerName}: Object) => state.merge({providerName})
+
+// memberName
+export const _changeMemberName = (state: Object, {memberName}: Object) => state.merge({memberName})
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -84,7 +99,10 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CLAIMS_SUMMARY_SUCCESS]: _claimSummarySuccess,
   [Types.CLAIMS_SUMMARY_FAILURE]: _claimSummaryFailure,
   [Types.CHANGE_DATE_PICKER_VISIBLE]: _changeDatePickerVisible,
-  [Types.CHANGE_START_DATE]: _changeStartDate
+  [Types.CHANGE_START_DATE]: _changeStartDate,
+  [Types.CHANGE_END_DATE]: _changeEndDate,
+  [Types.CHANGE_PROVIDER_NAME]: _changeProviderName,
+  [Types.CHANGE_MEMBER_NAME]: _changeMemberName
 })
 
 /* ------------- Selectors ------------- */
