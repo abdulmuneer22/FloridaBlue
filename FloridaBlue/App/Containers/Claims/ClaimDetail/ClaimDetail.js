@@ -77,7 +77,7 @@ formatDate(date) {
              {this.props.claimdetaildata ? 
          <View style={{flex:0.33, alignItems:'center',backgroundColor:Colors.transparent, marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001,justifyContent:'center'}}>
             <Text style={{color:Colors.flBlue.anvil,
-                        fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
+                        fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0023}}>
              
                 {this.formatDate(this.props.claimdetaildata.dateReceived)}
             </Text>             
@@ -85,7 +85,7 @@ formatDate(date) {
           {this.props.claimdetaildata ? 
          <View style={{flex:0.33, backgroundColor:Colors.transparent, alignItems:'center',justifyContent:'center'}}>
             <Text style={{color:Colors.flBlue.anvil,
-                        fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
+                        fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0023}}>
               {this.props.claimdetaildata.memberFirstName}
             </Text>             
           </View>   :null}
@@ -94,7 +94,7 @@ formatDate(date) {
                          marginRight:Metrics.baseMargin  * Metrics.screenWidth * 0.001,
                         justifyContent:'center'}}>
             <Text style={{color:Colors.flBlue.anvil,
-                        fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
+                        fontSize:Fonts.size.regular * Metrics.screenWidth * 0.0023}}>
               {this.props.claimdetaildata.providerLastName}
             </Text>             
           </View>   :null}
@@ -106,30 +106,30 @@ formatDate(date) {
                 <View style={{flex: 1, flexDirection: 'row', marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002 }}>
                   <View style={{flex: 0.4}}>
                    <Text style={{color: Colors.flBlue.anvil,
-                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
+                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
              Claim Type:
             </Text>
                  </View>
                   <View style={{flex: 0.6}}>
                    <Text style={{color: Colors.flBlue.anvil,
-                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
+                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
                       {this.props.claimdetaildata.claimType}
                     </Text>
                  </View>
                 </View>
                 {this.props.claimdetaildata ?
-                  <View style={{flex: 2, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+                  <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
                    marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
                    <View style={{flex: 0.4, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                       <Text style={{color: Colors.flBlue.anvil,
-                        fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
+                        fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
              Status:
             </Text>
                     </View>
                    <View style={{flex: 0.6}}>
                       <Text style={{color: Colors.flBlue.anvil,
-                        fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
-                        {this.props.claimdetaildata.serviceDateFrom}
+                        fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
+                      {this.formatDate(this.props.claimdetaildata.serviceDateFrom)}
                       </Text>
                     </View>
                  </View> : null}
@@ -138,13 +138,13 @@ formatDate(date) {
                   <View style={{flex: 1.2, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002}}>
                    <View style={{flex: 0.4, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                       <Text style={{color: Colors.flBlue.anvil,
-                        fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
+                        fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
              Claim Number:
             </Text>
                     </View>
                    <View style={{flex: 0.6}}>
                       <Text style={{color: Colors.flBlue.anvil,
-                        fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
+                        fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
                         {this.props.claimdetaildata.claimNumber}
                       </Text>
                     </View>
@@ -156,7 +156,7 @@ formatDate(date) {
               <View style={{flex: 2.5, margin: 15, backgroundColor: Colors.bg2}}>
                 <Text style={{color: Colors.flBlue.anvil,
                   fontWeight: '400',
-                  fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025}}>
+                  fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027}}>
             Overall Claims Breakdown:
             </Text>
              
@@ -164,13 +164,13 @@ formatDate(date) {
                    <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
                       <View style={{flex: 0.6, alignItems: 'flex-end'}}>
                         <Text style={{color: Colors.flBlue.anvil,
-                          fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
             Total Billed
             </Text>
                       </View>
                       <View style={{flex: 0.4, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                         <Text style={{color: Colors.flBlue.anvil,
-                          fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
              ${this.props.claimdetaildata.totalBilledAllowed}
                         </Text>
                       </View>
@@ -180,13 +180,13 @@ formatDate(date) {
                    <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
                       <View style={{flex: 0.6, alignItems: 'flex-end'}}>
                         <Text style={{color: Colors.flBlue.anvil,
-                          fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
             Your Responsibility*
             </Text>
                       </View>
                       <View style={{flex: 0.4, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                         <Text style={{color: Colors.flBlue.anvil,
-                          fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
              ${this.props.claimdetaildata.totalBilledAllowed}
                         </Text>
                       </View>
@@ -195,13 +195,13 @@ formatDate(date) {
                    <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin*Metrics.screenHeight*0.001}}>
                       <View style={{flex: 0.6, alignItems: 'flex-end'}}>
                         <Text style={{color: Colors.flBlue.anvil,
-                          fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
             Florida Blue paid
             </Text>
                       </View>
                       <View style={{flex: 0.4, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                         <Text style={{color: Colors.flBlue.anvil,
-                          fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
              ${this.props.claimdetaildata.totalBilledAllowed}
                         </Text>
                       </View>
@@ -211,13 +211,13 @@ formatDate(date) {
                    <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
                       <View style={{flex: 0.6, alignItems: 'flex-end'}}>
                         <Text style={{color: Colors.flBlue.anvil,
-                          fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
             Your Discount
             </Text>
                       </View>
                       <View style={{flex: 0.4, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                         <Text style={{color: Colors.flBlue.anvil,
-                          fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
              ${this.props.claimdetaildata.totalBilledAllowed}
             </Text>
             </View> 
@@ -228,13 +228,13 @@ formatDate(date) {
          <View style={{flex:0.8,alignItems:'center',justifyContent:'center',backgroundColor:Colors.flBlue.grey4, flexDirection:'row'}}>
             <View style={{flex:0.5, alignItems:'flex-end'}}>
             <Text style={{color:Colors.snow,
-                        fontSize:Fonts.size.h4 * Metrics.screenWidth * 0.003}}>
+                        fontSize:Fonts.size.h5 * Metrics.screenWidth * 0.0028}}>
             You've Saved:
             </Text>
                     </View>
                    <View style={{flex: 0.3, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
                       <Text style={{color: Colors.snow,
-                        fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.003}}>
+                        fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028}}>
              ${this.props.claimdetaildata.totalBilledAllowed}
             </Text>
             </View> 
