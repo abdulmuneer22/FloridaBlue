@@ -31,7 +31,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import PushController from './PushController'
-import {connect} from 'react-redux'
+
 import NotificationActions from '../../Redux/NotificationRedux'
 const theme = getTheme()
 
