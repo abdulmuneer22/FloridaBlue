@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import NotificationActions from '../../Redux/NotificationRedux'
 
 class PushController extends Component {
+
   componentDidMount () {
     FCM.requestPermissions()
 
@@ -20,10 +21,10 @@ class PushController extends Component {
     this.notificationListner = FCM.on(FCMEvent.Notification, notif => {
       console.log('Notification', notif)
       if (notif.local_notification) {
-        return
+        this.props.onLocalNotificaton(true)
       }
       if (notif.opened_from_tray) {
-        return
+        this.props.onOpenedFromTray(true)
       }
 
       if (Platform.OS === 'ios') {
@@ -48,7 +49,7 @@ class PushController extends Component {
 
     this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
       console.log('TOKEN (refreshUnsubscribe)', token)
-      this.props.onChangeToken(token)
+      this.props.onFCMRefreshToken(token)
     })
   }
 
@@ -76,8 +77,8 @@ class PushController extends Component {
 PushController.PropTypes = {
   FCMToken: PropTypes.string,
   refreshTokenToUnsubscribe: PropTypes.string,
-  opened_from_tray: PropTypes.string,
-  local_notificationp: PropTypes.string,
+  openedFromTray: PropTypes.string,
+  localNotification: PropTypes.string,
   onChangeToken: PropTypes.func
 }
 
@@ -92,7 +93,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChangeToken: (FCMToken) => dispatch(NotificationActions.onChangeFCMToken(FCMToken))
+    onChangeToken: (FCMToken) => dispatch(NotificationActions.onChangeFCMToken(FCMToken)),
+    onFCMRefreshToken: (FCMRefreshToken) => dispatch(NotificationActions.refreshTokenToUnsubscribe(FCMRefreshToken)),
+    onOpenedFromTray: (openedFromTray) => dispatch(NotificationActions.onOpenedFromTray(openedFromTray)),
+    onLocalNotificaton: (localNotification) => dispatch(NotificationActions.localNotification(localNotification))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PushController)

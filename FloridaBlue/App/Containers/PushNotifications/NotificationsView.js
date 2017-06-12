@@ -20,7 +20,7 @@ import {
 import { Card } from 'native-base'
 // import NotificationCard from './Components/NotificationCard'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
-import styles from './PushNotificationsStyle'
+import styles from './NotificationsViewStyle'
 import NavItems from '../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
@@ -30,14 +30,16 @@ const window = Dimensions.get('window')
 import LinearGradient from 'react-native-linear-gradient'
 import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import PushController from './PushController'
 
+import NotificationActions from '../../Redux/NotificationRedux'
 const theme = getTheme()
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
-class PushNotifications extends Component {
+class NotificationsView extends Component {
 
   constructor (props) {
     super(props)
@@ -54,6 +56,9 @@ class PushNotifications extends Component {
         saved: true
       }
     }
+  }
+  componentDidMount () {
+    this.props.getNotifications()
   }
 
   deleteRow (secId, rowId, rowMap) {
@@ -77,7 +82,7 @@ class PushNotifications extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         <View style={styles.container}>
-
+          <PushController />
           <SwipeListView style={{ marginTop: 10, margin: 10, flex: 1 }}
             dataSource={this.ds.cloneWithRows(this.state.listViewData)}
             renderRow={data => (
@@ -213,4 +218,17 @@ class PushNotifications extends Component {
     )
   }
 }
-export default PushNotifications
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.Notification.fetching,
+    notification: state.Notification.notification
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getNotificaitons: () => dispatch(NotificationActions.getNotificaitons())
+  }
+}
+export default (mapStateToProps, mapDispatchToProps)(NotificationsView)

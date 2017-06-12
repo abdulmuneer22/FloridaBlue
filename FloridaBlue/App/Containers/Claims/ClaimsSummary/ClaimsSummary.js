@@ -91,7 +91,7 @@ class ClaimsSummary extends Component {
             <View style={{flex: 5, alignItems: 'center'}}>
               <Pie
                 pieWidth={Metrics.screenWidth - Metrics.screenWidth * 0.7}
-                pieHeight={Metrics.screenWidth -Metrics.screenWidth * 0.69}
+                pieHeight={Metrics.screenWidth - Metrics.screenWidth * 0.69}
                 colors={['#1f77b4', '#ff7f0e', '#d62728']}
                 width={width}
                 height={height}
@@ -100,7 +100,7 @@ class ClaimsSummary extends Component {
             </View>
 
             <View style={styles.recentClaimsView} >
-              <View style={{flex: 1, marginLeft: Metrics.doubleBaseMargin*Metrics.screenHeight*0.001, marginTop: Metrics.baseMargin*Metrics.screenHeight*0.001}}>
+              <View style={{flex: 1, marginLeft: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
                 <Text style={styles.recentClaimsText} >Recent Claims</Text>
               </View>
               {
