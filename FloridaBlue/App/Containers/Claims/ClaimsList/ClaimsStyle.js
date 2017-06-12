@@ -29,6 +29,50 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.sky
   },
+  claimsListCard: {
+    flexDirection: 'row', 
+    justifyContent: 'center', 
+    padding: 9, 
+    margin: 10, 
+    marginBottom: 1,
+    alignItems: 'center'
+  },
+  claimsListHeader1: {
+    flex: .3
+  },
+  claimsListHeader2: {
+    flex: .2,
+    marginBottom: 20
+  },
+  claimsListHeader3: {
+    flex: .2, 
+    backgroundColor: Colors.snow
+  },
+  claimsListHeader4: {
+    flex: .1, 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'space-between', 
+    paddingTop: 0, 
+    margin: 10
+  },
+  claimsListHeaderText: {
+    fontSize: 20, 
+    paddingLeft: 15, 
+    opacity: .9
+  },
+  claimsCategories1: {
+    margin:10, 
+    marginBottom: 0, 
+    paddingTop: 5,
+    paddingBottom: 5
+  },
+  claimsCategories2: {
+    flex:0, 
+    flexDirection:'row', 
+    justifyContent:'flex-start', 
+    marginTop: -15
+  },
   cardButton: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -62,7 +106,27 @@ export default StyleSheet.create({
     height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,
     flexDirection: 'row'
   },
-
+  claimsCardRow1: {
+    flex: .27, 
+    alignItems: 'center'
+  },
+  claimsCardRow2: {
+    flex: .33, 
+    alignItems: 'center'
+  },
+  claimsCardRow3: {
+    flex: .34, 
+    alignItems: 'center'
+  },
+  claimsCategoryText: {
+    fontWeight: 'bold'
+  },
+  claimsCardText: {
+    color: Colors.flBlue.anvil
+  },
+  claimsCardContainer: {
+    flex: 1.5
+  },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
