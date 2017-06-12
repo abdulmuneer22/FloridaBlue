@@ -148,7 +148,7 @@ class MyPlanSwiper extends Component {
             <Card style={{ flex: 1, alignItems: 'center',
               margin: 15,
               marginBottom: Platform.OS === 'ios' ? 0 : 30
-            }} >
+            }} key={i}>
               <View style={{ flex: 1, alignItems: 'center'
 
               }}>

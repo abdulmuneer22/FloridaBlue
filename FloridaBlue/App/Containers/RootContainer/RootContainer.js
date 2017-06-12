@@ -9,6 +9,8 @@ import StartupActions from '../../Redux/StartupRedux'
 import ReduxPersist from '../../Config/ReduxPersist'
 import LoginActions from '../../Redux/LoginRedux'
 import styles from './RootContainerStyle'
+import {PushController} from '../PushNotifications'
+
 var RCTNetworking = require('RCTNetworking')
 var inactiveTime = Date
 var activeTime = Date
@@ -72,6 +74,7 @@ class RootContainer extends Component {
     return (
       <View style={styles.applicationView}>
         <StatusBar barStyle='light-content' />
+        <PushController />
         <NavigationRouter />
       </View>
     )

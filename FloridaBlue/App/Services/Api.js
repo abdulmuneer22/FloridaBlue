@@ -290,6 +290,16 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     }
   })
 
+  const getNotification = () => api.get('/notify/messages')
+
+  const postFCMToken = (data) => api.post('/notify/register', {
+    'hccId': 'H12345678',
+    'memberId': '12345',
+    'deviceName': 'Samsung G8',
+    'deviceId': 'abc-xyz',
+    'token': 'xxxzzz'
+  })
+
   // ------
   // STEP 3
   // ------
@@ -330,7 +340,9 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     getConfig,
     getClaimsList,
     getClaimDetail,
-    getClaimsSummary
+    getClaimsSummary,
+    getNotification,
+    postFCMToken
   }
 }
 

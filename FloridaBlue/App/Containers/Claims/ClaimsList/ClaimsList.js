@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 
-import { 
-  AppRegistry, 
-  StyleSheet, 
-  Text, 
-  View, 
-  TextInput, 
-  Dimensions, 
-  TouchableOpacity, 
-  TouchableHighlight, 
-  Image, 
-  TouchableWithoutFeedback, 
-  ScrollView, 
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
+  TouchableHighlight,
+  Image,
+  TouchableWithoutFeedback,
+  ScrollView,
   Linking,
   Platform,
   Alert
@@ -49,7 +49,7 @@ class ClaimsList extends Component {
   // const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
   constructor (props) {
     super(props)
-   this.state = {
+    this.state = {
       listLimit: 10,
       totalNumberOfCardPerScreen: 10,
       isFetchingMore: false,
@@ -132,25 +132,24 @@ class ClaimsList extends Component {
   }
 
   async claimsListRequest (newProps) {
-      if (newProps.claimsdata && newProps.claimsdata.length > 0) {
-        if (newProps.error == undefined || newProps.error == null) {
-            newProps.attemptClaimsList(newProps)
-            }
-          }
-        }
-      
-
-  componentWillReceiveProps (newProps) {
-     if (this.state.isFetchingMore) {
-        //this.props.attemptProviderSearch(newProps)
-        this.claimsListRequest(newProps);
-        this.setState({
-          isFetchingMore: false
-        });
-     }
+    if (newProps.claimsdata && newProps.claimsdata.length > 0) {
+      if (newProps.error == undefined || newProps.error == null) {
+        newProps.attemptClaimsList(newProps)
+      }
+    }
   }
 
-  handleSearch() {
+  componentWillReceiveProps (newProps) {
+    if (this.state.isFetchingMore) {
+        // this.props.attemptProviderSearch(newProps)
+      this.claimsListRequest(newProps)
+      this.setState({
+        isFetchingMore: false
+      })
+    }
+  }
+
+  handleSearch () {
     if (this.state.searchVisible) {
       this.setState({searchVisible: false})
     } else {
@@ -172,7 +171,7 @@ class ClaimsList extends Component {
     this.props.changeDatePickerVisible(true)
   }
 
-   hideDatePicker() {
+  hideDatePicker () {
     this.props.changeDatePickerVisible(false)
   }
 
@@ -220,7 +219,7 @@ class ClaimsList extends Component {
     }
   }
 
-   memberSelected(index, value:string) {
+  memberSelected (index, value:string) {
     let selectedMember = memberList[index]
     this.props.changeMemberName(selectedMember)
     this.setState({searchVisible: false}, function () {
@@ -233,22 +232,23 @@ class ClaimsList extends Component {
   }
 
   _displayCondition () {
-    const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60);
-    const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60); 
-   console.tron.log(this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length+ " this.props.claimsdata.data" + JSON.stringify(this.props.claimsdata));
-   console.tron.log('this.props.fetching'+this.props.fetching)
+    const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
+    const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
+    console.tron.log(this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length + ' this.props.claimsdata.data' + JSON.stringify(this.props.claimsdata))
+    console.tron.log('this.props.fetching' + this.props.fetching)
     if (this.props.fetching) {
       return (
         <View style={styles.spinnerView}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>)
-      } else if (this.props.claimsdata && this.props.claimsdata &&  this.props.claimsdata.data && this.props.claimsdata.data.length !=0) {
-        return (
+    } else if (this.props.claimsdata && this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length != 0) {
+      return (
         <View style={styles.container}>
           <View>
             {this._renderHeader()}
           </View>
+<<<<<<< HEAD
           <View style={styles.claimsListHeader1}>
             <View style={styles.claimsListHeader2}>
               <View style={styles.claimsListHeader3}>
@@ -276,24 +276,65 @@ class ClaimsList extends Component {
               
               <View style={styles.container}>
                   {/*{
-                    this._displayCondition()
-                  }*/}
+=======
+          <View style={{flex: 0.3}}>
+            <View style={{flex: 0.2, marginBottom: 20}}>
+              <View style={{flex: 0.2, backgroundColor: 'white'}}>
+                <View style={{flex: 0.1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 0, margin: 10}}>
+                  <Text style={{fontSize: 20, paddingLeft: 15, opacity: 0.9}}>Claims List</Text>
+                  <Image source={Images.claimlistsearch} />
+                </View>
+              </View>
+            </View>
 
+            <View style={{margin: 10, marginBottom: 0, paddingTop: 5}}>
+              <View style={{flex: 0, flexDirection: 'row', justifyContent: 'flex-start', marginTop: -15}}>
+                <View style={{flex: 0.27, alignItems: 'center'}}>
+                  <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: 0.9}}> Date</Text></TouchableOpacity>
+                </View>
+                <View style={{flex: 0.33, alignItems: 'center'}}>
+                  <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={{fontWeight: 'bold'}}> Member</Text></TouchableOpacity>
+                </View>
+                <View style={{flex: 0.34, alignItems: 'center'}}>
+                  <TouchableOpacity><Text style={{fontWeight: 'bold'}}> Providers</Text></TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </View>
+
+          <View style={{flex: 1}}>
+            {/* {
+>>>>>>> e72fcd06f7ca323d2c25b5e228579a1bcee3a366
+                    this._displayCondition()
+                  } */}
+
+<<<<<<< HEAD
                       <ClaimsCard
                         data={this.props.claimsdata.data}
                         cardLimit={this.state.listLimit}
                         claimsCount={this.props.claimsdata.count}
                         viewMore={this.viewMore}
+=======
+            <ClaimsCard
+              data={this.props.claimsdata.data}
+              cardLimit={this.state.listLimit}
+>>>>>>> e72fcd06f7ca323d2c25b5e228579a1bcee3a366
                       />
 
+          </View>
 
+<<<<<<< HEAD
               </View>
 
  
 
             {/*{this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length >= 10
+=======
+          {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length >= 10
+>>>>>>> e72fcd06f7ca323d2c25b5e228579a1bcee3a366
                   && !(this.state.listLimit > this.props.claimsdata.data.length)
                   ?
+<<<<<<< HEAD
               <View style={{flex: 0, margin: 14}}>
                 <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit} out of {this.props.claimsdata.count} Claims</Text>
                 <TouchableOpacity onPress={this.viewMore}>
@@ -308,27 +349,45 @@ class ClaimsList extends Component {
 
 
   
+=======
+                    <View style={{flex: 0, margin: 14}}>
+                      <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit} out of {this.props.claimsdata.count} Claims</Text>
+                      <TouchableOpacity onPress={this.viewMore}>
+                        <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name='chevron-down' /></Text>
+                      </TouchableOpacity>
+                    </View> : null }
+
+        </View>
+      )
+    }
+  }
+>>>>>>> e72fcd06f7ca323d2c25b5e228579a1bcee3a366
 
   render () {
-     console.log("claims list data" +this.props.datePickerVisible)
+    console.log('claims list data' + this.props.datePickerVisible)
     return (
       <View style={styles.container}>
+<<<<<<< HEAD
         
             
              <View style={styles.container}>
                 {
+=======
+
+        <View style={{flex: 1}}>
+          {
+>>>>>>> e72fcd06f7ca323d2c25b5e228579a1bcee3a366
                   this._displayCondition()
                 }
 
-                    {/*<ClaimsCard
+          {/* <ClaimsCard
                       data={this.props.claimsdata.data}
-                     />*/}
+                     /> */}
 
-            </View>
+        </View>
 
-         </View>
+      </View>
 
-             
     )
   }
 }
