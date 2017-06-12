@@ -38,6 +38,7 @@ class ClaimsSummary extends Component {
     this.state = {
       activeIndex: 0
     }
+    //Move these below 2 calls to Claims Card in MyPlanScreen
     this.props.attemptClaimsSummary()
     this.props.attemptClaimsList()
     this.viewCliamsList = this.viewCliamsList.bind(this)
@@ -163,10 +164,10 @@ ClaimsSummary.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.claimsSummary.fetching,
-    claimsSummaryData: state.claimsSummary.data,
+    fetching: state.claims.fetching,
+    claimsSummaryData: state.claims.data,
     claimsdata: state.claimslist.data,
-    error: state.claimsSummary.error
+    error: state.claims.error
   }
 }
 
