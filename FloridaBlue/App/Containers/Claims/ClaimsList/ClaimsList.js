@@ -98,8 +98,6 @@ class ClaimsList extends Component {
     )
   }
 
-  
-
   viewMore () {
     var currentLimit = this.state.listLimit
     var newLimit = currentLimit
@@ -113,6 +111,23 @@ class ClaimsList extends Component {
       this.state.isFetchingMore = true
       this.setState({isFetchingMore: true})
       this.setState({totalNumberOfCardPerScreen: this.state.totalNumberOfCardPerScreen + 10})
+    }
+  }
+
+  toggleViewMore () {
+    this.setState({
+      showViewMore: !this.state.showViewMore
+    })
+  }
+
+  _renderViewMore () {
+    if(this.state.showViewMore) {
+      return (
+        <TouchableOpacity
+                        onPress={this.toggleViewMore()}>
+                        
+        </TouchableOpacity>
+      );
     }
   }
 
@@ -234,32 +249,32 @@ class ClaimsList extends Component {
           <View>
             {this._renderHeader()}
           </View>
-          <View style={{flex: .3}}>
-            <View style={{flex: .2, marginBottom: 20}}>
-              <View style={{flex: .2, backgroundColor: 'white'}}>
-                  <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 0, margin: 10}}>
-                    <Text style={{fontSize: 20, paddingLeft: 15, opacity: .9}}>Claims List</Text>
-                      <Image source={Images.claimlistsearch} />
+          <View style={styles.claimsListHeader1}>
+            <View style={styles.claimsListHeader2}>
+              <View style={styles.claimsListHeader3}>
+                  <View style={styles.claimsListHeader4}>
+                    <Text style={styles.claimsListHeaderText}>Claims List</Text>
+                    <Image source={Images.claimlistsearch} />
                   </View>
               </View>
             </View>
 
-              <View style={{margin:10, marginBottom: 0, paddingTop: 5}}>
-                <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginTop: -15}}>
-                      <View style={{flex:0.27, alignItems:'center'}}>
-                        <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: .9}}> Date</Text></TouchableOpacity>
+              <View style={styles.claimsCategories1}>
+                <View style={styles.claimsCategories2}>
+                      <View style={styles.claimsCardRow1}>
+                        <TouchableOpacity><Text style={styles.claimsCategoryText}> Date</Text></TouchableOpacity>
                       </View>
-                      <View style={{flex:0.33, alignItems:'center'}}>
-                        <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={{fontWeight: 'bold'}}> Member</Text></TouchableOpacity>
+                      <View style={styles.claimsCardRow2}>
+                        <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={styles.claimsCategoryText}> Member</Text></TouchableOpacity>
                       </View>
-                      <View style={{flex:0.34, alignItems:'center'}}>
-                        <TouchableOpacity><Text style={{fontWeight: 'bold'}}> Providers</Text></TouchableOpacity>
+                      <View style={styles.claimsCardRow3}>
+                        <TouchableOpacity><Text style={styles.claimsCategoryText}> Providers</Text></TouchableOpacity>
                       </View>
                 </View>
               </View>
             </View>
               
-              <View style={{flex:1}}>
+              <View style={styles.container}>
                   {/*{
                     this._displayCondition()
                   }*/}
@@ -267,6 +282,8 @@ class ClaimsList extends Component {
                       <ClaimsCard
                         data={this.props.claimsdata.data}
                         cardLimit={this.state.listLimit}
+                        claimsCount={this.props.claimsdata.count}
+                        viewMore={this.viewMore}
                       />
 
 
@@ -274,16 +291,15 @@ class ClaimsList extends Component {
 
  
 
-            {this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length >= 10
+            {/*{this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length >= 10
                   && !(this.state.listLimit > this.props.claimsdata.data.length)
-                  && !(this.props.claimsdata.data.length == 300 && this.props.claimsdata.data.length == this.state.listLimit)
                   ?
               <View style={{flex: 0, margin: 14}}>
                 <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit} out of {this.props.claimsdata.count} Claims</Text>
                 <TouchableOpacity onPress={this.viewMore}>
                   <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
                 </TouchableOpacity>
-                </View> : null }
+                </View> : null }*/}
 
             </View>
         )
@@ -299,7 +315,7 @@ class ClaimsList extends Component {
       <View style={styles.container}>
         
             
-             <View style={{flex:1}}>
+             <View style={styles.container}>
                 {
                   this._displayCondition()
                 }

@@ -74,34 +74,43 @@ class ClaimsCard extends Component {
                                                               .map((value, i)=>{
                   if (i < this.state.cardLimit) {
                     return(
-                      <View style={{}}>
+                      <View>
                         <TouchableOpacity onPress={() => this.viewClaimsDetails(this.props.claimNumber)}>
-                        <Card style={{flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, marginBottom: 1}} key={i} >
+                        <Card style={styles.claimsListCard} key={i} >
                           
-                          <View style={{flex: .33, alignItems: 'center'}}>
-                            <Text style={{color: Colors.flBlue.anvil}}>
+                          <View style={styles.claimsCardRow2}>
+                            <Text style={styles.claimsCardText}>
                              {this.formatDate(value.dateOfService)}
                             </Text>
                           </View>
 
-                          <View style={{flex: .33, alignItems: 'center'}}>
-                            <Text style={{color: Colors.flBlue.anvil}}>
+                          <View style={styles.claimsCardRow2}>
+                            <Text style={styles.claimsCardText}>
                               {value.providerName}
                             </Text>
                           </View>
 
-                          <View style={{flex: .34, alignItems: 'center'}}>
-                            <Text style={{color: Colors.flBlue.anvil}}>
+                          <View style={styles.claimsCardRow3}>
+                            <Text style={styles.claimsCardText}>
                               {value.claimType}
                             </Text>
                           </View>
                         </Card>
                         </TouchableOpacity>
+                       
                       </View>
+                    
+                      
                       )  }
 
                   }) : null}
 
+              <View style={{flex: 0, margin: 14}}>
+                <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
+                <TouchableOpacity onPress={this.props.viewMore}>
+                  <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
+                </TouchableOpacity>
+                </View> 
                     
               </View>           
 
