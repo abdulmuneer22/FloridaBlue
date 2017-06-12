@@ -31,10 +31,10 @@ const window = Dimensions.get('window')
 
 class ClaimsCard extends Component {
 
-  constructor(props) {
-    super(props);
-    this.formatDate = this.formatDate.bind(this);
-    this.viewClaimsDetails = this.viewClaimsDetails.bind(this);
+  constructor (props) {
+    super(props)
+    this.formatDate = this.formatDate.bind(this)
+    this.viewClaimsDetails = this.viewClaimsDetails.bind(this)
     this.state = {
       cardLimit: this.props.cardLimit
     }
@@ -48,74 +48,66 @@ class ClaimsCard extends Component {
     return month + '-' + day + '-' + year
   }
 
-    componentWillReceiveProps (nextProps) {
-      if (nextProps.cardLimit) {
-        this.setState({cardLimit: nextProps.cardLimit})
-      }
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.cardLimit) {
+      this.setState({cardLimit: nextProps.cardLimit})
     }
+  }
 
-    viewClaimsDetails(claimNumber){
-    console.tron.log('claimNumber'+ claimNumber)
-    this.props.attemptClaimDetail(claimNumber);
+  viewClaimsDetails (claimNumber) {
+    console.tron.log('claimNumber' + claimNumber)
+    this.props.attemptClaimDetail(claimNumber)
     NavigationActions.ClaimDetail()
   }
 
-  render(){
+  render () {
     return (
       // Header
-      /*List View*/
+      /* List View */
 
-          <ScrollView>
-            <View>
+      <ScrollView>
+        <View>
 
+          {this.props.data != undefined ? this.props.data
+                                                              // .filter((value, i) => (i < 7))
+                                                              .map((value, i) => {
+                                                                if (i < this.state.cardLimit) {
+                                                                  return (
+                                                                    <View style={{}}>
+                                                                      <TouchableOpacity onPress={() => this.viewClaimsDetails(this.props.claimNumber)}>
+                                                                        <Card style={{flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, marginBottom: 1}} key={i} >
 
-                {this.props.data !=undefined ? this.props.data
-                                                              //.filter((value, i) => (i < 7))
-                                                              .map((value, i)=>{
-                  if (i < this.state.cardLimit) {
-                    return(
-                      <View style={{}}>
-                        <TouchableOpacity onPress={() => this.viewClaimsDetails(this.props.claimNumber)}>
-                        <Card style={{flexDirection: 'row', justifyContent: 'center', padding: 10, margin: 10, marginBottom: 1}} key={i} >
-                          
-                          <View style={{flex: .33, alignItems: 'center'}}>
-                            <Text style={{color: Colors.flBlue.anvil}}>
-                             {this.formatDate(value.dateOfService)}
-                            </Text>
-                          </View>
+                                                                          <View style={{flex: 0.33, alignItems: 'center'}}>
+                                                                            <Text style={{color: Colors.flBlue.anvil}}>
+                                                                              {this.formatDate(value.dateOfService)}
+                                                                            </Text>
+                                                                          </View>
 
-                          <View style={{flex: .33, alignItems: 'center'}}>
-                            <Text style={{color: Colors.flBlue.anvil}}>
-                              {value.providerName}
-                            </Text>
-                          </View>
+                                                                          <View style={{flex: 0.33, alignItems: 'center'}}>
+                                                                            <Text style={{color: Colors.flBlue.anvil}}>
+                                                                              {value.providerName}
+                                                                            </Text>
+                                                                          </View>
 
-                          <View style={{flex: .34, alignItems: 'center'}}>
-                            <Text style={{color: Colors.flBlue.anvil}}>
-                              {value.claimType}
-                            </Text>
-                          </View>
-                        </Card>
-                        </TouchableOpacity>
-                      </View>
-                      )  }
+                                                                          <View style={{flex: 0.34, alignItems: 'center'}}>
+                                                                            <Text style={{color: Colors.flBlue.anvil}}>
+                                                                              {value.claimType}
+                                                                            </Text>
+                                                                          </View>
+                                                                        </Card>
+                                                                      </TouchableOpacity>
+                                                                    </View>
+                                                                  )
+                                                                }
+                                                              }) : null}
 
-                  }) : null}
+        </View>
 
-                    
-              </View>           
-
-          </ScrollView>
-
-         
+      </ScrollView>
 
       )
-    }
+  }
 }
-  
-
-  
-
 
 const mapStateToProps = (state) => {
   return {

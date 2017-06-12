@@ -9,7 +9,9 @@ const { Types, Creators } = createActions({
   onChangeFCMToken: ['FCMToken'],
   refreshTokenToUnsubscribe: ['refreshToken'],
   onOpenedFromTray: ['openedFromTray'],
-  onLocalNotificaton: ['localNotification']
+  onLocalNotificaton: ['localNotification'],
+  notificationSuccess: ['notificaition'],
+  notificationFailure: ['error']
 })
 
 export const NotificationActions = Types
@@ -52,6 +54,9 @@ export const localNotification = (state : Object, {localNotification}: Object) =
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.GET_NOTIFICATION]: request,
+  [Types.NOTIFICATION_SUCCESS]: success,
+  [Types.NOTIFICATION_FAILURE]: failure,
   [Types.ON_CHANGE_F_C_M_TOKEN]: FCMToken,
   [Types.REFRESH_TOKEN_TO_UNSUBSCRIBE]: FCMToken,
   [Types.ON_OPENED_FROM_TRAY]: onOpenedFromTray,

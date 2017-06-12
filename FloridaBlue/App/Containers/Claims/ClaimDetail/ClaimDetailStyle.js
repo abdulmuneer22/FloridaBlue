@@ -197,5 +197,5 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 0.5,
     borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
     height: Metrics.screenHeight * 0.064
-  },
+  }
 })

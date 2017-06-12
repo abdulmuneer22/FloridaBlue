@@ -32,6 +32,7 @@ import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import PushController from './PushController'
 
+import NotificationActions from '../../Redux/NotificationRedux'
 const theme = getTheme()
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -55,6 +56,9 @@ class NotificationsView extends Component {
         saved: true
       }
     }
+  }
+  componentDidMount () {
+    this.props.getNotifications()
   }
 
   deleteRow (secId, rowId, rowMap) {
@@ -214,4 +218,17 @@ class NotificationsView extends Component {
     )
   }
 }
-export default NotificationsView
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.Notification.fetching,
+    notification: state.Notification.notification
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getNotificaitons: () => dispatch(NotificationActions.getNotificaitons())
+  }
+}
+export default (mapStateToProps, mapDispatchToProps)(NotificationsView)

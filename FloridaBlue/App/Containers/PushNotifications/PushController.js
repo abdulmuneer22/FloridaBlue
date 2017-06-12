@@ -97,7 +97,6 @@ const mapDispatchToProps = (dispatch) => {
     onFCMRefreshToken: (FCMRefreshToken) => dispatch(NotificationActions.refreshTokenToUnsubscribe(FCMRefreshToken)),
     onOpenedFromTray: (openedFromTray) => dispatch(NotificationActions.onOpenedFromTray(openedFromTray)),
     onLocalNotificaton: (localNotification) => dispatch(NotificationActions.localNotification(localNotification))
-
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PushController)
