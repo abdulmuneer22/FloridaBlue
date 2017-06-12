@@ -225,9 +225,9 @@ class ProviderList extends Component {
                             </View>
                             <View style={{ flex: 0.85 }}>
                               <Text style={{
-                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
-                              color: Colors.snow
-                            }}>If this is an emergency, please call 911.</Text>
+                                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
+                                color: Colors.snow
+                              }}>If this is an emergency, please call 911.</Text>
                             </View>
                           </View>
                         </Card>

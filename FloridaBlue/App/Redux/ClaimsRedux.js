@@ -32,10 +32,10 @@ export const INITIAL_STATE = Immutable({
   fetching: false,
   error: null,
   datePickerVisible: false,
-  startDate: "Start Date",
-  endDate: "End Date",
-  providerName: "",
-  memberName: ""
+  startDate: 'Start Date',
+  endDate: 'End Date',
+  providerName: '',
+  memberName: ''
 })
 
 /* ------------- Reducers ------------- */

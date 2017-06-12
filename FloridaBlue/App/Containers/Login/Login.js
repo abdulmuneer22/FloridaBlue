@@ -559,9 +559,7 @@ class Login extends Component {
                   <TouchableOpacity onPress={() => { this._authenticateUserWithTouch() }}>
                     <Image style={styles.touchCoin} source={Images.touchIdCoin} />
                   </TouchableOpacity>
-                </View>
-                :
-                  null
+                </View>  : null
               }
 
               { Platform.OS === 'ios' && !this.props.credentialStored ?

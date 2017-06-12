@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import { Component, PropTypes } from 'react'
 import { Platform } from 'react-native'
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm'
+import {connect} from 'react-redux'
+import NotificationActions from '../../Redux/NotificationRedux'
 
-export default class PushController extends Component {
-  constructor (props) {
-    super(props)
-  }
+class PushController extends Component {
 
   componentDidMount () {
     FCM.requestPermissions()
@@ -22,10 +21,10 @@ export default class PushController extends Component {
     this.notificationListner = FCM.on(FCMEvent.Notification, notif => {
       console.log('Notification', notif)
       if (notif.local_notification) {
-        return
+        this.props.onLocalNotificaton(true)
       }
       if (notif.opened_from_tray) {
-        return
+        this.props.onOpenedFromTray(true)
       }
 
       if (Platform.OS === 'ios') {
@@ -50,7 +49,7 @@ export default class PushController extends Component {
 
     this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
       console.log('TOKEN (refreshUnsubscribe)', token)
-      this.props.onChangeToken(token)
+      this.props.onFCMRefreshToken(token)
     })
   }
 
@@ -74,3 +73,31 @@ export default class PushController extends Component {
     return null
   }
 }
+
+PushController.PropTypes = {
+  FCMToken: PropTypes.string,
+  refreshTokenToUnsubscribe: PropTypes.string,
+  openedFromTray: PropTypes.string,
+  localNotification: PropTypes.string,
+  onChangeToken: PropTypes.func
+}
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.Notification.fetching,
+    FCMToken: state.Notification.FCMToken,
+    refreshToken: state.Notification.refreshToken
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChangeToken: (FCMToken) => dispatch(NotificationActions.onChangeFCMToken(FCMToken)),
+    onFCMRefreshToken: (FCMRefreshToken) => dispatch(NotificationActions.refreshTokenToUnsubscribe(FCMRefreshToken)),
+    onOpenedFromTray: (openedFromTray) => dispatch(NotificationActions.onOpenedFromTray(openedFromTray)),
+    onLocalNotificaton: (localNotification) => dispatch(NotificationActions.localNotification(localNotification))
+
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PushController)

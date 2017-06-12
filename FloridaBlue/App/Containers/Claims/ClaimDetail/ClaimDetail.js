@@ -109,13 +109,13 @@ formatDate(date) {
                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
              Claim Type:
             </Text>
-                 </View>
+                  </View>
                   <View style={{flex: 0.6}}>
                    <Text style={{color: Colors.flBlue.anvil,
                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
                       {this.props.claimdetaildata.claimType}
                     </Text>
-                 </View>
+                  </View> 
                 </View>
                 {this.props.claimdetaildata ?
                   <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
@@ -126,13 +126,13 @@ formatDate(date) {
              Status:
             </Text>
                     </View>
-                   <View style={{flex: 0.6}}>
+                    <View style={{flex: 0.6}}>
                       <Text style={{color: Colors.flBlue.anvil,
                         fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
                       {this.formatDate(this.props.claimdetaildata.serviceDateFrom)}
                       </Text>
                     </View>
-                 </View> : null}
+                  </View> : null}
 
                 {this.props.claimdetaildata ?
                   <View style={{flex: 1.2, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002}}>
@@ -142,13 +142,13 @@ formatDate(date) {
              Claim Number:
             </Text>
                     </View>
-                   <View style={{flex: 0.6}}>
+                    <View style={{flex: 0.6}}>
                       <Text style={{color: Colors.flBlue.anvil,
                         fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
                         {this.props.claimdetaildata.claimNumber}
                       </Text>
                     </View>
-                 </View> : null}
+                  </View> : null}
 
               </View> : null}
             <View style={{borderWidth: 0.5, borderColor: Colors.flBlue.grey3, backgroundColor: Colors.bg2,
@@ -208,7 +208,7 @@ formatDate(date) {
                     </View> : null}
 
                   {this.props.claimdetaildata ?
-                   <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
+                    <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
                       <View style={{flex: 0.6, alignItems: 'flex-end'}}>
                         <Text style={{color: Colors.flBlue.anvil,
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>

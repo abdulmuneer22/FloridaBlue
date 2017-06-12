@@ -39,14 +39,14 @@ import DateTimePicker from 'react-native-modal-datetime-picker'
 
 const window = Dimensions.get('window')
 let memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
-let moment = require('moment');
+let moment = require('moment')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
 class ClaimsList extends Component {
-  //const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
+  // const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
   constructor (props) {
     super(props)
    this.state = {
@@ -147,12 +147,12 @@ class ClaimsList extends Component {
     this.setState({isDatePickerVisible: false})
   }
 
-  addStartDate() {
+  addStartDate () {
     this.setState({endDateSelected: false})
     this.props.changeDatePickerVisible(true)
   }
 
-  addEndDate() {
+  addEndDate () {
     this.setState({endDateSelected: true})
     this.props.changeDatePickerVisible(true)
   }
@@ -161,13 +161,13 @@ class ClaimsList extends Component {
     this.props.changeDatePickerVisible(false)
   }
 
-  handleDatePicked(date) {
+  handleDatePicked (date) {
     this.hideDatePicker()
     let selectedDate = moment(date).format('MMM Do YYYY')
 
     if (this.state.endDateSelected) {
       let startTime = new Date(this.props.startDate)
-      if (this.props.endDate == "End Date" || moment(selectedDate).isAfter(startTime)) {
+      if (this.props.endDate == 'End Date' || moment(selectedDate).isAfter(startTime)) {
         this.props.changeEndDate(selectedDate)
         this.setState({searchVisible: false}, function () {
           this.setState({searchVisible: true})
@@ -181,7 +181,7 @@ class ClaimsList extends Component {
           ])
       }
     } else {
-      if (this.props.endDate != "End Date") {
+      if (this.props.endDate != 'End Date') {
         let endTime = new Date(this.props.endDate)
         if (moment(selectedDate).isBefore(endTime)) {
           this.props.changeStartDate(selectedDate)
@@ -235,19 +235,17 @@ class ClaimsList extends Component {
             {this._renderHeader()}
           </View>
           <View style={{flex: .3}}>
-            <View style={{flex: .2}}>
+            <View style={{flex: .2, marginBottom: 20}}>
               <View style={{flex: .2, backgroundColor: 'white'}}>
-                  <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, margin: 10}}>
+                  <View style={{flex: .1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 0, margin: 10}}>
                     <Text style={{fontSize: 20, paddingLeft: 15, opacity: .9}}>Claims List</Text>
-                    <Button rounded style={{backgroundColor: '#00003f', marginBottom: 20, justifyContent: 'center'}}>
-                      <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-                    </Button>
+                      <Image source={Images.claimlistsearch} />
                   </View>
               </View>
             </View>
 
-              <View style={{margin:10, marginBottom: 15, paddingTop: 5}}>
-                <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginBottom: -15}}>
+              <View style={{margin:10, marginBottom: 0, paddingTop: 5}}>
+                <View style={{flex:0, flexDirection:'row', justifyContent:'flex-start', marginTop: -15}}>
                       <View style={{flex:0.27, alignItems:'center'}}>
                         <TouchableOpacity><Text style={{fontWeight: 'bold', opacity: .9}}> Date</Text></TouchableOpacity>
                       </View>
