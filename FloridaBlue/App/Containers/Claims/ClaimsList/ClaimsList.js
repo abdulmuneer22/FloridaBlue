@@ -237,7 +237,7 @@ class ClaimsList extends Component {
               <View style={styles.claimsListHeader3}>
                   <View style={styles.claimsListHeader4}>
                     <Text style={styles.claimsListHeaderText}>Claims List</Text>
-                    <Image source={Images.claimlistsearch} />
+                    <TouchableOpacity><Image source={Images.claimlistsearch} /></TouchableOpacity>
                   </View>
               </View>
             </View>
@@ -257,7 +257,7 @@ class ClaimsList extends Component {
               </View>
             </View>
               
-              <View style={{flex: 1.5}}>
+              <View style={styles.claimsCardContainer}>
                   {/*{
                     this._displayCondition()
                   }*/}

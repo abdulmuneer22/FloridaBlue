@@ -123,7 +123,9 @@ export default StyleSheet.create({
   claimsCardText: {
     color: Colors.flBlue.anvil
   },
-
+  claimsCardContainer: {
+    flex: 1.5
+  },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
