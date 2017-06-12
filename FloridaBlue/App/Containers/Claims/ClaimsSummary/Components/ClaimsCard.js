@@ -55,13 +55,26 @@ class ClaimsCard extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1}}>
-          {this.props.data != undefined ? this.props.data.map((value, i) => {
-            return (
+          {
 
+            this.props.data != undefined ? this.props.data.map((value, i) => {
+            let color = Colors.flBlue.ocean;
+            if(value.claimType === 'Professional'){
+                color = Colors.flBlue.ocean;
+            }else if(value.claimType === 'Institutional'){
+                color = Colors.flBlue.red;
+            }else{
+              color = Colors.flBlue.grass;
+            }
+
+            return (
               <TouchableOpacity style={{flex: 1}} onPress={() => this.viewCliamsDetails(value.claimNumber)}>
                 <Card style={{flex: 1, justifyContent: 'center', margin: 10}} key={i}>
                   <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-                    <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
+                    <View style={{flex:0.01,backgroundColor:color}}>
+                        
+                    </View>
+                    <View style={{flex: 0.29, alignItems: 'center', justifyContent: 'center'}}>
                       <Text style={styles.textStyle}>
                         {this.formatDate(value.dateOfService)}
                       </Text>
@@ -90,7 +103,7 @@ class ClaimsCard extends Component {
 ClaimsCard.propTypes = {
   data: PropTypes.array,
   attemptClaimDetail: PropTypes.func,
-  error: PropTypes.string
+  error: PropTypes.number
 }
 
 const mapStateToProps = (state) => {

@@ -110,3 +110,4 @@ export const reducer = createReducer(INITIAL_STATE, {
 // Is the current user logged in?
 export const isClaimDetailIn = (claimDetailState: Object) => claimDetailState.claimdetail.data !== null
 export const isClaimsListIn = (claimsListState: Object) => claimsListState.claimslist.data !== null
+export const isClaimsSummaryIn = (claimsSummaryState: Object) => claimsSummaryState.claimsSummary.data !== null
