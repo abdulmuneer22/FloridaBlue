@@ -192,5 +192,10 @@ export default StyleSheet.create({
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
     marginLeft: Metrics.baseMargin,
     fontWeight: '400'
-  }
+  },
+  claimListButton: {
+    width: Metrics.screenWidth * 0.5,
+    borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
+    height: Metrics.screenHeight * 0.064
+  },
 })

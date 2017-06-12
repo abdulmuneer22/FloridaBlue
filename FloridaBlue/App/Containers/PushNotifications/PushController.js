@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import { Component, PropTypes } from 'react'
 import { Platform } from 'react-native'
 import FCM, {FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType} from 'react-native-fcm'
+import {connect} from 'react-redux'
+import NotificationActions from '../../Redux/NotificationRedux'
 
-export default class PushController extends Component {
-  constructor (props) {
-    super(props)
-  }
-
+class PushController extends Component {
   componentDidMount () {
     FCM.requestPermissions()
 
@@ -74,3 +72,27 @@ export default class PushController extends Component {
     return null
   }
 }
+
+PushController.PropTypes = {
+  FCMToken: PropTypes.string,
+  refreshTokenToUnsubscribe: PropTypes.string,
+  opened_from_tray: PropTypes.string,
+  local_notificationp: PropTypes.string,
+  onChangeToken: PropTypes.func
+}
+
+const mapStateToProps = (state) => {
+  return {
+    fetching: state.Notification.fetching,
+    FCMToken: state.Notification.FCMToken,
+    refreshToken: state.Notification.refreshToken
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onChangeToken: (FCMToken) => dispatch(NotificationActions.onChangeFCMToken(FCMToken))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(PushController)

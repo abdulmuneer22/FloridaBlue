@@ -29,6 +29,8 @@
     "buffer": "~5.0.6",
     "d3-scale": "~1.0.5",
     "d3-shape": "~1.0.6",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.1",
     "format-json": "~1.0.3",
     "lodash": "~4.17.2",
     "moment": "^2.18.1",

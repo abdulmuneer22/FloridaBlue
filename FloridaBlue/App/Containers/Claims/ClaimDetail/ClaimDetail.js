@@ -71,8 +71,8 @@ formatDate(date) {
     } else if (this.props.claimdetaildata && this.props.claimdetaildata.claimNumber && this.props.claimdetaildata.claimNumber.length != 0) {
       return (
         <View style={styles.container}>
-          <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>   
-          <Image style={{flex:1, width:Metrics.screenWidth,alignItems:'center',justifyContent:'center'}} source={Images.claimdetailheaderblue}>
+          <View style={{flex:2,alignItems:'center',justifyContent:'center'}}>   
+          <Image style={{flex:2, width:Metrics.screenWidth,alignItems:'center',justifyContent:'center'}} source={Images.claimdetailheaderblue}>
          <View style={{flex:1, flexDirection:'row',justifyContent:'center'}}>
              {this.props.claimdetaildata ? 
          <View style={{flex:0.33, alignItems:'center',backgroundColor:Colors.transparent, marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001,justifyContent:'center'}}>
@@ -102,23 +102,23 @@ formatDate(date) {
         </Image>
         </View>
             {this.props.claimdetaildata ?
-              <View style={{flex: 1, marginTop:10}}>
+              <View style={{flex: 2, marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001}}>
                 <View style={{flex: 1, flexDirection: 'row', marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002 }}>
                   <View style={{flex: 0.4}}>
-                   <Text style={{color: Colors.flBlue.anvil,
+                    <Text style={{color: Colors.flBlue.anvil,
                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
              Claim Type:
             </Text>
-                 </View>
+                  </View>
                   <View style={{flex: 0.6}}>
-                   <Text style={{color: Colors.flBlue.anvil,
+                    <Text style={{color: Colors.flBlue.anvil,
                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
                       {this.props.claimdetaildata.claimType}
                     </Text>
-                 </View>
+                  </View>
                 </View>
                 {this.props.claimdetaildata ?
-                  <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+                  <View style={{flex: 2, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
                    marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
                    <View style={{flex: 0.4, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                       <Text style={{color: Colors.flBlue.anvil,
@@ -126,43 +126,42 @@ formatDate(date) {
              Status:
             </Text>
                     </View>
-                   <View style={{flex: 0.6}}>
+                    <View style={{flex: 0.6}}>
                       <Text style={{color: Colors.flBlue.anvil,
                         fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
                         {this.props.claimdetaildata.serviceDateFrom}
                       </Text>
                     </View>
-                 </View> : null}
+                  </View> : null}
 
                 {this.props.claimdetaildata ?
-                  <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002}}>
+                  <View style={{flex: 1.2, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002}}>
                    <View style={{flex: 0.4, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                       <Text style={{color: Colors.flBlue.anvil,
                         fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
              Claim Number:
             </Text>
                     </View>
-                   <View style={{flex: 0.6}}>
+                    <View style={{flex: 0.6}}>
                       <Text style={{color: Colors.flBlue.anvil,
                         fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
                         {this.props.claimdetaildata.claimNumber}
                       </Text>
                     </View>
-                 </View> : null}
+                  </View> : null}
 
               </View> : null}
-            <View style={{borderWidth: 0.3, borderColor: Colors.flBlue.grey3, backgroundColor: Colors.bg2,
+            <View style={{borderWidth: 0.5, borderColor: Colors.flBlue.grey3, backgroundColor: Colors.bg2,
               marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.001, marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001}} />
-            <View style={{flex: 1, backgroundColor: Colors.bg2}}>
-              <View style={{flex: 1, margin: 15, backgroundColor: Colors.bg2}}>
+              <View style={{flex: 2.5, margin: 15, backgroundColor: Colors.bg2}}>
                 <Text style={{color: Colors.flBlue.anvil,
                   fontWeight: '400',
                   fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.0025}}>
             Overall Claims Breakdown:
             </Text>
-                <View style={{flex: 1}}>
-                  {this.props.claimdetaildata ?
-                   <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002}}>
+             
+                  { this.props.claimdetaildata ?
+                   <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
                       <View style={{flex: 0.6, alignItems: 'flex-end'}}>
                         <Text style={{color: Colors.flBlue.anvil,
                           fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
@@ -175,10 +174,10 @@ formatDate(date) {
              ${this.props.claimdetaildata.totalBilledAllowed}
                         </Text>
                       </View>
-                    </View> : null}
+                    </View> :null}
 
                   {this.props.claimdetaildata ?
-                   <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002}}>
+                   <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
                       <View style={{flex: 0.6, alignItems: 'flex-end'}}>
                         <Text style={{color: Colors.flBlue.anvil,
                           fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
@@ -193,7 +192,7 @@ formatDate(date) {
                       </View>
                     </View> : null}
                   {this.props.claimdetaildata ?
-                   <View style={{flex: 1, flexDirection: 'row', marginTop: 10}}>
+                   <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin*Metrics.screenHeight*0.001}}>
                       <View style={{flex: 0.6, alignItems: 'flex-end'}}>
                         <Text style={{color: Colors.flBlue.anvil,
                           fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
@@ -209,7 +208,7 @@ formatDate(date) {
                     </View> : null}
 
                   {this.props.claimdetaildata ?
-                   <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
+                    <View style={{flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
                       <View style={{flex: 0.6, alignItems: 'flex-end'}}>
                         <Text style={{color: Colors.flBlue.anvil,
                           fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028}}>
@@ -224,36 +223,28 @@ formatDate(date) {
             </View> 
          </View>:null}
             </View>
-               
-            </View>
-             <View style={{flex:1, backgroundColor:Colors.flBlue.grey4,
-                            marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001}}>
+        
                     {this.props.claimdetaildata ?
-         <View style={{flex:1, flexDirection:'row', marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001,
-                            marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.001, }}>
-            <View style={{flex:0.6, alignItems:'flex-end'}}>
+         <View style={{flex:0.8,alignItems:'center',justifyContent:'center',backgroundColor:Colors.flBlue.grey4, flexDirection:'row'}}>
+            <View style={{flex:0.5, alignItems:'flex-end'}}>
             <Text style={{color:Colors.snow,
                         fontSize:Fonts.size.h4 * Metrics.screenWidth * 0.003}}>
             You've Saved:
             </Text>
                     </View>
-                   <View style={{flex: 0.4, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
+                   <View style={{flex: 0.3, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
                       <Text style={{color: Colors.snow,
                         fontSize: Fonts.size.h4 * Metrics.screenWidth * 0.003}}>
              ${this.props.claimdetaildata.totalBilledAllowed}
             </Text>
             </View> 
          </View>:null}
-        </View>
-        </View>   
-    <View style={{flex:1, marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.001, 
-         marginTop:Metrics.doubleBaseMargin*Metrics.screenHeight*0.002, margin:Metrics.baseMargin*Metrics.screenHeight*0.001}}>
-         
-             <View style={{flex:1, alignItems:'center'}}>
-             <TouchableOpacity  onPress={()=>NavigationActions.ClaimsList()} style={{flex:0.4, alignItems:'center'}}>
-             <Image source={Images.cliamlistbutton} />
+  
+            <View style={{flex:0.8,marginTop:10, alignItems:'center'}}>
+             <TouchableOpacity  onPress={()=>NavigationActions.ClaimsList()} style={{flex:0.8, alignItems:'center'}}>
+             <Image  style={styles.claimListButton} source={Images.cliamlistbutton} />
              </TouchableOpacity>
-            </View>
+           
             </View>
         
         </View> )

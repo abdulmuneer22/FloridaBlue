@@ -39,14 +39,14 @@ import DateTimePicker from 'react-native-modal-datetime-picker'
 
 const window = Dimensions.get('window')
 let memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
-let moment = require('moment');
+let moment = require('moment')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 
 class ClaimsList extends Component {
-  //const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
+  // const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
   constructor (props) {
     super(props)
    this.state = {
@@ -147,12 +147,12 @@ class ClaimsList extends Component {
     this.setState({isDatePickerVisible: false})
   }
 
-  addStartDate() {
+  addStartDate () {
     this.setState({endDateSelected: false})
     this.props.changeDatePickerVisible(true)
   }
 
-  addEndDate() {
+  addEndDate () {
     this.setState({endDateSelected: true})
     this.props.changeDatePickerVisible(true)
   }
@@ -161,13 +161,13 @@ class ClaimsList extends Component {
     this.props.changeDatePickerVisible(false)
   }
 
-  handleDatePicked(date) {
+  handleDatePicked (date) {
     this.hideDatePicker()
     let selectedDate = moment(date).format('MMM Do YYYY')
 
     if (this.state.endDateSelected) {
       let startTime = new Date(this.props.startDate)
-      if (this.props.endDate == "End Date" || moment(selectedDate).isAfter(startTime)) {
+      if (this.props.endDate == 'End Date' || moment(selectedDate).isAfter(startTime)) {
         this.props.changeEndDate(selectedDate)
         this.setState({searchVisible: false}, function () {
           this.setState({searchVisible: true})
@@ -181,7 +181,7 @@ class ClaimsList extends Component {
           ])
       }
     } else {
-      if (this.props.endDate != "End Date") {
+      if (this.props.endDate != 'End Date') {
         let endTime = new Date(this.props.endDate)
         if (moment(selectedDate).isBefore(endTime)) {
           this.props.changeStartDate(selectedDate)

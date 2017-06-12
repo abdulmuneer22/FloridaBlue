@@ -62,20 +62,20 @@ class ClaimsCard extends Component {
                 <Card style={{flex: 1, justifyContent: 'center', margin: 10}} key={i}>
                   <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
                     <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={styles.textStyle}>
+                      <Text style={styles.textStyle}>
                         {this.formatDate(value.dateOfService)}
                       </Text>
-                  </View>
+                    </View>
                     <View style={{flex: 0.4, alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={styles.textStyle}>
+                      <Text style={styles.textStyle}>
                         {value.providerName}
                       </Text>
-                  </View>
+                    </View>
                     <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
-                    <Text style={styles.textStyle}>
+                      <Text style={styles.textStyle}>
                         {value.claimType}
                       </Text>
-                  </View>
+                    </View>
                   </View>
                 </Card>
               </TouchableOpacity>
