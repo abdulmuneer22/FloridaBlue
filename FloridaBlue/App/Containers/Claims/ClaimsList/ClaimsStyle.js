@@ -119,13 +119,20 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   claimsCategoryText: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    flexDirection: 'row'
   },
   claimsCardText: {
     color: Colors.flBlue.anvil
   },
   claimsCardContainer: {
     flex: 1.5
+  },
+  claimsViewMore: {
+    textAlign: 'center', 
+    color: Colors.flBlue.teal, 
+    fontSize: 20, 
+    paddingLeft: 5
   },
   headerTextStyle: {
     color: Colors.flBlue.ocean,

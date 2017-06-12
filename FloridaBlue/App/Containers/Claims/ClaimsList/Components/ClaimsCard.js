@@ -112,8 +112,8 @@ class ClaimsCard extends Component {
 
               <View style={{flex: 0, margin: 14}}>
                 <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
-                <TouchableOpacity onPress={this.props.viewMore}>
-                  <Text style={{textAlign: 'center', color: 'teal', fontSize: 20}}>View More <Icon name="chevron-down"></Icon></Text>
+                <TouchableOpacity onPress={this.props.viewMore} style={{flexDirection: 'row', justifyContent: 'center'}}>
+                  <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/>
                 </TouchableOpacity>
                 </View> 
                     
