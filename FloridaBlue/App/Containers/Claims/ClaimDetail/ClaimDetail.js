@@ -248,7 +248,7 @@ class ClaimDetail extends Component {
           </View>
 
         </View>)
-    } else if (this.props.data && this.props.data.tiles != null && this.props.data.tiles.length == 0) {
+    } else if (this.props.claimdetaildata && this.props.claimdetaildata.claimNumber && this.props.claimdetaildata.claimNumber.length == 0) {
       Alert.alert(
                   'Claim Detail',
                    'Oops! Looks like we\'re having trouble with your request. Please try again later.',
@@ -294,9 +294,9 @@ ClaimDetail.propTypes = {
 const mapStateToProps = (state) => {
   console.tron.log(state)
   return {
-    fetching: state.claimdetail.fetching,
+    fetching: state.claims.fetching,
     claimdetaildata: state.claims.data,
-    error: state.claimdetail.error
+    error: state.claims.error
   }
 }
 const mapDispatchToProps = (dispatch) => {
