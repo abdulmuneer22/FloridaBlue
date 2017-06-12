@@ -97,7 +97,7 @@ class Pie extends React.Component {
     const y = this.props.pieHeight / 2
     return (
       <View style={{flex: 1}}>
-        <View style={{flex: 4, alignItems: 'center',marginTop:10}}>
+        <View style={{flex: 4, alignItems: 'center', marginTop: 10}}>
           <Surface width={this.props.width} height={this.props.height}>
             <Group x={x} y={y}>
               {
@@ -118,7 +118,7 @@ class Pie extends React.Component {
             this.props.data ?
             this.props.data.map((item, index) => {
               return (
-                <View style={{flex: 1, flexDirection: 'row', width: Metrics.screenWidth * 0.80, alignItems: 'center',backgroundColor:Colors.transparent}}>
+                <View style={{flex: 1, flexDirection: 'row', width: Metrics.screenWidth * 0.80, alignItems: 'center', backgroundColor: Colors.transparent}}>
                   {
                           index < 3 ?
                             <View style={{flex: 0.1}} >
@@ -129,10 +129,10 @@ class Pie extends React.Component {
                         }
                   <View style={{flex: 0.6}} >
                     <Text style={[{color: 'grey', fontWeight: 'normal',
-                                    fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}]}>{this._label(item)}: </Text>
+                      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}]}>{this._label(item)}: </Text>
                   </View>
                   <View style={{flex: 0.3, flexDirection: 'row' }} >
-                    <Text style={{color: 'grey', fontWeight: 'normal',fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> ${this._value(item).toFixed(2)} </Text>
+                    <Text style={{color: 'grey', fontWeight: 'normal', fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> ${this._value(item).toFixed(2)} </Text>
                   </View>
                 </View>
               )

@@ -60,66 +60,62 @@ class MyIdCard extends Component {
         <HideableView visible={this.state.idCardHeaderVisible} removeWhenHidden>
           {this._renderHeader()}
         </HideableView>
-        <View style={{margin: 5, flex: 1, alignItems: 'center', opacity:0.9      
+        <View style={{margin: 5, flex: 1, alignItems: 'center', opacity: 0.9
         }}
 
         >
-            <TouchableOpacity onPress={this.toggle}>
+          <TouchableOpacity onPress={this.toggle}>
             <Image source={{uri: this.props.data.srcData}} style={{
               flex: 1,
               transform: [{rotate: '270deg'}],
-              resizeMode:'contain',
-              width: this.state.idCardHeaderVisible ? (Metrics.screenHeight-Metrics.screenHeight *0.15):Metrics.screenHeight,
-           
-              
+              resizeMode: 'contain',
+              width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.15) : Metrics.screenHeight
+
             }} >
-            <View style={{flex:1,}}>
-              <View style={{flex:1,  flexDirection:'row',alignItems:'center'}}>  
-                  <View style={{flex:0.45,height:this.state.idCardHeaderVisible ? (Metrics.screenHeight-(Metrics.screenHeight*0.73)) : (Metrics.screenHeight-(Metrics.screenHeight*0.7)),marginLeft: Metrics.screenWidth * 0.1,  alignItems:'flex-start', marginTop:20}}>
-                    <View style={{flex:0.2,marginTop:5}}>
-                      <Text style={{color:'white', backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> JASON LAITNER</Text> 
+              <View style={{flex: 1 }}>
+                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                  <View style={{flex: 0.45, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.73)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.7)), marginLeft: Metrics.screenWidth * 0.1, alignItems: 'flex-start', marginTop: 20}}>
+                    <View style={{flex: 0.2, marginTop: 5}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> JASON LAITNER</Text>
                     </View>
-                    <View style={{flex:0.2,marginTop:5}}>
-                      <Text style={{color:'white', backgroundColor:Colors.transparent, fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> Member Number </Text>
-                      <Text style={{color:'white', backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> VMYH5192569001</Text>
+                    <View style={{flex: 0.2, marginTop: 5}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> Member Number </Text>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> VMYH5192569001</Text>
                     </View>
-                    <View style={{flex:0.2,marginTop:5}}>
+                    <View style={{flex: 0.2, marginTop: 5}} />
+                    <View style={{flex: 0.2, marginTop: 5}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}>  Group Number 9999 </Text>
                     </View>
-                    <View style={{flex:0.2,marginTop:5}}>
-                      <Text style={{color:'white',backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}>  Group Number 9999 </Text>
-                    </View>
-                    <View style={{flex:0.2,marginTop:5}}>
-                        <Text style={{color:'white',backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> </Text> 
+                    <View style={{flex: 0.2, marginTop: 5}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}} />
                     </View>
                   </View>
 
-                  <View style={{flex:0.55,  marginLeft: Metrics.screenWidth * 0.3, height:this.state.idCardHeaderVisible ? (Metrics.screenHeight-(Metrics.screenHeight*0.73)) : (Metrics.screenHeight-(Metrics.screenHeight*0.7)), alignItems:'flex-start', marginTop:20}}>
-                    <View style={{flex:0.2,marginTop:5}}>
-                      <Text style={{color:'white', backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> BC 090 BS 590 </Text> 
+                  <View style={{flex: 0.55, marginLeft: Metrics.screenWidth * 0.3, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.73)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.7)), alignItems: 'flex-start', marginTop: 20}}>
+                    <View style={{flex: 0.2, marginTop: 5}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> BC 090 BS 590 </Text>
                     </View>
-                    <View style={{flex:0.2,marginTop:5}}>
-                      <Text style={{color:'white', backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.0015}}> RX BIN 012833 </Text>
-                      <Text style={{color:'white', backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> PCN FLBC</Text>
+                    <View style={{flex: 0.2, marginTop: 5}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0015}}> RX BIN 012833 </Text>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> PCN FLBC</Text>
                     </View>
-                    <View style={{flex:0.2,marginTop:5}}>
-                      
+                    <View style={{flex: 0.2, marginTop: 5}} />
+                    <View style={{flex: 0.2, marginTop: 5}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> Plan Number: 1711S </Text>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> Plan Name: myBlue </Text>
                     </View>
-                    <View style={{flex:0.2,marginTop:5}}>
-                      <Text style={{color:'white',backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> Plan Number: 1711S </Text>
-                      <Text style={{color:'white',backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> Plan Name: myBlue </Text>
-                    </View>
-                    <View style={{flex:0.2,marginTop:5}}>
-                        <Text style={{color:'white',backgroundColor:Colors.transparent,fontSize:Fonts.size.regular*Metrics.screenWidth*0.002}}> Bronze </Text> 
+                    <View style={{flex: 0.2, marginTop: 5}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> Bronze </Text>
                     </View>
                   </View>
-              </View>
-               
+                </View>
+
               </View>
 
             </Image>
 
-         </TouchableOpacity>
-           
+          </TouchableOpacity>
+
         </View>
 
       </View>
