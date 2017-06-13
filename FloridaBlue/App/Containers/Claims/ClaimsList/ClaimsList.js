@@ -234,12 +234,14 @@ class ClaimsList extends Component {
             {this._renderHeader()}
           </View>
 
+       
+
           <View style={styles.claimsListHeader1}>
             <View style={styles.claimsListHeader2}>
               <View style={styles.claimsListHeader3}>
                   <View style={styles.claimsListHeader4}>
                     <Text style={styles.claimsListHeaderText}>Claims List</Text>
-                    <TouchableOpacity><Image source={Images.claimlistsearch} /></TouchableOpacity>
+                    <TouchableOpacity onPress={this.handleSearch}><Image source={Images.claimlistsearch} /></TouchableOpacity>
                   </View>
               </View>
             </View>
@@ -269,7 +271,46 @@ class ClaimsList extends Component {
               viewMore={this.viewMore}
             />
           </View>
-
+              <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden={true} duration={200}>
+                <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearch}>
+                  <Flb name="remove" size={20} />
+                </TouchableOpacity>
+                <Text style={styles.searchTitle}>Search for a claim by filling out the fields below:</Text>
+                <MKTextField
+                  ref='providerName'
+                  style={styles.textField}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  editable={true}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder={"Provider Name"}
+                  placeholderTextColor={Colors.steel}
+                  tintColor={Colors.black}
+                />
+                <ModalDropdown options={_.map(memberList, 'memberName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                  <MKTextField
+                    ref='careType'
+                    textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                    style={styles.textField}
+                    editable={false}
+                    underlineColorAndroid={Colors.coal}
+                    placeholder={"Member Name"}
+                    placeholderTextColor={Colors.steel}
+                    tintColor={Colors.black}
+                    value={""}
+                  />
+                </ModalDropdown>
+                <TouchableOpacity style={styles.startDateButton} onPress={this.showDatePicker}>
+                  <Text>Start Date</Text>
+                </TouchableOpacity>
+                <DateTimePicker
+                  isVisible={this.state.isDatePickerVisible}
+                  onConfirm={this.handleDatePicked}
+                  onCancel={this.hideDatePicker}
+                />
+                <Button rounded style={styles.searchButton} onPress={this.handleSearch}>
+                  <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
+                </Button>
+            </HideableView>          
         </View>
         )
       }
