@@ -21,6 +21,7 @@ import { ClaimsListTypes } from '../Redux/ClaimsListRedux'
 import { ClaimDetailTypes } from '../Redux/ClaimDetailRedux'
 import { ClaimsSummaryTypes } from '../Redux/ClaimsSummaryRedux'
 import { ClaimsTypes } from '../Redux/ClaimsRedux'
+import { NotificationTypes } from '../Redux/NotificationRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -56,6 +57,7 @@ import {claimslist} from './ClaimsListSagas'
 import {claimdetail} from './ClaimDetailSagas'
 import {claimsSummary} from './ClaimsSummarySagas'
 import {claims} from './ClaimsSagas'
+import {getNotification} from './NotificationSagas'
 // import { getTemperature } from './TemperatureSagas'
 var urlConfig = require('../UrlConfig')
 
@@ -109,6 +111,7 @@ export default function * root () {
     takeLatest(ProviderTypes.SEND_ASYNC_URGENT_SEARCH_REQUEST, sendUrgentSearchRequest, api),
     takeLatest(ClaimsTypes.CLAIMS_LIST_REQUEST, claimslist, api),
     takeLatest(ClaimsTypes.CLAIM_DETAIL_REQUEST, claimdetail, api),
-    takeLatest(ClaimsTypes.CLAIMS_SUMMARY_REQUEST, claimsSummary, api)
+    takeLatest(ClaimsTypes.CLAIMS_SUMMARY_REQUEST, claimsSummary, api),
+    takeLatest(NotificationTypes.GET_NOTIFICATION, getNotification, api)
   ]
 }

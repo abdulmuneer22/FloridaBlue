@@ -42,7 +42,9 @@ export default StyleSheet.create({
   },
   claimsListHeader2: {
     flex: .2,
-    marginBottom: 20
+    marginBottom: 20,
+    borderBottomWidth: .8,
+    borderBottomColor: 'grey'
   },
   claimsListHeader3: {
     flex: .2, 
@@ -135,7 +137,7 @@ export default StyleSheet.create({
     textAlign: 'center', 
     color: Colors.flBlue.teal, 
     fontSize: 20, 
-    paddingLeft: 5
+    paddingLeft: 115
   },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
