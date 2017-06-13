@@ -247,13 +247,13 @@ class ClaimsList extends Component {
              <View style={styles.claimsCategories1}>
                 <View style={styles.claimsCategories2}>
                       <View style={styles.claimsCardRow1}>
-                        <TouchableOpacity><Text style={styles.claimsCategoryText}> Date</Text></TouchableOpacity>
+                        <TouchableOpacity><Text style={styles.claimsCategoryText}> Date<Flb name="caret-up-down" size={20} color={Colors.flBlue.anvil} /></Text></TouchableOpacity>
                       </View>
                       <View style={styles.claimsCardRow2}>
-                        <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={styles.claimsCategoryText}> Member</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)}><Text style={styles.claimsCategoryText}> Member<Flb name="caret-up-down" size={20} color={Colors.flBlue.anvil} /></Text></TouchableOpacity>
                       </View>
                       <View style={styles.claimsCardRow3}>
-                        <TouchableOpacity><Text style={styles.claimsCategoryText}> Providers</Text></TouchableOpacity>
+                        <TouchableOpacity><Text style={styles.claimsCategoryText}> Providers<Flb name="caret-up-down" size={20} color={Colors.flBlue.anvil} /></Text></TouchableOpacity>
                       </View>
                 </View>
               </View> 
@@ -288,7 +288,7 @@ class ClaimsList extends Component {
           }
         </View>
       </View>
-          
+
     )
   }
 }
