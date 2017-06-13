@@ -36,17 +36,17 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   chart_title: {
-    paddingTop: 10,
+  //  paddingTop: 10,
     textAlign: 'center',
-    paddingBottom: 5,
-    paddingLeft: 5,
+   // paddingBottom: 5,
+   // paddingLeft: 5,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0015,
-    backgroundColor: 'white',
-    color: 'grey',
+   // backgroundColor: 'white',
+    color: Colors.flBlue.grey4,
     fontWeight: 'bold'
   },
   recentClaimsView: {
-    flex: 3.7,
+    flex: 1,
     backgroundColor: Colors.flBlue.grey1
   },
   recentClaimsText: {

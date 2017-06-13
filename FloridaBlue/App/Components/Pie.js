@@ -96,8 +96,8 @@ class Pie extends React.Component {
     const x = this.props.pieWidth / 2
     const y = this.props.pieHeight / 2
     return (
-      <View style={{flex: 1}}>
-        <View style={{flex: 4, alignItems: 'center', marginTop: 10}}>
+      <View style={{flex: 4.5,backgroundColor:Colors.transparent}}>
+        <View style={{flex: 2.5,marginTop:Metrics.doubleBaseMargin*Metrics.screenHeight*0.001,justifyContent:'center', alignItems: 'center'}}>
           <Surface width={this.props.width} height={this.props.height}>
             <Group x={x} y={y}>
               {
@@ -113,25 +113,25 @@ class Pie extends React.Component {
             </Group>
           </Surface>
         </View>
-        <View style={{flex: 3.7}}>
+        <View style={{flex:2, marginTop:-Metrics.doubleBaseMargin*Metrics.screenHeight*0.001}}>
           {
             this.props.data ?
             this.props.data.map((item, index) => {
               return (
-                <View style={{flex: 1, flexDirection: 'row', width: Metrics.screenWidth * 0.80, alignItems: 'center', backgroundColor: Colors.transparent}}>
+                <View key={index} style={{flex: 2, flexDirection: 'row', width: Metrics.screenWidth * 0.80, alignItems: 'center', backgroundColor: Colors.transparent}}>
                   {
                           index < 3 ?
-                            <View style={{flex: 0.1}} >
+                            <View style={{flex: 0.2,}} >
                               <Icon name='stop' size={Metrics.icons.medium * Metrics.screenWidth * 0.0017} color={this._color(index)} backgroundColor={this._color(index)} />
                             </View>
                           :
-                            <View style={{flex: 0.1}} />
+                            <View style={{flex: 0.2}} />
                         }
-                  <View style={{flex: 0.6}} >
+                  <View style={{flex: 0.9}} >
                     <Text style={[{color: 'grey', fontWeight: 'normal',
                       fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}]}>{this._label(item)}: </Text>
                   </View>
-                  <View style={{flex: 0.3, flexDirection: 'row' }} >
+                  <View style={{flex: 0.9, flexDirection: 'row' }} >
                     <Text style={{color: 'grey', fontWeight: 'normal', fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> ${this._value(item).toFixed(2)} </Text>
                   </View>
                 </View>

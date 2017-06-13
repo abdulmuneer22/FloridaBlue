@@ -68,8 +68,8 @@ class ClaimsCard extends Component {
             }
 
             return (
-              <TouchableOpacity style={{flex: 1}} onPress={() => this.viewCliamsDetails(value.claimNumber)}>
-                <Card style={{flex: 1, justifyContent: 'center', margin: 10}} key={i}>
+              <TouchableOpacity style={{flex: 1}} key={i} onPress={() => this.viewCliamsDetails(value.claimNumber)}>
+                <Card key={i} style={{flex: 1, justifyContent: 'center', margin: 10}} key={i}>
                   <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
                     <View style={{flex:0.01,backgroundColor:color}}>
                         
