@@ -6,6 +6,7 @@ import {
     View,
     ScrollView,
     Text,
+    Image,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Linking,
@@ -14,7 +15,7 @@ import {
 
 import { Button, Card } from 'native-base'
 import ClaimDetailActions from '../../../../Redux/ClaimDetailRedux'
-import { Colors, Metrics, Fonts } from '../../../../Themes'
+import { Colors, Metrics, Fonts, Images } from '../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
@@ -111,10 +112,13 @@ class ClaimsCard extends Component {
                   }) : null}
 
               <View style={{flex: 0, margin: 14}}>
-                <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
-                <TouchableOpacity onPress={this.props.viewMore} style={{flexDirection: 'row', justifyContent: 'center'}}>
-                  <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/>
-                </TouchableOpacity>
+                  <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
+                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                  <TouchableOpacity onPress={this.props.viewMore} style={{flexDirection: 'row'}}>
+                    <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
+                  </TouchableOpacity>
+                  <Image source={Images.infoIcon} style={{marginLeft: 80}} />
+                 </View>
                 </View> 
                     
               </View>           
