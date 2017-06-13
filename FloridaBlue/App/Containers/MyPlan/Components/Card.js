@@ -85,6 +85,7 @@ class Card extends Component {
           this.customNavigation()
         }}
         style={{
+          flex:1,
       //   backgroundColor : "red",
         // width : this.props.i === this.props.CardCount ? (window.width * 0.85) : null,
           width: this.state.CardWidth,
@@ -101,6 +102,7 @@ class Card extends Component {
         <View style={{flex: 1}} >
           <LinearGradient colors={this.props.gradientColor}
             style={{
+              flex:1,
               width: this.state.CardWidth,
               height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.76) : Metrics.screenHeight - (Metrics.screenHeight * 0.78)
         //    alignItems: 'center',
@@ -110,15 +112,13 @@ class Card extends Component {
 
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Image source={Images[this.props.gradientImage]}
-                style={{flex: 1, justifyContent: 'center', alignItems: 'center',
-                  width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.55) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.56)
-                }} >
+                style={this.props.CardCount % 2? styles.myplanImageStyle1:styles.myplanImageStyle2} >
 
-                <View style={{alignItems: 'center'}} >
+                <View style={{alignItems: 'center', width:Metrics.screenWidth,flex:1,justifyContent:'center'}} >
                   <Text style={{
                   // marginTop: Metrics.mediumMargin,
                    // marginBottom: -15,
-                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
+                    fontSize: this.props.CardCount % 2? Fonts.size.h4 * Metrics.screenWidth * 0.0030 : Fonts.size.regular * Metrics.screenWidth * 0.0030,
                     fontWeight: (Platform.OS === 'ios') ? '600' : '400',
                     color: Colors.snow,
                     backgroundColor: Colors.transparent
