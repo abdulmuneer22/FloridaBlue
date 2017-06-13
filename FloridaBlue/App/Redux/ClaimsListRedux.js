@@ -8,7 +8,10 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   claimsListRequest: [],
   claimsListSuccess: ['data'],
-  claimsListFailure: ['error']
+  claimsListFailure: ['error'],
+  changeListLimit: ['listLimit'],
+  changeEndDate: ['endDate']
+
   // changeListLimit: ['listLimit']
 })
 
@@ -20,7 +23,9 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   data: {},
   fetching: false,
-  error: null
+  error: null,
+  listLimit: 10,
+  endDate: 'End Date'
   // listLimit: 10,
   // claimsListCount: []
 })
@@ -38,13 +43,21 @@ export const success = (state: Object, {data}:Object) => {
 export const failure = (state: Object, {error}: Object) =>
   state.merge({ fetching: false, error, data: {}})
 
+// List Limit
+
+export const _changeListLimit = (state: Object, {listLimit}: Object) => state.merge({listLimit})
+
+// endDate
+export const _changeEndDate = (state: Object, {endDate}: Object) => state.merge({endDate})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.CLAIMS_LIST_REQUEST]: request,
   [Types.CLAIMS_LIST_SUCCESS]: success,
-  [Types.CLAIMS_LIST_FAILURE]: failure
-
+  [Types.CLAIMS_LIST_FAILURE]: failure,
+  [Types.CHANGE_LIST_LIMIT]: _changeListLimit,
+  [Types.CHANGE_END_DATE]: _changeEndDate
 })
 
 /* ------------- Selectors ------------- */

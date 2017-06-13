@@ -128,7 +128,7 @@ class ClaimsCard extends Component {
                   <TouchableOpacity onPress={this.props.viewMore} style={{flexDirection: 'row'}}>
                     <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
                   </TouchableOpacity>
-                  <Image source={Images.infoIcon} style={{marginLeft: 80}} />
+                  <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
                  </View>
                 </View> 
                     
