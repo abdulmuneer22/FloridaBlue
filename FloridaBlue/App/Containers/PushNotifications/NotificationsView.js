@@ -1,23 +1,13 @@
 
 import React, { Component } from 'react'
 import {
-  AppRegistry,
-  StyleSheet,
   Text,
   View,
-  TextInput,
   Dimensions,
   TouchableOpacity,
   Image,
-  TouchableWithoutFeedback,
-  ScrollView,
-  Alert,
-  Platform,
-  ListView,
-  BackAndroid
+  ListView
 } from 'react-native'
-
-import { Card } from 'native-base'
 // import NotificationCard from './Components/NotificationCard'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import styles from './NotificationsViewStyle'
@@ -57,8 +47,9 @@ class NotificationsView extends Component {
       }
     }
   }
+
   componentDidMount () {
-    this.props.getNotifications()
+    this.props.getNotification()
   }
 
   deleteRow (secId, rowId, rowMap) {
@@ -228,7 +219,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getNotificaitons: () => dispatch(NotificationActions.getNotificaitons())
+    getNotification: () => dispatch(NotificationActions.getNotification())
   }
 }
-export default (mapStateToProps, mapDispatchToProps)(NotificationsView)
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationsView)

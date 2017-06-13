@@ -91,6 +91,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getClaimsList = () => api.get('/claims/list')
   const getClaimDetail = (claimid) => api.get('claims/detail/' + claimid)
   const getClaimsSummary = () => api.get('/claims/summary')
+  const getNotification = () => api.get('/notify/messages')
 
   const getStaffLanguage = (data) => api.post('/opd/languages', {
     'language': 'EN',
@@ -289,8 +290,6 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
       'emailupdated': 'true'
     }
   })
-
-  const getNotification = () => api.get('/notify/messages')
 
   const postFCMToken = (data) => api.post('/notify/register', {
     'hccId': 'H12345678',
