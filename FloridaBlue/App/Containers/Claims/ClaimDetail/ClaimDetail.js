@@ -71,8 +71,8 @@ class ClaimDetail extends Component {
     } else if (this.props.claimdetaildata && this.props.claimdetaildata.claimNumber && this.props.claimdetaildata.claimNumber.length != 0) {
       return (
         <View style={styles.container}>
-          <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
-            <Image style={{flex: 2, width: Metrics.screenWidth, alignItems: 'center', justifyContent: 'center'}} source={Images.claimdetailheaderblue}>
+          <View style={{flex: 1.5, alignItems: 'center', justifyContent: 'center'}}>
+            <Image style={{flex: 1.5, width: Metrics.screenWidth, alignItems: 'center', justifyContent: 'center'}} source={Images.claimdetailheaderblue}>
               <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
                 {this.props.claimdetaildata ?
                   <View style={{flex: 0.33, alignItems: 'center', backgroundColor: Colors.transparent, marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001, justifyContent: 'center'}}>
@@ -240,11 +240,10 @@ class ClaimDetail extends Component {
               </View>
             </View> : null}
 
-          <View style={{flex: 0.8, marginTop: 10, alignItems: 'center'}}>
-            <TouchableOpacity onPress={() => NavigationActions.ClaimsList()} style={{flex: 0.8, alignItems: 'center'}}>
+          <View style={{flex: 1, justifyContent:'center', alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => NavigationActions.ClaimsList()} style={{flex: 1, justifyContent:'center', alignItems: 'center'}}>
               <Image style={styles.claimListButton} source={Images.cliamlistbutton} />
             </TouchableOpacity>
-
           </View>
 
         </View>)
