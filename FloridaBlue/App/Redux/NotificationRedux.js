@@ -10,11 +10,12 @@ const { Types, Creators } = createActions({
   refreshTokenToUnsubscribe: ['refreshToken'],
   onOpenedFromTray: ['openedFromTray'],
   onLocalNotificaton: ['localNotification'],
-  notificationSuccess: ['notificaition'],
-  notificationFailure: ['error']
+  notificationSuccess: ['notification'],
+  notificationFailure: ['error'],
+  getNotification: []
 })
 
-export const NotificationActions = Types
+export const NotificationTypes = Types
 export default Creators
 
 /* ------------- Initial State ------------- */
@@ -35,8 +36,8 @@ export const INITIAL_STATE = Immutable({
 export const request = (state: Object) => state.merge({fetching: true})
 
 // we've successfully logged in
-export const success = (state: Object, {notificaton}: Object) =>
-  state.merge({ fetching: false, error: null, notificaton: null })
+export const success = (state: Object, {notification}: Object) =>
+  state.merge({ fetching: false, error: null, notification: notification })
 
 // we've had a problem logging in
 export const failure = (state: Object, { error }: Object) =>
