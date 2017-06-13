@@ -70,8 +70,10 @@ export default StyleSheet.create({
   claimsCategories2: {
     flex:0, 
     flexDirection:'row', 
-    justifyContent:'flex-start', 
     marginTop: -15
+  },
+  claimsSortCategories: {
+    flexDirection: 'row'
   },
   cardButton: {
     flexDirection: 'row',
@@ -107,8 +109,9 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   claimsCardRow1: {
-    flex: .27, 
-    alignItems: 'center'
+    flex: .33, 
+    alignItems: 'center',
+    flexDirection: 'column'
   },
   claimsCardRow2: {
     flex: .33, 
@@ -120,7 +123,7 @@ export default StyleSheet.create({
   },
   claimsCategoryText: {
     fontWeight: 'bold',
-    flexDirection: 'row'
+    marginTop: 2.5
   },
   claimsCardText: {
     color: Colors.flBlue.anvil
