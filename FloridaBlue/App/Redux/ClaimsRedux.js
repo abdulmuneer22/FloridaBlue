@@ -15,6 +15,7 @@ const { Types, Creators } = createActions({
   claimsSummaryRequest: [],
   claimsSummarySuccess: ['data'],
   claimsSummaryFailure: ['error'],
+  changeListLimit: ['listLimit'],
   changeDatePickerVisible: ['datePickerVisible'],
   changeStartDate: ['startDate'],
   changeEndDate: ['endDate'],
@@ -31,6 +32,7 @@ export const INITIAL_STATE = Immutable({
   data: {},
   fetching: false,
   error: null,
+  listLimit: 10,
   datePickerVisible: false,
   startDate: 'Start Date',
   endDate: 'End Date',
@@ -71,6 +73,10 @@ export const _claimSummarySuccess = (state: Object, {data}:Object) => {
 // we've had a problem logging in
 export const _claimSummaryFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {}})
 
+// listLimit
+
+export const _changeListLimit = (state: Object, {listLimit}: Object) => state.merge({listLimit})
+
 // datePickerVisible
 export const _changeDatePickerVisible = (state: Object, {datePickerVisible}: Object) => state.merge({datePickerVisible})
 
@@ -98,6 +104,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CLAIMS_SUMMARY_REQUEST]: _claimSummaryRequest,
   [Types.CLAIMS_SUMMARY_SUCCESS]: _claimSummarySuccess,
   [Types.CLAIMS_SUMMARY_FAILURE]: _claimSummaryFailure,
+  [Types.CHANGE_LIST_LIMIT]: _changeListLimit,
   [Types.CHANGE_DATE_PICKER_VISIBLE]: _changeDatePickerVisible,
   [Types.CHANGE_START_DATE]: _changeStartDate,
   [Types.CHANGE_END_DATE]: _changeEndDate,

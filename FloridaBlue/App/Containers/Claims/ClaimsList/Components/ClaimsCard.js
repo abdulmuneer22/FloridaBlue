@@ -75,31 +75,42 @@ class ClaimsCard extends Component {
             <View>
 
 
-                {this.props.data !=undefined ? this.props.data.map((value, i)=>{
-                                                              //.filter((value, i) => (i < 7))
-                                                              
+                {this.props.data !=undefined ? this.props.data.map((value, i)=>{          
+                  let color = Colors.flBlue.ocean;
+                  if(value.claimType === 'Professional'){
+                      color = Colors.flBlue.ocean;
+                  }else if(value.claimType === 'Institutional'){
+                      color = Colors.flBlue.red;
+                  }else{
+                    color = Colors.flBlue.grass;
+                  }
                   if (i < this.state.cardLimit) {
                     return(
-                      <View style={{flex:1}} key={i}>
-                        <TouchableOpacity onPress={() => this.viewClaimsDetails(value.claimNumber)}>
+                      
+                      <View key={i} style={{flex:1}}>
+                        <TouchableOpacity key={i} style={{flex:1}} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
                         <Card style={styles.claimsListCard} key={i} >
+                          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+                            <View style={{flex:0.01, backgroundColor:color, height: 37}}>
                           
-                          <View style={styles.claimsCardRow2}>
-                            <Text style={styles.claimsCardText}>
-                             {this.formatDate(value.dateOfService)}
-                            </Text>
-                          </View>
+                            </View>
+                            <View style={{flex: 0.29, alignItems: 'center', justifyContent: 'center'}}>
+                              <Text style={styles.claimsCardText}>
+                              {this.formatDate(value.dateOfService)}
+                              </Text>
+                            </View>
 
-                          <View style={styles.claimsCardRow2}>
-                            <Text style={styles.claimsCardText}>
-                              {this.formatName(value.providerName)}
-                            </Text>
-                          </View>
+                            <View style={{flex: 0.4, alignItems: 'center', justifyContent: 'center'}}>
+                              <Text style={styles.claimsCardText}>
+                                {this.formatName(value.providerName)}
+                              </Text>
+                            </View>
 
-                          <View style={styles.claimsCardRow3}>
-                            <Text style={styles.claimsCardText}>
-                              {value.claimType}
-                            </Text>
+                            <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
+                              <Text style={styles.claimsCardText}>
+                                {value.claimType}
+                              </Text>
+                            </View>
                           </View>
                         </Card>
                         </TouchableOpacity>
@@ -117,7 +128,7 @@ class ClaimsCard extends Component {
                   <TouchableOpacity onPress={this.props.viewMore} style={{flexDirection: 'row'}}>
                     <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
                   </TouchableOpacity>
-                  <Image source={Images.infoIcon} style={{marginLeft: 80}} />
+                  <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
                  </View>
                 </View> 
                     

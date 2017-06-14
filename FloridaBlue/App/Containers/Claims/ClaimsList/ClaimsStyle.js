@@ -35,7 +35,7 @@ export default StyleSheet.create({
     flex:1,
    // padding: 9, 
     margin: 10, 
-    marginBottom: 1,
+    marginBottom: 10,
     alignItems: 'center'
   },
   claimsListHeader1: {
