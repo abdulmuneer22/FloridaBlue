@@ -59,7 +59,7 @@ class ClaimsList extends Component {
       asynCall: true,
       displayBannerInfo: false,
       searchVisible: false,
-      endDateSelected: false,
+      endDateSelected: false
     }
     this.viewMore = this.viewMore.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
@@ -104,8 +104,8 @@ class ClaimsList extends Component {
     this.setState({
       listLimit: newLimit + 10
     })
-    if (newLimit + 10 >= this.props.claimsdata.length) {
-      this.setState({ listLimit: this.props.claimsdata.length })
+    if (newLimit + 10 >= this.props.claimsdata.count) {
+      this.setState({ listLimit: this.props.claimsdata.count })
     }
   }
 
@@ -256,7 +256,7 @@ class ClaimsList extends Component {
             <ClaimsCard
               data={this.props.claimsdata.data}
               cardLimit={this.state.listLimit}
-              claimsCount={this.props.claimsdata.length}
+              claimsCount={this.props.claimsdata.count}
               viewMore={this.viewMore}
             />
           </View>
@@ -344,7 +344,7 @@ const mapStateToProps = (state) => {
     fetching: state.claims.fetching,
     claimsdata: state.claims.claimslist,
     error: state.claims.error,
-    claimsListCount: state.claims.claimlist,
+    claimsListCount: state.claims.claimslist,
     datePickerVisible: state.claims.datePickerVisible,
     startDate: state.claims.startDate,
     endDate: state.claims.endDate,
