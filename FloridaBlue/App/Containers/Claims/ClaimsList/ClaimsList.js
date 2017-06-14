@@ -20,7 +20,7 @@ import {
 import styles from './ClaimsStyle'
 import ClaimsCard from './Components/ClaimsCard'
 import axios from 'axios'
-import ClaimsListActions from '../../../Redux/ClaimsListRedux'
+//import ClaimsListActions from '../../../Redux/ClaimsListRedux'
 import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import NavItems from '../../../Navigation/NavItems.js'
@@ -71,7 +71,7 @@ class ClaimsList extends Component {
   }
 
   viewClaimsList () {
-    // this.props.attemptClaimsList()
+    this.props.attemptClaimsList()
     NavigationActions.ClaimsList()
   }
 
@@ -218,23 +218,15 @@ class ClaimsList extends Component {
   _displayCondition () {
     const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60);
     const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60); 
-   console.tron.log(this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length+ " this.props.claimsdata.data" + JSON.stringify(this.props.claimsdata));
-   console.tron.log('this.props.fetching'+this.props.fetching)
     if (this.props.fetching) {
       return (
         <View style={styles.spinnerView}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>)
-      } else if (this.props.claimsdata &&  this.props.claimsdata.data && this.props.claimsdata.data.length !=0) {
+      } else if (this.props.claimsdata && this.props.claimsdata.length > 0) {
         return (
-        <View style={styles.container}>
-
-          <View>
-            {this._renderHeader()}
-          </View>
-
-       
+        <View style={{flex:1}}>
 
           <View style={styles.claimsListHeader1}>
             <View style={styles.claimsListHeader2}>
@@ -252,7 +244,10 @@ class ClaimsList extends Component {
                         <TouchableOpacity style={styles.claimsSortCategories}><Text style={styles.claimsCategoryText}> Date</Text><Flb name="caret-up-down" size={20} color={Colors.flBlue.anvil} /></TouchableOpacity>
                       </View>
                       <View style={styles.claimsCardRow2}>
-                        <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)} style={styles.claimsSortCategories}><Text style={styles.claimsCategoryText}> Member</Text><Flb name="caret-up-down" size={20} color={Colors.flBlue.anvil} /></TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)} style={styles.claimsSortCategories}>
+                          <Text style={styles.claimsCategoryText}> Member</Text>
+                          <Flb name="caret-up-down" size={20} color={Colors.flBlue.anvil} />
+                          </TouchableOpacity>
                       </View>
                       <View style={styles.claimsCardRow3}>
                         <TouchableOpacity style={styles.claimsSortCategories}><Text style={styles.claimsCategoryText}> Providers</Text><Flb name="caret-up-down" size={20} color={Colors.flBlue.anvil} /></TouchableOpacity>
@@ -265,9 +260,9 @@ class ClaimsList extends Component {
           <View style={styles.claimsCardContainer}>
 
             <ClaimsCard
-              data={this.props.claimsdata.data}
+              data={this.props.claimsdata}
               cardLimit={this.state.listLimit}
-              claimsCount={this.props.claimsdata.count}
+              claimsCount={this.props.claimsdata.length}
               viewMore={this.viewMore}
             />
           </View>
@@ -312,7 +307,15 @@ class ClaimsList extends Component {
                 </Button>
             </HideableView>          
         </View>
-        )
+        )  } else if(this.props.error != null){
+      Alert.alert(
+                  'Claim List',
+                   'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+        [
+                    { text: 'OK' }
+
+        ]
+                )
       }
 }
 
@@ -321,9 +324,13 @@ class ClaimsList extends Component {
 
   render () {
      console.log("claims list data" +this.props.datePickerVisible)
+       console.log("entered to claims list " +this.props.claimsdata)
     return (
-      <View style={styles.container}>  
-        <View style={styles.container}>
+      <View style={styles.container}> 
+         <View>
+            {this._renderHeader()}
+          </View> 
+        <View style={{flex:1}}>
           {
             this._displayCondition()
           }
@@ -342,10 +349,10 @@ ClaimsList.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.claimslist.fetching,
-    claimsdata: state.claimslist.data,
-    error: state.claimslist.error,
-    claimsListCount: state.claimslist.count,
+    fetching: state.claims.fetching,
+    claimsdata: state.claims.claimslist,
+    error: state.claims.error,
+    claimsListCount: state.claims.claimlist,
     datePickerVisible: state.claims.datePickerVisible,
     startDate: state.claims.startDate,
     endDate: state.claims.endDate,
@@ -356,8 +363,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimsList: () => dispatch(ClaimsListActions.claimsListRequest()),
-    changeListLimit: (listLimit) => dispatch(ClaimsListActions.changeListLimit(listLimit)),
+    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest()),
+    changeListLimit: (listLimit) => dispatch(ClaimsActions.changeListLimit(listLimit)),
     changeDatePickerVisible: (datePickerVisible) => dispatch(ClaimsActions.changeDatePickerVisible(datePickerVisible)),
     changeStartDate: (startDate) => dispatch(ClaimsActions.changeStartDate(startDate)),
     changeEndDate: (endDate) => dispatch(ClaimsActions.changeEndDate(endDate)),

@@ -32,7 +32,8 @@ export default StyleSheet.create({
   claimsListCard: {
     flexDirection: 'row', 
     justifyContent: 'center', 
-    padding: 9, 
+    flex:1,
+   // padding: 9, 
     margin: 10, 
     marginBottom: 1,
     alignItems: 'center'
@@ -117,7 +118,9 @@ export default StyleSheet.create({
   },
   claimsCardRow2: {
     flex: .33, 
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop:10,
+    marginBottom:10
   },
   claimsCardRow3: {
     flex: .34, 

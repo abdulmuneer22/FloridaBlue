@@ -13,7 +13,7 @@ import {
 } from 'react-native'
 
 import { Card } from 'native-base'
-import ClaimDetailActions from '../../../../Redux/ClaimDetailRedux'
+import ClaimsActions from '../../../../Redux/ClaimsRedux'
 import { Colors, Metrics, Fonts } from '../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -108,14 +108,14 @@ ClaimsCard.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.claimdetail.fetching,
-    claimdetaildata: state.claimdetail.data,
-    error: state.claimdetail.error
+    fetching: state.claims.fetching,
+    claimdetaildata: state.claims.claimdetail,
+    error: state.claims.error
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimDetail: (data) => dispatch(ClaimDetailActions.claimDetailRequest(data))
+    attemptClaimDetail: (data) => dispatch(ClaimsActions.claimDetailRequest(data))
   }
 }
 

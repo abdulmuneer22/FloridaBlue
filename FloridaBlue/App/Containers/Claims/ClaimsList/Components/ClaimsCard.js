@@ -14,7 +14,7 @@ import {
 } from 'react-native'
 
 import { Button, Card } from 'native-base'
-import ClaimDetailActions from '../../../../Redux/ClaimDetailRedux'
+import ClaimsActions from '../../../../Redux/ClaimsRedux'
 import { Colors, Metrics, Fonts, Images } from '../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -75,13 +75,13 @@ class ClaimsCard extends Component {
             <View>
 
 
-                {this.props.data !=undefined ? this.props.data
+                {this.props.data !=undefined ? this.props.data.map((value, i)=>{
                                                               //.filter((value, i) => (i < 7))
-                                                              .map((value, i)=>{
+                                                              
                   if (i < this.state.cardLimit) {
                     return(
-                      <View>
-                        <TouchableOpacity onPress={() => this.viewClaimsDetails(this.props.claimNumber)}>
+                      <View style={{flex:1}} key={i}>
+                        <TouchableOpacity onPress={() => this.viewClaimsDetails(value.claimNumber)}>
                         <Card style={styles.claimsListCard} key={i} >
                           
                           <View style={styles.claimsCardRow2}>
@@ -133,14 +133,14 @@ class ClaimsCard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.claimdetail.fetching,
-    claimdetaildata: state.claimdetail.data,
-    error: state.claimdetail.error
+    fetching: state.claims.fetching,
+    claimdetaildata: state.claims.data,
+    error: state.claims.error
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimDetail: (data) => dispatch(ClaimDetailActions.claimDetailRequest(data))
+    attemptClaimDetail: (data) => dispatch(ClaimsActions.claimDetailRequest(data))
   }
 }
 
