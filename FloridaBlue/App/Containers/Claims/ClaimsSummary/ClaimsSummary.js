@@ -21,8 +21,7 @@ import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import Flb from '../../../Themes/FlbIcon'
 import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
-import ClaimsSummaryActions from '../../../Redux/ClaimsSummaryRedux'
-import ClaimsListActions from '../../../Redux/ClaimsListRedux'
+import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { connect } from 'react-redux'
 import Pie from '../../../Components/Pie'
@@ -46,7 +45,7 @@ class ClaimsSummary extends Component {
   }
 
   viewCliamsList () {
-    // this.props.attemptClaimsList()
+   // this.props.attemptClaimsList()
     NavigationActions.ClaimsList()
   }
 
@@ -81,7 +80,7 @@ class ClaimsSummary extends Component {
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>)
-    } else if (this.props.error == null && this.props.claimsSummaryData && this.props.claimsSummaryData.claimsBreakDown && this.props.claimsSummaryData.claimsBreakDown.length > 0) {
+    } else if (this.props.claimsSummaryData && this.props.claimsSummaryData.claimsBreakDown && this.props.claimsSummaryData.claimsBreakDown.length > 0) {
       return (
        <View style={{flex:1}}>
            <View style={{flex: 0.6,justifyContent:'center'}} >
@@ -104,7 +103,7 @@ class ClaimsSummary extends Component {
               </View>
                 { this.props.claimsdata ?
                             <View style={{flex: 3}}>
-                              <ClaimsCard data={this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 3 ? this.props.claimsdata.data.slice(0, 3) : this.props.claimsdata.data} />
+                              <ClaimsCard data={this.props.claimsdata && this.props.claimsdata.length > 3 ? this.props.claimsdata.slice(0, 3) : this.props.claimsdata} />
                             </View>
                           :
                             <View style={{flex:2,justifyContent:'center', alignItems: 'center'}}>
@@ -113,7 +112,7 @@ class ClaimsSummary extends Component {
                 }
             </View>
             {
-                    this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.count > 0
+                    this.props.claimsdata && this.props.claimsdata.length > 0
                     ?
                       <View style={{flex: 1.5}} >
                         <View style={{flex: 0.75, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
@@ -133,7 +132,7 @@ class ClaimsSummary extends Component {
                   }
       </View> 
       ) 
-    } else{
+    } else if(this.props.error != null){
       Alert.alert(
                   'Claim Detail',
                    'Oops! Looks like we\'re having trouble with your request. Please try again later.',
@@ -146,7 +145,8 @@ class ClaimsSummary extends Component {
     }
   }
   render () {
-    console.tron.log('im claims summary page', this.props.claimsSummaryData)
+    console.tron.log('im claims summary page', this.props.claimsdata)
+     console.log('im claims summary page===>', this.props.claimsdata)
     return (
       <View style={styles.container}>
         <View>
@@ -172,15 +172,15 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.claims.fetching,
     claimsSummaryData: state.claims.data,
-    claimsdata: state.claimslist.data,
+    claimsdata: state.claims.claimslist,
     error: state.claims.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimsSummary: () => dispatch(ClaimsSummaryActions.claimsSummaryRequest()),
-    attemptClaimsList: () => dispatch(ClaimsListActions.claimsListRequest())
+    attemptClaimsSummary: () => dispatch(ClaimsActions.claimsSummaryRequest()),
+    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest())
   }
 }
 
