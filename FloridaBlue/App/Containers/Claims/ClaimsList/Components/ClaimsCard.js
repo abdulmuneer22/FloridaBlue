@@ -37,7 +37,8 @@ class ClaimsCard extends Component {
     this.formatDate = this.formatDate.bind(this)
     this.viewClaimsDetails = this.viewClaimsDetails.bind(this)
     this.state = {
-      cardLimit: this.props.cardLimit
+      cardLimit: this.props.cardLimit,
+      hideViewMore: false
     }
   }
 
@@ -64,6 +65,34 @@ class ClaimsCard extends Component {
     console.tron.log('claimNumber' + claimNumber)
     this.props.attemptClaimDetail(claimNumber)
     NavigationActions.ClaimDetail()
+  }
+
+  toggleViewMore () {
+    this.setState({
+      hideViewMore: !this.state.hideViewMore
+    })
+  }
+
+  _renderViewMore () {
+    if(!this.state.hideViewMore) {
+      return (
+        <View style={{flex: 0, margin: 14}}>
+                  <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
+                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                  <TouchableOpacity onPress={this.props.viewMore} style={{flexDirection: 'row'}}>
+                    <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
+                  </TouchableOpacity>
+                  <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
+                </View>
+              </View> 
+      );
+    } else if (this.state.hideViewMore) {
+      return (
+        <View style={{flex: 0, margin: 14}}>
+          <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
+        </View> 
+      );
+    }
   }
 
   render () {
@@ -122,19 +151,10 @@ class ClaimsCard extends Component {
 
                   }) : null}
 
-              <View style={{flex: 0, margin: 14}}>
-                  <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
-                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                  <TouchableOpacity onPress={this.props.viewMore} style={{flexDirection: 'row'}}>
-                    <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
-                  </TouchableOpacity>
-                  <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
-                 </View>
-                </View> 
+              {this._renderViewMore()}
                     
-              </View>           
-
-          </ScrollView>
+            </View>           
+        </ScrollView>
 
          
 

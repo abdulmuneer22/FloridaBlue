@@ -59,7 +59,7 @@ class ClaimsList extends Component {
       asynCall: true,
       displayBannerInfo: false,
       searchVisible: false,
-      endDateSelected: false
+      endDateSelected: false,
     }
     this.viewMore = this.viewMore.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
