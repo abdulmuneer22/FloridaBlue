@@ -222,7 +222,7 @@ class ClaimsList extends Component {
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>)
-      } else if (this.props.claimsdata && this.props.claimsdata.length > 0) {
+      } else if (this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 0) {
         return (
         <View style={{flex:1}}>
 
@@ -260,7 +260,7 @@ class ClaimsList extends Component {
           <View style={styles.claimsCardContainer}>
 
             <ClaimsCard
-              data={this.props.claimsdata}
+              data={this.props.claimsdata.data}
               cardLimit={this.state.listLimit}
               claimsCount={this.props.claimsdata.length}
               viewMore={this.viewMore}
@@ -324,7 +324,7 @@ class ClaimsList extends Component {
 
   render () {
      console.log("claims list data" +this.props.datePickerVisible)
-       console.log("entered to claims list " +this.props.claimsdata)
+       console.log("entered to claims list " ,this.props.claimsdata)
     return (
       <View style={styles.container}> 
          <View>

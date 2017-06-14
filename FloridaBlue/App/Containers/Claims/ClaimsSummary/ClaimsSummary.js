@@ -25,7 +25,7 @@ import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { connect } from 'react-redux'
 import Pie from '../../../Components/Pie'
-import ClaimsCard from './Components/ClaimsCard'
+import ClaimsSummaryCard from './Components/ClaimsSummaryCard'
 import I18n from 'react-native-i18n'
 import { Button } from 'native-base'
 
@@ -103,7 +103,7 @@ class ClaimsSummary extends Component {
               </View>
                 { this.props.claimsdata ?
                             <View style={{flex: 3}}>
-                              <ClaimsCard data={this.props.claimsdata && this.props.claimsdata.length > 3 ? this.props.claimsdata.slice(0, 3) : this.props.claimsdata} />
+                              <ClaimsSummaryCard data={this.props.claimsdata.data && this.props.claimsdata.data.length > 3 ? this.props.claimsdata.data.slice(0, 3) : this.props.claimsdata.data} />
                             </View>
                           :
                             <View style={{flex:2,justifyContent:'center', alignItems: 'center'}}>
@@ -112,12 +112,12 @@ class ClaimsSummary extends Component {
                 }
             </View>
             {
-                    this.props.claimsdata && this.props.claimsdata.length > 0
+                    this.props.claimsdata && this.props.claimsdata.count > 0
                     ?
                       <View style={{flex: 1.5}} >
                         <View style={{flex: 0.75, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                           <Text style={styles.totalClaimsText}>You have </Text>
-                          <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.length}</Text>
+                          <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.count}</Text>
                           <Text style={styles.totalClaimsText}> Claims</Text>
                         </View>
                         <View style={{flex: 0.75}}>
@@ -171,7 +171,7 @@ ClaimsSummary.propTypes = {
 const mapStateToProps = (state) => {
   return {
     fetching: state.claims.fetching,
-    claimsSummaryData: state.claims.data,
+    claimsSummaryData: state.claims.claimsSummary,
     claimsdata: state.claims.claimslist,
     error: state.claims.error
   }

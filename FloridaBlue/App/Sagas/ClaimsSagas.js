@@ -44,8 +44,8 @@ export function * claimsSummary (api) {
   const response = yield call(api.getClaimsSummary)
   if (response.status == '200') {
     // dispatch success
-    var data = response.data.data
-    data = {
+    //let summaryData = response.data.data
+    let  summaryData = {
       claimsBreakDown: [
         {'amount': 2250.00, 'name': 'Your Discount'},
         {'amount': 2250.00, 'name': 'Florida Blue Paid'},
@@ -54,8 +54,8 @@ export function * claimsSummary (api) {
         {'amount': 2250.00, 'name': 'Total Billed'}
       ]
     }
-    console.tron.log('Data ' + JSON.stringify(data))
-    yield put(ClaimsActions.claimsSummarySuccess(data))
+  //  console.tron.log('Data ' + JSON.stringify(data))
+    yield put(ClaimsActions.claimsSummarySuccess(summaryData))
   } else {
     // dispatch successful logins
     console.tron.log('I am coming from failuer ')
