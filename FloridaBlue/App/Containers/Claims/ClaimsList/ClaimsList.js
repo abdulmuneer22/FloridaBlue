@@ -233,7 +233,7 @@ class ClaimsList extends Component {
                     <Text style={styles.claimsListHeaderText}>Claims List</Text>
                     <TouchableOpacity onPress={this.handleSearch}>
                       <Image source={Images.claimlistsearch} />
-                      </TouchableOpacity>
+                    </TouchableOpacity>
                   </View>
               </View>
             </View>

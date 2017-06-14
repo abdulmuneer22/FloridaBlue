@@ -33,20 +33,20 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   claimsListHeader1: {
-    flex: .3
+    flex: 0.3
   },
   claimsListHeader2: {
-    flex: .2,
+    flex: 0.2,
     marginBottom: 20,
-    borderBottomWidth: .8,
+    borderBottomWidth: 0.8,
     borderBottomColor: 'grey'
   },
   claimsListHeader3: {
-    flex: .2, 
+    flex: 0.2, 
     backgroundColor: Colors.snow
   },
   claimsListHeader4: {
-    flex: .1, 
+    flex: 0.1, 
     flexDirection: 'row', 
     alignItems: 'center', 
     justifyContent: 'space-between', 
@@ -56,7 +56,7 @@ export default StyleSheet.create({
   claimsListHeaderText: {
     fontSize: 20, 
     paddingLeft: 15, 
-    opacity: .9
+    opacity: 0.9
   },
   claimsCategories1: {
     margin:10, 
