@@ -17,9 +17,6 @@ import { ProviderList } from '../Redux/SaveProviderRedux'
 import { SearchDataTypes } from '../Redux/SearchDataRedux'
 import { RegistrationTypes } from '../Redux/RegistrationRedux'
 import { ProviderTypes } from '../Redux/ProviderRedux'
-import { ClaimsListTypes } from '../Redux/ClaimsListRedux'
-import { ClaimDetailTypes } from '../Redux/ClaimDetailRedux'
-import { ClaimsSummaryTypes } from '../Redux/ClaimsSummaryRedux'
 import { ClaimsTypes } from '../Redux/ClaimsRedux'
 import { NotificationTypes } from '../Redux/NotificationRedux'
 
@@ -53,10 +50,9 @@ import {sendDoctorLanguageRequest} from './ProviderSagas'
 import {sendStaffLanguageRequest} from './ProviderSagas'
 import {sendConfigTypeRequest} from './ProviderSagas'
 import {sendDoctorDetailRequest} from './ProviderSagas'
-import {claimslist} from './ClaimsListSagas'
-import {claimdetail} from './ClaimDetailSagas'
-import {claimsSummary} from './ClaimsSummarySagas'
-import {claims} from './ClaimsSagas'
+import {claimslist} from './ClaimsSagas'
+import {claimDetail} from './ClaimsSagas'
+import {claimsSummary} from './ClaimsSagas'
 import {getNotification} from './NotificationSagas'
 // import { getTemperature } from './TemperatureSagas'
 var urlConfig = require('../UrlConfig')
@@ -110,7 +106,7 @@ export default function * root () {
     takeLatest(ProviderTypes.SEND_ASYNC_PHARMACY_SEARCH_REQUEST, sendPharmacySearchRequest, api),
     takeLatest(ProviderTypes.SEND_ASYNC_URGENT_SEARCH_REQUEST, sendUrgentSearchRequest, api),
     takeLatest(ClaimsTypes.CLAIMS_LIST_REQUEST, claimslist, api),
-    takeLatest(ClaimsTypes.CLAIM_DETAIL_REQUEST, claimdetail, api),
+    takeLatest(ClaimsTypes.CLAIM_DETAIL_REQUEST, claimDetail, api),
     takeLatest(ClaimsTypes.CLAIMS_SUMMARY_REQUEST, claimsSummary, api),
     takeLatest(NotificationTypes.GET_NOTIFICATION, getNotification, api)
   ]

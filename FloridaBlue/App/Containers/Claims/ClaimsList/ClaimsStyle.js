@@ -32,9 +32,10 @@ export default StyleSheet.create({
   claimsListCard: {
     flexDirection: 'row', 
     justifyContent: 'center', 
-    padding: 9, 
+    flex:1,
+   // padding: 9, 
     margin: 10, 
-    marginBottom: 1,
+    marginBottom: 10,
     alignItems: 'center'
   },
   claimsListHeader1: {
@@ -42,7 +43,9 @@ export default StyleSheet.create({
   },
   claimsListHeader2: {
     flex: .2,
-    marginBottom: 20
+    marginBottom: 20,
+    borderBottomWidth: .8,
+    borderBottomColor: 'grey'
   },
   claimsListHeader3: {
     flex: .2, 
@@ -115,7 +118,9 @@ export default StyleSheet.create({
   },
   claimsCardRow2: {
     flex: .33, 
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop:10,
+    marginBottom:10
   },
   claimsCardRow3: {
     flex: .34, 
@@ -135,7 +140,7 @@ export default StyleSheet.create({
     textAlign: 'center', 
     color: Colors.flBlue.teal, 
     fontSize: 20, 
-    paddingLeft: 5
+    paddingLeft: 115
   },
   headerTextStyle: {
     color: Colors.flBlue.ocean,

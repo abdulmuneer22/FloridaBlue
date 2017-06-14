@@ -13,7 +13,7 @@ import {
 } from 'react-native'
 
 import { Card } from 'native-base'
-import ClaimDetailActions from '../../../../Redux/ClaimDetailRedux'
+import ClaimsActions from '../../../../Redux/ClaimsRedux'
 import { Colors, Metrics, Fonts } from '../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -68,8 +68,8 @@ class ClaimsCard extends Component {
             }
 
             return (
-              <TouchableOpacity style={{flex: 1}} onPress={() => this.viewCliamsDetails(value.claimNumber)}>
-                <Card style={{flex: 1, justifyContent: 'center', margin: 10}} key={i}>
+              <TouchableOpacity style={{flex: 1}} key={i} onPress={() => this.viewCliamsDetails(value.claimNumber)}>
+                <Card key={i} style={{flex: 1, justifyContent: 'center', margin: 10}} key={i}>
                   <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
                     <View style={{flex:0.01,backgroundColor:color}}>
                         
@@ -108,14 +108,14 @@ ClaimsCard.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.claimdetail.fetching,
-    claimdetaildata: state.claimdetail.data,
-    error: state.claimdetail.error
+    fetching: state.claims.fetching,
+    claimdetaildata: state.claims.claimdetail,
+    error: state.claims.error
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimDetail: (data) => dispatch(ClaimDetailActions.claimDetailRequest(data))
+    attemptClaimDetail: (data) => dispatch(ClaimsActions.claimDetailRequest(data))
   }
 }
 

@@ -6,6 +6,7 @@ import {
     View,
     ScrollView,
     Text,
+    Image,
     TouchableOpacity,
     TouchableWithoutFeedback,
     Linking,
@@ -13,8 +14,8 @@ import {
 } from 'react-native'
 
 import { Button, Card } from 'native-base'
-import ClaimDetailActions from '../../../../Redux/ClaimDetailRedux'
-import { Colors, Metrics, Fonts } from '../../../../Themes'
+import ClaimsActions from '../../../../Redux/ClaimsRedux'
+import { Colors, Metrics, Fonts, Images } from '../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
@@ -74,31 +75,42 @@ class ClaimsCard extends Component {
             <View>
 
 
-                {this.props.data !=undefined ? this.props.data
-                                                              //.filter((value, i) => (i < 7))
-                                                              .map((value, i)=>{
+                {this.props.data !=undefined ? this.props.data.map((value, i)=>{          
+                  let color = Colors.flBlue.ocean;
+                  if(value.claimType === 'Professional'){
+                      color = Colors.flBlue.ocean;
+                  }else if(value.claimType === 'Institutional'){
+                      color = Colors.flBlue.red;
+                  }else{
+                    color = Colors.flBlue.grass;
+                  }
                   if (i < this.state.cardLimit) {
                     return(
-                      <View>
-                        <TouchableOpacity onPress={() => this.viewClaimsDetails(this.props.claimNumber)}>
+                      
+                      <View key={i} style={{flex:1}}>
+                        <TouchableOpacity key={i} style={{flex:1}} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
                         <Card style={styles.claimsListCard} key={i} >
+                          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+                            <View style={{flex:0.01, backgroundColor:color, height: 37}}>
                           
-                          <View style={styles.claimsCardRow2}>
-                            <Text style={styles.claimsCardText}>
-                             {this.formatDate(value.dateOfService)}
-                            </Text>
-                          </View>
+                            </View>
+                            <View style={{flex: 0.29, alignItems: 'center', justifyContent: 'center'}}>
+                              <Text style={styles.claimsCardText}>
+                              {this.formatDate(value.dateOfService)}
+                              </Text>
+                            </View>
 
-                          <View style={styles.claimsCardRow2}>
-                            <Text style={styles.claimsCardText}>
-                              {this.formatName(value.providerName)}
-                            </Text>
-                          </View>
+                            <View style={{flex: 0.4, alignItems: 'center', justifyContent: 'center'}}>
+                              <Text style={styles.claimsCardText}>
+                                {this.formatName(value.providerName)}
+                              </Text>
+                            </View>
 
-                          <View style={styles.claimsCardRow3}>
-                            <Text style={styles.claimsCardText}>
-                              {value.claimType}
-                            </Text>
+                            <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
+                              <Text style={styles.claimsCardText}>
+                                {value.claimType}
+                              </Text>
+                            </View>
                           </View>
                         </Card>
                         </TouchableOpacity>
@@ -111,10 +123,13 @@ class ClaimsCard extends Component {
                   }) : null}
 
               <View style={{flex: 0, margin: 14}}>
-                <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
-                <TouchableOpacity onPress={this.props.viewMore} style={{flexDirection: 'row', justifyContent: 'center'}}>
-                  <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/>
-                </TouchableOpacity>
+                  <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
+                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                  <TouchableOpacity onPress={this.props.viewMore} style={{flexDirection: 'row'}}>
+                    <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
+                  </TouchableOpacity>
+                  <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
+                 </View>
                 </View> 
                     
               </View>           
@@ -129,14 +144,14 @@ class ClaimsCard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.claimdetail.fetching,
-    claimdetaildata: state.claimdetail.data,
-    error: state.claimdetail.error
+    fetching: state.claims.fetching,
+    claimdetaildata: state.claims.data,
+    error: state.claims.error
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimDetail: (data) => dispatch(ClaimDetailActions.claimDetailRequest(data))
+    attemptClaimDetail: (data) => dispatch(ClaimsActions.claimDetailRequest(data))
   }
 }
 
