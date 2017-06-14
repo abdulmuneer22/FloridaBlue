@@ -117,7 +117,7 @@ class ClaimsSummary extends Component {
                       <View style={{flex: 1.5}} >
                         <View style={{flex: 0.75, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
                           <Text style={styles.totalClaimsText}>You have </Text>
-                          <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.count}</Text>
+                          <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.length}</Text>
                           <Text style={styles.totalClaimsText}> Claims</Text>
                         </View>
                         <View style={{flex: 0.75}}>
