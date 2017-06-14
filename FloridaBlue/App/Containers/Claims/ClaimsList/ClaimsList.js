@@ -216,8 +216,7 @@ class ClaimsList extends Component {
   }
 
   _displayCondition () {
-    const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60);
-    const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60); 
+  
     if (this.props.fetching) {
       return (
         <View style={styles.spinnerView}>
@@ -233,7 +232,9 @@ class ClaimsList extends Component {
               <View style={styles.claimsListHeader3}>
                   <View style={styles.claimsListHeader4}>
                     <Text style={styles.claimsListHeaderText}>Claims List</Text>
-                    <TouchableOpacity onPress={this.handleSearch}><Image source={Images.claimlistsearch} /></TouchableOpacity>
+                    <TouchableOpacity onPress={this.handleSearch}>
+                      <Image source={Images.claimlistsearch} />
+                      </TouchableOpacity>
                   </View>
               </View>
             </View>
