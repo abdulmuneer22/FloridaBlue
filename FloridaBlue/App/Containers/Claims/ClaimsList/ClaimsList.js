@@ -107,7 +107,6 @@ class ClaimsList extends Component {
     })
     this.props.changeListLimit(newLimit + 10)
     if (this.state.totalNumberOfCardPerScreen == newLimit) {
-      this.props.changeEnd(this.state.totalNumberOfCardPerScreen + 10)
       this.state.isFetchingMore = true
       this.setState({isFetchingMore: true})
       this.setState({totalNumberOfCardPerScreen: this.state.totalNumberOfCardPerScreen + 10})

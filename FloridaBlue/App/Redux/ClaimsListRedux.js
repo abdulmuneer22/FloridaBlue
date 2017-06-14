@@ -26,7 +26,6 @@ export const INITIAL_STATE = Immutable({
   error: null,
   listLimit: 10,
   endDate: 'End Date'
-  // listLimit: 10,
   // claimsListCount: []
 })
 
