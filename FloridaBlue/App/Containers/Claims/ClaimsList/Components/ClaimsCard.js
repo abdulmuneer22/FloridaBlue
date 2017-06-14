@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import {
-    StyleSheet,
-    Dimensions,
-    LayoutAnimation,
-    View,
-    ScrollView,
-    Text,
-    Image,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Linking,
-    Alert
+  StyleSheet,
+  Dimensions,
+  LayoutAnimation,
+  View,
+  ScrollView,
+  Text,
+  Image,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Linking,
+  Alert
 } from 'react-native'
 
 import { Button, Card } from 'native-base'
@@ -25,13 +25,12 @@ import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material
 import Flb from '../../../../Themes/FlbIcon'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
-    .withStyle(styles.spinner)
-    .build()
+  .withStyle(styles.spinner)
+  .build()
 
 const window = Dimensions.get('window')
 
 class ClaimsCard extends Component {
-
   constructor (props) {
     super(props)
     this.formatDate = this.formatDate.bind(this)
@@ -51,13 +50,13 @@ class ClaimsCard extends Component {
   }
 
   formatName (name) {
-    var firstName = name.split(' ').slice(-2, -1).join(' ');
-    return firstName;
+    var firstName = name.split(' ').slice(-2, -1).join(' ')
+    return firstName
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.cardLimit) {
-      this.setState({cardLimit: nextProps.cardLimit})
+      this.setState({ cardLimit: nextProps.cardLimit })
     }
   }
 
@@ -98,67 +97,61 @@ class ClaimsCard extends Component {
   render () {
     return (
       // Header
-      /*List View*/
+      /* List View */
 
-          <ScrollView>
-            <View>
+      <ScrollView>
+        <View>
 
+          {this.props.data != undefined ? this.props.data.map((value, i) => {
+            let color = Colors.flBlue.ocean
+            if (value.claimType === 'Professional') {
+              color = Colors.flBlue.ocean
+            } else if (value.claimType === 'Institutional') {
+              color = Colors.flBlue.red
+            } else {
+              color = Colors.flBlue.grass
+            }
+            if (i < this.state.cardLimit) {
+              return (
 
-                {this.props.data !=undefined ? this.props.data.map((value, i)=>{          
-                  let color = Colors.flBlue.ocean;
-                  if(value.claimType === 'Professional'){
-                      color = Colors.flBlue.ocean;
-                  }else if(value.claimType === 'Institutional'){
-                      color = Colors.flBlue.red;
-                  }else{
-                    color = Colors.flBlue.grass;
-                  }
-                  if (i < this.state.cardLimit) {
-                    return(
-                      
-                      <View key={i} style={{flex:1}}>
-                        <TouchableOpacity key={i} style={{flex:1}} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
-                        <Card style={styles.claimsListCard} key={i} >
-                          <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-                            <View style={{flex:0.01, backgroundColor:color, height: 37}}>
-                          
-                            </View>
-                            <View style={{flex: 0.29, alignItems: 'center', justifyContent: 'center'}}>
-                              <Text style={styles.claimsCardText}>
-                              {this.formatDate(value.dateOfService)}
-                              </Text>
-                            </View>
+                <View key={i} style={{ flex: 1 }}>
+                  <TouchableOpacity key={i} style={{ flex: 1 }} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
+                    <Card style={styles.claimsListCard} key={i} >
+                      <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+                        <View style={{ flex: 0.01, backgroundColor: color, height: 37 }} />
+                        <View style={{ flex: 0.29, alignItems: 'center', justifyContent: 'center' }}>
+                          <Text style={styles.claimsCardText}>
+                            {this.formatDate(value.dateOfService)}
+                          </Text>
+                        </View>
 
-                            <View style={{flex: 0.4, alignItems: 'center', justifyContent: 'center'}}>
-                              <Text style={styles.claimsCardText}>
-                                {this.formatName(value.providerName)}
-                              </Text>
-                            </View>
+                        <View style={{ flex: 0.4, alignItems: 'center', justifyContent: 'center' }}>
+                          <Text style={styles.claimsCardText}>
+                            {this.formatName(value.providerName)}
+                          </Text>
+                        </View>
 
-                            <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
-                              <Text style={styles.claimsCardText}>
-                                {value.claimType}
-                              </Text>
-                            </View>
-                          </View>
-                        </Card>
-                        </TouchableOpacity>
-                       
+                        <View style={{ flex: 0.3, alignItems: 'center', justifyContent: 'center' }}>
+                          <Text style={styles.claimsCardText}>
+                            {value.claimType}
+                          </Text>
+                        </View>
                       </View>
-                    
-                      
-                      )  }
+                    </Card>
+                  </TouchableOpacity>
 
-                  }) : null}
+                </View>
 
-              {this._renderViewMore()}
-                    
-            </View>           
-        </ScrollView>
+              )
+            }
+          }) : null}
 
-         
+           {this._renderViewMore()}
+        </View>
 
-      )
+      </ScrollView>
+
+    )
   }
 }
 
@@ -176,4 +169,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClaimsCard)
-

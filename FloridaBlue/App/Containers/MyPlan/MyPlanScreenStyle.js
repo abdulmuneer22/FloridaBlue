@@ -155,16 +155,16 @@ export default StyleSheet.create({
     height: window.height
   },
   myplanImageStyle1: {
-    flex: 1, 
-    justifyContent: 'center', 
+    flex: 1,
+    justifyContent: 'center',
     alignSelf: 'center',
   // resizeMode:'contain',
    // backgroundColor:'red',
     width: Platform.OS == 'ios' ? (Metrics.screenWidth) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.56)
   },
   myplanImageStyle2: {
-    flex: 1, 
-    justifyContent: 'center', 
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor:'yellow',
     width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.55) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.56)

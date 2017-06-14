@@ -127,7 +127,8 @@ class ProviderMap extends Component {
 
   _renderLocationDetail (location) {
     return (
-      <View key={location.locationIndex} style={{flex: 1, marginTop: (Platform.OS === 'ios') ? 10 : -5,
+      <View key={location.locationIndex} style={{flex: 1,
+        marginTop: (Platform.OS === 'ios') ? 10 : -5,
         marginBottom: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.002 : Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
       }} >
         <DoctorCard data={location} />
@@ -139,8 +140,8 @@ class ProviderMap extends Component {
     return (
       <View style={{flex: 1 }}>
         {this._renderHeader()}
-        {this.props.provider.data.providerList ?
-          <View style={styles.container}>
+        {this.props.provider.data.providerList
+          ? <View style={styles.container}>
             <MapView
               style={styles.map}
               showsUserLocation

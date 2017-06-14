@@ -35,7 +35,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .build()
 
 class ProgramDetail extends Component {
-
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
@@ -71,20 +70,20 @@ class ProgramDetail extends Component {
                     return (
 
                       <View key={j} style={{flex: 1}}>
-                        { programText.title_en ?
-                          <Text style={styles.h2}>
+                        { programText.title_en
+                          ? <Text style={styles.h2}>
                             {programText.title_en}
                           </Text>
                     : null}
 
-                        { programText.descrption_en ?
-                          <Text style={styles.h5}>
+                        { programText.descrption_en
+                          ? <Text style={styles.h5}>
                             {programText.descrption_en}
                           </Text>
                     : null}
 
-                        { programText.subDescrption_en ?
-                          <Text style={styles.h4}>
+                        { programText.subDescrption_en
+                          ? <Text style={styles.h4}>
                             {programText.subDescrption_en}
                           </Text>
                     : null}
@@ -123,4 +122,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(ProgramDetail)
-

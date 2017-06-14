@@ -224,13 +224,15 @@ export default StyleSheet.create({
     fontWeight: '400'
   },
   plusView: {
-    flexDirection: 'row', flex: 1,
+    flexDirection: 'row',
+    flex: 1,
     alignItems: 'center',
     backgroundColor: Colors.bg2,
     height: 60
   },
   plusView1: {
-    flexDirection: 'row', flex: 1,
+    flexDirection: 'row',
+    flex: 1,
     alignItems: 'center',
     backgroundColor: Colors.flBlue.grey3,
     height: 60

@@ -83,24 +83,24 @@ class DoctorCard extends Component {
     if (this.props.selectedTab == 'listView') {
       return (
         <View style={styles.container}>
-          { this.props.data ?
+          { this.props.data
 
-            <View style={{ flex: 1, margin: 15 }}>
+            ? <View style={{ flex: 1, margin: 15 }}>
               <Card style={{ flex: 1}} key={this.props.data.locationIndex}>
                 <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop: 10 }}>
                   <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
-                    {this.props.data ?
-                      <TouchableOpacity onPress={this._doctorPage.bind(this, this.props.data)}>
+                    {this.props.data
+                      ? <TouchableOpacity onPress={this._doctorPage.bind(this, this.props.data)}>
                         <Text style={styles.h1}>{this.props.data.displayName}</Text>
                       </TouchableOpacity> : null}
                     <View style={{flex: 1, flexDirection: 'row'}}>
 
-                      {this.props.data ?
-                        <View style={{flex: 0.7}}>
+                      {this.props.data
+                        ? <View style={{flex: 0.7}}>
                           <Text style={styles.h2}>{this.props.data.primarySpecialty}</Text>
                         </View> : null}
-                      {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y' ?
-                        <View style={{flex: 0.3, alignItems: 'center', marginTop: 10}}>
+                      {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y'
+                        ? <View style={{flex: 0.3, alignItems: 'center', marginTop: 10}}>
                           <Flb name='accessibility' size={Metrics.icons.medium * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                         </View> : null }
                     </View>
@@ -108,12 +108,12 @@ class DoctorCard extends Component {
                     <Text style={styles.h4}>{this.props.data ? this.props.data.addressLine1 : null}, {this.props.data ? this.props.data.addressLine2 : null}</Text>
 
                     <Text style={styles.h4_2}>{this.props.data ? this.props.data.city : null}, {this.props.data ? this.props.data.state : null}</Text>
-                    {this.props.data ?
-                      <Text style={styles.h4_2}>{this.props.data.zipCode}</Text> : null}
-                    {this.props.data ?
-                      <Text style={styles.h4_2}>{this.props.data.telephoneNumber}</Text> : null}
-                    {this.props.data ?
-                      <Text style={styles.h4_3}>{this.props.data.distance} miles</Text> : null}
+                    {this.props.data
+                      ? <Text style={styles.h4_2}>{this.props.data.zipCode}</Text> : null}
+                    {this.props.data
+                      ? <Text style={styles.h4_2}>{this.props.data.telephoneNumber}</Text> : null}
+                    {this.props.data
+                      ? <Text style={styles.h4_3}>{this.props.data.distance} miles</Text> : null}
                   </View>
                 </View>
 
@@ -154,8 +154,7 @@ class DoctorCard extends Component {
                 </View>
               </Card>
             </View>
-            :
-            <View style={styles.spinnerView}>
+            : <View style={styles.spinnerView}>
               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
               <Text style={styles.spinnerText}>Loading..
                 </Text>
@@ -167,33 +166,33 @@ class DoctorCard extends Component {
       return (
         <View style={styles.container}>
           <View style={{ flex: 1, marginTop: -5}}>
-            {this.props.data != undefined ?
-              <Card style={{ flex: 1 }}>
+            {this.props.data != undefined
+              ? <Card style={{ flex: 1 }}>
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: (Platform.OS === 'ios') ? 10 : 10 }}>
 
                   <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2, paddingRight: 10}}>
-                    {this.props.data ?
-                      <TouchableOpacity onPress={this.providerSelected}>
+                    {this.props.data
+                      ? <TouchableOpacity onPress={this.providerSelected}>
                         <Text style={styles.mapHeaderText}>{this.props.data.displayName}</Text>
                       </TouchableOpacity>
                     : null}
                     <View style={{flexDirection: 'row'}}>
-                      {this.props.data ?
-                        <View >
+                      {this.props.data
+                        ? <View >
                           <Text style={styles.mapSubText}>{this.props.data.primarySpecialty}</Text>
                         </View> : null}
                       <View style={{marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0015, marginLeft: Metrics.section * Metrics.screenWidth * 0.005}}>
-                        {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y' ?
-                          <Flb name='accessibility' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} /> : null}
+                        {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y'
+                          ? <Flb name='accessibility' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} /> : null}
                       </View>
                     </View>
                     <Text style={styles.h4}>{this.props.data ? this.props.data.addressLine1 : null}, {this.props.data ? this.props.data.addressLine2 : null}</Text>
 
                     <Text style={styles.mapAdressText}>{this.props.data ? this.props.data.city : null}, { this.props.data ? this.props.data.state : null}, {this.props.data ? this.props.data.zipCode : null}</Text>
-                    {this.props.data ?
-                      <Text style={styles.mapAdressText}>{this.props.data.telephoneNumber}</Text> : null}
-                    {this.props.data ?
-                      <Text style={styles.mapAdressText}>{this.props.data.distance} miles</Text> : null}
+                    {this.props.data
+                      ? <Text style={styles.mapAdressText}>{this.props.data.telephoneNumber}</Text> : null}
+                    {this.props.data
+                      ? <Text style={styles.mapAdressText}>{this.props.data.distance} miles</Text> : null}
                   </View>
                 </View>
                 <View style={{ flex: 1, marginTop: Metrics.textHeight * Metrics.screenHeight * 0.0065 }}>

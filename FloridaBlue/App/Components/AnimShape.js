@@ -85,7 +85,7 @@ export default class AnimShape extends React.Component {
         // Create the ART Morph.Tween instance.
         path: Morph.Tween( // eslint-disable-line new-cap
           pathFrom,
-          pathTo,
+          pathTo
         )
       }, () => {
         // Kick off our animations!

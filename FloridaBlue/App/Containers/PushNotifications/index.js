@@ -2,6 +2,6 @@
 
 import PushController from './PushController'
 import NotificationsView from './NotificationsView'
+import DeviceInfoScreen from './DeviceInfoScreen'
 
-export { PushController }
-export { NotificationsView }
+export { PushController, NotificationsView, DeviceInfoScreen }

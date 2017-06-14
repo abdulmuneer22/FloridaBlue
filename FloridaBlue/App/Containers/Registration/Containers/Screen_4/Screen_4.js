@@ -154,7 +154,8 @@ class Screen_4 extends React.Component {
               ref='securityHint1'
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'
@@ -174,7 +175,8 @@ class Screen_4 extends React.Component {
               ref='securityAnswer1'
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'
@@ -200,7 +202,8 @@ class Screen_4 extends React.Component {
               ref='securityHint2'
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'
@@ -220,7 +223,8 @@ class Screen_4 extends React.Component {
               ref='securityAnswer2'
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'
@@ -246,7 +250,8 @@ class Screen_4 extends React.Component {
               ref='securityHint3'
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'
@@ -266,7 +271,8 @@ class Screen_4 extends React.Component {
               ref='securityAnswer3'
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'

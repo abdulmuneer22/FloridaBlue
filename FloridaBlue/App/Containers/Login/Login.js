@@ -495,7 +495,8 @@ class Login extends Component {
                 <MKTextField
                   ref='username'
                   style={styles.textField}
-                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil,
+                  textInputStyle={{flex: 1,
+                    color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='next'
@@ -513,7 +514,8 @@ class Login extends Component {
                 <MKTextField
                   ref='password'
                   style={styles.textField}
-                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil,
+                  textInputStyle={{flex: 1,
+                    color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='done'
@@ -528,13 +530,12 @@ class Login extends Component {
                   placeholderTextColor={Colors.steel} />
               </View>
 
-              {Platform.OS === 'ios' && !this.props.credentialStored ?
-                <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchCheckbox() }}>
+              {Platform.OS === 'ios' && !this.props.credentialStored
+                ? <TouchableOpacity style={styles.touchRow} onPress={() => { this._handleTouchCheckbox() }}>
                   <MKCheckbox style={styles.radio} checked={this.props.touchEnabled} disabled />
                   <Text style={styles.link}>{I18n.t('enableTouchID')}</Text>
                 </TouchableOpacity>
-                :
-                <View style={styles.forgotRow}>
+                : <View style={styles.forgotRow}>
                   <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
                     <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
                   </TouchableOpacity>
@@ -554,22 +555,21 @@ class Login extends Component {
               <TouchableOpacity onPress={() => NavigationActions.screen_1()}>
                 <Text style={styles.link}>{I18n.t('signUp')}</Text>
               </TouchableOpacity>
-              { Platform.OS === 'ios' && this.props.credentialStored ?
-                <View style={styles.touchRow}>
+              { Platform.OS === 'ios' && this.props.credentialStored
+                ? <View style={styles.touchRow}>
                   <TouchableOpacity onPress={() => { this._authenticateUserWithTouch() }}>
                     <Image style={styles.touchCoin} source={Images.touchIdCoin} />
                   </TouchableOpacity>
                 </View> : null
               }
 
-              { Platform.OS === 'ios' && !this.props.credentialStored ?
-                <View style={styles.forgotRow}>
+              { Platform.OS === 'ios' && !this.props.credentialStored
+                ? <View style={styles.forgotRow}>
                   <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
                     <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
                   </TouchableOpacity>
                 </View>
-                :
-                  null
+                : null
               }
             </SignUpView>
           </View>
