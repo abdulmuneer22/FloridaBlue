@@ -33,7 +33,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 class ClaimsSummary extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       activeIndex: 0
@@ -44,12 +44,12 @@ class ClaimsSummary extends Component {
     this.viewCliamsList = this.viewCliamsList.bind(this)
   }
 
-  viewCliamsList() {
+  viewCliamsList () {
     // this.props.attemptClaimsList()
     NavigationActions.ClaimsList()
   }
 
-  _renderHeader() {
+  _renderHeader () {
     return (
       <Image source={Images.newHeaderImage} style={styles.headerContainer}>
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
@@ -65,12 +65,12 @@ class ClaimsSummary extends Component {
     )
   }
 
-  componentDidMount() {
+  componentDidMount () {
     console.tron.log('I am in Claims Summary screen')
     console.tron.log(this.props)
   }
 
-  _displayCondition() {
+  _displayCondition () {
     const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
     const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
 
@@ -113,23 +113,19 @@ class ClaimsSummary extends Component {
           {
             this.props.claimsdata && this.props.claimsdata.length > 0
               ?
-              <View style={{ flex: 1.5 }} >
-                <View style={{ flex: 0.75, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={styles.totalClaimsText}>You have </Text>
-                  <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.length}</Text>
-                  <Text style={styles.totalClaimsText}> Claims</Text>
+                <View style={{ flex: 1.5 }} >
+                  <View style={{ flex: 0.75, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={styles.totalClaimsText}>You have </Text>
+                    <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.length}</Text>
+                    <Text style={styles.totalClaimsText}> Claims</Text>
+                  </View>
+                  <View style={{ flex: 0.75 }}>
+                    <Button rounded style={{ flex: 0.6, backgroundColor: Colors.flBlue.grass, alignSelf: 'center' }} onPress={this.viewCliamsList}>
+                      <Text style={{ color: Colors.snow, fontWeight: '500', width: Metrics.textHeight2 * Metrics.screenWidth * 0.01, textAlign: 'center' }}>View Claims List</Text>
+                    </Button>
+                  </View>
+                  <View style={{ flex: 0.15 }} />
                 </View>
-                <View style={{ flex: 0.75 }}>
-                  <Button rounded style={{ flex: 0.6, backgroundColor: Colors.flBlue.grass, alignSelf: 'center' }} onPress={this.viewCliamsList}>
-                    <Text style={{ color: Colors.snow, fontWeight: '500', width: Metrics.textHeight2 * Metrics.screenWidth * 0.01, textAlign: 'center' }}>View Claims List</Text>
-                  </Button>
-                </View>
-                <View style={{ flex: 0.15 }} />
-
-              </View>
-              <View style={{ flex: 0.15 }} />
-
-                    </View>
                     : null
                   }
         </View>
@@ -145,7 +141,7 @@ class ClaimsSummary extends Component {
       )
     }
   }
-  render() {
+  render () {
     console.tron.log('im claims summary page', this.props.claimsdata)
     console.log('im claims summary page===>', this.props.claimsdata)
     return (
