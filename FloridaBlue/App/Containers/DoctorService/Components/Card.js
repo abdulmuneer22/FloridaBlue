@@ -91,7 +91,9 @@ class CCard extends Component {
         cards.push(
 
           <Card style={styles.cardStyle} key={i} >
-            <View style={{flex: 1, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.001, marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001,
+            <View style={{flex: 1,
+              marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.001,
+              marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001,
               marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}} >
               <View style={{
                 flex: 1,
@@ -114,21 +116,19 @@ class CCard extends Component {
 
                   {
                 network != undefined && network.footer_note != undefined && network.footer_note != null && network.footer_note.en != undefined && network.footer_note.en != null
-                  ?
-                    <View style={{ margin: 0}} >
-                      <Panel title={_.get(network, 'header_text.en', '')} >
-                        <View style={{ borderTopWidth: 0.2, bottom: 10 }} />
-                        <View style={{bottom: 10}}>
-                          <HTMLView value={htmvalue}
-                            stylesheet={HtMLstyles} />
-                        </View>
-                        <View style={{ marginTop: 10 }} />
+                  ? <View style={{ margin: 0}} >
+                    <Panel title={_.get(network, 'header_text.en', '')} >
+                      <View style={{ borderTopWidth: 0.2, bottom: 10 }} />
+                      <View style={{bottom: 10}}>
+                        <HTMLView value={htmvalue}
+                          stylesheet={HtMLstyles} />
+                      </View>
+                      <View style={{ marginTop: 10 }} />
 
-                      </Panel>
-                      <View style={{borderBottomWidth: 0.3, marginTop: -10, margin: 10}} />
-                    </View>
-                    :
-                    <View style={{margin: 5, marginTop: -3, padding: 8}}>
+                    </Panel>
+                    <View style={{borderBottomWidth: 0.3, marginTop: -10, margin: 10}} />
+                  </View>
+                    : <View style={{margin: 5, marginTop: -3, padding: 8}}>
 
                       <Text style={styles.h1}>
                         {_.get(network, 'header_text.en', 'Benefit Details')}
@@ -146,7 +146,8 @@ class CCard extends Component {
               <View />
             </View>
 
-            <View style={{flex: 1, flexDirection: 'row',
+            <View style={{flex: 1,
+              flexDirection: 'row',
               margin: 0.1,
               marginBottom: 0
 

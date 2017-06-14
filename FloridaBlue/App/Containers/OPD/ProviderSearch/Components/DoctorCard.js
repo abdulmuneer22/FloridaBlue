@@ -59,24 +59,24 @@ class DoctorCard extends Component {
   render () {
     return (
       <View style={styles.container}>
-        { this.props.configData.pharmacySpecialityType ?
+        { this.props.configData.pharmacySpecialityType
 
-          <View style={{ flex: 1, margin: 15 }}>
+          ? <View style={{ flex: 1, margin: 15 }}>
             {this.props.configData.pharmacySpecialityType != null ? this.props.configData.pharmacySpecialityType.providerTypeSpecilityList.map((value, i) => {
               return (
                 <Card style={{ flex: 1}} key={i}>
                   <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop: 10 }}>
                     <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
-                      {value ?
-                        <Text style={styles.h1}>{value.displayName}</Text> : null}
-                      {value ?
-                        <Text style={styles.h2}>{value.primarySpecialty}</Text> : null}
-                      {value ?
-                        <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
-                      {value ?
-                        <Text style={styles.h4_2}>{value.faxNumber}</Text> : null}
-                      {value ?
-                        <TouchableOpacity onPress={() => this.handleUrl(value.link)}>
+                      {value
+                        ? <Text style={styles.h1}>{value.displayName}</Text> : null}
+                      {value
+                        ? <Text style={styles.h2}>{value.primarySpecialty}</Text> : null}
+                      {value
+                        ? <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
+                      {value
+                        ? <Text style={styles.h4_2}>{value.faxNumber}</Text> : null}
+                      {value
+                        ? <TouchableOpacity onPress={() => this.handleUrl(value.link)}>
                           <Text style={styles.h4_link}>{value.linkTitle}</Text>
                         </TouchableOpacity> : null }
                     </View>
@@ -98,14 +98,14 @@ class DoctorCard extends Component {
                   </View>
                 </Card>
               )
-            }) :
-                <View style={styles.spinnerView}>
+            })
+                : <View style={styles.spinnerView}>
                   <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
                   <Text style={styles.spinnerText}>Load</Text>
                 </View>
           }
-          </View> :
-          <View style={styles.spinnerView}>
+          </View>
+          : <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
             <Text style={styles.spinnerText}>Loading..</Text>
           </View>

@@ -1,20 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    TextInput,
-    Dimensions,
-    TouchableOpacity,
-    Image,
-    TouchableWithoutFeedback,
-    ScrollView,
-    Linking,
-    ART,
-    Alert,
-    Platform
-  } from 'react-native'
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+  TouchableWithoutFeedback,
+  ScrollView,
+  Linking,
+  ART,
+  Alert,
+  Platform
+} from 'react-native'
 
 import styles from './ClaimsSummaryStyle'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
@@ -38,27 +38,27 @@ class ClaimsSummary extends Component {
     this.state = {
       activeIndex: 0
     }
-    //Move these below 2 calls to Claims Card in MyPlanScreen
+    // Move these below 2 calls to Claims Card in MyPlanScreen
     // this.props.attemptClaimsSummary()
     // this.props.attemptClaimsList()
     this.viewCliamsList = this.viewCliamsList.bind(this)
   }
 
   viewCliamsList () {
-   // this.props.attemptClaimsList()
+    // this.props.attemptClaimsList()
     NavigationActions.ClaimsList()
   }
 
   _renderHeader () {
     return (
       <Image source={Images.newHeaderImage} style={styles.headerContainer}>
-        <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
+        <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
           {NavItems.backButton()}
         </View>
         <Text style={styles.headerTextStyle}>
-            Claims
+          Claims
         </Text>
-        <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+        <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
           {NavItems.settingsButton()}
         </View>
       </Image>
@@ -73,7 +73,7 @@ class ClaimsSummary extends Component {
   _displayCondition () {
     const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
     const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
-    
+
     if (this.props.fetching) {
       return (
         <View style={styles.spinnerView}>
@@ -82,20 +82,20 @@ class ClaimsSummary extends Component {
         </View>)
     } else if (this.props.claimsSummaryData && this.props.claimsSummaryData.claimsBreakDown && this.props.claimsSummaryData.claimsBreakDown.length > 0) {
       return (
-       <View style={{flex:1}}>
-           <View style={{flex: 0.6,justifyContent:'center'}} >
-              <Text style={styles.chart_title}>Year-to-Date Claims Breakdown</Text>
-            </View>
-             <View style={{flex:4.5,alignItems: 'center'}}>
-              <Pie
-                pieWidth={Metrics.screenWidth - Metrics.screenWidth * 0.7}
-                pieHeight={Metrics.screenWidth - Metrics.screenWidth * 0.69}
-                colors={['#1f77b4', '#ff7f0e', '#d62728']}
-                width={width}
-                height={height}
-                data={this.props.claimsSummaryData.claimsBreakDown}
-                    />
-            </View>
+        <View style={{ flex: 1 }}>
+          <View style={{ flex: 0.6, justifyContent: 'center' }} >
+            <Text style={styles.chart_title}>Year-to-Date Claims Breakdown</Text>
+          </View>
+          <View style={{ flex: 4.5, alignItems: 'center' }}>
+            <Pie
+              pieWidth={Metrics.screenWidth - Metrics.screenWidth * 0.7}
+              pieHeight={Metrics.screenWidth - Metrics.screenWidth * 0.69}
+              colors={['#1f77b4', '#ff7f0e', '#d62728']}
+              width={width}
+              height={height}
+              data={this.props.claimsSummaryData.claimsBreakDown}
+            />
+          </View>
 
                <View style={{flex: 3.5, backgroundColor: Colors.flBlue.grey1}} >
               <View style={{flex: 0.5, justifyContent:'center', marginLeft: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
@@ -130,30 +130,29 @@ class ClaimsSummary extends Component {
                       </View>
                     : null
                   }
-      </View> 
-      ) 
-    } else if(this.props.error != null){
+        </View>
+      )
+    } else if (this.props.error != null) {
       Alert.alert(
-                  'Claim Detail',
-                   'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+        'Claim Detail',
+        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
         [
-                    { text: 'OK' }
+          { text: 'OK' }
 
         ]
-                )
-    
+      )
     }
   }
   render () {
     console.tron.log('im claims summary page', this.props.claimsdata)
-     console.log('im claims summary page===>', this.props.claimsdata)
+    console.log('im claims summary page===>', this.props.claimsdata)
     return (
       <View style={styles.container}>
         <View>
           {this._renderHeader()}
         </View>
 
-        <View style={{flex:1}}>
+        <View style={{ flex: 1 }}>
           {this._displayCondition()}
         </View>
       </View>

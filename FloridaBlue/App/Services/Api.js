@@ -83,7 +83,6 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getPlan = (data) => api.post('/benefits', data.input)
   const getTOU = () => api.get('/tou')
   const getSupport = () => api.get('/support')
-  const getMyIdCard = () => api.get('/support')
   const getHsa = (financialProduct) => api.get('/hsa/financialProduct/' + financialProduct)
   const getLogout = () => api.get('')
   const putTou = () => api.get('/termsOfUse')
@@ -102,6 +101,8 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     'language': 'EN',
     'who': 'doctor'
   })
+
+  const getMyIdCard = (data) => api.post('http://memberidcardservice-tsta.bcbsfl.com/mob/api/v1/memberidcard?source=mobile', data)
 
   const getDoctorDetail = (data) => api.post('/opd/details', {
     'language': 'EN',

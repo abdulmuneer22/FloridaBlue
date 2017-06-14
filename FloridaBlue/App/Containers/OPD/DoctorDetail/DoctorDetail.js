@@ -42,7 +42,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .build()
 
 class DoctorDetail extends Component {
-
   constructor (props) {
     super(props)
     this.state = {
@@ -154,8 +153,8 @@ class DoctorDetail extends Component {
         return (
           <View style={styles.container}>
 
-            {this.props.doctordetail && this.props.doctordetail.displayName && this.props.doctordetail.displayName.length != 0 ?
-              <ScrollView>
+            {this.props.doctordetail && this.props.doctordetail.displayName && this.props.doctordetail.displayName.length != 0
+              ? <ScrollView>
 
                 <View style={{
                   flex: 1,
@@ -163,8 +162,8 @@ class DoctorDetail extends Component {
 
                 }}>
                   {this.props.doctordetail && (this.props.doctordetail.longitude != undefined || this.props.doctordetail.longitude.length != 0 ||
-                                                this.props.doctordetail.latitude != undefined || this.props.doctordetail.latitude.length != 0) ?
-                                                  <View style={{ flex: 1}}>
+                                                this.props.doctordetail.latitude != undefined || this.props.doctordetail.latitude.length != 0)
+                                                  ? <View style={{ flex: 1}}>
                                                     <DoctorLocation
                                                       data={this.props.doctordetail} />
                                                   </View>
@@ -172,16 +171,16 @@ class DoctorDetail extends Component {
                 }
 
                   <View style={{ flex: 1 }}>
-                    {this.props.doctordetail ?
-                      <DoctorCard
+                    {this.props.doctordetail
+                      ? <DoctorCard
                         data={this.props.doctordetail}
                         />
                         : null}
                   </View>
 
                   <View style={{ flex: 1 }}>
-                    {this.props.doctordetail && this.props.doctordetail.otherAddressList && this.props.doctordetail.otherAddressList.length > 0 ?
-                      <View style={{ flex: 1 }}>
+                    {this.props.doctordetail && this.props.doctordetail.otherAddressList && this.props.doctordetail.otherAddressList.length > 0
+                      ? <View style={{ flex: 1 }}>
                         <TouchableOpacity onPress={this.toggle1}>
                           <Card style={this.state.visible1 ? styles.cardStyle : styles.cardStyle1} >
                             <View style={this.state.visible1 ? styles.plusView1 : styles.plusView}>
@@ -194,8 +193,8 @@ class DoctorDetail extends Component {
                                             Other Locations
                                         </Text>
                               </View>
-                              {this.props.doctordetail && this.props.doctordetail.otherAddressList ?
-                                <View style={this.state.visible1 ? styles.addressView1 : styles.addressView}>
+                              {this.props.doctordetail && this.props.doctordetail.otherAddressList
+                                ? <View style={this.state.visible1 ? styles.addressView1 : styles.addressView}>
                                   <Text style={styles.addressText}>
                                     {this.props.doctordetail.otherAddressList.length}
                                   </Text>
@@ -214,15 +213,15 @@ class DoctorDetail extends Component {
 
                                   <Card key={i} style={{flex: 1, margin: 15, backgroundColor: Colors.ricePaper}}>
                                     <View style={{flex: 1, margin: 15 }}>
-                                      {value ?
-                                        <Text style={styles.h5}>{value.addressLine1}, {value.addressLine2}</Text> : null}
-                                      {value ?
-                                        <Text style={styles.h5_2}>{value.city}, {value.state}, {value.zipCode}</Text> : null}
+                                      {value
+                                        ? <Text style={styles.h5}>{value.addressLine1}, {value.addressLine2}</Text> : null}
+                                      {value
+                                        ? <Text style={styles.h5_2}>{value.city}, {value.state}, {value.zipCode}</Text> : null}
 
-                                      {value ?
-                                        <Text style={styles.h5_2}>{value.county} </Text> : null}
-                                      {value ?
-                                        <Text style={styles.h5_2}>{value.telephoneNumber}</Text> : null}
+                                      {value
+                                        ? <Text style={styles.h5_2}>{value.county} </Text> : null}
+                                      {value
+                                        ? <Text style={styles.h5_2}>{value.telephoneNumber}</Text> : null}
                                       {/* <TouchableOpacity style={{ flex:1}} onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}>
                                   <Text style={styles.directionText1}>Map Location</Text>
                                     </TouchableOpacity> */}
@@ -243,8 +242,8 @@ class DoctorDetail extends Component {
 
                     <View style={{ flex: 1 }}>
 
-                      {this.props.doctordetail && this.props.doctordetail.address[0] && this.props.doctordetail.address[0].officeHoursList && this.props.doctordetail.address[0].officeHoursList.length > 0 ?
-                        <View style={{ flex: 1 }}>
+                      {this.props.doctordetail && this.props.doctordetail.address[0] && this.props.doctordetail.address[0].officeHoursList && this.props.doctordetail.address[0].officeHoursList.length > 0
+                        ? <View style={{ flex: 1 }}>
                           <TouchableOpacity onPress={this.toggle4}>
                             <Card style={this.state.visible4 ? styles.cardStyle : styles.cardStyle1} >
                               <View style={this.state.visible4 ? styles.plusView1 : styles.plusView}>
@@ -265,8 +264,8 @@ class DoctorDetail extends Component {
                             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10, marginTop: 10 }}>
 
                               <View style={{ flex: 1, margin: 5 }}>
-                                {this.props.doctordetail && this.props.doctordetail.address ?
-                                  <View style={{flex: 1}}>
+                                {this.props.doctordetail && this.props.doctordetail.address
+                                  ? <View style={{flex: 1}}>
                                     {this.props.doctordetail.address[0].officeHoursList.map((value, i) => {
                                       return (
 
@@ -316,12 +315,11 @@ class DoctorDetail extends Component {
                             </View>
                           </HideableView> : null}
                         </View>
-                            :
-                      null
+                            : null
                             }
 
-                      { this.props.doctordetail.contractedSpecialties || this.props.doctordetail.servicesOffered ?
-                        <View style={{ flex: 1 }}>
+                      { this.props.doctordetail.contractedSpecialties || this.props.doctordetail.servicesOffered
+                        ? <View style={{ flex: 1 }}>
                           <TouchableOpacity onPress={this.toggle2}>
                             <Card style={this.state.visible2 ? styles.cardStyle : styles.cardStyle1} >
                               <View style={this.state.visible2 ? styles.plusView1 : styles.plusView}>
@@ -340,8 +338,8 @@ class DoctorDetail extends Component {
 
                           {this.state.visible2 ? <HideableView visible={this.state.visible2}>
 
-                            {this.props.doctordetail && this.props.doctordetail.contractedSpecialties && this.props.doctordetail.contractedSpecialties.length > 0 ?
-                              <View style={{flex: 1, marginTop: 10, marginBottom: 10}}>
+                            {this.props.doctordetail && this.props.doctordetail.contractedSpecialties && this.props.doctordetail.contractedSpecialties.length > 0
+                              ? <View style={{flex: 1, marginTop: 10, marginBottom: 10}}>
                                 <View style={{ flex: 1, flexDirection: 'row' }}>
                                   <View style={{ flex: 2.5 }} />
                                   <View style={{ flex: 9.5 }}>
@@ -368,8 +366,8 @@ class DoctorDetail extends Component {
                               </View>
                           : null}
 
-                            {this.props.doctordetail && this.props.doctordetail.servicesOffered && this.props.doctordetail.servicesOffered.length > 0 ?
-                              <View style={{flex: 1}}>
+                            {this.props.doctordetail && this.props.doctordetail.servicesOffered && this.props.doctordetail.servicesOffered.length > 0
+                              ? <View style={{flex: 1}}>
                                 <View style={{ flex: 1, flexDirection: 'row' }}>
                                   <View style={{ flex: 2.5 }} />
                                   <View style={{ flex: 9.5 }}>
@@ -399,8 +397,8 @@ class DoctorDetail extends Component {
                               </View>
                           : null }
 
-                            {this.props.doctordetail && this.props.doctordetail.physicianGroupAffiliations && this.props.doctordetail.physicianGroupAffiliations.length > 0 ?
-                              <View style={{flex: 1}}>
+                            {this.props.doctordetail && this.props.doctordetail.physicianGroupAffiliations && this.props.doctordetail.physicianGroupAffiliations.length > 0
+                              ? <View style={{flex: 1}}>
                                 <View style={{ flex: 1, flexDirection: 'row' }}>
                                   <View style={{ flex: 2.5 }} />
                                   <View style={{ flex: 9.5 }}>
@@ -430,8 +428,8 @@ class DoctorDetail extends Component {
                               </View>
                           : null }
 
-                            {this.props.doctordetail && this.props.doctordetail.groupPhysicianAffiliations && this.props.doctordetail.groupPhysicianAffiliations.length > 0 ?
-                              <View style={{flex: 1}}>
+                            {this.props.doctordetail && this.props.doctordetail.groupPhysicianAffiliations && this.props.doctordetail.groupPhysicianAffiliations.length > 0
+                              ? <View style={{flex: 1}}>
                                 <View style={{ flex: 1, flexDirection: 'row' }}>
                                   <View style={{ flex: 2.5 }} />
                                   <View style={{ flex: 9.5 }}>
@@ -463,15 +461,14 @@ class DoctorDetail extends Component {
 
                           </HideableView> : null}
                         </View>
-                            :
-                      null
+                            : null
                             }
 
                     </View>
 
                     <View style={{ flex: 1 }}>
-                      {this.props.doctordetail && this.props.doctordetail.hospitalAffiliations && this.props.doctordetail.hospitalAffiliations.length > 0 ?
-                        <View style={{ flex: 1 }}>
+                      {this.props.doctordetail && this.props.doctordetail.hospitalAffiliations && this.props.doctordetail.hospitalAffiliations.length > 0
+                        ? <View style={{ flex: 1 }}>
                           <TouchableOpacity onPress={this.toggle3}>
                             <Card style={this.state.visible3 ? styles.cardStyle : styles.cardStyle1} >
                               <View style={this.state.visible3 ? styles.plusView1 : styles.plusView}>
@@ -496,15 +493,15 @@ class DoctorDetail extends Component {
                                 {this.props.doctordetail && this.props.doctordetail.hospitalAffiliations ? this.props.doctordetail.hospitalAffiliations.map((value, i) => {
                                   return (<View key={i} style={{flex: 1, margin: 5, marginTop: 10, marginBottom: 10}}>
                                     <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
-                                      {value ?
+                                      {value
 
-                                        <Text style={styles.h1}>{value ? value.displayName : null}</Text> : null}
+                                        ? <Text style={styles.h1}>{value ? value.displayName : null}</Text> : null}
                                       <Text style={styles.h4}>{value ? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text>
                                       <Text style={styles.h4_2}>{value ? value.city : null}, {value ? value.state : null}</Text>
-                                      {value ?
-                                        <Text style={styles.h4_2}>{value ? value.zipCode : null}</Text> : null}
-                                      {value ?
-                                        <Text style={styles.h4_2}>{value ? value.telephoneNumber : null}</Text> : null}
+                                      {value
+                                        ? <Text style={styles.h4_2}>{value ? value.zipCode : null}</Text> : null}
+                                      {value
+                                        ? <Text style={styles.h4_2}>{value ? value.telephoneNumber : null}</Text> : null}
 
                                     </View>
 
@@ -516,14 +513,13 @@ class DoctorDetail extends Component {
                             </View>
                           </HideableView> : null}
                         </View>
-                            :
-                     null
+                            : null
                             }
                     </View>
 
                     <View style={{ flex: 1 }}>
-                      {this.props.doctordetail && this.props.doctordetail.programList && this.props.doctordetail.programList.length > 0 ?
-                        <View style={{ flex: 1 }}>
+                      {this.props.doctordetail && this.props.doctordetail.programList && this.props.doctordetail.programList.length > 0
+                        ? <View style={{ flex: 1 }}>
                           <TouchableOpacity onPress={this.toggle5}>
                             <Card style={this.state.visible5 ? styles.cardStyle : styles.cardStyle1} >
                               <View style={this.state.visible5 ? styles.plusView1 : styles.plusView}>
@@ -575,13 +571,12 @@ class DoctorDetail extends Component {
                             </View>
                           </HideableView> : null}
                         </View>
-                            :
-                     null
+                            : null
                             }
                     </View>
 
-                    { this.props.doctordetail.bcbsfProviderID || this.props.doctordetail.nationalProviderNumber ?
-                      <View style={{ flex: 1 }}>
+                    { this.props.doctordetail.bcbsfProviderID || this.props.doctordetail.nationalProviderNumber
+                      ? <View style={{ flex: 1 }}>
                         <TouchableOpacity onPress={this.toggle7}>
                           <Card style={this.state.visible7 ? styles.cardStyle : styles.cardStyle1} >
                             <View style={this.state.visible7 ? styles.plusView1 : styles.plusView}>
@@ -600,8 +595,8 @@ class DoctorDetail extends Component {
 
                         {this.state.visible7 ? <HideableView visible={this.state.visible7}>
 
-                          {this.props.doctordetail && this.props.doctordetail.bcbsfProviderID ?
-                            <View style={{flex: 1, marginTop: 10}}>
+                          {this.props.doctordetail && this.props.doctordetail.bcbsfProviderID
+                            ? <View style={{flex: 1, marginTop: 10}}>
                               <View style={{ flex: 1, flexDirection: 'row', margin: 10 }}>
 
                                 <View style={{ flex: 1, alignItems: 'center' }}>
@@ -625,8 +620,8 @@ class DoctorDetail extends Component {
                             </View>
                           : null}
 
-                          {this.props.doctordetail && this.props.doctordetail.nationalProviderNumber ?
-                            <View style={{flex: 1}}>
+                          {this.props.doctordetail && this.props.doctordetail.nationalProviderNumber
+                            ? <View style={{flex: 1}}>
                               <View style={{ flex: 1, flexDirection: 'row' }}>
                                 <View style={{flex: 0.33}} />
                                 <View style={{ flex: 1 }}>
@@ -650,9 +645,9 @@ class DoctorDetail extends Component {
                             </View>
                           : null}
 
-                          { this.props.configData && this.props.configData.links && this.props.configData.links.deptHealth ?
+                          { this.props.configData && this.props.configData.links && this.props.configData.links.deptHealth
 
-                            <View style={{flex: 1, flexDirection: 'row'}}>
+                            ? <View style={{flex: 1, flexDirection: 'row'}}>
                               <View style={{flex: 1}} />
                               <View style={{flex: 8}}>
                                 <Text style={styles.h7}>
@@ -667,8 +662,8 @@ class DoctorDetail extends Component {
                           <View style={{flex: 1, marginLeft: 40}}>
 
                             {
-                             this.props.configData && this.props.configData.links && this.props.configData.links.providerInfoList && this.props.configData.links.providerInfoList.length > 0 ?
-                            this.props.configData.links.providerInfoList.map((value, i) => {
+                             this.props.configData && this.props.configData.links && this.props.configData.links.providerInfoList && this.props.configData.links.providerInfoList.length > 0
+                            ? this.props.configData.links.providerInfoList.map((value, i) => {
                               console.log('urlsss' + value.url)
                               return (
 
@@ -689,8 +684,8 @@ class DoctorDetail extends Component {
                             <Text style={styles.h7}>
                               Note: Please refer to your benefit booklet for details, as not all searches may be applicable to your plan.
                             </Text>
-                            { this.props.configData && this.props.configData.links && this.props.configData.links.providerDirectory ?
-                              <Text style={styles.h7}>
+                            { this.props.configData && this.props.configData.links && this.props.configData.links.providerDirectory
+                              ? <Text style={styles.h7}>
                                 <Text style={styles.h7_2} onPress={() => NavigationActions.MyView({responseURL: this.props.configData.links.providerDirectory ? this.props.configData.links.providerDirectory.url : ''})}>
                                   {this.props.configData.links.providerDirectory.title1}
                                 </Text>{this.props.configData.links.providerDirectory.title2}
@@ -700,8 +695,7 @@ class DoctorDetail extends Component {
 
                         </HideableView> : null}
                       </View>
-                            :
-                      null
+                            : null
                             }
 
                   </View>

@@ -79,7 +79,6 @@ setTheme({
 })
 
 class AdvancedSearch extends Component {
-
   constructor (props) {
     super(props)
     this.searchTypeGroup = new MKRadioButton.Group()
@@ -119,9 +118,9 @@ class AdvancedSearch extends Component {
 
   _handleDoctordetail () {
     if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
-      if ((this.props.member && this.props.member.visibilityRules && this.props.member.visibilityRules.isStateGroup
-            && (this.props.categoryCode == '07' || (this.props.subCategoryCode == '702' || this.props.subCategoryCode == '700'
-            || this.props.subCategoryCode == '701')))) {
+      if ((this.props.member && this.props.member.visibilityRules && this.props.member.visibilityRules.isStateGroup &&
+            (this.props.categoryCode == '07' || (this.props.subCategoryCode == '702' || this.props.subCategoryCode == '700' ||
+            this.props.subCategoryCode == '701')))) {
         Alert.alert(
                   'Find care',
                     'Not Available.',
@@ -253,8 +252,8 @@ class AdvancedSearch extends Component {
       'We need access so you can see provider data near your location',
       [
         {text: 'No way', onPress: () => console.tron.log('permission denied'), style: 'cancel'},
-        this.state.photoPermission == 'undetermined' ?
-        {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
+        this.state.photoPermission == 'undetermined'
+        ? {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
       ]
     )
   }
@@ -462,7 +461,8 @@ class AdvancedSearch extends Component {
                 ref='providerName'
                 style={styles.careTextField}
                 textInputStyle={{
-                  flex: 1, color: Colors.flBlue.ocean,
+                  flex: 1,
+                  color: Colors.flBlue.ocean,
                   fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                 }}
                 keyboardType='default'
@@ -480,7 +480,8 @@ class AdvancedSearch extends Component {
                 <MKTextField
                   ref='careType'
                   textInputStyle={{
-                    flex: 1, color: Colors.flBlue.ocean,
+                    flex: 1,
+                    color: Colors.flBlue.ocean,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                   }}
                   style={styles.careTextField}
@@ -505,7 +506,8 @@ class AdvancedSearch extends Component {
                     ref='advancedSpecialityType'
                     style={styles.careTextField}
                     textInputStyle={{
-                      flex: 1, color: Colors.flBlue.ocean,
+                      flex: 1,
+                      color: Colors.flBlue.ocean,
                       fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                     }}
                     editable={false}
@@ -584,7 +586,8 @@ class AdvancedSearch extends Component {
 
               <View style={{ marginLeft: 15, marginTop: 10, flex: 1 }}>
                 <Text style={styles.searchText}> Search Distance:</Text>
-                <Text style={{ textAlign: 'center', fontSize: Fonts.size.regular,
+                <Text style={{ textAlign: 'center',
+                  fontSize: Fonts.size.regular,
                   color: Colors.flBlue.anvil }}>{this.props.searchRange} mi</Text>
                 <Slider
                   value={this.props.searchRange}
@@ -605,8 +608,8 @@ class AdvancedSearch extends Component {
 
             <View style={styles.genderView}>
               {
-                this.props.configData != undefined && this.props.configData.gender != undefined ?
-                  <Text style={styles.doctorTextStyle}>
+                this.props.configData != undefined && this.props.configData.gender != undefined
+                  ? <Text style={styles.doctorTextStyle}>
                     {this.props.configData.gender.displayName}:
              </Text> : null}
               <View style={{flex: 1}}>
@@ -632,8 +635,8 @@ class AdvancedSearch extends Component {
               </View>
             </View>
 
-            {this.props.configData && this.props.configData.acceptingPatient ?
-              <View style={styles.programView}>
+            {this.props.configData && this.props.configData.acceptingPatient
+              ? <View style={styles.programView}>
                 <View style={{ flex: 0.4 }}>
 
                   <Text style={styles.programText}>
@@ -646,8 +649,8 @@ class AdvancedSearch extends Component {
 
                   <ModalDropdown
                     dropdownStyle={styles.dropdown1}
-                    options={this.props.configData != undefined && this.props.configData.acceptingPatient != undefined ?
-                  _.map(this.props.configData.acceptingPatient.acceptPatientList, 'patientPreference') : null}
+                    options={this.props.configData != undefined && this.props.configData.acceptingPatient != undefined
+                  ? _.map(this.props.configData.acceptingPatient.acceptPatientList, 'patientPreference') : null}
                     renderRow={this._renderDropdownRow.bind(this)}
                     onSelect={this._patientTypeSelected}>
 
@@ -673,8 +676,8 @@ class AdvancedSearch extends Component {
               </View>
           : null}
 
-            {this.props.configData && this.props.configData.workingHours ?
-              <View style={styles.programView}>
+            {this.props.configData && this.props.configData.workingHours
+              ? <View style={styles.programView}>
                 <View style={{ flex: 0.4 }}>
                   <Text style={styles.programText}>
                     {this.props.configData.workingHours.displayName}
@@ -686,14 +689,15 @@ class AdvancedSearch extends Component {
 
                   <ModalDropdown dropdownStyle={styles.dropdown1}
                     onSelect={this._timeSelected}
-                    options={this.props.configData != undefined && this.props.configData.workingHours != undefined ?
-                  _.map(this.props.configData.workingHours.workHoursList, 'hours') : null}
+                    options={this.props.configData != undefined && this.props.configData.workingHours != undefined
+                  ? _.map(this.props.configData.workingHours.workHoursList, 'hours') : null}
                     renderRow={this._renderDropdownRow.bind(this)} >
 
                     <MKTextField
                       ref='Working Hours'
                       textInputStyle={{
-                        flex: 1, color: Colors.flBlue.ocean,
+                        flex: 1,
+                        color: Colors.flBlue.ocean,
                     // marginLeft:100,
                         marginRight: -100,
                         fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
@@ -728,13 +732,14 @@ class AdvancedSearch extends Component {
 
                   <ModalDropdown dropdownStyle={styles.languagedropdown}
                     onSelect={this._doctorLanguageSelected}
-                    options={this.props.providerLanguage != undefined ?
-                    _.map(this.props.providerLanguages, 'label') : null}
+                    options={this.props.providerLanguage != undefined
+                    ? _.map(this.props.providerLanguages, 'label') : null}
                     renderRow={this._renderDropdownRow.bind(this)} >
 
                     <MKTextField
                       textInputStyle={{
-                        flex: 1, color: Colors.flBlue.ocean,
+                        flex: 1,
+                        color: Colors.flBlue.ocean,
                         fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                       }}
                       style={styles.languageTextField}
@@ -765,7 +770,8 @@ class AdvancedSearch extends Component {
 
                     <MKTextField
                       textInputStyle={{
-                        flex: 1, color: Colors.flBlue.ocean,
+                        flex: 1,
+                        color: Colors.flBlue.ocean,
                         fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                       }}
                       style={styles.languageTextField}
@@ -781,8 +787,8 @@ class AdvancedSearch extends Component {
               </View>
 
             </View>
-            {this.props.configData && this.props.configData.program ?
-              <View style={styles.programView}>
+            {this.props.configData && this.props.configData.program
+              ? <View style={styles.programView}>
                 <View style={{ flex: 0.3 }}>
 
                   <Text style={styles.programText}>
@@ -794,13 +800,14 @@ class AdvancedSearch extends Component {
                 <View style={{ flex: 0.7, marginTop: 5 }}>
                   <ModalDropdown dropdownStyle={styles.programdropdown}
                     onSelect={this._programSelected}
-                    options={this.props.configData != undefined && this.props.configData.program != undefined ?
-                  _.map(this.props.configData.program.programList, 'programName') : null}
+                    options={this.props.configData != undefined && this.props.configData.program != undefined
+                  ? _.map(this.props.configData.program.programList, 'programName') : null}
                     renderRow={this._renderDropdownRow.bind(this)} >
 
                     <MKTextField
                       textInputStyle={{
-                        flex: 1, color: Colors.flBlue.ocean,
+                        flex: 1,
+                        color: Colors.flBlue.ocean,
                         fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                       }}
                       style={styles.programtextField}

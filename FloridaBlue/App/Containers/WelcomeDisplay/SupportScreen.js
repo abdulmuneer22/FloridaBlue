@@ -92,9 +92,9 @@ class SupportScreen extends Component {
                         return (
 
                           <View>
-                            {support.contactNumber ?
+                            {support.contactNumber
 
-                              <Card style={styles.textBackground3} key={i}>
+                              ? <Card style={styles.textBackground3} key={i}>
 
                                 <View style={{flex: 1}}>
                                   <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)} style={styles.textBackground3} >
@@ -116,9 +116,9 @@ class SupportScreen extends Component {
                                     </View>
                                   </TouchableOpacity>
                                 </View>
-                              </Card> :
+                              </Card>
 
-                              <View style={{flex: 1}} style={styles.textBackground1}>
+                              : <View style={{flex: 1}} style={styles.textBackground1}>
                                 <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                                   <Text style={styles.textStyle}>
                                     {support.contactType ? support.contactType : null}

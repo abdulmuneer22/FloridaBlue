@@ -58,42 +58,40 @@ class ClaimsSummaryCard extends Component {
           {
 
             this.props.data != undefined ? this.props.data.map((value, i) => {
-            let color = Colors.flBlue.ocean;
-            if(value.claimType === 'Professional'){
-                color = Colors.flBlue.ocean;
-            }else if(value.claimType === 'Institutional'){
-                color = Colors.flBlue.red;
-            }else{
-              color = Colors.flBlue.grass;
-            }
+              let color = Colors.flBlue.ocean
+              if (value.claimType === 'Professional') {
+                color = Colors.flBlue.ocean
+              } else if (value.claimType === 'Institutional') {
+                color = Colors.flBlue.red
+              } else {
+                color = Colors.flBlue.grass
+              }
 
-            return (
-              <TouchableOpacity style={{flex: 1}} key={i} onPress={() => this.viewCliamsDetails(value.claimNumber)}>
-                <Card key={i} style={{flex: 1, justifyContent: 'center', margin: 10}} key={i}>
-                  <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-                    <View style={{flex:0.01,backgroundColor:color}}>
-                        
+              return (
+                <TouchableOpacity style={{flex: 1}} key={i} onPress={() => this.viewCliamsDetails(value.claimNumber)}>
+                  <Card key={i} style={{flex: 1, justifyContent: 'center', margin: 10}} key={i}>
+                    <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
+                      <View style={{flex: 0.01, backgroundColor: color}} />
+                      <View style={{flex: 0.29, alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={styles.textStyle}>
+                          {this.formatDate(value.dateOfService)}
+                        </Text>
+                      </View>
+                      <View style={{flex: 0.4, alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={styles.textStyle}>
+                          {value.providerName}
+                        </Text>
+                      </View>
+                      <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
+                        <Text style={styles.textStyle}>
+                          {value.claimType}
+                        </Text>
+                      </View>
                     </View>
-                    <View style={{flex: 0.29, alignItems: 'center', justifyContent: 'center'}}>
-                      <Text style={styles.textStyle}>
-                        {this.formatDate(value.dateOfService)}
-                      </Text>
-                    </View>
-                    <View style={{flex: 0.4, alignItems: 'center', justifyContent: 'center'}}>
-                      <Text style={styles.textStyle}>
-                        {value.providerName}
-                      </Text>
-                    </View>
-                    <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
-                      <Text style={styles.textStyle}>
-                        {value.claimType}
-                      </Text>
-                    </View>
-                  </View>
-                </Card>
-              </TouchableOpacity>
-            )
-          }) : null}
+                  </Card>
+                </TouchableOpacity>
+              )
+            }) : null}
         </View>
       </View>
     )

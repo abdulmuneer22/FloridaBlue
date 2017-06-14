@@ -24,7 +24,6 @@ const LATITUDE_DELTA = 0.0922
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 class DoctorLocation extends Component {
-
   constructor (props) {
     super(props)
   }
