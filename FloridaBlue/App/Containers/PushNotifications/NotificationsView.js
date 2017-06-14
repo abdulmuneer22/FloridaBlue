@@ -73,7 +73,6 @@ class NotificationsView extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         <View style={styles.container}>
-          <PushController />
           <SwipeListView style={{ marginTop: 10, margin: 10, flex: 1 }}
             dataSource={this.ds.cloneWithRows(this.state.listViewData)}
             renderRow={data => (
@@ -219,7 +218,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getNotification: () => dispatch(NotificationActions.getNotification())
+    getNotification: () => dispatch(NotificationActions.getNotification()),
+    onOpenedFromTray: (openedFromTray) => dispatch(NotificationActions.onOpenedFromTray(openedFromTray)),
+    onLocalNotification: (localNotification) => dispatch(NotificationActions.onLocalNotification(localNotification))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationsView)

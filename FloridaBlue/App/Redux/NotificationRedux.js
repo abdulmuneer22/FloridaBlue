@@ -9,7 +9,7 @@ const { Types, Creators } = createActions({
   onChangeFCMToken: ['FCMToken'],
   refreshTokenToUnsubscribe: ['refreshToken'],
   onOpenedFromTray: ['openedFromTray'],
-  onLocalNotificaton: ['localNotification'],
+  onLocalNotification: ['localNotification'],
   notificationSuccess: ['notification'],
   notificationFailure: ['error'],
   getNotification: []
@@ -47,7 +47,7 @@ export const failure = (state: Object, { error }: Object) =>
 export const FCMToken = (state : Object, {FCMToken}: Object) => state.merge({FCMToken})
 
 // we've had to set remote notificaiton tray if true
-export const onOpenedFromTray = (state : Object, {onOpenedFromTray}: Object) => state.merge({onOpenedFromTray})
+export const onOpenedFromTray = (state : Object, {openedFromTray}: Object) => state.merge({openedFromTray})
 
 // we've had to set remote notificaiton tray if true
 export const localNotification = (state : Object, {localNotification}: Object) => state.merge({localNotification})
