@@ -23,7 +23,7 @@ class MyIdCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      idCardHeaderVisible: false
+      idCardHeaderVisible: true
     }
     this.toggle = this.toggle.bind(this)
   }
@@ -43,7 +43,7 @@ class MyIdCard extends Component {
   }
 
   componentDidMount () {
-    this.props.attemptMyIdCard()
+    //this.props.attemptMyIdCard()
     console.tron.log('I am Id Card screen')
     console.tron.log(this.props)
   }
@@ -65,7 +65,7 @@ class MyIdCard extends Component {
 
         >
           <TouchableOpacity onPress={this.toggle}>
-            <Image source={{uri: this.props.data.srcData}} style={{
+            <Image source={{uri: 'data:image/jpeg;base64,'+this.props.data.IdCardImage}} style={{
               flex: 1,
               transform: [{rotate: '270deg'}],
               resizeMode: 'contain',
@@ -139,7 +139,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMyIdCard: () => dispatch(MyIdCardActions.myIdCardRequest())
+    attemptMyIdCard: (data) => dispatch(MyIdCardActions.myIdCardRequest(data))
   }
 }
 
