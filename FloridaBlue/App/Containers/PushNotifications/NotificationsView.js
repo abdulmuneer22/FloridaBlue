@@ -30,7 +30,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 class NotificationsView extends Component {
-
   constructor (props) {
     super(props)
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
@@ -102,8 +101,10 @@ class NotificationsView extends Component {
                   <View style={{ flex: 1 }}>
                     <View style={{
                       paddingTop:
-                      10, flexDirection: 'row',
-                      marginRight: 10, flex: 1
+                      10,
+                      flexDirection: 'row',
+                      marginRight: 10,
+                      flex: 1
                     }}>
 
                       <View style={{ marginLeft: 10, paddingTop: 5, flex: 0.2 }}>
@@ -114,7 +115,10 @@ class NotificationsView extends Component {
                         <View style={{ flex: 0.4 }}>
                           <Text style={{
                             fontSize: 18,
-                            fontWeight: '500', marginBottom: 1, paddingTop: 5, marginLeft: 1,
+                            fontWeight: '500',
+                            marginBottom: 1,
+                            paddingTop: 5,
+                            marginLeft: 1,
                             marginRight: 20
                           }}>{this.state.messageInfo.message}!</Text>
                         </View>
@@ -131,7 +135,8 @@ class NotificationsView extends Component {
                     </View>
 
                     <View style={{
-                      flex: 1, borderBottomLeftRadius: 10,
+                      flex: 1,
+                      borderBottomLeftRadius: 10,
                       borderBottomRightRadius: 10,
                       justifyContent: 'center',
                       marginTop: 5,
@@ -175,7 +180,10 @@ class NotificationsView extends Component {
             )}
             renderHiddenRow={(data, secId, rowId, rowMap) => (
               <View style={{
-                alignItems: 'center', flex: 1, marginTop: 5, flexDirection: 'row',
+                alignItems: 'center',
+                flex: 1,
+                marginTop: 5,
+                flexDirection: 'row',
                 borderRadius: 20
               }}>
 
@@ -188,7 +196,8 @@ class NotificationsView extends Component {
                   right: 0
                 }} onPress={_ => this.deleteRow(secId, rowId, rowMap)} >
                   <View style={{
-                    flex: 1, alignItems: 'flex-end',
+                    flex: 1,
+                    alignItems: 'flex-end',
                     // bottom: 0,
                     justifyContent: 'center'
                   }}>

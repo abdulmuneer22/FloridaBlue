@@ -145,7 +145,8 @@ class MyPlanSwiper extends Component {
     //       console.tron.log('plan benefits', planBenefits)
           return (
 
-            <Card style={{ flex: 1, alignItems: 'center',
+            <Card style={{ flex: 1,
+              alignItems: 'center',
               margin: 15,
               marginBottom: Platform.OS === 'ios' ? 0 : 30
             }} key={i}>
@@ -206,8 +207,8 @@ class MyPlanSwiper extends Component {
                             fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                             fontWeight: '500',
                             fontFamily: Fonts.type.subHeaderFont,
-                            color: Colors.flBlue.grey6} :
-                            {
+                            color: Colors.flBlue.grey6}
+                            : {
                               fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                               fontWeight: '500',
                               fontFamily: Fonts.type.subHeaderFont,

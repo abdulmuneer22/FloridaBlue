@@ -26,7 +26,6 @@ import { Images, Metrics, Colors, Fonts } from '../../Themes'
 var TouchManager = NativeModules.TouchManager
 
 class Settings extends Component {
-
   constructor (props) {
     super(props)
     this._handleSwitchToggle = this._handleSwitchToggle.bind(this)
@@ -91,10 +90,9 @@ class Settings extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         <View style={styles.touchContainer}>
-          {this.props.touchEnabled ?
-            <Text style={styles.touchIdText}>Touch ID Enabled</Text>
-          :
-            <Text style={styles.touchIdText}>Touch ID Disabled</Text>
+          {this.props.touchEnabled
+            ? <Text style={styles.touchIdText}>Touch ID Enabled</Text>
+          : <Text style={styles.touchIdText}>Touch ID Disabled</Text>
           }
           <MKSwitch style={styles.touchStatusSwitch}
             checked={this.props.touchEnabled}

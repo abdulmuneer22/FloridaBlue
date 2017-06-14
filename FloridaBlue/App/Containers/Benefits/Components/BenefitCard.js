@@ -101,7 +101,8 @@ class Card extends Component {
 
         }}>
 
-        <BCard style={{alignItems: 'center', flexDirection: 'row',
+        <BCard style={{alignItems: 'center',
+          flexDirection: 'row',
           flex: 1,
          //    width: this.state.CardWidth,
           height: Metrics.screenHeight - (Metrics.screenHeight * 0.88)

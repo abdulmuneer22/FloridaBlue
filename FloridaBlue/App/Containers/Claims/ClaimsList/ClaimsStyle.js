@@ -30,49 +30,49 @@ export default StyleSheet.create({
     // backgroundColor: Colors.flBlue.sky
   },
   claimsListCard: {
-    flexDirection: 'row', 
-    justifyContent: 'center', 
-    flex:1,
-   // padding: 9, 
-    margin: 10, 
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flex: 1,
+   // padding: 9,
+    margin: 10,
     marginBottom: 10,
     alignItems: 'center'
   },
   claimsListHeader1: {
-    flex: .3
+    flex: 0.3
   },
   claimsListHeader2: {
-    flex: .2,
+    flex: 0.2,
     marginBottom: 20,
-    borderBottomWidth: .8,
+    borderBottomWidth: 0.8,
     borderBottomColor: 'grey'
   },
   claimsListHeader3: {
-    flex: .2, 
+    flex: 0.2,
     backgroundColor: Colors.snow
   },
   claimsListHeader4: {
-    flex: .1, 
-    flexDirection: 'row', 
-    alignItems: 'center', 
-    justifyContent: 'space-between', 
-    paddingTop: 0, 
+    flex: 0.1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: 0,
     margin: 10
   },
   claimsListHeaderText: {
-    fontSize: 20, 
-    paddingLeft: 15, 
-    opacity: .9
+    fontSize: 20,
+    paddingLeft: 15,
+    opacity: 0.9
   },
   claimsCategories1: {
-    margin:10, 
-    marginBottom: 0, 
+    margin: 10,
+    marginBottom: 0,
     paddingTop: 5,
     paddingBottom: 5
   },
   claimsCategories2: {
-    flex:0, 
-    flexDirection:'row', 
+    flex: 0,
+    flexDirection: 'row',
     marginTop: -15
   },
   claimsSortCategories: {
@@ -112,18 +112,18 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   claimsCardRow1: {
-    flex: .33, 
+    flex: 0.33,
     alignItems: 'center',
     flexDirection: 'column'
   },
   claimsCardRow2: {
-    flex: .33, 
+    flex: 0.33,
     alignItems: 'center',
-    marginTop:10,
-    marginBottom:10
+    marginTop: 10,
+    marginBottom: 10
   },
   claimsCardRow3: {
-    flex: .34, 
+    flex: 0.34,
     alignItems: 'center'
   },
   claimsCategoryText: {
@@ -137,9 +137,9 @@ export default StyleSheet.create({
     flex: 1.5
   },
   claimsViewMore: {
-    textAlign: 'center', 
-    color: Colors.flBlue.teal, 
-    fontSize: 20, 
+    textAlign: 'center',
+    color: Colors.flBlue.teal,
+    fontSize: 20,
     paddingLeft: 115
   },
   headerTextStyle: {

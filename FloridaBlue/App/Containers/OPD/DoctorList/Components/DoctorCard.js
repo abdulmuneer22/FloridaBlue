@@ -81,9 +81,9 @@ class DoctorCard extends Component {
     console.log('limit from state =>', this.state.cardLimit)
     return (
       <View style={styles.container}>
-        { this.props.data ?
+        { this.props.data
 
-          <View style={{ flex: 1, margin: 15 }}>
+          ? <View style={{ flex: 1, margin: 15 }}>
             {this.props.data != undefined ? this.props.data.map((value, i) => {
               if (i < this.state.cardLimit) {
                 return (
@@ -94,20 +94,20 @@ class DoctorCard extends Component {
                       <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
                         {
 
-                           value ? [ value.categoryCode != '07' ?
-                             <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
+                           value ? [ value.categoryCode != '07'
+                             ? <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
                                <Text style={styles.h1}>{value.displayName}</Text>
-                             </TouchableOpacity> :
-                             <Text style={styles.h1_1}>{value.displayName}</Text>] : null
+                             </TouchableOpacity>
+                             : <Text style={styles.h1_1}>{value.displayName}</Text>] : null
                          }
                         <View style={{flex: 1, flexDirection: 'row'}}>
 
-                          {value ?
-                            <View style={{flex: 0.7}}>
+                          {value
+                            ? <View style={{flex: 0.7}}>
                               <Text style={styles.h2}>{value.primarySpecialty}</Text>
                             </View> : null}
-                          {value && value.handicappedAccessIn && value.handicappedAccessIn == 'Y' ?
-                            <View style={{flex: 0.3, alignItems: 'center', marginTop: 10}}>
+                          {value && value.handicappedAccessIn && value.handicappedAccessIn == 'Y'
+                            ? <View style={{flex: 0.3, alignItems: 'center', marginTop: 10}}>
                               <Flb name='accessibility' size={Metrics.icons.medium * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                             </View> : null }
                         </View>
@@ -115,12 +115,12 @@ class DoctorCard extends Component {
                         <Text style={styles.h4}>{value ? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text>
 
                         <Text style={styles.h4_2}>{value ? value.city : null}, {value ? value.state : null}</Text>
-                        {value ?
-                          <Text style={styles.h4_2}>{value.zipCode}</Text> : null}
-                        {value ?
-                          <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
-                        {value ?
-                          <Text style={styles.h4_3}>{value.distance} miles</Text> : null}
+                        {value
+                          ? <Text style={styles.h4_2}>{value.zipCode}</Text> : null}
+                        {value
+                          ? <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
+                        {value
+                          ? <Text style={styles.h4_3}>{value.distance} miles</Text> : null}
                       </View>
                     </View>
 

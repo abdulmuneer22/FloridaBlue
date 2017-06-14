@@ -161,7 +161,9 @@ class LandingScreen extends Component {
 
                       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         <Image source={Images[tile.gradientImage]}
-                          style={{flex: 1, justifyContent: 'center', alignItems: 'center',
+                          style={{flex: 1,
+                            justifyContent: 'center',
+                            alignItems: 'center',
                          // resizeMode:Platform.OS == 'ios' ?'' :'cover',
                             width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.52) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.51)
                           }} >

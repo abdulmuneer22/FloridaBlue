@@ -156,7 +156,8 @@ class Screen_1 extends React.Component {
               value={this.props.contractNumber}
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'
@@ -189,7 +190,8 @@ class Screen_1 extends React.Component {
               value={this.props.firstName}
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'
@@ -209,7 +211,8 @@ class Screen_1 extends React.Component {
               value={this.props.lastName}
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'
@@ -229,7 +232,8 @@ class Screen_1 extends React.Component {
               value={this.props.dateOfBirth}
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'
@@ -249,7 +253,8 @@ class Screen_1 extends React.Component {
               value={this.props.zipCode}
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               keyboardType='default'

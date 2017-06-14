@@ -163,7 +163,8 @@ class Screen_2 extends React.Component {
               value={this.props.phoneNumber}
               style={styles.textfieldWithFloatingLabel}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.ocean,
+                flex: 1,
+                color: Colors.flBlue.ocean,
                     // marginLeft:100,
                     // marginRight:-100,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
@@ -184,15 +185,16 @@ class Screen_2 extends React.Component {
               placeholder={I18n.t('phoneNumber')}
             />
           </View> : null}
-          { !this.props.emailVerified ?
-            <View>
+          { !this.props.emailVerified
+            ? <View>
               <View style={styles.row}>
                 <TextfieldWithFloatingLabel
                   ref='email'
                   style={styles.textfieldWithFloatingLabel}
                   keyboardType='email-address'
                   textInputStyle={{
-                    flex: 1, color: Colors.flBlue.anvil,
+                    flex: 1,
+                    color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
                   }}
                   editable={!this.props.emailVerified}
@@ -211,7 +213,8 @@ class Screen_2 extends React.Component {
                   ref='confirmEmail'
                   value={this.props.confirmEmail}
                   textInputStyle={{
-                    flex: 1, color: Colors.flBlue.anvil,
+                    flex: 1,
+                    color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
                   }}
                   style={styles.textfieldWithFloatingLabel}
@@ -226,8 +229,8 @@ class Screen_2 extends React.Component {
                   }}
                   placeholder={I18n.t('confirmEmail')} />
               </View>
-            </View> :
-            <View style={styles.row}>
+            </View>
+            : <View style={styles.row}>
               <TextfieldWithFloatingLabel
                 ref='email'
                 value={this.props.email}
@@ -235,7 +238,8 @@ class Screen_2 extends React.Component {
                 keyboardType='email-address'
                 editable={!this.props.emailVerified}
                 textInputStyle={{
-                  flex: 1, color: Colors.flBlue.anvil,
+                  flex: 1,
+                  color: Colors.flBlue.anvil,
                   fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
                 }}
                 returnKeyType='next'
@@ -257,7 +261,8 @@ class Screen_2 extends React.Component {
               returnKeyType='next'
               autoCapitalize='none'
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               autoCorrect={false}
@@ -279,7 +284,8 @@ class Screen_2 extends React.Component {
               autoCapitalize='none'
               autoCorrect={false}
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               password
@@ -301,7 +307,8 @@ class Screen_2 extends React.Component {
               returnKeyType='done'
               autoCapitalize='none'
               textInputStyle={{
-                flex: 1, color: Colors.flBlue.anvil,
+                flex: 1,
+                color: Colors.flBlue.anvil,
                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0020
               }}
               autoCorrect={false}

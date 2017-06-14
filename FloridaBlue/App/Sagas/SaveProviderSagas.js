@@ -4,7 +4,7 @@ import SaveProviderRedux from '../Redux/SaveProviderRedux'
 
 const savedProviders = []
 
-export function* addSavedProvider (action) {
+export function * addSavedProvider (action) {
   const { data } = action
     // make the call to the api
    // const isDataAvailable = savedProviders.find((data) => data.providerKey === data.providerKey)
@@ -14,7 +14,7 @@ export function* addSavedProvider (action) {
   yield put(SaveProviderRedux.addProviderSuccess(savedProviders))
 }
 
-export function* removeSavedProvider (action) {
+export function * removeSavedProvider (action) {
   const { savedProviderKey } = action
     // make the call to the api
   console.tron.log(savedProviderKey)

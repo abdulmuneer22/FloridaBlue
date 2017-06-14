@@ -47,7 +47,7 @@ export const _claimDetailRequest = (state: Object) => state.merge({fetching: tru
 
 // we've successfully logged in
 export const _claimDetailSuccess = (state: Object, {data}:Object) => {
-  return state.merge({fetching: false,claimdetail:data, error: null })
+  return state.merge({fetching: false, claimdetail: data, error: null })
 }
 // we've had a problem logging in
 export const _claimDetailFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {}})
@@ -57,7 +57,7 @@ export const _claimListRequest = (state: Object) => state.merge({fetching: true,
 
 // we've successfully logged in
 export const _claimListSuccess = (state: Object, {data}:Object) => {
-  return state.merge({fetching: false,claimslist:data.data, error: null })
+  return state.merge({fetching: false, claimslist: data.data, error: null })
 }
 
 // we've had a problem logging in
@@ -115,6 +115,6 @@ export const reducer = createReducer(INITIAL_STATE, {
 /* ------------- Selectors ------------- */
 
 // // Is the current user logged in?
-//export const isClaimDetailIn = (claimDetailState: Object) => claimDetailState.claimdetail.data !== null
- //export const isClaimsListIn = (claimsListState: Object) => claimsListState.claimslist.data !== null
- export const isClaimsSummaryIn = (claimsSummaryState: Object) => claimsSummaryState.claimsSummary.data !== null
+// export const isClaimDetailIn = (claimDetailState: Object) => claimDetailState.claimdetail.data !== null
+ // export const isClaimsListIn = (claimsListState: Object) => claimsListState.claimslist.data !== null
+export const isClaimsSummaryIn = (claimsSummaryState: Object) => claimsSummaryState.claimsSummary.data !== null

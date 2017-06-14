@@ -12,7 +12,6 @@ import { Images, Colors, Metrics, Fonts } from '../../../Themes'
 import Flb from '../../../Themes/FlbIcon'
 
 class Panel extends Component {
-
   constructor (props) {
     super(props)
     this.icons = {

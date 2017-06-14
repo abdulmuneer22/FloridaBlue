@@ -135,8 +135,8 @@ class DoctorServices extends Component {
                     </View>
 
                     <View style={{flex: 1}}>
-                      {this.renderHeaderText() != '' ?
-                        <View style={{
+                      {this.renderHeaderText() != ''
+                        ? <View style={{
                           flex: 1,
                           marginTop: 5
                        // marginLeft: -40,

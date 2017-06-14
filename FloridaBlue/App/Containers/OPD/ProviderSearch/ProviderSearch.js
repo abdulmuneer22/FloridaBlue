@@ -55,7 +55,6 @@ setTheme({
 })
 
 class ProviderSearch extends Component {
-
   constructor (props) {
     super(props)
     this.searchTypeGroup = new MKRadioButton.Group()
@@ -183,9 +182,9 @@ class ProviderSearch extends Component {
     this.props.changeUrgentCareBanner(false)
     this.setState({userWantsResults: true})
     if (this.props.networkCodeList && this.props.networkCodeList.length > 0) {
-      if ((this.props.member && this.props.member.visibilityRules && this.props.member.visibilityRules.isStateGroup
-            && (this.props.categoryCode == '07' || (this.props.subCategoryCode == '702' || this.props.subCategoryCode == '700'
-            || this.props.subCategoryCode == '701')))) {
+      if ((this.props.member && this.props.member.visibilityRules && this.props.member.visibilityRules.isStateGroup &&
+            (this.props.categoryCode == '07' || (this.props.subCategoryCode == '702' || this.props.subCategoryCode == '700' ||
+            this.props.subCategoryCode == '701')))) {
         Alert.alert(
                   'Find care',
                     'Not Available.',
@@ -339,8 +338,8 @@ class ProviderSearch extends Component {
       'We need access so you can see provider data near your location',
       [
         {text: 'No way', onPress: () => console.tron.log('permission denied'), style: 'cancel'},
-        this.state.photoPermission == 'undetermined' ?
-        {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
+        this.state.photoPermission == 'undetermined'
+        ? {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
       ]
     )
   }
@@ -394,7 +393,8 @@ class ProviderSearch extends Component {
                 <MKTextField
                   ref='providerName'
                   style={styles.textField}
-                  textInputStyle={{flex: 1, color: Colors.flBlue.ocean,
+                  textInputStyle={{flex: 1,
+                    color: Colors.flBlue.ocean,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='next'
@@ -411,7 +411,8 @@ class ProviderSearch extends Component {
                 <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                   <MKTextField
                     ref='careType'
-                    textInputStyle={{flex: 1, color: Colors.flBlue.ocean,
+                    textInputStyle={{flex: 1,
+                      color: Colors.flBlue.ocean,
                       fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                     style={styles.textField}
                     editable={false}
@@ -438,7 +439,8 @@ class ProviderSearch extends Component {
                   <MKTextField
                     ref='specialityType'
                     style={styles.textField}
-                    textInputStyle={{flex: 1, color: Colors.flBlue.ocean,
+                    textInputStyle={{flex: 1,
+                      color: Colors.flBlue.ocean,
                       fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                     editable={false}
                     underlineColorAndroid={Colors.coal}
@@ -504,7 +506,8 @@ class ProviderSearch extends Component {
                 <MKTextField
                   ref='newLocation'
                   style={styles.newLocationField}
-                  textInputStyle={{flex: 1, color: Colors.flBlue.ocean,
+                  textInputStyle={{flex: 1,
+                    color: Colors.flBlue.ocean,
                     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025
                   }}
                   editable
@@ -536,10 +539,10 @@ class ProviderSearch extends Component {
 
         <View style={{flex: 1}}>
           {
-            this.state.floatClicked ?
+            this.state.floatClicked
 
-            this.state.helpStatus ?
-              <View style={styles.urgentCareCircle}>
+            ? this.state.helpStatus
+              ? <View style={styles.urgentCareCircle}>
                 <TouchableOpacity onPress={this.handleNeedHelp}>
                   <Flb name='urgent-care-circle'
                     style={{backgroundColor: Colors.transparent}}

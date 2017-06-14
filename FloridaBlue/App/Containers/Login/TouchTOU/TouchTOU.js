@@ -25,7 +25,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .build()
 
 class TouchTOU extends Component {
-
   _handleClose () {
     TouchManager.removeCredentials((error, credentials) => {
       var status = credentials[0]
