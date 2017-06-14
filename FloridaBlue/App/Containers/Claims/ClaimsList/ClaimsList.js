@@ -101,16 +101,12 @@ class ClaimsList extends Component {
   viewMore () {
     var currentLimit = this.state.listLimit
     var newLimit = currentLimit
-    var numberOfCardsPerscreen = this.state.totalNumberOfCardPerScreen
     this.setState({
       listLimit: newLimit + 10
     })
-    this.props.changeListLimit(newLimit + 10)
-    if (this.state.totalNumberOfCardPerScreen == newLimit) {
-      this.state.isFetchingMore = true
-      this.setState({isFetchingMore: true})
-      this.setState({totalNumberOfCardPerScreen: this.state.totalNumberOfCardPerScreen + 10})
-    }
+    if ( newLimit + 10 >= this.props.claimsdata.length) {
+      this.setState({listLimit: this.props.claimsdata.length})
+    } 
   }
 
    claimsListRequest (newProps) {
@@ -233,7 +229,7 @@ class ClaimsList extends Component {
                     <Text style={styles.claimsListHeaderText}>Claims List</Text>
                     <TouchableOpacity onPress={this.handleSearch}>
                       <Image source={Images.claimlistsearch} />
-                      </TouchableOpacity>
+                    </TouchableOpacity>
                   </View>
               </View>
             </View>

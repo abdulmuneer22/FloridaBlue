@@ -50,7 +50,7 @@ class ClaimsCard extends Component {
   }
 
   formatName (name) {
-    var firstName = name.split(' ').slice(0, -1).join(' ');
+    var firstName = name.split(' ').slice(-2, -1).join(' ');
     return firstName;
   }
 
