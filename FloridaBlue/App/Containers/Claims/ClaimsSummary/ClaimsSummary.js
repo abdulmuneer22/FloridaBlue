@@ -1,20 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    TextInput,
-    Dimensions,
-    TouchableOpacity,
-    Image,
-    TouchableWithoutFeedback,
-    ScrollView,
-    Linking,
-    ART,
-    Alert,
-    Platform
-  } from 'react-native'
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+  TouchableWithoutFeedback,
+  ScrollView,
+  Linking,
+  ART,
+  Alert,
+  Platform
+} from 'react-native'
 
 import styles from './ClaimsSummaryStyle'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
@@ -33,7 +33,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 class ClaimsSummary extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       activeIndex: 0
@@ -44,33 +44,33 @@ class ClaimsSummary extends Component {
     this.viewCliamsList = this.viewCliamsList.bind(this)
   }
 
-  viewCliamsList () {
-   // this.props.attemptClaimsList()
+  viewCliamsList() {
+    // this.props.attemptClaimsList()
     NavigationActions.ClaimsList()
   }
 
-  _renderHeader () {
+  _renderHeader() {
     return (
       <Image source={Images.newHeaderImage} style={styles.headerContainer}>
-        <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
+        <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
           {NavItems.backButton()}
         </View>
         <Text style={styles.headerTextStyle}>
-            Claims
+          Claims
         </Text>
-        <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+        <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
           {NavItems.settingsButton()}
         </View>
       </Image>
     )
   }
 
-  componentDidMount () {
+  componentDidMount() {
     console.tron.log('I am in Claims Summary screen')
     console.tron.log(this.props)
   }
 
-  _displayCondition () {
+  _displayCondition() {
     const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
     const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
 
@@ -82,11 +82,11 @@ class ClaimsSummary extends Component {
         </View>)
     } else if (this.props.claimsSummaryData && this.props.claimsSummaryData.claimsBreakDown && this.props.claimsSummaryData.claimsBreakDown.length > 0) {
       return (
-        <View style={{flex: 1}}>
-          <View style={{flex: 0.6, justifyContent: 'center'}} >
+        <View style={{ flex: 1 }}>
+          <View style={{ flex: 0.6, justifyContent: 'center' }} >
             <Text style={styles.chart_title}>Year-to-Date Claims Breakdown</Text>
           </View>
-          <View style={{flex: 4.5, alignItems: 'center'}}>
+          <View style={{ flex: 4.5, alignItems: 'center' }}>
             <Pie
               pieWidth={Metrics.screenWidth - Metrics.screenWidth * 0.7}
               pieHeight={Metrics.screenWidth - Metrics.screenWidth * 0.69}
@@ -94,36 +94,40 @@ class ClaimsSummary extends Component {
               width={width}
               height={height}
               data={this.props.claimsSummaryData.claimsBreakDown}
-                    />
+            />
           </View>
 
-          <View style={{flex: 3.5, backgroundColor: Colors.flBlue.grey1}} >
-            <View style={{flex: 0.5, justifyContent: 'center', marginLeft: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
+          <View style={{ flex: 3.5, backgroundColor: Colors.flBlue.grey1 }} >
+            <View style={{ flex: 0.5, justifyContent: 'center', marginLeft: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001 }}>
               <Text style={styles.recentClaimsText} >Recent Claims</Text>
             </View>
-            { this.props.claimsdata
-                            ? <View style={{flex: 3}}>
-                              <ClaimsCard data={this.props.claimsdata && this.props.claimsdata.length > 3 ? this.props.claimsdata.slice(0, 3) : this.props.claimsdata} />
-                            </View>
-                          : <View style={{flex: 2, justifyContent: 'center', alignItems: 'center'}}>
-                            <Text> No Recent Claims found </Text>
-                          </View>
-                }
+            {this.props.claimsdata
+              ? <View style={{ flex: 3 }}>
+                <ClaimsCard data={this.props.claimsdata && this.props.claimsdata.length > 3 ? this.props.claimsdata.slice(0, 3) : this.props.claimsdata} />
+              </View>
+              : <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
+                <Text> No Recent Claims found </Text>
+              </View>
+            }
           </View>
           {
-                    this.props.claimsdata && this.props.claimsdata.length > 0
-                    ? <View style={{flex: 1.5}} >
-                      <View style={{flex: 0.75, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                        <Text style={styles.totalClaimsText}>You have </Text>
-                        <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.count}</Text>
-                        <Text style={styles.totalClaimsText}> Claims</Text>
-                      </View>
-                      <View style={{flex: 0.75}}>
-                        <Button rounded style={{flex: 0.6, backgroundColor: Colors.flBlue.grass, alignSelf: 'center'}} onPress={this.viewCliamsList}>
-                          <Text style={{color: Colors.snow, fontWeight: '500', width: Metrics.textHeight2 * Metrics.screenWidth * 0.01, textAlign: 'center'}}>View Claims List</Text>
-                        </Button>
-                      </View>
-                      <View style={{flex: 0.15}} />
+            this.props.claimsdata && this.props.claimsdata.length > 0
+              ?
+              <View style={{ flex: 1.5 }} >
+                <View style={{ flex: 0.75, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                  <Text style={styles.totalClaimsText}>You have </Text>
+                  <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.length}</Text>
+                  <Text style={styles.totalClaimsText}> Claims</Text>
+                </View>
+                <View style={{ flex: 0.75 }}>
+                  <Button rounded style={{ flex: 0.6, backgroundColor: Colors.flBlue.grass, alignSelf: 'center' }} onPress={this.viewCliamsList}>
+                    <Text style={{ color: Colors.snow, fontWeight: '500', width: Metrics.textHeight2 * Metrics.screenWidth * 0.01, textAlign: 'center' }}>View Claims List</Text>
+                  </Button>
+                </View>
+                <View style={{ flex: 0.15 }} />
+
+              </View>
+              <View style={{ flex: 0.15 }} />
 
                     </View>
                     : null
@@ -132,16 +136,16 @@ class ClaimsSummary extends Component {
       )
     } else if (this.props.error != null) {
       Alert.alert(
-                  'Claim Detail',
-                   'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+        'Claim Detail',
+        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
         [
-                    { text: 'OK' }
+          { text: 'OK' }
 
         ]
-                )
+      )
     }
   }
-  render () {
+  render() {
     console.tron.log('im claims summary page', this.props.claimsdata)
     console.log('im claims summary page===>', this.props.claimsdata)
     return (
@@ -150,7 +154,7 @@ class ClaimsSummary extends Component {
           {this._renderHeader()}
         </View>
 
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           {this._displayCondition()}
         </View>
       </View>

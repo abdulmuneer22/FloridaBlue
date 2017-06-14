@@ -1,19 +1,13 @@
 // @flow
-
 import { StyleSheet, Dimensions, Platform } from 'react-native'
 import { Metrics, ApplicationStyles, Colors, Fonts } from '../../../Themes/'
-var {height, width} = Dimensions.get('window')
+var { height, width } = Dimensions.get('window')
 const window = Dimensions.get('window')
-
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
-
 const theme = getTheme()
-
 const BUTTON_ACTIVE_COLOR = Colors.flBlue.night
 const ACTIVE_BUTTON_TEXT_COLOR = Colors.snow
-
 export default StyleSheet.create({
-
   container: {
     flex: 1,
     backgroundColor: Colors.bg2
@@ -23,7 +17,7 @@ export default StyleSheet.create({
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
     justifyContent: 'space-between',
     alignItems: 'center',
-   // padding: Metrics.mediumMargin,
+    // padding: Metrics.mediumMargin,
     // resizeMode:'cover',
     // alignSelf: 'stretch',
     width: Metrics.screenWidth
@@ -32,10 +26,10 @@ export default StyleSheet.create({
   claimsListCard: {
     flexDirection: 'row',
     justifyContent: 'center',
-    flex: 1,
-   // padding: 9,
+    // padding: 9,
+    height: 37,
     margin: 10,
-    marginBottom: 10,
+    marginBottom: 1,
     alignItems: 'center'
   },
   claimsListHeader1: {
@@ -85,18 +79,18 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow,
     marginTop: 10
     // flex:1
-   // height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,
-   // marginBottom:-3
+    // height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,
+    // marginBottom:-3
   },
   cardButtonView: {
     backgroundColor: Colors.flBlue.ocean,
     width: Metrics.screenWidth * 0.47,
     justifyContent: 'center',
     alignItems: 'center',
-   // marginRight : 1,
+    // marginRight : 1,
     borderRightWidth: 1,
     borderColor: Colors.snow,
-  //  flex:1,
+    //  flex:1,
     height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,
     flexDirection: 'row'
   },
@@ -107,7 +101,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     borderLeftWidth: 1,
     borderColor: Colors.snow,
-   // flex:1,
+    // flex:1,
     height: Metrics.textHeight2 * Metrics.screenHeight * 0.0015,
     flexDirection: 'row'
   },
@@ -118,9 +112,7 @@ export default StyleSheet.create({
   },
   claimsCardRow2: {
     flex: 0.33,
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 10
+    alignItems: 'center'
   },
   claimsCardRow3: {
     flex: 0.34,
@@ -140,17 +132,16 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: Colors.flBlue.teal,
     fontSize: 20,
-    paddingLeft: 115
+    paddingLeft: 116
   },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
     fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.0025,
-   // marginLeft: Metrics.baseMargin,
+    // marginLeft: Metrics.baseMargin,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
     fontFamily: Fonts.type.headerFont,
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
-
   },
   doctorTextStyle: {
     marginTop: Metrics.smallMargin,
@@ -160,7 +151,6 @@ export default StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center'
   },
-
   h1: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.baseMargin,
@@ -169,7 +159,6 @@ export default StyleSheet.create({
     fontWeight: '600',
     color: Colors.flBlue.ocean
   },
-
   h2: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
     marginTop: Metrics.baseMargin,
@@ -177,7 +166,6 @@ export default StyleSheet.create({
     marginLeft: 10,
     fontFamily: Fonts.type.subHeaderFont,
     fontWeight: '600'
-
   },
   h4: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
@@ -188,7 +176,6 @@ export default StyleSheet.create({
     fontWeight: '400',
     textAlign: 'auto'
   },
-
   h4_2: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0027,
     color: Colors.flBlue.grey5,
@@ -221,7 +208,7 @@ export default StyleSheet.create({
   },
   footerView: {
     flex: 1,
-   // backgroundColor: Colors.flBlue.grass,
+    // backgroundColor: Colors.flBlue.grass,
     justifyContent: 'center',
     alignItems: 'center',
     borderLeftWidth: 1,

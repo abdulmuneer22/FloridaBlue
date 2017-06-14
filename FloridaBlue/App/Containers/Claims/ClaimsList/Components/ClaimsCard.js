@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import {
-    StyleSheet,
-    Dimensions,
-    LayoutAnimation,
-    View,
-    ScrollView,
-    Text,
-    Image,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    Linking,
-    Alert
+  StyleSheet,
+  Dimensions,
+  LayoutAnimation,
+  View,
+  ScrollView,
+  Text,
+  Image,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Linking,
+  Alert
 } from 'react-native'
 
 import { Button, Card } from 'native-base'
@@ -25,8 +25,8 @@ import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material
 import Flb from '../../../../Themes/FlbIcon'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
-    .withStyle(styles.spinner)
-    .build()
+  .withStyle(styles.spinner)
+  .build()
 
 const window = Dimensions.get('window')
 
@@ -49,13 +49,13 @@ class ClaimsCard extends Component {
   }
 
   formatName (name) {
-    var firstName = name.split(' ').slice(0, -1).join(' ')
+    var firstName = name.split(' ').slice(-2, -1).join(' ')
     return firstName
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.cardLimit) {
-      this.setState({cardLimit: nextProps.cardLimit})
+      this.setState({ cardLimit: nextProps.cardLimit })
     }
   }
 
@@ -85,28 +85,28 @@ class ClaimsCard extends Component {
             if (i < this.state.cardLimit) {
               return (
 
-                <View key={i} style={{flex: 1}}>
-                  <TouchableOpacity key={i} style={{flex: 1}} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
+                <View key={i} style={{ flex: 1 }}>
+                  <TouchableOpacity key={i} style={{ flex: 1 }} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
                     <Card style={styles.claimsListCard} key={i} >
-                      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-                        <View style={{flex: 0.01, backgroundColor: color, height: 37}} />
-                        <View style={{flex: 0.29, alignItems: 'center', justifyContent: 'center'}}>
-                              <Text style={styles.claimsCardText}>
-                                {this.formatDate(value.dateOfService)}
-                              </Text>
-                            </View>
+                      <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+                        <View style={{ flex: 0.01, backgroundColor: color, height: 37 }} />
+                        <View style={{ flex: 0.29, alignItems: 'center', justifyContent: 'center' }}>
+                          <Text style={styles.claimsCardText}>
+                            {this.formatDate(value.dateOfService)}
+                          </Text>
+                        </View>
 
-                        <View style={{flex: 0.4, alignItems: 'center', justifyContent: 'center'}}>
-                              <Text style={styles.claimsCardText}>
-                                {this.formatName(value.providerName)}
-                              </Text>
-                            </View>
+                        <View style={{ flex: 0.4, alignItems: 'center', justifyContent: 'center' }}>
+                          <Text style={styles.claimsCardText}>
+                            {this.formatName(value.providerName)}
+                          </Text>
+                        </View>
 
-                        <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center'}}>
-                              <Text style={styles.claimsCardText}>
-                                {value.claimType}
-                              </Text>
-                            </View>
+                        <View style={{ flex: 0.3, alignItems: 'center', justifyContent: 'center' }}>
+                          <Text style={styles.claimsCardText}>
+                            {value.claimType}
+                          </Text>
+                        </View>
                       </View>
                     </Card>
                   </TouchableOpacity>
@@ -117,13 +117,13 @@ class ClaimsCard extends Component {
             }
           }) : null}
 
-          <View style={{flex: 0, margin: 14}}>
-            <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
-            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-              <TouchableOpacity onPress={this.props.viewMore} style={{flexDirection: 'row'}}>
-                <Text style={styles.claimsViewMore}>View More </Text><Flb name='chevron-down' size={20} color={Colors.flBlue.teal} style={{marginTop: 3}} />
+          <View style={{ flex: 0, margin: 14 }}>
+            <Text style={{ textAlign: 'center', opacity: 0.6 }}>Showing {this.props.cardLimit} out of {this.props.claimsCount} Claims</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <TouchableOpacity onPress={this.props.viewMore} style={{ flexDirection: 'row' }}>
+                <Text style={styles.claimsViewMore}>View More </Text><Flb name='chevron-down' size={20} color={Colors.flBlue.teal} style={{ marginTop: 3 }} />
               </TouchableOpacity>
-              <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
+              <TouchableOpacity><Image source={Images.infoIcon} style={{ marginLeft: 80 }} /></TouchableOpacity>
             </View>
           </View>
 
@@ -131,7 +131,7 @@ class ClaimsCard extends Component {
 
       </ScrollView>
 
-      )
+    )
   }
 }
 

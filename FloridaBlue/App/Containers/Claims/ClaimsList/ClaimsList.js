@@ -77,13 +77,13 @@ class ClaimsList extends Component {
 
   _renderHeader () {
     return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
-      <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
+      <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
         {NavItems.backButton()}
       </View>
       <Text style={styles.headerTextStyle}>
-                Plan Claims
+        Plan Claims
               </Text>
-      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+      <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
         {NavItems.settingsButton()}
       </View>
     </Image>)
@@ -101,15 +101,11 @@ class ClaimsList extends Component {
   viewMore () {
     var currentLimit = this.state.listLimit
     var newLimit = currentLimit
-    var numberOfCardsPerscreen = this.state.totalNumberOfCardPerScreen
     this.setState({
       listLimit: newLimit + 10
     })
-    this.props.changeListLimit(newLimit + 10)
-    if (this.state.totalNumberOfCardPerScreen == newLimit) {
-      this.state.isFetchingMore = true
-      this.setState({isFetchingMore: true})
-      this.setState({totalNumberOfCardPerScreen: this.state.totalNumberOfCardPerScreen + 10})
+    if (newLimit + 10 >= this.props.claimsdata.length) {
+      this.setState({ listLimit: this.props.claimsdata.length })
     }
   }
 
@@ -123,7 +119,7 @@ class ClaimsList extends Component {
 
   componentWillReceiveProps (newProps) {
     if (this.state.isFetchingMore) {
-        // this.props.attemptProviderSearch(newProps)
+      // this.props.attemptProviderSearch(newProps)
       this.claimsListRequest(newProps)
       this.setState({
         isFetchingMore: false
@@ -133,23 +129,23 @@ class ClaimsList extends Component {
 
   handleSearch () {
     if (this.state.searchVisible) {
-      this.setState({searchVisible: false})
+      this.setState({ searchVisible: false })
     } else {
-      this.setState({searchVisible: true})
+      this.setState({ searchVisible: true })
     }
   }
 
   hideDatePicker () {
-    this.setState({isDatePickerVisible: false})
+    this.setState({ isDatePickerVisible: false })
   }
 
   addStartDate () {
-    this.setState({endDateSelected: false})
+    this.setState({ endDateSelected: false })
     this.props.changeDatePickerVisible(true)
   }
 
   addEndDate () {
-    this.setState({endDateSelected: true})
+    this.setState({ endDateSelected: true })
     this.props.changeDatePickerVisible(true)
   }
 
@@ -165,8 +161,8 @@ class ClaimsList extends Component {
       let startTime = new Date(this.props.startDate)
       if (this.props.endDate == 'End Date' || moment(selectedDate).isAfter(startTime)) {
         this.props.changeEndDate(selectedDate)
-        this.setState({searchVisible: false}, function () {
-          this.setState({searchVisible: true})
+        this.setState({ searchVisible: false }, function () {
+          this.setState({ searchVisible: true })
         })
       } else {
         Alert.alert(
@@ -181,8 +177,8 @@ class ClaimsList extends Component {
         let endTime = new Date(this.props.endDate)
         if (moment(selectedDate).isBefore(endTime)) {
           this.props.changeStartDate(selectedDate)
-          this.setState({searchVisible: false}, function () {
-            this.setState({searchVisible: true})
+          this.setState({ searchVisible: false }, function () {
+            this.setState({ searchVisible: true })
           })
         } else {
           Alert.alert(
@@ -194,18 +190,18 @@ class ClaimsList extends Component {
         }
       } else {
         this.props.changeStartDate(selectedDate)
-        this.setState({searchVisible: false}, function () {
-          this.setState({searchVisible: true})
+        this.setState({ searchVisible: false }, function () {
+          this.setState({ searchVisible: true })
         })
       }
     }
   }
 
-  memberSelected (index, value:string) {
+  memberSelected (index, value: string) {
     let selectedMember = memberList[index]
     this.props.changeMemberName(selectedMember)
-    this.setState({searchVisible: false}, function () {
-      this.setState({searchVisible: true})
+    this.setState({ searchVisible: false }, function () {
+      this.setState({ searchVisible: true })
     })
   }
 
@@ -222,7 +218,7 @@ class ClaimsList extends Component {
         </View>)
     } else if (this.props.claimsdata && this.props.claimsdata.length > 0) {
       return (
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
 
           <View style={styles.claimsListHeader1}>
             <View style={styles.claimsListHeader2}>
@@ -272,17 +268,17 @@ class ClaimsList extends Component {
             <MKTextField
               ref='providerName'
               style={styles.textField}
-              textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+              textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
               editable
               underlineColorAndroid={Colors.coal}
               placeholder={'Provider Name'}
               placeholderTextColor={Colors.steel}
               tintColor={Colors.black}
-                />
+            />
             <ModalDropdown options={_.map(memberList, 'memberName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
                 ref='careType'
-                textInputStyle={{flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
                 style={styles.textField}
                 editable={false}
                 underlineColorAndroid={Colors.coal}
@@ -290,7 +286,7 @@ class ClaimsList extends Component {
                 placeholderTextColor={Colors.steel}
                 tintColor={Colors.black}
                 value={''}
-                  />
+              />
             </ModalDropdown>
             <TouchableOpacity style={styles.startDateButton} onPress={this.showDatePicker}>
               <Text>Start Date</Text>
@@ -299,22 +295,22 @@ class ClaimsList extends Component {
               isVisible={this.state.isDatePickerVisible}
               onConfirm={this.handleDatePicked}
               onCancel={this.hideDatePicker}
-                />
+            />
             <Button rounded style={styles.searchButton} onPress={this.handleSearch}>
-              <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
+              <Text style={{ color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center' }}>Search</Text>
             </Button>
           </HideableView>
         </View>
       )
     } else if (this.props.error != null) {
       Alert.alert(
-                  'Claim List',
-                   'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+        'Claim List',
+        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
         [
-                    { text: 'OK' }
+          { text: 'OK' }
 
         ]
-                )
+      )
     }
   }
 
@@ -326,7 +322,7 @@ class ClaimsList extends Component {
         <View>
           {this._renderHeader()}
         </View>
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           {
             this._displayCondition()
           }
