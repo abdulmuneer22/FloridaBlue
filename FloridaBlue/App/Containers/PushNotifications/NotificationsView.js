@@ -35,7 +35,7 @@ class NotificationsView extends Component {
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     this.state = {
       basic: true,
-      listViewData: Array(1).fill('').map((_, i) => `item #${i}`),
+      listViewData: Array(2).fill('').map((_, i) => `item #${i}`),
       messageInfo: {
         type: 'message',
         count: '3',
@@ -72,31 +72,20 @@ class NotificationsView extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         <View style={styles.container}>
-          <SwipeListView style={{ marginTop: 10, margin: 10, flex: 1 }}
-            dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+          {Object(this.props.notification.messages).length > 0
+          ? <SwipeListView style={{ marginTop: 10, margin: 10, flex: 1 }}
+            dataSource={this.ds.cloneWithRows(Array(Object(this.props.notification.messages).length).fill('').map((_, i) => this.props.notification.messages[i]))}
             renderRow={data => (
               <View style={styles.rowFront}>
                 <View style={{ flex: 1, marginTop: 10 }}>
                   <View style={{ flexDirection: 'row', marginLeft: 20, marginTop: 10, alignItems: 'center', flex: 1 }}>
-
-                    <Flb name='talk-chat' size={Metrics.icons.small * Metrics.screenWidth * 0.002} />
-
                     <Text style={{
                       color: Colors.flBlue.anvil,
                       marginLeft: 10,
                       fontSize: Fonts.size.screenWidth * 0.0025
                     }}>
-                      Message
-                      </Text>
-
-                    <Text style={{
-                      color: Colors.flBlue.anvil,
-                      marginLeft: 5,
-                      fontSize: Fonts.size.creenWidth * 0.0025
-                    }}>· {this.state.messageInfo.time} min. ago
-                      </Text>
-
-                    <Flb name='chevron-down' style={{ marginLeft: 10 }} size={Metrics.icons.small * Metrics.screenWidth * 0.002} />
+                      {data.messageId}
+                    </Text>
                   </View>
                   <View style={{ flex: 1 }}>
                     <View style={{
@@ -120,7 +109,7 @@ class NotificationsView extends Component {
                             paddingTop: 5,
                             marginLeft: 1,
                             marginRight: 20
-                          }}>{this.state.messageInfo.message}!</Text>
+                          }}>{data.title}!</Text>
                         </View>
                         <View style={{ flex: 0.4, marginTop: 10 }}>
                           <Text style={{
@@ -128,7 +117,7 @@ class NotificationsView extends Component {
                             color: Colors.flBlue.anvil,
                             fontSize: Fonts.size.regular
                           }} >
-                            {this.state.messageInfo.description}
+                            {data.cardContent}
                           </Text>
                         </View>
                       </View>
@@ -212,6 +201,7 @@ class NotificationsView extends Component {
               </View>)}
             rightOpenValue={-90}
           />
+          : null }
         </View>
       </View>
     )
