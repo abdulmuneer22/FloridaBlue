@@ -104,8 +104,8 @@ class ClaimsList extends Component {
     this.setState({
       listLimit: newLimit + 10
     })
-    if (newLimit + 10 >= this.props.claimsdata.length) {
-      this.setState({ listLimit: this.props.claimsdata.length })
+    if (newLimit + 10 >= this.props.claimsdata.count) {
+      this.setState({ listLimit: this.props.claimsdata.count })
     }
   }
 
@@ -216,9 +216,9 @@ class ClaimsList extends Component {
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text style={styles.spinnerText}>Loading Please Wait </Text>
         </View>)
-    } else if (this.props.claimsdata && this.props.claimsdata.length > 0) {
-      return (
-        <View style={{ flex: 1 }}>
+      } else if (this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 0) {
+        return (
+        <View style={{flex:1}}>
 
           <View style={styles.claimsListHeader1}>
             <View style={styles.claimsListHeader2}>
@@ -254,9 +254,9 @@ class ClaimsList extends Component {
           <View style={styles.claimsCardContainer}>
 
             <ClaimsCard
-              data={this.props.claimsdata}
+              data={this.props.claimsdata.data}
               cardLimit={this.state.listLimit}
-              claimsCount={this.props.claimsdata.length}
+              claimsCount={this.props.claimsdata.count}
               viewMore={this.viewMore}
             />
           </View>
@@ -315,8 +315,8 @@ class ClaimsList extends Component {
   }
 
   render () {
-    console.log('claims list data' + this.props.datePickerVisible)
-    console.log('entered to claims list ' + this.props.claimsdata)
+     console.log("claims list data" +this.props.datePickerVisible)
+       console.log("entered to claims list " ,this.props.claimsdata)
     return (
       <View style={styles.container}>
         <View>
@@ -344,7 +344,7 @@ const mapStateToProps = (state) => {
     fetching: state.claims.fetching,
     claimsdata: state.claims.claimslist,
     error: state.claims.error,
-    claimsListCount: state.claims.claimlist,
+    claimsListCount: state.claims.claimslist,
     datePickerVisible: state.claims.datePickerVisible,
     startDate: state.claims.startDate,
     endDate: state.claims.endDate,

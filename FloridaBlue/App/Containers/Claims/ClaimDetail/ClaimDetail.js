@@ -52,7 +52,7 @@ class ClaimDetail extends Component {
       </View>
       <Text style={styles.headerTextStyle}>
                 Claim Detail
-              </Text>
+      </Text>
       <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View>
@@ -60,7 +60,7 @@ class ClaimDetail extends Component {
   }
 
   componentDidMount () {
-    console.tron.log('im claims screen ')
+    console.tron.log('im claims detail screen ')
   }
   _displayCondition () {
     if (this.props.fetching) {
@@ -248,8 +248,8 @@ class ClaimDetail extends Component {
               </View>
             </View> : null}
 
-          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <TouchableOpacity onPress={() => NavigationActions.ClaimsList()} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{flex: 1, justifyContent:'center', backgroundColor:Colors.snow,alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => NavigationActions.ClaimsList()} style={{flex: 1, justifyContent:'center', alignItems: 'center'}}>
               <Image style={styles.claimListButton} source={Images.cliamlistbutton} />
             </TouchableOpacity>
           </View>
@@ -278,6 +278,7 @@ class ClaimDetail extends Component {
 
   render () {
     console.tron.log('im claims detail page', this.props.claimdetaildata)
+    console.log('im claims detail page', this.props.claimdetaildata)
     return (
       <View style={styles.container}>
         <View>

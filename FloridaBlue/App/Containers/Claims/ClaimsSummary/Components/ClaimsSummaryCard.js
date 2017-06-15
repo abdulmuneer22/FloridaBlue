@@ -29,7 +29,8 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
 const window = Dimensions.get('window')
 
-class ClaimsCard extends Component {
+class ClaimsSummaryCard extends Component {
+
   constructor (props) {
     super(props)
     this.formatDate = this.formatDate.bind(this)
@@ -97,7 +98,7 @@ class ClaimsCard extends Component {
   }
 }
 
-ClaimsCard.propTypes = {
+ClaimsSummaryCard.propTypes = {
   data: PropTypes.array,
   attemptClaimDetail: PropTypes.func,
   error: PropTypes.number
@@ -116,4 +117,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClaimsCard)
+export default connect(mapStateToProps, mapDispatchToProps)(ClaimsSummaryCard)

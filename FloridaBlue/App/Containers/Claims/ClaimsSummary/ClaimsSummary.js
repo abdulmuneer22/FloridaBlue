@@ -25,7 +25,7 @@ import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { connect } from 'react-redux'
 import Pie from '../../../Components/Pie'
-import ClaimsCard from './Components/ClaimsCard'
+import ClaimsSummaryCard from './Components/ClaimsSummaryCard'
 import I18n from 'react-native-i18n'
 import { Button } from 'native-base'
 
@@ -97,35 +97,37 @@ class ClaimsSummary extends Component {
             />
           </View>
 
-          <View style={{ flex: 3.5, backgroundColor: Colors.flBlue.grey1 }} >
-            <View style={{ flex: 0.5, justifyContent: 'center', marginLeft: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001 }}>
-              <Text style={styles.recentClaimsText} >Recent Claims</Text>
+               <View style={{flex: 3.5, backgroundColor: Colors.flBlue.grey1}} >
+              <View style={{flex: 0.5, justifyContent:'center', marginLeft: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
+                <Text style={styles.recentClaimsText} >Recent Claims</Text>
+              </View>
+                { this.props.claimsdata ?
+                            <View style={{flex: 3}}>
+                              <ClaimsSummaryCard data={this.props.claimsdata.data && this.props.claimsdata.data.length > 3 ? this.props.claimsdata.data.slice(0, 3) : this.props.claimsdata.data} />
+                            </View>
+                          :
+                            <View style={{flex:2,justifyContent:'center', alignItems: 'center'}}>
+                              <Text> No Recent Claims found </Text>
+                            </View>
+                }
             </View>
-            {this.props.claimsdata
-              ? <View style={{ flex: 3 }}>
-                <ClaimsCard data={this.props.claimsdata && this.props.claimsdata.length > 3 ? this.props.claimsdata.slice(0, 3) : this.props.claimsdata} />
-              </View>
-              : <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-                <Text> No Recent Claims found </Text>
-              </View>
-            }
-          </View>
-          {
-            this.props.claimsdata && this.props.claimsdata.length > 0
-              ?
-                <View style={{ flex: 1.5 }} >
-                  <View style={{ flex: 0.75, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={styles.totalClaimsText}>You have </Text>
-                    <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.length}</Text>
-                    <Text style={styles.totalClaimsText}> Claims</Text>
-                  </View>
-                  <View style={{ flex: 0.75 }}>
-                    <Button rounded style={{ flex: 0.6, backgroundColor: Colors.flBlue.grass, alignSelf: 'center' }} onPress={this.viewCliamsList}>
-                      <Text style={{ color: Colors.snow, fontWeight: '500', width: Metrics.textHeight2 * Metrics.screenWidth * 0.01, textAlign: 'center' }}>View Claims List</Text>
-                    </Button>
-                  </View>
-                  <View style={{ flex: 0.15 }} />
-                </View>
+            {
+                    this.props.claimsdata && this.props.claimsdata.count > 0
+                    ?
+                      <View style={{flex: 1.5}} >
+                        <View style={{flex: 0.75, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                          <Text style={styles.totalClaimsText}>You have </Text>
+                          <Text style={styles.totalClaimsTextCount}>{this.props.claimsdata && this.props.claimsdata.count}</Text>
+                          <Text style={styles.totalClaimsText}> Claims</Text>
+                        </View>
+                        <View style={{flex: 0.75}}>
+                          <Button rounded style={{flex: 0.6, backgroundColor: Colors.flBlue.grass, alignSelf: 'center'}} onPress={this.viewCliamsList}>
+                            <Text style={{color: Colors.snow, fontWeight: '500', width: Metrics.textHeight2 * Metrics.screenWidth * 0.01, textAlign: 'center'}}>View Claims List</Text>
+                          </Button>
+                        </View>
+                        <View style={{flex: 0.15}} />
+
+                      </View>
                     : null
                   }
         </View>
@@ -168,7 +170,7 @@ ClaimsSummary.propTypes = {
 const mapStateToProps = (state) => {
   return {
     fetching: state.claims.fetching,
-    claimsSummaryData: state.claims.data,
+    claimsSummaryData: state.claims.claimsSummary,
     claimsdata: state.claims.claimslist,
     error: state.claims.error
   }

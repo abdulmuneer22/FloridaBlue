@@ -158,7 +158,7 @@ class Login extends Component {
                   if (newProps.touchEnabled && !newProps.credentialStored) {
                     NavigationActions.TouchTOU()
                   } else {
-                    NavigationActions.PushNotifications()
+                    NavigationActions.WelcomeDashBoard()
                   }
                 } else {
                   NavigationActions.ErrorPage()
