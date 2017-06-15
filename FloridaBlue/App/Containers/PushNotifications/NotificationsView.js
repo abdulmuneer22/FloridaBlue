@@ -72,7 +72,7 @@ class NotificationsView extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         <View style={styles.container}>
-          {Object(this.props.notification.messages).length > 0
+          {this.props.notification && this.props.notification.messages && Object(this.props.notification.messages).length > 0
           ? <SwipeListView style={{ marginTop: 10, margin: 10, flex: 1 }}
             dataSource={this.ds.cloneWithRows(Array(Object(this.props.notification.messages).length).fill('').map((_, i) => this.props.notification.messages[i]))}
             renderRow={data => (
