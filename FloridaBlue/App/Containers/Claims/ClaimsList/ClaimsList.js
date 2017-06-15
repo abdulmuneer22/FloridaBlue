@@ -59,7 +59,8 @@ class ClaimsList extends Component {
       asynCall: true,
       displayBannerInfo: false,
       searchVisible: false,
-      endDateSelected: false
+      endDateSelected: false,
+      isShowingViewMore: true
     }
     this.viewMore = this.viewMore.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
@@ -68,6 +69,7 @@ class ClaimsList extends Component {
     this.addStartDate = this.addStartDate.bind(this)
     this.addEndDate = this.addEndDate.bind(this)
     this.memberSelected = this.memberSelected.bind(this)
+    this.toggleViewMore = this.toggleViewMore.bind(this)
   }
 
   viewClaimsList () {
@@ -96,17 +98,6 @@ class ClaimsList extends Component {
         <Text style={styles.dropdownItem}>{rowData}</Text>
       </TouchableHighlight>
     )
-  }
-
-  viewMore () {
-    var currentLimit = this.state.listLimit
-    var newLimit = currentLimit
-    this.setState({
-      listLimit: newLimit + 10
-    })
-    if (newLimit + 10 >= this.props.claimsdata.count) {
-      this.setState({ listLimit: this.props.claimsdata.count })
-    }
   }
 
   claimsListRequest (newProps) {
@@ -209,6 +200,47 @@ class ClaimsList extends Component {
     // this.props.attemptClaimsList(this.props)
   }
 
+   viewMore () {
+    var currentLimit = this.state.listLimit
+    var newLimit = currentLimit
+    this.setState({
+      listLimit: newLimit + 10
+    })
+    if (newLimit + 10 >= this.props.claimsdata.count) {
+      this.setState({ listLimit: this.props.claimsdata.count })
+      this.toggleViewMore();
+    }
+  }
+
+   toggleViewMore () {
+    this.setState({
+      isShowingViewMore: !this.state.isShowingViewMore
+    })
+  }
+
+   _renderViewMore () {
+      if(this.state.isShowingViewMore) {
+        return (
+          <View style={{flex: 0, margin: 14}}>
+                    <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit} out of {this.props.claimsdata.count} Claims</Text>
+                  <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                    <TouchableOpacity onPress={this.viewMore} style={{flexDirection: 'row'}}>
+                      <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
+                    </TouchableOpacity>
+                    <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
+                  </View>
+                </View> 
+        );
+      } else if (!this.state.isShowingViewMore) {
+        return (
+          <View style={{flex: 0, margin: 14}}>
+            <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit} out of {this.props.claimsdata.count} Claims</Text>
+            <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 300}} /></TouchableOpacity>
+          </View> 
+        );
+      }
+    }
+
   _displayCondition () {
     if (this.props.fetching) {
       return (
@@ -252,14 +284,20 @@ class ClaimsList extends Component {
           </View>
 
           <View style={styles.claimsCardContainer}>
+            <ScrollView>
+              <View>
+                <ClaimsCard
+                          data={this.props.claimsdata.data}
+                          cardLimit={this.state.listLimit}
+                          claimsCount={this.props.claimsdata.count}
+                         />
 
-            <ClaimsCard
-              data={this.props.claimsdata.data}
-              cardLimit={this.state.listLimit}
-              claimsCount={this.props.claimsdata.count}
-              viewMore={this.viewMore}
-            />
+                {this._renderViewMore()}
+
+              </View>
+            </ScrollView>
           </View>
+
           <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
             <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearch}>
               <Flb name='remove' size={20} />
@@ -275,6 +313,7 @@ class ClaimsList extends Component {
               placeholderTextColor={Colors.steel}
               tintColor={Colors.black}
             />
+            
             <ModalDropdown options={_.map(memberList, 'memberName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
                 ref='careType'
@@ -305,7 +344,7 @@ class ClaimsList extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
         'Claim List',
-        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+        'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
         [
           { text: 'OK' }
 

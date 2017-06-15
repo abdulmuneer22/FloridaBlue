@@ -95,7 +95,7 @@ class Hsa extends Component {
       } else {
         Alert.alert(
                   'HSA',
-                  'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+                  'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
           [
                     { text: 'OK'}
 
@@ -105,7 +105,7 @@ class Hsa extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
                   'HSA',
-                  'Oops! Looks like we\'re having trouble with your request. Click Support for help.',
+                  'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
         [
                     { text: 'OK' }
 

@@ -96,7 +96,7 @@ class PlanBenefits extends Component {
     } else if (this.props.data && this.props.data.tiles != null && this.props.data.tiles.length == 0) {
       Alert.alert(
                   'Plan Benefits',
-                   'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+                   'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
         [
                     { text: 'OK' }
 
@@ -105,7 +105,7 @@ class PlanBenefits extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
                   'Plan Benefits',
-                   'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+                   'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
         [
                     { text: 'OK' }
 
