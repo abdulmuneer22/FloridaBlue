@@ -135,7 +135,7 @@ class ClaimsSummary extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
         'Claim Detail',
-        'Oops! Looks like we\'re having trouble with your request. Please try again later.',
+        'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
         [
           { text: 'OK' }
 

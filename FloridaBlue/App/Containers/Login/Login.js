@@ -200,7 +200,7 @@ class Login extends Component {
             this._disableTouchID()
           }
 
-          Alert.alert('Login', 'Your account is locked.  Click Support for help', [
+          Alert.alert('Login', 'For security reasons, your account has been locked. Click OK to unlock your account.', [
             {
               text: 'OK',
               onPress: () => NavigationActions.MyView({
@@ -217,7 +217,7 @@ class Login extends Component {
           }
 
           if (responseURL.includes('updatePassword.do')) {
-            Alert.alert('Login', 'You must change your password now.', [
+            Alert.alert('Login', 'Welcome back! Please reset your password now, and then you can log in.', [
               {
                 text: 'OK',
                 onPress: () => NavigationActions.MyView({
