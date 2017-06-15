@@ -127,8 +127,10 @@ export default StyleSheet.create({
 
   },
   greetingView: {
-    alignItems: 'center',
-    justifyContent: 'center',
+   // flex: 1,
+    flexDirection: 'row',
+  //  alignItems: 'center',
+  //  justifyContent: 'center',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 3,
     // padding:5,
   //  backgroundColor: Colors.flBlue.grey6,

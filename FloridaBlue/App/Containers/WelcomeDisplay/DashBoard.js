@@ -75,6 +75,9 @@ class LandingScreen extends Component {
     )
   }
   componentDidMount () {
+    if (this.props.openedFromTray) {
+      NavigationActions.PushNotifications()
+    }
    // console.log(this.props.navigatingFrom)
    //  BackAndroid.addEventListener('hardwareBackPress', function () {
     //   console.tron.log('android back')
@@ -84,7 +87,9 @@ class LandingScreen extends Component {
      //  return true
      // })
 
-    console.tron.log('mount on dashboadr' + this.props.smToken)
+    {
+      console.tron.log('mount on dashboadr' + this.props.smToken)
+    }
     if (this.props.origin == 'registration') {
       this.props.attemptMember()
     }
@@ -262,7 +267,8 @@ const mapStateToProps = (state) => {
     fetching: state.member.fetching,
     userName: state.member.username,
     visibilityRules: state.member.visibilityRules,
-    error: state.member.error
+    error: state.member.error,
+    openedFromTray: state.Notification.openedFromTray
   }
 }
 const mapDispatchToProps = (dispatch) => {
