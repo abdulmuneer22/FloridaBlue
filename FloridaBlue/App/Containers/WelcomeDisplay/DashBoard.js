@@ -78,18 +78,7 @@ class LandingScreen extends Component {
     if (this.props.openedFromTray) {
       NavigationActions.PushNotifications()
     }
-   // console.log(this.props.navigatingFrom)
-   //  BackAndroid.addEventListener('hardwareBackPress', function () {
-    //   console.tron.log('android back')
-    //   // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
-    //   // Typically you would use the navigator here to go to the last state.
-
-     //  return true
-     // })
-
-    {
-      console.tron.log('mount on dashboadr' + this.props.smToken)
-    }
+    console.tron.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin == 'registration') {
       this.props.attemptMember()
     }
