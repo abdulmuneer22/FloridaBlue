@@ -91,6 +91,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getClaimDetail = (claimid) => api.get('claims/detail/' + claimid)
   const getClaimsSummary = () => api.get('/claims/summary')
   const getNotification = () => api.get('/notify/messages')
+  const getMyIdCard = () => api.get('/idCard')
 
   const getStaffLanguage = (data) => api.post('/opd/languages', {
     'language': 'EN',
@@ -102,7 +103,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     'who': 'doctor'
   })
 
-  const getMyIdCard = (data) => api.post('http://memberidcardservice-tsta.bcbsfl.com/mob/api/v1/memberidcard?source=mobile', data)
+  
 
   const getDoctorDetail = (data) => api.post('/opd/details', {
     'language': 'EN',

@@ -27,7 +27,7 @@ export function * member (api, {smToken}) {
     var visibleDashboard = response.data.data.visibleDashboard
     var isIndividualContract = response.data.data.visibilityRule.isIndividualContract
     var logoutUrl = response.data.data.logoutUrl
-    var idCardRequest = getIdCardRequest(defaultContract)
+    //var idCardRequest = getIdCardRequest(defaultContract)
     console.tron.log('visibleDashboard', visibleDashboard)
     console.tron.log('financialProduct4' + financialProduct)
     console.tron.log('termsOfUse' + termsOfUse)
@@ -53,7 +53,7 @@ export function * member (api, {smToken}) {
       'memberDateOfBirthDay': dobArray[1]
     }
 
-    yield put(MyIdCardActions.myIdCardRequest(idCardRequest))
+    yield put(MyIdCardActions.myIdCardRequest())
     console.tron.log(memberSearchRequest)
     yield put(SupportActions.supportRequest())
     yield put(ClaimsActions.claimsSummaryRequest())
@@ -63,6 +63,7 @@ export function * member (api, {smToken}) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }
     yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, visibleDashboard, defaultContract, logoutUrl, memberSearchRequest))
+    
   } else {
     console.tron.log('failure ')
     console.tron.log(response)
