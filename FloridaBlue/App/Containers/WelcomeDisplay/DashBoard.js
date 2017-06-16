@@ -101,6 +101,9 @@ class LandingScreen extends Component {
   }
 
   componentWillReceiveProps (newProps) {
+    if (newProps.openedFromTray) {
+      NavigationActions.PushNotifications()
+    }
     console.tron.log('dash board failure' + newProps.error)
     /*
    if (!newProps.error) {
