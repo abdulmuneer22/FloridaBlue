@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import {
   Text,
   View,
+  TouchableOpacity,
   StyleSheet
 } from 'react-native'
 import axios from 'axios'
+import {Actions as NavigationActions} from 'react-native-router-flux'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Colors, Metrics, Fonts} from '../../../Themes'
@@ -62,26 +64,20 @@ class Greeting extends Component {
 
   render () {
     return (
-      <View >
-        <View style={styles.greetingView}>
-          <Text style={styles.greetingText}>
-            {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
+      <View style={styles.greetingView}>
+        <View style={{flex: 1, flexDirection: 'row'}}>
+          <View style={{flex: 6, alignItems: 'center', justifyContent: 'center'}}>
+            <Text style={styles.greetingText}>
+              {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
           </Text>
-
-        </View>
-
-        {
-        messageCount
-          ? <View style={styles.messageCountStyle}>
-
-            <Flb name='email-envelope' size={Metrics.icons.small} />
-            <Text style={styles.messageTextStyle}> You have {messageCount} new messages. </Text>
-
           </View>
-        : null
-      }
+          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <TouchableOpacity onPress={() => NavigationActions.PushNotifications()} >
+              <Flb name='email-envelope' size={Metrics.icons.small} />
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
-
     )
   }
 }
