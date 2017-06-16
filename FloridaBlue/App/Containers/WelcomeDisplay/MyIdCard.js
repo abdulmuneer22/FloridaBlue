@@ -147,7 +147,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMyIdCard: (data) => dispatch(MyIdCardActions.myIdCardRequest(data))
+    attemptMyIdCard: () => dispatch(MyIdCardActions.myIdCardRequest())
   }
 }
 
