@@ -8,11 +8,9 @@ export default StyleSheet.create({
   logoView: {
     alignItems: 'center',
     paddingTop: Metrics.screenHeight * 0.05,
-    paddingBottom: Metrics.screenHeight * 0.05
+    paddingBottom: Metrics.screenHeight * 0.025
   },
   logo: {
-   // width: Metrics.images.logo,
-   // resizeMode: 'contain'
     width: Metrics.screenWidth * 0.85,
     resizeMode: 'contain',
     height: Metrics.images.xll2 * Metrics.screenHeight * 0.0015
@@ -29,22 +27,15 @@ export default StyleSheet.create({
   },
   loginButton: {
     alignItems: 'center',
-    paddingTop: Metrics.screenHeight * 0.16,
-    paddingHorizontal: Metrics.doubleBaseMargin
-  },
-  touchCoin: {
-    width: 70,
-    height: 70
-  },
-  touchRow: {
-    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.001,
-    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.001
+    paddingHorizontal: Metrics.doubleBaseMargin,
+    marginTop: -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015
   },
   form: {
     backgroundColor: Colors.snow,
-  //  margin: Metrics.smallMargin,
     borderRadius: 24,
-    marginHorizontal: Metrics.section
+    marginHorizontal: Metrics.section,
+    paddingTop: Metrics.smallMargin * Metrics.screenHeight * 0.002,
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002
   },
   informationPopup: {
     flexWrap: 'wrap',
@@ -55,35 +46,59 @@ export default StyleSheet.create({
     bottom: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.011 : Metrics.doubleBaseMargin * Metrics.screenWidth * 0.012
   },
   row: {
-    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0016,
-    paddingHorizontal: Metrics.doubleBaseMargin
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0048,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025
   },
   forgotRow: {
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.002,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002
   },
-  touchRow: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0013,
-    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.009
-  },
-  spaceRow: {
-    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0024,
-    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.009
-  },
   newSignRow: {
-    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0014,
-    paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.006
-
+    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.012,
+    paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.004
+  },
+  signUpButton: {
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.055,
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0062,
+    alignSelf: 'center',
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.004
+  },
+  loginContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingTop: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002,
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.009
+  },
+  touchLoginContainer: {
+    flex: 1,
+    paddingTop: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002,
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.006
+  },
+  fieldContainer: {
+    flex: 0.7
+  },
+  enableTouchContainer: {
+    flex: 0.3,
+    alignItems: 'center'
+  },
+  touchViews: {
+    alignItems: 'center',
+    paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0007
+  },
+  triggerTouchButton: {
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.0179,
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0101
+  },
+  touchInstruction: {
+    textAlign: 'center',
+    color: Colors.flBlue.grey3,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.004
   },
   link: {
     color: Colors.flBlue.ocean,
-    alignItems: 'center',
     textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0025
   },
   textInput: {
     height: 40,
@@ -102,7 +117,7 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.section,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0030
+    fontSize: Fonts.size.small * Metrics.screenWidth * 0.0022
   },
   footerLinks: {
     flex: 1,
@@ -113,37 +128,30 @@ export default StyleSheet.create({
   },
   popupchild: {
     width: Metrics.screenWidth * 0.5,
-    // backgroundColor : 'yellow',
     paddingHorizontal: Metrics.baseMargin * Metrics.screenHeight * 0.002,
-    // marginTop: 5,
     height: Metrics.screenHeight * 0.07,
     flexDirection: 'row',
     alignItems: 'center'
-
   },
   popupchildText: {
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
     marginLeft: Metrics.smallMargin,
     color: Colors.flBlue.anvil,
     alignSelf: 'center'
-
   },
   spinnerView: {
-  //  alignItems: 'center',
-  //  justifyContent: 'center',
     alignSelf: 'center'
-   // height:Metrics.screenHeight
-
   },
-
   textField: {
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
-    // width: Metrics.searchBarHeight * Metrics.screenWidth * 0.024
+  },
+  touchTextField: {
+    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015,
+    width: Metrics.screenWidth * 0.58
   },
   radio: {
     backgroundColor: Colors.snow,
     height: Metrics.section * Metrics.screenWidth * 0.0020,
     width: Metrics.section * Metrics.screenWidth * 0.0020
   }
-
 })
