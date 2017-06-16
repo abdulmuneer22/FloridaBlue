@@ -19,7 +19,10 @@ const { Types, Creators } = createActions({
   changePassword: ['password'],
   changeTouchEnabled: ['touchEnabled'],
   currentScene: ['currentSceneValue'],
-  changeCredentialStored: ['credentialStored']
+  changeCredentialStored: ['credentialStored'],
+  changeShowSettings: ['showSettings'],
+  changeTouchAvailable: ['touchAvailable'],
+  changeTouchLoginVisible: ['touchLoginVisible']
 })
 
 export const LoginTypes = Types
@@ -39,7 +42,9 @@ export const INITIAL_STATE = Immutable({
   touchEnabled: false,
   logoutUrl: null,
   currentSceneValue: null,
-  credentialStored: false
+  credentialStored: false,
+  touchAvailable: false,
+  touchLoginVisible: false
 })
 
 /* ------------- Reducers ------------- */
@@ -95,6 +100,12 @@ export const _changeCurrentSceneValue = (state: Object, {currentSceneValue} : Ob
 // we are change credentialStored
 export const _changeCredentialStored = (state: Object, {credentialStored} : Object) => state.merge({credentialStored})
 
+// we are change touchAvailable
+export const _changeTouchAvailable = (state: Object, {touchAvailable} : Object) => state.merge({touchAvailable})
+
+// we are change touchLoginVisible
+export const _changeTouchLoginVisible = (state: Object, {touchLoginVisible} : Object) => state.merge({touchLoginVisible})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -111,7 +122,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGOUT]: logout,
   [Types.CHANGE_TOUCH_ENABLED]: _changeTouchEnabled,
   [Types.CURRENT_SCENE]: _changeCurrentSceneValue,
-  [Types.CHANGE_CREDENTIAL_STORED]: _changeCredentialStored
+  [Types.CHANGE_CREDENTIAL_STORED]: _changeCredentialStored,
+  [Types.CHANGE_TOUCH_AVAILABLE]: _changeTouchAvailable,
+  [Types.CHANGE_TOUCH_LOGIN_VISIBLE]: _changeTouchLoginVisible
 })
 
 /* ------------- Selectors ------------- */
