@@ -92,9 +92,29 @@ class TouchTOU extends Component {
     })
   }
 
+  _renderHeader () {
+    return (
+      <Image style={styles.headerContainer} source={Images.newHeaderImage}>
+        <View style={{
+          alignItems: 'center',
+          marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
+          marginLeft: Metrics.images.xm * Metrics.screenWidth * 0.004
+        }}>
+          <Image source={Images.themeLogo} style={{
+            width: Metrics.screenWidth * 0.65,
+            resizeMode: 'contain',
+            height: Metrics.images.xm1
+          }}
+        />
+        </View>
+      </Image>
+    )
+  }
+
   render () {
     return (
       <View style={styles.container}>
+        {this._renderHeader()}
         <ScrollView>
           <View>
             <Text style={styles.paragraph}>{I18n.t('touchNoticeOne')}</Text>
@@ -103,16 +123,16 @@ class TouchTOU extends Component {
             <Text style={styles.paragraph}>{I18n.t('touchNoticeFour')}</Text>
             <Text style={styles.paragraph}>{I18n.t('touchNoticeFive')}</Text>
 
-            <View style={styles.buttonRow}>
-              <TouchableOpacity onPress={() => { this._handleClose() }}>
-                <Image style={{width: Metrics.screenWidth * 0.35,
-                  borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                  height: Metrics.screenHeight * 0.055}} source={Images.closeButtonGray} />
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.buttonView} onPress={() => this._handleClose() }>
+                <View style={styles.buttonTextView}>
+                  <Text style={styles.footerText}>Close</Text>
+                </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => { this._handleAccept() }}>
-                <Image style={{width: Metrics.screenWidth * 0.35,
-                  borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0020,
-                  height: Metrics.screenHeight * 0.055}} source={Images.iAgree} />
+              <TouchableOpacity style={styles.buttonView} onPress={() => this._handleAccept() }>
+                <View style={styles.buttonTextView}>
+                  <Text style={styles.footerText}>Accept</Text>
+                </View>
               </TouchableOpacity>
             </View>
           </View>

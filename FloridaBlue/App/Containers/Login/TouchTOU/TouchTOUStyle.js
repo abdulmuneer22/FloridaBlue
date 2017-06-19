@@ -14,6 +14,13 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     flex: 1
   },
+  headerContainer: {
+    flexDirection: 'row',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.79)) / 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: Metrics.screenWidth
+  },
   form: {
     backgroundColor: 'white',
     flex: 1,
@@ -46,33 +53,33 @@ export default StyleSheet.create({
     textAlign: 'center',
     marginTop: 20
   },
-  closeButton: {
-    backgroundColor: 'grey',
-    alignSelf: 'center',
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingLeft: 40,
-    paddingRight: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: 'grey',
-    borderRadius: 6,
-    margin: 20
-  },
   headerImage: {
     width: Metrics.screenWidth,
     resizeMode: 'stretch',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.59)) / 2
   },
-  buttonRow: {
+  buttonContainer: {
     flex: 1,
     flexDirection: 'row',
-    width: Metrics.screenWidth,
-    marginTop: Metrics.smallMargin,
-    paddingVertical: Metrics.baseMargin,
-    paddingHorizontal: Metrics.doubleBaseMargin,
+    paddingTop: Metrics.doubleBaseMargin
+  },
+  buttonView: {
+    flex: 1,
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.006
+  },
+  buttonTextView: {
+    flex: 1,
+    backgroundColor: Colors.flBlue.ocean,
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: 'row',
+    borderRightWidth: 0.5,
+    borderColor: Colors.snow
+  },
+  footerText: {
+    color: Colors.snow,
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
+    fontWeight: '500'
   },
   spinnerView: {
     alignSelf: 'center'
