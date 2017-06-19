@@ -103,8 +103,6 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     'who': 'doctor'
   })
 
-  
-
   const getDoctorDetail = (data) => api.post('/opd/details', {
     'language': 'EN',
     'providerKey': data && data.providerKey,
@@ -294,11 +292,11 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   })
 
   const postFCMToken = (data) => api.post('/notify/register', {
-    'hccId': 'H12345678',
-    'memberId': '12345',
-    'deviceName': 'Samsung G8',
-    'deviceId': 'abc-xyz',
-    'token': 'xxxzzz'
+    'hccId': data.hccId,
+    'memberId': data.memberId,
+    'deviceName': data.deviceName,
+    'deviceId': data.deviceId,
+    'token': data.token
   })
 
   // ------

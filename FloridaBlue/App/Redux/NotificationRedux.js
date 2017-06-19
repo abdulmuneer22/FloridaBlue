@@ -12,7 +12,8 @@ const { Types, Creators } = createActions({
   onLocalNotification: ['localNotification'],
   notificationSuccess: ['notification'],
   notificationFailure: ['error'],
-  getNotification: []
+  getNotification: [],
+  postFCMToken: ['data']
 })
 
 export const NotificationTypes = Types
@@ -61,11 +62,11 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.ON_CHANGE_F_C_M_TOKEN]: FCMToken,
   [Types.REFRESH_TOKEN_TO_UNSUBSCRIBE]: FCMToken,
   [Types.ON_OPENED_FROM_TRAY]: onOpenedFromTray,
-  [Types.ON_LOCAL_NOTIFICATION]: localNotification
-
+  [Types.ON_LOCAL_NOTIFICATION]: localNotification,
+  [Types.POST_F_C_M_Token]: request
 })
 
 /* ------------- Selectors ------------- */
 
 // Is the current user logged in?
-export const isLoggedIn = (loginState: Object) => loginState.username !== null
+// export const isLoggedIn = (loginState: Object) => loginState.username !== null

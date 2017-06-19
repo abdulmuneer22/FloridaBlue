@@ -15,6 +15,7 @@ export function * member (api, {smToken}) {
   console.tron.log('MEMBER')
   if (response.status == '200') {
     // dispatch success
+    var memberObject = response.data.data
     var Name = response.data.data.firstName
     var defaultContract = response.data.data.defaultContract
     var visibilityRules = response.data.data.visibilityRule
@@ -27,6 +28,7 @@ export function * member (api, {smToken}) {
     var visibleDashboard = response.data.data.visibleDashboard
     var isIndividualContract = response.data.data.visibilityRule.isIndividualContract
     var logoutUrl = response.data.data.logoutUrl
+    // var idCardRequest = getIdCardRequest(defaultContract)
     console.tron.log('visibleDashboard', visibleDashboard)
     console.tron.log('financialProduct4' + financialProduct)
     console.tron.log('termsOfUse' + termsOfUse)
@@ -61,8 +63,7 @@ export function * member (api, {smToken}) {
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }
-    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, visibleDashboard, defaultContract, logoutUrl, memberSearchRequest))
-    
+    yield put(MemberActions.memberSuccess(Name, termsOfUse, visibilityRules, visibleDashboard, defaultContract, logoutUrl, memberSearchRequest, memberObject))
   } else {
     console.tron.log('failure ')
     console.tron.log(response)

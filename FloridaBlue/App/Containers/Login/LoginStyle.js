@@ -93,17 +93,23 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: Colors.flBlue.grey3,
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.004
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.003
+  },
+  fingerprintContainer: {
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0026,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0013,
+    alignItems: 'center'
   },
   fingerprintDisabled: {
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.005,
-    color: Colors.flBlue.grey3,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0045,
+    width: Metrics.baseMargin * Metrics.screenHeight * 0.0045,
+    color: Colors.flBlue.grey3
   },
   fingerprintEnabled: {
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.005,
-    color: Colors.flBlue.ocean,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0045,
+    width: Metrics.baseMargin * Metrics.screenHeight * 0.0045,
+    color: Colors.flBlue.ocean
   },
   link: {
     color: Colors.flBlue.ocean,

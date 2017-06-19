@@ -30,6 +30,8 @@ import Flb from '../../Themes/FlbIcon'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 const window = Dimensions.get('window')
 import LinearGradient from 'react-native-linear-gradient'
+import DeviceInfo from 'react-native-device-info'
+import NotificationActions from '../../Redux/NotificationRedux'
 
 type LoginScreenProps = {
   dispatch: () => any,
@@ -51,7 +53,6 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-
       <Image style={styles.headerContainer} source={Images.newHeaderImage}>
         <View style={{
           alignItems: 'center',
@@ -78,18 +79,21 @@ class LandingScreen extends Component {
     if (this.props.openedFromTray) {
       NavigationActions.PushNotifications()
     }
-   // console.log(this.props.navigatingFrom)
-   //  BackAndroid.addEventListener('hardwareBackPress', function () {
-    //   console.tron.log('android back')
-    //   // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
-    //   // Typically you would use the navigator here to go to the last state.
-
-     //  return true
-     // })
-
-    {
-      console.tron.log('mount on dashboadr' + this.props.smToken)
+    if (this.props.visibilityRules) {
+      var data = {
+        'hccId': this.props.defaultContract.hccId,
+        'memberId': this.props.memberObject.memberId,
+        'deviceName': DeviceInfo.getDeviceName(),
+        'deviceId': DeviceInfo.getUniqueID(),
+        'token': this.props.FCMToken
+      }
+      this.props.postFCMToken(data)
     }
+
+    console.log('data objec to post ', data)
+     // NavigationActions.POSTFCM
+
+    console.tron.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin == 'registration') {
       this.props.attemptMember()
     }
@@ -267,13 +271,17 @@ const mapStateToProps = (state) => {
     userName: state.member.username,
     visibilityRules: state.member.visibilityRules,
     error: state.member.error,
-    openedFromTray: state.Notification.openedFromTray
+    openedFromTray: state.Notification.openedFromTray,
+    FCMToken: state.Notification.FCMToken,
+    defaultContract: state.member.defaultContract,
+    memberObject: state.member.memberObject
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptMember: () => dispatch(MemberActions.memberRequest()),
-    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
+    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
+    postFCMToken: (data) => dispatch(NotificationActions.postFCMToken(data))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LandingScreen)
