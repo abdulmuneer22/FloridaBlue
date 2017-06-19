@@ -6,7 +6,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  myIdCardRequest: ['data'],
+  myIdCardRequest: [],
   myIdCardSuccess: ['data'],
   myIdCardFailure: ['error']
 })

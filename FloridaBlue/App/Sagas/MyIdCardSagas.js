@@ -3,12 +3,12 @@ import MyIdCardActions from '../Redux/MyIdCardRedux'
 import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
-export function * myidcard (api, {data}) {
+export function * myidcard (api) {
     // api.setsmTokenHeaders(smToken);
-  const response = yield call(api.getMyIdCard, data)
+  const response = yield call(api.getMyIdCard)
   if (response.status == '200') {
     // dispatch success
-    var idCarddata = response.data
+    var idCarddata = response.data.data
     /* data = {
       srcData: idCardData,
       idCardHeaderVisible: false
@@ -16,7 +16,7 @@ export function * myidcard (api, {data}) {
     yield put(MyIdCardActions.myIdCardSuccess(idCarddata))
   } else {
     // dispatch successful logins
-    console.tron.log('I am coming from failuer ')
+    console.tron.log('I am coming from failure ')
     var error = response.problem
     yield put(MyIdCardActions.myIdCardFailure(error))
   }

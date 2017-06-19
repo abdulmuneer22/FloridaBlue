@@ -36,15 +36,7 @@ class NotificationsView extends Component {
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     this.state = {
       basic: true,
-      listViewData: Array(2).fill('').map((_, i) => `item #${i}`),
-      messageInfo: {
-        type: 'message',
-        count: '3',
-        time: '3',
-        message: 'Time for Your Annual Wellness Exam',
-        description: 'You earned 10 points',
-        saved: true
-      }
+      listViewData: {}
     }
   }
 
@@ -52,6 +44,12 @@ class NotificationsView extends Component {
     this.props.getNotification()
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
+  }
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.notification && nextProps.notification.messages && Object(nextProps.notification.messages).length > 0) {
+      const newData = Array(Object(nextProps.notification.messages).length).fill('').map((_, i) => nextProps.notification.messages[i])
+      this.setState({ listViewData: newData })
+    }
   }
 
   deleteRow (secId, rowId, rowMap) {
@@ -78,7 +76,8 @@ class NotificationsView extends Component {
     } else if (this.props.notification && this.props.notification.messages && Object(this.props.notification.messages).length > 0) {
       return (
         <SwipeListView style={{ marginTop: 10, margin: 10, flex: 1 }}
-          dataSource={this.ds.cloneWithRows(Array(Object(this.props.notification.messages).length).fill('').map((_, i) => this.props.notification.messages[i]))}
+          dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+          enableEmptySections
           renderRow={data => (
             <View style={styles.rowFront}>
               <View style={{ flex: 1, marginTop: 10 }}>

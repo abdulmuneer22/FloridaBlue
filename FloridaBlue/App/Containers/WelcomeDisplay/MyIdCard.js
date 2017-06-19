@@ -64,6 +64,8 @@ class MyIdCard extends Component {
         }}
 
         >
+        {
+          (this.props && this.props.data ? 
           <TouchableOpacity onPress={this.toggle}>
             <Image source={{uri: 'data:image/jpeg;base64,' + this.props.data.IdCardImage}} style={{
               flex: 1,
@@ -73,39 +75,47 @@ class MyIdCard extends Component {
 
             }} >
               <View style={{flex: 1 }}>
+
                 <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                  <View style={{flex: 0.45, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.73)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.7)), marginLeft: Metrics.screenWidth * 0.1, alignItems: 'flex-start', marginTop: 20}}>
-                    <View style={{flex: 0.2, marginTop: 5}}>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> {this.props.data.MemberFirstName} {this.props.data.MemberLastName}</Text>
+
+                  <View style={{flex: 0.5,marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.72)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.67)), alignItems: 'flex-start'}}>
+                    
+                    <View style={{flex: 0.1}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data.MemberFirstName} {this.props.data.MemberLastName}</Text>
                     </View>
-                    <View style={{flex: 0.2, marginTop: 5}}>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> Member Number </Text>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> {this.props.data.MemberNumber}</Text>
+
+                    <View style={{flex: 0.1}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Member Number </Text>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data.MemberNumber}</Text>
                     </View>
-                    <View style={{flex: 0.2, marginTop: 5}} />
-                    <View style={{flex: 0.2, marginTop: 5}}>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}>  Group Number {this.props.data.GroupNumber} </Text>
+
+                    <View style={{flex: 0.1}} />
+                    
+                    <View style={{flex: 0.1}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>  Group Number {this.props.data.GroupNumber} </Text>
                     </View>
-                    <View style={{flex: 0.2, marginTop: 5}}>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}} />
+
+                    <View style={{flex: 0.1}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}} />
                     </View>
+
                   </View>
 
-                  <View style={{flex: 0.55, marginLeft: Metrics.screenWidth * 0.3, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.73)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.7)), alignItems: 'flex-start', marginTop: 20}}>
-                    <View style={{flex: 0.2, marginTop: 5}}>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> {this.props.data.MemberID} </Text>
+                  <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.72)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.67)), alignItems: 'flex-start'}}>
+                    <View style={{flex: 0.1}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data.MemberID} </Text>
                     </View>
-                    <View style={{flex: 0.2, marginTop: 5}}>
+                    <View style={{flex: 0.1}}>
                       <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0015}}> RX BIN {this.props.data.RXBIN} </Text>
                       <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> {this.props.data.GroupDivisionNumber} {this.props.data.RXPCN}</Text>
                     </View>
-                    <View style={{flex: 0.2, marginTop: 5}} />
-                    <View style={{flex: 0.2, marginTop: 5}}>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> Plan Number: {this.props.data.PlanNumber} </Text>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> Plan Name: ???? </Text>
+                    <View style={{flex: 0.1}} />
+                    <View style={{flex: 0.1}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Plan Number: {this.props.data.PlanNumber} </Text>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Plan Name: ???? </Text>
                     </View>
-                    <View style={{flex: 0.2, marginTop: 5}}>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> ???? </Text>
+                    <View style={{flex: 0.1}}>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> ???? </Text>
                     </View>
                   </View>
                 </View>
@@ -115,7 +125,14 @@ class MyIdCard extends Component {
             </Image>
 
           </TouchableOpacity>
-
+          : 
+              Alert.alert(
+              'Id Card',
+              'Oops! Looks like this service is not available right now or Id Card not available. Click OK to go back to the last page you visited.',
+              [
+                  { text: 'OK' }
+              ])
+          )}
         </View>
 
       </View>
@@ -139,7 +156,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMyIdCard: (data) => dispatch(MyIdCardActions.myIdCardRequest(data))
+    attemptMyIdCard: () => dispatch(MyIdCardActions.myIdCardRequest())
   }
 }
 
