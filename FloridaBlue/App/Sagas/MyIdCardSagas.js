@@ -3,9 +3,9 @@ import MyIdCardActions from '../Redux/MyIdCardRedux'
 import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
-export function * myidcard (api, {data}) {
+export function * myidcard (api) {
     // api.setsmTokenHeaders(smToken);
-  const response = yield call(api.getMyIdCard, data)
+  const response = yield call(api.getMyIdCard)
   if (response.status == '200') {
     // dispatch success
     var idCarddata = response.data

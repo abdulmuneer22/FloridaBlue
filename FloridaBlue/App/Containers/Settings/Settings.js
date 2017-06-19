@@ -26,20 +26,18 @@ import { Images, Metrics, Colors, Fonts } from '../../Themes'
 var TouchManager = NativeModules.TouchManager
 
 class Settings extends Component {
+
   constructor (props) {
     super(props)
     this._handleSwitchToggle = this._handleSwitchToggle.bind(this)
   }
 
-  componentDidMount () {
-
-  }
-
-  _disableTouchID () {
+  _disableTouchID() {
     TouchManager.removeCredentials((error, credentials) => {
       var status = credentials[0]
       if (status == 'SUCCESS') {
         this.props.changeTouchEnabled(false)
+        this.props.changeCredentialStored(false)
         Alert.alert('Success', 'Touch ID has been disabled on this device.', [
           {
             text: 'OK'
@@ -49,7 +47,7 @@ class Settings extends Component {
     })
   }
 
-  _enableTouch () {
+  _enableTouch() {
     TouchManager.enableTouchID((error, status) => {
       var status = status[0]
       if (status == 'ENABLED') {
@@ -61,6 +59,14 @@ class Settings extends Component {
         ])
       }
     })
+  }
+
+  _resetToggle() {
+    if (this.props.touchEnabled) {
+      this.props.changeTouchEnabled(true)
+    } else {
+      this.props.changeTouchEnabled(false)
+    }
   }
 
   _renderHeader () {
@@ -77,11 +83,39 @@ class Settings extends Component {
     )
   }
 
-  _handleSwitchToggle (e) {
-    if (e.checked) {
-      this._enableTouch()
+  _handleSwitchToggle(e) {
+    if (this.props.credentialStored) {
+      TouchManager.retrieveCredentials((error, credentials) => {
+        let credentialObject = credentials[0]
+        let status = credentialObject['status']
+        if (status === 'SUCCESS') {
+          let username = credentialObject['username']
+          if (username === this.props.username) {
+            this._disableTouchID()
+          } else {
+            Alert.alert(
+              'Sorry',
+              'Only the default user of this device can modify this setting.',
+              [
+                {text: 'Ok', onPress: () => this.forceUpdate(), style: 'cancel'}
+              ],
+              { cancelable: false }
+            )
+          }
     } else {
       this._disableTouchID()
+          Alert.alert(
+            'Oops!',
+            'An error occured while changing this setting. For security we\'ve reset your credentials.',
+            [
+              {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
+            ],
+            { cancelable: false }
+          )
+        }
+      })
+    } else {
+      this._enableTouch()
     }
   }
 
@@ -90,18 +124,19 @@ class Settings extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         <View style={styles.touchContainer}>
-          {this.props.touchEnabled
-            ? <Text style={styles.touchIdText}>Touch ID Enabled</Text>
-          : <Text style={styles.touchIdText}>Touch ID Disabled</Text>
+          {this.props.touchEnabled ?
+            <Text style={styles.touchIdText}>Touch ID Enabled</Text>
+          :
+            <Text style={styles.touchIdText}>Touch ID Disabled</Text>
           }
           <MKSwitch style={styles.touchStatusSwitch}
             checked={this.props.touchEnabled}
             trackSize={30}
             trackLength={52}
-            onColor='rgba(255,152,0,.3)'
+            onColor="rgba(255,152,0,.3)"
             thumbOnColor={MKColor.Orange}
-            rippleColor='rgba(255,152,0,.2)'
-            onCheckedChange={(e) => this._handleSwitchToggle(e)}
+            rippleColor="rgba(255,152,0,.2)"
+            onPress={() => this._handleSwitchToggle()}
           />
         </View>
       </View>
@@ -112,7 +147,8 @@ class Settings extends Component {
 const mapStateToProps = (state) => {
   return {
     touchEnabled: state.login.touchEnabled,
-    credentialStored: state.login.credentialStored
+    credentialStored: state.login.credentialStored,
+    username: state.login.username
   }
 }
 

@@ -32,11 +32,22 @@ RCT_EXPORT_METHOD(removeCredentials:(RCTResponseSenderBlock)callback) {
 RCT_EXPORT_METHOD(retrieveCredentials:(RCTResponseSenderBlock)callback) {
   KeychainWrapper *keychain = [[KeychainWrapper alloc] init];
   NSMutableArray *callbackArray = [NSMutableArray new];
+  NSMutableDictionary *callbackDict = [NSMutableDictionary new];
   NSString *password = [keychain myObjectForKey:(id)kSecValueData];
   NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+  NSString *status = [NSString new];
   
-  [callbackArray addObject:password];
-  [callbackArray addObject:username];
+  if (username && password) {
+    status = @"SUCCESS";
+  } else {
+    status = @"FAILURE";
+  }
+  
+  [callbackDict setObject:password forKey:@"password"];
+  [callbackDict setObject:username forKey:@"username"];
+  [callbackDict setObject:status forKey:@"status"];
+  
+  [callbackArray addObject:callbackDict];
   
   callback(@[[NSNull null], callbackArray]);
 }
@@ -68,12 +79,18 @@ RCT_EXPORT_METHOD(checkTouchStatus:(RCTResponseSenderBlock)callback) {
   NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
   NSMutableArray *callbackArray = [NSMutableArray new];
   
+  BOOL canAuthenticate = [self canAuthenticateByTouchId];
+  
+  if (canAuthenticate) {
   if (touchEnabled && username != nil) {
     [callbackArray addObject:@"AUTHENTICATED"];
   } else if (touchEnabled && username == nil) {
     [callbackArray addObject:@"ENABLED"];
   } else {
     [callbackArray addObject:@"DISABLED"];
+  }
+  } else {
+    [callbackArray addObject:@"UNAVAILABLE"];
   }
   
   callback(@[[NSNull null], callbackArray]);
@@ -88,6 +105,8 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
   __block NSString *authErrorCode = @"";
   __block NSString *didAuthorize = @"NO";
   NSString *myLocalizedReasonString = @"Authenticate using your finger";
+  
+  myContext.localizedFallbackTitle = @"";
   
   if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
     [myContext evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics
@@ -108,9 +127,9 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
                                 authErrorCode = @"002";
                                 break;
                                 
-                              case LAErrorUserFallback:
-                                NSLog(@"User pressed \"Enter Password\"");
-                                authErrorCode = @"003";
+                              case LAErrorTouchIDLockout:
+                                NSLog(@"Touch ID locked, too many failed attempts");
+                                authErrorCode = @"000";
                                 break;
                                 
                               default:
@@ -131,6 +150,14 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
     [callbackDict setObject:authErrorCode forKey:@"authErrorCode"];
     [callbackArray addObject:callbackDict];
     callback(@[[NSNull null], callbackArray]);
+  }
+}
+
+- (BOOL)canAuthenticateByTouchId {
+  if ([LAContext class]) {
+    return [[[LAContext alloc] init] canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil];
+  } else {
+    return NO;
   }
 }
 

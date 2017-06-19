@@ -90,6 +90,9 @@ class LandingScreen extends Component {
   }
 
   componentWillReceiveProps (newProps) {
+    if (newProps.openedFromTray) {
+      NavigationActions.PushNotifications()
+    }
     console.tron.log('dash board failure' + newProps.error)
     /*
    if (!newProps.error) {
@@ -129,10 +132,6 @@ class LandingScreen extends Component {
                   if (tile.tileType == 'webview') {
                     var webview = 'MyView'
                     action = NavigationActions[webview]({ responseURL: tile.tileUrl })
-                    if (tile.tileId == 'idCard') {
-                      var idCardRouter = 'MyIdCard'
-                      action = NavigationActions[idCardRouter]()
-                    }
                   } else if (tile.tileType == 'native') {
                     var routerName = tile.routerName
                     action = NavigationActions[routerName]()
