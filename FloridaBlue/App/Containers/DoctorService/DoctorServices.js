@@ -102,8 +102,8 @@ class DoctorServices extends Component {
         <View style={styles.textBackground2}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{ flex: 1 }}>
-              <TouchableOpacity onPress={() => {
-                this.setState({ hpActive: !this.state.hpActive })
+              <TouchableOpacity onPress={() => { if(this.renderHeaderText() != '')
+                {this.setState({ hpActive: !this.state.hpActive })} else {this.setState({ hpActive: this.state.hpActive })}
               }} >
                 <Card style={{flex: 1, marginTop: -0}} >
                   <View style={{
