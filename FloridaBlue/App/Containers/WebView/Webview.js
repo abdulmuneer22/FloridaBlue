@@ -70,7 +70,6 @@ class Webview extends Component {
         method: 'GET'
       }
     }
-    console.tron.log('redirect' + JSON.stringify(redirect))
     return (
       <View style={{
         flex: 1,

@@ -194,7 +194,6 @@ class ProviderSearch extends Component {
         return
       }
       if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
-        console.tron.log('pharmacy props :: ' + JSON.stringify(this.props))
         this.props.attemptPharmacySearch(this.props)
       } else {
         this.props.changeEnd(30)
@@ -205,7 +204,7 @@ class ProviderSearch extends Component {
     } else {
       Alert.alert(
           'Find care',
-        'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
+        'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
         [
             { text: 'OK' }
         ])

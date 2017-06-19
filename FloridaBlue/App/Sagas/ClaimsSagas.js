@@ -24,7 +24,6 @@ export function * claimDetail (api, {claimid}) {
   //    api.setsmTokenHeaders(smToken)
   console.tron.log('claimid' + claimid)
   const response = yield call(api.getClaimDetail, claimid)
-  console.tron.log(JSON.stringify(response))
   if (response.ok) {
     // dispatch success
     var data = response.data.data
@@ -54,7 +53,6 @@ export function * claimsSummary (api) {
         {'amount': 2250.00, 'name': 'Total Billed'}
       ]
     }
-  //  console.tron.log('Data ' + JSON.stringify(data))
     yield put(ClaimsActions.claimsSummarySuccess(summaryData))
   } else {
     // dispatch successful logins

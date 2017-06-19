@@ -94,7 +94,7 @@ class Login extends Component {
             this.props.changeCredentialStored(true)
             this.props.changeTouchEnabled(true)
             this.props.changeTouchLoginVisible(true)
-            this.props.changeTouchAvailable(false)
+            this.props.changeTouchAvailable(true)
             if (this.props.origin != 'logout') {
               this._authenticateUserWithTouch()
             }
