@@ -31,6 +31,7 @@ import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material
 const window = Dimensions.get('window')
 import LinearGradient from 'react-native-linear-gradient'
 import DeviceInfo from 'react-native-device-info'
+import NotificationActions from '../../Redux/NotificationRedux'
 
 type LoginScreenProps = {
   dispatch: () => any,
@@ -86,7 +87,9 @@ class LandingScreen extends Component {
         'deviceId': DeviceInfo.getUniqueID(),
         'token': this.props.FCMToken
       }
+      this.props.postFCMToken(data)
     }
+
     console.log('data objec to post ', data)
      // NavigationActions.POSTFCM
 
@@ -277,7 +280,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptMember: () => dispatch(MemberActions.memberRequest()),
-    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
+    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
+    postFCMToken: (data) => dispatch(NotificationActions.postFCMToken(data))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LandingScreen)
