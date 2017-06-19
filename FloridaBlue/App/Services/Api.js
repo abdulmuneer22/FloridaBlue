@@ -103,8 +103,6 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     'who': 'doctor'
   })
 
-  
-
   const getDoctorDetail = (data) => api.post('/opd/details', {
     'language': 'EN',
     'providerKey': data && data.providerKey,

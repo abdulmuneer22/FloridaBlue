@@ -14,18 +14,15 @@ export function * getNotification (api) {
     yield put(NotificationActions.notificationFailure(error))
   }
 }
-/*
-export function * postFCMToke (api, data) {
+
+export function * postFCMToken (api, data) {
   // make the call to the api
-  const response = yield call(api.postFCMToke(data))
+  const response = yield call(api.postFCMToken(data))
   // success?
   if (response.ok) {
-    const notificaiton = response.data
-    yield put(NotificationActions.notificationSucces(notificaiton))
+    yield put(NotificationActions.notificationSucces())
   } else {
     const error = response.status
     yield put(NotificationActions.notificationFailure(error))
   }
-
 }
-*/
