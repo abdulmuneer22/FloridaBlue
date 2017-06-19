@@ -5,9 +5,7 @@ import SearchDataActions from '../Redux/SearchDataRedux'
 export function * searchdata (api) {
   console.tron.log('I am coming from searchdoctor sagas')
     // api.setsmTokenHeaders(smToken);
-  console.tron.log('data of searchdoctor' + JSON.stringify(data))
   const response = yield call(api.getConfig)
-  console.tron.log(JSON.stringify(response))
   if (response.ok) {
     // dispatch success
     var data = response.data.data

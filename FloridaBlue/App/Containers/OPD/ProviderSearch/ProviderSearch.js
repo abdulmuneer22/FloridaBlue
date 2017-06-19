@@ -194,7 +194,6 @@ class ProviderSearch extends Component {
         return
       }
       if (this.props.categoryCode == '07' && this.props.subCategoryCode == '700') {
-        console.tron.log('pharmacy props :: ' + JSON.stringify(this.props))
         this.props.attemptPharmacySearch(this.props)
       } else {
         this.props.changeEnd(30)

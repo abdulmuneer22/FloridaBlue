@@ -67,7 +67,6 @@ class CCard extends Component {
       }
     }
 
-    console.tron.log('card of innetwork' + JSON.stringify(this.props.leftActive))
     // looping through cards to create the view
     // don't generate any markup if card object is null
     if (card) {

@@ -9,8 +9,6 @@ export function * login (api, {username, password}) {
   var username = username
   var password = password
   var setLogin
-  console.tron.log('username+password' + JSON.stringify(username) + password)
-
   const response = yield call(api.getUser, username, password)
 
   if (response.status == '200') {
@@ -65,7 +63,6 @@ export function * logout (api, {logoutUrl}) {
 
 export function * getTou (api) {
   const response = yield call(api.getTOU)
-  console.tron.log(JSON.stringify(response.data))
   if (response.status == '200') {
     var getTou = response.data
     yield put(LoginActions.updateTou(getTou))
@@ -77,7 +74,6 @@ export function * getTou (api) {
 
 export function * sendConfirm (api) {
   const response = yield call(api.putTou)
-  console.tron.log(JSON.stringify(response.data))
   if (response.status == '200') {
     var getTou = response.data
     console.tron.log('put tou' + response.data)

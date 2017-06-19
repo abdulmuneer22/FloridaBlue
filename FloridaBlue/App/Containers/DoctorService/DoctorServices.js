@@ -91,10 +91,6 @@ class DoctorServices extends Component {
       var temp1 = temp[objectName]
       var tiles = this.props.data.tiles
       var tile = tiles.filter(function (tiles) { return (tiles.tileId == objectName) })
-
-      console.tron.log('tile' + JSON.stringify(tile))
-      console.tron.log('tiles' + JSON.stringify(tiles))
-      // console.tron.log("checking for switch options" , this.props.data.emergencyMedicalCareServices);
       const switchItems = this.props.data.emergencyMedicalCareServices
       console.tron.log('checking for switch options', switchItems)
 
