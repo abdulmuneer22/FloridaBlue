@@ -106,7 +106,7 @@ class Settings extends Component {
       this._disableTouchID()
           Alert.alert(
             'Oops!',
-            'An error occured while changing this setting. For security we\'ve reset your credentials.',
+            'An error occurred while changing this setting. For security we\'ve reset your credentials.',
             [
               {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
             ],
