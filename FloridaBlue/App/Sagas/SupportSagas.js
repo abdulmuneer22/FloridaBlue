@@ -10,7 +10,6 @@ export function * support (api) {
   console.tron.log('I am coming from support')
     // api.setsmTokenHeaders(smToken);
   const response = yield call(api.getSupport)
-  console.tron.log(JSON.stringify(response))
   if (response.status == '200') {
     // dispatch success
     var data = response.data.data

@@ -30,6 +30,7 @@ import Flb from '../../Themes/FlbIcon'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 const window = Dimensions.get('window')
 import LinearGradient from 'react-native-linear-gradient'
+import DeviceInfo from 'react-native-device-info'
 
 type LoginScreenProps = {
   dispatch: () => any,
@@ -51,7 +52,6 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-
       <Image style={styles.headerContainer} source={Images.newHeaderImage}>
         <View style={{
           alignItems: 'center',
@@ -78,6 +78,18 @@ class LandingScreen extends Component {
     if (this.props.openedFromTray) {
       NavigationActions.PushNotifications()
     }
+    if (this.props.visibilityRules) {
+      var data = {
+        'hccId': this.props.defaultContract.hccId,
+        'memberId': this.props.memberId,
+        'deviceName': DeviceInfo.getDeviceName(),
+        'deviceId': DeviceInfo.getUniqueID(),
+        'token': this.props.FCMToken
+      }
+    }
+    console.log('FCMToken', data)
+     // NavigationActions.POSTFCM
+
     console.tron.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin == 'registration') {
       this.props.attemptMember()
@@ -256,7 +268,8 @@ const mapStateToProps = (state) => {
     userName: state.member.username,
     visibilityRules: state.member.visibilityRules,
     error: state.member.error,
-    openedFromTray: state.Notification.openedFromTray
+    openedFromTray: state.Notification.openedFromTray,
+    FCMToken: state.Notification.FCMToken
   }
 }
 const mapDispatchToProps = (dispatch) => {

@@ -10,9 +10,7 @@ import LoginActions from '../Redux/LoginRedux'
 export function * myplan (api, data) {
   console.tron.log('I am coming from myplan')
     // api.setsmTokenHeaders(smToken);
-  console.tron.log('data of myplan' + JSON.stringify(data))
   const response = yield call(api.getPlan, data)
-  console.tron.log(JSON.stringify(response))
   if (response.ok) {
     // dispatch success
     var data = response.data.data
