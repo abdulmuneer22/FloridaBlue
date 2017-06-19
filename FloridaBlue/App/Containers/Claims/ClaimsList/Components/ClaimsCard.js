@@ -36,7 +36,7 @@ class ClaimsCard extends Component {
     this.formatDate = this.formatDate.bind(this)
     this.viewClaimsDetails = this.viewClaimsDetails.bind(this)
     this.state = {
-      cardLimit: this.props.cardLimit,
+      cardLimit: this.props.cardLimit
     }
   }
 

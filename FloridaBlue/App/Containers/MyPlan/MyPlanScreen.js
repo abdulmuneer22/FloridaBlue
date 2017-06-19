@@ -85,7 +85,7 @@ class MyPlanScreen extends Component {
 
               : Alert.alert(
         'My Plan Overview',
-       'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
+       'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
                 [
           { text: 'OK' }
 
@@ -130,7 +130,7 @@ class MyPlanScreen extends Component {
       var message = this.props.data.errorMessage
       Alert.alert(
         'My Plan Overview',
-       'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
+       'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
         [
           { text: 'OK' }
 

@@ -98,8 +98,8 @@ class DoctorServices extends Component {
         <View style={styles.textBackground2}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{ flex: 1 }}>
-              <TouchableOpacity onPress={() => {
-                this.setState({ hpActive: !this.state.hpActive })
+              <TouchableOpacity onPress={() => { if(this.renderHeaderText() != '')
+                {this.setState({ hpActive: !this.state.hpActive })} else {this.setState({ hpActive: this.state.hpActive })}
               }} >
                 <Card style={{flex: 1, marginTop: -0}} >
                   <View style={{
@@ -232,7 +232,7 @@ class DoctorServices extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
         'Plan Benefits',
-         'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
+         'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
         [
           { text: 'OK' }
 

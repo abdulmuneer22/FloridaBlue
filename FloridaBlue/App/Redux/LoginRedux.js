@@ -20,7 +20,6 @@ const { Types, Creators } = createActions({
   changeTouchEnabled: ['touchEnabled'],
   currentScene: ['currentSceneValue'],
   changeCredentialStored: ['credentialStored'],
-  changeShowSettings: ['showSettings'],
   changeTouchAvailable: ['touchAvailable'],
   changeTouchLoginVisible: ['touchLoginVisible']
 })
