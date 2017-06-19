@@ -73,7 +73,7 @@ class Greeting extends Component {
           </View>
           <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <TouchableOpacity onPress={() => NavigationActions.PushNotifications()} >
-              <Flb name='email-envelope' size={Metrics.icons.small} />
+              <Flb name='email-envelope' size={Metrics.icons.small} color={Colors.flBlue.orange} />
             </TouchableOpacity>
           </View>
         </View>
