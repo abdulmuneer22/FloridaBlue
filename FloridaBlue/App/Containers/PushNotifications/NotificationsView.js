@@ -85,7 +85,7 @@ class NotificationsView extends Component {
                   <Text style={{
                     color: Colors.flBlue.anvil,
                     marginLeft: 10,
-                    fontSize: Fonts.size.screenWidth * 0.0025
+                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002
                   }}>
                     {data.messageId}
                   </Text>
@@ -98,12 +98,13 @@ class NotificationsView extends Component {
                     flex: 1
                   }}>
                     <View style={{ marginLeft: 10, paddingTop: 5, flex: 0.2 }}>
-                      <Flb name='doctor-coin' size={Metrics.icons.large * Metrics.screenWidth * 0.0025} />
+                      <Flb name='doctor-coin' size={Metrics.icons.large * Metrics.screenWidth * 0.0025} color={Colors.flBlue.grass} />
                     </View>
                     <View style={{ flex: 0.8, marginRight: 10 }}>
                       <View style={{ flex: 0.4 }}>
                         <Text style={{
-                          fontSize: 18,
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+                          color: Colors.flBlue.anvil,
                           fontWeight: '500',
                           marginBottom: 1,
                           paddingTop: 5,
@@ -115,7 +116,7 @@ class NotificationsView extends Component {
                         <Text style={{
                           marginBottom: 2,
                           color: Colors.flBlue.anvil,
-                          fontSize: Fonts.size.regular
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022
                         }} >
                           {data.cardContent}
                         </Text>
