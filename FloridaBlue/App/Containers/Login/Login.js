@@ -89,7 +89,6 @@ class Login extends Component {
     if (Platform.OS === 'ios') {
       TouchManager.checkTouchStatus((error, touchInfo) => {
         let touchStatus = touchInfo[0]
-        console.tron.log(touchStatus)
         switch (touchStatus) {
           case "AUTHENTICATED":
             this.props.changeCredentialStored(true)
@@ -636,7 +635,7 @@ class Login extends Component {
               <Image source={Images.clearLogo} style={styles.logo} />
             </LogoView>
 
-              {this.props.touchLoginVisible ?
+              {Platform.OS === 'ios' && this.props.touchLoginVisible ?
                   this._renderTouchLogin()
                 :
                   this._renderLogin()
