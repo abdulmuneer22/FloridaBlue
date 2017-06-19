@@ -205,7 +205,7 @@ class ProviderSearch extends Component {
     } else {
       Alert.alert(
           'Find care',
-        'Oops! Looks like this service is not available right now or it\'s not part of your plan. Click OK to go back to the last page you visited.',
+        'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
         [
             { text: 'OK' }
         ])
