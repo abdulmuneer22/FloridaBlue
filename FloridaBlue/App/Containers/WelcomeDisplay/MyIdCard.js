@@ -64,6 +64,8 @@ class MyIdCard extends Component {
         }}
 
         >
+        {
+          (this.props && this.props.data ? 
           <TouchableOpacity onPress={this.toggle}>
             <Image source={{uri: 'data:image/jpeg;base64,' + this.props.data.IdCardImage}} style={{
               flex: 1,
@@ -123,7 +125,14 @@ class MyIdCard extends Component {
             </Image>
 
           </TouchableOpacity>
-
+          : 
+              Alert.alert(
+              'Id Card',
+              'Oops! Looks like this service is not available right now or Id Card not available. Click OK to go back to the last page you visited.',
+              [
+                  { text: 'OK' }
+              ])
+          )}
         </View>
 
       </View>

@@ -8,7 +8,7 @@ export function * myidcard (api) {
   const response = yield call(api.getMyIdCard)
   if (response.status == '200') {
     // dispatch success
-    var idCarddata = response.data
+    var idCarddata = response.data.data
     /* data = {
       srcData: idCardData,
       idCardHeaderVisible: false
@@ -16,7 +16,7 @@ export function * myidcard (api) {
     yield put(MyIdCardActions.myIdCardSuccess(idCarddata))
   } else {
     // dispatch successful logins
-    console.tron.log('I am coming from failuer ')
+    console.tron.log('I am coming from failure ')
     var error = response.problem
     yield put(MyIdCardActions.myIdCardFailure(error))
   }
