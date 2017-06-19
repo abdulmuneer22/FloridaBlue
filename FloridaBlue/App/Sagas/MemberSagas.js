@@ -13,7 +13,7 @@ export function * member (api, {smToken}) {
 
   const response = yield call(api.getMember)
   console.tron.log('MEMBER')
-  if (response.status === '200') {
+  if (response.status == '200') {
     // dispatch success
     var Name = response.data.data.firstName
     var defaultContract = response.data.data.defaultContract
