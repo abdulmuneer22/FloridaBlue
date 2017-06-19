@@ -95,6 +95,16 @@ export default StyleSheet.create({
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
     height: Metrics.baseMargin * Metrics.screenHeight * 0.004
   },
+  fingerprintDisabled: {
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.005,
+    color: Colors.flBlue.grey3,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002
+  },
+  fingerprintEnabled: {
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.005,
+    color: Colors.flBlue.ocean,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002
+  },
   link: {
     color: Colors.flBlue.ocean,
     textAlign: 'center',

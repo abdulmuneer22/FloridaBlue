@@ -575,9 +575,9 @@ class Login extends Component {
                   <View style={styles.row}>
                     <TouchableOpacity onPress={() => { this._handleTouchCheckbox() }}>
                       {this.props.touchEnabled ?
-                        <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenWidth * 0.002} color={Colors.flBlue.anvil} />
+                        <Flb name="fingerprint" size={Metrics.icons.medium} style={styles.fingerprintEnabled} />
                         :
-                        <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
+                        <Flb name="fingerprint" size={Metrics.icons.medium} style={styles.fingerprintDisabled} />
                       }
                     </TouchableOpacity>
                   </View>
