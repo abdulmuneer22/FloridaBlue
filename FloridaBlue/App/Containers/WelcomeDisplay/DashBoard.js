@@ -81,13 +81,13 @@ class LandingScreen extends Component {
     if (this.props.visibilityRules) {
       var data = {
         'hccId': this.props.defaultContract.hccId,
-        'memberId': this.props.memberId,
+        'memberId': this.props.memberObject.memberId,
         'deviceName': DeviceInfo.getDeviceName(),
         'deviceId': DeviceInfo.getUniqueID(),
         'token': this.props.FCMToken
       }
     }
-    console.log('FCMToken', data)
+    console.log('data objec to post ', data)
      // NavigationActions.POSTFCM
 
     console.tron.log('mount on dashboadr' + this.props.smToken)
@@ -269,7 +269,9 @@ const mapStateToProps = (state) => {
     visibilityRules: state.member.visibilityRules,
     error: state.member.error,
     openedFromTray: state.Notification.openedFromTray,
-    FCMToken: state.Notification.FCMToken
+    FCMToken: state.Notification.FCMToken,
+    defaultContract: state.member.defaultContract,
+    memberObject: state.member.memberObject
   }
 }
 const mapDispatchToProps = (dispatch) => {
