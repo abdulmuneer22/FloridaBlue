@@ -82,9 +82,16 @@ class LandingScreen extends Component {
     if (this.props.visibilityRules) {
       var data = {
         'hccId': this.props.defaultContract.hccId,
+        'pushOptIn': true,
         'memberId': this.props.memberObject.memberId,
+        'manufacturer': DeviceInfo.getManufacturer(),
         'deviceName': DeviceInfo.getDeviceName(),
+        'model': DeviceInfo.getModel(),
         'deviceId': DeviceInfo.getUniqueID(),
+        'locale': 'en',
+        'os': DeviceInfo.getSystemName(),
+        'osId': DeviceInfo.getDeviceId(),
+        'osVersion': DeviceInfo.getSystemVersion(),
         'token': this.props.FCMToken
       }
       this.props.postFCMToken(data)
