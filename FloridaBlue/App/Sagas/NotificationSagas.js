@@ -21,8 +21,10 @@ export function * postFCMToken (api, {data}) {
   // success?
   if (response.ok) {
    // yield put(NotificationActions.notificationSucces())
+    console.log('hey I am coming from succes', response)
   } else {
- //   const error = response.status
+    console.log('I am coming from failure')
+    const error = response.status
   //  yield put(NotificationActions.notificationFailure(error))
   }
 }
