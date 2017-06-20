@@ -98,10 +98,7 @@ class DoctorServices extends Component {
         <View style={styles.textBackground2}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{ flex: 1 }}>
-              <TouchableOpacity onPress={() => { if(this.renderHeaderText() != '')
-                {this.setState({ hpActive: !this.state.hpActive })} else {this.setState({ hpActive: this.state.hpActive })}
-              }} >
-                <Card style={{flex: 1, marginTop: -0}} >
+              {this.renderHeaderText() != '' ? <TouchableOpacity onPress={() =>  {this.setState({ hpActive: !this.state.hpActive })} }><Card style={{flex: 1, marginTop: -0}} >
                   <View style={{
               // backgroundColor: 'purple',
                     flex: 1,
@@ -200,8 +197,107 @@ class DoctorServices extends Component {
                     <View style={{flex: 1}} />
                   </View>
 
-                </Card>
-              </TouchableOpacity>
+                </Card></TouchableOpacity> : <View onPress={() =>  {this.setState({ hpActive: this.state.hpActive })} }><Card style={{flex: 1, marginTop: -0}} >
+                  <View style={{
+              // backgroundColor: 'purple',
+                    flex: 1,
+                    flexDirection: 'row',
+                    height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
+
+                  }}>
+                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10
+                // backgroundColor:'yellow'
+                    }}>
+                      <Flb name={tile[0].tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.purple} />
+                    </View>
+                    <View style={{
+                      flex: 3,
+                // marginRight:5,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginTop: 10
+               //    backgroundColor:'red'
+
+                    }}>
+
+                      <Text style={styles.doctorTextStyle}>
+                        {temp1.text['en']}
+                      </Text>
+
+                    </View>
+
+                    <View style={{flex: 1}}>
+                      {this.renderHeaderText() != ''
+                        ? <View style={{
+                          flex: 1,
+                          marginTop: 5
+                       // marginLeft: -40,
+                       // marginRight: Metrics.mediumMargin
+
+                        }}>
+
+                          <View style={{
+                        // flexDirection: 'row',
+                            flex: 1,
+                         // marginTop: Metrics.baseMargin,
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                        // backgroundColor: Colors.flBlue.grey4,
+                          }}>
+
+                            <View >
+                              {
+
+                            !this.state.hpActive
+
+                              ? <Flb name='chevron-down' size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
+                              : <Flb name='chevron-up' size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
+
+                          }
+                            </View>
+                          </View>
+
+                        </View>
+                  : <Text />
+                }
+
+                    </View>
+                  </View>
+
+                  <View style={{flex: 1, flexDirection: 'row'}}>
+                    <View style={{flex: 1}} />
+                    {
+                this.state.hpActive
+                  ? <View style={{
+                    flex: 12,
+                   // width: Metrics.screenWidth * 0.88,
+                    alignSelf: 'center',
+                   // borderBottomWidth: 0.2,
+                    marginBottom: 10
+                    // borderWidth:1
+                 //   height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
+                  //  margin:10
+                    //  marginLeft : (Metrics.screenWidth * 0.15)/2,
+                    // marginRight : (Metrics.screenWidth * 0.15)/2,
+                    //  backgroundColor : 'yellow',
+                    // alignItems : 'center',
+                  }}>
+                    <Text style={{
+                      fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0015,
+                      margin: 5,
+                    //  textAlign: 'justify',
+                      color: Colors.flBlue.grey5,
+                      fontWeight: '300'
+
+                    }}>{this.renderHeaderText()}</Text>
+                  </View>
+                  : null
+              }
+                    <View style={{flex: 1}} />
+                  </View>
+
+                </Card></View>}
+             
               <View style={{ alignItems: 'center', marginBottom: 15}}>
                 <Switch
                   data={this.props.data}
