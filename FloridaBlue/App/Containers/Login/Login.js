@@ -521,7 +521,7 @@ class Login extends Component {
 
   _renderLogin () {
     let textStyle = {}
-    if (this.props.touchAvailable && this.props.credentialStored == false) {
+    if (Platform.OS === 'ios' && this.props.touchAvailable && this.props.credentialStored == false) {
       textStyle = styles.touchTextField
     } else {
       textStyle = styles.textField
@@ -570,7 +570,7 @@ class Login extends Component {
               </View>
             </View>
 
-            {this.props.touchAvailable && !this.props.credentialStored ?
+            { Platform.OS === 'ios' && this.props.touchAvailable && !this.props.credentialStored ?
                 <View style={styles.enableTouchContainer}>
                   <TouchableOpacity onPress={() => { this._handleTouchCheckbox() }}>
                     <View>
@@ -587,6 +587,10 @@ class Login extends Component {
                   </TouchableOpacity>
                 </View>
               :
+                null
+            }
+
+            { Platform.OS === 'ios' && this.props.touchAvailable && this.props.credentialStored ?
                 <View style={styles.enableTouchContainer}>
                   <TouchableOpacity onPress={() => { this._authenticateUserWithTouch() }}>
                     <View>
@@ -598,6 +602,8 @@ class Login extends Component {
                     </View>
                   </TouchableOpacity>
                 </View>
+              :
+                null
             }
           </View>
         </LoginView>
