@@ -117,7 +117,6 @@ class CCard extends Component {
                 network != undefined && network.footer_note != undefined && network.footer_note != null && network.footer_note.en != undefined && network.footer_note.en != null
                   ? <View style={{ margin: 0}} >
                     <Panel title={_.get(network, 'header_text.en', '')} >
-                      <View style={{ borderTopWidth: 0.2, bottom: 10 }} />
                       <View style={{bottom: 10}}>
                         <HTMLView value={htmvalue}
                           stylesheet={HtMLstyles} />
