@@ -291,13 +291,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     }
   })
 
-  const postFCMToken = (data) => api.post('/notify/register', {
-    'hccId': data.hccId,
-    'memberId': data.memberId,
-    'deviceName': data.deviceName,
-    'deviceId': data.deviceId,
-    'token': data.token
-  })
+  const postFCMToken = (data) => api.post('/notify/register', data)
 
   // ------
   // STEP 3

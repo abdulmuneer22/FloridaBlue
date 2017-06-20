@@ -126,7 +126,7 @@ class TouchTOU extends Component {
             <View style={styles.buttonContainer}>
               <TouchableOpacity style={styles.buttonView} onPress={() => this._handleClose() }>
                 <View style={styles.buttonTextView}>
-                  <Text style={styles.footerText}>Close</Text>
+                  <Text style={styles.footerText}>Decline</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonView} onPress={() => this._handleAccept() }>
