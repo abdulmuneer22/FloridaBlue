@@ -67,11 +67,7 @@ class ClaimsCard extends Component {
 
   render () {
     return (
-      // Header
-      /* List View */
-
         <View>
-
           {this.props.data != undefined ? this.props.data.map((value, i) => {
             let color = Colors.flBlue.ocean
             if (value.claimType === 'Professional') {
@@ -83,43 +79,32 @@ class ClaimsCard extends Component {
             }
             if (i < this.state.cardLimit) {
               return (
-
                 <View key={i} style={{ flex: 1 }}>
                   <TouchableOpacity key={i} style={{ flex: 1 }} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
                     <Card style={styles.claimsListCard} key={i} >
                       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-                        <View style={{ flex: 0.01, backgroundColor: color, height: 37 }} />
-                        <View style={{ flex: 0.29, alignItems: 'center', justifyContent: 'center' }}>
+                      
+                        <View style={{ flex: 0.25, alignItems: 'center', justifyContent: 'center' }}>
                           <Text style={styles.claimsCardText}>
                             {this.formatDate(value.dateOfService)}
                           </Text>
                         </View>
-
-                        <View style={{ flex: 0.4, alignItems: 'center', justifyContent: 'center' }}>
-                          <Text style={styles.claimsCardText}>
-                            {this.formatName(value.providerName)}
-                          </Text>
-                        </View>
-
                         <View style={{ flex: 0.3, alignItems: 'center', justifyContent: 'center' }}>
                           <Text style={styles.claimsCardText}>
                             {value.claimType}
                           </Text>
                         </View>
+                        <View style={{ flex: 0.45, justifyContent: 'center' }}>
+                          <Text style={styles.providerName}>{value.providerName}</Text>
+                        </View>
                       </View>
                     </Card>
                   </TouchableOpacity>
-
                 </View>
-
               )
             }
           }) : null}
-
-
         </View>
-
-
     )
   }
 }

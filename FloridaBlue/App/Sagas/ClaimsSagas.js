@@ -7,7 +7,15 @@ import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
 export function * claimslist (api, data) {
-  const response = yield call(api.getClaimsList, data)
+  if(data && data.data){
+  delete data.data.memberName;
+  delete data.data.providerName;
+  delete data.data.startDate;
+  delete data.data.endDate;
+  delete data.data.sortBy;
+  }
+  
+  const response = yield call(api.getClaimsList, data.data)
   if (response.status == '200') {
     // dispatch success
     var data = response.data.data
@@ -38,7 +46,6 @@ export function * claimDetail (api, {claimid}) {
 
 // attempts to login
 export function * claimsSummary (api) {
-  console.tron.log('I am coming from claimsSummary Sagas')
     // api.setsmTokenHeaders(smToken);
   const response = yield call(api.getClaimsSummary)
   if (response.status == '200') {

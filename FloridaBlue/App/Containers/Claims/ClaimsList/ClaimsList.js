@@ -50,17 +50,21 @@ class ClaimsList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      listLimit: 10,
+      listLimit: this.props.claimsdata.data.length > 0 ? this.props.claimsdata.data.length : 0,
       totalNumberOfCardPerScreen: 10,
       isFetchingMore: false,
-      loadingMore: true,
-      initialCount: 0,
-      finalCount: 0,
-      asynCall: true,
-      displayBannerInfo: false,
       searchVisible: false,
       endDateSelected: false,
-      isShowingViewMore: true
+      isShowingViewMore: true,
+      searchData : {
+          memberName: '',
+          providerName : '',
+          startDate : '',
+          endDate : '',
+          start : 1,
+          end : 10,
+          sortBy : '',
+      }
     }
     this.viewMore = this.viewMore.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
@@ -69,7 +73,6 @@ class ClaimsList extends Component {
     this.addStartDate = this.addStartDate.bind(this)
     this.addEndDate = this.addEndDate.bind(this)
     this.memberSelected = this.memberSelected.bind(this)
-    this.toggleViewMore = this.toggleViewMore.bind(this)
   }
 
   viewClaimsList () {
@@ -101,20 +104,18 @@ class ClaimsList extends Component {
   }
 
   claimsListRequest (newProps) {
-    if (newProps.claimsdata && newProps.claimsdata.length > 0) {
-      if (newProps.error == undefined || newProps.error == null) {
-        newProps.attemptClaimsList(newProps)
-      }
-    }
+    this.state.searchData.start = newProps.start;
+    this.state.searchData.end = newProps.end;
+    this.state.searchData.sortBy = newProps.sortBy;
+    newProps.attemptClaimsList(this.state.searchData)
+    this.setState({isShowingViewMore: true})
+
   }
 
   componentWillReceiveProps (newProps) {
     if (this.state.isFetchingMore) {
-      // this.props.attemptProviderSearch(newProps)
       this.claimsListRequest(newProps)
-      this.setState({
-        isFetchingMore: false
-      })
+      this.setState({isFetchingMore: false})
     }
   }
 
@@ -197,48 +198,42 @@ class ClaimsList extends Component {
   }
 
   componentDidMount () {
-    // this.props.attemptClaimsList(this.props)
   }
 
-   viewMore () {
+  viewMore () {
     var currentLimit = this.state.listLimit
     var newLimit = currentLimit
-    this.setState({
-      listLimit: newLimit + 10
-    })
-    if (newLimit + 10 >= this.props.claimsdata.count) {
-      this.setState({ listLimit: this.props.claimsdata.count })
-      this.toggleViewMore();
+    if (newLimit  <= this.props.claimsdata.totalCount) {
+      this.props.changeEnd(newLimit + 10)
+      this.setState({listLimit: newLimit + 10})
+      this.state.isShowingViewMore = false
+      this.state.isFetchingMore = true
+      this.setState({isShowingViewMore: false})
+      this.setState({isFetchingMore: true})
     }
   }
 
-   toggleViewMore () {
-    this.setState({
-      isShowingViewMore: !this.state.isShowingViewMore
-    })
-  }
-
    _renderViewMore () {
-      if(this.state.isShowingViewMore) {
-        return (
-          <View style={{flex: 0, margin: 14}}>
-                    <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit} out of {this.props.claimsdata.count} Claims</Text>
-                  <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                    <TouchableOpacity onPress={this.viewMore} style={{flexDirection: 'row'}}>
-                      <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
-                    </TouchableOpacity>
-                    <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
-                  </View>
-                </View> 
-        );
-      } else if (!this.state.isShowingViewMore) {
-        return (
-          <View style={{flex: 0, margin: 14}}>
-            <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit} out of {this.props.claimsdata.count} Claims</Text>
-            <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 300}} /></TouchableOpacity>
-          </View> 
-        );
-      }
+            if(this.state.isShowingViewMore){
+             return( <View style={{flex: 0, margin: 14}}>
+                      <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
+                      { 
+                        this.props.claimsdata.data.length < this.props.claimsdata.totalCount ?
+                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                          <TouchableOpacity onPress={this.viewMore} style={{flexDirection: 'row'}}>
+                            <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
+                          </TouchableOpacity>
+                          <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
+                        </View>
+                        : null 
+                      }
+                  </View>)
+            }
+          if(!this.state.isShowingViewMore){
+            return (<View style={{flex: 1, alignSelf: 'center' }}>
+                        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                    </View>)
+          }
     }
 
   _displayCondition () {
@@ -288,8 +283,8 @@ class ClaimsList extends Component {
               <View>
                 <ClaimsCard
                           data={this.props.claimsdata.data}
-                          cardLimit={this.state.listLimit}
-                          claimsCount={this.props.claimsdata.count}
+                          cardLimit={this.props.claimsdata.data.length ==  this.props.claimsdata.totalCount ? this.props.claimsdata.data.length : this.state.listLimit}
+                          claimsCount={this.props.claimsdata.totalCount}
                          />
 
                 {this._renderViewMore()}
@@ -388,19 +383,27 @@ const mapStateToProps = (state) => {
     startDate: state.claims.startDate,
     endDate: state.claims.endDate,
     providerName: state.claims.providerName,
-    memberName: state.claims.memberName
+    memberName: state.claims.memberName,
+    start: state.claims.start,
+    end: state.claims.end,
+    sortBy: state.claims.sortBy
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest()),
+    attemptClaimsList: (data) => dispatch(ClaimsActions.claimsListRequest(data)),
     changeListLimit: (listLimit) => dispatch(ClaimsActions.changeListLimit(listLimit)),
     changeDatePickerVisible: (datePickerVisible) => dispatch(ClaimsActions.changeDatePickerVisible(datePickerVisible)),
     changeStartDate: (startDate) => dispatch(ClaimsActions.changeStartDate(startDate)),
     changeEndDate: (endDate) => dispatch(ClaimsActions.changeEndDate(endDate)),
     changeProviderName: (providerName) => dispatch(ClaimsActions.changeProviderName(providerName)),
-    changeMemberName: (memberName) => dispatch(ClaimsActions.changeMemberName(memberName))
+    changeMemberName: (memberName) => dispatch(ClaimsActions.changeMemberName(memberName)),
+    changeStart: (start) => dispatch(ClaimsActions.changeStart(start)),
+    changeEnd: (end) => dispatch(ClaimsActions.changeEnd(end)),
+    changeSortBy: (sortBy) => dispatch(ClaimsActions.changeSortBy(sortBy))
+
+
   }
 }
 

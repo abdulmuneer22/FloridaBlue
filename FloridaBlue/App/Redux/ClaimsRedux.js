@@ -9,7 +9,7 @@ const { Types, Creators } = createActions({
   claimDetailRequest: ['claimid'],
   claimDetailSuccess: ['data'],
   claimDetailFailure: ['error'],
-  claimsListRequest: [],
+  claimsListRequest: ['data'],
   claimsListSuccess: ['data'],
   claimsListFailure: ['error'],
   claimsSummaryRequest: [],
@@ -20,7 +20,10 @@ const { Types, Creators } = createActions({
   changeStartDate: ['startDate'],
   changeEndDate: ['endDate'],
   changeProviderName: ['providerName'],
-  changeMemberName: ['memberName']
+  changeMemberName: ['memberName'],
+  changeStart: ['start'],
+  changeEnd: ['end'],
+  changeSortBy: ['sortBy']
 })
 
 export const ClaimsTypes = Types
@@ -34,10 +37,14 @@ export const INITIAL_STATE = Immutable({
   error: null,
   listLimit: 10,
   datePickerVisible: false,
-  startDate: 'Start Date',
-  endDate: 'End Date',
+  /*startDate: '',
+  endDate: '',
   providerName: '',
-  memberName: ''
+  memberName: '',*/
+  start : 1,
+  end : 10,
+  sortBy : 'providerName:1, memberName:-1, date:1'
+
 })
 
 /* ------------- Reducers ------------- */
@@ -92,6 +99,15 @@ export const _changeProviderName = (state: Object, {providerName}: Object) => st
 // memberName
 export const _changeMemberName = (state: Object, {memberName}: Object) => state.merge({memberName})
 
+// start
+export const _changeStart = (state: Object, {start}: Object) => state.merge({start})
+
+// end
+export const _changeEnd = (state: Object, {end}: Object) => state.merge({end})
+
+// sortBy
+export const _changeSortBy = (state: Object, {sortBy}: Object) => state.merge({sortBy})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -109,7 +125,10 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_START_DATE]: _changeStartDate,
   [Types.CHANGE_END_DATE]: _changeEndDate,
   [Types.CHANGE_PROVIDER_NAME]: _changeProviderName,
-  [Types.CHANGE_MEMBER_NAME]: _changeMemberName
+  [Types.CHANGE_MEMBER_NAME]: _changeMemberName,
+  [Types.CHANGE_START]: _changeStart,
+  [Types.CHANGE_END]: _changeEnd,
+  [Types.CHANGE_SORT_BY]: _changeSortBy
 })
 
 /* ------------- Selectors ------------- */

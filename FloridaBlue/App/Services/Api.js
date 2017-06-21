@@ -87,12 +87,11 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getLogout = () => api.get('')
   const putTou = () => api.get('/termsOfUse')
   const getConfig = () => api.get('/opd/config')
-  const getClaimsList = () => api.get('/claims/list')
   const getClaimDetail = (claimid) => api.get('claims/detail/' + claimid)
   const getClaimsSummary = () => api.get('/claims/summary')
   const getNotification = () => api.get('/notify/messages')
   const getMyIdCard = () => api.get('/idCard')
-
+  const getClaimsList = (data) => api.post('/claims/list',data);
   const getStaffLanguage = (data) => api.post('/opd/languages', {
     'language': 'EN',
     'who': 'staff'

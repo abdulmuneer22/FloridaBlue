@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
-import { AppRegistry, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView, Linking} from 'react-native'
+import { AppRegistry, Alert, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView, Linking} from 'react-native'
 
 import styles from './DashBoardStyle'
 import HideableView from 'react-native-hideable-view'
@@ -58,12 +58,10 @@ class MyIdCard extends Component {
         <HideableView visible={this.state.idCardHeaderVisible} removeWhenHidden>
           {this._renderHeader()}
         </HideableView>
-        <View style={{margin: 5, flex: 1, alignItems: 'center', opacity: 0.9
-        }}
-
-        >
+        <View style={{margin: 5, flex: 1, alignItems: 'center', opacity: 0.9}}>
         {
-          (this.props && this.props.data ? 
+          
+          (this.props && !this.props.error ? 
           <TouchableOpacity onPress={this.toggle}>
             <Image source={{uri: 'data:image/jpeg;base64,' + this.props.data.IdCardImage}} style={{
               flex: 1,
@@ -124,7 +122,7 @@ class MyIdCard extends Component {
           </TouchableOpacity>
           : 
               Alert.alert(
-              'Id Card',
+              'ID Card',
               'Oops! Looks like this service is not available right now or Id Card not available. Click OK to go back to the last page you visited.',
               [
                   { text: 'OK' }

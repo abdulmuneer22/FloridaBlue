@@ -27,7 +27,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     // padding: 9,
-    height: 37,
+    //height: 37,
     margin: 10,
     marginBottom: 1,
     alignItems: 'center'
