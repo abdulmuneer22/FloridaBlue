@@ -303,7 +303,12 @@ export default StyleSheet.create({
     textAlignVertical: 'center'
   },
   dropdown: {
-    width: Metrics.screenWidth * 0.9,
+    width: Metrics.screenWidth * 0.865,
+    marginLeft: Metrics.doubleBaseMargin
+  },
+  dropD : {
+     width: Metrics.screenWidth * 0.865,
+    height: Metrics.screenHeight * .05,
     marginLeft: Metrics.doubleBaseMargin
   },
   dropdown1: {

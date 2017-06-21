@@ -497,10 +497,7 @@ class AdvancedSearch extends Component {
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.advancedPlanSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected}
-                  dropdownStyle={{
-                // height:33*_.map(this.props.planSubCategoryList, 'subCategoryName').length,
-                    width: Metrics.screenWidth * 0.9,
-                    marginLeft: Metrics.doubleBaseMargin}}
+                  dropdownStyle={this.props.advancedPlanSubCategoryList.length >= 2 ? styles.dropdown : styles.dropD}
                   renderRow={this._renderDropdownRow.bind(this)}>
                   <MKTextField
                     ref='advancedSpecialityType'

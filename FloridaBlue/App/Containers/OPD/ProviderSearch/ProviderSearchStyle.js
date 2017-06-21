@@ -175,10 +175,14 @@ export default StyleSheet.create({
     color: Colors.steel,
     fontFamily: Fonts.type.emphasis
   },
-  dropdown: {
+  dropDown: {
     width: Metrics.screenWidth * 0.9,
     marginLeft: Metrics.doubleBaseMargin
-
+  },
+  dropD: {
+    width: Metrics.screenWidth * 0.9,
+    height: Metrics.screenHeight * .05,
+    marginLeft: Metrics.doubleBaseMargin
   },
   dropdownItem: {
     fontSize: Fonts.size.regular,

@@ -407,7 +407,7 @@ class ProviderSearch extends Component {
               </HideableView>
 
               <HideableView visible={this.state.unknownCareState} removeWhenHidden>
-                <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropDown} renderRow={this._renderDropdownRow.bind(this)}>
                   <MKTextField
                     ref='careType'
                     textInputStyle={{flex: 1,
@@ -427,11 +427,7 @@ class ProviderSearch extends Component {
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')}
-                  onSelect={this._specialitySelected} dropdownStyle={{
-                   // height:(Metrics.screenHeight - Metrics.screenHeight * 0.989)*_.map(this.props.planSubCategoryList, 'subCategoryName').length,
-                    width: Metrics.screenWidth * 0.9,
-                    marginLeft: Metrics.doubleBaseMargin
-                  }}
+                  onSelect={this._specialitySelected} dropdownStyle={this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown  : styles.dropD}
                   renderRow={this._renderDropdownRow.bind(this)}
                 // adjustFrame={style => this._dropdown_3_adjustFrame(style)}
                 >
