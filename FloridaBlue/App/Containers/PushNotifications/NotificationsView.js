@@ -78,6 +78,7 @@ class NotificationsView extends Component {
         <SwipeListView style={{ marginTop: 10, margin: 10, flex: 1 }}
           dataSource={this.ds.cloneWithRows(this.state.listViewData)}
           enableEmptySections
+          disableRightSwipe
           renderRow={data => (
             <View style={styles.rowFront}>
               <View style={{ flex: 1, marginTop: 10 }}>
