@@ -215,15 +215,16 @@ class ClaimsList extends Component {
 
    _renderViewMore () {
             if(this.state.isShowingViewMore){
-             return( <View style={{flex: 0, margin: 14}}>
+             return( <View style={{flex: 1, margin: 14}}>
                       <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
                       { 
                         this.props.claimsdata.data.length < this.props.claimsdata.totalCount ?
-                        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                          <TouchableOpacity onPress={this.viewMore} style={{flexDirection: 'row'}}>
-                            <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
+                        <View style={{flex:1, justifyContent: 'center'}}>
+                          <TouchableOpacity onPress={this.viewMore} style={{flexDirection: 'row',flex:1}}>
+                            <Text style={styles.claimsViewMore}>View More </Text>
+                            <Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
                           </TouchableOpacity>
-                          <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
+                        
                         </View>
                         : null 
                       }
@@ -246,41 +247,47 @@ class ClaimsList extends Component {
       } else if (this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 0) {
         return (
         <View style={{flex:1}}>
-
-          <View style={styles.claimsListHeader1}>
-            <View style={styles.claimsListHeader2}>
-              <View style={styles.claimsListHeader3}>
-                <View style={styles.claimsListHeader4}>
+          <View style={{flex:0.4,backgroundColor:Colors.snow}}/>
+          <View style={{flex:1,backgroundColor:Colors.snow}}>
+            <View style={{flex:1,flexDirection:'row',justifyContent:'center'}}>
+              <View style={{flex:0.5}}>
                   <Text style={styles.claimsListHeaderText}>Claims List</Text>
+                </View>
+                <View style={{flex:0.5,alignItems:'flex-end',marginRight:Metrics.baseMargin*Metrics.screenWidth*0.004}}>  
                   <TouchableOpacity onPress={this.handleSearch}>
                     <Image source={Images.claimlistsearch} />
                   </TouchableOpacity>
                 </View>
-              </View>
+             </View> 
             </View>
 
-            <View style={styles.claimsCategories1}>
-              <View style={styles.claimsCategories2}>
-                <View style={styles.claimsCardRow1}>
-                  <TouchableOpacity style={styles.claimsSortCategories}><Text style={styles.claimsCategoryText}> Date</Text><Flb name='caret-up-down' size={20} color={Colors.flBlue.anvil} /></TouchableOpacity>
+            <View style={{flex:1}}>
+              <View style={{flex:1,flexDirection:'row',justifyContent:'center'}}>
+                <View style={{flex:0.3,flexDirection:'row'}}>
+                  
+                  <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                    <Text style={styles.claimsCategoryText}>Date</Text>
+                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.002} color={Colors.flBlue.anvil} />
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.claimsCardRow2}>
-                  <TouchableOpacity onPress={() => this.props.claimsdata.sortBy('providerName', true)} style={styles.claimsSortCategories}>
+                <View style={{flex:0.3}}>
+                    <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
                     <Text style={styles.claimsCategoryText}> Member</Text>
-                    <Flb name='caret-up-down' size={20} color={Colors.flBlue.anvil} />
+                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.002} color={Colors.flBlue.anvil} />
                   </TouchableOpacity>
                 </View>
-                <View style={styles.claimsCardRow3}>
-                  <TouchableOpacity style={styles.claimsSortCategories}><Text style={styles.claimsCategoryText}> Providers</Text><Flb name='caret-up-down' size={20} color={Colors.flBlue.anvil} /></TouchableOpacity>
+                <View style={{flex:0.4}}>
+                     <TouchableOpacity style={{flex:0.4,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                    <Text style={styles.claimsCategoryText}> Providers</Text>
+                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.002} color={Colors.flBlue.anvil} />
+                    </TouchableOpacity>
                 </View>
               </View>
             </View>
 
-          </View>
-
           <View style={styles.claimsCardContainer}>
-            <ScrollView>
-              <View>
+            <ScrollView style={{flex: 10}}>
+              <View style={{flex:10}}>
                 <ClaimsCard
                           data={this.props.claimsdata.data}
                           cardLimit={this.props.claimsdata.data.length ==  this.props.claimsdata.totalCount ? this.props.claimsdata.data.length : this.state.listLimit}
@@ -288,8 +295,7 @@ class ClaimsList extends Component {
                          />
 
                 {this._renderViewMore()}
-
-              </View>
+                </View>      
             </ScrollView>
           </View>
 
@@ -353,9 +359,7 @@ class ClaimsList extends Component {
        console.log("entered to claims list " ,this.props.claimsdata)
     return (
       <View style={styles.container}>
-        <View>
           {this._renderHeader()}
-        </View>
         <View style={{ flex: 1 }}>
           {
             this._displayCondition()
