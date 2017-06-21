@@ -41,6 +41,7 @@ import SignUpView from './SignUpView'
 import Clouds from './Clouds'
 import CityScape from './CityScape'
 import { Spinner } from 'native-base'
+import HideableView from 'react-native-hideable-view'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 var logo = require('./logo.png')
@@ -521,7 +522,7 @@ class Login extends Component {
 
   _renderLogin () {
     let textStyle = {}
-    if (Platform.OS === 'ios' && this.props.touchAvailable && this.props.credentialStored == false) {
+    if (Platform.OS === 'ios' && this.props.touchAvailable) {
       textStyle = styles.touchTextField
     } else {
       textStyle = styles.textField
@@ -535,9 +536,7 @@ class Login extends Component {
                 <MKTextField
                   ref='username'
                   style={textStyle}
-                  textInputStyle={{flex: 1,
-                  color: Colors.flBlue.anvil,
-                  fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='next'
                   autoCapitalize='none'
@@ -553,9 +552,7 @@ class Login extends Component {
                 <MKTextField
                   ref='password'
                   style={textStyle}
-                  textInputStyle={{flex: 1,
-                  color: Colors.flBlue.anvil,
-                  fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='done'
                   autoCapitalize='none'
@@ -570,37 +567,29 @@ class Login extends Component {
               </View>
             </View>
 
-            { Platform.OS === 'ios' && this.props.touchAvailable && !this.props.credentialStored ?
+            { Platform.OS === 'ios' && this.props.touchAvailable ?
                 <View style={styles.enableTouchContainer}>
-                  <TouchableOpacity onPress={() => { this._handleTouchCheckbox() }}>
-                    <View>
-                      <Text style={[styles.touchInstruction, {marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028}]}>Setup Your</Text>
-                      <View style={styles.fingerprintContainer}>
-                          {this.props.touchEnabled ?
-                            <Flb name="fingerprint" size={Metrics.icons.medium} style={styles.fingerprintEnabled} />
+                  { this.props.credentialStored ?
+                      <TouchableOpacity onPress={() => { this._authenticateUserWithTouch() }}>
+                        <View style={styles.fingerprintContainer}>
+                          <Text style={styles.touchInstruction}>Setup Your</Text>
+                          <Flb name="fingerprint" size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
+                          <Text style={styles.touchInstruction}>Fingerprint</Text>
+                        </View>
+                      </TouchableOpacity>
+                    :
+                      <TouchableOpacity onPress={() => { this._handleTouchCheckbox() }}>
+                        <View style={styles.fingerprintContainer}>
+                          <Text style={styles.touchInstruction}>Setup Your</Text>
+                          { this.props.touchEnabled ?
+                              <Flb name="fingerprint" size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
                             :
-                            <Flb name="fingerprint" size={Metrics.icons.medium} style={styles.fingerprintDisabled} />
+                              <Flb name="fingerprint" size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintDisabled} />
                           }
-                      </View>
-                      <Text style={styles.touchInstruction}>Fingerprint</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              :
-                null
-            }
-
-            { Platform.OS === 'ios' && this.props.touchAvailable && this.props.credentialStored ?
-                <View style={styles.enableTouchContainer}>
-                  <TouchableOpacity onPress={() => { this._authenticateUserWithTouch() }}>
-                    <View>
-                      <Text style={[styles.touchInstruction, {marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028}]}>Use Your</Text>
-                      <View style={styles.fingerprintContainer}>
-                          <Flb name="fingerprint" size={Metrics.icons.medium} style={styles.fingerprintEnabled} />
-                      </View>
-                      <Text style={styles.touchInstruction}>Fingerprint</Text>
-                    </View>
-                  </TouchableOpacity>
+                          <Text style={styles.touchInstruction}>Fingerprint</Text>
+                        </View>
+                      </TouchableOpacity>
+                  }
                 </View>
               :
                 null
@@ -664,8 +653,7 @@ class Login extends Component {
                 <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => NavigationActions.screen_1()}>
-                <Image style={styles.signUpButton}
-                  source={Images.signUpButton} />
+                <Image style={styles.signUpButton} source={Images.signUpButton} />
               </TouchableOpacity>
             </SignUpView>
           </View>

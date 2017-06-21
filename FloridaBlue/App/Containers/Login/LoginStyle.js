@@ -46,7 +46,7 @@ export default StyleSheet.create({
     bottom: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.011 : Metrics.doubleBaseMargin * Metrics.screenWidth * 0.012
   },
   row: {
-    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0048,
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0042,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025
   },
   forgotRow: {
@@ -58,16 +58,17 @@ export default StyleSheet.create({
     paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.004
   },
   signUpButton: {
-    width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.056 : Metrics.baseMargin * Metrics.screenWidth * 0.058,
-    height: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenHeight * 0.0063 : Metrics.baseMargin * Metrics.screenHeight * 0.007,
+    width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.056 : Metrics.baseMargin * Metrics.screenWidth * 0.060,
+    height: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenHeight * 0.0063 : Metrics.baseMargin * Metrics.screenHeight * 0.008,
     alignSelf: 'center',
+    resizeMode: 'contain',
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.004
   },
   loginContainer: {
     flex: 1,
     flexDirection: 'row',
     paddingTop: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002,
-    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.009
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0095
   },
   touchLoginContainer: {
     flex: 1,
@@ -93,22 +94,20 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: Colors.flBlue.grey3,
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.003
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0033
   },
   fingerprintContainer: {
-    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0026,
-    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0013,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028,
     alignItems: 'center'
   },
   fingerprintDisabled: {
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.0045,
-    width: Metrics.baseMargin * Metrics.screenHeight * 0.0045,
-    color: Colors.flBlue.grey3
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.006,
+    width: Metrics.baseMargin * Metrics.screenHeight * 0.006,
+    color: Colors.flBlue.grey3,
   },
   fingerprintEnabled: {
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.0045,
-    width: Metrics.baseMargin * Metrics.screenHeight * 0.0045,
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.006,
+    width: Metrics.baseMargin * Metrics.screenHeight * 0.006,
     color: Colors.flBlue.ocean
   },
   link: {
