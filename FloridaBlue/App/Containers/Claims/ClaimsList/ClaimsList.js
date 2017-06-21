@@ -75,11 +75,6 @@ class ClaimsList extends Component {
     this.memberSelected = this.memberSelected.bind(this)
   }
 
-  viewClaimsList () {
-    this.props.attemptClaimsList()
-    NavigationActions.ClaimsList()
-  }
-
   _renderHeader () {
     return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
@@ -101,22 +96,6 @@ class ClaimsList extends Component {
         <Text style={styles.dropdownItem}>{rowData}</Text>
       </TouchableHighlight>
     )
-  }
-
-  claimsListRequest (newProps) {
-    this.state.searchData.start = newProps.start;
-    this.state.searchData.end = newProps.end;
-    this.state.searchData.sortBy = newProps.sortBy;
-    newProps.attemptClaimsList(this.state.searchData)
-    this.setState({isShowingViewMore: true})
-
-  }
-
-  componentWillReceiveProps (newProps) {
-    if (this.state.isFetchingMore) {
-      this.claimsListRequest(newProps)
-      this.setState({isFetchingMore: false})
-    }
   }
 
   handleSearch () {
@@ -198,6 +177,21 @@ class ClaimsList extends Component {
   }
 
   componentDidMount () {
+  }
+   claimsListRequest (newProps) {
+    this.state.searchData.start = newProps.start;
+    this.state.searchData.end = newProps.end;
+    this.state.searchData.sortBy = newProps.sortBy;
+    newProps.attemptClaimsList(this.state.searchData)
+    this.setState({isShowingViewMore: true})
+
+  }
+
+  componentWillReceiveProps (newProps) {
+    if (this.state.isFetchingMore) {
+      this.claimsListRequest(newProps)
+      this.setState({isFetchingMore: false})
+    }
   }
 
   viewMore () {
