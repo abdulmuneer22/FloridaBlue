@@ -58,8 +58,8 @@ export default StyleSheet.create({
     paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.004
   },
   signUpButton: {
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.055,
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.0062,
+    width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.056 : Metrics.baseMargin * Metrics.screenWidth * 0.058,
+    height: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenHeight * 0.0063 : Metrics.baseMargin * Metrics.screenHeight * 0.007,
     alignSelf: 'center',
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.004
   },

@@ -43,9 +43,7 @@ class MyIdCard extends Component {
   }
 
   componentDidMount () {
-    // this.props.attemptMyIdCard()
     console.tron.log('I am Id Card screen')
-    console.tron.log(this.props)
   }
 
   toggle () {
@@ -72,7 +70,6 @@ class MyIdCard extends Component {
               transform: [{rotate: '270deg'}],
               resizeMode: 'contain',
               width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.15) : Metrics.screenHeight
-
             }} >
               <View style={{flex: 1 }}>
 
@@ -103,16 +100,16 @@ class MyIdCard extends Component {
 
                   <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.73)), alignItems: 'flex-start'}}>
                     <View style={{flex: 0.1}}>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data.MemberID} </Text>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> ???? </Text>
                     </View>
                     <View style={{flex: 0.1}}>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0015}}> RX BIN {this.props.data.RXBIN} </Text>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002}}> {this.props.data.GroupDivisionNumber} {this.props.data.RXPCN}</Text>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data.RXBIN}</Text>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data.RXPCN}</Text>
                     </View>
                     <View style={{flex: 0.1}} />
                     <View style={{flex: 0.1}}>
                       <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Plan Number: {this.props.data.PlanNumber} </Text>
-                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Plan Name: ???? </Text>
+                      <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Plan Name: {this.props.data.PlanName}</Text>
                     </View>
                     <View style={{flex: 0.1}}>
                       <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>  </Text>

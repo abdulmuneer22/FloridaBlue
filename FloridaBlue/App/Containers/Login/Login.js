@@ -84,6 +84,7 @@ class Login extends Component {
     component = this
     this._handleLoginState = this._handleLoginState.bind(this)
     this._authenticateUserWithTouch = this._authenticateUserWithTouch.bind(this)
+    this._handleTouchCheckbox = this._handleTouchCheckbox.bind(this)
   }
 
   componentWillMount () {
@@ -505,11 +506,11 @@ class Login extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.touchViews}>
-            <Text style={styles.touchInstruction}>Place finger on home button to log in</Text>
+            <Text style={styles.touchInstruction}>Click above to launch Touch ID</Text>
           </View>
           <View>
             <TouchableOpacity onPress={this._handleLoginState}>
-              <Text style={styles.link}>Enable User Name & Password Fields</Text>
+              <Text style={styles.link}>Switch To User ID & Password Fields</Text>
             </TouchableOpacity>
           </View>
         </LoginView>
@@ -520,7 +521,7 @@ class Login extends Component {
 
   _renderLogin () {
     let textStyle = {}
-    if (this.props.touchAvailable && this.props.credentialStored == false) {
+    if (Platform.OS === 'ios' && this.props.touchAvailable && this.props.credentialStored == false) {
       textStyle = styles.touchTextField
     } else {
       textStyle = styles.textField
@@ -535,8 +536,8 @@ class Login extends Component {
                   ref='username'
                   style={textStyle}
                   textInputStyle={{flex: 1,
-                    color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  color: Colors.flBlue.anvil,
+                  fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='next'
                   autoCapitalize='none'
@@ -553,8 +554,8 @@ class Login extends Component {
                   ref='password'
                   style={textStyle}
                   textInputStyle={{flex: 1,
-                    color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  color: Colors.flBlue.anvil,
+                  fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='done'
                   autoCapitalize='none'
@@ -569,21 +570,40 @@ class Login extends Component {
               </View>
             </View>
 
-            {this.props.touchAvailable && !this.props.credentialStored ?
+            { Platform.OS === 'ios' && this.props.touchAvailable && !this.props.credentialStored ?
                 <View style={styles.enableTouchContainer}>
                   <TouchableOpacity onPress={() => { this._handleTouchCheckbox() }}>
-                    <Text style={[styles.touchInstruction, {marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028}]}>Setup Your</Text>
-                    <View style={styles.fingerprintContainer}>
-                        {this.props.touchEnabled ?
-                          <Flb name="fingerprint" size={Metrics.icons.medium} style={styles.fingerprintEnabled} />
-                          :
-                          <Flb name="fingerprint" size={Metrics.icons.medium} style={styles.fingerprintDisabled} />
-                        }
+                    <View>
+                      <Text style={[styles.touchInstruction, {marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028}]}>Setup Your</Text>
+                      <View style={styles.fingerprintContainer}>
+                          {this.props.touchEnabled ?
+                            <Flb name="fingerprint" size={Metrics.icons.medium} style={styles.fingerprintEnabled} />
+                            :
+                            <Flb name="fingerprint" size={Metrics.icons.medium} style={styles.fingerprintDisabled} />
+                          }
+                      </View>
+                      <Text style={styles.touchInstruction}>Fingerprint</Text>
                     </View>
-                    <Text style={styles.touchInstruction}>Fingerprint</Text>
                   </TouchableOpacity>
                 </View>
-              : null
+              :
+                null
+            }
+
+            { Platform.OS === 'ios' && this.props.touchAvailable && this.props.credentialStored ?
+                <View style={styles.enableTouchContainer}>
+                  <TouchableOpacity onPress={() => { this._authenticateUserWithTouch() }}>
+                    <View>
+                      <Text style={[styles.touchInstruction, {marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028}]}>Use Your</Text>
+                      <View style={styles.fingerprintContainer}>
+                          <Flb name="fingerprint" size={Metrics.icons.medium} style={styles.fingerprintEnabled} />
+                      </View>
+                      <Text style={styles.touchInstruction}>Fingerprint</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              :
+                null
             }
           </View>
         </LoginView>
@@ -633,10 +653,11 @@ class Login extends Component {
               <Image source={Images.clearLogo} style={styles.logo} />
             </LogoView>
 
-            {Platform.OS === 'ios' && this.props.touchLoginVisible
-                  ? this._renderTouchLogin()
-                : this._renderLogin()
-              }
+            { Platform.OS === 'ios' && this.props.touchLoginVisible?
+                this._renderTouchLogin()
+              :
+                this._renderLogin()
+            }
 
             <SignUpView>
               <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
