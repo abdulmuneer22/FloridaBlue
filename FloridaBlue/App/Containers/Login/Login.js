@@ -689,7 +689,7 @@ class Login extends Component {
               <Image source={Images.clearLogo} style={styles.logo} />
             </LogoView>
 
-            { Platform.OS === 'ios' && this.props.touchLoginVisible ?
+            { Platform.OS === 'ios' && this.props.touchLoginVisible && this.props.credentialStored ?
                 this._renderTouchLogin()
               :
               <View>
