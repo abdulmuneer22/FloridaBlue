@@ -237,9 +237,9 @@ class ClaimsList extends Component {
     if (this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 0) {
         return (
         <View style={{flex:1}}>
-          <View style={{flex:0.4,backgroundColor:Colors.snow}}/>
-          <View style={{flex:1,backgroundColor:Colors.snow}}>
-            <View style={{flex:1,flexDirection:'row',justifyContent:'center'}}>
+         
+          <View style={{flex:2,backgroundColor:Colors.snow}}>
+            <View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
               <View style={{flex:0.5}}>
                   <Text style={styles.claimsListHeaderText}>Claims List</Text>
                 </View>
@@ -257,25 +257,25 @@ class ClaimsList extends Component {
                   
                   <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
                     <Text style={styles.claimsCategoryText}>Date</Text>
-                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.002} color={Colors.flBlue.anvil} />
+                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                     </TouchableOpacity>
                 </View>
                 <View style={{flex:0.3}}>
                     <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
                     <Text style={styles.claimsCategoryText}> Member</Text>
-                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.002} color={Colors.flBlue.anvil} />
+                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                   </TouchableOpacity>
                 </View>
                 <View style={{flex:0.4}}>
                      <TouchableOpacity style={{flex:0.4,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
                     <Text style={styles.claimsCategoryText}> Providers</Text>
-                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.002} color={Colors.flBlue.anvil} />
+                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                     </TouchableOpacity>
                 </View>
               </View>
             </View>
 
-          <View style={{flex:13}}>
+          <View style={{flex:15}}>
             <ScrollView style={{flex: 13}}>
               <View style={{flex:13}}>
                 <ClaimsCard
