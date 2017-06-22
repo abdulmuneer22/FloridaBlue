@@ -86,6 +86,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0007
   },
+  triggerTouchContainer: {
+    alignSelf: 'center',
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.0179,
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0101
+  },
   triggerTouchButton: {
     width: Metrics.baseMargin * Metrics.screenWidth * 0.0179,
     height: Metrics.baseMargin * Metrics.screenHeight * 0.0101
@@ -97,17 +102,18 @@ export default StyleSheet.create({
     height: Metrics.baseMargin * Metrics.screenHeight * 0.0033
   },
   fingerprintContainer: {
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028,
-    alignItems: 'center'
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028
   },
   fingerprintDisabled: {
     height: Metrics.baseMargin * Metrics.screenHeight * 0.006,
-    width: Metrics.baseMargin * Metrics.screenHeight * 0.006,
-    color: Colors.flBlue.grey3,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.0189,
+    paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0035,
+    color: Colors.flBlue.grey3
   },
   fingerprintEnabled: {
     height: Metrics.baseMargin * Metrics.screenHeight * 0.006,
-    width: Metrics.baseMargin * Metrics.screenHeight * 0.006,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.0189,
+    paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0035,
     color: Colors.flBlue.ocean
   },
   link: {
