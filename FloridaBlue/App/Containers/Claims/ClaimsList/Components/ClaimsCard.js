@@ -82,8 +82,8 @@ class ClaimsCard extends Component {
                 <View key={i} style={{ flex: 1 }}>
                   <TouchableOpacity key={i} style={{ flex: 1 }} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
                     <Card style={styles.claimsListCard} key={i} >
-                      <View style={{ flex: 1, flexDirection: 'row',marginTop:10,marginBottom:10, justifyContent: 'center' }}>
-                      
+                      <View style={{ flex: 1, flexDirection: 'row',marginTop:Metrics.baseMargin*Metrics.screenHeight*0.002,marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.002, justifyContent: 'center' }}>
+                         <View style={{flex: 0.01,marginTop:-Metrics.baseMargin*Metrics.screenHeight*0.002,marginBottom:-Metrics.baseMargin*Metrics.screenHeight*0.002, backgroundColor: color}} />
                         <View style={{ flex: 0.25, alignItems: 'center', justifyContent: 'center' }}>
                           <Text style={styles.claimsCardText}>
                             {this.formatDate(value.dateOfService)}
