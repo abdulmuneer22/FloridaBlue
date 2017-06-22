@@ -226,7 +226,7 @@ class ClaimsList extends Component {
                   </View>)
             }
             if(this.props.fetching){
-              return (<View style={{flex: 1, alignSelf: 'center' }}>
+              return (<View style={{flex: 1, alignSelf: 'center', marginTop:10 }}>
                           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
                       </View>)
             }
