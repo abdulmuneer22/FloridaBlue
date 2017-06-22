@@ -275,9 +275,9 @@ class ClaimsList extends Component {
               </View>
             </View>
 
-          <View style={styles.claimsCardContainer}>
-            <ScrollView style={{flex: 10}}>
-              <View style={{flex:10}}>
+          <View style={{flex:13}}>
+            <ScrollView style={{flex: 13}}>
+              <View style={{flex:13}}>
                 <ClaimsCard
                           data={this.props.claimsdata.data}
                           cardLimit={this.state.listLimit < this.props.claimsdata.totalCount ? this.state.listLimit : this.props.claimsdata.data.length}
