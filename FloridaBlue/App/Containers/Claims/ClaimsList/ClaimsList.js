@@ -50,7 +50,7 @@ class ClaimsList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      listLimit: this.props.claimsdata.data.length > 0 ? this.props.claimsdata.data.length : 0,
+      listLimit: this.props.claimsdata.data.length > 0 ? this.props.claimsdata.data.length : 10,
       totalNumberOfCardPerScreen: 10,
       isFetchingMore: false,
       searchVisible: false,
@@ -209,7 +209,7 @@ class ClaimsList extends Component {
   }
 
    _renderViewMore () {
-            if(this.state.isShowingViewMore){
+            if(!this.props.fetching){
              return( <View style={{flex: 1, margin: 14}}>
                       <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
                       { 
@@ -225,21 +225,16 @@ class ClaimsList extends Component {
                       }
                   </View>)
             }
-          if(!this.state.isShowingViewMore){
+            if(this.props.fetching){
             return (<View style={{flex: 1, alignSelf: 'center' }}>
                         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
                     </View>)
-          }
+            }
+          
     }
 
   _displayCondition () {
-    if (this.props.fetching) {
-      return (
-        <View style={styles.spinnerView}>
-          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>)
-      } else if (this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 0) {
+    if (this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 0) {
         return (
         <View style={{flex:1}}>
           <View style={{flex:0.4,backgroundColor:Colors.snow}}/>
