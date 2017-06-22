@@ -50,7 +50,7 @@ class ClaimsList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      listLimit: this.props.claimsdata.data.length > 0 ? this.props.claimsdata.data.length : 10,
+      listLimit: 10,
       totalNumberOfCardPerScreen: 10,
       isFetchingMore: false,
       searchVisible: false,
@@ -211,9 +211,9 @@ class ClaimsList extends Component {
    _renderViewMore () {
             if(!this.props.fetching){
              return( <View style={{flex: 1, margin: 14}}>
-                      <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
+                      <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit < this.props.claimsdata.totalCount ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
                       { 
-                        this.props.claimsdata.data.length < this.props.claimsdata.totalCount ?
+                        this.state.listLimit < this.props.claimsdata.totalCount ?
                         <View style={{flex:1, justifyContent: 'center'}}>
                           <TouchableOpacity onPress={this.viewMore} style={{flexDirection: 'row',flex:1}}>
                             <Text style={styles.claimsViewMore}>View More </Text>
@@ -226,9 +226,9 @@ class ClaimsList extends Component {
                   </View>)
             }
             if(this.props.fetching){
-            return (<View style={{flex: 1, alignSelf: 'center' }}>
-                        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                    </View>)
+              return (<View style={{flex: 1, alignSelf: 'center' }}>
+                          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                      </View>)
             }
           
     }
@@ -280,10 +280,9 @@ class ClaimsList extends Component {
               <View style={{flex:10}}>
                 <ClaimsCard
                           data={this.props.claimsdata.data}
-                          cardLimit={this.props.claimsdata.data.length ==  this.props.claimsdata.totalCount ? this.props.claimsdata.data.length : this.state.listLimit}
+                          cardLimit={this.state.listLimit < this.props.claimsdata.totalCount ? this.state.listLimit : this.props.claimsdata.data.length}
                           claimsCount={this.props.claimsdata.totalCount}
                          />
-
                 {this._renderViewMore()}
                 </View>      
             </ScrollView>
