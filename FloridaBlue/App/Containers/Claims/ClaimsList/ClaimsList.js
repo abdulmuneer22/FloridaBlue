@@ -214,7 +214,6 @@ class ClaimsList extends Component {
   }
 
    _renderViewMore () {
-            if(this.state.isShowingViewMore){
              return( <View style={{flex: 0, margin: 14}}>
                       <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
                       { 
@@ -223,17 +222,10 @@ class ClaimsList extends Component {
                           <TouchableOpacity onPress={this.viewMore} style={{flexDirection: 'row'}}>
                             <Text style={styles.claimsViewMore}>View More </Text><Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/> 
                           </TouchableOpacity>
-                          <TouchableOpacity><Image source={Images.infoIcon} style={{marginLeft: 80}} /></TouchableOpacity>
                         </View>
                         : null 
                       }
                   </View>)
-            }
-          if(!this.state.isShowingViewMore){
-            return (<View style={{flex: 1, alignSelf: 'center' }}>
-                        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                    </View>)
-          }
     }
 
   _displayCondition () {
@@ -279,17 +271,20 @@ class ClaimsList extends Component {
           </View>
 
           <View style={styles.claimsCardContainer}>
-            <ScrollView>
-              <View>
+            <ScrollView>              
                 <ClaimsCard
                           data={this.props.claimsdata.data}
                           cardLimit={this.props.claimsdata.data.length ==  this.props.claimsdata.totalCount ? this.props.claimsdata.data.length : this.state.listLimit}
                           claimsCount={this.props.claimsdata.totalCount}
                          />
-
-                {this._renderViewMore()}
-
-              </View>
+            {
+              !this.state.isShowingViewMore ?
+                    <View style={{flex: 1, alignSelf: 'center' }}>
+                        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                    </View>
+              :
+                this._renderViewMore()
+            }
             </ScrollView>
           </View>
 
@@ -349,8 +344,8 @@ class ClaimsList extends Component {
   }
 
   render () {
-     console.log("claims list data" +this.props.datePickerVisible)
-       console.log("entered to claims list " ,this.props.claimsdata)
+    console.log("claims list data" +this.props.datePickerVisible)
+    console.log("entered to claims list " ,this.props.claimsdata)
     return (
       <View style={styles.container}>
         <View>
