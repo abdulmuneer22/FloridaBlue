@@ -41,13 +41,12 @@ export const INITIAL_STATE = Immutable({
   listLimit: 10,
   datePickerVisible: false,
   startDate: '',
-  endDate: '', 
+  endDate: 'End Date',
   providerName: '',
   memberName: '',
   start : 1,
   end : 10,
   sortBy : 'providerName:1, memberName:-1, date:1'
-
 })
 
 /* ------------- Reducers ------------- */
@@ -137,7 +136,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CLAIMS_SUMMARY_FAILURE]: _claimSummaryFailure,
   [Types.CLAIMS_MEMBER_LIST_REQUEST]: _claimMemberListRequest,
   [Types.CLAIMS_MEMBER_LIST_SUCCESS]: _claimMemberListSuccess,
-  [Types.CLAIMS_MEMBER_LIST_FAILURE]: _claimMemberListFailure,  
+  [Types.CLAIMS_MEMBER_LIST_FAILURE]: _claimMemberListFailure,
   [Types.CHANGE_LIST_LIMIT]: _changeListLimit,
   [Types.CHANGE_DATE_PICKER_VISIBLE]: _changeDatePickerVisible,
   [Types.CHANGE_START_DATE]: _changeStartDate,
