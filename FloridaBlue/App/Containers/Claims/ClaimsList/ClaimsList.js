@@ -238,7 +238,7 @@ class ClaimsList extends Component {
         return (
         <View style={{flex:1}}>
          
-          <View style={{flex:2,backgroundColor:Colors.snow}}>
+          <View style={{flex:1.5,backgroundColor:Colors.snow}}>
             <View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
               <View style={{flex:0.5}}>
                   <Text style={styles.claimsListHeaderText}>Claims List</Text>
@@ -260,15 +260,15 @@ class ClaimsList extends Component {
                     <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                     </TouchableOpacity>
                 </View>
-                <View style={{flex:0.3}}>
-                    <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                    <Text style={styles.claimsCategoryText}> Member</Text>
+                <View style={{flex:0.25}}>
+                    <TouchableOpacity style={{flex:0.25,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                    <Text style={styles.claimsCategoryText}>Member</Text>
                     <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                   </TouchableOpacity>
                 </View>
-                <View style={{flex:0.4}}>
-                     <TouchableOpacity style={{flex:0.4,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                    <Text style={styles.claimsCategoryText}> Providers</Text>
+                <View style={{flex:0.45}}>
+                     <TouchableOpacity style={{flex:0.45,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                    <Text style={styles.claimsCategoryText}>Providers</Text>
                     <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                     </TouchableOpacity>
                 </View>
@@ -276,13 +276,13 @@ class ClaimsList extends Component {
             </View>
 
           <View style={{flex:15}}>
-            <ScrollView style={{flex: 13}}>
-              <View style={{flex:13}}>
+            <ScrollView style={{flex: 15}}>
+              <View style={{flex:15}}>
                 <ClaimsCard
-                          data={this.props.claimsdata.data}
-                          cardLimit={this.state.listLimit < this.props.claimsdata.totalCount ? this.state.listLimit : this.props.claimsdata.data.length}
-                          claimsCount={this.props.claimsdata.totalCount}
-                         />
+                  data={this.props.claimsdata.data}
+                  cardLimit={this.state.listLimit < this.props.claimsdata.totalCount ? this.state.listLimit : this.props.claimsdata.data.length}
+                  claimsCount={this.props.claimsdata.totalCount}
+                  />
                 {this._renderViewMore()}
                 </View>      
             </ScrollView>
@@ -290,7 +290,7 @@ class ClaimsList extends Component {
 
           <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
             <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearch}>
-              <Flb name='remove' size={20} />
+              <Flb name='remove' size={Metrics.doubleBaseMargin*Metrics.screenWidth*0.003} />
             </TouchableOpacity>
             <Text style={styles.searchTitle}>Search for a claim by filling out the fields below:</Text>
             <MKTextField
