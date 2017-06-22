@@ -177,6 +177,7 @@ class ClaimsList extends Component {
   }
 
   componentDidMount () {
+    
   }
    claimsListRequest (newProps) {
     this.state.searchData.start = newProps.start;
