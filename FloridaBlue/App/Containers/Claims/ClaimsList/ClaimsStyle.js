@@ -28,12 +28,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
     // padding: 9,
     //height: 37,
+    flex:1,
     margin: 10,
     marginBottom: 1,
     alignItems: 'center'
   },
   claimsListHeader1: {
-    flex: 0.3
+    flex: 1
   },
   claimsListHeader2: {
     flex: 0.2,
@@ -59,19 +60,8 @@ export default StyleSheet.create({
     opacity: 0.9
   },
   claimsCategories1: {
-    margin: 10,
-    marginBottom: 0,
-    paddingTop: 5,
-    paddingBottom: 5
-  },
-  claimsCategories2: {
-    flex: 0,
-    flexDirection: 'row',
-    marginTop: -15
-  },
-  claimsSortCategories: {
-    flexDirection: 'row'
-  },
+    flex:1,
+    },
   cardButton: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -126,7 +116,8 @@ export default StyleSheet.create({
     color: Colors.flBlue.anvil
   },
   claimsCardContainer: {
-    flex: 1.5
+    flex: 10,
+   
   },
   claimsViewMore: {
     textAlign: 'center',
@@ -263,6 +254,7 @@ export default StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
+    flex:1,
     position: 'absolute',
     paddingTop: Metrics.doubleBaseMargin,
     backgroundColor: Colors.snow
@@ -280,11 +272,13 @@ export default StyleSheet.create({
     marginTop: Metrics.doubleBaseMargin * 2,
     marginBottom: Metrics.doubleBaseMargin * 2,
     width: Metrics.screenWidth * 0.9,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    flex:1
   },
   closeSearchButton: {
     alignSelf: 'flex-end',
-    marginRight: Metrics.baseMargin
+    marginRight: Metrics.baseMargin,
+    flex:1
   },
   dateContainer: {
     flex: 1,
