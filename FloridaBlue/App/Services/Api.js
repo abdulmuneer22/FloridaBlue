@@ -92,6 +92,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getNotification = () => api.get('/notify/messages')
   const getMyIdCard = () => api.get('/idCard')
   const getClaimsList = (data) => api.post('/claims/list',data);
+  const getClaimsMemberList = () => api.get('/claims/summary');
   const getStaffLanguage = (data) => api.post('/opd/languages', {
     'language': 'EN',
     'who': 'staff'
@@ -334,7 +335,8 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     getClaimDetail,
     getClaimsSummary,
     getNotification,
-    postFCMToken
+    postFCMToken,
+    getClaimsMemberList
   }
 }
 

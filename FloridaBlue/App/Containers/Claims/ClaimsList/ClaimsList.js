@@ -63,7 +63,7 @@ class ClaimsList extends Component {
           endDate : '',
           start : 1,
           end : 10,
-          sortBy : '',
+          sortBy : 'providerName:0, memberName:0, date:0'
       }
     }
     this.viewMore = this.viewMore.bind(this)
@@ -73,6 +73,7 @@ class ClaimsList extends Component {
     this.addStartDate = this.addStartDate.bind(this)
     this.addEndDate = this.addEndDate.bind(this)
     this.memberSelected = this.memberSelected.bind(this)
+    this.sortClaims = this.sortClaims.bind(this)
   }
 
   _renderHeader () {
@@ -169,7 +170,8 @@ class ClaimsList extends Component {
   }
 
   memberSelected (index, value: string) {
-    let selectedMember = memberList[index]
+    let selectedMember = this.props.claimsMemberList[index].memberName
+    console.tron.log('selectedMember ==>' + selectedMember)
     this.props.changeMemberName(selectedMember)
     this.setState({ searchVisible: false }, function () {
       this.setState({ searchVisible: true })
@@ -179,7 +181,8 @@ class ClaimsList extends Component {
   componentDidMount () {
     
   }
-   claimsListRequest (newProps) {
+
+  claimsListRequest (newProps) {
     this.state.searchData.start = newProps.start;
     this.state.searchData.end = newProps.end;
     this.state.searchData.sortBy = newProps.sortBy;
@@ -208,10 +211,13 @@ class ClaimsList extends Component {
     }
   }
 
+  sortClaims(data){
+    //alert('sortType'+data.sortBy)
+  }
    _renderViewMore () {
             if(!this.props.fetching){
              return( <View style={{flex: 1, margin: 14}}>
-                      <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {this.state.listLimit < this.props.claimsdata.totalCount ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
+                      <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
                       { 
                         this.state.listLimit < this.props.claimsdata.totalCount ?
                         <View style={{flex:1, justifyContent: 'center'}}>
@@ -226,9 +232,11 @@ class ClaimsList extends Component {
                   </View>)
             }
             if(this.props.fetching){
-              return (<View style={{flex: 1, alignSelf: 'center' }}>
+              return (
+                      <View style={{flex: 1, alignSelf: 'center' }}>
                           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                      </View>)
+                      </View>
+                    )
             }
           
     }
@@ -253,23 +261,22 @@ class ClaimsList extends Component {
 
             <View style={{flex:1}}>
               <View style={{flex:1,flexDirection:'row',justifyContent:'center'}}>
-                <View style={{flex:0.3,flexDirection:'row'}}>
-                  
-                  <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                    <Text style={styles.claimsCategoryText}>Date</Text>
-                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.002} color={Colors.flBlue.anvil} />
+                <View style={{flex:0.3,flexDirection:'row'}}>                  
+                  <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}} onPress={this.sortClaims.bind({sortBy : 'date'})}>
+                      <Text style={styles.claimsCategoryText}>Date</Text>
+                      <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                     </TouchableOpacity>
                 </View>
                 <View style={{flex:0.3}}>
                     <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                    <Text style={styles.claimsCategoryText}> Member</Text>
-                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.002} color={Colors.flBlue.anvil} />
+                      <Text style={styles.claimsCategoryText}> Member</Text>
+                      <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                   </TouchableOpacity>
                 </View>
                 <View style={{flex:0.4}}>
                      <TouchableOpacity style={{flex:0.4,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                    <Text style={styles.claimsCategoryText}> Providers</Text>
-                    <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.002} color={Colors.flBlue.anvil} />
+                      <Text style={styles.claimsCategoryText}> Providers</Text>
+                      <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                     </TouchableOpacity>
                 </View>
               </View>
@@ -304,9 +311,9 @@ class ClaimsList extends Component {
               tintColor={Colors.black}
             />
             
-            <ModalDropdown options={_.map(memberList, 'memberName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+            <ModalDropdown options={_.map(this.props.claimsMemberList, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
-                ref='careType'
+                ref='memberName'
                 textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
                 style={styles.textField}
                 editable={false}
@@ -314,7 +321,7 @@ class ClaimsList extends Component {
                 placeholder={'Member Name'}
                 placeholderTextColor={Colors.steel}
                 tintColor={Colors.black}
-                value={''}
+                value={this.props.memberName}
               />
             </ModalDropdown>
             <TouchableOpacity style={styles.startDateButton} onPress={this.showDatePicker}>
@@ -344,8 +351,9 @@ class ClaimsList extends Component {
   }
 
   render () {
-     console.log("claims list data" +this.props.datePickerVisible)
-       console.log("entered to claims list " ,this.props.claimsdata)
+   /* console.tron.log("claims list data" + this.props.datePickerVisible)
+    console.tron.log("entered to claims list "  + this.props.claimsdata)
+    console.tron.log("entered to claims member list " + JSON.stringify(this.props.claimsMemberList))*/
     return (
       <View style={styles.container}>
           {this._renderHeader()}
@@ -363,6 +371,7 @@ class ClaimsList extends Component {
 ClaimsList.propTypes = {
   data: PropTypes.object,
   attemptClaimsList: PropTypes.func,
+  attemptMemberList: PropTypes.func,
   error: PropTypes.string
 }
 
@@ -370,6 +379,7 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.claims.fetching,
     claimsdata: state.claims.claimslist,
+    claimsMemberList : state.claims.claimsMemberList,
     error: state.claims.error,
     claimsListCount: state.claims.claimslist,
     datePickerVisible: state.claims.datePickerVisible,
@@ -394,9 +404,8 @@ const mapDispatchToProps = (dispatch) => {
     changeMemberName: (memberName) => dispatch(ClaimsActions.changeMemberName(memberName)),
     changeStart: (start) => dispatch(ClaimsActions.changeStart(start)),
     changeEnd: (end) => dispatch(ClaimsActions.changeEnd(end)),
-    changeSortBy: (sortBy) => dispatch(ClaimsActions.changeSortBy(sortBy))
-
-
+    changeSortBy: (sortBy) => dispatch(ClaimsActions.changeSortBy(sortBy)),
+    attemptMemberList: () => dispatch(ClaimsActions.memberListRequest())
   }
 }
 
