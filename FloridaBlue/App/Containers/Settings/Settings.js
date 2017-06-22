@@ -38,11 +38,6 @@ class Settings extends Component {
       if (status == 'SUCCESS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
-        Alert.alert('Success', 'Touch ID has been disabled on this device.', [
-          {
-            text: 'OK'
-          }
-        ])
       }
     })
   }
@@ -52,13 +47,25 @@ class Settings extends Component {
       var status = status[0]
       if (status == 'ENABLED') {
         this.props.changeTouchEnabled(true)
-        Alert.alert('Success', 'Touch ID has been enabled on this device. Log in again to complete setup.', [
+        Alert.alert('Success', 'Next time you log in, you\'ll be prompted to set up Touch ID.', [
           {
             text: 'OK'
           }
         ])
       }
     })
+  }
+
+  _showDisableAlert() {
+    Alert.alert(
+      'Disable Touch ID',
+      'Are you sure you want to turn off Touch ID?',
+      [
+        {text: 'Cancel', style: 'cancel'},
+        {text: 'Yes', onPress: () => this._disableTouchID()},
+      ],
+      { cancelable: false }
+    )
   }
 
   _resetToggle() {
@@ -91,7 +98,7 @@ class Settings extends Component {
         if (status === 'SUCCESS') {
           let username = credentialObject['username']
           if (username === this.props.username) {
-            this._disableTouchID()
+            this._showDisableAlert()
           } else {
             Alert.alert(
               'Sorry',
@@ -102,11 +109,11 @@ class Settings extends Component {
               { cancelable: false }
             )
           }
-    } else {
-      this._disableTouchID()
+        } else {
+          this._disableTouchID()
           Alert.alert(
             'Oops!',
-            'An error occurred while changing this setting. For security we\'ve reset your credentials.',
+            'Oops! Looks like there\'s a problem. Please log in using your user ID and password to reset Touch ID.',
             [
               {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
             ],
@@ -127,7 +134,7 @@ class Settings extends Component {
           {this.props.touchEnabled ?
             <Text style={styles.touchIdText}>Touch ID Enabled</Text>
           :
-            <Text style={styles.touchIdText}>Touch ID Disabled</Text>
+            <Text style={styles.touchIdText}>Enable Touch ID</Text>
           }
           <MKSwitch style={styles.touchStatusSwitch}
             checked={this.props.touchEnabled}
