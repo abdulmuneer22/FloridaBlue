@@ -29,6 +29,7 @@ import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme, setTheme } fr
 import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
 import ProviderActions from '../../../Redux/ProviderRedux'
+import SettingActions from '../../../Redux/SettingRedux'
 import _ from 'lodash'
 import ActionButton from 'react-native-action-button'
 import LinearGradient from 'react-native-linear-gradient'
@@ -232,17 +233,18 @@ class ProviderSearch extends Component {
     }
   }
 
-  _selectCurrentLocation (event) {
+  _selectCurrentLocation(event) {
     if (event.checked) {
-      if (this.props.locationStatus == 'authorized') {
+      if (this.props.geolocationEnabled) {
         this._getLocation()
         this.props.changeAddress('Using Current Address')
       } else {
-        Permissions.requestPermission('location')
-        .then(response => {
+        Permissions.requestPermission('location').then(response => {
           if (response == 'authorized') {
+            this.props.changeGeolocationEnabled(true)
             this._getLocation()
           } else {
+            this.props.changeGeolocationEnabled(false)
             this._alertForLocationPermission()
           }
         })
@@ -290,28 +292,24 @@ class ProviderSearch extends Component {
   }
 
   _getLocation () {
-    if (this.props.locationStatus == '' || this.props.locationStatus != 'authorized') {
-      var locationStatus = ''
-      Permissions.getPermissionStatus('location')
-      .then(response => {
-        locationStatus = response
+    if (this.props.geolocationEnabled) {
+      this._getPosition()
+    } else {
+      Permissions.getPermissionStatus('location').then(response => {
         if (response == 'authorized') {
-          this.props.changeLocationPermissionStatus(response)
+          this.props.changeGeolocationEnabled(true)
           this._getPosition()
         } else if (response == 'undetermined') {
-          Permissions.requestPermission('location')
-          .then(response => {
-            this.props.changeLocationPermissionStatus(response)
-            locationStatus = response
+          Permissions.requestPermission('location').then(response => {
             if (response == 'authorized') {
+              this.props.changeGeolocationEnabled(true)
               this._getPosition()
+            } else {
+              this.props.changeGeolocationEnabled(false)
             }
           })
         }
       })
-      this.props.changeLocationPermissionStatus(locationStatus)
-    } else if (this.props.locationStatus == 'authorized') {
-      this._getPosition()
     }
   }
 
@@ -326,9 +324,9 @@ class ProviderSearch extends Component {
       this.props.changeAddress('Using Current Location')
     },
       (error) => alert('No GPS location found.'))
-    this.props.changeAddress(this.props.homeAddress)
-    this.props.changeLatitude(0)
-    this.props.changeLongitude(0)
+      this.props.changeAddress(this.props.homeAddress)
+      this.props.changeLatitude(0)
+      this.props.changeLongitude(0)
   }
 
   _alertForLocationPermission () {
@@ -598,11 +596,11 @@ const mapStateToProps = (state) => {
     member: state.member,
     urgentCareState: state.urgentCareState,
     networkCodeList: state.provider.networkCodeList,
-    locationStatus: state.provider.locationStatus,
     showUrgentCareBanner: state.provider.showUrgentCareBanner,
     searchRange: state.provider.searchRange,
     start: state.provider.start,
-    configData: state.provider.configData
+    configData: state.provider.configData,
+    geolocationEnabled: state.setting.geolocationEnabled
   }
 }
 
@@ -625,9 +623,9 @@ const mapDispatchToProps = (dispatch) => {
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeAddress: (address) => dispatch(ProviderActions.changeAddress(address)),
     changeHomeAddress: (homeAddress) => dispatch(ProviderActions.changeHomeAddress(homeAddress)),
-    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus)),
     changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner)),
-    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
+    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
+    changeGeolocationEnabled: (geolocationEnabled) => dispatch(SettingActions.changeGeolocationEnabled(geolocationEnabled))
   }
 }
 

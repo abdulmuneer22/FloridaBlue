@@ -56,7 +56,6 @@ const { Types, Creators } = createActions({
   changeHomeAddress: ['homeAddress'],
   changeSearchRange: ['searchRange'],
   changeNetworkCodeList: ['networkCodeList'],
-  changeLocationPermissionStatus: ['locationStatus'],
   changeAddressKey: ['addressKey'],
   changeProviderKey: ['providerKey'],
   changeLatDelta: ['latDelta'],
@@ -112,7 +111,6 @@ export const INITIAL_STATE = Immutable({
   networkCodeList: [],
   providerKey: '',
   addressKey: '',
-  locationStatus: '',
   fetching: false,
   asyncfetching: false,
   error: null,
@@ -270,9 +268,6 @@ export const _changeHomeAddress = (state: Object, {homeAddress}: Object) => stat
 // searchRange
 export const _changeSearchRange = (state: Object, {searchRange}: Object) => state.merge({searchRange})
 
-// locationStatus
-export const _changeLocationPermissionStatus = (state: Object, {locationStatus}: Object) => state.merge({locationStatus})
-
 // AcceptPatientType
 export const _changePatientType = (state: Object, {acceptingPatientsIndicator}: Object) => state.merge({acceptingPatientsIndicator})
 
@@ -384,7 +379,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_GENDER_TYPE]: _changeGenderType,
   [Types.CHANGE_SEARCH_RANGE]: _changeSearchRange,
   [Types.CHANGE_NETWORK_CODE_LIST]: _changeNetworkCodeList,
-  [Types.CHANGE_LOCATION_PERMISSION_STATUS]: _changeLocationPermissionStatus,
   [Types.CHANGE_ADDRESS_KEY]: _changeAddressKey,
   [Types.CHANGE_PROVIDER_KEY]: _changeProviderKey,
   [Types.CHANGE_LAT_DELTA]: _changeLatDelta,

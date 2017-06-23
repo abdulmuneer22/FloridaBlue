@@ -32,6 +32,7 @@ const Permissions = require('react-native-permissions')
 
 import ProviderActions from '../../../Redux/ProviderRedux'
 import SearchDataActions from '../../../Redux/SearchDataRedux'
+import SettingActions from '../../../Redux/SettingRedux'
 import _ from 'lodash'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -224,15 +225,16 @@ class AdvancedSearch extends Component {
 
   _selectCurrentLocation (event) {
     if (event.checked) {
-      if (this.props.locationStatus == 'authorized') {
+      if (this.props.geolocationEnabled) {
         this._getLocation()
         this.props.changeAddress('Using Current Address')
       } else {
-        Permissions.requestPermission('location')
-        .then(response => {
+        Permissions.requestPermission('location').then(response => {
           if (response == 'authorized') {
+            this.props.changeGeolocationEnabled(true)
             this._getLocation()
           } else {
+            this.props.changeGeolocationEnabled(false)
             this._alertForLocationPermission()
           }
         })
@@ -337,47 +339,41 @@ class AdvancedSearch extends Component {
   }
 
   _getLocation () {
-    var getCurrentLocation = false
-
-    if (this.props.locationStatus == '' || this.props.locationStatus != 'authorized') {
-      var locationStatus = ''
-      Permissions.getPermissionStatus('location')
-      .then(response => {
-        locationStatus = response
+    if (this.props.geolocationEnabled) {
+      this._getPosition()
+    } else {
+      Permissions.getPermissionStatus('location').then(response => {
         if (response == 'authorized') {
-          getCurrentLocation = true
-          this.props.changeLocationPermissionStatus(response)
+          this.props.changeGeolocationEnabled(true)
+          this._getPosition()
         } else if (response == 'undetermined') {
-          Permissions.requestPermission('location')
-          .then(response => {
-            this.props.changeLocationPermissionStatus(response)
-            locationStatus = response
+          Permissions.requestPermission('location').then(response => {
             if (response == 'authorized') {
-              getCurrentLocation = true
+              this.props.changeGeolocationEnabled(true)
+              this._getPosition()
+            } else {
+              this.props.changeGeolocationEnabled(false)
             }
           })
         }
       })
-      this.props.changeLocationPermissionStatus(locationStatus)
-    } else if (this.props.locationStatus == 'authorized') {
-      getCurrentLocation = true
     }
+  }
 
-    if (getCurrentLocation) {
-      navigator.geolocation.getCurrentPosition(
-      (position) => {
-        var newLat = position['coords']['latitude']
-        var newLong = position['coords']['longitude']
+  _getPosition () {
+    navigator.geolocation.getCurrentPosition(
+    (position) => {
+      var newLat = position['coords']['latitude']
+      var newLong = position['coords']['longitude']
 
-        this.props.changeLatitude(newLat)
-        this.props.changeLongitude(newLong)
-        this.props.changeAddress('Using Current Location')
-      },
-        (error) => alert('No GPS location found.'))
+      this.props.changeLatitude(newLat)
+      this.props.changeLongitude(newLong)
+      this.props.changeAddress('Using Current Location')
+    },
+      (error) => alert('No GPS location found.'))
       this.props.changeAddress(this.props.homeAddress)
       this.props.changeLatitude(0)
       this.props.changeLongitude(0)
-    }
   }
 
   _careSelected (index, value:string) {
@@ -882,11 +878,11 @@ const mapStateToProps = (state) => {
     officeHours: state.provider.officeHours,
     advancedSpecialityType: state.provider.advancedSpecialityType,
     member: state.member,
-    locationStatus: state.provider.locationStatus,
     knownCareState: state.provider.knownCareState,
     unknownCareState: state.provider.unknownCareState,
     specialityState: state.provider.specialityState,
-    networkCodeList: state.provider.networkCodeList
+    networkCodeList: state.provider.networkCodeList,
+    geolocationEnabled: state.setting.geolocationEnabled
   }
 }
 
@@ -917,7 +913,7 @@ const mapDispatchToProps = (dispatch) => {
     changeCareType: (careType) => dispatch(ProviderActions.changeCareType(careType)),
     changeAdvancedSpecialityType: (advancedSpecialityType) => dispatch(ProviderActions.changeAdvancedSpecialityType(advancedSpecialityType)),
     changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner)),
-    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus))
+    changeGeolocationEnabled: (geolocationEnabled) => dispatch(SettingActions.changeGeolocationEnabled(geolocationEnabled))
   }
 }
 
