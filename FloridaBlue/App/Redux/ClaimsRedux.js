@@ -41,12 +41,12 @@ export const INITIAL_STATE = Immutable({
   listLimit: 10,
   datePickerVisible: false,
   startDate: '',
-  endDate: 'End Date',
+  endDate: '',
   providerName: '',
   memberName: '',
   start : 1,
   end : 10,
-  sortBy : 'providerName:1, memberName:-1, date:1'
+  sortBy : []
 })
 
 /* ------------- Reducers ------------- */
@@ -62,7 +62,7 @@ export const _claimDetailSuccess = (state: Object, {data}:Object) => {
 export const _claimDetailFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {}})
 
 // we're attempting to login
-export const _claimListRequest = (state: Object) => state.merge({fetching: true, data: {}, error: null })
+export const _claimListRequest = (state: Object) => state.merge({fetching: true,error: null })
 
 // we've successfully logged in
 export const _claimListSuccess = (state: Object, {data}:Object) => {

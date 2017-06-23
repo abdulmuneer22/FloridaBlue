@@ -63,7 +63,11 @@ class ClaimsList extends Component {
           endDate : '',
           start : 1,
           end : 10,
-          sortBy : 'providerName:0, memberName:0, date:0'
+          sortBy : {
+                      providerName:0, 
+                      memberName:0, 
+                      date:0
+                    }
       }
     }
     this.viewMore = this.viewMore.bind(this)
@@ -82,8 +86,8 @@ class ClaimsList extends Component {
         {NavItems.backButton()}
       </View>
       <Text style={styles.headerTextStyle}>
-        Plan Claims
-              </Text>
+          Plan Claims
+      </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
         {NavItems.settingsButton()}
       </View>
@@ -175,14 +179,6 @@ class ClaimsList extends Component {
     })
   }
 
-   claimsListRequest (newProps) {
-    this.state.searchData.start = newProps.start;
-    this.state.searchData.end = newProps.end;
-    this.state.searchData.sortBy = newProps.sortBy;
-    newProps.attemptClaimsList(this.state.searchData)
-    this.setState({isShowingViewMore: true})
-  }
-
   componentDidMount() {
     if (this.props.startDate == '') {
       let newDate = moment(new Date()).format('MMM Do YYYY')
@@ -192,7 +188,7 @@ class ClaimsList extends Component {
 
   componentWillReceiveProps (newProps) {
     if (this.state.isFetchingMore) {
-      this.claimsListRequest(newProps)
+      newProps.attemptClaimsList(newProps)
       this.setState({isFetchingMore: false})
     }
   }
@@ -210,34 +206,96 @@ class ClaimsList extends Component {
     }
   }
 
-  sortClaims(data){
-    //alert('sortType'+data.sortBy)
+  sortClaims(column){
+    let sortBy = [];
+    if(column == 'provider'){
+      let providerSortState = this.state.searchData.sortBy.providerName;
+      let sortByState = 0
+      if(providerSortState == 0 || providerSortState == -1){
+         sortByState = 1
+      }else if( providerSortState == 1){
+         sortByState =  -1
+      }else{
+        sortByState = 1
+      }
+      this.state.searchData.sortBy.providerName = sortByState;
+    }
+
+    if(column == 'date'){
+      let dateSortState = this.state.searchData.sortBy.date;
+      let sortByState = 0
+      if(dateSortState == 0 || dateSortState == -1){
+         sortByState = 1
+      }else if( dateSortState == 1){
+         sortByState =  -1
+      }else{
+        sortByState = 1
+      }
+      this.state.searchData.sortBy.date = sortByState;
+    }
+
+    if(column == 'member'){
+      let memberSortState = this.state.searchData.sortBy.memberName;
+      let sortByState = 0
+      if(memberSortState == 0 || memberSortState == -1){
+         sortByState = 1
+      }else if( memberSortState == 1){
+         sortByState =  -1
+      }else{
+        sortByState = 1
+      }
+      this.state.searchData.sortBy.memberName = sortByState;
+    }
+
+
+    if(this.state.searchData.sortBy.providerName != 0 ){
+      sortBy.push({
+            "columnName": "providerName",
+            "sortOrder": this.state.searchData.sortBy.providerName
+       });
+    }
+
+    if(this.state.searchData.sortBy.date != 0 ){
+      sortBy.push({
+            "columnName": "date",
+            "sortOrder": this.state.searchData.sortBy.date
+       });
+    }
+
+    if(this.state.searchData.sortBy.memberName != 0 ){
+      sortBy.push({
+            "columnName": "memberName",
+            "sortOrder": this.state.searchData.sortBy.memberName
+       });
+    }
+    
+
+    this.props.changeSortBy(sortBy);
+    this.props.attemptClaimsList(this.props);
   }
    _renderViewMore () {
-            if(!this.props.fetching){
-             return( <View style={{flex: 1, margin: 14}}>
-                      <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
-                      { 
-                        this.state.listLimit < this.props.claimsdata.totalCount ?
-                        <View style={{flex:1, justifyContent: 'center'}}>
-                          <TouchableOpacity onPress={this.viewMore} style={{flexDirection: 'row',flex:1}}>
-                            <Text style={styles.claimsViewMore}>View More </Text>
-                            <Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/>
-                          </TouchableOpacity>
-
-                        </View>
-                        : null
-                      }
-                  </View>)
-            }
-            if(this.props.fetching){
-              return (<View style={{flex: 1, alignSelf: 'center', marginTop:10 }}>
-                          <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                      </View>
-                    )
-            }
-
-    }
+      if(!this.props.fetching){
+        return( <View style={{flex: 1, margin: 14}}>
+                <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
+                { 
+                  this.state.listLimit < this.props.claimsdata.totalCount ?
+                  <View style={{flex:1, justifyContent: 'center'}}>
+                    <TouchableOpacity onPress={this.viewMore} style={{flexDirection: 'row',flex:1}}>
+                      <Text style={styles.claimsViewMore}>View More </Text>
+                      <Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{marginTop: 3}}/>
+                    </TouchableOpacity>
+                  </View>
+                  : null
+                }
+            </View>)
+      }
+      if(this.props.fetching){
+        return (<View style={{flex: 1, alignSelf: 'center', marginTop:10 }}>
+                    <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                </View>
+              )
+      }
+  }
 
   _displayCondition () {
     if (this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 0) {
@@ -260,21 +318,21 @@ class ClaimsList extends Component {
             <View style={{flex:1}}>
               <View style={{flex:1,flexDirection:'row',justifyContent:'center'}}>
                 <View style={{flex:0.3,flexDirection:'row'}}>                  
-                  <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}} onPress={this.sortClaims.bind({sortBy : 'date'})}>
+                  <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}} onPress={() => this.sortClaims('date')}>
                       <Text style={styles.claimsCategoryText}>Date</Text>
-                      <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
+                      <Flb name = {this.state.searchData.sortBy.date==0 ? 'caret-up-down' : (this.state.searchData.sortBy.date==1 ?  'caret-up' :  'caret-down' ) } size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                     </TouchableOpacity>
                 </View>
                 <View style={{flex:0.3}}>
-                    <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                      <Text style={styles.claimsCategoryText}> Member</Text>
-                      <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
+                    <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}} onPress={() => this.sortClaims('member')}>
+                      <Text style={styles.claimsCategoryText}>Member</Text>
+                      <Flb name = {this.state.searchData.sortBy.memberName==0 ? 'caret-up-down' : (this.state.searchData.sortBy.memberName==1 ?  'caret-up' :  'caret-down' ) } size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                   </TouchableOpacity>
                 </View>
                 <View style={{flex:0.4}}>
-                     <TouchableOpacity style={{flex:0.4,flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                      <Text style={styles.claimsCategoryText}> Providers</Text>
-                      <Flb name='caret-up-down' size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
+                     <TouchableOpacity style={{flex:0.4,flexDirection:'row',justifyContent:'center',alignItems:'center'}} onPress={() => this.sortClaims('provider')}>
+                      <Text style={styles.claimsCategoryText}>Providers</Text>
+                      <Flb name = {this.state.searchData.sortBy.providerName==0 ? 'caret-up-down' : (this.state.searchData.sortBy.providerName==1 ?  'caret-up' :  'caret-down' ) } size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                     </TouchableOpacity>
                 </View>
               </View>
@@ -359,7 +417,6 @@ class ClaimsList extends Component {
         'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
         [
           { text: 'OK' }
-
         ]
       )
     }
@@ -373,9 +430,7 @@ class ClaimsList extends Component {
       <View style={styles.container}>
           {this._renderHeader()}
         <View style={{ flex: 1 }}>
-          {
-            this._displayCondition()
-          }
+          {this._displayCondition()}
         </View>
       </View>
 

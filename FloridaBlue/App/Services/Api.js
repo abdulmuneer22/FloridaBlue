@@ -91,7 +91,15 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getClaimsSummary = () => api.get('/claims/summary')
   const getNotification = () => api.get('/notify/messages')
   const getMyIdCard = () => api.get('/idCard')
-  const getClaimsList = (data) => api.post('/claims/list',data);
+  const getClaimsList = (data) => api.post('/claims/list',{
+        startDate: null,//(data && data.startDate && data.startDate != '') ? data.startDate : null ,
+        endDate:  (data && data.endDate && data.endDate != '') ? data.endDate : null ,
+        providerName: (data && data.providerName && data.providerName != '') ? data.providerName : null ,
+        memberName: (data && data.claimType && data.claimType != '') ? data.claimType : null ,
+        start : data && data.start,
+        end : data && data.end,
+        sortBy : (data && data.sortBy && data.sortBy.length > 0) ? data.sortBy : null
+  });
   const getClaimsMemberList = () => api.get('/claims/summary');
   const getStaffLanguage = (data) => api.post('/opd/languages', {
     'language': 'EN',

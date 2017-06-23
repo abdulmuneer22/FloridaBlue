@@ -6,18 +6,8 @@ import ClaimsActions from '../Redux/ClaimsRedux'
 import LoginActions from '../Redux/LoginRedux'
 
 // attempts to login
-export function * claimslist (api, data) {
-  if(data && data.data){
-     if(data.data.memberName == '') delete data.data.memberName;
-     if(data.data.providerName == '') delete data.data.providerName;
-     if(data.data.startDate == '') delete data.data.startDate;
-     if(data.data.endDate == '') delete data.data.endDate;
-     if(data.data.sortBy == '') delete data.data.sortBy;
-     if(data.data.start == null) delete data.data.start;
-     if(data.data.end == null) delete data.data.end;
-  }
-  
-  const response = yield call(api.getClaimsList, data.data)
+export function * claimslist (api, {data}) {
+  const response = yield call(api.getClaimsList, data)
   if (response.status == '200') {
     // dispatch success
     var data = response.data.data
