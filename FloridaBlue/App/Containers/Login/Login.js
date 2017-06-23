@@ -28,10 +28,10 @@ import LoginActions from '../../Redux/LoginRedux'
 import MemberActions from '../../Redux/MemberRedux'
 import MyPlanActions from '../../Redux/MyPlanRedux'
 import SupportActions from '../../Redux/SupportRedux'
+import SettingActions from '../../Redux/SettingRedux'
 import styles from './LoginStyle'
 import Flb from '../../Themes/FlbIcon'
 import { Images, Metrics, Colors, Fonts } from '../../Themes'
-// import {FlbIcon} from'./FlbIcon'
 import I18n from 'react-native-i18n'
 import { MKTextField, MKColor, MKSpinner, MKCheckbox } from 'react-native-material-kit'
 import LoginView from './LoginView'
@@ -79,7 +79,8 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      modalVisible: false
+      modalVisible: false,
+      touchAvailable: false
     }
     this.isAttempting = false
     component = this
@@ -92,28 +93,29 @@ class Login extends Component {
     if (Platform.OS === 'ios') {
       TouchManager.checkTouchStatus((error, touchInfo) => {
         let touchStatus = touchInfo[0]
+        console.tron.log(touchStatus)
         switch (touchStatus) {
           case 'AUTHENTICATED':
             this.props.changeCredentialStored(true)
             this.props.changeTouchEnabled(true)
             this.props.changeTouchLoginVisible(true)
-            this.props.changeTouchAvailable(true)
+            this.setState({touchAvailable:true})
             if (this.props.origin != 'logout') {
               this._authenticateUserWithTouch()
             }
             break
           case 'ENABLED':
-            this.props.changeTouchAvailable(true)
+            this.setState({touchAvailable:true})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(true)
             break
           case 'DISABLED':
-            this.props.changeTouchAvailable(true)
+          this.setState({touchAvailable:true})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(false)
             break
           case 'UNAVAILABLE':
-            this.props.changeTouchAvailable(false)
+            this.setState({touchAvailable:false})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(false)
             break
@@ -497,28 +499,30 @@ class Login extends Component {
     )
   }
 
-  _renderTouchLogin () {
-    return (
-      <View>
-        <LoginView>
-          <View style={styles.touchLoginContainer}>
-            <TouchableOpacity style={styles.triggerTouchContainer} onPress={this._authenticateUserWithTouch}>
-              <Image style={styles.triggerTouchButton} source={Images.fingerprintCoin} />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.touchViews}>
-            <Text style={styles.touchInstruction}>Click above to launch Touch ID</Text>
-          </View>
-          <View>
-            <TouchableOpacity onPress={this._handleLoginState}>
-              <Text style={styles.link}>Switch To User ID & Password Fields</Text>
-            </TouchableOpacity>
-          </View>
-        </LoginView>
+  // IN CASE JASON CHANGES HIS MIND ABOUT THE TOUCH ID LOGIN //
 
-      </View>
-    )
-  }
+  // _renderTouchLogin () {
+  //   return (
+  //     <View>
+  //       <LoginView>
+  //         <View style={styles.touchLoginContainer}>
+  //           <TouchableOpacity style={styles.triggerTouchContainer} onPress={this._authenticateUserWithTouch}>
+  //             <Image style={styles.triggerTouchButton} source={Images.fingerprintCoin} />
+  //           </TouchableOpacity>
+  //         </View>
+  //         <View style={styles.touchViews}>
+  //           <Text style={styles.touchInstruction}>Click above to launch Touch ID</Text>
+  //         </View>
+  //         <View>
+  //           <TouchableOpacity onPress={this._handleLoginState}>
+  //             <Text style={styles.link}>Switch To User ID & Password Fields</Text>
+  //           </TouchableOpacity>
+  //         </View>
+  //       </LoginView>
+  //
+  //     </View>
+  //   )
+  // }
 
   _renderTouchAvailableLogin () {
     return (
@@ -685,10 +689,10 @@ class Login extends Component {
               <Image source={Images.clearLogo} style={styles.logo} />
             </LogoView>
 
-            { Platform.OS === 'ios' && this.props.touchLoginVisible && this.props.credentialStored ?
-                this._renderTouchLogin()
-              :
+            {Platform.OS === 'ios' && this.state.touchAvailable ?
                 this._renderTouchAvailableLogin()
+              :
+                this._renderLogin()
             }
 
             <SignUpView>
@@ -738,11 +742,11 @@ const mapStateToProps = (state) => {
     username: state.login.username,
     password: state.login.password,
     visibleDashboard: state.member.visibleDashboard,
-    touchEnabled: state.login.touchEnabled,
+    touchEnabled: state.setting.touchEnabled,
     touchCheckboxVisible: state.login.touchCheckboxVisible,
     logoutUrl: state.login.logoutUrl,
-    credentialStored: state.login.credentialStored,
-    touchAvailable: state.login.touchAvailable,
+    credentialStored: state.setting.credentialStored,
+    touchAvailable: state.setting.touchAvailable,
     touchLoginVisible: state.login.touchLoginVisible
   }
 }
@@ -757,9 +761,9 @@ const mapDispatchToProps = (dispatch) => {
     attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
     attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     clearLogin: () => dispatch(LoginActions.logout()),
-    changeTouchEnabled: (touchEnabled) => dispatch(LoginActions.changeTouchEnabled(touchEnabled)),
-    changeCredentialStored: (credentialStored) => dispatch(LoginActions.changeCredentialStored(credentialStored)),
-    changeTouchAvailable: (touchAvailable) => dispatch(LoginActions.changeTouchAvailable(touchAvailable)),
+    changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
+    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
+    changeTouchAvailable: (touchAvailable) => dispatch(SettingActions.changeTouchAvailable(touchAvailable)),
     changeTouchLoginVisible: (touchLoginVisible) => dispatch(LoginActions.changeTouchLoginVisible(touchLoginVisible))
   }
 }

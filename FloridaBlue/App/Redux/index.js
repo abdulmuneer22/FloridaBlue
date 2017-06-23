@@ -18,6 +18,7 @@ export default () => {
     registration: require('./RegistrationRedux').reducer,
     provider: require('./ProviderRedux').reducer,
     claims: require('./ClaimsRedux.js').reducer,
+    setting: require('./SettingRedux.js').reducer,
     Notification: require('./NotificationRedux').reducer
   })
 
