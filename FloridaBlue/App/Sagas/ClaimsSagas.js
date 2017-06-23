@@ -15,6 +15,7 @@ export function * claimslist (api, data) {
      if(data.data.sortBy == '') delete data.data.sortBy;
      if(data.data.start == null) delete data.data.start;
      if(data.data.end == null) delete data.data.end;
+     delete data.data.sortBy;
   }
   
   const response = yield call(api.getClaimsList, data.data)
