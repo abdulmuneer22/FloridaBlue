@@ -93,7 +93,6 @@ class Login extends Component {
     if (Platform.OS === 'ios') {
       TouchManager.checkTouchStatus((error, touchInfo) => {
         let touchStatus = touchInfo[0]
-        console.tron.log(touchStatus)
         switch (touchStatus) {
           case 'AUTHENTICATED':
             this.props.changeCredentialStored(true)
