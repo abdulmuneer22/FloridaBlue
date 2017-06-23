@@ -337,7 +337,7 @@ class ProviderSearch extends Component {
       'To see this information, you need to allow geolocation on your phone. Please go to Location in your phone\'s settings and turn it on.',
       [
         {text: 'Cancel', onPress: () => console.tron.log('permission denied'), style: 'cancel'},
-        ? {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
+        {text: 'Open Settings', onPress: Permissions.openSettings}
       ]
     )
   }
