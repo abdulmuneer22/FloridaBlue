@@ -25,12 +25,12 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.headerFont,
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
   },
-  touchContainer: {
+  settingContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  touchIdText: {
+  settingText: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0040,
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0040,
@@ -39,7 +39,7 @@ export default StyleSheet.create({
     fontWeight: (Platform.OS === 'ios') ? '500' : '400',
     alignItems: 'center'
   },
-  touchStatusSwitch: {
+  settingStatusSwitch: {
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
     marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.0030
