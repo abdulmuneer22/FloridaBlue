@@ -117,7 +117,7 @@ class TermsofUse extends Component {
               }} />
           </View>
           <View style={styles.checkTextView}>
-            <Text style={styles.checkText}>Accept terms of use and continue.</Text>
+            <Text allowFontScaling={false} style={styles.checkText}>Accept terms of use and continue.</Text>
           </View>
         </View>
         <View style={{marginTop: Metrics.doubleBaseMargin}}>
@@ -127,7 +127,7 @@ class TermsofUse extends Component {
         </View>
         <View style={styles.row}>
           <View>
-            <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
+            <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
           </View>
         </View>
       </View>
@@ -136,7 +136,7 @@ class TermsofUse extends Component {
 
   _displayHeader () {
     <Image style={styles.headerContainer} source={Images.newHeaderImage}>
-      <Text style={styles.headerTextStyle}>Terms of Use</Text>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>Terms of Use</Text>
     </Image>
   }
 
@@ -147,7 +147,7 @@ class TermsofUse extends Component {
       return (
         <View style={styles.spinnerView}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
         </View>
       )
     } else if (this.props.getTou) {

@@ -74,13 +74,13 @@ class DoctorCard extends Component {
 
                 <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: Metrics.baseMargin }}>
                   {this.props.data
-                    ? <Text style={styles.h1}>{this.props.data.displayName}</Text>
+                    ? <Text allowFontScaling={false} style={styles.h1}>{this.props.data.displayName}</Text>
                                         : null}
 
                   <View style={{flex: 1, flexDirection: 'row'}}>
                     <View style={{flex: 1}}>
                       {this.props.data
-                        ? <Text style={styles.h2}>{this.props.data.primarySpecialty}</Text> : null}
+                        ? <Text allowFontScaling={false} style={styles.h2}>{this.props.data.primarySpecialty}</Text> : null}
                     </View>
                     {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y'
                       ? <View style={{flex: 1, alignItems: 'center', marginTop: 10}}>
@@ -88,11 +88,11 @@ class DoctorCard extends Component {
                       </View> : null }
                   </View>
 
-                  <Text style={styles.h4}>{this.props.data && this.props.data.address[0] ? this.props.data.address[0].addressLine1 : null}, {this.props.data && this.props.data.address[0] ? this.props.data.address[0].addressLine2 : null}</Text>
+                  <Text allowFontScaling={false} style={styles.h4}>{this.props.data && this.props.data.address[0] ? this.props.data.address[0].addressLine1 : null}, {this.props.data && this.props.data.address[0] ? this.props.data.address[0].addressLine2 : null}</Text>
 
-                  <Text style={styles.h4_2}>{this.props.data && this.props.data.address[0] ? this.props.data.address[0].city : null}, { this.props.data && this.props.data.address[0] ? this.props.data.address[0].state : null}, {this.props.data && this.props.data.address[0] ? this.props.data.address[0].zipCode : null}</Text>
+                  <Text allowFontScaling={false} style={styles.h4_2}>{this.props.data && this.props.data.address[0] ? this.props.data.address[0].city : null}, { this.props.data && this.props.data.address[0] ? this.props.data.address[0].state : null}, {this.props.data && this.props.data.address[0] ? this.props.data.address[0].zipCode : null}</Text>
                   {this.props.data && this.props.data.address[0]
-                    ? <Text style={styles.h4_2}>{this.props.data.address[0].telephoneNumber}</Text> : null}
+                    ? <Text allowFontScaling={false} style={styles.h4_2}>{this.props.data.address[0].telephoneNumber}</Text> : null}
 
                 </View>
               </View>
@@ -113,7 +113,7 @@ class DoctorCard extends Component {
                         </View>
 
                         <View style={{ flex: 0.6, alignItems: 'flex-start' }}>
-                          <Text style={styles.callText}>Call</Text>
+                          <Text allowFontScaling={false} style={styles.callText}>Call</Text>
                         </View>
 
                       </View>
@@ -134,7 +134,7 @@ class DoctorCard extends Component {
                           alignItems: 'flex-start'
                         }}>
 
-                          <Text style={styles.directionText}>Directions</Text>
+                          <Text allowFontScaling={false} style={styles.directionText}>Directions</Text>
                         </View>
                       </View>
                     </TouchableOpacity>
@@ -163,8 +163,8 @@ class DoctorCard extends Component {
                                     />
                     </View>
                     <View style={{ flex: 0.8, flexDirection: 'row' }}>
-                      <Text style={styles.plannameText}>Gender: </Text>
-                      <Text style={styles.plannameText}>
+                      <Text allowFontScaling={false} style={styles.plannameText}>Gender: </Text>
+                      <Text allowFontScaling={false} style={styles.plannameText}>
                         {this.props.data.gender}
                       </Text>
                     </View>
@@ -193,13 +193,13 @@ class DoctorCard extends Component {
                     </View>
                     <View style={{ flex: 0.8, flexDirection: 'row' }}>
                       <View style={{flex: 0.4}}>
-                        <Text style={styles.plannameText}>Doctor Also Speaks: </Text>
+                        <Text allowFontScaling={false} style={styles.plannameText}>Doctor Also Speaks: </Text>
                       </View>
                       <View style={{flex: 0.4}}>
                         {this.props.data && this.props.data.languageCodes ? this.props.data.languageCodes.map((value, i) => {
                           return (<View style={{flex: 1}} key={i}>
 
-                            <Text style={styles.plannameText}>
+                            <Text allowFontScaling={false} style={styles.plannameText}>
                               {value.desc}
                             </Text>
 
@@ -235,12 +235,12 @@ class DoctorCard extends Component {
                     </View>
                     <View style={{ flex: 0.8, flexDirection: 'row' }}>
                       <View style={{flex: 0.4}}>
-                        <Text style={styles.plannameText}>Staff Speaks: </Text>
+                        <Text allowFontScaling={false} style={styles.plannameText}>Staff Speaks: </Text>
                       </View>
                       <View style={{flex: 0.4}}>
                         {this.props.data && this.props.data.staffLanguageCodes ? this.props.data.staffLanguageCodes.map((value, i) => {
                           return (<View style={{flex: 1}} key={i}>
-                            <Text style={styles.plannameText}>
+                            <Text allowFontScaling={false} style={styles.plannameText}>
                               {value.desc}
                             </Text>
                           </View>
@@ -273,7 +273,7 @@ class DoctorCard extends Component {
                   </View>
                   <View style={{ flex: 0.8 }}>
 
-                    <Text style={styles.plannameText}>
+                    <Text allowFontScaling={false} style={styles.plannameText}>
                       {this.props.data.acceptingNewPatients}
                     </Text>
                   </View>

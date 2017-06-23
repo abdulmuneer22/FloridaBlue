@@ -166,7 +166,7 @@ class SettingsContent extends Component {
       <ScrollView style={[styles.wrapper]}>
         <View style={styles.options}>
 
-          <Text style={styles.heading} onPress={this.handlePressDashBoard}>Dashboard</Text>
+          <Text allowFontScaling={false} style={styles.heading} onPress={this.handlePressDashBoard}>Dashboard</Text>
           <Divider />
 
           { this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined
@@ -177,7 +177,7 @@ class SettingsContent extends Component {
               }}>
                 <View style={{flexDirection: 'row', marginRight: Metrics.mediumMargin, marginTop: Metrics.baseMargin}}>
                   <View style={{flex: 1}}>
-                    <Text style={styles.heading1} > {this.props.visibilityRules.myHealthPlanTile.tileName['en']} </Text>
+                    <Text allowFontScaling={false} style={styles.heading1} > {this.props.visibilityRules.myHealthPlanTile.tileName['en']} </Text>
                   </View>
 
                   {
@@ -198,7 +198,7 @@ class SettingsContent extends Component {
                   {
                     this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined
 
-                      ? <View>{ this.props.visibilityRules.myHealthPlanTile.tileType != 'webview' ? <Text style={styles.subheading} onPress={this.handlePressPlans}>
+                      ? <View>{ this.props.visibilityRules.myHealthPlanTile.tileType != 'webview' ? <Text allowFontScaling={false} style={styles.subheading} onPress={this.handlePressPlans}>
                         { this.props.visibilityRules.myHealthPlanTile.tileSubTitle['en']}
                       </Text> : <View />}</View>
                       : null
@@ -225,7 +225,7 @@ class SettingsContent extends Component {
                   if (tile.tileId != null) {
                     return (
                       <View>
-                        <Text style={styles.benefitHeading}>{ tile.tileName['en']}</Text>
+                        <Text allowFontScaling={false} style={styles.benefitHeading}>{ tile.tileName['en']}</Text>
                       </View>
                     )
                   }
@@ -275,7 +275,7 @@ class SettingsContent extends Component {
                 if (tile.tileId != null && tile.tileId !== 'support' && tile.tileId !== 'claims' && tile.tileId.indexOf('benefits') == -1) {
                   return (
                     <View>
-                      <Text style={styles.heading}>{ tile.tileName['en']}</Text>
+                      <Text allowFontScaling={false} style={styles.heading}>{ tile.tileName['en']}</Text>
                       <Divider />
                     </View>
                   )
@@ -298,7 +298,7 @@ class SettingsContent extends Component {
 
             ? <TouchableOpacity onPress={this.handlePressFindCare} >
 
-              <Text style={{
+              <Text allowFontScaling={false} style={{
                 color: Colors.snow,
                 fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029,
                 marginBottom: Metrics.baseMargin,
@@ -318,7 +318,7 @@ class SettingsContent extends Component {
             <View >
               <Flb name='cog-gear' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
             </View>
-            <Text style={styles.heading2} onPress={this.handlePressSettings}>Settings</Text>
+            <Text allowFontScaling={false} style={styles.heading2} onPress={this.handlePressSettings}>Settings</Text>
           </View>
 
           { this.props.visibilityRules != undefined && this.props.visibilityRules.supportTile != undefined
@@ -327,7 +327,7 @@ class SettingsContent extends Component {
               <View >
                 <Flb name='support' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
               </View>
-              <Text style={styles.heading2} onPress={this.handlePressSupport}>{this.props.visibilityRules.supportTile.tileName['en']}</Text>
+              <Text allowFontScaling={false} style={styles.heading2} onPress={this.handlePressSupport}>{this.props.visibilityRules.supportTile.tileName['en']}</Text>
             </View>
           : null
 
@@ -339,7 +339,7 @@ class SettingsContent extends Component {
                 <Flb name='generic-doc' size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} />
               </View>
 
-              <Text style={styles.heading2} onPress={this.handlePressPolicy}>{this.props.visibilityRules.touTile.tileName['en']} </Text>
+              <Text allowFontScaling={false} style={styles.heading2} onPress={this.handlePressPolicy}>{this.props.visibilityRules.touTile.tileName['en']} </Text>
             </View>
           : null
 

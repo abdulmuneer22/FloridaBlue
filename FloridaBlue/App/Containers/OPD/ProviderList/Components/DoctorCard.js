@@ -91,13 +91,13 @@ class DoctorCard extends Component {
                   <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
                     {this.props.data
                       ? <TouchableOpacity onPress={this._doctorPage.bind(this, this.props.data)}>
-                        <Text style={styles.h1}>{this.props.data.displayName}</Text>
+                        <Text allowFontScaling={false} style={styles.h1}>{this.props.data.displayName}</Text>
                       </TouchableOpacity> : null}
                     <View style={{flex: 1, flexDirection: 'row'}}>
 
                       {this.props.data
                         ? <View style={{flex: 0.7}}>
-                          <Text style={styles.h2}>{this.props.data.primarySpecialty}</Text>
+                          <Text allowFontScaling={false} style={styles.h2}>{this.props.data.primarySpecialty}</Text>
                         </View> : null}
                       {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y'
                         ? <View style={{flex: 0.3, alignItems: 'center', marginTop: 10}}>
@@ -105,15 +105,15 @@ class DoctorCard extends Component {
                         </View> : null }
                     </View>
 
-                    <Text style={styles.h4}>{this.props.data ? this.props.data.addressLine1 : null}, {this.props.data ? this.props.data.addressLine2 : null}</Text>
+                    <Text allowFontScaling={false} style={styles.h4}>{this.props.data ? this.props.data.addressLine1 : null}, {this.props.data ? this.props.data.addressLine2 : null}</Text>
 
-                    <Text style={styles.h4_2}>{this.props.data ? this.props.data.city : null}, {this.props.data ? this.props.data.state : null}</Text>
+                    <Text allowFontScaling={false} style={styles.h4_2}>{this.props.data ? this.props.data.city : null}, {this.props.data ? this.props.data.state : null}</Text>
                     {this.props.data
-                      ? <Text style={styles.h4_2}>{this.props.data.zipCode}</Text> : null}
+                      ? <Text allowFontScaling={false} style={styles.h4_2}>{this.props.data.zipCode}</Text> : null}
                     {this.props.data
-                      ? <Text style={styles.h4_2}>{this.props.data.telephoneNumber}</Text> : null}
+                      ? <Text allowFontScaling={false} style={styles.h4_2}>{this.props.data.telephoneNumber}</Text> : null}
                     {this.props.data
-                      ? <Text style={styles.h4_3}>{this.props.data.distance} miles</Text> : null}
+                      ? <Text allowFontScaling={false} style={styles.h4_3}>{this.props.data.distance} miles</Text> : null}
                   </View>
                 </View>
 
@@ -131,7 +131,7 @@ class DoctorCard extends Component {
 
                         <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
 
-                          <Text style={styles.callText}>Call</Text>
+                          <Text allowFontScaling={false} style={styles.callText}>Call</Text>
                         </View>
 
                       </View>
@@ -146,7 +146,7 @@ class DoctorCard extends Component {
                         </View>
 
                         <View style={{flex: 0.72, alignItems: 'flex-start'}}>
-                          <Text style={styles.directionText}>Directions</Text>
+                          <Text allowFontScaling={false} style={styles.directionText}>Directions</Text>
                         </View>
                       </View>
                     </TouchableOpacity>
@@ -156,7 +156,7 @@ class DoctorCard extends Component {
             </View>
             : <View style={styles.spinnerView}>
               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-              <Text style={styles.spinnerText}>Loading..
+              <Text allowFontScaling={false} style={styles.spinnerText}>Loading..
                 </Text>
             </View>
           }
@@ -173,26 +173,26 @@ class DoctorCard extends Component {
                   <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2, paddingRight: 10}}>
                     {this.props.data
                       ? <TouchableOpacity onPress={this.providerSelected}>
-                        <Text style={styles.mapHeaderText}>{this.props.data.displayName}</Text>
+                        <Text allowFontScaling={false} style={styles.mapHeaderText}>{this.props.data.displayName}</Text>
                       </TouchableOpacity>
                     : null}
                     <View style={{flexDirection: 'row'}}>
                       {this.props.data
                         ? <View >
-                          <Text style={styles.mapSubText}>{this.props.data.primarySpecialty}</Text>
+                          <Text allowFontScaling={false} style={styles.mapSubText}>{this.props.data.primarySpecialty}</Text>
                         </View> : null}
                       <View style={{marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0015, marginLeft: Metrics.section * Metrics.screenWidth * 0.005}}>
                         {this.props.data && this.props.data.handicappedAccessIn && this.props.data.handicappedAccessIn == 'Y'
                           ? <Flb name='accessibility' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025} color={Colors.flBlue.ocean} /> : null}
                       </View>
                     </View>
-                    <Text style={styles.h4}>{this.props.data ? this.props.data.addressLine1 : null}, {this.props.data ? this.props.data.addressLine2 : null}</Text>
+                    <Text allowFontScaling={false} style={styles.h4}>{this.props.data ? this.props.data.addressLine1 : null}, {this.props.data ? this.props.data.addressLine2 : null}</Text>
 
-                    <Text style={styles.mapAdressText}>{this.props.data ? this.props.data.city : null}, { this.props.data ? this.props.data.state : null}, {this.props.data ? this.props.data.zipCode : null}</Text>
+                    <Text allowFontScaling={false} style={styles.mapAdressText}>{this.props.data ? this.props.data.city : null}, { this.props.data ? this.props.data.state : null}, {this.props.data ? this.props.data.zipCode : null}</Text>
                     {this.props.data
-                      ? <Text style={styles.mapAdressText}>{this.props.data.telephoneNumber}</Text> : null}
+                      ? <Text allowFontScaling={false} style={styles.mapAdressText}>{this.props.data.telephoneNumber}</Text> : null}
                     {this.props.data
-                      ? <Text style={styles.mapAdressText}>{this.props.data.distance} miles</Text> : null}
+                      ? <Text allowFontScaling={false} style={styles.mapAdressText}>{this.props.data.distance} miles</Text> : null}
                   </View>
                 </View>
                 <View style={{ flex: 1, marginTop: Metrics.textHeight * Metrics.screenHeight * 0.0065 }}>
@@ -209,7 +209,7 @@ class DoctorCard extends Component {
 
                         <View style={{ flex: 0.6, alignItems: 'flex-start' }}>
 
-                          <Text style={styles.callText}>Call</Text>
+                          <Text allowFontScaling={false} style={styles.callText}>Call</Text>
                         </View>
 
                       </View>
@@ -229,7 +229,7 @@ class DoctorCard extends Component {
                           alignItems: 'flex-start'
                         }}>
 
-                          <Text style={styles.directionText}>Directions</Text>
+                          <Text allowFontScaling={false} style={styles.directionText}>Directions</Text>
                         </View>
 
                       </View>

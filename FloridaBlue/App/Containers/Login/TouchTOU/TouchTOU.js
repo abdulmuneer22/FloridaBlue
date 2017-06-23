@@ -117,21 +117,21 @@ class TouchTOU extends Component {
         {this._renderHeader()}
         <ScrollView>
           <View>
-            <Text style={styles.paragraph}>{I18n.t('touchNoticeOne')}</Text>
-            <Text style={styles.paragraph}>{I18n.t('touchNoticeTwo')}</Text>
-            <Text style={styles.paragraph}>{I18n.t('touchNoticeThree')}</Text>
-            <Text style={styles.paragraph}>{I18n.t('touchNoticeFour')}</Text>
-            <Text style={styles.paragraph}>{I18n.t('touchNoticeFive')}</Text>
+            <Text allowFontScaling={false} style={styles.paragraph}>{I18n.t('touchNoticeOne')}</Text>
+            <Text allowFontScaling={false} style={styles.paragraph}>{I18n.t('touchNoticeTwo')}</Text>
+            <Text allowFontScaling={false} style={styles.paragraph}>{I18n.t('touchNoticeThree')}</Text>
+            <Text allowFontScaling={false} style={styles.paragraph}>{I18n.t('touchNoticeFour')}</Text>
+            <Text allowFontScaling={false} style={styles.paragraph}>{I18n.t('touchNoticeFive')}</Text>
 
             <View style={styles.buttonContainer}>
               <TouchableOpacity style={styles.buttonView} onPress={() => this._handleClose() }>
                 <View style={styles.buttonTextView}>
-                  <Text style={styles.footerText}>Decline</Text>
+                  <Text allowFontScaling={false} style={styles.footerText}>Decline</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonView} onPress={() => this._handleAccept() }>
                 <View style={styles.buttonTextView}>
-                  <Text style={styles.footerText}>Accept</Text>
+                  <Text allowFontScaling={false} style={styles.footerText}>Accept</Text>
                 </View>
               </TouchableOpacity>
             </View>

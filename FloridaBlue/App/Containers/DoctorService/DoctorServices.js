@@ -45,7 +45,7 @@ class DoctorServices extends Component {
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>
-      <Text style={styles.headerTextStyle}>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>
         Plan Benefits
               </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
@@ -81,7 +81,7 @@ class DoctorServices extends Component {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>
+        <Text allowFontScaling={false} style={styles.spinnerText}>
           Loading Please Wait
         </Text>
       </View>)
@@ -121,7 +121,7 @@ class DoctorServices extends Component {
 
                     }}>
 
-                      <Text style={styles.doctorTextStyle}>
+                      <Text allowFontScaling={false} style={styles.doctorTextStyle}>
                         {temp1.text['en']}
                       </Text>
 
@@ -183,7 +183,7 @@ class DoctorServices extends Component {
                     //  backgroundColor : 'yellow',
                     // alignItems : 'center',
                   }}>
-                    <Text style={{
+                    <Text allowFontScaling={false} style={{
                       fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0015,
                       margin: 5,
                     //  textAlign: 'justify',
@@ -220,7 +220,7 @@ class DoctorServices extends Component {
 
                     }}>
 
-                      <Text style={styles.doctorTextStyle}>
+                      <Text allowFontScaling={false} style={styles.doctorTextStyle}>
                         {temp1.text['en']}
                       </Text>
 
@@ -282,7 +282,7 @@ class DoctorServices extends Component {
                     //  backgroundColor : 'yellow',
                     // alignItems : 'center',
                   }}>
-                    <Text style={{
+                    <Text allowFontScaling={false} style={{
                       fontSize: Fonts.size.xm * Metrics.screenWidth * 0.0015,
                       margin: 5,
                     //  textAlign: 'justify',
@@ -297,7 +297,7 @@ class DoctorServices extends Component {
                   </View>
 
                 </Card></View>}
-             
+
               <View style={{ alignItems: 'center', marginBottom: 15}}>
                 <Switch
                   data={this.props.data}

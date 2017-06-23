@@ -57,7 +57,7 @@ class ProviderTypeInfo extends React.Component {
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
           {NavItems.backButton()}
         </View>
-        <Text style={styles.headerTextStyle}>Find Care</Text>
+        <Text allowFontScaling={false} style={styles.headerTextStyle}>Find Care</Text>
         <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
           {NavItems.settingsButton()}
         </View>
@@ -68,7 +68,7 @@ class ProviderTypeInfo extends React.Component {
   _renderMailLinks (mailOrderLink, index) {
     return (
       <TouchableOpacity style={styles.row} onPress={() => this.handleLink(mailOrderLink.link)}>
-        <Text style={styles.linkText}>{mailOrderLink.text}</Text>
+        <Text allowFontScaling={false} style={styles.linkText}>{mailOrderLink.text}</Text>
       </TouchableOpacity>
     )
   }
@@ -76,7 +76,7 @@ class ProviderTypeInfo extends React.Component {
   _renderProviderSpeciality (providerType, index) {
     return (
       <View style={styles.row}>
-        <Text style={styles.text}>{providerType}</Text>
+        <Text allowFontScaling={false} style={styles.text}>{providerType}</Text>
       </View>
     )
   }
@@ -89,24 +89,24 @@ class ProviderTypeInfo extends React.Component {
           <View>
             <HideableView visible={this.state.mailOrderState} removeWhenHidden>
               <View style={styles.row}>
-                <Text style={styles.heading}>{this.props.configData.pharmacyMailOrder.title}</Text>
+                <Text allowFontScaling={false} style={styles.heading}>{this.props.configData.pharmacyMailOrder.title}</Text>
               </View>
               {this.props.configData.pharmacyMailOrder && this.props.configData.pharmacyMailOrder.mailOrderLinks.map((mailOrderLink, index) => this._renderMailLinks(mailOrderLink, index))}
               <View style={styles.row}>
-                <Text style={styles.text}>{this.props.configData.pharmacyMailOrder.note}</Text>
+                <Text allowFontScaling={false} style={styles.text}>{this.props.configData.pharmacyMailOrder.note}</Text>
               </View>
             </HideableView>
 
             <HideableView visible={this.state.specialityState} removeWhenHidden>
               <View style={styles.row}>
-                <Text style={styles.heading}>{this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[0].title}</Text>
+                <Text allowFontScaling={false} style={styles.heading}>{this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[0].title}</Text>
               </View>
 
               {this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[0] &&
                 this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[0].description.map((providerType, index) => this._renderProviderSpeciality(providerType, index))}
 
               <View style={styles.row}>
-                <Text style={styles.heading}>{this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[1].title}</Text>
+                <Text allowFontScaling={false} style={styles.heading}>{this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[1].title}</Text>
               </View>
 
               {this.props.configData.pharmacySpecialityType.providerTypeSpecilityDescList[1] &&

@@ -128,7 +128,7 @@ class CCard extends Component {
                   </View>
                     : <View style={{margin: 5, marginTop: -3, padding: 8}}>
 
-                      <Text style={styles.h1}>
+                      <Text allowFontScaling={false} style={styles.h1}>
                         {_.get(network, 'header_text.en', 'Benefit Details')}
 
                       </Text>
@@ -162,7 +162,7 @@ class CCard extends Component {
                   <View>
 
                     {speciality_text['en']
-                      ? <Text style={styles.h2} >
+                      ? <Text allowFontScaling={false} style={styles.h2} >
                         {speciality_text['en']}
                       </Text>
                       : <View />
@@ -174,7 +174,7 @@ class CCard extends Component {
                     {
                       speciality_value.map(value => {
                         return (
-                          <Text style={styles.h4}>
+                          <Text allowFontScaling={false} style={styles.h4}>
                             {value['en']}
                           </Text>
                         )

@@ -45,7 +45,7 @@ class MyPlanScreen extends Component {
         {NavItems.backButton()}
       </View>
 
-      <Text style={styles.headerTextStyle}>My Plan Overview</Text>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>My Plan Overview</Text>
 
       <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
         {NavItems.settingsButton()}
@@ -61,7 +61,7 @@ class MyPlanScreen extends Component {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.data && this.props.visibilityRules.planOverViewTiles != null && this.props.visibilityRules.planOverViewTiles.length > 0) {
       console.tron.log('message', this.props.data.errorMessage)
@@ -72,7 +72,7 @@ class MyPlanScreen extends Component {
           <Card style={styles.planNameView}>
 
             { this.props.data.annualDeductible || this.props.data.oop
-              ? <Text style={styles.planNameText}>
+              ? <Text allowFontScaling={false} style={styles.planNameText}>
                 {this.props.planName}
               </Text>
 

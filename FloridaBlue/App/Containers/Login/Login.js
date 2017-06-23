@@ -567,19 +567,19 @@ class Login extends Component {
             <View style={styles.enableTouchContainer}>
               { this.props.credentialStored ?
                   <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._authenticateUserWithTouch() }}>
-                    <Text style={styles.touchInstruction}>Use Your</Text>
+                    <Text allowFontScaling={false} style={styles.touchInstruction}>Use Your</Text>
                     <Flb name="fingerprint" size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
-                    <Text style={styles.touchInstruction}>Fingerprint</Text>
+                    <Text allowFontScaling={false} style={styles.touchInstruction}>Fingerprint</Text>
                   </TouchableOpacity>
                 :
                   <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._handleTouchCheckbox() }}>
-                    <Text style={styles.touchInstruction}>Setup Your</Text>
+                    <Text allowFontScaling={false} style={styles.touchInstruction}>Setup Your</Text>
                     { this.props.touchEnabled ?
                         <Flb name="fingerprint" size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
                       :
                         <Flb name="fingerprint" size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintDisabled} />
                     }
-                    <Text style={styles.touchInstruction}>Fingerprint</Text>
+                    <Text allowFontScaling={false} style={styles.touchInstruction}>Fingerprint</Text>
                   </TouchableOpacity>
               }
             </View>
@@ -696,7 +696,7 @@ class Login extends Component {
 
             <SignUpView>
               <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
-                <Text style={styles.link}>{I18n.t('forgotPassword')}</Text>
+                <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => NavigationActions.screen_1()}>
                 <Image style={styles.signUpButton} source={Images.signUpButton} />
@@ -708,7 +708,7 @@ class Login extends Component {
 
           <View style={styles.footer}>
             <View>
-              <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
+              <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
             <View>
               <TouchableWithoutFeedback onPress={() => {

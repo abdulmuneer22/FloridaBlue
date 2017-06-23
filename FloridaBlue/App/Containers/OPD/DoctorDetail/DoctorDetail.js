@@ -133,7 +133,7 @@ class DoctorDetail extends Component {
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>
-      <Text style={styles.headerTextStyle}>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>
                 Find Care
             </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
@@ -146,7 +146,7 @@ class DoctorDetail extends Component {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.doctordetail) {
       if (this.props.doctordetail && this.props.doctordetail.displayName && this.props.doctordetail.displayName.length != 0) {
@@ -189,13 +189,13 @@ class DoctorDetail extends Component {
                                   size={Metrics.icons.medium} />
                               </View>
                               <View style={{ flex: 7 }}>
-                                <Text style={this.state.visible1 ? styles.plusText1 : styles.plusText}>
+                                <Text allowFontScaling={false} style={this.state.visible1 ? styles.plusText1 : styles.plusText}>
                                             Other Locations
                                         </Text>
                               </View>
                               {this.props.doctordetail && this.props.doctordetail.otherAddressList
                                 ? <View style={this.state.visible1 ? styles.addressView1 : styles.addressView}>
-                                  <Text style={styles.addressText}>
+                                  <Text allowFontScaling={false} style={styles.addressText}>
                                     {this.props.doctordetail.otherAddressList.length}
                                   </Text>
                                 </View>
@@ -214,14 +214,14 @@ class DoctorDetail extends Component {
                                   <Card key={i} style={{flex: 1, margin: 15, backgroundColor: Colors.ricePaper}}>
                                     <View style={{flex: 1, margin: 15 }}>
                                       {value
-                                        ? <Text style={styles.h5}>{value.addressLine1}, {value.addressLine2}</Text> : null}
+                                        ? <Text allowFontScaling={false} style={styles.h5}>{value.addressLine1}, {value.addressLine2}</Text> : null}
                                       {value
-                                        ? <Text style={styles.h5_2}>{value.city}, {value.state}, {value.zipCode}</Text> : null}
+                                        ? <Text allowFontScaling={false} style={styles.h5_2}>{value.city}, {value.state}, {value.zipCode}</Text> : null}
 
                                       {value
-                                        ? <Text style={styles.h5_2}>{value.county} </Text> : null}
+                                        ? <Text allowFontScaling={false} style={styles.h5_2}>{value.county} </Text> : null}
                                       {value
-                                        ? <Text style={styles.h5_2}>{value.telephoneNumber}</Text> : null}
+                                        ? <Text allowFontScaling={false} style={styles.h5_2}>{value.telephoneNumber}</Text> : null}
                                       {/* <TouchableOpacity style={{ flex:1}} onPress={() => this.handleMaps(this.props.data.latitude, this.props.data.longitude)}>
                                   <Text style={styles.directionText1}>Map Location</Text>
                                     </TouchableOpacity> */}
@@ -252,7 +252,7 @@ class DoctorDetail extends Component {
                                     size={Metrics.icons.medium} />
                                 </View>
                                 <View style={{ flex: 9 }}>
-                                  <Text style={this.state.visible4 ? styles.plusText1 : styles.plusText}>
+                                  <Text allowFontScaling={false} style={this.state.visible4 ? styles.plusText1 : styles.plusText}>
                                                 Office Hours
                                             </Text>
                                 </View>
@@ -271,7 +271,7 @@ class DoctorDetail extends Component {
 
                                         <View key={i} style={{flex: 1, flexDirection: 'row'}}>
                                           <View style={{flex: 0.4}}>
-                                            <Text style={{
+                                            <Text allowFontScaling={false} style={{
                                               fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                               color: Colors.flBlue.ocean,
                                               margin: 5
@@ -280,7 +280,7 @@ class DoctorDetail extends Component {
                                             </Text>
                                           </View>
                                           <View style={{flex: 0.3}}>
-                                            <Text style={{
+                                            <Text allowFontScaling={false} style={{
                                               fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                               color: Colors.flBlue.grey5,
                                               margin: 5
@@ -289,7 +289,7 @@ class DoctorDetail extends Component {
                                             </Text>
                                           </View>
 
-                                          <Text style={{
+                                          <Text allowFontScaling={false} style={{
                                             fontSize: Fonts.size.regular * Metrics.screenWidth * 0.00258,
                                             color: Colors.flBlue.grey5,
                                             margin: 5
@@ -298,7 +298,7 @@ class DoctorDetail extends Component {
                                   </Text>
 
                                           <View style={{flex: 0.3}}>
-                                            <Text style={{
+                                            <Text allowFontScaling={false} style={{
                                               fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                               color: Colors.flBlue.grey5,
                                               margin: 5
@@ -328,7 +328,7 @@ class DoctorDetail extends Component {
                                     size={Metrics.icons.medium} />
                                 </View>
                                 <View style={{ flex: 9 }}>
-                                  <Text style={this.state.visible2 ? styles.plusText1 : styles.plusText}>
+                                  <Text allowFontScaling={false} style={this.state.visible2 ? styles.plusText1 : styles.plusText}>
                                                 History / Credentials
                                             </Text>
                                 </View>
@@ -343,7 +343,7 @@ class DoctorDetail extends Component {
                                 <View style={{ flex: 1, flexDirection: 'row' }}>
                                   <View style={{ flex: 2.5 }} />
                                   <View style={{ flex: 9.5 }}>
-                                    <Text style={{
+                                    <Text allowFontScaling={false} style={{
                                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                       color: Colors.flBlue.ocean
                                     }}>
@@ -355,7 +355,7 @@ class DoctorDetail extends Component {
                                   <View style={{ flex: 2.5 }} />
 
                                   <View style={{ flex: 9.5 }}>
-                                    <Text style={{
+                                    <Text allowFontScaling={false} style={{
                                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                       color: Colors.flBlue.grey5
                                     }}>
@@ -371,7 +371,7 @@ class DoctorDetail extends Component {
                                 <View style={{ flex: 1, flexDirection: 'row' }}>
                                   <View style={{ flex: 2.5 }} />
                                   <View style={{ flex: 9.5 }}>
-                                    <Text style={{
+                                    <Text allowFontScaling={false} style={{
                                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                       color: Colors.flBlue.ocean
                                     }}>
@@ -384,7 +384,7 @@ class DoctorDetail extends Component {
 
                                     <View style={{ flex: 2.5 }} />
                                     <View style={{ flex: 9.5 }}>
-                                      <Text style={{
+                                      <Text allowFontScaling={false} style={{
                                         fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                         color: Colors.flBlue.grey5
                                       }}>
@@ -402,7 +402,7 @@ class DoctorDetail extends Component {
                                 <View style={{ flex: 1, flexDirection: 'row' }}>
                                   <View style={{ flex: 2.5 }} />
                                   <View style={{ flex: 9.5 }}>
-                                    <Text style={{
+                                    <Text allowFontScaling={false} style={{
                                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                       color: Colors.flBlue.ocean
                                     }}>
@@ -415,7 +415,7 @@ class DoctorDetail extends Component {
 
                                     <View style={{ flex: 2.5 }} />
                                     <View style={{ flex: 9.5 }}>
-                                      <Text style={{
+                                      <Text allowFontScaling={false} style={{
                                         fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                         color: Colors.flBlue.grey5
                                       }}>
@@ -433,7 +433,7 @@ class DoctorDetail extends Component {
                                 <View style={{ flex: 1, flexDirection: 'row' }}>
                                   <View style={{ flex: 2.5 }} />
                                   <View style={{ flex: 9.5 }}>
-                                    <Text style={{
+                                    <Text allowFontScaling={false} style={{
                                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                       color: Colors.flBlue.ocean
                                     }}>
@@ -446,7 +446,7 @@ class DoctorDetail extends Component {
 
                                     <View style={{ flex: 2.5 }} />
                                     <View style={{ flex: 9.5 }}>
-                                      <Text style={{
+                                      <Text allowFontScaling={false} style={{
                                         fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                         color: Colors.flBlue.grey5
                                       }}>
@@ -477,7 +477,7 @@ class DoctorDetail extends Component {
                                     size={Metrics.icons.medium} />
                                 </View>
                                 <View style={{ flex: 9 }}>
-                                  <Text style={this.state.visible3 ? styles.plusText1 : styles.plusText}>
+                                  <Text allowFontScaling={false} style={this.state.visible3 ? styles.plusText1 : styles.plusText}>
                                                 Institutional Affiliations
                                   </Text>
                                 </View>
@@ -495,13 +495,13 @@ class DoctorDetail extends Component {
                                     <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
                                       {value
 
-                                        ? <Text style={styles.h1}>{value ? value.displayName : null}</Text> : null}
-                                      <Text style={styles.h4}>{value ? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text>
-                                      <Text style={styles.h4_2}>{value ? value.city : null}, {value ? value.state : null}</Text>
+                                        ? <Text allowFontScaling={false} style={styles.h1}>{value ? value.displayName : null}</Text> : null}
+                                      <Text allowFontScaling={false} style={styles.h4}>{value ? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text>
+                                      <Text allowFontScaling={false} style={styles.h4_2}>{value ? value.city : null}, {value ? value.state : null}</Text>
                                       {value
-                                        ? <Text style={styles.h4_2}>{value ? value.zipCode : null}</Text> : null}
+                                        ? <Text allowFontScaling={false} style={styles.h4_2}>{value ? value.zipCode : null}</Text> : null}
                                       {value
-                                        ? <Text style={styles.h4_2}>{value ? value.telephoneNumber : null}</Text> : null}
+                                        ? <Text allowFontScaling={false} style={styles.h4_2}>{value ? value.telephoneNumber : null}</Text> : null}
 
                                     </View>
 
@@ -528,7 +528,7 @@ class DoctorDetail extends Component {
                                     size={Metrics.icons.medium} />
                                 </View>
                                 <View style={{ flex: 9 }}>
-                                  <Text style={this.state.visible5 ? styles.plusText1 : styles.plusText}>
+                                  <Text allowFontScaling={false} style={this.state.visible5 ? styles.plusText1 : styles.plusText}>
                                                 Programs
                                             </Text>
                                 </View>
@@ -541,7 +541,7 @@ class DoctorDetail extends Component {
                             <View style={{flex: 1, margin: 5, marginTop: 20, flexDirection: 'row'}}>
                               <View style={{ flex: 0.5 }} />
                               <View style={{flex: 1, alignItems: 'center'}}>
-                                <Text style={{color: Colors.flBlue.anvil,
+                                <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                                   fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0029}}>
                               Program Detail
                               </Text>
@@ -557,7 +557,7 @@ class DoctorDetail extends Component {
                               <View style={{ flex: 9.5, margin: 5 }}>
                                 {this.props.doctordetail && this.props.doctordetail.programList ? this.props.doctordetail.programList.map((value, i) => {
                                   return (<View key={i} style={{flex: 1, margin: 5, marginTop: 10, marginBottom: 10}}>
-                                    <Text style={{
+                                    <Text allowFontScaling={false} style={{
                                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                       color: Colors.flBlue.grey5
                                     }}>
@@ -585,7 +585,7 @@ class DoctorDetail extends Component {
                                   size={Metrics.icons.medium} />
                               </View>
                               <View style={{ flex: 9 }}>
-                                <Text style={this.state.visible7 ? styles.plusText1 : styles.plusText}>
+                                <Text allowFontScaling={false} style={this.state.visible7 ? styles.plusText1 : styles.plusText}>
                              More Info
                             </Text>
                               </View>
@@ -600,7 +600,7 @@ class DoctorDetail extends Component {
                               <View style={{ flex: 1, flexDirection: 'row', margin: 10 }}>
 
                                 <View style={{ flex: 1, alignItems: 'center' }}>
-                                  <Text style={{
+                                  <Text allowFontScaling={false} style={{
                                     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                     color: Colors.flBlue.ocean
                                   }}>
@@ -609,7 +609,7 @@ class DoctorDetail extends Component {
                                 </View>
 
                                 <View style={{ flex: 1 }}>
-                                  <Text style={{
+                                  <Text allowFontScaling={false} style={{
                                     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                     color: Colors.flBlue.grey5
                                   }}>
@@ -625,7 +625,7 @@ class DoctorDetail extends Component {
                               <View style={{ flex: 1, flexDirection: 'row' }}>
                                 <View style={{flex: 0.33}} />
                                 <View style={{ flex: 1 }}>
-                                  <Text style={{
+                                  <Text allowFontScaling={false} style={{
                                     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                     color: Colors.flBlue.ocean
                                   }}>
@@ -634,7 +634,7 @@ class DoctorDetail extends Component {
                                 </View>
 
                                 <View style={{ flex: 1.15, marginLeft: -25 }}>
-                                  <Text style={{
+                                  <Text allowFontScaling={false} style={{
                                     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                                     color: Colors.flBlue.grey5
                                   }}>
@@ -650,7 +650,7 @@ class DoctorDetail extends Component {
                             ? <View style={{flex: 1, flexDirection: 'row'}}>
                               <View style={{flex: 1}} />
                               <View style={{flex: 8}}>
-                                <Text style={styles.h7}>
+                                <Text allowFontScaling={false} style={styles.h7}>
                                   {this.props.configData.links.deptHealth.title1} <Text onPress={() => NavigationActions.MyView({responseURL: this.props.configData.links.deptHealth ? this.props.configData.links.deptHealth.url : ''})} style={styles.h7_2}>
                                     {this.props.configData.links.deptHealth.title2}
                                   </Text>
@@ -669,7 +669,7 @@ class DoctorDetail extends Component {
 
                                 <View key={i} style={{flex: 1}}>
                                   <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: value ? value.url : ''})}>
-                                    <Text style={styles.h7_1}>
+                                    <Text allowFontScaling={false} style={styles.h7_1}>
                                       {value.title}
                                     </Text>
                                   </TouchableOpacity>
@@ -677,16 +677,16 @@ class DoctorDetail extends Component {
                               )
                             }) : null }
 
-                            <Text style={styles.h7}>
+                            <Text allowFontScaling={false} style={styles.h7}>
                             Provider information contained in this directory is refreshed nightly.
                             </Text>
 
-                            <Text style={styles.h7}>
+                            <Text allowFontScaling={false} style={styles.h7}>
                               Note: Please refer to your benefit booklet for details, as not all searches may be applicable to your plan.
                             </Text>
                             { this.props.configData && this.props.configData.links && this.props.configData.links.providerDirectory
-                              ? <Text style={styles.h7}>
-                                <Text style={styles.h7_2} onPress={() => NavigationActions.MyView({responseURL: this.props.configData.links.providerDirectory ? this.props.configData.links.providerDirectory.url : ''})}>
+                              ? <Text allowFontScaling={false} style={styles.h7}>
+                                <Text allowFontScaling={false} style={styles.h7_2} onPress={() => NavigationActions.MyView({responseURL: this.props.configData.links.providerDirectory ? this.props.configData.links.providerDirectory.url : ''})}>
                                   {this.props.configData.links.providerDirectory.title1}
                                 </Text>{this.props.configData.links.providerDirectory.title2}
                               </Text> : null }
@@ -712,7 +712,7 @@ class DoctorDetail extends Component {
           <View style={{flex: 1, margin: 20}}>
             <Card style={{flex: 1}}>
               <View style={{flex: 1, margin: 10}}>
-                <Text style={{color: Colors.flBlue.anvil,
+                <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                   fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
                       Oops! Looks like we're having trouble with your request. Please try again later.
              </Text>

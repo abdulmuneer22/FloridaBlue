@@ -165,21 +165,21 @@ class Switch extends Component {
 
           <TouchableOpacity style={_this.props.leftActive ? injectedStyle
               : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
-            <Text style={_this.props.leftActive ? injectedTextStyle
+            <Text allowFontScaling={false} style={_this.props.leftActive ? injectedTextStyle
               : inactiveTextStyle}>{inNetwork}
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={_this.props.rightActive ? injectedStyle
               : inactiveStyle} onPress={() => { _this.handleClickRight() }}>
-            <Text style={_this.props.rightActive ? injectedTextStyle
+            <Text allowFontScaling={false} style={_this.props.rightActive ? injectedTextStyle
                   : inactiveTextStyle
                 }>{outNetwork}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={_this.props.preferredActive ? injectedStyle
               : inactiveStyle} onPress={() => { _this.handleClickPreferred() }}>
-            <Text style={{
+            <Text allowFontScaling={false} style={{
               color: _this.props.preferredActive ? 'blue' : 'darkgrey',
               marginRight: 5
             }}>{preferredNetwork}
@@ -207,14 +207,14 @@ class Switch extends Component {
 
         <TouchableOpacity style={_this.props.leftActive ? injectedStyle
         : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
-          <Text style={_this.props.leftActive ? injectedTextStyle
+          <Text allowFontScaling={false} style={_this.props.leftActive ? injectedTextStyle
         : inactiveTextStyle}>{inNetwork}
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={_this.props.rightActive ? injectedStyle
         : inactiveStyle} onPress={() => { _this.handleClickRight() }}>
-          <Text style={_this.props.rightActive ? injectedTextStyle
+          <Text allowFontScaling={false} style={_this.props.rightActive ? injectedTextStyle
             : inactiveTextStyle
           }>{outNetwork}
           </Text>
@@ -235,7 +235,7 @@ class Switch extends Component {
 
         <TouchableOpacity style={_this.props.leftActive ? injectedStyle
           : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
-          <Text style={_this.props.leftActive ? injectedTextStyle
+          <Text allowFontScaling={false} style={_this.props.leftActive ? injectedTextStyle
           : inactiveTextStyle}> {Network}
           </Text>
         </TouchableOpacity>

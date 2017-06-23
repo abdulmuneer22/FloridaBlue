@@ -33,7 +33,7 @@ class PlanBenefits extends Component {
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
         {NavItems.backButton()}
       </View>
-      <Text style={styles.headerTextStyle}>Plan Benefits</Text>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>Plan Benefits</Text>
       <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View>
@@ -50,7 +50,7 @@ class PlanBenefits extends Component {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.data && this.props.data.tiles != null && this.props.data.tiles.length > 0) {
       return (
@@ -88,7 +88,7 @@ class PlanBenefits extends Component {
             }
           ) : <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-            <Text style={styles.spinnerText}>Loading Please Wait </Text>
+            <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
           </View> }
 
           </View>

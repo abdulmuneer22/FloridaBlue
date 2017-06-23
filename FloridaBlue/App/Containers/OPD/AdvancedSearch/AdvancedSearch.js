@@ -406,7 +406,7 @@ class AdvancedSearch extends Component {
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>
-      <Text style={styles.headerTextStyle}>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>
         Find Care
       </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
@@ -439,7 +439,7 @@ class AdvancedSearch extends Component {
   _renderDropdownRow (rowData, rowID, highlighted) {
     return (
       <TouchableHighlight underlayColor='white'>
-        <Text style={styles.dropdownItem}>{rowData}</Text>
+        <Text allowFontScaling={false} style={styles.dropdownItem}>{rowData}</Text>
       </TouchableHighlight>
     )
   }
@@ -489,7 +489,7 @@ class AdvancedSearch extends Component {
                   value={this.props.careType}
                 />
               </ModalDropdown>
-              <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
+              <Text allowFontScaling={false} style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.advancedPlanSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected}
@@ -511,13 +511,13 @@ class AdvancedSearch extends Component {
                     value={this.props.advancedSpecialityType}
                 />
                 </ModalDropdown>
-                <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
+                <Text allowFontScaling={false} style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
               </HideableView>
             </View>
 
             <View style={styles.locationView}>
               <View style={{flex: 1}}>
-                <Text style={styles.h1}>Change Location:</Text>
+                <Text allowFontScaling={false} style={styles.h1}>Change Location:</Text>
               </View>
 
               <View style={styles.radioView}>
@@ -528,7 +528,7 @@ class AdvancedSearch extends Component {
                 </View>
                 <View style={{width: Metrics.screenWidth, flex: 0.85}}>
                   <TouchableOpacity style={{width: Metrics.screenWidth, flex: 1}} onPress={() => { if (!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle() }}>
-                    <Text style={styles.radioText} >Current Location</Text>
+                    <Text allowFontScaling={false} style={styles.radioText} >Current Location</Text>
                   </TouchableOpacity>
                 </View>
 
@@ -542,9 +542,9 @@ class AdvancedSearch extends Component {
                 </View>
                 <View style={{width: Metrics.screenWidth, flex: 0.85}}>
                   <TouchableOpacity style={{width: Metrics.screenWidth, flex: 1}} onPress={() => { if (!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle() }}>
-                    <Text style={styles.radioText} >Home</Text>
+                    <Text allowFontScaling={false} style={styles.radioText} >Home</Text>
                     <View style={{ marginRight: Metrics.searchBarHeight * Metrics.screenWidth * 0.008, flex: 1 }}>
-                      <Text style={styles.radioBottomText}>({this.props.homeAddress})</Text>
+                      <Text allowFontScaling={false} style={styles.radioBottomText}>({this.props.homeAddress})</Text>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -558,13 +558,13 @@ class AdvancedSearch extends Component {
                 </View>
                 <View style={{width: Metrics.screenWidth, flex: 0.85}}>
                   <TouchableOpacity style={{width: Metrics.screenWidth, flex: 1}} onPress={() => { if (!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle() }}>
-                    <Text style={styles.radioText} >Different Location</Text>
+                    <Text allowFontScaling={false} style={styles.radioText} >Different Location</Text>
                   </TouchableOpacity>
                 </View>
               </View>
 
               <HideableView style={{ marginLeft: 15, marginTop: 10, flex: 1 }} visible={this.state.newLocationState} removeWhenHidden>
-                <Text for='' style={styles.radioText}>{I18n.t('differentLocationMessage')}</Text>
+                <Text allowFontScaling={false} for='' style={styles.radioText}>{I18n.t('differentLocationMessage')}</Text>
                 <MKTextField
                   ref='newLocation'
                   textInputStyle={{flex: 1}}
@@ -578,8 +578,8 @@ class AdvancedSearch extends Component {
               </HideableView>
 
               <View style={{ marginLeft: 15, marginTop: 10, flex: 1 }}>
-                <Text style={styles.searchText}> Search Distance:</Text>
-                <Text style={{ textAlign: 'center',
+                <Text allowFontScaling={false} style={styles.searchText}> Search Distance:</Text>
+                <Text allowFontScaling={false} style={{ textAlign: 'center',
                   fontSize: Fonts.size.regular,
                   color: Colors.flBlue.anvil }}>{this.props.searchRange} mi</Text>
                 <Slider
@@ -602,7 +602,7 @@ class AdvancedSearch extends Component {
             <View style={styles.genderView}>
               {
                 this.props.configData != undefined && this.props.configData.gender != undefined
-                  ? <Text style={styles.doctorTextStyle}>
+                  ? <Text allowFontScaling={false} style={styles.doctorTextStyle}>
                     {this.props.configData.gender.displayName}:
              </Text> : null}
               <View style={{flex: 1}}>
@@ -610,19 +610,19 @@ class AdvancedSearch extends Component {
                   <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                     width: Metrics.section * Metrics.screenWidth * 0.0025,
                     borderRadius: Metrics.section}} checked group={this.genderGroup} onCheckedChange={this._anyGenderSelected} />
-                  <Text style={styles.genderText}>Any</Text>
+                  <Text allowFontScaling={false} style={styles.genderText}>Any</Text>
                   <View style={{flexDirection: 'row', marginLeft: 20, flex: 0.3}}>
                     <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                       width: Metrics.section * Metrics.screenWidth * 0.0025,
                       borderRadius: Metrics.section}} checked={false} group={this.genderGroup} onCheckedChange={this._maleGenderSelected} />
-                    <Text style={styles.genderText}>Male</Text>
+                    <Text allowFontScaling={false} style={styles.genderText}>Male</Text>
                   </View>
 
                   <View style={{flexDirection: 'row', marginLeft: 20, flex: 0.4}}>
                     <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                       width: Metrics.section * Metrics.screenWidth * 0.0025,
                       borderRadius: Metrics.section}} checked={false} group={this.genderGroup} onCheckedChange={this._femaleGenderSelected} />
-                    <Text style={styles.genderText}>Female</Text>
+                    <Text allowFontScaling={false} style={styles.genderText}>Female</Text>
                   </View>
                 </View>
               </View>
@@ -632,7 +632,7 @@ class AdvancedSearch extends Component {
               ? <View style={styles.programView}>
                 <View style={{ flex: 0.4 }}>
 
-                  <Text style={styles.programText}>
+                  <Text allowFontScaling={false} style={styles.programText}>
                     {this.props.configData.acceptingPatient.displayName}
 
                   </Text>
@@ -672,7 +672,7 @@ class AdvancedSearch extends Component {
             {this.props.configData && this.props.configData.workingHours
               ? <View style={styles.programView}>
                 <View style={{ flex: 0.4 }}>
-                  <Text style={styles.programText}>
+                  <Text allowFontScaling={false} style={styles.programText}>
                     {this.props.configData.workingHours.displayName}
                   </Text>
 
@@ -710,14 +710,14 @@ class AdvancedSearch extends Component {
               </View>
            : null}
             <View style={styles.languageView}>
-              <Text style={styles.languageText}>
+              <Text allowFontScaling={false} style={styles.languageText}>
               Language Selection
             </Text>
 
               <View style={styles.dropDownView}>
                 <View style={{ flex: 0.4 }}>
 
-                  <Text style={styles.dropDownText}>
+                  <Text allowFontScaling={false} style={styles.dropDownText}>
                   Doctor Speaks
             </Text>
                 </View>
@@ -749,7 +749,7 @@ class AdvancedSearch extends Component {
 
               <View style={styles.dropDownView}>
                 <View style={{ flex: 0.4 }}>
-                  <Text style={styles.dropDownText}>
+                  <Text allowFontScaling={false} style={styles.dropDownText}>
                   Staff Speaks
                   </Text>
                 </View>
@@ -784,7 +784,7 @@ class AdvancedSearch extends Component {
               ? <View style={styles.programView}>
                 <View style={{ flex: 0.3 }}>
 
-                  <Text style={styles.programText}>
+                  <Text allowFontScaling={false} style={styles.programText}>
                     {this.props.configData.program.displayName}
                   </Text>
 

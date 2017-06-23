@@ -115,7 +115,7 @@ class Card extends Component {
                 style={this.props.CardCount % 2 ? styles.myplanImageStyle1 : styles.myplanImageStyle2} >
 
                 <View style={{alignItems: 'center', width: Metrics.screenWidth, flex: 1, justifyContent: 'center'}} >
-                  <Text style={{
+                  <Text allowFontScaling={false} style={{
                   // marginTop: Metrics.mediumMargin,
                    // marginBottom: -15,
                     fontSize: this.props.CardCount % 2 ? Fonts.size.h4 * Metrics.screenWidth * 0.0030 : Fonts.size.regular * Metrics.screenWidth * 0.0030,
