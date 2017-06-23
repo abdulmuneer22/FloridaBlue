@@ -53,6 +53,7 @@ class ClaimsList extends Component {
       listLimit: 10,
       totalNumberOfCardPerScreen: 10,
       isFetchingMore: false,
+      sortOnClaims: false,
       searchVisible: false,
       endDateSelected: false,
       isShowingViewMore: true,
@@ -187,9 +188,10 @@ class ClaimsList extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    if (this.state.isFetchingMore) {
+    if (this.state.isFetchingMore || this.state.sortOnClaims) {
       newProps.attemptClaimsList(newProps)
       this.setState({isFetchingMore: false})
+      this.setState({sortOnClaims: false})
     }
   }
 
@@ -270,8 +272,9 @@ class ClaimsList extends Component {
     }
     
 
-    this.props.changeSortBy(sortBy);
-    this.props.attemptClaimsList(this.props);
+    this.props.changeSortBy(sortBy)
+    this.state.sortOnClaims = true
+    //this.props.attemptClaimsList(this.props);
   }
    _renderViewMore () {
       if(!this.props.fetching){
