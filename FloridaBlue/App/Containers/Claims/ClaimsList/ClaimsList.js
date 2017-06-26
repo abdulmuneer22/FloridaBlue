@@ -79,6 +79,12 @@ class ClaimsList extends Component {
     this.addEndDate = this.addEndDate.bind(this)
     this.memberSelected = this.memberSelected.bind(this)
     this.sortClaims = this.sortClaims.bind(this)
+    this.searchResults=this.searchResults.bind(this)
+  }
+
+  searchResults(){
+    this.props.attemptClaimsList(this.props)
+    NavigationActions.ClaimsList()
   }
 
   _renderHeader () {
@@ -363,13 +369,16 @@ class ClaimsList extends Component {
               ref='providerName'
               style={styles.textField}
               textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
-              editable
+              autoCorrect={false}
+              keyboardType='default'
+              returnKeyType='next'
+              autoCapitalize='none'
               underlineColorAndroid={Colors.coal}
               placeholder={'Provider Name'}
               placeholderTextColor={Colors.steel}
               tintColor={Colors.black}
               onChangeText={this.props.changeProviderName}
-              value={this.props.providerName}
+             // value={this.props.providerName}
             />
             
             <ModalDropdown options={_.map(this.props.claimsMemberList, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
@@ -399,7 +408,7 @@ class ClaimsList extends Component {
                 </Text>
               </TouchableOpacity>
             </View>
-            <Button rounded style={styles.searchButton} onPress={()=>{this.handleSearch()}}>
+            <Button rounded style={styles.searchButton} onPress={()=>{this.searchResults()}}>
               <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
             </Button>
           </HideableView>
