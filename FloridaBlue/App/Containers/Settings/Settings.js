@@ -83,7 +83,7 @@ class Settings extends Component {
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
           {NavItems.backButton()}
         </View>
-        <Text style={styles.headerTextStyle}>Settings</Text>
+        <Text allowFontScaling={false} style={styles.headerTextStyle}>Settings</Text>
         <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
           {NavItems.settingsButton()}
         </View>

@@ -86,7 +86,7 @@ class ClaimsList extends Component {
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
         {NavItems.backButton()}
       </View>
-      <Text style={styles.headerTextStyle}>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>
           Plan Claims
       </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
@@ -308,7 +308,7 @@ class ClaimsList extends Component {
           <View style={{flex:1.5,backgroundColor:Colors.snow}}>
             <View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
               <View style={{flex:0.5}}>
-                  <Text style={styles.claimsListHeaderText}>Claims List</Text>
+                  <Text allowFontScaling={false} style={styles.claimsListHeaderText}>Claims List</Text>
                 </View>
                 <View style={{flex:0.5,alignItems:'flex-end',marginRight:Metrics.baseMargin*Metrics.screenWidth*0.004}}>
                   <TouchableOpacity onPress={this.handleSearch}>
@@ -322,19 +322,19 @@ class ClaimsList extends Component {
               <View style={{flex:1,flexDirection:'row',justifyContent:'center'}}>
                 <View style={{flex:0.3,flexDirection:'row'}}>                  
                   <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}} onPress={() => this.sortClaims('date')}>
-                      <Text style={styles.claimsCategoryText}>Date</Text>
+                      <Text allowFontScaling={false} style={styles.claimsCategoryText}>Date</Text>
                       <Flb name = {this.state.searchData.sortBy.date==0 ? 'caret-up-down' : (this.state.searchData.sortBy.date==1 ?  'caret-up' :  'caret-down' ) } size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                     </TouchableOpacity>
                 </View>
                 <View style={{flex:0.3}}>
                     <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}} onPress={() => this.sortClaims('member')}>
-                      <Text style={styles.claimsCategoryText}>Member</Text>
+                      <Text allowFontScaling={false} style={styles.claimsCategoryText}>Member</Text>
                       <Flb name = {this.state.searchData.sortBy.memberName==0 ? 'caret-up-down' : (this.state.searchData.sortBy.memberName==1 ?  'caret-up' :  'caret-down' ) } size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                   </TouchableOpacity>
                 </View>
                 <View style={{flex:0.4}}>
                      <TouchableOpacity style={{flex:0.4,flexDirection:'row',justifyContent:'center',alignItems:'center'}} onPress={() => this.sortClaims('provider')}>
-                      <Text style={styles.claimsCategoryText}>Providers</Text>
+                      <Text allowFontScaling={false} style={styles.claimsCategoryText}>Providers</Text>
                       <Flb name = {this.state.searchData.sortBy.providerName==0 ? 'caret-up-down' : (this.state.searchData.sortBy.providerName==1 ?  'caret-up' :  'caret-down' ) } size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
                     </TouchableOpacity>
                 </View>

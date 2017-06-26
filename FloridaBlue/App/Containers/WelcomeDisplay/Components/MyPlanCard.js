@@ -41,7 +41,7 @@ class MyPlanCard extends Component {
       }}>
         <Image source={Images[this.props.data.backgroundImage]} style={styles.summary} >
           <View style={styles.healthPlanView}>
-            <Text style={styles.healthPlanText}>
+            <Text allowFontScaling={false} style={styles.healthPlanText}>
               {this.props.data.tileName['en']}
             </Text>
             <Flb name={this.props.data.tileIcon} style={styles.myPlanArrowIcon} size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.snow} />

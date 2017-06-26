@@ -85,17 +85,17 @@ class ClaimsCard extends Component {
                       <View style={{ flex: 1, flexDirection: 'row',marginTop:Metrics.baseMargin*Metrics.screenHeight*0.002,marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.002, justifyContent: 'center' }}>
                          <View style={{flex: 0.01,marginTop:-Metrics.baseMargin*Metrics.screenHeight*0.002,marginBottom:-Metrics.baseMargin*Metrics.screenHeight*0.002, backgroundColor: color}} />
                         <View style={{ flex: 0.25, alignItems: 'center', justifyContent: 'center' }}>
-                          <Text style={styles.claimsCardText}>
+                          <Text allowFontScaling={false} style={styles.claimsCardText}>
                             {this.formatDate(value.dateOfService)}
                           </Text>
                         </View>
                         <View style={{ flex: 0.3, alignItems: 'center', justifyContent: 'center' }}>
-                          <Text style={styles.claimsCardText}>
+                          <Text allowFontScaling={false} style={styles.claimsCardText}>
                             {value.claimType}
                           </Text>
                         </View>
                         <View style={{ flex: 0.45, justifyContent: 'center' }}>
-                          <Text style={styles.providerName}>{value.providerName}</Text>
+                          <Text allowFontScaling={false} style={styles.providerName}>{value.providerName}</Text>
                         </View>
                       </View>
                     </Card>

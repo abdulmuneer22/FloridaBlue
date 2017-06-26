@@ -184,7 +184,7 @@ class LandingScreen extends Component {
                           }} >
 
                           <View style={{alignItems: 'center'}} >
-                            <Text style={styles.tileTextStyle}>
+                            <Text allowFontScaling={false} style={styles.tileTextStyle}>
                               {tile.tileName['en']}
                             </Text>
                           </View>
@@ -232,7 +232,7 @@ class LandingScreen extends Component {
                       color={Colors.flBlue.grey5} />
                   </View>
                   <View style={{flex: 0.6, alignItems: 'flex-start'}}>
-                    <Text style={{
+                    <Text allowFontScaling={false} style={{
                       fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
                       color: Colors.flBlue.grey5,
                       fontFamily: Fonts.type.headerFont,

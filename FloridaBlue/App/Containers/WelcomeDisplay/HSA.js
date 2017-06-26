@@ -35,7 +35,7 @@ class Hsa extends Component {
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
-      <Text style={styles.hsaheaderTextStyle}>
+      <Text allowFontScaling={false} style={styles.hsaheaderTextStyle}>
           Health Savings Account
         </Text>
       <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
@@ -53,7 +53,7 @@ class Hsa extends Component {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.data && this.props.data.currentBalance) {
       if (this.props.data.currentBalance.value || this.props.data.contribution.value || this.props.data.distribution.value) {
@@ -63,10 +63,10 @@ class Hsa extends Component {
           {this.props.data.currentBalance != undefined
           ? <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: Metrics.textHeight}}>
             <View style={{marginTop: 3}}>
-              <Text style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text['en']} :</Text>
+              <Text allowFontScaling={false} style={styles.hsaTextStyle1}>{this.props.data.currentBalance.text['en']} :</Text>
             </View>
             <View style={{marginLeft: 10}}>
-              <Text style={styles.hsaTextStyle2}>${this.props.data.currentBalance.value}</Text>
+              <Text allowFontScaling={false} style={styles.hsaTextStyle2}>${this.props.data.currentBalance.value}</Text>
             </View>
           </View>
         : null
@@ -75,15 +75,15 @@ class Hsa extends Component {
           <View style={styles.row_1}>
             {this.props.data.contribution != undefined
             ? <View style={styles.col_1}>
-              <Text style={styles.hsaTextStyle1}>{this.props.data.contribution.text['en']}</Text>
-              <Text style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
+              <Text allowFontScaling={false} style={styles.hsaTextStyle1}>{this.props.data.contribution.text['en']}</Text>
+              <Text allowFontScaling={false} style={styles.hsaTextStyle2}>${this.props.data.contribution.value}</Text>
             </View>
            : null
         }
             {this.props.data.distribution != undefined
             ? <View style={styles.col_1}>
-              <Text style={styles.hsaTextStyle1}>{this.props.data.distribution.text['en']}</Text>
-              <Text style={styles.hsaTextStyle2}>${this.props.data.distribution.value}</Text>
+              <Text allowFontScaling={false} style={styles.hsaTextStyle1}>{this.props.data.distribution.text['en']}</Text>
+              <Text allowFontScaling={false} style={styles.hsaTextStyle2}>${this.props.data.distribution.value}</Text>
             </View>
            : null
         }
