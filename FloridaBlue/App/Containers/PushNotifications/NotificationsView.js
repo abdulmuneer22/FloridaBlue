@@ -88,7 +88,7 @@ class NotificationsView extends Component {
                     marginLeft: 10,
                     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002
                   }}>
-                    {data.messageId}
+                    {data.sendDate}
                   </Text>
                 </View>
                 <View style={{ flex: 1 }}>
@@ -99,7 +99,7 @@ class NotificationsView extends Component {
                     flex: 1
                   }}>
                     <View style={{ marginLeft: 10, paddingTop: 5, flex: 0.2 }}>
-                      <Flb name='doctor-coin' size={Metrics.icons.large * Metrics.screenWidth * 0.0025} color={Colors.flBlue.grass} />
+                      <Flb name={data.style.icon} size={Metrics.icons.large * Metrics.screenWidth * 0.0025} color={Colors.flBlue[data.style.color]} />
                     </View>
                     <View style={{ flex: 0.8, marginRight: 10 }}>
                       <View style={{ flex: 0.4 }}>
@@ -132,7 +132,7 @@ class NotificationsView extends Component {
                     justifyContent: 'center',
                     marginTop: 5,
                       // marginBottom:10,
-                    backgroundColor: Colors.flBlue.sky
+                    backgroundColor: data.style.color
                   }}>
 
                     <TouchableOpacity onPress={() => alert('Hello')}

@@ -98,23 +98,23 @@ class Login extends Component {
             this.props.changeCredentialStored(true)
             this.props.changeTouchEnabled(true)
             this.props.changeTouchLoginVisible(true)
-            this.setState({touchAvailable:true})
+            this.setState({touchAvailable: true})
             if (this.props.origin != 'logout') {
               this._authenticateUserWithTouch()
             }
             break
           case 'ENABLED':
-            this.setState({touchAvailable:true})
+            this.setState({touchAvailable: true})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(true)
             break
           case 'DISABLED':
-          this.setState({touchAvailable:true})
+            this.setState({touchAvailable: true})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(false)
             break
           case 'UNAVAILABLE':
-            this.setState({touchAvailable:false})
+            this.setState({touchAvailable: false})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(false)
             break
@@ -565,19 +565,17 @@ class Login extends Component {
             </View>
 
             <View style={styles.enableTouchContainer}>
-              { this.props.credentialStored ?
-                  <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._authenticateUserWithTouch() }}>
+              { this.props.credentialStored
+                  ? <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._authenticateUserWithTouch() }}>
                     <Text allowFontScaling={false} style={styles.touchInstruction}>Use Your</Text>
-                    <Flb name="fingerprint" size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
+                    <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
                     <Text allowFontScaling={false} style={styles.touchInstruction}>Fingerprint</Text>
                   </TouchableOpacity>
-                :
-                  <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._handleTouchCheckbox() }}>
+                :                  <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._handleTouchCheckbox() }}>
                     <Text allowFontScaling={false} style={styles.touchInstruction}>Setup Your</Text>
-                    { this.props.touchEnabled ?
-                        <Flb name="fingerprint" size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
-                      :
-                        <Flb name="fingerprint" size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintDisabled} />
+                    { this.props.touchEnabled
+                        ? <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
+                      :                        <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintDisabled} />
                     }
                     <Text allowFontScaling={false} style={styles.touchInstruction}>Fingerprint</Text>
                   </TouchableOpacity>
@@ -688,10 +686,9 @@ class Login extends Component {
               <Image source={Images.clearLogo} style={styles.logo} />
             </LogoView>
 
-            {Platform.OS === 'ios' && this.state.touchAvailable ?
-                this._renderTouchAvailableLogin()
-              :
-                this._renderLogin()
+            {Platform.OS === 'ios' && this.state.touchAvailable
+                ? this._renderTouchAvailableLogin()
+              :                this._renderLogin()
             }
 
             <SignUpView>
