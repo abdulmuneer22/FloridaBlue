@@ -168,7 +168,7 @@ export default StyleSheet.create({
   },
   touchTextField: {
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015,
-    width: Metrics.screenWidth * 0.58
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.058
   },
   radio: {
     backgroundColor: Colors.snow,

@@ -67,7 +67,7 @@ class Greeting extends Component {
       <View style={styles.greetingView}>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <View style={{flex: 6, alignItems: 'center', justifyContent: 'center'}}>
-            <Text style={styles.greetingText}>
+            <Text allowFontScaling={false} style={styles.greetingText}>
               {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
           </Text>
           </View>

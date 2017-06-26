@@ -46,7 +46,7 @@ class ErrorScreen extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainerError} source={Images.newHeaderImage}>
 
-      <Text style={{color: Colors.flBlue.ocean,
+      <Text allowFontScaling={false} style={{color: Colors.flBlue.ocean,
         alignSelf: 'center',
         backgroundColor: Colors.transparent,
         fontFamily: Fonts.type.headerFont,

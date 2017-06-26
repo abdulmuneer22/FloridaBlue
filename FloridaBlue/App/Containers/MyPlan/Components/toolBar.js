@@ -29,7 +29,7 @@ class ToolBar extends Component {
 
   _renderHeader () {
     return (
-      <Text>{this.props.title}</Text>
+      <Text allowFontScaling={false}>{this.props.title}</Text>
     )
   }
 

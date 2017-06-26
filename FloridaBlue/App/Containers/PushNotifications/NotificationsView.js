@@ -62,7 +62,7 @@ class NotificationsView extends Component {
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
       {NavItems.backButton()}
-      <Text style={styles.headerTextStyle}>Notifications</Text>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>Notifications</Text>
       {NavItems.settingsButton()}
 
     </Image>)
@@ -83,7 +83,7 @@ class NotificationsView extends Component {
             <View style={styles.rowFront}>
               <View style={{ flex: 1, marginTop: 10 }}>
                 <View style={{ flexDirection: 'row', marginLeft: 20, marginTop: 10, alignItems: 'center', flex: 1 }}>
-                  <Text style={{
+                  <Text allowFontScaling={false} style={{
                     color: Colors.flBlue.anvil,
                     marginLeft: 10,
                     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002
@@ -103,7 +103,7 @@ class NotificationsView extends Component {
                     </View>
                     <View style={{ flex: 0.8, marginRight: 10 }}>
                       <View style={{ flex: 0.4 }}>
-                        <Text style={{
+                        <Text allowFontScaling={false} style={{
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                           color: Colors.flBlue.anvil,
                           fontWeight: '500',
@@ -147,7 +147,7 @@ class NotificationsView extends Component {
                       <View style={{ flex: 1, marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                           <View style={{ flex: 1 }}>
-                            <Text style={{
+                            <Text allowFontScaling={false} style={{
                               color: Colors.flBlue.anvil,
                               marginLeft: 20,
                               fontSize: Fonts.size.regular
@@ -191,7 +191,7 @@ class NotificationsView extends Component {
                     // bottom: 0,
                   justifyContent: 'center'
                 }}>
-                  <Text style={{
+                  <Text allowFontScaling={false} style={{
                     color: Colors.snow,
                     marginRight: 30,
                     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025

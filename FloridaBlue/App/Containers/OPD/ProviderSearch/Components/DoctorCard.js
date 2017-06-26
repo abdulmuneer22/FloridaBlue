@@ -68,16 +68,16 @@ class DoctorCard extends Component {
                   <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop: 10 }}>
                     <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
                       {value
-                        ? <Text style={styles.h1}>{value.displayName}</Text> : null}
+                        ? <Text allowFontScaling={false} style={styles.h1}>{value.displayName}</Text> : null}
                       {value
-                        ? <Text style={styles.h2}>{value.primarySpecialty}</Text> : null}
+                        ? <Text allowFontScaling={false} style={styles.h2}>{value.primarySpecialty}</Text> : null}
                       {value
-                        ? <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
+                        ? <Text allowFontScaling={false} style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
                       {value
-                        ? <Text style={styles.h4_2}>{value.faxNumber}</Text> : null}
+                        ? <Text allowFontScaling={false} style={styles.h4_2}>{value.faxNumber}</Text> : null}
                       {value
                         ? <TouchableOpacity onPress={() => this.handleUrl(value.link)}>
-                          <Text style={styles.h4_link}>{value.linkTitle}</Text>
+                          <Text allowFontScaling={false} style={styles.h4_link}>{value.linkTitle}</Text>
                         </TouchableOpacity> : null }
                     </View>
                   </View>
@@ -90,7 +90,7 @@ class DoctorCard extends Component {
                             <Flb name='call-phone' size={Metrics.icons.medium * Metrics.screenWidth * 0.002} color={Colors.snow} />
                           </View>
                           <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
-                            <Text style={styles.callText}>Call</Text>
+                            <Text allowFontScaling={false} style={styles.callText}>Call</Text>
                           </View>
                         </View>
                       </TouchableOpacity>
@@ -101,13 +101,13 @@ class DoctorCard extends Component {
             })
                 : <View style={styles.spinnerView}>
                   <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                  <Text style={styles.spinnerText}>Load</Text>
+                  <Text allowFontScaling={false} style={styles.spinnerText}>Load</Text>
                 </View>
           }
           </View>
           : <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-            <Text style={styles.spinnerText}>Loading..</Text>
+            <Text allowFontScaling={false} style={styles.spinnerText}>Loading..</Text>
           </View>
           }
       </View>

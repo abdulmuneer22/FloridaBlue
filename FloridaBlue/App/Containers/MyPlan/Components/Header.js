@@ -24,7 +24,7 @@ var styles=StyleSheet.create({
 export default function({text}){
   return(
     <View style={styles.wrapper}>
-    <Text style={styles.text}>
+    <Text allowFontScaling={false} style={styles.text}>
     {text}
     </Text>
     </View>

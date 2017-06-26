@@ -29,6 +29,7 @@ import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme, setTheme } fr
 import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
 import ProviderActions from '../../../Redux/ProviderRedux'
+import SettingActions from '../../../Redux/SettingRedux'
 import _ from 'lodash'
 import ActionButton from 'react-native-action-button'
 import LinearGradient from 'react-native-linear-gradient'
@@ -232,17 +233,18 @@ class ProviderSearch extends Component {
     }
   }
 
-  _selectCurrentLocation (event) {
+  _selectCurrentLocation(event) {
     if (event.checked) {
-      if (this.props.locationStatus == 'authorized') {
+      if (this.props.geolocationEnabled) {
         this._getLocation()
         this.props.changeAddress('Using Current Address')
       } else {
-        Permissions.requestPermission('location')
-        .then(response => {
+        Permissions.requestPermission('location').then(response => {
           if (response == 'authorized') {
+            this.props.changeGeolocationEnabled(true)
             this._getLocation()
           } else {
+            this.props.changeGeolocationEnabled(false)
             this._alertForLocationPermission()
           }
         })
@@ -290,28 +292,24 @@ class ProviderSearch extends Component {
   }
 
   _getLocation () {
-    if (this.props.locationStatus == '' || this.props.locationStatus != 'authorized') {
-      var locationStatus = ''
-      Permissions.getPermissionStatus('location')
-      .then(response => {
-        locationStatus = response
+    if (this.props.geolocationEnabled) {
+      this._getPosition()
+    } else {
+      Permissions.getPermissionStatus('location').then(response => {
         if (response == 'authorized') {
-          this.props.changeLocationPermissionStatus(response)
+          this.props.changeGeolocationEnabled(true)
           this._getPosition()
         } else if (response == 'undetermined') {
-          Permissions.requestPermission('location')
-          .then(response => {
-            this.props.changeLocationPermissionStatus(response)
-            locationStatus = response
+          Permissions.requestPermission('location').then(response => {
             if (response == 'authorized') {
+              this.props.changeGeolocationEnabled(true)
               this._getPosition()
+            } else {
+              this.props.changeGeolocationEnabled(false)
             }
           })
         }
       })
-      this.props.changeLocationPermissionStatus(locationStatus)
-    } else if (this.props.locationStatus == 'authorized') {
-      this._getPosition()
     }
   }
 
@@ -326,9 +324,9 @@ class ProviderSearch extends Component {
       this.props.changeAddress('Using Current Location')
     },
       (error) => alert('No GPS location found.'))
-    this.props.changeAddress(this.props.homeAddress)
-    this.props.changeLatitude(0)
-    this.props.changeLongitude(0)
+      this.props.changeAddress(this.props.homeAddress)
+      this.props.changeLatitude(0)
+      this.props.changeLongitude(0)
   }
 
   _alertForLocationPermission () {
@@ -348,7 +346,7 @@ class ProviderSearch extends Component {
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
           {NavItems.backButton()}
         </View>
-        <Text style={styles.headerTextStyle}>Find Care</Text>
+        <Text allowFontScaling={false} style={styles.headerTextStyle}>Find Care</Text>
         <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
           {NavItems.settingsButton()}
         </View>
@@ -359,7 +357,7 @@ class ProviderSearch extends Component {
   _renderDropdownRow (rowData, rowID, highlighted) {
     return (
       <TouchableHighlight underlayColor={Colors.snow}>
-        <Text style={styles.dropdownItem}>{rowData}</Text>
+        <Text allowFontScaling={false} style={styles.dropdownItem}>{rowData}</Text>
       </TouchableHighlight>
     )
   }
@@ -372,22 +370,22 @@ class ProviderSearch extends Component {
           <ScrollView>
             <View style={{flex: 1}}>
               <View style={{flex: 1, marginTop: 20}}>
-                <Text style={styles.h1_1}>{I18n.t('providerSearchTitle')}</Text>
+                <Text allowFontScaling={false} style={styles.h1_1}>{I18n.t('providerSearchTitle')}</Text>
 
                 <View style={styles.radioView}>
                   <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                     width: Metrics.section * Metrics.screenWidth * 0.0025,
                     borderRadius: Metrics.section}} group={this.searchTypeGroup} onCheckedChange={this._onChecked} />
-                  <Text style={styles.radioText}>{I18n.t('yesTitle')}</Text>
+                  <Text allowFontScaling={false} style={styles.radioText}>{I18n.t('yesTitle')}</Text>
                   <MKRadioButton style={{height: Metrics.section * Metrics.screenWidth * 0.0025,
                     width: Metrics.section * Metrics.screenWidth * 0.0025,
                     borderRadius: Metrics.section
                   }} group={this.searchTypeGroup} />
-                  <Text style={styles.radioText}>{I18n.t('noTitle')}</Text>
+                  <Text allowFontScaling={false} style={styles.radioText}>{I18n.t('noTitle')}</Text>
                 </View>
               </View>
               <HideableView visible={this.state.knownCareState} removeWhenHidden>
-                <Text style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
+                <Text allowFontScaling={false} style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
                 <MKTextField
                   ref='providerName'
                   style={styles.textField}
@@ -421,7 +419,7 @@ class ProviderSearch extends Component {
                     value={this.props.careType}
               />
                 </ModalDropdown>
-                <Text style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
+                <Text allowFontScaling={false} style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
               </HideableView>
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
@@ -444,19 +442,19 @@ class ProviderSearch extends Component {
                     value={this.props.specialityType}
               />
                 </ModalDropdown>
-                <Text style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
+                <Text allowFontScaling={false} style={styles.dropdownExampleText}>{I18n.t('specialityTypeExample')}</Text>
               </HideableView>
 
               <HideableView visible={!this.state.changeLocaleState && (this.state.unknownCareState || this.state.knownCareState)} removeWhenHidden>
                 <View style={[styles.locationView]}>
                   <View style={styles.locationTextContainer}>
-                    <Text style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
-                    <Text style={styles.currentLocationText}>{this.props.address}</Text>
+                    <Text allowFontScaling={false} style={styles.h2}>{I18n.t('memberLocationTitle')}</Text>
+                    <Text allowFontScaling={false} style={styles.currentLocationText}>{this.props.address}</Text>
                   </View>
                   <View style={styles.locationButtonContainer}>
                     <TouchableOpacity style={styles.editLocation} onPress={this._editLocation}>
                       <Flb name='pencil' style={styles.editLocationIcon} size={Metrics.icons.small * Metrics.screenWidth * 0.0025} color={Colors.flBlue.anvil} />
-                      <Text style={styles.editLocationText}>{I18n.t('editLocationButton')}</Text>
+                      <Text allowFontScaling={false} style={styles.editLocationText}>{I18n.t('editLocationButton')}</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -465,29 +463,29 @@ class ProviderSearch extends Component {
               <HideableView style={styles.editLocationView} visible={this.state.changeLocaleState} removeWhenHidden>
                 <View style={styles.mapIcon}>
                   <Image source={Images.mapUnselectedIcon} />
-                  <Text style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
+                  <Text allowFontScaling={false} style={styles.changeLocationHeader}>{I18n.t('changeLocationTitle')}</Text>
                 </View>
 
                 <View style={styles.locationRadio}>
                   <MKRadioButton ref='currentLocation' style={styles.radio} group={this.locationGroup} onCheckedChange={this._selectCurrentLocation} />
                   <View style={{width: Metrics.screenWidth}}>
                     <TouchableOpacity style={{width: Metrics.screenWidth}} onPress={() => { if (!this.refs.currentLocation.state.checked) this.refs.currentLocation.confirmToggle() }}>
-                      <Text style={styles.radioText} >Current Location</Text>
+                      <Text allowFontScaling={false} style={styles.radioText} >Current Location</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
                 <View style={styles.locationRadio}>
                   <MKRadioButton style={styles.radio} ref='homeLocation' group={this.locationGroup} onCheckedChange={this._selectHomeLocation} />
                   <TouchableOpacity style={{width: Metrics.screenWidth}} onPress={() => { if (!this.refs.homeLocation.state.checked) this.refs.homeLocation.confirmToggle() }}>
-                    <Text style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
+                    <Text allowFontScaling={false} style={styles.radioText}>{I18n.t('homeLocationTitle')}</Text>
                   </TouchableOpacity>
                 </View>
-                <Text style={styles.locationText}>({this.props.homeAddress})</Text>
+                <Text allowFontScaling={false} style={styles.locationText}>({this.props.homeAddress})</Text>
                 <View style={styles.locationRadio}>
                   <MKRadioButton style={styles.radio} ref='differentLocation' group={this.locationGroup} onCheckedChange={this._selectDifferentLocation} />
                   <View style={{width: Metrics.screenWidth}}>
                     <TouchableOpacity style={{width: Metrics.screenWidth}} onPress={() => { if (!this.refs.differentLocation.state.checked) this.refs.differentLocation.confirmToggle() }}>
-                      <Text style={styles.radioText} >{I18n.t('differentLocationTitle')}</Text>
+                      <Text allowFontScaling={false} style={styles.radioText} >{I18n.t('differentLocationTitle')}</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
@@ -496,7 +494,7 @@ class ProviderSearch extends Component {
               <HideableView style={{backgroundColor: Colors.flBlue.grey1, paddingBottom: Metrics.doubleBaseMargin}} visible={this.state.changeLocaleState && !this.state.customLocationState} removeWhenHidden />
 
               <HideableView style={styles.differentLocationView} visible={(this.state.unknownCareState || this.state.knownCareState) && this.state.customLocationState} removeWhenHidden>
-                <Text style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
+                <Text allowFontScaling={false} allowFontScaling={false} style={styles.newLocationHeader}>{I18n.t('differentLocationMessage')}</Text>
                 <MKTextField
                   ref='newLocation'
                   style={styles.newLocationField}
@@ -523,7 +521,7 @@ class ProviderSearch extends Component {
                 <TouchableOpacity style={styles.advancedSearchLink} onPress={this._advancedSearch}>
                   <View style={styles.advancedSearchContainer}>
                     <Flb name='search-find' size={Metrics.icons.xm * Metrics.screenWidth * 0.0026} color={Colors.flBlue.anvil} />
-                    <Text style={styles.advancedSearchLinkText}>{I18n.t('advancedSearchButton')}</Text>
+                    <Text allowFontScaling={false} style={styles.advancedSearchLinkText}>{I18n.t('advancedSearchButton')}</Text>
                   </View>
                 </TouchableOpacity>
               </HideableView>
@@ -551,8 +549,8 @@ class ProviderSearch extends Component {
               color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
               onPress={this.handleNeedHelp} />
 
-            <Text style={styles.needHelpText}>Need Help Now?</Text>
-            <Text style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
+            <Text allowFontScaling={false} style={styles.needHelpText}>Need Help Now?</Text>
+            <Text allowFontScaling={false} style={styles.urgentCareMessage}>We can show you a list of urgent care centers closest to you.</Text>
             <View style={{flexDirection: 'row'}}>
               <View>
                 <TouchableOpacity style={styles.viewListResults} onPress={this._viewListResults}>
@@ -598,11 +596,11 @@ const mapStateToProps = (state) => {
     member: state.member,
     urgentCareState: state.urgentCareState,
     networkCodeList: state.provider.networkCodeList,
-    locationStatus: state.provider.locationStatus,
     showUrgentCareBanner: state.provider.showUrgentCareBanner,
     searchRange: state.provider.searchRange,
     start: state.provider.start,
-    configData: state.provider.configData
+    configData: state.provider.configData,
+    geolocationEnabled: state.setting.geolocationEnabled
   }
 }
 
@@ -625,9 +623,9 @@ const mapDispatchToProps = (dispatch) => {
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeAddress: (address) => dispatch(ProviderActions.changeAddress(address)),
     changeHomeAddress: (homeAddress) => dispatch(ProviderActions.changeHomeAddress(homeAddress)),
-    changeLocationPermissionStatus: (locationStatus) => dispatch(ProviderActions.changeLocationPermissionStatus(locationStatus)),
     changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner)),
-    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
+    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
+    changeGeolocationEnabled: (geolocationEnabled) => dispatch(SettingActions.changeGeolocationEnabled(geolocationEnabled))
   }
 }
 

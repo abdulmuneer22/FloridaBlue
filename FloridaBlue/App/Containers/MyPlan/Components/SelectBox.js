@@ -74,7 +74,7 @@ class SelectBox extends Component {
     return options.map((option) => {
       return <TouchableWithoutFeedback onPress={() => this._handleChange(option)} key={option.key}>
         <View style={[styles.option, styles.border, styles.row]}>
-          <Text>{option.key}</Text>
+          <Text allowFontScaling={false}>{option.key}</Text>
         </View>
       </TouchableWithoutFeedback>
     })
@@ -87,7 +87,7 @@ class SelectBox extends Component {
       <TouchableWithoutFeedback onPress={this._toggleMenu}>
         <View style={[styles.header, styles.row, styles.border]}>
           <View style={styles.row}>
-            <Text>{selected.key}</Text>
+            <Text allowFontScaling={false}>{selected.key}</Text>
             <Flb name='check' size={Metrics.icons.small} />
           </View>
           <Flb name={isOpen ? 'rd-u-arrow' : 'rd-d-arrow'} size={Metrics.icons.small} />

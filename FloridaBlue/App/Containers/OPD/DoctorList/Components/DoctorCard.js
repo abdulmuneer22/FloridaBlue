@@ -96,15 +96,15 @@ class DoctorCard extends Component {
 
                            value ? [ value.categoryCode != '07'
                              ? <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
-                               <Text style={styles.h1}>{value.displayName}</Text>
+                               <Text allowFontScaling={false} style={styles.h1}>{value.displayName}</Text>
                              </TouchableOpacity>
-                             : <Text style={styles.h1_1}>{value.displayName}</Text>] : null
+                             : <Text allowFontScaling={false} style={styles.h1_1}>{value.displayName}</Text>] : null
                          }
                         <View style={{flex: 1, flexDirection: 'row'}}>
 
                           {value
                             ? <View style={{flex: 0.7}}>
-                              <Text style={styles.h2}>{value.primarySpecialty}</Text>
+                              <Text allowFontScaling={false} style={styles.h2}>{value.primarySpecialty}</Text>
                             </View> : null}
                           {value && value.handicappedAccessIn && value.handicappedAccessIn == 'Y'
                             ? <View style={{flex: 0.3, alignItems: 'center', marginTop: 10}}>
@@ -112,15 +112,15 @@ class DoctorCard extends Component {
                             </View> : null }
                         </View>
 
-                        <Text style={styles.h4}>{value ? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text>
+                        <Text allowFontScaling={false} style={styles.h4}>{value ? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text>
 
-                        <Text style={styles.h4_2}>{value ? value.city : null}, {value ? value.state : null}</Text>
+                        <Text allowFontScaling={false} style={styles.h4_2}>{value ? value.city : null}, {value ? value.state : null}</Text>
                         {value
-                          ? <Text style={styles.h4_2}>{value.zipCode}</Text> : null}
+                          ? <Text allowFontScaling={false} style={styles.h4_2}>{value.zipCode}</Text> : null}
                         {value
-                          ? <Text style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
+                          ? <Text allowFontScaling={false} style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
                         {value
-                          ? <Text style={styles.h4_3}>{value.distance} miles</Text> : null}
+                          ? <Text allowFontScaling={false} style={styles.h4_3}>{value.distance} miles</Text> : null}
                       </View>
                     </View>
 
@@ -138,7 +138,7 @@ class DoctorCard extends Component {
 
                             <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
 
-                              <Text style={styles.callText}>Call</Text>
+                              <Text allowFontScaling={false} style={styles.callText}>Call</Text>
                             </View>
 
                           </View>
@@ -158,7 +158,7 @@ class DoctorCard extends Component {
                               alignItems: 'flex-start'
                             }}>
 
-                              <Text style={styles.directionText}>Directions</Text>
+                              <Text allowFontScaling={false} style={styles.directionText}>Directions</Text>
                             </View>
 
                           </View>
@@ -172,7 +172,7 @@ class DoctorCard extends Component {
             })
                             : <View style={styles.spinnerView}>
                               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                              <Text style={styles.spinnerText}>Load
+                              <Text allowFontScaling={false} style={styles.spinnerText}>Load
                         </Text>
                             </View>
                         }
@@ -180,7 +180,7 @@ class DoctorCard extends Component {
 
                     : <View style={styles.spinnerView}>
                       <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                      <Text style={styles.spinnerText}>Loading..
+                      <Text allowFontScaling={false} style={styles.spinnerText}>Loading..
                         </Text>
                     </View>
                             }

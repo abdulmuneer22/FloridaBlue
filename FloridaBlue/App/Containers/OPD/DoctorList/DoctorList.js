@@ -119,7 +119,7 @@ class DoctorList extends Component {
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>
-      <Text style={styles.headerTextStyle}>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>
         Find Care
       </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
@@ -148,7 +148,7 @@ class DoctorList extends Component {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait</Text>
+        <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait</Text>
       </View>)
     } else if (this.props.provider && this.props.provider.data) {
       return (
@@ -164,7 +164,7 @@ class DoctorList extends Component {
                           <Flb name='accident' size={Metrics.icons.large} color={Colors.snow} />
                         </View>
                         <View style={{ flex: 0.85 }}>
-                          <Text style={{
+                          <Text allowFontScaling={false} style={{
                             fontSize: Fonts.size.input * Metrics.screenWidth * 0.0028,
                             color: Colors.snow
                           }}>If this is an emergency, please call 911.</Text>
@@ -182,11 +182,11 @@ class DoctorList extends Component {
                             <Flb name='flag' size={Metrics.icons.medium} color={Colors.snow} />
                           </View>
                           <View style={{ flex: 0.85 }}>
-                            <Text style={{
+                            <Text allowFontScaling={false} style={{
                               fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
                               color: Colors.snow
                             }}>
-                              <Text style={{
+                              <Text allowFontScaling={false} style={{
                                 fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
                                 color: Colors.snow,
                                 fontWeight: '700'
@@ -208,7 +208,7 @@ class DoctorList extends Component {
                   : <View style={{flex: 1, margin: 15}}>
                     <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
                       <View style={{flex: 1, margin: 15}}>
-                        <Text style={{fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
+                        <Text allowFontScaling={false} style={{fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0028,
                           color: Colors.flBlue.anvil
                         }}>Oops! We did not find an exact match for your search. Try a new Search.</Text>
                       </View>
@@ -243,7 +243,7 @@ class DoctorList extends Component {
                         alignItems: 'center',
                         borderRadius: 5
                       }}>
-                      <Text style={{
+                      <Text allowFontScaling={false} style={{
                         color: 'white'
                       }}>Show More</Text>
                     </TouchableOpacity>
@@ -254,7 +254,7 @@ class DoctorList extends Component {
             </View>
           : <View style={styles.spinnerView}>
             <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-            <Text style={styles.spinnerText}>Loading Please Wait </Text>
+            <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
           </View>
           }
           <View style={{flex: 1}}>
@@ -269,7 +269,7 @@ class DoctorList extends Component {
                         color={Colors.snow} />
                     </View>
                     <View style={{flex: 0.75, alignItems: 'flex-start'}}>
-                      <Text style={styles.footerText}>Refine Search</Text>
+                      <Text allowFontScaling={false} style={styles.footerText}>Refine Search</Text>
                     </View>
                   </View>
                 </TouchableOpacity>
@@ -290,7 +290,7 @@ class DoctorList extends Component {
                     <View style={{flex: 0.65,
                       alignItems: 'flex-start'}}>
 
-                      <Text style={styles.footerText}>Map View</Text>
+                      <Text allowFontScaling={false} style={styles.footerText}>Map View</Text>
                     </View>
 
                   </View>

@@ -42,7 +42,7 @@ class Panel extends Component {
       }
         ).start()
         */
-    Animated.timing(this.state.animation, {toValue: finalValue}).start();        
+    Animated.timing(this.state.animation, {toValue: finalValue}).start();
   }
 
   _setMaxHeight (event) {
@@ -76,7 +76,7 @@ class Panel extends Component {
         <Animated.View
           style={[styles.container, {height: this.state.animation}]}>
           <View style={styles.titleContainer} onLayout={this._setMinHeight.bind(this)}>
-            <Text style={styles.title}>{this.state.title}</Text>
+            <Text allowFontScaling={false} style={styles.title}>{this.state.title}</Text>
 
             <Flb name={icon} size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 15, backgroundColor: Colors.transparent }}
               color={Colors.flBlue.purple} />

@@ -38,10 +38,8 @@ export const INITIAL_STATE = Immutable({
   agreeTermsOfUse: null,
   getTou: null,
   fetching: false,
-  touchEnabled: false,
   logoutUrl: null,
   currentSceneValue: null,
-  credentialStored: false,
   touchAvailable: false,
   touchLoginVisible: false
 })
@@ -90,17 +88,8 @@ export const username = (state: Object, {username} : Object) =>
 export const password = (state: Object, {password} : Object) =>
   state.merge({password})
 
-  // we are change touchEnabled
-export const _changeTouchEnabled = (state: Object, {touchEnabled} : Object) => state.merge({touchEnabled})
-
   // we are updating currentScence
 export const _changeCurrentSceneValue = (state: Object, {currentSceneValue} : Object) => state.merge({currentSceneValue})
-
-// we are change credentialStored
-export const _changeCredentialStored = (state: Object, {credentialStored} : Object) => state.merge({credentialStored})
-
-// we are change touchAvailable
-export const _changeTouchAvailable = (state: Object, {touchAvailable} : Object) => state.merge({touchAvailable})
 
 // we are change touchLoginVisible
 export const _changeTouchLoginVisible = (state: Object, {touchLoginVisible} : Object) => state.merge({touchLoginVisible})
@@ -119,10 +108,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEND_CONFIRM]: request,
   [Types.LOGIN_FAILURE]: failure,
   [Types.LOGOUT]: logout,
-  [Types.CHANGE_TOUCH_ENABLED]: _changeTouchEnabled,
   [Types.CURRENT_SCENE]: _changeCurrentSceneValue,
-  [Types.CHANGE_CREDENTIAL_STORED]: _changeCredentialStored,
-  [Types.CHANGE_TOUCH_AVAILABLE]: _changeTouchAvailable,
   [Types.CHANGE_TOUCH_LOGIN_VISIBLE]: _changeTouchLoginVisible
 })
 

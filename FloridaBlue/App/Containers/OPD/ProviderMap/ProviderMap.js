@@ -104,7 +104,7 @@ class ProviderMap extends Component {
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>
-      <Text style={styles.headerTextStyle}>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>
          Find Care
       </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
@@ -161,13 +161,13 @@ class ProviderMap extends Component {
                 width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
                 height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.49)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
                 bottom={(Platform.OS === 'ios') ? 0 : -Metrics.textHeight * Metrics.screenHeight * 0.0013}
-                nextButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
+                nextButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
                                           // fontWeight:'400',
                   marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
                   color: Colors.flBlue.grey3,
                   marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
                 onMomentumScrollEnd={this._locationSwiped}
-                prevButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
+                prevButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
                                            // fontWeight:'400',
                   marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
                   color: Colors.flBlue.grey3,
@@ -181,7 +181,7 @@ class ProviderMap extends Component {
           </View>
         : <View style={styles.spinnerView}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-          <Text style={styles.spinnerText}>Loading Please Wait </Text>
+          <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
         </View>}
       </View>
     )

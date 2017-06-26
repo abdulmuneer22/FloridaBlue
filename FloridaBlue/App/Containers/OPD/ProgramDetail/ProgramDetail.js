@@ -40,7 +40,7 @@ class ProgramDetail extends Component {
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>
-      <Text style={styles.headerTextStyle}>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>
                 Find Care
             </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
@@ -62,7 +62,7 @@ class ProgramDetail extends Component {
               {this.props.configData && this.props.configData.programDetails && this.props.configData.programDetails.length > 0 ? this.props.configData.programDetails.map((value, i) => {
                 return (<View key={i} style={{flex: 1}}>
                   <View style={{flex: 1, backgroundColor: Colors.flBlue.ocean}}>
-                    <Text style={styles.h1}>
+                    <Text allowFontScaling={false} style={styles.h1}>
                       {value.headerText_en}
                     </Text>
                   </View>
@@ -71,19 +71,19 @@ class ProgramDetail extends Component {
 
                       <View key={j} style={{flex: 1}}>
                         { programText.title_en
-                          ? <Text style={styles.h2}>
+                          ? <Text allowFontScaling={false} style={styles.h2}>
                             {programText.title_en}
                           </Text>
                     : null}
 
                         { programText.descrption_en
-                          ? <Text style={styles.h5}>
+                          ? <Text allowFontScaling={false} style={styles.h5}>
                             {programText.descrption_en}
                           </Text>
                     : null}
 
                         { programText.subDescrption_en
-                          ? <Text style={styles.h4}>
+                          ? <Text allowFontScaling={false} style={styles.h4}>
                             {programText.subDescrption_en}
                           </Text>
                     : null}

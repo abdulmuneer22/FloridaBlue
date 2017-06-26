@@ -33,7 +33,7 @@ class SupportScreen extends Component {
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
-      <Text style={styles.headerTextStyle}>
+      <Text allowFontScaling={false} style={styles.headerTextStyle}>
                 Support
               </Text>
       <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
@@ -100,7 +100,7 @@ class SupportScreen extends Component {
                                   <TouchableOpacity onPress={() => Communications.phonecall(support.contactNumber, true)} style={styles.textBackground3} >
 
                                     <View style={{flex: 1, marginLeft: 20, justifyContent: 'center' }}>
-                                      <Text style={styles.textStyle}>
+                                      <Text allowFontScaling={false} style={styles.textStyle}>
                                         {support.contactType ? support.contactType : null}
                                       </Text>
                                     </View>
@@ -109,7 +109,7 @@ class SupportScreen extends Component {
                                         {support.contactNumber ? <Flb name='call-phone' size={Metrics.icons.xm * Metrics.screenWidth * 0.0028} color={Colors.flBlue.ocean} /> : <View />}
                                       </View>
                                       <View style={{flex: 0.8, alignItems: 'flex-start', justifyContent: 'center'}}>
-                                        <Text style={styles.textStyle1}>
+                                        <Text allowFontScaling={false} style={styles.textStyle1}>
                                           {support.contactNumber ? support.contactNumber : null}
                                         </Text>
                                       </View>
@@ -120,7 +120,7 @@ class SupportScreen extends Component {
 
                               : <View style={{flex: 1}} style={styles.textBackground1}>
                                 <View style={{flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                                  <Text style={styles.textStyle}>
+                                  <Text allowFontScaling={false} style={styles.textStyle}>
                                     {support.contactType ? support.contactType : null}
                                   </Text>
                                 </View>
@@ -134,13 +134,13 @@ class SupportScreen extends Component {
 
                     )}</View>
                     </View>
-                    : <Text>
+                    : <Text allowFontScaling={false}>
                            Loading ..
                          </Text>}
              </View>
              : <View style={{alignItems: 'center', justifyContent: 'center'}}>
                <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-               <Text style={styles.spinnerText}>
+               <Text allowFontScaling={false} style={styles.spinnerText}>
                    Loading Please Wait
                  </Text>
              </View>}

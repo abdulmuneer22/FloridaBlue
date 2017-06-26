@@ -113,14 +113,14 @@ class Switch extends Component {
 
         <TouchableOpacity style={_this.props.leftActive ? injectedStyle
         : inactiveStyle} onPress={() => { _this.handleClickLeft() }}>
-          <Text style={_this.props.leftActive ? injectedTextStyle
+          <Text allowFontScaling={false} style={_this.props.leftActive ? injectedTextStyle
         : inactiveTextStyle}>Full List
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={_this.props.rightActive ? injectedStyle
         : inactiveStyle} onPress={() => { _this.handleClickRight() }}>
-          <Text style={_this.props.rightActive ? injectedTextStyle
+          <Text allowFontScaling={false} style={_this.props.rightActive ? injectedTextStyle
             : inactiveTextStyle
           }> Saved Providers
           </Text>

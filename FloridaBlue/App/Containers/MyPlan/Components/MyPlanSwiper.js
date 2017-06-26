@@ -129,10 +129,10 @@ class MyPlanSwiper extends Component {
         }}
      //  dotStyle={{width: 10, height: 10, marginLeft: 10, borderRadius: 5, top: 50, position: 'relative'}}
      //   activeDotStyle={{width: 10, height: 10, borderRadius: 5, marginLeft: 10, top: 50, position: 'relative'}}
-        nextButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
+        nextButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
           color: Colors.flBlue.grey1,
           fontFamily: Fonts.type.base }}>›</Text>}
-        prevButton={<Text style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
+        prevButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
           color: Colors.flBlue.grey1,
           fontFamily: Fonts.type.base}}>‹</Text>}
    // autoplay={true}
@@ -156,11 +156,11 @@ class MyPlanSwiper extends Component {
 
                 <View style={{flex: 1, alignItems: 'center', paddingTop: 10 }}>
 
-                  <Text style={styles.headerText}>
+                  <Text allowFontScaling={false} style={styles.headerText}>
                     {network.title.en}
                   </Text>
 
-                  <Text style={styles.subHeader}>
+                  <Text allowFontScaling={false} style={styles.subHeader}>
                     {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].title.en : 'No Plan Benfits' }
                   </Text>
                 </View>
@@ -194,7 +194,7 @@ class MyPlanSwiper extends Component {
                           borderBottomColor: Colors.flBlue.grass
 
                         }}>
-                          <Text style={{
+                          <Text allowFontScaling={false} style={{
                             fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0020,
                             fontWeight: '500',
                             fontFamily: Fonts.type.subHeaderFont,
@@ -203,7 +203,7 @@ class MyPlanSwiper extends Component {
                           </Text>
                         </View>
                         <View style={{flex: 1, marginTop: 2}}>
-                          <Text style={i == 0 ? {
+                          <Text allowFontScaling={false} style={i == 0 ? {
                             fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                             fontWeight: '500',
                             fontFamily: Fonts.type.subHeaderFont,

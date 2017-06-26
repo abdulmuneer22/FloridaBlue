@@ -20,7 +20,7 @@ import { connect } from 'react-redux'
 import { MKSwitch, MKColor } from 'react-native-material-kit'
 import styles from './SettingsStyle'
 import NavItems from '../../Navigation/NavItems.js'
-import LoginActions from '../../Redux/LoginRedux'
+import SettingActions from '../../Redux/SettingRedux'
 import { Images, Metrics, Colors, Fonts } from '../../Themes'
 
 var TouchManager = NativeModules.TouchManager
@@ -29,7 +29,8 @@ class Settings extends Component {
 
   constructor (props) {
     super(props)
-    this._handleSwitchToggle = this._handleSwitchToggle.bind(this)
+    this._handleTouchToggle = this._handleTouchToggle.bind(this)
+    this._handleGeoToggle = this._handleGeoToggle.bind(this)
   }
 
   _disableTouchID() {
@@ -82,7 +83,7 @@ class Settings extends Component {
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
           {NavItems.backButton()}
         </View>
-        <Text style={styles.headerTextStyle}>Settings</Text>
+        <Text allowFontScaling={false} style={styles.headerTextStyle}>Settings</Text>
         <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
           {NavItems.settingsButton()}
         </View>
@@ -90,7 +91,23 @@ class Settings extends Component {
     )
   }
 
-  _handleSwitchToggle(e) {
+  _handlePushToggle(e) {
+    if (this.props.pushEnabled) {
+      this.props.changePushEnabled(false)
+    } else {
+      this.props.changePushEnabled(true)
+    }
+  }
+
+  _handleGeoToggle(e) {
+    if (this.props.geolocationEnabled) {
+      this.props.changeGeolocationEnabled(false)
+    } else {
+      this.props.changeGeolocationEnabled(true)
+    }
+  }
+
+  _handleTouchToggle(e) {
     if (this.props.credentialStored) {
       TouchManager.retrieveCredentials((error, credentials) => {
         let credentialObject = credentials[0]
@@ -130,20 +147,53 @@ class Settings extends Component {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
-        <View style={styles.touchContainer}>
+        <View style={styles.settingContainer}>
           {this.props.touchEnabled ?
-            <Text style={styles.touchIdText}>Touch ID Enabled</Text>
+            <Text style={styles.settingText}>Touch ID Enabled</Text>
           :
-            <Text style={styles.touchIdText}>Enable Touch ID</Text>
+            <Text style={styles.settingText}>Enable Touch ID</Text>
           }
-          <MKSwitch style={styles.touchStatusSwitch}
+          <MKSwitch style={styles.settingStatusSwitch}
             checked={this.props.touchEnabled}
             trackSize={30}
             trackLength={52}
-            onColor="rgba(255,152,0,.3)"
-            thumbOnColor={MKColor.Orange}
-            rippleColor="rgba(255,152,0,.2)"
-            onPress={() => this._handleSwitchToggle()}
+            onColor={Colors.flBlue.ocean}
+            thumbOnColor={Colors.flBlue.ocean}
+            rippleColor={Colors.flBlue.ocean}
+            onPress={() => this._handleTouchToggle()}
+          />
+        </View>
+        <View style={styles.settingContainer}>
+          {this.props.geolocationEnabled ?
+              <Text style={styles.settingText}>Geolocation Enabled</Text>
+            :
+              <Text style={styles.settingText}>Enable Geolocation</Text>
+          }
+          <MKSwitch style={styles.settingStatusSwitch}
+            checked={this.props.geolocationEnabled}
+            trackSize={30}
+            trackLength={52}
+            onColor={Colors.flBlue.ocean}
+            thumbOnColor={Colors.flBlue.ocean}
+            rippleColor={Colors.flBlue.ocean}
+            onPress={() => this._handleGeoToggle()}
+          />
+        </View>
+
+        <View style={styles.settingContainer}>
+          {this.props.pushEnabled ?
+              <Text style={styles.settingText}>Push Notification Enabled</Text>
+            :
+              <Text style={styles.settingText}>Enable Push Notification</Text>
+          }
+          <MKSwitch style={styles.settingStatusSwitch}
+            checked={this.props.pushEnabled}
+            trackSize={30}
+            trackLength={52}
+            onColor={Colors.flBlue.ocean}
+            thumbOnColor={Colors.flBlue.ocean}
+            rippleColor={Colors.flBlue.ocean}
+            onPress={() => this._handlePushToggle()}
           />
         </View>
       </View>
@@ -153,16 +203,20 @@ class Settings extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    touchEnabled: state.login.touchEnabled,
-    credentialStored: state.login.credentialStored,
+    touchEnabled: state.setting.touchEnabled,
+    credentialStored: state.setting.credentialStored,
+    geolocationEnabled: state.setting.geolocationEnabled,
+    pushEnabled: state.setting.pushEnabled,
     username: state.login.username
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeTouchEnabled: (touchEnabled) => dispatch(LoginActions.changeTouchEnabled(touchEnabled)),
-    changeCredentialStored: (credentialStored) => dispatch(LoginActions.changeCredentialStored(credentialStored))
+    changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
+    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
+    changeGeolocationEnabled: (geolocationEnabled) => dispatch(SettingActions.changeGeolocationEnabled(geolocationEnabled)),
+    changePushEnabled: (pushEnabled) => dispatch(SettingActions.changePushEnabled(pushEnabled))
   }
 }
 

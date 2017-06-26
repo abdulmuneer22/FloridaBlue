@@ -55,7 +55,7 @@ class ClaimsSummary extends Component {
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
           {NavItems.backButton()}
         </View>
-        <Text style={styles.headerTextStyle}>
+        <Text allowFontScaling={false} style={styles.headerTextStyle}>
           Claims
         </Text>
         <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
