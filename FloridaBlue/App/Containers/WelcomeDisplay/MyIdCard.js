@@ -97,19 +97,19 @@ class MyIdCard extends Component {
                   </View>
 
                   <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.73)), alignItems: 'flex-start'}}>
-                    <View style={{flex: 0.1}}>
+                    {/*<View style={{flex: 0.1}}>
                       <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> ???? </Text>
-                    </View>
-                    <View style={{flex: 0.1}}>
+                    </View>*/}
+                    <View style={{flex: 0.125}}>
                       <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data.RXBIN}</Text>
                       <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data.RXPCN}</Text>
                     </View>
-                    <View style={{flex: 0.1}} />
-                    <View style={{flex: 0.1}}>
+                    <View style={{flex: 0.125}} />
+                    <View style={{flex: 0.125}}>
                       <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Plan Number: {this.props.data.PlanNumber} </Text>
                       <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Plan Name: {this.props.data.PlanName}</Text>
                     </View>
-                    <View style={{flex: 0.1}}>
+                    <View style={{flex: 0.125}}>
                       <Text style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>  </Text>
                     </View>
                   </View>
