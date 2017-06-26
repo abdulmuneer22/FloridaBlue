@@ -10,6 +10,7 @@ import ReduxPersist from '../../Config/ReduxPersist'
 import LoginActions from '../../Redux/LoginRedux'
 import styles from './RootContainerStyle'
 import {PushController} from '../PushNotifications'
+import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
 
 var RCTNetworking = require('RCTNetworking')
 var inactiveTime = Date
@@ -41,7 +42,14 @@ class RootContainer extends Component {
   }
 
   _handleAppState () {
-    var appState = AppState.currentState
+    let appState = AppState.currentState
+
+    if (appState.match(/active/)) {
+      FCM.setBadgeNumber(0)
+    } else if (appState.match(/inactive|background/)) {
+  //    FCM.setBadgeNumber(1)
+    }
+
     if (component.props && component.props.userName) {
       if (appState.match(/inactive|background/)) {
         if (timerStarted == false) {
