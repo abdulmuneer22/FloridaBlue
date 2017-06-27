@@ -156,7 +156,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimsList: (data) => dispatch(ClaimsActions.claimsListRequest(data)),
+    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest())
   }
 }
 
