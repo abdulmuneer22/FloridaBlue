@@ -306,7 +306,12 @@ class ClaimsList extends Component {
   }
 
   _displayCondition () {
-    if (this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 0) {
+     if (this.props.fetching) {
+      return (<View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>)
+    } else if (this.props.claimsdata && this.props.claimsdata.data && this.props.claimsdata.data.length > 0) {
         return (
         <View style={{flex:1}}>
 
