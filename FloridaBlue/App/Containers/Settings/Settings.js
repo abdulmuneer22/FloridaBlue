@@ -57,12 +57,16 @@ class Settings extends Component {
     })
   }
 
+  _resetTouchToggle() {
+    this.props.changeTouchEnabled(true)
+  }
+
   _showDisableAlert() {
     Alert.alert(
       'Disable Touch ID',
       'Are you sure you want to turn off Touch ID?',
       [
-        {text: 'Cancel', style: 'cancel'},
+        {text: 'Cancel', style: 'cancel', onPress: () => this.forceUpdate()},
         {text: 'Yes', onPress: () => this._disableTouchID()},
       ],
       { cancelable: false }
@@ -143,22 +147,26 @@ class Settings extends Component {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
-        <View style={styles.settingContainer}>
-          {this.props.touchEnabled ?
-            <Text style={styles.settingText}>Touch ID Enabled</Text>
+        {Platform.OS === 'ios' ?
+            <View style={styles.settingContainer}>
+              {this.props.touchEnabled ?
+                <Text style={styles.settingText}>Touch ID Enabled</Text>
+              :
+                <Text style={styles.settingText}>Enable Touch ID</Text>
+              }
+              <MKSwitch style={styles.settingStatusSwitch}
+                checked={this.props.touchEnabled}
+                trackSize={30}
+                trackLength={52}
+                onColor={Colors.flBlue.ocean}
+                thumbOnColor={Colors.flBlue.ocean}
+                rippleColor={Colors.flBlue.ocean}
+                onPress={() => this._handleTouchToggle()}
+              />
+            </View>
           :
-            <Text style={styles.settingText}>Enable Touch ID</Text>
-          }
-          <MKSwitch style={styles.settingStatusSwitch}
-            checked={this.props.touchEnabled}
-            trackSize={30}
-            trackLength={52}
-            onColor={Colors.flBlue.ocean}
-            thumbOnColor={Colors.flBlue.ocean}
-            rippleColor={Colors.flBlue.ocean}
-            onPress={() => this._handleTouchToggle()}
-          />
-        </View>
+            null
+        }
         <View style={styles.settingContainer}>
           {this.props.geolocationEnabled ?
               <Text style={styles.settingText}>Geolocation Enabled</Text>

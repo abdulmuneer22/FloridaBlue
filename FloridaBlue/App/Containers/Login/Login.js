@@ -87,6 +87,7 @@ class Login extends Component {
     this._handleLoginState = this._handleLoginState.bind(this)
     this._authenticateUserWithTouch = this._authenticateUserWithTouch.bind(this)
     this._handleTouchCheckbox = this._handleTouchCheckbox.bind(this)
+    this._handleLogin = this._handleLogin.bind(this)
   }
 
   componentWillMount () {
@@ -370,7 +371,7 @@ class Login extends Component {
             errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
             break
           case '8':
-            errorMessage = 'Sorry! Looks like you\'re using the wrong fingerprint. Please log in using your user ID and password.'
+            errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
             this._disableTouchID()
             break
           default:
@@ -583,6 +584,7 @@ class Login extends Component {
                   secureTextEntry
                   password
                   onChangeText={this.props.handleChangePassword}
+                  onSubmitEditing={this._handleLogin}
                   value={this.props.password}
                   underlineColorAndroid={Colors.coal}
                   placeholder={I18n.t('userpassword')}
@@ -658,6 +660,7 @@ class Login extends Component {
                   secureTextEntry
                   password
                   onChangeText={this.props.handleChangePassword}
+                  onSubmitEditing={this._handleLogin}
                   value={this.props.password}
                   underlineColorAndroid={Colors.coal}
                   placeholder={I18n.t('userpassword')}
