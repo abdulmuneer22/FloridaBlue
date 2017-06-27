@@ -160,7 +160,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
   // resizeMode:'contain',
    // backgroundColor:'red',
-    width: Platform.OS == 'ios' ? (Metrics.screenWidth) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.56)
+    width: Platform.OS == 'ios' ? (Metrics.screenWidth) : (Metrics.screenWidth)
   },
   myplanImageStyle2: {
     flex: 1,

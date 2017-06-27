@@ -97,18 +97,18 @@ class Card extends Component {
           marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
         // marginRight :
         // marginTop : 10,
-
           marginBottom: window.width * 0.03
-
+          
         }}>
         <View style={{flex: 1}} >
           <LinearGradient colors={this.props.gradientColor}
             style={{
               flex: 1,
               width: this.state.CardWidth,
-              height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.76) : Metrics.screenHeight - (Metrics.screenHeight * 0.78)
+              height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.76) : Metrics.screenHeight - (Metrics.screenHeight * 0.78),
         //    alignItems: 'center',
         //    justifyContent: 'center'
+              marginBottom: (Platform.OS === 'ios') ? 0 : 30
             }}
            >
 
@@ -156,7 +156,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimsList: (data) => dispatch(ClaimsActions.claimsListRequest(data)),
+    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest())
   }
 }
 
