@@ -42,7 +42,7 @@ export const INITIAL_STATE = Immutable({
   listLimit: 10,
   datePickerVisible: false,
   startDate: '',
-  endDate: 'End Date',
+  endDate: '',
   providerName: '',
   memberName: '',
   memberId: '',
