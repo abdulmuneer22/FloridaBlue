@@ -64,10 +64,10 @@ class ClaimsList extends Component {
           start : 1,
           end : 10,
           sortBy : {
-                      providerName:0, 
-                      memberName:0, 
-                      date:0
-                    }
+            providerName:0,
+            memberName:0,
+            date:0
+          }
       }
     }
     this.viewMore = this.viewMore.bind(this)
@@ -83,7 +83,7 @@ class ClaimsList extends Component {
 
   searchResults(){
     this.props.attemptClaimsList(this.props)
-    NavigationActions.ClaimsList()
+    this.setState({ searchVisible: false })
   }
 
   _renderHeader () {
@@ -101,7 +101,6 @@ class ClaimsList extends Component {
   }
 
   _renderDropdownRow (rowData, rowID, highlighted) {
-    console.tron.log(rowData)
     return (
       <TouchableHighlight underlayColor={Colors.snow}>
         <Text style={styles.dropdownItem}>{rowData}</Text>
@@ -177,15 +176,13 @@ class ClaimsList extends Component {
   }
 
   memberSelected (index, value:string) {
-    let selectedMember = this.props.memberObject.contractMembers[index].firstName
+    let selectedMember = this.props.memberObject.contractMembers[index].firstName + " " + this.props.memberObject.contractMembers[index].lastName
     let selectedValue = this.props.memberObject.contractMembers[index].memberId
-    console.tron.log('selectedMember ==>' + selectedMember)
-    var memberTypeSelected = {
-       'selectedMember': selectedMember,
-       'selectedValue': selectedValue
-     }
-    this.props.changeMemberName(memberTypeSelected)
-   
+    this.props.changeMemberName(selectedMember)
+    this.props.changeMemberId(selectedValue)
+    this.setState({ searchVisible: false }, function () {
+      this.setState({ searchVisible: true })
+    })
   }
 
   componentDidMount() {
@@ -278,7 +275,7 @@ class ClaimsList extends Component {
             "sortOrder": this.state.searchData.sortBy.memberName
        });
     }
-    
+
 
     this.props.changeSortBy(sortBy)
     this.state.sortOnClaims = true
@@ -288,7 +285,7 @@ class ClaimsList extends Component {
       if(!this.props.fetching){
         return( <View style={{flex: 1, margin: 14}}>
                 <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
-                { 
+                {
                   this.state.listLimit < this.props.claimsdata.totalCount ?
                   <View style={{flex:1, justifyContent: 'center'}}>
                     <TouchableOpacity onPress={this.viewMore} style={{flexDirection: 'row',flex:1}}>
@@ -328,7 +325,7 @@ class ClaimsList extends Component {
 
             <View style={{flex:1}}>
               <View style={{flex:1,flexDirection:'row',justifyContent:'center'}}>
-                <View style={{flex:0.3,flexDirection:'row'}}>                  
+                <View style={{flex:0.3,flexDirection:'row'}}>
                   <TouchableOpacity style={{flex:0.3,flexDirection:'row',justifyContent:'center',alignItems:'center'}} onPress={() => this.sortClaims('date')}>
                       <Text allowFontScaling={false} style={styles.claimsCategoryText}>Date</Text>
                       <Flb name = {this.state.searchData.sortBy.date==0 ? 'caret-up-down' : (this.state.searchData.sortBy.date==1 ?  'caret-up' :  'caret-down' ) } size={Metrics.icons.regular*Metrics.screenWidth*0.0015} color={Colors.flBlue.anvil} />
@@ -382,11 +379,8 @@ class ClaimsList extends Component {
               onChangeText={this.props.changeProviderName}
              // value={this.props.providerName}
             />
-            
-            <ModalDropdown 
-            
-            options={this.props.memberObject && this.props.memberObject.contractMembers ? _.map(this.props.memberObject.contractMembers, 'memberName'):null} 
-            onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+
+            <ModalDropdown options={_.map(this.props.memberObject.contractMembers, 'firstName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
                 ref='memberName'
                 textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
@@ -478,7 +472,8 @@ const mapStateToProps = (state) => {
     start: state.claims.start,
     end: state.claims.end,
     sortBy: state.claims.sortBy,
-    memberObject:state.member.memberObject
+    memberObject:state.member.memberObject,
+    memberId: state.member.memberId
   }
 }
 
@@ -491,6 +486,7 @@ const mapDispatchToProps = (dispatch) => {
     changeEndDate: (endDate) => dispatch(ClaimsActions.changeEndDate(endDate)),
     changeProviderName: (providerName) => dispatch(ClaimsActions.changeProviderName(providerName)),
     changeMemberName: (memberName) => dispatch(ClaimsActions.changeMemberName(memberName)),
+    changeMemberId: (memberId) => dispatch(ClaimsActions.changeMemberId(memberId)),
     changeStart: (start) => dispatch(ClaimsActions.changeStart(start)),
     changeEnd: (end) => dispatch(ClaimsActions.changeEnd(end)),
     changeSortBy: (sortBy) => dispatch(ClaimsActions.changeSortBy(sortBy)),

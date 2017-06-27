@@ -24,6 +24,7 @@ const { Types, Creators } = createActions({
   changeEndDate: ['endDate'],
   changeProviderName: ['providerName'],
   changeMemberName: ['memberName'],
+  changeMemberId: ['memberId'],
   changeStart: ['start'],
   changeEnd: ['end'],
   changeSortBy: ['sortBy']
@@ -41,9 +42,10 @@ export const INITIAL_STATE = Immutable({
   listLimit: 10,
   datePickerVisible: false,
   startDate: '',
-  endDate: '',
+  endDate: 'End Date',
   providerName: '',
   memberName: '',
+  memberId: '',
   start : 1,
   end : 10,
   sortBy : []
@@ -113,6 +115,9 @@ export const _changeProviderName = (state: Object, {providerName}: Object) => st
 // memberName
 export const _changeMemberName = (state: Object, {memberName}: Object) => state.merge({memberName})
 
+// memberId
+export const _changeMemberId = (state: Object, {memberId}: Object) => state.merge({memberId})
+
 // start
 export const _changeStart = (state: Object, {start}: Object) => state.merge({start})
 
@@ -143,6 +148,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_END_DATE]: _changeEndDate,
   [Types.CHANGE_PROVIDER_NAME]: _changeProviderName,
   [Types.CHANGE_MEMBER_NAME]: _changeMemberName,
+  [Types.CHANGE_MEMBER_ID]: _changeMemberId,
   [Types.CHANGE_START]: _changeStart,
   [Types.CHANGE_END]: _changeEnd,
   [Types.CHANGE_SORT_BY]: _changeSortBy
