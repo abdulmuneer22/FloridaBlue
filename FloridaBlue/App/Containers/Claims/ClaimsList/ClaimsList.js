@@ -38,7 +38,6 @@ import ModalDropdown from 'react-native-modal-dropdown'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 
 const window = Dimensions.get('window')
-let memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
 let moment = require('moment')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -179,11 +178,14 @@ class ClaimsList extends Component {
 
   memberSelected (index, value:string) {
     let selectedMember = this.props.memberObject.contractMembers[index].firstName
+    let selectedValue = this.props.memberObject.contractMembers[index].memberId
     console.tron.log('selectedMember ==>' + selectedMember)
-    this.props.changeMemberName(selectedMember)
-    this.setState({ searchVisible: false }, function () {
-      this.setState({ searchVisible: true })
-    })
+    var memberTypeSelected = {
+       'selectedMember': selectedMember,
+       'selectedValue': selectedValue
+     }
+    this.props.changeMemberName(memberTypeSelected)
+   
   }
 
   componentDidMount() {
@@ -381,7 +383,10 @@ class ClaimsList extends Component {
              // value={this.props.providerName}
             />
             
-            <ModalDropdown options={_.map(this.props.memberObject.contractMembers, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+            <ModalDropdown 
+            
+            options={this.props.memberObject && this.props.memberObject.contractMembers ? _.map(this.props.memberObject.contractMembers, 'memberName'):null} 
+            onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
                 ref='memberName'
                 textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
@@ -454,6 +459,7 @@ ClaimsList.propTypes = {
   data: PropTypes.object,
   attemptClaimsList: PropTypes.func,
   attemptMemberList: PropTypes.func,
+  fetching: PropTypes.bool,
   error: PropTypes.string
 }
 
