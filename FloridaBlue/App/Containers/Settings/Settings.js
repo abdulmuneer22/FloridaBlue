@@ -69,14 +69,6 @@ class Settings extends Component {
     )
   }
 
-  _resetToggle() {
-    if (this.props.touchEnabled) {
-      this.props.changeTouchEnabled(true)
-    } else {
-      this.props.changeTouchEnabled(false)
-    }
-  }
-
   _renderHeader () {
     return (
       <Image style={styles.headerContainer} source={Images.newHeaderImage}>
@@ -139,7 +131,11 @@ class Settings extends Component {
         }
       })
     } else {
-      this._enableTouch()
+      if (this.props.touchEnabled) {
+        this._showDisableAlert()
+      } else {
+        this._enableTouch()
+      }
     }
   }
 
