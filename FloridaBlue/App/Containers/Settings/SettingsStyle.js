@@ -37,7 +37,8 @@ export default StyleSheet.create({
     marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0025,
     fontFamily: Fonts.type.headerFont,
     fontWeight: (Platform.OS === 'ios') ? '500' : '400',
-    alignItems: 'center'
+    alignItems: 'center',
+    color: Colors.flBlue.anvil
   },
   settingStatusSwitch: {
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
