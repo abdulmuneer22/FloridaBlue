@@ -571,11 +571,11 @@ class Login extends Component {
                     <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
                     <Text allowFontScaling={false} style={styles.touchInstruction}>Fingerprint</Text>
                   </TouchableOpacity>
-                :                  <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._handleTouchCheckbox() }}>
+                :<TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._handleTouchCheckbox() }}>
                     <Text allowFontScaling={false} style={styles.touchInstruction}>Setup Your</Text>
                     { this.props.touchEnabled
                         ? <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
-                      :                        <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintDisabled} />
+                      :   <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintDisabled} />
                     }
                     <Text allowFontScaling={false} style={styles.touchInstruction}>Fingerprint</Text>
                   </TouchableOpacity>

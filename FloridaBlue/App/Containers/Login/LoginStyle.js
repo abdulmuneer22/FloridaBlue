@@ -80,7 +80,8 @@ export default StyleSheet.create({
   },
   enableTouchContainer: {
     flex: 0.3,
-    alignItems: 'center'
+    alignItems: 'center',
+   // backgroundColor:'red'
   },
   touchViews: {
     alignItems: 'center',
@@ -102,17 +103,22 @@ export default StyleSheet.create({
     height: Metrics.baseMargin * Metrics.screenHeight * 0.0033
   },
   fingerprintContainer: {
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.022,
+    height:Metrics.textHeight1 * Metrics.screenHeight*0.003,
+   // backgroundColor:'red'
   },
   fingerprintDisabled: {
+    //backgroundColor:'red',
     height: Metrics.baseMargin * Metrics.screenHeight * 0.006,
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.0189,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.022,
     paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0035,
     color: Colors.flBlue.grey3
   },
   fingerprintEnabled: {
+   // backgroundColor:'green',
     height: Metrics.baseMargin * Metrics.screenHeight * 0.006,
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.0189,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.022,
     paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0035,
     color: Colors.flBlue.ocean
   },
