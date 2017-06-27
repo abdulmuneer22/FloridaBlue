@@ -19,33 +19,33 @@ export function * claimslist (api, {data}) {
   }
 }
 
-// attempts to login
-export function * claimsMemberList (api) {
+// // attempts to login
+// export function * claimsMemberList (api) {
   
-  const response = yield call(api.getClaimsMemberList)
-  if (response.status == '200') {
-    // dispatch success
-    //var data = response.data.data
-    console.tron.log('calimsMemberList called  successfully');
+//   const response = yield call(api.getClaimsMemberList)
+//   if (response.status == '200') {
+//     // dispatch success
+//     //var data = response.data.data
+//     console.tron.log('calimsMemberList called  successfully');
     
-          let claimsMemberList =  [
-              {
-                "memberCode": "Professional",
-                "memberName": "Professional"
-              },
-              {
-                "memberCode": "Institutional",
-                "memberName": "Institutional"
-              }
-          ]
+//           let claimsMemberList =  [
+//               {
+//                 "memberCode": "Professional",
+//                 "memberName": "Professional"
+//               },
+//               {
+//                 "memberCode": "Institutional",
+//                 "memberName": "Institutional"
+//               }
+//           ]
     
-    yield put(ClaimsActions.claimsMemberListSuccess(claimsMemberList))
-  } else {
-    // dispatch successful logins
-    var error = response.status
-    yield put(ClaimsActions.claimsMemberListFailure(error))
-  }
-}
+//     yield put(ClaimsActions.claimsMemberListSuccess(claimsMemberList))
+//   } else {
+//     // dispatch successful logins
+//     var error = response.status
+//     yield put(ClaimsActions.claimsMemberListFailure(error))
+//   }
+// }
 
 
 // attempts to login

@@ -177,8 +177,8 @@ class ClaimsList extends Component {
     }
   }
 
-  memberSelected (index, value: string) {
-    let selectedMember = this.props.claimsMemberList[index].memberName
+  memberSelected (index, value:string) {
+    let selectedMember = this.props.memberObject.contractMembers[index].firstName
     console.tron.log('selectedMember ==>' + selectedMember)
     this.props.changeMemberName(selectedMember)
     this.setState({ searchVisible: false }, function () {
@@ -381,7 +381,7 @@ class ClaimsList extends Component {
              // value={this.props.providerName}
             />
             
-            <ModalDropdown options={_.map(this.props.claimsMemberList, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+            <ModalDropdown options={_.map(this.props.memberObject.contractMembers, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
                 ref='memberName'
                 textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
@@ -436,8 +436,8 @@ class ClaimsList extends Component {
 
   render () {
    /* console.tron.log("claims list data" + this.props.datePickerVisible)
-    console.tron.log("entered to claims list "  + this.props.claimsdata)
-    console.tron.log("entered to claims member list " + JSON.stringify(this.props.claimsMemberList))*/
+    console.tron.log("entered to claims list "  + this.props.claimsdata)*/
+    console.tron.log("entered to claims member list " + JSON.stringify(this.props.memberObject.contractMembers))
     return (
       <View style={styles.container}>
           {this._renderHeader()}
@@ -471,7 +471,8 @@ const mapStateToProps = (state) => {
     memberName: state.claims.memberName,
     start: state.claims.start,
     end: state.claims.end,
-    sortBy: state.claims.sortBy
+    sortBy: state.claims.sortBy,
+    memberObject:state.member.memberObject
   }
 }
 

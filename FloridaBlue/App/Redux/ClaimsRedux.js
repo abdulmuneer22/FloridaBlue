@@ -15,9 +15,9 @@ const { Types, Creators } = createActions({
   claimsSummaryRequest: [],
   claimsSummarySuccess: ['data'],
   claimsSummaryFailure: ['error'],
-  claimsMemberListRequest: [],
-  claimsMemberListSuccess: ['data'],
-  claimsMemberListFailure: ['error'],
+  // claimsMemberListRequest: [],
+  // claimsMemberListSuccess: ['data'],
+  // claimsMemberListFailure: ['error'],
   changeListLimit: ['listLimit'],
   changeDatePickerVisible: ['datePickerVisible'],
   changeStartDate: ['startDate'],
@@ -82,16 +82,16 @@ export const _claimSummarySuccess = (state: Object, {data}:Object) => {
 // we've had a problem logging in
 export const _claimSummaryFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {}})
 
-// we're attempting to login
-export const _claimMemberListRequest = (state: Object) => state.merge({fetching: true, data: {}, error: null })
+// // we're attempting to login
+// export const _claimMemberListRequest = (state: Object) => state.merge({fetching: true, data: {}, error: null })
 
-// we've successfully logged in
-export const _claimMemberListSuccess = (state: Object, {data}:Object) => {
-  return state.merge({fetching: false,claimsMemberList:data, error: null })
-}
+// // we've successfully logged in
+// export const _claimMemberListSuccess = (state: Object, {data}:Object) => {
+//   return state.merge({fetching: false,claimsMemberList:data, error: null })
+// }
 
-// we've had a problem logging in
-export const _claimMemberListFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {}})
+// // we've had a problem logging in
+// export const _claimMemberListFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {}})
 
 
 // listLimit
@@ -134,9 +134,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CLAIMS_SUMMARY_REQUEST]: _claimSummaryRequest,
   [Types.CLAIMS_SUMMARY_SUCCESS]: _claimSummarySuccess,
   [Types.CLAIMS_SUMMARY_FAILURE]: _claimSummaryFailure,
-  [Types.CLAIMS_MEMBER_LIST_REQUEST]: _claimMemberListRequest,
-  [Types.CLAIMS_MEMBER_LIST_SUCCESS]: _claimMemberListSuccess,
-  [Types.CLAIMS_MEMBER_LIST_FAILURE]: _claimMemberListFailure,
+  // [Types.CLAIMS_MEMBER_LIST_REQUEST]: _claimMemberListRequest,
+  // [Types.CLAIMS_MEMBER_LIST_SUCCESS]: _claimMemberListSuccess,
+  // [Types.CLAIMS_MEMBER_LIST_FAILURE]: _claimMemberListFailure,
   [Types.CHANGE_LIST_LIMIT]: _changeListLimit,
   [Types.CHANGE_DATE_PICKER_VISIBLE]: _changeDatePickerVisible,
   [Types.CHANGE_START_DATE]: _changeStartDate,
