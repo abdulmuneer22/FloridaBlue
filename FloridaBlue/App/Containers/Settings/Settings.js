@@ -57,12 +57,16 @@ class Settings extends Component {
     })
   }
 
+  _resetTouchToggle() {
+    this.props.changeTouchEnabled(true)
+  }
+
   _showDisableAlert() {
     Alert.alert(
       'Disable Touch ID',
       'Are you sure you want to turn off Touch ID?',
       [
-        {text: 'Cancel', style: 'cancel'},
+        {text: 'Cancel', style: 'cancel', onPress: () => this.forceUpdate()},
         {text: 'Yes', onPress: () => this._disableTouchID()},
       ],
       { cancelable: false }
