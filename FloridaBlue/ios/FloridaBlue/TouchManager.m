@@ -78,19 +78,41 @@ RCT_EXPORT_METHOD(checkTouchStatus:(RCTResponseSenderBlock)callback) {
   BOOL touchEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchEnabled"];
   NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
   NSMutableArray *callbackArray = [NSMutableArray new];
-  
-  BOOL canAuthenticate = [self canAuthenticateByTouchId];
-  
-  if (canAuthenticate) {
-  if (touchEnabled && username != nil) {
-    [callbackArray addObject:@"AUTHENTICATED"];
-  } else if (touchEnabled && username == nil) {
-    [callbackArray addObject:@"ENABLED"];
+  LAContext *myContext = [[LAContext alloc] init];
+  NSError *authError = nil;
+  __block NSString *authErrorCode = @"";
+    
+  if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+    if (touchEnabled && username != nil) {
+      [callbackArray addObject:@"AUTHENTICATED"];
+    } else if (touchEnabled && username == nil) {
+      [callbackArray addObject:@"ENABLED"];
+    } else {
+      [callbackArray addObject:@"DISABLED"];
+    }
   } else {
-    [callbackArray addObject:@"DISABLED"];
-  }
-  } else {
-    [callbackArray addObject:@"UNAVAILABLE"];
+    switch (authError.code) {
+      case LAErrorSystemCancel:
+        authErrorCode = @"4";
+        break;
+      case LAErrorPasscodeNotSet:
+        authErrorCode = @"5";
+        break;
+      case LAErrorTouchIDNotAvailable:
+        authErrorCode = @"6";
+        break;
+      case LAErrorTouchIDNotEnrolled:
+        authErrorCode = @"7";
+        break;
+      case LAErrorTouchIDLockout:
+        authErrorCode = @"8";
+        break;
+      default:
+        authErrorCode = @"9";
+        break;
+    }
+    
+    [callbackArray addObject:authErrorCode];
   }
   
   callback(@[[NSNull null], callbackArray]);
@@ -118,23 +140,28 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
                             didAuthorize = @"NO";
                             switch (error.code) {
                               case LAErrorAuthenticationFailed:
-                                NSLog(@"Authentication Failed");
-                                authErrorCode = @"001";
+                                authErrorCode = @"1";
                                 break;
-                                
                               case LAErrorUserCancel:
-                                NSLog(@"User pressed Cancel button");
-                                authErrorCode = @"002";
+                                authErrorCode = @"2";
                                 break;
-                                
+                              case LAErrorSystemCancel:
+                                authErrorCode = @"4";
+                                break;
+                              case LAErrorPasscodeNotSet:
+                                authErrorCode = @"5";
+                                break;
+                              case LAErrorTouchIDNotAvailable:
+                                authErrorCode = @"6";
+                                break;
+                              case LAErrorTouchIDNotEnrolled:
+                                authErrorCode = @"7";
+                                break;
                               case LAErrorTouchIDLockout:
-                                NSLog(@"Touch ID locked, too many failed attempts");
-                                authErrorCode = @"000";
+                                authErrorCode = @"8";
                                 break;
-                                
                               default:
-                                NSLog(@"Touch ID is not configured");
-                                authErrorCode = @"999";
+                                authErrorCode = @"9";
                                 break;
                             }
                           }
@@ -145,19 +172,11 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
                           callback(@[[NSNull null], callbackArray]);
                         }];
   } else {
-    authErrorCode = @"999";
+    authErrorCode = @"9";
     [callbackDict setObject:didAuthorize forKey:@"authStatus"];
     [callbackDict setObject:authErrorCode forKey:@"authErrorCode"];
     [callbackArray addObject:callbackDict];
     callback(@[[NSNull null], callbackArray]);
-  }
-}
-
-- (BOOL)canAuthenticateByTouchId {
-  if ([LAContext class]) {
-    return [[[LAContext alloc] init] canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:nil];
-  } else {
-    return NO;
   }
 }
 

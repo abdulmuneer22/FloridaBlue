@@ -118,10 +118,25 @@ class Login extends Component {
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(false)
             break
-          default:
+          case '6':
+            this.setState({touchAvailable: false})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(false)
-            this.props.changeTouchAvailable(false)
+            break
+          case '7':
+            this.setState({touchAvailable: true})
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(false)
+            break
+          case '8':
+            this.setState({touchAvailable: true})
+            this.props.changeCredentialStored(true)
+            this.props.changeTouchEnabled(true)
+            break
+          default:
+            this.setState({touchAvailable: false})
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(false)
         }
       })
     }
@@ -262,16 +277,23 @@ class Login extends Component {
           this.props.clearLogin()
           if (newProps.credentialStored) {
             this._disableTouchID()
+            Alert.alert('Login', 'Looks like something has changed. Please log in using your user ID and password to set up Touch ID.', [
+              {
+                text: 'OK'
+              }
+            ])
+          } else {
+            Alert.alert('Login', 'The user ID or password you have entered is incorrect. Please try again.', [
+              {
+                text: 'OK'
+              }
+            ])
           }
           console.tron.log('coming from future contract scenarios')
           RCTNetworking.clearCookies((cleared) => {
             console.tron.log('clearing local cookies for the app')
           })
-          Alert.alert('Login', 'The user ID or password you have entered is incorrect. Please try again.', [
-            {
-              text: 'OK'
-            }
-          ])
+
         } else if (newProps.error != null && newProps.error != '401') {
           this.props.clearLogin()
           if (newProps.credentialStored) {
@@ -320,7 +342,7 @@ class Login extends Component {
             this._disableTouchID()
             Alert.alert(
               'Oops!',
-              'Looks like something has changed. Please log in using your user ID and password  to set up Touch ID.',
+              'Looks like something has changed. Please log in using your user ID and password to set up Touch ID.',
               [
                 {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
               ],
@@ -335,17 +357,21 @@ class Login extends Component {
         let errorCode = authObject['authErrorCode']
 
         switch (errorCode) {
-          case '999':
-            errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
-            break
-          case '000':
-            errorMessage = 'Sorry! Looks like you\'re using the wrong fingerprint. Please log in using your user ID and password.'
-            break
-          case '001':
+          case '1':
             errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
             break
-          case '002':
+          case '2':
             showError = false
+            break
+          case '5':
+            errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+            break
+          case '7':
+            errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+            break
+          case '8':
+            errorMessage = 'Sorry! Looks like you\'re using the wrong fingerprint. Please log in using your user ID and password.'
+            this._disableTouchID()
             break
           default:
             errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
@@ -371,7 +397,7 @@ class Login extends Component {
       if (status == 'SUCCESS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
-        NavigationActions.pop()
+        this.setState({touchAvailable: true})
       }
     })
   }

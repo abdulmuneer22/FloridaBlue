@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
   Text,
   View,
@@ -20,6 +20,7 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import MyPlanActions from '../../../Redux/MyPlanRedux'
 import { connect } from 'react-redux'
 import Flb from '../../../Themes/FlbIcon'
+import ClaimsActions from '../../../Redux/ClaimsRedux'
 import LinearGradient from 'react-native-linear-gradient'
 
 var image = [
@@ -71,6 +72,9 @@ class Card extends Component {
     } else if (this.props.tileType == 'native') {
       var routerName = this.props.routerName
       action = NavigationActions[routerName]()
+      if (routerName === 'ClaimsList') {
+        this.props.attemptClaimsList()
+      }
     }
   }
 
@@ -137,4 +141,23 @@ class Card extends Component {
   }
 }
 
-export default Card
+Card.propTypes = {
+  data: PropTypes.object,
+  attemptClaimsList: PropTypes.func,
+  fetching: PropTypes.bool,
+  error: PropTypes.string
+}
+
+const mapStateToProps = (state) => {
+  return {
+    claimsdata: state.claims.claimslist,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card)
