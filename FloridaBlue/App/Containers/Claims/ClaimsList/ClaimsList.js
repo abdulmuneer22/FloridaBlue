@@ -478,7 +478,7 @@ const mapStateToProps = (state) => {
     end: state.claims.end,
     sortBy: state.claims.sortBy,
     memberObject:state.member.memberObject,
-    memberId: state.member.memberId
+    memberId: state.claims.memberId
   }
 }
 

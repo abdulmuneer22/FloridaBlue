@@ -95,7 +95,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
         startDate: null,//(data && data.startDate && data.startDate != '') ? data.startDate : null ,
         endDate:  (data && data.endDate && data.endDate != '') ? data.endDate : null ,
         providerName: (data && data.providerName && data.providerName != '') ? data.providerName : null ,
-        memberName: (data && data.claimType && data.claimType != '') ? data.claimType : null ,
+        memberName: (data && data.memberId && data.memberId != '') ? data.memberId : null ,
         start : data && data.start,
         end : data && data.end,
         sortBy : (data && data.sortBy && data.sortBy.length > 0) ? data.sortBy : null
