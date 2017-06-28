@@ -10,7 +10,7 @@ export default StyleSheet.create({
     top: Metrics.screenHeight * 0.39,
     left: ((Metrics.screenWidth * 6) * -1),
     width: Metrics.screenWidth * 6,
-    height: Metrics.screenHeight * 0.3,
+    height: Metrics.screenHeight * 0.31,
     resizeMode: 'stretch'
   },
   centered: {
