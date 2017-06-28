@@ -282,7 +282,7 @@ class ClaimsList extends Component {
     //this.props.attemptClaimsList(this.props);
   }
    _renderViewMore () {
-     console.tron.log("view more" +this.props.asyncfetching)
+    // console.tron.log("view more" +this.props.asyncfetching)
       if(!this.props.asyncfetching){
         return( <View style={{flex: 1, margin: 14}}>
                 <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
@@ -307,7 +307,7 @@ class ClaimsList extends Component {
   }
 
   _displayCondition () {
-     console.tron.log("before view more" +this.props.fetching)
+     //console.tron.log("before view more" +this.props.fetching)
      if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
@@ -419,7 +419,7 @@ class ClaimsList extends Component {
             </View>
             <Button rounded style={styles.searchButton} onPress={()=>{this.searchResults()}}>
               <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-            </Button>
+            </Button>        
           </HideableView>
 
           <DateTimePicker
