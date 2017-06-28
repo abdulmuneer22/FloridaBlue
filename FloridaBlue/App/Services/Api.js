@@ -92,7 +92,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getNotification = () => api.get('/notify/messages')
   const getMyIdCard = () => api.get('/idCard')
   const getClaimsList = (data) => api.post('/claims/list',{
-        startDate: null,//(data && data.startDate && data.startDate != '') ? data.startDate : null ,
+        startDate:(data && data.startDate && data.startDate != '') ? data.startDate : null ,
         endDate:  (data && data.endDate && data.endDate != '') ? data.endDate : null ,
         providerName: (data && data.providerName && data.providerName != '') ? data.providerName : null ,
         memberName: (data && data.memberId && data.memberId != '') ? data.memberId : null ,
