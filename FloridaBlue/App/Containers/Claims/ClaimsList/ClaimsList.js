@@ -194,7 +194,7 @@ class ClaimsList extends Component {
 
   componentWillReceiveProps (newProps) {
     if (this.state.isFetchingMore || this.state.sortOnClaims) {
-      newProps.attemptClaimsList(newProps)
+      newProps.attemptAsyncClaimList(newProps)
       this.setState({isFetchingMore: false})
       this.setState({sortOnClaims: false})
     }
@@ -462,6 +462,7 @@ class ClaimsList extends Component {
 ClaimsList.propTypes = {
   data: PropTypes.object,
   attemptClaimsList: PropTypes.func,
+  attemptAsyncClaimList:PropTypes.func,
   attemptMemberList: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string,
@@ -491,6 +492,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    attemptAsyncClaimList: (data) => dispatch(ClaimsActions.asyncClaimListRequest(data)),
     attemptClaimsList: (data) => dispatch(ClaimsActions.claimsListRequest(data)),
     changeListLimit: (listLimit) => dispatch(ClaimsActions.changeListLimit(listLimit)),
     changeDatePickerVisible: (datePickerVisible) => dispatch(ClaimsActions.changeDatePickerVisible(datePickerVisible)),
