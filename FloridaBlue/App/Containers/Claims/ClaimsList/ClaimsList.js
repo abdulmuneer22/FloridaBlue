@@ -282,7 +282,7 @@ class ClaimsList extends Component {
     //this.props.attemptClaimsList(this.props);
   }
    _renderViewMore () {
-      if(!this.props.fetching){
+      if(!this.props.asyncfetching){
         return( <View style={{flex: 1, margin: 14}}>
                 <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
                 {
@@ -297,7 +297,7 @@ class ClaimsList extends Component {
                 }
             </View>)
       }
-      if(this.props.fetching){
+      if(this.props.asyncfetching){
         return (<View style={{flex: 1, alignSelf: 'center', marginTop:10 }}>
                     <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
                 </View>
@@ -359,7 +359,7 @@ class ClaimsList extends Component {
                   cardLimit={this.state.listLimit < this.props.claimsdata.totalCount ? this.state.listLimit : this.props.claimsdata.data.length}
                   claimsCount={this.props.claimsdata.totalCount}
                   />
-                {this._renderViewMore()}
+                {this._renderViewMore()}     
                 </View>
             </ScrollView>
           </View>
@@ -465,6 +465,7 @@ ClaimsList.propTypes = {
 const mapStateToProps = (state) => {
   return {
     fetching: state.claims.fetching,
+    asyncfetching: state.claims.asyncfetching,
     claimsdata: state.claims.claimslist,
     claimsMemberList : state.claims.claimsMemberList,
     error: state.claims.error,

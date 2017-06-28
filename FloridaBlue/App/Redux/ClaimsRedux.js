@@ -27,7 +27,8 @@ const { Types, Creators } = createActions({
   changeMemberId: ['memberId'],
   changeStart: ['start'],
   changeEnd: ['end'],
-  changeSortBy: ['sortBy']
+  changeSortBy: ['sortBy'],
+  asyncClaimListRequest: ['data']
 })
 
 export const ClaimsTypes = Types
@@ -66,9 +67,12 @@ export const _claimDetailFailure = (state: Object, {error}: Object) => state.mer
 // we're attempting to login
 export const _claimListRequest = (state: Object) => state.merge({fetching: true,error: null })
 
+// claimlistSearchRequest
+export const _asyncClaimListRequest = (state: Object) => state.merge({asyncfetching: true})
+
 // we've successfully logged in
 export const _claimListSuccess = (state: Object, {data}:Object) => {
-  return state.merge({fetching: false,claimslist:data, error: null })
+  return state.merge({fetching: false, asyncfetching: false, claimslist:data, error: null })
 }
 
 // we've had a problem logging in
@@ -151,7 +155,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_MEMBER_ID]: _changeMemberId,
   [Types.CHANGE_START]: _changeStart,
   [Types.CHANGE_END]: _changeEnd,
-  [Types.CHANGE_SORT_BY]: _changeSortBy
+  [Types.CHANGE_SORT_BY]: _changeSortBy,
+  [Types.ASYNC_CLAIM_LIST_REQUEST]: _asyncClaimListRequest
 })
 
 /* ------------- Selectors ------------- */

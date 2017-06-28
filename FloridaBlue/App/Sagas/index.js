@@ -111,7 +111,7 @@ export default function * root () {
     takeLatest(ClaimsTypes.CLAIMS_LIST_REQUEST, claimslist, api),
     takeLatest(ClaimsTypes.CLAIM_DETAIL_REQUEST, claimDetail, api),
     takeLatest(ClaimsTypes.CLAIMS_SUMMARY_REQUEST, claimsSummary, api),
-    //takeLatest(ClaimsTypes.CLAIMS_MEMBER_LIST_REQUEST, claimsMemberList, api),
+    takeLatest(ClaimsTypes.ASYNC_CLAIM_LIST_REQUEST, claimslist, api),
     takeLatest(NotificationTypes.GET_NOTIFICATION, getNotification, api),
     takeLatest(NotificationTypes.POST_F_C_M_TOKEN, postFCMToken, api)
   ]
