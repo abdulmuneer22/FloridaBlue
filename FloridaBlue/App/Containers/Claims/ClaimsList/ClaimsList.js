@@ -248,7 +248,7 @@ class ClaimsList extends Component {
          sortByState = 1
       }else if( memberSortState == 1){
          sortByState =  -1
-      }else{
+       }else{
         sortByState = 1
       }
       this.state.searchData.sortBy.memberName = sortByState;
@@ -282,6 +282,7 @@ class ClaimsList extends Component {
     //this.props.attemptClaimsList(this.props);
   }
    _renderViewMore () {
+     console.tron.log("view more" +this.props.asyncfetching)
       if(!this.props.asyncfetching){
         return( <View style={{flex: 1, margin: 14}}>
                 <Text style={{textAlign: 'center', opacity: 0.6}}>Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
@@ -306,6 +307,7 @@ class ClaimsList extends Component {
   }
 
   _displayCondition () {
+     console.tron.log("before view more" +this.props.fetching)
      if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
@@ -353,14 +355,17 @@ class ClaimsList extends Component {
 
           <View style={{flex:15}}>
             <ScrollView style={{flex: 15}}>
-              <View style={{flex:15}}>
+              <View style={{flex:14}}>
                 <ClaimsCard
                   data={this.props.claimsdata.data}
                   cardLimit={this.state.listLimit < this.props.claimsdata.totalCount ? this.state.listLimit : this.props.claimsdata.data.length}
                   claimsCount={this.props.claimsdata.totalCount}
                   />
-                {this._renderViewMore()}     
-                </View>
+                  </View>
+                  <View style={{flex:1}}>
+                {this._renderViewMore()}  
+                </View>   
+                
             </ScrollView>
           </View>
 
@@ -441,7 +446,7 @@ class ClaimsList extends Component {
   render () {
    /* console.tron.log("claims list data" + this.props.datePickerVisible)
     console.tron.log("entered to claims list "  + this.props.claimsdata)*/
-    console.tron.log("entered to claims member list " + JSON.stringify(this.props.memberObject.contractMembers))
+  //  console.tron.log("entered to claims member list " + JSON.stringify(this.props.memberObject.contractMembers))
     return (
       <View style={styles.container}>
           {this._renderHeader()}
@@ -459,7 +464,8 @@ ClaimsList.propTypes = {
   attemptClaimsList: PropTypes.func,
   attemptMemberList: PropTypes.func,
   fetching: PropTypes.bool,
-  error: PropTypes.string
+  error: PropTypes.string,
+  asyncfetching:PropTypes.bool
 }
 
 const mapStateToProps = (state) => {

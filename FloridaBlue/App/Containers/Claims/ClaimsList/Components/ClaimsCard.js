@@ -67,7 +67,7 @@ class ClaimsCard extends Component {
 
   render () {
     return (
-        <View>
+        <View style={{flex:1}}>
           {this.props.data != undefined ? this.props.data.map((value, i) => {
             let color = Colors.flBlue.ocean
             if (value.claimType === 'Professional') {
