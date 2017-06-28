@@ -52,16 +52,18 @@ class MyIdCard extends Component {
     })
   }
 
-  render () {
-    return (
-      <View style={[styles.container, {backgroundColor: Colors.snow}]}>
-        <HideableView visible={this.state.idCardHeaderVisible} removeWhenHidden>
-          {this._renderHeader()}
-        </HideableView>
+ _displayCondition () {
+ 
+ if (this.props.fetching) {
+      return (<View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>)
+    } else if (this.props && this.props.data){
+      return(
         <View style={{margin: 5, flex: 1, alignItems: 'center', opacity: 0.9}}>
-        {
-          
-          (this.props && !this.props.error ? 
+       
+        
           <TouchableOpacity onPress={this.toggle}>
             <Image source={{uri: 'data:image/jpeg;base64,' + this.props.data.IdCardImage}} style={{
               flex: 1,
@@ -97,9 +99,9 @@ class MyIdCard extends Component {
                   </View>
 
                   <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.73)), alignItems: 'flex-start'}}>
-                    {/*<View style={{flex: 0.1}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> ???? </Text>
-                    </View>*/}
+                    <View style={{flex: 0.1}}>
+                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.BCBSNumber !=undefined && this.props.data.BCBSNumber !=null ? this.props.data.BCBSNumber:''} </Text>
+                    </View>
                     <View style={{flex: 0.125}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data.RXBIN}</Text>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data.RXPCN}</Text>
@@ -120,15 +122,33 @@ class MyIdCard extends Component {
             </Image>
 
           </TouchableOpacity>
-          : 
-              Alert.alert(
-              'ID Card',
-              'Oops! Looks like this service is not available right now or Id Card not available. Click OK to go back to the last page you visited.',
-              [
-                  { text: 'OK' }
-              ])
-          )}
-        </View>
+
+
+        </View>)
+        }else if (this.props.error != null) {
+      console.tron.log('message', this.props.data.errorMessage)
+      var message = this.props.data.errorMessage
+      Alert.alert(
+        'My Plan Overview',
+       'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
+        [
+          { text: 'OK' }
+
+        ])
+    }
+
+}
+
+  render () {
+    return (
+      <View style={[styles.container, {backgroundColor: Colors.snow}]}>
+        <HideableView visible={this.state.idCardHeaderVisible} removeWhenHidden>
+          {this._renderHeader()}
+        </HideableView>
+
+       <View style={{flex:1}}>
+         {this._displayCondition()}
+         </View>
 
       </View>
     )
