@@ -80,11 +80,10 @@ class Login extends Component {
       username: '',
       password: '',
       modalVisible: false,
-      touchAvailable: false
+      touchStatus: ''
     }
     this.isAttempting = false
     component = this
-    this._handleLoginState = this._handleLoginState.bind(this)
     this._authenticateUserWithTouch = this._authenticateUserWithTouch.bind(this)
     this._handleTouchCheckbox = this._handleTouchCheckbox.bind(this)
     this._handleLogin = this._handleLogin.bind(this)
@@ -98,44 +97,45 @@ class Login extends Component {
           case 'AUTHENTICATED':
             this.props.changeCredentialStored(true)
             this.props.changeTouchEnabled(true)
-            this.props.changeTouchLoginVisible(true)
             this.setState({touchAvailable: true})
-            if (this.props.origin != 'logout') {
-              this._authenticateUserWithTouch()
-            }
+            this.setState({touchStatus: ''})
             break
           case 'ENABLED':
             this.setState({touchAvailable: true})
+            this.setState({touchStatus: ''})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(true)
             break
           case 'DISABLED':
             this.setState({touchAvailable: true})
+            this.setState({touchStatus: ''})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(false)
+            this._disableTouchID()
             break
-          case 'UNAVAILABLE':
-            this.setState({touchAvailable: false})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
-            break
-          case '6':
-            this.setState({touchAvailable: false})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
-            break
-          case '7':
+          case 'NOT ENROLLED':
             this.setState({touchAvailable: true})
+            this.setState({touchStatus: 'NOT ENROLLED'})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(false)
+            this._disableTouchID()
             break
-          case '8':
+          case 'NO PASSCODE':
             this.setState({touchAvailable: true})
+            this.setState({touchStatus: 'NO PASSCODE'})
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(false)
+            this._disableTouchID()
+            break
+          case 'LOCKED':
+            this.setState({touchAvailable: true})
+            this.setState({touchStatus: 'LOCKED'})
             this.props.changeCredentialStored(true)
             this.props.changeTouchEnabled(true)
-            break
+            this._disableTouchID()
           default:
             this.setState({touchAvailable: false})
+            this.setState({touchStatus: ''})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(false)
         }
@@ -148,6 +148,21 @@ class Login extends Component {
     RCTNetworking.clearCookies((cleared) => {
       console.tron.log('clearing local cookies for the app login')
     })
+
+    if (Platform.OS === 'ios') {
+      TouchManager.checkTouchStatus((error, touchInfo) => {
+        let touchStatus = touchInfo[0]
+        switch (touchStatus) {
+          case 'AUTHENTICATED':
+            if (this.props.origin != 'logout') {
+              this._authenticateUserWithTouch()
+            }
+            break
+          default:
+            // Nada..
+        }
+      })
+    }
 
     BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
     /*
@@ -319,10 +334,65 @@ class Login extends Component {
   }
 
   _handleTouchCheckbox () {
-    if (this.props.touchEnabled) {
-      this.props.changeTouchEnabled(false)
-    } else {
-      this.props.changeTouchEnabled(true)
+    if (this.state.touchStatus === '') {
+      if (this.props.touchEnabled) {
+        this.props.changeTouchEnabled(false)
+      } else {
+        this.props.changeTouchEnabled(true)
+      }
+    } else  {
+      let errorMessage = ''
+      let errorTitle = 'Oops!'
+      let showError = true
+      TouchManager.checkTouchStatus((error, touchInfo) => {
+        let touchStatus = touchInfo[0]
+
+        switch (touchStatus) {
+          case 'DISABLED':
+            this.setState({touchAvailable: true})
+            this.setState({touchStatus: ''})
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(true)
+            showError = false
+            break
+          case 'NOT ENROLLED':
+            this.setState({touchAvailable: true})
+            this.setState({touchStatus: 'NOT ENROLLED'})
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(false)
+            errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+            break
+          case 'NO PASSCODE':
+            this.setState({touchAvailable: true})
+            this.setState({touchStatus: 'NO PASSCODE'})
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(false)
+            showError = false
+            break
+          case 'LOCKED':
+            this.setState({touchAvailable: true})
+            this.setState({touchStatus: 'LOCKED'})
+            this.props.changeCredentialStored(true)
+            this.props.changeTouchEnabled(true)
+            errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
+          default:
+            this.setState({touchAvailable: false})
+            this.setState({touchStatus: ''})
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(false)
+        }
+
+        if (showError) {
+          Alert.alert(
+            errorTitle,
+            errorMessage,
+            [
+              {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
+            ],
+            { cancelable: false }
+          )
+        }
+      })
     }
   }
 
@@ -358,19 +428,22 @@ class Login extends Component {
         let errorCode = authObject['authErrorCode']
 
         switch (errorCode) {
-          case '1':
+          case 'AUTH FAILED':
             errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
             break
-          case '2':
+          case 'USER CANCEL':
             showError = false
             break
-          case '5':
+          case 'SYSTEM CANCEL':
+            showError = false
+            break
+          case 'NO PASSCODE':
             errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
             break
-          case '7':
+          case 'NOT ENROLLED':
             errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
             break
-          case '8':
+          case 'LOCKED':
             errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
             this._disableTouchID()
             break
@@ -395,10 +468,10 @@ class Login extends Component {
   _disableTouchID () {
     TouchManager.removeCredentials((error, credentials) => {
       let status = credentials[0]
-      if (status == 'SUCCESS') {
+      if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
-        this.setState({touchAvailable: true})
+        this.props.changeTouchAvailable(false)
       }
     })
   }
@@ -432,14 +505,6 @@ class Login extends Component {
     } else {
       this.isAttempting = true
       this.props.attemptLogin(username, password)
-    }
-  }
-
-  _handleLoginState () {
-    if (this.props.touchLoginVisible) {
-      this.props.changeTouchLoginVisible(false)
-    } else {
-      this.props.changeTouchLoginVisible(true)
     }
   }
 
@@ -715,9 +780,10 @@ class Login extends Component {
               <Image source={Images.clearLogo} style={styles.logo} />
             </LogoView>
 
-            {Platform.OS === 'ios' && this.state.touchAvailable
-                ? this._renderTouchAvailableLogin()
-              :                this._renderLogin()
+            {Platform.OS === 'ios' && this.state.touchAvailable ?
+                this._renderTouchAvailableLogin()
+              :
+                this._renderLogin()
             }
 
             <SignUpView>
@@ -771,8 +837,7 @@ const mapStateToProps = (state) => {
     touchCheckboxVisible: state.login.touchCheckboxVisible,
     logoutUrl: state.login.logoutUrl,
     credentialStored: state.setting.credentialStored,
-    touchAvailable: state.setting.touchAvailable,
-    touchLoginVisible: state.login.touchLoginVisible
+    touchAvailable: state.login.touchAvailable
   }
 }
 
@@ -788,8 +853,7 @@ const mapDispatchToProps = (dispatch) => {
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
     changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
-    changeTouchAvailable: (touchAvailable) => dispatch(SettingActions.changeTouchAvailable(touchAvailable)),
-    changeTouchLoginVisible: (touchLoginVisible) => dispatch(LoginActions.changeTouchLoginVisible(touchLoginVisible))
+    changeTouchAvailable: (touchAvailable) => dispatch(LoginActions.changeTouchAvailable(touchAvailable))
   }
 }
 

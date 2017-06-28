@@ -13,6 +13,7 @@ import {
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import LoginActions from '../../../Redux/LoginRedux'
+import SettingActions from '../../../Redux/SettingRedux'
 import { Colors, Fonts, Images, Metrics } from '../../../Themes'
 import { MKSpinner } from 'react-native-material-kit'
 import { connect } from 'react-redux'
@@ -29,12 +30,24 @@ class TouchTOU extends Component {
   _handleClose () {
     TouchManager.removeCredentials((error, credentials) => {
       var status = credentials[0]
-      if (status == 'SUCCESS') {
+      if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
+        this.props.changeTouchAvailable(true)
         this.props.handleChangeUserName("")
         this.props.handleChangePassword("")
         NavigationActions.WelcomeDashBoard()
+      }
+    })
+  }
+
+  _disableTouchID () {
+    TouchManager.removeCredentials((error, credentials) => {
+      let status = credentials[0]
+      if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
+        this.props.changeTouchEnabled(false)
+        this.props.changeCredentialStored(false)
+        this.props.changeTouchAvailable(false)
       }
     })
   }
@@ -55,17 +68,27 @@ class TouchTOU extends Component {
         var errorCode = authObject['authErrorCode']
 
         switch (errorCode) {
-          case '999':
-            errorMessage = 'Touch ID is not configured on your device. Please visit your settings to configure Touch ID.'
+          case 'AUTH FAILED':
+            errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
             break
-          case '001':
-            errorMessage = 'Sorry, authentication failed. Please ensure you are using the correct fingerprint.'
-            break
-          case '002':
+          case 'USER CANCEL':
             showError = false
             break
+          case 'SYSTEM CANCEL':
+            showError = false
+            break
+          case 'NO PASSCODE':
+            errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+            break
+          case 'NOT ENROLLED':
+            errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+            break
+          case 'LOCKED':
+            errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
+            this._disableTouchID()
+            break
           default:
-            errorMessage = 'Sorry, authentication failed. Please ensure you are using the correct fingerprint.'
+            errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
         }
 
         if (showError) {
@@ -83,6 +106,7 @@ class TouchTOU extends Component {
           if (status == 'SUCCESS') {
             this.props.changeTouchEnabled(false)
             this.props.changeCredentialStored(false)
+            this.props.changeTouchAvailable(true)
             this.props.handleChangeUserName("")
             this.props.handleChangePassword("")
             NavigationActions.WelcomeDashBoard()
@@ -144,8 +168,9 @@ class TouchTOU extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    touchEnabled: state.login.touchEnabled,
-    credentialStored: state.login.credentialStored,
+    touchEnabled: state.setting.touchEnabled,
+    credentialStored: state.setting.credentialStored,
+    touchAvailable: state.login.touchAvailable,
     username: state.login.username,
     password: state.login.password
   }
@@ -154,8 +179,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
-    changeTouchEnabled: (touchEnabled) => dispatch(LoginActions.changeTouchEnabled(touchEnabled)),
-    changeCredentialStored: (credentialStored) => dispatch(LoginActions.changeCredentialStored(credentialStored)),
+    changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
+    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
     handleChangeUserName: (username) => dispatch(LoginActions.changeUserName(username)),
     handleChangePassword: (password) => dispatch(LoginActions.changePassword(password))
   }

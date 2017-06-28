@@ -14,16 +14,28 @@ RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(removeCredentials:(RCTResponseSenderBlock)callback) {
   NSMutableArray *callbackArray = [NSMutableArray new];
-  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
-  [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"touchEnabled"];
-  NSMutableDictionary * queryPrivateKey = [[NSMutableDictionary alloc] init];
-  [queryPrivateKey setObject:(__bridge id)kSecValueData forKey:(__bridge id)kSecValueData];
-  OSStatus deleteStatus = SecItemDelete((__bridge CFDictionaryRef)queryPrivateKey);
   
-  if (deleteStatus == errSecSuccess) {
-    [callbackArray addObject:@"FAILURE"];
+  BOOL usernameExists = [[NSUserDefaults standardUserDefaults] boolForKey:@"username"];
+  BOOL touchExists = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchEnabled"];
+  
+  if (usernameExists) {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+  }
+  
+  if (touchExists) {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"touchEnabled"];
+    
+    NSMutableDictionary * queryPrivateKey = [[NSMutableDictionary alloc] init];
+    [queryPrivateKey setObject:(__bridge id)kSecValueData forKey:(__bridge id)kSecValueData];
+    OSStatus deleteStatus = SecItemDelete((__bridge CFDictionaryRef)queryPrivateKey);
+    
+    if (deleteStatus == errSecSuccess) {
+      [callbackArray addObject:@"FAILURE"];
+    } else {
+      [callbackArray addObject:@"SUCCESS"];
+    }
   } else {
-    [callbackArray addObject:@"SUCCESS"];
+    [callbackArray addObject:@"NO EXISTING CREDENTIALS"];
   }
   
   callback(@[[NSNull null], callbackArray]);
@@ -81,7 +93,7 @@ RCT_EXPORT_METHOD(checkTouchStatus:(RCTResponseSenderBlock)callback) {
   LAContext *myContext = [[LAContext alloc] init];
   NSError *authError = nil;
   __block NSString *authErrorCode = @"";
-    
+  
   if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
     if (touchEnabled && username != nil) {
       [callbackArray addObject:@"AUTHENTICATED"];
@@ -93,27 +105,27 @@ RCT_EXPORT_METHOD(checkTouchStatus:(RCTResponseSenderBlock)callback) {
   } else {
     switch (authError.code) {
       case LAErrorSystemCancel:
-        authErrorCode = @"4";
+        authErrorCode = @"SYSTEM CANCEL";
         break;
       case LAErrorPasscodeNotSet:
-        authErrorCode = @"5";
+        authErrorCode = @"NO PASSCODE";
         break;
       case LAErrorTouchIDNotAvailable:
-        authErrorCode = @"6";
+        authErrorCode = @"UNAVAILABLE";
         break;
       case LAErrorTouchIDNotEnrolled:
-        authErrorCode = @"7";
+        authErrorCode = @"NOT ENROLLED";
         break;
       case LAErrorTouchIDLockout:
-        authErrorCode = @"8";
+        authErrorCode = @"LOCKED";
         break;
       default:
-        authErrorCode = @"9";
+        authErrorCode = @"UNKNOWN";
         break;
     }
-    
     [callbackArray addObject:authErrorCode];
   }
+  
   
   callback(@[[NSNull null], callbackArray]);
 }
@@ -140,28 +152,28 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
                             didAuthorize = @"NO";
                             switch (error.code) {
                               case LAErrorAuthenticationFailed:
-                                authErrorCode = @"1";
+                                authErrorCode = @"AUTH FAILED";
                                 break;
                               case LAErrorUserCancel:
-                                authErrorCode = @"2";
+                                authErrorCode = @"USER CANCEL";
                                 break;
                               case LAErrorSystemCancel:
-                                authErrorCode = @"4";
+                                authErrorCode = @"SYSTEM CANCEL";
                                 break;
                               case LAErrorPasscodeNotSet:
-                                authErrorCode = @"5";
+                                authErrorCode = @"NO PASSCODE";
                                 break;
                               case LAErrorTouchIDNotAvailable:
-                                authErrorCode = @"6";
+                                authErrorCode = @"UNAVAILABLE";
                                 break;
                               case LAErrorTouchIDNotEnrolled:
-                                authErrorCode = @"7";
+                                authErrorCode = @"NOT ENROLLED";
                                 break;
                               case LAErrorTouchIDLockout:
-                                authErrorCode = @"8";
+                                authErrorCode = @"LOCKED";
                                 break;
                               default:
-                                authErrorCode = @"9";
+                                authErrorCode = @"UNKNOWN";
                                 break;
                             }
                           }
@@ -170,12 +182,40 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
                           [callbackDict setObject:authErrorCode forKey:@"authErrorCode"];
                           [callbackArray addObject:callbackDict];
                           callback(@[[NSNull null], callbackArray]);
-                        }];
+                        }
+     ];
   } else {
-    authErrorCode = @"9";
+    switch (authError.code) {
+      case LAErrorAuthenticationFailed:
+        authErrorCode = @"AUTH FAILED";
+        break;
+      case LAErrorUserCancel:
+        authErrorCode = @"USER CANCEL";
+        break;
+      case LAErrorSystemCancel:
+        authErrorCode = @"SYSTEM CANCEL";
+        break;
+      case LAErrorPasscodeNotSet:
+        authErrorCode = @"NO PASSCODE";
+        break;
+      case LAErrorTouchIDNotAvailable:
+        authErrorCode = @"UNAVAILABLE";
+        break;
+      case LAErrorTouchIDNotEnrolled:
+        authErrorCode = @"NOT ENROLLED";
+        break;
+      case LAErrorTouchIDLockout:
+        authErrorCode = @"LOCKED";
+        break;
+      default:
+        authErrorCode = @"UNKNOWN";
+        break;
+    }
+    
     [callbackDict setObject:didAuthorize forKey:@"authStatus"];
     [callbackDict setObject:authErrorCode forKey:@"authErrorCode"];
     [callbackArray addObject:callbackDict];
+    
     callback(@[[NSNull null], callbackArray]);
   }
 }
