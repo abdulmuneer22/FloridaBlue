@@ -319,7 +319,7 @@ class Login extends Component {
           RCTNetworking.clearCookies((cleared) => {
             console.tron.log('clearing local cookies for the app')
           })
-          Alert.alert('Login', 'Oops! Looks like we\'re having trouble with your request. Please try again later',
+          Alert.alert('Login', 'Oops! Looks like you’re having trouble connecting. Check your network and try again.',
             [
           { text: 'OK', onPress: () => NavigationActions.login() }
 
