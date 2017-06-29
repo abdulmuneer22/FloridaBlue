@@ -78,7 +78,7 @@ class ClaimsList extends Component {
     this.addEndDate = this.addEndDate.bind(this)
     this.memberSelected = this.memberSelected.bind(this)
     this.sortClaims = this.sortClaims.bind(this)
-    this.searchResults=this.searchResults.bind(this)
+    this.searchResults = this.searchResults.bind(this)
   }
 
   searchResults(){
@@ -131,46 +131,29 @@ class ClaimsList extends Component {
   }
 
   handleDatePicked (date) {
+    let selectedDate = moment(date)
     this.hideDatePicker()
-    let selectedDate = moment(date).format('MMM Do YYYY')
-
     if (this.state.endDateSelected) {
-      let startTime = new Date(this.props.startDate)
-      if (this.props.endDate == 'End Date' || moment(selectedDate).isAfter(startTime)) {
-        this.props.changeEndDate(selectedDate)
+      let currentStartDate = moment(this.props.startDate, 'MM-DD-YYYY')
+      if (moment(selectedDate).isAfter(currentStartDate)) {
+        this.props.changeEndDate(moment(selectedDate).format('MM-DD-YYYY'))
         this.setState({ searchVisible: false }, function () {
           this.setState({ searchVisible: true })
         })
       } else {
-        Alert.alert(
-          'Invalid date range',
-          'Oops! The end date you selected is not after your selected start date.',
-          [
-            { text: 'OK' }
-          ])
+        // TODO: Add error messsage saying date is out of range..
+        console.tron.log("Oops! The end date you selected is not after your selected start date.")
       }
     } else {
-      if (this.props.endDate != 'End Date') {
-        let endTime = new Date(this.props.endDate)
-        if (moment(selectedDate).isBefore(endTime)) {
-          this.props.changeStartDate(selectedDate)
-          this.hideDatePicker()
-          this.setState({ searchVisible: false }, function () {
-            this.setState({ searchVisible: true })
-          })
-        } else {
-          Alert.alert(
-            'Invalid date range',
-            'Oops! The start date you selected is not before your selected end date.',
-            [
-              { text: 'OK' }
-            ])
-        }
-      } else {
-        this.props.changeStartDate(selectedDate)
+      let currentEndDate = moment(this.props.endDate, 'MM-DD-YYYY')
+      if (moment(selectedDate).isBefore(currentEndDate)) {
+        this.props.changeStartDate(moment(selectedDate).format('MM-DD-YYYY'))
         this.setState({ searchVisible: false }, function () {
           this.setState({ searchVisible: true })
         })
+      } else {
+        // TODO: Add error messsage saying date is out of range..
+        console.tron.log("Oops! The start date you selected is not before your selected end date.")
       }
     }
   }
@@ -187,8 +170,10 @@ class ClaimsList extends Component {
 
   componentDidMount() {
     if (this.props.startDate == '') {
-      let newDate = moment(new Date()).format('MMM Do YYYY')
-      this.props.changeStartDate(newDate)
+      let newStartDate = moment(new Date()).format('MM-DD-YYYY')
+      let newEndDate = moment(new Date()).add(1,'days').format('MM-DD-YYYY')
+      this.props.changeStartDate(newStartDate)
+      this.props.changeEndDate(newEndDate)
     }
   }
 
@@ -363,9 +348,9 @@ class ClaimsList extends Component {
                   />
                   </View>
                   <View style={{flex:1}}>
-                {this._renderViewMore()}  
-                </View>   
-                
+                {this._renderViewMore()}
+                </View>
+
             </ScrollView>
           </View>
 
@@ -387,7 +372,7 @@ class ClaimsList extends Component {
               placeholderTextColor={Colors.steel}
               tintColor={Colors.black}
               onChangeText={this.props.changeProviderName}
-             // value={this.props.providerName}
+              defaultValue={this.props.providerName}
             />
 
             <ModalDropdown options={_.map(this.props.memberObject.contractMembers, 'firstName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
@@ -419,7 +404,7 @@ class ClaimsList extends Component {
             </View>
             <Button rounded style={styles.searchButton} onPress={()=>{this.searchResults()}}>
               <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-            </Button>        
+            </Button>
           </HideableView>
 
           <DateTimePicker

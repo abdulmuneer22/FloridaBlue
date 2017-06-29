@@ -319,7 +319,7 @@ class Login extends Component {
           RCTNetworking.clearCookies((cleared) => {
             console.tron.log('clearing local cookies for the app')
           })
-          Alert.alert('Login', 'Oops! Looks like we\'re having trouble with your request. Please try again later',
+          Alert.alert('Login', 'Oops! Looks like you’re having trouble connecting. Check your network and try again.',
             [
           { text: 'OK', onPress: () => NavigationActions.login() }
 
@@ -339,6 +339,13 @@ class Login extends Component {
         this.props.changeTouchEnabled(false)
       } else {
         this.props.changeTouchEnabled(true)
+        if (!this.props.username && !this.props.password) {
+          Alert.alert('Login', 'Please enter the User ID and Password to set up Touch ID', [
+            {
+              text: 'OK'
+            }
+          ])
+        }
       }
     } else  {
       let errorMessage = ''
