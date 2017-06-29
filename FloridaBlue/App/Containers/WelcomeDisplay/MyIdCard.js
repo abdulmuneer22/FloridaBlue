@@ -59,7 +59,7 @@ class MyIdCard extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props && this.props.data){
+    } else if (this.props && this.props.data && this.props.data.IdCardImage && this.props.data.IdCardImage.length !=0){
       return(
         <View style={{margin: 5, flex: 1, alignItems: 'center', opacity: 0.9}}>
        
@@ -126,10 +126,8 @@ class MyIdCard extends Component {
 
         </View>)
         }else if (this.props.error != null) {
-      console.tron.log('message', this.props.data.errorMessage)
-      var message = this.props.data.errorMessage
       Alert.alert(
-        'My Plan Overview',
+        'ID Card',
        'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
         [
           { text: 'OK' }
