@@ -134,24 +134,26 @@ class ClaimsList extends Component {
     let selectedDate = moment(date)
     this.hideDatePicker()
     if (this.state.endDateSelected) {
-      let currentStartDate = moment(this.props.startDate, 'MMM Do YYYY')
+      let currentStartDate = moment(this.props.startDate, 'MM-DD-YYYY')
       if (moment(selectedDate).isAfter(currentStartDate)) {
-        this.props.changeEndDate(moment(selectedDate).format('MMM Do YYYY'))
+        this.props.changeEndDate(moment(selectedDate).format('MM-DD-YYYY'))
         this.setState({ searchVisible: false }, function () {
           this.setState({ searchVisible: true })
         })
       } else {
         // TODO: Add error messsage saying date is out of range..
+        console.tron.log("Oops! The end date you selected is not after your selected start date.")
       }
     } else {
-      let currentEndDate = moment(this.props.endDate, 'MMM Do YYYY')
+      let currentEndDate = moment(this.props.endDate, 'MM-DD-YYYY')
       if (moment(selectedDate).isBefore(currentEndDate)) {
-        this.props.changeStartDate(moment(selectedDate).format('MMM Do YYYY'))
+        this.props.changeStartDate(moment(selectedDate).format('MM-DD-YYYY'))
         this.setState({ searchVisible: false }, function () {
           this.setState({ searchVisible: true })
         })
       } else {
         // TODO: Add error messsage saying date is out of range..
+        console.tron.log("Oops! The start date you selected is not before your selected end date.")
       }
     }
   }
@@ -168,8 +170,8 @@ class ClaimsList extends Component {
 
   componentDidMount() {
     if (this.props.startDate == '') {
-      let newStartDate = moment(new Date()).format('MMM Do YYYY')
-      let newEndDate = moment(new Date()).add(1,'days').format('MMM Do YYYY')
+      let newStartDate = moment(new Date()).format('MM-DD-YYYY')
+      let newEndDate = moment(new Date()).add(1,'days').format('MM-DD-YYYY')
       this.props.changeStartDate(newStartDate)
       this.props.changeEndDate(newEndDate)
     }
