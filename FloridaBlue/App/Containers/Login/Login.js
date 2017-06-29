@@ -339,6 +339,13 @@ class Login extends Component {
         this.props.changeTouchEnabled(false)
       } else {
         this.props.changeTouchEnabled(true)
+        if (!this.props.username && !this.props.password) {
+          Alert.alert('Login', 'Please enter the User ID and Password to set up Touch ID', [
+            {
+              text: 'OK'
+            }
+          ])
+        }
       }
     } else  {
       let errorMessage = ''
