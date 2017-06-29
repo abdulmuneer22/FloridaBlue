@@ -117,7 +117,7 @@ export default StyleSheet.create({
   },
   claimsCardContainer: {
     flex: 10,
-   
+
   },
   claimsViewMore: {
     textAlign: 'center',
@@ -267,6 +267,14 @@ export default StyleSheet.create({
     paddingTop: Metrics.doubleBaseMargin,
     paddingLeft: Metrics.doubleBaseMargin,
     color: Colors.flBlue.anvil
+  },
+  error: {
+    fontSize: Fonts.size.regular,
+    fontFamily: Fonts.type.base,
+    fontWeight: '400',
+    paddingTop: Metrics.doubleBaseMargin,
+    paddingLeft: Metrics.doubleBaseMargin,
+    color: Colors.flBlue.red
   },
   searchButton: {
     backgroundColor: '#00003f',

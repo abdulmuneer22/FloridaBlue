@@ -56,6 +56,7 @@ class ClaimsList extends Component {
       searchVisible: false,
       endDateSelected: false,
       isShowingViewMore: true,
+      dateError: false,
       searchData : {
           memberName: '',
           providerName : '',
@@ -79,11 +80,23 @@ class ClaimsList extends Component {
     this.memberSelected = this.memberSelected.bind(this)
     this.sortClaims = this.sortClaims.bind(this)
     this.searchResults = this.searchResults.bind(this)
+    this.handleSearchClose = this.handleSearchClose.bind(this)
   }
 
-  searchResults(){
-    this.props.attemptClaimsList(this.props)
-    this.setState({ searchVisible: false })
+  searchResults() {
+    let currentStartDate = moment(this.props.startDate, 'MM-DD-YYYY')
+    let currentEndDate = moment(this.props.endDate, 'MM-DD-YYYY')
+
+    if (moment(currentEndDate).isAfter(currentStartDate) && moment(currentStartDate).isBefore(currentEndDate)) {
+      this.props.attemptClaimsList(this.props)
+      this.setState({ searchVisible: false })
+      this.setState({ dateError: false })
+    } else {
+      this.setState({ dateError: true})
+      this.setState({ searchVisible: false }, function () {
+        this.setState({ searchVisible: true })
+      })
+    }
   }
 
   _renderHeader () {
@@ -116,6 +129,17 @@ class ClaimsList extends Component {
     }
   }
 
+  handleSearchClose () {
+    this.setState({ searchVisible: false })
+    let newStartDate = moment(new Date()).add(-730, 'days').format('MM-DD-YYYY')
+    let newEndDate = moment(new Date()).format('MM-DD-YYYY')
+    this.props.changeStartDate(newStartDate)
+    this.props.changeEndDate(newEndDate)
+    this.props.changeProviderName('')
+    this.props.changeMemberName('')
+    this.props.changeMemberId('')
+  }
+
   hideDatePicker () {
     this.props.changeDatePickerVisible(false)
   }
@@ -132,30 +156,20 @@ class ClaimsList extends Component {
 
   handleDatePicked (date) {
     let selectedDate = moment(date)
-    this.hideDatePicker()
+
     if (this.state.endDateSelected) {
-      let currentStartDate = moment(this.props.startDate, 'MM-DD-YYYY')
-      if (moment(selectedDate).isAfter(currentStartDate)) {
-        this.props.changeEndDate(moment(selectedDate).format('MM-DD-YYYY'))
-        this.setState({ searchVisible: false }, function () {
-          this.setState({ searchVisible: true })
-        })
-      } else {
-        // TODO: Add error messsage saying date is out of range..
-        console.tron.log("Oops! The end date you selected is not after your selected start date.")
-      }
+      this.props.changeEndDate(moment(selectedDate).format('MM-DD-YYYY'))
+      this.setState({ searchVisible: false }, function () {
+        this.setState({ searchVisible: true })
+      })
     } else {
-      let currentEndDate = moment(this.props.endDate, 'MM-DD-YYYY')
-      if (moment(selectedDate).isBefore(currentEndDate)) {
-        this.props.changeStartDate(moment(selectedDate).format('MM-DD-YYYY'))
-        this.setState({ searchVisible: false }, function () {
-          this.setState({ searchVisible: true })
-        })
-      } else {
-        // TODO: Add error messsage saying date is out of range..
-        console.tron.log("Oops! The start date you selected is not before your selected end date.")
-      }
+      this.props.changeStartDate(moment(selectedDate).format('MM-DD-YYYY'))
+      this.setState({ searchVisible: false }, function () {
+        this.setState({ searchVisible: true })
+      })
     }
+
+    this.hideDatePicker()
   }
 
   memberSelected (index, value:string) {
@@ -169,12 +183,10 @@ class ClaimsList extends Component {
   }
 
   componentDidMount() {
-    if (this.props.startDate == '') {
-      let newStartDate = moment(new Date()).format('MM-DD-YYYY')
-      let newEndDate = moment(new Date()).add(1,'days').format('MM-DD-YYYY')
-      this.props.changeStartDate(newStartDate)
-      this.props.changeEndDate(newEndDate)
-    }
+    let newStartDate = moment(new Date()).add(-730, 'days').format('MM-DD-YYYY')
+    let newEndDate = moment(new Date()).format('MM-DD-YYYY')
+    this.props.changeStartDate(newStartDate)
+    this.props.changeEndDate(newEndDate)
   }
 
   componentWillReceiveProps (newProps) {
@@ -355,10 +367,13 @@ class ClaimsList extends Component {
           </View>
 
           <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
-            <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearch}>
+            <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
               <Flb name='remove' size={Metrics.doubleBaseMargin*Metrics.screenWidth*0.003} />
             </TouchableOpacity>
             <Text style={styles.searchTitle}>Search for a claim by filling out the fields below:</Text>
+            <HideableView visible={this.state.dateError} removeWhenHidden={true}>
+              <Text style={styles.error}>Sorry! The date range you selected is not valid. Please check your dates.</Text>
+            </HideableView>
             <MKTextField
               ref='providerName'
               style={styles.textField}
