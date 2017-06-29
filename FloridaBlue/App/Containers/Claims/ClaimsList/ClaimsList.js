@@ -132,45 +132,35 @@ class ClaimsList extends Component {
 
   handleDatePicked (date) {
     this.hideDatePicker()
-    let selectedDate = moment(date).format('MMM Do YYYY')
+    console.tron.log("Date picked..")
+    let selectedDate = moment(date)
+    console.tron.log(selectedDate)
+    console.tron.log(this.props.startDate)
+    console.tron.log(this.props.endDate)
 
     if (this.state.endDateSelected) {
-      let startTime = new Date(this.props.startDate)
-      if (this.props.endDate == 'End Date' || moment(selectedDate).isAfter(startTime)) {
-        this.props.changeEndDate(selectedDate)
+      let currentStartDate = moment(this.props.startDate, 'MMM Do YYYY')
+      if (moment(selectedDate).isAfter(currentStartDate)) {
+        this.hideDatePicker()
+        this.props.changeEndDate(moment(selectedDate).format('MMM Do YYYY'))
         this.setState({ searchVisible: false }, function () {
           this.setState({ searchVisible: true })
         })
       } else {
-        Alert.alert(
-          'Invalid date range',
-          'Oops! The end date you selected is not after your selected start date.',
-          [
-            { text: 'OK' }
-          ])
+        this.hideDatePicker()
+        // TODO: Add error messsage saying date is out of range..
       }
     } else {
-      if (this.props.endDate != 'End Date') {
-        let endTime = new Date(this.props.endDate)
-        if (moment(selectedDate).isBefore(endTime)) {
-          this.props.changeStartDate(selectedDate)
-          this.hideDatePicker()
-          this.setState({ searchVisible: false }, function () {
-            this.setState({ searchVisible: true })
-          })
-        } else {
-          Alert.alert(
-            'Invalid date range',
-            'Oops! The start date you selected is not before your selected end date.',
-            [
-              { text: 'OK' }
-            ])
-        }
-      } else {
-        this.props.changeStartDate(selectedDate)
+      let currentEndDate = moment(this.props.endDate, 'MMM Do YYYY')
+      if (moment(selectedDate).isBefore(currentEndDate)) {
+        this.hideDatePicker()
+        this.props.changeStartDate(moment(selectedDate).format('MMM Do YYYY'))
         this.setState({ searchVisible: false }, function () {
           this.setState({ searchVisible: true })
         })
+      } else {
+        this.hideDatePicker()
+        // TODO: Add error messsage saying date is out of range..
       }
     }
   }
@@ -187,8 +177,10 @@ class ClaimsList extends Component {
 
   componentDidMount() {
     if (this.props.startDate == '') {
-      let newDate = moment(new Date()).format('MMM Do YYYY')
-      this.props.changeStartDate(newDate)
+      let newStartDate = moment(new Date()).format('MMM Do YYYY')
+      let newEndDate = moment(new Date()).add(1,'days').format('MMM Do YYYY')
+      this.props.changeStartDate(newStartDate)
+      this.props.changeEndDate(newEndDate)
     }
   }
 
@@ -363,9 +355,9 @@ class ClaimsList extends Component {
                   />
                   </View>
                   <View style={{flex:1}}>
-                {this._renderViewMore()}  
-                </View>   
-                
+                {this._renderViewMore()}
+                </View>
+
             </ScrollView>
           </View>
 
@@ -419,7 +411,7 @@ class ClaimsList extends Component {
             </View>
             <Button rounded style={styles.searchButton} onPress={()=>{this.searchResults()}}>
               <Text style={{color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center'}}>Search</Text>
-            </Button>        
+            </Button>
           </HideableView>
 
           <DateTimePicker
