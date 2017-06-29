@@ -182,7 +182,8 @@ const mapDispatchToProps = (dispatch) => {
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
     changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
     handleChangeUserName: (username) => dispatch(LoginActions.changeUserName(username)),
-    handleChangePassword: (password) => dispatch(LoginActions.changePassword(password))
+    handleChangePassword: (password) => dispatch(LoginActions.changePassword(password)),
+    changeTouchAvailable: (touchAvailable) => dispatch(LoginActions.changeTouchAvailable(touchAvailable))
   }
 }
 
