@@ -43,13 +43,6 @@ class RootContainer extends Component {
 
   _handleAppState () {
     let appState = AppState.currentState
-
-    if (appState.match(/active/)) {
-      FCM.setBadgeNumber(0)
-    } else if (appState.match(/inactive|background/)) {
-  //    FCM.setBadgeNumber(1)
-    }
-
     if (component.props && component.props.userName) {
       if (appState.match(/inactive|background/)) {
         if (timerStarted == false) {
