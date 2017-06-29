@@ -78,7 +78,7 @@ class ClaimsList extends Component {
     this.addEndDate = this.addEndDate.bind(this)
     this.memberSelected = this.memberSelected.bind(this)
     this.sortClaims = this.sortClaims.bind(this)
-    this.searchResults=this.searchResults.bind(this)
+    this.searchResults = this.searchResults.bind(this)
   }
 
   searchResults(){
@@ -131,35 +131,26 @@ class ClaimsList extends Component {
   }
 
   handleDatePicked (date) {
-    this.hideDatePicker()
-    console.tron.log("Date picked..")
     let selectedDate = moment(date)
-    console.tron.log(selectedDate)
-    console.tron.log(this.props.startDate)
-    console.tron.log(this.props.endDate)
-
+    this.hideDatePicker()
     if (this.state.endDateSelected) {
       let currentStartDate = moment(this.props.startDate, 'MMM Do YYYY')
       if (moment(selectedDate).isAfter(currentStartDate)) {
-        this.hideDatePicker()
         this.props.changeEndDate(moment(selectedDate).format('MMM Do YYYY'))
         this.setState({ searchVisible: false }, function () {
           this.setState({ searchVisible: true })
         })
       } else {
-        this.hideDatePicker()
         // TODO: Add error messsage saying date is out of range..
       }
     } else {
       let currentEndDate = moment(this.props.endDate, 'MMM Do YYYY')
       if (moment(selectedDate).isBefore(currentEndDate)) {
-        this.hideDatePicker()
         this.props.changeStartDate(moment(selectedDate).format('MMM Do YYYY'))
         this.setState({ searchVisible: false }, function () {
           this.setState({ searchVisible: true })
         })
       } else {
-        this.hideDatePicker()
         // TODO: Add error messsage saying date is out of range..
       }
     }
@@ -379,7 +370,7 @@ class ClaimsList extends Component {
               placeholderTextColor={Colors.steel}
               tintColor={Colors.black}
               onChangeText={this.props.changeProviderName}
-             // value={this.props.providerName}
+              defaultValue={this.props.providerName}
             />
 
             <ModalDropdown options={_.map(this.props.memberObject.contractMembers, 'firstName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
