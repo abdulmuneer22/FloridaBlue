@@ -22,7 +22,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import PushController from './PushController'
-
+import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
 import NotificationActions from '../../Redux/NotificationRedux'
 const theme = getTheme()
 
@@ -44,12 +44,14 @@ class NotificationsView extends Component {
     this.props.getNotification()
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
+    FCM.setBadgeNumber(0)
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.notification && nextProps.notification.messages && Object(nextProps.notification.messages).length > 0) {
       const newData = Array(Object(nextProps.notification.messages).length).fill('').map((_, i) => nextProps.notification.messages[i])
       this.setState({ listViewData: newData })
     }
+    FCM.setBadgeNumber(0)
   }
 
   deleteRow (secId, rowId, rowMap) {
