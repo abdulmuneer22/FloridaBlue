@@ -105,7 +105,7 @@ class ClaimsList extends Component {
         {NavItems.backButton()}
       </View>
       <Text allowFontScaling={false} style={styles.headerTextStyle}>
-          Plan Claims
+        Claim Overview
       </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
         {NavItems.settingsButton()}
@@ -370,7 +370,7 @@ class ClaimsList extends Component {
             <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
               <Flb name='remove' size={Metrics.doubleBaseMargin*Metrics.screenWidth*0.003} />
             </TouchableOpacity>
-            <Text style={styles.searchTitle}>Search for a claim by filling out the fields below:</Text>
+            <Text style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below.</Text>
             <HideableView visible={this.state.dateError} removeWhenHidden={true}>
               <Text style={styles.error}>Sorry! The date range you selected is not valid. Please check your dates.</Text>
             </HideableView>
