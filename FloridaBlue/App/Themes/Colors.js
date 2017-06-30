@@ -37,6 +37,7 @@ const colors = {
     lightBlue: '#def1f7',
     deepBlue: '#005b80',
     lightGreen: '#d8efd7',
+    lightgrass: '#d8efd7',
     lightPink: '#f4e1e7',
     lightPurple: '#f4edf0',
     lightOrange: '#ffefd5',
@@ -47,7 +48,8 @@ const colors = {
     grey5: '#555555',
     grey6: '#515151',
     anvil: '#333333',
-    sky: '#00aec7'
+    sky: '#00aec7',
+    lightsky: '#def1f7'
   }
 
 }
