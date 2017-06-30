@@ -57,6 +57,7 @@ class ClaimsList extends Component {
       endDateSelected: false,
       isShowingViewMore: true,
       dateError: false,
+      members: [],
       searchData : {
           memberName: '',
           providerName : '',
@@ -173,8 +174,8 @@ class ClaimsList extends Component {
   }
 
   memberSelected (index, value:string) {
-    let selectedMember = this.props.memberObject.contractMembers[index].firstName + " " + this.props.memberObject.contractMembers[index].lastName
-    let selectedValue = this.props.memberObject.contractMembers[index].memberId
+    let selectedMember = this.state.members[index].memberName
+    let selectedValue = this.state.members[index].memberId
     this.props.changeMemberName(selectedMember)
     this.props.changeMemberId(selectedValue)
     this.setState({ searchVisible: false }, function () {
@@ -187,6 +188,18 @@ class ClaimsList extends Component {
     let newEndDate = moment(new Date()).format('MM-DD-YYYY')
     this.props.changeStartDate(newStartDate)
     this.props.changeEndDate(newEndDate)
+
+    let memberArray = [{'memberId':'','memberName':'All'}]
+    for (var i = 0; i < this.props.memberObject.contractMembers.length; i++) {
+      let member = this.props.memberObject.contractMembers[i]
+      let formattedMember = {
+        'memberId': member.memberId,
+        'memberName': member.firstName + " " + member.lastName
+      }
+      memberArray.push(formattedMember)
+    }
+
+    this.setState({members: memberArray})
   }
 
   componentWillReceiveProps (newProps) {
@@ -390,7 +403,7 @@ class ClaimsList extends Component {
               defaultValue={this.props.providerName}
             />
 
-            <ModalDropdown options={_.map(this.props.memberObject.contractMembers, 'firstName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+            <ModalDropdown options={_.map(this.state.members, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
               <MKTextField
                 ref='memberName'
                 textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
@@ -485,7 +498,7 @@ const mapStateToProps = (state) => {
     start: state.claims.start,
     end: state.claims.end,
     sortBy: state.claims.sortBy,
-    memberObject:state.member.memberObject,
+    memberObject: state.member.memberObject,
     memberId: state.claims.memberId
   }
 }
