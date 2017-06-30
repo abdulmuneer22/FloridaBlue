@@ -24,6 +24,8 @@ import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../Themes/FlbIcon'
 
+let moment = require('moment')
+
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
@@ -41,11 +43,7 @@ class ClaimsCard extends Component {
   }
 
   formatDate (date) {
-    date = new Date(date)
-    let day = ('0' + date.getDate()).slice(-2)
-    let month = ('0' + (date.getMonth() + 1)).slice(-2)
-    let year = date.getFullYear()
-    return month + '-' + day + '-' + year
+    return moment(date).format('MM-DD-YYYY')
   }
 
   formatName (name) {

@@ -134,7 +134,7 @@ class NotificationsView extends Component {
                     justifyContent: 'center',
                     marginTop: 5,
                       // marginBottom:10,
-                    backgroundColor: data.style.color
+                    backgroundColor: Colors.flBlue[data.style.barColor]
                   }}>
 
                     <TouchableOpacity onPress={() => alert('Hello')}
@@ -150,14 +150,14 @@ class NotificationsView extends Component {
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                           <View style={{ flex: 1 }}>
                             <Text allowFontScaling={false} style={{
-                              color: Colors.flBlue.anvil,
+                              color: Colors.flBlue[data.style.color],
                               marginLeft: 20,
                               fontSize: Fonts.size.regular
                             }}>Save your rewards !</Text>
 
                           </View>
                           <View style={{ flex: 1 }}>
-                            <Flb name='chevron-right' style={{ marginLeft: 20 }}
+                            <Flb name='chevron-right' style={{ marginLeft: 20, color: Colors.flBlue[data.style.color] }}
                               size={Metrics.icons.small * Metrics.screenWidth * 0.002} />
                           </View>
                         </View>
