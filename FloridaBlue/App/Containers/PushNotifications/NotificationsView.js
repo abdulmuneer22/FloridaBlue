@@ -51,6 +51,7 @@ class NotificationsView extends Component {
       const newData = Array(Object(nextProps.notification.messages).length).fill('').map((_, i) => nextProps.notification.messages[i])
       this.setState({ listViewData: newData })
     }
+
     FCM.setBadgeNumber(0)
   }
 
@@ -136,8 +137,15 @@ class NotificationsView extends Component {
                       // marginBottom:10,
                     backgroundColor: Colors.flBlue[data.style.barColor]
                   }}>
-
-                    <TouchableOpacity onPress={() => alert('Hello')}
+                    <TouchableOpacity onPress={() => {
+                      if (data.link.type == 'webview') {
+                        var webview = 'MyView'
+                        NavigationActions[webview]({ responseURL: data.link.name })
+                      } else if (data.link.type == 'native') {
+                        var routerName = data.link.name
+                        NavigationActions[routerName]()
+                      }
+                    }}
                       style={{
                         flex: 1,
                         borderBottomLeftRadius: 10,

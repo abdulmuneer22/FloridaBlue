@@ -5,6 +5,7 @@ import MyPlanActions from '../Redux/MyPlanRedux'
 import HsaActions from '../Redux/HsaRedux'
 import SupportActions from '../Redux/SupportRedux'
 import MyIdCardActions from '../Redux/MyIdCardRedux'
+import NotificationActions from '../Redux/NotificationRedux'
 
 // attempts to login
 export function * member (api, {smToken}) {
@@ -52,7 +53,7 @@ export function * member (api, {smToken}) {
       'memberDateOfBirthMonth': dobArray[0],
       'memberDateOfBirthDay': dobArray[1]
     }
-
+    yield put(NotificationActions.getNotification())
     yield put(MyIdCardActions.myIdCardRequest())
     console.tron.log(memberSearchRequest)
     yield put(SupportActions.supportRequest())
