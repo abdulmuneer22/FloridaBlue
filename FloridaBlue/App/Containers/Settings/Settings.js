@@ -23,6 +23,7 @@ import NavItems from '../../Navigation/NavItems.js'
 import SettingActions from '../../Redux/SettingRedux'
 import { Images, Metrics, Colors, Fonts } from '../../Themes'
 
+const Permissions = require('react-native-permissions')
 var TouchManager = NativeModules.TouchManager
 
 class Settings extends Component {
@@ -154,37 +155,15 @@ class Settings extends Component {
             null
         }
         <View style={styles.settingContainer}>
-          {this.props.geolocationEnabled ?
-              <Text style={styles.settingText}>Geolocation Enabled</Text>
-            :
-              <Text style={styles.settingText}>Enable Geolocation</Text>
-          }
-          <MKSwitch style={styles.settingStatusSwitch}
-            checked={this.props.geolocationEnabled}
-            trackSize={30}
-            trackLength={52}
-            onColor={Colors.flBlue.ocean}
-            thumbOnColor={Colors.flBlue.ocean}
-            rippleColor={Colors.flBlue.ocean}
-            onPress={() => this._handleGeoToggle()}
-          />
+          <TouchableOpacity onPress={Permissions.openSettings}>
+            <Text style={styles.settingText}>Geo-location Settings</Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.settingContainer}>
-          {this.props.pushEnabled ?
-              <Text style={styles.settingText}>Push Notification Enabled</Text>
-            :
-              <Text style={styles.settingText}>Enable Push Notification</Text>
-          }
-          <MKSwitch style={styles.settingStatusSwitch}
-            checked={this.props.pushEnabled}
-            trackSize={30}
-            trackLength={52}
-            onColor={Colors.flBlue.ocean}
-            thumbOnColor={Colors.flBlue.ocean}
-            rippleColor={Colors.flBlue.ocean}
-            onPress={() => this._handlePushToggle()}
-          />
+        <TouchableOpacity onPress={Permissions.openSettings}>
+          <Text style={styles.settingText}>Push Notification Settings</Text>
+        </TouchableOpacity>
         </View>
       </View>
     )
