@@ -45,6 +45,10 @@ class NotificationsView extends Component {
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
     FCM.setBadgeNumber(0)
+    this.props.postArchive({
+      'messageId': '',
+      'markAllRead': true
+    })
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.notification && nextProps.notification.messages && Object(nextProps.notification.messages).length > 0) {
@@ -55,10 +59,15 @@ class NotificationsView extends Component {
     FCM.setBadgeNumber(0)
   }
 
-  deleteRow (secId, rowId, rowMap) {
+  deleteRow (secId, rowId, rowMap, messageId) {
+    console.log(secId, rowId, rowMap, messageId)
     rowMap[`${secId}${rowId}`].closeRow()
     const newData = [...this.state.listViewData]
     newData.splice(rowId, 1)
+    this.props.postArchive({
+      'messageId': messageId,
+      'markAllRead': false
+    })
     this.setState({ listViewData: newData })
   }
 
@@ -189,7 +198,7 @@ class NotificationsView extends Component {
                 borderRadius: 20,
                 backgroundColor: 'green',
                 right: 0
-              }} onPress={_ => this.deleteRow(secId, rowId, rowMap)} >
+              }} onPress={_ => this.deleteRow(secId, rowId, rowMap, data.messageId)} >
                 <View style={{
                   flex: 1,
                   alignItems: 'flex-end',
@@ -240,7 +249,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getNotification: () => dispatch(NotificationActions.getNotification()),
     onOpenedFromTray: (openedFromTray) => dispatch(NotificationActions.onOpenedFromTray(openedFromTray)),
-    onLocalNotification: (localNotification) => dispatch(NotificationActions.onLocalNotification(localNotification))
+    onLocalNotification: (localNotification) => dispatch(NotificationActions.onLocalNotification(localNotification)),
+    postArchive: (archiveObject) => dispatch(NotificationActions.postArchive(archiveObject))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationsView)

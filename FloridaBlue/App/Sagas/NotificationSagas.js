@@ -28,3 +28,18 @@ export function * postFCMToken (api, {data}) {
   //  yield put(NotificationActions.notificationFailure(error))
   }
 }
+
+export function * postArchive (api, {archiveObject}) {
+  // make the call to the api
+  console.log('before post', archiveObject)
+  const response = yield call(api.postArchive, archiveObject)
+  // success?
+  if (response.ok) {
+   // yield put(NotificationActions.notificationSucces())
+    console.log('hey I am coming archive succes', response)
+  } else {
+    console.log('I am coming from archive failure')
+    const error = response.status
+  //  yield put(NotificationActions.notificationFailure(error))
+  }
+}

@@ -13,7 +13,8 @@ const { Types, Creators } = createActions({
   notificationSuccess: ['notification'],
   notificationFailure: ['error'],
   getNotification: [],
-  postFCMToken: ['data']
+  postFCMToken: ['data'],
+  postArchive: ['archiveObject']
 })
 
 export const NotificationTypes = Types

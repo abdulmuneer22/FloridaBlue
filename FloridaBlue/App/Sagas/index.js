@@ -51,11 +51,12 @@ import {sendStaffLanguageRequest} from './ProviderSagas'
 import {sendConfigTypeRequest} from './ProviderSagas'
 import {sendDoctorDetailRequest} from './ProviderSagas'
 import {claimslist} from './ClaimsSagas'
-//import {claimsMemberList} from './ClaimsSagas'
+// import {claimsMemberList} from './ClaimsSagas'
 import {claimDetail} from './ClaimsSagas'
 import {claimsSummary} from './ClaimsSagas'
 import {getNotification} from './NotificationSagas'
 import {postFCMToken} from './NotificationSagas'
+import {postArchive} from './NotificationSagas'
 
 // import { getTemperature } from './TemperatureSagas'
 var urlConfig = require('../UrlConfig')
@@ -113,6 +114,7 @@ export default function * root () {
     takeLatest(ClaimsTypes.CLAIMS_SUMMARY_REQUEST, claimsSummary, api),
     takeLatest(ClaimsTypes.ASYNC_CLAIM_LIST_REQUEST, claimslist, api),
     takeLatest(NotificationTypes.GET_NOTIFICATION, getNotification, api),
-    takeLatest(NotificationTypes.POST_F_C_M_TOKEN, postFCMToken, api)
+    takeLatest(NotificationTypes.POST_F_C_M_TOKEN, postFCMToken, api),
+    takeLatest(NotificationTypes.POST_ARCHIVE, postArchive, api)
   ]
 }

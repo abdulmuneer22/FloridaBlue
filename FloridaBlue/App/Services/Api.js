@@ -91,16 +91,16 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getClaimsSummary = () => api.get('/claims/summary')
   const getNotification = () => api.get('/notify/messages')
   const getMyIdCard = () => api.get('/idCard')
-  const getClaimsList = (data) => api.post('/claims/list',{
-        startDate:(data && data.startDate && data.startDate != '') ? data.startDate : null ,
-        endDate:  (data && data.endDate && data.endDate != '') ? data.endDate : null ,
-        providerName: (data && data.providerName && data.providerName != '') ? data.providerName : null ,
-        memberId: (data && data.memberId && data.memberId != '') ? data.memberId : null ,
-        start : data && data.start,
-        end : data && data.end,
-        sortBy : (data && data.sortBy && data.sortBy.length > 0) ? data.sortBy : null
-  });
-  const getClaimsMemberList = () => api.get('/claims/summary');
+  const getClaimsList = (data) => api.post('/claims/list', {
+    startDate: (data && data.startDate && data.startDate != '') ? data.startDate : null,
+    endDate: (data && data.endDate && data.endDate != '') ? data.endDate : null,
+    providerName: (data && data.providerName && data.providerName != '') ? data.providerName : null,
+    memberId: (data && data.memberId && data.memberId != '') ? data.memberId : null,
+    start: data && data.start,
+    end: data && data.end,
+    sortBy: (data && data.sortBy && data.sortBy.length > 0) ? data.sortBy : null
+  })
+  const getClaimsMemberList = () => api.get('/claims/summary')
   const getStaffLanguage = (data) => api.post('/opd/languages', {
     'language': 'EN',
     'who': 'staff'
@@ -300,6 +300,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   })
 
   const postFCMToken = (data) => api.post('/notify/register', data)
+  const postArchive = (data) => api.post('/notify/messages/archive', data)
 
   // ------
   // STEP 3
@@ -344,7 +345,8 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     getClaimsSummary,
     getNotification,
     postFCMToken,
-    getClaimsMemberList
+    getClaimsMemberList,
+    postArchive
   }
 }
 
