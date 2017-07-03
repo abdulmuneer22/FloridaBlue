@@ -157,7 +157,8 @@ class NotificationsView extends Component {
 
                           </View>
                           <View style={{ flex: 1 }}>
-                            {this.props.notification.messages && this.props.notification.messages.link ? <Flb name='chevron-right' style={{ marginLeft: 20 }}
+                            {this.props.notification.messages && this.props.notification.messages.link
+                            ? <Flb name='chevron-right' style={{ marginLeft: 20, color: Colors.flBlue[data.style.color] }}
                               size={Metrics.icons.small * Metrics.screenWidth * 0.002} /> : <View />}
                           </View>
                         </View>

@@ -29,8 +29,26 @@ class Settings extends Component {
 
   constructor (props) {
     super(props)
+    this.state = {
+      showTouchSetting: true
+    }
     this._handleTouchToggle = this._handleTouchToggle.bind(this)
     this._handleGeoToggle = this._handleGeoToggle.bind(this)
+  }
+
+  componentDidMount() {
+    if (this.props.credentialStored) {
+      TouchManager.retrieveCredentials((error, credentials) => {
+        let credentialObject = credentials[0]
+        let status = credentialObject['status']
+        if (status === 'SUCCESS') {
+          let username = credentialObject['username']
+          if (username != this.props.username) {
+            this.setState({ showTouchSetting: false })
+          }
+        }
+      })
+    }
   }
 
   _disableTouchID() {
@@ -104,42 +122,10 @@ class Settings extends Component {
   }
 
   _handleTouchToggle(e) {
-    if (this.props.credentialStored) {
-      TouchManager.retrieveCredentials((error, credentials) => {
-        let credentialObject = credentials[0]
-        let status = credentialObject['status']
-        if (status === 'SUCCESS') {
-          let username = credentialObject['username']
-          if (username === this.props.username) {
-            this._showDisableAlert()
-          } else {
-            Alert.alert(
-              'Sorry',
-              'Only the default user of this device can modify this setting.',
-              [
-                {text: 'Ok', onPress: () => this.forceUpdate(), style: 'cancel'}
-              ],
-              { cancelable: false }
-            )
-          }
-        } else {
-          this._disableTouchID()
-          Alert.alert(
-            'Oops!',
-            'Oops! Looks like there\'s a problem. Please log in using your user ID and password to reset Touch ID.',
-            [
-              {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
-            ],
-            { cancelable: false }
-          )
-        }
-      })
+    if (this.props.touchEnabled) {
+      this._showDisableAlert()
     } else {
-      if (this.props.touchEnabled) {
-        this._showDisableAlert()
-      } else {
-        this._enableTouch()
-      }
+      this._enableTouch()
     }
   }
 
@@ -147,7 +133,7 @@ class Settings extends Component {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
-        {Platform.OS === 'ios' ?
+        {Platform.OS === 'ios' && this.state.showTouchSetting ?
             <View style={styles.settingContainer}>
               {this.props.touchEnabled ?
                 <Text style={styles.settingText}>Touch ID Enabled</Text>

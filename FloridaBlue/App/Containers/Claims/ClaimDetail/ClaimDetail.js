@@ -51,7 +51,7 @@ class ClaimDetail extends Component {
         {NavItems.backButton()}
       </View>
       <Text allowFontScaling={false} style={styles.headerTextStyle}>
-                Claim Detail
+         Claim Overview
       </Text>
       <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
@@ -165,7 +165,7 @@ class ClaimDetail extends Component {
               <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                 fontWeight: '400',
                 fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027}}>
-            Overall Claims Breakdown:
+            Claim Details:
             </Text>
             </View>
             { this.props.claimdetaildata
