@@ -49,7 +49,12 @@ const colors = {
     grey6: '#515151',
     anvil: '#333333',
     sky: '#00aec7',
-    lightsky: '#def1f7'
+    snow: 'white',
+    lightsky: '#c4e4f0',
+    lightyellow: '#ffe3b2',
+    lightpurple: '#e1bde9',
+    lightred: '#f7b2c7',
+    lightteal: '#b2e7ee'
   }
 
 }

@@ -121,7 +121,7 @@ class NotificationsView extends Component {
                           color: Colors.flBlue.anvil,
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022
                         }} >
-                          {data.cardContent}
+                          {data.body}
                         </Text>
                       </View>
                     </View>
@@ -153,12 +153,12 @@ class NotificationsView extends Component {
                               color: Colors.flBlue[data.style.color],
                               marginLeft: 20,
                               fontSize: Fonts.size.regular
-                            }}>Save your rewards !</Text>
+                            }}>{this.props.notification.messages && this.props.notification.messages.link ? this.props.notification.messages.link.desc : null }</Text>
 
                           </View>
                           <View style={{ flex: 1 }}>
-                            <Flb name='chevron-right' style={{ marginLeft: 20 }}
-                              size={Metrics.icons.small * Metrics.screenWidth * 0.002} />
+                            {this.props.notification.messages && this.props.notification.messages.link ? <Flb name='chevron-right' style={{ marginLeft: 20 }}
+                              size={Metrics.icons.small * Metrics.screenWidth * 0.002} /> : <View />}
                           </View>
                         </View>
                       </View>
