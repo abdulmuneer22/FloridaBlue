@@ -148,27 +148,21 @@ class NotificationsView extends Component {
 
                       <View style={{ flex: 1, marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                          <View style={{ flex: 1 }}>
+                          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                             <Text allowFontScaling={false} style={{
                               color: Colors.flBlue[data.style.color],
                               marginLeft: 20,
                               fontSize: Fonts.size.regular
-                            }}>{this.props.notification.messages && this.props.notification.messages.link ? this.props.notification.messages.link.desc : null }</Text>
-
-                          </View>
-                          <View style={{ flex: 1 }}>
-                            {this.props.notification.messages && this.props.notification.messages.link
+                            }}>{data && data.link ? data.link.desc : null }</Text>
+                            {data && data.link
                             ? <Flb name='chevron-right' style={{ marginLeft: 20, color: Colors.flBlue[data.style.color] }}
                               size={Metrics.icons.small * Metrics.screenWidth * 0.002} /> : <View />}
                           </View>
                         </View>
                       </View>
                     </TouchableOpacity>
-
                   </View>
-
                 </View>
-
               </View>
             </View>
             )}

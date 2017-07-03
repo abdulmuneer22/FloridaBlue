@@ -13,6 +13,7 @@ import {Colors, Metrics, Fonts} from '../../../Themes'
 import Flb from '../../../Themes/FlbIcon'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import styles from '../DashBoardStyle'
+import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
 
 var messageCount = ''
 const theme = getTheme()
@@ -60,22 +61,24 @@ class Greeting extends Component {
 
   componentDidMount () {
     this._getTimeText()
+    console.log('I am getting mounted')
+    FCM.getBadgeNumber().then(number => console.log('badge', number))
   }
 
   render () {
     return (
       <View style={styles.greetingView}>
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <View style={{flex: 6, alignItems: 'center', justifyContent: 'center'}}>
-            <Text allowFontScaling={false} style={styles.greetingText}>
-              {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
-          </Text>
-          </View>
-          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <TouchableOpacity onPress={() => NavigationActions.PushNotifications()} >
-              <Flb name='email-envelope' size={Metrics.icons.small} color={Colors.flBlue.orange} />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity style={{flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center'}} onPress={() => NavigationActions.PushNotifications()}>
+            <View style={{flex: 6, alignItems: 'flex-end', justifyContent: 'center'}}>
+              <Text allowFontScaling={false} style={styles.greetingText}>
+                {this.state.greetText} {this.props.userName ? this.props.userName : ''} !
+               </Text>
+            </View>
+            <View style={{flex: 2, alignItems: 'flex-start', justifyContent: 'center'}}>
+              <Flb name='email-envelope' size={Metrics.icons.small} color={Colors.flBlue.orange} style={{margin: 10}} />
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     )
