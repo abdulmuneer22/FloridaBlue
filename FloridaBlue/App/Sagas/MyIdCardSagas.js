@@ -17,7 +17,12 @@ export function * myidcard (api) {
   } else {
     // dispatch successful logins
     console.tron.log('I am coming from failure ')
-    var error = response.problem
+    var error = {};
+    error.problem = response.problem    
+    if(response != null && response.data != undefined && response.data.idCardWebViewURL != undefined)
+    {
+      error.idCardWebviewURL = response.data.idCardWebViewURL;        
+    }    
     yield put(MyIdCardActions.myIdCardFailure(error))
   }
 }

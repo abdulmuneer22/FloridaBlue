@@ -43,7 +43,7 @@ class MyIdCard extends Component {
   }
 
   componentDidMount () {
-    console.tron.log('I am Id Card screen')
+   // console.tron.log('I am Id Card screen' + JSON.stringify(this.props.error))
   }
 
   toggle () {
@@ -124,7 +124,10 @@ class MyIdCard extends Component {
 
 
         </View>)
-        }else if (this.props.error != null) {
+        }else if (this.props.error != null && this.props.error.idCardWebviewURL != undefined) {
+         
+             NavigationActions.MyView({responseURL: this.props.error.idCardWebviewURL})
+    }else if (this.props.error != null) {
       Alert.alert(
         'ID Card',
        'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
@@ -155,7 +158,7 @@ class MyIdCard extends Component {
 MyIdCard.propTypes = {
   data: PropTypes.object,
   attemptMyIdCard: PropTypes.func,
-  error: PropTypes.string
+  error: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
