@@ -383,7 +383,7 @@ class ClaimsList extends Component {
             <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
               <Flb name='remove' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
             </TouchableOpacity>
-            <Text style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below.</Text>
+            <Text style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below:</Text>
             <HideableView visible={this.state.dateError} removeWhenHidden={true}>
               <Text style={styles.error}>Oops! Something went wrong. Check your dates and try again.</Text>
             </HideableView>
