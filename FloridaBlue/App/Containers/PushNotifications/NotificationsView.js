@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Image,
   ListView,
-  Alert
+  Alert,
+  Linking
 } from 'react-native'
 // import NotificationCard from './Components/NotificationCard'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
@@ -23,6 +24,7 @@ import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import PushController from './PushController'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
+
 import NotificationActions from '../../Redux/NotificationRedux'
 const theme = getTheme()
 
@@ -147,12 +149,14 @@ class NotificationsView extends Component {
                     backgroundColor: Colors.flBlue[data.style.barColor]
                   }}>
                     <TouchableOpacity onPress={() => {
-                      if (data.link.type == 'webview') {
+                      if (data.link.type === 'webview') {
                         var webview = 'MyView'
                         NavigationActions[webview]({ responseURL: data.link.name })
-                      } else if (data.link.type == 'native') {
+                      } else if (data.link.type === 'native') {
                         var routerName = data.link.name
                         NavigationActions[routerName]()
+                      } else if (data.link.type === 'href') {
+                        Linking.openURL('http://google.com')
                       }
                     }}
                       style={{
@@ -162,7 +166,6 @@ class NotificationsView extends Component {
                           // borderBottomRightRadi
                           // height:35
                       }}>
-
                       <View style={{ flex: 1, marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
