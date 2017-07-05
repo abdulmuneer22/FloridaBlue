@@ -657,11 +657,7 @@
 		2BEF36CF1DF2046500A9CB66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-				25AD65821F0D51BF00CBA226 /* flb.ttf */,
-=======
 				C564B2501F0D7851007251F0 /* flb.ttf */,
->>>>>>> c7ffb02622d6b4e62396a2423fe5484360b991f3
 				2BEF36F31DF205C800A9CB66 /* Entypo.ttf */,
 				2BEF36F41DF205C800A9CB66 /* EvilIcons.ttf */,
 				2BEF36F51DF205C800A9CB66 /* FontAwesome.ttf */,
@@ -1301,10 +1297,7 @@
 				2BEF37011DF205C800A9CB66 /* MaterialIcons.ttf in Resources */,
 				2BEF37021DF205C800A9CB66 /* Octicons.ttf in Resources */,
 				2BEF36FE1DF205C800A9CB66 /* FontAwesome.ttf in Resources */,
-<<<<<<< HEAD
-=======
 				C564B2511F0D7851007251F0 /* flb.ttf in Resources */,
->>>>>>> c7ffb02622d6b4e62396a2423fe5484360b991f3
 				2BEF36FD1DF205C800A9CB66 /* EvilIcons.ttf in Resources */,
 				2BEF37001DF205C800A9CB66 /* Ionicons.ttf in Resources */,
 				2BEF37041DF205C800A9CB66 /* Zocial.ttf in Resources */,
