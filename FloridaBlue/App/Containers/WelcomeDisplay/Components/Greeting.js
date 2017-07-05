@@ -76,7 +76,8 @@ class Greeting extends Component {
                </Text>
             </View>
             <View style={{flex: 2, alignItems: 'flex-start', justifyContent: 'center'}}>
-              <Flb name={this.props.unreadNotification && this.props.unreadNotification > 0 ? this.props.unreadNotification : 'email-envelope'} size={Metrics.icons.small} color={Colors.flBlue.orange} style={{margin: 10}} />
+              { this.props.unreadNotification && Object(this.props.unreadNotification).length > 0 ? <Flb name={this.props.unreadNotification && Object(this.props.unreadNotification).length > 0 ? 'email-envelope'
+              : this.props.unreadNotification + '-filled'} size={Metrics.icons.small} color={Colors.flBlue.orange} style={{margin: 10}} /> : null}
             </View>
           </TouchableOpacity>
         </View>
