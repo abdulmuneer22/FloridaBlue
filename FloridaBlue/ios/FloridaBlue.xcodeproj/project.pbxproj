@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -22,6 +23,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1E912FBC743A444DB2EAE613 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0087635B93B643A5B5587FBE /* libReactNativePermissions.a */; };
+		25AD65831F0D51BF00CBA226 /* flb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25AD65821F0D51BF00CBA226 /* flb.ttf */; };
 		25AF929D1E9BE2D900EEFA47 /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2524A01C1E983A8D005D9132 /* libcxxreact.a */; };
 		25AF92B81E9BE2E100EEFA47 /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2524A0201E983A8D005D9132 /* libjschelpers.a */; };
 		25AF92B91E9BE2E800EEFA47 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2524A0181E983A8D005D9132 /* libyoga.a */; };
@@ -63,7 +65,6 @@
 		C5CDD6ED1E52831D00DDB34E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CDD6EC1E52831D00DDB34E /* Images.xcassets */; };
 		C5DF0C541E5242E90006B909 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		C5DFF3311EA6C5D400217018 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5DFF3301EA6C5AC00217018 /* libAirMaps.a */; };
-		C5F702511F0D335A00961264 /* flb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C5F702501F0D335A00961264 /* flb.ttf */; };
 		D47FDB42034B4138B7516EEB /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1047D3917D44B56B25F3B55 /* libRNCookieManagerIOS.a */; };
 		DBEABF5DBDBE4FF1B0BDF054 /* Times New Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3DA9584374142D2A6E4F53F /* Times New Roman.ttf */; };
 		E649A137A5A8440382FA8E3C /* Andale Mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E6E05672A8840FE8AC77949 /* Andale Mono.ttf */; };
@@ -375,6 +376,7 @@
 		1E29C068A80E4FE88FA69CB6 /* Arial Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Arial Black.ttf"; path = "../node_modules/native-base/Fonts/Arial Black.ttf"; sourceTree = "<group>"; };
 		244FB5CC0A4A41D2A6D4A160 /* Georgia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Georgia.ttf; path = "../node_modules/native-base/Fonts/Georgia.ttf"; sourceTree = "<group>"; };
 		259133AF1E69F9CE005C5412 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		25AD65821F0D51BF00CBA226 /* flb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = flb.ttf; path = ../../../../Desktop/icons/fonts/flb.ttf; sourceTree = "<group>"; };
 		25B21B4F1EEF2C2E0048B1BB /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = ../../../../Desktop/Firebase/Analytics/FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		25B21B501EEF2C2E0048B1BB /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = ../../../../Desktop/Firebase/Analytics/FirebaseCore.framework; sourceTree = "<group>"; };
 		25B21B511EEF2C2E0048B1BB /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = ../../../../Desktop/Firebase/Analytics/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
@@ -419,7 +421,6 @@
 		C3DA9584374142D2A6E4F53F /* Times New Roman.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Times New Roman.ttf"; path = "../node_modules/native-base/Fonts/Times New Roman.ttf"; sourceTree = "<group>"; };
 		C5CDD6EC1E52831D00DDB34E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FloridaBlue/Images.xcassets; sourceTree = "<group>"; };
 		C5DFF32B1EA6C5AC00217018 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
-		C5F702501F0D335A00961264 /* flb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = flb.ttf; path = ../../../../../Desktop/flb/fonts/flb.ttf; sourceTree = "<group>"; };
 		CD8C80C686834225B7DF3493 /* Microsoft Sans Serif.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Microsoft Sans Serif.ttf"; path = "../node_modules/native-base/Fonts/Microsoft Sans Serif.ttf"; sourceTree = "<group>"; };
 		D2402E17D27F41F9B373F9F1 /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-UI-Text-Regular.otf"; path = "../node_modules/native-base/Fonts/SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		E3EFD237A64C41FB8BFEAD8B /* Skia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Skia.ttf; path = "../node_modules/native-base/Fonts/Skia.ttf"; sourceTree = "<group>"; };
@@ -654,7 +655,7 @@
 		2BEF36CF1DF2046500A9CB66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C5F702501F0D335A00961264 /* flb.ttf */,
+				25AD65821F0D51BF00CBA226 /* flb.ttf */,
 				2BEF36F31DF205C800A9CB66 /* Entypo.ttf */,
 				2BEF36F41DF205C800A9CB66 /* EvilIcons.ttf */,
 				2BEF36F51DF205C800A9CB66 /* FontAwesome.ttf */,
@@ -1294,7 +1295,6 @@
 				2BEF37011DF205C800A9CB66 /* MaterialIcons.ttf in Resources */,
 				2BEF37021DF205C800A9CB66 /* Octicons.ttf in Resources */,
 				2BEF36FE1DF205C800A9CB66 /* FontAwesome.ttf in Resources */,
-				C5F702511F0D335A00961264 /* flb.ttf in Resources */,
 				2BEF36FD1DF205C800A9CB66 /* EvilIcons.ttf in Resources */,
 				2BEF37001DF205C800A9CB66 /* Ionicons.ttf in Resources */,
 				2BEF37041DF205C800A9CB66 /* Zocial.ttf in Resources */,
@@ -1303,6 +1303,7 @@
 				2BEF37031DF205C800A9CB66 /* SimpleLineIcons.ttf in Resources */,
 				2BEF36FC1DF205C800A9CB66 /* Entypo.ttf in Resources */,
 				9A486EFED34A4D528270C7E4 /* FlbIcon.ttf in Resources */,
+				25AD65831F0D51BF00CBA226 /* flb.ttf in Resources */,
 				38DEE345C8704F2FB2566C5C /* MaterialCommunityIcons.ttf in Resources */,
 				25B21BE81EEF388A0048B1BB /* GoogleService-Info.plist in Resources */,
 				E649A137A5A8440382FA8E3C /* Andale Mono.ttf in Resources */,
