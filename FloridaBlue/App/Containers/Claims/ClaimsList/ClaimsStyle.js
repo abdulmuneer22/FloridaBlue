@@ -55,8 +55,9 @@ export default StyleSheet.create({
     margin: 10
   },
   claimsListHeaderText: {
-    fontSize: 20,
-    paddingLeft: 15,
+    fontSize: Fonts.size.h5*Metrics.screenWidth*0.0028,
+    color:Colors.flBlue.night,
+    paddingLeft: Metrics.mediumMargin*Metrics.screenWidth*0.002,
     opacity: 0.9
   },
   claimsCategories1: {
@@ -110,7 +111,10 @@ export default StyleSheet.create({
   },
   claimsCategoryText: {
     fontWeight: 'bold',
-    marginTop: 2.5
+    marginTop: Metrics.smallMargin*Metrics.screenHeight*0.001,
+    color:Colors.flBlue.anvil,
+    fontSize:Fonts.size.regular*Metrics.screenWidth*0.0025
+
   },
   claimsCardText: {
     color: Colors.flBlue.anvil

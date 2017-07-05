@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -64,10 +63,10 @@
 		C5CDD6ED1E52831D00DDB34E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CDD6EC1E52831D00DDB34E /* Images.xcassets */; };
 		C5DF0C541E5242E90006B909 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		C5DFF3311EA6C5D400217018 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5DFF3301EA6C5AC00217018 /* libAirMaps.a */; };
+		C5F702511F0D335A00961264 /* flb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C5F702501F0D335A00961264 /* flb.ttf */; };
 		D47FDB42034B4138B7516EEB /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1047D3917D44B56B25F3B55 /* libRNCookieManagerIOS.a */; };
 		DBEABF5DBDBE4FF1B0BDF054 /* Times New Roman.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3DA9584374142D2A6E4F53F /* Times New Roman.ttf */; };
 		E649A137A5A8440382FA8E3C /* Andale Mono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E6E05672A8840FE8AC77949 /* Andale Mono.ttf */; };
-		F259BCB61EF8215100D27FE6 /* flb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F259BCB51EF8215100D27FE6 /* flb.ttf */; };
 		F2C73FF31EC20888007EAB45 /* TouchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C73FF21EC20888007EAB45 /* TouchManager.m */; };
 		F2C740191EC2089B007EAB45 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C740181EC2089B007EAB45 /* LocalAuthentication.framework */; };
 		F2C740881EC24392007EAB45 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C740871EC24392007EAB45 /* KeychainWrapper.m */; };
@@ -420,6 +419,7 @@
 		C3DA9584374142D2A6E4F53F /* Times New Roman.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Times New Roman.ttf"; path = "../node_modules/native-base/Fonts/Times New Roman.ttf"; sourceTree = "<group>"; };
 		C5CDD6EC1E52831D00DDB34E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FloridaBlue/Images.xcassets; sourceTree = "<group>"; };
 		C5DFF32B1EA6C5AC00217018 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
+		C5F702501F0D335A00961264 /* flb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = flb.ttf; path = ../../../../../Desktop/flb/fonts/flb.ttf; sourceTree = "<group>"; };
 		CD8C80C686834225B7DF3493 /* Microsoft Sans Serif.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Microsoft Sans Serif.ttf"; path = "../node_modules/native-base/Fonts/Microsoft Sans Serif.ttf"; sourceTree = "<group>"; };
 		D2402E17D27F41F9B373F9F1 /* SF-UI-Text-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-UI-Text-Regular.otf"; path = "../node_modules/native-base/Fonts/SF-UI-Text-Regular.otf"; sourceTree = "<group>"; };
 		E3EFD237A64C41FB8BFEAD8B /* Skia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Skia.ttf; path = "../node_modules/native-base/Fonts/Skia.ttf"; sourceTree = "<group>"; };
@@ -427,7 +427,6 @@
 		E715547EB10A4485B49FC1E4 /* RNCookieManagerIOS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCookieManagerIOS.xcodeproj; path = "../node_modules/react-native-cookies/RNCookieManagerIOS.xcodeproj"; sourceTree = "<group>"; };
 		E91744ECF40D451DB4773616 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		EA92F5BB84D44A309623ADEF /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
-		F259BCB51EF8215100D27FE6 /* flb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = flb.ttf; sourceTree = "<group>"; };
 		F2C73FF11EC20888007EAB45 /* TouchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchManager.h; path = FloridaBlue/TouchManager.h; sourceTree = "<group>"; };
 		F2C73FF21EC20888007EAB45 /* TouchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchManager.m; path = FloridaBlue/TouchManager.m; sourceTree = "<group>"; };
 		F2C740181EC2089B007EAB45 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -655,7 +654,7 @@
 		2BEF36CF1DF2046500A9CB66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F259BCB51EF8215100D27FE6 /* flb.ttf */,
+				C5F702501F0D335A00961264 /* flb.ttf */,
 				2BEF36F31DF205C800A9CB66 /* Entypo.ttf */,
 				2BEF36F41DF205C800A9CB66 /* EvilIcons.ttf */,
 				2BEF36F51DF205C800A9CB66 /* FontAwesome.ttf */,
@@ -1295,7 +1294,7 @@
 				2BEF37011DF205C800A9CB66 /* MaterialIcons.ttf in Resources */,
 				2BEF37021DF205C800A9CB66 /* Octicons.ttf in Resources */,
 				2BEF36FE1DF205C800A9CB66 /* FontAwesome.ttf in Resources */,
-				F259BCB61EF8215100D27FE6 /* flb.ttf in Resources */,
+				C5F702511F0D335A00961264 /* flb.ttf in Resources */,
 				2BEF36FD1DF205C800A9CB66 /* EvilIcons.ttf in Resources */,
 				2BEF37001DF205C800A9CB66 /* Ionicons.ttf in Resources */,
 				2BEF37041DF205C800A9CB66 /* Zocial.ttf in Resources */,

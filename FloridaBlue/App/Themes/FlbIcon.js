@@ -284,7 +284,8 @@ const glyphMap = {
   "urgent-care-circle": 57527,
   "map": 58,
   "map-circle": 57528,
-  "fingerprint": 57529
+  "fingerprint": 57529,
+  "flip-arrow": 57530
 };
 
 const iconSet = createIconSet(glyphMap, 'flb', 'FlbIcon.ttf');
