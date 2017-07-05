@@ -156,7 +156,7 @@ class NotificationsView extends Component {
                         var routerName = data.link.name
                         NavigationActions[routerName]()
                       } else if (data.link.type === 'href') {
-                        Linking.openURL('http://google.com')
+                        Linking.openURL(data.link.name)
                       }
                     }}
                       style={{
