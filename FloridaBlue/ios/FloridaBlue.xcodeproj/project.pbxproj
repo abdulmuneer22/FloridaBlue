@@ -23,7 +23,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1E912FBC743A444DB2EAE613 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0087635B93B643A5B5587FBE /* libReactNativePermissions.a */; };
-		25AD65831F0D51BF00CBA226 /* flb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25AD65821F0D51BF00CBA226 /* flb.ttf */; };
 		25AF929D1E9BE2D900EEFA47 /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2524A01C1E983A8D005D9132 /* libcxxreact.a */; };
 		25AF92B81E9BE2E100EEFA47 /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2524A0201E983A8D005D9132 /* libjschelpers.a */; };
 		25AF92B91E9BE2E800EEFA47 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2524A0181E983A8D005D9132 /* libyoga.a */; };
@@ -377,7 +376,6 @@
 		1E29C068A80E4FE88FA69CB6 /* Arial Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Arial Black.ttf"; path = "../node_modules/native-base/Fonts/Arial Black.ttf"; sourceTree = "<group>"; };
 		244FB5CC0A4A41D2A6D4A160 /* Georgia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Georgia.ttf; path = "../node_modules/native-base/Fonts/Georgia.ttf"; sourceTree = "<group>"; };
 		259133AF1E69F9CE005C5412 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
-		25AD65821F0D51BF00CBA226 /* flb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = flb.ttf; path = ../../../../Desktop/icons/fonts/flb.ttf; sourceTree = "<group>"; };
 		25B21B4F1EEF2C2E0048B1BB /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = ../../../../Desktop/Firebase/Analytics/FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		25B21B501EEF2C2E0048B1BB /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = ../../../../Desktop/Firebase/Analytics/FirebaseCore.framework; sourceTree = "<group>"; };
 		25B21B511EEF2C2E0048B1BB /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = ../../../../Desktop/Firebase/Analytics/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
@@ -1306,7 +1304,6 @@
 				2BEF37031DF205C800A9CB66 /* SimpleLineIcons.ttf in Resources */,
 				2BEF36FC1DF205C800A9CB66 /* Entypo.ttf in Resources */,
 				9A486EFED34A4D528270C7E4 /* FlbIcon.ttf in Resources */,
-				25AD65831F0D51BF00CBA226 /* flb.ttf in Resources */,
 				38DEE345C8704F2FB2566C5C /* MaterialCommunityIcons.ttf in Resources */,
 				25B21BE81EEF388A0048B1BB /* GoogleService-Info.plist in Resources */,
 				E649A137A5A8440382FA8E3C /* Andale Mono.ttf in Resources */,
