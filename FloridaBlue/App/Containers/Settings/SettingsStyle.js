@@ -28,6 +28,19 @@ export default StyleSheet.create({
   settingContainer: {
     flex: 1,
     flexDirection: 'row',
+    //backgroundColor:'red',
+    justifyContent: 'space-between'
+  },
+  settingContainer1: {
+    flex: 1,
+   // flexDirection: 'row',
+    //backgroundColor:'yellow',
+    justifyContent: 'space-between'
+  },
+  settingContainer2: {
+    flex: 1,
+    //flexDirection: 'row',
+   // backgroundColor:'green',
     justifyContent: 'space-between'
   },
   settingText: {
@@ -41,6 +54,7 @@ export default StyleSheet.create({
     color: Colors.flBlue.anvil
   },
   settingStatusSwitch: {
+    //backgroundColor:'red',
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
     marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.0030

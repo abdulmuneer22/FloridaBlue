@@ -134,7 +134,11 @@ class Settings extends Component {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
-        {Platform.OS === 'ios' && this.state.showTouchSetting ?
+
+        <View style={{flex:1}}>
+       
+            <View style={styles.settingContainer1}>
+          {Platform.OS === 'ios' && this.state.showTouchSetting ?
             <View style={styles.settingContainer}>
               {this.props.touchEnabled ?
                 <Text style={styles.settingText}>Touch ID Enabled</Text>
@@ -150,20 +154,25 @@ class Settings extends Component {
                 rippleColor={Colors.flBlue.ocean}
                 onPress={() => this._handleTouchToggle()}
               />
-            </View>
-          :
+              </View>
+               :
             null
         }
-        <View style={styles.settingContainer}>
+           
+         
+        <View style={styles.settingContainer1}>
           <TouchableOpacity onPress={Permissions.openSettings}>
             <Text style={styles.settingText}>Geo-location Settings</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.settingContainer}>
+        <View style={styles.settingContainer2}>
         <TouchableOpacity onPress={Permissions.openSettings}>
           <Text style={styles.settingText}>Push Notification Settings</Text>
         </TouchableOpacity>
+        </View>
+        <View style={{flex:5}}/>
+        </View>
         </View>
       </View>
     )
