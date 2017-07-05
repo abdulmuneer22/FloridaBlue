@@ -132,7 +132,6 @@ class Login extends Component {
             this.setState({touchStatus: 'LOCKED'})
             this.props.changeCredentialStored(true)
             this.props.changeTouchEnabled(true)
-            this._disableTouchID()
           default:
             this.setState({touchAvailable: false})
             this.setState({touchStatus: ''})
@@ -452,7 +451,7 @@ class Login extends Component {
             break
           case 'LOCKED':
             errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
-            this._disableTouchID()
+            this._handleLockedTouch()
             break
           default:
             errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
@@ -481,6 +480,13 @@ class Login extends Component {
         this.props.changeTouchAvailable(false)
       }
     })
+  }
+
+  _handleLockedTouch() {
+    this.setState({touchAvailable: true})
+    this.setState({touchStatus: 'LOCKED'})
+    this.props.changeCredentialStored(true)
+    this.props.changeTouchEnabled(true)
   }
 
   _handleLogin () {

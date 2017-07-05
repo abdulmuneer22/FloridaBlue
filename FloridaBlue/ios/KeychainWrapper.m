@@ -26,6 +26,7 @@ static const UInt8 kKeychainItemIdentifier[]    = "com.apple.dts.KeychainUI\0";
 - (NSMutableDictionary *)dictionaryToSecItemFormat:(NSDictionary *)dictionaryToConvert;
 // Method used to write data to the keychain:
 - (void)writeToKeychain;
+- (void)resetKeychainItem;
 
 @end
 
