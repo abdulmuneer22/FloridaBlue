@@ -62,6 +62,7 @@
 		8D91A70B913942249ACA0EC6 /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF9200345B53450A81E5D7E7 /* Arial.ttf */; };
 		9A486EFED34A4D528270C7E4 /* FlbIcon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36ADCA1590B047AD905AD32D /* FlbIcon.ttf */; };
 		9B814EC910F24321ACE1B58F /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7414AC2454741448D6142A1 /* libBVLinearGradient.a */; };
+		C564B2511F0D7851007251F0 /* flb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C564B2501F0D7851007251F0 /* flb.ttf */; };
 		C5CDD6ED1E52831D00DDB34E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CDD6EC1E52831D00DDB34E /* Images.xcassets */; };
 		C5DF0C541E5242E90006B909 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		C5DFF3311EA6C5D400217018 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5DFF3301EA6C5AC00217018 /* libAirMaps.a */; };
@@ -419,6 +420,7 @@
 		BAE6989E3E484995B816FC7C /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFIRMessaging.xcodeproj; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; };
 		C1047D3917D44B56B25F3B55 /* libRNCookieManagerIOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCookieManagerIOS.a; sourceTree = "<group>"; };
 		C3DA9584374142D2A6E4F53F /* Times New Roman.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Times New Roman.ttf"; path = "../node_modules/native-base/Fonts/Times New Roman.ttf"; sourceTree = "<group>"; };
+		C564B2501F0D7851007251F0 /* flb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = flb.ttf; sourceTree = "<group>"; };
 		C5CDD6EC1E52831D00DDB34E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FloridaBlue/Images.xcassets; sourceTree = "<group>"; };
 		C5DFF32B1EA6C5AC00217018 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		CD8C80C686834225B7DF3493 /* Microsoft Sans Serif.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Microsoft Sans Serif.ttf"; path = "../node_modules/native-base/Fonts/Microsoft Sans Serif.ttf"; sourceTree = "<group>"; };
@@ -655,7 +657,11 @@
 		2BEF36CF1DF2046500A9CB66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				25AD65821F0D51BF00CBA226 /* flb.ttf */,
+=======
+				C564B2501F0D7851007251F0 /* flb.ttf */,
+>>>>>>> c7ffb02622d6b4e62396a2423fe5484360b991f3
 				2BEF36F31DF205C800A9CB66 /* Entypo.ttf */,
 				2BEF36F41DF205C800A9CB66 /* EvilIcons.ttf */,
 				2BEF36F51DF205C800A9CB66 /* FontAwesome.ttf */,
@@ -1295,6 +1301,10 @@
 				2BEF37011DF205C800A9CB66 /* MaterialIcons.ttf in Resources */,
 				2BEF37021DF205C800A9CB66 /* Octicons.ttf in Resources */,
 				2BEF36FE1DF205C800A9CB66 /* FontAwesome.ttf in Resources */,
+<<<<<<< HEAD
+=======
+				C564B2511F0D7851007251F0 /* flb.ttf in Resources */,
+>>>>>>> c7ffb02622d6b4e62396a2423fe5484360b991f3
 				2BEF36FD1DF205C800A9CB66 /* EvilIcons.ttf in Resources */,
 				2BEF37001DF205C800A9CB66 /* Ionicons.ttf in Resources */,
 				2BEF37041DF205C800A9CB66 /* Zocial.ttf in Resources */,
