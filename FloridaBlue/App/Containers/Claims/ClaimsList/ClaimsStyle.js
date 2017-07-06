@@ -262,7 +262,7 @@ export default StyleSheet.create({
     flex:1,
     position: 'absolute',
     paddingTop: Metrics.doubleBaseMargin,
-    backgroundColor: Colors.snow
+    backgroundColor: 'transparent'
   },
   searchTitle: {
     fontSize: Fonts.size.regular,
