@@ -285,7 +285,9 @@ const glyphMap = {
   "map": 58,
   "map-circle": 57528,
   "fingerprint": 57529,
-  "flip-arrow": 57530
+  "flip-arrow": 57530,
+  "10-plus-empty": 57531,
+  "10-plus-filled": 57532
 };
 
 const iconSet = createIconSet(glyphMap, 'flb', 'FlbIcon.ttf');
