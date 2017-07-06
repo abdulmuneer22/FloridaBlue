@@ -34,6 +34,7 @@ export function * postFCMToken (api, {data}) {
 export function * postArchive (api, {archiveObject}) {
   // make the call to the api
   console.log('before post', archiveObject)
+
   const response = yield call(api.postArchive, archiveObject)
   // success?
   if (response.ok) {

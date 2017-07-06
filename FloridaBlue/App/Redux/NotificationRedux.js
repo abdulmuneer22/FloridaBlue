@@ -14,7 +14,8 @@ const { Types, Creators } = createActions({
   notificationFailure: ['error'],
   getNotification: [],
   postFCMToken: ['data'],
-  postArchive: ['archiveObject']
+  postArchive: ['archiveObject'],
+  markAllRead: ['allRead']
 })
 
 export const NotificationTypes = Types
@@ -30,7 +31,8 @@ export const INITIAL_STATE = Immutable({
   openedFromTray: false,
   error: null,
   fetching: false,
-  unreadNotification: null
+  unreadNotification: null,
+  allRead: false
 })
 
 /* ------------- Reducers ------------- */
@@ -40,7 +42,7 @@ export const request = (state: Object) => state.merge({fetching: true})
 
 // we've successfully logged in
 export const success = (state: Object, {notification, unreadNotification}: Object) =>
-  state.merge({ fetching: false, error: null, notification: notification, unreadNotification: unreadNotification})
+  state.merge({fetching: false, error: null, notification: notification, unreadNotification: unreadNotification})
 
 // we've had a problem logging in
 export const failure = (state: Object, { error }: Object) =>
@@ -55,6 +57,9 @@ export const onOpenedFromTray = (state : Object, {openedFromTray}: Object) => st
 // we've had to set remote notificaiton tray if true
 export const localNotification = (state : Object, {localNotification}: Object) => state.merge({localNotification})
 
+// we've had to set read notificaiton to   true
+export const readCount = (state : Object, {allRead}: Object) => state.merge({allRead})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -65,7 +70,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.REFRESH_TOKEN_TO_UNSUBSCRIBE]: FCMToken,
   [Types.ON_OPENED_FROM_TRAY]: onOpenedFromTray,
   [Types.ON_LOCAL_NOTIFICATION]: localNotification,
-  [Types.POST_F_C_M_Token]: request
+  [Types.POST_F_C_M_Token]: request,
+  [Types.MARK_ALL_READ]: readCount
 })
 
 /* ------------- Selectors ------------- */
