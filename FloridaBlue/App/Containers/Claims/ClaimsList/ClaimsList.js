@@ -380,6 +380,7 @@ class ClaimsList extends Component {
           </View>
 
           <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
+            <View style={{backgroundColor: 'white', marginTop: -10}}>
             <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
               <Flb name='remove' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
             </TouchableOpacity>
@@ -433,7 +434,13 @@ class ClaimsList extends Component {
             <Button rounded style={styles.searchButton} onPress={() => { this.searchResults() }}>
               <Text style={{ color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center' }}>Search</Text>
             </Button>
+            
+            </View>
+            <View style={{backgroundColor: 'rgba(0,0,0,.5)', paddingBottom: 200}}>
+
+            </View>
           </HideableView>
+          
 
           <DateTimePicker
             isVisible={this.props.datePickerVisible}
