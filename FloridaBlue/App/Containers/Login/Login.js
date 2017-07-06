@@ -132,7 +132,6 @@ class Login extends Component {
             this.setState({touchStatus: 'LOCKED'})
             this.props.changeCredentialStored(true)
             this.props.changeTouchEnabled(true)
-            this._disableTouchID()
           default:
             this.setState({touchAvailable: false})
             this.setState({touchStatus: ''})
@@ -337,8 +336,10 @@ class Login extends Component {
     if (this.state.touchStatus === '') {
       if (this.props.touchEnabled) {
         this.props.changeTouchEnabled(false)
+        this.forceUpdate()
       } else {
         this.props.changeTouchEnabled(true)
+        this.forceUpdate()
         if (!this.props.username && !this.props.password) {
           Alert.alert('Login', 'Please enter the User ID and Password to set up Touch ID', [
             {
@@ -452,7 +453,7 @@ class Login extends Component {
             break
           case 'LOCKED':
             errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
-            this._disableTouchID()
+            this._handleLockedTouch()
             break
           default:
             errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
@@ -481,6 +482,13 @@ class Login extends Component {
         this.props.changeTouchAvailable(false)
       }
     })
+  }
+
+  _handleLockedTouch() {
+    this.setState({touchAvailable: true})
+    this.setState({touchStatus: 'LOCKED'})
+    this.props.changeCredentialStored(true)
+    this.props.changeTouchEnabled(true)
   }
 
   _handleLogin () {
@@ -740,6 +748,18 @@ class Login extends Component {
               </View>
             </View>
           </View>
+          <HideableView visible={this.state.touchAvailable && this.props.credentialStored} removeWhenHidden={true}>
+            <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._authenticateUserWithTouch() }}>
+              <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
+              <Text style={styles.touchInstruction}>Login with your fingerprint</Text>
+            </TouchableOpacity>
+          </HideableView>
+          <HideableView visible={this.state.touchAvailable && !this.props.credentialStored} removeWhenHidden={true}>
+            <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._handleTouchCheckbox() }}>
+              <MKCheckbox style={styles.touchCheckbox} checked={this.props.touchEnabled} editable={false}/>
+              <Text style={styles.touchInstruction}>Setup login using your fingerprint</Text>
+            </TouchableOpacity>
+          </HideableView>
         </LoginView>
 
         <LoginButtonView>
@@ -788,7 +808,7 @@ class Login extends Component {
             </LogoView>
 
             {Platform.OS === 'ios' && this.state.touchAvailable ?
-                this._renderTouchAvailableLogin()
+                this._renderLogin()
               :
                 this._renderLogin()
             }

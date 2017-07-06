@@ -102,11 +102,15 @@ export default StyleSheet.create({
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
     height: Metrics.baseMargin * Metrics.screenHeight * 0.0033
   },
+  touchCheckbox: {
+    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0005
+  },
   fingerprintContainer: {
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0028,
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.022,
-    height:Metrics.textHeight1 * Metrics.screenHeight*0.003,
-   // backgroundColor:'red'
+    flex:1,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+    paddingBottom:Metrics.baseMargin*Metrics.screenHeight*0.004
   },
   fingerprintDisabled: {
     //backgroundColor:'red',
@@ -120,6 +124,12 @@ export default StyleSheet.create({
     height: Metrics.baseMargin * Metrics.screenHeight * 0.006,
     width: Metrics.baseMargin * Metrics.screenWidth * 0.022,
     paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0035,
+    color: Colors.flBlue.ocean
+  },
+  fingerprint: {
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0046,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.008,
+    marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002,
     color: Colors.flBlue.ocean
   },
   link: {
