@@ -140,7 +140,7 @@ class LandingScreen extends Component {
     } else if (this.props.visibilityRules != undefined) {
       return (
         <View style={styles.container}>
-          <Greeting userName={this.props.userName} unreadNotification={this.props.unreadNotification} />
+          <Greeting userName={this.props.userName} unreadNotification={this.props.unreadNotification} allRead={this.props.markAllRead} />
           {
             this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} /> : <View />}
           <View style={{
@@ -282,7 +282,8 @@ const mapStateToProps = (state) => {
     FCMToken: state.Notification.FCMToken,
     defaultContract: state.member.defaultContract,
     memberObject: state.member.memberObject,
-    unreadNotification: state.Notification.unreadNotification
+    unreadNotification: state.Notification.unreadNotification,
+    markAllRead: state.Notification.allRead
   }
 }
 const mapDispatchToProps = (dispatch) => {

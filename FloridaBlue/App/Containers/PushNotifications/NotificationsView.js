@@ -47,6 +47,7 @@ class NotificationsView extends Component {
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
     FCM.setBadgeNumber(0)
+    this.props.markAllRead(true)
     this.props.postArchive({
       'messageId': '',
       'markAllRead': true
@@ -253,7 +254,8 @@ const mapDispatchToProps = (dispatch) => {
     getNotification: () => dispatch(NotificationActions.getNotification()),
     onOpenedFromTray: (openedFromTray) => dispatch(NotificationActions.onOpenedFromTray(openedFromTray)),
     onLocalNotification: (localNotification) => dispatch(NotificationActions.onLocalNotification(localNotification)),
-    postArchive: (archiveObject) => dispatch(NotificationActions.postArchive(archiveObject))
+    postArchive: (archiveObject) => dispatch(NotificationActions.postArchive(archiveObject)),
+    markAllRead: (allRead) => dispatch(NotificationActions.markAllRead(allRead))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationsView)

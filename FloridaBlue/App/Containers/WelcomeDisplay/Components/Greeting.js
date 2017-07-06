@@ -69,16 +69,24 @@ class Greeting extends Component {
     return (
       <View style={styles.greetingView}>
         <View style={{flex: 1, flexDirection: 'row'}}>
-          <TouchableOpacity style={{flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center'}} onPress={() => NavigationActions.PushNotifications()}>
+          <TouchableOpacity style={{flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center'}}
+            onPress={() => NavigationActions.PushNotifications()}>
             <View style={{flex: 6, alignItems: 'flex-end', justifyContent: 'center'}}>
               <Text allowFontScaling={false} style={styles.greetingText}>
                 {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
                </Text>
             </View>
             <View style={{flex: 2, alignItems: 'flex-start', justifyContent: 'center'}}>
-              { this.props.unreadNotification && this.props.unreadNotification > 0
-                ? <Flb name={this.props.unreadNotification + '-filled'} size={Metrics.icons.small} color={Colors.flBlue.orange} style={{margin: 10}} />
-               : <Flb name='email-envelope' size={Metrics.icons.small} color={Colors.flBlue.orange} style={{margin: 10}} /> }
+              { this.props.unreadNotification && this.props.unreadNotification > 0 && !this.props.allRead
+                ? <Flb name={this.props.unreadNotification + '-filled'} size={Metrics.icons.medium} color={Colors.flBlue.orange}
+                  style={{margin: 10}} />
+               :
+                  <View style={{flexDirection: 'row'}}>
+                    <Flb name='email-envelope' size={Metrics.icons.small} color={Colors.flBlue.orange} style={{margin: 10}} />
+                    <Flb name={1 + '-filled'} size={Metrics.icons.small} color={Colors.flBlue.red}
+                      style={{margin: 0}} />
+                  </View>
+               }
             </View>
           </TouchableOpacity>
         </View>
