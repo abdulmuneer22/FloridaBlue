@@ -77,15 +77,15 @@ class Greeting extends Component {
                </Text>
             </View>
             <View style={{flex: 2, alignItems: 'flex-start', justifyContent: 'center' }}>
-              { this.props.unreadNotification && this.props.unreadNotification > 0 && !this.props.allRead
-                ? <Flb name={this.props.unreadNotification + '-filled'} size={Metrics.icons.medium} color={Colors.flBlue.orange}
+              <View style={{flex: 2, alignItems: 'flex-start', justifyContent: 'center'}}>
+                { this.props.unreadNotification && this.props.unreadNotification > 0 && !this.props.allRead
+                ? <Flb name={this.props.unreadNotification > 10 ? '10-plus-filled'
+                : this.props.unreadNotification + '-filled'}
+                  size={Metrics.icons.small}
+                  color={Colors.flBlue.orange}
                   style={{margin: 10}} />
-               : <View style={{flexDirection: 'row'}}>
-                 <Flb name='email-envelope' size={Metrics.icons.small} color={Colors.flBlue.orange} style={{margin: 10}} />
-                 <Flb name={1 + '-filled'} size={Metrics.icons.small} color={Colors.flBlue.red}
-                   style={{margin: 0}} />
-               </View>
-               }
+               : <Flb name='email-envelope' size={Metrics.icons.small} color={Colors.flBlue.orange} style={{margin: 10}} /> }
+              </View>
             </View>
           </TouchableOpacity>
         </View>
