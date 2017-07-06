@@ -177,7 +177,10 @@ export default StyleSheet.create({
     alignSelf: 'center'
   },
   spinnerView: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+     justifyContent: 'center',
+    // width: window.width *0.5,
+    // height: window.height*0.5
   },
   textField: {
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
