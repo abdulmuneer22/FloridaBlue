@@ -693,7 +693,7 @@ class Login extends Component {
         </LoginView>
 
         <LoginButtonView>
-          {this.props.mfetching
+          {this.props.mfetching 
             ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
           : <TouchableOpacity onPress={() => { this._handleLogin() }}>
             <Image style={{width: Metrics.screenWidth * 0.5,
@@ -763,7 +763,7 @@ class Login extends Component {
         </LoginView>
 
         <LoginButtonView>
-          {this.props.mfetching
+          {this.props.mfetching || this.props.fetching
             ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
           : <TouchableOpacity onPress={() => { this._handleLogin() }}>
             <Image style={{width: Metrics.screenWidth * 0.5,
@@ -778,7 +778,7 @@ class Login extends Component {
 
   render () {
     var transparent
-    if (this.props.mfetching) {
+    if (this.props.mfetching || this.props.fetching) {
       transparent = 0.5
     } else {
       transparent = 1
