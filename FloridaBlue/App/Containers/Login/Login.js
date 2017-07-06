@@ -42,6 +42,7 @@ import Clouds from './Clouds'
 import CityScape from './CityScape'
 import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
+import CheckBox from 'react-native-checkbox'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 var logo = require('./logo.png')
@@ -93,6 +94,7 @@ class Login extends Component {
     if (Platform.OS === 'ios') {
       TouchManager.checkTouchStatus((error, touchInfo) => {
         let touchStatus = touchInfo[0]
+        console.tron.log(touchStatus)
         switch (touchStatus) {
           case 'AUTHENTICATED':
             this.props.changeCredentialStored(true)
@@ -107,24 +109,15 @@ class Login extends Component {
             this.props.changeTouchEnabled(true)
             break
           case 'DISABLED':
-            this.setState({touchAvailable: true})
             this.setState({touchStatus: ''})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
             this._disableTouchID()
             break
           case 'NOT ENROLLED':
-            this.setState({touchAvailable: true})
             this.setState({touchStatus: 'NOT ENROLLED'})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
             this._disableTouchID()
             break
           case 'NO PASSCODE':
-            this.setState({touchAvailable: true})
             this.setState({touchStatus: 'NO PASSCODE'})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
             this._disableTouchID()
             break
           case 'LOCKED':
@@ -332,14 +325,10 @@ class Login extends Component {
   // end of IF condition
   }
 
-  _handleTouchCheckbox () {
+  _handleTouchCheckbox (checkboxState) {
     if (this.state.touchStatus === '') {
-      if (this.props.touchEnabled) {
-        this.props.changeTouchEnabled(false)
-        this.forceUpdate()
-      } else {
-        this.props.changeTouchEnabled(true)
-        this.forceUpdate()
+      this.props.changeTouchEnabled(checkboxState)
+      if (checkboxState) {
         if (!this.props.username && !this.props.password) {
           Alert.alert('Login', 'Please enter the User ID and Password to set up Touch ID', [
             {
@@ -479,7 +468,7 @@ class Login extends Component {
       if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
-        this.props.changeTouchAvailable(false)
+        this.setState({touchAvailable: true})
       }
     })
   }
@@ -639,7 +628,7 @@ class Login extends Component {
               <View style={styles.row}>
                 <MKTextField
                   ref='username'
-                  style={styles.touchTextField}
+                  style={styles.textField}
                   textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='next'
@@ -655,7 +644,7 @@ class Login extends Component {
               <View style={styles.row}>
                 <MKTextField
                   ref='password'
-                  style={styles.touchTextField}
+                  style={styles.textField}
                   textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
                   keyboardType='default'
                   returnKeyType='done'
@@ -671,25 +660,22 @@ class Login extends Component {
                   placeholderTextColor={Colors.steel} />
               </View>
             </View>
-
-            <View style={styles.enableTouchContainer}>
-              { this.props.credentialStored
-                  ? <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._authenticateUserWithTouch() }}>
-                    <Text allowFontScaling={false} style={styles.touchInstruction}>Use Your</Text>
-                    <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
-                    <Text allowFontScaling={false} style={styles.touchInstruction}>Fingerprint</Text>
-                  </TouchableOpacity>
-                :<TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._handleTouchCheckbox() }}>
-                    <Text allowFontScaling={false} style={styles.touchInstruction}>Setup Your</Text>
-                    { this.props.touchEnabled
-                        ? <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintEnabled} />
-                      :   <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.002} style={styles.fingerprintDisabled} />
-                    }
-                    <Text allowFontScaling={false} style={styles.touchInstruction}>Fingerprint</Text>
-                  </TouchableOpacity>
-              }
-            </View>
           </View>
+          <HideableView visible={this.props.credentialStored} removeWhenHidden={true}>
+            <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._authenticateUserWithTouch() }}>
+              <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
+              <Text style={styles.touchInstruction}>Login with your fingerprint</Text>
+            </TouchableOpacity>
+          </HideableView>
+          <HideableView visible={!this.props.credentialStored} removeWhenHidden={true}>
+            <View style={styles.fingerprintContainer}>
+              <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
+                var checked = this.refs.touchCheckbox.state.checked
+                this._handleTouchCheckbox(checked)
+              }}/>
+              <Text style={styles.touchInstruction}>Setup login using your fingerprint</Text>
+            </View>
+          </HideableView>
         </LoginView>
 
         <LoginButtonView>
@@ -748,18 +734,6 @@ class Login extends Component {
               </View>
             </View>
           </View>
-          <HideableView visible={this.state.touchAvailable && this.props.credentialStored} removeWhenHidden={true}>
-            <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._authenticateUserWithTouch() }}>
-              <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
-              <Text style={styles.touchInstruction}>Login with your fingerprint</Text>
-            </TouchableOpacity>
-          </HideableView>
-          <HideableView visible={this.state.touchAvailable && !this.props.credentialStored} removeWhenHidden={true}>
-            <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._handleTouchCheckbox() }}>
-              <MKCheckbox style={styles.touchCheckbox} checked={this.props.touchEnabled} editable={false}/>
-              <Text style={styles.touchInstruction}>Setup login using your fingerprint</Text>
-            </TouchableOpacity>
-          </HideableView>
         </LoginView>
 
         <LoginButtonView>
@@ -808,7 +782,7 @@ class Login extends Component {
             </LogoView>
 
             {Platform.OS === 'ios' && this.state.touchAvailable ?
-                this._renderLogin()
+                this._renderTouchAvailableLogin()
               :
                 this._renderLogin()
             }
@@ -863,8 +837,7 @@ const mapStateToProps = (state) => {
     touchEnabled: state.setting.touchEnabled,
     touchCheckboxVisible: state.login.touchCheckboxVisible,
     logoutUrl: state.login.logoutUrl,
-    credentialStored: state.setting.credentialStored,
-    touchAvailable: state.login.touchAvailable
+    credentialStored: state.setting.credentialStored
   }
 }
 
@@ -879,8 +852,7 @@ const mapDispatchToProps = (dispatch) => {
     attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
-    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
-    changeTouchAvailable: (touchAvailable) => dispatch(LoginActions.changeTouchAvailable(touchAvailable))
+    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored))
   }
 }
 

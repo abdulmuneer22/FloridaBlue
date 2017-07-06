@@ -15,15 +15,14 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(removeCredentials:(RCTResponseSenderBlock)callback) {
   NSMutableArray *callbackArray = [NSMutableArray new];
   
-  BOOL usernameExists = [[NSUserDefaults standardUserDefaults] boolForKey:@"username"];
+  NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
   BOOL touchExists = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchEnabled"];
   
-  if (usernameExists) {
+  if (username != nil && touchExists) {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
-  }
-  
-  if (touchExists) {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"touchEnabled"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     KeychainWrapper *keychain = [[KeychainWrapper alloc] init];
     [keychain resetKeychainItem];
     
@@ -82,16 +81,16 @@ RCT_EXPORT_METHOD(enableTouchID:(RCTResponseSenderBlock)callback) {
 
 RCT_EXPORT_METHOD(checkTouchStatus:(RCTResponseSenderBlock)callback) {
   BOOL touchEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchEnabled"];
-  BOOL username = [[NSUserDefaults standardUserDefaults] boolForKey:@"username"];
+  NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
   NSMutableArray *callbackArray = [NSMutableArray new];
   LAContext *myContext = [[LAContext alloc] init];
   NSError *authError = nil;
   __block NSString *authErrorCode = @"";
   
   if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
-    if (touchEnabled && username) {
+    if (touchEnabled && username != nil) {
       [callbackArray addObject:@"AUTHENTICATED"];
-    } else if (touchEnabled && !username) {
+    } else if (touchEnabled && username == nil) {
       [callbackArray addObject:@"ENABLED"];
     } else {
       [callbackArray addObject:@"DISABLED"];

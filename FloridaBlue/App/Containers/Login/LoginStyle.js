@@ -34,8 +34,8 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow,
     borderRadius: 24,
     marginHorizontal: Metrics.section,
-    paddingTop: Metrics.smallMargin * Metrics.screenHeight * 0.002,
-    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002
+    paddingTop: Metrics.smallMargin * Metrics.screenHeight * 0.0002,
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015
   },
   informationPopup: {
     flexWrap: 'wrap',
@@ -46,7 +46,7 @@ export default StyleSheet.create({
     bottom: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.011 : Metrics.doubleBaseMargin * Metrics.screenWidth * 0.012
   },
   row: {
-    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0042,
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.004,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025
   },
   forgotRow: {
@@ -54,7 +54,7 @@ export default StyleSheet.create({
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002
   },
   newSignRow: {
-    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.012,
+    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.011,
     paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.004
   },
   signUpButton: {
@@ -62,7 +62,7 @@ export default StyleSheet.create({
     height: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenHeight * 0.0063 : Metrics.baseMargin * Metrics.screenHeight * 0.008,
     alignSelf: 'center',
     resizeMode: 'contain',
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.004
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003
   },
   loginContainer: {
     flex: 1,
@@ -106,11 +106,11 @@ export default StyleSheet.create({
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0005
   },
   fingerprintContainer: {
-    flex:1,
+    flex: 1,
     flexDirection:'row',
     alignItems:'center',
     justifyContent:'center',
-    paddingBottom:Metrics.baseMargin*Metrics.screenHeight*0.004
+    paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.004
   },
   fingerprintDisabled: {
     //backgroundColor:'red',
@@ -184,10 +184,6 @@ export default StyleSheet.create({
   },
   textField: {
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
-  },
-  touchTextField: {
-    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015,
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.058
   },
   radio: {
     backgroundColor: Colors.snow,
