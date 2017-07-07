@@ -593,88 +593,61 @@ class Login extends Component {
     )
   }
 
-  // IN CASE JASON CHANGES HIS MIND ABOUT THE TOUCH ID LOGIN //
-
-  // _renderTouchLogin () {
-  //   return (
-  //     <View>
-  //       <LoginView>
-  //         <View style={styles.touchLoginContainer}>
-  //           <TouchableOpacity style={styles.triggerTouchContainer} onPress={this._authenticateUserWithTouch}>
-  //             <Image style={styles.triggerTouchButton} source={Images.fingerprintCoin} />
-  //           </TouchableOpacity>
-  //         </View>
-  //         <View style={styles.touchViews}>
-  //           <Text style={styles.touchInstruction}>Click above to launch Touch ID</Text>
-  //         </View>
-  //         <View>
-  //           <TouchableOpacity onPress={this._handleLoginState}>
-  //             <Text style={styles.link}>Switch To User ID & Password Fields</Text>
-  //           </TouchableOpacity>
-  //         </View>
-  //       </LoginView>
-  //
-  //     </View>
-  //   )
-  // }
-
   _renderTouchAvailableLogin () {
     return (
       <View>
         <LoginView>
-          <View style={styles.loginContainer}>
-            <View style={styles.fieldContainer}>
-              <View style={styles.row}>
-                <MKTextField
-                  ref='username'
-                  style={styles.textField}
-                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                  keyboardType='default'
-                  returnKeyType='next'
-                  autoCapitalize='none'
-                  autoCorrect={false}
-                  onChangeText={this.props.handleChangeUserName}
-                  value={this.props.username}
-                  underlineColorAndroid={Colors.coal}
-                  onSubmitEditing={() => this.refs.password.focus()}
-                  placeholder={I18n.t('username')}
-                  placeholderTextColor={Colors.steel} />
-              </View>
-              <View style={styles.row}>
-                <MKTextField
-                  ref='password'
-                  style={styles.textField}
-                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                  keyboardType='default'
-                  returnKeyType='done'
-                  autoCapitalize='none'
-                  autoCorrect={false}
-                  secureTextEntry
-                  password
-                  onChangeText={this.props.handleChangePassword}
-                  onSubmitEditing={this._handleLogin}
-                  value={this.props.password}
-                  underlineColorAndroid={Colors.coal}
-                  placeholder={I18n.t('userpassword')}
-                  placeholderTextColor={Colors.steel} />
-              </View>
+          <View style={styles.touchLoginContainer}>
+            <View style={styles.textFieldContainer}>
+              <MKTextField
+                ref='username'
+                style={styles.textField}
+                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                keyboardType='default'
+                returnKeyType='next'
+                autoCapitalize='none'
+                autoCorrect={false}
+                onChangeText={this.props.handleChangeUserName}
+                value={this.props.username}
+                underlineColorAndroid={Colors.coal}
+                onSubmitEditing={() => this.refs.password.focus()}
+                placeholder={I18n.t('username')}
+                placeholderTextColor={Colors.steel} />
             </View>
+            <View style={styles.textFieldContainer}>
+              <MKTextField
+                ref='password'
+                style={styles.textField}
+                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                keyboardType='default'
+                returnKeyType='done'
+                autoCapitalize='none'
+                autoCorrect={false}
+                secureTextEntry
+                password
+                onChangeText={this.props.handleChangePassword}
+                onSubmitEditing={this._handleLogin}
+                value={this.props.password}
+                underlineColorAndroid={Colors.coal}
+                placeholder={I18n.t('userpassword')}
+                placeholderTextColor={Colors.steel} />
+            </View>
+            <HideableView style={styles.fingerprintContainer} visible={this.props.credentialStored} removeWhenHidden={true}>
+              <TouchableOpacity style={styles.fingerprintButton} onPress={() => { this._authenticateUserWithTouch() }}>
+                <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
+                <Text style={styles.touchInstruction}>Login with your fingerprint</Text>
+              </TouchableOpacity>
+            </HideableView>
+            <HideableView style={styles.fingerprintContainer} visible={!this.props.credentialStored} removeWhenHidden={true}>
+              <View style={styles.fingerprintButton}>
+                <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
+                  var checked = this.refs.touchCheckbox.state.checked
+                  this._handleTouchCheckbox(checked)
+                }}/>
+                <Text style={styles.touchInstruction}>Setup login using your fingerprint</Text>
+              </View>
+            </HideableView>
           </View>
-          <HideableView visible={this.props.credentialStored} removeWhenHidden>
-            <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._authenticateUserWithTouch() }}>
-              <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
-              <Text style={styles.touchInstruction}>Login with your fingerprint</Text>
-            </TouchableOpacity>
-          </HideableView>
-          <HideableView visible={!this.props.credentialStored} removeWhenHidden>
-            <View style={styles.fingerprintContainer}>
-              <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
-                var checked = this.refs.touchCheckbox.state.checked
-                this._handleTouchCheckbox(checked)
-              }} />
-              <Text style={styles.touchInstruction}>Setup login using your fingerprint</Text>
-            </View>
-          </HideableView>
         </LoginView>
 
         <LoginButtonView>
@@ -696,41 +669,39 @@ class Login extends Component {
       <View>
         <LoginView>
           <View style={styles.loginContainer}>
-            <View style={styles.fieldContainer}>
-              <View style={styles.row}>
-                <MKTextField
-                  ref='username'
-                  style={styles.textField}
-                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                  keyboardType='default'
-                  returnKeyType='next'
-                  autoCapitalize='none'
-                  autoCorrect={false}
-                  onChangeText={this.props.handleChangeUserName}
-                  value={this.props.username}
-                  underlineColorAndroid={Colors.coal}
-                  onSubmitEditing={() => this.refs.password.focus()}
-                  placeholder={I18n.t('username')}
-                  placeholderTextColor={Colors.steel} />
-              </View>
-              <View style={styles.row}>
-                <MKTextField
-                  ref='password'
-                  style={styles.textField}
-                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                  keyboardType='default'
-                  returnKeyType='done'
-                  autoCapitalize='none'
-                  autoCorrect={false}
-                  secureTextEntry
-                  password
-                  onChangeText={this.props.handleChangePassword}
-                  onSubmitEditing={this._handleLogin}
-                  value={this.props.password}
-                  underlineColorAndroid={Colors.coal}
-                  placeholder={I18n.t('userpassword')}
-                  placeholderTextColor={Colors.steel} />
-              </View>
+            <View style={styles.textFieldContainer}>
+              <MKTextField
+                ref='username'
+                style={styles.textField}
+                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                keyboardType='default'
+                returnKeyType='next'
+                autoCapitalize='none'
+                autoCorrect={false}
+                onChangeText={this.props.handleChangeUserName}
+                value={this.props.username}
+                underlineColorAndroid={Colors.coal}
+                onSubmitEditing={() => this.refs.password.focus()}
+                placeholder={I18n.t('username')}
+                placeholderTextColor={Colors.steel} />
+            </View>
+            <View style={styles.textFieldContainer}>
+              <MKTextField
+                ref='password'
+                style={styles.textField}
+                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                keyboardType='default'
+                returnKeyType='done'
+                autoCapitalize='none'
+                autoCorrect={false}
+                secureTextEntry
+                password
+                onChangeText={this.props.handleChangePassword}
+                onSubmitEditing={this._handleLogin}
+                value={this.props.password}
+                underlineColorAndroid={Colors.coal}
+                placeholder={I18n.t('userpassword')}
+                placeholderTextColor={Colors.steel} />
             </View>
           </View>
         </LoginView>
