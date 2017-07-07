@@ -43,7 +43,7 @@ class NotificationsView extends Component {
   }
 
   componentDidMount () {
-    this.props.getNotification()
+   // this.props.getNotification()
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
     FCM.setBadgeNumber(0)
