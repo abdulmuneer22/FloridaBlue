@@ -107,7 +107,7 @@ class MyIdCard extends Component {
                     </View>
                     <View style={{flex: 0.15}} />
                     <View style={{flex: 0.1}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Plan Number: {this.props.data && this.props.data.PlanNumber !=undefined && this.props.data.PlanNumber !=null ? this.props.data.PlanNumber:''} </Text>
+                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Number: {this.props.data && this.props.data.PlanNumber !=undefined && this.props.data.PlanNumber !=null ? this.props.data.PlanNumber:''} </Text>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, marginRight:10,fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Name: {this.props.data && this.props.data.PlanName !=undefined && this.props.data.PlanName !=null ? this.props.data.PlanName:''}</Text>
                     </View>
                     <View style={{flex: 0.09}}>

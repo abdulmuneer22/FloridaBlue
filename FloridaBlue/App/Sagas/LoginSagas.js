@@ -15,8 +15,10 @@ export function * login (api, {username, password}) {
     var responseURL = response.responseURL
     var smToken = response.headers['set-cookie']
     let logoutUrl = ''
+    let touchDisclaimer = []
     if (response.data.data) {
       logoutUrl = response.data.data.logoutUrl
+      touchDisclaimer = response.data.data.touchIdDescription
       if (response.data.data.Login) {
         setLogin = response.data.data.Login
       } else {
@@ -32,7 +34,7 @@ export function * login (api, {username, password}) {
       var error = null
     }
 
-    yield put(LoginActions.loginSuccess(username, responseURL, smToken, logoutUrl))
+    yield put(LoginActions.loginSuccess(username, responseURL, smToken, logoutUrl, touchDisclaimer))
   } else if (response.status == '401') {
     // dispatch failure
     console.tron.log('I am coming from failuer ')
