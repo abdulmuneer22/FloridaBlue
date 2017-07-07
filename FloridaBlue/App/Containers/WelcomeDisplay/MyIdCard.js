@@ -33,12 +33,14 @@ class MyIdCard extends Component {
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
+      <View style={{marginRight: Metrics.textHeight * Metrics.screenWidth * 0.009,justifyContent:'center',alignItems:'center'}}>
       <Text allowFontScaling={false} style={styles.headerTextStyle}>
           ID Card
       </Text>
-      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
-        {NavItems.settingsButton()}
       </View>
+      {/*<View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+        {NavItems.settingsButton()}
+      </View>*/}
     </Image>)
   }
 
