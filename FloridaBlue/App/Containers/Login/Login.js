@@ -301,7 +301,6 @@ class Login extends Component {
           RCTNetworking.clearCookies((cleared) => {
             console.tron.log('clearing local cookies for the app')
           })
-
         } else if (newProps.error != null && newProps.error != '401') {
           this.props.clearLogin()
           if (newProps.credentialStored) {
@@ -337,7 +336,7 @@ class Login extends Component {
           ])
         }
       }
-    } else  {
+    } else {
       let errorMessage = ''
       let errorTitle = 'Oops!'
       let showError = true
@@ -473,7 +472,7 @@ class Login extends Component {
     })
   }
 
-  _handleLockedTouch() {
+  _handleLockedTouch () {
     this.setState({touchAvailable: true})
     this.setState({touchStatus: 'LOCKED'})
     this.props.changeCredentialStored(true)
@@ -661,25 +660,25 @@ class Login extends Component {
               </View>
             </View>
           </View>
-          <HideableView visible={this.props.credentialStored} removeWhenHidden={true}>
+          <HideableView visible={this.props.credentialStored} removeWhenHidden>
             <TouchableOpacity style={styles.fingerprintContainer} onPress={() => { this._authenticateUserWithTouch() }}>
               <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
               <Text style={styles.touchInstruction}>Login with your fingerprint</Text>
             </TouchableOpacity>
           </HideableView>
-          <HideableView visible={!this.props.credentialStored} removeWhenHidden={true}>
+          <HideableView visible={!this.props.credentialStored} removeWhenHidden>
             <View style={styles.fingerprintContainer}>
               <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
                 var checked = this.refs.touchCheckbox.state.checked
                 this._handleTouchCheckbox(checked)
-              }}/>
+              }} />
               <Text style={styles.touchInstruction}>Setup login using your fingerprint</Text>
             </View>
           </HideableView>
         </LoginView>
 
         <LoginButtonView>
-          {this.props.mfetching 
+          {this.props.mfetching || this.props.fetching
             ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
           : <TouchableOpacity onPress={() => { this._handleLogin() }}>
             <Image style={{width: Metrics.screenWidth * 0.5,
