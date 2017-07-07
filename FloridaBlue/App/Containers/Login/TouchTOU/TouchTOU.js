@@ -135,17 +135,21 @@ class TouchTOU extends Component {
     )
   }
 
+  _renderNoticeText() {
+    return this.props.touchDisclaimer.map(function(notice, i) {
+      return (
+        <Text allowFontScaling={false} style={styles.paragraph}>{notice}</Text>
+      )
+    })
+  }
+
   render () {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
         <ScrollView>
           <View>
-            <Text allowFontScaling={false} style={styles.paragraph}>{I18n.t('touchNoticeOne')}</Text>
-            <Text allowFontScaling={false} style={styles.paragraph}>{I18n.t('touchNoticeTwo')}</Text>
-            <Text allowFontScaling={false} style={styles.paragraph}>{I18n.t('touchNoticeThree')}</Text>
-            <Text allowFontScaling={false} style={styles.paragraph}>{I18n.t('touchNoticeFour')}</Text>
-            <Text allowFontScaling={false} style={styles.paragraph}>{I18n.t('touchNoticeFive')}</Text>
+            {this._renderNoticeText()}
 
             <View style={styles.buttonContainer}>
               <TouchableOpacity style={styles.buttonView} onPress={() => this._handleClose() }>
@@ -172,7 +176,8 @@ const mapStateToProps = (state) => {
     credentialStored: state.setting.credentialStored,
     touchAvailable: state.login.touchAvailable,
     username: state.login.username,
-    password: state.login.password
+    password: state.login.password,
+    touchDisclaimer: state.login.touchDisclaimer
   }
 }
 
