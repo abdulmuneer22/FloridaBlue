@@ -58,6 +58,14 @@ class Webview extends Component {
       console.tron.log(event, 'request')
       return true
     }
+      let jsCode = `
+        var d = document.getElementsByTagName('a');
+        for (var i = 0; i < d.length; i++) {
+            if (d[i].getAttribute('target') == '_blank') {
+                d[i].removeAttribute('target');
+            }
+        }
+    `;
 
     if (this.props.smToken) {
       redirect = {
@@ -86,6 +94,7 @@ class Webview extends Component {
        // Below functions for debugging
        //   onNavigationStateChange={onNavigationStateChange}
        //   onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
+         injectedJavaScript={jsCode}
             />
       </View>
 
