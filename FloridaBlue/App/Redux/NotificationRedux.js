@@ -15,7 +15,8 @@ const { Types, Creators } = createActions({
   getNotification: [],
   postFCMToken: ['data'],
   postArchive: ['archiveObject'],
-  markAllRead: ['allRead']
+  markAllRead: ['allRead'],
+  deleteNotification: ['newData']
 })
 
 export const NotificationTypes = Types
@@ -60,6 +61,11 @@ export const localNotification = (state : Object, {localNotification}: Object) =
 // we've had to set read notificaiton to   true
 export const readCount = (state : Object, {allRead}: Object) => state.merge({allRead})
 
+// delete Notification from the redux
+export const deleteNotification = (state : Object, {newData}: Object) => state.merge({
+  notification: newData
+})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -71,7 +77,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.ON_OPENED_FROM_TRAY]: onOpenedFromTray,
   [Types.ON_LOCAL_NOTIFICATION]: localNotification,
   [Types.POST_F_C_M_Token]: request,
-  [Types.MARK_ALL_READ]: readCount
+  [Types.MARK_ALL_READ]: readCount,
+  [Types.DELETE_NOTIFICATION]: deleteNotification
 })
 
 /* ------------- Selectors ------------- */
