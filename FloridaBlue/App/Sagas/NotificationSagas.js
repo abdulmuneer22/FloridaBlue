@@ -10,7 +10,7 @@ export function * getNotification (api) {
     const unreadNotification = response.data.data.notReadCount
     console.log('notifcation', response, notification)
     console.log('unreadNotifcation', unreadNotification)
-    yield put(NotificationActions.notificationSuccess(notification, unreadNotification))
+    yield put(NotificationActions.notificationSuccess(notification.messages, unreadNotification))
   } else {
     const error = response.status
     yield put(NotificationActions.notificationFailure(error))

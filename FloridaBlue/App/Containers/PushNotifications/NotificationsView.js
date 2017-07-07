@@ -43,11 +43,6 @@ class NotificationsView extends Component {
   }
 
   componentDidMount () {
-   // this.props.getNotification()
-    if (this.props.notification && this.props.notification.messages && Object(this.props.notification.messages).length > 0) {
-      const newData = Array(Object(this.props.notification.messages).length).fill('').map((_, i) => this.props.notification.messages[i])
-      this.setState({ listViewData: newData })
-    }
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
     FCM.setBadgeNumber(0)
@@ -64,13 +59,16 @@ class NotificationsView extends Component {
   deleteRow (secId, rowId, rowMap, messageId) {
     console.log(secId, rowId, rowMap, messageId)
     rowMap[`${secId}${rowId}`].closeRow()
-    const newData = [...this.state.listViewData]
+    const newData = [...this.props.notification]
     newData.splice(rowId, 1)
     this.props.postArchive({
       'messageId': messageId,
       'markAllRead': false
     })
-    this.setState({ listViewData: newData })
+    console.log('newData', newData)
+    if (newData) {
+      this.props.deleteNotification(newData)
+    }
   }
 
   _renderHeader () {
@@ -87,10 +85,10 @@ class NotificationsView extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props.notification && this.props.notification.messages && Object(this.props.notification.messages).length > 0) {
+    } else if (this.props.notification && Object(this.props.notification).length > 0) {
       return (
         <SwipeListView style={{ marginTop: 10, margin: 10, flex: 1 }}
-          dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+          dataSource={this.props.notification && Object(this.props.notification).length > 0 ? this.ds.cloneWithRows(this.props.notification) : {}}
           enableEmptySections
           disableRightSwipe
           renderRow={data => (
@@ -254,7 +252,8 @@ const mapDispatchToProps = (dispatch) => {
     onOpenedFromTray: (openedFromTray) => dispatch(NotificationActions.onOpenedFromTray(openedFromTray)),
     onLocalNotification: (localNotification) => dispatch(NotificationActions.onLocalNotification(localNotification)),
     postArchive: (archiveObject) => dispatch(NotificationActions.postArchive(archiveObject)),
-    markAllRead: (allRead) => dispatch(NotificationActions.markAllRead(allRead))
+    markAllRead: (allRead) => dispatch(NotificationActions.markAllRead(allRead)),
+    deleteNotification: (messageId) => dispatch(NotificationActions.deleteNotification(messageId))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationsView)
