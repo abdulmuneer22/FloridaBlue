@@ -7,7 +7,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   loginRequest: ['username', 'password'],
-  loginSuccess: ['username', 'responseURL', 'smToken', 'logoutUrl'],
+  loginSuccess: ['username', 'responseURL', 'smToken', 'logoutUrl', 'touchDisclaimer'],
   changeAgreeTermsOfUse: ['agreeTermsOfUse'],
   getTou: [],
   updateTou: ['getTou'],
@@ -37,7 +37,8 @@ export const INITIAL_STATE = Immutable({
   fetching: false,
   logoutUrl: null,
   currentSceneValue: null,
-  touchAvailable: false
+  touchAvailable: false,
+  touchDisclaimer: []
 })
 
 /* ------------- Reducers ------------- */
@@ -46,8 +47,8 @@ export const INITIAL_STATE = Immutable({
 export const request = (state: Object) => state.merge({ fetching: true, responseURL: 'login'})
 
 // we've successfully logged in
-export const success = (state: Object, { username, responseURL, smToken, logoutUrl}: Object) =>
-  state.merge({ fetching: false, error: null, username, responseURL, smToken, logoutUrl})
+export const success = (state: Object, { username, responseURL, smToken, logoutUrl, touchDisclaimer}: Object) =>
+  state.merge({ fetching: false, error: null, username, responseURL, smToken, logoutUrl, touchDisclaimer})
 
 // we've had a problem logging in
 export const failure = (state: Object, { error }: Object) =>
@@ -67,7 +68,8 @@ export const logout = (state: Object) => state.merge({
   agreeTermsOfUse: null,
   getTou: null,
   fetching: false,
-  logoutUrl: null
+  logoutUrl: null,
+  touchDisclaimer: []
 })
 
 // we're getting TOu Markup
