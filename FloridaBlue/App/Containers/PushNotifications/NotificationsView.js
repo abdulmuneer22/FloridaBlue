@@ -44,6 +44,10 @@ class NotificationsView extends Component {
 
   componentDidMount () {
    // this.props.getNotification()
+    if (this.props.notification && this.props.notification.messages && Object(this.props.notification.messages).length > 0) {
+      const newData = Array(Object(this.props.notification.messages).length).fill('').map((_, i) => this.props.notification.messages[i])
+      this.setState({ listViewData: newData })
+    }
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
     FCM.setBadgeNumber(0)
@@ -54,11 +58,6 @@ class NotificationsView extends Component {
     })
   }
   componentWillReceiveProps (nextProps) {
-    if (nextProps.notification && nextProps.notification.messages && Object(nextProps.notification.messages).length > 0) {
-      const newData = Array(Object(nextProps.notification.messages).length).fill('').map((_, i) => nextProps.notification.messages[i])
-      this.setState({ listViewData: newData })
-    }
-
     FCM.setBadgeNumber(0)
   }
 
