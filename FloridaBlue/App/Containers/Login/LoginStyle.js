@@ -45,10 +45,6 @@ export default StyleSheet.create({
     width: Metrics.screenWidth,
     bottom: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.011 : Metrics.doubleBaseMargin * Metrics.screenWidth * 0.012
   },
-  row: {
-    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.004,
-    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025
-  },
   forgotRow: {
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.002,
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002
@@ -65,36 +61,37 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003
   },
   loginContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    paddingTop: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002,
-    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0095
+    flexDirection: 'column',
+    paddingTop: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0013,
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0018
   },
   touchLoginContainer: {
-    flex: 1,
-    paddingTop: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002,
-    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.006
+    flexDirection: 'column',
+    alignItems: 'center'
   },
-  fieldContainer: {
-    flex: 0.7
+  textFieldContainer: {
+    height: Metrics.baseMargin * Metrics.screenWidth * 0.012,
+    width:  Metrics.baseMargin * Metrics.screenWidth * 0.085,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003,
+    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025
   },
-  enableTouchContainer: {
-    flex: 0.3,
-    alignItems: 'center',
-   // backgroundColor:'red'
+  fingerprintContainer: {
+    height: Metrics.baseMargin * Metrics.screenWidth * 0.009,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.088,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0012,
+    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0012
   },
-  touchViews: {
-    alignItems: 'center',
-    paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0007
+  fingerprintButton: {
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+    paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.004
   },
-  triggerTouchContainer: {
-    alignSelf: 'center',
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.0179,
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.0101
-  },
-  triggerTouchButton: {
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.0179,
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.0101
+  fingerprint: {
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0046,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.008,
+    marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+    color: Colors.flBlue.ocean
   },
   touchInstruction: {
     textAlign: 'center',
@@ -104,33 +101,6 @@ export default StyleSheet.create({
   },
   touchCheckbox: {
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0005
-  },
-  fingerprintContainer: {
-    flex: 1,
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'center',
-    paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.004
-  },
-  fingerprintDisabled: {
-    //backgroundColor:'red',
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.006,
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.022,
-    paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0035,
-    color: Colors.flBlue.grey3
-  },
-  fingerprintEnabled: {
-   // backgroundColor:'green',
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.006,
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.022,
-    paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0035,
-    color: Colors.flBlue.ocean
-  },
-  fingerprint: {
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.0046,
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.008,
-    marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002,
-    color: Colors.flBlue.ocean
   },
   link: {
     color: Colors.flBlue.ocean,
