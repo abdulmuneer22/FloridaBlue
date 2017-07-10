@@ -51,7 +51,7 @@ class PushController extends Component {
 
     this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
       console.log('TOKEN (refreshUnsubscribe)', token)
-      this.props.onFCMRefreshToken(token)
+      this.props.onChangeToken(token)
     })
   }
 
