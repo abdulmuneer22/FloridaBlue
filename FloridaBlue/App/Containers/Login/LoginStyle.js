@@ -19,7 +19,7 @@ export default StyleSheet.create({
     position: 'absolute',
     top: 0,
     width: Metrics.screenWidth,
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.3),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.25),
     resizeMode: 'stretch'
   },
   centered: {
@@ -50,7 +50,8 @@ export default StyleSheet.create({
     paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002
   },
   newSignRow: {
-    paddingVertical: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.011,
+    position: 'absolute',
+    top: Metrics.baseMargin * Metrics.screenHeight * 0.0768,
     paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.004
   },
   signUpButton: {
@@ -63,23 +64,22 @@ export default StyleSheet.create({
   loginContainer: {
     flexDirection: 'column',
     paddingTop: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0013,
-    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0018
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0018,
+    alignItems: 'center'
   },
   touchLoginContainer: {
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   textFieldContainer: {
     height: Metrics.baseMargin * Metrics.screenWidth * 0.012,
-    width:  Metrics.baseMargin * Metrics.screenWidth * 0.085,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003,
-    paddingHorizontal: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025
+    width:  Metrics.baseMargin * Metrics.screenWidth * 0.08,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003
   },
   fingerprintContainer: {
-    height: Metrics.baseMargin * Metrics.screenWidth * 0.009,
+    height: Metrics.baseMargin * Metrics.screenWidth * 0.005,
     width: Metrics.baseMargin * Metrics.screenWidth * 0.088,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0012,
-    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0012
+    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.003
   },
   fingerprintButton: {
     flexDirection:'row',

@@ -94,7 +94,7 @@ class Login extends Component {
     if (Platform.OS === 'ios') {
       TouchManager.checkTouchStatus((error, touchInfo) => {
         let touchStatus = touchInfo[0]
-        console.tron.log(touchStatus)
+
         switch (touchStatus) {
           case 'AUTHENTICATED':
             this.props.changeCredentialStored(true)
@@ -125,11 +125,13 @@ class Login extends Component {
             this.setState({touchStatus: 'LOCKED'})
             this.props.changeCredentialStored(true)
             this.props.changeTouchEnabled(true)
+            break
           default:
             this.setState({touchAvailable: false})
             this.setState({touchStatus: ''})
             this.props.changeCredentialStored(false)
             this.props.changeTouchEnabled(false)
+            break
         }
       })
     }
@@ -521,7 +523,7 @@ class Login extends Component {
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL})}>
-            <Text style={styles.popupchildText}>
+            <Text allowFontScaling={false} style={styles.popupchildText}>
               Accessibility
             </Text>
           </TouchableOpacity>
@@ -530,7 +532,7 @@ class Login extends Component {
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.ndnoticeURL})}>
-            <Text style={styles.popupchildText}>
+            <Text allowFontScaling={false} style={styles.popupchildText}>
               Nondiscrimination
             </Text>
           </TouchableOpacity>
@@ -539,7 +541,7 @@ class Login extends Component {
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.termsOfUseURL})}>
-            <Text style={styles.popupchildText}>
+            <Text allowFontScaling={false} style={styles.popupchildText}>
               Terms of Use
             </Text>
           </TouchableOpacity>
@@ -548,7 +550,7 @@ class Login extends Component {
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.internetStatementURL})}>
-            <Text style={styles.popupchildText}>
+            <Text allowFontScaling={false} style={styles.popupchildText}>
               Privacy Policy
             </Text>
           </TouchableOpacity>
@@ -557,7 +559,7 @@ class Login extends Component {
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL})}>
-            <Text style={styles.popupchildText}>
+            <Text allowFontScaling={false} style={styles.popupchildText}>
               Find Care
             </Text>
           </TouchableOpacity>
@@ -566,7 +568,7 @@ class Login extends Component {
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.supportURL})}>
-            <Text style={styles.popupchildText}>
+            <Text allowFontScaling={false} style={styles.popupchildText}>
               Support
             </Text>
           </TouchableOpacity>
@@ -575,7 +577,7 @@ class Login extends Component {
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.floridaBlueURL})}>
-            <Text style={styles.popupchildText}>
+            <Text allowFontScaling={false} style={styles.popupchildText}>
               floridablue.com
             </Text>
           </TouchableOpacity>
@@ -584,7 +586,7 @@ class Login extends Component {
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.anotherLanguageURL})}>
-            <Text style={styles.popupchildText}>
+            <Text allowFontScaling={false} style={styles.popupchildText}>
               Speak Another Language?
             </Text>
           </TouchableOpacity>
@@ -635,7 +637,7 @@ class Login extends Component {
             <HideableView style={styles.fingerprintContainer} visible={this.props.credentialStored} removeWhenHidden={true}>
               <TouchableOpacity style={styles.fingerprintButton} onPress={() => { this._authenticateUserWithTouch() }}>
                 <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
-                <Text style={styles.touchInstruction}>Login with your fingerprint</Text>
+                <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
               </TouchableOpacity>
             </HideableView>
             <HideableView style={styles.fingerprintContainer} visible={!this.props.credentialStored} removeWhenHidden={true}>
@@ -644,7 +646,7 @@ class Login extends Component {
                   var checked = this.refs.touchCheckbox.state.checked
                   this._handleTouchCheckbox(checked)
                 }}/>
-                <Text style={styles.touchInstruction}>Setup login using your fingerprint</Text>
+                <Text allowFontScaling={false} style={styles.touchInstruction}>Setup login using your fingerprint</Text>
               </View>
             </HideableView>
           </View>
