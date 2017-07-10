@@ -14,6 +14,7 @@ const images = {
   confirmationLogin: require('../Images/green-continue-btn.png'),
   benefits: require('../Images/benefits.png'),
   claims: require('../Images/claims.png'),
+  claimsSolo: require('../Images/claimsSolo.png'),
   hsa: require('../Images/hsa.png'),
   idcard: require('../Images/id-card.png'),
   payment: require('../Images/payment.png'),
