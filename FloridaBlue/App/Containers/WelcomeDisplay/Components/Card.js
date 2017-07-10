@@ -109,7 +109,7 @@ class Card extends Component {
             <Flb name={this.props.icon} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.teal} />
           </View>
           <View style={{flex: 6, alignItems: 'flex-start'}}>
-            <Text style={{
+            <Text allowFontScaling={false} style={{
              // marginTop: Metrics.mediumMargin,
               fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
               fontWeight: '600',

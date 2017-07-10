@@ -112,7 +112,7 @@ android {
         applicationId "com.bcbsfl.mobile.android"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 131
+        versionCode 133
         versionName "3.6.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
