@@ -28,7 +28,6 @@ class MyIdCard extends Component {
       image: ''
     }
     this.toggle = this.toggle.bind(this)
-    this.rotate = this.rotate.bind(this)
   }
 
   componentDidMount () {
