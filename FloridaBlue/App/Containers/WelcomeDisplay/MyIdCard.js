@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 
-import { AppRegistry, Alert, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView, Linking} from 'react-native'
+import { AppRegistry, Alert, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView, Linking, Platform} from 'react-native'
 
 import styles from './DashBoardStyle'
 import HideableView from 'react-native-hideable-view'
@@ -78,7 +78,7 @@ class MyIdCard extends Component {
 
                   <View style={{flex: 0.5,marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.73)), alignItems: 'flex-start'}}>
                     
-                    <View style={{flex: 0.1, marginTop:1}}>
+                    <View style={{flex:(Platform.OS === 'ios') ?0.1:0.1, marginTop:(Platform.OS === 'ios') ?1:-1}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.MemberFirstName !=undefined && this.props.data.MemberFirstName !=null ? this.props.data.MemberFirstName:''} {this.props.data && this.props.data.MemberLastName !=undefined && this.props.data.MemberLastName !=null ? this.props.data.MemberLastName:''}</Text>
                     </View>
 
@@ -100,7 +100,7 @@ class MyIdCard extends Component {
                   </View>
 
                   <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.73)), alignItems: 'flex-start'}}>
-                    <View style={{flex: 0.1, marginTop:1}}>
+                    <View style={{flex:(Platform.OS === 'ios') ?0.1:0.1, marginTop:(Platform.OS === 'ios') ?1:-1}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.BCBSNumber !=undefined && this.props.data.BCBSNumber !=null ? this.props.data.BCBSNumber:''} </Text>
                     </View>
                     <View style={{flex: 0.125}}>
@@ -108,11 +108,11 @@ class MyIdCard extends Component {
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXPCN !=undefined && this.props.data.RXPCN !=null ? this.props.data.RXPCN:''}</Text>
                     </View>
                     <View style={{flex: 0.15}} />
-                    <View style={{flex: 0.1}}>
+                    <View style={{flex:(Platform.OS === 'ios') ?0.1:0.145}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Number: {this.props.data && this.props.data.PlanNumber !=undefined && this.props.data.PlanNumber !=null ? this.props.data.PlanNumber:''} </Text>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, marginRight:10,fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Name: {this.props.data && this.props.data.PlanName !=undefined && this.props.data.PlanName !=null ? this.props.data.PlanName:''}</Text>
+                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, marginRight:Metrics.baseMargin*Metrics.screenWidth*0.006,fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Name: {this.props.data && this.props.data.PlanName !=undefined && this.props.data.PlanName !=null ? this.props.data.PlanName:''}</Text>
                     </View>
-                    <View style={{flex: 0.09}}>
+                    <View style={{flex: 0.1}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>  </Text>
                     </View>
                   </View>
