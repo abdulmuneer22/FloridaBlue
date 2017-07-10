@@ -19,13 +19,12 @@ class PushController extends Component {
 
     this.notificationListner = FCM.on(FCMEvent.Notification, notif => {
       console.log('Notification', notif)
+      this.getNotification()
       if (notif.local_notification) {
-        this.props.getNotification()
         this.props.onLocalNotification(true)
         return
       }
       if (notif.opened_from_tray) {
-        this.props.getNotification()
         this.props.onOpenedFromTray(true)
         return
       }
