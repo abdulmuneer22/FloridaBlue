@@ -21,12 +21,12 @@ class PushController extends Component {
       console.log('Notification', notif)
 
       if (notif.local_notification) {
-        this.getNotification()
+     //   this.getNotification()
         this.props.onLocalNotification(true)
         return
       }
       if (notif.opened_from_tray) {
-        this.getNotification()
+       // this.getNotification()
         this.props.onOpenedFromTray(true)
         return
       }

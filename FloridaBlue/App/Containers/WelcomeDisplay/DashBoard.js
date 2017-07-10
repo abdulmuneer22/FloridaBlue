@@ -112,7 +112,13 @@ class LandingScreen extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    if (newProps.openedFromTray) {
+    if (this.props.openedFromTray !== newProps.openedFromTray) {
+      this.props.getNotification()
+      NavigationActions.PushNotifications()
+    }
+
+    if (this.props.localNotification !== newProps.localNotification) {
+      this.props.getNotification()
       NavigationActions.PushNotifications()
     }
     console.tron.log('dash board failure' + newProps.error)
@@ -283,14 +289,17 @@ const mapStateToProps = (state) => {
     defaultContract: state.member.defaultContract,
     memberObject: state.member.memberObject,
     unreadNotification: state.Notification.unreadNotification,
-    markAllRead: state.Notification.allRead
+    markAllRead: state.Notification.allRead,
+    localNotification: state.Notification.localNotification
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptMember: () => dispatch(MemberActions.memberRequest()),
     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
-    postFCMToken: (data) => dispatch(NotificationActions.postFCMToken(data))
+    postFCMToken: (data) => dispatch(NotificationActions.postFCMToken(data)),
+    getNotification: () => dispatch(NotificationActions.getNotification())
+
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(LandingScreen)
