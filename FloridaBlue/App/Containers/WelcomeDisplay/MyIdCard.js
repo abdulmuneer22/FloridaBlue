@@ -55,12 +55,14 @@ class MyIdCard extends Component {
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
-      <Text allowFontScaling={false} style={styles.headerTextStyle}>
+      <View style={{marginRight: Metrics.textHeight * Metrics.screenWidth * 0.009, justifyContent: 'center', alignItems: 'center'}}>
+        <Text allowFontScaling={false} style={styles.headerTextStyle}>
           ID Card
       </Text>
-      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
-        {NavItems.settingsButton()}
       </View>
+      {/*<View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+        {NavItems.settingsButton()}
+      </View> */}
     </Image>)
   }
 
@@ -147,8 +149,8 @@ class MyIdCard extends Component {
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, transform: [{rotate: '270deg'}], fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.BCBSNumber != undefined && this.props.data.BCBSNumber != null ? this.props.data.BCBSNumber : ''} </Text>
                     </View>
                     <View style={{flex: 0.125}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, transform: [{rotate: '270deg'}], fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXBIN != undefined && this.props.data.RXBIN != null ? this.props.data.RXBIN : ''}</Text>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, transform: [{rotate: '270deg'}], fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXPCN != undefined && this.props.data.RXPCN != null ? this.props.data.RXPCN : ''}</Text>
+                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>{this.props.data && this.props.data.RXBIN != undefined && this.props.data.RXBIN != null ? this.props.data.RXBIN : 'Rx BIN'}</Text>
+                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>{this.props.data && this.props.data.RXPCN != undefined && this.props.data.RXPCN != null ? this.props.data.RXPCN : 'PCN'}</Text>
                     </View>
                     <View style={{flex: 0.15}} />
                     <View style={{flex: 0.1}}>

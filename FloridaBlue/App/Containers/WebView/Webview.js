@@ -62,7 +62,16 @@ class Webview extends Component {
         var d = document.getElementsByTagName('a');
         for (var i = 0; i < d.length; i++) {
             if (d[i].getAttribute('target') == '_blank') {
+               d[i].className += ' class_two'
                 d[i].removeAttribute('target');
+            }
+
+             if (d[i].getAttribute('onclick') != undefined && (
+              d[i].getAttribute('onclick').indexOf('window.close') > -1 ||
+              d[i].getAttribute('onclick').indexOf('window.print') > -1 )
+            ) {
+              
+                d[i].parentNode.style.display='none';
             }
         }
     `;
