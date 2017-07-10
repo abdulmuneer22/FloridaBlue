@@ -60,7 +60,7 @@ class MyIdCard extends Component {
           ID Card
       </Text>
       </View>
-      {/*<View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+      {/* <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View> */}
     </Image>)
@@ -74,9 +74,7 @@ class MyIdCard extends Component {
       (uri) => {
         this.setState({
           image: uri,
-          currentAngle: nextAngle,
-          width: this.state.height,
-          height: this.state.width
+          currentAngle: nextAngle
         })
       },
       (error) => {
