@@ -28,7 +28,6 @@ class MyIdCard extends Component {
       image: ''
     }
     this.toggle = this.toggle.bind(this)
-    this.rotate = this.rotate.bind(this)
   }
 
   componentDidMount () {
@@ -64,25 +63,6 @@ class MyIdCard extends Component {
         {NavItems.settingsButton()}
       </View>
     </Image>)
-  }
-
-  rotate (SOURCE_IMAGE, angle) {
-    const nextAngle = this.state.currentAngle + angle
-    ImageRotate.rotateImage(
-      SOURCE_IMAGE,
-      nextAngle,
-      (uri) => {
-        this.setState({
-          image: uri,
-          currentAngle: nextAngle,
-          width: this.state.height,
-          height: this.state.width
-        })
-      },
-      (error) => {
-        console.error(error)
-      }
-    )
   }
 
   toggle () {
