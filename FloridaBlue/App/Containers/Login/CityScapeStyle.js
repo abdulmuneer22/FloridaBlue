@@ -7,7 +7,7 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   cityscape: {
     position: 'absolute',
-    top: Metrics.screenHeight * 0.39,
+    top: Metrics.screenHeight * 0.44,
     left: ((Metrics.screenWidth * 6) * -1),
     width: Metrics.screenWidth * 6,
     height: Metrics.screenHeight * 0.31,
