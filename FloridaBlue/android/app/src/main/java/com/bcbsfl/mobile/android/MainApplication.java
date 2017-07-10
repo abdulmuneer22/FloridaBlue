@@ -6,6 +6,7 @@ import android.support.multidex.MultiDex;
 
 import com.facebook.react.ReactApplication;
 import io.codebakery.imagerotate.ImageRotatePackage;
+import io.codebakery.imagerotate.ImageRotatePackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.evollu.react.fcm.FIRMessagingPackage;
@@ -42,6 +43,7 @@ public class MainApplication  extends MultiDexApplication  implements ReactAppli
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new ImageRotatePackage(),
             new ImageRotatePackage(),
             new FIRMessagingPackage(),
             new RNDeviceInfo(),
