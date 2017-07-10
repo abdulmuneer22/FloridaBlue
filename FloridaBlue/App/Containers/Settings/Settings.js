@@ -136,14 +136,14 @@ class Settings extends Component {
         {this._renderHeader()}
 
         <View style={{flex:1}}>
-       
+
             <View style={styles.settingContainer1}>
           {Platform.OS === 'ios' && this.state.showTouchSetting ?
             <View style={styles.settingContainer}>
               {this.props.touchEnabled ?
-                <Text style={styles.settingText}>Touch ID Enabled</Text>
+                <Text allowFontScaling={false} style={styles.settingText}>Touch ID Enabled</Text>
               :
-                <Text style={styles.settingText}>Enable Touch ID</Text>
+                <Text allowFontScaling={false} style={styles.settingText}>Enable Touch ID</Text>
               }
               <MKSwitch style={styles.settingStatusSwitch}
                 checked={this.props.touchEnabled}
@@ -158,17 +158,17 @@ class Settings extends Component {
                :
             null
         }
-           
-         
+
+
         <View style={styles.settingContainer1}>
           <TouchableOpacity onPress={Permissions.openSettings}>
-            <Text style={styles.settingText}>Geo-location Settings</Text>
+            <Text allowFontScaling={false} style={styles.settingText}>Geo-location Settings</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.settingContainer2}>
         <TouchableOpacity onPress={Permissions.openSettings}>
-          <Text style={styles.settingText}>Push Notification Settings</Text>
+          <Text allowFontScaling={false} style={styles.settingText}>Push Notification Settings</Text>
         </TouchableOpacity>
         </View>
         <View style={{flex:5}}/>
