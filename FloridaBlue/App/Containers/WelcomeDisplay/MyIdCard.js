@@ -66,23 +66,6 @@ class MyIdCard extends Component {
     </Image>)
   }
 
-  rotate (SOURCE_IMAGE, angle) {
-    const nextAngle = this.state.currentAngle + angle
-    ImageRotate.rotateImage(
-      SOURCE_IMAGE,
-      nextAngle,
-      (uri) => {
-        this.setState({
-          image: uri,
-          currentAngle: nextAngle
-        })
-      },
-      (error) => {
-        console.error(error)
-      }
-    )
-  }
-
   toggle () {
     this.setState({
       idCardHeaderVisible: !this.state.idCardHeaderVisible
