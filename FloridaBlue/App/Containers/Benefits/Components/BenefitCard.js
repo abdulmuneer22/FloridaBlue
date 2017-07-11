@@ -19,8 +19,10 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import MyPlanActions from '../../../Redux/MyPlanRedux'
 import { connect } from 'react-redux'
 import Flb from '../../../Themes/FlbIcon'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
-var image = [
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let image = [
   Images.dashboardGradient,
   Images.dashboardGradient2,
   Images.dashboardGradient3,
@@ -65,7 +67,8 @@ class Card extends Component {
     console.tron.log(this.props)
     var action
     if (this.props.tileType == 'native') {
-      var routerName = this.props.routerName
+      let routerName = this.props.routerName
+      gaTracker.trackEvent('Benefits', routerName)
       action = NavigationActions[routerName]({objectName: this.props.objectName})
     }
   }

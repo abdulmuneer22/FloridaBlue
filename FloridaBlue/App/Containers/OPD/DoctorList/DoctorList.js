@@ -17,20 +17,7 @@ import {
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { Card } from 'native-base'
-
-const card = {
-  card: {
-    alignItems: 'flex-start',
-    margin: 15,
-    flex: 1,
-    backgroundColor: 'purple',
-    borderRadius: 10
-  }
-}
-const cardTitle = { cardTitle: { fontSize: 40 } }
-
 import DoctorCard from './Components/DoctorCard'
-// import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './DoctorListStyle'
 import NavItems from '../../../Navigation/NavItems.js'
@@ -41,13 +28,25 @@ import { Container, Content, Footer, FooterTab } from 'native-base'
 import SaveProviderActions from '../../../Redux/SaveProviderRedux'
 import ProviderActions from '../../../Redux/ProviderRedux'
 import _ from 'lodash'
-
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const theme = getTheme()
+const cardTitle = { cardTitle: { fontSize: 40 } }
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
+const card = {
+  card: {
+    alignItems: 'flex-start',
+    margin: 15,
+    flex: 1,
+    backgroundColor: 'purple',
+    borderRadius: 10
+  }
+}
 
 class DoctorList extends Component {
   constructor (props) {
@@ -72,6 +71,7 @@ class DoctorList extends Component {
 
   _mapView () {
     if (this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0) {
+      gaTracker.trackEvent('Provider List', 'Open Map')
       NavigationActions.ProviderMap()
     }
   }
@@ -93,9 +93,7 @@ class DoctorList extends Component {
   }
 
   componentDidMount () {
-      // Call asynchronously to get more data
-    // this.props.changeEnd(300)
-    // this.setState({isFetchingMore : true});
+    gaTracker.trackScreenView('Provider List')
   }
 
   componentWillReceiveProps (newProps) {
@@ -129,9 +127,9 @@ class DoctorList extends Component {
   }
 
   loadMore () {
-    var currentLimit = this.state.listLimit
-    var newLimit = currentLimit
-    var numberOfCardsPerscreen = this.state.totalNumberOfCardPerScreen
+    let currentLimit = this.state.listLimit
+    let newLimit = currentLimit
+    let numberOfCardsPerscreen = this.state.totalNumberOfCardPerScreen
     this.setState({
       listLimit: newLimit + 10
     })
@@ -142,6 +140,7 @@ class DoctorList extends Component {
       this.setState({isFetchingMore: true})
       this.setState({totalNumberOfCardPerScreen: this.state.totalNumberOfCardPerScreen + 30})
     }
+    gaTracker.trackEvent('Provider List', 'Load More Providers')
   }
 
   _displayCondition () {

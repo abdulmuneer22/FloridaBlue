@@ -26,8 +26,9 @@ import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 
 import { Card } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
-const window = Dimensions.get('window')
 
+const window = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()

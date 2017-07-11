@@ -10,6 +10,7 @@ Dimensions,
 Image,
 Alert
 } from 'react-native'
+
 import { Card } from 'native-base'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -26,7 +27,10 @@ import MyPlanActions from '../../Redux/MyPlanRedux'
 import _ from 'lodash'
 import MemberActions from '../../Redux/MemberRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
 const window = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
@@ -53,8 +57,7 @@ class MyPlanScreen extends Component {
     </Image>)
   }
   componentDidMount () {
-    console.tron.log('I am my plan screen')
-  //   this.props.attemptMyPlan()
+    gaTracker.trackScreenView('My Plan')
   }
 
   _displayCondition () {

@@ -10,27 +10,24 @@ import ReactNative, {
   TouchableOpacity,
   View
 } from 'react-native'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+
 import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
-// external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
-// Styles
 import styles from './Screen_3Style'
-
 import Flb from '../../../../Themes/FlbIcon'
-// I18n
 import I18n from 'react-native-i18n'
-
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import LoginActions from '../../../../Redux/LoginRedux'
 import { connect } from 'react-redux'
 import RegistrationActions from '../../../../Redux/RegistrationRedux'
 import HTMLView from 'react-native-htmlview'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+
 const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
   .withTextInputStyle({flex: 1})
@@ -81,19 +78,19 @@ class Screen_3 extends React.Component {
   componentDidMount () {
     this.props.handleChangeRegistrationCodeStatus(null)
     this.props.handleChangeRegisterUserStatus(null)
+    gaTracker.trackScreenView('Registration Screen Three')
   }
 
   componentDidUpdate () {
-    console.tron.log('Fetching Status: ', this.props.fetching)
     // Step 1 - Verify registration code
     if (this.props.registrationCodeStatus && this.props.registerUserStatus === null) {
-      var registrationCodeStatus = this.props.registrationCodeStatus
+      let registrationCodeStatus = this.props.registrationCodeStatus
     }
 
     // Step 2 - Register user
     if (this.props.registrationCodeStatus && this.props.registerUserStatus) {
-      var registrationCodeStatus = this.props.registrationCodeStatus
-      var registerUserStatus = this.props.registerUserStatus
+      let registrationCodeStatus = this.props.registrationCodeStatus
+      let registerUserStatus = this.props.registerUserStatus
 
       if (registrationCodeStatus === '000' && registerUserStatus === '000') {
         this.props.handleChangeRegistrationCodeStatus(null)
@@ -111,7 +108,7 @@ class Screen_3 extends React.Component {
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps contentInset={null}>
           <Image source={Images.registrationStep3Hdr} style={styles.headerImage} >
-            <Text style={styles.headerTextStyle}>Verify Your Account</Text>
+            <Text allowFontScaling={false} style={styles.headerTextStyle}>Verify Your Account</Text>
           </Image>
 
           {this.props.registrationCodeStatus && (this.props.registrationCodeStatus != null && this.props.registrationCodeStatus != '000') ? <View style={styles.messageView}>
@@ -130,7 +127,7 @@ class Screen_3 extends React.Component {
           {this.props.registerUserStatus && (this.props.registerUserStatus != null && this.props.registerUserStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
             <View style={styles.messagePadding}>
-              <View><Text style={styles.message}> {this.props.registerUserStatusMessage}</Text></View>
+              <View><Text allowFontScaling={false} style={styles.message}> {this.props.registerUserStatusMessage}</Text></View>
             </View>
             <View>
               <TouchableOpacity onPress={() => { this.props.handleChangeRegisterUserStatus(null) }}>
@@ -140,10 +137,10 @@ class Screen_3 extends React.Component {
           </View> : <Text />}
 
           <View style={styles.row1}>
-            <Text style={styles.registrationCodeHeader}>{I18n.t('registrationCodeTitle')}</Text>
+            <Text allowFontScaling={false} style={styles.registrationCodeHeader}>{I18n.t('registrationCodeTitle')}</Text>
           </View>
           <View style={styles.row1}>
-            <Text style={styles.registrationCodeParagraph}>{I18n.t('registrationCodeMessage')}</Text>
+            <Text allowFontScaling={false} style={styles.registrationCodeParagraph}>{I18n.t('registrationCodeMessage')}</Text>
           </View>
 
           <View style={styles.row}>
@@ -186,12 +183,12 @@ class Screen_3 extends React.Component {
           </View>
           <View style={styles.row}>
             <View>
-              <Text style={styles.footerText}>{this.props.tempRegCode}</Text>
+              <Text allowFontScaling={false} style={styles.footerText}>{this.props.tempRegCode}</Text>
             </View>
           </View>
           <View style={styles.row}>
             <View>
-              <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
+              <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
           </View>
         </KeyboardAwareScrollView>

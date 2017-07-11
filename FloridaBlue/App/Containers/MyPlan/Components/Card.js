@@ -22,8 +22,11 @@ import { connect } from 'react-redux'
 import Flb from '../../../Themes/FlbIcon'
 import ClaimsActions from '../../../Redux/ClaimsRedux'
 import LinearGradient from 'react-native-linear-gradient'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
-var image = [
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+
+let image = [
   Images.dashboardGradient,
   Images.dashboardGradient2,
   Images.dashboardGradient3,
@@ -65,12 +68,12 @@ class Card extends Component {
   }
 
   customNavigation () {
-    console.tron.log(this.props)
-    var action
-   if (this.props.tileType == 'webview') {
+    let action
+    if (this.props.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.webURL})
     } else if (this.props.tileType == 'native') {
-      var routerName = this.props.routerName
+      let routerName = this.props.routerName
+      gaTracker.trackEvent('My Plan', routerName)
       action = NavigationActions[routerName]()
       if (routerName === 'ClaimsList') {
         this.props.attemptClaimsList()
@@ -98,7 +101,7 @@ class Card extends Component {
         // marginRight :
         // marginTop : 10,
           marginBottom: window.width * 0.03
-          
+
         }}>
         <View style={{flex: 1}} >
           <LinearGradient colors={this.props.gradientColor}

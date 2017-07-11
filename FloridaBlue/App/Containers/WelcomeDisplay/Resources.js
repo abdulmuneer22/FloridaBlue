@@ -23,6 +23,9 @@ import { connect } from 'react-redux'
 import Flb from '../../Themes/FlbIcon'
 import Card from './Components/Card'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
@@ -37,6 +40,11 @@ type LoginScreenProps = {
 }
 
 class Resources extends Component {
+
+  componentDidMount() {
+    gaTracker.trackScreenView('Resources')
+  }
+
   _renderHeader () {
     return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
@@ -102,7 +110,7 @@ class Resources extends Component {
     } else if (this.props.error != null) {
       Alert.alert(
                   'Resources',
-                  
+
                    'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
         [
                     { text: 'OK'}

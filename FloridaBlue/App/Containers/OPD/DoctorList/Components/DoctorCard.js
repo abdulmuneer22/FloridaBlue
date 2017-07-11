@@ -13,7 +13,6 @@ import {
 } from 'react-native'
 
 import { Card } from 'native-base'
-
 import { Colors, Metrics, Fonts } from '../../../../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -23,12 +22,14 @@ import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../Themes/FlbIcon'
 import ProviderActions from '../../../../Redux/ProviderRedux'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+const window = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
     .build()
-
-const window = Dimensions.get('window')
 
 class DoctorCard extends Component {
   constructor (props) {
@@ -43,11 +44,12 @@ class DoctorCard extends Component {
   _doctorPage (selectedProvider) {
     this.props.changeAddressKey(selectedProvider.providerAddressKey)
     this.props.changeProviderKey(selectedProvider.providerKey)
+    gaTracker.trackEvent('Provider List', 'Provider Selected')
     NavigationActions.DoctorDetail()
   }
 
   handleCall (phone) {
-    console.tron.log(phone)
+    gaTracker.trackEvent('Provider List', 'Phone Call')
     const url = `tel:${phone}`
 
     Linking.canOpenURL(url).then(supported => {
@@ -66,6 +68,7 @@ class DoctorCard extends Component {
   }
 
   handleMaps (address) {
+    gaTracker.trackEvent('Provider List', 'Mapped Location')
     const url = `http://maps.apple.com/?daddr=` + address.addressLine1 + ' ' + address.addressLine2 + ' ' + address.city + ' ' + address.state +
     ' ' + address.zipCode
 

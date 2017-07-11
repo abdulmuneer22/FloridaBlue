@@ -18,10 +18,7 @@ import {
 
 import HideableView from 'react-native-hideable-view'
 import DoctorLocation from './Components/DoctorLocation'
-// import Panel from './Components/Panel'
 import DoctorCard from './Components/DoctorCard'
-// import Clickables from './Components/Clickables'
-// import Icon from 'react-native-vector-icons/FontAwesome'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './DoctorDetailStyle'
 import NavItems from '../../../Navigation/NavItems.js'
@@ -32,10 +29,12 @@ import { Container, Content, Footer, FooterTab, Card } from 'native-base'
 import SaveProviderActions from '../../../Redux/SaveProviderRedux'
 import ProviderActions from '../../../Redux/ProviderRedux'
 import _ from 'lodash'
-
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
-var urlConfig = require('../../../UrlConfig')
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
 const theme = getTheme()
+let urlConfig = require('../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
@@ -112,9 +111,8 @@ class DoctorDetail extends Component {
   }
 
   handleMaps (latitude, longitude) {
-    console.tron.log(latitude, longitude)
+    gaTracker.trackEvent('Provider Detail', 'Mapped Location')
     const url = `http://maps.apple.com/?ll=${latitude},${longitude}`
-
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
         Linking.openURL(url)
@@ -123,7 +121,9 @@ class DoctorDetail extends Component {
       }
     })
   }
+  
   componentDidMount () {
+    gaTracker.trackScreenView('Provider Detail')
     this.props.attemptDoctorDetail(this.props)
     this.props.attemptConfigData()
   }

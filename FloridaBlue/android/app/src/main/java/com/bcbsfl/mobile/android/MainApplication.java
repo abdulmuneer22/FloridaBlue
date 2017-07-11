@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.facebook.react.ReactApplication;
+import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.evollu.react.fcm.FIRMessagingPackage;
@@ -41,6 +42,7 @@ public class MainApplication  extends MultiDexApplication  implements ReactAppli
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new GoogleAnalyticsBridgePackage(),
             new FIRMessagingPackage(),
             new RNDeviceInfo(),
             new CookieManagerPackage(),

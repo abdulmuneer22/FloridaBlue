@@ -112,7 +112,7 @@ android {
         applicationId "com.bcbsfl.mobile.android"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 134
+        versionCode 136
         versionName "3.6.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
@@ -168,6 +168,7 @@ android {
 
 
 dependencies {
+    compile project(':react-native-google-analytics-bridge')
     compile project(':react-native-fcm')
     compile project(':react-native-device-info')
 

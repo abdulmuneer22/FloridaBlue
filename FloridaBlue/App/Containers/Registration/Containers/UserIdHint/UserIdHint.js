@@ -10,25 +10,25 @@ import ReactNative, {
   TouchableOpacity,
   View
 } from 'react-native'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+
 import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
-// external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
-// Styles
 import styles from './UserIdHintStyle'
-
 import Flb from '../../../../Themes/FlbIcon'
-// I18n
 import I18n from 'react-native-i18n'
-
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import Swiper from 'react-native-swiper'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 class UserIdHint extends React.Component {
+  componentDidMount() {
+    gaTracker.trackScreenView('Registration User ID Hint')
+  }
+
   _handleClose () {
     NavigationActions.pop()
   }
@@ -38,17 +38,17 @@ class UserIdHint extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           <Image source={Images.registrationStep2Hdr} style={styles.headerImage} >
-            <Text style={styles.headerTextStyle}>{I18n.t('userIdHintTitle')}</Text>
+            <Text allowFontScaling={false} style={styles.headerTextStyle}>{I18n.t('userIdHintTitle')}</Text>
           </Image>
 
           <View style={styles.row}>
-            <Text style={styles.description}>{I18n.t('userIdHintDescription1')}</Text>
+            <Text allowFontScaling={false} style={styles.description}>{I18n.t('userIdHintDescription1')}</Text>
           </View>
           <View style={styles.row}>
-            <Text style={styles.description}>{I18n.t('userIdHintDescription2')}</Text>
+            <Text allowFontScaling={false} style={styles.description}>{I18n.t('userIdHintDescription2')}</Text>
           </View>
           <View style={styles.row1}>
-            <Text style={styles.description}>{I18n.t('userIdHintDescription3')}</Text>
+            <Text allowFontScaling={false} style={styles.description}>{I18n.t('userIdHintDescription3')}</Text>
           </View>
           <View style={styles.buttonRow}>
             <TouchableOpacity onPress={() => { this._handleClose() }}>

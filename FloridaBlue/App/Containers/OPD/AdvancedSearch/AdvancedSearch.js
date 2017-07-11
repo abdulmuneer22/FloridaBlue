@@ -26,10 +26,6 @@ import {
   CardAction
 } from 'react-native-card-view'
 
-const card = { card: { width: Metrics.screenWidth, marginLeft: 0, marginTop: 0, marginBottom: 0, alignItems: 'flex-start' } }
-const cardTitle = { cardTitle: { fontSize: 40 } }
-const Permissions = require('react-native-permissions')
-
 import ProviderActions from '../../../Redux/ProviderRedux'
 import SearchDataActions from '../../../Redux/SearchDataRedux'
 import SettingActions from '../../../Redux/SettingRedux'
@@ -41,16 +37,18 @@ import NavItems from '../../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import Flb from '../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
-import {
-  Container, Content, Header, ListItem, Input, Radio, Label,
-  Picker, Item
-} from 'native-base'
+import { Container, Content, Header, ListItem, Input, Radio, Label, Picker, Item } from 'native-base'
 import ModalDropdown from 'react-native-modal-dropdown'
 import HideableView from 'react-native-hideable-view'
 import I18n from 'react-native-i18n'
 import { MKTextField, MKSlider, MKRangeSlider, MKColor, MKIconToggle, MKSpinner, getTheme, MKRadioButton, setTheme, mdl } from 'react-native-material-kit'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const theme = getTheme()
+const card = { card: { width: Metrics.screenWidth, marginLeft: 0, marginTop: 0, marginBottom: 0, alignItems: 'flex-start' } }
+const cardTitle = { cardTitle: { fontSize: 40 } }
+const Permissions = require('react-native-permissions')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const doctorsGender = [
   { text: 'Any', value: '' },
@@ -220,6 +218,7 @@ class AdvancedSearch extends Component {
       this.props.changeLatitude(0)
       this.props.changeLongitude(0)
       this.props.changeAddress(this.props.homeAddress)
+      gaTracker.trackEvent('Advanced Search', 'Selected Home Address')
     }
   }
 
@@ -244,7 +243,7 @@ class AdvancedSearch extends Component {
       this.setState({newLocationState: false})
       this.setState({isDifferentLocationSelected: false})
       this.setState({homeLocation: false})
-      // this.setState({customLocationState: false})
+      gaTracker.trackEvent('Advanced Search', 'Selected Current Location')
     }
   }
 
@@ -268,6 +267,7 @@ class AdvancedSearch extends Component {
       this.setState({currentLocation: false})
       this.props.changeLatitude(0)
       this.props.changeLongitude(0)
+      gaTracker.trackEvent('Advanced Search', 'Selected Custom Address')
     }
   }
   _addDiffLocation (address) {
@@ -363,8 +363,8 @@ class AdvancedSearch extends Component {
   _getPosition () {
     navigator.geolocation.getCurrentPosition(
     (position) => {
-      var newLat = position['coords']['latitude']
-      var newLong = position['coords']['longitude']
+      let newLat = position['coords']['latitude']
+      let newLong = position['coords']['longitude']
 
       this.props.changeLatitude(newLat)
       this.props.changeLongitude(newLong)
@@ -377,7 +377,7 @@ class AdvancedSearch extends Component {
   }
 
   _careSelected (index, value:string) {
-    var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
+    let selectedCategoryCode = this.props.planCategoryList[index].categoryCode
     this.props.attemptAdvancedSpecialityTypes(selectedCategoryCode)
     this.props.changeCareType(value)
     this.props.changeSubCategoryCode('')
@@ -385,11 +385,13 @@ class AdvancedSearch extends Component {
     this.setState({unknownCareState: false}, function () {
       this.setState({unknownCareState: true})
     })
+    gaTracker.trackEvent('Advanced Search', 'Care Category ' + value)
   }
 
   _specialitySelected (index, value:string) {
-    var selectedSubCategoryCode = this.props.advancedPlanSubCategoryList[index].subCategoryCode
+    let selectedSubCategoryCode = this.props.advancedPlanSubCategoryList[index].subCategoryCode
     if (this.props.categoryCode == '07' && selectedSubCategoryCode == '999' || selectedSubCategoryCode == '701') {
+      gaTracker.trackEvent('Provider Search', 'Speciality Category Pharmacy')
       this.props.changeSubCategoryCode(selectedSubCategoryCode)
       NavigationActions.ProviderTypeInfo()
     } else {
@@ -398,6 +400,7 @@ class AdvancedSearch extends Component {
       this.setState({specialityState: false}, function () {
         this.setState({specialityState: true})
       })
+      gaTracker.trackEvent('Advanced Search', 'Speciality Category ' + value)
     }
   }
 
@@ -425,6 +428,8 @@ class AdvancedSearch extends Component {
     if (this.props.categoryCode != 'ALL') {
       this.setState({specialityState: true})
     }
+
+    gaTracker.trackScreenView('Advanced Search')
   }
 
   componentWillReceiveProps (newProps) {

@@ -15,11 +15,8 @@ import {
   NativeModules,
   Platform
 } from 'react-native'
-var urlConfig = require('../../UrlConfig')
-var TouchManager = NativeModules.TouchManager
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-var RCTNetworking = require('RCTNetworking')
 import axios from 'axios'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -43,10 +40,15 @@ import CityScape from './CityScape'
 import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
 import CheckBox from 'react-native-checkbox'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
-var logo = require('./logo.png')
 const window = Dimensions.get('window')
+let urlConfig = require('../../UrlConfig')
+let TouchManager = NativeModules.TouchManager
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let RCTNetworking = require('RCTNetworking')
+let logo = require('./logo.png')
 
 type LoginScreenProps = {
   dispatch: () => any,
@@ -138,6 +140,7 @@ class Login extends Component {
   }
 
   componentDidMount () {
+    gaTracker.trackScreenView('Login')
     this.props.clearLogin()
     RCTNetworking.clearCookies((cleared) => {
       console.tron.log('clearing local cookies for the app login')
@@ -149,6 +152,7 @@ class Login extends Component {
         switch (touchStatus) {
           case 'AUTHENTICATED':
             if (this.props.origin != 'logout') {
+              gaTracker.trackEvent('Touch ID', 'Launch')
               this._authenticateUserWithTouch()
             }
             break
@@ -522,7 +526,7 @@ class Login extends Component {
       <View style={styles.informationPopup}>
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL})}>
+          <TouchableOpacity onPress={() => { NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL}) gaTracker.trackEvent('More Info', 'Accessibility') }}>
             <Text allowFontScaling={false} style={styles.popupchildText}>
               Accessibility
             </Text>
@@ -531,7 +535,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.ndnoticeURL})}>
+          <TouchableOpacity onPress={() => { NavigationActions.MyView({responseURL: urlConfig.ndnoticeURL}) gaTracker.trackEvent('More Info', 'Nondiscrimination') }}>
             <Text allowFontScaling={false} style={styles.popupchildText}>
               Nondiscrimination
             </Text>
@@ -540,7 +544,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.termsOfUseURL})}>
+          <TouchableOpacity onPress={() => { NavigationActions.MyView({responseURL: urlConfig.termsOfUseURL}) gaTracker.trackEvent('More Info', 'Terms of Use') }}>
             <Text allowFontScaling={false} style={styles.popupchildText}>
               Terms of Use
             </Text>
@@ -549,7 +553,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.internetStatementURL})}>
+          <TouchableOpacity onPress={() => { NavigationActions.MyView({responseURL: urlConfig.internetStatementURL}) gaTracker.trackEvent('More Info', 'Privacy Policy') }}>
             <Text allowFontScaling={false} style={styles.popupchildText}>
               Privacy Policy
             </Text>
@@ -558,7 +562,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL})}>
+          <TouchableOpacity onPress={() => { NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL}) gaTracker.trackEvent('More Info', 'Unsecured OPD') }}>
             <Text allowFontScaling={false} style={styles.popupchildText}>
               Find Care
             </Text>
@@ -567,7 +571,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.supportURL})}>
+          <TouchableOpacity onPress={() => { NavigationActions.MyView({responseURL: urlConfig.supportURL}) gaTracker.trackEvent('More Info', 'Support') }}>
             <Text allowFontScaling={false} style={styles.popupchildText}>
               Support
             </Text>
@@ -576,7 +580,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.floridaBlueURL})}>
+          <TouchableOpacity onPress={() => { NavigationActions.MyView({responseURL: urlConfig.floridaBlueURL}) gaTracker.trackEvent('More Info', 'floridablue.com') }}>
             <Text allowFontScaling={false} style={styles.popupchildText}>
               floridablue.com
             </Text>
@@ -585,7 +589,7 @@ class Login extends Component {
 
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.anotherLanguageURL})}>
+          <TouchableOpacity onPress={() => { NavigationActions.MyView({responseURL: urlConfig.anotherLanguageURL}) gaTracker.trackEvent('More Info', 'Speak Another Language') }}>
             <Text allowFontScaling={false} style={styles.popupchildText}>
               Speak Another Language?
             </Text>
@@ -635,7 +639,7 @@ class Login extends Component {
                 placeholderTextColor={Colors.steel} />
             </View>
             <HideableView style={styles.fingerprintContainer} visible={this.props.credentialStored} removeWhenHidden={true}>
-              <TouchableOpacity style={styles.fingerprintButton} onPress={() => { this._authenticateUserWithTouch() }}>
+              <TouchableOpacity style={styles.fingerprintButton} onPress={() => { this._authenticateUserWithTouch() gaTracker.trackEvent('Touch ID', 'Relaunch') }}>
                 <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
                 <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
               </TouchableOpacity>
@@ -760,10 +764,10 @@ class Login extends Component {
             }
 
             <SignUpView>
-              <TouchableOpacity onPress={() => NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})}>
+              <TouchableOpacity onPress={() => { NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL}) gaTracker.trackEvent('Login', 'Forgot Password')}}>
                 <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => NavigationActions.screen_1()}>
+              <TouchableOpacity onPress={() => { NavigationActions.screen_1() gaTracker.trackEvent('Login', 'Sign Up') }}>
                 <Image style={styles.signUpButton} source={Images.signUpButton} />
               </TouchableOpacity>
             </SignUpView>
