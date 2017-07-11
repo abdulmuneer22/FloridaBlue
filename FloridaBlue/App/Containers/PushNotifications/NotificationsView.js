@@ -53,7 +53,14 @@ class NotificationsView extends Component {
     })
   }
   componentWillReceiveProps (nextProps) {
+    this.props.onLocalNotification(false)
+    this.props.onOpenedFromTray(false)
     FCM.setBadgeNumber(0)
+    this.props.markAllRead(true)
+    this.props.postArchive({
+      'messageId': '',
+      'markAllRead': true
+    })
   }
 
   deleteRow (secId, rowId, rowMap, messageId) {
@@ -91,7 +98,7 @@ class NotificationsView extends Component {
           dataSource={this.props.notification && Object(this.props.notification).length > 0 ? this.ds.cloneWithRows(this.props.notification) : {}}
           enableEmptySections
           disableRightSwipe
-          renderRow={data => (
+          renderRow={(data, secId, rowId, rowMap) => (
             <View style={styles.rowFront}>
               <View style={{ flex: 1, marginTop: 10 }}>
                 <View style={{ flexDirection: 'row', marginLeft: 20, marginTop: 10, alignItems: 'center', flex: 1 }}>
