@@ -74,21 +74,22 @@ class MyIdCard extends Component {
               flex: 1,
               transform: [{rotate: '270deg'}],
               resizeMode: 'contain',
+              marginLeft:this.state.idCardHeaderVisible ?0:Metrics.baseMargin*Metrics.screenWidth*0.004,
               width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.15) : Metrics.screenHeight
             }:{
               flex: 1,
               transform: [{rotate: '270deg'}],
               resizeMode: 'contain',
-              width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.15) : Metrics.screenHeight- Metrics.screenHeight * 0.03
+              width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.13) : Metrics.screenHeight- Metrics.screenHeight * 0.03
             }} >
               <View style={{flex: 1 }}>
                {str.toUpperCase().indexOf("MYBLUE")>-1?
                 <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                   
                
-                  <View style={{flex: 0.5,marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.73)), alignItems: 'flex-start'}}>
+                  <View style={{flex: 0.5,marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.825)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.81)), alignItems: 'flex-start'}}>
                   
-                    <View style={{flex:(Platform.OS === 'ios') ? 0.1:0.1, marginTop:(Platform.OS === 'ios') ?1:0}}>
+                    <View style={{flex:(Platform.OS === 'ios') ? 0.1:0.1, marginTop:(Platform.OS === 'ios') ?3:0}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.MemberFirstName !=undefined && this.props.data.MemberFirstName !=null ? this.props.data.MemberFirstName:''} {this.props.data && this.props.data.MemberLastName !=undefined && this.props.data.MemberLastName !=null ? this.props.data.MemberLastName:''}</Text>
                     </View> 
                    
@@ -103,14 +104,14 @@ class MyIdCard extends Component {
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>  Group Number {this.props.data && this.props.data.GroupNumber !=undefined && this.props.data.GroupNumber !=null ? this.props.data.GroupNumber:''} </Text>
                     </View>
 
-                    <View style={{flex: 0.1}}>
+                    <View style={{flex: 0.05}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}} />
                     </View>
 
                   </View>
 
-                  <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.73)), alignItems: 'flex-start'}}>
-                    <View style={{flex:(Platform.OS === 'ios') ?0.1:0.1, marginTop:(Platform.OS === 'ios') ?1:0}}>
+                  <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.825)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.81)), alignItems: 'flex-start'}}>
+                    <View style={{flex:(Platform.OS === 'ios') ?0.1:0.1, marginTop:(Platform.OS === 'ios') ?3:0}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.BCBSNumber !=undefined && this.props.data.BCBSNumber !=null ? this.props.data.BCBSNumber:''} </Text>
                     </View>
                     <View style={{flex: 0.125}}>
@@ -118,7 +119,7 @@ class MyIdCard extends Component {
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXPCN !=undefined && this.props.data.RXPCN !=null ? this.props.data.RXPCN:''}</Text>
                     </View>
                     <View style={{flex: 0.15}} />
-                    <View style={{flex:(Platform.OS === 'ios') ?0.1:0.135}}>
+                    <View style={{flex:(Platform.OS === 'ios') ?0.05:0.11}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Number: {this.props.data && this.props.data.PlanNumber !=undefined && this.props.data.PlanNumber !=null ? this.props.data.PlanNumber:''} </Text>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, marginRight:Metrics.baseMargin*Metrics.screenWidth*0.006,fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Name: {this.props.data && this.props.data.PlanName !=undefined && this.props.data.PlanName !=null ? this.props.data.PlanName:''}</Text>
                     </View>
@@ -146,7 +147,7 @@ class MyIdCard extends Component {
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>  Group Number {this.props.data && this.props.data.GroupNumber !=undefined && this.props.data.GroupNumber !=null ? this.props.data.GroupNumber:''} </Text>
                     </View>
 
-                    <View style={{flex: 0.1}}>
+                    <View style={{flex: 0.12}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}} />
                     </View>
 
