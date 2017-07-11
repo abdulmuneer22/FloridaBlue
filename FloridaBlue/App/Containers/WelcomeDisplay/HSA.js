@@ -12,7 +12,6 @@ import {
   TouchableWithoutFeedback,
   ScrollView
 } from 'react-native'
-const window = Dimensions.get('window')
 
 import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import styles from './DashBoardStyle'
@@ -22,8 +21,11 @@ import MemberActions from '../../Redux/MemberRedux'
 import { connect } from 'react-redux'
 import HsaActions from '../../Redux/HsaRedux'
 import Flb from '../../Themes/FlbIcon'
-
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+const window = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
@@ -44,9 +46,7 @@ class Hsa extends Component {
     </Image>)
   }
   componentDidMount () {
-    console.tron.log('I am HSA screen')
-    console.tron.log(this.props)
-  //  this.props.attemptSupportScreen()
+    gaTracker.trackScreenView('HSA')
   }
 
   _displayCondition () {

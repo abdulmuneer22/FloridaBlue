@@ -10,8 +10,6 @@ Image,
 Alert
 } from 'react-native'
 
-const window = Dimensions.get('window')
-
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import NavItems from '../../Navigation/NavItems.js'
@@ -22,6 +20,10 @@ import MyPlanActions from '../../Redux/MyPlanRedux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Card from './Components/BenefitCard'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+const window = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
@@ -42,8 +44,7 @@ class PlanBenefits extends Component {
   }
 
   componentDidMount () {
-    console.tron.log('I am my plan screen')
-// this.props.attemptMyPlan()
+    gaTracker.trackScreenView('Benefits')
   }
 
   _displayCondition () {

@@ -10,7 +10,10 @@ import styles from '../MyPlanScreenStyle'
 import _ from 'lodash'
 import LinearGradient from 'react-native-linear-gradient'
 import { Card, CardItem, Body} from 'native-base'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
 const card = {card: {margin: 20}}
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 class MyPlanSwiper extends Component {
   getChildrenOptions (data) {
@@ -27,26 +30,32 @@ class MyPlanSwiper extends Component {
    */
     if (annualDeductible && annualDeductible.pnNetwork && annualDeductible.pnNetwork.planBenefits) {
       result = Object.keys(annualDeductible.pnNetwork.planBenefits).length > 0 ? [...result, annualDeductible.pnNetwork] : result
+      gaTracker.trackEvent('My Plan', 'Annual Deductible: Preferred Network Card')
     }
 
     if (annualDeductible && annualDeductible.inNetwork && annualDeductible.inNetwork.planBenefits) {
       result = Object.keys(annualDeductible.inNetwork.planBenefits).length > 0 ? [...result, annualDeductible.inNetwork] : result
+      gaTracker.trackEvent('My Plan', 'Annual Deductible: In Network Card')
     }
 
     if (annualDeductible && annualDeductible.outNetwork && annualDeductible.outNetwork.planBenefits) {
       result = Object.keys(annualDeductible.outNetwork.planBenefits).length > 0 ? [...result, annualDeductible.outNetwork] : result
+      gaTracker.trackEvent('My Plan', 'Annual Deductible: Out Network Card')
     }
 
     if (oop && oop.pnNetwork && oop.pnNetwork.planBenefits) {
       result = Object.keys(oop.pnNetwork.planBenefits).length > 0 ? [...result, oop.pnNetwork] : result
+      gaTracker.trackEvent('My Plan', 'Out Of Pocket Deductible: Preferred Network Card')
     }
 
     if (oop && oop.inNetwork && oop.inNetwork.planBenefits) {
       result = Object.keys(oop.inNetwork.planBenefits).length > 0 ? [...result, oop.inNetwork] : result
+      gaTracker.trackEvent('My Plan', 'Out Of Pocket Deductible: In Network Card')
     }
 
     if (oop && oop.outNetwork && oop.outNetwork.planBenefits) {
       result = Object.keys(oop.outNetwork.planBenefits).length > 0 ? [...result, oop.outNetwork] : result
+      gaTracker.trackEvent('My Plan', 'Out Of Pocket Deductible: Out Network Card')
     }
 
     return result

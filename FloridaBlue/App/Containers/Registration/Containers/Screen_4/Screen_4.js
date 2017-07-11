@@ -11,26 +11,23 @@ import ReactNative, {
   View,
   TouchableHighlight
 } from 'react-native'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+
 import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
-// external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
-// Styles
 import styles from './Screen_4Style'
-
 import Flb from '../../../../Themes/FlbIcon'
-// I18n
 import I18n from 'react-native-i18n'
-
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import RegistrationActions from '../../../../Redux/RegistrationRedux'
 import HTMLView from 'react-native-htmlview'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+
 const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
   .withTextInputStyle({flex: 1})
@@ -68,12 +65,12 @@ class Screen_4 extends React.Component {
   _handleNext () {
     Keyboard.dismiss()
 
-    var securityHint1 = this.props.securityHint1
-    var securityAnswer1 = this.props.securityAnswer1
-    var securityHint2 = this.props.securityHint2
-    var securityAnswer2 = this.props.securityAnswer2
-    var securityHint3 = this.props.securityHint3
-    var securityAnswer3 = this.props.securityAnswer3
+    let securityHint1 = this.props.securityHint1
+    let securityAnswer1 = this.props.securityAnswer1
+    let securityHint2 = this.props.securityHint2
+    let securityAnswer2 = this.props.securityAnswer2
+    let securityHint3 = this.props.securityHint3
+    let securityAnswer3 = this.props.securityAnswer3
 
     if (!(securityHint1 && securityAnswer1 && securityHint2 && securityAnswer2 && securityHint3 && securityAnswer3)) {
       this.props.handleChangeSecurityHintsStatus('999')
@@ -97,14 +94,15 @@ class Screen_4 extends React.Component {
   componentDidMount () {
     this.props.handleChangeSecurityHintsStatus(null)
     if (this.props && this.props.username) {
-      var username = this.props.username
+      let username = this.props.username
       this.props.handleChangeCreateUserId(username)
     }
+    gaTracker.trackScreenView('Registration Screen Four')
   }
 
   componentDidUpdate () {
     if (this.props.securityHintsStatus) {
-      var status = this.props.securityHintsStatus
+      let status = this.props.securityHintsStatus
 
       if (status === '000') {
         this.props.handleChangeSecurityHintsStatus(null)
@@ -119,14 +117,14 @@ class Screen_4 extends React.Component {
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps='always' contentInset={null}>
           {this.props.username ? <View /> : <Image source={Images.registrationStep4Hdr} style={styles.headerImage}>
-            <Text style={styles.headerTextStyle}>Almost Done!</Text>
+            <Text allowFontScaling={false} style={styles.headerTextStyle}>Almost Done!</Text>
           </Image>}
           <View style={styles.row}>
-            <Text style={styles.heading}>{I18n.t('setUpSecurityQuestions')}</Text>
+            <Text allowFontScaling={false} style={styles.heading}>{I18n.t('setUpSecurityQuestions')}</Text>
           </View>
           <View style={styles.row}>
             <View>
-              <Text style={styles.topText}>{I18n.t('setUpSecurityQuestionsInstructions')}</Text>
+              <Text allowFontScaling={false} style={styles.topText}>{I18n.t('setUpSecurityQuestionsInstructions')}</Text>
             </View>
           </View>
           {this.props.securityHintsStatus && (this.props.securityHintsStatus != null && this.props.securityHintsStatus != '000') ? <View style={styles.messageView}>
@@ -144,7 +142,7 @@ class Screen_4 extends React.Component {
             </View>
           </View> : <Text />}
           <View style={styles.hintRow}>
-            <Text style={styles.heading}>{I18n.t('securityHint1')}</Text>
+            <Text allowFontScaling={false} style={styles.heading}>{I18n.t('securityHint1')}</Text>
             <TouchableHighlight onPress={this._handleSecurityHint}>
               <Image source={Images.infoIcon} style={styles.hintImage} />
             </TouchableHighlight>
@@ -192,7 +190,7 @@ class Screen_4 extends React.Component {
             />
           </View>
           <View style={styles.hintRow}>
-            <Text style={styles.heading}>{I18n.t('securityHint2')}</Text>
+            <Text allowFontScaling={false} style={styles.heading}>{I18n.t('securityHint2')}</Text>
             <TouchableHighlight onPress={this._handleSecurityHint}>
               <Image source={Images.infoIcon} style={styles.hintImage} />
             </TouchableHighlight>
@@ -240,7 +238,7 @@ class Screen_4 extends React.Component {
             />
           </View>
           <View style={styles.hintRow}>
-            <Text style={styles.heading}>{I18n.t('securityHint3')}</Text>
+            <Text allowFontScaling={false} style={styles.heading}>{I18n.t('securityHint3')}</Text>
             <TouchableHighlight onPress={this._handleSecurityHint}>
               <Image source={Images.infoIcon} style={styles.hintImage} />
             </TouchableHighlight>
@@ -305,7 +303,7 @@ class Screen_4 extends React.Component {
           </View>
           <View style={styles.row}>
             <View>
-              <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
+              <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
           </View>
         </KeyboardAwareScrollView>

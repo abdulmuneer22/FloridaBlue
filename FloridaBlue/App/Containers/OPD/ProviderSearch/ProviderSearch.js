@@ -33,15 +33,18 @@ import SettingActions from '../../../Redux/SettingRedux'
 import _ from 'lodash'
 import ActionButton from 'react-native-action-button'
 import LinearGradient from 'react-native-linear-gradient'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+const { height, width } = Dimensions.get('window')
+const theme = getTheme()
+const Permissions = require('react-native-permissions')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const closeIcon = (<Icon name='close'
   size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
   style={{backgroundColor: Colors.transparent}}
   color='#000000' />)
 
-const { height, width } = Dimensions.get('window')
-const theme = getTheme()
-const Permissions = require('react-native-permissions')
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
@@ -93,6 +96,7 @@ class ProviderSearch extends Component {
   }
 
   componentDidMount () {
+    gaTracker.trackScreenView('Provider Search')
     this.props.attemptConfigData()
     this.props.attemptCareTypes(this.props.member)
     this._getLocation()
@@ -135,7 +139,6 @@ class ProviderSearch extends Component {
 
   _onChecked (event) {
     this.setState({floatClicked: true})
-    // this.handleNeedHelp()
     if (event.checked) {
       this.props.changeSubCategoryCode('')
       this.props.changeCategoryCode('ALL')
@@ -149,7 +152,7 @@ class ProviderSearch extends Component {
   }
 
   _careSelected (index, value:string) {
-    var selectedCategoryCode = this.props.planCategoryList[index].categoryCode
+    let selectedCategoryCode = this.props.planCategoryList[index].categoryCode
     this.props.getSpecialityTypes(selectedCategoryCode)
     this.props.changeCareType(value)
     this.props.changeSubCategoryCode('')
@@ -157,12 +160,13 @@ class ProviderSearch extends Component {
     this.setState({unknownCareState: false}, function () {
       this.setState({unknownCareState: true})
     })
+    gaTracker.trackEvent('Provider Search', 'Care Category ' + value)
   }
 
   _specialitySelected (index, value:string) {
-    var selectedSubCategoryCode = this.props.planSubCategoryList[index].subCategoryCode
-
+    let selectedSubCategoryCode = this.props.planSubCategoryList[index].subCategoryCode
     if (this.props.categoryCode == '07' && selectedSubCategoryCode == '999' || selectedSubCategoryCode == '701') {
+      gaTracker.trackEvent('Provider Search', 'Speciality Category Pharmacy')
       this.props.changeSubCategoryCode(selectedSubCategoryCode)
       NavigationActions.ProviderTypeInfo()
     } else {
@@ -171,6 +175,7 @@ class ProviderSearch extends Component {
       this.setState({specialityState: false}, function () {
         this.setState({specialityState: true})
       })
+      gaTracker.trackEvent('Provider Search', 'Speciality Category ' + value)
     }
   }
 
@@ -216,12 +221,14 @@ class ProviderSearch extends Component {
   }
 
   _viewListResults () {
+    gaTracker.trackEvent('Provider Search', 'Urgent Care Search')
     this.props.changeUrgentCareBanner(true)
     this.props.attemptUrgentSearch(this.props)
     NavigationActions.DoctorList()
   }
 
   _advancedSearch () {
+    gaTracker.trackEvent('Provider Search', 'Advanced Search Opened')
     NavigationActions.AdvancedSearch({navigatingFrom: 'providerSearch'})
   }
 
@@ -230,6 +237,7 @@ class ProviderSearch extends Component {
       this.setState({customLocationState: true})
       this.props.changeLatitude(0)
       this.props.changeLongitude(0)
+      gaTracker.trackEvent('Provider Search', 'Selected Custom Address')
     }
   }
 
@@ -252,6 +260,7 @@ class ProviderSearch extends Component {
       this.setState({changeLocaleState: false})
       this.setState({specialityState: true})
       this.setState({customLocationState: false})
+      gaTracker.trackEvent('Provider Search', 'Selected Current Location')
     }
   }
 
@@ -263,6 +272,7 @@ class ProviderSearch extends Component {
       this.props.changeLatitude(0)
       this.props.changeLongitude(0)
       this.props.changeAddress(this.props.homeAddress)
+      gaTracker.trackEvent('Provider Search', 'Selected Home Address')
     }
   }
 

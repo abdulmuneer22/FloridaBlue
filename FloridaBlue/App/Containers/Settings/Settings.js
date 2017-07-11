@@ -15,6 +15,7 @@ import {
   NativeModules,
   Platform
 } from 'react-native'
+
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { MKSwitch, MKColor } from 'react-native-material-kit'
@@ -22,9 +23,11 @@ import styles from './SettingsStyle'
 import NavItems from '../../Navigation/NavItems.js'
 import SettingActions from '../../Redux/SettingRedux'
 import { Images, Metrics, Colors, Fonts } from '../../Themes'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const Permissions = require('react-native-permissions')
-var TouchManager = NativeModules.TouchManager
+let TouchManager = NativeModules.TouchManager
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 class Settings extends Component {
 
@@ -50,6 +53,7 @@ class Settings extends Component {
         }
       })
     }
+    gaTracker.trackScreenView('Settings')
   }
 
   _disableTouchID() {
@@ -58,6 +62,7 @@ class Settings extends Component {
       if (status == 'SUCCESS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
+        gaTracker.trackEvent('Settings', 'Disabled Touch ID')
       }
     })
   }

@@ -11,25 +11,22 @@ import ReactNative, {
   TouchableOpacity,
   View
 } from 'react-native'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+
 import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
-// external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import HTMLView from 'react-native-htmlview'
-// Styles
 import styles from './Screen_1Style'
-
 import Flb from '../../../../Themes/FlbIcon'
-// I18n
 import I18n from 'react-native-i18n'
-
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import RegistrationActions from '../../../../Redux/RegistrationRedux'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
@@ -75,14 +72,14 @@ class Screen_1 extends React.Component {
   _handleNext () {
     Keyboard.dismiss()
 
-    var contractNumber = this.props.contractNumber
-    var firstName = this.props.firstName
-    var lastName = this.props.lastName
-    var dateOfBirth = this.props.dateOfBirth
-    var zipCode = this.props.zipCode
+    let contractNumber = this.props.contractNumber
+    let firstName = this.props.firstName
+    let lastName = this.props.lastName
+    let dateOfBirth = this.props.dateOfBirth
+    let zipCode = this.props.zipCode
 
-    var dateTest = new RegExp('^\\d{2}\/\\d{2}\/\\d{4}$')
-    var zipCodeTest = new RegExp('^(^\\d{5}$)|(^\\d{5}-\\d{4}$)$')
+    let dateTest = new RegExp('^\\d{2}\/\\d{2}\/\\d{4}$')
+    let zipCodeTest = new RegExp('^(^\\d{5}$)|(^\\d{5}-\\d{4}$)$')
     if (!(contractNumber && firstName && lastName && dateOfBirth && zipCode)) {
       this.props.handleChangeIdentificationStatus('999')
       this.props.handleChangeIdentificationStatusMessage('Please enter all information.')
@@ -101,6 +98,7 @@ class Screen_1 extends React.Component {
     this.props.requestClear()
     this.props.handleChangeIdentificationStatus(null)
     this.props.handleChangeIdentificationStatusMessage(null)
+    gaTracker.trackScreenView('Registration Screen One')
   }
 
   componentDidUpdate () {
@@ -109,7 +107,6 @@ class Screen_1 extends React.Component {
 
       if (status === '000') {
         this.props.handleChangeIdentificationStatus(null)
-        console.tron.log('Navigating to Screen 2')
         NavigationActions.screen_2()
       }
     }
@@ -131,11 +128,11 @@ class Screen_1 extends React.Component {
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps='always' contentInset={null}>
           <Image source={Images.registrationStep1Hdr} style={styles.headerImage} >
-            <Text style={styles.headerTextStyle}>Let's Get Started!</Text>
+            <Text allowFontScaling={false} style={styles.headerTextStyle}>'Let\'s Get Started!'</Text>
           </Image>
 
           <View style={styles.row}>
-            <Text style={styles.heading}>{I18n.t('personalInformation')}</Text>
+            <Text allowFontScaling={false} style={styles.heading}>{I18n.t('personalInformation')}</Text>
           </View>
           {this.props.identificationStatus && (this.props.identificationStatus != null && this.props.identificationStatus != '000') ? <View style={styles.messageView}>
             <View><Flb name='alert' color={Colors.snow} size={30} /></View>
@@ -174,7 +171,7 @@ class Screen_1 extends React.Component {
             />
           </View>
           <View style={styles.row}>
-            <Text style={[styles.findMessage, {fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}]}> {I18n.t('cantFindMemberId')}</Text>
+            <Text allowFontScaling={false} style={[styles.findMessage, {fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}]}> {I18n.t('cantFindMemberId')}</Text>
           </View>
           <View style={styles.findItButton}>
             <TouchableOpacity onPress={() => { this._handleFindMemberId() }}>
@@ -286,7 +283,7 @@ class Screen_1 extends React.Component {
           </View>
           <View style={styles.row}>
             <View>
-              <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
+              <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
           </View>
         </KeyboardAwareScrollView>

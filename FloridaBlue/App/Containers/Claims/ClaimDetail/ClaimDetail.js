@@ -23,10 +23,12 @@ import Flb from '../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
-
 import { Card } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
 const window = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)

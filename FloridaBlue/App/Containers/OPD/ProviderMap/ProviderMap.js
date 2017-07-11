@@ -25,9 +25,12 @@ import DoctorCard from './Components/DoctorCard'
 import HideableView from 'react-native-hideable-view'
 import Swiper from 'react-native-swiper'
 import _ from 'lodash'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const theme = getTheme()
 const screen = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
@@ -66,6 +69,7 @@ class ProviderMap extends Component {
   }
 
   componentDidMount () {
+    gaTracker.trackScreenView('Provider Map')
     this.setState({selectedLocation: this.props.provider.data.providerList[0]})
     this.setState({currentLat: this.props.provider.data.providerList[0].latitude})
     this.setState({currentLong: this.props.provider.data.providerList[0].longitude})

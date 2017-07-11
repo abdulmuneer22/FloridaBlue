@@ -15,7 +15,10 @@ import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import Communications from 'react-native-communications'
 import { Card } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
 const window = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -43,9 +46,7 @@ class SupportScreen extends Component {
   }
 
   componentDidMount () {
-    console.tron.log('I am Support screen')
-    console.tron.log(this.props)
-  //  this.props.attemptSupportScreen()
+    gaTracker.trackScreenView('Support')
   }
 
   _handleCall (phone) {

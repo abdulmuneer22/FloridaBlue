@@ -12,26 +12,21 @@ import ReactNative, {
   View
 } from 'react-native'
 
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
 import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
-// external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { MKTextField, MKColor, MKCheckbox, MKSpinner, setTheme } from 'react-native-material-kit'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
-// Styles
 import styles from './Screen_2Style'
-
 import Flb from '../../../../Themes/FlbIcon'
-// I18n
 import I18n from 'react-native-i18n'
-
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import RegistrationActions from '../../../../Redux/RegistrationRedux'
 import HTMLView from 'react-native-htmlview'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
@@ -77,11 +72,11 @@ class Screen_2 extends React.Component {
   _handleNext () {
     Keyboard.dismiss()
 
-    var email = this.props.email
-    var confirmEmail = this.props.confirmEmail
-    var createUserId = this.props.createUserId
-    var password = this.props.password
-    var confirmPassword = this.props.confirmPassword
+    let email = this.props.email
+    let confirmEmail = this.props.confirmEmail
+    let createUserId = this.props.createUserId
+    let password = this.props.password
+    let confirmPassword = this.props.confirmPassword
 
     if (!(createUserId && password && confirmPassword)) {
       this.props.handleChangePersonalInformationStatus('999')
@@ -107,6 +102,7 @@ class Screen_2 extends React.Component {
     this.props.handleChangePersonalInformationStatusMessage(null)
     // Set for true by default
     this.props.handleChangeEmailUpdated(true)
+    gaTracker.trackScreenView('Registration Screen Two')
   }
 
   componentDidUpdate () {
@@ -137,11 +133,11 @@ class Screen_2 extends React.Component {
       <View style={styles.container}>
         <KeyboardAwareScrollView keyboardShouldPersistTaps='always' contentInset={null}>
           <Image source={Images.registrationStep2Hdr} style={styles.headerImage} >
-            <Text style={styles.headerTextStyle}>Set Up Your Account</Text>
+            <Text allowFontScaling={false} style={styles.headerTextStyle}>Set Up Your Account</Text>
           </Image>
           <View style={styles.row}>
-            <Text style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
-            <Text style={styles.subHeaderTextStyle}>{I18n.t('createUserIdAndPasswordInstruction')}</Text>
+            <Text allowFontScaling={false} style={styles.heading}>{I18n.t('createUserIdAndPassword')}</Text>
+            <Text allowFontScaling={false} style={styles.subHeaderTextStyle}>{I18n.t('createUserIdAndPasswordInstruction')}</Text>
           </View>
 
           {this.props.personalInformationStatus && (this.props.personalInformationStatus != null && this.props.personalInformationStatus != '000') ? <View style={styles.messageView}>
@@ -272,7 +268,7 @@ class Screen_2 extends React.Component {
                 this.refs.password.focus()
               }}
               placeholder={I18n.t('createUserId')} />
-            <Text style={styles.hintLink} onPress={() => { this._handleUserIdHint() }}>Hints</Text>
+            <Text allowFontScaling={false} style={styles.hintLink} onPress={() => { this._handleUserIdHint() }}>Hints</Text>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
@@ -296,7 +292,7 @@ class Screen_2 extends React.Component {
               }}
               placeholder={I18n.t('password')}
             />
-            <Text style={styles.hintLink} onPress={() => { this._handlePasswordHint() }}>Hints</Text>
+            <Text allowFontScaling={false} style={styles.hintLink} onPress={() => { this._handlePasswordHint() }}>Hints</Text>
           </View>
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
@@ -331,8 +327,8 @@ class Screen_2 extends React.Component {
               />
             </View>
             <View style={styles.checkboxMessageView}>
-              <Text style={styles.checkboxMessageText}>{I18n.t('commElect')}</Text>
-              <Text style={styles.checkboxMessageHyperlink} onPress={() => { this._handleReadMore() }}>Read More</Text>
+              <Text allowFontScaling={false} style={styles.checkboxMessageText}>{I18n.t('commElect')}</Text>
+              <Text allowFontScaling={false} style={styles.checkboxMessageHyperlink} onPress={() => { this._handleReadMore() }}>Read More</Text>
 
             </View>
           </View> : null}
@@ -357,7 +353,7 @@ class Screen_2 extends React.Component {
           </View>
           <View style={styles.row}>
             <View>
-              <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
+              <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
           </View>
         </KeyboardAwareScrollView>

@@ -9,9 +9,6 @@ import {
   Linking
 } from 'react-native'
 
-// import SafariView from  'react-native-safari-view'
-
-const window = Dimensions.get('window')
 import {Colors, Metrics, Fonts, Images} from '../../../Themes'
 import styles from '../DashBoardStyle.js'
 import NavItems from '../../../Navigation/NavItems.js'
@@ -20,8 +17,12 @@ import MemberActions from '../../../Redux/MemberRedux'
 import { connect } from 'react-redux'
 import Flb from '../../../Themes/FlbIcon'
 import { Card as BCard} from 'native-base'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
-var image = [
+const window = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+
+let image = [
   Images.dashboardGradient,
   Images.dashboardGradient2,
   Images.dashboardGradient3,
@@ -63,12 +64,13 @@ class Card extends Component {
   }
 
   customNavigation () {
-    console.tron.log(this.props)
-    var action
+    let action
     if (this.props.tileType == 'webview') {
+      gaTracker.trackEvent('Dashboard', 'Link Out')
       action = NavigationActions.MyView({responseURL: this.props.webURL})
     } else if (this.props.tileType == 'native') {
-      var routerName = this.props.routerName
+      let routerName = this.props.routerName
+      gaTracker.trackEvent('Dashboard', routerName)
       action = NavigationActions[routerName]()
     }
   }

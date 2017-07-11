@@ -11,24 +11,21 @@ import ReactNative, {
   TouchableOpacity,
   View
 } from 'react-native'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+
 import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
-// external libs
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-
-// Styles
 import styles from './SecurityHintStyle'
-
 import Flb from '../../../../Themes/FlbIcon'
-// I18n
 import I18n from 'react-native-i18n'
-
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import Swiper from 'react-native-swiper'
 import HTMLView from 'react-native-htmlview'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+
 const HtMLstyles = StyleSheet.create({
   p: {
     color: Colors.snow,
@@ -46,6 +43,10 @@ const HtMLstyles = StyleSheet.create({
 })
 
 class SecurityHint extends React.Component {
+  componentDidMount() {
+    gaTracker.trackScreenView('Registration Security Hint')
+  }
+
   _handleClose () {
     NavigationActions.pop()
   }
@@ -55,17 +56,17 @@ class SecurityHint extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           <Image source={Images.registrationStep4Hdr} style={styles.headerImage}>
-            <Text style={styles.headerTextStyle}>{I18n.t('securityHintTitle')}</Text>
+            <Text allowFontScaling={false} style={styles.headerTextStyle}>{I18n.t('securityHintTitle')}</Text>
 
           </Image>
           <View style={styles.row}>
-            <Text style={styles.description}>{I18n.t('securityHintDescription1')}</Text>
+            <Text allowFontScaling={false} style={styles.description}>{I18n.t('securityHintDescription1')}</Text>
           </View>
           <View style={styles.row}>
-            <Text style={styles.description}>{I18n.t('securityHintDescription2')}</Text>
+            <Text allowFontScaling={false} style={styles.description}>{I18n.t('securityHintDescription2')}</Text>
           </View>
           <View style={styles.row1}>
-            <Text style={styles.description}>{I18n.t('securityHintDescription3')}</Text>
+            <Text allowFontScaling={false} style={styles.description}>{I18n.t('securityHintDescription3')}</Text>
           </View>
           <View style={styles.buttonRow}>
             <TouchableOpacity onPress={() => { this._handleClose() }}>

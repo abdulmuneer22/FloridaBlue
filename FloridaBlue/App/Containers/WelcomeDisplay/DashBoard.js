@@ -32,6 +32,10 @@ const window = Dimensions.get('window')
 import LinearGradient from 'react-native-linear-gradient'
 import DeviceInfo from 'react-native-device-info'
 import NotificationActions from '../../Redux/NotificationRedux'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+const theme = getTheme()
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3');
 
 type LoginScreenProps = {
   dispatch: () => any,
@@ -42,7 +46,6 @@ type LoginScreenProps = {
   attemptNetworkList: () => void,
   error: string
 }
-const theme = getTheme()
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -76,6 +79,8 @@ class LandingScreen extends Component {
     )
   }
   componentDidMount () {
+    gaTracker.trackScreenView('Dashboard')
+
     if (this.props.openedFromTray) {
       NavigationActions.PushNotifications()
     }
@@ -130,6 +135,8 @@ class LandingScreen extends Component {
   }
 
   handleOPDTileView= () => {
+    gaTracker.trackEvent('Dashboard', 'Find Care')
+
     if (this.props.visibilityRules.opdTile.tileType == 'webview') {
       NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})
     } else if (this.props.visibilityRules.opdTile.tileType == 'native') {

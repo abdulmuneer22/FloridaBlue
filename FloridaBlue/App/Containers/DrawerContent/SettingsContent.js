@@ -26,15 +26,15 @@ import MyPlanActions from '../../Redux/MyPlanRedux'
 import MemberActions from '../../Redux/MemberRedux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { AsyncStorage } from 'react-native'
-var RCTNetworking = require('RCTNetworking')
 import { MKIconToggle, MKColor, MKSwitch } from 'react-native-material-kit'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
-var {height, width} = Dimensions.get('window')
 const window = Dimensions.get('window')
+const Divider = () => { return <View style={styles.divider} /> }
 
-const Divider = () => {
-  return <View style={styles.divider} />
-}
+let RCTNetworking = require('RCTNetworking')
+let {height, width} = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 class SettingsContent extends Component {
   constructor () {
@@ -59,51 +59,57 @@ class SettingsContent extends Component {
   }
 
   handlePressDashBoard = () => {
+    gaTracker.trackEvent('Side Menu', 'Dashboard')
     this.toggleDrawer()
     NavigationActions.WelcomeDashBoard()
   }
 
   handlePressPlans = () => {
-    console.tron.log(this.props.data)
-    var action
+    gaTracker.trackEvent('Side Menu', 'My Plan')
+    let action
     if (this.props.visibilityRules.myHealthPlanTile.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.visibilityRules.myHealthPlanTile.tileUrl})
       this.toggleDrawer()
     } else if (this.props.visibilityRules.myHealthPlanTile.tileType == 'native') {
-      var routerName = this.props.visibilityRules.myHealthPlanTile.routerName
+      let routerName = this.props.visibilityRules.myHealthPlanTile.routerName
       action = NavigationActions[routerName]()
       this.toggleDrawer()
     }
   }
 
   handlePressBenefits = () => {
+    gaTracker.trackEvent('Side Menu', 'Benefits')
     this.toggleDrawer()
     NavigationActions.myplanbenefits()
   }
 
   handlePressResources = () => {
+    gaTracker.trackEvent('Side Menu', 'Resources')
     this.toggleDrawer()
     NavigationActions.Resources()
   }
 
-  handlePressId= () => {
+  handlePressId = () => {
+    gaTracker.trackEvent('Side Menu', 'ID Card')
     this.toggleDrawer()
     NavigationActions.MyView()
   }
 
-  handlePressHSA= () => {
+  handlePressHSA = () => {
+    gaTracker.trackEvent('Side Menu', 'HSA')
     this.toggleDrawer()
     NavigationActions.Hsa()
   }
 
-  handlePressSupport= () => {
+  handlePressSupport = () => {
+    gaTracker.trackEvent('Side Menu', 'Support')
     this.toggleDrawer()
     NavigationActions.SupportScreen()
   }
 
-  handlePressFindCare= () => {
+  handlePressFindCare = () => {
+    gaTracker.trackEvent('Side Menu', 'Find Care')
     this.toggleDrawer()
-    // NavigationActions[this.props.visibilityRules.opdTile.routerName]()
     if (this.props.visibilityRules.opdTile.tileType == 'webview') {
       NavigationActions.MyView({responseURL: this.props.visibilityRules.opdTile.tileUrl})
     } else if (this.props.visibilityRules.opdTile.tileType == 'native') {
@@ -111,57 +117,54 @@ class SettingsContent extends Component {
     }
   }
 
-  handlePressPayment= () => {
+  handlePressPayment = () => {
+    gaTracker.trackEvent('Side Menu', 'Payment')
     this.toggleDrawer()
     NavigationActions.MyView()
   }
 
-  handlePressSettings= () => {
+  handlePressSettings = () => {
+    gaTracker.trackEvent('Side Menu', 'Settings')
     this.toggleDrawer()
     NavigationActions.Settings()
   }
 
-  handlePressSupport= () => {
-    console.tron.log(this.props.data)
-    var action
+  handlePressSupport = () => {
+    gaTracker.trackEvent('Side Menu', 'Support')
+    let action
     if (this.props.visibilityRules.supportTile.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.visibilityRules.supportTile.tileUrl})
       this.toggleDrawer()
     } else if (this.props.visibilityRules.supportTile.tileType == 'native') {
-      var routerName = this.props.visibilityRules.supportTile.routerName
+      let routerName = this.props.visibilityRules.supportTile.routerName
       action = NavigationActions[routerName]()
       this.toggleDrawer()
     }
   }
 
-  handlePressPolicy= () => {
-    console.tron.log(this.props.data)
-    var action
+  handlePressPolicy =  () => {
+    gaTracker.trackEvent('Side Menu', 'Terms of Use')
+    let action
     if (this.props.visibilityRules.touTile.tileType == 'webview') {
       action = NavigationActions.MyView({responseURL: this.props.visibilityRules.touTile.tileUrl})
       this.toggleDrawer()
     } else if (this.props.visibilityRules.touTile.tileType == 'native') {
-      var routerName = this.props.visibilityRules.touTile.routerName
+      let routerName = this.props.visibilityRules.touTile.routerName
       action = NavigationActions[routerName]()
       this.toggleDrawer()
     }
   }
 
   handlePressLogout = () => {
+    gaTracker.trackEvent('Side Menu', 'Logout')
     this.toggleDrawer()
-    console.tron.log('clear the store before logout')
-   // AsyncStorage.clear();
     this.props.clearLogin()
-    RCTNetworking.clearCookies((cleared) => {
-      console.tron.log('clearing local cookies for the app')
-    })
+    RCTNetworking.clearCookies((cleared) => {})
     this.props.attemptLogout(this.props.logoutUrl)
     NavigationActions.login({'origin': 'logout'})
   }
 
   render () {
-    console.tron.log(Metrics.screenHeight)
-    console.tron.log(Metrics.screenWidth)
     return (
       <ScrollView style={[styles.wrapper]}>
         <View style={styles.options}>

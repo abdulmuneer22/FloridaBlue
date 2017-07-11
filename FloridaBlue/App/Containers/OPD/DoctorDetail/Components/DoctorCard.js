@@ -13,7 +13,6 @@ import {
 } from 'react-native'
 
 import { Card } from 'native-base'
-
 import { Colors, Metrics, Fonts } from '../../../../Themes'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -22,12 +21,14 @@ import styles from '../DoctorDetailStyle'
 import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import Flb from '../../../../Themes/FlbIcon'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+const window = Dimensions.get('window')
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
     .build()
-
-const window = Dimensions.get('window')
 
 class DoctorCard extends Component {
   constructor (props) {
@@ -37,8 +38,7 @@ class DoctorCard extends Component {
   }
 
   handleCall (phone) {
-    console.tron.log(phone)
-    console.log('im number' + phone)
+    gaTracker.trackEvent('Provider Detail', 'Phone Call')
     const url = `tel:${phone}`
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
@@ -50,6 +50,7 @@ class DoctorCard extends Component {
   }
 
   handleMaps (address) {
+    gaTracker.trackEvent('Provider Detail', 'Mapped Location')
     const url = `http://maps.apple.com/?daddr=` + address.addressLine1 + ' ' + address.addressLine2 + ' ' + address.city + ' ' + address.state +
     ' ' + address.zipCode
 
