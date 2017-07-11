@@ -130,7 +130,7 @@ class NotificationsView extends Component {
                           paddingTop: 5,
                           marginLeft: 1,
                           marginRight: 20
-                        }}>{data.title}!</Text>
+                        }}>{data.title}</Text>
                       </View>
                       <View style={{ flex: 0.4, marginTop: 10 }}>
                         <Text style={{
