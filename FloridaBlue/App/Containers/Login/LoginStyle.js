@@ -52,7 +52,8 @@ export default StyleSheet.create({
   newSignRow: {
     position: 'absolute',
     top: Metrics.baseMargin * Metrics.screenHeight * 0.0768,
-    paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.004
+    alignSelf: 'center'
+    // paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.004
   },
   signUpButton: {
     width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.056 : Metrics.baseMargin * Metrics.screenWidth * 0.060,
