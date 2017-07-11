@@ -72,14 +72,10 @@ class PushController extends Component {
     })
   }
 
-  /*
-
   componentWillUnmount () {
     this.notificationListner.remove()
     this.refreshTokenListener.remove()
   }
-
-  */
 
   render () {
     return null

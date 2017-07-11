@@ -138,7 +138,7 @@ class NotificationsView extends Component {
                           color: Colors.flBlue.anvil,
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022
                         }} >
-                          {data.body}
+                          {data.cardContent}
                         </Text>
                       </View>
                     </View>
