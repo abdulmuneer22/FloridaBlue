@@ -142,11 +142,11 @@ class Settings extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
 
-        <View style={{flex:1}}>
+        <View style={{flex:1,backgroundColor:Colors.flBlue.bg2}}>
           <View style={styles.cardContainer}>
             <BCard style={styles.card}>
               <View style={styles.cardIcon}>
-                <Flb name={'fingerprint'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.teal} />
+                <Flb name={'fingerprint'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
               </View>
               <View style={styles.cardTextContainer}>
               { this.props.touchEnabled ?
@@ -172,13 +172,13 @@ class Settings extends Component {
             <TouchableOpacity onPress={Permissions.openSettings} style={styles.cardContainer}>
               <BCard style={styles.card}>
                 <View style={styles.cardIcon}>
-                  <Flb name={'explore'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.teal} />
+                  <Flb name={'explore'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                 </View>
                 <View style={styles.cardTextContainer}>
                   <Text allowFontScaling={false} style={styles.cardText}>Geo-location Settings</Text>
                 </View>
                 <View style={styles.cardIndicator}>
-                  <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.teal} />
+                  <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                 </View>
               </BCard>
             </TouchableOpacity>
@@ -188,13 +188,13 @@ class Settings extends Component {
             <TouchableOpacity onPress={Permissions.openSettings} style={styles.cardContainer}>
               <BCard style={styles.card}>
                 <View style={styles.cardIcon}>
-                  <Flb name={'exclamation-circle'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.teal} />
+                  <Flb name={'exclamation-circle'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                 </View>
                 <View style={styles.cardTextContainer}>
                   <Text allowFontScaling={false} style={styles.cardText}>Push Notification Settings</Text>
                 </View>
                 <View style={styles.cardIndicator}>
-                  <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.teal} />
+                  <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                 </View>
               </BCard>
             </TouchableOpacity>
