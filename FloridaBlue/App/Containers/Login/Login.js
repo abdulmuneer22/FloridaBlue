@@ -841,11 +841,7 @@ class Login extends Component {
           <Image source={Images.background} style={styles.backgroundImage} />
 
           <Clouds />
-          { !this.props.agentLogin ?
-              <CityScape />
-            :
-              null
-          }
+          <CityScape />
 
           <View keyboardShouldPersistTaps='always' style={styles.container}>
 
@@ -853,30 +849,24 @@ class Login extends Component {
               <Image source={Images.clearLogo} style={styles.logo} />
             </LogoView>
 
-            { this.props.agentLogin ?
-                this._renderAgentLogin()
+            { Platform.OS === 'ios' && this.state.touchAvailable ?
+                this._renderTouchAvailableLogin()
               :
-                <View>
-                  { Platform.OS === 'ios' && this.state.touchAvailable ?
-                      this._renderTouchAvailableLogin()
-                    :
-                      this._renderLogin()
-                  }
-
-                  <SignUpView>
-                    <TouchableOpacity onPress={() => {
-                      NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
-                      gaTracker.trackEvent('Login', 'Forgot Password')}}>
-                      <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {
-                      NavigationActions.screen_1()
-                      gaTracker.trackEvent('Login', 'Sign Up') }}>
-                      <Image style={styles.signUpButton} source={Images.signUpButton} />
-                    </TouchableOpacity>
-                  </SignUpView>
-                </View>
+                this._renderLogin()
             }
+
+            <SignUpView>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+                gaTracker.trackEvent('Login', 'Forgot Password')}}>
+                <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.screen_1()
+                gaTracker.trackEvent('Login', 'Sign Up') }}>
+                <Image style={styles.signUpButton} source={Images.signUpButton} />
+              </TouchableOpacity>
+            </SignUpView>
           </View>
 
           {this.state.modalVisible && this._moreInfo()}
@@ -919,8 +909,7 @@ const mapStateToProps = (state) => {
     touchEnabled: state.setting.touchEnabled,
     touchCheckboxVisible: state.login.touchCheckboxVisible,
     logoutUrl: state.login.logoutUrl,
-    credentialStored: state.setting.credentialStored,
-    agentLogin: state.login.agentLogin
+    credentialStored: state.setting.credentialStored
   }
 }
 
@@ -935,8 +924,7 @@ const mapDispatchToProps = (dispatch) => {
     attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
-    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
-    changeAgentLogin: (agentLogin) => dispatch(LoginActions.changeAgentLogin(agentLogin))
+    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored))
   }
 }
 

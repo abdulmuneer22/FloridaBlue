@@ -17,8 +17,7 @@ const { Types, Creators } = createActions({
   logout: [],
   changeUserName: ['username'],
   changePassword: ['password'],
-  currentScene: ['currentSceneValue'],
-  changeAgentLogin: ['agentLogin']
+  currentScene: ['currentSceneValue']
 })
 
 export const LoginTypes = Types
@@ -37,7 +36,6 @@ export const INITIAL_STATE = Immutable({
   fetching: false,
   logoutUrl: null,
   currentSceneValue: null,
-  agentLogin: false,
   touchDisclaimer: []
 })
 
@@ -69,8 +67,7 @@ export const logout = (state: Object) => state.merge({
   getTou: null,
   fetching: false,
   logoutUrl: null,
-  touchDisclaimer: [],
-  agentLogin: true
+  touchDisclaimer: []
 })
 
 // we're getting TOu Markup
@@ -90,9 +87,6 @@ export const password = (state: Object, {password} : Object) =>
   // we are updating currentScence
 export const _changeCurrentSceneValue = (state: Object, {currentSceneValue} : Object) => state.merge({currentSceneValue})
 
-// we are change touchAvailable
-export const _changeAgentLogin = (state: Object, {agentLogin} : Object) => state.merge({agentLogin})
-
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -107,8 +101,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEND_CONFIRM]: request,
   [Types.LOGIN_FAILURE]: failure,
   [Types.LOGOUT]: logout,
-  [Types.CURRENT_SCENE]: _changeCurrentSceneValue,
-  [Types.CHANGE_AGENT_LOGIN]: _changeAgentLogin
+  [Types.CURRENT_SCENE]: _changeCurrentSceneValue
 })
 
 /* ------------- Selectors ------------- */
