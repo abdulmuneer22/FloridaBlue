@@ -125,8 +125,8 @@ class Login extends Component {
           case 'LOCKED':
             this.setState({touchAvailable: true})
             this.setState({touchStatus: 'LOCKED'})
-            this.props.changeCredentialStored(true)
-            this.props.changeTouchEnabled(true)
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(false)
             break
           default:
             this.setState({touchAvailable: false})

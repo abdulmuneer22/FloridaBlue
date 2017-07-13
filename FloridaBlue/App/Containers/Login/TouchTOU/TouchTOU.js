@@ -29,11 +29,10 @@ class TouchTOU extends Component {
 
   _handleClose () {
     TouchManager.removeCredentials((error, credentials) => {
-      var status = credentials[0]
+      let status = credentials[0]
       if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
-        this.props.changeTouchAvailable(true)
         this.props.handleChangeUserName("")
         this.props.handleChangePassword("")
         NavigationActions.WelcomeDashBoard()
@@ -47,7 +46,9 @@ class TouchTOU extends Component {
       if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
-        this.props.changeTouchAvailable(false)
+        this.props.handleChangeUserName("")
+        this.props.handleChangePassword("")
+        NavigationActions.WelcomeDashBoard()
       }
     })
   }
@@ -101,17 +102,6 @@ class TouchTOU extends Component {
             { cancelable: false }
           )
         }
-        TouchManager.removeCredentials((error, credentials) => {
-          var status = credentials[0]
-          if (status == 'SUCCESS') {
-            this.props.changeTouchEnabled(false)
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchAvailable(true)
-            this.props.handleChangeUserName("")
-            this.props.handleChangePassword("")
-            NavigationActions.WelcomeDashBoard()
-          }
-        })
       }
     })
   }
@@ -187,8 +177,7 @@ const mapDispatchToProps = (dispatch) => {
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
     changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
     handleChangeUserName: (username) => dispatch(LoginActions.changeUserName(username)),
-    handleChangePassword: (password) => dispatch(LoginActions.changePassword(password)),
-    changeTouchAvailable: (touchAvailable) => dispatch(LoginActions.changeTouchAvailable(touchAvailable))
+    handleChangePassword: (password) => dispatch(LoginActions.changePassword(password))
   }
 }
 
