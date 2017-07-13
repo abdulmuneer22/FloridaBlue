@@ -41,6 +41,7 @@ import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
 import CheckBox from 'react-native-checkbox'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import PopoverTooltip from 'react-native-popover-tooltip'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 const window = Dimensions.get('window')
@@ -523,7 +524,8 @@ class Login extends Component {
 
   _moreInfo () {
     return (
-      <View style={styles.informationPopup}>
+      <View>
+      {/*<View style={styles.informationPopup}>
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => {
@@ -611,6 +613,7 @@ class Login extends Component {
             </Text>
           </TouchableOpacity>
         </View>
+      </View> */}
       </View>
     )
   }
@@ -744,80 +747,6 @@ class Login extends Component {
     )
   }
 
-  _renderAgentLogin() {
-    return (
-      <View>
-        <LoginView>
-          <View style={styles.loginContainer}>
-            <View style={styles.textFieldContainer}>
-              <MKTextField
-                ref='username'
-                style={styles.textField}
-                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                keyboardType='default'
-                returnKeyType='next'
-                autoCapitalize='none'
-                autoCorrect={false}
-                onChangeText={this.props.handleChangeUserName}
-                value={this.props.username}
-                underlineColorAndroid={Colors.coal}
-                onSubmitEditing={() => this.refs.password.focus()}
-                placeholder={I18n.t('username')}
-                placeholderTextColor={Colors.steel} />
-            </View>
-            <View style={styles.textFieldContainer}>
-              <MKTextField
-                ref='password'
-                style={styles.textField}
-                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                keyboardType='default'
-                returnKeyType='done'
-                autoCapitalize='none'
-                autoCorrect={false}
-                secureTextEntry
-                password
-                onChangeText={this.props.handleChangePassword}
-                onSubmitEditing={this._handleLogin}
-                value={this.props.password}
-                underlineColorAndroid={Colors.coal}
-                placeholder={I18n.t('userpassword')}
-                placeholderTextColor={Colors.steel} />
-            </View>
-            <View style={styles.textFieldContainer}>
-              <MKTextField
-                ref='password'
-                style={styles.textField}
-                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                keyboardType='default'
-                returnKeyType='done'
-                autoCapitalize='none'
-                autoCorrect={false}
-                secureTextEntry
-                password
-                onChangeText={this.props.handleChangePassword}
-                onSubmitEditing={this._handleLogin}
-                value={this.props.password}
-                underlineColorAndroid={Colors.coal}
-                placeholder={'Site Password'}
-                placeholderTextColor={Colors.steel} />
-            </View>
-          </View>
-        </LoginView>
-
-        <LoginButtonView>
-          {this.props.mfetching || this.props.fetching
-            ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
-          : <TouchableOpacity onPress={() => { this._handleLogin() }}>
-            <Image style={{width: Metrics.screenWidth * 0.5,
-              borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-              height: Metrics.screenHeight * 0.064}}
-              source={Images.loginButtonGreen} />
-          </TouchableOpacity> }
-        </LoginButtonView>
-      </View>
-    )
-  }
-
   render () {
     var transparent
     if (this.props.mfetching || this.props.fetching) {
@@ -876,15 +805,18 @@ class Login extends Component {
               <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
             <View>
-              <TouchableWithoutFeedback onPress={() => {
-                if (this.state.modalVisible === true) {
-                  this.setState({modalVisible: false})
-                } else {
-                  this.setState({modalVisible: true})
+              <PopoverTooltip
+                ref='infoTooltip'
+                buttonComponent = {
+                  <Image source={Images.infoIcon} />
                 }
-              }}>
-                <Image source={Images.infoIcon} />
-              </TouchableWithoutFeedback>
+                items = {[
+                    {
+                      label: 'Agent Login',
+                      onPress: () => { }
+                    }
+                  ]}
+                />
             </View>
           </View>
 
