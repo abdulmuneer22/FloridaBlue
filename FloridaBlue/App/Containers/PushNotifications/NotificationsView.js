@@ -262,7 +262,7 @@ const mapDispatchToProps = (dispatch) => {
     onLocalNotification: (localNotification) => dispatch(NotificationActions.onLocalNotification(localNotification)),
     postArchive: (archiveObject) => dispatch(NotificationActions.postArchive(archiveObject)),
     markAllRead: (allRead) => dispatch(NotificationActions.markAllRead(allRead)),
-    deleteNotification: (messageId) => dispatch(NotificationActions.deleteNotification(messageId))
+    deleteNotification: (newData) => dispatch(NotificationActions.deleteNotification(newData))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationsView)
