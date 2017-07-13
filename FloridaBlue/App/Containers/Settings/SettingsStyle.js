@@ -25,38 +25,42 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.headerFont,
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
   },
-  settingContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    //backgroundColor:'red',
-    justifyContent: 'space-between'
-  },
-  settingContainer1: {
-    flex: 1,
-   // flexDirection: 'row',
-    //backgroundColor:'yellow',
-    justifyContent: 'space-between'
-  },
-  settingContainer2: {
-    flex: 1,
-    //flexDirection: 'row',
-   // backgroundColor:'green',
-    justifyContent: 'space-between'
-  },
-  settingText: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0040,
-    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0040,
-    marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0025,
-    fontFamily: Fonts.type.headerFont,
-    fontWeight: (Platform.OS === 'ios') ? '500' : '400',
+  cardContainer: {
     alignItems: 'center',
-    color: Colors.flBlue.anvil
+    justifyContent: 'center',
+    flex: 1
+  },
+  card: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    flex: 1,
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
+  },
+  cardIcon: {
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.transparent
+  },
+  cardTextContainer: {
+    flex: 6,
+    alignItems: 'flex-start'
+  },
+  cardText: {
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0030,
+    fontWeight: '600',
+    color: Colors.flBlue.grey3,
+    fontFamily: Fonts.type.subHeaderFont,
+    backgroundColor: Colors.transparent
+  },
+  cardIndicator: {
+    flex: 1,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    backgroundColor: Colors.transparent
   },
   settingStatusSwitch: {
-    //backgroundColor:'red',
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
-    marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.0030
   }
 })

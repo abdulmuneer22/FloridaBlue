@@ -21,8 +21,10 @@ import { connect } from 'react-redux'
 import { MKSwitch, MKColor } from 'react-native-material-kit'
 import styles from './SettingsStyle'
 import NavItems from '../../Navigation/NavItems.js'
+import { Card as BCard} from 'native-base'
 import SettingActions from '../../Redux/SettingRedux'
 import { Images, Metrics, Colors, Fonts } from '../../Themes'
+import Flb from '../../Themes/FlbIcon'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const Permissions = require('react-native-permissions')
@@ -140,44 +142,65 @@ class Settings extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
 
-        <View style={{flex:1}}>
-
-            <View style={styles.settingContainer1}>
-          {Platform.OS === 'ios' && this.state.showTouchSetting ?
-            <View style={styles.settingContainer}>
-              {this.props.touchEnabled ?
-                <Text allowFontScaling={false} style={styles.settingText}>Touch ID Enabled</Text>
-              :
-                <Text allowFontScaling={false} style={styles.settingText}>Enable Touch ID</Text>
-              }
-              <MKSwitch style={styles.settingStatusSwitch}
-                checked={this.props.touchEnabled}
-                trackSize={30}
-                trackLength={52}
-                onColor={Colors.flBlue.ocean}
-                thumbOnColor={Colors.flBlue.ocean}
-                rippleColor={Colors.flBlue.ocean}
-                onPress={() => this._handleTouchToggle()}
-              />
+        <View style={{flex:1,backgroundColor:Colors.flBlue.bg2}}>
+          <View style={styles.cardContainer}>
+            <BCard style={styles.card}>
+              <View style={styles.cardIcon}>
+                <Flb name={'fingerprint'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
               </View>
-               :
-            null
-        }
+              <View style={styles.cardTextContainer}>
+              { this.props.touchEnabled ?
+                <Text allowFontScaling={false} style={styles.cardText}>Touch ID Enabled</Text>
+                :
+                <Text allowFontScaling={false} style={styles.cardText}>Enable Touch ID</Text>
+              }
+              </View>
+                <MKSwitch style={styles.settingStatusSwitch}
+                  checked={this.props.touchEnabled}
+                  trackSize={30}
+                  trackLength={52}
+                  onColor={Colors.flBlue.lightsky}
+                  offColor={Colors.flBlue.lightBlue}
+                  thumbOnColor={Colors.flBlue.ocean}
+                  thumbOffColor={Colors.flBlue.ocean}
+                  onPress={() => this._handleTouchToggle()}
+                />
+            </BCard>
+          </View>
 
+          <View style={styles.cardContainer}>
+            <TouchableOpacity onPress={Permissions.openSettings} style={styles.cardContainer}>
+              <BCard style={styles.card}>
+                <View style={styles.cardIcon}>
+                  <Flb name={'explore'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
+                </View>
+                <View style={styles.cardTextContainer}>
+                  <Text allowFontScaling={false} style={styles.cardText}>Geo-location Settings</Text>
+                </View>
+                <View style={styles.cardIndicator}>
+                  <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
+                </View>
+              </BCard>
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.settingContainer1}>
-          <TouchableOpacity onPress={Permissions.openSettings}>
-            <Text allowFontScaling={false} style={styles.settingText}>Geo-location Settings</Text>
-          </TouchableOpacity>
-        </View>
+          <View style={styles.cardContainer}>
+            <TouchableOpacity onPress={Permissions.openSettings} style={styles.cardContainer}>
+              <BCard style={styles.card}>
+                <View style={styles.cardIcon}>
+                  <Flb name={'exclamation-circle'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
+                </View>
+                <View style={styles.cardTextContainer}>
+                  <Text allowFontScaling={false} style={styles.cardText}>Push Notification Settings</Text>
+                </View>
+                <View style={styles.cardIndicator}>
+                  <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
+                </View>
+              </BCard>
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.settingContainer2}>
-        <TouchableOpacity onPress={Permissions.openSettings}>
-          <Text allowFontScaling={false} style={styles.settingText}>Push Notification Settings</Text>
-        </TouchableOpacity>
-        </View>
-        <View style={{flex:5}}/>
-        </View>
+          <View style={{flex:5}}/>
         </View>
       </View>
     )

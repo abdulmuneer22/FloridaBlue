@@ -14,6 +14,7 @@ import {
 } from 'react-native'
 
 import LoginActions from '../../../Redux/LoginRedux'
+import SettingsActions from '../../../Redux/SettingRedux'
 import I18n from 'react-native-i18n'
 import styles from './TermsStyle'
 import { Colors, Fonts, Images, Metrics } from '../../../Themes'
@@ -204,8 +205,8 @@ const mapStateToProps = (state) => {
     error: state.login.error,
     agreeTermsOfUse: state.login.agreeTermsOfUse,
     getTou: state.login.getTou,
-    touchEnabled: state.login.touchEnabled,
-    credentialStored: state.login.credentialStored
+    touchEnabled: state.setting.touchEnabled,
+    credentialStored: state.setting.credentialStored
   }
 }
 
