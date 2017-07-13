@@ -98,10 +98,11 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: Colors.flBlue.grey3,
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.0033
+    // height: Metrics.baseMargin * Metrics.screenHeight * 0.0027
   },
   touchCheckbox: {
-    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0005
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
+    width: Metrics.baseMargin * Metrics.screenHeight * 0.0025
   },
   link: {
     color: Colors.flBlue.ocean,

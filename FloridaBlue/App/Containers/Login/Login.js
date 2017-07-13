@@ -374,8 +374,8 @@ class Login extends Component {
           case 'LOCKED':
             this.setState({touchAvailable: true})
             this.setState({touchStatus: 'LOCKED'})
-            this.props.changeCredentialStored(true)
-            this.props.changeTouchEnabled(true)
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(false)
             errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
           default:
             this.setState({touchAvailable: false})
@@ -481,8 +481,8 @@ class Login extends Component {
   _handleLockedTouch () {
     this.setState({touchAvailable: true})
     this.setState({touchStatus: 'LOCKED'})
-    this.props.changeCredentialStored(true)
-    this.props.changeTouchEnabled(true)
+    this.props.changeCredentialStored(false)
+    this.props.changeTouchEnabled(false)
   }
 
   _handleLogin () {
@@ -664,8 +664,8 @@ class Login extends Component {
             </HideableView>
             <HideableView style={styles.fingerprintContainer} visible={!this.props.credentialStored} removeWhenHidden={true}>
               <View style={styles.fingerprintButton}>
-                <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
-                  var checked = this.refs.touchCheckbox.state.checked
+                <MKCheckbox ref='touchCheckbox'  style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
+                  let checked = this.refs.touchCheckbox.state.checked
                   this._handleTouchCheckbox(checked)
                 }}/>
                 <Text allowFontScaling={false} style={styles.touchInstruction}>Setup login using your fingerprint</Text>
