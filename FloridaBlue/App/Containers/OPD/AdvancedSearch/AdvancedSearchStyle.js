@@ -26,6 +26,17 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.sky
   },
+  headerContainerLandscape: {
+    flexDirection: 'row',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+   // padding: Metrics.mediumMargin,
+    // resizeMode:'cover',
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth * 1.78
+    // backgroundColor: Colors.flBlue.sky
+  },
   cardButton: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -311,9 +322,18 @@ export default StyleSheet.create({
     height: Metrics.screenHeight * .05,
     marginLeft: Metrics.doubleBaseMargin
   },
+  dropDLandscape : {
+     width: Metrics.screenWidth * 1.645,
+    height: Metrics.screenHeight * .05,
+    marginLeft: Metrics.doubleBaseMargin
+  },
   dropdown1: {
     width: Metrics.screenWidth * 0.55,
     marginLeft: Metrics.baseMargin
+  },
+  dropDownLandscape: {
+    width: Metrics.screenWidth * 1.645,
+    marginLeft: Metrics.doubleBaseMargin
   },
   languagedropdown: {
     width: Metrics.screenWidth * 0.5,
@@ -363,6 +383,16 @@ export default StyleSheet.create({
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
     color: Colors.steel,
     fontFamily: Fonts.type.emphasis
+  },
+  slider: {
+    width: Metrics.screenWidth * 0.87,
+    marginLeft: 10,
+    backgroundColor: Colors.snow
+  },
+  sliderLandscape: {
+    width: Metrics.screenWidth * 1.65,
+    marginLeft: 10,
+    backgroundColor: Colors.snow
   }
 
 })

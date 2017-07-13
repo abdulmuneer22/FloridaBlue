@@ -39,6 +39,7 @@ const { height, width } = Dimensions.get('window')
 const theme = getTheme()
 const Permissions = require('react-native-permissions')
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+import Orientation from 'react-native-orientation';
 
 const closeIcon = (<Icon name='close'
   size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
@@ -89,10 +90,21 @@ class ProviderSearch extends Component {
 
     this.handleNeedHelp = this.handleNeedHelp.bind(this)
     this.dismissNeedHelp = this.dismissNeedHelp.bind(this)
+    this._orientationDidChange = this._orientationDidChange.bind(this)
   }
 
   onSelect (index, value) {
     this.setState({helpStatus: false})
+  }
+
+   _orientationDidChange (orientation) {
+    if (orientation === 'LANDSCAPE') {
+      this.props.changeOrientation(false)
+      console.log('Hey, Im in landscape mode')
+    } else {
+     this.props.changeOrientation(true)
+     console.log('Hey, Im in portrait mode')
+    }
   }
 
   componentDidMount () {
@@ -118,6 +130,7 @@ class ProviderSearch extends Component {
     if (this.props.categoryCode != 'ALL') {
       this.setState({specialityState: true})
     }
+    Orientation.addOrientationListener(this._orientationDidChange);
   }
 
   componentWillReceiveProps (newProps) {
@@ -352,7 +365,7 @@ class ProviderSearch extends Component {
 
   _renderHeader () {
     return (
-      <Image style={styles.headerContainer} source={Images.newHeaderImage}>
+      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
           {NavItems.backButton()}
         </View>
@@ -414,7 +427,7 @@ class ProviderSearch extends Component {
               </HideableView>
 
               <HideableView visible={this.state.unknownCareState} removeWhenHidden>
-                <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropDown} renderRow={this._renderDropdownRow.bind(this)}>
+                <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={this.props.isPortrait ? styles.dropDown : styles.dropDownLandscape} renderRow={this._renderDropdownRow.bind(this)}>
                   <MKTextField
                     ref='careType'
                     textInputStyle={{flex: 1,
@@ -434,7 +447,7 @@ class ProviderSearch extends Component {
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')}
-                  onSelect={this._specialitySelected} dropdownStyle={this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown  : styles.dropD}
+                  onSelect={this._specialitySelected} dropdownStyle={this.props.isPortrait ? this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown  : styles.dropD: this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDownLandscape  : styles.dropDownLandscape}
                   renderRow={this._renderDropdownRow.bind(this)}
                 // adjustFrame={style => this._dropdown_3_adjustFrame(style)}
                 >
@@ -610,7 +623,8 @@ const mapStateToProps = (state) => {
     searchRange: state.provider.searchRange,
     start: state.provider.start,
     configData: state.provider.configData,
-    geolocationEnabled: state.setting.geolocationEnabled
+    geolocationEnabled: state.setting.geolocationEnabled,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -635,7 +649,8 @@ const mapDispatchToProps = (dispatch) => {
     changeHomeAddress: (homeAddress) => dispatch(ProviderActions.changeHomeAddress(homeAddress)),
     changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner)),
     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
-    changeGeolocationEnabled: (geolocationEnabled) => dispatch(SettingActions.changeGeolocationEnabled(geolocationEnabled))
+    changeGeolocationEnabled: (geolocationEnabled) => dispatch(SettingActions.changeGeolocationEnabled(geolocationEnabled)),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

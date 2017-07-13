@@ -27,6 +27,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: Metrics.screenWidth
   },
+  headerContainerLandscape: {
+    flexDirection: 'row',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: Metrics.screenWidth * 1.78
+  },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
@@ -53,9 +60,7 @@ export default StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
-    width: Metrics.screenWidth,
-    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.55) : Metrics.screenHeight - (Metrics.screenHeight * 0.5655)
+    bottom: 0
   },
   item: {
     width: ITEM_WIDTH,
@@ -68,8 +73,7 @@ export default StyleSheet.create({
   },
   locationDetailContainer: {
     // backgroundColor:Colors.flBlue.ocean,
-    position: 'absolute',
-    top: (Platform.OS === 'ios') ? Metrics.textHeight2 * Metrics.screenHeight * 0.009 : Metrics.textHeight2 * Metrics.screenHeight * 0.008
+    position: 'absolute'
    // height: Metrics.textHeight2 * Metrics.screenHeight * 0.009,
    // width: Metrics.textHeight2 * Metrics.screenWidth * 0.0185
     // bottom:100

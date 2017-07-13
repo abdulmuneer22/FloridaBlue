@@ -36,6 +36,9 @@ import LinearGradient from 'react-native-linear-gradient'
 import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
 import DateTimePicker from 'react-native-modal-datetime-picker'
+import SettingActions from '../../../Redux/SettingRedux'
+import Orientation from 'react-native-orientation';
+
 
 const window = Dimensions.get('window')
 let moment = require('moment')
@@ -81,7 +84,7 @@ class ClaimsList extends Component {
     this.memberSelected = this.memberSelected.bind(this)
     this.sortClaims = this.sortClaims.bind(this)
     this.searchResults = this.searchResults.bind(this)
-    this.handleSearchClose = this.handleSearchClose.bind(this)
+    this._orientationDidChange = this._orientationDidChange.bind(this)
   }
 
   searchResults() {
@@ -100,14 +103,14 @@ class ClaimsList extends Component {
     }
   }
 
-  _renderHeader() {
-    return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
+  _renderHeader () {
+    return (<Image source={Images.newHeaderImage} style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
         {NavItems.backButton()}
       </View>
       <Text allowFontScaling={false} style={styles.headerTextStyle}>
-        Claim Overview
-</Text>
+           Claim Overview
+      </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
         {NavItems.settingsButton()}
       </View>
@@ -183,6 +186,32 @@ class ClaimsList extends Component {
     })
   }
 
+  componentWillMount() {
+    // The getOrientation method is async. It happens sometimes that
+    // you need the orientation at the moment the JS runtime starts running on device.
+    // `getInitialOrientation` returns directly because its a constant set at the
+    // beginning of the JS runtime.
+
+    const initial = Orientation.getInitialOrientation();
+    if (initial === 'PORTRAIT') {
+      this.props.changeOrientation(true)
+      console.log('Hey, Im in landscape mode')
+    } else {
+      this.props.changeOrientation(false)
+      console.log('Hey, Im in landscape mode')
+    }
+  }
+
+   _orientationDidChange (orientation) {
+    if (orientation === 'LANDSCAPE') {
+      this.props.changeOrientation(false)
+      console.log('Hey, Im in landscape mode')
+    } else {
+     this.props.changeOrientation(true)
+     console.log('Hey, Im in portrait mode')
+    }
+  }
+
   componentDidMount() {
     let newStartDate = moment(new Date()).add(-730, 'days').format('MM-DD-YYYY')
     let newEndDate = moment(new Date()).format('MM-DD-YYYY')
@@ -200,6 +229,7 @@ class ClaimsList extends Component {
     }
 
     this.setState({ members: memberArray })
+    Orientation.addOrientationListener(this._orientationDidChange);
   }
 
   componentWillReceiveProps(newProps) {
@@ -374,8 +404,44 @@ class ClaimsList extends Component {
               </View>
               <View style={{ flex: 1 }}>
                 {this._renderViewMore()}
-              </View>
-
+                </View>
+                {this.props.isPortrait
+                  ? <TouchableOpacity style={{flex: 1, margin: 15, marginTop: -5 }}>
+                    <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.deepBlue, paddingLeft: 10}} >
+                      <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                        <View style={{ flex: 0.15, marginRight: 10 }}>
+                          <Flb name='flag' size={Metrics.icons.large} color={Colors.snow} />
+                        </View>
+                        <View style={{ flex: 0.85 }}>
+                          <Text allowFontScaling={false} style={{
+                            fontSize: Fonts.size.input * Metrics.screenWidth * 0.002,
+                            color: Colors.snow
+                          }}>Pharmacy and/or claims of others on your plan are not shown. Click <Text style={{textDecorationLine: 'underline'}}>here</Text> to see all claims.</Text>
+                        </View>
+                      </View>
+                    </Card>
+                  </TouchableOpacity>
+                   /*<TouchableOpacity style={{flex: 1, margin: 15, marginTop: -5 }}>
+                      <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.deepBlue, paddingLeft: 10}} >
+                        <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                          <View style={{ flex: 0.15 }}>
+                            <Flb name='flag' size={Metrics.icons.medium} color={Colors.snow} />
+                          </View>
+                          <View style={{ flex: 0.85 }}>
+                            <Text allowFontScaling={false} style={{
+                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                              color: Colors.snow
+                            }}>
+                              <Text allowFontScaling={false} style={{
+                                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                                color: Colors.snow,
+                                fontWeight: '700'
+                              }}>Please Note: </Text>Pharmacy and/or claims of others on your plan are not shown. Click <Text style={{textDecorationLine: 'underline'}}>here</Text> to see all claims.</Text>
+                          </View>
+                        </View>
+                      </Card>
+                    </TouchableOpacity>*/
+              : null}
             </ScrollView>
           </View>
 
@@ -513,8 +579,9 @@ const mapStateToProps = (state) => {
     start: state.claims.start,
     end: state.claims.end,
     sortBy: state.claims.sortBy,
-    memberObject: state.member.memberObject,
-    memberId: state.claims.memberId
+    memberObject:state.member.memberObject,
+    memberId: state.claims.memberId,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -532,7 +599,8 @@ const mapDispatchToProps = (dispatch) => {
     changeStart: (start) => dispatch(ClaimsActions.changeStart(start)),
     changeEnd: (end) => dispatch(ClaimsActions.changeEnd(end)),
     changeSortBy: (sortBy) => dispatch(ClaimsActions.changeSortBy(sortBy)),
-    attemptMemberList: () => dispatch(ClaimsActions.memberListRequest())
+    attemptMemberList: () => dispatch(ClaimsActions.memberListRequest()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

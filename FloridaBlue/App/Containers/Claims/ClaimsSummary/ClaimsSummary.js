@@ -28,6 +28,9 @@ import Pie from '../../../Components/Pie'
 import ClaimsSummaryCard from './Components/ClaimsSummaryCard'
 import I18n from 'react-native-i18n'
 import { Button } from 'native-base'
+import SettingActions from '../../../Redux/SettingRedux'
+import Orientation from 'react-native-orientation';
+
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -42,6 +45,7 @@ class ClaimsSummary extends Component {
     // this.props.attemptClaimsSummary()
     // this.props.attemptClaimsList()
     this.viewCliamsList = this.viewCliamsList.bind(this)
+    this._orientationDidChange = this._orientationDidChange.bind(this)
   }
 
   viewCliamsList () {
@@ -51,7 +55,7 @@ class ClaimsSummary extends Component {
 
   _renderHeader () {
     return (
-      <Image source={Images.newHeaderImage} style={styles.headerContainer}>
+      <Image source={Images.newHeaderImage} style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape}>
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
           {NavItems.backButton()}
         </View>
@@ -65,12 +69,42 @@ class ClaimsSummary extends Component {
     )
   }
 
+   componentWillMount() {
+    // The getOrientation method is async. It happens sometimes that
+    // you need the orientation at the moment the JS runtime starts running on device.
+    // `getInitialOrientation` returns directly because its a constant set at the
+    // beginning of the JS runtime.
+
+    const initial = Orientation.getInitialOrientation();
+    if (initial === 'PORTRAIT') {
+      this.props.changeOrientation(true)
+      console.log('Hey, Im in landscape mode')
+    } else {
+      this.props.changeOrientation(false)
+      console.log('Hey, Im in landscape mode')
+    }
+  }
+
+   _orientationDidChange (orientation) {
+    if (orientation === 'LANDSCAPE') {
+      this.props.changeOrientation(false)
+      console.log('Hey, Im in landscape mode')
+    } else {
+     this.props.changeOrientation(true)
+     console.log('Hey, Im in portrait mode')
+    }
+  }
+
   componentDidMount () {
     console.tron.log('I am in Claims Summary screen')
     console.tron.log(this.props)
+    Orientation.addOrientationListener(this._orientationDidChange);
   }
 
+
   _displayCondition () {
+
+   
     const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
     const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
 
@@ -144,6 +178,7 @@ class ClaimsSummary extends Component {
     }
   }
   render () {
+  
     console.tron.log('im claims summary page', this.props.claimsdata)
     console.log('im claims summary page===>', this.props.claimsdata)
     return (
@@ -172,14 +207,16 @@ const mapStateToProps = (state) => {
     fetching: state.claims.fetching,
     claimsSummaryData: state.claims.claimsSummary,
     claimsdata: state.claims.claimslist,
-    error: state.claims.error
+    error: state.claims.error,
+    isPortrait: state.setting.isPortrait
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptClaimsSummary: () => dispatch(ClaimsActions.claimsSummaryRequest()),
-    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest())
+    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

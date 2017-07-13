@@ -26,6 +26,7 @@ import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+import SettingActions from '../../Redux/SettingRedux'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
@@ -46,7 +47,7 @@ class Resources extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
@@ -137,12 +138,14 @@ const mapStateToProps = (state) => {
   return {
     visibilityRules: state.member.visibilityRules,
     error: state.member.error,
-    fetching: state.member.fetching
+    fetching: state.member.fetching,
+    isPortrait: state.setting.isPortrait
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMember: () => dispatch(MemberActions.memberRequest())
+    attemptMember: () => dispatch(MemberActions.memberRequest()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

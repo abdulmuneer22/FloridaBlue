@@ -24,6 +24,7 @@ import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import PushController from './PushController'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
+import SettingActions from '../../Redux/SettingRedux'
 
 import NotificationActions from '../../Redux/NotificationRedux'
 const theme = getTheme()
@@ -79,7 +80,7 @@ class NotificationsView extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
       {NavItems.backButton()}
       <Text allowFontScaling={false} style={styles.headerTextStyle}>Notifications</Text>
       {NavItems.settingsButton()}
@@ -249,7 +250,8 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.Notification.fetching,
     notification: state.Notification.notification,
-    error: state.Notification.error
+    error: state.Notification.error,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -260,7 +262,8 @@ const mapDispatchToProps = (dispatch) => {
     onLocalNotification: (localNotification) => dispatch(NotificationActions.onLocalNotification(localNotification)),
     postArchive: (archiveObject) => dispatch(NotificationActions.postArchive(archiveObject)),
     markAllRead: (allRead) => dispatch(NotificationActions.markAllRead(allRead)),
-    deleteNotification: (messageId) => dispatch(NotificationActions.deleteNotification(messageId))
+    deleteNotification: (messageId) => dispatch(NotificationActions.deleteNotification(messageId)),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationsView)

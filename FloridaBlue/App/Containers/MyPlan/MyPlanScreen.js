@@ -31,6 +31,7 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 
 const window = Dimensions.get('window')
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+import SettingActions from '../../Redux/SettingRedux'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
@@ -44,7 +45,7 @@ class MyPlanScreen extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.backButton()}
       </View>
@@ -72,7 +73,7 @@ class MyPlanScreen extends Component {
       return (
         <View style={styles.container}>
 
-          <Card style={styles.planNameView}>
+          <Card style={this.props.isPortrait ? styles.planNameView : styles.planNameViewLandscape}>
 
             { this.props.data.annualDeductible || this.props.data.oop
               ? <Text allowFontScaling={false} style={styles.planNameText}>
@@ -83,7 +84,7 @@ class MyPlanScreen extends Component {
            }
           </Card>
 
-          <View style={styles.chartWrapper}>
+          <View style={this.props.isPortrait ? styles.chartWrapper: styles.chartWrapperLandscape}>
             {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} />
 
               : Alert.alert(
@@ -143,7 +144,7 @@ class MyPlanScreen extends Component {
 
   render () {
     console.tron.log(this.props.data)
-    return (
+    if (this.props.isPortrait) {return (
 
       <View style={styles.container}>
 
@@ -154,7 +155,22 @@ class MyPlanScreen extends Component {
 
       </View>
 
+    )} else {
+      return (
+
+      <ScrollView style={styles.container}>
+
+        <View>
+          {this._renderHeader()}
+        </View>
+        
+        {this._displayCondition()}
+
+      </ScrollView>
+
     )
+    }
+    
   }
 }
 
@@ -171,13 +187,15 @@ const mapStateToProps = (state) => {
     data: state.myplan.data,
     visibilityRules: state.member.visibilityRules,
     error: state.myplan.error,
-    planName: _.get(state, 'member.defaultContract.planName', '')
+    planName: _.get(state, 'member.defaultContract.planName', ''),
+    isPortrait: state.setting.isPortrait
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
-    attemptMember: () => dispatch(MemberActions.memberRequest())
+    attemptMember: () => dispatch(MemberActions.memberRequest()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

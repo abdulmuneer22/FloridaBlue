@@ -19,6 +19,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: Metrics.screenWidth
   },
+  headerContainerLandscape: {
+    flexDirection: 'row',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: Metrics.screenWidth * 1.78
+  },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
@@ -175,13 +182,22 @@ export default StyleSheet.create({
     color: Colors.steel,
     fontFamily: Fonts.type.emphasis
   },
-  dropDown: {
+ dropDown: {
     width: Metrics.screenWidth * 0.9,
     marginLeft: Metrics.doubleBaseMargin
   },
   dropD: {
     width: Metrics.screenWidth * 0.9,
     height: Metrics.screenHeight * .05,
+    marginLeft: Metrics.doubleBaseMargin
+  },
+  dropDLandscape: {
+    width: Metrics.screenWidth * 1.673,
+    height: Metrics.screenHeight * .05,
+    marginLeft: Metrics.doubleBaseMargin
+  },
+  dropDownLandscape: {
+    width: Metrics.screenWidth * 1.673,
     marginLeft: Metrics.doubleBaseMargin
   },
   dropdownItem: {

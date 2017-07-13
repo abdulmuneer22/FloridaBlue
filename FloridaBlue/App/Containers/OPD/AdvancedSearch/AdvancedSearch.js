@@ -405,7 +405,7 @@ class AdvancedSearch extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>
@@ -477,7 +477,7 @@ class AdvancedSearch extends Component {
                 onChangeText={this.props.changeProviderName}
               />
 
-              <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+              <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={this.props.isPortrait ? styles.dropdown : styles.dropDownLandscape} renderRow={this._renderDropdownRow.bind(this)}>
                 <MKTextField
                   ref='careType'
                   textInputStyle={{
@@ -498,7 +498,7 @@ class AdvancedSearch extends Component {
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.advancedPlanSubCategoryList, 'subCategoryName')} onSelect={this._specialitySelected}
-                  dropdownStyle={this.props.advancedPlanSubCategoryList.length >= 2 ? styles.dropdown : styles.dropD}
+                  dropdownStyle={this.props.isPortrait ? this.props.advancedPlanSubCategoryList.length >= 2 ? styles.dropdown : styles.dropD : this.props.advancedPlanSubCategoryList.length >= 2 ? styles.dropDownLandscape : styles.dropDLandscape}
                   renderRow={this._renderDropdownRow.bind(this)}>
                   <MKTextField
                     ref='advancedSpecialityType'
@@ -594,10 +594,7 @@ class AdvancedSearch extends Component {
                   step={1}
                   maximumTrackTintColor={(Platform.OS === 'ios') ? Colors.flBlue.anvil : Colors.flBlue.ocean}
                   minimumTrackTintColor={(Platform.OS === 'ios') ? Colors.flBlue.ocean : Colors.flBlue.night}
-                  style={{ width: Metrics.screenWidth * 0.87,
-                    marginLeft: 10,
-                    backgroundColor: Colors.snow
-                  }}
+                  style={this.props.isPortrait ? styles.slider : styles.sliderLandscape}
                 // onValueChange={this.props.changeSearchRange}
                   onSlidingComplete={this.props.changeSearchRange}
               />
@@ -887,7 +884,8 @@ const mapStateToProps = (state) => {
     unknownCareState: state.provider.unknownCareState,
     specialityState: state.provider.specialityState,
     networkCodeList: state.provider.networkCodeList,
-    geolocationEnabled: state.setting.geolocationEnabled
+    geolocationEnabled: state.setting.geolocationEnabled,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -918,7 +916,8 @@ const mapDispatchToProps = (dispatch) => {
     changeCareType: (careType) => dispatch(ProviderActions.changeCareType(careType)),
     changeAdvancedSpecialityType: (advancedSpecialityType) => dispatch(ProviderActions.changeAdvancedSpecialityType(advancedSpecialityType)),
     changeUrgentCareBanner: (showUrgentCareBanner) => dispatch(ProviderActions.changeUrgentCareBanner(showUrgentCareBanner)),
-    changeGeolocationEnabled: (geolocationEnabled) => dispatch(SettingActions.changeGeolocationEnabled(geolocationEnabled))
+    changeGeolocationEnabled: (geolocationEnabled) => dispatch(SettingActions.changeGeolocationEnabled(geolocationEnabled)),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

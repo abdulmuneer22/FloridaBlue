@@ -23,6 +23,12 @@ const window = Dimensions.get('window')
 var {height, width} = Dimensions.get('window')
 
 class MyPlanCard extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      isPortrait: this.props.orientationStatus
+    }
+  }
   customNavigation () {
     console.tron.log(this.props.data)
     var action
@@ -41,7 +47,7 @@ class MyPlanCard extends Component {
       }}>
         <Image source={Images[this.props.data.backgroundImage]} style={styles.summary} >
           <View style={styles.healthPlanView}>
-            <Text allowFontScaling={false} style={styles.healthPlanText}>
+            <Text allowFontScaling={false} style={this.props.orientationStatus ? styles.healthPlanText : styles.healthPlanTextLandscape}>
               {this.props.data.tileName['en']}
             </Text>
             <Flb name={this.props.data.tileIcon} style={styles.myPlanArrowIcon} size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.snow} />

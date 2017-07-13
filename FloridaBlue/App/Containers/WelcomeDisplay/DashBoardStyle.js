@@ -17,6 +17,28 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.ocean
   },
+  headerContainerLandscape: {
+    flexDirection: 'row',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.79)) / 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    // padding: Metrics.mediumMargin,
+    // resizeMode:'cover',
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth * 1.78
+    // backgroundColor: Colors.flBlue.ocean
+  },
+  headerImage : {
+     width: Metrics.screenWidth * 0.65,
+      resizeMode: 'contain',
+      height: Metrics.images.xm1
+  },
+  headerImageLandscape: {
+    width: Metrics.screenWidth * 0.65,
+      resizeMode: 'contain',
+      height: Metrics.images.xm1,
+      marginLeft: 160
+  },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
@@ -141,6 +163,12 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.subHeaderFont,
     color: Colors.flBlue.anvil
   },
+  greetingTextLandscape: {
+    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
+    fontFamily: Fonts.type.subHeaderFont,
+    color: Colors.flBlue.anvil,
+    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0034
+  },
   messageCountStyle: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -164,7 +192,7 @@ export default StyleSheet.create({
     marginBottom: 4,
   //  padding:5,
     // alignSelf: 'stretch',
-    width: Metrics.screenWidth
+    width: Metrics.screenWidth * 1.78
   },
   titleView: {
     flexWrap: 'wrap',
@@ -183,6 +211,14 @@ export default StyleSheet.create({
     marginLeft: Metrics.baseMargin
 
   },
+    tileStyleLandscape: {
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 7),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 4,
+    marginRight: 4
+   },
   tileStyle1: {
     width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.5),
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
@@ -194,6 +230,18 @@ export default StyleSheet.create({
     marginRight: (Metrics.baseMargin),
     marginLeft: (Metrics.baseMargin) / 2
 
+  },
+  linearGradientStyle: {
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
+  height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
+},
+linearGradientStyleLandscape: {
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4),
+  height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
   },
   tileTextStyle: {
   //  marginTop: Metrics.baseMargin,
@@ -232,6 +280,14 @@ export default StyleSheet.create({
 //  justifyContent:'center',
 //  height:40,
 // marginLeft:5
+  },
+  healthPlanTextLandscape: {
+    fontSize: Fonts.size.h2 * Metrics.screenWidth * 0.0025,
+    color: Colors.snow,
+    fontWeight: (Platform.OS === 'ios') ? '500' : '400',
+    backgroundColor: Colors.transparent,
+    fontFamily: Fonts.type.subHeaderFont,
+    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0092
   },
   healthPlanSubText: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
@@ -276,6 +332,18 @@ export default StyleSheet.create({
   //  alignSelf: 'stretch',
    // resizeMode: 'stretch',
     width: Metrics.screenWidth
+    // marginTop: 4
+    // marginBottom:0
+  },
+  footerImageLandscape: {
+    // flexDirection: 'row',
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.84) : Metrics.screenHeight - (Metrics.screenHeight * 0.88),
+     // height : window.height * 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  //  alignSelf: 'stretch',
+   // resizeMode: 'stretch',
+    width: Metrics.screenWidth * 1.78
     // marginTop: 4
     // marginBottom:0
   },
@@ -330,6 +398,31 @@ export default StyleSheet.create({
     color: Colors.flBlue.anvil,
     marginTop: Metrics.doubleBaseMargin
 
+  },
+  spacerView: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+  },
+  spacerViewLandscape: {
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    marginLeft: 35
+  },
+  opdStyle: {
+     flex: 1,
+     height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
+     justifyContent: 'center',
+     alignItems: 'center',
+     width: Metrics.screenWidth,
+     marginTop: 9
+  },
+  opdStyleLandscape: {
+     flex: 1,
+     height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
+     justifyContent: 'center',
+     alignItems: 'center',
+     width: Metrics.screenWidth * 1.78,
+     marginTop: 9
   }
 
 }

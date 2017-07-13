@@ -101,7 +101,7 @@ class Settings extends Component {
 
   _renderHeader () {
     return (
-      <Image style={styles.headerContainer} source={Images.newHeaderImage}>
+      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
           {NavItems.backButton()}
         </View>
@@ -213,7 +213,8 @@ const mapStateToProps = (state) => {
     credentialStored: state.setting.credentialStored,
     geolocationEnabled: state.setting.geolocationEnabled,
     pushEnabled: state.setting.pushEnabled,
-    username: state.login.username
+    username: state.login.username,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -222,7 +223,8 @@ const mapDispatchToProps = (dispatch) => {
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
     changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
     changeGeolocationEnabled: (geolocationEnabled) => dispatch(SettingActions.changeGeolocationEnabled(geolocationEnabled)),
-    changePushEnabled: (pushEnabled) => dispatch(SettingActions.changePushEnabled(pushEnabled))
+    changePushEnabled: (pushEnabled) => dispatch(SettingActions.changePushEnabled(pushEnabled)),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

@@ -18,6 +18,7 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 
 const window = Dimensions.get('window')
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+import SettingActions from '../../Redux/SettingRedux'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -32,7 +33,7 @@ class MyIdCard extends Component {
   }
 
   _renderHeader () {
-    return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
+    return (<Image source={Images.newHeaderImage} style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
@@ -238,13 +239,15 @@ const mapStateToProps = (state) => {
     fetching: state.myidcard.fetching,
     data: state.myidcard.data,
     error: state.myidcard.error,
-    planName: state.member.defaultContract
+    planName: state.member.defaultContract,
+    isPortrait: state.setting.isPortrait
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMyIdCard: () => dispatch(MyIdCardActions.myIdCardRequest())
+    attemptMyIdCard: () => dispatch(MyIdCardActions.myIdCardRequest()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

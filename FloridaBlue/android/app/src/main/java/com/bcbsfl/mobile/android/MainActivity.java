@@ -9,8 +9,12 @@ import android.graphics.drawable.BitmapDrawable;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.ReactActivity;
+import com.github.yamill.orientation.OrientationPackage;
 import com.facebook.react.common.LifecycleState;
 import com.facebook.react.shell.MainReactPackage;
+
+import android.content.Intent;
+import android.content.res.Configuration;
 
 public class MainActivity extends ReactActivity {
 
@@ -33,7 +37,8 @@ public class MainActivity extends ReactActivity {
                 .setApplication(getApplication())
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
-                .addPackage(new MainReactPackage())
+                .addPackage(new MainReactPackage(),
+            new OrientationPackage(this))
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();
@@ -42,4 +47,14 @@ public class MainActivity extends ReactActivity {
 
         setContentView(mReactRootView);
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Intent intent = new Intent("onConfigurationChanged");
+        intent.putExtra("newConfig", newConfig);
+        this.sendBroadcast(intent);
+    }
+
+
 }

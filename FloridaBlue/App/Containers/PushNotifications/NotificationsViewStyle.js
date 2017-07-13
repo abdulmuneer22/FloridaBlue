@@ -29,6 +29,17 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.sky
   },
+  headerContainerLandscape: {
+    flexDirection: 'row',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+   // padding: Metrics.mediumMargin,
+    // resizeMode:'cover',
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth * 1.78
+    // backgroundColor: Colors.flBlue.sky
+  },
 
   headerTextStyle: {
     color: Colors.flBlue.ocean,

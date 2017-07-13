@@ -2,13 +2,15 @@
 
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
+import Orientation from 'react-native-orientation'
 
 const { Types, Creators } = createActions({
   changeTouchEnabled: ['touchEnabled'],
   changeCredentialStored: ['credentialStored'],
   changeTouchAvailable: ['touchAvailable'],
   changeGeolocationEnabled: ['geolocationEnabled'],
-  changePushEnabled: ['pushEnabled']
+  changePushEnabled: ['pushEnabled'],
+  changeOrientation: ['isPortrait']
 })
 
 export const SettingTypes = Types
@@ -21,7 +23,8 @@ export const INITIAL_STATE = Immutable({
   credentialStored: false,
   touchAvailable: false,
   geolocationEnabled: false,
-  pushEnabled: false
+  pushEnabled: false,
+  isPortrait: true
 })
 
 /* ------------- Reducers ------------- */
@@ -41,6 +44,10 @@ export const _changeGeolocationEnabled = (state: Object, {geolocationEnabled} : 
 // we are change pushEnabled
 export const _changePushEnabled = (state: Object, {pushEnabled} : Object) => state.merge({pushEnabled})
 
+// we are change orientation
+export const _changeOrientation = (state: Object, {isPortrait} : Object) => state.merge({isPortrait})
+
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -48,5 +55,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_TOUCH_ENABLED]: _changeTouchEnabled,
   [Types.CHANGE_TOUCH_AVAILABLE]: _changeTouchAvailable,
   [Types.CHANGE_GEOLOCATION_ENABLED]: _changeGeolocationEnabled,
-  [Types.CHANGE_PUSH_ENABLED]: _changePushEnabled
+  [Types.CHANGE_PUSH_ENABLED]: _changePushEnabled,
+  [Types.CHANGE_ORIENTATION]: _changeOrientation
 })

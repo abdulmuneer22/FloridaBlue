@@ -113,7 +113,7 @@ class DoctorList extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>
@@ -387,7 +387,8 @@ const mapStateToProps = (state) => {
     newLocationState: state.provider.newLocationState,
     gender: state.provider.gender,
     programsList: state.provider.programsList,
-    officeHours: state.provider.officeHours
+    officeHours: state.provider.officeHours,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -400,7 +401,8 @@ const mapDispatchToProps = (dispatch) => {
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),
     changeListLimit: (listLimit) => dispatch(ProviderActions.changeListLimit(listLimit)),
-    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest())
+    attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

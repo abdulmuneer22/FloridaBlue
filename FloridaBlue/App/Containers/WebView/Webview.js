@@ -19,21 +19,18 @@ import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import WKWebView from 'react-native-wkwebview-reborn'
+import SettingActions from '../../Redux/SettingRedux'
 const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
 var btoa = require('btoa')
 
 class Webview extends Component {
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
         {NavItems.backButton()}
       </View>
-      <View style={{
-        alignItems: 'center',
-        marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
-        marginRight: Metrics.images.xm * Metrics.screenWidth * 0.0028
-      }}>
+      <View style={this.props.isPortrait ? styles.headerView : styles.headerViewLandscape}>
         <Image source={Images.themeLogo} style={{
           width: Metrics.screenWidth * 0.65,
           resizeMode: 'contain',
@@ -120,7 +117,14 @@ const mapStateToProps = (state) => {
   return {
   /*  fetching: state.login.fetching,
     responseURL: state.login.responseURL, */
-    smToken: state.login.smToken
+    smToken: state.login.smToken,
+    isPortrait: state.setting.isPortrait
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 export default connect(mapStateToProps)(Webview)

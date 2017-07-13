@@ -19,8 +19,8 @@ var messageCount = ''
 const theme = getTheme()
 
 class Greeting extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       userName: '',
       greetText: ''
@@ -72,9 +72,9 @@ class Greeting extends Component {
           <TouchableOpacity style={{flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center'}}
             onPress={() => NavigationActions.PushNotifications()}>
             <View style={{flex: 6, alignItems: 'flex-end', justifyContent: 'center'}}>
-              <Text allowFontScaling={false} style={styles.greetingText}>
-                {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
-               </Text>
+               <Text allowFontScaling={false} style={this.props.isPortrait ? styles.greetingText : styles.greetingTextLandscape}>
+              {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
+          </Text>
             </View>
             <View style={{flex: 2, alignItems: 'flex-start', justifyContent: 'center' }}>
               <View style={{flex: 2, alignItems: 'flex-start', justifyContent: 'center'}}>

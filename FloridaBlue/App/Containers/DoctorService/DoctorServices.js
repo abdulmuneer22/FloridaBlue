@@ -22,6 +22,7 @@ import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material
 import { Card } from 'native-base'
 const theme = getTheme()
 import LinearGradient from 'react-native-linear-gradient'
+import SettingActions from '../../Redux/SettingRedux'
 
 import CCard from './Components/Card'
 
@@ -41,7 +42,7 @@ class DoctorServices extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>
@@ -359,7 +360,8 @@ const mapStateToProps = (state) => {
     fetching: state.myplan.fetching,
     leftActive: state.myplan.leftActive,
     rightActive: state.myplan.rightActive,
-    preferredActive: state.myplan.preferredActive
+    preferredActive: state.myplan.preferredActive,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -367,7 +369,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     attemptHandleLeft: () => dispatch(MyPlanActions.myplanClickleft()),
     attemptHandleRight: () => dispatch(MyPlanActions.myplanClickright()),
-    attemptHandlePreferred: () => dispatch(MyPlanActions.myplanClickpreferred())
+    attemptHandlePreferred: () => dispatch(MyPlanActions.myplanClickpreferred()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

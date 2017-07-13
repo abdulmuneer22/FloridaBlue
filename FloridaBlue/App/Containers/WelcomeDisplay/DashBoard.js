@@ -36,6 +36,7 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 
 const theme = getTheme()
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3');
+import SettingActions from '../../Redux/SettingRedux'
 
 type LoginScreenProps = {
   dispatch: () => any,
@@ -56,17 +57,13 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-      <Image style={styles.headerContainer} source={Images.newHeaderImage}>
+      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
         <View style={{
           alignItems: 'center',
           marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
           marginLeft: Metrics.images.xm * Metrics.screenWidth * 0.003
         }}>
-          <Image source={Images.themeLogo} style={{
-            width: Metrics.screenWidth * 0.65,
-            resizeMode: 'contain',
-            height: Metrics.images.xm1
-          }}
+          <Image source={Images.themeLogo} style={this.props.isPortrait ? styles.headerImage : styles.headerImageLandscape}
         />
         </View>
 
@@ -144,7 +141,9 @@ class LandingScreen extends Component {
     }
   }
 
-  _displayCondition () {
+  _displayCondition (isPortrait) {
+    console.log('tesingPor',isPortrait)
+  //  var  testInPotrait = testInPotrait
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
@@ -153,13 +152,10 @@ class LandingScreen extends Component {
     } else if (this.props.visibilityRules != undefined) {
       return (
         <View style={styles.container}>
-          <Greeting userName={this.props.userName} unreadNotification={this.props.unreadNotification} allRead={this.props.markAllRead} />
+          <Greeting userName={this.props.userName} isPortrait={this.props.isPortrait}/>
           {
-            this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} /> : <View />}
-          <View style={{
-            flexWrap: 'wrap',
-            flexDirection: 'row'
-          }}>
+            this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} orientationStatus={this.props.isPortrait}/> : <View />}
+          <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>
             {
               this.props.visibilityRules != undefined && this.props.visibilityRules.coreTiles != undefined && this.props.visibilityRules.coreTiles.length > 0 ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
                 onItemPress = function () {
@@ -174,18 +170,13 @@ class LandingScreen extends Component {
                 }
                 return (
                   <TouchableOpacity
-                    style={
+                    style={ 
                     i % 2 == 0
-                      ? styles.tileStyle
+                      ? isPortrait ? styles.tileStyle : styles.tileStyleLandscape
                       : styles.tileStyle1
                   }
                     onPress={onItemPress.bind(this)} key={i}>
-                    <LinearGradient colors={tile.gradientColor} style={{
-                     //   alignItems: 'center',
-                     //   justifyContent: 'center',
-                      width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
-                      height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
-                    }}>
+                   <LinearGradient colors={tile.gradientColor} style={isPortrait ? styles.linearGradientStyle : styles.linearGradientStyleLandscape}>
 
                       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         <Image source={Images[tile.gradientImage]}
@@ -216,18 +207,9 @@ class LandingScreen extends Component {
           { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
 
             ? <TouchableOpacity onPress={this.handleOPDTileView}
-              style={{flex: 1,
-             // backgroundColor:'red',
-               // flexDirection: 'row',
-                height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
-                justifyContent: 'center',
-                alignItems: 'center',
-                width: Metrics.screenWidth,
-                marginTop: 4
+              style={this.props.isPortrait ? styles.opdStyle : styles.opdStyleLandscape} >
 
-              }} >
-
-              <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={styles.footerImage}>
+              <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={this.props.isPortrait ? styles.footerImage : styles.footerImageLandscape}>
                 <View style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -275,13 +257,14 @@ class LandingScreen extends Component {
       Images.dashboardGradient4
     ]
     var i = 0
+  
     return (
 
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {this._renderHeader()}
-        {this._displayCondition()}
+        {this._displayCondition(this.props.isPortrait)}
 
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -297,7 +280,8 @@ const mapStateToProps = (state) => {
     memberObject: state.member.memberObject,
     unreadNotification: state.Notification.unreadNotification,
     markAllRead: state.Notification.allRead,
-    localNotification: state.Notification.localNotification
+    localNotification: state.Notification.localNotification,
+     isPortrait: state.setting.isPortrait
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -305,7 +289,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptMember: () => dispatch(MemberActions.memberRequest()),
     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
     postFCMToken: (data) => dispatch(NotificationActions.postFCMToken(data)),
-    getNotification: () => dispatch(NotificationActions.getNotification())
+    getNotification: () => dispatch(NotificationActions.getNotification()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
 
   }
 }

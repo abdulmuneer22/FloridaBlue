@@ -24,14 +24,20 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 
 const window = Dimensions.get('window')
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+import SettingActions from '../../Redux/SettingRedux'
+import Orientation from 'react-native-orientation';
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
 
 class PlanBenefits extends Component {
+  constructor (props) {
+    super(props)
+    this._orientationDidChange = this._orientationDidChange.bind(this)
+  }
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
         {NavItems.backButton()}
       </View>
@@ -43,8 +49,21 @@ class PlanBenefits extends Component {
     </Image>)
   }
 
+   _orientationDidChange (orientation) {
+    if (orientation === 'LANDSCAPE') {
+      this.props.changeOrientation(false)
+      console.log('Hey, Im in landscape mode')
+    } else {
+     this.props.changeOrientation(true)
+     console.log('Hey, Im in portrait mode')
+    }
+  }
+
+
   componentDidMount () {
-    gaTracker.trackScreenView('Benefits')
+   gaTracker.trackScreenView('Benefits')
+// this.props.attemptMyPlan()
+    Orientation.addOrientationListener(this._orientationDidChange);
   }
 
   _displayCondition () {
@@ -147,7 +166,8 @@ const mapStateToProps = (state) => {
     error: state.myplan.error,
     leftActive: state.myplan.leftActive,
     rightActive: state.myplan.rightActive,
-    preferredActive: state.myplan.preferredActive
+    preferredActive: state.myplan.preferredActive,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -156,7 +176,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
     attemptHandleLeft: () => dispatch(MyPlanActions.myplanClickleft()),
     attemptHandleRight: () => dispatch(MyPlanActions.myplanClickright()),
-    attemptHandlePreferred: () => dispatch(MyPlanActions.myplanClickpreferred())
+    attemptHandlePreferred: () => dispatch(MyPlanActions.myplanClickpreferred()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 
