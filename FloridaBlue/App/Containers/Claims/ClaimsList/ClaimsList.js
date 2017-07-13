@@ -375,6 +375,27 @@ class ClaimsList extends Component {
               <View style={{ flex: 1 }}>
                 {this._renderViewMore()}
               </View>
+               <View style={{flex: 1, margin: 15, marginTop: -5 }}>
+                      <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.deepBlue, paddingLeft: 10}} >
+                        <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                          <View style={{ flex: 0.15 }}>
+                            <Flb name='flag' size={Metrics.icons.medium} color={Colors.snow} />
+                          </View>
+                          <View style={{ flex: 0.85 }}>
+                            <Text allowFontScaling={false} style={{
+                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                              color: Colors.snow
+                            }}>
+                              <Text allowFontScaling={false} style={{
+                                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                                color: Colors.snow,
+                                fontWeight: '700'
+                              }}>Please Note: </Text>Pharmacy and/or claims of others on your plan are not shown. Click <Text style={{textDecorationLine: 'underline'}}>here</Text> to see all claims.</Text>
+                          </View>
+                        </View>
+                      </Card>
+                    </View>
+
 
             </ScrollView>
           </View>
