@@ -100,8 +100,8 @@ class NotificationsView extends Component {
           disableRightSwipe
           renderRow={(data, secId, rowId, rowMap) => (
             <View style={styles.rowFront}>
-              <View style={{ flex: 1, marginTop: 10 }}>
-                <View style={{ flexDirection: 'row', marginLeft: 20, marginTop: 10, alignItems: 'center', flex: 1 }}>
+              <View style={{ flex: 1, marginTop: Metrics.baseMargin*Metrics.screenHeight*0.002 }}>
+                <View style={{ flexDirection: 'row', marginLeft: Metrics.doubleBaseMargin*Metrics.screenWidth*0.002, marginTop: Metrics.baseMargin*Metrics.screenHeight*0.002, alignItems: 'center', flex: 1 }}>
                   <Text allowFontScaling={false} style={{
                     color: Colors.flBlue.anvil,
                     marginLeft: 10,
@@ -112,12 +112,12 @@ class NotificationsView extends Component {
                 </View>
                 <View style={{ flex: 1 }}>
                   <View style={{
-                    paddingTop: 10,
+                    paddingTop: Metrics.baseMargin*Metrics.screenHeight*0.002,
                     flexDirection: 'row',
-                    marginRight: 10,
+                    marginRight: Metrics.baseMargin*Metrics.screenWidth*0.001,
                     flex: 1
                   }}>
-                    <View style={{ marginLeft: 10, paddingTop: 5, flex: 0.2 }}>
+                    <View style={{ marginLeft: Metrics.baseMargin*Metrics.screenWidth*0.002, paddingTop: 5, flex: 0.2 }}>
                       <Flb name={data.style.icon} size={Metrics.icons.large * Metrics.screenWidth * 0.0025} color={Colors.flBlue[data.style.color]} />
                     </View>
                     <View style={{ flex: 0.8, marginRight: 10 }}>
@@ -129,10 +129,10 @@ class NotificationsView extends Component {
                           marginBottom: 1,
                           paddingTop: 5,
                           marginLeft: 1,
-                          marginRight: 20
+                          marginRight: Metrics.doubleBaseMargin*Metrics.screenWidth*0.002
                         }}>{data.title}</Text>
                       </View>
-                      <View style={{ flex: 0.4, marginTop: 10 }}>
+                      <View style={{ flex: 0.4, marginTop: Metrics.baseMargin*Metrics.screenHeight*0.002 }}>
                         <Text style={{
                           marginBottom: 2,
                           color: Colors.flBlue.anvil,
@@ -144,15 +144,7 @@ class NotificationsView extends Component {
                     </View>
                   </View>
 
-                  <View style={{
-                    flex: 1,
-                    borderBottomLeftRadius: 10,
-                    borderBottomRightRadius: 10,
-                    justifyContent: 'center',
-                    marginTop: 5,
-                      // marginBottom:10,
-                    backgroundColor: Colors.flBlue[data.style.barColor]
-                  }}>
+                 
                     <TouchableOpacity onPress={() => {
                       if (data.link) {
                         if (data.link.type === 'webview') {
@@ -168,27 +160,42 @@ class NotificationsView extends Component {
                     }}
                       style={{
                         flex: 1,
-                        borderBottomLeftRadius: 10,
-                        marginBottom: 15
-                          // borderBottomRightRadi
-                          // height:35
+                    borderBottomLeftRadius: Metrics.baseMargin*Metrics.screenWidth*0.002,
+                    borderBottomRightRadius: Metrics.baseMargin*Metrics.screenWidth*0.002,
+                    justifyContent: 'center',
+                   // alignItems:'center',
+                    marginTop: Metrics.smallMargin*Metrics.screenWidth*0.002,
+                      // marginBottom:10,
+                   backgroundColor: Colors.flBlue[data.style.barColor]
                       }}>
+                       <View style={{
+                    flex: 1,
+                    borderBottomLeftRadius: Metrics.baseMargin*Metrics.screenWidth*0.002,
+                    borderBottomRightRadius: Metrics.baseMargin*Metrics.screenWidth*0.002,
+                    justifyContent: 'center',
+                   // alignItems:'center',
+                    marginTop: Metrics.smallMargin*Metrics.screenWidth*0.002,
+                      // marginBottom:10,
+                    backgroundColor: Colors.flBlue[data.style.barColor]
+                  }}>
                       <View style={{ flex: 1, marginTop: 10 }}>
                         <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                             <Text allowFontScaling={false} style={{
                               color: Colors.flBlue[data.style.color],
-                              marginLeft: 20,
-                              fontSize: Fonts.size.regular
+                              marginLeft: Metrics.doubleBaseMargin*Metrics.screenWidth*0.002,
+                              fontSize: Fonts.size.regular,
+                              marginBottom:Metrics.smallMargin*Metrics.screenWidth*0.002
                             }}>{data && data.link ? data.link.desc : null }</Text>
                             {data && data.link
-                            ? <Flb name='chevron-right' style={{ marginLeft: 20, color: Colors.flBlue[data.style.color] }}
+                            ? <Flb name='chevron-right' style={{marginBottom:Metrics.smallMargin*Metrics.screenWidth*0.002, marginLeft:Metrics.smallMargin*Metrics.screenWidth*0.003, color: Colors.flBlue[data.style.color] }}
                               size={Metrics.icons.small * Metrics.screenWidth * 0.002} /> : <View />}
                           </View>
                         </View>
                       </View>
+                       </View>
                     </TouchableOpacity>
-                  </View>
+                 
                 </View>
               </View>
             </View>
