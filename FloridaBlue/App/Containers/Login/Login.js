@@ -41,7 +41,11 @@ import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
 import CheckBox from 'react-native-checkbox'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+<<<<<<< HEAD
 import Orientation from 'react-native-orientation'
+=======
+import PopoverTooltip from 'react-native-popover-tooltip'
+>>>>>>> 0af9fb9fcd40fe099f864a3889c242372e137ded
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 const window = Dimensions.get('window')
@@ -548,7 +552,8 @@ class Login extends Component {
 
   _moreInfo () {
     return (
-      <View style={styles.informationPopup}>
+      <View>
+      {/*<View style={styles.informationPopup}>
         <View style={styles.popupchild}>
           <Icon name='chevron-right' size={12} color='black' />
           <TouchableOpacity onPress={() => {
@@ -636,6 +641,7 @@ class Login extends Component {
             </Text>
           </TouchableOpacity>
         </View>
+      </View> */}
       </View>
     )
   }
@@ -769,80 +775,6 @@ class Login extends Component {
     )
   }
 
-  _renderAgentLogin() {
-    return (
-      <View>
-        <LoginView>
-          <View style={styles.loginContainer}>
-            <View style={styles.textFieldContainer}>
-              <MKTextField
-                ref='username'
-                style={styles.textField}
-                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                keyboardType='default'
-                returnKeyType='next'
-                autoCapitalize='none'
-                autoCorrect={false}
-                onChangeText={this.props.handleChangeUserName}
-                value={this.props.username}
-                underlineColorAndroid={Colors.coal}
-                onSubmitEditing={() => this.refs.password.focus()}
-                placeholder={I18n.t('username')}
-                placeholderTextColor={Colors.steel} />
-            </View>
-            <View style={styles.textFieldContainer}>
-              <MKTextField
-                ref='password'
-                style={styles.textField}
-                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                keyboardType='default'
-                returnKeyType='done'
-                autoCapitalize='none'
-                autoCorrect={false}
-                secureTextEntry
-                password
-                onChangeText={this.props.handleChangePassword}
-                onSubmitEditing={this._handleLogin}
-                value={this.props.password}
-                underlineColorAndroid={Colors.coal}
-                placeholder={I18n.t('userpassword')}
-                placeholderTextColor={Colors.steel} />
-            </View>
-            <View style={styles.textFieldContainer}>
-              <MKTextField
-                ref='password'
-                style={styles.textField}
-                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                keyboardType='default'
-                returnKeyType='done'
-                autoCapitalize='none'
-                autoCorrect={false}
-                secureTextEntry
-                password
-                onChangeText={this.props.handleChangePassword}
-                onSubmitEditing={this._handleLogin}
-                value={this.props.password}
-                underlineColorAndroid={Colors.coal}
-                placeholder={'Site Password'}
-                placeholderTextColor={Colors.steel} />
-            </View>
-          </View>
-        </LoginView>
-
-        <LoginButtonView>
-          {this.props.mfetching || this.props.fetching
-            ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
-          : <TouchableOpacity onPress={() => { this._handleLogin() }}>
-            <Image style={{width: Metrics.screenWidth * 0.5,
-              borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-              height: Metrics.screenHeight * 0.064}}
-              source={Images.loginButtonGreen} />
-          </TouchableOpacity> }
-        </LoginButtonView>
-      </View>
-    )
-  }
-
   render () {
     var transparent
     if (this.props.mfetching || this.props.fetching) {
@@ -866,11 +798,7 @@ class Login extends Component {
           <Image source={Images.background} style={styles.backgroundImage} />
 
           <Clouds />
-          { !this.props.agentLogin ?
-              <CityScape />
-            :
-              null
-          }
+          <CityScape />
 
           <View keyboardShouldPersistTaps='always' style={styles.container}>
 
@@ -878,30 +806,24 @@ class Login extends Component {
               <Image source={Images.clearLogo} style={styles.logo} />
             </LogoView>
 
-            { this.props.agentLogin ?
-                this._renderAgentLogin()
+            { Platform.OS === 'ios' && this.state.touchAvailable ?
+                this._renderTouchAvailableLogin()
               :
-                <View>
-                  { Platform.OS === 'ios' && this.state.touchAvailable ?
-                      this._renderTouchAvailableLogin()
-                    :
-                      this._renderLogin()
-                  }
-
-                  <SignUpView>
-                    <TouchableOpacity onPress={() => {
-                      NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
-                      gaTracker.trackEvent('Login', 'Forgot Password')}}>
-                      <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {
-                      NavigationActions.screen_1()
-                      gaTracker.trackEvent('Login', 'Sign Up') }}>
-                      <Image style={styles.signUpButton} source={Images.signUpButton} />
-                    </TouchableOpacity>
-                  </SignUpView>
-                </View>
+                this._renderLogin()
             }
+
+            <SignUpView>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+                gaTracker.trackEvent('Login', 'Forgot Password')}}>
+                <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.screen_1()
+                gaTracker.trackEvent('Login', 'Sign Up') }}>
+                <Image style={styles.signUpButton} source={Images.signUpButton} />
+              </TouchableOpacity>
+            </SignUpView>
           </View>
 
           {this.state.modalVisible && this._moreInfo()}
@@ -911,15 +833,18 @@ class Login extends Component {
               <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
             <View>
-              <TouchableWithoutFeedback onPress={() => {
-                if (this.state.modalVisible === true) {
-                  this.setState({modalVisible: false})
-                } else {
-                  this.setState({modalVisible: true})
+              <PopoverTooltip
+                ref='infoTooltip'
+                buttonComponent = {
+                  <Image source={Images.infoIcon} />
                 }
-              }}>
-                <Image source={Images.infoIcon} />
-              </TouchableWithoutFeedback>
+                items = {[
+                    {
+                      label: 'Agent Login',
+                      onPress: () => { }
+                    }
+                  ]}
+                />
             </View>
           </View>
 
@@ -944,9 +869,13 @@ const mapStateToProps = (state) => {
     touchEnabled: state.setting.touchEnabled,
     touchCheckboxVisible: state.login.touchCheckboxVisible,
     logoutUrl: state.login.logoutUrl,
+<<<<<<< HEAD
     credentialStored: state.setting.credentialStored,
     agentLogin: state.login.agentLogin,
     isPortrait: state.setting.isPortrait
+=======
+    credentialStored: state.setting.credentialStored
+>>>>>>> 0af9fb9fcd40fe099f864a3889c242372e137ded
   }
 }
 
@@ -961,9 +890,13 @@ const mapDispatchToProps = (dispatch) => {
     attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
+<<<<<<< HEAD
     changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
     changeAgentLogin: (agentLogin) => dispatch(LoginActions.changeAgentLogin(agentLogin)),
     changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
+=======
+    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored))
+>>>>>>> 0af9fb9fcd40fe099f864a3889c242372e137ded
   }
 }
 

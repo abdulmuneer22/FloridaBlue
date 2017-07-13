@@ -7,7 +7,6 @@ import {
 } from 'react-native'
 import axios from 'axios'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Colors, Metrics, Fonts} from '../../../Themes'
 import Flb from '../../../Themes/FlbIcon'
@@ -67,12 +66,12 @@ class Greeting extends Component {
 
   render () {
     return (
-      <View style={styles.greetingView}>
+      <View style={this.props.isPortrait ? styles.greetingView : styles.greetingViewLandscape}>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <TouchableOpacity style={{flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center'}}
             onPress={() => NavigationActions.PushNotifications()}>
             <View style={{flex: 6, alignItems: 'flex-end', justifyContent: 'center'}}>
-               <Text allowFontScaling={false} style={this.props.isPortrait ? styles.greetingText : styles.greetingTextLandscape}>
+               <Text allowFontScaling={false} style={styles.greetingText}>
               {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
           </Text>
             </View>

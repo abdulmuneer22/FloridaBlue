@@ -158,6 +158,17 @@ export default StyleSheet.create({
   //  backgroundColor: Colors.flBlue.grey6,
     margin: 2
   },
+  greetingViewLandscape: {
+   // flex: 1,
+    flexDirection: 'row',
+  //  alignItems: 'center',
+  //  justifyContent: 'center',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 3,
+    // padding:5,
+  //  backgroundColor: Colors.flBlue.grey6,
+    margin: 2,
+    marginRight: 105
+  },
   greetingText: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
     fontFamily: Fonts.type.subHeaderFont,

@@ -152,7 +152,7 @@ class LandingScreen extends Component {
     } else if (this.props.visibilityRules != undefined) {
       return (
         <View style={styles.container}>
-          <Greeting userName={this.props.userName} isPortrait={this.props.isPortrait}/>
+          <Greeting userName={this.props.userName} isPortrait={this.props.isPortrait} />
           {
             this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} orientationStatus={this.props.isPortrait}/> : <View />}
           <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>

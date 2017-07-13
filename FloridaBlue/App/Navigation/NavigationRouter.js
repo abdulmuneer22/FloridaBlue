@@ -17,7 +17,6 @@ import {Resources} from '../Containers/WelcomeDisplay'
 import {HSA} from '../Containers/WelcomeDisplay'
 import {SupportScreen } from '../Containers/WelcomeDisplay'
 import {MyIdCard } from '../Containers/WelcomeDisplay'
-// import { Screen_1} from '../Containers/Registration'
 import {Screen_1} from '../Containers/Registration/Containers/Screen_1'
 import {Screen_2} from '../Containers/Registration/Containers/Screen_2'
 import {Screen_3} from '../Containers/Registration/Containers/Screen_3'
@@ -29,9 +28,8 @@ import {UserIdHint } from '../Containers/Registration/Containers/UserIdHint'
 import {PasswordHint } from '../Containers/Registration/Containers/PasswordHint'
 import {SecurityHint } from '../Containers/Registration/Containers/SecurityHint'
 import {Confirmation} from '../Containers/Registration/Containers/Confirmation'
-// import { WelcomeDisplay} from '../Containers/MemberDashBoard/Containers/WelcomeDisplay'
 import {DashBoard} from '../Containers/WelcomeDisplay'
-
+import {AgentLogin} from '../../Agent/Containers/Login'
 import {MyPlanScreen} from '../Containers/MyPlan'
 import {BenefitsScreen} from '../Containers/Benefits'
 import {DoctorServices } from '../Containers/DoctorService'
@@ -92,6 +90,7 @@ const scenes = Actions.create(
         <Scene key='ClaimsList' component={ClaimsList} title='Claims Page' hideNavBar />
         <Scene key='ClaimDetail' component={ClaimDetail} title='Claims Page' hideNavBar />
         <Scene key='ClaimsSummary' component={ClaimsSummary} title='Claims Summary Page' hideNavBar />
+        <Scene key='AgentLogin' component={AgentLogin} title='Agent Login' hideNavBar />
       </Scene>
     </Scene>
   </Scene>
