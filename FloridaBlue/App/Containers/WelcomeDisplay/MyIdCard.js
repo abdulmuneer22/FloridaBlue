@@ -166,8 +166,10 @@ class MyIdCard extends Component {
                     </View>
                     <View style={{flex: 0.15}} />
                     <View style={{flex:(Platform.OS === 'ios') ?0.15:0.2}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Number: {this.props.data && this.props.data.PlanNumber !=undefined && this.props.data.PlanNumber !=null ? this.props.data.PlanNumber:''} </Text>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, marginRight:Metrics.baseMargin*Metrics.screenWidth*0.004,fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022}}>Plan Name: {this.props.data && this.props.data.PlanName !=undefined && this.props.data.PlanName !=null ? this.props.data.PlanName:''}</Text>
+                      {this.props.data && this.props.data.PlanNumber !=undefined && this.props.data.PlanNumber !=null ?
+                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Number: {this.props.data.PlanNumber} </Text> : null}
+                      {this.props.data && this.props.data.PlanName !=undefined && this.props.data.PlanName !=null ?
+                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, marginRight:Metrics.baseMargin*Metrics.screenWidth*0.004,fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022}}>Plan Name: {this.props.data.PlanName}</Text> : null}
                     </View>
                     <View style={{flex: 0.1}}>
                       <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,marginTop:10}}> </Text>
