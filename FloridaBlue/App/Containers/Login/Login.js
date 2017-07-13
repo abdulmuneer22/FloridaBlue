@@ -41,6 +41,7 @@ import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
 import CheckBox from 'react-native-checkbox'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import Orientation from 'react-native-orientation'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 const window = Dimensions.get('window')
@@ -77,19 +78,21 @@ class Login extends Component {
   props: LoginScreenProps
   isAttempting : boolean
 
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       username: '',
       password: '',
       modalVisible: false,
-      touchStatus: ''
+      touchStatus: '',
+      isPortrait: true
     }
     this.isAttempting = false
     component = this
     this._authenticateUserWithTouch = this._authenticateUserWithTouch.bind(this)
     this._handleTouchCheckbox = this._handleTouchCheckbox.bind(this)
     this._handleLogin = this._handleLogin.bind(this)
+    this._orientationDidChange = this._orientationDidChange.bind(this)
   }
 
   componentWillMount () {
@@ -137,6 +140,14 @@ class Login extends Component {
         }
       })
     }
+    const initial = Orientation.getInitialOrientation();
+    if (initial === 'PORTRAIT') {
+      
+      console.log('Hey, Im in L mode')
+    } else {
+      
+      console.log('Hey, Im in P mode')
+    }
   }
 
   componentDidMount () {
@@ -163,6 +174,7 @@ class Login extends Component {
     }
 
     BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
+    Orientation.addOrientationListener(this._orientationDidChange)
     /*
     BackAndroid.addEventListener('hardwareBackPress', function () {
          console.log('inside back handler',component.props.currentSceneValue)
@@ -195,7 +207,19 @@ class Login extends Component {
       return true
      })
   */
+}
+
+  _orientationDidChange (orientation) {
+    if (orientation === 'LANDSCAPE') {
+      this.props.changeOrientation(false)
+      console.log('Hey, Im in landscape mode')
+    } else {
+     this.props.changeOrientation(true)
+     console.log('Hey, Im in portrait mode')
+    }
   }
+
+
 
   componentWillReceiveProps (newProps) {
     var responseURL = newProps.responseURL
@@ -328,7 +352,8 @@ class Login extends Component {
       }
     }
   // end of IF condition
-  }
+}
+
 
   _handleTouchCheckbox (checkboxState) {
     if (this.state.touchStatus === '') {
@@ -920,7 +945,8 @@ const mapStateToProps = (state) => {
     touchCheckboxVisible: state.login.touchCheckboxVisible,
     logoutUrl: state.login.logoutUrl,
     credentialStored: state.setting.credentialStored,
-    agentLogin: state.login.agentLogin
+    agentLogin: state.login.agentLogin,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -936,7 +962,8 @@ const mapDispatchToProps = (dispatch) => {
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
     changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
-    changeAgentLogin: (agentLogin) => dispatch(LoginActions.changeAgentLogin(agentLogin))
+    changeAgentLogin: (agentLogin) => dispatch(LoginActions.changeAgentLogin(agentLogin)),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 
