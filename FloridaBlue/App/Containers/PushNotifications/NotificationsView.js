@@ -146,14 +146,16 @@ class NotificationsView extends Component {
 
                  
                     <TouchableOpacity onPress={() => {
-                      if (data.link.type === 'webview') {
-                        var webview = 'MyView'
-                        NavigationActions[webview]({ responseURL: data.link.name })
-                      } else if (data.link.type === 'native') {
-                        var routerName = data.link.name
-                        NavigationActions[routerName]()
-                      } else if (data.link.type === 'href') {
-                        Linking.openURL(data.link.name)
+                      if (data.link) {
+                        if (data.link.type === 'webview') {
+                          var webview = 'MyView'
+                          NavigationActions[webview]({ responseURL: data.link.name })
+                        } else if (data.link.type === 'native') {
+                          var routerName = data.link.name
+                          NavigationActions[routerName]()
+                        } else if (data.link.type === 'href') {
+                          Linking.openURL(data.link.name)
+                        }
                       }
                     }}
                       style={{
