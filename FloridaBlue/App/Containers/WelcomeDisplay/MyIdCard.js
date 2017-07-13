@@ -178,18 +178,7 @@ class MyIdCard extends Component {
 
                     </View>
                   }
-
-
-
-
-
-
-
-
-
-
-
-
+                  
               </View>
 
             </Image>
