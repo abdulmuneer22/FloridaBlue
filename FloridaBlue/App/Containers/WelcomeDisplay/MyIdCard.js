@@ -37,7 +37,7 @@ class MyIdCard extends Component {
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
-      <View style={{marginRight: Metrics.textHeight * Metrics.screenWidth * 0.009,justifyContent:'center',alignItems:'center'}}>
+      <View style={{marginRight: this.props.isPortrait ? Metrics.textHeight * Metrics.screenWidth * 0.009 : Metrics.textHeight * Metrics.screenWidth * 0.019, justifyContent:'center',alignItems:'center'}}>
       <Text allowFontScaling={false} style={styles.headerTextStyle}>
           ID Card
       </Text>
@@ -76,7 +76,7 @@ class MyIdCard extends Component {
             <Image source={{uri: 'data:image/jpeg;base64,' + this.props.data.IdCardImage}} style={
               Platform.OS === 'ios' ?{
               flex: 1,
-              transform: [{rotate: '270deg'}],
+              transform: [this.props.isPortrait ? {rotate: '270deg'} : {rotate: '0deg'}],
               resizeMode: 'contain',
               marginLeft:this.state.idCardHeaderVisible ?0:Metrics.baseMargin*Metrics.screenWidth*0.004,
               width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.15) : Metrics.screenHeight

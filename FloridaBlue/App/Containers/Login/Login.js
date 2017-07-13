@@ -41,11 +41,8 @@ import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
 import CheckBox from 'react-native-checkbox'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
-<<<<<<< HEAD
 import Orientation from 'react-native-orientation'
-=======
 import PopoverTooltip from 'react-native-popover-tooltip'
->>>>>>> 0af9fb9fcd40fe099f864a3889c242372e137ded
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 const window = Dimensions.get('window')
@@ -869,13 +866,9 @@ const mapStateToProps = (state) => {
     touchEnabled: state.setting.touchEnabled,
     touchCheckboxVisible: state.login.touchCheckboxVisible,
     logoutUrl: state.login.logoutUrl,
-<<<<<<< HEAD
     credentialStored: state.setting.credentialStored,
     agentLogin: state.login.agentLogin,
     isPortrait: state.setting.isPortrait
-=======
-    credentialStored: state.setting.credentialStored
->>>>>>> 0af9fb9fcd40fe099f864a3889c242372e137ded
   }
 }
 
@@ -890,13 +883,9 @@ const mapDispatchToProps = (dispatch) => {
     attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
-<<<<<<< HEAD
     changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
     changeAgentLogin: (agentLogin) => dispatch(LoginActions.changeAgentLogin(agentLogin)),
     changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
-=======
-    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored))
->>>>>>> 0af9fb9fcd40fe099f864a3889c242372e137ded
   }
 }
 
