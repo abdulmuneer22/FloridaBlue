@@ -117,7 +117,7 @@ class ClaimsList extends Component {
   _renderDropdownRow(rowData, rowID, highlighted) {
     return (
       <TouchableHighlight underlayColor={Colors.snow}>
-        <Text style={styles.dropdownItem}>{rowData}</Text>
+        <Text allowFontScaling={false} style={styles.dropdownItem}>{rowData}</Text>
       </TouchableHighlight>
     )
   }
@@ -295,12 +295,12 @@ class ClaimsList extends Component {
     // console.tron.log("view more" +this.props.asyncfetching)
     if (!this.props.asyncfetching) {
       return (<View style={{ flex: 1, margin: 14 }}>
-        <Text style={{ textAlign: 'center', opacity: 0.6 }}>Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
+        <Text allowFontScaling={false} style={{ textAlign: 'center', opacity: 0.6 }}>Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
         {
           this.state.listLimit < this.props.claimsdata.totalCount ?
             <View style={{ flex: 1, justifyContent: 'center' }}>
               <TouchableOpacity onPress={this.viewMore} style={{ flexDirection: 'row', flex: 1 }}>
-                <Text style={styles.claimsViewMore}>View More </Text>
+                <Text allowFontScaling={false} style={styles.claimsViewMore}>View More </Text>
                 <Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{ marginTop: 3 }} />
               </TouchableOpacity>
             </View>
@@ -405,9 +405,9 @@ class ClaimsList extends Component {
             <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
               <Flb name='remove' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
             </TouchableOpacity>
-            <Text style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below:</Text>
+            <Text allowFontScaling={false} style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below:</Text>
             <HideableView visible={this.state.dateError} removeWhenHidden={true}>
-              <Text style={styles.error}>Oops! Something went wrong. Check your dates and try again.</Text>
+              <Text allowFontScaling={false} style={styles.error}>Oops! Something went wrong. Check your dates and try again.</Text>
             </HideableView>
             <MKTextField
               ref='providerName'
@@ -440,20 +440,20 @@ class ClaimsList extends Component {
             </ModalDropdown>
             <View style={styles.dateContainer}>
               <TouchableOpacity style={styles.startDateButton} onPress={this.addStartDate}>
-                <Text style={styles.dateText}>
+                <Text allowFontScaling={false} style={styles.dateText}>
                   <Text>{this.props.startDate}  </Text>
                   <Flb style={styles.calendarIcon} color={Colors.flBlue.grey3} name="calendar" size={15} />
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.endDateButton} onPress={this.addEndDate}>
-                <Text style={styles.dateText}>
+                <Text allowFontScaling={false} style={styles.dateText}>
                   <Text>{this.props.endDate}  </Text>
                   <Flb color={Colors.flBlue.grey3} name="calendar" size={15} />
                 </Text>
               </TouchableOpacity>
             </View>
             <Button rounded style={styles.searchButton} onPress={() => { this.searchResults() }}>
-              <Text style={{ color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center' }}>Search</Text>
+              <Text allowFontScaling={false} style={{ color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center' }}>Search</Text>
             </Button>
             
             </View>

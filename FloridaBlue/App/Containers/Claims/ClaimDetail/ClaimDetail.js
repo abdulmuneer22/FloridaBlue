@@ -68,7 +68,7 @@ class ClaimDetail extends Component {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-        <Text style={styles.spinnerText}>Loading Please Wait </Text>
+        <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.claimdetaildata && this.props.claimdetaildata.claimNumber && this.props.claimdetaildata.claimNumber.length != 0) {
       return (
