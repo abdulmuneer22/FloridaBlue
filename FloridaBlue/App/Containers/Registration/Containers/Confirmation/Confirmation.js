@@ -53,6 +53,14 @@ class Confirmation extends Component {
     }
   }
 
+  _handleConfirm() {
+    if (this.props.touchEnabled && !this.props.credentialStored) {
+      NavigationActions.TouchTOU({'tou': 'nonregistration'})
+    } else {
+      NavigationActions.WelcomeDashBoard({'origin': 'registration'})
+    }
+  }
+
   render () {
     return (
       <ScrollView style={styles.container}>
@@ -61,7 +69,7 @@ class Confirmation extends Component {
         </Image>
 
         <View >
-          <Text style={styles.subheading}>You're All Set</Text>
+          <Text style={styles.subheading}>{'You\'re All Set'}</Text>
         </View>
         <View style={styles.userStyle}>
 
@@ -100,7 +108,7 @@ class Confirmation extends Component {
         </View>
         <View style={styles.wrapper}>
 
-          <TouchableOpacity onPress={() => { NavigationActions.WelcomeDashBoard({'origin': 'registration'}) }}>
+          <TouchableOpacity onPress={() => { this._handleConfirm() }}>
             <Image source={Images.confirmationLogin} style={styles.buttonStyle} />
           </TouchableOpacity>
 
