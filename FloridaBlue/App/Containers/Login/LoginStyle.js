@@ -147,6 +147,9 @@ export default StyleSheet.create({
     color: Colors.flBlue.anvil,
     alignSelf: 'center'
   },
+  infoMenu: {
+    paddingRight: Metrics.baseMargin * Metrics.screenWidth * 0.002
+  },
   spinnerView: {
     alignSelf: 'center',
      justifyContent: 'center',
