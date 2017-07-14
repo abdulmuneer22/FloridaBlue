@@ -135,7 +135,7 @@ class NotificationsView extends Component {
                       </View>
                       <View style={{ flex: 0.4, marginTop: 10 }}>
                         <Text style={{
-                          marginBottom: 2,
+                          marginBottom: this.props.isPortrait ? 3 : 2,
                           color: Colors.flBlue.anvil,
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022
                         }} >
@@ -206,7 +206,9 @@ class NotificationsView extends Component {
                 flex: 1,
                 borderRadius: 20,
                 backgroundColor: 'green',
-                right: 0
+                right: 0,
+                marginBottom: this.props.isPortrait ? 0  : 20,
+                marginTop: this.props.isPortrait ? 0 : 1
               }} onPress={_ => this.deleteRow(secId, rowId, rowMap, data.messageId)} >
                 <View style={{
                   flex: 1,
@@ -222,7 +224,7 @@ class NotificationsView extends Component {
                 </View>
               </TouchableOpacity>
             </View>)}
-          rightOpenValue={-90}
+          rightOpenValue={this.props.isPortrait ? -90 : -380}
           />)
     } else if (this.props.error != null) {
       Alert.alert(
