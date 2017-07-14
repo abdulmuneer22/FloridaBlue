@@ -143,30 +143,35 @@ class Settings extends Component {
         {this._renderHeader()}
 
         <View style={{flex:1,backgroundColor:Colors.flBlue.bg2}}>
-          <View style={styles.cardContainer}>
-            <BCard style={styles.card}>
-              <View style={styles.cardIcon}>
-                <Flb name={'fingerprint'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
+
+          { Platform.OS === 'ios' ?
+              <View style={styles.cardContainer}>
+                <BCard style={styles.card}>
+                  <View style={styles.cardIcon}>
+                    <Flb name={'fingerprint'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
+                  </View>
+                  <View style={styles.cardTextContainer}>
+                  { this.props.touchEnabled ?
+                    <Text allowFontScaling={false} style={styles.cardText}>Touch ID Enabled</Text>
+                    :
+                    <Text allowFontScaling={false} style={styles.cardText}>Enable Touch ID</Text>
+                  }
+                  </View>
+                    <MKSwitch style={styles.settingStatusSwitch}
+                      checked={this.props.touchEnabled}
+                      trackSize={30}
+                      trackLength={52}
+                      onColor={Colors.flBlue.lightsky}
+                      offColor={Colors.flBlue.lightBlue}
+                      thumbOnColor={Colors.flBlue.ocean}
+                      thumbOffColor={Colors.flBlue.ocean}
+                      onPress={() => this._handleTouchToggle()}
+                    />
+                </BCard>
               </View>
-              <View style={styles.cardTextContainer}>
-              { this.props.touchEnabled ?
-                <Text allowFontScaling={false} style={styles.cardText}>Touch ID Enabled</Text>
-                :
-                <Text allowFontScaling={false} style={styles.cardText}>Enable Touch ID</Text>
-              }
-              </View>
-                <MKSwitch style={styles.settingStatusSwitch}
-                  checked={this.props.touchEnabled}
-                  trackSize={30}
-                  trackLength={52}
-                  onColor={Colors.flBlue.lightsky}
-                  offColor={Colors.flBlue.lightBlue}
-                  thumbOnColor={Colors.flBlue.ocean}
-                  thumbOffColor={Colors.flBlue.ocean}
-                  onPress={() => this._handleTouchToggle()}
-                />
-            </BCard>
-          </View>
+            :
+              null
+          }
 
           <View style={styles.cardContainer}>
             <TouchableOpacity onPress={Permissions.openSettings} style={styles.cardContainer}>

@@ -24,9 +24,11 @@ import { SwipeListView, SwipeRow } from 'react-native-swipe-list-view'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import PushController from './PushController'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
-
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import NotificationActions from '../../Redux/NotificationRedux'
+
 const theme = getTheme()
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -43,6 +45,7 @@ class NotificationsView extends Component {
   }
 
   componentDidMount () {
+    gaTracker.trackScreenView('Notifications')
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
     FCM.setBadgeNumber(0)
@@ -144,7 +147,7 @@ class NotificationsView extends Component {
                     </View>
                   </View>
 
-                 
+
                     <TouchableOpacity onPress={() => {
                       if (data.link) {
                         if (data.link.type === 'webview') {
@@ -195,7 +198,7 @@ class NotificationsView extends Component {
                       </View>
                        </View>
                     </TouchableOpacity>
-                 
+
                 </View>
               </View>
             </View>

@@ -98,7 +98,6 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: Colors.flBlue.grey3,
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
-    // height: Metrics.baseMargin * Metrics.screenHeight * 0.0027
   },
   touchCheckbox: {
     height: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
