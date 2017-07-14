@@ -33,6 +33,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import DeviceInfo from 'react-native-device-info'
 import NotificationActions from '../../Redux/NotificationRedux'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import Orientation from 'react-native-orientation'
 
 const theme = getTheme()
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3');
@@ -54,6 +55,11 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 class LandingScreen extends Component {
   props: LoginScreenProps
   isAttempting: boolean
+  constructor (props) {
+    super(props)
+    this._orientationDidChange = this._orientationDidChange.bind(this)
+  }
+
 
   _renderHeader () {
     return (
@@ -75,6 +81,18 @@ class LandingScreen extends Component {
 
     )
   }
+
+  componentWillMount() {
+    const initial = Orientation.getInitialOrientation();
+    if (initial === 'PORTRAIT') {
+      
+      console.log('Hey, Im in P mode on Dashboard')
+    } else {
+      
+      console.log('Hey, Im in L mode on Dashboard')
+    }
+  }
+
   componentDidMount () {
     gaTracker.trackScreenView('Dashboard')
 
@@ -111,7 +129,19 @@ class LandingScreen extends Component {
     }
 
     this.props.attemptNetworkList()
+    Orientation.addOrientationListener(this._orientationDidChange)
   }
+
+    _orientationDidChange (orientation) {
+    if (orientation === 'LANDSCAPE') {
+      this.props.changeOrientation(false)
+      console.log('Hey, Im in landscape mode on dashboard')
+    } else {
+     this.props.changeOrientation(true)
+     console.log('Hey, Im in portrait mode on dashboard')
+    }
+  }
+       
 
   componentWillReceiveProps (newProps) {
     if (this.props.openedFromTray !== newProps.openedFromTray) {
@@ -129,6 +159,16 @@ class LandingScreen extends Component {
        NavigationActions.ErrorPage()
    }
    */
+  }
+
+  componentWillUnmount() {
+    Orientation.getOrientation((err, orientation) => {
+      console.log(`Current Device Orientation: ${orientation}`);
+    });
+
+
+    // Remember to remove listener
+    Orientation.removeOrientationListener(this._orientationDidChange);
   }
 
   handleOPDTileView= () => {

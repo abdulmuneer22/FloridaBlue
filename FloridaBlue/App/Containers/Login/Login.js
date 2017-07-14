@@ -144,10 +144,10 @@ class Login extends Component {
     const initial = Orientation.getInitialOrientation();
     if (initial === 'PORTRAIT') {
       
-      console.log('Hey, Im in L mode')
+      console.log('Hey, Im going to mount in P mode on Login')
     } else {
       
-      console.log('Hey, Im in P mode')
+      console.log('Hey, Im going to mount in L mode on login')
     }
   }
 
@@ -212,11 +212,11 @@ class Login extends Component {
 
   _orientationDidChange (orientation) {
     if (orientation === 'LANDSCAPE') {
-      this.props.changeOrientation(false)
-      console.log('Hey, Im in landscape mode')
+      this.setState({isPortrait: false})
+      console.log('Hey, Im in landscape mode on login')
     } else {
-     this.props.changeOrientation(true)
-     console.log('Hey, Im in portrait mode')
+     this.setState({isPortrait: true})
+     console.log('Hey, Im in portrait mode on login')
     }
   }
 
@@ -354,6 +354,16 @@ class Login extends Component {
     }
   // end of IF condition
 }
+
+componentWillUnmount() {
+    Orientation.getOrientation((err, orientation) => {
+      console.log(`Current Device Orientation: ${orientation}`);
+    });
+
+
+    // Remember to remove listener
+    Orientation.removeOrientationListener(this._orientationDidChange);
+  }
 
 
   _handleTouchCheckbox (checkboxState) {
