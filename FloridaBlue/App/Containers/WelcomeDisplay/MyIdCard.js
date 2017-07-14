@@ -15,10 +15,11 @@ import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import Communications from 'react-native-communications'
 import { Card } from 'native-base'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import Orientation from 'react-native-orientation'
+
 
 const window = Dimensions.get('window')
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
-import SettingActions from '../../Redux/SettingRedux'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -27,17 +28,19 @@ class MyIdCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      idCardHeaderVisible: true
+      idCardHeaderVisible: true,
+      isPortrait: true
     }
     this.toggle = this.toggle.bind(this)
+    this._orientationDidChange = this._orientationDidChange.bind(this)
   }
 
   _renderHeader () {
-    return (<Image source={Images.newHeaderImage} style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape}>
+    return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
-      <View style={{marginRight: this.props.isPortrait ? Metrics.textHeight * Metrics.screenWidth * 0.009 : Metrics.textHeight * Metrics.screenWidth * 0.019, justifyContent:'center',alignItems:'center'}}>
+      <View style={{marginRight: Metrics.textHeight * Metrics.screenWidth * 0.009 , justifyContent:'center',alignItems:'center'}}>
       <Text allowFontScaling={false} style={styles.headerTextStyle}>
           ID Card
       </Text>
@@ -48,8 +51,42 @@ class MyIdCard extends Component {
     </Image>)
   }
 
+  componentWillMount () {
+    const initial = Orientation.getInitialOrientation();
+    if (initial === 'PORTRAIT') {
+      Orientation.lockToPortrait();
+      console.log('Hey, Im going to mount in P mode on ID Card')
+    } else {
+      
+      console.log('Hey, Im going to mount in L mode on ID Card')
+    }
+  }
+
   componentDidMount () {
     gaTracker.trackScreenView('ID Card')
+    Orientation.addOrientationListener(this._orientationDidChange)
+  }
+
+   _orientationDidChange (orientation) {
+    if (orientation === 'LANDSCAPE') {
+      this.setState({isPortrait: false})
+      console.log('Hey, Im in landscape mode on ID Card')
+    } else {
+     console.log('Hey, Im in portrait mode on ID Card')
+     this.setState({isPortrait: true})
+    }
+  }
+
+  componentWillUnmount() {
+        Orientation.unlockAllOrientations();
+
+    Orientation.getOrientation((err, orientation) => {
+      console.log(`Current Device Orientation: ${orientation}`);
+    });
+
+ 
+    // Remember to remove listener
+    Orientation.removeOrientationListener(this._orientationDidChange);
   }
 
   toggle () {
@@ -76,7 +113,7 @@ class MyIdCard extends Component {
             <Image source={{uri: 'data:image/jpeg;base64,' + this.props.data.IdCardImage}} style={
               Platform.OS === 'ios' ?{
               flex: 1,
-              transform: [this.props.isPortrait ? {rotate: '270deg'} : {rotate: '0deg'}],
+              transform: [this.state.isPortrait ? {rotate: '270deg'} : {rotate: '270deg'}],
               resizeMode: 'contain',
               marginLeft:this.state.idCardHeaderVisible ?0:Metrics.baseMargin*Metrics.screenWidth*0.004,
               width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.15) : Metrics.screenHeight
@@ -215,7 +252,7 @@ class MyIdCard extends Component {
   render () {
     return (
       <View style={[styles.container, {backgroundColor: Colors.snow}]}>
-        <HideableView visible={this.state.idCardHeaderVisible} removeWhenHidden>
+        <HideableView visible={this.state.isPortrait && this.state.idCardHeaderVisible} removeWhenHidden>
           {this._renderHeader()}
         </HideableView>
 
@@ -239,15 +276,13 @@ const mapStateToProps = (state) => {
     fetching: state.myidcard.fetching,
     data: state.myidcard.data,
     error: state.myidcard.error,
-    planName: state.member.defaultContract,
-    isPortrait: state.setting.isPortrait
+    planName: state.member.defaultContract
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptMyIdCard: () => dispatch(MyIdCardActions.myIdCardRequest()),
-    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
+    attemptMyIdCard: () => dispatch(MyIdCardActions.myIdCardRequest())
   }
 }
 
