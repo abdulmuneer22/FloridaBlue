@@ -143,19 +143,9 @@ class Login extends Component {
     }
     const initial = Orientation.getInitialOrientation();
     if (initial === 'PORTRAIT') {
-<<<<<<< HEAD
-      
       console.log('Hey, Im going to mount in P mode on Login')
     } else {
-      
       console.log('Hey, Im going to mount in L mode on login')
-=======
-
-      console.log('Hey, Im in L mode')
-    } else {
-
-      console.log('Hey, Im in P mode')
->>>>>>> 28ad91bbe36f3a71f5aab110b26a2c343c43f59e
     }
   }
 
