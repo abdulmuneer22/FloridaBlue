@@ -32,6 +32,7 @@ const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
   .withStyle(styles.textfieldWithFloatingLabel)
   .withTextInputStyle({flex: 1})
   .withPlaceholderTextColor(Colors.steel)
+  .withAllowFontScaling(false)
   .withFloatingLabelFont({
     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025,
    // fontStyle: 'italic',
@@ -146,7 +147,7 @@ class Screen_1 extends React.Component {
                 <Image source={Images.closeIconWhite} />
               </TouchableOpacity>
             </View>
-          </View> : <Text />}
+          </View> : null}
           <View style={styles.row}>
             <TextfieldWithFloatingLabel
               ref='contractNumber'

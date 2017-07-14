@@ -65,11 +65,11 @@ class Confirmation extends Component {
     return (
       <ScrollView style={styles.container}>
         <Image style={styles.headerContainer} source={Images.regCompletion} >
-          <Text style={styles.headerTextStyle}>Thank You!</Text>
+          <Text allowFontScaling={false} style={styles.headerTextStyle}>Thank You!</Text>
         </Image>
 
         <View >
-          <Text style={styles.subheading}>{'You\'re All Set'}</Text>
+          <Text allowFontScaling={false} style={styles.subheading}>{'You\'re All Set'}</Text>
         </View>
         <View style={styles.userStyle}>
 
@@ -82,7 +82,7 @@ class Confirmation extends Component {
           }} source={Images.confirmationUser} />
 
           <View style={styles.center}>
-            <Text style={{
+            <Text allowFontScaling={false} style={{
               fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
               fontWeight: '500',
               color: Colors.snow
@@ -94,14 +94,14 @@ class Confirmation extends Component {
             }}>
       Your User ID is:
       </Text>
-            <Text style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
+            <Text allowFontScaling={false} style={{fontSize: Fonts.size.regular, color: Colors.snow}}>
               {this.props.createUserId}
             </Text>
           </View>
 
         </View>
         <View style={{alignItems: 'center', marginTop: Metrics.searchBarHeight}}>
-          <Text style={{fontSize: Fonts.size.input * Metrics.screenWidth * 0.0030,
+          <Text allowFontScaling={false} style={{fontSize: Fonts.size.input * Metrics.screenWidth * 0.0030,
             color: Colors.flBlue.anvil}}>
                   Click Continue to start exploring
            </Text>
@@ -114,7 +114,7 @@ class Confirmation extends Component {
 
           <View style={styles.row}>
             <View>
-              <Text style={styles.footerText}>{I18n.t('footerText')}</Text>
+              <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
           </View>
 
