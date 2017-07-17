@@ -163,5 +163,42 @@ export default StyleSheet.create({
     backgroundColor: Colors.snow,
     height: Metrics.section * Metrics.screenWidth * 0.0020,
     width: Metrics.section * Metrics.screenWidth * 0.0020
+  },
+  popoverContent: {
+    backgroundColor: Colors.flBlue.snow,
+    borderRadius: 8,
+  },
+  popoverArrow: {
+    borderTopColor: Colors.flBlue.snow,
+  },
+  popoverButton: {
+    color: Colors.flBlue.grey4
+  },
+  popoverItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0012,
+    paddingHorizontal: Metrics.baseMargin * Metrics.screenWidth * 0.003,
+  },
+  popoverLogo: {
+    paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+    color: Colors.flBlue.grey3
+  },
+  popoverText: {
+    paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002
+  },
+  agentLoginLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: Metrics.baseMargin * Metrics.screenHeight * 0.003,
+    paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002
+  },
+  divider: {
+    backgroundColor: Colors.flBlue.grey2,
+    height: Metrics.screenHeight * 0.0012,
+    width: Metrics.baseMargin * Metrics.screenHeight * 0.03,
+    marginVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0008,
+    alignSelf: 'center'
   }
 })

@@ -42,9 +42,10 @@ import HideableView from 'react-native-hideable-view'
 import CheckBox from 'react-native-checkbox'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import Orientation from 'react-native-orientation'
-import PopoverTooltip from 'react-native-popover-tooltip'
+import Popover, { PopoverTouchable } from 'react-native-modal-popover'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
+const Divider = () => { return <View style={styles.divider} /> }
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
 let TouchManager = NativeModules.TouchManager
@@ -73,7 +74,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
 
-var component = null
+let component = null
 
 class Login extends Component {
   props: LoginScreenProps
@@ -90,6 +91,7 @@ class Login extends Component {
     }
     this.isAttempting = false
     component = this
+
     this._authenticateUserWithTouch = this._authenticateUserWithTouch.bind(this)
     this._handleTouchCheckbox = this._handleTouchCheckbox.bind(this)
     this._handleLogin = this._handleLogin.bind(this)
@@ -217,8 +219,6 @@ class Login extends Component {
      console.log('Hey, Im in portrait mode on login')
     }
   }
-
-
 
   componentWillReceiveProps (newProps) {
     var responseURL = newProps.responseURL
@@ -558,76 +558,84 @@ componentWillUnmount() {
   _infoMenu () {
     return (
       <View>
-        <PopoverTooltip
-          ref='infoMenu'
-          tooltipContainerStyle={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.005}}
-          labelContainerStyle={{ width: Metrics.baseMargin * Metrics.screenWidth * 0.05, alignItems: 'center'}}
-          buttonComponent = {
-            <Image source={Images.infoIcon} />
-          }
-          items = {[
-              {
-                label: 'Terms of Use',
-                onPress: () => {
-                  NavigationActions.MyView({responseURL: urlConfig.termsOfUseURL})
-                  gaTracker.trackEvent('More Info', 'Terms of Use')
-                }
-              },
-              {
-                label: 'Accessibility',
-                onPress: () => {
-                  NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL})
-                  gaTracker.trackEvent('More Info', 'Accessibility')
-                }
-              },
-              {
-                label: 'Non-Discrimination',
-                onPress: () => {
-                  NavigationActions.MyView({responseURL: urlConfig.ndnoticeURL})
-                  gaTracker.trackEvent('More Info', 'Nondiscrimination')
-                }
-              },
-              {
-                label: 'Privacy Policy',
-                onPress: () => {
-                  NavigationActions.MyView({responseURL: urlConfig.internetStatementURL})
-                  gaTracker.trackEvent('More Info', 'Privacy Policy')
-                }
-              },
-              {
-                label: 'Unsecured OPD',
-                onPress: () => {
-                  NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL})
-                  gaTracker.trackEvent('More Info', 'Unsecured OPD')
-                }
-              },
-              {
-                label: 'Support',
-                onPress: () => {
-                  NavigationActions.MyView({responseURL: urlConfig.supportURL})
-                  gaTracker.trackEvent('More Info', 'Support')
-                }
-              },
-              {
-                label: 'floridablue.com',
-                onPress: () => {
-                  NavigationActions.MyView({responseURL: urlConfig.floridaBlueURL})
-                  gaTracker.trackEvent('More Info', 'floridablue.com')
-                }
-              },
-              {
-                label: 'Speak Another Language?',
-                onPress: () => {
-                  NavigationActions.MyView({responseURL: urlConfig.anotherLanguageURL})
-                  gaTracker.trackEvent('More Info', 'Speak Another Language')
-                }
-              },
-              {
-                label: 'Agent Login',
-                onPress: () => { gaTracker.trackEvent('More Info', 'Agent Login') }
-              }
-            ]}
-          />
+        <PopoverTouchable onPopoverDisplayed={() => console.tron.log('Popover displayed!')}>
+          <TouchableOpacity>
+            <Flb name='blocks-circle' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.popoverButton} />
+          </TouchableOpacity>
+          <Popover
+            contentStyle={styles.popoverContent}
+            arrowStyle={styles.popoverArrow}
+            backgroundStyle={styles.popoverBackground}
+            placement={'top'}>
+
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL})
+              gaTracker.trackEvent('Info Menu', 'Accessibility')
+            }}>
+              <Flb name='document' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Terms of Use</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL})
+              gaTracker.trackEvent('Info Menu', 'Accessibility')
+            }}>
+              <Flb name='accessibility' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Accessibility</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.ndnoticeURL})
+              gaTracker.trackEvent('Info Menu', 'Nondiscrimination')
+            }}>
+              <Flb name='family' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Non-Discrimination</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.internetStatementURL})
+              gaTracker.trackEvent('Info Menu', 'Privacy Policy')
+            }}>
+              <Flb name='lock' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Privacy Policy</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL})
+              gaTracker.trackEvent('Info Menu', 'Unsecured OPD')
+            }}>
+              <Flb name='map' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Find Care</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.supportURL})
+              gaTracker.trackEvent('Info Menu', 'Support')
+            }}>
+              <Flb name='support' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Support</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.floridaBlueURL})
+              gaTracker.trackEvent('Info Menu', 'floridablue.com')
+            }}>
+              <Flb name='globe' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>floridablue.com</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.anotherLanguageURL})
+              gaTracker.trackEvent('Info Menu', 'Speak Another Language')
+            }}>
+              <Flb name='language-switch' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Speak Another Language?</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.agentLoginLink} onPress={ () => { gaTracker.trackEvent('Info Menu', 'Agent Login') }}>
+              <Image source={Images.agentLoginLink} />
+            </TouchableOpacity>
+          </Popover>
+        </PopoverTouchable>
       </View>
     )
   }
