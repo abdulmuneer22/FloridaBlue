@@ -120,7 +120,7 @@ class NotificationsView extends Component {
               close={!(this.state.secId === secId && this.state.rowId === rowId)}
               right={
                 [{
-                  text: 'Archive',
+                  text: 'Delete',
                   onPress: function () {
                     const newData = [...that.props.notification]
                     newData.splice(that.state.rowId, 1)
