@@ -35,14 +35,14 @@ class Panel extends Component {
     })
 
     this.state.animation.setValue(initialValue)
-    /*Animated.spring(
+    /* Animated.spring(
             this.state.animation,
       {
         toValue: finalValue
       }
         ).start()
         */
-    Animated.timing(this.state.animation, {toValue: finalValue}).start();
+    Animated.timing(this.state.animation, {toValue: finalValue}).start()
   }
 
   _setMaxHeight (event) {

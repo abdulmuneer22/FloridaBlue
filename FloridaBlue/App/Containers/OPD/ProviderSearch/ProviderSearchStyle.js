@@ -181,7 +181,7 @@ export default StyleSheet.create({
   },
   dropD: {
     width: Metrics.screenWidth * 0.9,
-    height: Metrics.screenHeight * .05,
+    height: Metrics.screenHeight * 0.05,
     marginLeft: Metrics.doubleBaseMargin
   },
   dropdownItem: {

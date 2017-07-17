@@ -42,7 +42,7 @@ class Settings extends Component {
     this._handleGeoToggle = this._handleGeoToggle.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     if (this.props.credentialStored) {
       TouchManager.retrieveCredentials((error, credentials) => {
         let credentialObject = credentials[0]
@@ -58,7 +58,7 @@ class Settings extends Component {
     gaTracker.trackScreenView('Settings')
   }
 
-  _disableTouchID() {
+  _disableTouchID () {
     TouchManager.removeCredentials((error, credentials) => {
       var status = credentials[0]
       if (status == 'SUCCESS') {
@@ -69,7 +69,7 @@ class Settings extends Component {
     })
   }
 
-  _enableTouch() {
+  _enableTouch () {
     TouchManager.enableTouchID((error, status) => {
       var status = status[0]
       if (status == 'ENABLED') {
@@ -83,17 +83,17 @@ class Settings extends Component {
     })
   }
 
-  _resetTouchToggle() {
+  _resetTouchToggle () {
     this.props.changeTouchEnabled(true)
   }
 
-  _showDisableAlert() {
+  _showDisableAlert () {
     Alert.alert(
       'Disable Touch ID',
       'Are you sure you want to turn off Touch ID?',
       [
         {text: 'Cancel', style: 'cancel', onPress: () => this.forceUpdate()},
-        {text: 'Yes', onPress: () => this._disableTouchID()},
+        {text: 'Yes', onPress: () => this._disableTouchID()}
       ],
       { cancelable: false }
     )
@@ -113,7 +113,7 @@ class Settings extends Component {
     )
   }
 
-  _handlePushToggle(e) {
+  _handlePushToggle (e) {
     if (this.props.pushEnabled) {
       this.props.changePushEnabled(false)
     } else {
@@ -121,7 +121,7 @@ class Settings extends Component {
     }
   }
 
-  _handleGeoToggle(e) {
+  _handleGeoToggle (e) {
     if (this.props.geolocationEnabled) {
       this.props.changeGeolocationEnabled(false)
     } else {
@@ -129,7 +129,7 @@ class Settings extends Component {
     }
   }
 
-  _handleTouchToggle(e) {
+  _handleTouchToggle (e) {
     if (this.props.touchEnabled) {
       this._showDisableAlert()
     } else {
@@ -142,33 +142,33 @@ class Settings extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
 
-        <View style={{flex:1,backgroundColor:Colors.flBlue.bg2}}>
+        <View style={{flex: 1, backgroundColor: Colors.flBlue.bg2}}>
 
           { Platform.OS === 'ios' ?
-              <View style={styles.cardContainer}>
-                <BCard style={styles.card}>
-                  <View style={styles.cardIcon}>
-                    <Flb name={'fingerprint'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
-                  </View>
-                  <View style={styles.cardTextContainer}>
+            <View style={styles.cardContainer}>
+              <BCard style={styles.card}>
+                <View style={styles.cardIcon}>
+                  <Flb name={'fingerprint'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
+                </View>
+                <View style={styles.cardTextContainer}>
                   { this.props.touchEnabled ?
                     <Text allowFontScaling={false} style={styles.cardText}>Touch ID Enabled</Text>
                     :
                     <Text allowFontScaling={false} style={styles.cardText}>Enable Touch ID</Text>
                   }
-                  </View>
-                    <MKSwitch style={styles.settingStatusSwitch}
-                      checked={this.props.touchEnabled}
-                      trackSize={30}
-                      trackLength={52}
-                      onColor={Colors.flBlue.lightsky}
-                      offColor={Colors.flBlue.lightBlue}
-                      thumbOnColor={Colors.flBlue.ocean}
-                      thumbOffColor={Colors.flBlue.ocean}
-                      onPress={() => this._handleTouchToggle()}
+                </View>
+                <MKSwitch style={styles.settingStatusSwitch}
+                  checked={this.props.touchEnabled}
+                  trackSize={30}
+                  trackLength={52}
+                  onColor={Colors.flBlue.lightsky}
+                  offColor={Colors.flBlue.lightBlue}
+                  thumbOnColor={Colors.flBlue.ocean}
+                  thumbOffColor={Colors.flBlue.ocean}
+                  onPress={() => this._handleTouchToggle()}
                     />
-                </BCard>
-              </View>
+              </BCard>
+            </View>
             :
               null
           }
@@ -205,7 +205,7 @@ class Settings extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={{flex:5}}/>
+          <View style={{flex: 5}} />
         </View>
       </View>
     )

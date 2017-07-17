@@ -153,7 +153,7 @@ Card.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    claimsdata: state.claims.claimslist,
+    claimsdata: state.claims.claimslist
   }
 }
 

@@ -53,7 +53,7 @@ class Confirmation extends Component {
     }
   }
 
-  _handleConfirm() {
+  _handleConfirm () {
     if (this.props.touchEnabled && !this.props.credentialStored) {
       NavigationActions.TouchTOU({'tou': 'nonregistration'})
     } else {

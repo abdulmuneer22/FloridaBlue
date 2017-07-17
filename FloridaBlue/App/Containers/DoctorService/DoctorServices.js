@@ -98,37 +98,37 @@ class DoctorServices extends Component {
         <View style={styles.textBackground2}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={{ flex: 1 }}>
-              {this.renderHeaderText() != '' ? <TouchableOpacity onPress={() =>  {this.setState({ hpActive: !this.state.hpActive })} }><Card style={{flex: 1, marginTop: -0}} >
-                  <View style={{
+              {this.renderHeaderText() != '' ? <TouchableOpacity onPress={() => { this.setState({ hpActive: !this.state.hpActive }) }}><Card style={{flex: 1, marginTop: -0}} >
+                <View style={{
               // backgroundColor: 'purple',
-                    flex: 1,
-                    flexDirection: 'row',
-                    height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
+                  flex: 1,
+                  flexDirection: 'row',
+                  height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
 
-                  }}>
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10
+                }}>
+                  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10
                 // backgroundColor:'yellow'
-                    }}>
-                      <Flb name={tile[0].tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.purple} />
-                    </View>
-                    <View style={{
-                      flex: 3,
+                  }}>
+                    <Flb name={tile[0].tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.purple} />
+                  </View>
+                  <View style={{
+                    flex: 3,
                 // marginRight:5,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginTop: 10
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 10
                //    backgroundColor:'red'
 
-                    }}>
+                  }}>
 
-                      <Text allowFontScaling={false} style={styles.doctorTextStyle}>
-                        {temp1.text['en']}
-                      </Text>
+                    <Text allowFontScaling={false} style={styles.doctorTextStyle}>
+                      {temp1.text['en']}
+                    </Text>
 
-                    </View>
+                  </View>
 
-                    <View style={{flex: 1}}>
-                      {this.renderHeaderText() != ''
+                  <View style={{flex: 1}}>
+                    {this.renderHeaderText() != ''
                         ? <View style={{
                           flex: 1,
                           marginTop: 5
@@ -162,12 +162,12 @@ class DoctorServices extends Component {
                   : <Text />
                 }
 
-                    </View>
                   </View>
+                </View>
 
-                  <View style={{flex: 1, flexDirection: 'row'}}>
-                    <View style={{flex: 1}} />
-                    {
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                  <View style={{flex: 1}} />
+                  {
                 this.state.hpActive
                   ? <View style={{
                     flex: 12,
@@ -194,40 +194,40 @@ class DoctorServices extends Component {
                   </View>
                   : null
               }
-                    <View style={{flex: 1}} />
-                  </View>
+                  <View style={{flex: 1}} />
+                </View>
 
-                </Card></TouchableOpacity> : <View onPress={() =>  {this.setState({ hpActive: this.state.hpActive })} }><Card style={{flex: 1, marginTop: -0}} >
-                  <View style={{
+              </Card></TouchableOpacity> : <View onPress={() => { this.setState({ hpActive: this.state.hpActive }) }}><Card style={{flex: 1, marginTop: -0}} >
+                <View style={{
               // backgroundColor: 'purple',
-                    flex: 1,
-                    flexDirection: 'row',
-                    height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
+                  flex: 1,
+                  flexDirection: 'row',
+                  height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
 
-                  }}>
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10
+                }}>
+                  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 10
                 // backgroundColor:'yellow'
-                    }}>
-                      <Flb name={tile[0].tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.purple} />
-                    </View>
-                    <View style={{
-                      flex: 3,
+                  }}>
+                    <Flb name={tile[0].tileIcon} size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.purple} />
+                  </View>
+                  <View style={{
+                    flex: 3,
                 // marginRight:5,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginTop: 10
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginTop: 10
                //    backgroundColor:'red'
 
-                    }}>
+                  }}>
 
-                      <Text allowFontScaling={false} style={styles.doctorTextStyle}>
-                        {temp1.text['en']}
-                      </Text>
+                    <Text allowFontScaling={false} style={styles.doctorTextStyle}>
+                      {temp1.text['en']}
+                    </Text>
 
-                    </View>
+                  </View>
 
-                    <View style={{flex: 1}}>
-                      {this.renderHeaderText() != ''
+                  <View style={{flex: 1}}>
+                    {this.renderHeaderText() != ''
                         ? <View style={{
                           flex: 1,
                           marginTop: 5
@@ -261,12 +261,12 @@ class DoctorServices extends Component {
                   : <Text />
                 }
 
-                    </View>
                   </View>
+                </View>
 
-                  <View style={{flex: 1, flexDirection: 'row'}}>
-                    <View style={{flex: 1}} />
-                    {
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                  <View style={{flex: 1}} />
+                  {
                 this.state.hpActive
                   ? <View style={{
                     flex: 12,
@@ -293,10 +293,10 @@ class DoctorServices extends Component {
                   </View>
                   : null
               }
-                    <View style={{flex: 1}} />
-                  </View>
+                  <View style={{flex: 1}} />
+                </View>
 
-                </Card></View>}
+              </Card></View>}
 
               <View style={{ alignItems: 'center', marginBottom: 15}}>
                 <Switch

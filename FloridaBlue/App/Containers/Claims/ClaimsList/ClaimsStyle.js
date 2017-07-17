@@ -27,8 +27,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     // padding: 9,
-    //height: 37,
-    flex:1,
+    // height: 37,
+    flex: 1,
     margin: 10,
     marginBottom: 1,
     alignItems: 'center'
@@ -55,14 +55,14 @@ export default StyleSheet.create({
     margin: 10
   },
   claimsListHeaderText: {
-    fontSize: Fonts.size.h5*Metrics.screenWidth*0.0028,
-    color:Colors.flBlue.night,
-    paddingLeft: Metrics.mediumMargin*Metrics.screenWidth*0.002,
+    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
+    color: Colors.flBlue.night,
+    paddingLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002,
     opacity: 0.9
   },
   claimsCategories1: {
-    flex:1,
-    },
+    flex: 1
+  },
   cardButton: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -111,16 +111,16 @@ export default StyleSheet.create({
   },
   claimsCategoryText: {
     fontWeight: 'bold',
-    marginTop: Metrics.smallMargin*Metrics.screenHeight*0.001,
-    color:Colors.flBlue.anvil,
-    fontSize:Fonts.size.regular*Metrics.screenWidth*0.0025
+    marginTop: Metrics.smallMargin * Metrics.screenHeight * 0.001,
+    color: Colors.flBlue.anvil,
+    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025
 
   },
   claimsCardText: {
     color: Colors.flBlue.anvil
   },
   claimsCardContainer: {
-    flex: 10,
+    flex: 10
 
   },
   claimsViewMore: {
@@ -190,7 +190,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: window.width,
     height: window.height,
-    flex:1
+    flex: 1
   },
   subheading: {
     color: Colors.flBlue.anvil,
@@ -259,7 +259,7 @@ export default StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    flex:1,
+    flex: 1,
     position: 'absolute',
     paddingTop: Metrics.doubleBaseMargin,
     backgroundColor: 'transparent'
@@ -286,12 +286,12 @@ export default StyleSheet.create({
     marginBottom: Metrics.doubleBaseMargin * 2,
     width: Metrics.screenWidth * 0.9,
     alignSelf: 'center',
-    flex:1
+    flex: 1
   },
   closeSearchButton: {
     alignSelf: 'flex-end',
     marginRight: Metrics.baseMargin,
-    flex:1
+    flex: 1
   },
   dateContainer: {
     flex: 1,

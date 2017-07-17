@@ -58,7 +58,7 @@ class Webview extends Component {
       console.tron.log(event, 'request')
       return true
     }
-      let jsCode = `
+    let jsCode = `
         var d = document.getElementsByTagName('a');
         for (var i = 0; i < d.length; i++) {
             if (d[i].getAttribute('target') == '_blank') {               
@@ -73,19 +73,19 @@ class Webview extends Component {
                 d[i].parentNode.style.display='none';              
             }
         }
-    `;
+    `
 
     if (this.props.smToken) {
       redirect = {
         uri: dynamic,
         method: 'GET',
-        baseUrl:'/'
+        baseUrl: '/'
       }
     } else {
       redirect = {
         uri: dynamic,
         method: 'GET',
-         baseUrl:'/'
+        baseUrl: '/'
       }
     }
     return (
@@ -97,14 +97,14 @@ class Webview extends Component {
         <WebView
           source={redirect}
           javaScriptEnabled
-          domStorageEnabled={true}
+          domStorageEnabled
           startInLoadingState
        //   customUserAgent="Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239eSafari/602.1"
        //   sendCookies={true}
        // Below functions for debugging
        //   onNavigationStateChange={onNavigationStateChange}
        //   onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
-         injectedJavaScript={jsCode}
+          injectedJavaScript={jsCode}
             />
       </View>
 

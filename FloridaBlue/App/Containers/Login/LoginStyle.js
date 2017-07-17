@@ -70,11 +70,11 @@ export default StyleSheet.create({
   },
   touchLoginContainer: {
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   textFieldContainer: {
     height: Metrics.baseMargin * Metrics.screenWidth * 0.012,
-    width:  Metrics.baseMargin * Metrics.screenWidth * 0.08,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.08,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003
   },
   fingerprintContainer: {
@@ -83,9 +83,9 @@ export default StyleSheet.create({
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.003
   },
   fingerprintButton: {
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.004
   },
   fingerprint: {
@@ -97,7 +97,7 @@ export default StyleSheet.create({
   touchInstruction: {
     textAlign: 'center',
     color: Colors.flBlue.grey3,
-    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027
   },
   touchCheckbox: {
     height: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
@@ -149,7 +149,7 @@ export default StyleSheet.create({
   },
   spinnerView: {
     alignSelf: 'center',
-     justifyContent: 'center',
+    justifyContent: 'center'
     // width: window.width *0.5,
     // height: window.height*0.5
   },

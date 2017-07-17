@@ -23,7 +23,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
   .build()
 class MyIdCard extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       idCardHeaderVisible: true
@@ -31,7 +31,7 @@ class MyIdCard extends Component {
     this.toggle = this.toggle.bind(this)
   }
 
-  _renderHeader() {
+  _renderHeader () {
     return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
         {NavItems.backButton()}
@@ -41,24 +41,23 @@ class MyIdCard extends Component {
           ID Card
 </Text>
       </View>
-      {/*<View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+      {/* <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
 {NavItems.settingsButton()}
-</View>*/}
+</View> */}
     </Image>)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     gaTracker.trackScreenView('ID Card')
   }
 
-  toggle() {
+  toggle () {
     this.setState({
       idCardHeaderVisible: !this.state.idCardHeaderVisible
     })
   }
 
-  _displayCondition() {
-
+  _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
@@ -67,7 +66,7 @@ class MyIdCard extends Component {
     } else if (this.props && this.props.data && this.props.data.IdCardImage && this.props.data.IdCardImage.length != 0) {
       var str = this.props.planName && this.props.planName.planName
 
-      console.tron.log('str' + str.indexOf("MYBLUE"))
+      console.tron.log('str' + str.indexOf('MYBLUE'))
       return (
         <View style={{ margin: 5, flex: 1, alignItems: 'center', opacity: 0.9 }}>
 
@@ -80,15 +79,14 @@ class MyIdCard extends Component {
                 marginLeft: this.state.idCardHeaderVisible ? 0 : Metrics.baseMargin * Metrics.screenWidth * 0.004,
                 width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.15) : Metrics.screenHeight
               } : {
-                  flex: 1,
-                  transform: [{ rotate: '270deg' }],
-                  resizeMode: 'contain',
-                  width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.13) : Metrics.screenHeight - Metrics.screenHeight * 0.03
-                }} >
+                flex: 1,
+                transform: [{ rotate: '270deg' }],
+                resizeMode: 'contain',
+                width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.13) : Metrics.screenHeight - Metrics.screenHeight * 0.03
+              }} >
               <View style={{ flex: 1 }}>
-                {str.toUpperCase().indexOf("MYBLUE") > -1 ?
+                {str.toUpperCase().indexOf('MYBLUE') > -1 ?
                   <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-
 
                     <View style={{ flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin * Metrics.screenWidth * 0.02 : Metrics.smallMargin * Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.825)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.81)), alignItems: 'flex-start' }}>
 
@@ -129,7 +127,7 @@ class MyIdCard extends Component {
                           <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.004, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022 }}>Plan Name: {this.props.data.PlanName}</Text> : null}
                       </View>
                       <View style={{ flex: 0.1 }}>
-                        <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025, marginTop: 10 }}> </Text>
+                        <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025, marginTop: 10 }} />
                       </View>
                     </View>
                   </View>
@@ -174,7 +172,7 @@ class MyIdCard extends Component {
                           <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.004, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022 }}>Plan Name: {this.props.data.PlanName}</Text> : null}
                       </View>
                       <View style={{ flex: 0.1 }}>
-                        <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025, marginTop: 10 }}> </Text>
+                        <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025, marginTop: 10 }} />
                       </View>
                     </View>
 
@@ -187,10 +185,8 @@ class MyIdCard extends Component {
 
           </TouchableOpacity>
 
-
         </View>)
     } else if (this.props.error != null && this.props.error.idCardWebviewURL != undefined) {
-
       NavigationActions.MyView({ responseURL: this.props.error.idCardWebviewURL })
     } else if (this.props.error != null) {
       Alert.alert(
@@ -201,10 +197,9 @@ class MyIdCard extends Component {
 
         ])
     }
-
   }
 
-  render() {
+  render () {
     return (
       <View style={[styles.container, { backgroundColor: Colors.snow }]}>
         <HideableView visible={this.state.idCardHeaderVisible} removeWhenHidden>

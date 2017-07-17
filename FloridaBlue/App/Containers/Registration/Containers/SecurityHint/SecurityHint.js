@@ -43,7 +43,7 @@ const HtMLstyles = StyleSheet.create({
 })
 
 class SecurityHint extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     gaTracker.trackScreenView('Registration Security Hint')
   }
 
