@@ -45,6 +45,7 @@ import {NotificationsView } from '../Containers/PushNotifications'
 import {ClaimsList} from '../Containers/Claims/ClaimsList'
 import {ClaimDetail} from '../Containers/Claims/ClaimDetail'
 import {ClaimsSummary} from '../Containers/Claims/ClaimsSummary'
+import {Payments} from '../Containers/WelcomeDisplay'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -91,6 +92,7 @@ const scenes = Actions.create(
         <Scene key='ClaimDetail' component={ClaimDetail} title='Claims Page' hideNavBar />
         <Scene key='ClaimsSummary' component={ClaimsSummary} title='Claims Summary Page' hideNavBar />
         <Scene key='AgentLogin' component={AgentLogin} title='Agent Login' hideNavBar />
+        <Scene key='Payments' component={Payments} title='Payments Page' hideNavBar />
       </Scene>
     </Scene>
   </Scene>
