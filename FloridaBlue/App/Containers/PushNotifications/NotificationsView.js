@@ -133,7 +133,7 @@ class NotificationsView extends Component {
                     }
                   },
                   type: 'default',
-                  backgroundColor: Colors.flBlue.grass
+                  backgroundColor: Colors.flBlue.red
                 }]}
               rowID={rowId}
               sectionID={secId}
