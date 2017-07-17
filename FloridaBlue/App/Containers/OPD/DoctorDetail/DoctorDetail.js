@@ -31,6 +31,8 @@ import ProviderActions from '../../../Redux/ProviderRedux'
 import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import SettingActions from '../../../Redux/SettingRedux'
+
 
 const theme = getTheme()
 let urlConfig = require('../../../UrlConfig')
@@ -771,7 +773,8 @@ const mapStateToProps = (state) => {
     providerKey: state.provider.providerKey,
     addressKey: state.provider.addressKey,
     configData: state.provider.configData,
-    networkCodeList: state.provider.networkCodeList
+    networkCodeList: state.provider.networkCodeList,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -780,7 +783,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptConfigData: () => dispatch(ProviderActions.sendConfigTypeRequest()),
     attemptDoctorDetail: (data) => dispatch(ProviderActions.sendDoctorDetailRequest(data)),
     addProviderRequest: (data) => dispatch(SaveProviderActions.addProviderRequest(data)),
-    removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey))
+    removeProviderRequest: (savedProviderKey) => dispatch(SaveProviderActions.removeProviderRequest(savedProviderKey)),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 
