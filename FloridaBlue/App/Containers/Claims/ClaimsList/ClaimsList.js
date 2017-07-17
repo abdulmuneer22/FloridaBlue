@@ -46,7 +46,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 
 class ClaimsList extends Component {
   // const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       listLimit: 10,
@@ -84,7 +84,7 @@ class ClaimsList extends Component {
     this.handleSearchClose = this.handleSearchClose.bind(this)
   }
 
-  searchResults() {
+  searchResults () {
     let currentStartDate = moment(this.props.startDate, 'MM-DD-YYYY')
     let currentEndDate = moment(this.props.endDate, 'MM-DD-YYYY')
 
@@ -100,7 +100,7 @@ class ClaimsList extends Component {
     }
   }
 
-  _renderHeader() {
+  _renderHeader () {
     return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
         {NavItems.backButton()}
@@ -114,7 +114,7 @@ class ClaimsList extends Component {
     </Image>)
   }
 
-  _renderDropdownRow(rowData, rowID, highlighted) {
+  _renderDropdownRow (rowData, rowID, highlighted) {
     return (
       <TouchableHighlight underlayColor={Colors.snow}>
         <Text allowFontScaling={false} style={styles.dropdownItem}>{rowData}</Text>
@@ -122,7 +122,7 @@ class ClaimsList extends Component {
     )
   }
 
-  handleSearch() {
+  handleSearch () {
     if (this.state.searchVisible) {
       this.setState({ searchVisible: false })
     } else {
@@ -130,7 +130,7 @@ class ClaimsList extends Component {
     }
   }
 
-  handleSearchClose() {
+  handleSearchClose () {
     this.setState({ searchVisible: false })
     let newStartDate = moment(new Date()).add(-730, 'days').format('MM-DD-YYYY')
     let newEndDate = moment(new Date()).format('MM-DD-YYYY')
@@ -141,21 +141,21 @@ class ClaimsList extends Component {
     this.props.changeMemberId('')
   }
 
-  hideDatePicker() {
+  hideDatePicker () {
     this.props.changeDatePickerVisible(false)
   }
 
-  addStartDate() {
+  addStartDate () {
     this.setState({ endDateSelected: false })
     this.props.changeDatePickerVisible(true)
   }
 
-  addEndDate() {
+  addEndDate () {
     this.setState({ endDateSelected: true })
     this.props.changeDatePickerVisible(true)
   }
 
-  handleDatePicked(date) {
+  handleDatePicked (date) {
     let selectedDate = moment(date)
 
     if (this.state.endDateSelected) {
@@ -173,7 +173,7 @@ class ClaimsList extends Component {
     this.hideDatePicker()
   }
 
-  memberSelected(index, value: string) {
+  memberSelected (index, value: string) {
     let selectedMember = this.state.members[index].memberName
     let selectedValue = this.state.members[index].memberId
     this.props.changeMemberName(selectedMember)
@@ -183,7 +183,7 @@ class ClaimsList extends Component {
     })
   }
 
-  componentDidMount() {
+  componentDidMount () {
     let newStartDate = moment(new Date()).add(-730, 'days').format('MM-DD-YYYY')
     let newEndDate = moment(new Date()).format('MM-DD-YYYY')
     this.props.changeStartDate(newStartDate)
@@ -194,7 +194,7 @@ class ClaimsList extends Component {
       let member = this.props.memberObject.contractMembers[i]
       let formattedMember = {
         'memberId': member.memberId,
-        'memberName': member.firstName + " " + member.lastName
+        'memberName': member.firstName + ' ' + member.lastName
       }
       memberArray.push(formattedMember)
     }
@@ -202,7 +202,7 @@ class ClaimsList extends Component {
     this.setState({ members: memberArray })
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps (newProps) {
     if (this.state.isFetchingMore || this.state.sortOnClaims) {
       newProps.attemptAsyncClaimList(newProps)
       this.setState({ isFetchingMore: false })
@@ -210,7 +210,7 @@ class ClaimsList extends Component {
     }
   }
 
-  viewMore() {
+  viewMore () {
     var currentLimit = this.state.listLimit
     var newLimit = currentLimit
     if (newLimit <= this.props.claimsdata.totalCount) {
@@ -223,10 +223,10 @@ class ClaimsList extends Component {
     }
   }
 
-  sortClaims(column) {
-    let sortBy = [];
+  sortClaims (column) {
+    let sortBy = []
     if (column == 'provider') {
-      let providerSortState = this.state.searchData.sortBy.providerName;
+      let providerSortState = this.state.searchData.sortBy.providerName
       let sortByState = 0
       if (providerSortState == 0 || providerSortState == -1) {
         sortByState = 1
@@ -235,11 +235,11 @@ class ClaimsList extends Component {
       } else {
         sortByState = 1
       }
-      this.state.searchData.sortBy.providerName = sortByState;
+      this.state.searchData.sortBy.providerName = sortByState
     }
 
     if (column == 'date') {
-      let dateSortState = this.state.searchData.sortBy.date;
+      let dateSortState = this.state.searchData.sortBy.date
       let sortByState = 0
       if (dateSortState == 0 || dateSortState == -1) {
         sortByState = 1
@@ -248,11 +248,11 @@ class ClaimsList extends Component {
       } else {
         sortByState = 1
       }
-      this.state.searchData.sortBy.date = sortByState;
+      this.state.searchData.sortBy.date = sortByState
     }
 
     if (column == 'member') {
-      let memberSortState = this.state.searchData.sortBy.memberName;
+      let memberSortState = this.state.searchData.sortBy.memberName
       let sortByState = 0
       if (memberSortState == 0 || memberSortState == -1) {
         sortByState = 1
@@ -261,37 +261,35 @@ class ClaimsList extends Component {
       } else {
         sortByState = 1
       }
-      this.state.searchData.sortBy.memberName = sortByState;
+      this.state.searchData.sortBy.memberName = sortByState
     }
-
 
     if (this.state.searchData.sortBy.providerName != 0) {
       sortBy.push({
-        "columnName": "providerName",
-        "sortOrder": this.state.searchData.sortBy.providerName
-      });
+        'columnName': 'providerName',
+        'sortOrder': this.state.searchData.sortBy.providerName
+      })
     }
 
     if (this.state.searchData.sortBy.date != 0) {
       sortBy.push({
-        "columnName": "date",
-        "sortOrder": this.state.searchData.sortBy.date
-      });
+        'columnName': 'date',
+        'sortOrder': this.state.searchData.sortBy.date
+      })
     }
 
     if (this.state.searchData.sortBy.memberName != 0) {
       sortBy.push({
-        "columnName": "memberName",
-        "sortOrder": this.state.searchData.sortBy.memberName
-      });
+        'columnName': 'memberName',
+        'sortOrder': this.state.searchData.sortBy.memberName
+      })
     }
-
 
     this.props.changeSortBy(sortBy)
     this.state.sortOnClaims = true
-    //this.props.attemptClaimsList(this.props);
+    // this.props.attemptClaimsList(this.props);
   }
-  _renderViewMore() {
+  _renderViewMore () {
     // console.tron.log("view more" +this.props.asyncfetching)
     if (!this.props.asyncfetching) {
       return (<View style={{ flex: 1, margin: 14 }}>
@@ -301,7 +299,7 @@ class ClaimsList extends Component {
             <View style={{ flex: 1, justifyContent: 'center' }}>
               <TouchableOpacity onPress={this.viewMore} style={{ flexDirection: 'row', flex: 1 }}>
                 <Text allowFontScaling={false} style={styles.claimsViewMore}>View More </Text>
-                <Flb name="chevron-down" size={20} color={Colors.flBlue.teal} style={{ marginTop: 3 }} />
+                <Flb name='chevron-down' size={20} color={Colors.flBlue.teal} style={{ marginTop: 3 }} />
               </TouchableOpacity>
             </View>
             : null
@@ -316,8 +314,7 @@ class ClaimsList extends Component {
     }
   }
 
-  _displayCondition() {
-
+  _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
@@ -375,93 +372,89 @@ class ClaimsList extends Component {
               <View style={{ flex: 1 }}>
                 {this._renderViewMore()}
               </View>
-               <View style={{flex: 1, margin: 15, marginTop: -5 }}>
-                      <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.deepBlue, paddingLeft: 10}} >
-                        <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
-                          <View style={{ flex: 0.15 }}>
-                            <Flb name='flag' size={Metrics.icons.medium} color={Colors.snow} />
-                          </View>
-                          <View style={{ flex: 0.85 }}>
-                            <Text allowFontScaling={false} style={{
-                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
-                              color: Colors.snow
-                            }}>
-                              <Text allowFontScaling={false} style={{
-                                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
-                                color: Colors.snow,
-                                fontWeight: '700'
-                              }}>Please Note: </Text>Pharmacy and/or claims of others on your plan are not shown. Click <Text style={{textDecorationLine: 'underline'}}>here</Text> to see all claims.</Text>
-                          </View>
-                        </View>
-                      </Card>
+              <View style={{flex: 1, margin: 15, marginTop: -5 }}>
+                <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.deepBlue, paddingLeft: 10}} >
+                  <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ flex: 0.15 }}>
+                      <Flb name='flag' size={Metrics.icons.medium} color={Colors.snow} />
                     </View>
-
+                    <View style={{ flex: 0.85 }}>
+                      <Text allowFontScaling={false} style={{
+                        fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                        color: Colors.snow
+                      }}>
+                        <Text allowFontScaling={false} style={{
+                          fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
+                          color: Colors.snow,
+                          fontWeight: '700'
+                        }}>Please Note: </Text>Pharmacy and/or claims of others on your plan are not shown. Click <Text style={{textDecorationLine: 'underline'}}>here</Text> to see all claims.</Text>
+                    </View>
+                  </View>
+                </Card>
+              </View>
 
             </ScrollView>
           </View>
 
           <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
             <View style={{backgroundColor: 'white', marginTop: -10}}>
-            <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
-              <Flb name='remove' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
-            </TouchableOpacity>
-            <Text allowFontScaling={false} style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below:</Text>
-            <HideableView visible={this.state.dateError} removeWhenHidden={true}>
-              <Text allowFontScaling={false} style={styles.error}>Oops! Something went wrong. Check your dates and try again.</Text>
-            </HideableView>
-            <MKTextField
-              ref='providerName'
-              style={styles.textField}
-              textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
-              autoCorrect={false}
-              keyboardType='default'
-              returnKeyType='next'
-              autoCapitalize='none'
-              underlineColorAndroid={Colors.coal}
-              placeholder={'Provider Name'}
-              placeholderTextColor={Colors.steel}
-              tintColor={Colors.black}
-              onChangeText={this.props.changeProviderName}
-              defaultValue={this.props.providerName}
-            />
-
-            <ModalDropdown options={_.map(this.state.members, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+              <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
+                <Flb name='remove' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
+              </TouchableOpacity>
+              <Text allowFontScaling={false} style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below:</Text>
+              <HideableView visible={this.state.dateError} removeWhenHidden>
+                <Text allowFontScaling={false} style={styles.error}>Oops! Something went wrong. Check your dates and try again.</Text>
+              </HideableView>
               <MKTextField
-                ref='memberName'
-                textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
+                ref='providerName'
                 style={styles.textField}
-                editable={false}
+                textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
+                autoCorrect={false}
+                keyboardType='default'
+                returnKeyType='next'
+                autoCapitalize='none'
                 underlineColorAndroid={Colors.coal}
-                placeholder={'Member Name'}
+                placeholder={'Provider Name'}
                 placeholderTextColor={Colors.steel}
                 tintColor={Colors.black}
-                value={this.props.memberName}
+                onChangeText={this.props.changeProviderName}
+                defaultValue={this.props.providerName}
+            />
+
+              <ModalDropdown options={_.map(this.state.members, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+                <MKTextField
+                  ref='memberName'
+                  textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
+                  style={styles.textField}
+                  editable={false}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder={'Member Name'}
+                  placeholderTextColor={Colors.steel}
+                  tintColor={Colors.black}
+                  value={this.props.memberName}
               />
-            </ModalDropdown>
-            <View style={styles.dateContainer}>
-              <TouchableOpacity style={styles.startDateButton} onPress={this.addStartDate}>
-                <Text allowFontScaling={false} style={styles.dateText}>
-                  <Text>{this.props.startDate}  </Text>
-                  <Flb style={styles.calendarIcon} color={Colors.flBlue.grey3} name="calendar" size={15} />
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.endDateButton} onPress={this.addEndDate}>
-                <Text allowFontScaling={false} style={styles.dateText}>
-                  <Text>{this.props.endDate}  </Text>
-                  <Flb color={Colors.flBlue.grey3} name="calendar" size={15} />
-                </Text>
-              </TouchableOpacity>
-            </View>
-            <Button rounded style={styles.searchButton} onPress={() => { this.searchResults() }}>
-              <Text allowFontScaling={false} style={{ color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center' }}>Search</Text>
-            </Button>
-            
-            </View>
-            <View style={{backgroundColor: 'rgba(0,0,0,.5)', paddingBottom: 200}}>
+              </ModalDropdown>
+              <View style={styles.dateContainer}>
+                <TouchableOpacity style={styles.startDateButton} onPress={this.addStartDate}>
+                  <Text allowFontScaling={false} style={styles.dateText}>
+                    <Text>{this.props.startDate}                      </Text>
+                    <Flb style={styles.calendarIcon} color={Colors.flBlue.grey3} name='calendar' size={15} />
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.endDateButton} onPress={this.addEndDate}>
+                  <Text allowFontScaling={false} style={styles.dateText}>
+                    <Text>{this.props.endDate}                      </Text>
+                    <Flb color={Colors.flBlue.grey3} name='calendar' size={15} />
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <Button rounded style={styles.searchButton} onPress={() => { this.searchResults() }}>
+                <Text allowFontScaling={false} style={{ color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center' }}>Search</Text>
+              </Button>
 
             </View>
+            <View style={{backgroundColor: 'rgba(0,0,0,.5)', paddingBottom: 200}} />
           </HideableView>
-          
 
           <DateTimePicker
             isVisible={this.props.datePickerVisible}
@@ -481,8 +474,8 @@ class ClaimsList extends Component {
           { text: 'OK' }
         ]
       )
-    } else{
-       Alert.alert(
+    } else {
+      Alert.alert(
         'Claim List',
         'Oops! Something went wrong. Check your details and try again.',
         [
@@ -492,9 +485,9 @@ class ClaimsList extends Component {
     }
   }
 
-  render() {
+  render () {
     /* console.tron.log("claims list data" + this.props.datePickerVisible)
-    console.tron.log("entered to claims list "  + this.props.claimsdata)*/
+    console.tron.log("entered to claims list "  + this.props.claimsdata) */
     //  console.tron.log("entered to claims member list " + JSON.stringify(this.props.memberObject.contractMembers))
     return (
       <View style={styles.container}>

@@ -11,7 +11,7 @@ import LoginActions from '../../Redux/LoginRedux'
 import styles from './RootContainerStyle'
 import {PushController} from '../PushNotifications'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
-import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 var RCTNetworking = require('RCTNetworking')
 var inactiveTime = Date
@@ -32,7 +32,7 @@ class RootContainer extends Component {
       this.props.startup()
     }
     AppState.addEventListener('change', this._handleAppState)
-    GoogleAnalyticsSettings.setDispatchInterval(30);
+    GoogleAnalyticsSettings.setDispatchInterval(30)
   }
 
   componentWillUnmount () {

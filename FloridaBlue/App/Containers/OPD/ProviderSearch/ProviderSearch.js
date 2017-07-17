@@ -241,7 +241,7 @@ class ProviderSearch extends Component {
     }
   }
 
-  _selectCurrentLocation(event) {
+  _selectCurrentLocation (event) {
     if (event.checked) {
       if (this.props.geolocationEnabled) {
         this._getLocation()
@@ -334,9 +334,9 @@ class ProviderSearch extends Component {
       this.props.changeAddress('Using Current Location')
     },
       (error) => alert('No GPS location found.'))
-      this.props.changeAddress(this.props.homeAddress)
-      this.props.changeLatitude(0)
-      this.props.changeLongitude(0)
+    this.props.changeAddress(this.props.homeAddress)
+    this.props.changeLatitude(0)
+    this.props.changeLongitude(0)
   }
 
   _alertForLocationPermission () {
@@ -434,7 +434,7 @@ class ProviderSearch extends Component {
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')}
-                  onSelect={this._specialitySelected} dropdownStyle={this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown  : styles.dropD}
+                  onSelect={this._specialitySelected} dropdownStyle={this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown : styles.dropD}
                   renderRow={this._renderDropdownRow.bind(this)}
                 // adjustFrame={style => this._dropdown_3_adjustFrame(style)}
                 >

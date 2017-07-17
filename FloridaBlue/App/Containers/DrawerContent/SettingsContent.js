@@ -142,7 +142,7 @@ class SettingsContent extends Component {
     }
   }
 
-  handlePressPolicy =  () => {
+  handlePressPolicy = () => {
     gaTracker.trackEvent('Side Menu', 'Terms of Use')
     let action
     if (this.props.visibilityRules.touTile.tileType == 'webview') {

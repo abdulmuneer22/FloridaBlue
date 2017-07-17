@@ -25,7 +25,7 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 class UserIdHint extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     gaTracker.trackScreenView('Registration User ID Hint')
   }
 

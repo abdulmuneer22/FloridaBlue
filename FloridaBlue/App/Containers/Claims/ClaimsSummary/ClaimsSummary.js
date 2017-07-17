@@ -97,21 +97,21 @@ class ClaimsSummary extends Component {
             />
           </View>
 
-               <View style={{flex: 3.5, backgroundColor: Colors.flBlue.grey1}} >
-              <View style={{flex: 0.5, justifyContent:'center', marginLeft: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
-                <Text style={styles.recentClaimsText} >Recent Claims</Text>
-              </View>
-                { this.props.claimsdata ?
-                            <View style={{flex: 3}}>
-                              <ClaimsSummaryCard data={this.props.claimsdata.data && this.props.claimsdata.data.length > 3 ? this.props.claimsdata.data.slice(0, 3) : this.props.claimsdata.data} />
-                            </View>
-                          :
-                            <View style={{flex:2,justifyContent:'center', alignItems: 'center'}}>
-                              <Text> No Recent Claims found </Text>
-                            </View>
-                }
+          <View style={{flex: 3.5, backgroundColor: Colors.flBlue.grey1}} >
+            <View style={{flex: 0.5, justifyContent: 'center', marginLeft: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
+              <Text style={styles.recentClaimsText} >Recent Claims</Text>
             </View>
-            {
+            { this.props.claimsdata ?
+              <View style={{flex: 3}}>
+                <ClaimsSummaryCard data={this.props.claimsdata.data && this.props.claimsdata.data.length > 3 ? this.props.claimsdata.data.slice(0, 3) : this.props.claimsdata.data} />
+              </View>
+                          :
+              <View style={{flex: 2, justifyContent: 'center', alignItems: 'center'}}>
+                <Text> No Recent Claims found </Text>
+              </View>
+                }
+          </View>
+          {
                     this.props.claimsdata && this.props.claimsdata.count > 0
                     ?
                       <View style={{flex: 1.5}} >

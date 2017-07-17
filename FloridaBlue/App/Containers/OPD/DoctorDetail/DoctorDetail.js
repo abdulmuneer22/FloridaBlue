@@ -121,7 +121,7 @@ class DoctorDetail extends Component {
       }
     })
   }
-  
+
   componentDidMount () {
     gaTracker.trackScreenView('Provider Detail')
     this.props.attemptDoctorDetail(this.props)

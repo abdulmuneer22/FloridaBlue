@@ -65,44 +65,44 @@ class ClaimsCard extends Component {
 
   render () {
     return (
-        <View style={{flex:1}}>
-          {this.props.data != undefined ? this.props.data.map((value, i) => {
-            {/*let color = Colors.flBlue.ocean
+      <View style={{flex: 1}}>
+        {this.props.data != undefined ? this.props.data.map((value, i) => {
+          { /* let color = Colors.flBlue.ocean
             if (value.claimType === 'Professional') {
               color = Colors.flBlue.ocean
             } else if (value.claimType === 'Institutional') {
               color = Colors.flBlue.red
             } else {
               color = Colors.flBlue.grass
-            }*/}
-            if (i < this.state.cardLimit) {
-              return (
-                <View key={i} style={{ flex: 1 }}>
-                  <TouchableOpacity key={i} style={{ flex: 1 }} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
-                    <Card style={styles.claimsListCard} key={i} >
-                      <View style={{ flex: 1, flexDirection: 'row',marginTop:Metrics.baseMargin*Metrics.screenHeight*0.002,marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.002, justifyContent: 'center' }}>
-                      { /*  <View style={{flex: 0.01,marginTop:-Metrics.baseMargin*Metrics.screenHeight*0.002,marginBottom:-Metrics.baseMargin*Metrics.screenHeight*0.002, backgroundColor: color}} />*/}
-                        <View style={{ flex: 0.27, alignItems: 'center', justifyContent: 'center' }}>
-                          <Text allowFontScaling={false} style={styles.claimsCardText}>
-                            {this.formatDate(value.dateOfService)}
-                          </Text>
-                        </View>
-                        <View style={{ flex: 0.33, justifyContent: 'center',alignItems:'center' }}>
-                          <Text allowFontScaling={false} style={styles.claimsCardText}>
-                            {value.memberName}
-                          </Text>
-                        </View>
-                        <View style={{ flex: 0.4, justifyContent: 'center',alignItems:'center',marginRight:10 }}>
-                          <Text allowFontScaling={false} style={styles.providerName}>{value.providerName}</Text>
-                        </View>
+          } */ }
+          if (i < this.state.cardLimit) {
+            return (
+              <View key={i} style={{ flex: 1 }}>
+                <TouchableOpacity key={i} style={{ flex: 1 }} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
+                  <Card style={styles.claimsListCard} key={i} >
+                    <View style={{ flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002, justifyContent: 'center' }}>
+                      { /*  <View style={{flex: 0.01,marginTop:-Metrics.baseMargin*Metrics.screenHeight*0.002,marginBottom:-Metrics.baseMargin*Metrics.screenHeight*0.002, backgroundColor: color}} /> */}
+                      <View style={{ flex: 0.27, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text allowFontScaling={false} style={styles.claimsCardText}>
+                          {this.formatDate(value.dateOfService)}
+                        </Text>
                       </View>
-                    </Card>
-                  </TouchableOpacity>
-                </View>
-              )
-            }
-          }) : null}
-        </View>
+                      <View style={{ flex: 0.33, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text allowFontScaling={false} style={styles.claimsCardText}>
+                          {value.memberName}
+                        </Text>
+                      </View>
+                      <View style={{ flex: 0.4, justifyContent: 'center', alignItems: 'center', marginRight: 10 }}>
+                        <Text allowFontScaling={false} style={styles.providerName}>{value.providerName}</Text>
+                      </View>
+                    </View>
+                  </Card>
+                </TouchableOpacity>
+              </View>
+            )
+          }
+        }) : null}
+      </View>
     )
   }
 }

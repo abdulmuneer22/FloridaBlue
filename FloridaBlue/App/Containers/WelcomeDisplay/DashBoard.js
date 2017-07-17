@@ -35,7 +35,7 @@ import NotificationActions from '../../Redux/NotificationRedux'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const theme = getTheme()
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3');
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 type LoginScreenProps = {
   dispatch: () => any,
