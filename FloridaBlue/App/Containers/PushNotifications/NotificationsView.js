@@ -25,9 +25,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import PushController from './PushController'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
 import Swipeout from 'react-native-swipeout'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import NotificationActions from '../../Redux/NotificationRedux'
+
 const theme = getTheme()
-import rows from './data'
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -49,6 +51,7 @@ class NotificationsView extends Component {
   }
 
   componentDidMount () {
+    gaTracker.trackScreenView('Notifications')
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
     FCM.setBadgeNumber(0)
@@ -117,13 +120,14 @@ class NotificationsView extends Component {
               close={!(this.state.secId === secId && this.state.rowId === rowId)}
               right={
                 [{
-                  text: 'Press Me',
+                  text: 'Clear',
                   onPress: function (rowId, secId) {
                     const newData = [...that.props.notification]
                     console.log('inside newDate', newData)
                     console.log('inside secId, rowId', that.state.secId, that.state.rowId)
                     console.log('inside data', that.props.notification[that.state.rowId].messageId)
                     newData.splice(that.state.rowId, 1)
+                    console.log('inside newDate', newData)
                     that.props.postArchive({
                       'messageId': that.props.notification[that.state.rowId].messageId,
                       'markAllRead': false
