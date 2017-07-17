@@ -17,7 +17,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cp ${PROJECT_DIR}/FloridaBlue/stage/GoogleService-Info.plist ${PROJECT_DIR}/FloridaBlue/GoogleService-Info.plist">
+               scriptText = "cp ${PROJECT_DIR}/FloridaBlue/prod/GoogleService-Info.plist ${PROJECT_DIR}/FloridaBlue/GoogleService-Info.plist">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
