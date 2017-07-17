@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "679334523666-3v23mrmsausb8n1kips6kes9j5ang8or.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bcbsfl.mobile.android",
+            "certificate_hash": "b96c8528156a22b92d12d84d9e4b35c92bd3bc21"
+          }
+        },
+        {
           "client_id": "679334523666-ivd4utk51flljodr71ais4l2r493kfs0.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679334523666-ivd4utk51flljodr71ais4l2r493kfs0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "679334523666-n1966o61466krrh576sh04k1q52jmnod.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bcbsfl.mobile.floridablue.Florida-Blue"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2
