@@ -447,7 +447,7 @@ class ProviderSearch extends Component {
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')}
-                  onSelect={this._specialitySelected} dropdownStyle={this.props.isPortrait ? this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown  : styles.dropD: this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDownLandscape  : styles.dropDownLandscape}
+                  onSelect={this._specialitySelected} dropdownStyle={this.props.isPortrait ? this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown  : styles.dropD: this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDownLandscape  : styles.dropDLandscape}
                   renderRow={this._renderDropdownRow.bind(this)}
                 // adjustFrame={style => this._dropdown_3_adjustFrame(style)}
                 >
