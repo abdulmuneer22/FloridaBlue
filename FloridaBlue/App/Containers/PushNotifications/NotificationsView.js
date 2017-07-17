@@ -121,13 +121,9 @@ class NotificationsView extends Component {
               right={
                 [{
                   text: 'Clear',
-                  onPress: function (rowId, secId) {
+                  onPress: function () {
                     const newData = [...that.props.notification]
-                    console.log('inside newDate', newData)
-                    console.log('inside secId, rowId', that.state.secId, that.state.rowId)
-                    console.log('inside data', that.props.notification[that.state.rowId].messageId)
                     newData.splice(that.state.rowId, 1)
-                    console.log('inside newDate', newData)
                     that.props.postArchive({
                       'messageId': that.props.notification[that.state.rowId].messageId,
                       'markAllRead': false
@@ -136,21 +132,22 @@ class NotificationsView extends Component {
                       that.props.deleteNotification(newData)
                     }
                   },
-                  type: 'secondary'
+                  type: 'default',
+                  backgroundColor: Colors.flBlue.grass
                 }]}
               rowID={rowId}
               sectionID={secId}
-              messageId={data.messageId}
               autoClose
               backgroundColor={Colors.bg2}
               onOpen={(secId, rowId) => {
+                console.log('secId,rowId', secId, rowId)
                 this.setState({
                   secId,
                   rowId
                 })
               }}
               onClose={() => console.log('===close')}
-              scroll={event => console.log('scroll event')}
+              scroll={event => console.log('scroll event', event)}
       >
               <View style={styles.rowFront}>
                 <View style={{ flex: 1 }}>
