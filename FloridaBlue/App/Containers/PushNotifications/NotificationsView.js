@@ -154,7 +154,6 @@ class NotificationsView extends Component {
                   <View style={{ flexDirection: 'row', marginLeft: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, alignItems: 'center', flex: 1 }}>
                     <Text allowFontScaling={false} style={{
                       color: Colors.flBlue.anvil,
-                      marginLeft: 10,
                       fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002
                     }}>
                       {data.sendDate}
@@ -227,17 +226,20 @@ class NotificationsView extends Component {
                       // marginBottom:10,
                         backgroundColor: Colors.flBlue[data.style.barColor]
                       }}>
-                        <View style={{ flex: 1, marginTop: 10 }}>
+                        <View style={{ flex: 1, margin: 5 }}>
                           <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
                               <Text allowFontScaling={false} style={{
                                 color: Colors.flBlue[data.style.color],
                                 marginLeft: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002,
-                                fontSize: Fonts.size.regular,
+                                fontSize: Fonts.size.xm,
                                 marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.002
                               }}>{data && data.link ? data.link.desc : null }</Text>
                               {data && data.link
-                            ? <Flb name='chevron-right' style={{marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.002, marginLeft: Metrics.smallMargin * Metrics.screenWidth * 0.003, color: Colors.flBlue[data.style.color] }}
+                            ? <Flb name='chevron-right' style={{
+                            //  marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.002,
+                              marginLeft: Metrics.smallMargin * Metrics.screenWidth * 0.003,
+                              color: Colors.flBlue[data.style.color] }}
                               size={Metrics.icons.small * Metrics.screenWidth * 0.002} /> : <View />}
                             </View>
                           </View>
