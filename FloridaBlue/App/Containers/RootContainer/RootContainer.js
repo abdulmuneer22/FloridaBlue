@@ -59,11 +59,17 @@ class RootContainer extends Component {
         var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000) // converted to minutes
         var elapsedTime = Math.abs(diffMins)
         if (elapsedTime >= 15) {
-            // Call logout logic
+          // Call logout logic
           timerStarted = false
           RCTNetworking.clearCookies((cleared) => {})
           component.props.attemptLogout(component.props.logoutUrl)
           NavigationActions.login()
+          Alert.alert('Logged Out', 'You have been inactive for the maximum time. For security, we have logged you out.',
+            [
+              {
+                text: 'OK'
+              }
+            ])
         } else {
           inactiveTime = Date
           activeTime = Date

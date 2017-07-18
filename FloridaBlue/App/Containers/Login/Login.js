@@ -71,7 +71,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
 
-var component = null
+let component = null
 
 class Login extends Component {
   props: LoginScreenProps
@@ -270,7 +270,8 @@ class Login extends Component {
           if (newProps.credentialStored) {
             this._disableTouchID()
           }
-
+          console.tron.log("Response URL")
+          console.tron.log(responseURL)
           if (responseURL.includes('updatePassword.do')) {
             Alert.alert('Login', 'Welcome back! Please reset your password now, and then you can log in.', [
               {
@@ -626,7 +627,7 @@ class Login extends Component {
   _renderTouchAvailableLogin () {
     return (
       <View>
-        <LoginView>
+        <View style={styles.form}>
           <View style={styles.touchLoginContainer}>
             <View style={styles.textFieldContainer}>
               <MKTextField
@@ -681,9 +682,9 @@ class Login extends Component {
               </View>
             </HideableView>
           </View>
-        </LoginView>
+        </View>
 
-        <LoginButtonView>
+        <View style={styles.loginButton}>
           {this.props.mfetching || this.props.fetching
             ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
           : <TouchableOpacity onPress={() => { this._handleLogin() }}>
@@ -692,7 +693,7 @@ class Login extends Component {
               height: Metrics.screenHeight * 0.064}}
               source={Images.loginButtonGreen} />
           </TouchableOpacity> }
-        </LoginButtonView>
+        </View>
       </View>
     )
   }
@@ -754,7 +755,7 @@ class Login extends Component {
   }
 
   render () {
-    var transparent
+    let transparent
     if (this.props.mfetching || this.props.fetching) {
       transparent = 0.5
     } else {

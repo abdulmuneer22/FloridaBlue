@@ -85,6 +85,9 @@ class LandingScreen extends Component {
       NavigationActions.PushNotifications()
     }
     if (this.props.visibilityRules) {
+      gaTracker.trackEvent('User Segment', this.props.visibilityRules.segment);
+      gaTracker.trackEvent('Group ID', this.props.visibilityRules.groupId);
+
       var data = {
         'hccId': this.props.defaultContract.hccId,
         'pushOptIn': true,
