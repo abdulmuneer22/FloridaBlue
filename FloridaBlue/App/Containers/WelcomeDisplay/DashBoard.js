@@ -88,7 +88,7 @@ class LandingScreen extends Component {
       gaTracker.trackEvent('User Segment', this.props.visibilityRules.segment);
       gaTracker.trackEvent('Group ID', this.props.visibilityRules.groupId);
 
-      let data = {
+      var data = {
         'hccId': this.props.defaultContract.hccId,
         'pushOptIn': true,
         'memberId': this.props.memberObject.memberId,
