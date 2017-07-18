@@ -147,7 +147,8 @@ class CCard extends Component {
             <View style={{flex: 1,
               flexDirection: 'row',
               margin: 0.1,
-              marginBottom: 0
+              marginBottom: this.props.isPortrait ? -2 : 0,
+              marginRight: this.props.isPortrait ? 0 : -96
 
             }}>
 
