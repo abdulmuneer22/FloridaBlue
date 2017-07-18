@@ -18,7 +18,7 @@ import {
 import ProviderActions from '../../../Redux/ProviderRedux'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './ProgramDetailStyle'
-import NavItems from '../../../Navigation/NavItems.js'
+import NavItems from '../../../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import Flb from '../../../Themes/FlbIcon'
 import { connect } from 'react-redux'

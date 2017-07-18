@@ -15,7 +15,7 @@ import {
 import React, { Component } from 'react'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './ProviderMapStyle'
-import NavItems from '../../../Navigation/NavItems.js'
+import NavItems from '../../../../Navigation/NavItems.js'
 import { getTheme, MKSpinner } from 'react-native-material-kit'
 import I18n from 'react-native-i18n'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
@@ -230,8 +230,8 @@ class ProviderMap extends Component {
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
         </View>}</ScrollView>}
-       
-        
+
+
       </View>
     )
   }

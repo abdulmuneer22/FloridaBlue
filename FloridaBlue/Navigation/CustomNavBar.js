@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react'
 import { View, Image, LayoutAnimation } from 'react-native'
 import NavItems from './NavItems'
 import styles from './Styles/CustomNavBarStyle'
-import SearchBar from '../Components/SearchBar'
+import SearchBar from '../App/Components/SearchBar'
 import { connect } from 'react-redux'
-import { Metrics, Images } from '../Themes'
-import SearchActions from '../Redux/SearchRedux'
+import { Metrics, Images } from '../App/Themes'
+import SearchActions from '../App/Redux/SearchRedux'
 
 class CustomNavBar extends React.Component {
   constructor (props) {

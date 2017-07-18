@@ -13,7 +13,7 @@ import {
 // import NotificationCard from './Components/NotificationCard'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import styles from './NotificationsViewStyle'
-import NavItems from '../../Navigation/NavItems.js'
+import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import Flb from '../../Themes/FlbIcon'

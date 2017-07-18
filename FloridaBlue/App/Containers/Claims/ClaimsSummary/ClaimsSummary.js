@@ -19,7 +19,7 @@ import {
 import styles from './ClaimsSummaryStyle'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import Flb from '../../../Themes/FlbIcon'
-import NavItems from '../../../Navigation/NavItems.js'
+import NavItems from '../../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
@@ -104,7 +104,7 @@ class ClaimsSummary extends Component {
 
   _displayCondition () {
 
-   
+
     const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
     const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
 
@@ -178,7 +178,7 @@ class ClaimsSummary extends Component {
     }
   }
   render () {
-  
+
     console.tron.log('im claims summary page', this.props.claimsdata)
     console.log('im claims summary page===>', this.props.claimsdata)
     return (

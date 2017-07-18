@@ -19,7 +19,7 @@ import ToolBar from './Components/toolBar'
 import axios from 'axios'
 import SelectBox from './Components/SelectBox'
 import CCard from './Components/Card'
-import NavItems from '../../Navigation/NavItems.js'
+import NavItems from '../../../Navigation/NavItems.js'
 import styles from './MyPlanScreenStyle'
 import MyPlanSwiper from './Components/MyPlanSwiper'
 import { connect } from 'react-redux'
@@ -163,14 +163,14 @@ class MyPlanScreen extends Component {
         <View>
           {this._renderHeader()}
         </View>
-        
+
         {this._displayCondition()}
 
       </ScrollView>
 
     )
     }
-    
+
   }
 }
 

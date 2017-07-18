@@ -49,18 +49,7 @@ let component = null
 type LoginScreenProps = {
   dispatch: () => any,
   fetching: boolean,
-  attemptLogin: () => void,
-  responseURL : string,
-  smToken : string,
-  termsOfUse : boolean,
-  attemptMyPlan :() => void,
-  attemptMember :() => void,
-  attemptSupportScreen :() => void,
-  merror :string,
-  handleChangeUserName :() => any,
-  passhandleChangePasswordword :() => any,
-  clearLogin:() => void,
-  visibleDashboard : boolean
+  responseURL : string
 }
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -80,311 +69,25 @@ class Login extends Component {
     }
     this.isAttempting = false
     component = this
+
     this._handleLogin = this._handleLogin.bind(this)
+    this._handleMemberLogin = this._handleMemberLogin.bind(this)
   }
 
   componentDidMount () {
-    this.props.clearLogin()
-    RCTNetworking.clearCookies((cleared) => {
-      console.tron.log('clearing local cookies for the app login')
-    })
 
-    BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
-    /*
-    BackAndroid.addEventListener('hardwareBackPress', function () {
-         console.log('inside back handler',component.props.currentSceneValue)
-
-          if(  component.props.currentSceneValue && component.props.currentSceneValue ==='login'){
-                         if(component.props.currentSceneValue =='drawer' || component.props.currentSceneValue =='WelcomeDashBoard'){
-            console.log('currentscence',component.props.currentSceneValue)
-                Alert.alert(
-              'Exit',
-              'Are you sure you want to exit this app',
-              [
-                { text: 'Cancel', onPress: () => {} },
-                { text: 'YES', onPress: () => BackAndroid.exitApp() },
-              ]
-            );
-          }else {
-
-            console.log('currentscence',component.props.currentSceneValue)
-                Alert.alert(
-              'Exit',
-              'Are you sure you want to exit this app',
-              [
-                { text: 'Cancel', onPress: () => {} },
-                { text: 'YES', onPress: () => BackAndroid.exitApp() },
-              ]
-            );
-          }
-          }
-
-      return true
-     })
-  */
   }
 
   componentWillReceiveProps (newProps) {
-    // var responseURL = newProps.responseURL
-    // if (this.props != newProps) {
-    //   if (this.isAttempting && !newProps.fetching && newProps.error === null && responseURL) {
-    //     // Successfully logged in..
-    //     if (responseURL == 'login') {
-    //       if (!newProps.mfetching) {
-    //         if (!newProps.merror) {
-    //           // Successfully fetched the member data..
-    //           if (newProps.termsOfUse) {
-    //             // User has accepted the TOU..
-    //             if (newProps.visibleDashboard) {
-    //               if (newProps.touchEnabled && !newProps.credentialStored) {
-    //                 NavigationActions.TouchTOU()
-    //               } else {
-    //                 this.props.handleChangePassword('')
-    //                 NavigationActions.WelcomeDashBoard()
-    //               }
-    //             } else {
-    //               NavigationActions.ErrorPage()
-    //             }
-    //           } else {
-    //             // User has not accepted the TOU..
-    //             NavigationActions.Termsofuse({'origin': 'login'})
-    //           }
-    //         } else {
-    //           NavigationActions.ErrorPage()
-    //         }
-    //       }
-    //     } else if (responseURL.includes('updateSecurityHintsAnswers')) {
-    //       NavigationActions.screen_4({'username': this.props.username})
-    //     // Unauthorized User
-    //     } else if (responseURL.includes('mob/error/accessdenied')) {
-    //       RCTNetworking.clearCookies((cleared) => {
-    //         console.tron.log('clearing local cookies for the app')
-    //       })
-    //       this.props.attemptLogout(this.props.logoutUrl)
-    //       if (newProps.credentialStored) {
-    //         this._disableTouchID()
-    //       }
-    //
-    //       Alert.alert('Login', 'Please use your user ID and password to log in. You must be a Florida Blue member.',
-    //         [
-    //           {
-    //             text: 'OK'
-    //           }
-    //         ])
-    //
-    //     // Disabled Account
-    //     } else if (responseURL.includes('apsparam=usrlocked')) {
-    //       RCTNetworking.clearCookies((cleared) => {
-    //         console.tron.log('clearing local cookies for the app')
-    //       })
-    //       this.props.attemptLogout(this.props.logoutUrl)
-    //       if (newProps.credentialStored) {
-    //         this._disableTouchID()
-    //       }
-    //
-    //       Alert.alert('Login', 'For security reasons, your account has been locked. Click OK to unlock your account.', [
-    //         {
-    //           text: 'OK',
-    //           onPress: () => NavigationActions.MyView({
-    //             responseURL: newProps.responseURL + '?channel=mobile'
-    //           })
-    //         }
-    //       ])
-    //
-    //     // Password About to Expire
-    //     } else {
-    //       this.props.clearLogin()
-    //       if (newProps.credentialStored) {
-    //         this._disableTouchID()
-    //       }
-    //
-    //       if (responseURL.includes('updatePassword.do')) {
-    //         Alert.alert('Login', 'Welcome back! Please reset your password now, and then you can log in.', [
-    //           {
-    //             text: 'OK',
-    //             onPress: () => NavigationActions.MyView({
-    //               responseURL: newProps.responseURL + '?channel=mobile'
-    //             })
-    //           }
-    //         ])
-    //       } else {
-    //         NavigationActions.MyView({
-    //           responseURL: newProps.responseURL + '?channel=mobile'
-    //         })
-    //       }
-    //     }
-    //   } else {
-    //     if (newProps.error == '401') {
-    //       this.props.clearLogin()
-    //       if (newProps.credentialStored) {
-    //         this._disableTouchID()
-    //         Alert.alert('Login', 'Looks like something has changed. Please log in using your user ID and password to set up Touch ID.', [
-    //           {
-    //             text: 'OK'
-    //           }
-    //         ])
-    //       } else {
-    //         Alert.alert('Login', 'The user ID or password you have entered is incorrect. Please try again.', [
-    //           {
-    //             text: 'OK'
-    //           }
-    //         ])
-    //       }
-    //       console.tron.log('coming from future contract scenarios')
-    //       RCTNetworking.clearCookies((cleared) => {
-    //         console.tron.log('clearing local cookies for the app')
-    //       })
-    //     } else if (newProps.error != null && newProps.error != '401') {
-    //       this.props.clearLogin()
-    //       if (newProps.credentialStored) {
-    //         this._disableTouchID()
-    //       }
-    //       console.tron.log('coming from future contract')
-    //       RCTNetworking.clearCookies((cleared) => {
-    //         console.tron.log('clearing local cookies for the app')
-    //       })
-    //       Alert.alert('Login', 'Oops! Looks like you’re having trouble connecting. Check your network and try again.',
-    //         [
-    //       { text: 'OK', onPress: () => NavigationActions.login() }
-    //
-    //         ],
-    //     { cancelable: false }
-    //
-    //       )
-    //     }
-    //   }
-    // }
-  // end of IF condition
+
   }
 
   _handleLogin () {
-    // // clearing local cookies before going to PMI
-    // RCTNetworking.clearCookies((cleared) => {})
-    // Keyboard.dismiss()
-    // var username = this.props.username
-    // var password = this.props.password
-    //
-    // if (!username && !password) {
-    //   Alert.alert('Login', 'Please enter your User ID/Password.', [
-    //     {
-    //       text: 'OK'
-    //     }
-    //   ])
-    //  // alert('Please enter your user ID/Password.')
-    // } else if (!username && password) {
-    //   Alert.alert('Login', 'Please enter your User ID', [
-    //     {
-    //       text: 'OK'
-    //     }
-    //   ])
-    // } else if (username && !password) {
-    //   Alert.alert('Login', 'Please enter your Password.', [
-    //     {
-    //       text: 'OK'
-    //     }
-    //   ])
-    // } else {
-    //   this.isAttempting = true
-    //   this.props.attemptLogin(username, password)
-    // }
+
   }
 
-  handleBackButton () {
-    return true
-  }
-
-  _moreInfo () {
-    return (
-      <View style={styles.informationPopup}>
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL})
-            gaTracker.trackEvent('More Info', 'Accessibility') }} >
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Accessibility
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.ndnoticeURL})
-            gaTracker.trackEvent('More Info', 'Nondiscrimination') }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Nondiscrimination
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.termsOfUseURL})
-            gaTracker.trackEvent('More Info', 'Terms of Use') }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Terms of Use
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.internetStatementURL})
-            gaTracker.trackEvent('More Info', 'Privacy Policy') }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Privacy Policy
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL})
-            gaTracker.trackEvent('More Info', 'Unsecured OPD') }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Find Care
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.supportURL})
-            gaTracker.trackEvent('More Info', 'Support') }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Support
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.floridaBlueURL})
-            gaTracker.trackEvent('More Info', 'floridablue.com') }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              floridablue.com
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.anotherLanguageURL})
-            gaTracker.trackEvent('More Info', 'Speak Another Language') }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Speak Another Language?
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    )
+  _handleMemberLogin() {
+    NavigationActions.MemberLogin()
   }
 
   _renderAgentLogin() {
@@ -454,7 +157,7 @@ class Login extends Component {
             <Image style={{width: Metrics.screenWidth * 0.5,
               borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
               height: Metrics.screenHeight * 0.064}}
-              source={Images.loginButtonGreen} />
+              source={Images.agentLogin} />
           </TouchableOpacity> }
         </LoginButtonView>
       </View>
@@ -499,28 +202,15 @@ class Login extends Component {
                 gaTracker.trackEvent('Login', 'Forgot Password')}}>
                 <Text allowFontScaling={false} style={styles.agentLink}>{I18n.t('forgotPassword')}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.agentLinkContainer} onPress={() => {}}>
+              <TouchableOpacity style={styles.agentLinkContainer} onPress={this._handleMemberLogin}>
                 <Text allowFontScaling={false} style={styles.agentLink}>{'Back to Member Login'}</Text>
               </TouchableOpacity>
             </SignUpView>
           </View>
 
-          {this.state.modalVisible && this._moreInfo()}
-
           <View style={styles.footer}>
             <View>
               <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
-            </View>
-            <View>
-              <TouchableWithoutFeedback onPress={() => {
-                if (this.state.modalVisible === true) {
-                  this.setState({modalVisible: false})
-                } else {
-                  this.setState({modalVisible: true})
-                }
-              }}>
-                <Image source={Images.infoIcon} />
-              </TouchableWithoutFeedback>
             </View>
           </View>
 
@@ -534,30 +224,13 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.login.fetching,
     mfetching: state.member.fetching,
-    error: state.login.error,
-    responseURL: state.login.responseURL,
-    smToken: state.login.smToken,
-    termsOfUse: state.member.termsOfUse,
-    merror: state.member.error,
-    username: state.login.username,
-    password: state.login.password,
-    visibleDashboard: state.member.visibleDashboard,
-    logoutUrl: state.login.logoutUrl,
-    agentLogin: state.login.agentLogin
+    responseURL: state.login.responseURL
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleChangeUserName: (username) => dispatch(LoginActions.changeUserName(username)),
-    handleChangePassword: (password) => dispatch(LoginActions.changePassword(password)),
-    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password)),
-    attemptMember: () => dispatch(MemberActions.memberRequest()),
-    attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
-    attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
-    attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
-    clearLogin: () => dispatch(LoginActions.logout()),
-    changeAgentLogin: (agentLogin) => dispatch(LoginActions.changeAgentLogin(agentLogin))
+
   }
 }
 

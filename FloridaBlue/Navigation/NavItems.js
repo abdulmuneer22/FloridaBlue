@@ -6,8 +6,8 @@ import styles from './Styles/NavItemsStyle'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import IonicIcon from 'react-native-vector-icons/Ionicons'
-import { Colors, Metrics, Images } from '../Themes'
-import Flb from '../Themes/FlbIcon'
+import { Colors, Metrics, Images } from '../App/Themes'
+import Flb from '../App/Themes/FlbIcon'
 
 const openDrawer = (type) => {
   NavigationActions.refresh({

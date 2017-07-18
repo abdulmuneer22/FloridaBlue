@@ -6,46 +6,49 @@ import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
 import NavItems from './NavItems'
 import CustomNavBar from '../Navigation/CustomNavBar'
-// screens identified by the router
-import { Login } from '../Containers/Login'
-import { TouchTOU } from '../Containers/Login/TouchTOU'
-import { Webview } from '../Containers/WebView'
-import { ErrorScreen } from '../Containers/WebView'
-import { Home } from '../Containers/Home'
-import { Settings} from '../Containers/Settings'
-import {Resources} from '../Containers/WelcomeDisplay'
-import {HSA} from '../Containers/WelcomeDisplay'
-import {SupportScreen } from '../Containers/WelcomeDisplay'
-import {MyIdCard } from '../Containers/WelcomeDisplay'
-import {Screen_1} from '../Containers/Registration/Containers/Screen_1'
-import {Screen_2} from '../Containers/Registration/Containers/Screen_2'
-import {Screen_3} from '../Containers/Registration/Containers/Screen_3'
-import {Screen_4} from '../Containers/Registration/Containers/Screen_4'
-import {ReadMore} from '../Containers/Registration/Containers/Screen_2'
-import {TermsofUse} from '../Containers/Login'
-import {FindMemberID} from '../Containers/Registration/Containers/FindMemberID'
-import {UserIdHint } from '../Containers/Registration/Containers/UserIdHint'
-import {PasswordHint } from '../Containers/Registration/Containers/PasswordHint'
-import {SecurityHint } from '../Containers/Registration/Containers/SecurityHint'
-import {Confirmation} from '../Containers/Registration/Containers/Confirmation'
-import {DashBoard} from '../Containers/WelcomeDisplay'
-import {AgentLogin} from '../../Agent/Containers/Login'
-import {MyPlanScreen} from '../Containers/MyPlan'
-import {BenefitsScreen} from '../Containers/Benefits'
-import {DoctorServices } from '../Containers/DoctorService'
-import {ProviderSearch} from '../Containers/OPD/ProviderSearch'
-import {ProviderTypeInfo } from '../Containers/OPD/ProviderSearch'
-import {DoctorList } from '../Containers/OPD/DoctorList'
-import {ProviderList } from '../Containers/OPD/ProviderList'
-import {AdvancedSearch} from '../Containers/OPD/AdvancedSearch'
-import {ProviderMap} from '../Containers/OPD/ProviderMap'
-import {DoctorDetail} from '../Containers/OPD/DoctorDetail'
-import {ProgramDetail} from '../Containers/OPD/ProgramDetail'
-import {NotificationsView } from '../Containers/PushNotifications'
-import {ClaimsList} from '../Containers/Claims/ClaimsList'
-import {ClaimDetail} from '../Containers/Claims/ClaimDetail'
-import {ClaimsSummary} from '../Containers/Claims/ClaimsSummary'
-import {Payments} from '../Containers/WelcomeDisplay'
+
+// AGENT SCENES //
+import { AgentLogin } from '../Agent/Containers/Login'
+
+// MEMBER SCENES //
+import { MemberLogin } from '../App/Containers/Login'
+import { TouchTOU } from '../App/Containers/Login/TouchTOU'
+import { Webview } from '../App/Containers/WebView'
+import { ErrorScreen } from '../App/Containers/WebView'
+import { Home } from '../App/Containers/Home'
+import { Settings} from '../App/Containers/Settings'
+import {Resources} from '../App/Containers/WelcomeDisplay'
+import {HSA} from '../App/Containers/WelcomeDisplay'
+import {SupportScreen } from '../App/Containers/WelcomeDisplay'
+import {MyIdCard } from '../App/Containers/WelcomeDisplay'
+import {Screen_1} from '../App/Containers/Registration/Containers/Screen_1'
+import {Screen_2} from '../App/Containers/Registration/Containers/Screen_2'
+import {Screen_3} from '../App/Containers/Registration/Containers/Screen_3'
+import {Screen_4} from '../App/Containers/Registration/Containers/Screen_4'
+import {ReadMore} from '../App/Containers/Registration/Containers/Screen_2'
+import {TermsofUse} from '../App/Containers/Login'
+import {FindMemberID} from '../App/Containers/Registration/Containers/FindMemberID'
+import {UserIdHint } from '../App/Containers/Registration/Containers/UserIdHint'
+import {PasswordHint } from '../App/Containers/Registration/Containers/PasswordHint'
+import {SecurityHint } from '../App/Containers/Registration/Containers/SecurityHint'
+import {Confirmation} from '../App/Containers/Registration/Containers/Confirmation'
+import {DashBoard} from '../App/Containers/WelcomeDisplay'
+import {MyPlanScreen} from '../App/Containers/MyPlan'
+import {BenefitsScreen} from '../App/Containers/Benefits'
+import {DoctorServices } from '../App/Containers/DoctorService'
+import {ProviderSearch} from '../App/Containers/OPD/ProviderSearch'
+import {ProviderTypeInfo } from '../App/Containers/OPD/ProviderSearch'
+import {DoctorList } from '../App/Containers/OPD/DoctorList'
+import {ProviderList } from '../App/Containers/OPD/ProviderList'
+import {AdvancedSearch} from '../App/Containers/OPD/AdvancedSearch'
+import {ProviderMap} from '../App/Containers/OPD/ProviderMap'
+import {DoctorDetail} from '../App/Containers/OPD/DoctorDetail'
+import {ProgramDetail} from '../App/Containers/OPD/ProgramDetail'
+import {NotificationsView } from '../App/Containers/PushNotifications'
+import {ClaimsList} from '../App/Containers/Claims/ClaimsList'
+import {ClaimDetail} from '../App/Containers/Claims/ClaimDetail'
+import {ClaimsSummary} from '../App/Containers/Claims/ClaimsSummary'
+import {Payments} from '../App/Containers/WelcomeDisplay'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -55,7 +58,7 @@ const scenes = Actions.create(
   <Scene key='root'>
     <Scene key='drawer' component={NavigationDrawer} open={false}>
       <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-        <Scene initial key='login' component={Login} title='Login' hideNavBar panHandlers={null} type={ActionConst.RESET} />
+        <Scene initial key='MemberLogin' component={MemberLogin} title='MemberLogin' hideNavBar panHandlers={null} type={ActionConst.RESET} />
         <Scene key='TouchTOU' component={TouchTOU} title='Touch TOU' hideNavBar />
         <Scene key='Termsofuse' component={TermsofUse} title='Termsofuse page' hideNavBar type={ActionConst.RESET} />
         <Scene key='MyView' component={Webview} title='WebView page' hideNavBar />
@@ -91,8 +94,9 @@ const scenes = Actions.create(
         <Scene key='ClaimsList' component={ClaimsList} title='Claims Page' hideNavBar />
         <Scene key='ClaimDetail' component={ClaimDetail} title='Claims Page' hideNavBar />
         <Scene key='ClaimsSummary' component={ClaimsSummary} title='Claims Summary Page' hideNavBar />
-        <Scene key='AgentLogin' component={AgentLogin} title='Agent Login' hideNavBar />
         <Scene key='Payments' component={Payments} title='Payments Page' hideNavBar />
+
+        <Scene key='AgentLogin' component={AgentLogin} title='AgentLogin' hideNavBar panHandlers={null} type={ActionConst.RESET} />
       </Scene>
     </Scene>
   </Scene>

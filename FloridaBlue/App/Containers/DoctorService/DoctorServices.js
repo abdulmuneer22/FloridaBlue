@@ -13,7 +13,7 @@ import Switch from './Components/switch'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import styles from './DoctorServiceStyle'
-import NavItems from '../../Navigation/NavItems.js'
+import NavItems from '../../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import Flb from '../../Themes/FlbIcon'
 import { connect } from 'react-redux'

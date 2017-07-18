@@ -11,7 +11,7 @@ import {
 
 import {Colors, Metrics, Fonts, Images} from '../../../Themes'
 import styles from '../DashBoardStyle.js'
-import NavItems from '../../../Navigation/NavItems.js'
+import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import MemberActions from '../../../Redux/MemberRedux'
 import { connect } from 'react-redux'

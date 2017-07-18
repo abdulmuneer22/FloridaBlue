@@ -1,5 +1,5 @@
 // @flow
 
-import Login from './Login'
+import AgentLogin from './Login'
 
-export { Login }
+export { AgentLogin }

@@ -96,6 +96,7 @@ class Login extends Component {
     this._handleTouchCheckbox = this._handleTouchCheckbox.bind(this)
     this._handleLogin = this._handleLogin.bind(this)
     this._orientationDidChange = this._orientationDidChange.bind(this)
+    this._handleAgentLogin = this._handleAgentLogin.bind(this)
   }
 
   componentWillMount () {
@@ -519,6 +520,11 @@ componentWillUnmount() {
     this.props.changeTouchEnabled(true)
   }
 
+  _handleAgentLogin() {
+    gaTracker.trackEvent('Info Menu', 'Agent Login')
+    NavigationActions.AgentLogin()
+  }
+
   _handleLogin () {
     // clearing local cookies before going to PMI
     RCTNetworking.clearCookies((cleared) => {})
@@ -631,7 +637,7 @@ componentWillUnmount() {
               <Flb name='language-switch' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
               <Text allowFontScaling={false} style={styles.popoverText}>Speak Another Language?</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.agentLoginLink} onPress={ () => { gaTracker.trackEvent('Info Menu', 'Agent Login') }}>
+            <TouchableOpacity style={styles.agentLoginLink} onPress={ this._handleAgentLogin }>
               <Image source={Images.agentLoginLink} />
             </TouchableOpacity>
           </Popover>
@@ -851,7 +857,6 @@ const mapStateToProps = (state) => {
     touchCheckboxVisible: state.login.touchCheckboxVisible,
     logoutUrl: state.login.logoutUrl,
     credentialStored: state.setting.credentialStored,
-    agentLogin: state.login.agentLogin,
     isPortrait: state.setting.isPortrait
   }
 }
@@ -868,7 +873,6 @@ const mapDispatchToProps = (dispatch) => {
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
     changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
-    changeAgentLogin: (agentLogin) => dispatch(LoginActions.changeAgentLogin(agentLogin)),
     changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }

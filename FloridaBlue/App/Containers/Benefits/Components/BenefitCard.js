@@ -14,7 +14,7 @@ import { Card as BCard} from 'native-base'
 const window = Dimensions.get('window')
 import {Colors, Metrics, Fonts, Images} from '../../../Themes'
 import styles from '../BenefitsStyle'
-import NavItems from '../../../Navigation/NavItems.js'
+import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import MyPlanActions from '../../../Redux/MyPlanRedux'
 import { connect } from 'react-redux'

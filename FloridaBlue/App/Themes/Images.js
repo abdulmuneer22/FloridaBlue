@@ -78,7 +78,6 @@ const images = {
   claimdetailheaderblue: require('../Images/detail-hdr-bkgrd-teal.png'),
   claimlistsearch: require('../Images/search-btn-small.png'),
   datesearch: require('../Images/search-btn-large.png'),
-  agentLogin: require('../Images/agent-login.png'),
   agentLoginLink: require('../Images/agent-login-link.png')
 }
 

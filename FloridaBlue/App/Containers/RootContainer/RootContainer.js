@@ -2,12 +2,13 @@
 
 import React, { Component, PropTypes } from 'react'
 import { View, StatusBar, AppState } from 'react-native'
-import NavigationRouter from '../../Navigation/NavigationRouter'
+import NavigationRouter from '../../../Navigation/NavigationRouter'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import StartupActions from '../../Redux/StartupRedux'
 import ReduxPersist from '../../Config/ReduxPersist'
 import LoginActions from '../../Redux/LoginRedux'
+import MemberLoginActions from '../../../App/Redux/LoginRedux'
 import styles from './RootContainerStyle'
 import {PushController} from '../PushNotifications'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
@@ -96,7 +97,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
   startup: () => dispatch(StartupActions.startup()),
-  attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl))
+  attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RootContainer)

@@ -6,7 +6,7 @@ import styles from './DashBoardStyle'
 import HideableView from 'react-native-hideable-view'
 import axios from 'axios'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
-import NavItems from '../../Navigation/NavItems.js'
+import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
 import { connect } from 'react-redux'
@@ -57,7 +57,7 @@ class MyIdCard extends Component {
       Orientation.lockToPortrait();
       console.log('Hey, Im going to mount in P mode on ID Card')
     } else {
-      
+
       console.log('Hey, Im going to mount in L mode on ID Card')
     }
   }
@@ -84,7 +84,7 @@ class MyIdCard extends Component {
       console.log(`Current Device Orientation: ${orientation}`);
     });
 
- 
+
     // Remember to remove listener
     Orientation.removeOrientationListener(this._orientationDidChange);
   }

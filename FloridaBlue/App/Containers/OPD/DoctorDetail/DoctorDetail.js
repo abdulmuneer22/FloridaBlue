@@ -21,7 +21,7 @@ import DoctorLocation from './Components/DoctorLocation'
 import DoctorCard from './Components/DoctorCard'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import styles from './DoctorDetailStyle'
-import NavItems from '../../../Navigation/NavItems.js'
+import NavItems from '../../../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import Flb from '../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
@@ -123,7 +123,7 @@ class DoctorDetail extends Component {
       }
     })
   }
-  
+
   componentDidMount () {
     gaTracker.trackScreenView('Provider Detail')
     this.props.attemptDoctorDetail(this.props)

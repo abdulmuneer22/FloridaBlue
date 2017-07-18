@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react'
 import { View, StatusBar, AppState } from 'react-native'
-import NavigationRouter from '../../Navigation/NavigationRouter'
+import NavigationRouter from '../../../Navigation/NavigationRouter'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import StartupActions from '../../Redux/StartupRedux'
@@ -91,7 +91,8 @@ RootContainer.propTypes = {
 const mapStateToProps = (state) => {
   return {
     userName: state.login.username,
-    logoutUrl: state.login.logoutUrl
+    logoutUrl: state.login.logoutUrl,
+    currentRouter: state.login.currentRouter
   }
 }
 const mapDispatchToProps = (dispatch) => ({

@@ -14,7 +14,7 @@ import {
   Platform
   } from 'react-native'
 import styles from './WebViewStyle'
-import NavItems from '../../Navigation/NavItems.js'
+import NavItems from '../../../Navigation/NavItems.js'
 import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'

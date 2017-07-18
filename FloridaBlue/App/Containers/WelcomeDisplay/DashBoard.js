@@ -20,7 +20,7 @@ import MyPlanCard from './Components/MyPlanCard'
 import Card from './Components/Card'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import styles from './DashBoardStyle'
-import NavItems from '../../Navigation/NavItems.js'
+import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import MemberActions from '../../Redux/MemberRedux'
 import ProviderActions from '../../Redux/ProviderRedux'
@@ -85,10 +85,10 @@ class LandingScreen extends Component {
   componentWillMount() {
     const initial = Orientation.getInitialOrientation();
     if (initial === 'PORTRAIT') {
-      
+
       console.log('Hey, Im in P mode on Dashboard')
     } else {
-      
+
       console.log('Hey, Im in L mode on Dashboard')
     }
   }
@@ -141,7 +141,7 @@ class LandingScreen extends Component {
      console.log('Hey, Im in portrait mode on dashboard')
     }
   }
-       
+
 
   componentWillReceiveProps (newProps) {
     if (this.props.openedFromTray !== newProps.openedFromTray) {
@@ -210,7 +210,7 @@ class LandingScreen extends Component {
                 }
                 return (
                   <TouchableOpacity
-                    style={ 
+                    style={
                     i % 2 == 0
                       ? isPortrait ? styles.tileStyle : styles.tileStyleLandscape
                       : styles.tileStyle1
@@ -297,7 +297,7 @@ class LandingScreen extends Component {
       Images.dashboardGradient4
     ]
     var i = 0
-  
+
     return (
 
       <ScrollView style={styles.container}>

@@ -18,7 +18,7 @@ import { connect } from 'react-redux'
 
 import {Colors, Metrics, Fonts, Images} from '../../../../Themes'
 import styles from './ConfirmationStyle'
-import NavItems from '../../../../Navigation/NavItems.js'
+import NavItems from '../../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import Flb from '../../../../Themes/FlbIcon'
 import I18n from 'react-native-i18n'

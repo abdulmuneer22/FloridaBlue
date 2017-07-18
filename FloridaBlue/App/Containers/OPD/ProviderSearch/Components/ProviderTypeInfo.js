@@ -13,7 +13,7 @@ import ReactNative, {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { Colors, Fonts, Images, Metrics } from '../../../../Themes'
-import NavItems from '../../../../Navigation/NavItems.js'
+import NavItems from '../../../../../Navigation/NavItems.js'
 import DoctorCard from './DoctorCard'
 // external libs
 import Icon from 'react-native-vector-icons/FontAwesome'

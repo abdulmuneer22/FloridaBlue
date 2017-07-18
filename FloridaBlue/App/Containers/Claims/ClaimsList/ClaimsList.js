@@ -23,7 +23,7 @@ import axios from 'axios'
 // import ClaimsListActions from '../../../Redux/ClaimsListRedux'
 import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
-import NavItems from '../../../Navigation/NavItems.js'
+import NavItems from '../../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
@@ -500,13 +500,13 @@ class ClaimsList extends Component {
             <Button rounded style={styles.searchButton} onPress={() => { this.searchResults() }}>
               <Text style={{ color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center' }}>Search</Text>
             </Button>
-            
+
             </View>
             <View style={{backgroundColor: 'rgba(0,0,0,.5)', paddingBottom: 200}}>
 
             </View>
           </HideableView>
-          
+
 
           <DateTimePicker
             isVisible={this.props.datePickerVisible}

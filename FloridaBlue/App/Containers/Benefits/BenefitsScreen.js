@@ -12,7 +12,7 @@ Alert
 
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import NavItems from '../../Navigation/NavItems.js'
+import NavItems from '../../../Navigation/NavItems.js'
 import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import Flb from '../../Themes/FlbIcon'
 import styles from './BenefitsStyle'

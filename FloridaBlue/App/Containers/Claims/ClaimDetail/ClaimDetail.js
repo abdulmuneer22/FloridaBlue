@@ -17,7 +17,7 @@ import { AppRegistry,
 import styles from './ClaimDetailStyle'
 import axios from 'axios'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
-import NavItems from '../../../Navigation/NavItems.js'
+import NavItems from '../../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../../Themes/FlbIcon'
 import { connect } from 'react-redux'

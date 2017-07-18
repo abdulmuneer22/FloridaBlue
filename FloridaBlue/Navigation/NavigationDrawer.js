@@ -3,9 +3,9 @@
 import React, { PropTypes, Component } from 'react'
 import Drawer from 'react-native-drawer'
 import { DefaultRenderer, Actions as NavigationActions } from 'react-native-router-flux'
-import { DrawerContent } from '../Containers/DrawerContent'
+import { DrawerContent } from '../App/Containers/DrawerContent'
 import { connect } from 'react-redux'
-import SettingsContent from '../Containers/DrawerContent/SettingsContent'
+import SettingsContent from '../App/Containers/DrawerContent/SettingsContent'
 import Styles from './Styles/NavigationDrawerStyle'
 
 /* *******************
