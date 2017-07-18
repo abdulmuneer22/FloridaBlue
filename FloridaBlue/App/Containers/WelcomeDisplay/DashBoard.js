@@ -119,12 +119,12 @@ class LandingScreen extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    if (this.props.openedFromTray !== newProps.openedFromTray) {
+    if (newProps.openedFromTray) {
       this.props.getNotification()
       NavigationActions.PushNotifications()
     }
 
-    if (this.props.localNotification !== newProps.localNotification) {
+    if (newProps.localNotification) {
       this.props.getNotification()
       NavigationActions.PushNotifications()
     }
