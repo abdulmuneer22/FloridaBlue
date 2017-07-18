@@ -99,7 +99,9 @@ class LandingScreen extends Component {
         'osVersion': DeviceInfo.getSystemVersion(),
         'token': this.props.FCMToken
       }
-      this.props.postFCMToken(data)
+      if (this.props.FCMToken) {
+        this.props.postFCMToken(data)
+      }
     }
 
     console.log('data objec to post ', data)
