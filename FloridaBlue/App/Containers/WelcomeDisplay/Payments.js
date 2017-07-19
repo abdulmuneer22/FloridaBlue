@@ -148,11 +148,12 @@ class Payments extends Component {
 
                             </View>
                             <View style={{flex: 0.2}}>
-                              <Text style={{transform: [{rotate: '270deg'}], bottom: 320, left: 70, fontWeight: '500', width: 500, textAlign: 'left', textDecorationLine: 'underline', color: Colors.flBlue.teal}}>See Payment Details</Text>
-                               <Flb name= 'chevron-right' size={Metrics.icons.regular * Metrics.screenWidth * 0.0010} color={Colors.flBlue.teal} style={{transform: [{rotate: '270deg'}],  bottom: 410, left: 135}}/>
-                              
+                              <TouchableOpacity>
+                                <Text style={{transform: [{rotate: '270deg'}], bottom: 320, left: 70, fontWeight: '500', width: 500, textAlign: 'left', textDecorationLine: 'underline', color: Colors.flBlue.teal}}>See Payment Details</Text>
+                                <Flb name= 'chevron-right' size={Metrics.icons.regular * Metrics.screenWidth * 0.0010} color={Colors.flBlue.teal} style={{transform: [{rotate: '270deg'}],  bottom: 410, left: 135}}/>
+                              </TouchableOpacity>
                             </View>
-                             <Flb name= 'delete-circle' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} style={{transform: [{rotate: '270deg'}],  bottom: 790, left: 150}}/>
+                             <TouchableOpacity><Flb name= 'delete-circle' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} style={{transform: [{rotate: '270deg'}],  bottom: 790, left: 150}}/></TouchableOpacity>
                         </View>
 
                         <View style={{flex: 1, marginTop: 300}}>{this.props.data.support.map(function (support, i) {
