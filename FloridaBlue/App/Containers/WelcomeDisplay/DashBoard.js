@@ -85,8 +85,8 @@ class LandingScreen extends Component {
       NavigationActions.PushNotifications()
     }
     if (this.props.visibilityRules) {
-      gaTracker.trackEvent('User Segment', this.props.visibilityRules.segment);
-      gaTracker.trackEvent('Group ID', this.props.visibilityRules.groupId);
+      gaTracker.trackEvent('User Segment', this.props.visibilityRules.segment)
+      gaTracker.trackEvent('Group ID', this.props.visibilityRules.groupId)
 
       var data = {
         'hccId': this.props.defaultContract.hccId,
@@ -122,12 +122,12 @@ class LandingScreen extends Component {
   }
 
   componentWillReceiveProps (newProps) {
-    if (newProps.openedFromTray) {
+    if (this.props.openedFromTray !== newProps.openedFromTray) {
       this.props.getNotification()
       NavigationActions.PushNotifications()
     }
 
-    if (newProps.localNotification) {
+    if (this.props.openedFromTray !== newProps.openedFromTray) {
       this.props.getNotification()
       NavigationActions.PushNotifications()
     }
