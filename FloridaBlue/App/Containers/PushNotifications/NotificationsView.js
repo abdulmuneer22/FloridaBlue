@@ -139,6 +139,7 @@ class NotificationsView extends Component {
               sectionID={secId}
               autoClose
               backgroundColor={Colors.bg2}
+              sensitivity={300}
               onOpen={(secId, rowId) => {
                 console.log('secId,rowId', secId, rowId)
                 this.setState({
