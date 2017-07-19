@@ -181,7 +181,7 @@ class NotificationsView extends Component {
                             marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002
                           }}>{data.title}</Text>
                         </View>
-                        <View style={{ flex: 0.4, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002 }}>
+                        <View style={{ flex: 0.4, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: 12}}>
                           <Text style={{
                             marginBottom: 2,
                             color: Colors.flBlue.anvil,
