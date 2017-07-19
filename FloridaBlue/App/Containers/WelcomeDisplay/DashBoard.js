@@ -110,7 +110,7 @@ class LandingScreen extends Component {
     console.log('data objec to post ', data)
      // NavigationActions.POSTFCM
 
-    console.tron.log('mount on dashboadr' + this.props.smToken)
+    console.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin == 'registration') {
       this.props.attemptMember()
     }
@@ -127,11 +127,11 @@ class LandingScreen extends Component {
       NavigationActions.PushNotifications()
     }
 
-    if (this.props.openedFromTray !== newProps.openedFromTray) {
+    if (this.props.localNotification !== newProps.localNotification) {
       this.props.getNotification()
       NavigationActions.PushNotifications()
     }
-    console.tron.log('dash board failure' + newProps.error)
+    console.log('dash board failure' + newProps.error)
     /*
    if (!newProps.error) {
        NavigationActions.ErrorPage()
@@ -271,8 +271,8 @@ class LandingScreen extends Component {
   }
 
   render () {
-    console.tron.log('ipad Height' + Metrics.screenHeight)
-    console.tron.log('ipad Width' + Metrics.screenWidth)
+    console.log('ipad Height' + Metrics.screenHeight)
+    console.log('ipad Width' + Metrics.screenWidth)
     var image = [
       Images.dashboardGradient,
       Images.dashboardGradient2,
