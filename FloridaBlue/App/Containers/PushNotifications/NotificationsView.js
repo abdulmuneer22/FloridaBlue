@@ -113,7 +113,7 @@ class NotificationsView extends Component {
           disableRightSwipe
           renderRow={(data, secId, rowId, rowMap) => (
 
-            data.style.icon === 'exclamation-circle'
+            this.props.count === 0
             ? <View
               style={{
                 margin: 10
@@ -389,7 +389,8 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.Notification.fetching,
     notification: state.Notification.notification,
-    error: state.Notification.error
+    error: state.Notification.error,
+    count: state.Notification.count
   }
 }
 
