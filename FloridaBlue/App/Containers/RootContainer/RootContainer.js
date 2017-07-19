@@ -64,7 +64,7 @@ class RootContainer extends Component {
           RCTNetworking.clearCookies((cleared) => {})
           component.props.attemptLogout(component.props.logoutUrl)
           NavigationActions.login()
-          Alert.alert('Logged Out', 'You have been inactive for the maximum time. For security, we have logged you out.',
+          Alert.alert('Logged Out', 'Your session expired. Please log in again.',
             [
               {
                 text: 'OK'
