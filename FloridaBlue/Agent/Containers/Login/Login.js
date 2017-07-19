@@ -187,6 +187,7 @@ class Login extends Component {
           <Image source={Images.background} style={styles.backgroundImage} />
 
           <Clouds />
+          <CityScape />
 
           <View keyboardShouldPersistTaps='always' style={styles.container}>
 
