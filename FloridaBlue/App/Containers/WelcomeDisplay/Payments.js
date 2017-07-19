@@ -49,22 +49,24 @@ class Payments extends Component {
   }
 
   componentWillMount () {
-    console.log('I mounted on payments bruh¡')
-    Orientation.lockToPortrait();
+    console.log('I mountin on payments bruh¡')
+    Orientation.lockToPortrait()
+  }
+
+
+  componentDidMount () {
+    gaTracker.trackScreenView('Support')
   }
 
   componentWillUnmount() {
-        Orientation.unlockAllOrientations();
-
+    Orientation.unlockAllOrientations();
     Orientation.getOrientation((err, orientation) => {
       console.log(`Current Device Orientation: ${orientation}`);
     });
 
 
     // Remember to remove listener
-    Orientation.removeOrientationListener(this._orientationDidChange);
   }
-
 
 
     _renderBarCode () {
@@ -81,10 +83,6 @@ class Payments extends Component {
 
 
               </Image>)
-  }
-
-  componentDidMount () {
-    gaTracker.trackScreenView('Support')
   }
 
   _handleCall (phone) {
@@ -118,9 +116,13 @@ class Payments extends Component {
     var i = 0
     return (
       <View style={styles.container}>
-        <View>
-          {this._renderHeader()}
-        </View>
+        {this.props.isPortrait ?  
+          <View>
+            {this._renderHeader()}
+          </View> 
+        : null}
+        
+       
         <View style={styles.textBackground2}>
           <ScrollView showsVerticalScrollIndicator={false} >
             {this.props.data
@@ -128,7 +130,7 @@ class Payments extends Component {
                {this.props.data && this.props.data.support
                     ? <View style={{flex: 1, flexDirection: 'column'}}>
                         <View style={{flex: 1, flexDirection: 'column'}}>
-                            <View style={{flex: 0.3, marginTop: 220, marginLeft: -50, marginRight: 0}}>
+                            <View style={{flex: 0.3, marginTop: this.props.isPortrait ? 220: 265, marginLeft: -50, marginRight: 0}}>
                                 <Text allowFontScaling={false} style={{color: Colors.flBlue.ocean,  fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0045, transform: [{rotate: '270deg'}], top: 120, left: -120}}>Pay in Person</Text>
                                 <Text style={{transform: [{rotate: '270deg'}], bottom: 150, textAlign: 'right', width: 230, right: 20}}> Accepted at the following retailers: <Image source={Images.claimlistsearch} /></Text> 
                             </View>
