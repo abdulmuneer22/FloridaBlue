@@ -41,8 +41,10 @@ import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
 import CheckBox from 'react-native-checkbox'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import Popover, { PopoverTouchable } from 'react-native-modal-popover'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
+const Divider = () => { return <View style={styles.divider} /> }
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
 let TouchManager = NativeModules.TouchManager
@@ -522,104 +524,84 @@ class Login extends Component {
     return true
   }
 
-  _moreInfo () {
+  _infoMenu () {
     return (
-      <View style={styles.informationPopup}>
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL})
-            gaTracker.trackEvent('More Info', 'Accessibility')
-          }} >
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Accessibility
-            </Text>
+      <View>
+        <PopoverTouchable onPopoverDisplayed={() => console.tron.log('Popover displayed!')}>
+          <TouchableOpacity>
+            <Flb name='blocks-circle' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.popoverButton} />
           </TouchableOpacity>
-        </View>
+          <Popover
+            contentStyle={styles.popoverContent}
+            arrowStyle={styles.popoverArrow}
+            backgroundStyle={styles.popoverBackground}
+            placement={'top'}>
 
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.ndnoticeURL})
-            gaTracker.trackEvent('More Info', 'Nondiscrimination')
-          }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Nondiscrimination
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.termsOfUseURL})
-            gaTracker.trackEvent('More Info', 'Terms of Use')
-          }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Terms of Use
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.internetStatementURL})
-            gaTracker.trackEvent('More Info', 'Privacy Policy')
-          }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Privacy Policy
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL})
-            gaTracker.trackEvent('More Info', 'Unsecured OPD')
-          }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Find Care
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.supportURL})
-            gaTracker.trackEvent('More Info', 'Support')
-          }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Support
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.floridaBlueURL})
-            gaTracker.trackEvent('More Info', 'floridablue.com')
-          }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              floridablue.com
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.popupchild}>
-          <Icon name='chevron-right' size={12} color='black' />
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.anotherLanguageURL})
-            gaTracker.trackEvent('More Info', 'Speak Another Language')
-          }}>
-            <Text allowFontScaling={false} style={styles.popupchildText}>
-              Speak Another Language?
-            </Text>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL})
+              gaTracker.trackEvent('Info Menu', 'Accessibility')
+            }}>
+              <Flb name='booklet' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Terms of Use</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.webAccessibilityURL})
+              gaTracker.trackEvent('Info Menu', 'Accessibility')
+            }}>
+              <Flb name='accessibility' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Accessibility</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.ndnoticeURL})
+              gaTracker.trackEvent('Info Menu', 'Nondiscrimination')
+            }}>
+              <Flb name='groups' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Non-Discrimination</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.internetStatementURL})
+              gaTracker.trackEvent('Info Menu', 'Privacy Policy')
+            }}>
+              <Flb name='lock' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Privacy Policy</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.browseDoctorsURL})
+              gaTracker.trackEvent('Info Menu', 'Unsecured OPD')
+            }}>
+              <Flb name='search-find' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Find Care</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.supportURL})
+              gaTracker.trackEvent('Info Menu', 'Support')
+            }}>
+              <Flb name='question' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Support</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.floridaBlueURL})
+              gaTracker.trackEvent('Info Menu', 'floridablue.com')
+            }}>
+              <Flb name='desktop-vector' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>floridablue.com</Text>
+            </TouchableOpacity>
+            <Divider />
+            <TouchableOpacity style={styles.popoverItem} onPress={ () => {
+              NavigationActions.MyView({responseURL: urlConfig.anotherLanguageURL})
+              gaTracker.trackEvent('Info Menu', 'Speak Another Language')
+            }}>
+              <Flb name='language-switch' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Text allowFontScaling={false} style={styles.popoverText}>Speak Another Language?</Text>
+            </TouchableOpacity>
+          </Popover>
+        </PopoverTouchable>
       </View>
     )
   }
@@ -814,15 +796,7 @@ class Login extends Component {
               <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
             <View>
-              <TouchableWithoutFeedback onPress={() => {
-                if (this.state.modalVisible === true) {
-                  this.setState({modalVisible: false})
-                } else {
-                  this.setState({modalVisible: true})
-                }
-              }}>
-                <Image source={Images.infoIcon} />
-              </TouchableWithoutFeedback>
+              { this._infoMenu() }
             </View>
           </View>
 
