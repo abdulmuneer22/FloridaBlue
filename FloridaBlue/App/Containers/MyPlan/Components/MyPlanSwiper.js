@@ -133,7 +133,7 @@ class MyPlanSwiper extends Component {
         showsButtons
         showsPagination
         paginationStyle={{
-          bottom: Platform.OS === 'ios' ? this.props.isPortrait ? -Metrics.searchBarHeight * Metrics.screenHeight * 0.0015 : -Metrics.searchBarHeight * Metrics.screenHeight * 0.0008 : 0,
+          bottom: Platform.OS === 'ios' ? (this.props.isPortrait ? -Metrics.searchBarHeight * Metrics.screenHeight * 0.0015 : -Metrics.searchBarHeight * Metrics.screenHeight * 0.0000) : 0,
           position: 'absolute',
           right: this.props.isPortrait ? 0 : 34
         }}
@@ -158,7 +158,7 @@ class MyPlanSwiper extends Component {
             <Card style={{ flex: 1,
               alignItems: 'center',
               margin: 10,
-              marginBottom: Platform.OS === 'ios' ? 0 : 30
+              marginBottom: Platform.OS === 'ios' ? this.props.isPortrait ? 0 : 30 : 30
             }} key={i}>
               <View style={{ flex: 1, alignItems: 'center'
 
@@ -176,7 +176,7 @@ class MyPlanSwiper extends Component {
                 </View>
               </View>
 
-              <View style={{flex: 1, alignItems: 'center'}}>
+              <View style={{flex: 1, alignItems: 'center', top: this.props.isPortrait ? 0 : 10}}>
 
                 <SemiCircle
                   width={Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.60) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)}
