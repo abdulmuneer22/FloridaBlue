@@ -30,6 +30,7 @@ build/
 local.properties
 *.iml
 *.lock
+gradle.properties
 
 # node.js
 #
