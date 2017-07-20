@@ -684,7 +684,7 @@ class Login extends Component {
                   let checked = this.refs.touchCheckbox.state.checked
                   this._handleTouchCheckbox(checked)
                 }} />
-                <Text allowFontScaling={false} style={styles.touchInstruction}>Setup login using your fingerprint</Text>
+                <Text allowFontScaling={false} style={styles.touchInstruction}>Set up login using your fingerprint</Text>
               </View>
             </HideableView>
           </View>
