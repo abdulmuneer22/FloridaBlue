@@ -53,7 +53,11 @@ export default StyleSheet.create({
     position: 'absolute',
     top: Metrics.baseMargin * Metrics.screenHeight * 0.0768,
     alignSelf: 'center'
-    // paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.004
+  },
+  touchSignRow: {
+    position: 'absolute',
+    top: Metrics.baseMargin * Metrics.screenHeight * 0.058,
+    alignSelf: 'center'
   },
   signUpButton: {
     width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.056 : Metrics.baseMargin * Metrics.screenWidth * 0.060,

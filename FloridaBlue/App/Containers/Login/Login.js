@@ -629,6 +629,10 @@ class Login extends Component {
   _renderTouchAvailableLogin () {
     return (
       <View>
+        <View style={styles.logoView}>
+          <Image source={Images.clearLogo} style={styles.logo} />
+        </View>
+
         <View style={styles.form}>
           <View style={styles.touchLoginContainer}>
             <View style={styles.textFieldContainer}>
@@ -680,9 +684,24 @@ class Login extends Component {
                   let checked = this.refs.touchCheckbox.state.checked
                   this._handleTouchCheckbox(checked)
                 }} />
-                <Text allowFontScaling={false} style={styles.touchInstruction}>Setup login using your fingerprint</Text>
+                <Text allowFontScaling={false} style={styles.touchInstruction}>Set up login using your fingerprint</Text>
               </View>
             </HideableView>
+          </View>
+
+          <View style={styles.touchSignRow}>
+            <TouchableOpacity onPress={() => {
+              NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+              gaTracker.trackEvent('Login', 'Forgot Password')
+            }}>
+              <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+              NavigationActions.screen_1()
+              gaTracker.trackEvent('Login', 'Sign Up')
+            }}>
+              <Image style={styles.signUpButton} source={Images.signUpButton} />
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -703,6 +722,10 @@ class Login extends Component {
   _renderLogin () {
     return (
       <View>
+        <LogoView>
+          <Image source={Images.clearLogo} style={styles.logo} />
+        </LogoView>
+
         <LoginView>
           <View style={styles.loginContainer}>
             <View style={styles.textFieldContainer}>
@@ -752,6 +775,21 @@ class Login extends Component {
               source={Images.loginButtonGreen} />
           </TouchableOpacity> }
         </LoginButtonView>
+
+        <SignUpView>
+          <TouchableOpacity onPress={() => {
+            NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+            gaTracker.trackEvent('Login', 'Forgot Password')
+          }}>
+            <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {
+            NavigationActions.screen_1()
+            gaTracker.trackEvent('Login', 'Sign Up')
+          }}>
+            <Image style={styles.signUpButton} source={Images.signUpButton} />
+          </TouchableOpacity>
+        </SignUpView>
       </View>
     )
   }
@@ -782,31 +820,11 @@ class Login extends Component {
           <CityScape />
 
           <View keyboardShouldPersistTaps='always' style={styles.container}>
-
-            <LogoView>
-              <Image source={Images.clearLogo} style={styles.logo} />
-            </LogoView>
-
             {Platform.OS === 'ios' && this.state.touchAvailable ?
                 this._renderTouchAvailableLogin()
               :
                 this._renderLogin()
             }
-
-            <SignUpView>
-              <TouchableOpacity onPress={() => {
-                NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
-                gaTracker.trackEvent('Login', 'Forgot Password')
-              }}>
-                <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => {
-                NavigationActions.screen_1()
-                gaTracker.trackEvent('Login', 'Sign Up')
-              }}>
-                <Image style={styles.signUpButton} source={Images.signUpButton} />
-              </TouchableOpacity>
-            </SignUpView>
           </View>
 
           {this.state.modalVisible && this._moreInfo()}
