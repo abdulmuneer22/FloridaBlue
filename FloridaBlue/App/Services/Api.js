@@ -28,20 +28,20 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     timeout: 60000
   })
 
-  const naviMonitor = (response) => console.tron.log('hey!  listen! ', response)
+  const naviMonitor = (response) => console.log('hey!  listen! ', response)
   api.addMonitor(naviMonitor)
 
   // Force OpenWeather API Key on all requests
 
   api.addRequestTransform((request) => {
-    console.tron.log('hey ther I am ', request)
+    console.log('hey ther I am ', request)
   })
 
   // Wrap api's addMonitor to allow the calling code to attach
   // additional monitors in the future.  But only in __DEV__ and only
   // if we've attached Reactotron to console (it isn't during unit tests).
-  if (__DEV__ && console.tron) {
-    api.addMonitor(console.tron.apisauce)
+  if (__DEV__ && console) {
+    api.addMonitor(console.apisauce)
   }
 
   // ------
@@ -79,7 +79,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   })
   */
 
-  const getMember = () => api.get('/members')
+  const getMember = () => api.get('/members' + '?release=3.6')
   const getPlan = (data) => api.post('/benefits', data.input)
   const getTOU = () => api.get('/tou')
   const getSupport = () => api.get('/support')
