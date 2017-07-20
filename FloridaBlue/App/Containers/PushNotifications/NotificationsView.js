@@ -141,7 +141,7 @@ class NotificationsView extends Component {
                       <View style={{ flex: 0.8, marginRight: 10 }}>
                         <View style={{ flex: 0.4 }}>
                           <Text allowFontScaling={false} style={{
-                            fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+                            fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025,
                             color: Colors.flBlue.anvil,
                             fontWeight: '500',
                             marginBottom: 1,
@@ -151,10 +151,10 @@ class NotificationsView extends Component {
                           }}>{data.title}</Text>
                         </View>
                         <View style={{ flex: 0.4, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: 12}}>
-                          <Text style={{
+                          <Text allowFontScaling={false} style={{
                             marginBottom: 2,
                             color: Colors.flBlue.anvil,
-                            fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022
+                            fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0023
                           }} >
                             {data.cardContent}
                           </Text>
@@ -290,7 +290,7 @@ class NotificationsView extends Component {
                           }}>{data.title}</Text>
                         </View>
                         <View style={{ flex: 0.4, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: 12}}>
-                          <Text style={{
+                          <Text allowFontScaling={false} style={{
                             marginBottom: 2,
                             color: Colors.flBlue.anvil,
                             fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022
