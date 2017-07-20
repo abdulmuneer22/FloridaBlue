@@ -113,7 +113,7 @@ class NotificationsView extends Component {
           disableRightSwipe
           renderRow={(data, secId, rowId, rowMap) => (
 
-            this.props.count === 0
+            this.props && this.props.count === 0
             ? <View
               style={{
                 margin: 10
