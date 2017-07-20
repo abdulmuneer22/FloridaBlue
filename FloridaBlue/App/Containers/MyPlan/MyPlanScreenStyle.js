@@ -72,7 +72,7 @@ export default StyleSheet.create({
   chartWrapperLandscape: {
      // backgroundColor : 'yellow',
     flex: 0.6,
-    marginLeft: 150
+    marginLeft: 20
    // marginBottom: 15
   },
   cardStyle: {

@@ -129,21 +129,22 @@ class MyPlanSwiper extends Component {
 
     return (
 
-      <Swiper height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.52)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.48))}
+      <Swiper height={(Platform.OS === 'ios') ? (this.props.isPortrait ? Metrics.screenHeight - (Metrics.screenHeight * 0.52) :  Metrics.screenHeight - (Metrics.screenHeight * 0.62)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.48))} width={this.props.isPortrait ?  Metrics.screenWidth : Metrics.screenWidth * 1.78} style={{left: this.props.isPortrait ? 0 : -10, right:  this.props.isPortrait ? 0 : 10, marginBottom:  this.props.isPortrait ? -10 : 0}}
         showsButtons
         showsPagination
         paginationStyle={{
-          bottom: Platform.OS === 'ios' ? -Metrics.searchBarHeight * Metrics.screenHeight * 0.0015 : 0,
-          position: 'absolute'
+          bottom: Platform.OS === 'ios' ? this.props.isPortrait ? -Metrics.searchBarHeight * Metrics.screenHeight * 0.0015 : -Metrics.searchBarHeight * Metrics.screenHeight * 0.0008 : 0,
+          position: 'absolute',
+          right: this.props.isPortrait ? 0 : 34
         }}
      //  dotStyle={{width: 10, height: 10, marginLeft: 10, borderRadius: 5, top: 50, position: 'relative'}}
      //   activeDotStyle={{width: 10, height: 10, borderRadius: 5, marginLeft: 10, top: 50, position: 'relative'}}
         nextButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
           color: Colors.flBlue.grey1,
-          fontFamily: Fonts.type.base }}>›</Text>}
+          fontFamily: Fonts.type.base, right: this.props.isPortrait ? 10 : 40}}>›</Text>}
         prevButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.007,
           color: Colors.flBlue.grey1,
-          fontFamily: Fonts.type.base}}>‹</Text>}
+          fontFamily: Fonts.type.base, left: this.props.isPortrait ? 10 : 0}}>‹</Text>}
    // autoplay={true}
          >
 
@@ -156,7 +157,7 @@ class MyPlanSwiper extends Component {
 
             <Card style={{ flex: 1,
               alignItems: 'center',
-              margin: 15,
+              margin: 10,
               marginBottom: Platform.OS === 'ios' ? 0 : 30
             }} key={i}>
               <View style={{ flex: 1, alignItems: 'center'
@@ -188,18 +189,17 @@ class MyPlanSwiper extends Component {
               </View>
               <View style={{flex: 1}} />
               <View style={{flex: 1, alignItems: 'center'}}>
-                <View style={{flex: 1, alignItems: 'center', flexDirection: 'row'
-                }}>
+                <View style={{flex: 1, alignItems: 'center', flexDirection: 'row'}}>
                   {Object.keys(network.planBenefits).length > 0 ? network.planBenefits[0].benefit.map((benefit, i) => {
                     return (<View style={{ flex: 1, flexDirection: 'column', margin: 4
                     }} key={i}>
-                      <View style={i == 0 ? { marginRight: (Metrics.screenWidth) - (Metrics.screenWidth * 0.85), flex: 1, alignItems: 'center', justifyContent: 'flex-start'} : {flex: 1, marginLeft: (Metrics.screenWidth) - (Metrics.screenWidth * 0.85), alignItems: 'center', justifyContent: 'center'}} >
+                      <View style={i == 0 ? { marginRight: (Metrics.screenWidth) - (Metrics.screenWidth * 0.85), flex: 1, alignItems: 'center', justifyContent: 'flex-start', bottom: this.props.isPortrait ? 0 : 130} : {flex: 1, marginLeft: (Metrics.screenWidth) - (Metrics.screenWidth * 0.85), alignItems: 'center', justifyContent: 'center', bottom: this.props.isPortrait ? 0 : 130}} >
                         <View style={i == 0 ? {flex: 3,
-                          borderBottomWidth: 3,
+                          borderBottomWidth: this.props.isPortrait? 3 : 13,
                           borderBottomColor: Colors.flBlue.night
 
                         } : {flex: 3,
-                          borderBottomWidth: 3,
+                          borderBottomWidth: this.props.isPortrait? 3 : 16,
                           borderBottomColor: Colors.flBlue.grass
 
                         }}>

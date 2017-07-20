@@ -85,7 +85,7 @@ class MyPlanScreen extends Component {
           </Card>
 
           <View style={this.props.isPortrait ? styles.chartWrapper: styles.chartWrapperLandscape}>
-            {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} />
+            {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} isPortrait={this.props.isPortrait}/>
 
               : Alert.alert(
         'My Plan Overview',

@@ -23,6 +23,7 @@ import Flb from '../../../Themes/FlbIcon'
 import ClaimsActions from '../../../Redux/ClaimsRedux'
 import LinearGradient from 'react-native-linear-gradient'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import SettingActions from '../../../Redux/SettingRedux'
 
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 
@@ -107,7 +108,7 @@ class Card extends Component {
           <LinearGradient colors={this.props.gradientColor}
             style={{
               flex: 1,
-              width: this.state.CardWidth,
+              width: this.props.isPortrait ? this.state.CardWidth : this.state.CardWidth * 1.78,
               height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.76) : Metrics.screenHeight - (Metrics.screenHeight * 0.78),
         //    alignItems: 'center',
         //    justifyContent: 'center'
@@ -115,7 +116,7 @@ class Card extends Component {
             }}
            >
 
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <Image source={Images[this.props.gradientImage]}
                 style={this.props.CardCount % 2 ? styles.myplanImageStyle1 : styles.myplanImageStyle2} >
 
@@ -154,12 +155,14 @@ Card.propTypes = {
 const mapStateToProps = (state) => {
   return {
     claimsdata: state.claims.claimslist,
+    isPortrait: state.setting.isPortrait
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest())
+    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 
