@@ -116,18 +116,20 @@ class Card extends Component {
             }}
            >
 
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: this.props.isPortrait ? -2 : -5,
+              marginLeft: this.props.isPortrait ? 0 : 125}}>
               <Image source={Images[this.props.gradientImage]}
                 style={this.props.CardCount % 2 ? styles.myplanImageStyle1 : styles.myplanImageStyle2} >
 
-                <View style={{alignItems: 'center', width: Metrics.screenWidth, flex: 1, justifyContent: 'center'}} >
+                <View style={{alignItems: 'center', width: Metrics.screenWidth, flex: 1, justifyContent: 'center', marginRight: this.props.isPortrait ? 0 : 98}} >
                   <Text allowFontScaling={false} style={{
                   // marginTop: Metrics.mediumMargin,
                    // marginBottom: -15,
                     fontSize: this.props.CardCount % 2 ? Fonts.size.h4 * Metrics.screenWidth * 0.0030 : Fonts.size.regular * Metrics.screenWidth * 0.0030,
                     fontWeight: (Platform.OS === 'ios') ? '600' : '400',
                     color: Colors.snow,
-                    backgroundColor: Colors.transparent
+                    backgroundColor: Colors.transparent,
+                    left: 0
                   }}>
                     {this.props.title}
                   </Text>
