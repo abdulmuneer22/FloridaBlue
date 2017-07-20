@@ -91,8 +91,7 @@ RootContainer.propTypes = {
 const mapStateToProps = (state) => {
   return {
     userName: state.login.username,
-    logoutUrl: state.login.logoutUrl,
-    currentRouter: state.login.currentRouter
+    logoutUrl: state.login.logoutUrl
   }
 }
 const mapDispatchToProps = (dispatch) => ({

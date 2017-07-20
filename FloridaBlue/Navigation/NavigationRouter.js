@@ -9,6 +9,9 @@ import CustomNavBar from '../Navigation/CustomNavBar'
 
 // AGENT SCENES //
 import { AgentLogin } from '../Agent/Containers/Login'
+import { Agency } from '../Agent/Containers/Agency'
+import { Group } from '../Agent/Containers/Group'
+import { Quote } from '../Agent/Containers/Quote'
 
 // MEMBER SCENES //
 import { MemberLogin } from '../App/Containers/Login'
@@ -97,6 +100,9 @@ const scenes = Actions.create(
         <Scene key='Payments' component={Payments} title='Payments Page' hideNavBar />
 
         <Scene key='AgentLogin' component={AgentLogin} title='AgentLogin' hideNavBar panHandlers={null} type={ActionConst.RESET} />
+        <Scene key='Agency' component={Agency} title='Agency' hideNavBar />
+        <Scene key='Group' component={Group} title='Group' hideNavBar />
+        <Scene key='Quote' component={Quote} title='Quote' hideNavBar />
       </Scene>
     </Scene>
   </Scene>
