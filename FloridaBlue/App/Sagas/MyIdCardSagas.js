@@ -19,8 +19,9 @@ export function * myidcard (api) {
     console.tron.log('I am coming from failure ')
     var error = {}
     error.problem = response.problem
-    if (response != null && response.data != undefined && response.data.idCardWebViewURL != undefined) {
-      error.idCardWebviewURL = response.data.idCardWebViewURL
+    if (response != null && response.data != undefined && response.data.data != undefined && 
+     response.data.data.idCardWebViewURL != undefined) {
+      error.idCardWebviewURL = response.data.data.idCardWebViewURL
     }
     yield put(MyIdCardActions.myIdCardFailure(error))
   }

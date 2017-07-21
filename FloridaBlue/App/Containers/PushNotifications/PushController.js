@@ -50,7 +50,7 @@ class PushController extends Component {
             break
         }
       }
-  //    this.showLocalNotification(notif)
+    //  this.showLocalNotification(notif)
     })
 
     this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
