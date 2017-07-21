@@ -116,8 +116,7 @@ class NotificationsView extends Component {
           enableEmptySections
           disableRightSwipe
           renderRow={(data, secId, rowId, rowMap) => (
-
-            
+  
              <View
               style={{
                 margin: 10
