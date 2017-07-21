@@ -106,6 +106,10 @@ class NotificationsView extends Component {
     } else if (this.props.notification && Object(this.props.notification).length > 0) {
       var that = this
       return (
+        <View style={{flex:1}}>
+        {
+      
+         this.props && this.props.count ==  0 ?
         <ListView style={{flex: 1}}
           scrollEnabled
           dataSource={this.props.notification && Object(this.props.notification).length > 0 ? this.ds.cloneWithRows(this.props.notification) : {}}
@@ -113,8 +117,8 @@ class NotificationsView extends Component {
           disableRightSwipe
           renderRow={(data, secId, rowId, rowMap) => (
 
-            this.props && this.props.count === 0
-            ? <View
+            
+             <View
               style={{
                 margin: 10
               }}>
@@ -218,9 +222,18 @@ class NotificationsView extends Component {
 
                   </View>
                 </View>
-              </View>
+              </View> 
             </View>
-            : <Swipeout
+            
+          )}
+
+/>:   <ListView style={{flex: 1}}
+          scrollEnabled
+          dataSource={this.props.notification && Object(this.props.notification).length > 0 ? this.ds.cloneWithRows(this.props.notification) : {}}
+          enableEmptySections
+          disableRightSwipe
+          renderRow={(data, secId, rowId, rowMap) => (
+            <Swipeout
               style={{
                 margin: 10
               }}
@@ -359,10 +372,17 @@ class NotificationsView extends Component {
                 </View>
               </View>
             </Swipeout>
-
+            
           )}
 
-          />)
+/>
+
+
+        }
+
+</View>
+
+)
     } else if (this.props.error != null) {
       Alert.alert(
         'Notification',
