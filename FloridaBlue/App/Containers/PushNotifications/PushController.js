@@ -17,7 +17,7 @@ class PushController extends Component {
       console.log('INITIAL NOTIFICATION', notif)
     })
 
-    this.notificationListner = FCM.on(FCMEvent.Notification, notif => {
+    this.notificationListner = FCM.on(FCMEvent.Notification, async (notif) => {
       this.props.getNotification()
 
       console.log('Notification', notif)
@@ -28,8 +28,12 @@ class PushController extends Component {
         return
       }
       if (notif.opened_from_tray) {
-        this.props.getNotification()
-        this.props.onOpenedFromTray(true)
+        if (notif.fcm && notif.fcm.action === 'android.intent.action.MAIN') {
+          console.log('Ignoring the actions')
+        } else {
+          this.props.getNotification()
+          this.props.onOpenedFromTray(true)
+        }
         return
       }
 
@@ -50,7 +54,7 @@ class PushController extends Component {
             break
         }
       }
-    //  this.showLocalNotification(notif)
+      this.showLocalNotification(notif)
     })
 
     this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, token => {
