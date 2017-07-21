@@ -407,8 +407,8 @@ class ProviderSearch extends Component {
                   <Text allowFontScaling={false} style={styles.radioText}>{I18n.t('noTitle')}</Text>
                 </View>
               </View>
-              <HideableView visible={this.state.knownCareState} removeWhenHidden>
-                <Text allowFontScaling={false} style={styles.h2}>{I18n.t('knownCareMessage')}</Text>
+              <HideableView visible={this.state.knownCareState} removeWhenHidden >
+                <Text allowFontScaling={false} style={[styles.h2, {width: 10}]}>{I18n.t('knownCareMessage')}</Text>
                 <MKTextField
                   ref='providerName'
                   style={styles.textField}
@@ -433,7 +433,7 @@ class ProviderSearch extends Component {
                     textInputStyle={{flex: 1,
                       color: Colors.flBlue.ocean,
                       fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                    style={styles.textField}
+                    style={[styles.textField, {width: this.props.isPortrait ? 370 : 668}]}
                     editable={false}
                     underlineColorAndroid={Colors.coal}
                     placeholder={I18n.t('careTypePlaceholder')}
