@@ -26,4 +26,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.headerFont,
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
   },
+  agencyCardContainer: {
+    paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0015
+  }
 })

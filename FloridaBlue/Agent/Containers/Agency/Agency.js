@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component, PropTypes } from 'react'
-import { View, StatusBar, AppState, Text, Image } from 'react-native'
+import { View, StatusBar, AppState, Text, Image, ScrollView } from 'react-native'
 import NavigationRouter from '../../../Navigation/NavigationRouter'
 import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -9,11 +9,13 @@ import { connect } from 'react-redux'
 import styles from './AgencyStyle'
 import SettingActions from '../../Redux/SettingRedux'
 import {Metrics, Images} from '../../Themes/'
+import AgencyCard from './Components/AgencyCard'
+
+var agencies = ['Agency 1', 'Agency 2', 'Agency 3']
 
 class Agency extends Component {
   constructor () {
     super()
-    component = this
   }
 
   componentDidMount () {
@@ -33,11 +35,21 @@ class Agency extends Component {
     </Image>)
   }
 
+  _renderAgencyCard(agency) {
+    return (
+      <View style={styles.agencyCardContainer}>
+        <AgencyCard />
+      </View>
+    )
+  }
+
   render () {
     return (
       <View>
         {this._renderHeader()}
-        <Text allowFontScaling={false}>Hello Agency!</Text>
+        <ScrollView style={{marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0085}}>
+          {agencies.map((agency) => this._renderAgencyCard(agency))}
+        </ScrollView>
       </View>
     )
   }
