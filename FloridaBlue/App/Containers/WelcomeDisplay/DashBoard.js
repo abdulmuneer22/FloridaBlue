@@ -86,7 +86,10 @@ class LandingScreen extends Component {
     }
     if (this.props.visibilityRules) {
       gaTracker.trackEvent('User Segment', this.props.visibilityRules.segment)
-      gaTracker.trackEvent('Group ID', this.props.visibilityRules.groupId)
+
+      if (this.props.visibilityRules.groupId) {
+          gaTracker.trackEvent('Group ID', this.props.visibilityRules.groupId)
+      }
 
       var data = {
         'hccId': this.props.defaultContract.hccId,
