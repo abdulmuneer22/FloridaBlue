@@ -289,7 +289,11 @@ const glyphMap = {
   "10-plus-empty": 57531,
   "10-plus-filled": 57532,
   "blocks": 57533,
-  "blocks-circle": 57534
+  "blocks-circle": 57534,
+  "health-statement": 57535,
+  "health-statement-circle": 57536,
+  "wire-globe": 57537,
+  "wire-globe-circle": 57538
 };
 
 const iconSet = createIconSet(glyphMap, 'flb', 'FlbIcon.ttf');

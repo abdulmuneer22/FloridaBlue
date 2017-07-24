@@ -83,7 +83,7 @@ class Login extends Component {
   }
 
   _handleLogin () {
-
+    NavigationActions.Agency()
   }
 
   _handleMemberLogin() {

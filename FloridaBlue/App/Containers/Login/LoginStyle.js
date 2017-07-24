@@ -172,12 +172,12 @@ export default StyleSheet.create({
     borderTopColor: Colors.flBlue.snow,
   },
   popoverButton: {
-    color: Colors.flBlue.grey4
+    color: Colors.flBlue.ocean
   },
   popoverItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0012,
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0007,
     paddingHorizontal: Metrics.baseMargin * Metrics.screenWidth * 0.003,
   },
   popoverLogo: {
@@ -185,7 +185,8 @@ export default StyleSheet.create({
     color: Colors.flBlue.grey3
   },
   popoverText: {
-    paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002
+    paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+    fontSize: Metrics.baseMargin * Metrics.screenWidth * 0.003
   },
   agentLoginLink: {
     flexDirection: 'row',

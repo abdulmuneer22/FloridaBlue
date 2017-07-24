@@ -570,6 +570,7 @@ componentWillUnmount() {
   }
 
   _infoMenu () {
+    console.tron.log(urlConfig)
     return (
       <View>
         <PopoverTouchable onPopoverDisplayed={() => console.tron.log('Popover displayed!')}>
@@ -584,42 +585,42 @@ componentWillUnmount() {
             visible={this.state.modalVisible}>
 
             <TouchableOpacity style={styles.popoverItem} onPress={() => this._handleInfoLink(urlConfig.webAccessibilityURL, 'Terms of Use')}>
-              <Flb name='document' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Flb name='booklet' size={Metrics.icons.medium * Metrics.screenHeight * 0.0012} style={styles.popoverLogo} />
               <Text allowFontScaling={false} style={styles.popoverText}>Terms of Use</Text>
             </TouchableOpacity>
             <Divider />
             <TouchableOpacity style={styles.popoverItem} onPress={() => this._handleInfoLink(urlConfig.webAccessibilityURL, 'Accessibility')}>
-              <Flb name='accessibility' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Flb name='accessibility' size={Metrics.icons.medium * Metrics.screenHeight * 0.0012} style={styles.popoverLogo} />
               <Text allowFontScaling={false} style={styles.popoverText}>Accessibility</Text>
             </TouchableOpacity>
             <Divider />
             <TouchableOpacity style={styles.popoverItem} onPress={() => this._handleInfoLink(urlConfig.ndnoticeURL, 'Nondiscrimination')}>
-              <Flb name='family' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Flb name='groups' size={Metrics.icons.medium * Metrics.screenHeight * 0.0012} style={styles.popoverLogo} />
               <Text allowFontScaling={false} style={styles.popoverText}>Non-Discrimination</Text>
             </TouchableOpacity>
             <Divider />
             <TouchableOpacity style={styles.popoverItem} onPress={() => this._handleInfoLink(urlConfig.internetStatementURL, 'Privacy Policy')}>
-              <Flb name='lock' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Flb name='lock' size={Metrics.icons.medium * Metrics.screenHeight * 0.0012} style={styles.popoverLogo} />
               <Text allowFontScaling={false} style={styles.popoverText}>Privacy Policy</Text>
             </TouchableOpacity>
             <Divider />
             <TouchableOpacity style={styles.popoverItem} onPress={() => this._handleInfoLink(urlConfig.browseDoctorsURL, 'Unsecured OPD')}>
-              <Flb name='map' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Flb name='search-find' size={Metrics.icons.medium * Metrics.screenHeight * 0.0012} style={styles.popoverLogo} />
               <Text allowFontScaling={false} style={styles.popoverText}>Find Care</Text>
             </TouchableOpacity>
             <Divider />
             <TouchableOpacity style={styles.popoverItem} onPress={() => this._handleInfoLink(urlConfig.supportURL, 'Support')}>
-              <Flb name='support' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Flb name='question' size={Metrics.icons.medium * Metrics.screenHeight * 0.0012} style={styles.popoverLogo} />
               <Text allowFontScaling={false} style={styles.popoverText}>Support</Text>
             </TouchableOpacity>
             <Divider />
             <TouchableOpacity style={styles.popoverItem} onPress={() => this._handleInfoLink(urlConfig.floridaBlueURL, 'floridablue.com')}>
-              <Flb name='globe' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Flb name='desktop-vector' size={Metrics.icons.medium * Metrics.screenHeight * 0.0012} style={styles.popoverLogo} />
               <Text allowFontScaling={false} style={styles.popoverText}>floridablue.com</Text>
             </TouchableOpacity>
             <Divider />
             <TouchableOpacity style={styles.popoverItem} onPress={() => this._handleInfoLink(urlConfig.anotherLanguageURL, 'Speak Another Language')}>
-              <Flb name='language-switch' size={Metrics.icons.medium * Metrics.screenHeight * 0.0013} style={styles.popoverLogo} />
+              <Flb name='wire-globe' size={Metrics.icons.medium * Metrics.screenHeight * 0.0012} style={styles.popoverLogo} />
               <Text allowFontScaling={false} style={styles.popoverText}>Speak Another Language?</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.agentLoginLink} onPress={ this._handleAgentLogin }>
