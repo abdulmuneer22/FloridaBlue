@@ -153,7 +153,7 @@ class Login extends Component {
         let touchStatus = touchInfo[0]
         switch (touchStatus) {
           case 'AUTHENTICATED':
-            if (this.props.origin != 'logout') {
+            if (this.props.origin != 'logout' || this.props.origin != 'loginExpired') {
               gaTracker.trackEvent('Touch ID', 'Launch')
               this._authenticateUserWithTouch()
             }
@@ -162,6 +162,15 @@ class Login extends Component {
             // Nada..
         }
       })
+    }
+
+    if (this.props.origin == 'loginExpired') {
+      Alert.alert('Logged Out', 'Your session expired. Please log in again.',
+        [
+          {
+            text: 'OK'
+          }
+        ])
     }
 
     BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
