@@ -36,6 +36,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
 import DateTimePicker from 'react-native-modal-datetime-picker'
+let urlConfig = require('../../../UrlConfig')
 
 const window = Dimensions.get('window')
 let moment = require('moment')
@@ -387,7 +388,7 @@ class ClaimsList extends Component {
                           fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
                           color: Colors.snow,
                           fontWeight: '700'
-                        }}>Please Note: </Text>Pharmacy and/or claims of others on your plan are not shown. Click <Text style={{textDecorationLine: 'underline'}}>here</Text> to see all claims.</Text>
+                        }}>Please Note: </Text>Pharmacy and/or claims of others on your plan are not shown. Click <Text onPress={() => { NavigationActions.MyView({responseURL: urlConfig.internetStatementURL}) }} style={{textDecorationLine: 'underline'}}>here</Text> to see all claims.</Text>
                     </View>
                   </View>
                 </Card>
