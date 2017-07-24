@@ -63,13 +63,7 @@ class RootContainer extends Component {
           timerStarted = false
           RCTNetworking.clearCookies((cleared) => {})
           component.props.attemptLogout(component.props.logoutUrl)
-          NavigationActions.login()
-          Alert.alert('Logged Out', 'Your session expired. Please log in again.',
-            [
-              {
-                text: 'OK'
-              }
-            ])
+          NavigationActions.login({'origin': 'loginExpired'})
         } else {
           inactiveTime = Date
           activeTime = Date
