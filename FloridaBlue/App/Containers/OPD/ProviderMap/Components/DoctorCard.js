@@ -127,7 +127,7 @@ class DoctorCard extends Component {
                   <TouchableOpacity style={{ flex: 1, height: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.0015 : Metrics.textHeight * Metrics.screenHeight * 0.0016 }} onPress={() => this.handleMaps(this.props.data ? this.props.data : '')}>
                     <View style={styles.directions}>
 
-                      <View style={{ flex: 0.3, alignItems: 'flex-end' }}>
+                      <View style={{ flex: 0.25, alignItems: 'flex-end' }}>
                         <Flb
                           name='directions'
                           size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
@@ -135,7 +135,7 @@ class DoctorCard extends Component {
                       </View>
 
                       <View style={{
-                        flex: 0.7,
+                        flex: 0.75,
                         alignItems: 'flex-start'
                       }}>
 
