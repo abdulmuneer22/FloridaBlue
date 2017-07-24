@@ -125,7 +125,7 @@ class Card extends Component {
 
           </View>
           <View style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center', backgroundColor: Colors.transparent}}>
-            <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.teal} />
+            <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.grey3} />
           </View>
         </BCard>
       </TouchableOpacity>
