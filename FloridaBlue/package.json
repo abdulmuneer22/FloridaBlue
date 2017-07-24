@@ -33,6 +33,7 @@
     "eslint-plugin-html": "~3.0.0",
     "eslint-plugin-react": "~7.0.1",
     "format-json": "~1.0.3",
+    "format-number": "^3.0.0",
     "lodash": "~4.17.2",
     "moment": "~2.18.1",
     "native-base": "~0.5.22",

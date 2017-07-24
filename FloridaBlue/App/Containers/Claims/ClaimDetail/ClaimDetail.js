@@ -26,6 +26,8 @@ import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { Card } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import formatNumber from 'format-number'
+
 
 const window = Dimensions.get('window')
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
@@ -46,6 +48,17 @@ class ClaimDetail extends Component {
     let month = ('0' + (date.getMonth() + 1)).slice(-2)
     let year = date.getFullYear()
     return month + '/' + day + '/' + year
+  }
+
+   formatTo2DecimalNumber (number) {
+     if(number != undefined )
+     {
+       var myFormat = formatNumber({prefix: '', suffix: '',truncate: 2});
+      return myFormat(number);
+     }else{
+       return '';
+     }
+   
   }
   _renderHeader () {
     return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
@@ -181,7 +194,7 @@ class ClaimDetail extends Component {
                 <View style={{flex: 0.25, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                   <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
-             ${this.props.claimdetaildata.totalBilledAllowed}
+             ${this.formatTo2DecimalNumber(this.props.claimdetaildata.totalBilledAllowed)}
                   </Text>
                 </View>
               </View> : null}
@@ -197,7 +210,7 @@ class ClaimDetail extends Component {
                 <View style={{flex: 0.25, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                   <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
-             ${this.props.claimdetaildata.totalBilledAllowed}
+             ${this.formatTo2DecimalNumber(this.props.claimdetaildata.totalPatientRespAmt)}
                   </Text>
                 </View>
               </View> : null}
@@ -212,7 +225,7 @@ class ClaimDetail extends Component {
                 <View style={{flex: 0.25, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                   <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
-             ${this.props.claimdetaildata.totalBilledAllowed}
+             ${this.formatTo2DecimalNumber(this.props.claimdetaildata.totalNetAmt)}
                   </Text>
                 </View>
               </View> : null}
@@ -228,7 +241,7 @@ class ClaimDetail extends Component {
                 <View style={{flex: 0.25, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                   <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
-             ${this.props.claimdetaildata.totalBilledAllowed}
+             ${this.formatTo2DecimalNumber(this.props.claimdetaildata.memberDiscount)}
                   </Text>
                 </View>
               </View> : null}
@@ -245,7 +258,7 @@ class ClaimDetail extends Component {
               <View style={{flex: 0.3, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
                 <Text allowFontScaling={false} style={{color: Colors.snow,
                   fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028}}>
-             ${this.props.claimdetaildata.totalBilledAllowed}
+             ${this.formatTo2DecimalNumber(this.props.claimdetaildata.totalSavings)}
                 </Text>
               </View>
             </View> : null}
