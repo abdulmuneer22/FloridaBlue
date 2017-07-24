@@ -61,7 +61,7 @@
     "react-native-modal-dropdown": "^0.4.2",
     "react-native-modal-popover": "^0.0.2",
     "react-native-modalbox": "~1.3.9",
-    "react-native-orientation": "^2.0.0",
+    "react-native-orientation": "git+ssh://git@edclgitp401.bcbsfl.com/git-mob/react-native-orientation.git#master",
     "react-native-permissions": "^0.2.7",
     "react-native-popover-tooltip": "^1.0.5",
     "react-native-router-flux": "~3.37.0",
