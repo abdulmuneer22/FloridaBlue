@@ -144,7 +144,7 @@ class Settings extends Component {
 
         <View style={{flex: 1, backgroundColor: Colors.flBlue.bg2}}>
 
-          { Platform.OS === 'ios' ?
+          { Platform.OS === 'ios' && this.state.showTouchSetting ?
             <View style={styles.cardContainer}>
               <BCard style={styles.card}>
                 <View style={styles.cardIcon}>
@@ -161,7 +161,7 @@ class Settings extends Component {
                   checked={this.props.touchEnabled}
                   trackSize={30}
                   trackLength={52}
-                  onColor={Colors.flBlue.lightsky}
+                  onColor={Colors.flBlue.ocean}
                   offColor={Colors.flBlue.lightBlue}
                   thumbOnColor={Colors.flBlue.ocean}
                   thumbOffColor={Colors.flBlue.ocean}

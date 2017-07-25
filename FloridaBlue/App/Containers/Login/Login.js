@@ -125,16 +125,10 @@ class Login extends Component {
             this._disableTouchID()
             break
           case 'LOCKED':
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: 'LOCKED'})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
+            this._handleLockedTouch()
             break
           default:
-            this.setState({touchAvailable: false})
-            this.setState({touchStatus: ''})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
+            this._disableTouchID()
             break
         }
       })
@@ -153,7 +147,7 @@ class Login extends Component {
         let touchStatus = touchInfo[0]
         switch (touchStatus) {
           case 'AUTHENTICATED':
-            if (this.props.origin != 'logout' || this.props.origin != 'loginExpired') {
+            if (this.props.origin != 'logout' && this.props.origin != 'loginExpired') {
               gaTracker.trackEvent('Touch ID', 'Launch')
               this._authenticateUserWithTouch()
             }
@@ -347,7 +341,7 @@ class Login extends Component {
       this.props.changeTouchEnabled(checkboxState)
       if (checkboxState) {
         if (!this.props.username && !this.props.password) {
-          Alert.alert('Login', 'Please enter the User ID and Password to set up Touch ID', [
+          Alert.alert('Login', 'Please enter the User ID and Password to set up Touch ID.', [
             {
               text: 'OK'
             }
@@ -363,37 +357,26 @@ class Login extends Component {
 
         switch (touchStatus) {
           case 'DISABLED':
-            this.setState({touchAvailable: true})
             this.setState({touchStatus: ''})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(true)
+            this._disableTouchID()
             showError = false
             break
           case 'NOT ENROLLED':
-            this.setState({touchAvailable: true})
             this.setState({touchStatus: 'NOT ENROLLED'})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
+            this._disableTouchID()
             errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
             break
           case 'NO PASSCODE':
-            this.setState({touchAvailable: true})
             this.setState({touchStatus: 'NO PASSCODE'})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
+            this._disableTouchID()
             showError = false
             break
           case 'LOCKED':
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: 'LOCKED'})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
+            this._handleLockedTouch()
             errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
           default:
-            this.setState({touchAvailable: false})
-            this.setState({touchStatus: ''})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
+            this._disableTouchID()
+            showError = false
         }
 
         if (showError) {
@@ -401,7 +384,7 @@ class Login extends Component {
             errorTitle,
             errorMessage,
             [
-              {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
+              {text: 'Ok', onPress: () => console.tron.log(this.props.touchEnabled), style: 'cancel'}
             ],
             { cancelable: false }
           )
@@ -512,7 +495,7 @@ class Login extends Component {
       ])
      // alert('Please enter your user ID/Password.')
     } else if (!username && password) {
-      Alert.alert('Login', 'Please enter your User ID', [
+      Alert.alert('Login', 'Please enter your User ID.', [
         {
           text: 'OK'
         }
@@ -678,24 +661,26 @@ class Login extends Component {
                 placeholder={I18n.t('userpassword')}
                 placeholderTextColor={Colors.steel} />
             </View>
-            <HideableView style={styles.fingerprintContainer} visible={this.props.credentialStored} removeWhenHidden>
-              <TouchableOpacity style={styles.fingerprintButton} onPress={() => {
-                this._authenticateUserWithTouch()
-                gaTracker.trackEvent('Touch ID', 'Relaunch')
-              }}>
-                <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
-                <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
-              </TouchableOpacity>
-            </HideableView>
-            <HideableView style={styles.fingerprintContainer} visible={!this.props.credentialStored} removeWhenHidden>
-              <View style={styles.fingerprintButton}>
-                <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
-                  let checked = this.refs.touchCheckbox.state.checked
-                  this._handleTouchCheckbox(checked)
-                }} />
-                <Text allowFontScaling={false} style={styles.touchInstruction}>Set up login using your fingerprint</Text>
-              </View>
-            </HideableView>
+
+            <View style={styles.fingerprintContainer}>
+              { this.props.credentialStored ?
+                  <TouchableOpacity style={styles.fingerprintButton} onPress={() => {
+                    this._authenticateUserWithTouch()
+                    gaTracker.trackEvent('Touch ID', 'Relaunch')
+                  }}>
+                    <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
+                    <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
+                  </TouchableOpacity>
+                :
+                  <View style={styles.fingerprintButton}>
+                    <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
+                      let checked = this.refs.touchCheckbox.state.checked
+                      this._handleTouchCheckbox(checked)
+                    }} />
+                    <Text allowFontScaling={false} style={styles.touchInstruction}>Set up login using your fingerprint</Text>
+                  </View>
+              }
+            </View>
           </View>
 
           <View style={styles.touchSignRow}>
