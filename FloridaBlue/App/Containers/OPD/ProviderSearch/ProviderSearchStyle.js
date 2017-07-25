@@ -176,7 +176,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.type.emphasis
   },
   dropDown: {
-    width: Metrics.screenWidth * 0.9,
+    width: Metrics.screenWidth * 0.89,
     marginLeft: Metrics.doubleBaseMargin
   },
   dropD: {
