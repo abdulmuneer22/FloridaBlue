@@ -50,7 +50,7 @@ class Settings extends Component {
         if (status === 'SUCCESS') {
           let username = credentialObject['username']
           if (username != this.props.username) {
-            this.setState({ showTouchSetting: false })
+            this.props.changeTouchAvailable(false)
           }
         }
       })
@@ -60,8 +60,8 @@ class Settings extends Component {
 
   _disableTouchID () {
     TouchManager.removeCredentials((error, credentials) => {
-      var status = credentials[0]
-      if (status == 'SUCCESS') {
+      let status = credentials[0]
+      if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
         gaTracker.trackEvent('Settings', 'Disabled Touch ID')
@@ -144,7 +144,7 @@ class Settings extends Component {
 
         <View style={{flex: 1, backgroundColor: Colors.flBlue.bg2}}>
 
-          { Platform.OS === 'ios' && this.state.showTouchSetting ?
+          { Platform.OS === 'ios' && this.props.touchAvailable ?
             <View style={styles.cardContainer}>
               <BCard style={styles.card}>
                 <View style={styles.cardIcon}>
@@ -216,6 +216,7 @@ const mapStateToProps = (state) => {
   return {
     touchEnabled: state.setting.touchEnabled,
     credentialStored: state.setting.credentialStored,
+    touchAvailable: state.setting.touchAvailable,
     geolocationEnabled: state.setting.geolocationEnabled,
     pushEnabled: state.setting.pushEnabled,
     username: state.login.username
@@ -226,6 +227,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
     changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
+    changeTouchAvailable: (touchAvailable) => dispatch(SettingActions.changeTouchAvailable(touchAvailable)),
     changeGeolocationEnabled: (geolocationEnabled) => dispatch(SettingActions.changeGeolocationEnabled(geolocationEnabled)),
     changePushEnabled: (pushEnabled) => dispatch(SettingActions.changePushEnabled(pushEnabled))
   }

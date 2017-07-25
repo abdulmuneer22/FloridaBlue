@@ -84,55 +84,13 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      modalVisible: false,
-      touchStatus: ''
+      modalVisible: false
     }
     this.isAttempting = false
     component = this
     this._authenticateUserWithTouch = this._authenticateUserWithTouch.bind(this)
     this._handleTouchCheckbox = this._handleTouchCheckbox.bind(this)
     this._handleLogin = this._handleLogin.bind(this)
-  }
-
-  componentWillMount () {
-    if (Platform.OS === 'ios') {
-      TouchManager.checkTouchStatus((error, touchInfo) => {
-        let touchStatus = touchInfo[0]
-
-        switch (touchStatus) {
-          case 'AUTHENTICATED':
-            this.props.changeCredentialStored(true)
-            this.props.changeTouchEnabled(true)
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: ''})
-            break
-          case 'ENABLED':
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: ''})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(true)
-            break
-          case 'DISABLED':
-            this.setState({touchStatus: ''})
-            this._disableTouchID()
-            break
-          case 'NOT ENROLLED':
-            this.setState({touchStatus: 'NOT ENROLLED'})
-            this._disableTouchID()
-            break
-          case 'NO PASSCODE':
-            this.setState({touchStatus: 'NO PASSCODE'})
-            this._disableTouchID()
-            break
-          case 'LOCKED':
-            this._handleLockedTouch()
-            break
-          default:
-            this._disableTouchID()
-            break
-        }
-      })
-    }
   }
 
   componentDidMount () {
@@ -145,15 +103,41 @@ class Login extends Component {
     if (Platform.OS === 'ios') {
       TouchManager.checkTouchStatus((error, touchInfo) => {
         let touchStatus = touchInfo[0]
+
         switch (touchStatus) {
           case 'AUTHENTICATED':
+            this.props.changeCredentialStored(true)
+            this.props.changeTouchEnabled(true)
+            this.props.changeTouchAvailable(true)
+
             if (this.props.origin != 'logout' && this.props.origin != 'loginExpired') {
               gaTracker.trackEvent('Touch ID', 'Launch')
               this._authenticateUserWithTouch()
             }
+
+            break
+          case 'ENABLED':
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(true)
+            this.props.changeTouchAvailable(true)
+            break
+          case 'DISABLED':
+            this._disableTouchID()
+            this.props.changeTouchAvailable(true)
+            break
+          case 'NOT ENROLLED':
+            this._disableTouchID()
+            this.props.changeTouchAvailable(true)
+            break
+          case 'NO PASSCODE':
+            this._disableTouchID()
+            break
+          case 'LOCKED':
+            this._handleLockedTouch()
             break
           default:
-            // Nada..
+            this._disableTouchID()
+            break
         }
       })
     }
@@ -337,60 +321,53 @@ class Login extends Component {
   }
 
   _handleTouchCheckbox (checkboxState) {
-    if (this.state.touchStatus === '') {
-      this.props.changeTouchEnabled(checkboxState)
-      if (checkboxState) {
-        if (!this.props.username && !this.props.password) {
-          Alert.alert('Login', 'Please enter the User ID and Password to set up Touch ID.', [
-            {
-              text: 'OK'
-            }
-          ])
-        }
-      }
-    } else {
+    this.props.changeTouchEnabled(checkboxState)
+
+    TouchManager.checkTouchStatus((error, touchInfo) => {
+      let touchStatus = touchInfo[0]
       let errorMessage = ''
-      let errorTitle = 'Oops!'
-      let showError = true
-      TouchManager.checkTouchStatus((error, touchInfo) => {
-        let touchStatus = touchInfo[0]
+      let errorTitle = 'Error'
+      var showError = false
 
-        switch (touchStatus) {
-          case 'DISABLED':
-            this.setState({touchStatus: ''})
-            this._disableTouchID()
-            showError = false
-            break
-          case 'NOT ENROLLED':
-            this.setState({touchStatus: 'NOT ENROLLED'})
-            this._disableTouchID()
-            errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
-            break
-          case 'NO PASSCODE':
-            this.setState({touchStatus: 'NO PASSCODE'})
-            this._disableTouchID()
-            showError = false
-            break
-          case 'LOCKED':
-            this._handleLockedTouch()
-            errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
-          default:
-            this._disableTouchID()
-            showError = false
-        }
+      console.tron.log(touchStatus)
 
-        if (showError) {
-          Alert.alert(
-            errorTitle,
-            errorMessage,
-            [
-              {text: 'Ok', onPress: () => console.tron.log(this.props.touchEnabled), style: 'cancel'}
-            ],
-            { cancelable: false }
-          )
-        }
-      })
-    }
+      switch (touchStatus) {
+        case 'AUTHENTICATED':
+          // do nothing..
+          break
+        case 'ENABLED':
+          // do nothing..
+          break
+        case 'DISABLED':
+          // do nothing..
+          break
+        case 'NOT ENROLLED':
+          this._disableTouchID()
+          errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+          showError = true
+          break
+        case 'NO PASSCODE':
+          this._disableTouchID()
+          break
+        case 'LOCKED':
+          this._handleLockedTouch()
+          errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
+          showError = true
+        default:
+          this._disableTouchID()
+      }
+
+      if (showError) {
+        Alert.alert(
+          errorTitle,
+          errorMessage,
+          [
+            {text: 'Ok', onPress: () => console.log("Ok pressed"), style: 'cancel'}
+          ],
+          { cancelable: false }
+        )
+      }
+    })
   }
 
   _authenticateUserWithTouch () {
@@ -468,16 +445,14 @@ class Login extends Component {
       if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
-        this.setState({touchAvailable: true})
       }
     })
   }
 
   _handleLockedTouch () {
-    this.setState({touchAvailable: true})
-    this.setState({touchStatus: 'LOCKED'})
     this.props.changeCredentialStored(false)
     this.props.changeTouchEnabled(false)
+    this.props.changeTouchAvailable(true)
   }
 
   _handleLogin () {
@@ -814,7 +789,7 @@ class Login extends Component {
           <CityScape />
 
           <View keyboardShouldPersistTaps='always' style={styles.container}>
-            {Platform.OS === 'ios' && this.state.touchAvailable ?
+            {Platform.OS === 'ios' && this.props.touchAvailable ?
                 this._renderTouchAvailableLogin()
               :
                 this._renderLogin()
@@ -861,7 +836,8 @@ const mapStateToProps = (state) => {
     touchEnabled: state.setting.touchEnabled,
     touchCheckboxVisible: state.login.touchCheckboxVisible,
     logoutUrl: state.login.logoutUrl,
-    credentialStored: state.setting.credentialStored
+    credentialStored: state.setting.credentialStored,
+    touchAvailable: state.setting.touchAvailable
   }
 }
 
@@ -876,7 +852,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
-    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored))
+    changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
+    changeTouchAvailable: (touchAvailable) => dispatch(SettingActions.changeTouchAvailable(touchAvailable))
   }
 }
 

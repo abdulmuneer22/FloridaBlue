@@ -142,6 +142,8 @@ class ProviderSearch extends Component {
     if (event.checked) {
       this.props.changeSubCategoryCode('')
       this.props.changeCategoryCode('ALL')
+      this.props.changeCareType('')
+      this.props.changeSpecialityType('')
       this.setState({knownCareState: true})
       this.setState({unknownCareState: false})
     } else {
