@@ -138,6 +138,13 @@ class MyPlanScreen extends Component {
           { text: 'OK' }
 
         ])
+    }else{
+        Alert.alert(
+        'My Plan Overview',
+       'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
+        [
+          { text: 'OK' }
+        ])
     }
   }
 
