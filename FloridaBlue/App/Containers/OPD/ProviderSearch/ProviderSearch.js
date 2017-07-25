@@ -433,7 +433,7 @@ class ProviderSearch extends Component {
                     textInputStyle={{flex: 1,
                       color: Colors.flBlue.ocean,
                       fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                    style={[styles.textField, {width: this.props.isPortrait ? 370 : 668}]}
+                    style={[styles.textField, {width: this.props.isPortrait ? 410 : 668}]}
                     editable={false}
                     underlineColorAndroid={Colors.coal}
                     placeholder={I18n.t('careTypePlaceholder')}
