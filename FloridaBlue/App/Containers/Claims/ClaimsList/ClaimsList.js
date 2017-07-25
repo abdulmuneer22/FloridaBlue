@@ -20,7 +20,6 @@ import {
 import styles from './ClaimsStyle'
 import ClaimsCard from './Components/ClaimsCard'
 import axios from 'axios'
-// import ClaimsListActions from '../../../Redux/ClaimsListRedux'
 import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import NavItems from '../../../Navigation/NavItems.js'
@@ -46,7 +45,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 class ClaimsList extends Component {
-  // const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
   constructor (props) {
     super(props)
     this.state = {

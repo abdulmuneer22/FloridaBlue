@@ -415,7 +415,7 @@ class ProviderSearch extends Component {
             />
               </HideableView>
 
-              <HideableView visible={this.state.unknownCareState} removeWhenHidden>
+              <HideableView visible={this.state.unknownCareState && (this.props.planCategoryList.length > 0)} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={styles.dropDown} renderRow={this._renderDropdownRow.bind(this)}>
                   <MKTextField
                     ref='careType'
@@ -434,7 +434,7 @@ class ProviderSearch extends Component {
                 <Text allowFontScaling={false} style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
               </HideableView>
 
-              <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
+              <HideableView visible={this.state.unknownCareState && this.state.specialityState && (this.props.planSubCategoryList.length > 0)} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')}
                   onSelect={this._specialitySelected} dropdownStyle={this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown : styles.dropD}
                   renderRow={this._renderDropdownRow.bind(this)}
