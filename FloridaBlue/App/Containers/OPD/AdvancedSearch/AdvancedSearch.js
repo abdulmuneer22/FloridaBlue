@@ -339,25 +339,23 @@ class AdvancedSearch extends Component {
   }
 
   _getLocation () {
-    if (this.props.geolocationEnabled) {
-      this._getPosition()
-    } else {
-      Permissions.getPermissionStatus('location').then(response => {
-        if (response == 'authorized') {
-          this.props.changeGeolocationEnabled(true)
-          this._getPosition()
-        } else if (response == 'undetermined') {
-          Permissions.requestPermission('location').then(response => {
-            if (response == 'authorized') {
-              this.props.changeGeolocationEnabled(true)
-              this._getPosition()
-            } else {
-              this.props.changeGeolocationEnabled(false)
-            }
-          })
-        }
-      })
-    }
+    Permissions.getPermissionStatus('location').then(response => {
+      if (response == 'authorized') {
+        this.props.changeGeolocationEnabled(true)
+        this._getPosition()
+      } else if (response == 'undetermined') {
+        Permissions.requestPermission('location').then(response => {
+          if (response == 'authorized') {
+            this.props.changeGeolocationEnabled(true)
+            this._getPosition()
+          } else {
+            this.props.changeGeolocationEnabled(false)
+          }
+        })
+      } else {
+        this.props.changeGeolocationEnabled(false)
+      }
+    })
   }
 
   _getPosition () {
