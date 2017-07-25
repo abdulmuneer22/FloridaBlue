@@ -463,7 +463,13 @@ class Login extends Component {
     var password = this.props.password
 
     if (!username && !password) {
-      Alert.alert('Login', 'Please enter your User ID/Password.', [
+      var errorMessage = ''
+      if (this.props.touchEnabled) {
+        errorMessage = 'Please enter your User ID/Password to setup Touch ID.'
+      } else {
+        errorMessage = 'Please enter your User ID/Password.'
+      }
+      Alert.alert('Login', errorMessage, [
         {
           text: 'OK'
         }
