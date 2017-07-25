@@ -53,7 +53,7 @@ class ClaimDetail extends Component {
    formatTo2DecimalNumber (number) {
      if(number != undefined )
      {
-       var myFormat = formatNumber({prefix: '', suffix: '',truncate: 2});
+       var myFormat = formatNumber({prefix: '', suffix: '',round:2,truncate: 2,padRight:2});
       return myFormat(number);
      }else{
        return '';
@@ -94,7 +94,7 @@ class ClaimDetail extends Component {
                     <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                       fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0023}}>
 
-                      {this.formatDate(this.props.claimdetaildata.dateReceived)}
+                      {this.formatDate(this.props.claimdetaildata.serviceDateFrom)}
                     </Text>
                   </View> : null}
                 {this.props.claimdetaildata
@@ -148,7 +148,7 @@ class ClaimDetail extends Component {
                   <View style={{flex: 0.3}}>
                     <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
-                      {this.formatDate(this.props.claimdetaildata.serviceDateFrom)}
+                      {this.formatDate(this.props.claimdetaildata.dateReceived)}
                     </Text>
                   </View>
                 </View> : null}

@@ -388,7 +388,7 @@ class ClaimsList extends Component {
                           fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
                           color: Colors.snow,
                           fontWeight: '700'
-                        }}>Please Note: </Text>Pharmacy and/or claims of others on your plan are not shown. Click <Text onPress={() => { NavigationActions.MyView({responseURL: urlConfig.internetStatementURL}) }} style={{textDecorationLine: 'underline'}}>here</Text> to see all claims.</Text>
+                        }}>Please Note: </Text>Pharmacy and/or claims of others on your plan are not shown. <Text onPress={() => { NavigationActions.MyView({responseURL: urlConfig.internetStatementURL}) }} style={{textDecorationLine: 'underline'}}>Click here</Text> to see all claims.</Text>
                     </View>
                   </View>
                 </Card>
