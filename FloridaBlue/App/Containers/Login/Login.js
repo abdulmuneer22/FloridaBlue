@@ -329,6 +329,8 @@ class Login extends Component {
       let errorTitle = 'Error'
       var showError = false
 
+      console.tron.log(touchStatus)
+
       switch (touchStatus) {
         case 'AUTHENTICATED':
           // do nothing..
@@ -337,7 +339,7 @@ class Login extends Component {
           // do nothing..
           break
         case 'DISABLED':
-          this._disableTouchID()
+          // do nothing..
           break
         case 'NOT ENROLLED':
           this._disableTouchID()
