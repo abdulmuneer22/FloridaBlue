@@ -329,8 +329,6 @@ class Login extends Component {
       let errorTitle = 'Error'
       var showError = false
 
-      console.tron.log(touchStatus)
-
       switch (touchStatus) {
         case 'AUTHENTICATED':
           // do nothing..

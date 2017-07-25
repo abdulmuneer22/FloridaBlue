@@ -64,9 +64,19 @@ class Settings extends Component {
       if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
+        this.props.changePushEnabled(false)
+        this.forceUpdate()
         gaTracker.trackEvent('Settings', 'Disabled Touch ID')
       }
     })
+  }
+
+  _handleLockedTouch () {
+    this.props.changeCredentialStored(false)
+    this.props.changeTouchEnabled(false)
+    this.props.changeTouchAvailable(true)
+    this.props.changePushEnabled(false)
+    this.forceUpdate()
   }
 
   _enableTouch () {
@@ -119,6 +129,50 @@ class Settings extends Component {
     } else {
       this.props.changePushEnabled(true)
     }
+
+    TouchManager.checkTouchStatus((error, touchInfo) => {
+      let touchStatus = touchInfo[0]
+      let errorMessage = ''
+      let errorTitle = 'Error'
+      var showError = false
+
+      switch (touchStatus) {
+        case 'AUTHENTICATED':
+          // do nothing..
+          break
+        case 'ENABLED':
+          // do nothing..
+          break
+        case 'DISABLED':
+          // do nothing..
+          break
+        case 'NOT ENROLLED':
+          this._disableTouchID()
+          errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+          showError = true
+          break
+        case 'NO PASSCODE':
+          this._disableTouchID()
+          break
+        case 'LOCKED':
+          this._handleLockedTouch()
+          errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
+          showError = true
+        default:
+          this._disableTouchID()
+      }
+
+      if (showError) {
+        Alert.alert(
+          errorTitle,
+          errorMessage,
+          [
+            {text: 'Ok', onPress: () => console.log("Ok pressed"), style: 'cancel'}
+          ],
+          { cancelable: false }
+        )
+      }
+    })
   }
 
   _handleGeoToggle (e) {
