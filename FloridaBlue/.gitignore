@@ -47,3 +47,4 @@ jsconfig.json
 *.jar
 *.nyc_output
 android/keystores/gradle.properties
+*.yarn
