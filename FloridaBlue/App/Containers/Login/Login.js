@@ -123,7 +123,7 @@ class Login extends Component {
             break
           case 'DISABLED':
             this._disableTouchID()
-            this.props.changeTouchAvailable(false)
+            this.props.changeTouchAvailable(true)
             break
           case 'NOT ENROLLED':
             this._disableTouchID()
