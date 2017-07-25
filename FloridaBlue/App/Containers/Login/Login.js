@@ -123,9 +123,11 @@ class Login extends Component {
             break
           case 'DISABLED':
             this._disableTouchID()
+            this.props.changeTouchAvailable(false)
             break
           case 'NOT ENROLLED':
             this._disableTouchID()
+            this.props.changeTouchAvailable(true)
             break
           case 'NO PASSCODE':
             this._disableTouchID()
@@ -441,7 +443,6 @@ class Login extends Component {
       if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
-        this.props.changeTouchAvailable(false)
       }
     })
   }
