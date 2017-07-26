@@ -35,7 +35,6 @@ import Clouds from './Clouds'
 import CityScape from './CityScape'
 import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
-import CheckBox from 'react-native-checkbox'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
