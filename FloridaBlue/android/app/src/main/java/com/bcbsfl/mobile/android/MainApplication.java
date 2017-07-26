@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.facebook.react.ReactApplication;
+import com.github.yamill.orientation.OrientationPackage;
 import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -52,7 +53,8 @@ public class MainApplication  extends MultiDexApplication  implements ReactAppli
             new VectorIconsPackage(),
             new ReactNativeI18n(),
             new ReactNativeConfigPackage(),
-            new ReactNativePermissionsPackage()
+            new ReactNativePermissionsPackage(),
+              new OrientationPackage()
       );
     }
   };
