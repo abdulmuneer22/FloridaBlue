@@ -250,10 +250,19 @@ class ProviderSearch extends Component {
         this._getLocation()
         this.props.changeAddress('Using Current Address')
       } else {
-        Permissions.requestPermission('location').then(response => {
+        Permissions.getPermissionStatus('location').then(response => {
           if (response == 'authorized') {
             this.props.changeGeolocationEnabled(true)
-            this._getLocation()
+            this._getPosition()
+          } else if (response == 'undetermined') {
+            Permissions.requestPermission('location').then(response => {
+              if (response == 'authorized') {
+                this.props.changeGeolocationEnabled(true)
+                this._getPosition()
+              } else {
+                this.props.changeGeolocationEnabled(false)
+              }
+            })
           } else {
             this.props.changeGeolocationEnabled(false)
             this._alertForLocationPermission()
