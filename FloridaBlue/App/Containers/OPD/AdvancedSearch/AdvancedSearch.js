@@ -250,12 +250,11 @@ class AdvancedSearch extends Component {
 
   _alertForLocationPermission () {
     Alert.alert(
-      'Can we access your current location?',
-      'We need access so you can see provider data near your location',
+      'Allow Florida Blue to use your current location.',
+      'To see this information, you need to allow geolocation on your phone. Please go to Location in your phone\'s settings and turn it on.',
       [
-        {text: 'No way', onPress: () => console.tron.log('permission denied'), style: 'cancel'},
-        this.state.photoPermission == 'undetermined'
-        ? {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
+        {text: 'Cancel', onPress: () => console.tron.log('permission denied'), style: 'cancel'},
+        {text: 'Open Settings', onPress: Permissions.openSettings}
       ]
     )
   }
