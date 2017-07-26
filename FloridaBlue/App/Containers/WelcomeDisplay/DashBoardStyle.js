@@ -434,7 +434,48 @@ linearGradientStyleLandscape: {
      alignItems: 'center',
      width: Metrics.screenWidth * 1.78,
      marginTop: 9
-  }
+  },
+    payByPhoneContainer: {
+    width: Metrics.screenWidth * 0.9,
+    height: Metrics.screenWidth * 0.9,
+    flex: 1,
+   // zIndex: -1,
+    backgroundColor:Colors.snow,
+    // borderWidth: 1,
+    borderRadius: Metrics.screenWidth * 1,
+    // borderColor: '#708090',
+    position: 'absolute',
+    bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
+    right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035
+  },
+    dismissPayByPhone: {
+    marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
+    marginTop: 30,
+    backgroundColor: Colors.snow
+  },
+   payByPhoneText: {
+    textAlign: 'left',
+    fontSize: Fonts.size.input * Metrics.screenWidth * 0.0032,
+    marginTop: 20,
+    color: Colors.flBlue.ocean,
+    backgroundColor: Colors.snow,
+    marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.003,
+    top: 10
+  },
+  payByPhoneMessage: {
+    textAlign: 'left',
+    marginTop: 15,
+    color: Colors.flBlue.anvil,
+    fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0030,
+    marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028,
+    marginRight: Metrics.textHeight * Metrics.screenWidth * 0.0055
+  },
+  urgentCareCircle: {
+    flex: 1,
+    position: 'absolute',
+    bottom: 5,
+    right: 10
+  },
 
 }
 
