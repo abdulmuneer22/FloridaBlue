@@ -48,7 +48,7 @@ const Divider = () => { return <View style={styles.divider} /> }
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
 let TouchManager = NativeModules.TouchManager
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 let RCTNetworking = require('RCTNetworking')
 let logo = require('./logo.png')
 

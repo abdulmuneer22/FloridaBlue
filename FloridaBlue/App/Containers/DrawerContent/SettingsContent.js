@@ -34,7 +34,8 @@ const Divider = () => { return <View style={styles.divider} /> }
 
 let RCTNetworking = require('RCTNetworking')
 let {height, width} = Dimensions.get('window')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 class SettingsContent extends Component {
   constructor () {

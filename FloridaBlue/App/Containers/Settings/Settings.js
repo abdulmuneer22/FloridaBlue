@@ -29,7 +29,8 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 
 const Permissions = require('react-native-permissions')
 let TouchManager = NativeModules.TouchManager
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 class Settings extends Component {
 

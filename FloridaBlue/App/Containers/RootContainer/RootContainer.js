@@ -19,6 +19,8 @@ var activeTime = Date
 var timerStarted = false
 var component = null
 var timerStarted = false
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 class RootContainer extends Component {
   constructor () {
@@ -33,6 +35,7 @@ class RootContainer extends Component {
     }
     AppState.addEventListener('change', this._handleAppState)
     GoogleAnalyticsSettings.setDispatchInterval(30)
+    gaTracker.setAppName(urlConfig.appName)
   }
 
   componentWillUnmount () {

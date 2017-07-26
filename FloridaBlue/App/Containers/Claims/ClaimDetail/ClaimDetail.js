@@ -30,7 +30,8 @@ import formatNumber from 'format-number'
 
 
 const window = Dimensions.get('window')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -58,7 +59,7 @@ class ClaimDetail extends Component {
      }else{
        return '';
      }
-   
+
   }
   _renderHeader () {
     return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>

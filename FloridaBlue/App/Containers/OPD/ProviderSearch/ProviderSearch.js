@@ -38,7 +38,8 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 const { height, width } = Dimensions.get('window')
 const theme = getTheme()
 const Permissions = require('react-native-permissions')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const closeIcon = (<Icon name='close'
   size={Metrics.icons.small * Metrics.screenWidth * 0.0035}

@@ -48,7 +48,8 @@ const theme = getTheme()
 const card = { card: { width: Metrics.screenWidth, marginLeft: 0, marginTop: 0, marginBottom: 0, alignItems: 'flex-start' } }
 const cardTitle = { cardTitle: { fontSize: 40 } }
 const Permissions = require('react-native-permissions')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const doctorsGender = [
   { text: 'Any', value: '' },

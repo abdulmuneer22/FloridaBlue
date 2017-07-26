@@ -24,7 +24,8 @@ import ClaimsActions from '../../../Redux/ClaimsRedux'
 import LinearGradient from 'react-native-linear-gradient'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 let image = [
   Images.dashboardGradient,

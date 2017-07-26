@@ -1,5 +1,7 @@
 module.exports = {
   environment: 'prod',
+  appName: 'Florida Blue Mobile Prod',
+  gaTag: 'UA-43067611-3',
   mobApiUrl: 'https://mobapi.bcbsfl.com/mob/api/v1/',
   registrationURL: 'https://registration.bcbsfl.com/ers/api-public/v1/users/',
   forgotPwdURL: 'https://registration.bcbsfl.com/ecir/public/fps.do?channel=mobile&userType=member',
@@ -19,5 +21,4 @@ module.exports = {
   primeTherapeutics: 'https://mwe.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/Disclaimer?nw=1&param1Name=https://www.primetherapeutics.com/specialty/',
   caremarkHemophilia: 'https://mwe.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/Disclaimer?nw=1&param1Name=https://www.cvsspecialty.com/wps/portal/specialty/patients/drugs-conditions/conditions/hemophilia/!ut/p/a1/jZLLbsIwEEW_xsvGExyC6S4N1KWBQkoDIRuUhwORiB0ZAypfX4O6KH1AvbE8c-5c3ZFxgmOciHRfrVJdSZFuTu_EXXpsFoXgd1xzU_CYH_ivYWgDJQZYuEv443iAv6ppL2gbNY0ICfrE9E9qAzBqMzZ2IBhPu13wHNKfTdgjAer8w_26wQ39M05WG5mdgy5aauSPVjhpUr2-q0QpcYxAyIIjIO0T4ImMUAMoXnLFlbVTRrfWurlHgOBwOFhZnm3LjZXLGkFP5ruaCz2sMpWqdwQTJfdVwdUWgS-FNi0EI16wnSlaTVH-ZrGWW43jy9H4',
   tLCRxSpecialty: 'https://mwe.bcbsfl.com/wps/myportal/mbs/mwe/myaccount/Disclaimer?nw=1&param1Name=http://www.tlcrxpharmacy.com'
-
 }
