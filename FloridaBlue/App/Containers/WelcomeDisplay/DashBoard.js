@@ -85,36 +85,18 @@ class LandingScreen extends Component {
     if (this.props.openedFromTray) {
       NavigationActions.PushNotifications()
     }
+
+
     if (this.props.visibilityRules) {
       gaTracker.trackEvent('User Segment', this.props.visibilityRules.segment)
 
       if (this.props.visibilityRules.groupId) {
           gaTracker.trackEvent('Group ID', this.props.visibilityRules.groupId)
       }
-
-      var data = {
-        'hccId': this.props.defaultContract.hccId,
-        'pushOptIn': true,
-        'memberId': this.props.memberObject.memberId,
-        'manufacturer': DeviceInfo.getManufacturer(),
-        'deviceName': DeviceInfo.getDeviceName(),
-        'model': DeviceInfo.getModel(),
-        'deviceId': DeviceInfo.getUniqueID(),
-        'locale': 'en',
-        'os': DeviceInfo.getSystemName(),
-        'osId': DeviceInfo.getDeviceId(),
-        'osVersion': DeviceInfo.getSystemVersion(),
-        'token': this.props.FCMToken
-      }
-      if (this.props.FCMToken) {
-        this.props.postFCMToken(data)
-      }
     }
-
-    console.log('data objec to post ', data)
      // NavigationActions.POSTFCM
 
-    console.log('mount on dashboadr' + this.props.smToken)
+  //  console.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin == 'registration') {
       this.props.attemptMember()
     }
@@ -135,12 +117,27 @@ class LandingScreen extends Component {
       this.props.getNotification()
       NavigationActions.PushNotifications()
     }
-    console.log('dash board failure' + newProps.error)
-    /*
-   if (!newProps.error) {
-       NavigationActions.ErrorPage()
-   }
-   */
+  
+    if(this.props.defaultContract && newProps.tokenFlag === this.props.tokenFlag){
+      var data = {
+        'hccId': this.props.defaultContract.hccId,
+        'pushOptIn': true,
+        'memberId': this.props.memberObject.memberId,
+        'manufacturer': DeviceInfo.getManufacturer(),
+        'deviceName': DeviceInfo.getDeviceName(),
+        'model': DeviceInfo.getModel(),
+        'deviceId': DeviceInfo.getUniqueID(),
+        'locale': 'en',
+        'os': DeviceInfo.getSystemName(),
+        'osId': DeviceInfo.getDeviceId(),
+        'osVersion': DeviceInfo.getSystemVersion(),
+        'token': this.props.FCMToken
+      }
+      if (this.props.FCMToken) {
+        this.props.postFCMToken(data)
+        this.props.localTokenFlag(false)
+      }
+    }
   }
 
   handleOPDTileView= () => {
@@ -306,7 +303,8 @@ const mapStateToProps = (state) => {
     memberObject: state.member.memberObject,
     unreadNotification: state.Notification.unreadNotification,
     markAllRead: state.Notification.allRead,
-    localNotification: state.Notification.localNotification
+    localNotification: state.Notification.localNotification,
+    tokenFlag :state.Notification.fcmTokenFlag
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -314,7 +312,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptMember: () => dispatch(MemberActions.memberRequest()),
     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
     postFCMToken: (data) => dispatch(NotificationActions.postFCMToken(data)),
-    getNotification: () => dispatch(NotificationActions.getNotification())
+    getNotification: () => dispatch(NotificationActions.getNotification()),
+    localTokenFlag:(fcmTokenFlag) => dispatch(NotificationActions.updateTokenFlag(fcmTokenFlag))
 
   }
 }

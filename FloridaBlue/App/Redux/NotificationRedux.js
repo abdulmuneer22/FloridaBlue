@@ -16,7 +16,8 @@ const { Types, Creators } = createActions({
   postFCMToken: ['data'],
   postArchive: ['archiveObject'],
   markAllRead: ['allRead'],
-  deleteNotification: ['newData']
+  deleteNotification: ['newData'],
+  updateTokenFlag :['fcmTokenFlag']
 })
 
 export const NotificationTypes = Types
@@ -34,7 +35,8 @@ export const INITIAL_STATE = Immutable({
   fetching: false,
   unreadNotification: null,
   allRead: false,
-  count: null
+  count: null,
+  fcmTokenFlag : true
 })
 
 /* ------------- Reducers ------------- */
@@ -67,6 +69,11 @@ export const deleteNotification = (state : Object, {newData}: Object) => state.m
   notification: newData
 })
 
+// delete Notification from the redux
+export const updateTokenFlagSet  = (state : Object, {fcmTokenFlag}: Object) => state.merge({
+fcmTokenFlag
+})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -79,7 +86,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.ON_LOCAL_NOTIFICATION]: localNotification,
   [Types.POST_F_C_M_Token]: request,
   [Types.MARK_ALL_READ]: readCount,
-  [Types.DELETE_NOTIFICATION]: deleteNotification
+  [Types.DELETE_NOTIFICATION]: deleteNotification,
+  [Types.UPDATE_TOKEN_FLAG]: updateTokenFlagSet
 })
 
 /* ------------- Selectors ------------- */
