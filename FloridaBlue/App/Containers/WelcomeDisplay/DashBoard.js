@@ -118,26 +118,6 @@ class LandingScreen extends Component {
       NavigationActions.PushNotifications()
     }
   
-    if(this.props.defaultContract && newProps.tokenFlag === this.props.tokenFlag){
-      var data = {
-        'hccId': this.props.defaultContract.hccId,
-        'pushOptIn': true,
-        'memberId': this.props.memberObject.memberId,
-        'manufacturer': DeviceInfo.getManufacturer(),
-        'deviceName': DeviceInfo.getDeviceName(),
-        'model': DeviceInfo.getModel(),
-        'deviceId': DeviceInfo.getUniqueID(),
-        'locale': 'en',
-        'os': DeviceInfo.getSystemName(),
-        'osId': DeviceInfo.getDeviceId(),
-        'osVersion': DeviceInfo.getSystemVersion(),
-        'token': this.props.FCMToken
-      }
-      if (this.props.FCMToken) {
-        this.props.postFCMToken(data)
-        this.props.localTokenFlag(false)
-      }
-    }
   }
 
   handleOPDTileView= () => {
@@ -271,6 +251,31 @@ class LandingScreen extends Component {
     }
   }
 
+  _sendFCMToken()
+  {
+    if(!this.props.fetching && this.props.visibilityRules != undefined && this.props.defaultContract &&  this.props.tokenFlag){
+      var data = {
+        'hccId': this.props.defaultContract.hccId,
+        'pushOptIn': true,
+        'memberId': this.props.memberObject.memberId,
+        'manufacturer': DeviceInfo.getManufacturer(),
+        'deviceName': DeviceInfo.getDeviceName(),
+        'model': DeviceInfo.getModel(),
+        'deviceId': DeviceInfo.getUniqueID(),
+        'locale': 'en',
+        'os': DeviceInfo.getSystemName(),
+        'osId': DeviceInfo.getDeviceId(),
+        'osVersion': DeviceInfo.getSystemVersion(),
+        'token': this.props.FCMToken
+      }
+      if (this.props.FCMToken) {
+        this.props.postFCMToken(data)
+        this.props.localTokenFlag(false)
+      }
+    }
+
+  }
+
   render () {
     console.log('ipad Height' + Metrics.screenHeight)
     console.log('ipad Width' + Metrics.screenWidth)
@@ -286,6 +291,7 @@ class LandingScreen extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
         {this._displayCondition()}
+        {this._sendFCMToken()}
 
       </View>
     )
