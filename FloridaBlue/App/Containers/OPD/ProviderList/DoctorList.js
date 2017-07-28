@@ -13,7 +13,7 @@ import {
   ScrollView,
   Alert,
   Platform,
-  BackAndroid
+  BackHandler
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { Card } from 'native-base'

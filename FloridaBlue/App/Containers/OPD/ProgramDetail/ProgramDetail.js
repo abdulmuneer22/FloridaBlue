@@ -13,7 +13,7 @@ import {
     Alert,
     Platform,
     Linking,
-    BackAndroid
+    BackHandler
 } from 'react-native'
 import ProviderActions from '../../../Redux/ProviderRedux'
 import { Actions as NavigationActions } from 'react-native-router-flux'

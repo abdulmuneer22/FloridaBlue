@@ -10,7 +10,7 @@ import {
   Navigator,
   Modal,
   Dimensions,
-  BackAndroid,
+  BackHandler,
   TouchableWithoutFeedback,
   NativeModules,
   Platform
@@ -37,7 +37,7 @@ import LogoView from './LogoView'
 import SignUpView from './SignUpView'
 import Clouds from './Clouds'
 import CityScape from './CityScape'
-//import { Spinner } from 'native-base'
+// import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import Orientation from 'react-native-orientation'
@@ -144,7 +144,7 @@ class Login extends Component {
         }
       })
     }
-    const initial = Orientation.getInitialOrientation();
+    const initial = Orientation.getInitialOrientation()
     if (initial === 'PORTRAIT') {
       console.log('Hey, Im going to mount in P mode on Login')
     } else {
@@ -175,10 +175,10 @@ class Login extends Component {
       })
     }
 
-    BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton)
     Orientation.addOrientationListener(this._orientationDidChange)
     /*
-    BackAndroid.addEventListener('hardwareBackPress', function () {
+    BackHandler.addEventListener('hardwareBackPress', function () {
          console.log('inside back handler',component.props.currentSceneValue)
 
           if(  component.props.currentSceneValue && component.props.currentSceneValue ==='login'){
@@ -189,7 +189,7 @@ class Login extends Component {
               'Are you sure you want to exit this app',
               [
                 { text: 'Cancel', onPress: () => {} },
-                { text: 'YES', onPress: () => BackAndroid.exitApp() },
+                { text: 'YES', onPress: () => BackHandler.exitApp() },
               ]
             );
           }else {
@@ -200,7 +200,7 @@ class Login extends Component {
               'Are you sure you want to exit this app',
               [
                 { text: 'Cancel', onPress: () => {} },
-                { text: 'YES', onPress: () => BackAndroid.exitApp() },
+                { text: 'YES', onPress: () => BackHandler.exitApp() },
               ]
             );
           }
@@ -209,15 +209,15 @@ class Login extends Component {
       return true
      })
   */
-}
+  }
 
   _orientationDidChange (orientation) {
     if (orientation === 'LANDSCAPE') {
       this.setState({isPortrait: false})
       console.log('Hey, Im in landscape mode on login')
     } else {
-     this.setState({isPortrait: true})
-     console.log('Hey, Im in portrait mode on login')
+      this.setState({isPortrait: true})
+      console.log('Hey, Im in portrait mode on login')
     }
   }
 
@@ -352,18 +352,16 @@ class Login extends Component {
       }
     }
   // end of IF condition
-}
-
-componentWillUnmount() {
-    Orientation.getOrientation((err, orientation) => {
-      console.log(`Current Device Orientation: ${orientation}`);
-    });
-
-
-    // Remember to remove listener
-    Orientation.removeOrientationListener(this._orientationDidChange);
   }
 
+  componentWillUnmount () {
+    Orientation.getOrientation((err, orientation) => {
+      console.log(`Current Device Orientation: ${orientation}`)
+    })
+
+    // Remember to remove listener
+    Orientation.removeOrientationListener(this._orientationDidChange)
+  }
 
   _handleTouchCheckbox (checkboxState) {
     if (this.state.touchStatus === '') {
@@ -520,7 +518,7 @@ componentWillUnmount() {
     this.props.changeTouchEnabled(true)
   }
 
-  _handleAgentLogin() {
+  _handleAgentLogin () {
     gaTracker.trackEvent('Info Menu', 'Agent Login')
     NavigationActions.AgentLogin()
   }
@@ -561,7 +559,7 @@ componentWillUnmount() {
     return true
   }
 
-  _handleInfoLink(responseURL, eventName) {
+  _handleInfoLink (responseURL, eventName) {
     gaTracker.trackEvent('Info Menu', eventName)
     NavigationActions.MyView({responseURL: responseURL})
     this.setState({modalVisible: false})
@@ -573,7 +571,7 @@ componentWillUnmount() {
     return (
       <View>
         <PopoverTouchable onPopoverDisplayed={() => console.tron.log('Popover displayed!')}>
-          <TouchableOpacity onPress={() => {this.setState({modalVisible:true})}}>
+          <TouchableOpacity onPress={() => { this.setState({modalVisible: true}) }}>
             <Flb name='blocks-circle' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.popoverButton} />
           </TouchableOpacity>
           <Popover
@@ -622,7 +620,7 @@ componentWillUnmount() {
               <Flb name='wire-globe' size={Metrics.icons.medium * Metrics.screenHeight * 0.0012} style={styles.popoverLogo} />
               <Text allowFontScaling={false} style={styles.popoverText}>Speak Another Language?</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.agentLoginLink} onPress={ this._handleAgentLogin }>
+            <TouchableOpacity style={styles.agentLoginLink} onPress={this._handleAgentLogin}>
               <Image source={Images.agentLoginLink} />
             </TouchableOpacity>
           </Popover>
@@ -670,20 +668,21 @@ componentWillUnmount() {
                 placeholder={I18n.t('userpassword')}
                 placeholderTextColor={Colors.steel} />
             </View>
-            <HideableView style={styles.fingerprintContainer} visible={this.props.credentialStored} removeWhenHidden={true}>
+            <HideableView style={styles.fingerprintContainer} visible={this.props.credentialStored} removeWhenHidden>
               <TouchableOpacity style={styles.fingerprintButton} onPress={() => {
                 this._authenticateUserWithTouch()
-                gaTracker.trackEvent('Touch ID', 'Relaunch') }}>
+                gaTracker.trackEvent('Touch ID', 'Relaunch')
+              }}>
                 <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
                 <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
               </TouchableOpacity>
             </HideableView>
-            <HideableView style={styles.fingerprintContainer} visible={!this.props.credentialStored} removeWhenHidden={true}>
+            <HideableView style={styles.fingerprintContainer} visible={!this.props.credentialStored} removeWhenHidden>
               <View style={styles.fingerprintButton}>
                 <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
                   var checked = this.refs.touchCheckbox.state.checked
                   this._handleTouchCheckbox(checked)
-                }}/>
+                }} />
                 <Text allowFontScaling={false} style={styles.touchInstruction}>Setup login using your fingerprint</Text>
               </View>
             </HideableView>
@@ -800,12 +799,14 @@ componentWillUnmount() {
             <SignUpView>
               <TouchableOpacity onPress={() => {
                 NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
-                gaTracker.trackEvent('Login', 'Forgot Password')}}>
+                gaTracker.trackEvent('Login', 'Forgot Password')
+              }}>
                 <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => {
                 NavigationActions.screen_1()
-                gaTracker.trackEvent('Login', 'Sign Up') }}>
+                gaTracker.trackEvent('Login', 'Sign Up')
+              }}>
                 <Image style={styles.signUpButton} source={Images.signUpButton} />
               </TouchableOpacity>
             </SignUpView>

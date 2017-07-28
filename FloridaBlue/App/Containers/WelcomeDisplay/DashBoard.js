@@ -13,7 +13,7 @@ import {
   ScrollView,
   Alert,
   Platform,
-  BackAndroid
+  BackHandler
 } from 'react-native'
 import Greeting from './Components/Greeting'
 import MyPlanCard from './Components/MyPlanCard'
@@ -36,7 +36,7 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 import Orientation from 'react-native-orientation'
 
 const theme = getTheme()
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3');
+let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 import SettingActions from '../../Redux/SettingRedux'
 
 type LoginScreenProps = {
@@ -60,7 +60,6 @@ class LandingScreen extends Component {
     this._orientationDidChange = this._orientationDidChange.bind(this)
   }
 
-
   _renderHeader () {
     return (
       <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
@@ -82,13 +81,11 @@ class LandingScreen extends Component {
     )
   }
 
-  componentWillMount() {
-    const initial = Orientation.getInitialOrientation();
+  componentWillMount () {
+    const initial = Orientation.getInitialOrientation()
     if (initial === 'PORTRAIT') {
-
       console.log('Hey, Im in P mode on Dashboard')
     } else {
-
       console.log('Hey, Im in L mode on Dashboard')
     }
   }
@@ -132,16 +129,15 @@ class LandingScreen extends Component {
     Orientation.addOrientationListener(this._orientationDidChange)
   }
 
-    _orientationDidChange (orientation) {
-    if (orientation === 'LANDSCAPE') {
+  _orientationDidChange (orientation) {
+      if (orientation === 'LANDSCAPE') {
       this.props.changeOrientation(false)
       console.log('Hey, Im in landscape mode on dashboard')
     } else {
-     this.props.changeOrientation(true)
-     console.log('Hey, Im in portrait mode on dashboard')
+      this.props.changeOrientation(true)
+      console.log('Hey, Im in portrait mode on dashboard')
     }
-  }
-
+    }
 
   componentWillReceiveProps (newProps) {
     if (this.props.openedFromTray !== newProps.openedFromTray) {
@@ -161,14 +157,13 @@ class LandingScreen extends Component {
    */
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     Orientation.getOrientation((err, orientation) => {
-      console.log(`Current Device Orientation: ${orientation}`);
-    });
-
+      console.log(`Current Device Orientation: ${orientation}`)
+    })
 
     // Remember to remove listener
-    Orientation.removeOrientationListener(this._orientationDidChange);
+    Orientation.removeOrientationListener(this._orientationDidChange)
   }
 
   handleOPDTileView= () => {
@@ -182,7 +177,7 @@ class LandingScreen extends Component {
   }
 
   _displayCondition (isPortrait) {
-    console.log('tesingPor',isPortrait)
+    console.log('tesingPor', isPortrait)
   //  var  testInPotrait = testInPotrait
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
@@ -194,7 +189,7 @@ class LandingScreen extends Component {
         <View style={styles.container}>
           <Greeting userName={this.props.userName} isPortrait={this.props.isPortrait} />
           {
-            this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} orientationStatus={this.props.isPortrait}/> : <View />}
+            this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} orientationStatus={this.props.isPortrait} /> : <View />}
           <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>
             {
               this.props.visibilityRules != undefined && this.props.visibilityRules.coreTiles != undefined && this.props.visibilityRules.coreTiles.length > 0 ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
@@ -216,9 +211,9 @@ class LandingScreen extends Component {
                       : styles.tileStyle1
                   }
                     onPress={onItemPress.bind(this)} key={i}>
-                   <LinearGradient colors={tile.gradientColor} style={isPortrait ? styles.linearGradientStyle : styles.linearGradientStyleLandscape}>
+                    <LinearGradient colors={tile.gradientColor} style={isPortrait ? styles.linearGradientStyle : styles.linearGradientStyleLandscape}>
 
-                      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         <Image source={Images[tile.gradientImage]}
                           style={{flex: 1,
                             justifyContent: 'center',
@@ -236,7 +231,7 @@ class LandingScreen extends Component {
                         </Image>
                       </View>
 
-                    </LinearGradient>
+                   </LinearGradient>
                   </TouchableOpacity>
 
                 )
@@ -321,7 +316,7 @@ const mapStateToProps = (state) => {
     unreadNotification: state.Notification.unreadNotification,
     markAllRead: state.Notification.allRead,
     localNotification: state.Notification.localNotification,
-     isPortrait: state.setting.isPortrait
+    isPortrait: state.setting.isPortrait
   }
 }
 const mapDispatchToProps = (dispatch) => {

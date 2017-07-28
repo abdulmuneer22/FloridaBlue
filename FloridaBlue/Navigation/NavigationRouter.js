@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { BackAndroid } from 'react-native'
+import { BackHandler } from 'react-native'
 import { Scene, Router, ActionConst, Actions } from 'react-native-router-flux'
 import Styles from './Styles/NavigationContainerStyle'
 import NavigationDrawer from './NavigationDrawer'
