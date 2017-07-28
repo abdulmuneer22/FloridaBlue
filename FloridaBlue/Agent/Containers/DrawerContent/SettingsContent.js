@@ -4,7 +4,7 @@ import React, { Component, PropTypes} from 'react'
 import {
   ScrollView,
   Image,
-  BackAndroid,
+  BackHandler,
   View,
   StyleSheet,
   Text,
@@ -45,7 +45,7 @@ class SettingsContent extends Component {
   }
 
   componentDidMount () {
-    BackAndroid.addEventListener('hardwareBackPress', () => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
       if (this.context.drawer.props.open) {
         this.toggleDrawer()
         return true
@@ -142,7 +142,7 @@ class SettingsContent extends Component {
     }
   }
 
-  handlePressPolicy =  () => {
+  handlePressPolicy = () => {
     gaTracker.trackEvent('Side Menu', 'Terms of Use')
     let action
     if (this.props.visibilityRules.touTile.tileType == 'webview') {

@@ -7,7 +7,7 @@ import {
   Dimensions,
   Alert,
   Platform,
-  BackAndroid,
+  BackHandler,
   Image,
   TouchableOpacity
 } from 'react-native'
@@ -147,7 +147,7 @@ class ProviderMap extends Component {
         {this._renderHeader()}
         {this.props.isPortrait ? <View>{this.props.provider.data.providerList
           ? <View style={styles.container}>
-              <MapView
+            <MapView
                 style={[styles.map, {height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.55) : Metrics.screenHeight - (Metrics.screenHeight * 0.5655), width: Metrics.screenWidth}]}
                 showsUserLocation
                 loadingEnabled
@@ -161,7 +161,7 @@ class ProviderMap extends Component {
                 {this.props.provider && this.props.provider.data.providerLocationList.map((provider, index) => this._renderMapMarkers(provider, index))}
 
               </MapView>
-              <HideableView visible={this.state.showLocationDetail} style={[styles.locationDetailContainer, {top: (Platform.OS === 'ios') ? Metrics.textHeight2 * Metrics.screenHeight * 0.009 : Metrics.textHeight2 * Metrics.screenHeight * 0.008}]} removeWhenHidden>
+            <HideableView visible={this.state.showLocationDetail} style={[styles.locationDetailContainer, {top: (Platform.OS === 'ios') ? Metrics.textHeight2 * Metrics.screenHeight * 0.009 : Metrics.textHeight2 * Metrics.screenHeight * 0.008}]} removeWhenHidden>
                 <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003}} showsButtons showsPagination={false}
                   width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
                   height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.49)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
@@ -187,9 +187,9 @@ class ProviderMap extends Component {
         : <View style={styles.spinnerView}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>}</View> :  <ScrollView>{this.props.provider.data.providerList
+        </View>}</View> : <ScrollView>{this.props.provider.data.providerList
           ? <View style={[styles.container, {flexDirection: 'row'}]}>
-              <MapView
+            <MapView
                 style={[styles.map, {height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.54) : Metrics.screenHeight - (Metrics.screenHeight * 0.5655), width: Metrics.screenWidth}]}
                 showsUserLocation
                 loadingEnabled
@@ -203,7 +203,7 @@ class ProviderMap extends Component {
                 {this.props.provider && this.props.provider.data.providerLocationList.map((provider, index) => this._renderMapMarkers(provider, index))}
 
               </MapView>
-              <HideableView visible={this.state.showLocationDetail} style={[styles.locationDetailContainer, {top: (Platform.OS === 'ios') ? Metrics.textHeight2 * Metrics.screenHeight * 0.0087 : Metrics.textHeight2 * Metrics.screenHeight * 0.008}]} removeWhenHidden>
+            <HideableView visible={this.state.showLocationDetail} style={[styles.locationDetailContainer, {top: (Platform.OS === 'ios') ? Metrics.textHeight2 * Metrics.screenHeight * 0.0087 : Metrics.textHeight2 * Metrics.screenHeight * 0.008}]} removeWhenHidden>
                 <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.00315}} showsButtons showsPagination={false}
                   width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.10)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
                   height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.398)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
@@ -230,7 +230,6 @@ class ProviderMap extends Component {
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
         </View>}</ScrollView>}
-
 
       </View>
     )
