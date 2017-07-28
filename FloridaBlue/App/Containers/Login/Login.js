@@ -144,7 +144,17 @@ class Login extends Component {
         }
       })
     }
+    
+     if (DeviceInfo.getManufacturer() === 'samsung') {
+      console.log('hey samsung!')
+      console.log(DeviceInfo.isTablet())
+    } else if (DeviceInfo.getManufacturer() === 'ios') {
+      console.log('yo apple!')
+    }
+
+    console.log("is it a tablet bro?", DeviceInfo.isTablet())
     const initial = Orientation.getInitialOrientation();
+
     if (initial === 'PORTRAIT') {
       console.log('Hey, Im going to mount in P mode on Login')
     } else {
