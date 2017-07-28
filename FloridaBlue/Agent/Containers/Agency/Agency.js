@@ -16,30 +16,42 @@ var agencies = ['Agency 1', 'Agency 2', 'Agency 3']
 class Agency extends Component {
   constructor () {
     super()
+    this._filterByType = this._filterByType.bind(this)
+    this._openGroup = this._openGroup.bind(this)
   }
 
   componentDidMount () {
 
   }
 
-  _renderHeader () {
-    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
-      <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
-        {NavItems.backButton()}
-      </View>
-      <Text allowFontScaling={false} style={styles.headerTextStyle}>Your Agencies</Text>
-      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
-        {NavItems.settingsButton()}
-      </View>
-
-    </Image>)
+  _openGroup(selectedAgent) {
+    console.tron.log(selectedAgent)
+    NavigationActions.Group()
   }
 
-  _renderAgencyCard(agency) {
+  _filterByType(index, value: string) {
+    console.tron.log(value)
+  }
+
+  _renderHeader () {
     return (
-      <View style={styles.agencyCardContainer}>
-        <AgencyCard />
-      </View>
+      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
+        <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
+          {NavItems.backButton()}
+        </View>
+        <Text allowFontScaling={false} style={styles.headerTextStyle}>Florida Blue</Text>
+        <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+          {NavItems.settingsButton()}
+        </View>
+      </Image>
+    )
+  }
+
+  _renderAgentItem(agent, index) {
+    return(
+      <TouchableOpacity onPress={() => this._openGroup(agent)}>
+        <AgencyItem data={agent} />
+      </TouchableOpacity>
     )
   }
 
