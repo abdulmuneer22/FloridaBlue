@@ -62,7 +62,7 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-      <Image style={RNDeviceInfo.isTablet() ? styles.headerContainer :  (this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape)} source={Images.newHeaderImage}>
+      <Image style={DeviceInfo.isTablet() ? styles.headerContainer : (this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape)} source={Images.newHeaderImage}>
         <View style={{
           alignItems: 'center',
           marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
@@ -130,14 +130,14 @@ class LandingScreen extends Component {
   }
 
   _orientationDidChange (orientation) {
-      if (orientation === 'LANDSCAPE') {
+    if (orientation === 'LANDSCAPE') {
       this.props.changeOrientation(false)
       console.log('Hey, Im in landscape mode on dashboard')
     } else {
       this.props.changeOrientation(true)
       console.log('Hey, Im in portrait mode on dashboard')
     }
-    }
+  }
 
   componentWillReceiveProps (newProps) {
     if (this.props.openedFromTray !== newProps.openedFromTray) {
@@ -213,7 +213,7 @@ class LandingScreen extends Component {
                     onPress={onItemPress.bind(this)} key={i}>
                     <LinearGradient colors={tile.gradientColor} style={isPortrait ? styles.linearGradientStyle : styles.linearGradientStyleLandscape}>
 
-                     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                         <Image source={Images[tile.gradientImage]}
                           style={{flex: 1,
                             justifyContent: 'center',
@@ -231,7 +231,7 @@ class LandingScreen extends Component {
                         </Image>
                       </View>
 
-                   </LinearGradient>
+                    </LinearGradient>
                   </TouchableOpacity>
 
                 )
