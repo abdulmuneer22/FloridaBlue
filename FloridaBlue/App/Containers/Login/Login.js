@@ -10,7 +10,7 @@ import {
   Navigator,
   Modal,
   Dimensions,
-  BackAndroid,
+  BackHandler,
   TouchableWithoutFeedback,
   NativeModules,
   Platform
@@ -185,10 +185,10 @@ class Login extends Component {
       })
     }
 
-    BackAndroid.addEventListener('hardwareBackPress', this.handleBackButton)
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackButton)
     Orientation.addOrientationListener(this._orientationDidChange)
     /*
-    BackAndroid.addEventListener('hardwareBackPress', function () {
+    BackHandler.addEventListener('hardwareBackPress', function () {
          console.log('inside back handler',component.props.currentSceneValue)
 
           if(  component.props.currentSceneValue && component.props.currentSceneValue ==='login'){
@@ -199,7 +199,7 @@ class Login extends Component {
               'Are you sure you want to exit this app',
               [
                 { text: 'Cancel', onPress: () => {} },
-                { text: 'YES', onPress: () => BackAndroid.exitApp() },
+                { text: 'YES', onPress: () => BackHandler.exitApp() },
               ]
             );
           }else {
@@ -210,7 +210,7 @@ class Login extends Component {
               'Are you sure you want to exit this app',
               [
                 { text: 'Cancel', onPress: () => {} },
-                { text: 'YES', onPress: () => BackAndroid.exitApp() },
+                { text: 'YES', onPress: () => BackHandler.exitApp() },
               ]
             );
           }

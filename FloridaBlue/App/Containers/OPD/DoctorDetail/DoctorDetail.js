@@ -13,7 +13,7 @@ import {
     Alert,
     Platform,
     Linking,
-    BackAndroid
+    BackHandler
 } from 'react-native'
 
 import HideableView from 'react-native-hideable-view'
@@ -32,7 +32,6 @@ import _ from 'lodash'
 import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import SettingActions from '../../../Redux/SettingRedux'
-
 
 const theme = getTheme()
 let urlConfig = require('../../../UrlConfig')

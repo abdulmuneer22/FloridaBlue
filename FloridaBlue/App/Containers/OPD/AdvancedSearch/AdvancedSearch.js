@@ -13,7 +13,7 @@ import {
   ScrollView,
   Alert,
   Platform,
-  BackAndroid,
+  BackHandler,
   TouchableHighlight,
   Slider
 } from 'react-native'
@@ -371,9 +371,9 @@ class AdvancedSearch extends Component {
       this.props.changeAddress('Using Current Location')
     },
       (error) => alert('No GPS location found.'))
-      this.props.changeAddress(this.props.homeAddress)
-      this.props.changeLatitude(0)
-      this.props.changeLongitude(0)
+    this.props.changeAddress(this.props.homeAddress)
+    this.props.changeLatitude(0)
+    this.props.changeLongitude(0)
   }
 
   _careSelected (index, value:string) {

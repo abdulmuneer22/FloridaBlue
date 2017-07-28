@@ -13,7 +13,7 @@ import {
   ScrollView,
   Alert,
   Platform,
-  BackAndroid
+  BackHandler
 } from 'react-native'
 import Greeting from './Components/Greeting'
 import MyPlanCard from './Components/MyPlanCard'
