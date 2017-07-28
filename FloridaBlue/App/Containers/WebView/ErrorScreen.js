@@ -10,7 +10,7 @@ import {
   Image,
   Modal,
   WebView,
-  BackHandler,
+  BackAndroid,
   Platform
   } from 'react-native'
 import styles from './WebViewStyle'

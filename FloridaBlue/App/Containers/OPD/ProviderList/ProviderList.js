@@ -7,7 +7,7 @@ import {
   Dimensions,
   Alert,
   Platform,
-  BackHandler,
+  BackAndroid,
   Image,
   TouchableOpacity,
   TouchableWithoutFeedback,

@@ -12,7 +12,7 @@ import {
   ScrollView,
   Alert,
   Platform,
-  BackHandler
+  BackAndroid
 } from 'react-native'
 
 import React, { Component, PropTypes } from 'react'
@@ -39,7 +39,7 @@ const { height, width } = Dimensions.get('window')
 const theme = getTheme()
 const Permissions = require('react-native-permissions')
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
-import Orientation from 'react-native-orientation'
+import Orientation from 'react-native-orientation';
 
 const closeIcon = (<Icon name='close'
   size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
@@ -97,15 +97,15 @@ class ProviderSearch extends Component {
     this.setState({helpStatus: false})
   }
 
-  _orientationDidChange (orientation) {
-     if (orientation === 'LANDSCAPE') {
+   _orientationDidChange (orientation) {
+    if (orientation === 'LANDSCAPE') {
       this.props.changeOrientation(false)
       console.log('Hey, Im in landscape mode')
     } else {
-      this.props.changeOrientation(true)
-      console.log('Hey, Im in portrait mode')
+     this.props.changeOrientation(true)
+     console.log('Hey, Im in portrait mode')
     }
-   }
+  }
 
   componentDidMount () {
     gaTracker.trackScreenView('Provider Search')
@@ -130,7 +130,7 @@ class ProviderSearch extends Component {
     if (this.props.categoryCode != 'ALL') {
       this.setState({specialityState: true})
     }
-    Orientation.addOrientationListener(this._orientationDidChange)
+    Orientation.addOrientationListener(this._orientationDidChange);
   }
 
   componentWillReceiveProps (newProps) {
@@ -254,7 +254,7 @@ class ProviderSearch extends Component {
     }
   }
 
-  _selectCurrentLocation (event) {
+  _selectCurrentLocation(event) {
     if (event.checked) {
       if (this.props.geolocationEnabled) {
         this._getLocation()
@@ -347,9 +347,9 @@ class ProviderSearch extends Component {
       this.props.changeAddress('Using Current Location')
     },
       (error) => alert('No GPS location found.'))
-    this.props.changeAddress(this.props.homeAddress)
-    this.props.changeLatitude(0)
-    this.props.changeLongitude(0)
+      this.props.changeAddress(this.props.homeAddress)
+      this.props.changeLatitude(0)
+      this.props.changeLongitude(0)
   }
 
   _alertForLocationPermission () {
@@ -447,7 +447,7 @@ class ProviderSearch extends Component {
 
               <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')}
-                  onSelect={this._specialitySelected} dropdownStyle={this.props.isPortrait ? this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown : styles.dropD : this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDownLandscape : styles.dropDLandscape}
+                  onSelect={this._specialitySelected} dropdownStyle={this.props.isPortrait ? this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown  : styles.dropD: this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDownLandscape  : styles.dropDLandscape}
                   renderRow={this._renderDropdownRow.bind(this)}
                 // adjustFrame={style => this._dropdown_3_adjustFrame(style)}
                 >

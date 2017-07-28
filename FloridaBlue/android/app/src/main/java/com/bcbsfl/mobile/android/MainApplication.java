@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 
 import com.facebook.react.ReactApplication;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.github.yamill.orientation.OrientationPackage;
 import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
@@ -20,6 +19,7 @@ import com.joshblour.reactnativepermissions.ReactNativePermissionsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 
 import com.i18n.reactnativei18n.ReactNativeI18n;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -43,9 +43,9 @@ public class MainApplication  extends MultiDexApplication  implements ReactAppli
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new RNDeviceInfo(),
             new GoogleAnalyticsBridgePackage(),
             new FIRMessagingPackage(),
+            new RNDeviceInfo(),
             new CookieManagerPackage(),
             new LinearGradientPackage(),
             new MapsPackage(),
