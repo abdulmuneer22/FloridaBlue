@@ -42,6 +42,7 @@ import HideableView from 'react-native-hideable-view'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import Orientation from 'react-native-orientation'
 import Popover, { PopoverTouchable } from 'react-native-modal-popover'
+import DeviceInfo from 'react-native-device-info';
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 const Divider = () => { return <View style={styles.divider} /> }
@@ -100,6 +101,8 @@ class Login extends Component {
   }
 
   componentWillMount () {
+    Orientation.lockToPortrait();
+    Orientation.unlockAllOrientations();
     if (Platform.OS === 'ios') {
       TouchManager.checkTouchStatus((error, touchInfo) => {
         let touchStatus = touchInfo[0]
@@ -144,7 +147,17 @@ class Login extends Component {
         }
       })
     }
+    
+     if (DeviceInfo.getManufacturer() === 'samsung') {
+      console.log('hey samsung!')
+      console.log(DeviceInfo.isTablet())
+    } else if (DeviceInfo.getManufacturer() === 'ios') {
+      console.log('yo apple!')
+    }
+
+    console.log("is it a tablet bro?", DeviceInfo.isTablet())
     const initial = Orientation.getInitialOrientation();
+
     if (initial === 'PORTRAIT') {
       console.log('Hey, Im going to mount in P mode on Login')
     } else {

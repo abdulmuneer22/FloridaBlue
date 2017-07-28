@@ -63,7 +63,7 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
+      <Image style={RNDeviceInfo.isTablet() ? styles.headerContainer :  (this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape)} source={Images.newHeaderImage}>
         <View style={{
           alignItems: 'center',
           marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
@@ -84,8 +84,10 @@ class LandingScreen extends Component {
 
   componentWillMount() {
     const initial = Orientation.getInitialOrientation();
+    Orientation.lockToPortrait();
+    Orientation.unlockAllOrientations();
+    console.log('yo i unlocked', Orientation.unlockAllOrientations())
     if (initial === 'PORTRAIT') {
-
       console.log('Hey, Im in P mode on Dashboard')
     } else {
 
