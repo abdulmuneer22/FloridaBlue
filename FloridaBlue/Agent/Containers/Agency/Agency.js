@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component, PropTypes } from 'react'
-import { View, StatusBar, AppState, Text, Image, FlatList, TouchableHighlight } from 'react-native'
+import { View, StatusBar, AppState, Text, Image, TouchableHighlight, TouchableOpacity, ScrollView } from 'react-native'
 import NavigationRouter from '../../../Navigation/NavigationRouter'
 import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -12,8 +12,10 @@ import {Metrics, Images, Colors} from '../../Themes/'
 import Flb from '../../Themes/FlbIcon'
 import ModalDropdown from 'react-native-modal-dropdown'
 import AgencyItem from './Components/AgencyItem'
+import { MKProgress } from 'react-native-material-kit'
 
-var agencies = [{name:'Agency 1', type:'Blue Preferred'}, {name:'Agency 2', type:'Blue Preferred'}, {name:'Agency 3', type:'Blue Diamond'}, {name:'Agency 4', type:'Blue Diamond'}, {name:'Agency 5', type:'Blue Diamond'}]
+let agencies = require('./agencies.json')
+const Divider = () => { return <View style={styles.divider} /> }
 
 class Agency extends Component {
   constructor () {
@@ -50,25 +52,38 @@ class Agency extends Component {
     )
   }
 
+  _renderAgentItem(agent, index) {
+    return(
+      <TouchableOpacity>
+        <AgencyItem data={agent} />
+      </TouchableOpacity>
+    )
+  }
+
   render () {
     return (
       <View style={{flex:1}}>
 
-      {this._renderHeader()}
+        {this._renderHeader()}
 
-      <Text style={styles.agencyTitle}>Your Agencies</Text>
+        <Text style={styles.agencyTitle}>Your Agencies</Text>
+        <MKProgress ref="agencyBar" style={styles.agencyBar} progress={0.45} progressColor={Colors.flBlue.ocean} bufferColor={Colors.flBlue.grey2} />
 
-      <View style={styles.filterContainer}>
-        <Text style={styles.filterNameTitle}>Name</Text>
-        <ModalDropdown options={_.map(agencies, 'type')} onSelect={this.filterByType} dropdownStyle={styles.filterDropdown} renderRow={this._renderDropdownRow.bind(this)}>
-          <View style={styles.filterTypeContainer}>
-            <Text style={styles.filterTypeTitle}>Type</Text>
-            <Flb name="caret-down-two" size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
-          </View>
-        </ModalDropdown>
-      </View>
+        <Divider />
+        <View style={styles.filterContainer}>
+          <Text style={styles.filterNameTitle}>Name</Text>
+          <ModalDropdown options={_.map(agencies, 'type')} onSelect={this.filterByType} dropdownStyle={styles.filterDropdown} renderRow={this._renderDropdownRow.bind(this)}>
+            <View style={styles.filterTypeContainer}>
+              <Text style={styles.filterTypeTitle}>Type</Text>
+              <Flb name="caret-down-two" size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
+            </View>
+          </ModalDropdown>
+        </View>
+        <Divider />
 
-      <AgencyItem />
+        <ScrollView>
+          {agencies.map((agent, index) => this._renderAgentItem(agent, index))}
+        </ScrollView>
 
       </View>
     )

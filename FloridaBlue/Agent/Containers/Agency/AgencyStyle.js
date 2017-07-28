@@ -35,11 +35,17 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003,
     marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.003
   },
+  agencyBar: {
+    alignSelf: 'center',
+    color: Colors.flBlue.ocean,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.093,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002
+  },
   filterContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.flBlue.lightBlue,
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002
+    backgroundColor: Colors.flBlue.lightBlue
   },
   filterNameTitle: {
     fontFamily: Fonts.type.base,
@@ -70,5 +76,9 @@ export default StyleSheet.create({
     paddingTop: Metrics.smallMargin,
     paddingBottom: Metrics.smallMargin,
     color: Colors.flBlue.night
+  },
+  divider: {
+    backgroundColor: Colors.flBlue.grey1,
+    height: Metrics.screenHeight * 0.0018
   }
 })

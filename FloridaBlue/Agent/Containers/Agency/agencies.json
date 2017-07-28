@@ -1,0 +1,37 @@
+[
+  {
+    "name":"Agency 1",
+    "role":"Agent",
+    "type":"Blue Preferred",
+    "typePrime":"BlueDirect",
+    "code":"A774"
+  },
+  {
+    "name":"Agency 2",
+    "role":"Agent",
+    "type":"Blue Preferred",
+    "typePrime":"NCA / AA",
+    "code":"A774"
+  },
+  {
+    "name":"Agency 3",
+    "role":"Agency Owner",
+    "type":"Blue Diamond",
+    "typePrime":"BlueDirect",
+    "code":"A774"
+  },
+  {
+    "name":"Agency 4",
+    "role":"Delage III",
+    "type":"Blue Diamond",
+    "typePrime":"Wholesaler",
+    "code":"A774"
+  },
+  {
+    "name":"Agency 5",
+    "role":"Agent Owner",
+    "type":"Blue Diamond",
+    "typePrime":"BlueDirect",
+    "code":"A774"
+  }
+]
