@@ -81,16 +81,8 @@ class LandingScreen extends Component {
     )
   }
 
-<<<<<<< HEAD
-  componentWillMount() {
-    const initial = Orientation.getInitialOrientation();
-    Orientation.lockToPortrait();
-    Orientation.unlockAllOrientations();
-    console.log('yo i unlocked', Orientation.unlockAllOrientations())
-=======
   componentWillMount () {
     const initial = Orientation.getInitialOrientation()
->>>>>>> 2284169c7f6014ea971dcb2adcd892957f6e00fd
     if (initial === 'PORTRAIT') {
       console.log('Hey, Im in P mode on Dashboard')
     } else {

@@ -147,7 +147,6 @@ class Login extends Component {
         }
       })
     }
-<<<<<<< HEAD
     
      if (DeviceInfo.getManufacturer() === 'samsung') {
       console.log('hey samsung!')
@@ -159,9 +158,6 @@ class Login extends Component {
     console.log("is it a tablet bro?", DeviceInfo.isTablet())
     const initial = Orientation.getInitialOrientation();
 
-=======
-    const initial = Orientation.getInitialOrientation()
->>>>>>> 2284169c7f6014ea971dcb2adcd892957f6e00fd
     if (initial === 'PORTRAIT') {
       console.log('Hey, Im going to mount in P mode on Login')
     } else {
