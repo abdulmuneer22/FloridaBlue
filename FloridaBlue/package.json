@@ -98,7 +98,8 @@
     "reactotron-redux": "~1.7.0",
     "reactotron-redux-saga": "~1.7.0",
     "snazzy": "~6.0.0",
-    "standard": "8.6.0"
+    "standard": "8.6.0",
+    "react-test-renderer": "16.0.0-alpha.12"
   },
   "ava": {
     "files": [
