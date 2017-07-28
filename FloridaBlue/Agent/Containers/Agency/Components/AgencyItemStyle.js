@@ -35,5 +35,4 @@ export default StyleSheet.create({
     backgroundColor: Colors.flBlue.grey1,
     height: Metrics.screenHeight * 0.0018
   }
-
 })

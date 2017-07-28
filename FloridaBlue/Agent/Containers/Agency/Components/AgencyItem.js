@@ -18,24 +18,21 @@ class AgencyItem extends Component {
     super()
   }
 
-  componentDidMount () {
-
-  }
-
   render () {
     return (
       <View>
-        <Divider />
 
         <View style={styles.agentItemContainer}>
           <View style={styles.agentColumnContainer}>
-            <Text allowFontScaling={false} style={styles.topText}>TDG of Jacksonville</Text>
-            <Text allowFontScaling={false} style={styles.bottomText}><Flb name="single" size={13} color={Colors.flBlue.anvil} style={styles.agentIcon} />  Agent</Text>
+            <Text allowFontScaling={false} style={styles.topText}>{this.props.data.name}
+              <Text allowFontScaling={false} style={styles.bottomText}>  - {this.props.data.code}</Text>
+            </Text>
+            <Text allowFontScaling={false} style={styles.bottomText}><Flb name="single" size={13} color={Colors.flBlue.anvil} style={styles.agentIcon} />  {this.props.data.role}</Text>
           </View>
 
           <View style={styles.agentColumnContainer}>
-            <Text allowFontScaling={false} style={styles.topText}>Blue Direct</Text>
-            <Text allowFontScaling={false} style={styles.bottomText}>Blue Diamond</Text>
+            <Text allowFontScaling={false} style={styles.topText}>{this.props.data.typePrime}</Text>
+            <Text allowFontScaling={false} style={styles.bottomText}>{this.props.data.type}</Text>
           </View>
 
           <View style={styles.agentColumnContainer}>
@@ -49,18 +46,4 @@ class AgencyItem extends Component {
   }
 }
 
-AgencyItem.propTypes = {
-
-}
-
-const mapStateToProps = (state) => {
-  return {
-
-  }
-}
-
-const mapDispatchToProps = (dispatch) => ({
-
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(AgencyItem)
+export default AgencyItem
