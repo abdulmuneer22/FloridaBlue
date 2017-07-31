@@ -41,7 +41,6 @@ export default StyleSheet.create({
   },
   groupBar: {
     alignSelf: 'center',
-    color: Colors.flBlue.ocean,
     width: Metrics.baseMargin * Metrics.screenWidth * 0.094,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0015,
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002
@@ -55,11 +54,13 @@ export default StyleSheet.create({
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0007
   },
   searchInput: {
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.005,
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.006,
     marginHorizontal: Metrics.baseMargin * Metrics.screenWidth * 0.004,
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002,
-    borderColor: Colors.flBlue.grey3,
-    borderWidth: 0.5
+    borderColor: Colors.flBlue.grey1,
+    borderWidth: 1,
+    borderRadius: 5,
+    shadowOpacity: 0.1,
   },
   searchIcon: {
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0008,
@@ -74,7 +75,6 @@ export default StyleSheet.create({
     backgroundColor: Colors.flBlue.lightsky
   },
   addFilterContainer: {
-    backgroundColor: Colors.flBlue.lightsky
   },
   addFilterIcon: {
     color: Colors.flBlue.grey2
@@ -96,16 +96,41 @@ export default StyleSheet.create({
     marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.012,
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.002
   },
+  groupDropdownContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0005
+  },
   groupTypeTitle: {
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.small,
     fontWeight: '500',
     paddingRight: Metrics.baseMargin * Metrics.screenWidth * 0.005
   },
-  groupDateDropdown: {
-    width: Metrics.screenWidth * 0.7
+  groupDropdownTitle: {
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.tiny,
+    fontWeight: '500'
   },
-  groupDateDropdownItem: {
+  groupDropdown : {
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.03,
+    marginVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0012,
+    marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+    backgroundColor: Colors.flBlue.lightsky,
+    borderRadius: 4,
+    borderWidth: 0.8,
+    borderColor: Colors.flBlue.grey2
+  },
+  groupDropdownItem: {
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0008,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.03,
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0085,
+    borderRadius: 4,
+    borderWidth: 0.8,
+    borderColor: Colors.flBlue.grey1,
+    shadowOpacity: 0.1
+  },
+  groupDropdownText: {
     fontSize: Fonts.size.small,
     fontFamily: Fonts.type.base,
     fontWeight: '200',

@@ -24,9 +24,8 @@ class GroupItem extends Component {
 
         <View style={styles.groupItemContainer}>
           <View style={styles.groupColumnContainer}>
-            <Text allowFontScaling={false} style={styles.topText}>{this.props.data.name}
-            </Text>
-            <Text allowFontScaling={false} style={styles.bottomText}><Flb name='single' size={13} color={Colors.flBlue.anvil} style={styles.groupIcon} />            {this.props.data.owner}</Text>
+            <Text allowFontScaling={false} style={styles.topText}>{this.props.data.name}</Text>
+            <Text allowFontScaling={false} style={styles.bottomText}><Flb name='single' size={13} color={Colors.flBlue.anvil} style={styles.groupIcon} />  {this.props.data.owner}</Text>
           </View>
 
           <View style={styles.groupColumnContainer}>
