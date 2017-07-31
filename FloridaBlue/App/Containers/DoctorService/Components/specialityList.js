@@ -50,7 +50,6 @@ class specialityList extends Component {
       var card = this.props.data.officeServices.outNetwork
     }
 
-
     // looping through cards to create the view
     var i = 0
     return (

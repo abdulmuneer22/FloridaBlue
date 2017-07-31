@@ -24,7 +24,7 @@ import { connect } from 'react-redux'
 import Flb from '../../Themes/FlbIcon'
 import Card from './Components/Card'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
-import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import SupportActions from '../../Redux/SupportRedux'
 
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
@@ -43,17 +43,17 @@ type PaymentsDashboardProps = {
 }
 
 class PaymentsDashboard extends Component {
-    constructor (props) {
+  constructor (props) {
     super(props)
     this.state = {
-        floatClicked: false
+      floatClicked: false
     }
-        this._toggleFloat = this._toggleFloat.bind(this)
+    this._toggleFloat = this._toggleFloat.bind(this)
 //  this.handleNeedHelp = this.handleNeedHelp.bind(this)
     // this.dismissNeedHelp = this.dismissNeedHelp.bind(this)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     gaTracker.trackScreenView('Resources')
   }
 
@@ -70,13 +70,12 @@ class PaymentsDashboard extends Component {
     </Image>)
   }
 
-   _toggleFloat () {
-    if(!this.state.floatClicked) {
-        this.setState({floatClicked: true})
+  _toggleFloat () {
+    if (!this.state.floatClicked) {
+      this.setState({floatClicked: true})
     } else if (this.state.floatClicked) {
-        this.setState({floatClicked: false})
+      this.setState({floatClicked: false})
     }
-    
   }
 
   _displayCondition () {
@@ -90,21 +89,21 @@ class PaymentsDashboard extends Component {
         <View style={{flex: 1}}>
           <ScrollView>
             <TouchableOpacity style={{flex: 1, margin: 15 }}>
-                    <View style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.orange, paddingLeft: 10}} >
-                      <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
-                        <View style={{ flex: 0.15, marginRight: 10 }}>
-                          <Flb name='cc-card' size={Metrics.icons.large} color={Colors.snow} />
-                        </View>
-                        <View style={{ flex: 0.85 }}>
-                          <Text allowFontScaling={false} style={{
-                            fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025,
-                            color: Colors.snow
-                          }}>Click to preview what your 2018 bill might look like.</Text>
-                        </View>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-             <View style={{
+              <View style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.orange, paddingLeft: 10}} >
+                <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
+                  <View style={{ flex: 0.15, marginRight: 10 }}>
+                    <Flb name='cc-card' size={Metrics.icons.large} color={Colors.snow} />
+                  </View>
+                  <View style={{ flex: 0.85 }}>
+                    <Text allowFontScaling={false} style={{
+                      fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025,
+                      color: Colors.snow
+                    }}>Click to preview what your 2018 bill might look like.</Text>
+                  </View>
+                </View>
+              </View>
+            </TouchableOpacity>
+            <View style={{
              // flexDirection: 'row',
               backgroundColor: Colors.flBlue.bg2,
               flexWrap: 'wrap',
@@ -139,37 +138,34 @@ class PaymentsDashboard extends Component {
         }
             </View>
 
-        
-        
-        
           </ScrollView>
-           <View style={{flex: 1}}>
-             {this.state.floatClicked ?  <View style={styles.urgentCareCircle}>
-                <TouchableOpacity onPress={this._toggleFloat}>
-                  <Flb name='rd-brand-phone'
-                    style={{backgroundColor: Colors.transparent}}
-                    color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
-                </TouchableOpacity>
-              </View> : null}
-            
-              {!this.state.floatClicked ?  <View style={styles.payByPhoneContainer}>
+          <View style={{flex: 1}}>
+            {this.state.floatClicked ? <View style={styles.urgentCareCircle}>
+              <TouchableOpacity onPress={this._toggleFloat}>
+                <Flb name='rd-brand-phone'
+                  style={{backgroundColor: Colors.transparent}}
+                  color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+              </TouchableOpacity>
+            </View> : null}
 
-            <Flb name='close-delete' style={styles.dismissPayByPhone}
-              color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
-              onPress={this._toggleFloat} />
+            {!this.state.floatClicked ? <View style={styles.payByPhoneContainer}>
 
-            <TouchableOpacity><Text allowFontScaling={false} style={styles.payByPhoneText}>Pay by Phone</Text></TouchableOpacity>
-            <Text allowFontScaling={false} style={styles.payByPhoneMessage}>Have your member ID ready</Text>
-            <View style={{flexDirection: 'row'}}>
-              <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
-                marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
-                <TouchableOpacity style={{left: 206, top: 15.5}}><Flb name='rd-brand-phone' onPress={this._toggleFloat}
-                  color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} style={{right: 10}}/></TouchableOpacity>
+              <Flb name='close-delete' style={styles.dismissPayByPhone}
+                color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+                onPress={this._toggleFloat} />
+
+              <TouchableOpacity><Text allowFontScaling={false} style={styles.payByPhoneText}>Pay by Phone</Text></TouchableOpacity>
+              <Text allowFontScaling={false} style={styles.payByPhoneMessage}>Have your member ID ready</Text>
+              <View style={{flexDirection: 'row'}}>
+                <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
+                  marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
+                  <TouchableOpacity style={{left: 206, top: 15.5}}><Flb name='rd-brand-phone' onPress={this._toggleFloat}
+                    color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} style={{right: 10}} /></TouchableOpacity>
+                </View>
               </View>
-            </View>
-          </View>: null}
+            </View> : null}
 
-        </View>
+          </View>
         </View>
       )
     } else if (this.props.error != null) {
@@ -193,7 +189,6 @@ class PaymentsDashboard extends Component {
       <View style={styles.container}>
         {this._renderHeader()}
 
-        
         {this._displayCondition()}
 
       </View>
@@ -203,7 +198,7 @@ class PaymentsDashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     visibilityRules: state.member.visibilityRules,
-        data: state.support.data,
+    data: state.support.data,
 
     error: state.member.error,
     fetching: state.member.fetching,
@@ -212,7 +207,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-          attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
+    attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
 
     attemptMember: () => dispatch(MemberActions.memberRequest()),
     changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))

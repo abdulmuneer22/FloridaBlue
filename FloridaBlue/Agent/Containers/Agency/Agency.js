@@ -24,12 +24,12 @@ class Agency extends Component {
 
   }
 
-  _openGroup(selectedAgent) {
+  _openGroup (selectedAgent) {
     console.tron.log(selectedAgent)
     NavigationActions.Group()
   }
 
-  _filterByType(index, value: string) {
+  _filterByType (index, value: string) {
     console.tron.log(value)
   }
 
@@ -47,8 +47,8 @@ class Agency extends Component {
     )
   }
 
-  _renderAgentItem(agent, index) {
-    return(
+  _renderAgentItem (agent, index) {
+    return (
       <TouchableOpacity onPress={() => this._openGroup(agent)}>
         <AgencyItem data={agent} />
       </TouchableOpacity>

@@ -31,7 +31,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: Metrics.screenWidth
   },
-   headerContainerLandscape: {
+  headerContainerLandscape: {
     flexDirection: 'row',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.79)) / 2,
     justifyContent: 'space-between',

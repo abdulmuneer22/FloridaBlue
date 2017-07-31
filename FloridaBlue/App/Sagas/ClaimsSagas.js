@@ -21,13 +21,13 @@ export function * claimslist (api, {data}) {
 
 // // attempts to login
 // export function * claimsMemberList (api) {
-  
+
 //   const response = yield call(api.getClaimsMemberList)
 //   if (response.status == '200') {
 //     // dispatch success
 //     //var data = response.data.data
 //     console.tron.log('calimsMemberList called  successfully');
-    
+
 //           let claimsMemberList =  [
 //               {
 //                 "memberCode": "Professional",
@@ -38,7 +38,7 @@ export function * claimslist (api, {data}) {
 //                 "memberName": "Institutional"
 //               }
 //           ]
-    
+
 //     yield put(ClaimsActions.claimsMemberListSuccess(claimsMemberList))
 //   } else {
 //     // dispatch successful logins
@@ -46,7 +46,6 @@ export function * claimslist (api, {data}) {
 //     yield put(ClaimsActions.claimsMemberListFailure(error))
 //   }
 // }
-
 
 // attempts to login
 export function * claimDetail (api, {claimid}) {
@@ -65,17 +64,14 @@ export function * claimDetail (api, {claimid}) {
   }
 }
 
-
-
-
 // attempts to login
 export function * claimsSummary (api) {
     // api.setsmTokenHeaders(smToken);
   const response = yield call(api.getClaimsSummary)
   if (response.status == '200') {
     // dispatch success
-    //let summaryData = response.data.data
-    let  summaryData = {
+    // let summaryData = response.data.data
+    let summaryData = {
       claimsBreakDown: [
         {'amount': 2250.00, 'name': 'Your Discount'},
         {'amount': 2250.00, 'name': 'Florida Blue Paid'},

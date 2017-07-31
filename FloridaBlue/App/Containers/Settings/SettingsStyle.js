@@ -68,6 +68,6 @@ export default StyleSheet.create({
   },
   settingStatusSwitch: {
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
-    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
+    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0025
   }
 })

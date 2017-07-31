@@ -23,7 +23,7 @@ class AgencyCard extends Component {
         <View style={styles.agencyDetailContainer}>
           <Text allowFontScaling={false} style={styles.agencyTitle}>ACME Agency</Text>
           <View style={styles.row}>
-            <Text allowFontScaling={false} style={styles.agencyAddress}>1234 Anywhere St.{"\n"}Jacksonville, FL 32246</Text>
+            <Text allowFontScaling={false} style={styles.agencyAddress}>1234 Anywhere St.{'\n'}Jacksonville, FL 32246</Text>
             <Text allowFontScaling={false} style={styles.agencyType}>Type: Wholeseller</Text>
           </View>
         </View>

@@ -207,7 +207,7 @@ class NotificationsView extends Component {
                 borderRadius: 20,
                 backgroundColor: 'green',
                 right: 0,
-                marginBottom: this.props.isPortrait ? 0  : 20,
+                marginBottom: this.props.isPortrait ? 0 : 20,
                 marginTop: this.props.isPortrait ? 0 : 1
               }} onPress={_ => this.deleteRow(secId, rowId, rowMap, data.messageId)} >
                 <View style={{

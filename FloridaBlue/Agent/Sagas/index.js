@@ -37,6 +37,6 @@ export default function * root () {
     takeLatest(LoginTypes.LOGIN_REQUEST, login, api),
     takeLatest(LoginTypes.LOGOUT_REQUEST, logout, apiforlogout),
     takeLatest(LoginTypes.GET_TOU, getTou, api),
-    takeLatest(LoginTypes.SEND_CONFIRM, sendConfirm, api),
+    takeLatest(LoginTypes.SEND_CONFIRM, sendConfirm, api)
   ]
 }
