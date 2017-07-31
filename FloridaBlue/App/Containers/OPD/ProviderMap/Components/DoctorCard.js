@@ -81,11 +81,11 @@ class DoctorCard extends Component {
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: (Platform.OS === 'ios') ? 10 : 10 }}>
 
                 <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2, paddingRight: 10}}>
-                  {this.props.data
+                   {this.props.data && this.props.data.categoryCode != '07'
                     ? <TouchableOpacity onPress={this.providerSelected}>
                       <Text allowFontScaling={false} style={styles.mapHeaderText}>{this.props.data.displayName}</Text>
                     </TouchableOpacity>
-                  : null}
+                  :  <Text allowFontScaling={false} style={styles.mapHeaderText1}>{this.props.data.displayName}</Text>}
                   <View style={{flexDirection: 'row'}}>
                     {this.props.data
                       ? <View >
