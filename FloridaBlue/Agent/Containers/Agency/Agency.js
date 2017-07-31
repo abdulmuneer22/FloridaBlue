@@ -30,7 +30,7 @@ class Agency extends Component {
 
   _openGroup (selectedAgent) {
     console.tron.log(selectedAgent)
-    //NavigationActions.Group()
+    NavigationActions.Group()
   }
 
   _filterByType (index, value: string) {
@@ -50,7 +50,7 @@ class Agency extends Component {
       </Image>
     )
   }
-  
+
   _renderDropdownRow(rowData, rowID, highlighted) {
    return (
       <TouchableHighlight underlayColor={Colors.snow}>
