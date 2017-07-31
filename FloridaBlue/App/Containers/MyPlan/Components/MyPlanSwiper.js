@@ -13,7 +13,8 @@ import { Card, CardItem, Body} from 'native-base'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const card = {card: {margin: 20}}
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 class MyPlanSwiper extends Component {
   getChildrenOptions (data) {

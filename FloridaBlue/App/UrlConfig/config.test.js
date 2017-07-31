@@ -1,5 +1,7 @@
 module.exports = {
   environment: 'test',
+  appName: 'Florida Blue Mobile Test',
+  gaTag: 'UA-43067611-3',
   mobApiUrl: 'https://mobapi-stga.bcbsfl.com/mob/api/v1/',
   registrationURL: 'https://registration-stga.bcbsfl.com/ers/api-public/v1/users/',
   forgotPwdURL: 'https://registration-stga.bcbsfl.com/ecir/public/fps.do?channel=mobile&userType=member',

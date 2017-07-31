@@ -1,5 +1,7 @@
 module.exports = {
   environment: 'prod',
+  appName: 'Florida Blue Mobile Prod',
+  gaTag: 'UA-43067611-3',
   mobApiUrl: 'https://mobapi.bcbsfl.com/mob/api/v1/',
   registrationURL: 'https://registration.bcbsfl.com/ers/api-public/v1/users/',
   forgotPwdURL: 'https://registration.bcbsfl.com/ecir/public/fps.do?channel=mobile&userType=member',

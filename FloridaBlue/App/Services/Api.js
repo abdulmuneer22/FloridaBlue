@@ -73,7 +73,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   })
   */
 
-  const getMember = () => api.get('/members')
+  const getMember = () => api.get('/members' + '?release=3.6')
   const getPlan = (data) => api.post('/benefits', data.input)
   const getTOU = () => api.get('/tou')
   const getSupport = () => api.get('/support')
