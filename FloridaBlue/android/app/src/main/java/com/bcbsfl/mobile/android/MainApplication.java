@@ -10,7 +10,7 @@ import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.evollu.react.fcm.FIRMessagingPackage;
-import com.psykar.cookiemanager.CookieManagerPackage;
+//import com.psykar.cookiemanager.CookieManagerPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -46,7 +46,7 @@ public class MainApplication  extends MultiDexApplication  implements ReactAppli
             new GoogleAnalyticsBridgePackage(),
             new FIRMessagingPackage(),
             new RNDeviceInfo(),
-            new CookieManagerPackage(),
+            //new CookieManagerPackage(),
             new LinearGradientPackage(),
             new MapsPackage(),
             new ReactMaterialKitPackage(),
