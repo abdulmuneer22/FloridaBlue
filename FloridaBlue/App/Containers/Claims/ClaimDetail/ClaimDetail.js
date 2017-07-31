@@ -250,8 +250,8 @@ class ClaimDetail extends Component {
               </View>
             </View> : null}
 
-          <View style={{flex: 1, justifyContent:'center', backgroundColor:Colors.snow,alignItems: 'center'}}>
-            <TouchableOpacity onPress={() => NavigationActions.ClaimsList()} style={{flex: 1, justifyContent:'center', alignItems: 'center'}}>
+          <View style={{flex: 1, justifyContent: 'center', backgroundColor: Colors.snow, alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => NavigationActions.ClaimsList()} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <Image style={styles.claimListButton} source={Images.cliamlistbutton} />
             </TouchableOpacity>
           </View>

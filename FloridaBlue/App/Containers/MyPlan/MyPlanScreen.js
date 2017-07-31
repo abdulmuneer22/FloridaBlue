@@ -84,8 +84,8 @@ class MyPlanScreen extends Component {
            }
           </Card>
 
-          <View style={this.props.isPortrait ? styles.chartWrapper: styles.chartWrapperLandscape}>
-            {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} isPortrait={this.props.isPortrait}/>
+          <View style={this.props.isPortrait ? styles.chartWrapper : styles.chartWrapperLandscape}>
+            {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} isPortrait={this.props.isPortrait} />
 
               : Alert.alert(
         'My Plan Overview',
@@ -144,33 +144,34 @@ class MyPlanScreen extends Component {
 
   render () {
     console.tron.log(this.props.data)
-    if (this.props.isPortrait) {return (
-
-      <View style={styles.container}>
-
-        <View>
-          {this._renderHeader()}
-        </View>
-        {this._displayCondition()}
-
-      </View>
-
-    )} else {
+    if (this.props.isPortrait) {
       return (
 
-      <ScrollView style={styles.container}>
+        <View style={styles.container}>
 
-        <View>
-          {this._renderHeader()}
+          <View>
+            {this._renderHeader()}
+          </View>
+          {this._displayCondition()}
+
         </View>
 
-        {this._displayCondition()}
+      )
+    } else {
+      return (
 
-      </ScrollView>
+        <ScrollView style={styles.container}>
 
-    )
+          <View>
+            {this._renderHeader()}
+          </View>
+
+          {this._displayCondition()}
+
+        </ScrollView>
+
+      )
     }
-
   }
 }
 

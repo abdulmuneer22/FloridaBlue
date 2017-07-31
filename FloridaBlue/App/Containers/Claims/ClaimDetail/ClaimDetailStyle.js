@@ -129,7 +129,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: window.width,
     height: window.height,
-    flex:1
+    flex: 1
   },
   subheading: {
     color: Colors.flBlue.anvil,

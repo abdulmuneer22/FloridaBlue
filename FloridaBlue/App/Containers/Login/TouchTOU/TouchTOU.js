@@ -34,8 +34,8 @@ class TouchTOU extends Component {
         this.props.changeTouchEnabled(false)
         this.props.changeCredentialStored(false)
         this.props.changeTouchAvailable(true)
-        this.props.handleChangeUserName("")
-        this.props.handleChangePassword("")
+        this.props.handleChangeUserName('')
+        this.props.handleChangePassword('')
         NavigationActions.WelcomeDashBoard()
       }
     })
@@ -59,7 +59,7 @@ class TouchTOU extends Component {
       if (authStatus == 'YES') {
         TouchManager.storeCredentials(this.props.username, this.props.password)
         this.props.changeCredentialStored(true)
-        this.props.handleChangePassword("")
+        this.props.handleChangePassword('')
         NavigationActions.WelcomeDashBoard()
       } else {
         var showError = true
@@ -107,8 +107,8 @@ class TouchTOU extends Component {
             this.props.changeTouchEnabled(false)
             this.props.changeCredentialStored(false)
             this.props.changeTouchAvailable(true)
-            this.props.handleChangeUserName("")
-            this.props.handleChangePassword("")
+            this.props.handleChangeUserName('')
+            this.props.handleChangePassword('')
             NavigationActions.WelcomeDashBoard()
           }
         })
@@ -135,8 +135,8 @@ class TouchTOU extends Component {
     )
   }
 
-  _renderNoticeText() {
-    return this.props.touchDisclaimer.map(function(notice, i) {
+  _renderNoticeText () {
+    return this.props.touchDisclaimer.map(function (notice, i) {
       return (
         <Text allowFontScaling={false} style={styles.paragraph}>{notice}</Text>
       )
@@ -152,12 +152,12 @@ class TouchTOU extends Component {
             {this._renderNoticeText()}
 
             <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.buttonView} onPress={() => this._handleClose() }>
+              <TouchableOpacity style={styles.buttonView} onPress={() => this._handleClose()}>
                 <View style={styles.buttonTextView}>
                   <Text allowFontScaling={false} style={styles.footerText}>Decline</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonView} onPress={() => this._handleAccept() }>
+              <TouchableOpacity style={styles.buttonView} onPress={() => this._handleAccept()}>
                 <View style={styles.buttonTextView}>
                   <Text allowFontScaling={false} style={styles.footerText}>Accept</Text>
                 </View>

@@ -29,8 +29,7 @@ import ClaimsSummaryCard from './Components/ClaimsSummaryCard'
 import I18n from 'react-native-i18n'
 import { Button } from 'native-base'
 import SettingActions from '../../../Redux/SettingRedux'
-import Orientation from 'react-native-orientation';
-
+import Orientation from 'react-native-orientation'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -69,13 +68,13 @@ class ClaimsSummary extends Component {
     )
   }
 
-   componentWillMount() {
+  componentWillMount () {
     // The getOrientation method is async. It happens sometimes that
     // you need the orientation at the moment the JS runtime starts running on device.
     // `getInitialOrientation` returns directly because its a constant set at the
     // beginning of the JS runtime.
 
-    const initial = Orientation.getInitialOrientation();
+    const initial = Orientation.getInitialOrientation()
     if (initial === 'PORTRAIT') {
       this.props.changeOrientation(true)
       console.log('Hey, Im in landscape mode')
@@ -85,26 +84,23 @@ class ClaimsSummary extends Component {
     }
   }
 
-   _orientationDidChange (orientation) {
+  _orientationDidChange (orientation) {
     if (orientation === 'LANDSCAPE') {
       this.props.changeOrientation(false)
       console.log('Hey, Im in landscape mode')
     } else {
-     this.props.changeOrientation(true)
-     console.log('Hey, Im in portrait mode')
+      this.props.changeOrientation(true)
+      console.log('Hey, Im in portrait mode')
     }
   }
 
   componentDidMount () {
     console.tron.log('I am in Claims Summary screen')
     console.tron.log(this.props)
-    Orientation.addOrientationListener(this._orientationDidChange);
+    Orientation.addOrientationListener(this._orientationDidChange)
   }
 
-
   _displayCondition () {
-
-
     const height = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
     const width = Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.65) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.60)
 
@@ -131,21 +127,21 @@ class ClaimsSummary extends Component {
             />
           </View>
 
-               <View style={{flex: 3.5, backgroundColor: Colors.flBlue.grey1}} >
-              <View style={{flex: 0.5, justifyContent:'center', marginLeft: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
-                <Text style={styles.recentClaimsText} >Recent Claims</Text>
-              </View>
-                { this.props.claimsdata ?
-                            <View style={{flex: 3}}>
-                              <ClaimsSummaryCard data={this.props.claimsdata.data && this.props.claimsdata.data.length > 3 ? this.props.claimsdata.data.slice(0, 3) : this.props.claimsdata.data} />
-                            </View>
-                          :
-                            <View style={{flex:2,justifyContent:'center', alignItems: 'center'}}>
-                              <Text> No Recent Claims found </Text>
-                            </View>
-                }
+          <View style={{flex: 3.5, backgroundColor: Colors.flBlue.grey1}} >
+            <View style={{flex: 0.5, justifyContent: 'center', marginLeft: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.001, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
+              <Text style={styles.recentClaimsText} >Recent Claims</Text>
             </View>
-            {
+            { this.props.claimsdata ?
+              <View style={{flex: 3}}>
+                <ClaimsSummaryCard data={this.props.claimsdata.data && this.props.claimsdata.data.length > 3 ? this.props.claimsdata.data.slice(0, 3) : this.props.claimsdata.data} />
+              </View>
+                          :
+              <View style={{flex: 2, justifyContent: 'center', alignItems: 'center'}}>
+                <Text> No Recent Claims found </Text>
+              </View>
+                }
+          </View>
+          {
                     this.props.claimsdata && this.props.claimsdata.count > 0
                     ?
                       <View style={{flex: 1.5}} >
@@ -178,7 +174,6 @@ class ClaimsSummary extends Component {
     }
   }
   render () {
-
     console.tron.log('im claims summary page', this.props.claimsdata)
     console.log('im claims summary page===>', this.props.claimsdata)
     return (

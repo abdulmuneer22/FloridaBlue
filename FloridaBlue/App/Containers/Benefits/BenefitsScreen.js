@@ -25,7 +25,7 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 const window = Dimensions.get('window')
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 import SettingActions from '../../Redux/SettingRedux'
-import Orientation from 'react-native-orientation';
+import Orientation from 'react-native-orientation'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
@@ -49,21 +49,20 @@ class PlanBenefits extends Component {
     </Image>)
   }
 
-   _orientationDidChange (orientation) {
+  _orientationDidChange (orientation) {
     if (orientation === 'LANDSCAPE') {
       this.props.changeOrientation(false)
       console.log('Hey, Im in landscape mode')
     } else {
-     this.props.changeOrientation(true)
-     console.log('Hey, Im in portrait mode')
+      this.props.changeOrientation(true)
+      console.log('Hey, Im in portrait mode')
     }
   }
 
-
   componentDidMount () {
-   gaTracker.trackScreenView('Benefits')
+    gaTracker.trackScreenView('Benefits')
 // this.props.attemptMyPlan()
-    Orientation.addOrientationListener(this._orientationDidChange);
+    Orientation.addOrientationListener(this._orientationDidChange)
   }
 
   _displayCondition () {
