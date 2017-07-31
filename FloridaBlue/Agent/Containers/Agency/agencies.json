@@ -1,5 +1,6 @@
 [
   {
+    "key": 0,
     "name":"Agency 1",
     "role":"Agent",
     "type":"Blue Preferred",
@@ -7,6 +8,7 @@
     "code":"A774"
   },
   {
+    "key": 1,
     "name":"Agency 2",
     "role":"Agent",
     "type":"Blue Preferred",
@@ -14,6 +16,7 @@
     "code":"A774"
   },
   {
+    "key": 2,
     "name":"Agency 3",
     "role":"Agency Owner",
     "type":"Blue Diamond",
@@ -21,6 +24,7 @@
     "code":"A774"
   },
   {
+    "key": 3,
     "name":"Agency 4",
     "role":"Delage III",
     "type":"Blue Diamond",
@@ -28,6 +32,7 @@
     "code":"A774"
   },
   {
+    "key": 4,
     "name":"Agency 5",
     "role":"Agent Owner",
     "type":"Blue Diamond",

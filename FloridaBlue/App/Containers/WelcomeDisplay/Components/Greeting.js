@@ -71,8 +71,8 @@ class Greeting extends Component {
           <TouchableOpacity style={{flex: 1, alignItems: 'center', flexDirection: 'row', justifyContent: 'center'}}
             onPress={() => NavigationActions.PushNotifications()}>
             <View style={{flex: 6, alignItems: 'flex-end', justifyContent: 'center'}}>
-               <Text allowFontScaling={false} style={styles.greetingText}>
-              {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
+              <Text allowFontScaling={false} style={styles.greetingText}>
+                {this.state.greetText} {this.props.userName ? this.props.userName : ''}!
           </Text>
             </View>
             <View style={{flex: 2, alignItems: 'flex-start', justifyContent: 'center' }}>

@@ -200,7 +200,7 @@ class Login extends Component {
               <TouchableOpacity style={styles.agentLinkContainer} onPress={() => {
                 NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
                 gaTracker.trackEvent('Login', 'Forgot Password')
- }}>
+              }}>
                 <Text allowFontScaling={false} style={styles.agentLink}>{I18n.t('forgotPassword')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.agentLinkContainer} onPress={this._handleMemberLogin}>

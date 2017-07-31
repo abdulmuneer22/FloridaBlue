@@ -22,7 +22,6 @@ export const INITIAL_STATE = Immutable({
 // we are change orientation
 export const _changeOrientation = (state: Object, {isPortrait} : Object) => state.merge({isPortrait})
 
-
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {

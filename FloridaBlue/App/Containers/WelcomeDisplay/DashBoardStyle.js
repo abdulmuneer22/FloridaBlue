@@ -28,16 +28,16 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 1.78
     // backgroundColor: Colors.flBlue.ocean
   },
-  headerImage : {
-     width: Metrics.screenWidth * 0.65,
-      resizeMode: 'contain',
-      height: Metrics.images.xm1
+  headerImage: {
+    width: Metrics.screenWidth * 0.65,
+    resizeMode: 'contain',
+    height: Metrics.images.xm1
   },
   headerImageLandscape: {
     width: Metrics.screenWidth * 0.65,
-      resizeMode: 'contain',
-      height: Metrics.images.xm1,
-      marginLeft: 160
+    resizeMode: 'contain',
+    height: Metrics.images.xm1,
+    marginLeft: 160
   },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
@@ -222,14 +222,14 @@ export default StyleSheet.create({
     marginLeft: Metrics.baseMargin
 
   },
-    tileStyleLandscape: {
+  tileStyleLandscape: {
     width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 7),
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 4,
     marginRight: 4
-   },
+  },
   tileStyle1: {
     width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.5),
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
@@ -245,14 +245,14 @@ export default StyleSheet.create({
   linearGradientStyle: {
   //   alignItems: 'center',
   //   justifyContent: 'center',
-  width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
-  height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
-},
-linearGradientStyleLandscape: {
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 1.7),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
+  },
+  linearGradientStyleLandscape: {
   //   alignItems: 'center',
   //   justifyContent: 'center',
-  width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4),
-  height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
   },
   tileTextStyle: {
   //  marginTop: Metrics.baseMargin,
@@ -412,7 +412,7 @@ linearGradientStyleLandscape: {
   },
   spacerView: {
     flexWrap: 'wrap',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   spacerViewLandscape: {
     flexWrap: 'wrap',
@@ -420,27 +420,27 @@ linearGradientStyleLandscape: {
     marginLeft: 35
   },
   opdStyle: {
-     flex: 1,
-     height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
-     justifyContent: 'center',
-     alignItems: 'center',
-     width: Metrics.screenWidth,
-     marginTop: 9
+    flex: 1,
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Metrics.screenWidth,
+    marginTop: 9
   },
   opdStyleLandscape: {
-     flex: 1,
-     height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
-     justifyContent: 'center',
-     alignItems: 'center',
-     width: Metrics.screenWidth * 1.78,
-     marginTop: 9
+    flex: 1,
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Metrics.screenWidth * 1.78,
+    marginTop: 9
   },
-    payByPhoneContainer: {
+  payByPhoneContainer: {
     width: Metrics.screenWidth * 0.9,
     height: Metrics.screenWidth * 0.9,
     flex: 1,
    // zIndex: -1,
-    backgroundColor:Colors.snow,
+    backgroundColor: Colors.snow,
     // borderWidth: 1,
     borderRadius: Metrics.screenWidth * 1,
     // borderColor: '#708090',
@@ -448,12 +448,12 @@ linearGradientStyleLandscape: {
     bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
     right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035
   },
-    dismissPayByPhone: {
+  dismissPayByPhone: {
     marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
     marginTop: 30,
     backgroundColor: Colors.snow
   },
-   payByPhoneText: {
+  payByPhoneText: {
     textAlign: 'left',
     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0032,
     marginTop: 20,
@@ -475,7 +475,7 @@ linearGradientStyleLandscape: {
     position: 'absolute',
     bottom: 5,
     right: 10
-  },
+  }
 
 }
 

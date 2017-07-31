@@ -78,7 +78,8 @@ const images = {
   claimdetailheaderblue: require('../Images/detail-hdr-bkgrd-teal.png'),
   claimlistsearch: require('../Images/search-btn-small.png'),
   datesearch: require('../Images/search-btn-large.png'),
-  agentLoginLink: require('../Images/agent-login-link.png')
+  agentLoginLink: require('../Images/agent-login-link.png'),
+  landscapeHeaderImage: require('../Images/landscape-hdr3.png')
 }
 
 export default images

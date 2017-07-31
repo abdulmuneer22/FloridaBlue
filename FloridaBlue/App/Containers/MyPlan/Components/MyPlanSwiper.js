@@ -129,7 +129,7 @@ class MyPlanSwiper extends Component {
 
     return (
 
-      <Swiper height={(Platform.OS === 'ios') ? (this.props.isPortrait ? Metrics.screenHeight - (Metrics.screenHeight * 0.52) :  Metrics.screenHeight - (Metrics.screenHeight * 0.62)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.48))} width={this.props.isPortrait ?  Metrics.screenWidth : Metrics.screenWidth * 1.78} style={{left: this.props.isPortrait ? 0 : -10, right:  this.props.isPortrait ? 0 : 10, marginBottom:  this.props.isPortrait ? -10 : 0}}
+      <Swiper height={(Platform.OS === 'ios') ? (this.props.isPortrait ? Metrics.screenHeight - (Metrics.screenHeight * 0.52) : Metrics.screenHeight - (Metrics.screenHeight * 0.62)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.48))} width={this.props.isPortrait ? Metrics.screenWidth : Metrics.screenWidth * 1.78} style={{left: this.props.isPortrait ? 0 : -10, right: this.props.isPortrait ? 0 : 10, marginBottom: this.props.isPortrait ? -10 : 0}}
         showsButtons
         showsPagination
         paginationStyle={{
@@ -195,11 +195,11 @@ class MyPlanSwiper extends Component {
                     }} key={i}>
                       <View style={i == 0 ? { marginRight: (Metrics.screenWidth) - (Metrics.screenWidth * 0.85), flex: 1, alignItems: 'center', justifyContent: 'flex-start', bottom: this.props.isPortrait ? 0 : 130} : {flex: 1, marginLeft: (Metrics.screenWidth) - (Metrics.screenWidth * 0.85), alignItems: 'center', justifyContent: 'center', bottom: this.props.isPortrait ? 0 : 130}} >
                         <View style={i == 0 ? {flex: 3,
-                          borderBottomWidth: this.props.isPortrait? 3 : 13,
+                          borderBottomWidth: this.props.isPortrait ? 3 : 13,
                           borderBottomColor: Colors.flBlue.night
 
                         } : {flex: 3,
-                          borderBottomWidth: this.props.isPortrait? 3 : 16,
+                          borderBottomWidth: this.props.isPortrait ? 3 : 16,
                           borderBottomColor: Colors.flBlue.grass
 
                         }}>

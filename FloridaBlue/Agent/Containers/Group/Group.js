@@ -30,7 +30,7 @@ class Group extends Component {
 
   }
 
-  _addFilter(filterType) {
+  _addFilter (filterType) {
     console.tron.log(filterType)
     var newGroupFilters = this.state.groupFilters
     newGroupFilters.push(filterType)
@@ -52,7 +52,7 @@ class Group extends Component {
     )
   }
 
-  _renderDropdownRow(rowData, rowID, highlighted) {
+  _renderDropdownRow (rowData, rowID, highlighted) {
     return (
       <TouchableHighlight underlayColor={Colors.snow}>
         <Text style={styles.groupDateDropdownItem}>{rowData}</Text>
@@ -60,21 +60,21 @@ class Group extends Component {
     )
   }
 
-  _renderFilterDropdown(filterType) {
+  _renderFilterDropdown (filterType) {
     return (
       <View style={styles.filterDropdownContainer}>
         <ModalDropdown options={_.map(groups, filterType)} onSelect={this.filterByEffectiveDate} dropdownStyle={styles.groupDateDropdown} renderRow={this._renderDropdownRow.bind(this)}>
           <View style={styles.groupTypeContainer}>
             <Text style={styles.groupTypeTitle}>{filterType}</Text>
-            <Flb name="caret-down-two" size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
+            <Flb name='caret-down-two' size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
           </View>
         </ModalDropdown>
       </View>
     )
   }
 
-  _renderGroupItem(group, index) {
-    return(
+  _renderGroupItem (group, index) {
+    return (
       <TouchableOpacity>
         <GroupItem data={group} />
       </TouchableOpacity>
@@ -90,18 +90,18 @@ class Group extends Component {
           <Text allowFontScaling={false} style={styles.groupTitle}>Groups</Text>
           <Text allowFontScaling={false} style={styles.groupName}>@ TDG of Jacksonville</Text>
         </View>
-        <MKProgress ref="groupBar" style={styles.groupBar} progress={0.18} progressColor={Colors.flBlue.ocean} bufferColor={Colors.flBlue.grey2} />
+        <MKProgress ref='groupBar' style={styles.groupBar} progress={0.18} progressColor={Colors.flBlue.ocean} bufferColor={Colors.flBlue.grey2} />
 
         <TextInput style={styles.searchInput}>
-          <Flb name="search-find" size={20} color={Colors.flBlue.anvil} style={styles.searchIcon} />
+          <Flb name='search-find' size={20} color={Colors.flBlue.anvil} style={styles.searchIcon} />
         </TextInput>
 
         <Divider />
 
-        <ScrollView horizontal={true} style={styles.filterContainer}>
+        <ScrollView horizontal style={styles.filterContainer}>
           {this.state.groupFilters.map((filterType, index) => this._renderFilterDropdown(filterType, index))}
           <TouchableOpacity style={styles.addFilterContainer} onPress={() => this.setState({showFilterOptions: true})}>
-            <Flb name="plus" size={20} color={Colors.flBlue.anvil} style={styles.addFilterIcon} />
+            <Flb name='plus' size={20} color={Colors.flBlue.anvil} style={styles.addFilterIcon} />
           </TouchableOpacity>
         </ScrollView>
 
@@ -110,7 +110,7 @@ class Group extends Component {
           <ModalDropdown options={_.map(groups, 'owner')} onSelect={this.filterByEffectiveDate} dropdownStyle={styles.groupDateDropdown} renderRow={this._renderDropdownRow.bind(this)}>
             <View style={styles.groupTypeContainer}>
               <Text allowFontScaling={false} style={styles.groupTypeTitle}>Eff. Date</Text>
-              <Flb name="caret-down-two" size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
+              <Flb name='caret-down-two' size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
             </View>
           </ModalDropdown>
         </View>
@@ -120,17 +120,17 @@ class Group extends Component {
         </ScrollView>
 
         {this.state.showFilterOptions ?
-            <View style={{backgroundColor:Colors.flBlue.snow}}>
-              <TouchableOpacity onPress={() => this._addFilter('quoting')}>
-                <Text allowFontScaling={false}>Quoting</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this._addFilter('type')}>
-                <Text allowFontScaling={false}>Type</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this._addFilter('owner')}>
-                <Text allowFontScaling={false}>Owner</Text>
-              </TouchableOpacity>
-            </View>
+          <View style={{backgroundColor: Colors.flBlue.snow}}>
+            <TouchableOpacity onPress={() => this._addFilter('quoting')}>
+              <Text allowFontScaling={false}>Quoting</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this._addFilter('type')}>
+              <Text allowFontScaling={false}>Type</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this._addFilter('owner')}>
+              <Text allowFontScaling={false}>Owner</Text>
+            </TouchableOpacity>
+          </View>
           :
             null
         }
