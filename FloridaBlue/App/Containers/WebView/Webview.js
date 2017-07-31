@@ -18,11 +18,9 @@ import NavItems from '../../../Navigation/NavItems.js'
 import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-import WKWebView from 'react-native-wkwebview-reborn'
 import SettingActions from '../../Redux/SettingRedux'
 const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
-var btoa = require('btoa')
 
 class Webview extends Component {
   _renderHeader () {
@@ -55,7 +53,7 @@ class Webview extends Component {
       console.tron.log(event, 'request')
       return true
     }
-      let jsCode = `
+    let jsCode = `
         var d = document.getElementsByTagName('a');
         for (var i = 0; i < d.length; i++) {
             if (d[i].getAttribute('target') == '_blank') {
@@ -71,7 +69,7 @@ class Webview extends Component {
                 d[i].parentNode.style.display='none';
             }
         }
-    `;
+    `
 
     if (this.props.smToken) {
       redirect = {
@@ -100,7 +98,7 @@ class Webview extends Component {
        // Below functions for debugging
        //   onNavigationStateChange={onNavigationStateChange}
        //   onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
-         injectedJavaScript={jsCode}
+          injectedJavaScript={jsCode}
             />
       </View>
 

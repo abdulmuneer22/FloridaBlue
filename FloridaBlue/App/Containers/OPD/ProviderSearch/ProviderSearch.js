@@ -31,7 +31,6 @@ import ModalDropdown from 'react-native-modal-dropdown'
 import ProviderActions from '../../../Redux/ProviderRedux'
 import SettingActions from '../../../Redux/SettingRedux'
 import _ from 'lodash'
-import ActionButton from 'react-native-action-button'
 import LinearGradient from 'react-native-linear-gradient'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
@@ -98,14 +97,14 @@ class ProviderSearch extends Component {
   }
 
   _orientationDidChange (orientation) {
-     if (orientation === 'LANDSCAPE') {
+    if (orientation === 'LANDSCAPE') {
       this.props.changeOrientation(false)
       console.log('Hey, Im in landscape mode')
     } else {
       this.props.changeOrientation(true)
       console.log('Hey, Im in portrait mode')
     }
-   }
+  }
 
   componentDidMount () {
     gaTracker.trackScreenView('Provider Search')

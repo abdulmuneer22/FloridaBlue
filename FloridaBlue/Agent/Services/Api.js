@@ -58,12 +58,6 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  /*
-  const setHeaders = (username, password) => api.setHeaders({
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Basic ' + btoa(username + ":" + password)
-  }) */
 
   const getUser = (username, password) => api.get('/login', {}, {
     'auth': {

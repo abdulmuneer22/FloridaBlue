@@ -18,14 +18,6 @@ import {
   Slider
 } from 'react-native'
 
-import {
-  Card,
-  CardImage,
-  CardTitle,
-  CardContent,
-  CardAction
-} from 'react-native-card-view'
-
 import ProviderActions from '../../../Redux/ProviderRedux'
 import SearchDataActions from '../../../Redux/SearchDataRedux'
 import SettingActions from '../../../Redux/SettingRedux'
