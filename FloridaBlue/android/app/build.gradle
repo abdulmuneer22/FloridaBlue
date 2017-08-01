@@ -177,7 +177,6 @@ dependencies {
         exclude group: "com.google.firebase"
     }
 
-    compile project(':react-native-cookies')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-permissions')
     compile project(':react-native-maps')

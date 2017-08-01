@@ -74,15 +74,10 @@ export default StyleSheet.create({
   filterDropdownContainer: {
     backgroundColor: Colors.flBlue.lightsky
   },
-  addFilterContainer: {
-  },
-  addFilterIcon: {
-    color: Colors.flBlue.grey2
-  },
   groupListHeaderContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.flBlue.lightBlue
+    backgroundColor: Colors.bg2
   },
   groupNameTitle: {
     fontFamily: Fonts.type.base,
@@ -110,13 +105,14 @@ export default StyleSheet.create({
   groupDropdownTitle: {
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.tiny,
-    fontWeight: '500'
+    fontWeight: '900',
+    color: Colors.flBlue.ocean
   },
   groupDropdown : {
     width: Metrics.baseMargin * Metrics.screenWidth * 0.03,
     marginVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0012,
     marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002,
-    backgroundColor: Colors.flBlue.lightsky,
+    backgroundColor: Colors.bg2,
     borderRadius: 4,
     borderWidth: 0.8,
     borderColor: Colors.flBlue.grey2
@@ -138,6 +134,10 @@ export default StyleSheet.create({
     paddingTop: Metrics.smallMargin,
     paddingBottom: Metrics.smallMargin,
     color: Colors.flBlue.night
+  },
+  dropdownChevron: {
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
+    paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002
   },
   divider: {
     backgroundColor: Colors.flBlue.grey1,

@@ -77,7 +77,7 @@ class Group extends Component {
         <ModalDropdown options={_.map(groups, 'owner')} onSelect={this.filterByEffectiveDate} style={styles.groupDropdown} dropdownStyle={styles.groupDropdownItem} renderRow={this._renderDropdownRow.bind(this)}>
           <View style={styles.groupDropdownContainer}>
             <Text style={styles.groupDropdownTitle}>By Type:  Any </Text>
-            <Flb name='caret-down-two' size={15} color={Colors.flBlue.anvil} />
+            <Flb name='chevron-down' size={10} color={Colors.flBlue.anvil} style={styles.dropdownChevron} />
           </View>
         </ModalDropdown>
 

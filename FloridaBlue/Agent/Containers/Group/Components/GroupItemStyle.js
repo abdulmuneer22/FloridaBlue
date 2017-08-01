@@ -43,5 +43,13 @@ export default StyleSheet.create({
   divider: {
     backgroundColor: Colors.flBlue.grey1,
     height: Metrics.screenHeight * 0.0018
+  },
+  status: {
+    backgroundColor: Colors.flBlue.ocean,
+    width: Metrics.screenWidth * 0.012,
+    height: Metrics.screenHeight * 0.095,
+    alignSelf: 'center',
+    marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0008,
+    borderRadius: 4
   }
 })
