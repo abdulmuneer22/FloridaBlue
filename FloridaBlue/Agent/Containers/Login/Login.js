@@ -33,7 +33,6 @@ import LogoView from './LogoView'
 import SignUpView from './SignUpView'
 import Clouds from './Clouds'
 import CityScape from './CityScape'
-// import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
