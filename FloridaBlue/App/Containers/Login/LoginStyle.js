@@ -53,7 +53,11 @@ export default StyleSheet.create({
     position: 'absolute',
     top: Metrics.baseMargin * Metrics.screenHeight * 0.0768,
     alignSelf: 'center'
-    // paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.004
+  },
+  touchSignRow: {
+    position: 'absolute',
+    top: Metrics.baseMargin * Metrics.screenHeight * 0.058,
+    alignSelf: 'center'
   },
   signUpButton: {
     width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.056 : Metrics.baseMargin * Metrics.screenWidth * 0.060,
@@ -97,11 +101,11 @@ export default StyleSheet.create({
   touchInstruction: {
     textAlign: 'center',
     color: Colors.flBlue.grey3,
-    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.0033
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027
   },
   touchCheckbox: {
-    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0005
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
+    width: Metrics.baseMargin * Metrics.screenHeight * 0.0025
   },
   link: {
     color: Colors.flBlue.ocean,
@@ -172,7 +176,7 @@ export default StyleSheet.create({
     borderTopColor: Colors.flBlue.snow
   },
   popoverButton: {
-    color: Colors.flBlue.ocean
+    color: Colors.flBlue.grey4
   },
   popoverItem: {
     flexDirection: 'row',

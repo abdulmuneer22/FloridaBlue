@@ -26,7 +26,8 @@ import ProviderActions from '../../../../Redux/ProviderRedux'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const window = Dimensions.get('window')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)
@@ -127,7 +128,7 @@ class DoctorCard extends Component {
                   <TouchableOpacity style={{ flex: 1, height: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.0015 : Metrics.textHeight * Metrics.screenHeight * 0.0016 }} onPress={() => this.handleMaps(this.props.data ? this.props.data : '')}>
                     <View style={styles.directions}>
 
-                      <View style={{ flex: 0.3, alignItems: 'flex-end' }}>
+                      <View style={{ flex: 0.25, alignItems: 'flex-end' }}>
                         <Flb
                           name='directions'
                           size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
@@ -135,7 +136,7 @@ class DoctorCard extends Component {
                       </View>
 
                       <View style={{
-                        flex: 0.7,
+                        flex: 0.75,
                         alignItems: 'flex-start'
                       }}>
 

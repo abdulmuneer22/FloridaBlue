@@ -80,7 +80,7 @@ class Greeting extends Component {
                 { this.props.unreadNotification && this.props.unreadNotification > 0 && !this.props.allRead
                 ? <Flb name={this.props.unreadNotification > 10 ? '10-plus-filled'
                 : this.props.unreadNotification + '-filled'}
-                  size={Metrics.icons.small}
+                  size={this.props.unreadNotification > 10 ? Metrics.icons.xm : Metrics.icons.small}
                   color={Colors.flBlue.orange}
                   style={{margin: 10}} />
                : <Flb name='email-envelope' size={Metrics.icons.small} color={Colors.flBlue.orange} style={{margin: 10}} /> }

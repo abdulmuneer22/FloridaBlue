@@ -20,6 +20,8 @@ var activeTime = Date
 var timerStarted = false
 var component = null
 var timerStarted = false
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 class RootContainer extends Component {
   constructor () {
@@ -34,6 +36,7 @@ class RootContainer extends Component {
     }
     AppState.addEventListener('change', this._handleAppState)
     GoogleAnalyticsSettings.setDispatchInterval(30)
+    gaTracker.setAppName(urlConfig.appName)
   }
 
   componentWillUnmount () {
@@ -60,11 +63,11 @@ class RootContainer extends Component {
         var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000) // converted to minutes
         var elapsedTime = Math.abs(diffMins)
         if (elapsedTime >= 15) {
-            // Call logout logic
+          // Call logout logic
           timerStarted = false
           RCTNetworking.clearCookies((cleared) => {})
           component.props.attemptLogout(component.props.logoutUrl)
-          NavigationActions.login()
+          NavigationActions.login({'origin': 'loginExpired'})
         } else {
           inactiveTime = Date
           activeTime = Date

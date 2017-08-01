@@ -37,7 +37,9 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 const { height, width } = Dimensions.get('window')
 const theme = getTheme()
 const Permissions = require('react-native-permissions')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
+
 import Orientation from 'react-native-orientation'
 
 const closeIcon = (<Icon name='close'
@@ -154,6 +156,8 @@ class ProviderSearch extends Component {
     if (event.checked) {
       this.props.changeSubCategoryCode('')
       this.props.changeCategoryCode('ALL')
+      this.props.changeCareType('')
+      this.props.changeSpecialityType('')
       this.setState({knownCareState: true})
       this.setState({unknownCareState: false})
     } else {
@@ -259,10 +263,19 @@ class ProviderSearch extends Component {
         this._getLocation()
         this.props.changeAddress('Using Current Address')
       } else {
-        Permissions.requestPermission('location').then(response => {
+        Permissions.getPermissionStatus('location').then(response => {
           if (response == 'authorized') {
             this.props.changeGeolocationEnabled(true)
-            this._getLocation()
+            this._getPosition()
+          } else if (response == 'undetermined') {
+            Permissions.requestPermission('location').then(response => {
+              if (response == 'authorized') {
+                this.props.changeGeolocationEnabled(true)
+                this._getPosition()
+              } else {
+                this.props.changeGeolocationEnabled(false)
+              }
+            })
           } else {
             this.props.changeGeolocationEnabled(false)
             this._alertForLocationPermission()
@@ -314,25 +327,23 @@ class ProviderSearch extends Component {
   }
 
   _getLocation () {
-    if (this.props.geolocationEnabled) {
-      this._getPosition()
-    } else {
-      Permissions.getPermissionStatus('location').then(response => {
-        if (response == 'authorized') {
-          this.props.changeGeolocationEnabled(true)
-          this._getPosition()
-        } else if (response == 'undetermined') {
-          Permissions.requestPermission('location').then(response => {
-            if (response == 'authorized') {
-              this.props.changeGeolocationEnabled(true)
-              this._getPosition()
-            } else {
-              this.props.changeGeolocationEnabled(false)
-            }
-          })
-        }
-      })
-    }
+    Permissions.getPermissionStatus('location').then(response => {
+      if (response == 'authorized') {
+        this.props.changeGeolocationEnabled(true)
+        this._getPosition()
+      } else if (response == 'undetermined') {
+        Permissions.requestPermission('location').then(response => {
+          if (response == 'authorized') {
+            this.props.changeGeolocationEnabled(true)
+            this._getPosition()
+          } else {
+            this.props.changeGeolocationEnabled(false)
+          }
+        })
+      } else {
+        this.props.changeGeolocationEnabled(false)
+      }
+    })
   }
 
   _getPosition () {
@@ -425,7 +436,7 @@ class ProviderSearch extends Component {
             />
               </HideableView>
 
-              <HideableView visible={this.state.unknownCareState} removeWhenHidden>
+              <HideableView visible={this.state.unknownCareState && (this.props.planCategoryList.length > 0)} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.planCategoryList, 'categoryName')} onSelect={this._careSelected} dropdownStyle={this.props.isPortrait ? styles.dropDown : styles.dropDownLandscape} renderRow={this._renderDropdownRow.bind(this)}>
                   <MKTextField
                     ref='careType'
@@ -444,7 +455,7 @@ class ProviderSearch extends Component {
                 <Text allowFontScaling={false} style={styles.dropdownExampleText}>{I18n.t('careTypeExample')}</Text>
               </HideableView>
 
-              <HideableView visible={this.state.unknownCareState && this.state.specialityState} removeWhenHidden>
+              <HideableView visible={this.state.unknownCareState && this.state.specialityState && (this.props.planSubCategoryList.length > 0)} removeWhenHidden>
                 <ModalDropdown options={_.map(this.props.planSubCategoryList, 'subCategoryName')}
                   onSelect={this._specialitySelected} dropdownStyle={this.props.isPortrait ? this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDown : styles.dropD : this.props.planSubCategoryList.length >= 2 || this.props.planSubCategoryList[this.props.planSubCategoryList.length - 1] == '' ? styles.dropDownLandscape : styles.dropDLandscape}
                   renderRow={this._renderDropdownRow.bind(this)}

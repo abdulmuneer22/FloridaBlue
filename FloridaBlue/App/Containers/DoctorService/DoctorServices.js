@@ -152,8 +152,8 @@ class DoctorServices extends Component {
 
                             !this.state.hpActive
 
-                              ? <Flb name='chevron-down' size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
-                              : <Flb name='chevron-up' size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 7 }} color={Colors.flBlue.purple} />
+                              ? <Flb name='chevron-down' size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 7 }} color={Colors.flBlue.grey3} />
+                              : <Flb name='chevron-up' size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 7 }} color={Colors.flBlue.grey3} />
 
                           }
                             </View>

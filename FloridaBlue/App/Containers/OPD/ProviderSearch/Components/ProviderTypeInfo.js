@@ -47,7 +47,7 @@ class ProviderTypeInfo extends React.Component {
 
   handleLink (url) {
     NavigationActions.MyView({
-      responseURL: url + '?channel=mobile'
+      responseURL: url 
     })
   }
 

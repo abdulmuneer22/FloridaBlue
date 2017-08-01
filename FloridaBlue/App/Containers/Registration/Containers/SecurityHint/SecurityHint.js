@@ -24,7 +24,8 @@ import Swiper from 'react-native-swiper'
 import HTMLView from 'react-native-htmlview'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const HtMLstyles = StyleSheet.create({
   p: {

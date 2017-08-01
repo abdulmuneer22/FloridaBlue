@@ -18,7 +18,8 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 import Orientation from 'react-native-orientation'
 
 const window = Dimensions.get('window')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -154,10 +155,12 @@ class MyIdCard extends Component {
                         <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXBIN != undefined && this.props.data.RXBIN != null ? this.props.data.RXBIN : 'Rx BIN'}</Text>
                         <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXPCN != undefined && this.props.data.RXPCN != null ? this.props.data.RXPCN : 'PCN'}</Text>
                       </View>
-                   <View style={{flex: 0.15}} />
-                   <View style={{flex: (Platform.OS === 'ios') ? 0.05 : 0.11}}>
-                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Number: {this.props.data && this.props.data.PlanNumber != undefined && this.props.data.PlanNumber != null ? this.props.data.PlanNumber : ''} </Text>
-                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.006, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Name: {this.props.data && this.props.data.PlanName != undefined && this.props.data.PlanName != null ? this.props.data.PlanName : ''}</Text>
+                      <View style={{ flex: 0.15 }} />
+                      <View style={{ flex: (Platform.OS === 'ios') ? 0.05 : 0.11 }}>
+                        {this.props.data && this.props.data.PlanNumber != undefined && this.props.data.PlanNumber != null ?
+                          <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025 }}>Plan Number: {this.props.data.PlanNumber} </Text> : null}
+                        {this.props.data && this.props.data.PlanName != undefined && this.props.data.PlanName != null ?
+                          <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.004, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022 }}>Plan Name: {this.props.data.PlanName}</Text> : null}
                       </View>
                    <View style={{flex: 0.1}}>
                         <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025, marginTop: 10}} />
@@ -197,10 +200,12 @@ class MyIdCard extends Component {
                         <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXBIN != undefined && this.props.data.RXBIN != null ? this.props.data.RXBIN : 'Rx BIN'}</Text>
                         <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXPCN != undefined && this.props.data.RXPCN != null ? this.props.data.RXPCN : 'PCN'}</Text>
                       </View>
-                      <View style={{flex: 0.15}} />
-                      <View style={{flex: (Platform.OS === 'ios') ? 0.15 : 0.2}}>
-                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Number: {this.props.data && this.props.data.PlanNumber != undefined && this.props.data.PlanNumber != null ? this.props.data.PlanNumber : ''} </Text>
-                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.004, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022}}>Plan Name: {this.props.data && this.props.data.PlanName != undefined && this.props.data.PlanName != null ? this.props.data.PlanName : ''}</Text>
+                      <View style={{ flex: 0.15 }} />
+                      <View style={{ flex: (Platform.OS === 'ios') ? 0.15 : 0.2 }}>
+                        {this.props.data && this.props.data.PlanNumber != undefined && this.props.data.PlanNumber != null ?
+                          <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025 }}>Plan Number: {this.props.data.PlanNumber} </Text> : null}
+                        {this.props.data && this.props.data.PlanName != undefined && this.props.data.PlanName != null ?
+                          <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.004, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022 }}>Plan Name: {this.props.data.PlanName}</Text> : null}
                       </View>
                       <View style={{flex: 0.1}}>
                         <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025, marginTop: 10}} />

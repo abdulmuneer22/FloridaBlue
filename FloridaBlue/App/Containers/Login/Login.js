@@ -39,6 +39,7 @@ import Clouds from './Clouds'
 import CityScape from './CityScape'
 // import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
+import CheckBox from 'react-native-checkbox'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import Orientation from 'react-native-orientation'
 import Popover, { PopoverTouchable } from 'react-native-modal-popover'
@@ -48,7 +49,7 @@ const Divider = () => { return <View style={styles.divider} /> }
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
 let TouchManager = NativeModules.TouchManager
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 let RCTNetworking = require('RCTNetworking')
 let logo = require('./logo.png')
 
