@@ -18,7 +18,7 @@ import {
 import styles from './DrawerContentStyle'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import DrawerButton from '../../Components/DrawerButton'
-import { Actions as NavigationActions } from 'react-native-router-flux'
+import { Actions as NavigationActions, ActionConst} from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
 import { connect } from 'react-redux'
 import LoginActions from '../../Redux/LoginRedux'
@@ -127,6 +127,7 @@ class SettingsContent extends Component {
   handlePressSettings = () => {
     gaTracker.trackEvent('Side Menu', 'Settings')
     this.toggleDrawer()
+    NavigationActions['WelcomeDashBoard']({type: ActionConst.REPLACE})
     NavigationActions.Settings()
   }
 
@@ -221,6 +222,7 @@ class SettingsContent extends Component {
                     this.toggleDrawer()
                   } else if (tile.tileType == 'native') {
                     var routerName = tile.routerName
+                    action = NavigationActions['WelcomeDashBoard']({type: ActionConst.REPLACE})
                     action = NavigationActions[routerName]()
                     this.toggleDrawer()
                   }
@@ -270,6 +272,7 @@ class SettingsContent extends Component {
                   this.toggleDrawer()
                 } else if (tile.tileType == 'native') {
                   var routerName = tile.routerName
+                  action = NavigationActions.WelcomeDashBoard({type: ActionConst.REPLACE})
                   action = NavigationActions[routerName]()
                   this.toggleDrawer()
                 }
