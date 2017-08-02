@@ -139,7 +139,6 @@ class PaymentsDashboard extends Component {
             </View>
 
           </ScrollView>
-<<<<<<< HEAD
            <View style={{flex: 1}}>
              {this.state.floatClicked ?  <View style={styles.urgentCareCircle}>
                 <TouchableOpacity onPress={this._toggleFloat}>
@@ -152,18 +151,6 @@ class PaymentsDashboard extends Component {
           {!this.state.floatClicked ?  
           
             <View style={styles.payByPhoneContainer}>
-=======
-          <View style={{flex: 1}}>
-            {this.state.floatClicked ? <View style={styles.urgentCareCircle}>
-              <TouchableOpacity onPress={this._toggleFloat}>
-                <Flb name='rd-brand-phone'
-                  style={{backgroundColor: Colors.transparent}}
-                  color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
-              </TouchableOpacity>
-            </View> : null}
-
-            {!this.state.floatClicked ? <View style={styles.payByPhoneContainer}>
->>>>>>> f39b4ccdbb3c46ed729bc38cdc390919bb85b417
 
               <Flb name='close-delete' style={styles.dismissPayByPhone}
                 color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
@@ -171,8 +158,7 @@ class PaymentsDashboard extends Component {
 
               <TouchableOpacity><Text allowFontScaling={false} style={styles.payByPhoneText}>Pay by Phone</Text></TouchableOpacity>
               <Text allowFontScaling={false} style={styles.payByPhoneMessage}>Have your member ID ready</Text>
-<<<<<<< HEAD
-               <TouchableOpacity style={{left: 10}}><Image source={Images.callNowButton}></Image></TouchableOpacity>
+               <TouchableOpacity style={{left: 40, top: 10}}><Image source={Images.callNowButton}></Image></TouchableOpacity>
                 <View style={{flexDirection: 'row'}}>
                   <View style={
                     {marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
@@ -186,16 +172,6 @@ class PaymentsDashboard extends Component {
               </View>
 
             : null}
-=======
-              <View style={{flexDirection: 'row'}}>
-                <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
-                  marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
-                  <TouchableOpacity style={{left: 206, top: 15.5}}><Flb name='rd-brand-phone' onPress={this._toggleFloat}
-                    color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} style={{right: 10}} /></TouchableOpacity>
-                </View>
-              </View>
-            </View> : null}
->>>>>>> f39b4ccdbb3c46ed729bc38cdc390919bb85b417
 
           </View>
         </View>
