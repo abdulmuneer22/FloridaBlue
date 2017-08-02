@@ -317,14 +317,14 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 0.865,
     marginLeft: Metrics.doubleBaseMargin
   },
-  dropD : {
-     width: Metrics.screenWidth * 0.865,
-    height: Metrics.screenHeight * .05,
+  dropD: {
+    width: Metrics.screenWidth * 0.865,
+    height: Metrics.screenHeight * 0.05,
     marginLeft: Metrics.doubleBaseMargin
   },
-  dropDLandscape : {
-     width: Metrics.screenWidth * 1.645,
-    height: Metrics.screenHeight * .05,
+  dropDLandscape: {
+    width: Metrics.screenWidth * 1.645,
+    height: Metrics.screenHeight * 0.05,
     marginLeft: Metrics.doubleBaseMargin
   },
   dropdown1: {

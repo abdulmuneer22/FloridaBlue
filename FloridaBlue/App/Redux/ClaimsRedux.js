@@ -44,9 +44,9 @@ export const INITIAL_STATE = Immutable({
   providerName: '',
   memberName: '',
   memberId: '',
-  start : 1,
-  end : 10,
-  sortBy : []
+  start: 1,
+  end: 10,
+  sortBy: []
 })
 
 /* ------------- Reducers ------------- */
@@ -62,14 +62,14 @@ export const _claimDetailSuccess = (state: Object, {data}:Object) => {
 export const _claimDetailFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {}})
 
 // we're attempting to login
-export const _claimListRequest = (state: Object) => state.merge({fetching: true,error: null })
+export const _claimListRequest = (state: Object) => state.merge({fetching: true, error: null })
 
 // claimlistSearchRequest
 export const _asyncClaimListRequest = (state: Object) => state.merge({asyncfetching: true})
 
 // we've successfully logged in
 export const _claimListSuccess = (state: Object, {data}:Object) => {
-  return state.merge({fetching: false, asyncfetching: false, claimslist:data, error: null })
+  return state.merge({fetching: false, asyncfetching: false, claimslist: data, error: null })
 }
 
 // we've had a problem logging in
@@ -80,7 +80,7 @@ export const _claimSummaryRequest = (state: Object) => state.merge({fetching: tr
 
 // we've successfully logged in
 export const _claimSummarySuccess = (state: Object, {data}:Object) => {
-  return state.merge({fetching: false, claimsSummary:data, error: null })
+  return state.merge({fetching: false, claimsSummary: data, error: null })
 }
 // we've had a problem logging in
 export const _claimSummaryFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {}})
@@ -143,6 +143,6 @@ export const reducer = createReducer(INITIAL_STATE, {
 /* ------------- Selectors ------------- */
 
 // // Is the current user logged in?
-//export const isClaimDetailIn = (claimDetailState: Object) => claimDetailState.claimdetail.data !== null
- //export const isClaimsListIn = (claimsListState: Object) => claimsListState.claimslist.data !== null
- //export const isClaimsSummaryIn = (claimsSummaryState: Object) => claimsSummaryState.claimsSummary.data !== null
+// export const isClaimDetailIn = (claimDetailState: Object) => claimDetailState.claimdetail.data !== null
+ // export const isClaimsListIn = (claimsListState: Object) => claimsListState.claimslist.data !== null
+ // export const isClaimsSummaryIn = (claimsSummaryState: Object) => claimsSummaryState.claimsSummary.data !== null

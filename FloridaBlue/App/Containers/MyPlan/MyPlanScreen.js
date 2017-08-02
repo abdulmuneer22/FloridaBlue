@@ -30,7 +30,9 @@ import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 const window = Dimensions.get('window')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
+
 import SettingActions from '../../Redux/SettingRedux'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -73,7 +75,7 @@ class MyPlanScreen extends Component {
       return (
         <View style={styles.container}>
 
-          <Card style={this.props.isPortrait ? styles.planNameView : styles.planNameViewLandscape}>
+          <Card style={styles.planNameView}>
 
             { this.props.data.annualDeductible || this.props.data.oop
               ? <Text allowFontScaling={false} style={styles.planNameText}>
@@ -84,7 +86,7 @@ class MyPlanScreen extends Component {
            }
           </Card>
 
-          <View style={this.props.isPortrait ? styles.chartWrapper: styles.chartWrapperLandscape}>
+          <View style={styles.chartWrapper}>
             {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} isPortrait={this.props.isPortrait}/>
 
               : Alert.alert(
@@ -139,38 +141,46 @@ class MyPlanScreen extends Component {
           { text: 'OK' }
 
         ])
+    }else{
+        Alert.alert(
+        'My Plan Overview',
+       'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
+        [
+          { text: 'OK' }
+        ])
     }
   }
 
   render () {
     console.tron.log(this.props.data)
-    if (this.props.isPortrait) {return (
-
-      <View style={styles.container}>
-
-        <View>
-          {this._renderHeader()}
-        </View>
-        {this._displayCondition()}
-
-      </View>
-
-    )} else {
+    if (this.props.isPortrait) {
       return (
 
-      <ScrollView style={styles.container}>
+        <View style={styles.container}>
 
-        <View>
-          {this._renderHeader()}
+          <View>
+            {this._renderHeader()}
+          </View>
+          {this._displayCondition()}
+
         </View>
 
-        {this._displayCondition()}
+      )
+    } else {
+      return (
 
-      </ScrollView>
+        <ScrollView style={styles.container}>
 
-    )
+          <View>
+            {this._renderHeader()}
+          </View>
+
+          {this._displayCondition()}
+
+        </ScrollView>
+
+      )
     }
-
   }
 }
 

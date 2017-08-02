@@ -10,13 +10,14 @@ const { Types, Creators } = createActions({
   refreshTokenToUnsubscribe: ['refreshToken'],
   onOpenedFromTray: ['openedFromTray'],
   onLocalNotification: ['localNotification'],
-  notificationSuccess: ['notification', 'unreadNotification'],
+  notificationSuccess: ['notification', 'unreadNotification', 'count'],
   notificationFailure: ['error'],
   getNotification: [],
   postFCMToken: ['data'],
   postArchive: ['archiveObject'],
   markAllRead: ['allRead'],
-  deleteNotification: ['newData']
+  deleteNotification: ['newData'],
+  updateTokenFlag :['fcmTokenFlag']
 })
 
 export const NotificationTypes = Types
@@ -33,7 +34,9 @@ export const INITIAL_STATE = Immutable({
   error: null,
   fetching: false,
   unreadNotification: null,
-  allRead: false
+  allRead: false,
+  count: null,
+  fcmTokenFlag : true
 })
 
 /* ------------- Reducers ------------- */
@@ -42,8 +45,8 @@ export const INITIAL_STATE = Immutable({
 export const request = (state: Object) => state.merge({fetching: true, allRead: false})
 
 // we've successfully logged in
-export const success = (state: Object, {notification, unreadNotification}: Object) =>
-  state.merge({fetching: false, error: null, notification: notification, unreadNotification: unreadNotification, allRead: false})
+export const success = (state: Object, {notification, unreadNotification, count}: Object) =>
+  state.merge({fetching: false, error: null, notification: notification, unreadNotification: unreadNotification, allRead: false, count: count})
 
 // we've had a problem logging in
 export const failure = (state: Object, { error }: Object) =>
@@ -66,6 +69,11 @@ export const deleteNotification = (state : Object, {newData}: Object) => state.m
   notification: newData
 })
 
+// delete Notification from the redux
+export const updateTokenFlagSet  = (state : Object, {fcmTokenFlag}: Object) => state.merge({
+fcmTokenFlag
+})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -78,7 +86,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.ON_LOCAL_NOTIFICATION]: localNotification,
   [Types.POST_F_C_M_Token]: request,
   [Types.MARK_ALL_READ]: readCount,
-  [Types.DELETE_NOTIFICATION]: deleteNotification
+  [Types.DELETE_NOTIFICATION]: deleteNotification,
+  [Types.UPDATE_TOKEN_FLAG]: updateTokenFlagSet
 })
 
 /* ------------- Selectors ------------- */

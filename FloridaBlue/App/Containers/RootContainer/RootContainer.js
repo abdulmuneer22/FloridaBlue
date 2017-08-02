@@ -12,7 +12,7 @@ import MemberLoginActions from '../../../App/Redux/LoginRedux'
 import styles from './RootContainerStyle'
 import {PushController} from '../PushNotifications'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
-import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
 var RCTNetworking = require('RCTNetworking')
 var inactiveTime = Date
@@ -20,6 +20,8 @@ var activeTime = Date
 var timerStarted = false
 var component = null
 var timerStarted = false
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 class RootContainer extends Component {
   constructor () {
@@ -33,7 +35,8 @@ class RootContainer extends Component {
       this.props.startup()
     }
     AppState.addEventListener('change', this._handleAppState)
-    GoogleAnalyticsSettings.setDispatchInterval(30);
+    GoogleAnalyticsSettings.setDispatchInterval(30)
+    gaTracker.setAppName(urlConfig.appName)
   }
 
   componentWillUnmount () {
@@ -60,11 +63,11 @@ class RootContainer extends Component {
         var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000) // converted to minutes
         var elapsedTime = Math.abs(diffMins)
         if (elapsedTime >= 15) {
-            // Call logout logic
+          // Call logout logic
           timerStarted = false
           RCTNetworking.clearCookies((cleared) => {})
           component.props.attemptLogout(component.props.logoutUrl)
-          NavigationActions.login()
+          NavigationActions.login({'origin': 'loginExpired'})
         } else {
           inactiveTime = Date
           activeTime = Date
@@ -97,7 +100,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
   startup: () => dispatch(StartupActions.startup()),
-  attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl)),
+  attemptLogout: (logoutUrl) => dispatch(LoginActions.logoutRequest(logoutUrl))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RootContainer)

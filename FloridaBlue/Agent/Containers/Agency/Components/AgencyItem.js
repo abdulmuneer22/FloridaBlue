@@ -27,7 +27,7 @@ class AgencyItem extends Component {
             <Text allowFontScaling={false} style={styles.topText}>{this.props.data.name}
               <Text allowFontScaling={false} style={styles.bottomText}>  - {this.props.data.code}</Text>
             </Text>
-            <Text allowFontScaling={false} style={styles.bottomText}><Flb name="single" size={13} color={Colors.flBlue.anvil} style={styles.agentIcon} />  {this.props.data.role}</Text>
+            <Text allowFontScaling={false} style={styles.bottomText}><Flb name='single' size={13} color={Colors.flBlue.anvil} style={styles.agentIcon} />  {this.props.data.role}</Text>
           </View>
 
           <View style={styles.agentColumnContainer}>
@@ -36,7 +36,7 @@ class AgencyItem extends Component {
           </View>
 
           <View style={styles.agentColumnContainer}>
-            <Flb name="chevron-right" size={10} color={Colors.flBlue.anvil} style={styles.itemChevron} />
+            <Flb name='chevron-right' size={10} color={Colors.flBlue.anvil} style={styles.itemChevron} />
           </View>
         </View>
 

@@ -35,7 +35,7 @@ import SettingActions from '../../../Redux/SettingRedux'
 
 const theme = getTheme()
 let urlConfig = require('../../../UrlConfig')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
     .withStyle(styles.spinner)

@@ -17,7 +17,7 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.sky
   },
- headerContainerLandscape: {
+  headerContainerLandscape: {
     flexDirection: 'row',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
     justifyContent: 'space-between',
@@ -48,7 +48,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: -0
-   },
+  },
   planNameViewLandscape: {
     flex: 0.1,
     alignItems: 'center',

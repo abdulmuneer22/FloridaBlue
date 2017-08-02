@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component, PropTypes } from 'react'
-import { View, StatusBar, AppState, Text, Image, TextInput, TouchableHighlight, ScrollView, TouchableOpacity } from 'react-native'
+import { View, StatusBar, AppState, Text, Image, TextInput, TouchableHighlight, ScrollView, TouchableOpacity, Button } from 'react-native'
 import NavigationRouter from '../../../Navigation/NavigationRouter'
 import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -21,21 +21,12 @@ class Group extends Component {
   constructor () {
     super()
     this.state = {
-      groupFilters: ['owner'],
-      showFilterOptions: false
+      searchText: ''
     }
   }
 
   componentDidMount () {
 
-  }
-
-  _addFilter(filterType) {
-    console.tron.log(filterType)
-    var newGroupFilters = this.state.groupFilters
-    newGroupFilters.push(filterType)
-    this.setState({groupFilters: newGroupFilters})
-    this.setState({showFilterOptions: false})
   }
 
   _renderHeader () {
@@ -52,29 +43,16 @@ class Group extends Component {
     )
   }
 
-  _renderDropdownRow(rowData, rowID, highlighted) {
+  _renderDropdownRow (rowData, rowID, highlighted) {
     return (
       <TouchableHighlight underlayColor={Colors.snow}>
-        <Text style={styles.groupDateDropdownItem}>{rowData}</Text>
+        <Text style={styles.groupDropdownText}>{rowData}</Text>
       </TouchableHighlight>
     )
   }
 
-  _renderFilterDropdown(filterType) {
+  _renderGroupItem (group, index) {
     return (
-      <View style={styles.filterDropdownContainer}>
-        <ModalDropdown options={_.map(groups, filterType)} onSelect={this.filterByEffectiveDate} dropdownStyle={styles.groupDateDropdown} renderRow={this._renderDropdownRow.bind(this)}>
-          <View style={styles.groupTypeContainer}>
-            <Text style={styles.groupTypeTitle}>{filterType}</Text>
-            <Flb name="caret-down-two" size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
-          </View>
-        </ModalDropdown>
-      </View>
-    )
-  }
-
-  _renderGroupItem(group, index) {
-    return(
       <TouchableOpacity>
         <GroupItem data={group} />
       </TouchableOpacity>
@@ -90,27 +68,25 @@ class Group extends Component {
           <Text allowFontScaling={false} style={styles.groupTitle}>Groups</Text>
           <Text allowFontScaling={false} style={styles.groupName}>@ TDG of Jacksonville</Text>
         </View>
-        <MKProgress ref="groupBar" style={styles.groupBar} progress={0.18} progressColor={Colors.flBlue.ocean} bufferColor={Colors.flBlue.grey2} />
+        <MKProgress ref='groupBar' style={styles.groupBar} progress={0.18} progressColor={Colors.flBlue.ocean} bufferColor={Colors.flBlue.grey2} />
 
-        <TextInput style={styles.searchInput}>
-          <Flb name="search-find" size={20} color={Colors.flBlue.anvil} style={styles.searchIcon} />
-        </TextInput>
+        <TextInput style={styles.searchInput} onChangeText={(searchText) => this.setState({searchText})} value={this.state.searchText} />
 
         <Divider />
 
-        <ScrollView horizontal={true} style={styles.filterContainer}>
-          {this.state.groupFilters.map((filterType, index) => this._renderFilterDropdown(filterType, index))}
-          <TouchableOpacity style={styles.addFilterContainer} onPress={() => this.setState({showFilterOptions: true})}>
-            <Flb name="plus" size={20} color={Colors.flBlue.anvil} style={styles.addFilterIcon} />
-          </TouchableOpacity>
-        </ScrollView>
+        <ModalDropdown options={_.map(groups, 'owner')} onSelect={this.filterByEffectiveDate} style={styles.groupDropdown} dropdownStyle={styles.groupDropdownItem} renderRow={this._renderDropdownRow.bind(this)}>
+          <View style={styles.groupDropdownContainer}>
+            <Text style={styles.groupDropdownTitle}>By Type:  Any </Text>
+            <Flb name='chevron-down' size={10} color={Colors.flBlue.anvil} style={styles.dropdownChevron} />
+          </View>
+        </ModalDropdown>
 
         <View style={styles.groupListHeaderContainer}>
           <Text allowFontScaling={false} style={styles.groupNameTitle}>Group</Text>
           <ModalDropdown options={_.map(groups, 'owner')} onSelect={this.filterByEffectiveDate} dropdownStyle={styles.groupDateDropdown} renderRow={this._renderDropdownRow.bind(this)}>
             <View style={styles.groupTypeContainer}>
               <Text allowFontScaling={false} style={styles.groupTypeTitle}>Eff. Date</Text>
-              <Flb name="caret-down-two" size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
+              <Flb name='caret-down-two' size={15} color={Colors.flBlue.anvil} />
             </View>
           </ModalDropdown>
         </View>
@@ -118,22 +94,6 @@ class Group extends Component {
         <ScrollView>
           {groups.map((group, index) => this._renderGroupItem(group, index))}
         </ScrollView>
-
-        {this.state.showFilterOptions ?
-            <View style={{backgroundColor:Colors.flBlue.snow}}>
-              <TouchableOpacity onPress={() => this._addFilter('quoting')}>
-                <Text allowFontScaling={false}>Quoting</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this._addFilter('type')}>
-                <Text allowFontScaling={false}>Type</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this._addFilter('owner')}>
-                <Text allowFontScaling={false}>Owner</Text>
-              </TouchableOpacity>
-            </View>
-          :
-            null
-        }
 
       </View>
     )

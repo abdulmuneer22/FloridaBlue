@@ -36,8 +36,8 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 import Orientation from 'react-native-orientation'
 
 const theme = getTheme()
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
-import SettingActions from '../../Redux/SettingRedux'
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 type LoginScreenProps = {
   dispatch: () => any,
@@ -62,7 +62,7 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
+      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage}>
         <View style={{
           alignItems: 'center',
           marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
@@ -96,28 +96,18 @@ class LandingScreen extends Component {
     if (this.props.openedFromTray) {
       NavigationActions.PushNotifications()
     }
-    if (this.props.visibilityRules) {
-      var data = {
-        'hccId': this.props.defaultContract.hccId,
-        'pushOptIn': true,
-        'memberId': this.props.memberObject.memberId,
-        'manufacturer': DeviceInfo.getManufacturer(),
-        'deviceName': DeviceInfo.getDeviceName(),
-        'model': DeviceInfo.getModel(),
-        'deviceId': DeviceInfo.getUniqueID(),
-        'locale': 'en',
-        'os': DeviceInfo.getSystemName(),
-        'osId': DeviceInfo.getDeviceId(),
-        'osVersion': DeviceInfo.getSystemVersion(),
-        'token': this.props.FCMToken
-      }
-      this.props.postFCMToken(data)
-    }
 
-    console.log('data objec to post ', data)
+
+    if (this.props.visibilityRules) {
+      gaTracker.trackEvent('User Segment', this.props.visibilityRules.segment)
+
+      if (this.props.visibilityRules.groupId) {
+          gaTracker.trackEvent('Group ID', this.props.visibilityRules.groupId)
+      }
+    }
      // NavigationActions.POSTFCM
 
-    console.tron.log('mount on dashboadr' + this.props.smToken)
+  //  console.log('mount on dashboadr' + this.props.smToken)
     if (this.props.origin == 'registration') {
       this.props.attemptMember()
     }
@@ -187,7 +177,7 @@ class LandingScreen extends Component {
     } else if (this.props.visibilityRules != undefined) {
       return (
         <View style={styles.container}>
-          <Greeting userName={this.props.userName} isPortrait={this.props.isPortrait} />
+          <Greeting userName={this.props.userName} isPortrait={this.props.isPortrait} unreadNotification={this.props.unreadNotification} allRead={this.props.markAllRead} />
           {
             this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} orientationStatus={this.props.isPortrait} /> : <View />}
           <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>
@@ -282,6 +272,31 @@ class LandingScreen extends Component {
     }
   }
 
+  _sendFCMToken()
+  {
+    if(!this.props.fetching && this.props.visibilityRules != undefined && this.props.defaultContract &&  this.props.tokenFlag){
+      var data = {
+        'hccId': this.props.defaultContract.hccId,
+        'pushOptIn': true,
+        'memberId': this.props.memberObject.memberId,
+        'manufacturer': DeviceInfo.getManufacturer(),
+        'deviceName': DeviceInfo.getDeviceName(),
+        'model': DeviceInfo.getModel(),
+        'deviceId': DeviceInfo.getUniqueID(),
+        'locale': 'en',
+        'os': DeviceInfo.getSystemName(),
+        'osId': DeviceInfo.getDeviceId(),
+        'osVersion': DeviceInfo.getSystemVersion(),
+        'token': this.props.FCMToken
+      }
+      if (this.props.FCMToken) {
+        this.props.postFCMToken(data)
+        this.props.localTokenFlag(false)
+      }
+    }
+
+  }
+
   render () {
     console.tron.log('ipad Height' + Metrics.screenHeight)
     console.tron.log('ipad Width' + Metrics.screenWidth)
@@ -298,6 +313,7 @@ class LandingScreen extends Component {
       <ScrollView style={styles.container}>
         {this._renderHeader()}
         {this._displayCondition(this.props.isPortrait)}
+	 {this._sendFCMToken()}
 
       </ScrollView>
     )
@@ -316,7 +332,8 @@ const mapStateToProps = (state) => {
     unreadNotification: state.Notification.unreadNotification,
     markAllRead: state.Notification.allRead,
     localNotification: state.Notification.localNotification,
-    isPortrait: state.setting.isPortrait
+    isPortrait: state.setting.isPortrait,
+     tokenFlag :state.Notification.fcmTokenFlag
   }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -325,7 +342,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptNetworkList: () => dispatch(ProviderActions.sendNetworkListRequest()),
     postFCMToken: (data) => dispatch(NotificationActions.postFCMToken(data)),
     getNotification: () => dispatch(NotificationActions.getNotification()),
-    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait)),
+    localTokenFlag:(fcmTokenFlag) => dispatch(NotificationActions.updateTokenFlag(fcmTokenFlag))
 
   }
 }

@@ -40,7 +40,8 @@ const theme = getTheme()
 const card = { card: { width: Metrics.screenWidth, marginLeft: 0, marginTop: 0, marginBottom: 0, alignItems: 'flex-start' } }
 const cardTitle = { cardTitle: { fontSize: 40 } }
 const Permissions = require('react-native-permissions')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const doctorsGender = [
   { text: 'Any', value: '' },
@@ -220,10 +221,19 @@ class AdvancedSearch extends Component {
         this._getLocation()
         this.props.changeAddress('Using Current Address')
       } else {
-        Permissions.requestPermission('location').then(response => {
+        Permissions.getPermissionStatus('location').then(response => {
           if (response == 'authorized') {
             this.props.changeGeolocationEnabled(true)
-            this._getLocation()
+            this._getPosition()
+          } else if (response == 'undetermined') {
+            Permissions.requestPermission('location').then(response => {
+              if (response == 'authorized') {
+                this.props.changeGeolocationEnabled(true)
+                this._getPosition()
+              } else {
+                this.props.changeGeolocationEnabled(false)
+              }
+            })
           } else {
             this.props.changeGeolocationEnabled(false)
             this._alertForLocationPermission()
@@ -241,12 +251,11 @@ class AdvancedSearch extends Component {
 
   _alertForLocationPermission () {
     Alert.alert(
-      'Can we access your current location?',
-      'We need access so you can see provider data near your location',
+      'Allow Florida Blue to use your current location.',
+      'To see this information, you need to allow geolocation on your phone. Please go to Location in your phone\'s settings and turn it on.',
       [
-        {text: 'No way', onPress: () => console.tron.log('permission denied'), style: 'cancel'},
-        this.state.photoPermission == 'undetermined'
-        ? {text: 'OK', onPress: this._requestPermission.bind(this)} : {text: 'Open Settings', onPress: Permissions.openSettings}
+        {text: 'Cancel', onPress: () => console.tron.log('permission denied'), style: 'cancel'},
+        {text: 'Open Settings', onPress: Permissions.openSettings}
       ]
     )
   }
@@ -331,25 +340,23 @@ class AdvancedSearch extends Component {
   }
 
   _getLocation () {
-    if (this.props.geolocationEnabled) {
-      this._getPosition()
-    } else {
-      Permissions.getPermissionStatus('location').then(response => {
-        if (response == 'authorized') {
-          this.props.changeGeolocationEnabled(true)
-          this._getPosition()
-        } else if (response == 'undetermined') {
-          Permissions.requestPermission('location').then(response => {
-            if (response == 'authorized') {
-              this.props.changeGeolocationEnabled(true)
-              this._getPosition()
-            } else {
-              this.props.changeGeolocationEnabled(false)
-            }
-          })
-        }
-      })
-    }
+    Permissions.getPermissionStatus('location').then(response => {
+      if (response == 'authorized') {
+        this.props.changeGeolocationEnabled(true)
+        this._getPosition()
+      } else if (response == 'undetermined') {
+        Permissions.requestPermission('location').then(response => {
+          if (response == 'authorized') {
+            this.props.changeGeolocationEnabled(true)
+            this._getPosition()
+          } else {
+            this.props.changeGeolocationEnabled(false)
+          }
+        })
+      } else {
+        this.props.changeGeolocationEnabled(false)
+      }
+    })
   }
 
   _getPosition () {

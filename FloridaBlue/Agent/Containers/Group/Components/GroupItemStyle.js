@@ -5,12 +5,10 @@ import {Fonts, Metrics, Colors} from '../../../Themes/'
 
 export default StyleSheet.create({
   groupItemContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    flexDirection: 'row'
   },
   groupColumnContainer: {
-    flex: 0,
+    flexDirection: 'column',
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.002,
     paddingHorizontal: Metrics.baseMargin * Metrics.screenHeight * 0.002
   },
@@ -34,7 +32,7 @@ export default StyleSheet.create({
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0002
   },
   effectiveDateText: {
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0016,
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0002,
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0018,
@@ -43,5 +41,13 @@ export default StyleSheet.create({
   divider: {
     backgroundColor: Colors.flBlue.grey1,
     height: Metrics.screenHeight * 0.0018
+  },
+  status: {
+    backgroundColor: Colors.flBlue.ocean,
+    width: Metrics.screenWidth * 0.012,
+    height: Metrics.screenHeight * 0.095,
+    alignSelf: 'center',
+    marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0008,
+    borderRadius: 4
   }
 })
