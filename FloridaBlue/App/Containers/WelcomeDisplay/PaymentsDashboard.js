@@ -152,22 +152,30 @@ class PaymentsDashboard extends Component {
                 </TouchableOpacity>
               </View> : null}
             
-              {!this.state.floatClicked ?  <View style={styles.payByPhoneContainer}>
+          {!this.state.floatClicked ?  
+          
+            <View style={styles.payByPhoneContainer}>
 
-            <Flb name='close-delete' style={styles.dismissPayByPhone}
-              color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
-              onPress={this._toggleFloat} />
+              <Flb name='close-delete' style={styles.dismissPayByPhone}
+                color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+                onPress={this._toggleFloat} />
 
-            <TouchableOpacity><Text allowFontScaling={false} style={styles.payByPhoneText}>Pay by Phone</Text></TouchableOpacity>
-            <Text allowFontScaling={false} style={styles.payByPhoneMessage}>Have your member ID ready</Text>
-            <View style={{flexDirection: 'row'}}>
-              <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
-                marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
-                <TouchableOpacity style={{left: 206, top: 15.5}}><Flb name='rd-brand-phone' onPress={this._toggleFloat}
-                  color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} style={{right: 10}}/></TouchableOpacity>
+              <TouchableOpacity><Text allowFontScaling={false} style={styles.payByPhoneText}>Pay by Phone</Text></TouchableOpacity>
+              <Text allowFontScaling={false} style={styles.payByPhoneMessage}>Have your member ID ready</Text>
+               <TouchableOpacity style={{left: 10}}><Image source={Images.callNowButton}></Image></TouchableOpacity>
+                <View style={{flexDirection: 'row'}}>
+                  <View style={
+                    {marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
+                      marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}
+                      >
+                      <TouchableOpacity style={{left: 206, bottom: 9.5}}>
+                        <Flb name='rd-brand-phone' onPress={this._toggleFloat} color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} style={{right: 10}}/>
+                    </TouchableOpacity>
+                  </View>
+                </View>
               </View>
-            </View>
-          </View>: null}
+
+            : null}
 
         </View>
         </View>
