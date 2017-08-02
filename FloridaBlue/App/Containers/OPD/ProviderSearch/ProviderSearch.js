@@ -16,7 +16,7 @@ import {
 } from 'react-native'
 
 import React, { Component, PropTypes } from 'react'
-import { Actions as NavigationActions } from 'react-native-router-flux'
+import { Actions as NavigationActions, ActionConst } from 'react-native-router-flux'
 import styles from './ProviderSearchStyle'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import NavItems from '../../../../Navigation/NavItems.js'
@@ -217,7 +217,7 @@ class ProviderSearch extends Component {
         this.props.changeEnd(30)
         this.props.attemptProviderSearch(this.props)
       }
-      NavigationActions.DoctorList()
+      NavigationActions.DoctorList({type: ActionConst.PUSH_OR_POP})
       this.setState({userWantsResults: false})
     } else {
       Alert.alert(
@@ -236,7 +236,7 @@ class ProviderSearch extends Component {
     gaTracker.trackEvent('Provider Search', 'Urgent Care Search')
     this.props.changeUrgentCareBanner(true)
     this.props.attemptUrgentSearch(this.props)
-    NavigationActions.DoctorList()
+    NavigationActions.DoctorList({type: ActionConst.PUSH_OR_POP})
   }
 
   _advancedSearch () {

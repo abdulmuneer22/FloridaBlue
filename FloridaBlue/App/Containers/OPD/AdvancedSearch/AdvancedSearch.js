@@ -23,7 +23,7 @@ import SearchDataActions from '../../../Redux/SearchDataRedux'
 import SettingActions from '../../../Redux/SettingRedux'
 import _ from 'lodash'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Actions as NavigationActions } from 'react-native-router-flux'
+import { Actions as NavigationActions, ActionConst} from 'react-native-router-flux'
 import styles from './AdvancedSearchStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
@@ -128,7 +128,7 @@ class AdvancedSearch extends Component {
           } else {
             this.props.attemptProviderSearch(this.props)
           }
-          NavigationActions.DoctorList()
+          NavigationActions.DoctorList({type: ActionConst.PUSH_OR_POP})
         } else {
           alert('Please Enter Zip Code or City')
         }
@@ -139,7 +139,7 @@ class AdvancedSearch extends Component {
         } else {
           this.props.attemptProviderSearch(this.props)
         }
-        NavigationActions.DoctorList()
+        NavigationActions.DoctorList({type: ActionConst.PUSH_OR_POP})
       }
     } else {
       Alert.alert(
@@ -411,7 +411,8 @@ class AdvancedSearch extends Component {
   }
 
   componentDidMount () {
-    this._resetState()
+    // this._resetState()
+    /*
     this.props.attemptConfigData()
     this.props.attemptStaffLanguage()
     this.props.attemptDoctorLanguage()
@@ -420,6 +421,7 @@ class AdvancedSearch extends Component {
     if (this.props.categoryCode != 'ALL') {
       this.setState({specialityState: true})
     }
+    */
 
     gaTracker.trackScreenView('Advanced Search')
   }

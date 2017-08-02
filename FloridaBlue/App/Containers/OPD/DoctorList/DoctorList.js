@@ -18,7 +18,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient'
 import { Card } from 'native-base'
 import DoctorCard from './Components/DoctorCard'
-import { Actions as NavigationActions } from 'react-native-router-flux'
+import { Actions as NavigationActions, ActionConst } from 'react-native-router-flux'
 import styles from './DoctorListStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
@@ -66,7 +66,7 @@ class DoctorList extends Component {
   }
 
   _advancedSearch () {
-    NavigationActions.AdvancedSearch({navigatingFrom: 'doctorsListPage'})
+    NavigationActions.AdvancedSearch({navigatingFrom: 'doctorsListPage', type: ActionConst.PUSH_OR_POP})
   }
 
   _mapView () {
