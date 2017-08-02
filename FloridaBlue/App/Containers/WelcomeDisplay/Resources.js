@@ -23,9 +23,11 @@ import { connect } from 'react-redux'
 import Flb from '../../Themes/FlbIcon'
 import Card from './Components/Card'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
-import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
+
 import SettingActions from '../../Redux/SettingRedux'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
@@ -42,7 +44,7 @@ type LoginScreenProps = {
 
 class Resources extends Component {
 
-  componentDidMount() {
+  componentDidMount () {
     gaTracker.trackScreenView('Resources')
   }
 

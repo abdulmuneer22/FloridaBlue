@@ -56,8 +56,7 @@ class Webview extends Component {
     let jsCode = `
         var d = document.getElementsByTagName('a');
         for (var i = 0; i < d.length; i++) {
-            if (d[i].getAttribute('target') == '_blank') {
-               d[i].className += ' class_two'
+            if (d[i].getAttribute('target') == '_blank') {               
                 d[i].removeAttribute('target');
             }
 
@@ -65,8 +64,8 @@ class Webview extends Component {
               d[i].getAttribute('onclick').indexOf('window.close') > -1 ||
               d[i].getAttribute('onclick').indexOf('window.print') > -1 )
             ) {
-
-                d[i].parentNode.style.display='none';
+              
+                d[i].parentNode.style.display='none';              
             }
         }
     `
@@ -74,12 +73,14 @@ class Webview extends Component {
     if (this.props.smToken) {
       redirect = {
         uri: dynamic,
-        method: 'GET'
+        method: 'GET',
+        baseUrl: '/'
       }
     } else {
       redirect = {
         uri: dynamic,
-        method: 'GET'
+        method: 'GET',
+        baseUrl: '/'
       }
     }
     return (

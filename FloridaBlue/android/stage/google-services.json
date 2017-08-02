@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "1024636444845",
+    "firebase_url": "https://floridablue-stage.firebaseio.com",
+    "project_id": "floridablue-stage",
+    "storage_bucket": "floridablue-stage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024636444845:android:2f000a73b3081610",
+        "android_client_info": {
+          "package_name": "com.bcbsfl.mobile.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024636444845-ln2v1slnveb9ne0n9c3r74n1r5b8l1ri.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bcbsfl.mobile.android",
+            "certificate_hash": "fba3acde87f8d460e2459143c6f79bc3f0a82b4e"
+          }
+        },
+        {
+          "client_id": "1024636444845-59gvn35faohb6ukvr5kl52kuedtnlt2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFZiYLd5XMy4kPi66fxCee0C3NIq578WY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024636444845-59gvn35faohb6ukvr5kl52kuedtnlt2m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1024636444845-k0a20tsu9c0epm0toe0ahrtbtuf7sm2m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bcbsfl.mobile.floridablue.Florida-Blue"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

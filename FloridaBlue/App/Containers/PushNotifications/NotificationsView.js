@@ -25,9 +25,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import PushController from './PushController'
 import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm'
 import SettingActions from '../../Redux/SettingRedux'
-
+import Swipeout from 'react-native-swipeout'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import NotificationActions from '../../Redux/NotificationRedux'
 const theme = getTheme()
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -36,14 +39,20 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 class NotificationsView extends Component {
   constructor (props) {
     super(props)
+    this.deleteRow = this.deleteRow.bind(this)
     this.ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
     this.state = {
       basic: true,
-      listViewData: {}
+      listViewData: {},
+      secId: null,
+      rowId: null,
+      messageId: null
+
     }
   }
 
   componentDidMount () {
+    gaTracker.trackScreenView('Notifications')
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
     FCM.setBadgeNumber(0)
@@ -53,6 +62,12 @@ class NotificationsView extends Component {
       'markAllRead': true
     })
   }
+  componentDidUpdate (prevProps) {
+    if (this.props.notification && Object(this.props.notification).length === 0) {
+      this.props.getNotification()
+    }
+  }
+
   componentWillReceiveProps (nextProps) {
     this.props.onLocalNotification(false)
     this.props.onOpenedFromTray(false)
@@ -64,15 +79,17 @@ class NotificationsView extends Component {
     })
   }
 
-  deleteRow (secId, rowId, rowMap, messageId) {
-    console.log(secId, rowId, rowMap, messageId)
-    rowMap[`${secId}${rowId}`].closeRow()
+  deleteRow (secId, rowId) {
+    console.log(secId, rowId)
+   // rowMap[`${secId}${rowId}`].closeRow()
     const newData = [...this.props.notification]
     newData.splice(rowId, 1)
+    /*
     this.props.postArchive({
       'messageId': messageId,
       'markAllRead': false
     })
+    */
     console.log('newData', newData)
     if (newData) {
       this.props.deleteNotification(newData)
@@ -80,7 +97,7 @@ class NotificationsView extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
+    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
       {NavItems.backButton()}
       <Text allowFontScaling={false} style={styles.headerTextStyle}>Notifications</Text>
       {NavItems.settingsButton()}
@@ -94,138 +111,283 @@ class NotificationsView extends Component {
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.notification && Object(this.props.notification).length > 0) {
+      var that = this
       return (
-        <SwipeListView style={{ marginTop: 10, margin: 10, flex: 1 }}
-          dataSource={this.props.notification && Object(this.props.notification).length > 0 ? this.ds.cloneWithRows(this.props.notification) : {}}
-          enableEmptySections
-          disableRightSwipe
-          renderRow={(data, secId, rowId, rowMap) => (
-            <View style={styles.rowFront}>
-              <View style={{ flex: 1, marginTop: 10 }}>
-                <View style={{ flexDirection: 'row', marginLeft: 20, marginTop: 10, alignItems: 'center', flex: 1 }}>
-                  <Text allowFontScaling={false} style={{
-                    color: Colors.flBlue.anvil,
-                    marginLeft: 10,
-                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002
-                  }}>
-                    {data.sendDate}
-                  </Text>
-                </View>
-                <View style={{ flex: 1 }}>
-                  <View style={{
-                    paddingTop: 10,
-                    flexDirection: 'row',
-                    marginRight: 10,
-                    flex: 1
-                  }}>
-                    <View style={{ marginLeft: 10, paddingTop: 5, flex: 0.2 }}>
-                      <Flb name={data.style.icon} size={Metrics.icons.large * Metrics.screenWidth * 0.0025} color={Colors.flBlue[data.style.color]} />
-                    </View>
-                    <View style={{ flex: 0.8, marginRight: 10 }}>
-                      <View style={{ flex: 0.4 }}>
-                        <Text allowFontScaling={false} style={{
-                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
-                          color: Colors.flBlue.anvil,
-                          fontWeight: '500',
-                          marginBottom: 1,
-                          paddingTop: 5,
-                          marginLeft: 1,
-                          marginRight: 20
-                        }}>{data.title}</Text>
-                      </View>
-                      <View style={{ flex: 0.4, marginTop: 10 }}>
-                        <Text style={{
-                          marginBottom: this.props.isPortrait ? 3 : 2,
-                          color: Colors.flBlue.anvil,
-                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022
-                        }} >
-                          {data.cardContent}
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
+        <View style={{flex: 1}}>
+          {
 
-                  <View style={{
-                    flex: 1,
-                    borderBottomLeftRadius: 10,
-                    borderBottomRightRadius: 10,
-                    justifyContent: 'center',
-                    marginTop: 5,
+         this.props && this.props.count == 0 ?
+           <ListView style={{flex: 1}}
+             scrollEnabled
+             dataSource={this.props.notification && Object(this.props.notification).length > 0 ? this.ds.cloneWithRows(this.props.notification) : {}}
+             enableEmptySections
+             disableRightSwipe
+             renderRow={(data, secId, rowId, rowMap) => (
+
+               <View
+                 style={{
+                   margin: 10
+                 }}>
+                 <View style={styles.rowFront}>
+                   <View style={{ flex: 1 }}>
+                     <View style={{ flexDirection: 'row', marginLeft: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, alignItems: 'center', flex: 1 }}>
+                       <Text allowFontScaling={false} style={{
+                         color: Colors.flBlue.anvil,
+                         fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002
+                       }}>
+                         {data.sendDate}
+                       </Text>
+                     </View>
+                     <View style={{ flex: 1 }}>
+                       <View style={{
+                         paddingTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+                         flexDirection: 'row',
+                         marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.001,
+                         flex: 1
+                       }}>
+                         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002, paddingTop: 5, flex: 0.2 }}>
+                           <Flb name={data.style.icon} size={Metrics.icons.large * Metrics.screenWidth * 0.0025} color={Colors.flBlue[data.style.color]} />
+                         </View>
+                         <View style={{ flex: 0.8, marginRight: 10 }}>
+                           <View style={{ flex: 0.4 }}>
+                             <Text allowFontScaling={false} style={{
+                               fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025,
+                               color: Colors.flBlue.anvil,
+                               fontWeight: '500',
+                               marginBottom: 1,
+                               paddingTop: 5,
+                               marginLeft: 1,
+                               marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002
+                             }}>{data.title}</Text>
+                           </View>
+                           <View style={{ flex: 0.4, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: 12}}>
+                             <Text allowFontScaling={false} style={{
+                               marginBottom: 2,
+                               color: Colors.flBlue.anvil,
+                               fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0023
+                             }} >
+                               {data.cardContent}
+                             </Text>
+                           </View>
+                         </View>
+                       </View>
+
+                       <TouchableOpacity onPress={() => {
+                         if (data.link) {
+                           if (data.link.type === 'webview') {
+                             var webview = 'MyView'
+                             NavigationActions[webview]({ responseURL: data.link.name })
+                           } else if (data.link.type === 'native') {
+                             var routerName = data.link.name
+                             NavigationActions[routerName]()
+                           } else if (data.link.type === 'href') {
+                             Linking.openURL(data.link.name)
+                           }
+                         }
+                       }}
+                         style={{
+                           flex: 1,
+                           borderBottomLeftRadius: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+                           borderBottomRightRadius: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+                           justifyContent: 'center',
+                   // alignItems:'center',
+                           marginTop: Metrics.smallMargin * Metrics.screenWidth * 0.002,
                       // marginBottom:10,
-                    backgroundColor: Colors.flBlue[data.style.barColor]
-                  }}>
-                    <TouchableOpacity onPress={() => {
-                      if (data.link.type === 'webview') {
-                        var webview = 'MyView'
-                        NavigationActions[webview]({ responseURL: data.link.name })
-                      } else if (data.link.type === 'native') {
-                        var routerName = data.link.name
-                        NavigationActions[routerName]()
-                      } else if (data.link.type === 'href') {
-                        Linking.openURL(data.link.name)
-                      }
-                    }}
-                      style={{
-                        flex: 1,
-                        borderBottomLeftRadius: 10,
-                        marginBottom: 15
-                          // borderBottomRightRadi
-                          // height:35
-                      }}>
-                      <View style={{ flex: 1, marginTop: 10 }}>
-                        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-                          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                            <Text allowFontScaling={false} style={{
-                              color: Colors.flBlue[data.style.color],
-                              marginLeft: 20,
-                              fontSize: Fonts.size.regular
-                            }}>{data && data.link ? data.link.desc : null }</Text>
-                            {data && data.link
-                            ? <Flb name='chevron-right' style={{ marginLeft: 20, color: Colors.flBlue[data.style.color] }}
+                           backgroundColor: Colors.flBlue[data.style.barColor]
+                         }}>
+                         <View style={{
+                           flex: 1,
+                           borderBottomLeftRadius: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+                           borderBottomRightRadius: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+                           justifyContent: 'center',
+                   // alignItems:'center',
+                           marginTop: Metrics.smallMargin * Metrics.screenWidth * 0.002,
+                      // marginBottom:10,
+                           backgroundColor: Colors.flBlue[data.style.barColor]
+                         }}>
+                           <View style={{ flex: 1, margin: 5 }}>
+                             <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                               <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                                 <Text allowFontScaling={false} style={{
+                                   color: Colors.flBlue[data.style.color],
+                                   marginLeft: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002,
+                                   fontSize: Fonts.size.xm,
+                                   marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.002
+                                 }}>{data && data.link ? data.link.desc : null }</Text>
+                                 {data && data.link
+                            ? <Flb name='chevron-right' style={{
+                            //  marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.002,
+                              marginLeft: Metrics.smallMargin * Metrics.screenWidth * 0.003,
+                              color: Colors.flBlue[data.style.color] }}
                               size={Metrics.icons.small * Metrics.screenWidth * 0.002} /> : <View />}
-                          </View>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
-                  </View>
+                               </View>
+                             </View>
+                           </View>
+                         </View>
+                       </TouchableOpacity>
+
+                     </View>
+                   </View>
+                 </View>
+               </View>
+
+          )}
+
+/> : <ListView style={{flex: 1}}
+  scrollEnabled
+  dataSource={this.props.notification && Object(this.props.notification).length > 0 ? this.ds.cloneWithRows(this.props.notification) : {}}
+  enableEmptySections
+  disableRightSwipe
+  renderRow={(data, secId, rowId, rowMap) => (
+    <Swipeout
+      style={{
+        margin: 10
+      }}
+      close={!(this.state.secId === secId && this.state.rowId === rowId)}
+      right={
+        [{
+          text: 'Delete',
+          onPress: function () {
+            const newData = [...that.props.notification]
+            newData.splice(that.state.rowId, 1)
+            that.props.postArchive({
+              'messageId': that.props.notification[that.state.rowId].messageId,
+              'markAllRead': false
+            })
+            if (newData) {
+              that.props.deleteNotification(newData)
+            }
+          },
+          type: 'default',
+          backgroundColor: Colors.flBlue.red
+        }]}
+      rowID={rowId}
+      sectionID={secId}
+      autoClose
+      backgroundColor={Colors.bg2}
+      sensitivity={300}
+      onOpen={(secId, rowId) => {
+        console.log('secId,rowId', secId, rowId)
+        this.setState({
+          secId,
+          rowId
+        })
+      }}
+      onClose={() => console.log('===close')}
+      scroll={event => console.log('scroll event', event)}
+              >
+      <View style={styles.rowFront}>
+        <View style={{ flex: 1 }}>
+          <View style={{ flexDirection: 'row', marginLeft: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, alignItems: 'center', flex: 1 }}>
+            <Text allowFontScaling={false} style={{
+              color: Colors.flBlue.anvil,
+              fontSize: Fonts.size.regular * Metrics.screenWidth * 0.002
+            }}>
+              {data.sendDate}
+            </Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <View style={{
+              paddingTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
+              flexDirection: 'row',
+              marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.001,
+              flex: 1
+            }}>
+              <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002, paddingTop: 5, flex: 0.2 }}>
+                <Flb name={data.style.icon} size={Metrics.icons.large * Metrics.screenWidth * 0.0025} color={Colors.flBlue[data.style.color]} />
+              </View>
+              <View style={{ flex: 0.8, marginRight: 10 }}>
+                <View style={{ flex: 0.4 }}>
+                  <Text allowFontScaling={false} style={{
+                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+                    color: Colors.flBlue.anvil,
+                    fontWeight: '500',
+                    marginBottom: 1,
+                    paddingTop: 5,
+                    marginLeft: 1,
+                    marginRight: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002
+                  }}>{data.title}</Text>
+                </View>
+                <View style={{ flex: 0.4, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: 12}}>
+                  <Text allowFontScaling={false} style={{
+                    marginBottom: 2,
+                    color: Colors.flBlue.anvil,
+                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022
+                  }} >
+                    {data.cardContent}
+                  </Text>
                 </View>
               </View>
             </View>
-            )}
-          renderHiddenRow={(data, secId, rowId, rowMap) => (
-            <View style={{
-              alignItems: 'center',
-              flex: 1,
-              marginTop: 5,
-              flexDirection: 'row',
-              borderRadius: 20
-            }}>
-              <TouchableOpacity style={{
-                alignItems: 'flex-end',
-                justifyContent: 'center',
+
+            <TouchableOpacity onPress={() => {
+              if (data.link) {
+                if (data.link.type === 'webview') {
+                  var webview = 'MyView'
+                  NavigationActions[webview]({ responseURL: data.link.name })
+                } else if (data.link.type === 'native') {
+                  var routerName = data.link.name
+                  NavigationActions[routerName]()
+                } else if (data.link.type === 'href') {
+                  Linking.openURL(data.link.name)
+                }
+              }
+            }}
+              style={{
                 flex: 1,
-                borderRadius: 20,
-                backgroundColor: 'green',
-                right: 0,
-                marginBottom: this.props.isPortrait ? 0  : 20,
-                marginTop: this.props.isPortrait ? 0 : 1
-              }} onPress={_ => this.deleteRow(secId, rowId, rowMap, data.messageId)} >
-                <View style={{
-                  flex: 1,
-                  alignItems: 'flex-end',
-                    // bottom: 0,
-                  justifyContent: 'center'
-                }}>
-                  <Text allowFontScaling={false} style={{
-                    color: Colors.snow,
-                    marginRight: 30,
-                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025
-                  }}>Clear</Text >
+                borderBottomLeftRadius: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+                borderBottomRightRadius: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+                justifyContent: 'center',
+                   // alignItems:'center',
+                marginTop: Metrics.smallMargin * Metrics.screenWidth * 0.002,
+                      // marginBottom:10,
+                backgroundColor: Colors.flBlue[data.style.barColor]
+              }}>
+              <View style={{
+                flex: 1,
+                borderBottomLeftRadius: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+                borderBottomRightRadius: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+                justifyContent: 'center',
+                   // alignItems:'center',
+                marginTop: Metrics.smallMargin * Metrics.screenWidth * 0.002,
+                      // marginBottom:10,
+                backgroundColor: Colors.flBlue[data.style.barColor]
+              }}>
+                <View style={{ flex: 1, margin: 5 }}>
+                  <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                      <Text allowFontScaling={false} style={{
+                        color: Colors.flBlue[data.style.color],
+                        marginLeft: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002,
+                        fontSize: Fonts.size.xm,
+                        marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.002
+                      }}>{data && data.link ? data.link.desc : null }</Text>
+                      {data && data.link
+                            ? <Flb name='chevron-right' style={{
+                            //  marginBottom: Metrics.smallMargin * Metrics.screenWidth * 0.002,
+                              marginLeft: Metrics.smallMargin * Metrics.screenWidth * 0.003,
+                              color: Colors.flBlue[data.style.color] }}
+                              size={Metrics.icons.small * Metrics.screenWidth * 0.002} /> : <View />}
+                    </View>
+                  </View>
                 </View>
-              </TouchableOpacity>
-            </View>)}
-          rightOpenValue={this.props.isPortrait ? -90 : -380}
-          />)
+              </View>
+            </TouchableOpacity>
+
+          </View>
+        </View>
+      </View>
+    </Swipeout>
+
+          )}
+
+/>
+
+        }
+
+        </View>
+
+      )
     } else if (this.props.error != null) {
       Alert.alert(
         'Notification',
@@ -253,7 +415,7 @@ const mapStateToProps = (state) => {
     fetching: state.Notification.fetching,
     notification: state.Notification.notification,
     error: state.Notification.error,
-    isPortrait: state.setting.isPortrait
+    count: state.Notification.count
   }
 }
 
@@ -264,8 +426,7 @@ const mapDispatchToProps = (dispatch) => {
     onLocalNotification: (localNotification) => dispatch(NotificationActions.onLocalNotification(localNotification)),
     postArchive: (archiveObject) => dispatch(NotificationActions.postArchive(archiveObject)),
     markAllRead: (allRead) => dispatch(NotificationActions.markAllRead(allRead)),
-    deleteNotification: (messageId) => dispatch(NotificationActions.deleteNotification(messageId)),
-    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
+    deleteNotification: (newData) => dispatch(NotificationActions.deleteNotification(newData))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationsView)

@@ -30,7 +30,8 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 
 const theme = getTheme()
 const screen = Dimensions.get('window')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -148,41 +149,41 @@ class ProviderMap extends Component {
         {this.props.isPortrait ? <View>{this.props.provider.data.providerList
           ? <View style={styles.container}>
             <MapView
-                style={[styles.map, {height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.55) : Metrics.screenHeight - (Metrics.screenHeight * 0.5655), width: Metrics.screenWidth}]}
-                showsUserLocation
-                loadingEnabled
-                onRegionChangeComplete={this._onRegionChange}
-                region={{
-                  latitude: this.state.currentLat,
-                  longitude: this.state.currentLong,
-                  latitudeDelta: LATITUDE_DELTA,
-                  longitudeDelta: LONGITUDE_DELTA
-                }}>
-                {this.props.provider && this.props.provider.data.providerLocationList.map((provider, index) => this._renderMapMarkers(provider, index))}
+              style={[styles.map, {height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.55) : Metrics.screenHeight - (Metrics.screenHeight * 0.5655), width: Metrics.screenWidth}]}
+              showsUserLocation
+              loadingEnabled
+              onRegionChangeComplete={this._onRegionChange}
+              region={{
+                latitude: this.state.currentLat,
+                longitude: this.state.currentLong,
+                latitudeDelta: LATITUDE_DELTA,
+                longitudeDelta: LONGITUDE_DELTA
+              }}>
+              {this.props.provider && this.props.provider.data.providerLocationList.map((provider, index) => this._renderMapMarkers(provider, index))}
 
-              </MapView>
+            </MapView>
             <HideableView visible={this.state.showLocationDetail} style={[styles.locationDetailContainer, {top: (Platform.OS === 'ios') ? Metrics.textHeight2 * Metrics.screenHeight * 0.009 : Metrics.textHeight2 * Metrics.screenHeight * 0.008}]} removeWhenHidden>
-                <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003}} showsButtons showsPagination={false}
-                  width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
-                  height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.49)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
-                  bottom={(Platform.OS === 'ios') ? 0 : -Metrics.textHeight * Metrics.screenHeight * 0.0013}
-                  nextButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
+              <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.003}} showsButtons showsPagination={false}
+                width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.08)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
+                height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.49)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
+                bottom={(Platform.OS === 'ios') ? 0 : -Metrics.textHeight * Metrics.screenHeight * 0.0013}
+                nextButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
                                             // fontWeight:'400',
-                    marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
-                    color: Colors.flBlue.grey3,
-                    marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
-                  onMomentumScrollEnd={this._locationSwiped}
-                  prevButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
+                  marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
+                  color: Colors.flBlue.grey3,
+                  marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
+                onMomentumScrollEnd={this._locationSwiped}
+                prevButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045,
                                             // fontWeight:'400',
-                    marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
-                    color: Colors.flBlue.grey3,
-                    marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
+                  marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
+                  color: Colors.flBlue.grey3,
+                  marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
 
                   >
 
-                  {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
-                </Swiper>
-              </HideableView>
+                {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
+              </Swiper>
+            </HideableView>
           </View>
         : <View style={styles.spinnerView}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
@@ -190,41 +191,41 @@ class ProviderMap extends Component {
         </View>}</View> : <ScrollView>{this.props.provider.data.providerList
           ? <View style={[styles.container, {flexDirection: 'row'}]}>
             <MapView
-                style={[styles.map, {height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.54) : Metrics.screenHeight - (Metrics.screenHeight * 0.5655), width: Metrics.screenWidth}]}
-                showsUserLocation
-                loadingEnabled
-                onRegionChangeComplete={this._onRegionChange}
-                region={{
-                  latitude: this.state.currentLat,
-                  longitude: this.state.currentLong,
-                  latitudeDelta: LATITUDE_DELTA,
-                  longitudeDelta: LONGITUDE_DELTA
-                }}>
-                {this.props.provider && this.props.provider.data.providerLocationList.map((provider, index) => this._renderMapMarkers(provider, index))}
+              style={[styles.map, {height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.54) : Metrics.screenHeight - (Metrics.screenHeight * 0.5655), width: Metrics.screenWidth}]}
+              showsUserLocation
+              loadingEnabled
+              onRegionChangeComplete={this._onRegionChange}
+              region={{
+                latitude: this.state.currentLat,
+                longitude: this.state.currentLong,
+                latitudeDelta: LATITUDE_DELTA,
+                longitudeDelta: LONGITUDE_DELTA
+              }}>
+              {this.props.provider && this.props.provider.data.providerLocationList.map((provider, index) => this._renderMapMarkers(provider, index))}
 
-              </MapView>
+            </MapView>
             <HideableView visible={this.state.showLocationDetail} style={[styles.locationDetailContainer, {top: (Platform.OS === 'ios') ? Metrics.textHeight2 * Metrics.screenHeight * 0.0087 : Metrics.textHeight2 * Metrics.screenHeight * 0.008}]} removeWhenHidden>
-                <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.00315}} showsButtons showsPagination={false}
-                  width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.10)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
-                  height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.398)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
-                  bottom={(Platform.OS === 'ios') ? 300 : -Metrics.textHeight * Metrics.screenHeight * 0.0013}
-                  nextButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045, bottom: 300,
+              <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.00315}} showsButtons showsPagination={false}
+                width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.10)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
+                height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.398)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
+                bottom={(Platform.OS === 'ios') ? 300 : -Metrics.textHeight * Metrics.screenHeight * 0.0013}
+                nextButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045, bottom: 300,
                                             // fontWeight:'400',
-                    marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
-                    color: Colors.flBlue.grey3,
-                    marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
-                  onMomentumScrollEnd={this._locationSwiped}
-                  prevButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045, bottom: 300,
+                  marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
+                  color: Colors.flBlue.grey3,
+                  marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
+                onMomentumScrollEnd={this._locationSwiped}
+                prevButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045, bottom: 300,
                                             // fontWeight:'400',
-                    marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
-                    color: Colors.flBlue.grey3,
-                    marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
+                  marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
+                  color: Colors.flBlue.grey3,
+                  marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
 
                   >
 
-                  {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
-                </Swiper>
-              </HideableView>
+                {this.props.provider && this.props.provider.data.providerList.map((provider) => this._renderLocationDetail(provider))}
+              </Swiper>
+            </HideableView>
           </View>
         : <View style={styles.spinnerView}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />

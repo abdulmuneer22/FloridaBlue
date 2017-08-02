@@ -12,6 +12,7 @@ import Flb from '../../../Themes/FlbIcon'
 import ModalDropdown from 'react-native-modal-dropdown'
 
 const Divider = () => { return <View style={styles.divider} /> }
+const Status = () => {return <View style={styles.status} /> }
 
 class GroupItem extends Component {
   constructor () {
@@ -23,10 +24,11 @@ class GroupItem extends Component {
       <View>
 
         <View style={styles.groupItemContainer}>
+          <Status />
+
           <View style={styles.groupColumnContainer}>
-            <Text allowFontScaling={false} style={styles.topText}>{this.props.data.name}
-            </Text>
-            <Text allowFontScaling={false} style={styles.bottomText}><Flb name="single" size={13} color={Colors.flBlue.anvil} style={styles.groupIcon} />  {this.props.data.owner}</Text>
+            <Text allowFontScaling={false} style={styles.topText}>{this.props.data.name}</Text>
+            <Text allowFontScaling={false} style={styles.bottomText}><Flb name='single' size={13} color={Colors.flBlue.anvil} style={styles.groupIcon} />  {this.props.data.owner}</Text>
           </View>
 
           <View style={styles.groupColumnContainer}>
@@ -34,7 +36,7 @@ class GroupItem extends Component {
           </View>
 
           <View style={styles.groupColumnContainer}>
-            <Flb name="chevron-right" size={10} color={Colors.flBlue.anvil} style={styles.itemChevron} />
+            <Flb name='chevron-right' size={10} color={Colors.flBlue.anvil} style={styles.itemChevron} />
           </View>
         </View>
 

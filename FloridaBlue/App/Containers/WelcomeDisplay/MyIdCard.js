@@ -17,9 +17,9 @@ import { Card } from 'native-base'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import Orientation from 'react-native-orientation'
 
-
 const window = Dimensions.get('window')
-let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
+let urlConfig = require('../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -40,24 +40,23 @@ class MyIdCard extends Component {
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
-      <View style={{marginRight: Metrics.textHeight * Metrics.screenWidth * 0.009 , justifyContent:'center',alignItems:'center'}}>
-      <Text allowFontScaling={false} style={styles.headerTextStyle}>
+      <View style={{marginRight: Metrics.textHeight * Metrics.screenWidth * 0.009, justifyContent: 'center', alignItems: 'center'}}>
+        <Text allowFontScaling={false} style={styles.headerTextStyle}>
           ID Card
       </Text>
       </View>
-      {/*<View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+      {/* <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
-      </View>*/}
+      </View> */}
     </Image>)
   }
 
   componentWillMount () {
-    const initial = Orientation.getInitialOrientation();
+    const initial = Orientation.getInitialOrientation()
     if (initial === 'PORTRAIT') {
-      Orientation.lockToPortrait();
+      Orientation.lockToPortrait()
       console.log('Hey, Im going to mount in P mode on ID Card')
     } else {
-
       console.log('Hey, Im going to mount in L mode on ID Card')
     }
   }
@@ -67,26 +66,25 @@ class MyIdCard extends Component {
     Orientation.addOrientationListener(this._orientationDidChange)
   }
 
-   _orientationDidChange (orientation) {
+  _orientationDidChange (orientation) {
     if (orientation === 'LANDSCAPE') {
       this.setState({isPortrait: false})
       console.log('Hey, Im in landscape mode on ID Card')
     } else {
-     console.log('Hey, Im in portrait mode on ID Card')
-     this.setState({isPortrait: true})
+      console.log('Hey, Im in portrait mode on ID Card')
+      this.setState({isPortrait: true})
     }
   }
 
-  componentWillUnmount() {
-        Orientation.unlockAllOrientations();
+  componentWillUnmount () {
+    Orientation.unlockAllOrientations()
 
     Orientation.getOrientation((err, orientation) => {
-      console.log(`Current Device Orientation: ${orientation}`);
-    });
-
+      console.log(`Current Device Orientation: ${orientation}`)
+    })
 
     // Remember to remove listener
-    Orientation.removeOrientationListener(this._orientationDidChange);
+    Orientation.removeOrientationListener(this._orientationDidChange)
   }
 
   toggle () {
@@ -95,136 +93,127 @@ class MyIdCard extends Component {
     })
   }
 
- _displayCondition () {
-
- if (this.props.fetching) {
+  _displayCondition () {
+    if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props && this.props.data &&  this.props.data.IdCardImage && this.props.data.IdCardImage.length !=0){
-        var str = this.props.planName && this.props.planName.planName
+    } else if (this.props && this.props.data && this.props.data.IdCardImage && this.props.data.IdCardImage.length != 0) {
+      var str = this.props.planName && this.props.planName.planName
 
-        console.tron.log('str'+str.indexOf("MYBLUE"))
-      return(
+      console.tron.log('str' + str.indexOf('MYBLUE'))
+      return (
         <View style={{margin: 5, flex: 1, alignItems: 'center', opacity: 0.9}}>
 
           <TouchableOpacity onPress={this.toggle}>
             <Image source={{uri: 'data:image/jpeg;base64,' + this.props.data.IdCardImage}} style={
-              Platform.OS === 'ios' ?{
-              flex: 1,
-              transform: [this.state.isPortrait ? {rotate: '270deg'} : {rotate: '270deg'}],
-              resizeMode: 'contain',
-              marginLeft:this.state.idCardHeaderVisible ?0:Metrics.baseMargin*Metrics.screenWidth*0.004,
-              width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.15) : Metrics.screenHeight
-            }:{
-              flex: 1,
-              transform: [{rotate: '270deg'}],
-              resizeMode: 'contain',
-              width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.13) : Metrics.screenHeight- Metrics.screenHeight * 0.03
-            }} >
+              Platform.OS === 'ios' ? {
+                flex: 1,
+                transform: [this.state.isPortrait ? {rotate: '270deg'} : {rotate: '270deg'}],
+                resizeMode: 'contain',
+                marginLeft: this.state.idCardHeaderVisible ? 0 : Metrics.baseMargin * Metrics.screenWidth * 0.004,
+                width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.15) : Metrics.screenHeight
+              } : {
+                flex: 1,
+                transform: [{rotate: '270deg'}],
+                resizeMode: 'contain',
+                width: this.state.idCardHeaderVisible ? (Metrics.screenHeight - Metrics.screenHeight * 0.13) : Metrics.screenHeight - Metrics.screenHeight * 0.03
+              }} >
               <View style={{flex: 1 }}>
-               {str.toUpperCase().indexOf("MYBLUE")>-1?
-                <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                {str.toUpperCase().indexOf('MYBLUE') > -1 ?
+                  <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
 
+                   <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin * Metrics.screenWidth * 0.02 : Metrics.smallMargin * Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.825)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.81)), alignItems: 'flex-start'}}>
 
-                  <View style={{flex: 0.5,marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.825)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.81)), alignItems: 'flex-start'}}>
+                   <View style={{flex: (Platform.OS === 'ios') ? 0.1 : 0.1, marginTop: (Platform.OS === 'ios') ? 3 : 0}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.MemberFirstName != undefined && this.props.data.MemberFirstName != null ? this.props.data.MemberFirstName : ''} {this.props.data && this.props.data.MemberLastName != undefined && this.props.data.MemberLastName != null ? this.props.data.MemberLastName : ''}</Text>
+                      </View>
 
-                    <View style={{flex:(Platform.OS === 'ios') ? 0.1:0.1, marginTop:(Platform.OS === 'ios') ?3:0}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.MemberFirstName !=undefined && this.props.data.MemberFirstName !=null ? this.props.data.MemberFirstName:''} {this.props.data && this.props.data.MemberLastName !=undefined && this.props.data.MemberLastName !=null ? this.props.data.MemberLastName:''}</Text>
-                    </View>
+                   <View style={{flex: 0.1}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Member Number </Text>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.MemberNumber != undefined && this.props.data.MemberNumber != null ? this.props.data.MemberNumber : ''}</Text>
+                      </View>
 
-                    <View style={{flex: 0.1}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Member Number </Text>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.MemberNumber !=undefined && this.props.data.MemberNumber !=null ? this.props.data.MemberNumber:''}</Text>
-                    </View>
+                   <View style={{flex: 0.12}} />
 
-                    <View style={{flex: 0.12}} />
+                   <View style={{flex: 0.08}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>  Group Number {this.props.data && this.props.data.GroupNumber != undefined && this.props.data.GroupNumber != null ? this.props.data.GroupNumber : ''} </Text>
+                      </View>
 
-                    <View style={{flex: 0.08}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>  Group Number {this.props.data && this.props.data.GroupNumber !=undefined && this.props.data.GroupNumber !=null ? this.props.data.GroupNumber:''} </Text>
-                    </View>
+                   <View style={{flex: 0.05}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}} />
+                      </View>
 
-                    <View style={{flex: 0.05}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}} />
-                    </View>
+                 </View>
 
-                  </View>
-
-                  <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.825)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.81)), alignItems: 'flex-start'}}>
-                    <View style={{flex:(Platform.OS === 'ios') ?0.1:0.1, marginTop:(Platform.OS === 'ios') ?3:0}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.BCBSNumber !=undefined && this.props.data.BCBSNumber !=null ? this.props.data.BCBSNumber:''} </Text>
-                    </View>
-                    <View style={{flex: 0.125}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXBIN !=undefined && this.props.data.RXBIN !=null ? this.props.data.RXBIN:'Rx BIN'}</Text>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXPCN !=undefined && this.props.data.RXPCN !=null ? this.props.data.RXPCN:'PCN'}</Text>
-                    </View>
-                    <View style={{flex: 0.15}} />
-                    <View style={{flex:(Platform.OS === 'ios') ?0.05:0.11}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Number: {this.props.data && this.props.data.PlanNumber !=undefined && this.props.data.PlanNumber !=null ? this.props.data.PlanNumber:''} </Text>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, marginRight:Metrics.baseMargin*Metrics.screenWidth*0.006,fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Name: {this.props.data && this.props.data.PlanName !=undefined && this.props.data.PlanName !=null ? this.props.data.PlanName:''}</Text>
-                    </View>
-                    <View style={{flex: 0.1}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,marginTop:10}}> </Text>
-                    </View>
-                  </View>
-                  </View>
+                   <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin * Metrics.screenWidth * 0.02 : Metrics.smallMargin * Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.825)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.81)), alignItems: 'flex-start'}}>
+                   <View style={{flex: (Platform.OS === 'ios') ? 0.1 : 0.1, marginTop: (Platform.OS === 'ios') ? 3 : 0}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.BCBSNumber != undefined && this.props.data.BCBSNumber != null ? this.props.data.BCBSNumber : ''} </Text>
+                      </View>
+                   <View style={{flex: 0.125}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXBIN != undefined && this.props.data.RXBIN != null ? this.props.data.RXBIN : 'Rx BIN'}</Text>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXPCN != undefined && this.props.data.RXPCN != null ? this.props.data.RXPCN : 'PCN'}</Text>
+                      </View>
+                      <View style={{ flex: 0.15 }} />
+                      <View style={{ flex: (Platform.OS === 'ios') ? 0.05 : 0.11 }}>
+                        {this.props.data && this.props.data.PlanNumber != undefined && this.props.data.PlanNumber != null ?
+                          <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025 }}>Plan Number: {this.props.data.PlanNumber} </Text> : null}
+                        {this.props.data && this.props.data.PlanName != undefined && this.props.data.PlanName != null ?
+                          <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.004, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022 }}>Plan Name: {this.props.data.PlanName}</Text> : null}
+                      </View>
+                   <View style={{flex: 0.1}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025, marginTop: 10}} />
+                      </View>
+                 </View>
+                 </View>
                   :
-                   <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-                   <View style={{flex: 0.5,marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.745)), alignItems: 'flex-start'}}>
+               <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                    <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin * Metrics.screenWidth * 0.02 : Metrics.smallMargin * Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.745)), alignItems: 'flex-start'}}>
 
-                    <View style={{flex:(Platform.OS === 'ios') ? 0.1:0.1, marginTop:(Platform.OS === 'ios') ?1:0}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.MemberFirstName !=undefined && this.props.data.MemberFirstName !=null ? this.props.data.MemberFirstName:''} {this.props.data && this.props.data.MemberLastName !=undefined && this.props.data.MemberLastName !=null ? this.props.data.MemberLastName:''}</Text>
+                      <View style={{flex: (Platform.OS === 'ios') ? 0.1 : 0.1, marginTop: (Platform.OS === 'ios') ? 1 : 0}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.MemberFirstName != undefined && this.props.data.MemberFirstName != null ? this.props.data.MemberFirstName : ''} {this.props.data && this.props.data.MemberLastName != undefined && this.props.data.MemberLastName != null ? this.props.data.MemberLastName : ''}</Text>
+                      </View>
+
+                      <View style={{flex: 0.1}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Member Number </Text>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.MemberNumber != undefined && this.props.data.MemberNumber != null ? this.props.data.MemberNumber : ''}</Text>
+                      </View>
+
+                      <View style={{flex: 0.12}} />
+
+                      <View style={{flex: 0.08}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>  Group Number {this.props.data && this.props.data.GroupNumber != undefined && this.props.data.GroupNumber != null ? this.props.data.GroupNumber : ''} </Text>
+                      </View>
+
+                      <View style={{flex: 0.12}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}} />
+                      </View>
+
                     </View>
 
-                    <View style={{flex: 0.1}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> Member Number </Text>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.MemberNumber !=undefined && this.props.data.MemberNumber !=null ? this.props.data.MemberNumber:''}</Text>
-                    </View>
-
-                    <View style={{flex: 0.12}} />
-
-                    <View style={{flex: 0.08}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>  Group Number {this.props.data && this.props.data.GroupNumber !=undefined && this.props.data.GroupNumber !=null ? this.props.data.GroupNumber:''} </Text>
-                    </View>
-
-                    <View style={{flex: 0.12}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}} />
+                    <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin * Metrics.screenWidth * 0.02 : Metrics.smallMargin * Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.745)), alignItems: 'flex-start'}}>
+                      <View style={{flex: (Platform.OS === 'ios') ? 0.1 : 0.1, marginTop: (Platform.OS === 'ios') ? 1 : 1.5}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.BCBSNumber != undefined && this.props.data.BCBSNumber != null ? this.props.data.BCBSNumber : ''} </Text>
+                      </View>
+                      <View style={{flex: 0.125}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXBIN != undefined && this.props.data.RXBIN != null ? this.props.data.RXBIN : 'Rx BIN'}</Text>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXPCN != undefined && this.props.data.RXPCN != null ? this.props.data.RXPCN : 'PCN'}</Text>
+                      </View>
+                      <View style={{ flex: 0.15 }} />
+                      <View style={{ flex: (Platform.OS === 'ios') ? 0.15 : 0.2 }}>
+                        {this.props.data && this.props.data.PlanNumber != undefined && this.props.data.PlanNumber != null ?
+                          <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025 }}>Plan Number: {this.props.data.PlanNumber} </Text> : null}
+                        {this.props.data && this.props.data.PlanName != undefined && this.props.data.PlanName != null ?
+                          <Text allowFontScaling={false} style={{ color: 'white', backgroundColor: Colors.transparent, marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.004, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022 }}>Plan Name: {this.props.data.PlanName}</Text> : null}
+                      </View>
+                      <View style={{flex: 0.1}}>
+                        <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025, marginTop: 10}} />
+                      </View>
                     </View>
 
                   </View>
-
-                   <View style={{flex: 0.5, marginLeft: this.state.idCardHeaderVisible ? Metrics.smallMargin*Metrics.screenWidth * 0.02:Metrics.smallMargin*Metrics.screenWidth * 0.025, height: this.state.idCardHeaderVisible ? (Metrics.screenHeight - (Metrics.screenHeight * 0.77)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.745)), alignItems: 'flex-start'}}>
-                    <View style={{flex:(Platform.OS === 'ios') ?0.1:0.1, marginTop:(Platform.OS === 'ios') ?1:1.5}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.BCBSNumber !=undefined && this.props.data.BCBSNumber !=null ? this.props.data.BCBSNumber:''} </Text>
-                    </View>
-                    <View style={{flex: 0.125}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXBIN !=undefined && this.props.data.RXBIN !=null ? this.props.data.RXBIN:'Rx BIN'}</Text>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}> {this.props.data && this.props.data.RXPCN !=undefined && this.props.data.RXPCN !=null ? this.props.data.RXPCN:'PCN'}</Text>
-                    </View>
-                    <View style={{flex: 0.15}} />
-                    <View style={{flex:(Platform.OS === 'ios') ?0.15:0.2}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>Plan Number: {this.props.data && this.props.data.PlanNumber !=undefined && this.props.data.PlanNumber !=null ? this.props.data.PlanNumber:''} </Text>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, marginRight:Metrics.baseMargin*Metrics.screenWidth*0.004,fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0022}}>Plan Name: {this.props.data && this.props.data.PlanName !=undefined && this.props.data.PlanName !=null ? this.props.data.PlanName:''}</Text>
-                    </View>
-                    <View style={{flex: 0.1}}>
-                      <Text allowFontScaling={false} style={{color: 'white', backgroundColor: Colors.transparent, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,marginTop:10}}> </Text>
-                    </View>
-                  </View>
-
-                    </View>
                   }
-
-
-
-
-
-
-
-
-
-
-
 
               </View>
 
@@ -232,12 +221,10 @@ class MyIdCard extends Component {
 
           </TouchableOpacity>
 
-
         </View>)
-        }else if (this.props.error != null && this.props.error.idCardWebviewURL != undefined) {
-
-             NavigationActions.MyView({responseURL: this.props.error.idCardWebviewURL})
-    }else if (this.props.error != null) {
+    } else if (this.props.error != null && this.props.error.idCardWebviewURL != undefined) {
+      NavigationActions.MyView({responseURL: this.props.error.idCardWebviewURL})
+    } else if (this.props.error != null) {
       Alert.alert(
         'ID Card',
        'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
@@ -246,8 +233,7 @@ class MyIdCard extends Component {
 
         ])
     }
-
-}
+  }
 
   render () {
     return (
@@ -256,9 +242,9 @@ class MyIdCard extends Component {
           {this._renderHeader()}
         </HideableView>
 
-       <View style={{flex:1}}>
-         {this._displayCondition()}
-         </View>
+        <View style={{flex: 1}}>
+          {this._displayCondition()}
+        </View>
 
       </View>
     )

@@ -35,14 +35,14 @@ class Panel extends Component {
     })
 
     this.state.animation.setValue(initialValue)
-    /*Animated.spring(
+    /* Animated.spring(
             this.state.animation,
       {
         toValue: finalValue
       }
         ).start()
         */
-    Animated.timing(this.state.animation, {toValue: finalValue}).start();
+    Animated.timing(this.state.animation, {toValue: finalValue}).start()
   }
 
   _setMaxHeight (event) {
@@ -79,7 +79,7 @@ class Panel extends Component {
             <Text allowFontScaling={false} style={styles.title}>{this.state.title}</Text>
 
             <Flb name={icon} size={Metrics.icons.tiny * Metrics.screenWidth * 0.0025} style={{ marginTop: 15, backgroundColor: Colors.transparent }}
-              color={Colors.flBlue.purple} />
+              color={Colors.flBlue.grey3} />
 
           </View>
 

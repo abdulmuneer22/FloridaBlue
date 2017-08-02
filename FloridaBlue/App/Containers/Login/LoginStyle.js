@@ -53,7 +53,11 @@ export default StyleSheet.create({
     position: 'absolute',
     top: Metrics.baseMargin * Metrics.screenHeight * 0.0768,
     alignSelf: 'center'
-    // paddingHorizontal: Metrics.textHeight2 * Metrics.screenWidth * 0.004
+  },
+  touchSignRow: {
+    position: 'absolute',
+    top: Metrics.baseMargin * Metrics.screenHeight * 0.058,
+    alignSelf: 'center'
   },
   signUpButton: {
     width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.056 : Metrics.baseMargin * Metrics.screenWidth * 0.060,
@@ -70,11 +74,11 @@ export default StyleSheet.create({
   },
   touchLoginContainer: {
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   textFieldContainer: {
     height: Metrics.baseMargin * Metrics.screenWidth * 0.012,
-    width:  Metrics.baseMargin * Metrics.screenWidth * 0.08,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.08,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003
   },
   fingerprintContainer: {
@@ -83,9 +87,9 @@ export default StyleSheet.create({
     marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.003
   },
   fingerprintButton: {
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.004
   },
   fingerprint: {
@@ -97,11 +101,11 @@ export default StyleSheet.create({
   touchInstruction: {
     textAlign: 'center',
     color: Colors.flBlue.grey3,
-    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027,
-    height: Metrics.baseMargin * Metrics.screenHeight * 0.0033
+    fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0027
   },
   touchCheckbox: {
-    marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0005
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
+    width: Metrics.baseMargin * Metrics.screenHeight * 0.0025
   },
   link: {
     color: Colors.flBlue.ocean,
@@ -152,7 +156,7 @@ export default StyleSheet.create({
   },
   spinnerView: {
     alignSelf: 'center',
-     justifyContent: 'center',
+    justifyContent: 'center'
     // width: window.width *0.5,
     // height: window.height*0.5
   },
@@ -166,19 +170,19 @@ export default StyleSheet.create({
   },
   popoverContent: {
     backgroundColor: Colors.flBlue.snow,
-    borderRadius: 8,
+    borderRadius: 8
   },
   popoverArrow: {
-    borderTopColor: Colors.flBlue.snow,
+    borderTopColor: Colors.flBlue.snow
   },
   popoverButton: {
-    color: Colors.flBlue.ocean
+    color: Colors.flBlue.grey4
   },
   popoverItem: {
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0007,
-    paddingHorizontal: Metrics.baseMargin * Metrics.screenWidth * 0.003,
+    paddingHorizontal: Metrics.baseMargin * Metrics.screenWidth * 0.003
   },
   popoverLogo: {
     paddingLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002,

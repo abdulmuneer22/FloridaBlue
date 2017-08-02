@@ -33,7 +33,6 @@ import LogoView from './LogoView'
 import SignUpView from './SignUpView'
 import Clouds from './Clouds'
 import CityScape from './CityScape'
-// import { Spinner } from 'native-base'
 import HideableView from 'react-native-hideable-view'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 
@@ -200,7 +199,7 @@ class Login extends Component {
               <TouchableOpacity style={styles.agentLinkContainer} onPress={() => {
                 NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
                 gaTracker.trackEvent('Login', 'Forgot Password')
- }}>
+              }}>
                 <Text allowFontScaling={false} style={styles.agentLink}>{I18n.t('forgotPassword')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.agentLinkContainer} onPress={this._handleMemberLogin}>

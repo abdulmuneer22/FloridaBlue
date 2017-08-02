@@ -18,6 +18,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.bg2
   },
+  container1: {
+    flex: 1,
+    backgroundColor: Colors.snow
+  },
   headerContainer: {
     flexDirection: 'row',
     height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,

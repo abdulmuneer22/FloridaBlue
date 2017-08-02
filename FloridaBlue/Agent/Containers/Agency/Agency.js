@@ -1,17 +1,21 @@
 // @flow
 
 import React, { Component, PropTypes } from 'react'
-import { View, StatusBar, AppState, Text, Image, ScrollView } from 'react-native'
+import { View, StatusBar, AppState, Text, Image, TouchableHighlight, TouchableOpacity, ScrollView } from 'react-native'
 import NavigationRouter from '../../../Navigation/NavigationRouter'
 import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import styles from './AgencyStyle'
 import SettingActions from '../../Redux/SettingRedux'
-import {Metrics, Images} from '../../Themes/'
-import AgencyCard from './Components/AgencyCard'
+import {Metrics, Images, Colors} from '../../Themes/'
+import Flb from '../../Themes/FlbIcon'
+import ModalDropdown from 'react-native-modal-dropdown'
+import AgencyItem from './Components/AgencyItem'
+import { MKProgress } from 'react-native-material-kit'
 
-var agencies = ['Agency 1', 'Agency 2', 'Agency 3']
+const Divider = () => { return <View style={styles.divider} /> }
+let agencies = require('./agencies.json')
 
 class Agency extends Component {
   constructor () {
@@ -24,12 +28,12 @@ class Agency extends Component {
 
   }
 
-  _openGroup(selectedAgent) {
+  _openGroup (selectedAgent) {
     console.tron.log(selectedAgent)
     NavigationActions.Group()
   }
 
-  _filterByType(index, value: string) {
+  _filterByType (index, value: string) {
     console.tron.log(value)
   }
 
@@ -47,8 +51,15 @@ class Agency extends Component {
     )
   }
 
-  _renderAgentItem(agent, index) {
-    return(
+  _renderDropdownRow(rowData, rowID, highlighted) {
+   return (
+      <TouchableHighlight underlayColor={Colors.snow}>
+        <Text style={styles.filterDropdownItem}>{rowData}</Text>
+      </TouchableHighlight>
+    )
+  }
+  _renderAgentItem (agent, index) {
+    return (
       <TouchableOpacity onPress={() => this._openGroup(agent)}>
         <AgencyItem data={agent} />
       </TouchableOpacity>
@@ -59,8 +70,23 @@ class Agency extends Component {
     return (
       <View>
         {this._renderHeader()}
+        <Text style={styles.agencyTitle}>Your Agencies</Text>
+        <MKProgress ref="agencyBar" style={styles.agencyBar} progress={0.45} progressColor={Colors.flBlue.ocean} bufferColor={Colors.flBlue.grey2} />
+
+        <Divider />
+        <View style={styles.filterContainer}>
+          <Text style={styles.filterNameTitle}>Name</Text>
+          <ModalDropdown options={_.map(agencies, 'type')} onSelect={this.filterByType} dropdownStyle={styles.filterDropdown} renderRow={this._renderDropdownRow.bind(this)}>
+            <View style={styles.filterTypeContainer}>
+              <Text style={styles.filterTypeTitle}>Type</Text>
+              <Flb name="caret-down-two" size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
+            </View>
+          </ModalDropdown>
+        </View>
+        <Divider />
+
         <ScrollView style={{marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0085}}>
-          {agencies.map((agency) => this._renderAgencyCard(agency))}
+          {agencies.map((agency) => this._renderAgentItem(agency))}
         </ScrollView>
       </View>
     )
