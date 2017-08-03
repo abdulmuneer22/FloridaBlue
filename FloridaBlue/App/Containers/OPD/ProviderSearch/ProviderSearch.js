@@ -576,7 +576,7 @@ class ProviderSearch extends Component {
               </View>
           : <View>{this.state._onChecked}</View>
 
-          : <Card style={styles.urgentCareContainer}>
+          : <View style={styles.urgentCareContainer}>
 
             <Flb name='close-delete' style={styles.dismissUrgentIcon}
               color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
@@ -596,7 +596,7 @@ class ProviderSearch extends Component {
                   color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
               </View>
             </View>
-          </Card>
+          </View>
 
           }
         </View>

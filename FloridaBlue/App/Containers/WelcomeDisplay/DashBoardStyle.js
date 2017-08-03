@@ -446,7 +446,10 @@ export default StyleSheet.create({
     // borderColor: '#708090',
     position: 'absolute',
     bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
-    right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035
+    right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035,
+    borderWidth: 1,
+    borderRadius: Metrics.screenWidth * 1,
+    borderColor: Colors.flBlue.grey1
   },
   dismissPayByPhone: {
     marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
