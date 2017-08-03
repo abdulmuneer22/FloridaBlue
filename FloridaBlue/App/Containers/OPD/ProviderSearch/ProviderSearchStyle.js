@@ -284,7 +284,7 @@ export default StyleSheet.create({
     height: Metrics.screenWidth * 0.9,
     flex: 1,
    // zIndex: -1,
-    // backgroundColor:Colors.snow,
+    backgroundColor:Colors.snow,
     borderWidth: 1,
     borderRadius: Metrics.screenWidth * 1,
     borderColor: Colors.flBlue.grey1,
