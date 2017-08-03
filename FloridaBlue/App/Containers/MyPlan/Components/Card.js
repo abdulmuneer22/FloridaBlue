@@ -101,7 +101,7 @@ class Card extends Component {
           justifyContent: 'center',
           marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
         // marginRight :
-        // marginTop : 10,
+        marginTop : -160,
           marginBottom: window.width * 0.03
 
         }}>
