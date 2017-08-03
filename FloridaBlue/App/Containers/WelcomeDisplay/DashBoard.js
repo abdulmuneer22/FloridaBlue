@@ -20,6 +20,7 @@ import MyPlanCard from './Components/MyPlanCard'
 import Card from './Components/Card'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
 import styles from './DashBoardStyle'
+import SettingActions from '../../Redux/SettingRedux'
 import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import MemberActions from '../../Redux/MemberRedux'
@@ -34,8 +35,6 @@ import DeviceInfo from 'react-native-device-info'
 import NotificationActions from '../../Redux/NotificationRedux'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import Orientation from 'react-native-orientation'
-import SettingActions from '../../Redux/SettingRedux'
-
 
 const theme = getTheme()
 let urlConfig = require('../../UrlConfig')

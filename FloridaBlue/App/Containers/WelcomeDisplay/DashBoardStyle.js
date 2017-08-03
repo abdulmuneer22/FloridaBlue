@@ -383,7 +383,7 @@ export default StyleSheet.create({
   textBackground2: {
 
     flex: 1,
-    flexDirection: 'column',
+   // flexDirection: 'column',
     backgroundColor: Colors.bg2
    // padding: Metrics.mediumMargin,
   //  justifyContent: 'space-between',

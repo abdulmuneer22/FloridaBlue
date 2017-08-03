@@ -78,35 +78,7 @@ class Payments extends Component {
       />)
   }
 
-  _handleCall (phone) {
-    console.tron.log(phone)
-    const url = `tel:${phone}`
-
-    Linking.canOpenURL(url).then(supported => {
-      if (supported) {
-        Linking.openURL(url)
-      } else {
-        console.tron.log('Don\'t know how to open URI: ')
-      }
-    })
-  }
-
-  _handleCall (phone) {
-    console.tron.log(phone)
-    const url = `tel:${phone}`
-
-    Linking.canOpenURL('tel:1-800-841-2900').then(supported => {
-      if (supported) {
-        Linking.openURL('tel:1-800-841-2900')
-      } else {
-        console.tron.log('Don\'t know how to open URI: ')
-      }
-    })
-  }
-
   render () {
-    var texts = []
-    var i = 0
     return (
       <View style={styles.container}>
         {this.props.isPortrait ?
@@ -116,50 +88,55 @@ class Payments extends Component {
         : null}
 
         <View style={styles.textBackground2}>
-          <ScrollView showsVerticalScrollIndicator={false} >
-            {this.props.data
-             ? <View >
-               {this.props.data && this.props.data.support
-                    ? <View style={{flex: 1, flexDirection: 'column'}}>
-                      <View style={{flex: 1, flexDirection: 'column'}}>
-                        <View style={{flex: 0.3, marginTop: this.props.isPortrait ? 220 : 265, marginLeft: -50, marginRight: 0}}>
-                          <Text allowFontScaling={false} style={{color: Colors.flBlue.ocean, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0045, transform: [{rotate: '270deg'}], top: 100, left: -120}}>Pay in Person</Text>
-                          <Text style={{transform: [{rotate: '270deg'}], bottom: 150, textAlign: 'right', width: 230, right: 20, color: Colors.flBlue.anvil}}> Accepted at the following retailers: <Image source={Images.claimlistsearch} /></Text>
+          <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
+           
+               <View style={{flex: 1, flexDirection: 'column', justifyContent:'center'}}>
+                      <View style={{flex: 1, flexDirection: 'column',}}>
+                        <View style={{flex: 0.3, marginTop: this.props.isPortrait ? 220 : 265, marginLeft: -50}}>
+                          <Text allowFontScaling={false} style={{color: Colors.flBlue.ocean, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0045, 
+                          transform: [{rotate: '270deg'}], top: 60, left: -100}}>Pay in Person</Text>
+                         
+                          <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,transform: [{rotate: '270deg'}], bottom: 100, textAlign: 'right', width: 250, right: 40}}>Accepted at the following retailers: 
+                            
+                           </Text>
+                           <Image style={{transform: [{rotate: '270deg'}], left:75, bottom:200}} source={Images.claimlistsearch} />
+                            <Image style={{transform: [{rotate: '270deg'}], left:75, bottom:120}} source={Images.claimlistsearch} />
+                           
                         </View>
-                        <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center', right: 40, top: -30}}>
+                        <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center', right: 30}}>
 
-                          <View style={{borderBottomWidth: 1, borderBottomColor: Colors.flBlue.grey2, width: 545, transform: [{rotate: '270deg'}], right: -80, top: 14}} />
+                          <View style={{borderBottomWidth: 1, borderBottomColor: Colors.flBlue.grey2, width: Metrics.screenHeight, 
+                          transform: [{rotate: '270deg'}], bottom:75, right: -60}} />
                           {this._renderBarCode()}
+                        </View>
+                        <View style={{flex: 0.2, flexDirection:'column',top:20, justifyContent:'center'}}>
+                          <Flb name='warning' size={Metrics.icons.regular * Metrics.screenWidth * 0.0025}
+                          color={Colors.flBlue.anvil} style={{transform: [{rotate: '270deg'}], bottom: 100, left: 65}} />
+                          <Text style={{transform: [{rotate: '270deg'}], 
+                          bottom: 250,left:-15, fontWeight: '500', width: 480,
+                          }}>Sales Associate: Scan the barcode above, enter the amount the customer wishes to pay and tender the transaction as normal.</Text>
+                          <View style={{borderBottomWidth: 1, borderBottomColor: Colors.flBlue.grey2, width: Metrics.screenHeight, transform: [{rotate: '270deg'}], 
+                          right: 20, bottom: 230}} />
 
-                          
                         </View>
                         <View style={{flex: 0.2}}>
-                          <Flb name='warning' size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.anvil} style={{transform: [{rotate: '270deg'}], bottom: 40, left: 75}} />
-                          <Text style={{transform: [{rotate: '270deg'}], bottom: 180, left: 10, fontWeight: '500', width: 500, textAlign: 'left', color: Colors.flBlue.anvil}}>Sales Associate: Scan the barcode above, enter the amount the customer wishes to pay and tender the transaction as normal.</Text>
-                          <View style={{borderBottomWidth: 1, borderBottomColor: Colors.flBlue.grey2, width: 545, transform: [{rotate: '270deg'}], right: -25, bottom: 160}} />
-
-                        </View>
-                        <View style={{flex: 0.2}}>
-                          <TouchableOpacity>
-                            <Text style={{transform: [{rotate: '270deg'}], bottom: 190, left: 70, fontWeight: '500', width: 500, textAlign: 'left', textDecorationLine: 'underline', color: Colors.flBlue.teal}}>See Payment Details</Text>
-                            <Flb name='chevron-right' size={Metrics.icons.regular * Metrics.screenWidth * 0.0010} color={Colors.flBlue.teal} style={{transform: [{rotate: '270deg'}], bottom: 280, left: 135}} />
+                          <TouchableOpacity style={{flex: 0.2,width:0, flexDirection:'row'}}>
+                            <Text  allowFontScaling={false} style={{transform: [{rotate: '270deg'}], bottom: 100, 
+                            left: 190, fontWeight: '500', 
+                            width: 200, textAlign: 'left',
+                            fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
+                            textDecorationLine: 'underline', color: Colors.flBlue.teal}}>See Payment Details
+                           </Text>
+                            <Flb name='chevron-right' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} 
+                            style={{transform: [{rotate: '270deg'}], bottom:160, left:83}} />
                           </TouchableOpacity>
                         </View>
                         <TouchableOpacity><Flb name='delete-circle' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} style={{transform: [{rotate: '270deg'}], bottom: 649, left: 155}} /></TouchableOpacity>
                       </View>
 
-                      
-                    </View>
-                    : <Text allowFontScaling={false}>
-                           Loading ..
-                         </Text>}
+                     
+            
              </View>
-             : <View style={{alignItems: 'center', justifyContent: 'center'}}>
-               <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-               <Text allowFontScaling={false} style={styles.spinnerText}>
-                   Loading Please Wait
-                 </Text>
-             </View>}
           </ScrollView>
         </View>
       </View>
