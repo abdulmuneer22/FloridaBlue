@@ -35,8 +35,6 @@ import DeviceInfo from 'react-native-device-info'
 import NotificationActions from '../../Redux/NotificationRedux'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import Orientation from 'react-native-orientation'
-import SettingActions from '../../Redux/SettingRedux'
-
 
 const theme = getTheme()
 let urlConfig = require('../../UrlConfig')
