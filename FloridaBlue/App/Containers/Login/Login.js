@@ -3,6 +3,7 @@ import {
   Alert,
   Text,
   View,
+  ScrollView,
   Keyboard,
   TextInput,
   TouchableOpacity,
@@ -780,13 +781,13 @@ class Login extends Component {
       <View style={{position: 'absolute',
         top: 0,
         left: 0,
-        width: window.width,
+        width: this.state.isPortrait ? window.width : window.width * 1.78,
         height: window.height,
         opacity: transparent,
         backgroundColor: Colors.snow
       }} >
 
-        <View style={styles.container}>
+      {this.state.isPortrait ? <View style={styles.container}>
 
           <Image source={Images.background} style={styles.backgroundImage} />
 
@@ -830,7 +831,53 @@ class Login extends Component {
             </View>
           </View>
 
-        </View>
+        </View>: <ScrollView style={styles.container}>
+
+          <Image source={Images.background} style={styles.backgroundImageLandscape} />
+
+          <Clouds />
+          <CityScape />
+
+          <View keyboardShouldPersistTaps='always' style={styles.container}>
+
+            <LogoView>
+              <Image source={Images.clearLogo} style={styles.logo} />
+            </LogoView>
+
+            { Platform.OS === 'ios' && this.state.touchAvailable ?
+                this._renderTouchAvailableLogin()
+              :
+                this._renderLogin()
+            }
+
+            <SignUpView>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+                gaTracker.trackEvent('Login', 'Forgot Password')
+              }}>
+                <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.screen_1()
+                gaTracker.trackEvent('Login', 'Sign Up')
+              }}>
+                <Image style={styles.signUpButton} source={Images.signUpButton} />
+              </TouchableOpacity>
+            </SignUpView>
+          </View>
+
+          <View style={styles.footer}>
+            <View>
+              <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
+            </View>
+            <View>
+              { this._infoMenu() }
+            </View>
+          </View>
+
+        </ScrollView>}
+
+        
       </View>
     )
   }
@@ -873,3 +920,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
+
+

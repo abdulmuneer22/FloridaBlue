@@ -22,6 +22,13 @@ export default StyleSheet.create({
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.25),
     resizeMode: 'stretch'
   },
+  backgroundImageLandscape: {
+    position: 'absolute',
+    top: 0,
+    width: Metrics.screenWidth * 1.78,
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.25),
+    resizeMode: 'stretch'
+  },
   centered: {
     alignItems: 'center'
   },
