@@ -74,7 +74,7 @@ class MyPlanScreen extends Component {
       var message = this.props.data.errorMessage
       return (
         <View style={styles.container}>
-
+ 
           <Card style={styles.planNameView}>
 
             { this.props.data.annualDeductible || this.props.data.oop
@@ -84,9 +84,9 @@ class MyPlanScreen extends Component {
 
              : <Text />
            }
-          </Card>
+          </Card> 
 
-          <View style={styles.chartWrapper}>
+          <View style={this.props.isPortrait ? styles.chartWrapper : styles.chartWrapperLandscape}>
             {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} isPortrait={this.props.isPortrait}/>
 
               : Alert.alert(

@@ -66,14 +66,14 @@ export default StyleSheet.create({
 
   chartWrapper: {
      // backgroundColor : 'yellow',
-    flex: 0.6
-   // marginBottom: 15
+    flex: 0.6,
+   marginBottom: 500
   },
   chartWrapperLandscape: {
      // backgroundColor : 'yellow',
     flex: 0.6,
-    marginLeft: 20
-   // marginBottom: 15
+    marginLeft: 20,
+   marginBottom: 160
   },
   cardStyle: {
     flexWrap: 'wrap',

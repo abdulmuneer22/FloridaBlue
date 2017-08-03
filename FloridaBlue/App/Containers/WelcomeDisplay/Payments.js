@@ -69,10 +69,11 @@ class Payments extends Component {
     return (<Image source={{uri: 'data:image/jpeg;base64,'
     + 'iVBORw0KGgoAAAANSUhEUgAAAMgAAAAiCAMAAAAtWWZIAAAAHnRFWHRTb2Z0d2FyZQBid2lwLWpzLm1ldGFmbG9vci5jb21Tnbi0AAAABlBMVEUAAAAAAAClZ7nPAAAAAnRSTlMA/1uRIrUAAABpSURBVHic7c/BDcAwCENRe/+lKwgO7QiV/iUyCJI82bJk16EO1fC76KyKJ3fXGemuPtWZmzArStzad3Z/sBtzr3VfctaUv6a9Y0CAAAECBAgQIECAAAECBAgQIECAAAECBAgQIED+BnkAXYAMwYW/U1QAAAAASUVORK5CYII='}}
       style={{
-        width: 400,
-        height: Metrics.textHeight*Metrics.screenHeight*0.003,
+        width: Metrics.textHeight*Metrics.screenHeight*0.1,
+        height: 80,
+        resizeMode:'contain',
         transform: [{rotate: '270deg'}],
-        top: -90
+        top: -40
       }}
       />)
   }
@@ -130,7 +131,7 @@ class Payments extends Component {
                             style={{transform: [{rotate: '270deg'}], bottom:160, left:83}} />
                           </TouchableOpacity>
                         </View>
-                        <TouchableOpacity><Flb name='delete-circle' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} style={{transform: [{rotate: '270deg'}], bottom: 790, left: 150}} /></TouchableOpacity>
+                        <TouchableOpacity><Flb name='delete-circle' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} style={{transform: [{rotate: '270deg'}], bottom: 649, left: 155}} /></TouchableOpacity>
                       </View>
 
                      
