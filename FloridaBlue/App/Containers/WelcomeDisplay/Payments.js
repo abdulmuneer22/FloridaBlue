@@ -70,10 +70,10 @@ class Payments extends Component {
     + 'iVBORw0KGgoAAAANSUhEUgAAAMgAAAAiCAMAAAAtWWZIAAAAHnRFWHRTb2Z0d2FyZQBid2lwLWpzLm1ldGFmbG9vci5jb21Tnbi0AAAABlBMVEUAAAAAAAClZ7nPAAAAAnRSTlMA/1uRIrUAAABpSURBVHic7c/BDcAwCENRe/+lKwgO7QiV/iUyCJI82bJk16EO1fC76KyKJ3fXGemuPtWZmzArStzad3Z/sBtzr3VfctaUv6a9Y0CAAAECBAgQIECAAAECBAgQIECAAAECBAgQIED+BnkAXYAMwYW/U1QAAAAASUVORK5CYII='}}
       style={{
         width: Metrics.textHeight*Metrics.screenHeight*0.1,
-        height: 80,
+        height: Metrics.textHeight*Metrics.screenHeight*0.003,
         resizeMode:'contain',
         transform: [{rotate: '270deg'}],
-        top: -40
+        top: -Metrics.textHeight*Metrics.screenHeight*0.005
       }}
       />)
   }
@@ -92,46 +92,61 @@ class Payments extends Component {
            
                <View style={{flex: 1, flexDirection: 'column', justifyContent:'center'}}>
                       <View style={{flex: 1, flexDirection: 'column',}}>
-                        <View style={{flex: 0.3, marginTop: this.props.isPortrait ? 220 : 265, marginLeft: -50}}>
+                        <View style={{flex: 0.3, marginTop: this.props.isPortrait ? Metrics.screenWidth-Metrics.screenWidth*0.35 : Metrics.screenWidth-Metrics.screenWidth*0.28, marginLeft: -Metrics.textHeight2*Metrics.screenHeight*0.0013}}>
                           <Text allowFontScaling={false} style={{color: Colors.flBlue.ocean, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0045, 
-                          transform: [{rotate: '270deg'}], top: 60, left: -100}}>Pay in Person</Text>
+                          transform: [{rotate: '270deg'}], top: Metrics.screenHeight-Metrics.screenHeight*0.9, left: -Metrics.textHeight2-Metrics.screenHeight*0.09}}>Pay in Person</Text>
                          
-                          <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil, fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,transform: [{rotate: '270deg'}], bottom: 100, textAlign: 'right', width: 250, right: 40}}>Accepted at the following retailers: 
+                          <Text allowFontScaling={false} 
+                          style={{color: Colors.flBlue.anvil, 
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
+                          transform: [{rotate: '270deg'}], 
+                          bottom: Metrics.payment2-Metrics.screenWidth*0.001, 
+                         // textAlign: 'right', 
+                          width: Metrics.screenHeight-Metrics.screenWidth*0.99, 
+                          right: Metrics.doubleBaseMargin*Metrics.screenHeight*0.004}}>Accepted at the following retailers: 
                             
                            </Text>
-                           <Image style={{transform: [{rotate: '270deg'}], left:75, bottom:200}} source={Images.claimlistsearch} />
-                            <Image style={{transform: [{rotate: '270deg'}], left:75, bottom:120}} source={Images.claimlistsearch} />
+                           <Image style={{transform: [{rotate: '270deg'}], left:Metrics.textHeight*Metrics.screenHeight*0.003, bottom:Metrics.payment3-Metrics.screenWidth*0.001}} source={Images.claimlistsearch} />
+                            <Image style={{transform: [{rotate: '270deg'}], left:Metrics.textHeight*Metrics.screenHeight*0.003, bottom:Metrics.payment2-Metrics.screenWidth*0.009}} source={Images.claimlistsearch} />
                            
                         </View>
-                        <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center', right: 30}}>
+                        <View style={{flex: 0.3, alignItems: 'center', justifyContent: 'center', right: Metrics.doubleBaseMargin*Metrics.screenHeight*0.002}}>
 
                           <View style={{borderBottomWidth: 1, borderBottomColor: Colors.flBlue.grey2, width: Metrics.screenHeight, 
-                          transform: [{rotate: '270deg'}], bottom:75, right: -60}} />
+                          transform: [{rotate: '270deg'}], bottom:Metrics.textHeight*Metrics.screenHeight*0.004, right: -Metrics.textHeight*Metrics.screenHeight*0.0025}} />
                           {this._renderBarCode()}
                         </View>
-                        <View style={{flex: 0.2, flexDirection:'column',top:20, justifyContent:'center'}}>
+                        <View style={{flex: 0.2, flexDirection:'column',top:Metrics.searchBarHeight*Metrics.screenWidth*0.005, justifyContent:'center'}}>
                           <Flb name='warning' size={Metrics.icons.regular * Metrics.screenWidth * 0.0025}
-                          color={Colors.flBlue.anvil} style={{transform: [{rotate: '270deg'}], bottom: 100, left: 65}} />
-                          <Text style={{transform: [{rotate: '270deg'}], 
-                          bottom: 250,left:-15, fontWeight: '500', width: 480,
-                          }}>Sales Associate: Scan the barcode above, enter the amount the customer wishes to pay and tender the transaction as normal.</Text>
+                          color={Colors.flBlue.anvil} style={{transform: [{rotate: '270deg'}], bottom: Metrics.screenWidth-Metrics.screenWidth*0.6, left: Metrics.textHeight*Metrics.screenHeight*0.003}} />
+                          <Text style={{transform: [{rotate: '270deg'}],
+                          bottom: Metrics.screenWidth-Metrics.screenWidth*0.2,
+                          //left:-Metrics.baseMargin*Metrics.screenHeight*0.0001, 
+                          fontWeight: '500', width: Metrics.screenHeight-Metrics.screenWidth*0.4,
+                          
+                          }}>
+                          Sales Associate: Scan the barcode above, enter the amount the customer wishes to pay and tender the transaction as normal.
+                          </Text>
                           <View style={{borderBottomWidth: 1, borderBottomColor: Colors.flBlue.grey2, width: Metrics.screenHeight, transform: [{rotate: '270deg'}], 
-                          right: 20, bottom: 230}} />
+                          right: Metrics.doubleBaseMargin*Metrics.screenHeight*0.002, bottom: Metrics.screenWidth-Metrics.screenWidth*0.2}} />
 
                         </View>
                         <View style={{flex: 0.2}}>
                           <TouchableOpacity style={{flex: 0.2,width:0, flexDirection:'row'}}>
-                            <Text  allowFontScaling={false} style={{transform: [{rotate: '270deg'}], bottom: 100, 
-                            left: 190, fontWeight: '500', 
-                            width: 200, textAlign: 'left',
+                            <Text  allowFontScaling={false} style={{transform: [{rotate: '270deg'}], bottom: Metrics.screenWidth-Metrics.screenWidth*0.7, 
+                            left: Metrics.payment*Metrics.screenHeight*0.00475, fontWeight: '500', 
+                            width: Metrics.screenWidth-Metrics.screenWidth*0.375, textAlign: 'left',
                             fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
                             textDecorationLine: 'underline', color: Colors.flBlue.teal}}>See Payment Details
                            </Text>
                             <Flb name='chevron-right' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} 
-                            style={{transform: [{rotate: '270deg'}], bottom:160, left:83}} />
+                            style={{transform: [{rotate: '270deg'}], bottom:Metrics.screenWidth-Metrics.screenWidth*0.5, left:Metrics.textHeight2*Metrics.screenHeight*0.0029}} />
                           </TouchableOpacity>
                         </View>
-                        <TouchableOpacity><Flb name='delete-circle' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} style={{transform: [{rotate: '270deg'}], bottom: 649, left: 155}} /></TouchableOpacity>
+                        <TouchableOpacity>
+                          <Flb name='delete-circle' size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.teal} 
+                          style={{transform: [{rotate: '270deg'}], bottom: Metrics.screenHeight*1.05, left: Metrics.textHeight2*Metrics.screenHeight*0.0048}} />
+                          </TouchableOpacity>
                       </View>
 
                      
