@@ -97,7 +97,7 @@ class NotificationsView extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage}>
       {NavItems.backButton()}
       <Text allowFontScaling={false} style={styles.headerTextStyle}>Notifications</Text>
       {NavItems.settingsButton()}
@@ -415,7 +415,8 @@ const mapStateToProps = (state) => {
     fetching: state.Notification.fetching,
     notification: state.Notification.notification,
     error: state.Notification.error,
-    count: state.Notification.count
+    count: state.Notification.count,
+    isPortrait: state.setting.isPortrait
   }
 }
 
@@ -426,7 +427,8 @@ const mapDispatchToProps = (dispatch) => {
     onLocalNotification: (localNotification) => dispatch(NotificationActions.onLocalNotification(localNotification)),
     postArchive: (archiveObject) => dispatch(NotificationActions.postArchive(archiveObject)),
     markAllRead: (allRead) => dispatch(NotificationActions.markAllRead(allRead)),
-    deleteNotification: (newData) => dispatch(NotificationActions.deleteNotification(newData))
+    deleteNotification: (newData) => dispatch(NotificationActions.deleteNotification(newData)),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationsView)
