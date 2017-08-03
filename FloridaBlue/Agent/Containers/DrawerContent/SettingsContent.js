@@ -161,7 +161,7 @@ class SettingsContent extends Component {
     this.props.clearLogin()
     RCTNetworking.clearCookies((cleared) => {})
     this.props.attemptLogout(this.props.logoutUrl)
-    NavigationActions.login({'origin': 'logout'})
+    NavigationActions.MemberLogin({'origin': 'logout'})
   }
 
   render () {
