@@ -351,7 +351,7 @@ class Login extends Component {
           })
           Alert.alert('Login', 'Oops! Looks like you’re having trouble connecting. Check your network and try again.',
             [
-          { text: 'OK', onPress: () => NavigationActions.login() }
+          { text: 'OK', onPress: () => NavigationActions.MemberLogin() }
 
             ],
         { cancelable: false }
