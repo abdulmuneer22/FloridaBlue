@@ -20,7 +20,6 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
 let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
-import SettingActions from '../../Redux/SettingRedux'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .withStyle(styles.spinner)
@@ -91,7 +90,6 @@ class SupportScreen extends Component {
              ? <View >
                {this.props.data && this.props.data.support
                     ? <View>
-                     
                       <View>{this.props.data.support.map(function (support, i) {
                         return (
 
@@ -165,15 +163,13 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.support.fetching,
     data: state.support.data,
-    error: state.support.error,
-    isPortrait: state.setting.isPortrait
+    error: state.support.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
-    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
+    attemptSupportScreen: () => dispatch(SupportActions.supportRequest())
   }
 }
 
