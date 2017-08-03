@@ -44,7 +44,7 @@ export default StyleSheet.create({
   filterContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Colors.flBlue.lightBlue
+    backgroundColor: Colors.bg2
   },
   filterNameTitle: {
     fontFamily: Fonts.type.base,
