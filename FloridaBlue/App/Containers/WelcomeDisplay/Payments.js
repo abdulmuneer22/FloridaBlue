@@ -35,7 +35,7 @@ class Payments extends Component {
   }
 
   _renderHeader() {
-    return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
+    return (<Image source={DeviceInfo.isTablet() ? Images.landscapeHeaderImage: Images.newHeaderImage} style={styles.headerContainer}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
         {NavItems.backButton()}
       </View>
