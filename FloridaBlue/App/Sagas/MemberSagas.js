@@ -6,6 +6,7 @@ import HsaActions from '../Redux/HsaRedux'
 import SupportActions from '../Redux/SupportRedux'
 import MyIdCardActions from '../Redux/MyIdCardRedux'
 import NotificationActions from '../Redux/NotificationRedux'
+import PaymentActions from '../Redux/PaymentRedux'
 
 // attempts to login
 export function * member (api, {smToken}) {
@@ -58,6 +59,7 @@ export function * member (api, {smToken}) {
     console.tron.log(memberSearchRequest)
     yield put(SupportActions.supportRequest())
     yield put(MyPlanActions.myplanRequest(data))
+    yield put(PaymentActions.paymentRequest(data))
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }
