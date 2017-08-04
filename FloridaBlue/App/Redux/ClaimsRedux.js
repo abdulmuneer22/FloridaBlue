@@ -25,7 +25,8 @@ const { Types, Creators } = createActions({
   changeStart: ['start'],
   changeEnd: ['end'],
   changeSortBy: ['sortBy'],
-  asyncClaimListRequest: ['data']
+  asyncClaimListRequest: ['data'],
+  changeMemberList: ['memberList']
 })
 
 export const ClaimsTypes = Types
@@ -46,7 +47,8 @@ export const INITIAL_STATE = Immutable({
   memberId: '',
   start: 1,
   end: 10,
-  sortBy: []
+  sortBy: [],
+  memberList: []
 })
 
 /* ------------- Reducers ------------- */
@@ -115,6 +117,9 @@ export const _changeEnd = (state: Object, {end}: Object) => state.merge({end})
 // sortBy
 export const _changeSortBy = (state: Object, {sortBy}: Object) => state.merge({sortBy})
 
+// end
+export const _changeMemberList = (state: Object, {memberList}: Object) => state.merge({memberList})
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -137,7 +142,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.CHANGE_START]: _changeStart,
   [Types.CHANGE_END]: _changeEnd,
   [Types.CHANGE_SORT_BY]: _changeSortBy,
-  [Types.ASYNC_CLAIM_LIST_REQUEST]: _asyncClaimListRequest
+  [Types.ASYNC_CLAIM_LIST_REQUEST]: _asyncClaimListRequest,
+  [Types.CHANGE_MEMBER_LIST] : _changeMemberList
 })
 
 /* ------------- Selectors ------------- */
