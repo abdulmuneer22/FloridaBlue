@@ -12,24 +12,38 @@
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(removeCredentials:(RCTResponseSenderBlock)callback) {
-  NSMutableArray *callbackArray = [NSMutableArray new];
-  
+RCT_EXPORT_METHOD(checkTouchStatus:(RCTResponseSenderBlock)callback) {
+  BOOL touchEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchEnabled"];
   NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-  BOOL touchExists = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchEnabled"];
+  NSMutableArray *callbackArray = [NSMutableArray new];
+  LAContext *myContext = [[LAContext alloc] init];
+  NSError *authError = nil;
+  __block NSString *authErrorCode = @"";
   
-  if (username != nil && touchExists) {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"touchEnabled"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    KeychainWrapper *keychain = [[KeychainWrapper alloc] init];
-    [keychain resetKeychainItem];
-    
-    [callbackArray addObject:@"SUCCESS"];
+  if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
+    if (touchEnabled && username != nil) {
+      [callbackArray addObject:@"AUTHENTICATED"];
+    } else if (touchEnabled && username == nil) {
+      [callbackArray addObject:@"ENABLED"];
+    } else {
+      [callbackArray addObject:@"DISABLED"];
+    }
   } else {
-    [callbackArray addObject:@"NO EXISTING CREDENTIALS"];
+    authErrorCode = [self handleAuthError:authError.code];
+    [callbackArray addObject:authErrorCode];
   }
+  
+  
+  callback(@[[NSNull null], callbackArray]);
+}
+
+RCT_EXPORT_METHOD(enableTouchID:(RCTResponseSenderBlock)callback) {
+  NSString *touchEnabled = @"YES";
+  [[NSUserDefaults standardUserDefaults] setObject:touchEnabled forKey:@"touchEnabled"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  
+  NSMutableArray *callbackArray = [NSMutableArray new];
+  [callbackArray addObject:@"ENABLED"];
   
   callback(@[[NSNull null], callbackArray]);
 }
@@ -57,6 +71,28 @@ RCT_EXPORT_METHOD(retrieveCredentials:(RCTResponseSenderBlock)callback) {
   callback(@[[NSNull null], callbackArray]);
 }
 
+RCT_EXPORT_METHOD(removeCredentials:(RCTResponseSenderBlock)callback) {
+  NSMutableArray *callbackArray = [NSMutableArray new];
+  
+  NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+  BOOL touchExists = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchEnabled"];
+  
+  if (username != nil && touchExists) {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"touchEnabled"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    KeychainWrapper *keychain = [[KeychainWrapper alloc] init];
+    [keychain resetKeychainItem];
+    
+    [callbackArray addObject:@"SUCCESS"];
+  } else {
+    [callbackArray addObject:@"NO EXISTING CREDENTIALS"];
+  }
+  
+  callback(@[[NSNull null], callbackArray]);
+}
+
 RCT_EXPORT_METHOD(storeCredentials:(NSString *)username password:(NSString *)password) {
   NSString *touchEnabled = @"YES";
   [[NSUserDefaults standardUserDefaults] setObject:touchEnabled forKey:@"touchEnabled"];
@@ -67,62 +103,6 @@ RCT_EXPORT_METHOD(storeCredentials:(NSString *)username password:(NSString *)pas
   [keychain mySetObject:password forKey:(id)kSecValueData];
   [keychain writeToKeychain];
 }
-
-RCT_EXPORT_METHOD(enableTouchID:(RCTResponseSenderBlock)callback) {
-  NSString *touchEnabled = @"YES";
-  [[NSUserDefaults standardUserDefaults] setObject:touchEnabled forKey:@"touchEnabled"];
-  [[NSUserDefaults standardUserDefaults] synchronize];
-  
-  NSMutableArray *callbackArray = [NSMutableArray new];
-  [callbackArray addObject:@"ENABLED"];
-  
-  callback(@[[NSNull null], callbackArray]);
-}
-
-RCT_EXPORT_METHOD(checkTouchStatus:(RCTResponseSenderBlock)callback) {
-  BOOL touchEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"touchEnabled"];
-  NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
-  NSMutableArray *callbackArray = [NSMutableArray new];
-  LAContext *myContext = [[LAContext alloc] init];
-  NSError *authError = nil;
-  __block NSString *authErrorCode = @"";
-  
-  if ([myContext canEvaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics error:&authError]) {
-    if (touchEnabled && username != nil) {
-      [callbackArray addObject:@"AUTHENTICATED"];
-    } else if (touchEnabled && username == nil) {
-      [callbackArray addObject:@"ENABLED"];
-    } else {
-      [callbackArray addObject:@"DISABLED"];
-    }
-  } else {
-    switch (authError.code) {
-      case LAErrorSystemCancel:
-        authErrorCode = @"SYSTEM CANCEL";
-        break;
-      case LAErrorPasscodeNotSet:
-        authErrorCode = @"NO PASSCODE";
-        break;
-      case LAErrorTouchIDNotAvailable:
-        authErrorCode = @"UNAVAILABLE";
-        break;
-      case LAErrorTouchIDNotEnrolled:
-        authErrorCode = @"NOT ENROLLED";
-        break;
-      case LAErrorTouchIDLockout:
-        authErrorCode = @"LOCKED";
-        break;
-      default:
-        authErrorCode = @"UNKNOWN";
-        break;
-    }
-    [callbackArray addObject:authErrorCode];
-  }
-  
-  
-  callback(@[[NSNull null], callbackArray]);
-}
-
 
 RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
   LAContext *myContext = [[LAContext alloc] init];
@@ -143,32 +123,7 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
                             didAuthorize = @"YES";
                           } else {
                             didAuthorize = @"NO";
-                            switch (error.code) {
-                              case LAErrorAuthenticationFailed:
-                                authErrorCode = @"AUTH FAILED";
-                                break;
-                              case LAErrorUserCancel:
-                                authErrorCode = @"USER CANCEL";
-                                break;
-                              case LAErrorSystemCancel:
-                                authErrorCode = @"SYSTEM CANCEL";
-                                break;
-                              case LAErrorPasscodeNotSet:
-                                authErrorCode = @"NO PASSCODE";
-                                break;
-                              case LAErrorTouchIDNotAvailable:
-                                authErrorCode = @"UNAVAILABLE";
-                                break;
-                              case LAErrorTouchIDNotEnrolled:
-                                authErrorCode = @"NOT ENROLLED";
-                                break;
-                              case LAErrorTouchIDLockout:
-                                authErrorCode = @"LOCKED";
-                                break;
-                              default:
-                                authErrorCode = @"UNKNOWN";
-                                break;
-                            }
+                            authErrorCode = [self handleAuthError:error.code];
                           }
                           
                           [callbackDict setObject:didAuthorize forKey:@"authStatus"];
@@ -178,32 +133,7 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
                         }
      ];
   } else {
-    switch (authError.code) {
-      case LAErrorAuthenticationFailed:
-        authErrorCode = @"AUTH FAILED";
-        break;
-      case LAErrorUserCancel:
-        authErrorCode = @"USER CANCEL";
-        break;
-      case LAErrorSystemCancel:
-        authErrorCode = @"SYSTEM CANCEL";
-        break;
-      case LAErrorPasscodeNotSet:
-        authErrorCode = @"NO PASSCODE";
-        break;
-      case LAErrorTouchIDNotAvailable:
-        authErrorCode = @"UNAVAILABLE";
-        break;
-      case LAErrorTouchIDNotEnrolled:
-        authErrorCode = @"NOT ENROLLED";
-        break;
-      case LAErrorTouchIDLockout:
-        authErrorCode = @"LOCKED";
-        break;
-      default:
-        authErrorCode = @"UNKNOWN";
-        break;
-    }
+    authErrorCode = [self handleAuthError:authError.code];
     
     [callbackDict setObject:didAuthorize forKey:@"authStatus"];
     [callbackDict setObject:authErrorCode forKey:@"authErrorCode"];
@@ -211,6 +141,39 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
     
     callback(@[[NSNull null], callbackArray]);
   }
+}
+
+-(NSString *)handleAuthError:(NSInteger)authError {
+  NSString *authErrorCode = @"";
+  
+  switch (authError) {
+    case LAErrorAuthenticationFailed:
+      authErrorCode = @"AUTH FAILED";
+      break;
+    case LAErrorUserCancel:
+      authErrorCode = @"USER CANCEL";
+      break;
+    case LAErrorSystemCancel:
+      authErrorCode = @"SYSTEM CANCEL";
+      break;
+    case LAErrorPasscodeNotSet:
+      authErrorCode = @"NO PASSCODE";
+      break;
+    case LAErrorTouchIDNotAvailable:
+      authErrorCode = @"UNAVAILABLE";
+      break;
+    case LAErrorTouchIDNotEnrolled:
+      authErrorCode = @"NOT ENROLLED";
+      break;
+    case LAErrorTouchIDLockout:
+      authErrorCode = @"LOCKED";
+      break;
+    default:
+      authErrorCode = @"UNKNOWN";
+      break;
+  }
+  
+  return authErrorCode;
 }
 
 @end

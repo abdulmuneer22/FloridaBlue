@@ -46,7 +46,6 @@ public class MainApplication  extends MultiDexApplication  implements ReactAppli
             new GoogleAnalyticsBridgePackage(),
             new FIRMessagingPackage(),
             new RNDeviceInfo(),
-            //new CookieManagerPackage(),
             new LinearGradientPackage(),
             new MapsPackage(),
             new ReactMaterialKitPackage(),
@@ -54,7 +53,8 @@ public class MainApplication  extends MultiDexApplication  implements ReactAppli
             new ReactNativeI18n(),
             new ReactNativeConfigPackage(),
             new ReactNativePermissionsPackage(),
-              new OrientationPackage()
+            new OrientationPackage(),
+            new FingerprintPackage()
       );
     }
   };

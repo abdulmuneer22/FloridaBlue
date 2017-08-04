@@ -23,6 +23,10 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import Flb from '../../../../Themes/FlbIcon'
 import I18n from 'react-native-i18n'
 import { MKTextField, MKColor } from 'react-native-material-kit'
+import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+
+let urlConfig = require('../../../../UrlConfig')
+let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
 const window = Dimensions.get('window')
 const TextfieldWithFloatingLabel = MKTextField.textfieldWithFloatingLabel()
@@ -43,6 +47,11 @@ class Confirmation extends Component {
 
     }
   }
+
+  componentDidMount() {
+    gaTracker.trackScreenView('Registration Confirmation')
+  }
+
   _showPopup () {
     // alert(this.state.isPopupVisible)
     var isPopupVisible = this.state.isPopupVisible
@@ -54,6 +63,7 @@ class Confirmation extends Component {
   }
 
   _handleConfirm () {
+    gaTracker.trackEvent("Registration", "Registration Completed")
     if (this.props.touchEnabled && !this.props.credentialStored) {
       NavigationActions.TouchTOU({'tou': 'nonregistration'})
     } else {
