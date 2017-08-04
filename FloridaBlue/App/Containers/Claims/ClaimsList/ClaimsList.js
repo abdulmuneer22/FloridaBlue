@@ -109,7 +109,7 @@ class ClaimsList extends Component {
       </View>
       <Text allowFontScaling={false} style={styles.headerTextStyle}>
         Claim Overview
-</Text>
+        </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
         {NavItems.settingsButton()}
       </View>
@@ -176,12 +176,12 @@ class ClaimsList extends Component {
   }
 
   memberSelected (index, value: string) {
-    let selectedMember = this.state.members[index].memberName
-    let selectedValue = this.state.members[index].memberId
+    let selectedMember = this.props.claimsdata.members[index].memberName
+    let selectedValue = this.props.claimsdata.members[index].memberId
     this.props.changeMemberName(selectedMember)
     this.props.changeMemberId(selectedValue)
     this.setState({ searchVisible: false }, function () {
-      this.setState({ searchVisible: true })
+    this.setState({ searchVisible: true })
     })
   }
   componentWillMount () {
@@ -216,21 +216,23 @@ class ClaimsList extends Component {
     this.props.changeStartDate(newStartDate)
     this.props.changeEndDate(newEndDate)
 
-    let memberArray = [{ 'memberId': '', 'memberName': 'All' }]
-    for (var i = 0; i < this.props.memberObject.contractMembers.length; i++) {
-      let member = this.props.memberObject.contractMembers[i]
-      let formattedMember = {
-        'memberId': member.memberId,
-        'memberName': member.firstName + ' ' + member.lastName
-      }
-      memberArray.push(formattedMember)
-    }
+    // let memberArray = [{ 'memberId': '', 'memberName': 'All' }]
+    // for (var i = 0; i < this.props.claimsdata.members.length; i++) {
+    //   let member = this.props.claimsdata.members[i]
+    //   let formattedMember = {
+    //     'memberId': member.memberId,
+    //     'memberName': member.firstName + ' ' + member.lastName
+    //   }
+    //   memberArray.push(formattedMember)
+    // }
 
-    this.setState({ members: memberArray })
+    //this.setState({ members: memberArray })
     Orientation.addOrientationListener(this._orientationDidChange)
   }
 
   componentWillReceiveProps (newProps) {
+    console.tron.log("New props")
+    console.tron.log(newProps)
     if (this.state.isFetchingMore || this.state.sortOnClaims) {
       newProps.attemptAsyncClaimList(newProps)
       this.setState({ isFetchingMore: false })
@@ -349,6 +351,7 @@ class ClaimsList extends Component {
         <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
     } else if (this.props.claimsdata && this.props.claimsdata.data && (Object(this.props.claimsdata.data).length > 0)) {
+      console.log('newww data',this.props.claimsdata)
       return (
         <View style={{ flex: 1 }}>
 
@@ -407,7 +410,7 @@ class ClaimsList extends Component {
                 {this._renderViewMore()}
               </View>
               {this.props.isPortrait
-                  ? <TouchableOpacity style={{flex: 1, margin: 15, marginTop: -5 }}>
+                  ? <TouchableOpacity style={{flex: 1, margin: 15, marginTop: -5 }} onPress={() => { NavigationActions.MyView({responseURL: urlConfig.internetStatementURL}) }}>
                     <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.deepBlue, paddingLeft: 10}} >
                       <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
                         <View style={{ flex: 0.15, marginRight: 10 }}>
@@ -471,7 +474,7 @@ class ClaimsList extends Component {
                 onChangeText={this.props.changeProviderName}
                 defaultValue={this.props.providerName}
             />
-              <ModalDropdown options={_.map(this.state.members, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+              <ModalDropdown options={_.map(this.props&& this.props.claimsdata && this.props.claimsdata.members, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                 <MKTextField
                   ref='memberName'
                   textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
@@ -487,22 +490,30 @@ class ClaimsList extends Component {
               <View style={styles.dateContainer}>
                 <TouchableOpacity style={styles.startDateButton} onPress={this.addStartDate}>
                   <Text allowFontScaling={false} style={styles.dateText}>
-                    <Text>{this.props.startDate}                      </Text>
+                    <Text>{this.props.startDate} </Text>
                     <Flb style={styles.calendarIcon} color={Colors.flBlue.grey3} name='calendar' size={15} />
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.endDateButton} onPress={this.addEndDate}>
                   <Text allowFontScaling={false} style={styles.dateText}>
-                    <Text>{this.props.endDate}                      </Text>
+                    <Text>{this.props.endDate} </Text>
                     <Flb color={Colors.flBlue.grey3} name='calendar' size={15} />
                   </Text>
                 </TouchableOpacity>
               </View>
-              <Button rounded style={styles.searchButton} onPress={() => { this.searchResults() }}>
-                <Text allowFontScaling={false} style={{ color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center' }}>Search</Text>
-              </Button>
+              {/* <Button rounded style={styles.searchButton} onPress={() => { this.searchResults() }}>
+               // <Text allowFontScaling={false} style={{ color: 'white', fontWeight: '500',paddingLeft: 5, alignItems: 'center' }}>Search</Text>
+              </Button> */}
+              <View style={styles.searchView}>
+                <TouchableOpacity onPress={() => { this.searchResults() }} 
+                  style={styles.searchButton}>
+                  <Text allowFontScaling={false} 
+                        style={styles.searchText}>Search</Text>
+                  
+                </TouchableOpacity>
+              </View>
             </View>
-            <View style={{backgroundColor: 'rgba(0,0,0,.01)', paddingBottom: 200}} />
+            <View style={{backgroundColor: 'rgba(0,0,0,.05)', paddingBottom: 200}} />
           </HideableView>
           <DateTimePicker
             isVisible={this.props.datePickerVisible}

@@ -294,12 +294,28 @@ export default StyleSheet.create({
     color: Colors.flBlue.red
   },
   searchButton: {
-    backgroundColor: '#00003f',
-    marginTop: Metrics.doubleBaseMargin * 2,
-    marginBottom: Metrics.doubleBaseMargin * 2,
-    width: Metrics.screenWidth * 0.9,
-    alignSelf: 'center',
-    flex: 1
+   flex:1, 
+    marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.001,
+    width:Metrics.screenWidth*0.7,
+    borderColor:Colors.flBlue.ocean,
+    borderWidth:8,
+    borderRadius:Metrics.doubleBaseMargin*Metrics.screenHeight*0.002,
+    alignItems:'center',
+    justifyContent:'center', backgroundColor:Colors.flBlue.ocean
+  },
+  searchView:{
+    flex:1, 
+    marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.001, 
+    marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001, 
+    alignItems:'center'
+  },
+  searchText:{
+    fontSize: Fonts.size.h6*Metrics.screenWidth*0.0035,
+    fontFamily: Fonts.type.base,
+    fontWeight: '400',
+    //marginTop: Metrics.doubleBaseMargin,
+    // marginLeft: Metrics.doubleBaseMargin,
+    color: Colors.snow
   },
   closeSearchButton: {
     alignSelf: 'flex-end',
@@ -308,7 +324,8 @@ export default StyleSheet.create({
   },
   dateContainer: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom:10
   },
   startDateButton: {
     marginTop: Metrics.doubleBaseMargin * 2,
@@ -357,9 +374,10 @@ export default StyleSheet.create({
     color: Colors.flBlue.night
   },
   textField: {
-    marginTop: Metrics.doubleBaseMargin * 2,
-    paddingLeft: Metrics.doubleBaseMargin,
-    paddingRight: Metrics.doubleBaseMargin,
+    marginTop: Metrics.doubleBaseMargin * Metrics.screenHeight*0.001,
+    marginLeft: Metrics.doubleBaseMargin* Metrics.screenHeight*0.002,
+    paddingRight: Metrics.doubleBaseMargin* Metrics.screenHeight*0.002,
+   // backgroundColor:'red',
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
   }
 })

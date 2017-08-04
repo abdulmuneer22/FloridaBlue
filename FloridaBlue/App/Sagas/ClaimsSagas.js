@@ -8,9 +8,12 @@ import LoginActions from '../Redux/LoginRedux'
 // attempts to login
 export function * claimslist (api, {data}) {
   const response = yield call(api.getClaimsList, data)
-  if (response.status == '200') {
+  if (response.ok) {
     // dispatch success
     var data = response.data.data
+    var noPrefClaims = {'memberId': '', 'memberName': 'All'}
+    data.members.splice(0, 0, noPrefClaims)
+    
     yield put(ClaimsActions.claimsListSuccess(data))
   } else {
     // dispatch successful logins
