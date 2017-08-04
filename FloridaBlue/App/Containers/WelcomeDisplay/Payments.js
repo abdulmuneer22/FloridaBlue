@@ -10,7 +10,7 @@ import NavItems from '../../../Navigation/NavItems.js'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import Flb from '../../Themes/FlbIcon'
 import { connect } from 'react-redux'
-import SupportActions from '../../Redux/SupportRedux'
+import PaymentActions from '../../Redux/PaymentRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import Communications from 'react-native-communications'
 import { Card } from 'native-base'
@@ -181,32 +181,42 @@ class Payments extends Component {
               </View>
 
               <View style={{
-                flex: 0.1, width: Metrics.screenWidth * 0.1,
-                justifyContent: 'center'
+                flex: 0.05, width: Metrics.screenWidth * 0.1,
+                justifyContent: 'center',
+                //backgroundColor:'red'
               }}>
-            <TouchableOpacity style={{flex: 0.1,width:0, flexDirection:'row'}}>
+            <TouchableOpacity style={{flex: 0.1,width:0}}>
             <Text  allowFontScaling={false} style={{transform: [{rotate: '270deg'}], 
-            bottom: Metrics.screenWidth-Metrics.screenHeight*0.7, 
-            left: this.props.isPortrait ? Metrics.payment*Metrics.screenHeight*0.0043:Metrics.payment*Metrics.screenHeight*0.005, fontWeight: '500', 
-            width: Metrics.screenWidth-Metrics.screenWidth*0.375, textAlign: 'left',
+            bottom: -Metrics.payment8*Metrics.screenHeight*0.001, 
+            right:Metrics.textHeight2*Metrics.screenHeight*0.0025,
+            //left: this.props.isPortrait ? Metrics.payment*Metrics.screenHeight*0.0043:Metrics.payment*Metrics.screenHeight*0.005, fontWeight: '500', 
+            width: Metrics.screenWidth-Metrics.screenWidth*0.375,
             fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
             textDecorationLine: 'underline', color: Colors.flBlue.teal}}>See Payment Details
             </Text>
+            </TouchableOpacity>
+             
+            </View>
+            <View style={{
+                flex: 0.05, width: Metrics.screenWidth * 0.1,
+                justifyContent: 'center'
+              }}>
+            <TouchableOpacity style={{flex: 0.1,width:0}}>
             <Flb name='chevron-right' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} 
             style={{transform: [{rotate: '270deg'}], 
-            bottom: Metrics.screenWidth-Metrics.screenHeight*0.58, 
+            bottom:-900,  
             left: this.props.isPortrait ? Metrics.textHeight2*Metrics.screenHeight*0.0023 : Metrics.textHeight2*Metrics.screenHeight*0.0033}} />
             </TouchableOpacity>
              
             </View>
          
            <View style={{flex:0.1}}>
-             <TouchableOpacity onPress={()=> NavigationActions.pop()} style={{flex:0.1}}>
-             <Flb name='delete-circle' size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.teal} 
+        
+             <Flb name='delete-circle'  onPress={()=> NavigationActions.pop()} size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.teal} 
             style={{transform: [{rotate: '270deg'}], 
             top:Metrics.baseMargin*Metrics.screenWidth*0.003,
             right:Metrics.baseMargin*Metrics.screenHeight*0.002}} />
-            </TouchableOpacity>
+           
             </View>
             
               
@@ -222,24 +232,25 @@ class Payments extends Component {
 
 Payments.propTypes = {
   data: PropTypes.object,
-  attemptSupportScreen: PropTypes.func,
+  attemptPaymentScreen: PropTypes.func,
   error: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
-    fetching: state.support.fetching,
-    data: state.support.data,
-    error: state.support.error,
+    fetching: state.payment.fetching,
+    data: state.payment.data,
+    error: state.payment.error,
     isPortrait: state.setting.isPortrait
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
+    attemptPaymentScreen: () => dispatch(PaymentActions.paymentRequest()),
     changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Payments)
+

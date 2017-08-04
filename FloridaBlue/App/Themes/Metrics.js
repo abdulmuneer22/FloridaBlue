@@ -28,6 +28,7 @@ const metrics = {
   payment5:300,
   payment6:350,
   payment7:400,
+  payment8:500,
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
   navBarHeight: (Platform.OS === 'ios') ? 64 : 54,
