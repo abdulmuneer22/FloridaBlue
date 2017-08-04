@@ -28,6 +28,8 @@ import SettingActions from '../../Redux/SettingRedux'
 import Swipeout from 'react-native-swipeout'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import NotificationActions from '../../Redux/NotificationRedux'
+import DeviceInfo from 'react-native-device-info'
+
 const theme = getTheme()
 let urlConfig = require('../../UrlConfig')
 let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
@@ -97,7 +99,7 @@ class NotificationsView extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage}>
+    return (<Image style={[styles.headerContainer, {width: DeviceInfo.isTablet() ? (this.props.isPortrait ? Metrics.screenWidth : Metrics.screenWidth * 1.335) : (this.props.isPortrait ? Metrics.screenHeight : Metrics.screenWidth * 1.78)}]} source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage}>
       {NavItems.backButton()}
       <Text allowFontScaling={false} style={styles.headerTextStyle}>Notifications</Text>
       {NavItems.settingsButton()}
