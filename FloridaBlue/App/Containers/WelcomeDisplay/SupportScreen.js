@@ -16,6 +16,9 @@ import Communications from 'react-native-communications'
 import { Card } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import SettingActions from '../../Redux/SettingRedux'
+import DeviceInfo from 'react-native-device-info'
+
 
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
@@ -33,7 +36,7 @@ class SupportScreen extends Component {
   }
 
   _renderHeader () {
-    return (<Image source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage} style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape}>
+    return (<Image source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage} style={[styles.headerContainer, {width: DeviceInfo.isTablet() ? (this.props.isPortrait ? Metrics.screenWidth : Metrics.screenWidth * 1.335) : (this.props.isPortrait ? Metrics.screenHeight : Metrics.screenWidth * 1.78)}]}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
@@ -163,13 +166,15 @@ const mapStateToProps = (state) => {
   return {
     fetching: state.support.fetching,
     data: state.support.data,
-    error: state.support.error
+    error: state.support.error,
+    isPortrait: state.setting.isPortrait
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptSupportScreen: () => dispatch(SupportActions.supportRequest())
+    attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 
