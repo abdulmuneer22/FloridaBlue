@@ -226,6 +226,10 @@ class ClaimsList extends Component {
     //   memberArray.push(formattedMember)
     // }
 
+    if (this.props.claimsdata.members) {
+      this.props.changeMemberList(this.props.claimsdata.members)
+    }
+
     //this.setState({ members: memberArray })
     Orientation.addOrientationListener(this._orientationDidChange)
   }
@@ -373,24 +377,24 @@ class ClaimsList extends Component {
               <View style={{ flex: 0.3, flexDirection: 'row' }}>
                 <TouchableOpacity style={{ flex: 0.3, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.sortClaims('date')}>
                   <Text allowFontScaling={false} style={styles.claimsCategoryText}>Date</Text>
-                  <Flb name={this.state.searchData.sortBy.date == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.date == 1 ? 'caret-up' : 'caret-down')} 
-                  size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil} 
+                  <Flb name={this.state.searchData.sortBy.date == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.date == 1 ? 'caret-up' : 'caret-down')}
+                  size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil}
                     style={{marginTop:Metrics.smallMargin*Metrics.screenHeight*0.002}}/>
                 </TouchableOpacity>
               </View>
               <View style={{ flex: 0.3 }}>
                 <TouchableOpacity style={{ flex: 0.3, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.sortClaims('member')}>
                   <Text allowFontScaling={false} style={styles.claimsCategoryText}>Member</Text>
-                  <Flb name={this.state.searchData.sortBy.memberName == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.memberName == 1 ? 'caret-up' : 'caret-down')} 
-                  size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil} 
+                  <Flb name={this.state.searchData.sortBy.memberName == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.memberName == 1 ? 'caret-up' : 'caret-down')}
+                  size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil}
                   style={{marginTop:Metrics.smallMargin*Metrics.screenHeight*0.002}}/>
                 </TouchableOpacity>
               </View>
               <View style={{ flex: 0.4 }}>
                 <TouchableOpacity style={{ flex: 0.4, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.sortClaims('provider')}>
                   <Text allowFontScaling={false} style={styles.claimsCategoryText}>Providers</Text>
-                  <Flb name={this.state.searchData.sortBy.providerName == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.providerName == 1 ? 'caret-up' : 'caret-down')} 
-                    size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil} 
+                  <Flb name={this.state.searchData.sortBy.providerName == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.providerName == 1 ? 'caret-up' : 'caret-down')}
+                    size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil}
                     style={{marginTop:Metrics.smallMargin*Metrics.screenHeight*0.002}}/>
                 </TouchableOpacity>
               </View>
@@ -474,7 +478,7 @@ class ClaimsList extends Component {
                 onChangeText={this.props.changeProviderName}
                 defaultValue={this.props.providerName}
             />
-              <ModalDropdown options={_.map(this.props&& this.props.claimsdata && this.props.claimsdata.members, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+              <ModalDropdown options={_.map(this.props.memberList, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                 <MKTextField
                   ref='memberName'
                   textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
@@ -505,11 +509,11 @@ class ClaimsList extends Component {
                // <Text allowFontScaling={false} style={{ color: 'white', fontWeight: '500',paddingLeft: 5, alignItems: 'center' }}>Search</Text>
               </Button> */}
               <View style={styles.searchView}>
-                <TouchableOpacity onPress={() => { this.searchResults() }} 
+                <TouchableOpacity onPress={() => { this.searchResults() }}
                   style={styles.searchButton}>
-                  <Text allowFontScaling={false} 
+                  <Text allowFontScaling={false}
                         style={styles.searchText}>Search</Text>
-                  
+
                 </TouchableOpacity>
               </View>
             </View>
@@ -588,6 +592,7 @@ const mapStateToProps = (state) => {
     sortBy: state.claims.sortBy,
     memberObject: state.member.memberObject,
     memberId: state.claims.memberId,
+    memberList: state.claims.memberList,
     isPortrait: state.setting.isPortrait
   }
 }
@@ -603,6 +608,7 @@ const mapDispatchToProps = (dispatch) => {
     changeProviderName: (providerName) => dispatch(ClaimsActions.changeProviderName(providerName)),
     changeMemberName: (memberName) => dispatch(ClaimsActions.changeMemberName(memberName)),
     changeMemberId: (memberId) => dispatch(ClaimsActions.changeMemberId(memberId)),
+    changeMemberList: (memberList) => dispatch(ClaimsActions.changeMemberList(memberList)),
     changeStart: (start) => dispatch(ClaimsActions.changeStart(start)),
     changeEnd: (end) => dispatch(ClaimsActions.changeEnd(end)),
     changeSortBy: (sortBy) => dispatch(ClaimsActions.changeSortBy(sortBy)),
