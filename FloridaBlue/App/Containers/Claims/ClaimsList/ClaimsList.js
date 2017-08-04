@@ -370,19 +370,25 @@ class ClaimsList extends Component {
               <View style={{ flex: 0.3, flexDirection: 'row' }}>
                 <TouchableOpacity style={{ flex: 0.3, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.sortClaims('date')}>
                   <Text allowFontScaling={false} style={styles.claimsCategoryText}>Date</Text>
-                  <Flb name={this.state.searchData.sortBy.date == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.date == 1 ? 'caret-up' : 'caret-down')} size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil} />
+                  <Flb name={this.state.searchData.sortBy.date == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.date == 1 ? 'caret-up' : 'caret-down')} 
+                  size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil} 
+                    style={{marginTop:Metrics.smallMargin*Metrics.screenHeight*0.002}}/>
                 </TouchableOpacity>
               </View>
               <View style={{ flex: 0.3 }}>
                 <TouchableOpacity style={{ flex: 0.3, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.sortClaims('member')}>
                   <Text allowFontScaling={false} style={styles.claimsCategoryText}>Member</Text>
-                  <Flb name={this.state.searchData.sortBy.memberName == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.memberName == 1 ? 'caret-up' : 'caret-down')} size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil} />
+                  <Flb name={this.state.searchData.sortBy.memberName == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.memberName == 1 ? 'caret-up' : 'caret-down')} 
+                  size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil} 
+                  style={{marginTop:Metrics.smallMargin*Metrics.screenHeight*0.002}}/>
                 </TouchableOpacity>
               </View>
               <View style={{ flex: 0.4 }}>
                 <TouchableOpacity style={{ flex: 0.4, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.sortClaims('provider')}>
                   <Text allowFontScaling={false} style={styles.claimsCategoryText}>Providers</Text>
-                  <Flb name={this.state.searchData.sortBy.providerName == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.providerName == 1 ? 'caret-up' : 'caret-down')} size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil} />
+                  <Flb name={this.state.searchData.sortBy.providerName == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.providerName == 1 ? 'caret-up' : 'caret-down')} 
+                    size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil} 
+                    style={{marginTop:Metrics.smallMargin*Metrics.screenHeight*0.002}}/>
                 </TouchableOpacity>
               </View>
             </View>
@@ -442,7 +448,7 @@ class ClaimsList extends Component {
           </View>
 
          <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
-            <View style={{backgroundColor: 'white', marginTop: -10}}>
+            <View style={{backgroundColor: 'white', marginTop: -Metrics.mediumMargin*Metrics.screenHeight*0.002}}>
               <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
                 <Flb name='remove' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
               </TouchableOpacity>
