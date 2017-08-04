@@ -16,6 +16,8 @@ import Communications from 'react-native-communications'
 import { Card } from 'native-base'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import Orientation from 'react-native-orientation'
+import DeviceInfo from 'react-native-device-info'
+
 
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
@@ -36,7 +38,7 @@ class MyIdCard extends Component {
   }
 
   _renderHeader () {
-    return (<Image source={Images.newHeaderImage} style={styles.headerContainer}>
+    return (<Image source={DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage} style={styles.headerContainer}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
