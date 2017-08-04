@@ -23,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>24</string>
 	<key>LSApplicationCategoryType</key>
-	<string></string>
+	<string/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -38,7 +38,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Some description</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To find provider&apos;s near you</string>
+	<string>To find provider's near you</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Some description</string>
 	<key>UIAppFonts</key>
@@ -86,7 +86,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>CFBundleGetInfoString</key>
-	<string></string>
+	<string/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -7,6 +7,7 @@ import SupportActions from '../Redux/SupportRedux'
 import MyIdCardActions from '../Redux/MyIdCardRedux'
 import NotificationActions from '../Redux/NotificationRedux'
 import PaymentActions from '../Redux/PaymentRedux'
+import ClaimsActions from '../Redux/ClaimsRedux'
 
 // attempts to login
 export function * member (api, {smToken}) {
@@ -60,6 +61,7 @@ export function * member (api, {smToken}) {
     yield put(SupportActions.supportRequest())
     yield put(MyPlanActions.myplanRequest(data))
     yield put(PaymentActions.paymentRequest(data))
+    yield put(ClaimsActions.claimsListRequest(data))
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }
