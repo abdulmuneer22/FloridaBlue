@@ -441,7 +441,7 @@ class ClaimsList extends Component {
             </ScrollView>
           </View>
 
-          <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
+         <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
             <View style={{backgroundColor: 'white', marginTop: -10}}>
               <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
                 <Flb name='remove' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
@@ -465,7 +465,6 @@ class ClaimsList extends Component {
                 onChangeText={this.props.changeProviderName}
                 defaultValue={this.props.providerName}
             />
-
               <ModalDropdown options={_.map(this.state.members, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                 <MKTextField
                   ref='memberName'
@@ -496,11 +495,9 @@ class ClaimsList extends Component {
               <Button rounded style={styles.searchButton} onPress={() => { this.searchResults() }}>
                 <Text allowFontScaling={false} style={{ color: 'white', fontWeight: '500', marginLeft: 20, paddingRight: 20, paddingLeft: 5, alignItems: 'center' }}>Search</Text>
               </Button>
-
             </View>
-            <View style={{backgroundColor: 'rgba(0,0,0,.5)', paddingBottom: 200}} />
+            <View style={{backgroundColor: 'rgba(0,0,0,.01)', paddingBottom: 200}} />
           </HideableView>
-
           <DateTimePicker
             isVisible={this.props.datePickerVisible}
             onConfirm={this.handleDatePicked}
