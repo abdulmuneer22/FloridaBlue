@@ -181,11 +181,11 @@ class Payments extends Component {
               </View>
 
               <View style={{
-                flex: 0.05, width: Metrics.screenWidth * 0.1,
+                flex: 0.1, width: Metrics.screenWidth * 0.1,
                 justifyContent: 'center',
                 //backgroundColor:'red'
               }}>
-            <TouchableOpacity style={{flex: 0.1,width:0}}>
+            <TouchableOpacity style={{flex: 0.1,width:0, backgroundColor:'red'}}>
             <Text  allowFontScaling={false} style={{transform: [{rotate: '270deg'}], 
             bottom: -Metrics.payment8*Metrics.screenHeight*0.001, 
             right:Metrics.textHeight2*Metrics.screenHeight*0.0025,
@@ -197,18 +197,7 @@ class Payments extends Component {
             </TouchableOpacity>
              
             </View>
-            <View style={{
-                flex: 0.05, width: Metrics.screenWidth * 0.1,
-                justifyContent: 'center'
-              }}>
-            <TouchableOpacity style={{flex: 0.1,width:0}}>
-            <Flb name='chevron-right' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} 
-            style={{transform: [{rotate: '270deg'}], 
-            bottom:-900,  
-            left: this.props.isPortrait ? Metrics.textHeight2*Metrics.screenHeight*0.0023 : Metrics.textHeight2*Metrics.screenHeight*0.0033}} />
-            </TouchableOpacity>
-             
-            </View>
+            
          
            <View style={{flex:0.1}}>
         
