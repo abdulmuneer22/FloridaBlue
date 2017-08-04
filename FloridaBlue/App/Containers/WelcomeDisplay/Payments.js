@@ -17,6 +17,7 @@ import { Card } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import Orientation from 'react-native-orientation'
+import DeviceInfo from 'react-native-device-info'
 
 const window = Dimensions.get('window')
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
@@ -102,8 +103,8 @@ class Payments extends Component {
                     color: Colors.flBlue.ocean,
                     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0035,
                     transform: [{ rotate: '270deg' }],
-                    top:this.props.isPortrait ? Metrics.screenHeight - Metrics.screenHeight * 0.75 : Metrics.screenHeight - Metrics.screenHeight * 0.65,
-                    left: this.props.isPortrait ? Metrics.textHeight2 - Metrics.screenHeight * 0.09 : Metrics.textHeight - Metrics.screenHeight * 0.09
+                    top:this.props.isPortrait ? DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.7 : Metrics.screenHeight - Metrics.screenHeight * 0.75 : Metrics.screenHeight - Metrics.screenHeight * 0.65,
+                    left: this.props.isPortrait ? DeviceInfo.isTablet() ? Metrics.textHeight2 - Metrics.screenHeight * 0.12 : Metrics.textHeight2 - Metrics.screenHeight * 0.09 : Metrics.textHeight - Metrics.screenHeight * 0.09
                   }}>
                   Pay in Person</Text>
                 <Text allowFontScaling={false}
@@ -111,7 +112,7 @@ class Payments extends Component {
                     color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                     transform: [{ rotate: '270deg' }],
-                    top: Metrics.screenHeight - Metrics.screenHeight * 1.2,
+                    top: DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 1.3 : Metrics.screenHeight - Metrics.screenHeight * 1.2,
                     bottom: Metrics.payment3 - Metrics.screenWidth * 0.001,
                     // textAlign: 'right',
                     //left:-80, 
@@ -121,14 +122,14 @@ class Payments extends Component {
                       </Text>
                 <Image style={{
                   transform: [{ rotate: '270deg' }],
-                  left:this.props.isPortrait ? Metrics.textHeight * Metrics.screenHeight * 0.0017 : Metrics.textHeight * Metrics.screenHeight * 0.001 ,
-                  bottom: Metrics.payment - Metrics.screenWidth * 0.001
+                  left:this.props.isPortrait ? Metrics.textHeight * Metrics.screenHeight * 0.0017 : DeviceInfo.isTablet() ?  Metrics.textHeight * Metrics.screenHeight * 0.002 : Metrics.textHeight * Metrics.screenHeight * 0.001 ,
+                  bottom: DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * .6 : Metrics.payment - Metrics.screenWidth * 0.001
                 }}
                   source={Images.claimlistsearch} />
                 <Image style={{
                   transform: [{ rotate: '270deg' }],
-                  left:this.props.isPortrait ? Metrics.textHeight * Metrics.screenHeight * 0.0017 : Metrics.textHeight * Metrics.screenHeight * 0.001 ,
-                  bottom: Metrics.payment3 - Metrics.screenHeight * 0.001
+                  left:this.props.isPortrait ? Metrics.textHeight * Metrics.screenHeight * 0.0017 : DeviceInfo.isTablet() ?  Metrics.textHeight * Metrics.screenHeight * 0.002 : Metrics.textHeight * Metrics.screenHeight * 0.001 ,
+                  bottom: DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * .67 : Metrics.payment3 - Metrics.screenHeight * 0.001
                 }}
                   source={Images.claimlistsearch} />
 
@@ -142,8 +143,8 @@ class Payments extends Component {
                 flex: 0.2,
                 alignItems: 'center',
                 justifyContent: 'center',
-                bottom: -Metrics.payment2 * Metrics.screenWidth * 0.003,
-                right: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002
+                bottom: DeviceInfo.isTablet() ? (this.props.isPortrait ?  -Metrics.payment2 * Metrics.screenWidth * 0.00245: -Metrics.payment2 * Metrics.screenWidth * 0.00275) : -Metrics.payment2 * Metrics.screenWidth * 0.003,
+                right: DeviceInfo.isTablet() ?  Metrics.doubleBaseMargin * Metrics.screenHeight * 0.005 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002
               }}>
                 {this._renderBarCode()}
               </View>
@@ -170,7 +171,7 @@ class Payments extends Component {
                   transform: [{ rotate: '270deg' }],
                   bottom: Metrics.screenWidth - Metrics.screenHeight * 0.4,
                   width: Metrics.screenHeight - Metrics.screenWidth * 0.5,
-                  right:this.props.isPortrait ? Metrics.textHeight2 * Metrics.screenHeight * 0.006 :  Metrics.textHeight2 * Metrics.screenHeight * 0.0062,
+                  right:this.props.isPortrait ? DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.005 : Metrics.textHeight2 * Metrics.screenHeight * 0.006 :  DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.0048 : Metrics.textHeight2 * Metrics.screenHeight * 0.0062,
                   top: Metrics.screenHeight - Metrics.screenHeight * 1.1,
                   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                   color: Colors.flBlue.anvil,
@@ -187,8 +188,8 @@ class Payments extends Component {
               }}>
             <TouchableOpacity style={{flex: 0.1,width:0}}>
             <Text  allowFontScaling={false} style={{transform: [{rotate: '270deg'}], 
-            bottom: -Metrics.payment8*Metrics.screenHeight*0.001, 
-            right:Metrics.textHeight2*Metrics.screenHeight*0.0025,
+            bottom: DeviceInfo.isTablet() ? this.props.isPortrait ? -Metrics.payment8*Metrics.screenHeight*0.0012 : -Metrics.payment8*Metrics.screenHeight*0.0014 : -Metrics.payment8*Metrics.screenHeight*0.001, 
+            right:DeviceInfo.isTablet() ? Metrics.textHeight2*Metrics.screenHeight*0.0035 : Metrics.textHeight2*Metrics.screenHeight*0.0025,
             //left: this.props.isPortrait ? Metrics.payment*Metrics.screenHeight*0.0043:Metrics.payment*Metrics.screenHeight*0.005, fontWeight: '500', 
             width: Metrics.screenWidth-Metrics.screenWidth*0.375,
             fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
@@ -204,7 +205,7 @@ class Payments extends Component {
             <TouchableOpacity style={{flex: 0.1,width:0}}>
             <Flb name='chevron-right' size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.teal} 
             style={{transform: [{rotate: '270deg'}], 
-            bottom:-900,  
+            bottom: -900,  
             left: this.props.isPortrait ? Metrics.textHeight2*Metrics.screenHeight*0.0023 : Metrics.textHeight2*Metrics.screenHeight*0.0033}} />
             </TouchableOpacity>
              
