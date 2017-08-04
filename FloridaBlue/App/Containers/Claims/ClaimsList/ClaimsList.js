@@ -20,7 +20,6 @@ import {
 import styles from './ClaimsStyle'
 import ClaimsCard from './Components/ClaimsCard'
 import axios from 'axios'
-// import ClaimsListActions from '../../../Redux/ClaimsListRedux'
 import ClaimsActions from '../../../Redux/ClaimsRedux'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import NavItems from '../../../../Navigation/NavItems.js'
@@ -48,7 +47,6 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
   .build()
 
 class ClaimsList extends Component {
-  // const memberList = ['Ashlyn', 'Shane', 'Grace', 'Noah', 'Hope', 'Jack']
   constructor (props) {
     super(props)
     this.state = {
@@ -84,6 +82,7 @@ class ClaimsList extends Component {
     this.memberSelected = this.memberSelected.bind(this)
     this.sortClaims = this.sortClaims.bind(this)
     this.searchResults = this.searchResults.bind(this)
+    this.handleSearchClose = this.handleSearchClose.bind(this)
     this._orientationDidChange = this._orientationDidChange.bind(this)
   }
 
@@ -104,13 +103,13 @@ class ClaimsList extends Component {
   }
 
   _renderHeader () {
-    return (<Image source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage} style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape}>
+   return (<Image source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage} style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
         {NavItems.backButton()}
       </View>
       <Text allowFontScaling={false} style={styles.headerTextStyle}>
-           Claim Overview
-      </Text>
+        Claim Overview
+</Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>
         {NavItems.settingsButton()}
       </View>
@@ -120,7 +119,7 @@ class ClaimsList extends Component {
   _renderDropdownRow (rowData, rowID, highlighted) {
     return (
       <TouchableHighlight underlayColor={Colors.snow}>
-        <Text style={styles.dropdownItem}>{rowData}</Text>
+        <Text allowFontScaling={false} style={styles.dropdownItem}>{rowData}</Text>
       </TouchableHighlight>
     )
   }
@@ -185,7 +184,6 @@ class ClaimsList extends Component {
       this.setState({ searchVisible: true })
     })
   }
-
   componentWillMount () {
     // The getOrientation method is async. It happens sometimes that
     // you need the orientation at the moment the JS runtime starts running on device.
@@ -439,6 +437,7 @@ class ClaimsList extends Component {
                       </Card>
                     </TouchableOpacity> */
               : null}
+
             </ScrollView>
           </View>
 
