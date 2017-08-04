@@ -37,6 +37,8 @@ export default StyleSheet.create({
   claimsListCard: {
     flexDirection: 'row',
     justifyContent: 'center',
+    backgroundColor:Colors.snow,
+   // borderRadius:0.8,
     // padding: 9,
     // height: 37,
     flex: 1,

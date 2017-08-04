@@ -27,7 +27,7 @@ import { Card } from 'native-base'
 import LinearGradient from 'react-native-linear-gradient'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import formatNumber from 'format-number'
-
+let moment = require('moment')
 const window = Dimensions.get('window')
 let urlConfig = require('../../../UrlConfig')
 let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
@@ -42,12 +42,15 @@ class ClaimDetail extends Component {
     this.formatDate = this.formatDate.bind(this)
   }
 
-  formatDate (date) {
-    date = new Date(date)
-    let day = ('0' + date.getDate()).slice(-2)
-    let month = ('0' + (date.getMonth() + 1)).slice(-2)
-    let year = date.getFullYear()
-    return month + '/' + day + '/' + year
+  // formatDate (date) {
+  //   date = new Date(date)
+  //   let day = ('0' + date.getDate()).slice(-2)
+  //   let month = ('0' + (date.getMonth() + 1)).slice(-2)
+  //   let year = date.getFullYear()
+  //   return month + '/' + day + '/' + year
+  // }
+   formatDate (date) {
+    return moment(date).format('MM-DD-YYYY')
   }
 
    formatTo2DecimalNumber (number) {
@@ -94,7 +97,7 @@ class ClaimDetail extends Component {
                     <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                       fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0023}}>
 
-                      {this.formatDate(this.props.claimdetaildata.serviceDateFrom)}
+                      {this.formatDate(this.props.claimdetaildata.dateOfService)}
                     </Text>
                   </View> : null}
                 {this.props.claimdetaildata
@@ -264,13 +267,13 @@ class ClaimDetail extends Component {
             </View> : null}
 
           <View style={{flex: 1, justifyContent: 'center', backgroundColor: Colors.snow, alignItems: 'center'}}>
-            <TouchableOpacity onPress={() => NavigationActions.ClaimsList()} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => NavigationActions.pop()} style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <Image style={styles.claimListButton} source={Images.cliamlistbutton} />
             </TouchableOpacity>
           </View>
 
         </View>)
-    } else if (this.props.claimdetaildata && this.props.claimdetaildata.claimNumber && this.props.claimdetaildata.claimNumber.length == 0) {
+    } else if (this.props && this.props.claimdetaildata && this.props.claimdetaildata.claimNumber && this.props.claimdetaildata.claimNumber.length == 0) {
       Alert.alert(
                   'Claim Detail',
                    'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
