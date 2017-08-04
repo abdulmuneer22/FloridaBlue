@@ -80,6 +80,7 @@ const images = {
   datesearch: require('../Images/search-btn-large.png'),
   agentLoginLink: require('../Images/agent-login-link.png'),
   landscapeHeaderImage: require('../Images/landscape-hdr2.png'),
+  tabletLandscapeHeaderImage: require('../Images/landscape-hdr3.png'),
   callNowButton: require('../Images/call-nowbtn.png')
 }
 

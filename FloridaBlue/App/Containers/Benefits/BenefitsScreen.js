@@ -21,6 +21,7 @@ import {Actions as NavigationActions} from 'react-native-router-flux'
 import Card from './Components/BenefitCard'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import DeviceInfo from 'react-native-device-info'
 
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
@@ -38,11 +39,11 @@ class PlanBenefits extends Component {
     this._orientationDidChange = this._orientationDidChange.bind(this)
   }
   _renderHeader () {
-    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? (DeviceInfo.isTablet() ? Images.landscapeHeaderImage: Images.newHeaderImage) : Images.landscapeHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
         {NavItems.backButton()}
       </View>
-      <Text allowFontScaling={false} style={styles.headerTextStyle}>Plan Benefits</Text>
+      <Text allowFontScaling={false} style={[styles.headerTextStyle, {marginRight: DeviceInfo.isTablet() ? (this.props.isPortrait ? null : Metrics.screenHeight * Metrics.baseMargin * .03) : null}]}>Plan Benefits</Text>
       <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View>
