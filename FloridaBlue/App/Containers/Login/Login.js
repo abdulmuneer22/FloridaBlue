@@ -42,6 +42,7 @@ import HideableView from 'react-native-hideable-view'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import Orientation from 'react-native-orientation'
 import Popover, { PopoverTouchable } from 'react-native-modal-popover'
+import { CheckTouchStatus, Authenticate, DisableTouch, EnableTouch } from '../../Lib/TouchAuthUtil'
 
 const goToWebView = () => NavigationActions.MyView({text: 'Hello World!'})
 const Divider = () => { return <View style={styles.divider} /> }
@@ -85,7 +86,6 @@ class Login extends Component {
       username: '',
       password: '',
       modalVisible: false,
-      touchStatus: '',
       isPortrait: true
     }
     this.isAttempting = false
@@ -100,51 +100,6 @@ class Login extends Component {
   }
 
   componentWillMount () {
-    if (Platform.OS === 'ios') {
-      TouchManager.checkTouchStatus((error, touchInfo) => {
-        let touchStatus = touchInfo[0]
-
-        switch (touchStatus) {
-          case 'AUTHENTICATED':
-            this.props.changeCredentialStored(true)
-            this.props.changeTouchEnabled(true)
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: ''})
-            break
-          case 'ENABLED':
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: ''})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(true)
-            break
-          case 'DISABLED':
-            this.setState({touchStatus: ''})
-            this._disableTouchID()
-            break
-          case 'NOT ENROLLED':
-            this.setState({touchStatus: 'NOT ENROLLED'})
-            this._disableTouchID()
-            break
-          case 'NO PASSCODE':
-            this.setState({touchStatus: 'NO PASSCODE'})
-            this._disableTouchID()
-            break
-          case 'LOCKED':
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: 'LOCKED'})
-            this.props.changeCredentialStored(true)
-            this.props.changeTouchEnabled(true)
-            break
-          default:
-            this.setState({touchAvailable: false})
-            this.setState({touchStatus: ''})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
-            break
-        }
-      })
-    }
-
     if (DeviceInfo.getManufacturer() === 'samsung') {
       console.log('hey samsung!')
       console.log(DeviceInfo.isTablet())
@@ -174,15 +129,47 @@ class Login extends Component {
         let touchStatus = touchInfo[0]
         switch (touchStatus) {
           case 'AUTHENTICATED':
-            if (this.props.origin != 'logout') {
+            this.props.changeCredentialStored(true)
+            this.props.changeTouchEnabled(true)
+            this.props.changeTouchAvailable(true)
+            if (this.props.origin != 'logout' && this.props.origin != 'loginExpired') {
               gaTracker.trackEvent('Touch ID', 'Launch')
               this._authenticateUserWithTouch()
             }
             break
+          case 'ENABLED':
+            this.props.changeCredentialStored(false)
+            this.props.changeTouchEnabled(true)
+            this.props.changeTouchAvailable(true)
+            break
+          case 'DISABLED':
+            this._disableTouchID()
+            this.props.changeTouchAvailable(true)
+            break
+          case 'NOT ENROLLED':
+            this._disableTouchID()
+            this.props.changeTouchAvailable(true)
+            break
+          case 'NO PASSCODE':
+            this._disableTouchID()
+            break
+          case 'LOCKED':
+            this._handleLockedTouch()
+            break
           default:
-            // Nada..
+            this._disableTouchID()
+            break
         }
       })
+    }
+
+    if (this.props.origin == 'loginExpired') {
+      Alert.alert('Logged Out', 'Your session expired. Please log in again.',
+        [
+          {
+            text: 'OK'
+          }
+        ])
     }
 
     BackHandler.addEventListener('hardwareBackPress', this.handleBackButton)
@@ -284,7 +271,9 @@ class Login extends Component {
           RCTNetworking.clearCookies((cleared) => {
             console.tron.log('clearing local cookies for the app')
           })
+
           this.props.attemptLogout(this.props.logoutUrl)
+
           if (newProps.credentialStored) {
             this._disableTouchID()
           }
@@ -374,71 +363,48 @@ class Login extends Component {
   }
 
   _handleTouchCheckbox (checkboxState) {
-    if (this.state.touchStatus === '') {
-      this.props.changeTouchEnabled(checkboxState)
-      if (checkboxState) {
-        if (!this.props.username && !this.props.password) {
-          Alert.alert('Login', 'Please enter the User ID and Password to set up Touch ID', [
-            {
-              text: 'OK'
-            }
-          ])
-        }
-      }
-    } else {
+    this.props.changeTouchEnabled(checkboxState)
+    TouchManager.checkTouchStatus((error, touchInfo) => {
+      let touchStatus = touchInfo[0]
       let errorMessage = ''
-      let errorTitle = 'Oops!'
-      let showError = true
-      TouchManager.checkTouchStatus((error, touchInfo) => {
-        let touchStatus = touchInfo[0]
-
-        switch (touchStatus) {
-          case 'DISABLED':
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: ''})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(true)
-            showError = false
-            break
-          case 'NOT ENROLLED':
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: 'NOT ENROLLED'})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
-            errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
-            break
-          case 'NO PASSCODE':
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: 'NO PASSCODE'})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
-            showError = false
-            break
-          case 'LOCKED':
-            this.setState({touchAvailable: true})
-            this.setState({touchStatus: 'LOCKED'})
-            this.props.changeCredentialStored(true)
-            this.props.changeTouchEnabled(true)
-            errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
-          default:
-            this.setState({touchAvailable: false})
-            this.setState({touchStatus: ''})
-            this.props.changeCredentialStored(false)
-            this.props.changeTouchEnabled(false)
-        }
-
-        if (showError) {
-          Alert.alert(
-            errorTitle,
-            errorMessage,
-            [
-              {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
-            ],
-            { cancelable: false }
-          )
-        }
-      })
-    }
+      let errorTitle = 'Error'
+      var showError = false
+      switch (touchStatus) {
+        case 'AUTHENTICATED':
+          // do nothing..
+          break
+        case 'ENABLED':
+          // do nothing..
+          break
+        case 'DISABLED':
+          // do nothing..
+          break
+        case 'NOT ENROLLED':
+          this._disableTouchID()
+          errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+          showError = true
+          break
+        case 'NO PASSCODE':
+          this._disableTouchID()
+          break
+        case 'LOCKED':
+          this._handleLockedTouch()
+          errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
+          showError = true
+        default:
+          this._disableTouchID()
+      }
+      if (showError) {
+        Alert.alert(
+          errorTitle,
+          errorMessage,
+          [
+            {text: 'Ok', onPress: () => console.log("Ok pressed"), style: 'cancel'}
+          ],
+          { cancelable: false }
+        )
+      }
+    })
   }
 
   _authenticateUserWithTouch () {
@@ -511,22 +477,20 @@ class Login extends Component {
   }
 
   _disableTouchID () {
-    TouchManager.removeCredentials((error, credentials) => {
-      let status = credentials[0]
-      if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
-        this.props.changeTouchEnabled(false)
-        this.props.changeCredentialStored(false)
-        this.setState({touchAvailable: true})
-      }
-    })
-  }
+     TouchManager.removeCredentials((error, credentials) => {
+       let status = credentials[0]
+       if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
+         this.props.changeTouchEnabled(false)
+         this.props.changeCredentialStored(false)
+       }
+     })
+   }
 
-  _handleLockedTouch () {
-    this.setState({touchAvailable: true})
-    this.setState({touchStatus: 'LOCKED'})
-    this.props.changeCredentialStored(true)
-    this.props.changeTouchEnabled(true)
-  }
+   _handleLockedTouch () {
+      this.props.changeCredentialStored(false)
+      this.props.changeTouchEnabled(false)
+      this.props.changeTouchAvailable(true)
+    }
 
   _handleAgentLogin () {
     gaTracker.trackEvent('Info Menu', 'Agent Login')
@@ -541,7 +505,13 @@ class Login extends Component {
     var password = this.props.password
 
     if (!username && !password) {
-      Alert.alert('Login', 'Please enter your User ID/Password.', [
+      var alertMessage = ''
+      if (this.props.touchEnabled) {
+        errorMessage = 'Please enter your User ID/Password to setup Touch ID.'
+      } else {
+        errorMessage = 'Please enter your User ID/Password.'
+      }
+      Alert.alert('Login', alertMessage, [
         {
           text: 'OK'
         }
@@ -642,7 +612,10 @@ class Login extends Component {
   _renderTouchAvailableLogin () {
     return (
       <View>
-        <LoginView>
+        <View style={styles.logoView}>
+          <Image source={Images.clearLogo} style={styles.logo} />
+        </View>
+        <View style={styles.form}>
           <View style={styles.touchLoginContainer}>
             <View style={styles.textFieldContainer}>
               <MKTextField
@@ -678,28 +651,42 @@ class Login extends Component {
                 placeholder={I18n.t('userpassword')}
                 placeholderTextColor={Colors.steel} />
             </View>
-            <HideableView style={styles.fingerprintContainer} visible={this.props.credentialStored} removeWhenHidden>
-              <TouchableOpacity style={styles.fingerprintButton} onPress={() => {
-                this._authenticateUserWithTouch()
-                gaTracker.trackEvent('Touch ID', 'Relaunch')
-              }}>
-                <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
-                <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
-              </TouchableOpacity>
-            </HideableView>
-            <HideableView style={styles.fingerprintContainer} visible={!this.props.credentialStored} removeWhenHidden>
-              <View style={styles.fingerprintButton}>
-                <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
-                  var checked = this.refs.touchCheckbox.state.checked
-                  this._handleTouchCheckbox(checked)
-                }} />
-                <Text allowFontScaling={false} style={styles.touchInstruction}>Setup login using your fingerprint</Text>
-              </View>
-            </HideableView>
+            <View style={styles.fingerprintContainer}>
+              { this.props.credentialStored ?
+                  <TouchableOpacity style={styles.fingerprintButton} onPress={() => {
+                    this._authenticateUserWithTouch()
+                    gaTracker.trackEvent('Touch ID', 'Relaunch')
+                  }}>
+                    <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
+                    <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
+                  </TouchableOpacity>
+                :
+                  <View style={styles.fingerprintButton}>
+                    <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
+                      let checked = this.refs.touchCheckbox.state.checked
+                      this._handleTouchCheckbox(checked)
+                    }} />
+                    <Text allowFontScaling={false} style={styles.touchInstruction}>Set up login using your fingerprint</Text>
+                  </View>
+              }
+            </View>
           </View>
-        </LoginView>
-
-        <LoginButtonView>
+          <View style={styles.touchSignRow}>
+            <TouchableOpacity onPress={() => {
+              NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+              gaTracker.trackEvent('Login', 'Forgot Password')
+            }}>
+              <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+              NavigationActions.screen_1()
+              gaTracker.trackEvent('Login', 'Sign Up')
+            }}>
+              <Image style={styles.signUpButton} source={Images.signUpButton} />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.loginButton}>
           {this.props.mfetching || this.props.fetching
             ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
           : <TouchableOpacity onPress={() => { this._handleLogin() }}>
@@ -708,7 +695,7 @@ class Login extends Component {
               height: Metrics.screenHeight * 0.064}}
               source={Images.loginButtonGreen} />
           </TouchableOpacity> }
-        </LoginButtonView>
+        </View>
       </View>
     )
   }
@@ -716,6 +703,9 @@ class Login extends Component {
   _renderLogin () {
     return (
       <View>
+        <LogoView>
+          <Image source={Images.clearLogo} style={styles.logo} />
+        </LogoView>
         <LoginView>
           <View style={styles.loginContainer}>
             <View style={styles.textFieldContainer}>
@@ -754,7 +744,6 @@ class Login extends Component {
             </View>
           </View>
         </LoginView>
-
         <LoginButtonView>
           {this.props.mfetching || this.props.fetching
             ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
@@ -765,12 +754,26 @@ class Login extends Component {
               source={Images.loginButtonGreen} />
           </TouchableOpacity> }
         </LoginButtonView>
+        <SignUpView>
+          <TouchableOpacity onPress={() => {
+            NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+            gaTracker.trackEvent('Login', 'Forgot Password')
+          }}>
+            <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {
+            NavigationActions.screen_1()
+            gaTracker.trackEvent('Login', 'Sign Up')
+          }}>
+            <Image style={styles.signUpButton} source={Images.signUpButton} />
+          </TouchableOpacity>
+        </SignUpView>
       </View>
     )
   }
 
   render () {
-    var transparent
+    let transparent
     if (this.props.mfetching || this.props.fetching) {
       transparent = 0.5
     } else {
@@ -781,47 +784,23 @@ class Login extends Component {
       <View style={{position: 'absolute',
         top: 0,
         left: 0,
-        width: this.state.isPortrait ? window.width : window.width * 1.78,
+        width: window.width,
         height: window.height,
         opacity: transparent,
         backgroundColor: Colors.snow
       }} >
-
-      {this.state.isPortrait ? <View style={styles.container}>
-
+        <View style={styles.container}>
           <Image source={Images.background} style={styles.backgroundImage} />
-
           <Clouds />
           <CityScape />
-
           <View keyboardShouldPersistTaps='always' style={styles.container}>
-
-            <LogoView>
-              <Image source={Images.clearLogo} style={styles.logo} />
-            </LogoView>
-
-            { Platform.OS === 'ios' && this.state.touchAvailable ?
+            {Platform.OS === 'ios' && this.props.touchAvailable ?
                 this._renderTouchAvailableLogin()
               :
                 this._renderLogin()
             }
-
-            <SignUpView>
-              <TouchableOpacity onPress={() => {
-                NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
-                gaTracker.trackEvent('Login', 'Forgot Password')
-              }}>
-                <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => {
-                NavigationActions.screen_1()
-                gaTracker.trackEvent('Login', 'Sign Up')
-              }}>
-                <Image style={styles.signUpButton} source={Images.signUpButton} />
-              </TouchableOpacity>
-            </SignUpView>
           </View>
-
+          {this.state.modalVisible && this._moreInfo()}
           <View style={styles.footer}>
             <View>
               <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
@@ -830,54 +809,7 @@ class Login extends Component {
               { this._infoMenu() }
             </View>
           </View>
-
-        </View>: <ScrollView style={styles.container}>
-
-          <Image source={Images.background} style={styles.backgroundImageLandscape} />
-
-          <Clouds />
-          <CityScape />
-
-          <View keyboardShouldPersistTaps='always' style={styles.container}>
-
-            <LogoView>
-              <Image source={Images.clearLogo} style={styles.logo} />
-            </LogoView>
-
-            { Platform.OS === 'ios' && this.state.touchAvailable ?
-                this._renderTouchAvailableLogin()
-              :
-                this._renderLogin()
-            }
-
-            <SignUpView>
-              <TouchableOpacity onPress={() => {
-                NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
-                gaTracker.trackEvent('Login', 'Forgot Password')
-              }}>
-                <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => {
-                NavigationActions.screen_1()
-                gaTracker.trackEvent('Login', 'Sign Up')
-              }}>
-                <Image style={styles.signUpButton} source={Images.signUpButton} />
-              </TouchableOpacity>
-            </SignUpView>
-          </View>
-
-          <View style={styles.footer}>
-            <View>
-              <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
-            </View>
-            <View>
-              { this._infoMenu() }
-            </View>
-          </View>
-
-        </ScrollView>}
-
-        
+        </View>
       </View>
     )
   }
@@ -897,6 +829,7 @@ const mapStateToProps = (state) => {
     visibleDashboard: state.member.visibleDashboard,
     touchEnabled: state.setting.touchEnabled,
     touchCheckboxVisible: state.login.touchCheckboxVisible,
+    touchAvailable: state.setting.touchAvailable,
     logoutUrl: state.login.logoutUrl,
     credentialStored: state.setting.credentialStored,
     isPortrait: state.setting.isPortrait
@@ -915,10 +848,9 @@ const mapDispatchToProps = (dispatch) => {
     clearLogin: () => dispatch(LoginActions.logout()),
     changeTouchEnabled: (touchEnabled) => dispatch(SettingActions.changeTouchEnabled(touchEnabled)),
     changeCredentialStored: (credentialStored) => dispatch(SettingActions.changeCredentialStored(credentialStored)),
+    changeTouchAvailable: (touchAvailable) => dispatch(SettingActions.changeTouchAvailable(touchAvailable)),
     changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
-
-
