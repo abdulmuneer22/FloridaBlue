@@ -182,11 +182,11 @@ class Payments extends Component {
               </View>
 
               <View style={{
-                flex: 0.05, width: Metrics.screenWidth * 0.1,
+                flex: 0.1, width: Metrics.screenWidth * 0.1,
                 justifyContent: 'center',
                 //backgroundColor:'red'
               }}>
-            <TouchableOpacity style={{flex: 0.1,width:0}}>
+            <TouchableOpacity style={{flex: 0.1,width:0, backgroundColor:'red'}}>
             <Text  allowFontScaling={false} style={{transform: [{rotate: '270deg'}], 
             bottom: DeviceInfo.isTablet() ? this.props.isPortrait ? -Metrics.payment8*Metrics.screenHeight*0.0012 : -Metrics.payment8*Metrics.screenHeight*0.0014 : -Metrics.payment8*Metrics.screenHeight*0.001, 
             right:DeviceInfo.isTablet() ? Metrics.textHeight2*Metrics.screenHeight*0.0035 : Metrics.textHeight2*Metrics.screenHeight*0.0025,

@@ -79,15 +79,15 @@ class ClaimsCard extends Component {
             return (
               <View key={i} style={{ flex: 1 }}>
                 <TouchableOpacity key={i} style={{ flex: 1 }} onPress={() => this.viewClaimsDetails(value.claimNumber)}>
-                  <View style={styles.claimsListCard} key={i} >
+                  <Card style={styles.claimsListCard} key={i} >
                     <View style={{ flex: 1, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002, justifyContent: 'center' }}>
                       { /*  <View style={{flex: 0.01,marginTop:-Metrics.baseMargin*Metrics.screenHeight*0.002,marginBottom:-Metrics.baseMargin*Metrics.screenHeight*0.002, backgroundColor: color}} /> */}
-                      <View style={{ flex: 0.27, alignItems: 'center', justifyContent: 'center' }}>
+                      <View style={{ flex: 0.28, alignItems: 'center', justifyContent: 'center' }}>
                         <Text allowFontScaling={false} style={styles.claimsCardText}>
                             {this.formatDate(value.dateOfService)}
                           </Text>
                       </View>
-                      <View style={{ flex: 0.33, justifyContent: 'center', alignItems: 'center' }}>
+                      <View style={{ flex: 0.32, justifyContent: 'center', alignItems: 'center' }}>
                         <Text allowFontScaling={false} style={styles.claimsCardText}>
                             {value.memberName}
                           </Text>
@@ -96,7 +96,7 @@ class ClaimsCard extends Component {
                         <Text allowFontScaling={false} style={styles.providerName}>{value.providerName}</Text>
                       </View>
                     </View>
-                  </View>
+                  </Card>
                 </TouchableOpacity>
               </View>
             )
