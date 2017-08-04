@@ -47,7 +47,8 @@ export default StyleSheet.create({
     flex: 0.1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -0
+    marginTop: 20,
+    marginBottom: 10
   },
   planNameViewLandscape: {
     flex: 0.1,
@@ -67,7 +68,7 @@ export default StyleSheet.create({
   chartWrapper: {
      // backgroundColor : 'yellow',
     flex: 0.6,
-   marginBottom: 520
+   marginBottom: 460
   },
   chartWrapperLandscape: {
      // backgroundColor : 'yellow',

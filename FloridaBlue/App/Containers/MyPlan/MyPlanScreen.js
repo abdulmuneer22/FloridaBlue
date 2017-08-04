@@ -75,7 +75,7 @@ class MyPlanScreen extends Component {
       return (
         <View style={styles.container}>
  
-          <Card style={styles.planNameView}>
+          <View style={styles.planNameView}>
 
             { this.props.data.annualDeductible || this.props.data.oop
               ? <Text allowFontScaling={false} style={styles.planNameText}>
@@ -84,7 +84,7 @@ class MyPlanScreen extends Component {
 
              : <Text />
            }
-          </Card> 
+          </View> 
 
           <View style={this.props.isPortrait ? styles.chartWrapper : styles.chartWrapperLandscape}>
             {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} isPortrait={this.props.isPortrait}/>
