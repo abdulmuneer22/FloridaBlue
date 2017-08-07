@@ -176,8 +176,8 @@ class ClaimsList extends Component {
   }
 
   memberSelected (index, value: string) {
-    let selectedMember = this.props.claimsdata && this.props.claimsdata.members && this.props.claimsdata.members[index] && this.props.claimsdata.members[index].memberName
-    let selectedValue = this.props.claimsdata && this.props.claimsdata.members && this.props.claimsdata.members[index] && this.props.claimsdata.members[index].memberId
+    let selectedMember = this.props.memberList[index].memberName
+    let selectedValue =  this.props.memberList[index].memberId
     this.props.changeMemberName(selectedMember)
     this.props.changeMemberId(selectedValue)
     this.setState({ searchVisible: false }, function () {
