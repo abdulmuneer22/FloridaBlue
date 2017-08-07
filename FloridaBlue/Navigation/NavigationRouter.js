@@ -51,8 +51,8 @@ import {NotificationsView } from '../App/Containers/PushNotifications'
 import {ClaimsList} from '../App/Containers/Claims/ClaimsList'
 import {ClaimDetail} from '../App/Containers/Claims/ClaimDetail'
 import {ClaimsSummary} from '../App/Containers/Claims/ClaimsSummary'
+import {PaymentBarcode} from '../App/Containers/WelcomeDisplay'
 import {Payments} from '../App/Containers/WelcomeDisplay'
-import {PaymentsDashboard} from '../App/Containers/WelcomeDisplay'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -98,8 +98,8 @@ const scenes = Actions.create(
         <Scene key='ClaimsList' component={ClaimsList} title='Claims Page' hideNavBar />
         <Scene key='ClaimDetail' component={ClaimDetail} title='Claims Page' hideNavBar />
         <Scene key='ClaimsSummary' component={ClaimsSummary} title='Claims Summary Page' hideNavBar />
+        <Scene key='PaymentBarcode' component={PaymentBarcode} title='PaymentBarcode Page' hideNavBar />
         <Scene key='Payments' component={Payments} title='Payments Page' hideNavBar />
-        <Scene key='PaymentsDashboard' component={PaymentsDashboard} title='Payments Dashboard' hideNavBar />
         <Scene key='AgentLogin' component={AgentLogin} title='AgentLogin' hideNavBar panHandlers={null} type={ActionConst.RESET} />
         <Scene key='Agency' component={Agency} title='Agency' hideNavBar />
         <Scene key='Group' component={Group} title='Group' hideNavBar />
