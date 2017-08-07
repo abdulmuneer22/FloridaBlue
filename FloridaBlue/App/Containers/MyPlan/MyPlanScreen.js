@@ -28,13 +28,10 @@ import _ from 'lodash'
 import MemberActions from '../../Redux/MemberRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
-import DeviceInfo from 'react-native-device-info'
 
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
 let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
-
-import SettingActions from '../../Redux/SettingRedux'
 
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
@@ -48,7 +45,7 @@ class MyPlanScreen extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage :Images.newHeaderImage : Images.landscapeHeaderImage}>
+    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.backButton()}
       </View>
@@ -75,8 +72,15 @@ class MyPlanScreen extends Component {
       var message = this.props.data.errorMessage
       return (
         <View style={styles.container}>
- 
-          <Card style={styles.planNameView}>
+
+          <Card style={{flex: 0.1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: -0,
+    marginRight : -0,
+    marginTop: -0,
+     
+    }}>
 
             { this.props.data.annualDeductible || this.props.data.oop
               ? <Text allowFontScaling={false} style={styles.planNameText}>
@@ -85,10 +89,10 @@ class MyPlanScreen extends Component {
 
              : <Text />
            }
-          </Card> 
+          </Card>
 
-          <View style={this.props.isPortrait ? styles.chartWrapper : styles.chartWrapperLandscape}>
-            {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} isPortrait={this.props.isPortrait}/>
+          <View style={styles.chartWrapper}>
+            {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} />
 
               : Alert.alert(
         'My Plan Overview',
@@ -154,34 +158,18 @@ class MyPlanScreen extends Component {
 
   render () {
     console.tron.log(this.props.data)
-    if (this.props.isPortrait) {
-      return (
+    return (
 
-        <View style={styles.container}>
+      <View style={styles.container}>
 
-          <View>
-            {this._renderHeader()}
-          </View>
-          {this._displayCondition()}
-
+        <View>
+          {this._renderHeader()}
         </View>
+        {this._displayCondition()}
 
-      )
-    } else {
-      return (
+      </View>
 
-        <ScrollView style={styles.container}>
-
-          <View>
-            {this._renderHeader()}
-          </View>
-
-          {this._displayCondition()}
-
-        </ScrollView>
-
-      )
-    }
+    )
   }
 }
 
@@ -198,15 +186,13 @@ const mapStateToProps = (state) => {
     data: state.myplan.data,
     visibilityRules: state.member.visibilityRules,
     error: state.myplan.error,
-    planName: _.get(state, 'member.defaultContract.planName', ''),
-    isPortrait: state.setting.isPortrait
+    planName: _.get(state, 'member.defaultContract.planName', '')
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
-    attemptMember: () => dispatch(MemberActions.memberRequest()),
-    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
+    attemptMember: () => dispatch(MemberActions.memberRequest())
   }
 }
 

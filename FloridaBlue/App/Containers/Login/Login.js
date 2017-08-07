@@ -830,12 +830,13 @@ class Login extends Component {
       <View style={{position: 'absolute',
         top: 0,
         left: 0,
-        width: window.width,
+        width: this.state.isPortrait ? window.width : window.width * 1.78,
         height: window.height,
         opacity: transparent,
         backgroundColor: Colors.snow
       }} >
-        <View style={styles.container}>
+
+      {this.state.isPortrait ?  <View style={styles.container}>
           <Image source={Images.background} style={styles.backgroundImage} />
           <Clouds />
           <CityScape />
@@ -855,7 +856,28 @@ class Login extends Component {
               { this._infoMenu() }
             </View>
           </View>
-        </View>
+        </View>:  <ScrollView style={styles.container}>
+          <Image source={Images.background} style={styles.backgroundImageLandscape} />
+          <Clouds />
+          <CityScape />
+          <View keyboardShouldPersistTaps='always' style={styles.container}>
+            { this.props.touchAvailable ?
+                this._renderTouchAvailableLogin()
+              :
+                this._renderLogin()
+            }
+          </View>
+          {this.state.modalVisible && this._moreInfo()}
+          <View style={styles.footer}>
+            <View>
+              <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
+            </View>
+            <View>
+              { this._infoMenu() }
+            </View>
+          </View>
+        </ScrollView>}
+       
       </View>
     )
   }
