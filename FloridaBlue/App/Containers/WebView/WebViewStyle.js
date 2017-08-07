@@ -47,8 +47,7 @@ export default StyleSheet.create({
   },
   headerViewLandscape: {
     alignItems: 'center',
-    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
-    marginRight: Metrics.images.xm * Metrics.screenWidth * 0.011
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005
   }
 
 })

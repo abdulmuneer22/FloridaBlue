@@ -39,12 +39,12 @@ class PlanBenefits extends Component {
     this._orientationDidChange = this._orientationDidChange.bind(this)
   }
   _renderHeader () {
-    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? (DeviceInfo.isTablet() ? Images.landscapeHeaderImage: Images.newHeaderImage) : Images.landscapeHeaderImage}>
+    return (<Image style={[styles.headerContainer, {width: DeviceInfo.isTablet() ? (this.props.isPortrait ? Metrics.screenWidth : Metrics.screenWidth * 1.335) : (this.props.isPortrait ? Metrics.screenHeight : Metrics.screenWidth * 1.78)}]} source={this.props.isPortrait ? (DeviceInfo.isTablet() ? Images.landscapeHeaderImage: Images.newHeaderImage) : Images.landscapeHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
         {NavItems.backButton()}
       </View>
-      <Text allowFontScaling={false} style={[styles.headerTextStyle, {marginRight: DeviceInfo.isTablet() ? (this.props.isPortrait ? null : Metrics.screenHeight * Metrics.baseMargin * .03) : null}]}>Plan Benefits</Text>
-      <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
+      <Text allowFontScaling={false} style={[styles.headerTextStyle]}>Plan Benefits</Text>
+      <View style={{marginRight: DeviceInfo.isTablet() ? (this.props.isPortrait ? Metrics.baseMargin * Metrics.screenWidth * 0.002 : Metrics.baseMargin * Metrics.screenWidth * 0.002) : null}}>
         {NavItems.settingsButton()}
       </View>
 

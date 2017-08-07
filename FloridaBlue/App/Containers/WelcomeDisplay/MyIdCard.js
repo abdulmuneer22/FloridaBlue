@@ -55,8 +55,8 @@ class MyIdCard extends Component {
 
   componentWillMount () {
     const initial = Orientation.getInitialOrientation()
+    Orientation.lockToPortrait()
     if (initial === 'PORTRAIT') {
-      Orientation.lockToPortrait()
       console.log('Hey, Im going to mount in P mode on ID Card')
     } else {
       console.log('Hey, Im going to mount in L mode on ID Card')
