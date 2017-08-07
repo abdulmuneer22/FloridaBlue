@@ -27,6 +27,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -124,8 +125,6 @@ public class TouchManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void retrieveCredentials(Callback retrievalStatus) {
-        SharedPreferences sharedPref = AppContext.getSharedPreferences("FL_BLUE_PREFERENCES", Context.MODE_PRIVATE);
-        String username = sharedPref.getString("username", "");
         String encryptedJSONFromFile = readFromFile();
         String decryptedJSON = decryptText(encryptedJSONFromFile);
 
@@ -145,9 +144,18 @@ public class TouchManager extends ReactContextBaseJavaModule {
     @ReactMethod
     public void removeCredentials(Callback removalStatus) {
         SharedPreferences sharedPref = AppContext.getSharedPreferences("FL_BLUE_PREFERENCES", Context.MODE_PRIVATE);
-        sharedPref.edit().remove("username");
-        sharedPref.edit().remove("touchEnabled");
-        sharedPref.edit().commit();
+
+        if (sharedPref.contains("username") && sharedPref.contains("touchEnabled")) {
+            sharedPref.edit().remove("username");
+            sharedPref.edit().remove("touchEnabled");
+            sharedPref.edit().commit();
+
+            AppContext.deleteFile(new File(AppContext.getFilesDir(), "config.txt").getName());
+
+            removalStatus.invoke("SUCCESS");
+        } else {
+            removalStatus.invoke("NO EXISTING CREDENTIALS");
+        }
     }
 
     @ReactMethod

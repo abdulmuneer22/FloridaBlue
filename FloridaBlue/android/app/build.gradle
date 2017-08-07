@@ -110,10 +110,10 @@ android {
 
     defaultConfig {
         applicationId "com.bcbsfl.mobile.android"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 23
-        versionCode 138
-        versionName "3.6.0"
+        versionCode 164
+        versionName "3.7.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -216,12 +216,13 @@ dependencies {
 
 
 
+    compile('com.google.firebase:firebase-messaging:10.2.6') {
+        force = true;
+    }
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.facebook.react:react-native:+'
     compile 'com.android.support:multidex:1.0.1'
-    compile ('com.google.firebase:firebase-messaging:10.2.6'){
-        force = true;
-    }
+    compile 'com.android.support:support-v4:23.4.0'
 }
 
 // Run this once to be able to run the application with BUCK
