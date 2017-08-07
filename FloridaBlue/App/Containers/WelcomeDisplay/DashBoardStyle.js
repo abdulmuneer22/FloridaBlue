@@ -436,8 +436,8 @@ export default StyleSheet.create({
     marginTop: 9
   },
   payByPhoneContainer: {
-    width: Metrics.screenWidth * 0.9,
-    height: Metrics.screenWidth * 0.9,
+    width: Metrics.screenWidth * 0.8,
+    height: Metrics.screenWidth * 0.8,
     flex: 1,
    // zIndex: -1,
     backgroundColor: Colors.snow,
@@ -452,22 +452,22 @@ export default StyleSheet.create({
     borderColor: Colors.flBlue.grey1
   },
   dismissPayByPhone: {
-    marginLeft: Metrics.textHeight2 * Metrics.screenWidth * 0.0115,
+    marginLeft: Metrics.searchBarHeight * Metrics.screenWidth * 0.016,
     marginTop: 30,
     backgroundColor: Colors.snow
   },
   payByPhoneText: {
     textAlign: 'left',
     fontSize: Fonts.size.input * Metrics.screenWidth * 0.0032,
-    marginTop: 20,
+    marginTop: Metrics.mediumMargin*Metrics.screenHeight*0.001,
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.snow,
     marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.003,
-    top: 10
+    //top: 10
   },
   payByPhoneMessage: {
     textAlign: 'left',
-    marginTop: 15,
+    marginTop: Metrics.mediumMargin*Metrics.screenHeight*0.001,
     color: Colors.flBlue.anvil,
     fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0030,
     marginLeft: Metrics.textHeight * Metrics.screenWidth * 0.0028,
@@ -478,7 +478,15 @@ export default StyleSheet.create({
     position: 'absolute',
     bottom: 5,
     right: 10
-  }
+  },
+  CallButton: {
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.03,
+    backgroundColor: Colors.transparent,
+    resizeMode: 'contain',
+    borderRadius: Metrics.mediumMargin * Metrics.screenWidth * 0.0015,
+    height: Metrics.mediumMargin * Metrics.screenHeight * 0.0036,
+    marginTop: Metrics.mediumMargin*Metrics.screenHeight*0.001,
+  },
 
 }
 

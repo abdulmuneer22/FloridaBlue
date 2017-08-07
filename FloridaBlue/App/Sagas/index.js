@@ -52,7 +52,8 @@ import {sendStaffLanguageRequest} from './ProviderSagas'
 import {sendConfigTypeRequest} from './ProviderSagas'
 import {sendDoctorDetailRequest} from './ProviderSagas'
 import {claimslist} from './ClaimsSagas'
-import {payment} from './PaymentSagas'
+import {paymentsRequest} from './PaymentSagas'
+import {paymentBarcodeRequest} from './PaymentSagas'
 // import {claimsMemberList} from './ClaimsSagas'
 import {claimDetail} from './ClaimsSagas'
 import {claimsSummary} from './ClaimsSagas'
@@ -118,6 +119,7 @@ export default function * root () {
     takeLatest(NotificationTypes.GET_NOTIFICATION, getNotification, api),
     takeLatest(NotificationTypes.POST_F_C_M_TOKEN, postFCMToken, api),
     takeLatest(NotificationTypes.POST_ARCHIVE, postArchive, api),
-    takeLatest(PaymentTypes.PAYMENT_REQUEST, payment, api)
+    takeLatest(PaymentTypes.PAYMENTS_REQUEST, paymentsRequest, api),
+    takeLatest(PaymentTypes.PAYMENT_BARCODE_REQUEST, paymentBarcodeRequest, api)
   ]
 }

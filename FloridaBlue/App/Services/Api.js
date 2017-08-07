@@ -86,6 +86,7 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
   const getNotification = () => api.get('/notify/messages')
   const getMyIdCard = () => api.get('/idCard')
   const getPaymentBarcode = () => api.get('/paymentBarcode')
+  const getPayment = () => api.get('/payment')
   const getClaimsList = (data) => api.post('/claims/list', {
     startDate: (data && data.startDate && data.startDate != '') ? data.startDate : null,
     endDate: (data && data.endDate && data.endDate != '') ? data.endDate : null,
@@ -342,7 +343,8 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     postFCMToken,
     getClaimsMemberList,
     postArchive,
-    getPaymentBarcode
+    getPaymentBarcode,
+    getPayment
   }
 }
 

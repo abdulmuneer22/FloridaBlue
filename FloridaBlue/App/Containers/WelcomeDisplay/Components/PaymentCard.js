@@ -39,7 +39,7 @@ let image = [
   Images.dashboardGradient4
 ]
 
-class Card extends Component {
+class PaymentCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -74,9 +74,6 @@ class Card extends Component {
       let routerName = this.props.routerName
       gaTracker.trackEvent('Dashboard', routerName)
       action = NavigationActions[routerName]()
-      if(routerName === 'Payments'){
-        this.props.attemptPayment()
-      }
       if(routerName === 'PaymentBarcode'){
         this.props.attemptPaymentBarcode()
       }
@@ -142,7 +139,7 @@ class Card extends Component {
   }
 }
 
-Card.propTypes = {
+PaymentCard.propTypes = {
   data: PropTypes.object,
   attemptPayment: PropTypes.func,
   attemptPaymentBarcode: PropTypes.func,
@@ -165,4 +162,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card)
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentCard)

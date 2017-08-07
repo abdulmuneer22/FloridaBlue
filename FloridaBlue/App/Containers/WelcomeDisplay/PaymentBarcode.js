@@ -48,16 +48,19 @@ class PaymentBarcode extends Component {
     </Image>)
   }
 
-  componentWillMount() {
+   componentWillMount() {
+    console.log('checking page issue will mount')
     console.log('I mountin on payments bruh¡')
     Orientation.lockToPortrait()
   }
 
   componentDidMount() {
+     console.log('checking page issue didmount')
     gaTracker.trackScreenView('Support')
   }
 
   componentWillUnmount() {
+    console.log('checking page issue will unmount')
     Orientation.unlockAllOrientations()
     Orientation.getOrientation((err, orientation) => {
       console.log(`Current Device Orientation: ${orientation}`)
@@ -69,27 +72,28 @@ class PaymentBarcode extends Component {
   _renderBarCode() {
     return (<Image source={{
       uri: 'data:image/jpeg;base64,'
-      + 'iVBORw0KGgoAAAANSUhEUgAAAMgAAAAiCAMAAAAtWWZIAAAAHnRFWHRTb2Z0d2FyZQBid2lwLWpzLm1ldGFmbG9vci5jb21Tnbi0AAAABlBMVEUAAAAAAAClZ7nPAAAAAnRSTlMA/1uRIrUAAABpSURBVHic7c/BDcAwCENRe/+lKwgO7QiV/iUyCJI82bJk16EO1fC76KyKJ3fXGemuPtWZmzArStzad3Z/sBtzr3VfctaUv6a9Y0CAAAECBAgQIECAAAECBAgQIECAAAECBAgQIED+BnkAXYAMwYW/U1QAAAAASUVORK5CYII='
+      + this.props.paymentbarcodedata && this.props.paymentbarcodedata.GetBarCodeTransactionResponse && this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream
     }}
       style={{
         width: Metrics.textHeight * Metrics.screenHeight * 0.1,
         height: Metrics.textHeight * Metrics.screenHeight * 0.003,
         resizeMode: 'contain',
+        //backgroundColor:'red',
         transform: [{ rotate: '270deg' }],
         top: -Metrics.textHeight * Metrics.screenHeight * 0.005
       }}
     />)
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        {this.props.isPortrait ?
-          <View>
-            {this._renderHeader()}
-          </View>
-          : null}
+  _displayCondition () {
+    if (this.props.fetching) {
+      return (<View style={styles.spinnerView}>
+        <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+        <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
+      </View>)
+    } else if (this.props.paymentbarcodedata && this.props.paymentbarcodedata.GetBarCodeTransactionResponse && this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream && this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream.length != 0) {
 
+      return (
         <View style={{ flex: 1 }}>
           <View style={{ flex: 1 }}>
 
@@ -141,12 +145,25 @@ class PaymentBarcode extends Component {
               }} />
               <View style={{
                 flex: 0.2,
+                backgroundColor:'red',
                 alignItems: 'center',
                 justifyContent: 'center',
                 bottom: DeviceInfo.isTablet() ? (this.props.isPortrait ?  -Metrics.payment2 * Metrics.screenWidth * 0.00245: -Metrics.payment2 * Metrics.screenWidth * 0.00275) : -Metrics.payment2 * Metrics.screenWidth * 0.003,
                 right: DeviceInfo.isTablet() ?  Metrics.doubleBaseMargin * Metrics.screenHeight * 0.005 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002
               }}>
-                {this._renderBarCode()}
+               <Image source={{
+      uri: 'data:image/jpeg;base64,'
+      + this.props.paymentbarcodedata && this.props.paymentbarcodedata.GetBarCodeTransactionResponse && this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream
+    }}
+      style={{
+        width: Metrics.textHeight * Metrics.screenHeight * 0.1,
+        height: Metrics.textHeight * Metrics.screenHeight * 0.003,
+        resizeMode: 'contain',
+        //backgroundColor:'red',
+        transform: [{ rotate: '270deg' }],
+        top: -Metrics.textHeight * Metrics.screenHeight * 0.005
+      }}
+    />
               </View>
               <View style={{
                 borderBottomWidth: 1, flex: 0.001, borderBottomColor: Colors.flBlue.grey2, width: Metrics.screenHeight,
@@ -226,6 +243,31 @@ class PaymentBarcode extends Component {
 
           </View>
         </View>
+       )
+    } else if (this.props.error != null)
+      Alert.alert(
+        'Payment Barcode',
+       'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
+        [
+          { text: 'OK' }
+
+        ])
+    }
+  
+
+  render () {
+    return (
+      <View style={[styles.container, {backgroundColor: Colors.snow}]}>
+         {this.props.isPortrait ?
+          <View>
+            {this._renderHeader()}
+          </View>
+          : null}
+
+        <View style={{flex: 1, justifyContent:'center'}}>
+          {this._displayCondition()}
+        </View>
+
       </View>
     )
   }
@@ -233,14 +275,14 @@ class PaymentBarcode extends Component {
 
 PaymentBarcode.propTypes = {
   data: PropTypes.object,
-  attemptPaymentScreen: PropTypes.func,
+  attemptPaymentBarcode: PropTypes.func,
   error: PropTypes.string
 }
 
 const mapStateToProps = (state) => {
   return {
     fetching: state.payment.fetching,
-    data: state.payment.data,
+    paymentbarcodedata: state.payment.data,
     error: state.payment.error,
     isPortrait: state.setting.isPortrait
   }
@@ -248,10 +290,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptPaymentScreen: () => dispatch(PaymentActions.paymentRequest()),
+    attemptPaymentBarcode: () => dispatch(PaymentActions.paymentBarcodeRequest()),
     changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentBarcode)
-
