@@ -130,7 +130,8 @@ export default StyleSheet.create({
 
   },
   claimsCardText: {
-    color: Colors.flBlue.anvil
+    color: Colors.flBlue.anvil,
+    fontSize:Fonts.size.regular*Metrics.screenWidth*0.0025
   },
   claimsCardContainer: {
     flex: 10
@@ -319,7 +320,10 @@ export default StyleSheet.create({
   },
   closeSearchButton: {
     alignSelf: 'flex-end',
+  // backgroundColor:Colors.flBlue.ocean,
+   width:Metrics.textHeight*Metrics.screenWidth*0.0025,
     marginRight: Metrics.baseMargin,
+    marginTop:Metrics.smallMargin*Metrics.screenHeight*0.001,
     flex: 1
   },
   dateContainer: {

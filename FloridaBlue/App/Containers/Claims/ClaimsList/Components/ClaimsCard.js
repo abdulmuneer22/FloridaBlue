@@ -93,7 +93,7 @@ class ClaimsCard extends Component {
                           </Text>
                       </View>
                       <View style={{ flex: 0.4, justifyContent: 'center', alignItems: 'center', marginRight: 10 }}>
-                        <Text allowFontScaling={false} style={styles.providerName}>{value.providerName}</Text>
+                        <Text allowFontScaling={false} style={styles.claimsCardText}>{value.providerName}</Text>
                       </View>
                     </View>
                   </Card>
