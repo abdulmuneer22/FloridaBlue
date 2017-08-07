@@ -37,6 +37,8 @@ import ModalDropdown from 'react-native-modal-dropdown'
 import DateTimePicker from 'react-native-modal-datetime-picker'
 import SettingActions from '../../../Redux/SettingRedux'
 import Orientation from 'react-native-orientation'
+import DeviceInfo from 'react-native-device-info'
+
 let urlConfig = require('../../../UrlConfig')
 
 const window = Dimensions.get('window')
@@ -103,7 +105,7 @@ class ClaimsList extends Component {
   }
 
   _renderHeader () {
-   return (<Image source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage} style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape}>
+   return (<Image source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage} style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape}>
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
         {NavItems.backButton()}
       </View>
@@ -177,7 +179,7 @@ class ClaimsList extends Component {
 
   memberSelected (index, value: string) {
     let selectedMember = this.props.memberList[index].memberName
-    let selectedValue =  this.props.memberList[index].memberId
+    let selectedValue = this.props.memberList[index].memberId
     this.props.changeMemberName(selectedMember)
     this.props.changeMemberId(selectedValue)
     this.setState({ searchVisible: false }, function () {

@@ -28,6 +28,7 @@ import _ from 'lodash'
 import MemberActions from '../../Redux/MemberRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import DeviceInfo from 'react-native-device-info'
 
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
@@ -47,7 +48,7 @@ class MyPlanScreen extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage :Images.newHeaderImage : Images.landscapeHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.backButton()}
       </View>
@@ -75,7 +76,7 @@ class MyPlanScreen extends Component {
       return (
         <View style={styles.container}>
  
-          <View style={styles.planNameView}>
+          <Card style={styles.planNameView}>
 
             { this.props.data.annualDeductible || this.props.data.oop
               ? <Text allowFontScaling={false} style={styles.planNameText}>
@@ -84,7 +85,7 @@ class MyPlanScreen extends Component {
 
              : <Text />
            }
-          </View> 
+          </Card> 
 
           <View style={this.props.isPortrait ? styles.chartWrapper : styles.chartWrapperLandscape}>
             {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} isPortrait={this.props.isPortrait}/>

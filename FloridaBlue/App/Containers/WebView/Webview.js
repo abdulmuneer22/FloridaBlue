@@ -19,12 +19,14 @@ import {Colors, Metrics, Fonts, Images} from '../../Themes'
 import {connect} from 'react-redux'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import SettingActions from '../../Redux/SettingRedux'
+import DeviceInfo from 'react-native-device-info'
 const window = Dimensions.get('window')
 var WEBVIEW_REF = 'webview'
 
+
 class Webview extends Component {
   _renderHeader () {
-    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010}}>
         {NavItems.backButton()}
       </View>
