@@ -176,8 +176,8 @@ class ClaimsList extends Component {
   }
 
   memberSelected (index, value: string) {
-    let selectedMember = this.props.claimsdata.members[index].memberName
-    let selectedValue = this.props.claimsdata.members[index].memberId
+    let selectedMember = this.props.claimsdata && this.props.claimsdata.members && this.props.claimsdata.members[index] && this.props.claimsdata.members[index].memberName
+    let selectedValue = this.props.claimsdata && this.props.claimsdata.members && this.props.claimsdata.members[index] && this.props.claimsdata.members[index].memberId
     this.props.changeMemberName(selectedMember)
     this.props.changeMemberId(selectedValue)
     this.setState({ searchVisible: false }, function () {
@@ -457,7 +457,7 @@ class ClaimsList extends Component {
          <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
             <View style={{backgroundColor: 'white', marginTop: -Metrics.mediumMargin*Metrics.screenHeight*0.002}}>
               <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
-                <Flb name='remove' size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
+                <Flb name='remove'color={Colors.flBlue.anvil} size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
               </TouchableOpacity>
               <Text allowFontScaling={false} style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below:</Text>
               <HideableView visible={this.state.dateError} removeWhenHidden>
