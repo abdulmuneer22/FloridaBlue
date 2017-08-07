@@ -68,7 +68,7 @@ export default StyleSheet.create({
   chartWrapper: {
      // backgroundColor : 'yellow',
     flex: 0.6,
-   marginBottom: 460
+    marginBottom: 460
   },
   chartWrapperLandscape: {
      // backgroundColor : 'yellow',
