@@ -33,6 +33,8 @@ import SettingActions from '../../../Redux/SettingRedux'
 import _ from 'lodash'
 import LinearGradient from 'react-native-linear-gradient'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import DeviceInfo from 'react-native-device-info'
+
 
 const { height, width } = Dimensions.get('window')
 const theme = getTheme()
@@ -375,7 +377,7 @@ class ProviderSearch extends Component {
 
   _renderHeader () {
     return (
-      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage}>
+      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage}>
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
           {NavItems.backButton()}
         </View>

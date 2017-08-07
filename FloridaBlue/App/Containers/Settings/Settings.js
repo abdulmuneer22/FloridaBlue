@@ -26,6 +26,7 @@ import SettingActions from '../../Redux/SettingRedux'
 import { Images, Metrics, Colors, Fonts } from '../../Themes'
 import Flb from '../../Themes/FlbIcon'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import DeviceInfo from 'react-native-device-info'
 
 const Permissions = require('react-native-permissions')
 let TouchManager = NativeModules.TouchManager
@@ -157,7 +158,7 @@ class Settings extends Component {
 
   _renderHeader () {
     return (
-      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? Images.newHeaderImage : Images.landscapeHeaderImage}>
+      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage}>
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
           {NavItems.backButton()}
         </View>
