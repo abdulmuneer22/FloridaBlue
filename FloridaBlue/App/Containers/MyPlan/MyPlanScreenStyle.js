@@ -17,17 +17,6 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.sky
   },
-  headerContainerLandscape: {
-    flexDirection: 'row',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  //  padding: Metrics.mediumMargin,
-    // resizeMode:'cover',
-    // alignSelf: 'stretch',
-    width: Metrics.screenWidth * 1.78
-    // backgroundColor: Colors.flBlue.sky
-  },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
@@ -47,15 +36,7 @@ export default StyleSheet.create({
     flex: 0.1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
-    marginBottom: 10
-  },
-  planNameViewLandscape: {
-    flex: 0.1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: -0,
-    padding: 10
+    marginTop: -0
   },
   planNameText: {
     fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
@@ -67,14 +48,8 @@ export default StyleSheet.create({
 
   chartWrapper: {
      // backgroundColor : 'yellow',
-    flex: 0.6,
-    marginBottom: 460
-  },
-  chartWrapperLandscape: {
-     // backgroundColor : 'yellow',
-    flex: 0.6,
-    marginLeft: 20,
-   marginBottom: 160
+    flex: 0.6
+   // marginBottom: 15
   },
   cardStyle: {
     flexWrap: 'wrap',
@@ -114,7 +89,7 @@ export default StyleSheet.create({
     marginLeft: window.width * 0.04,
     marginRight: window.width * 0.03,
     marginTop: (Platform.OS === 'ios') ? window.width * 0.05 : 0,
-    marginBottom: window.width * 0.09
+    marginBottom: window.width * 0.01
 
   },
 

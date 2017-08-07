@@ -24,7 +24,7 @@ import I18n from 'react-native-i18n'
 import { Colors, Metrics, Fonts, Images } from '../../../Themes'
 import Flb from '../../../Themes/FlbIcon'
 import { connect } from 'react-redux'
-import { Container, Content, Footer, FooterTab, Radio, Button, Fab, Card } from 'native-base'
+import { Container, Content, CardItem,Body,Footer, FooterTab, Radio, Button, Fab, Card ,StyleProvider} from 'native-base'
 import { MKTextField, MKColor, MKSpinner, MKRadioButton, getTheme, setTheme } from 'react-native-material-kit'
 import HideableView from 'react-native-hideable-view'
 import ModalDropdown from 'react-native-modal-dropdown'
@@ -377,7 +377,7 @@ class ProviderSearch extends Component {
 
   _renderHeader () {
     return (
-      <Image style={[styles.headerContainer, {width: DeviceInfo.isTablet() ? (this.props.isPortrait ? Metrics.screenWidth : Metrics.screenWidth * 1.335) : (this.props.isPortrait ? Metrics.screenHeight : Metrics.screenWidth * 1.78)}]} source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage}>
+      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage}>
         <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
           {NavItems.backButton()}
         </View>
@@ -578,8 +578,21 @@ class ProviderSearch extends Component {
               </View>
           : <View>{this.state._onChecked}</View>
 
-          : <View style={styles.urgentCareContainer}>
-
+          : 
+         
+          <Card style={{
+            width: Metrics.screenWidth * 0.9,
+            height: Metrics.screenWidth * 0.9,
+          flex: 1,
+          // zIndex: -1,
+          // backgroundColor:'red',
+            borderWidth: 1,
+            borderRadius: Metrics.screenWidth * 1,
+            borderColor: Colors.flBlue.grey1,
+            position: 'absolute',
+            bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
+            right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035
+            }}>
             <Flb name='close-delete' style={styles.dismissUrgentIcon}
               color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
               onPress={this.handleNeedHelp} />
@@ -598,7 +611,8 @@ class ProviderSearch extends Component {
                   color={Colors.flBlue.red} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
               </View>
             </View>
-          </View>
+          </Card>
+         
 
           }
         </View>

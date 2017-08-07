@@ -348,12 +348,19 @@ class Login extends Component {
     }
   }
 
-  _handleTouchStatus(touchStatus) {
-      console.tron.log("Handling touch status..")
-      console.tron.log(touchStatus)
-      console.log("Handling touch status..")
-      console.log(touchStatus)
+  _authenticateUserWithTouch() {
+    if (Platform.OS === 'ios') {
+      iOSTouchManager.authenticateUser((error, iosStatus) => {
+        this._handleAuthenticateStatus(iosStatus[0])
+      })
+    } else {
+      AndroidTouchManager.authenticateUser((androidStatus) => {
+        this._handleAuthenticateStatus(androidStatus)
+      })
+    }
+  }
 
+  _handleTouchStatus(touchStatus) {
       switch (touchStatus) {
         case 'AUTHENTICATED':
           this.props.changeCredentialStored(true)
@@ -395,11 +402,6 @@ class Login extends Component {
   }
 
   _handleTouchCheckbox (touchStatus) {
-    console.tron.log("Handling touch checkbox..")
-    console.tron.log(touchStatus)
-    console.log("Handling touch checkbox..")
-    console.log(touchStatus)
-
     let errorMessage = ''
     let errorTitle = 'Error'
     var showError = false
@@ -433,8 +435,62 @@ class Login extends Component {
     }
   }
 
-  _authenticateUserWithTouch () {
-    console.tron.log("Authenticating..")
+  _handleAuthenticateStatus (authenticationStatus) {
+    console.tron.log(authenticationStatus)
+    console.log(authenticationStatus)
+
+    if (authenticationStatus == 'YES') {
+      // if (Platform.OS === 'ios') {
+      //   iOSTouchManager.retrieveCredentials((error, iosStatus) => {
+      //     this._handleCredentialRetrieval(iosStatus[0])
+      //   })
+      // } else {
+      //   AndroidTouchManager.retrieveCredentials((androidStatus) => {
+      //     this._handleCredentialRetrieval(androidStatus)
+      //   })
+      // }
+    } else {
+      let showError = true
+      let errorMessage = ''
+      let errorTitle = 'Oops!'
+      let errorCode = authObject['authErrorCode']
+
+      switch (errorCode) {
+        case 'AUTH FAILED':
+          errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
+          break
+        case 'USER CANCEL':
+          showError = false
+          break
+        case 'SYSTEM CANCEL':
+          showError = false
+          break
+        case 'NO PASSCODE':
+          errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+          break
+        case 'NOT ENROLLED':
+          errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+          break
+        case 'LOCKED':
+          errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
+          this._handleLockedTouch()
+          break
+        default:
+          errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
+      }
+
+      if (showError) {
+        Alert.alert(
+          errorTitle,
+          errorMessage,
+          [
+            {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
+          ],
+          { cancelable: false }
+        )
+      }
+    }
+
     // TouchManager.authenticateUser((error, authInfo) => {
     //   let authObject = authInfo[0]
     //   let authStatus = authObject['authStatus']
@@ -521,7 +577,7 @@ class Login extends Component {
    _handleDisableStatus (disableStatus) {
      console.tron.log(disableStatus)
      console.log(disableStatus)
-     
+
      if (disableStatus == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
        this.props.changeTouchEnabled(false)
        this.props.changeCredentialStored(false)
@@ -830,12 +886,13 @@ class Login extends Component {
       <View style={{position: 'absolute',
         top: 0,
         left: 0,
-        width: window.width,
+        width: this.state.isPortrait ? window.width : window.width * 1.78,
         height: window.height,
         opacity: transparent,
         backgroundColor: Colors.snow
       }} >
-        <View style={styles.container}>
+
+      {this.state.isPortrait ?  <View style={styles.container}>
           <Image source={Images.background} style={styles.backgroundImage} />
           <Clouds />
           <CityScape />
@@ -855,7 +912,28 @@ class Login extends Component {
               { this._infoMenu() }
             </View>
           </View>
-        </View>
+        </View>:  <ScrollView style={styles.container}>
+          <Image source={Images.background} style={styles.backgroundImageLandscape} />
+          <Clouds />
+          <CityScape />
+          <View keyboardShouldPersistTaps='always' style={styles.container}>
+            { this.props.touchAvailable ?
+                this._renderTouchAvailableLogin()
+              :
+                this._renderLogin()
+            }
+          </View>
+          {this.state.modalVisible && this._moreInfo()}
+          <View style={styles.footer}>
+            <View>
+              <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
+            </View>
+            <View>
+              { this._infoMenu() }
+            </View>
+          </View>
+        </ScrollView>}
+       
       </View>
     )
   }

@@ -282,9 +282,9 @@ export default StyleSheet.create({
   urgentCareContainer: {
     width: Metrics.screenWidth * 0.9,
     height: Metrics.screenWidth * 0.9,
-    flex: 1,
+   flex: 1,
    // zIndex: -1,
-    backgroundColor:Colors.snow,
+    backgroundColor:'red',
     borderWidth: 1,
     borderRadius: Metrics.screenWidth * 1,
     borderColor: Colors.flBlue.grey1,

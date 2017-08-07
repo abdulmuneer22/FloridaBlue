@@ -63,7 +63,7 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-      <Image style={[styles.headerContainer, {width: DeviceInfo.isTablet() ? (this.props.isPortrait ? Metrics.screenWidth : Metrics.screenWidth * 1.335) : (this.props.isPortrait ? Metrics.screenHeight : Metrics.screenWidth * 1.78)}]} source={this.props.isPortrait ? (DeviceInfo.isTablet() ? Images.landscapeHeaderImage: Images.newHeaderImage) : Images.landscapeHeaderImage}>
+      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? (DeviceInfo.isTablet() ? Images.landscapeHeaderImage: Images.newHeaderImage) : Images.landscapeHeaderImage}>
         <View style={{
           alignItems: 'center',
           marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,

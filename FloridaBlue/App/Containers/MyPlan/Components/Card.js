@@ -23,7 +23,6 @@ import Flb from '../../../Themes/FlbIcon'
 import ClaimsActions from '../../../Redux/ClaimsRedux'
 import LinearGradient from 'react-native-linear-gradient'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
-import SettingActions from '../../../Redux/SettingRedux'
 
 let urlConfig = require('../../../UrlConfig')
 let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
@@ -101,7 +100,7 @@ class Card extends Component {
           justifyContent: 'center',
           marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
         // marginRight :
-        marginTop : -160,
+        // marginTop : 10,
           marginBottom: window.width * 0.03
 
         }}>
@@ -109,7 +108,7 @@ class Card extends Component {
           <LinearGradient colors={this.props.gradientColor}
             style={{
               flex: 1,
-              width: this.props.isPortrait ? this.state.CardWidth : this.state.CardWidth * 1.78,
+              width: this.state.CardWidth,
               height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.76) : Metrics.screenHeight - (Metrics.screenHeight * 0.78),
         //    alignItems: 'center',
         //    justifyContent: 'center'
@@ -117,20 +116,18 @@ class Card extends Component {
             }}
            >
 
-            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: this.props.isPortrait ? -2 : -5,
-              marginLeft: this.props.isPortrait ? 0 : 125}}>
+            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center' }}>
               <Image source={Images[this.props.gradientImage]}
                 style={this.props.CardCount % 2 ? styles.myplanImageStyle1 : styles.myplanImageStyle2} >
 
-                <View style={{alignItems: 'center', width: Metrics.screenWidth, flex: 1, justifyContent: 'center', marginRight: this.props.isPortrait ? 0 : 98}} >
+                <View style={{alignItems: 'center', width: Metrics.screenWidth, flex: 1, justifyContent: 'center'}} >
                   <Text allowFontScaling={false} style={{
                   // marginTop: Metrics.mediumMargin,
                    // marginBottom: -15,
                     fontSize: this.props.CardCount % 2 ? Fonts.size.h4 * Metrics.screenWidth * 0.0030 : Fonts.size.regular * Metrics.screenWidth * 0.0030,
                     fontWeight: (Platform.OS === 'ios') ? '600' : '400',
                     color: Colors.snow,
-                    backgroundColor: Colors.transparent,
-                    left: 0
+                    backgroundColor: Colors.transparent
                   }}>
                     {this.props.title}
                   </Text>
@@ -157,15 +154,13 @@ Card.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    claimsdata: state.claims.claimslist,
-    isPortrait: state.setting.isPortrait
+    claimsdata: state.claims.claimslist
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest()),
-    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
+    attemptClaimsList: () => dispatch(ClaimsActions.claimsListRequest())
   }
 }
 

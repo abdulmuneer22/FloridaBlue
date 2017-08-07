@@ -421,7 +421,7 @@ export default StyleSheet.create({
   },
   opdStyle: {
     flex: 1,
-    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
     justifyContent: 'center',
     alignItems: 'center',
     width: Metrics.screenWidth,
