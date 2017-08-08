@@ -205,6 +205,16 @@ export default StyleSheet.create({
     // alignSelf: 'stretch',
     width: Metrics.screenWidth * 1.78
   },
+  summaryLandscape: {
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4.5),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.759),
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 7,
+    marginLeft: 10,
+    marginRight: -12,
+    flexDirection: 'row'
+  },
   titleView: {
     flexWrap: 'wrap',
     flexDirection: 'row',
@@ -277,7 +287,7 @@ export default StyleSheet.create({
   //  alignItems: 'center',
     // padding: 20,
 
-    // marginLeft:20
+   , marginLeft:20
   },
   healthPlanText: {
     fontSize: Fonts.size.h2 * Metrics.screenWidth * 0.0025,
@@ -293,12 +303,12 @@ export default StyleSheet.create({
 // marginLeft:5
   },
   healthPlanTextLandscape: {
-    fontSize: Fonts.size.h2 * Metrics.screenWidth * 0.0025,
+    fontSize: Fonts.size.h2 * Metrics.screenWidth * 0.0015,
     color: Colors.snow,
     fontWeight: (Platform.OS === 'ios') ? '500' : '400',
     backgroundColor: Colors.transparent,
     fontFamily: Fonts.type.subHeaderFont,
-    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0092
+    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0013
   },
   healthPlanSubText: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
@@ -347,16 +357,10 @@ export default StyleSheet.create({
     // marginBottom:0
   },
   footerImageLandscape: {
-    // flexDirection: 'row',
-    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.84) : Metrics.screenHeight - (Metrics.screenHeight * 0.88),
-     // height : window.height * 0.5,
-    justifyContent: 'center',
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
     alignItems: 'center',
-  //  alignSelf: 'stretch',
-   // resizeMode: 'stretch',
-    width: Metrics.screenWidth * 1.78
-    // marginTop: 4
-    // marginBottom:0
+    justifyContent: 'center'
   },
   textBackground: {
     flex: 1,
@@ -428,12 +432,14 @@ export default StyleSheet.create({
     marginTop: 9
   },
   opdStyleLandscape: {
-    flex: 1,
-    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.85) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
-    justifyContent: 'center',
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4.5),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.759),
     alignItems: 'center',
-    width: Metrics.screenWidth * 1.78,
-    marginTop: 9
+    justifyContent: 'center',
+    marginTop: 7,
+    marginLeft: Metrics.screenHeight - (Metrics.screenHeight * 1.02),
+    marginRight: 10,
+    flexDirection: 'row'
   },
   payByPhoneContainer: {
     width: Metrics.screenWidth * 0.9,
