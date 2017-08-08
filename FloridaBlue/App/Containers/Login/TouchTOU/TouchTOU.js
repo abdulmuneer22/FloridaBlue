@@ -8,7 +8,8 @@ import {
   TouchableHighlight,
   Image,
   TouchableOpacity,
-  NativeModules
+  NativeModules,
+  Platform
 } from 'react-native'
 
 import {Actions as NavigationActions} from 'react-native-router-flux'
@@ -20,7 +21,8 @@ import { connect } from 'react-redux'
 import styles from './TouchTOUStyle'
 import I18n from 'react-native-i18n'
 
-var TouchManager = NativeModules.TouchManager
+let iOSTouchManager = NativeModules.TouchManager
+let AndroidTouchManager = NativeModules.TouchManager
 const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
@@ -53,57 +55,72 @@ class TouchTOU extends Component {
     })
   }
 
+
   _handleAccept () {
-    TouchManager.authenticateUser((error, authInfo) => {
-      var authObject = authInfo[0]
-      var authStatus = authObject['authStatus']
-      if (authStatus == 'YES') {
-        TouchManager.storeCredentials(this.props.username, this.props.password)
-        this.props.changeCredentialStored(true)
-        this.props.handleChangePassword('')
-        NavigationActions.WelcomeDashBoard()
+    if (Platform.OS === 'ios') {
+      iOSTouchManager.authenticateUser((error, iosStatus) => {
+        this._handleAuthenticateStatus(iosStatus[0])
+      })
+    } else {
+      AndroidTouchManager.authenticateUser((androidStatus) => {
+        this._handleAuthenticateStatus(androidStatus)
+      })
+    }
+  }
+
+  _handleAuthenticateStatus(authStatus) {
+    console.log(authStatus)
+    console.tron.log(authStatus)
+    if (authStatus == 'AUTHENTICATED') {
+      if (Platform.OS === 'ios') {
+        iOSTouchManager.storeCredentials(this.props.username, this.props.password)
       } else {
-        var showError = true
-        var errorMessage = ''
-        var errorTitle = 'Oops!'
-        var errorCode = authObject['authErrorCode']
-
-        switch (errorCode) {
-          case 'AUTH FAILED':
-            errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
-            break
-          case 'USER CANCEL':
-            showError = false
-            break
-          case 'SYSTEM CANCEL':
-            showError = false
-            break
-          case 'NO PASSCODE':
-            errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
-            break
-          case 'NOT ENROLLED':
-            errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
-            break
-          case 'LOCKED':
-            errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
-            this._disableTouchID()
-            break
-          default:
-            errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
-        }
-
-        if (showError) {
-          Alert.alert(
-            errorTitle,
-            errorMessage,
-            [
-              {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
-            ],
-            { cancelable: false }
-          )
-        }
+        AndroidTouchManager.storeCredentials(this.props.username, this.props.password)
       }
-    })
+
+      this.props.changeCredentialStored(true)
+      this.props.handleChangePassword('')
+      NavigationActions.WelcomeDashBoard()
+    } else {
+      var showError = true
+      var errorMessage = ''
+      var errorTitle = 'Oops!'
+
+      switch (authStatus) {
+        case 'AUTH FAILED':
+          errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
+          break
+        case 'USER CANCEL':
+          showError = false
+          break
+        case 'SYSTEM CANCEL':
+          showError = false
+          break
+        case 'NO PASSCODE':
+          errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+          break
+        case 'NOT ENROLLED':
+          errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+          break
+        case 'LOCKED':
+          errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
+          this._disableTouchID()
+          break
+        default:
+          errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
+      }
+
+      if (showError) {
+        Alert.alert(
+          errorTitle,
+          errorMessage,
+          [
+            {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
+          ],
+          { cancelable: false }
+        )
+      }
+    }
   }
 
   _renderHeader () {
