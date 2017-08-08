@@ -4,16 +4,17 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableNativeArray;
+import com.facebook.react.bridge.WritableNativeMap;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.SharedPreferences;
-import android.hardware.fingerprint.FingerprintManager;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
-import android.support.annotation.Nullable;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -33,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Array;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.KeyStore;
@@ -43,6 +45,7 @@ import java.security.SignatureException;
 import java.security.UnrecoverableEntryException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.util.ArrayList;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -61,26 +64,13 @@ import static com.bcbsfl.mobile.android.AppConstants.DIALOG_FRAGMENT_TAG;
 public class TouchManager extends ReactContextBaseJavaModule {
     private static final String TAG = TouchManager.class.getSimpleName();
     private static final String SAMPLE_ALIAS = "FLBAlIAS";
-    private Context AppContext;
-    private Activity activityContext;
-    private DecryptUtil decryptUtil;
-    private EncryptUtil encryptUtil;
     private KeyStore mKeyStore;
     private KeyGenerator mKeyGenerator;
     private Cipher defaultCipher;
-    private FingerprintManagerCompat fingerprintManager;
-    private KeyguardManager keyguardManager;
     private Callback authenticationCallback;
 
     public TouchManager(ReactApplicationContext reactContext) {
         super(reactContext);
-        this.AppContext = reactContext;
-
-        try {
-            decryptUtil = new DecryptUtil();
-        } catch (CertificateException | NoSuchAlgorithmException | KeyStoreException | IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -92,8 +82,9 @@ public class TouchManager extends ReactContextBaseJavaModule {
     public void checkTouchStatus(Callback touchStatus) {
         boolean isRooted = RootUtil.isDeviceRooted();
         boolean isSensorAvailable = checkFingerSensor();
+        Context reactContext = getReactApplicationContext();
 
-        SharedPreferences sharedPref = AppContext.getSharedPreferences("FL_BLUE_PREFERENCES", Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = reactContext.getSharedPreferences("FL_BLUE_PREFERENCES", Context.MODE_PRIVATE);
         String touchEnabled = sharedPref.getString("touchEnabled", "NO");
         String username = sharedPref.getString("username", "");
 
@@ -116,9 +107,10 @@ public class TouchManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void enableFingerprint(Callback enableStatus) {
-        SharedPreferences sharedPref = AppContext.getSharedPreferences("FL_BLUE_PREFERENCES", Context.MODE_PRIVATE);
-        sharedPref.edit().putString("touchEnabled", "YES");
-        sharedPref.edit().commit();
+        Context reactContext = getReactApplicationContext();
+
+        SharedPreferences sharedPref = reactContext.getSharedPreferences("FL_BLUE_PREFERENCES", Context.MODE_PRIVATE);
+        sharedPref.edit().putString("touchEnabled", "YES").commit();
 
         enableStatus.invoke("ENABLED");
     }
@@ -131,26 +123,41 @@ public class TouchManager extends ReactContextBaseJavaModule {
         if (null != decryptedJSON) {
             try {
                 JSONObject decryptedJSONObject = new JSONObject(decryptedJSON);
-                retrievalStatus.invoke(decryptedJSONObject.toString());
+                WritableNativeMap resultData = new WritableNativeMap();
+                WritableNativeArray callbackArray = new WritableNativeArray();
+
+                resultData.putString("status", "SUCCESS");
+                resultData.putString("username", decryptedJSONObject.getString("username"));
+                resultData.putString("password", decryptedJSONObject.getString("password"));
+
+                callbackArray.pushMap(resultData);
+
+                retrievalStatus.invoke(callbackArray);
             } catch (JSONException e) {
                 e.printStackTrace();
                 retrievalStatus.invoke("FAILURE");
             }
         } else {
-            retrievalStatus.invoke("FAILURE");
+            WritableNativeMap resultData = new WritableNativeMap();
+            WritableNativeArray callbackArray = new WritableNativeArray();
+
+            resultData.putString("status", "FAILURE");
+            callbackArray.pushMap(resultData);
+
+            retrievalStatus.invoke(callbackArray);
         }
     }
 
     @ReactMethod
     public void removeCredentials(Callback removalStatus) {
-        SharedPreferences sharedPref = AppContext.getSharedPreferences("FL_BLUE_PREFERENCES", Context.MODE_PRIVATE);
+        Context reactContext = getReactApplicationContext();
+        SharedPreferences sharedPref = reactContext.getSharedPreferences("FL_BLUE_PREFERENCES", Context.MODE_PRIVATE);
 
         if (sharedPref.contains("username") && sharedPref.contains("touchEnabled")) {
-            sharedPref.edit().remove("username");
-            sharedPref.edit().remove("touchEnabled");
-            sharedPref.edit().commit();
+            sharedPref.edit().remove("username").commit();
+            sharedPref.edit().remove("touchEnabled").commit();
 
-            AppContext.deleteFile(new File(AppContext.getFilesDir(), "config.txt").getName());
+            reactContext.deleteFile(new File(reactContext.getFilesDir(), "config.txt").getName());
 
             removalStatus.invoke("SUCCESS");
         } else {
@@ -160,8 +167,7 @@ public class TouchManager extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void storeCredentials(String username, String password) {
-        fingerprintManager = FingerprintManagerCompat.from(AppContext);
-        keyguardManager = (KeyguardManager) AppContext.getSystemService(Context.KEYGUARD_SERVICE);
+        Context reactContext = getReactApplicationContext();
         JSONObject newCredentials = new JSONObject();
 
         try {
@@ -171,10 +177,9 @@ public class TouchManager extends ReactContextBaseJavaModule {
             e.printStackTrace();
         }
 
-        SharedPreferences sharedPref = AppContext.getSharedPreferences("FL_BLUE_PREFERENCES", Context.MODE_PRIVATE);
-        sharedPref.edit().putString("touchEnabled", "YES");
-        sharedPref.edit().putString("username", "YES");
-        sharedPref.edit().commit();
+        SharedPreferences sharedPref = reactContext.getSharedPreferences("FL_BLUE_PREFERENCES", Context.MODE_PRIVATE);
+        sharedPref.edit().putString("touchEnabled", "YES").commit();
+        sharedPref.edit().putString("username", "YES").commit();
 
         generateKey();
 
@@ -189,7 +194,7 @@ public class TouchManager extends ReactContextBaseJavaModule {
     public void authenticateUser(Callback authenticationStatus) {
         boolean isRooted = RootUtil.isDeviceRooted();
         boolean isSensorAvailable = checkFingerSensor();
-        activityContext = getCurrentActivity();
+        Activity activityContext = getCurrentActivity();
         this.authenticationCallback = authenticationStatus;
 
         if (isRooted) {
@@ -276,19 +281,21 @@ public class TouchManager extends ReactContextBaseJavaModule {
     }
 
     private boolean checkFingerSensor() {
-        fingerprintManager = FingerprintManagerCompat.from(AppContext);
-        keyguardManager = (KeyguardManager) AppContext.getSystemService(Context.KEYGUARD_SERVICE);
+        Context reactContext = getReactApplicationContext();
+        FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.from(reactContext);
+        KeyguardManager keyguardManager = (KeyguardManager) reactContext.getSystemService(Context.KEYGUARD_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return ActivityCompat.checkSelfPermission(AppContext, Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED && fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints() && keyguardManager.isKeyguardSecure();
+            return ActivityCompat.checkSelfPermission(reactContext, Manifest.permission.USE_FINGERPRINT) == PackageManager.PERMISSION_GRANTED && fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints() && keyguardManager.isKeyguardSecure();
         } else {
             return fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints() && keyguardManager.isKeyguardSecure();
         }
     }
 
     private void writeToFile(String data) {
+        Context reactContext = getReactApplicationContext();
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(AppContext.openFileOutput("config.txt", Context.MODE_PRIVATE));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(reactContext.openFileOutput("config.txt", Context.MODE_PRIVATE));
             outputStreamWriter.write(data);
             outputStreamWriter.close();
         } catch (IOException e) {
@@ -297,11 +304,11 @@ public class TouchManager extends ReactContextBaseJavaModule {
     }
 
     private String readFromFile() {
-
         String encryptedJSONFromFile = "{}";
+        Context reactContext = getReactApplicationContext();
 
         try {
-            InputStream inputStream = AppContext.openFileInput("config.txt");
+            InputStream inputStream = reactContext.openFileInput("config.txt");
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -333,21 +340,34 @@ public class TouchManager extends ReactContextBaseJavaModule {
 
         byte[] inputEncryptedJSONFromFile = Base64.decode(encryptedText, Base64.DEFAULT);
         String decryptedJSON = null;
+        Context reactContext = getReactApplicationContext();
+
         try {
-            decryptedJSON = decryptUtil.decrypt(SAMPLE_ALIAS, inputEncryptedJSONFromFile, AppContext/*, encryptor.getIv()*/);
-        } catch (UnrecoverableEntryException | NoSuchAlgorithmException | KeyStoreException | NoSuchPaddingException | NoSuchProviderException | IOException | InvalidKeyException e) {
-            Log.e(TAG, "Error DecryptData : " + e.getMessage(), e);
-        } catch (IllegalBlockSizeException | BadPaddingException | InvalidAlgorithmParameterException e) {
-            Log.e(TAG, "Error DecryptData : " + e.getMessage(), e);
+            DecryptUtil decryptUtil = new DecryptUtil();
+
+            try {
+                decryptedJSON = decryptUtil.decrypt(SAMPLE_ALIAS, inputEncryptedJSONFromFile, reactContext/*, encryptor.getIv()*/);
+            } catch (UnrecoverableEntryException | NoSuchAlgorithmException | KeyStoreException | NoSuchPaddingException | NoSuchProviderException | IOException | InvalidKeyException e) {
+                Log.e(TAG, "Error DecryptData : " + e.getMessage(), e);
+            } catch (IllegalBlockSizeException | BadPaddingException | InvalidAlgorithmParameterException e) {
+                Log.e(TAG, "Error DecryptData : " + e.getMessage(), e);
+                e.printStackTrace();
+            }
+
+        } catch (CertificateException | NoSuchAlgorithmException | KeyStoreException | IOException e) {
             e.printStackTrace();
         }
+
         return decryptedJSON;
     }
 
     private String encryptText(String inputJSON) {
         String encryptedJSON = null;
+        Context reactContext = getReactApplicationContext();
+        EncryptUtil encryptUtil = new EncryptUtil();
+
         try {
-            final byte[] encryptedText = encryptUtil.encrypt(SAMPLE_ALIAS, inputJSON, AppContext);
+            final byte[] encryptedText = encryptUtil.encrypt(SAMPLE_ALIAS, inputJSON, reactContext);
             encryptedJSON = Base64.encodeToString(encryptedText, Base64.DEFAULT);
         } catch (UnrecoverableEntryException | NoSuchAlgorithmException | NoSuchProviderException |
                 KeyStoreException | IOException | NoSuchPaddingException | InvalidKeyException e) {

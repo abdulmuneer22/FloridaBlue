@@ -29,7 +29,8 @@ import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-go
 import DeviceInfo from 'react-native-device-info'
 
 const Permissions = require('react-native-permissions')
-let TouchManager = NativeModules.TouchManager
+let iOSTouchManager = NativeModules.TouchManager
+let AndroidTouchManager = NativeModules.TouchManager
 let urlConfig = require('../../UrlConfig')
 let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
 
@@ -46,31 +47,51 @@ class Settings extends Component {
 
   componentDidMount () {
     if (this.props.credentialStored) {
-      TouchManager.retrieveCredentials((error, credentials) => {
-        let credentialObject = credentials[0]
-        let status = credentialObject['status']
-        if (status === 'SUCCESS') {
-          let username = credentialObject['username']
-          if (username != this.props.username) {
-            this.props.changeTouchAvailable(false)
-          }
-        }
-      })
+      if (Platform.OS === 'ios') {
+        iOSTouchManager.retrieveCredentials((error, iosStatus) => {
+          this._handleCredentialRetrieval(iosStatus[0])
+        })
+      } else {
+        AndroidTouchManager.retrieveCredentials((androidStatus) => {
+          this._handleCredentialRetrieval(androidStatus)
+        })
+      }
     }
     gaTracker.trackScreenView('Settings')
   }
 
-  _disableTouchID () {
-    TouchManager.removeCredentials((error, credentials) => {
-      let status = credentials[0]
-      if (status == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
-        this.props.changeTouchEnabled(false)
-        this.props.changeCredentialStored(false)
-        this.props.changeTouchAvailable(true)
-        this.forceUpdate()
-        gaTracker.trackEvent('Settings', 'Disabled Touch ID')
+  _handleCredentialRetrieval(retrievalResponse) {
+    let credentialObject = retrievalResponse[0]
+    let status = credentialObject['status']
+
+    if (status === 'SUCCESS') {
+      let username = credentialObject['username']
+      if (username != this.props.username) {
+        this.props.changeTouchAvailable(false)
       }
-    })
+    }
+  }
+
+  _disableTouchID () {
+    if (Platform.OS === 'ios') {
+      iOSTouchManager.removeCredentials((error, iosStatus) => {
+        this._handleDisableStatus(iosStatus[0])
+      })
+    } else {
+      AndroidTouchManager.removeCredentials((androidStatus) => {
+        this._handleDisableStatus(androidStatus)
+      })
+    }
+  }
+
+  _handleDisableStatus(disableStatus) {
+    if (disableStatus == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
+      this.props.changeTouchEnabled(false)
+      this.props.changeCredentialStored(false)
+      this.props.changeTouchAvailable(true)
+      this.forceUpdate()
+      gaTracker.trackEvent('Settings', 'Disabled Touch ID')
+    }
   }
 
   _handleLockedTouch () {
@@ -80,64 +101,70 @@ class Settings extends Component {
     this.forceUpdate()
   }
 
-  _checkTouchStatus() {
-    TouchManager.checkTouchStatus((error, touchInfo) => {
-      let touchStatus = touchInfo[0]
-      let errorMessage = ''
-      let errorTitle = 'Error'
-      var showError = false
+  _handleTouchStatus(touchStatus) {
+    let errorMessage = ''
+    let errorTitle = 'Error'
+    var showError = false
 
-      switch (touchStatus) {
-        case 'AUTHENTICATED':
-          this._enableTouch()
-          break
-        case 'ENABLED':
-          this._enableTouch()
-          break
-        case 'DISABLED':
-          this._enableTouch()
-          break
-        case 'NOT ENROLLED':
-          this._disableTouchID()
-          errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
-          showError = true
-          break
-        case 'NO PASSCODE':
-          this._disableTouchID()
-          break
-        case 'LOCKED':
-          this._handleLockedTouch()
-          errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
-          showError = true
-        default:
-          this._disableTouchID()
-      }
+    switch (touchStatus) {
+      case 'AUTHENTICATED':
+        this._enableTouch()
+        break
+      case 'ENABLED':
+        this._enableTouch()
+        break
+      case 'DISABLED':
+        this._enableTouch()
+        break
+      case 'NOT ENROLLED':
+        this._disableTouchID()
+        errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
+        showError = true
+        break
+      case 'NO PASSCODE':
+        this._disableTouchID()
+        break
+      case 'LOCKED':
+        this._handleLockedTouch()
+        errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
+        showError = true
+      default:
+        this._disableTouchID()
+    }
 
-      if (showError) {
-        Alert.alert(
-          errorTitle,
-          errorMessage,
-          [
-            {text: 'Ok', onPress: () => console.log("Ok pressed"), style: 'cancel'}
-          ],
-          { cancelable: false }
-        )
-      }
-    })
+    if (showError) {
+      Alert.alert(
+        errorTitle,
+        errorMessage,
+        [
+          {text: 'Ok', onPress: () => console.log("Ok pressed"), style: 'cancel'}
+        ],
+        { cancelable: false }
+      )
+    }
   }
 
   _enableTouch () {
-    TouchManager.enableTouchID((error, status) => {
-      var status = status[0]
-      if (status == 'ENABLED') {
-        this.props.changeTouchEnabled(true)
-        Alert.alert('Success', 'Next time you log in, you\'ll be prompted to set up Touch ID.', [
-          {
-            text: 'OK'
-          }
-        ])
-      }
-    })
+    if (Platform.OS === 'ios') {
+      iOSTouchManager.enableTouchID((error, iosStatus) => {
+        this._handleEnableTouch(iosStatus[0])
+      })
+    } else {
+      AndroidTouchManager.enableFingerprint((androidStatus) => {
+        this._handleEnableTouch(androidStatus)
+      })
+    }
+  }
+
+  _handleEnableTouch(enableStatus) {
+    if (enableStatus == 'ENABLED') {
+      this.props.changeTouchEnabled(true)
+      Alert.alert('Success', 'Next time you log in, you\'ll be prompted to set up Touch ID.', [
+        {
+          text: 'OK'
+        }
+      ])
+    }
   }
 
   _resetTouchToggle () {
@@ -190,7 +217,15 @@ class Settings extends Component {
     if (this.props.touchEnabled) {
       this._showDisableAlert()
     } else {
-      this._checkTouchStatus()
+      if (Platform.OS === 'ios') {
+        iOSTouchManager.checkTouchStatus((error, iosStatus) => {
+          this._handleTouchStatus(iosStatus[0])
+        })
+      } else {
+        AndroidTouchManager.checkTouchStatus((androidStatus) => {
+          this._handleTouchStatus(androidStatus)
+        })
+      }
     }
   }
 
