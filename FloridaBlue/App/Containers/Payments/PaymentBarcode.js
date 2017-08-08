@@ -200,8 +200,8 @@ class PaymentBarcode extends Component {
               justifyContent: 'center',
               //backgroundColor:'red'
             }}>
-              <TouchableOpacity style={{width: 0}} onPress={() => NavigationActions.PaymentContent1()}>
-                <Text allowFontScaling={false} style={{
+        
+                <Text allowFontScaling={false} onPress={() => NavigationActions.PaymentDetails()} style={{
                   transform: [{ rotate: '270deg' }],
                  // bottom: this.props.isPortrait ? Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0012 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0012,
                   right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.0035 : Metrics.textHeight2 * Metrics.screenHeight * 0.0035) : (DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.0025 : Metrics.textHeight2 * Metrics.screenHeight * 0.006),
@@ -213,7 +213,6 @@ class PaymentBarcode extends Component {
                   textDecorationLine: 'underline', color: Colors.flBlue.ocean
                 }}>See Payment Details
                 </Text>
-              </TouchableOpacity>
                 <Flb name="chevron-right" size={Metrics.icons.medium * Metrics.screenWidth * 0.0017}
                 color={Colors.flBlue.ocean}
                 style={{
