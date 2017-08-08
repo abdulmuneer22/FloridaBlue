@@ -38,7 +38,7 @@ class PaymentDetails extends Component {
     super(props)
     this.handleCall = this.handleCall.bind(this)
     this.state = {
-      floatClicked: false
+      floatClicked: true
     }
     this._toggleFloat = this._toggleFloat.bind(this)
 
@@ -146,17 +146,62 @@ class PaymentDetails extends Component {
                          style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
                         color:Colors.flBlue.anvil,
                         }}>
-                        Payment Details
+                        Your payment will be applied to your account within <Text allowFontScaling={false} 
+                         style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
+                        color:Colors.flBlue.anvil,
+                        fontWeight:'500'
+                        }}>5 business days.</Text>
                     </Text>
                     </View>                
                   </View>
-             { this.props.paymentdata && this.props.paymentdata.payByPhone ?
-           <View style={{flex: 1}}>
+            <View style={{flex:1,flexDirection:'row', marginTop:Metrics.mediumMargin*Metrics.screenHeight*0.001}}>
+                      <View style={{flex:0.3, alignItems:'center'}}>
+                      <Flb name='check' size={Metrics.icons.large*Metrics.screenWidth*0.002}
+                                    color={Colors.flBlue.anvil} />
+                       </View>             
+                    <View style={{flex:0.7}}>
+                      <Text allowFontScaling={false} 
+                         style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
+                        color:Colors.flBlue.anvil,
+                        }}>
+                        Your payment is due by the due date on your bill. payments received after your due date do not guarantee that you policy will remain active.
+                    </Text>
+                    </View>                
+                  </View>
+                   <View style={{flex:1,flexDirection:'row', marginTop:Metrics.mediumMargin*Metrics.screenHeight*0.001}}>
+                      <View style={{flex:0.3, alignItems:'center'}}>
+                      <Flb name='check' size={Metrics.icons.large*Metrics.screenWidth*0.002}
+                                    color={Colors.flBlue.anvil} />
+                       </View>             
+                    <View style={{flex:0.7}}>
+                      <Text allowFontScaling={false} 
+                         style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
+                        color:Colors.flBlue.anvil,
+                        }}>
+                        Please contact Florida Blue for questions about the premium due or the status of your account, as sales associates cannot look up your account.
+                    </Text>
+                    </View>                
+                  </View>
+                   <View style={{flex:1,flexDirection:'row', marginTop:Metrics.mediumMargin*Metrics.screenHeight*0.001}}>
+                      <View style={{flex:0.3, alignItems:'center'}}>
+                      <Flb name='check' size={Metrics.icons.large*Metrics.screenWidth*0.002}
+                                    color={Colors.flBlue.anvil} />
+                       </View>             
+                    <View style={{flex:0.4}}>
+                      <Text allowFontScaling={false} 
+                         style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
+                        color:Colors.flBlue.anvil,
+                        }}>
+                        Payment Details
+                    </Text>
+                    </View>                
+                 
+           <View style={{flex: 0.3, alignItems:'center', justifyContent:'center', backgroundColor:Colors.transparent, marginTop:Metrics.mediumMargin*Metrics.screenHeight*0.006}}>
              {this.state.floatClicked ?  <View style={styles.urgentCareCircle}>
                 <TouchableOpacity onPress={this._toggleFloat}>
                   <Flb name='rd-brand-phone'
                     style={{backgroundColor: Colors.transparent}}
-                    color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} />
+                    color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0025} />
                 </TouchableOpacity>
               </View> : null}
             
@@ -193,12 +238,63 @@ class PaymentDetails extends Component {
 
             : null}
 
-          </View> : null}
-
-         
-                </View> 
-                </View> 
+                </View>
+                 </View>
+               </View> 
+             </View> 
             </Card>
+            <View style={{flex:1, margin:Metrics.doubleBaseMargin*Metrics.screenHeight*0.001, justifyContent:'center',
+                            alignItems:'center'}}>
+                      <Text allowFontScaling={false} 
+                         style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
+                        color:Colors.flBlue.anvil,
+                        }}>
+                        By accepting or using this barcode to make a payment, you agree to the full terms and conditions available at  <Text allowFontScaling={false} 
+                         style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
+                        color:Colors.flBlue.ocean,
+                        textDecorationColor:Colors.flBlue.ocean,
+                        textDecorationLine:'underline'
+                        }}>
+                       www.cashtie.com/terms.
+                    </Text> </Text>           
+                  </View> 
+                 <View style={{marginLeft:Metrics.doubleBaseMargin * Metrics.screenWidth*0.002,
+                                marginRight:Metrics.doubleBaseMargin * Metrics.screenWidth*0.002,
+                                height:1,
+                                margin:10,
+                                backgroundColor:'black'}} /> 
+             <View style={{flex:1, margin:Metrics.mediumMargin*Metrics.screenHeight*0.001, justifyContent:'center',
+                            alignItems:'center'}}>
+                      <Text allowFontScaling={false} 
+                         style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
+                        color:Colors.flBlue.anvil,
+                        }}>
+                       After payment is processed successfully, you can get a detailed receipt at      <Text allowFontScaling={false} 
+                         style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
+                        color:Colors.flBlue.ocean,
+                        textDecorationColor:Colors.flBlue.ocean,
+                        textDecorationLine:'underline'
+                        }}>
+                       www.cashtie/receipt.
+                    </Text> </Text>           
+                  </View>
+                   <View style={{marginLeft:Metrics.doubleBaseMargin * Metrics.screenWidth*0.002,
+                            marginRight:Metrics.doubleBaseMargin * Metrics.screenWidth*0.002,
+                            height:1,
+                            margin:10,
+                            backgroundColor:'black'}} />  
+                   <View style={{flex:1, margin:Metrics.doubleBaseMargin*Metrics.screenHeight*0.001, justifyContent:'center',
+                            alignItems:'center'}}>
+                      <Text allowFontScaling={false} 
+                         style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
+                        color:Colors.flBlue.anvil,
+                        textAlign:'justify'
+                        }}>
+                        Retailers are independent companies assiting in the collection of premium payment
+                        on behalf of Florida Blue/Florida Blue HMO/Florida Combined Life Insurance Company, Inc.
+                        Florida Blue is the trade name of Blue Cross Blue Shield of Florid, Inc., an Independent Licence of Blur Cross and Blue Shield Association 85583 1115.
+                         </Text>           
+                  </View>    
          </ScrollView> 
         </View>
       </View>

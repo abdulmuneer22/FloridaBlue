@@ -266,7 +266,7 @@ export default StyleSheet.create({
   },
   payByPhoneContainer: {
     width: Metrics.screenWidth * 0.8,
-    height: Metrics.screenWidth * 0.8,
+    height: Metrics.screenWidth * 0.78,
     flex: 1,
    // zIndex: -1,
     backgroundColor: Colors.snow,
@@ -274,7 +274,7 @@ export default StyleSheet.create({
     borderRadius: Metrics.screenWidth * 1,
     // borderColor: '#708090',
     position: 'absolute',
-    bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.005,
+    bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.006,
     right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035,
     borderWidth: 1,
     borderRadius: Metrics.screenWidth * 1,
