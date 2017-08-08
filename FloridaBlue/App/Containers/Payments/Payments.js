@@ -46,7 +46,7 @@ class Payments extends Component {
   }
 
   handleCall (phone) {
-    gaTracker.trackEvent('Provider Detail', 'Phone Call')
+    gaTracker.trackEvent('Payment', 'Phone Call')
     const url = `tel:${phone}`
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
@@ -58,7 +58,7 @@ class Payments extends Component {
   }
 
   componentDidMount () {
-    gaTracker.trackScreenView('Resources')
+    gaTracker.trackScreenView('Payments')
   }
 
   _renderHeader () {
@@ -88,7 +88,7 @@ class Payments extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props && this.props.paymentdata) {
+    } else if (this.props && this.props.paymentdata && this.props.paymentdata.paymentTiles && this.props.paymentdata.paymentTiles.length > 0) {
       return (
         <View style={{flex: 1}}>
           <ScrollView>
@@ -112,9 +112,6 @@ class Payments extends Component {
               backgroundColor: Colors.flBlue.bg2,
               flexWrap: 'wrap',
               flex: 1
-            //  marginLeft: window.width * 0.04,
-             // marginRight: window.width * 0.03,
-             // marginTop: window.width * 0.03
 
             }}>
               { this.props && this.props.paymentdata && this.props.paymentdata.paymentTiles && this.props.paymentdata.paymentTiles.length > 0
@@ -203,8 +200,6 @@ class Payments extends Component {
   }
 
 render () {
-console.tron.log("payments data", this.props.paymentdata)
-console.log("payments data", this.props.paymentdata)
     return (
       <View style={styles.container}>
         {this._renderHeader()}

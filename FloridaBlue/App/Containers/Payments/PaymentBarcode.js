@@ -60,21 +60,16 @@ class PaymentBarcode extends Component {
   }
 
    componentWillMount() {
-    console.log('checking page issue will mount')
-    console.log('I mountin on payments bruh¡')
     Orientation.lockToPortrait()
   }
 
   componentDidMount() {
-     console.log('checking page issue didmount')
-    gaTracker.trackScreenView('Support')
+    gaTracker.trackScreenView('Payment Barcode')
   }
 
   componentWillUnmount() {
-    console.log('checking page issue will unmount')
     Orientation.unlockAllOrientations()
     Orientation.getOrientation((err, orientation) => {
-      console.log(`Current Device Orientation: ${orientation}`)
     })
 
     // Remember to remove listener

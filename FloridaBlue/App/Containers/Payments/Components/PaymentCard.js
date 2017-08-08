@@ -48,17 +48,11 @@ class PaymentCard extends Component {
   }
 
   componentWillMount () {
-    // console.tron.log(this.props.i)
-    // console.tron.log(this.props.CardCount)
     const index = this.props.i + 1
     const count = this.props.CardCount
     if (count % 2 !== 0) {
-      // console.tron.log("odd number cards !!")
-
       if (index === count) {
-      // console.tron.log("index" ,index)
-      // console.tron.log("count" , count)
-        this.setState({
+       this.setState({
           CardWidth: (window.width * 0.92)
         })
       }
@@ -68,14 +62,17 @@ class PaymentCard extends Component {
   customNavigation () {
     let action
     if (this.props.tileType == 'webview') {
-      gaTracker.trackEvent('Dashboard', 'Link Out')
+      gaTracker.trackEvent('Payments Page', 'Link Out')
       action = NavigationActions.MyView({responseURL: this.props.webURL})
     } else if (this.props.tileType == 'native') {
       let routerName = this.props.routerName
-      gaTracker.trackEvent('Dashboard', routerName)
+      gaTracker.trackEvent('Payments Page', routerName)
       action = NavigationActions[routerName]()
       if(routerName === 'PaymentBarcode'){
         this.props.attemptPaymentBarcode()
+      }
+      if(routerName === 'PaymentContent'){
+        this.props.attemptPayment()
       }
     }
   }
@@ -88,28 +85,14 @@ class PaymentCard extends Component {
           this.customNavigation()
         }}
         style={{
-        // backgroundColor : "red",
-        // width : this.props.i === this.props.CardCount ? (window.width * 0.85) : null,
-    //      width: this.state.CardWidth,
-    //      height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
           alignItems: 'center',
           justifyContent: 'center',
           flex: 1
-       //   marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
-        // marginRight :
-        // marginTop : 10,
-
-          // marginBottom: window.width * 0.03
-
         }}>
         <BCard style={{alignItems: 'center',
           flexDirection: 'row',
           flex: 1,
-         //    width: this.state.CardWidth,
           height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
-
-           // justifyContent: 'center'
-
         }}>
 
           <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.transparent}}>

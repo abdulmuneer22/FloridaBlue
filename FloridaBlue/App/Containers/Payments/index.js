@@ -2,5 +2,6 @@
 
 import PaymentBarcode from './PaymentBarcode'
 import Payments from './Payments'
+import PaymentContent from './PaymentContent'
 
-export {Payments, PaymentBarcode }
+export {Payments, PaymentBarcode, PaymentContent }
