@@ -179,7 +179,98 @@ class LandingScreen extends Component {
       return (
         <View style={styles.container}>
           <Greeting userName={this.props.userName} isPortrait={this.props.isPortrait} unreadNotification={this.props.unreadNotification} allRead={this.props.markAllRead} />
-          {
+          {this.props.isPortrait ? 
+          <View style={{flexDirection: this.props.isPortrait ? null : 'row'}}>
+            {
+            this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} orientationStatus={this.props.isPortrait} /> : <View />}
+            <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>
+              {
+                this.props.visibilityRules != undefined && this.props.visibilityRules.coreTiles != undefined && this.props.visibilityRules.coreTiles.length > 0 ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
+                  onItemPress = function () {
+                    var action
+                    if (tile.tileType == 'webview') {
+                      var webview = 'MyView'
+                      action = NavigationActions[webview]({ responseURL: tile.tileUrl })
+                    } else if (tile.tileType == 'native') {
+                      var routerName = tile.routerName
+                      action = NavigationActions[routerName]()
+                    }
+                  }
+                  return (
+                    <TouchableOpacity
+                      style={
+                      i % 2 == 0
+                        ? isPortrait ? styles.tileStyle : styles.tileStyleLandscape
+                        : styles.tileStyle1
+                    }
+                      onPress={onItemPress.bind(this)} key={i}>
+                      <LinearGradient colors={tile.gradientColor} style={isPortrait ? styles.linearGradientStyle : styles.linearGradientStyleLandscape}>
+
+                        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                          <Image source={Images[tile.gradientImage]}
+                            style={{flex: 1,
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                          // resizeMode:Platform.OS == 'ios' ?'' :'cover',
+                              width: Platform.OS == 'ios' ? (Metrics.screenWidth) - (Metrics.screenWidth * 0.52) : (Metrics.screenWidth) - (Metrics.screenWidth * 0.51)
+                            }} >
+
+                            <View style={{alignItems: 'center'}} >
+                              <Text allowFontScaling={false} style={styles.tileTextStyle}>
+                                {tile.tileName['en']}
+                              </Text>
+                            </View>
+
+                          </Image>
+                        </View>
+
+                      </LinearGradient>
+                    </TouchableOpacity>
+
+                  )
+                  i += 1
+                }) : <Text />
+              }
+            </View>
+            { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined 
+
+              ? <TouchableOpacity onPress={this.handleOPDTileView}
+                style={this.props.isPortrait ? styles.opdStyle : styles.opdStyleLandscape} >
+
+                <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={this.props.isPortrait ? styles.footerImage : styles.tileStyleLandscape}>
+                  <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flex: 1
+                    // marginTop:27.5
+                  }}>
+                    <View style={{flex: 0.4, alignItems: 'flex-end'}}>
+                      <Flb name={this.props.visibilityRules.opdTile.tileIcon}
+                        style={{
+                          backgroundColor: Colors.transparent,
+                          marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.003
+                        }}
+                        size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
+                        color={Colors.flBlue.grey5} />
+                    </View>
+                    <View style={{flex: 0.6, alignItems: 'flex-start'}}>
+                      <Text allowFontScaling={false} style={{
+                        fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
+                        color: Colors.flBlue.grey5,
+                        fontFamily: Fonts.type.headerFont,
+                        backgroundColor: Colors.transparent
+                      }}>
+                        {this.props.visibilityRules.opdTile.tileName['en']}
+                      </Text>
+                    </View>
+                  </View>
+                </Image>
+
+              </TouchableOpacity> : null
+          }</View>
+          
+          : <ScrollView horizontal='true' style={{flexDirection: this.props.isPortrait ? null : 'row', marginTop: 20}}>{
             this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} orientationStatus={this.props.isPortrait} /> : <View />}
           <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>
             {
@@ -229,8 +320,7 @@ class LandingScreen extends Component {
                 i += 1
               }) : <Text />
             }
-          </View>
-          { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined
+          </View>{ this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined 
 
             ? <TouchableOpacity onPress={this.handleOPDTileView}
               style={this.props.isPortrait ? styles.opdStyle : styles.opdStyleLandscape} >
@@ -266,7 +356,10 @@ class LandingScreen extends Component {
               </Image>
 
             </TouchableOpacity> : null
-          }
+          }</ScrollView>}
+          
+          
+          
         </View>
 
       )

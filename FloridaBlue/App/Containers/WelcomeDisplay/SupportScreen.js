@@ -36,7 +36,7 @@ class SupportScreen extends Component {
   }
 
   _renderHeader () {
-    return (<Image source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage} style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape}>
+    return (<Image source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage} style={this.props.isPortrait ? styles.headerContainer : [styles.headerContainerLandscape, {width: DeviceInfo.isTablet() ? (this.props.isPortrait ? Metrics.screenWidth : Metrics.screenWidth * 1.335) : (this.props.isPortrait ? Metrics.screenHeight : Metrics.screenWidth * 1.78)}]}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001}}>
         {NavItems.backButton()}
       </View>
