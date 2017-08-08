@@ -51,8 +51,8 @@ import {NotificationsView } from '../App/Containers/PushNotifications'
 import {ClaimsList} from '../App/Containers/Claims/ClaimsList'
 import {ClaimDetail} from '../App/Containers/Claims/ClaimDetail'
 import {ClaimsSummary} from '../App/Containers/Claims/ClaimsSummary'
-import {PaymentBarcode} from '../App/Containers/Payments/PaymentBarcode'
-import {Payments} from '../App/Containers/Payments/Payments'
+import {PaymentBarcode} from '../App/Containers/Payments'
+import {Payments} from '../App/Containers/Payments'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
