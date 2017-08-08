@@ -81,7 +81,8 @@ const images = {
   agentLoginLink: require('../Images/agent-login-link.png'),
   landscapeHeaderImage: require('../Images/landscape-hdr2.png'),
   tabletLandscapeHeaderImage: require('../Images/landscape-hdr3.png'),
-  callNowButton: require('../Images/call-nowbtn.png')
+  callNowButton: require('../Images/call-nowbtn.png'),
+  careFinderLS: require('../Images/carefinderL.png')
 }
 
 export default images

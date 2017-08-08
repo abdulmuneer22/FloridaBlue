@@ -331,21 +331,23 @@ class LandingScreen extends Component {
                   flex: 1
                   // marginTop:27.5
                 }}>
-                  <View style={{flex: 0.4, alignItems: 'flex-end'}}>
+
+                  <View style={{flex: 0.3, alignItems: 'flex-end'}}>
                     <Flb name={this.props.visibilityRules.opdTile.tileIcon}
                       style={{
                         backgroundColor: Colors.transparent,
                         marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.003
                       }}
-                      size={Metrics.icons.xml * Metrics.screenWidth * 0.0025}
+                      size={this.props.isPortrait ? Metrics.icons.xml * Metrics.screenWidth * 0.0025:  Metrics.icons.xml * Metrics.screenWidth * 0.0015}
                       color={Colors.flBlue.grey5} />
                   </View>
-                  <View style={{flex: 0.6, alignItems: 'flex-start'}}>
+                  <View style={{flex: 0.7, alignItems: 'flex-start'}}>
                     <Text allowFontScaling={false} style={{
-                      fontSize: Fonts.size.h3 * Metrics.screenWidth * 0.003,
+                      fontSize: this.props.isPortrait ? Fonts.size.h3 * Metrics.screenWidth * 0.003 : Fonts.size.h3 * Metrics.screenWidth * 0.0025,
                       color: Colors.flBlue.grey5,
                       fontFamily: Fonts.type.headerFont,
-                      backgroundColor: Colors.transparent
+                      backgroundColor: Colors.transparent,
+                      width: this.props.isPortrait ? null : 150
                     }}>
                       {this.props.visibilityRules.opdTile.tileName['en']}
                     </Text>
