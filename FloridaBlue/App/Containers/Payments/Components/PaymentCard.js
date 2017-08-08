@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 
 import {Colors, Metrics, Fonts, Images} from '../../../Themes'
-import styles from '../DashBoardStyle.js'
+import styles from '../PaymentStyle.js'
 import NavItems from '../../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
 import MemberActions from '../../../Redux/MemberRedux'
@@ -39,7 +39,7 @@ let image = [
   Images.dashboardGradient4
 ]
 
-class Card extends Component {
+class PaymentCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -48,17 +48,11 @@ class Card extends Component {
   }
 
   componentWillMount () {
-    // console.tron.log(this.props.i)
-    // console.tron.log(this.props.CardCount)
     const index = this.props.i + 1
     const count = this.props.CardCount
     if (count % 2 !== 0) {
-      // console.tron.log("odd number cards !!")
-
       if (index === count) {
-      // console.tron.log("index" ,index)
-      // console.tron.log("count" , count)
-        this.setState({
+       this.setState({
           CardWidth: (window.width * 0.92)
         })
       }
@@ -68,17 +62,17 @@ class Card extends Component {
   customNavigation () {
     let action
     if (this.props.tileType == 'webview') {
-      gaTracker.trackEvent('Dashboard', 'Link Out')
+      gaTracker.trackEvent('Payments Page', 'Link Out')
       action = NavigationActions.MyView({responseURL: this.props.webURL})
     } else if (this.props.tileType == 'native') {
       let routerName = this.props.routerName
-      gaTracker.trackEvent('Dashboard', routerName)
+      gaTracker.trackEvent('Payments Page', routerName)
       action = NavigationActions[routerName]()
-      if(routerName === 'Payments'){
-        this.props.attemptPayment()
-      }
       if(routerName === 'PaymentBarcode'){
         this.props.attemptPaymentBarcode()
+      }
+      if(routerName === 'PaymentContent'){
+        this.props.attemptPayment()
       }
     }
   }
@@ -91,28 +85,14 @@ class Card extends Component {
           this.customNavigation()
         }}
         style={{
-        // backgroundColor : "red",
-        // width : this.props.i === this.props.CardCount ? (window.width * 0.85) : null,
-    //      width: this.state.CardWidth,
-    //      height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
           alignItems: 'center',
           justifyContent: 'center',
           flex: 1
-       //   marginLeft: this.props.i % 2 !== 0 ? window.width * 0.04 : null,
-        // marginRight :
-        // marginTop : 10,
-
-          // marginBottom: window.width * 0.03
-
         }}>
         <BCard style={{alignItems: 'center',
           flexDirection: 'row',
           flex: 1,
-         //    width: this.state.CardWidth,
           height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)
-
-           // justifyContent: 'center'
-
         }}>
 
           <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.transparent}}>
@@ -142,10 +122,10 @@ class Card extends Component {
   }
 }
 
-Card.propTypes = {
+PaymentCard.propTypes = {
   data: PropTypes.object,
   attemptPayment: PropTypes.func,
-  //attemptPaymentBarcode: PropTypes.func,
+  attemptPaymentBarcode: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -153,7 +133,7 @@ Card.propTypes = {
 const mapStateToProps = (state) => {
   return {
     paymentdata: state.payment.data,
-    //paymentbarcodedata: state.payment.data,
+    paymentbarcodedata: state.payment.data,
     isPortrait: state.setting.isPortrait
   }
 }
@@ -161,8 +141,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptPayment: () => dispatch(PaymentActions.paymentsRequest()),
-    //attemptPaymentBarcode: () => dispatch(PaymentActions.paymentBarcodeRequest())
+    attemptPaymentBarcode: () => dispatch(PaymentActions.paymentBarcodeRequest())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card)
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentCard)

@@ -60,7 +60,6 @@ export function * member (api, {smToken}) {
     console.tron.log(memberSearchRequest)
     yield put(SupportActions.supportRequest())
     yield put(MyPlanActions.myplanRequest(data))
-    yield put(PaymentActions.paymentRequest(data))
     yield put(ClaimsActions.claimsListRequest(data))
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))

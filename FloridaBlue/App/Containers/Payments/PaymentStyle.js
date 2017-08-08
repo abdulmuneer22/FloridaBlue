@@ -77,18 +77,7 @@ export default StyleSheet.create({
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
 
   },
-  hsaBg: {
- // flexDirection:'row',
-    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.37) : Metrics.screenHeight - (Metrics.screenHeight * 0.415),
- // marginTop:20,
- // justifyContent:'space-between',
- // alignItems:'center',
- // padding:10,
-    // alignSelf: 'stretch',
-    resizeMode: 'stretch',
-    marginBottom: 0,
-    width: Metrics.screenWidth
-  },
+
   hsaTextStyle1: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0032,
     fontFamily: Fonts.type.subHeaderFont,
@@ -96,14 +85,7 @@ export default StyleSheet.create({
 
     // fontWeight:'bold'
   },
-  hsaTextStyle2: {
-    fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0034,
-    color: Colors.flBlue.grass,
-    fontWeight: '600',
-    fontFamily: Fonts.type.subHeaderFont
-    // fontWeight:'bold'
-  },
-
+  
   textStyle: {
     fontSize: Fonts.size.xr * Metrics.screenWidth * 0.0030,
     fontWeight: '600',
@@ -129,18 +111,34 @@ export default StyleSheet.create({
     marginTop: Metrics.smallMargin * Metrics.screenHeight * 0.0005
 
   },
-  row_1: {
+  paybymailView:{
     flexDirection: 'row',
+    //backgroundColor:'green', 
+    flex:2,
+    alignItems:'center', 
     justifyContent: 'center',
-  //  paddingTop: Metrics.baseMargin,
-  //  paddingBottom: Metrics.baseMargin
-    marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.003,
-    marginBottom: Metrics.mediumMargin * Metrics.screenHeight * 0.001
+    marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001
   },
-  col_1: {
-    flex: 1,
-    // backgroundColor : 'yellow',
-    alignItems: 'center'
+  content: {
+   flex:2,
+   //backgroundColor:'red', 
+   marginLeft:Metrics.mediumMargin*Metrics.screenWidth*0.002,
+   marginRight:Metrics.mediumMargin*Metrics.screenWidth*0.002,
+   //justifyContent:'center',
+  // alignItems:'center'
+  },
+  linkView: {
+    flex:4,
+   // backgroundColor:'yellow',
+    alignItems:'center',
+    justifyContent:'center'
+  },
+
+  linkText:{
+    fontSize:Fonts.size.h6*Metrics.screenWidth*0.0028,
+    color:Colors.flBlue.ocean,
+    textDecorationLine:'underline',
+    textDecorationColor:Colors.flBlue.ocean
   },
 
   container: {
@@ -148,73 +146,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.bg2
 
   },
-  greetingView: {
-   // flex: 1,
-    flexDirection: 'row',
-  //  alignItems: 'center',
-  //  justifyContent: 'center',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 3,
-    // padding:5,
-  //  backgroundColor: Colors.flBlue.grey6,
-    margin: 2
-  },
-  greetingViewLandscape: {
-   // flex: 1,
-    flexDirection: 'row',
-  //  alignItems: 'center',
-  //  justifyContent: 'center',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 3,
-    // padding:5,
-  //  backgroundColor: Colors.flBlue.grey6,
-    margin: 2,
-    marginRight: 105
-  },
-  greetingText: {
-    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
-    fontFamily: Fonts.type.subHeaderFont,
-    color: Colors.flBlue.anvil
-  },
-  greetingTextLandscape: {
-    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0027,
-    fontFamily: Fonts.type.subHeaderFont,
-    color: Colors.flBlue.anvil,
-    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0034
-  },
-  messageCountStyle: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.81)) / 3,
-    backgroundColor: Colors.flBlue.grey1,
-    flexDirection: 'row'
-  },
-  messageTextStyle: {
-    color: Colors.flBlue.night,
-    fontSize: Fonts.size.h6,
-    marginLeft: Metrics.baseMargin
-  },
-  summary: {
-    flexDirection: 'row',
-    height: Metrics.screenHeight * 0.125,
-  //  justifyContent: 'space-between',
-    // margin:2,
-    alignItems: 'center',
-    resizeMode: 'cover',
-    marginTop: 4,
-    marginBottom: 4,
-  //  padding:5,
-    // alignSelf: 'stretch',
-    width: Metrics.screenWidth * 1.78
-  },
-  summaryLandscape: {
-    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4.5),
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.759),
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 7,
-    marginLeft: 10,
-    marginRight: -12,
-    flexDirection: 'row'
-  },
+
   titleView: {
     flexWrap: 'wrap',
     flexDirection: 'row',
@@ -279,89 +211,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  healthPlanView: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    alignItems: 'center'
-  //  flex: 1,
-  //  alignItems: 'center',
-    // padding: 20,
-
-   , marginLeft:20
-  },
-  healthPlanText: {
-    fontSize: Fonts.size.h2 * Metrics.screenWidth * 0.0025,
-    color: Colors.snow,
-    fontWeight: (Platform.OS === 'ios') ? '500' : '400',
-    backgroundColor: Colors.transparent,
-    fontFamily: Fonts.type.subHeaderFont,
-    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0035
-// alignSelf : 'stretch',
-//  alignItems:'center',
-//  justifyContent:'center',
-//  height:40,
-// marginLeft:5
-  },
-  healthPlanTextLandscape: {
-    fontSize: Fonts.size.h2 * Metrics.screenWidth * 0.0015,
-    color: Colors.snow,
-    fontWeight: (Platform.OS === 'ios') ? '500' : '400',
-    backgroundColor: Colors.transparent,
-    fontFamily: Fonts.type.subHeaderFont,
-    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0013
-  },
-  healthPlanSubText: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
-    marginTop: 10,
-    fontFamily: Fonts.type.subHeaderFont
-  },
-  healthPlanImage: {
-    marginTop: Metrics.mediumMargin,
-    marginLeft: Metrics.doubleBaseMargin,
-    width: Metrics.images.xl,
-    height: Metrics.images.xl
-  },
-  myPlanArrowIcon: {
-    backgroundColor: Colors.transparent,
-    marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0035,
-    marginTop: Metrics.smallMargin
-  },
-  healthPlanIcon: {
-  //  marginTop: Metrics.baseMargin,
-  // flex:0.2,
-    marginRight: Metrics.doubleBaseMargin,
-    backgroundColor: Colors.transparent,
-    // alignSelf:'center',
-    marginLeft: -20
-  },
-  footerView: {
-    // borderTopWidth: 0.5,
-    // borderBottomWidth: 0.5,
-    // width:Metrics.screenWidth,
-  //  borderColor: Colors.snow
-    alignItems: 'center'
-  //  justifyContent:'center'
-    // smargin:4
-
-  },
-  footerImage: {
-     // flexDirection: 'row',
-    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.84) : Metrics.screenHeight - (Metrics.screenHeight * 0.88),
-     // height : window.height * 0.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  //  alignSelf: 'stretch',
-   // resizeMode: 'stretch',
-    width: Metrics.screenWidth
-    // marginTop: 4
-    // marginBottom:0
-  },
-  footerImageLandscape: {
-    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4),
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
+  
   textBackground: {
     flex: 1,
     flexDirection: 'row',
@@ -413,33 +263,6 @@ export default StyleSheet.create({
     color: Colors.flBlue.anvil,
     marginTop: Metrics.doubleBaseMargin
 
-  },
-  spacerView: {
-    flexWrap: 'wrap',
-    flexDirection: 'row'
-  },
-  spacerViewLandscape: {
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    marginLeft: 35
-  },
-  opdStyle: {
-    flex: 1,
-    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: Metrics.screenWidth,
-    marginTop: 9
-  },
-  opdStyleLandscape: {
-    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4.5),
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.759),
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 7,
-    marginLeft: Metrics.screenHeight - (Metrics.screenHeight * 1.02),
-    marginRight: 10,
-    flexDirection: 'row'
   },
   payByPhoneContainer: {
     width: Metrics.screenWidth * 0.8,

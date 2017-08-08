@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
   AppRegistry,
   StyleSheet,
@@ -11,21 +11,21 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   Alert,
-  Platform
+  Platform,
+  Linking
 } from 'react-native'
 const window = Dimensions.get('window')
 
 import {Colors, Metrics, Fonts, Images} from '../../Themes'
-import styles from './DashBoardStyle'
+import styles from './PaymentStyle'
 import NavItems from '../../../Navigation/NavItems.js'
 import {Actions as NavigationActions} from 'react-native-router-flux'
-import MemberActions from '../../Redux/MemberRedux'
+import PaymentActions from '../../Redux/PaymentRedux'
 import { connect } from 'react-redux'
 import Flb from '../../Themes/FlbIcon'
-import Card from './Components/Card'
+import PaymentCard from './Components/PaymentCard'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
-import SupportActions from '../../Redux/SupportRedux'
 
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 import SettingActions from '../../Redux/SettingRedux'
@@ -34,27 +34,31 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
 
-type PaymentsProps = {
-  dispatch: () => any,
-  fetching: boolean,
-  userName : string,
-  visibilityRules : object,
-  attemptMember: () => void
-}
-
 class Payments extends Component {
   constructor (props) {
     super(props)
+    this.handleCall = this.handleCall.bind(this)
     this.state = {
       floatClicked: false
     }
     this._toggleFloat = this._toggleFloat.bind(this)
-//  this.handleNeedHelp = this.handleNeedHelp.bind(this)
-    // this.dismissNeedHelp = this.dismissNeedHelp.bind(this)
+
+  }
+
+  handleCall (phone) {
+    gaTracker.trackEvent('Payment', 'Phone Call')
+    const url = `tel:${phone}`
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url)
+      } else {
+        console.tron.log('Don\'t know how to open URI: ')
+      }
+    })
   }
 
   componentDidMount () {
-    gaTracker.trackScreenView('Resources')
+    gaTracker.trackScreenView('Payments')
   }
 
   _renderHeader () {
@@ -84,7 +88,7 @@ class Payments extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props.visibilityRules != undefined) {
+    } else if (this.props && this.props.paymentdata && this.props.paymentdata.paymentTiles && this.props.paymentdata.paymentTiles.length > 0) {
       return (
         <View style={{flex: 1}}>
           <ScrollView>
@@ -108,19 +112,16 @@ class Payments extends Component {
               backgroundColor: Colors.flBlue.bg2,
               flexWrap: 'wrap',
               flex: 1
-            //  marginLeft: window.width * 0.04,
-             // marginRight: window.width * 0.03,
-             // marginTop: window.width * 0.03
 
             }}>
-              { this.props.visibilityRules != undefined && this.props.visibilityRules.additionalTiles != undefined && this.props.visibilityRules.additionalTiles.length > 0
-              ? this.props.visibilityRules.additionalTiles.map((tile, i) => {
+              { this.props && this.props.paymentdata && this.props.paymentdata.paymentTiles && this.props.paymentdata.paymentTiles.length > 0
+              ? this.props.paymentdata.paymentTiles.map((tile, i) => {
                 const index = i + 1
-                const TileCount = this.props.visibilityRules.additionalTiles.length
+                const TileCount = this.props.paymentdata.paymentTiles.length
 
                 console.tron.log(tile)
                 return (
-                  <Card
+                  <PaymentCard
                     i={i}
                     key={index}
                     title={tile.tileName['en']}
@@ -139,6 +140,7 @@ class Payments extends Component {
             </View>
 
           </ScrollView>
+         { this.props.paymentdata && this.props.paymentdata.payByPhone ?
            <View style={{flex: 1}}>
              {this.state.floatClicked ?  <View style={styles.urgentCareCircle}>
                 <TouchableOpacity onPress={this._toggleFloat}>
@@ -149,36 +151,44 @@ class Payments extends Component {
               </View> : null}
             
           {!this.state.floatClicked ?  
-          
+           
             <View style={styles.payByPhoneContainer}>
 
-              <Flb name='close-delete' style={styles.dismissPayByPhone}
-                color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
-                onPress={this._toggleFloat} />
-
-              <TouchableOpacity><Text allowFontScaling={false} style={styles.payByPhoneText}>Pay by Phone</Text></TouchableOpacity>
-              <Text allowFontScaling={false} style={styles.payByPhoneMessage}>Have your member ID ready</Text>
-               <TouchableOpacity style={{left: 40, top: 10}}><Image source={Images.callNowButton}></Image></TouchableOpacity>
-                <View style={{flexDirection: 'row'}}>
-                  <View style={
-                    {marginTop: (Platform.OS === 'ios') ? Metrics.section * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
-                      marginLeft: (Platform.OS === 'ios') ? Metrics.smallMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}
-                      >
-                      <TouchableOpacity style={{left: 206, bottom: 9.5}}>
-                        <Flb name='rd-brand-phone' onPress={this._toggleFloat} color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} style={{right: 10}}/>
-                    </TouchableOpacity>
-                  </View>
-                </View>
+            <Flb name='close-delete' style={styles.dismissPayByPhone}
+              color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+               onPress={this._toggleFloat} />
+            {this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ?
+             <Text allowFontScaling={false} style={styles.payByPhoneText}>
+                 {this.props.paymentdata.paymentContent.payByPhone.headerText_en} 
+                 </Text>:null}
+                {this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ?
+              <Text allowFontScaling={false} style={styles.payByPhoneMessage}>
+                {this.props.paymentdata.paymentContent.payByPhone.descrption_en}
+              </Text>:null}
+            <View style={{flexDirection: 'row'}}>
+              <View>
+                <TouchableOpacity style={{marginLeft: Metrics.searchBarHeight*Metrics.screenWidth*0.002,
+               marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001}} onPress={() => this.handleCall(this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ? this.props.paymentdata.paymentContent.payByPhone.teleNumber : '')}>
+                  <Image style={styles.CallButton} source={Images.callNowButton} />
+                </TouchableOpacity>
               </View>
+              <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
+                marginLeft: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
+                <Flb name='rd-brand-phone' onPress={this._toggleFloat} color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} 
+                        />
+              </View>
+            </View>
+          </View>
+
 
             : null}
 
-          </View>
+          </View> : null}
         </View>
       )
     } else if (this.props.error != null) {
       Alert.alert(
-                  'Resources',
+                  'Payments',
 
                    'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
         [
@@ -189,10 +199,7 @@ class Payments extends Component {
     }
   }
 
-  render () {
-    console.tron.log('root testing')
-
-    var i = 0
+render () {
     return (
       <View style={styles.container}>
         {this._renderHeader()}
@@ -203,21 +210,23 @@ class Payments extends Component {
     )
   }
 }
+
+Payments.propTypes = {
+  data: PropTypes.object,
+  attemptPayment: PropTypes.func,
+  error: PropTypes.string
+}
 const mapStateToProps = (state) => {
   return {
-    visibilityRules: state.member.visibilityRules,
-    data: state.support.data,
-
-    error: state.member.error,
-    fetching: state.member.fetching,
+    paymentdata: state.payment.paymentslist,
+    error: state.payment.error,
+    fetching: state.payment.fetching,
     isPortrait: state.setting.isPortrait
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptSupportScreen: () => dispatch(SupportActions.supportRequest()),
-
-    attemptMember: () => dispatch(MemberActions.memberRequest()),
+    attemptPayment: () => dispatch(PaymentActions.paymentsRequest()),
     changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }

@@ -149,6 +149,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptMember: () => dispatch(MemberActions.memberRequest()),
+    attemptPayment: () => dispatch(PaymentActions.paymentsRequest()),
     changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }

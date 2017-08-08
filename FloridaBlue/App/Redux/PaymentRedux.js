@@ -6,9 +6,12 @@ import Immutable from 'seamless-immutable'
 /* ------------- Types and Action Creators ------------- */
 
 const { Types, Creators } = createActions({
-  paymentRequest: [],
-  paymentSuccess: ['data'],
-  paymentFailure: ['error']
+  paymentsRequest: [],
+  paymentsSuccess: ['data'],
+  paymentsFailure: ['error'],
+  paymentBarcodeRequest:[],
+  paymentBarcodeSuccess: ['data'],
+  paymentBarcodeFailure :['error']
 })
 
 export const PaymentTypes = Types
@@ -24,27 +27,36 @@ export const INITIAL_STATE = Immutable({
 
 /* ------------- Reducers ------------- */
 
-// we're attempting to login
-export const request = (state: Object) => state.merge({fetching: true, data: {}, error: null })
+// we're attempting to do Payment
+export const _paymentsRequest = (state: Object) => state.merge({fetching: true })
 
-// we've successfully logged in
-export const success = (state: Object, {data}:Object) => {
-  return state.merge({fetching: false, data, error: null })
+// successfull Payment
+export const _paymentsSuccess = (state: Object, {data}:Object) => {
+  return state.merge({fetching: false, paymentslist: data, error: null })
 }
-// we've had a problem logging in
-export const failure = (state: Object, {error}: Object) =>
+// Failure Payment
+export const _paymentsFailure = (state: Object, {error}: Object) =>
+  state.merge({ fetching: false, error, data: {}})
+
+  // we're attempting for PaymentBarcode
+export const _paymentBarcodeRequest = (state: Object) => state.merge({fetching: true })
+
+// successfull PaymentBarcode
+export const _paymentBarcodeSuccess = (state: Object, {data}:Object) => {
+  return state.merge({fetching: false, paymentsbarcode: data, error: null })
+}
+// Failure PaymentBarcode
+export const _paymentBarcodeFailure = (state: Object, {error}: Object) =>
   state.merge({ fetching: false, error, data: {}})
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.PAYMENT_REQUEST]: request,
-  [Types.PAYMENT_SUCCESS]: success,
-  [Types.PAYMENT_FAILURE]: failure
+  [Types.PAYMENTS_REQUEST]: _paymentsRequest,
+  [Types.PAYMENTS_SUCCESS]: _paymentsSuccess,
+  [Types.PAYMENTS_FAILURE]: _paymentsFailure,
+  [Types.PAYMENT_BARCODE_REQUEST]: _paymentBarcodeRequest,
+  [Types.PAYMENT_BARCODE_SUCCESS]: _paymentBarcodeSuccess,
+  [Types.PAYMENT_BARCODE_FAILURE]: _paymentBarcodeFailure
 
 })
-
-/* ------------- Selectors ------------- */
-
-// Is the current user logged in?
-export const isMyIdCardIn = (paymentState: Object) => paymentState.payment.data !== null
