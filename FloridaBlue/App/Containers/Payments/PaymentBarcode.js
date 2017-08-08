@@ -1,8 +1,19 @@
 import React, { Component, PropTypes } from 'react'
 
-import { AppRegistry, StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, Image, TouchableWithoutFeedback, ScrollView, Linking } from 'react-native'
+import { 
+  AppRegistry, 
+  StyleSheet, 
+  Text, 
+  View, 
+  TextInput, 
+  Dimensions, 
+  TouchableOpacity, 
+  Image, 
+  TouchableWithoutFeedback, 
+  ScrollView, 
+  Linking } from 'react-native'
 
-import styles from './DashBoardStyle'
+import styles from './PaymentStyle'
 
 import axios from 'axios'
 import { Colors, Metrics, Fonts, Images } from '../../Themes'
@@ -91,10 +102,9 @@ class PaymentBarcode extends Component {
         <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
         <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
       </View>)
-    } else if (this.props.paymentbarcodedata && this.props.paymentbarcodedata.GetBarCodeTransactionResponse && this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream && this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream.length != 0) {
+    } else if (this.props && this.props.paymentbarcodedata) {
 
       return (
-        <View style={{ flex: 1 }}>
           <View style={{ flex: 1 }}>
 
             <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -210,7 +220,7 @@ class PaymentBarcode extends Component {
             //left: this.props.isPortrait ? Metrics.payment*Metrics.screenHeight*0.0043:Metrics.payment*Metrics.screenHeight*0.005, fontWeight: '500', 
             width: Metrics.screenWidth-Metrics.screenWidth*0.375,
             fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
-            textDecorationLine: 'underline', color: Colors.flBlue.teal}}>See Payment Details
+            textDecorationLine: 'underline', color: Colors.flBlue.teal}}>{this.props.paymentbarcodedata && this.props.paymentbarcodedata.data && this.props.paymentbarcodedata.data.GetBarCodeTransactionResponse && this.props.paymentbarcodedata.data.GetBarCodeTransactionResponse.barcodeStatus}
             </Text>
             </TouchableOpacity>
              
@@ -236,13 +246,10 @@ class PaymentBarcode extends Component {
             right:Metrics.baseMargin*Metrics.screenHeight*0.002}} />
            
             </View>
-            
-              
-
             </View>
 
           </View>
-        </View>
+       
        )
     } else if (this.props.error != null)
       Alert.alert(
@@ -257,7 +264,7 @@ class PaymentBarcode extends Component {
 
   render () {
     return (
-      <View style={[styles.container, {backgroundColor: Colors.snow}]}>
+      <View style={styles.container}>
          {this.props.isPortrait ?
           <View>
             {this._renderHeader()}
@@ -282,7 +289,7 @@ PaymentBarcode.propTypes = {
 const mapStateToProps = (state) => {
   return {
     fetching: state.payment.fetching,
-    paymentbarcodedata: state.payment.data,
+    paymentbarcodedata: state.payment.paymentsbarcode,
     error: state.payment.error,
     isPortrait: state.setting.isPortrait
   }
