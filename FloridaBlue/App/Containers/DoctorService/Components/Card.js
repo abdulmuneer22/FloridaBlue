@@ -89,7 +89,7 @@ class CCard extends Component {
 
         cards.push(
 
-          <Card style={styles.cardStyle} key={i} >
+          <Card style={{ backgroundColor: Colors.snow, flex: 1, margin: 15}} key={i} >
             <View style={{flex: 1,
               marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.001,
               marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001,
@@ -147,8 +147,8 @@ class CCard extends Component {
             <View style={{flex: 1,
               flexDirection: 'row',
               margin: 0.1,
-              marginBottom: this.props.isPortrait ? -2 : 0,
-              marginRight: this.props.isPortrait ? 0 : -96
+              marginBottom: -2,
+              marginRight: 0
 
             }}>
 
