@@ -338,11 +338,11 @@ class Login extends Component {
     this.props.changeTouchEnabled(checkboxState)
 
     if (Platform.OS === 'ios') {
-      iOSTouchManager.checkTouchStatus((error, iosStatus) => {
+      iOSTouchManager.enableTouchID((error, iosStatus) => {
         this._handleTouchCheckbox(iosStatus[0])
       })
     } else {
-      AndroidTouchManager.checkTouchStatus((androidStatus) => {
+      AndroidTouchManager.enableFingerprint((androidStatus) => {
         this._handleTouchCheckbox(androidStatus)
       })
     }
@@ -435,27 +435,23 @@ class Login extends Component {
     }
   }
 
-  _handleAuthenticateStatus (authenticationStatus) {
-    console.tron.log(authenticationStatus)
-    console.log(authenticationStatus)
-
-    if (authenticationStatus == 'YES') {
-      // if (Platform.OS === 'ios') {
-      //   iOSTouchManager.retrieveCredentials((error, iosStatus) => {
-      //     this._handleCredentialRetrieval(iosStatus[0])
-      //   })
-      // } else {
-      //   AndroidTouchManager.retrieveCredentials((androidStatus) => {
-      //     this._handleCredentialRetrieval(androidStatus)
-      //   })
-      // }
+  _handleAuthenticateStatus (authStatus) {
+    if (authStatus == 'AUTHENTICATED') {
+      if (Platform.OS === 'ios') {
+        iOSTouchManager.retrieveCredentials((error, iosStatus) => {
+          this._handleCredentialRetrieval(iosStatus[0])
+        })
+      } else {
+        AndroidTouchManager.retrieveCredentials((androidStatus) => {
+          this._handleCredentialRetrieval(androidStatus)
+        })
+      }
     } else {
       let showError = true
       let errorMessage = ''
       let errorTitle = 'Oops!'
-      let errorCode = authObject['authErrorCode']
 
-      switch (errorCode) {
+      switch (authStatus) {
         case 'AUTH FAILED':
           errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
           break
@@ -490,79 +486,31 @@ class Login extends Component {
         )
       }
     }
+  }
 
-    // TouchManager.authenticateUser((error, authInfo) => {
-    //   let authObject = authInfo[0]
-    //   let authStatus = authObject['authStatus']
-    //   if (authStatus == 'YES') {
-    //     TouchManager.retrieveCredentials((error, credentials) => {
-    //       let credentialObject = credentials[0]
-    //       let status = credentialObject['status']
-    //       if (status == 'SUCCESS') {
-    //         let password = credentialObject['password']
-    //         let username = credentialObject['username']
-    //         this.isAttempting = true
-    //         this.props.attemptLogin(username, password)
-    //       } else {
-    //         this._disableTouchID()
-    //         Alert.alert(
-    //           'Oops!',
-    //           'Looks like something has changed. Please log in using your user ID and password to set up Touch ID.',
-    //           [
-    //             {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
-    //           ],
-    //           { cancelable: false }
-    //         )
-    //       }
-    //     })
-    //   } else {
-    //     let showError = true
-    //     let errorMessage = ''
-    //     let errorTitle = 'Oops!'
-    //     let errorCode = authObject['authErrorCode']
-    //
-    //     switch (errorCode) {
-    //       case 'AUTH FAILED':
-    //         errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
-    //         break
-    //       case 'USER CANCEL':
-    //         showError = false
-    //         break
-    //       case 'SYSTEM CANCEL':
-    //         showError = false
-    //         break
-    //       case 'NO PASSCODE':
-    //         errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
-    //         break
-    //       case 'NOT ENROLLED':
-    //         errorMessage = 'Using Touch ID is easy! Just go to your phone\'s settings and set it up now.'
-    //         break
-    //       case 'LOCKED':
-    //         errorMessage = 'Sorry! For security, Touch ID has been locked. Please unlock it in your phone settings. Then you can set up Touch ID in the app.'
-    //         this._handleLockedTouch()
-    //         break
-    //       default:
-    //         errorMessage = 'Oops! Something went wrong. Please make sure you\'re using the right fingerprint and try again.'
-    //     }
-    //
-    //     if (showError) {
-    //       Alert.alert(
-    //         errorTitle,
-    //         errorMessage,
-    //         [
-    //           {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
-    //         ],
-    //         { cancelable: false }
-    //       )
-    //     }
-    //   }
-    // })
+  _handleCredentialRetrieval(retrievalResponse) {
+    let credentialObject = retrievalResponse[0]
+    let status = credentialObject['status']
+
+    if (status == 'SUCCESS') {
+      let password = credentialObject['password']
+      let username = credentialObject['username']
+      this.isAttempting = true
+      this.props.attemptLogin(username, password)
+    } else {
+      this._disableTouchID()
+      Alert.alert(
+        'Oops!',
+        'Looks like something has changed. Please log in using your user ID and password to set up Touch ID.',
+        [
+          {text: 'Ok', onPress: () => console.log('Ok Pressed'), style: 'cancel'}
+        ],
+        { cancelable: false }
+      )
+    }
   }
 
   _disableTouchID () {
-    console.tron.log("Disabling touch..")
-    console.log("Disabling touch..")
-
     if (Platform.OS === 'ios') {
       iOSTouchManager.removeCredentials((error, iosStatus) => {
         this._handleDisableStatus(iosStatus[0])
@@ -575,9 +523,6 @@ class Login extends Component {
   }
 
    _handleDisableStatus (disableStatus) {
-     console.tron.log(disableStatus)
-     console.log(disableStatus)
-
      if (disableStatus == 'SUCCESS' || 'NO EXISTING CREDENTIALS') {
        this.props.changeTouchEnabled(false)
        this.props.changeCredentialStored(false)
@@ -933,7 +878,7 @@ class Login extends Component {
             </View>
           </View>
         </ScrollView>}
-       
+
       </View>
     )
   }

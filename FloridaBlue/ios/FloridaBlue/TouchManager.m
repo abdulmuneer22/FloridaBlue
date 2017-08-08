@@ -107,10 +107,8 @@ RCT_EXPORT_METHOD(storeCredentials:(NSString *)username password:(NSString *)pas
 RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
   LAContext *myContext = [[LAContext alloc] init];
   NSMutableArray *callbackArray = [NSMutableArray new];
-  NSMutableDictionary *callbackDict = [NSMutableDictionary new];
   NSError *authError = nil;
-  __block NSString *authErrorCode = @"";
-  __block NSString *didAuthorize = @"NO";
+  __block NSString *authStatus = @"";
   NSString *myLocalizedReasonString = @"Authenticate using your finger";
   
   myContext.localizedFallbackTitle = @"";
@@ -120,25 +118,18 @@ RCT_EXPORT_METHOD(authenticateUser:(RCTResponseSenderBlock)callback) {
               localizedReason:myLocalizedReasonString
                         reply:^(BOOL success, NSError *error) {
                           if (success) {
-                            didAuthorize = @"YES";
+                            authStatus = @"AUTHENTICATED";
                           } else {
-                            didAuthorize = @"NO";
-                            authErrorCode = [self handleAuthError:error.code];
+                            authStatus = [self handleAuthError:error.code];
                           }
                           
-                          [callbackDict setObject:didAuthorize forKey:@"authStatus"];
-                          [callbackDict setObject:authErrorCode forKey:@"authErrorCode"];
-                          [callbackArray addObject:callbackDict];
+                          [callbackArray addObject:authStatus];
                           callback(@[[NSNull null], callbackArray]);
                         }
      ];
   } else {
-    authErrorCode = [self handleAuthError:authError.code];
-    
-    [callbackDict setObject:didAuthorize forKey:@"authStatus"];
-    [callbackDict setObject:authErrorCode forKey:@"authErrorCode"];
-    [callbackArray addObject:callbackDict];
-    
+    authStatus = [self handleAuthError:authError.code];
+    [callbackArray addObject:authStatus];
     callback(@[[NSNull null], callbackArray]);
   }
 }
