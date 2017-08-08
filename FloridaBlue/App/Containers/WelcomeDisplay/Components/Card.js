@@ -145,7 +145,7 @@ class Card extends Component {
 Card.propTypes = {
   data: PropTypes.object,
   attemptPayment: PropTypes.func,
-  attemptPaymentBarcode: PropTypes.func,
+  //attemptPaymentBarcode: PropTypes.func,
   fetching: PropTypes.bool,
   error: PropTypes.string
 }
@@ -153,7 +153,7 @@ Card.propTypes = {
 const mapStateToProps = (state) => {
   return {
     paymentdata: state.payment.data,
-    paymentbarcodedata: state.payment.data,
+    //paymentbarcodedata: state.payment.data,
     isPortrait: state.setting.isPortrait
   }
 }
@@ -161,7 +161,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptPayment: () => dispatch(PaymentActions.paymentsRequest()),
-    attemptPaymentBarcode: () => dispatch(PaymentActions.paymentBarcodeRequest())
+    //attemptPaymentBarcode: () => dispatch(PaymentActions.paymentBarcodeRequest())
   }
 }
 
