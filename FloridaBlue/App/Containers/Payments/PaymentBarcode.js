@@ -132,19 +132,6 @@ class PaymentBarcode extends Component {
                   right: this.props.isPortrait ? Metrics.textHeight1 * Metrics.screenHeight * 0.004 : Metrics.searchBarHeight * Metrics.screenHeight * 0.002
                 }}>Accepted at the following retailers:
               </Text>
-              <Image style={{
-                transform: [{ rotate: '270deg' }],
-                left: this.props.isPortrait ? Metrics.textHeight * Metrics.screenHeight * 0.0017 : DeviceInfo.isTablet() ? Metrics.textHeight * Metrics.screenHeight * 0.002 : Metrics.textHeight * Metrics.screenHeight * 0.001,
-                bottom: DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * .6 : Metrics.payment - Metrics.screenWidth * 0.001
-              }}
-                source={Images.claimlistsearch} />
-              <Image style={{
-                transform: [{ rotate: '270deg' }],
-                left: this.props.isPortrait ? Metrics.textHeight * Metrics.screenHeight * 0.0017 : DeviceInfo.isTablet() ? Metrics.textHeight * Metrics.screenHeight * 0.002 : Metrics.textHeight * Metrics.screenHeight * 0.001,
-                bottom: DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * .67 : Metrics.payment3 - Metrics.screenHeight * 0.001
-              }}
-                source={Images.claimlistsearch} />
-
             </View>
 
             <View style={{
@@ -159,6 +146,7 @@ class PaymentBarcode extends Component {
               bottom: DeviceInfo.isTablet() ? (this.props.isPortrait ? -Metrics.payment2 * Metrics.screenWidth * 0.00245 : -Metrics.payment2 * Metrics.screenWidth * 0.00275) : -Metrics.payment2 * Metrics.screenWidth * 0.003,
               right: DeviceInfo.isTablet() ? Metrics.doubleBaseMargin * Metrics.screenHeight * 0.005 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002
             }}>
+            
               <Image source={{
                 uri: 'data:image/jpeg;base64,'
                 + this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream
@@ -253,17 +241,10 @@ class PaymentBarcode extends Component {
 
 
   render() {
-    console.tron.log("image", this.props.paymentbarcodedata && this.props.paymentbarcodedata.GetBarCodeTransactionResponse && this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream)
-    console.log("image", this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream)
+    // console.tron.log("image", this.props.paymentbarcodedata && this.props.paymentbarcodedata.GetBarCodeTransactionResponse && this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream)
+    // console.log("image", this.props.paymentbarcodedata.GetBarCodeTransactionResponse.barcodeByteStream)
     return (
       <View style={styles.container}>
-        {this.props.isPortrait ?
-          <View>
-            {this._renderHeader()}
-          </View>
-          : null}
-
-
         <View style={{ flex: 1 }}>
           {this._displayCondition()}
         </View>
