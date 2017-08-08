@@ -45,9 +45,9 @@ class MyPlanCard extends Component {
       <TouchableOpacity onPress={() => {
         this.customNavigation()
       }}>
-        <Image source={Images[this.props.data.backgroundImage]} style={styles.summary} >
+        <Image source={Images[this.props.data.backgroundImage]} style={this.props.orientationStatus ? styles.summary : styles.summaryLandscape} >
           <View style={styles.healthPlanView}>
-            <Text allowFontScaling={false} style={this.props.orientationStatus ? styles.healthPlanText : styles.healthPlanTextLandscape}>
+            <Text allowFontScaling={false} numberOfLines={2} style={this.props.orientationStatus ? styles.healthPlanText : styles.healthPlanTextLandscape}>
               {this.props.data.tileName['en']}
             </Text>
             <Flb name={this.props.data.tileIcon} style={styles.myPlanArrowIcon} size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.snow} />

@@ -99,7 +99,7 @@ class NotificationsView extends Component {
   }
 
   _renderHeader () {
-    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : [styles.headerContainerLandscape, {width: DeviceInfo.isTablet() ? (this.props.isPortrait ? Metrics.screenWidth : Metrics.screenWidth * 1.335) : (this.props.isPortrait ? Metrics.screenHeight : Metrics.screenWidth * 1.78)}]} source={this.props.isPortrait ? DeviceInfo.isTablet() ? Images.landscapeHeaderImage : Images.newHeaderImage : Images.landscapeHeaderImage}>
       {NavItems.backButton()}
       <Text allowFontScaling={false} style={styles.headerTextStyle}>Notifications</Text>
       {NavItems.settingsButton()}
