@@ -295,7 +295,7 @@ export default StyleSheet.create({
     fontWeight: (Platform.OS === 'ios') ? '500' : '400',
     backgroundColor: Colors.transparent,
     fontFamily: Fonts.type.subHeaderFont,
-    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0035
+    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0025
 // alignSelf : 'stretch',
 //  alignItems:'center',
 //  justifyContent:'center',
