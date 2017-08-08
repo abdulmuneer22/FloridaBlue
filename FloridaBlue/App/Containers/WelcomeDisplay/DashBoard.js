@@ -179,10 +179,9 @@ class LandingScreen extends Component {
       return (
         <View style={styles.container}>
           <Greeting userName={this.props.userName} isPortrait={this.props.isPortrait} unreadNotification={this.props.unreadNotification} allRead={this.props.markAllRead} />
-          {this.props.isPortrait ? 
-          <View style={{flexDirection: this.props.isPortrait ? null : 'row'}}>
             {
             this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} orientationStatus={this.props.isPortrait} /> : <View />}
+             {this.props.isPortrait ? <View style={{flexDirection: this.props.isPortrait ? null : 'row'}}>
             <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>
               {
                 this.props.visibilityRules != undefined && this.props.visibilityRules.coreTiles != undefined && this.props.visibilityRules.coreTiles.length > 0 ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
@@ -270,8 +269,7 @@ class LandingScreen extends Component {
               </TouchableOpacity> : null
           }</View>
           
-          : <ScrollView horizontal='true' style={{flexDirection: this.props.isPortrait ? null : 'row', marginTop: 20}}>{
-            this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} orientationStatus={this.props.isPortrait} /> : <View />}
+          : <ScrollView horizontal='true' style={{flexDirection: this.props.isPortrait ? null : 'row', marginTop: -5}}>
           <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>
             {
               this.props.visibilityRules != undefined && this.props.visibilityRules.coreTiles != undefined && this.props.visibilityRules.coreTiles.length > 0 ? this.props.visibilityRules.coreTiles.map(function (tile, i) {

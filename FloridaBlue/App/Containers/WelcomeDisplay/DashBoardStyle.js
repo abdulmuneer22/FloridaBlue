@@ -206,14 +206,17 @@ export default StyleSheet.create({
     width: Metrics.screenWidth * 1.78
   },
   summaryLandscape: {
-    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4.5),
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.759),
+     flexDirection: 'row',
+    height: Metrics.screenHeight * 0.125,
+  //  justifyContent: 'space-between',
+    // margin:2,
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 7,
-    marginLeft: 10,
-    marginRight: -12,
-    flexDirection: 'row'
+    resizeMode: 'cover',
+    marginTop: 4,
+    marginBottom: 4,
+  //  padding:5,
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth * 1.78
   },
   titleView: {
     flexWrap: 'wrap',
@@ -303,12 +306,12 @@ export default StyleSheet.create({
 // marginLeft:5
   },
   healthPlanTextLandscape: {
-    fontSize: Fonts.size.h2 * Metrics.screenWidth * 0.0015,
+   fontSize: Fonts.size.h2 * Metrics.screenWidth * 0.0025,
     color: Colors.snow,
     fontWeight: (Platform.OS === 'ios') ? '500' : '400',
     backgroundColor: Colors.transparent,
     fontFamily: Fonts.type.subHeaderFont,
-    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.0013
+    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.00855
   },
   healthPlanSubText: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
