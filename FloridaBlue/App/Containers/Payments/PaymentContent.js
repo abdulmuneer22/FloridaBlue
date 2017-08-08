@@ -60,20 +60,20 @@ class PaymentContent extends Component {
     } else if (this.props && this.props.paymentdata) {
      
         return (<View style={{flex: 1}}>
-        { this.props && this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByMail
+        { this.props && this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payThroughYourBank
           ? <View style={styles.paybymailView}>
-            <View style={{flex:0.5, alignItems:'center',}}>
-              <Text allowFontScaling={false} style={styles.hsaTextStyle1}>{this.props.paymentdata.paymentContent.payByMail.headerText_en}</Text>
+            <View style={{flex:0.7, alignItems:'center',}}>
+              <Text allowFontScaling={false} style={styles.hsaTextStyle1}>{this.props.paymentdata.paymentContent.payThroughYourBank.headerText_en}</Text>
             </View>
-            <View style={{flex:0.5}}>
+            <View style={{flex:0.3}}>
               <Flb name='stamp-mail' color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth*0.002} />
             </View>
           </View>
         : null
         }
 
-        {this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByMail && this.props.paymentdata.paymentContent.payByMail.content && this.props.paymentdata.paymentContent.payByMail.content.length > 0
-            ? this.props.paymentdata.paymentContent.payByMail.content.map((tile, i) => {
+        {this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payThroughYourBank && this.props.paymentdata.paymentContent.payThroughYourBank.content && this.props.paymentdata.paymentContent.payThroughYourBank.content.length > 0
+            ? this.props.paymentdata.paymentContent.payThroughYourBank.content.map((tile, i) => {
             return(
             <View style={styles.content}>
             <Text allowFontScaling={false} style={styles.hsaTextStyle1}>
@@ -82,16 +82,6 @@ class PaymentContent extends Component {
             </View>)})
             : null
          }
-            { this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByMail && this.props.paymentdata.paymentContent.payByMail.link
-            ? <View style={styles.linkView}>
-              <Text allowFontScaling={false} 
-              style={styles.linkText} onPress={() => { NavigationActions.MyView({responseURL: this.props.paymentdata.paymentContent.payByMail.link.url}) }}>
-                  {this.props.paymentdata.paymentContent.payByMail.link.name}
-                  </Text>
-             
-            </View>
-           : null
-        }
           </View>
         )
     } else if (this.props.error != null) {
