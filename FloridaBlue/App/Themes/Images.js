@@ -81,7 +81,11 @@ const images = {
   agentLoginLink: require('../Images/agent-login-link.png'),
   landscapeHeaderImage: require('../Images/landscape-hdr2.png'),
   tabletLandscapeHeaderImage: require('../Images/landscape-hdr3.png'),
-  callNowButton: require('../Images/call-nowbtn.png'),
+  callNowButton: require('../Images/call-now-btn.png'),
+  cvslogo: require('../Images/cvs-logo.png'),
+  dglogo: require('../Images/dg-logo.png'),
+  familylogo: require('../Images/family-dollar-logo.png'),
+  navarrologo: require('../Images/navarro-logo.png'),
   careFinderLS: require('../Images/carefinderL.png')
 }
 
