@@ -87,7 +87,7 @@ class PaymentContent extends Component {
             ? <View style={styles.linkView}>
               <Text allowFontScaling={false} 
               style={styles.linkText} onPress={() => { NavigationActions.MyView({responseURL: this.props.paymentdata.paymentContent[this.props.keyName].link.url}) }}>
-                  {this.props.paymentdata.paymentContent.link.name}
+                  {this.props.paymentdata.paymentContent[this.props.keyName].link.name}
                   </Text>
              
             </View>
