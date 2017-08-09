@@ -117,7 +117,8 @@ export default StyleSheet.create({
     flex:2,
     alignItems:'center', 
     justifyContent: 'center',
-    marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001
+    marginTop: Metrics.baseMargin*Metrics.screenHeight*0.001,
+    marginLeft: Metrics.baseMargin*Metrics.screenHeight*0.001,
   },
   content: {
    flex:2,
@@ -309,12 +310,12 @@ export default StyleSheet.create({
     right: 10
   },
   CallButton: {
-    width: Metrics.baseMargin * Metrics.screenWidth * 0.03,
+    width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.03 : Metrics.baseMargin * Metrics.screenWidth * 0.0365,
     backgroundColor: Colors.transparent,
-    resizeMode: 'contain',
-    borderRadius: Metrics.mediumMargin * Metrics.screenWidth * 0.0015,
-    height: Metrics.mediumMargin * Metrics.screenHeight * 0.0036,
-    marginTop: Metrics.mediumMargin*Metrics.screenHeight*0.001,
+    resizeMode: (Platform.OS === 'ios') ? 'contain' : 'cover',
+    borderRadius: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenWidth * 0.0015 :  Metrics.mediumMargin * Metrics.screenWidth * 0.0025,
+    height: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenHeight * 0.0036 : Metrics.mediumMargin * Metrics.screenHeight * 0.0038,
+    marginTop: (Platform.OS === 'ios') ? Metrics.mediumMargin*Metrics.screenHeight*0.001 : Metrics.mediumMargin*Metrics.screenHeight*0.001,
   },
 
 }

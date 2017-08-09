@@ -131,17 +131,18 @@ export default StyleSheet.create({
   },
   claimsCardText: {
     color: Colors.flBlue.anvil,
-    fontSize:Fonts.size.regular*Metrics.screenWidth*0.0025
+    fontSize:Fonts.size.regular*Metrics.screenWidth*0.0023
   },
   claimsCardContainer: {
     flex: 10
 
   },
   claimsViewMore: {
-    textAlign: 'center',
-    color: Colors.flBlue.teal,
-    fontSize: 20,
-    paddingLeft: 116
+    //textAlign: 'center',
+    color: Colors.flBlue.ocean,
+    fontSize: Fonts.size.regular*Metrics.screenWidth*0.0034,
+  
+   // paddingLeft: 116
   },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
@@ -281,9 +282,8 @@ export default StyleSheet.create({
   searchTitle: {
     fontSize: Fonts.size.regular,
     fontFamily: Fonts.type.base,
-    fontWeight: '400',
-    paddingTop: Metrics.doubleBaseMargin,
-    paddingLeft: Metrics.doubleBaseMargin,
+    fontWeight: '500',
+    margin:Metrics.mediumMargin*Metrics.screenHeight*0.001,
     color: Colors.flBlue.anvil
   },
   error: {
@@ -296,17 +296,19 @@ export default StyleSheet.create({
   },
   searchButton: {
    flex:1, 
+   flexDirection:'row',
     marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.001,
-    width:Metrics.screenWidth*0.7,
-    borderColor:Colors.flBlue.ocean,
-    borderWidth:8,
+    width:Metrics.screenWidth*0.6,
+    borderColor:Colors.flBlue.night,
+    borderWidth:5,
     borderRadius:Metrics.doubleBaseMargin*Metrics.screenHeight*0.002,
     alignItems:'center',
-    justifyContent:'center', backgroundColor:Colors.flBlue.ocean
+    justifyContent:'center', 
+    backgroundColor:Colors.flBlue.night
   },
   searchView:{
-    flex:1, 
-    marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.001, 
+    flex:1,   
+    marginBottom:Metrics.doubleBaseMargin*Metrics.screenHeight*0.001, 
     marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001, 
     alignItems:'center'
   },
@@ -329,11 +331,11 @@ export default StyleSheet.create({
   dateContainer: {
     flex: 1,
     flexDirection: 'row',
-    marginBottom:10
+    marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.003
   },
   startDateButton: {
-    marginTop: Metrics.doubleBaseMargin * 2,
-    marginLeft: Metrics.doubleBaseMargin,
+   // marginTop: Metrics.doubleBaseMargin * 2,
+    marginLeft: Metrics.doubleBaseMargin * Metrics.screenWidth*0.002,
     flex: 1,
     flexDirection: 'row'
   },
@@ -345,13 +347,14 @@ export default StyleSheet.create({
     paddingLeft: Metrics.smallMargin
   },
   endDateButton: {
-    marginTop: Metrics.doubleBaseMargin * 2,
-    marginRight: Metrics.doubleBaseMargin,
+    //alignItems:'flex-end',
+    //marginTop: Metrics.doubleBaseMargin * 2,
+    marginLeft: Metrics.textHeight2 * Metrics.screenWidth*0.007,
     flex: 1,
     flexDirection: 'row'
   },
   dateText: {
-    fontSize: Fonts.size.xr,
+    fontSize: Fonts.size.regular * Metrics.screenWidth*0.0025,
     fontFamily: Fonts.type.base,
     fontWeight: '400',
     color: Colors.flBlue.grey3,

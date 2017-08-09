@@ -87,12 +87,12 @@ class ClaimsCard extends Component {
                             {this.formatDate(value.dateOfService)}
                           </Text>
                       </View>
-                      <View style={{ flex: 0.32, justifyContent: 'center', alignItems: 'center' }}>
+                      <View style={{ flex: 0.32, justifyContent: 'center', }}>
                         <Text allowFontScaling={false} style={styles.claimsCardText}>
                             {value.memberName}
                           </Text>
                       </View>
-                      <View style={{ flex: 0.4, justifyContent: 'center', alignItems: 'center', marginRight: 10 }}>
+                      <View style={{ flex: 0.4, marginLeft:Metrics.baseMargin*Metrics.screenWidth*0.001, justifyContent: 'center', marginRight: Metrics.baseMargin*Metrics.screenWidth*0.001 }}>
                         <Text allowFontScaling={false} style={styles.claimsCardText}>{value.providerName}</Text>
                       </View>
                     </View>

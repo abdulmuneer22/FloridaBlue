@@ -94,27 +94,31 @@ class ClaimDetail extends Component {
               <View style={{flex: 1.5, flexDirection: 'row', justifyContent: 'center'}}>
                 {this.props.claimdetaildata
                   ? <View style={{flex: 0.5, alignItems: 'center', backgroundColor: Colors.transparent, marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.001, justifyContent: 'center'}}>
-                    <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0023}}>
+                    <Text allowFontScaling={false} style={{color: Colors.snow,
+                      fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0024,
+                      fontWeight:'bold'}}>
 
                       {this.formatDate(this.props.claimdetaildata.dateOfService)}
                     </Text>
                   </View> : null}
                 {this.props.claimdetaildata
                   ? <View style={{flex: 0.5, backgroundColor: Colors.transparent, alignItems: 'center', justifyContent: 'center'}}>
-                    <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0023}}>
+                    <Text allowFontScaling={false} style={{color: Colors.snow,
+                      fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0024,
+                      fontWeight:'bold'}}>
                       {this.props.claimdetaildata.memberFirstName}
                     </Text>
                   </View> : null}
                 {this.props.claimdetaildata
                   ? <View style={{flex: 0.5,
                     alignItems: 'center',
+                    marginBottom:5,
                     backgroundColor: Colors.transparent,
                     marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.001,
                     justifyContent: 'center'}}>
-                    <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                      fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0023}}>
+                    <Text allowFontScaling={false} style={{color: Colors.snow,
+                      fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0024,
+                      fontWeight:'bold'}}>
                       {this.props.claimdetaildata.providerLastName}
                     </Text>
                   </View> : null}
@@ -123,16 +127,16 @@ class ClaimDetail extends Component {
           </View>
           {this.props.claimdetaildata
             ? <View style={{flex: 2, marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
-              <View style={{flex: 0.7, flexDirection: 'row', marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002 }}>
-                <View style={{flex: 0.35}}>
+              <View style={{flex: 0.7, flexDirection: 'row', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.002 }}>
+                <View style={{flex: 0.25,alignItems:'flex-end', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                   <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
+                    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
              Claim Type:
             </Text>
                 </View>
-                <View style={{flex: 0.35}}>
+                <View style={{flex: 0.45}}>
                   <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
+                    fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
                     {this.props.claimdetaildata.claimType}
                   </Text>
                 </View>
@@ -141,32 +145,33 @@ class ClaimDetail extends Component {
                 ? <View style={{flex: 0.6,
                   flexDirection: 'row',
                   marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002,
-                  marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
-                  <View style={{flex: 0.3, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
+                 // marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.001
+                 }}>
+                  <View style={{flex: 0.2,alignItems:'flex-end', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                     <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
+                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
              Status:
             </Text>
                   </View>
-                  <View style={{flex: 0.3}}>
+                  <View style={{flex: 0.4}}>
                     <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
-                      {this.formatDate(this.props.claimdetaildata.dateReceived)}
+                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
+                     Processed on {this.formatDate(this.props.claimdetaildata.dateReceived)}
                     </Text>
                   </View>
                 </View> : null}
 
               {this.props.claimdetaildata
                 ? <View style={{flex: 0.7, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.002, marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.002}}>
-                  <View style={{flex: 0.35, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
+                  <View style={{flex: 0.25,alignItems:'center', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                     <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
+                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
              Claim Number:
             </Text>
                   </View>
-                  <View style={{flex: 0.35}}>
+                  <View style={{flex: 0.45, marginLeft:-Metrics.baseMargin*Metrics.screenWidth*0.003}}>
                     <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0023}}>
+                      fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
                       {this.props.claimdetaildata.claimNumber}
                     </Text>
                   </View>
@@ -181,7 +186,7 @@ class ClaimDetail extends Component {
           <View style={{flex: 2.5, margin: 15, backgroundColor: Colors.bg2}}>
             <View style={{flex: 0.5}}>
               <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                fontWeight: '400',
+                fontWeight: '500',
                 fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0027}}>
             Claim Details:
             </Text>
@@ -190,13 +195,15 @@ class ClaimDetail extends Component {
               ? <View style={{flex: 0.5, flexDirection: 'row', marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.001}}>
                 <View style={{flex: 0.25, alignItems: 'flex-end'}}>
                   <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
+                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+                    fontWeight:'500'}}>
             Total Billed
             </Text>
                 </View>
-                <View style={{flex: 0.25, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
+                <View style={{flex: 0.25, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.0018}}>
                   <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
-                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
+                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
+                    fontWeight:'500'}}>
              ${this.formatTo2DecimalNumber(this.props.claimdetaildata.totalBilledAllowed)}
                   </Text>
                 </View>
@@ -251,16 +258,18 @@ class ClaimDetail extends Component {
           </View>
 
           {this.props.claimdetaildata
-            ? <View style={{flex: 0.8, alignItems: 'center', justifyContent: 'center', backgroundColor: Colors.flBlue.grey4, flexDirection: 'row'}}>
-              <View style={{flex: 0.5, alignItems: 'flex-end'}}>
+            ? <View style={{flex: 0.8, alignItems: 'center', backgroundColor: Colors.flBlue.grey4, flexDirection: 'row'}}>
+              <View style={{flex: 0.4, alignItems: 'flex-end'}}>
                 <Text allowFontScaling={false} style={{color: Colors.snow,
-                  fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028}}>
+                  fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
+                  }}>
             You've Saved:
             </Text>
               </View>
-              <View style={{flex: 0.3, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.001}}>
+              <View style={{flex: 0.4, marginLeft:Metrics.smallMargin*Metrics.screenWidth*0.003}}>
                 <Text allowFontScaling={false} style={{color: Colors.snow,
-                  fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028}}>
+                  fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0028,
+                  fontWeight:'500'}}>
              ${this.formatTo2DecimalNumber(this.props.claimdetaildata.totalSavings)}
                 </Text>
               </View>

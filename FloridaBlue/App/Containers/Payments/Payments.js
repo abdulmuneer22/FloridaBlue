@@ -26,6 +26,7 @@ import Flb from '../../Themes/FlbIcon'
 import PaymentCard from './Components/PaymentCard'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import {Card} from 'native-base'
 
 let gaTracker = new GoogleAnalyticsTracker('UA-43067611-3')
 import SettingActions from '../../Redux/SettingRedux'
@@ -152,7 +153,19 @@ class Payments extends Component {
             
           {!this.state.floatClicked ?  
            
-            <View style={styles.payByPhoneContainer}>
+            <Card style={{
+            width: Metrics.screenWidth * 0.8,
+            height: Metrics.screenWidth * 0.78,
+          flex: 1,
+          // zIndex: -1,
+          // backgroundColor:'red',
+            borderWidth: 1,
+            borderRadius: Metrics.screenWidth * 1,
+            borderColor: Colors.flBlue.grey1,
+            position: 'absolute',
+            bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.006,
+            right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035
+            }}>
 
             <Flb name='close-delete' style={styles.dismissPayByPhone}
               color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
@@ -167,18 +180,18 @@ class Payments extends Component {
               </Text>:null}
             <View style={{flexDirection: 'row'}}>
               <View>
-                <TouchableOpacity style={{marginLeft: Metrics.searchBarHeight*Metrics.screenWidth*0.002,
-               marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001}} onPress={() => this.handleCall(this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ? this.props.paymentdata.paymentContent.payByPhone.teleNumber : '')}>
+                <TouchableOpacity style={{marginLeft: (Platform.OS === 'ios') ? Metrics.searchBarHeight*Metrics.screenWidth*0.002 : Metrics.searchBarHeight*Metrics.screenWidth*0.002,
+               marginTop: (Platform.OS === 'ios') ? Metrics.baseMargin*Metrics.screenHeight*0.001 : Metrics.baseMargin*Metrics.screenHeight*0.001}} onPress={() => this.handleCall(this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ? this.props.paymentdata.paymentContent.payByPhone.teleNumber : '')}>
                   <Image style={styles.CallButton} source={Images.callNowButton} />
                 </TouchableOpacity>
               </View>
-              <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenHeight * 0.0014 : Metrics.section * Metrics.screenHeight * 0.0016,
+              <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenHeight * 0.0014 : Metrics.smallMargin * Metrics.screenHeight * 0.0016,
                 marginLeft: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
                 <Flb name='rd-brand-phone' onPress={this._toggleFloat} color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} 
                         />
               </View>
             </View>
-          </View>
+          </Card>
 
 
             : null}

@@ -102,7 +102,7 @@ const scenes = Actions.create(
         <Scene key='ClaimsSummary' component={ClaimsSummary} title='Claims Summary Page' hideNavBar />
         <Scene key='PaymentBarcode' component={PaymentBarcode} title='PaymentBarcode Page' hideNavBar />
         <Scene key='Payments' component={Payments} title='Payments Page' hideNavBar />
-        <Scene key='PaymentContent' component={PaymentContent} title='PaymentContent Page' hideNavBar />
+        <Scene key='paymentScreen' component={PaymentContent} title='Payment Content Page' hideNavBar />
         <Scene key='PaymentDetails' component={PaymentDetails} title='Payment Details Page' hideNavBar />
         <Scene key='AgentLogin' component={AgentLogin} title='AgentLogin' hideNavBar panHandlers={null} type={ActionConst.RESET} />
         <Scene key='Agency' component={Agency} title='Agency' hideNavBar />
