@@ -31,6 +31,7 @@ class Quote extends Component {
 
   _openQuoteDetail(selectedQuote) {
     console.tron.log(selectedQuote)
+    NavigationActions.QuoteDetail()
   }
 
   _renderHeader () {
@@ -69,7 +70,7 @@ class Quote extends Component {
         {this._renderHeader()}
 
         <View style={styles.groupInfoContainer}>
-          
+
         </View>
 
         <View style={styles.quoteHeaderContainer}>
