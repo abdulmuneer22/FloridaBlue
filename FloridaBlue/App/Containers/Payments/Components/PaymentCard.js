@@ -67,7 +67,11 @@ class PaymentCard extends Component {
     } else if (this.props.tileType == 'native') {
       let routerName = this.props.routerName
       gaTracker.trackEvent('Payments Page', routerName)
-      action = NavigationActions[routerName]()
+      if(routerName ==='PaymentBarcode'){
+        action = NavigationActions[routerName]()
+      }else {
+      action = NavigationActions.paymentScreen({keyName :routerName})
+      }
       if(routerName === 'PaymentBarcode'){
         this.props.attemptPaymentBarcode()
       }

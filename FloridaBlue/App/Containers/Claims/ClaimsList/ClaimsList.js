@@ -454,11 +454,14 @@ class ClaimsList extends Component {
                 underlineColorAndroid={Colors.coal}
                 placeholder={'Provider Name'}
                 placeholderTextColor={Colors.steel}
-                tintColor={Colors.black}
+                tintColor={Colors.flBlue.grey4}
                 onChangeText={this.props.changeProviderName}
                 defaultValue={this.props.providerName}
             />
+            <View style={{flexDirection:'row', flex:1}}>
+              <View style={{flex:0.95}}>
             <ModalDropdown options={_.map(this.props.memberList, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+               
                 <MKTextField
                 ref='memberName'
                 textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
@@ -466,7 +469,7 @@ class ClaimsList extends Component {
                         //width:Metrics.screenWidth * 0.8,
                         marginTop:Metrics.doubleBaseMargin*Metrics.screenHeight*0.001,
                         marginLeft:Metrics.doubleBaseMargin*Metrics.screenWidth*0.002,
-                        marginRight:Metrics.doubleBaseMargin*Metrics.screenWidth*0.002,
+                        //marginRight:Metrics.doubleBaseMargin*Metrics.screenWidth*0.002,
                         height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015,
                         //width: this.props.isPortrait ? 410 : 668
                         }}
@@ -474,10 +477,49 @@ class ClaimsList extends Component {
                   underlineColorAndroid={Colors.coal}
                   placeholder={'Member Name'}
                   placeholderTextColor={Colors.steel}
-                  tintColor={Colors.black}
+                  tintColor={Colors.flBlue.grey4}
                   value={this.props.memberName}
                 />
-              </ModalDropdown>
+                  </ModalDropdown>
+                  </View>
+                  <View style={{flex:0.05}}>
+                <Flb name="caret-down-two" style={{marginTop:Metrics.baseMargin*Metrics.screenWidth*0.004,
+                                                  marginLeft:-Metrics.mediumMargin*Metrics.screenWidth*0.003}} 
+                    size={Metrics.icons.large*Metrics.screenWidth*0.0015} 
+                    color={Colors.flBlue.grey4} />
+                </View>
+             </View>
+              <View style={{ flex: 1,
+                            flexDirection: 'row',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            margin:Metrics.baseMargin*Metrics.screenHeight*0.001,
+                            marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001
+                            //marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.003
+                            }}>
+                <View style={{flex:0.5,
+                            justifyContent:'center',
+                            margin:Metrics.baseMargin*Metrics.screenHeight*0.001,}}>            
+                <Text allowFontScaling={false} style={{fontSize: Fonts.size.regular * Metrics.screenWidth*0.0025,
+                                                      fontFamily: Fonts.type.base,
+                                                      fontWeight: '400',
+                                                      color: Colors.flBlue.grey3,}}>
+                  Start Date
+                </Text>
+                </View>
+                <View style={{flex:0.5,justifyContent:'center',
+                              margin:Metrics.baseMargin*Metrics.screenHeight*0.001,
+                              marginLeft:Metrics.textHeight2*Metrics.screenWidth*0.0075}}>
+                 <Text allowFontScaling={false} style={{fontSize: Fonts.size.regular * Metrics.screenWidth*0.0025,
+                                                        fontFamily: Fonts.type.base,
+                                                        fontWeight: '400',
+                                                        color: Colors.flBlue.grey3,}}>
+                   End Date
+                  </Text>
+               </View>
+    
+              </View>
+
               <View style={styles.dateContainer}>
                 <TouchableOpacity style={styles.startDateButton} onPress={this.addStartDate}>
                   <Text allowFontScaling={false} style={styles.dateText}>
@@ -492,19 +534,19 @@ class ClaimsList extends Component {
                   </Text>
                 </TouchableOpacity>
               </View>
-              {/* <Button rounded style={styles.searchButton} onPress={() => { this.searchResults() }}>
-               // <Text allowFontScaling={false} style={{ color: 'white', fontWeight: '500',paddingLeft: 5, alignItems: 'center' }}>Search</Text>
-              </Button> */}
               <View style={styles.searchView}>
                 <TouchableOpacity onPress={() => { this.searchResults() }}
                   style={styles.searchButton}>
+
+                  <Flb name="search-find" color={Colors.snow} 
+                        style={{marginRight:Metrics.doubleBaseMargin*Metrics.screenWidth*0.0015}} size={Metrics.icons.large*Metrics.screenWidth*0.0015} />
                   <Text allowFontScaling={false}
                         style={styles.searchText}>Search</Text>
 
                 </TouchableOpacity>
               </View>
             </View>
-            <View style={{backgroundColor: 'rgba(0,0,0,.05)', paddingBottom: 200}} />
+            <View style={{backgroundColor: 'rgba(0,0,0,.65)', paddingBottom: Metrics.screenHeight - Metrics.screenHeight*0.6}} />
           </HideableView>
           <DateTimePicker
             isVisible={this.props.datePickerVisible}

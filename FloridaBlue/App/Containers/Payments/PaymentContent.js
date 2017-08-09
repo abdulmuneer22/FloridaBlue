@@ -30,7 +30,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
 
-class payByMail extends Component {
+class PaymentContent extends Component {
     
   _renderHeader () {
     return (<Image style={styles.hsaHeader} source={Images.newHeaderImage}>
@@ -47,6 +47,7 @@ class payByMail extends Component {
   }
 
   componentDidMount () {
+    console.log('keyName',this.props.keyName)
       console.tron.log("coming from payment content")
     gaTracker.trackScreenView('Payment Content')
   }
@@ -60,10 +61,10 @@ class payByMail extends Component {
     } else if (this.props && this.props.paymentdata) {
      
         return (<View style={{flex: 1}}>
-        { this.props && this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payThroughYourBank
+        { this.props && this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent[this.props.keyName]
           ? <View style={styles.paybymailView}>
-            <View style={{flex:0.7, alignItems:'center',}}>
-              <Text allowFontScaling={false} style={styles.hsaTextStyle1}>{this.props.paymentdata.paymentContent.payThroughYourBank.headerText_en}</Text>
+            <View style={{flex:0.7, alignItems:'center',justifyContent:'center'}}>
+              <Text allowFontScaling={false} style={styles.hsaTextStyle1}>{this.props.paymentdata.paymentContent[this.props.keyName].headerText_en}</Text>
             </View>
             <View style={{flex:0.3}}>
               <Flb name='stamp-mail' color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth*0.002} />
@@ -72,16 +73,26 @@ class payByMail extends Component {
         : null
         }
 
-        {this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payThroughYourBank && this.props.paymentdata.paymentContent.payThroughYourBank.content && this.props.paymentdata.paymentContent.payThroughYourBank.content.length > 0
-            ? this.props.paymentdata.paymentContent.payThroughYourBank.content.map((tile, i) => {
+        {this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent[this.props.keyName] && this.props.paymentdata.paymentContent[this.props.keyName].content && this.props.paymentdata.paymentContent[this.props.keyName].content.length > 0
+            ? this.props.paymentdata.paymentContent[this.props.keyName].content.map((tile, i) => {
             return(
-            <View style={styles.content}>
+            <View key= {i} style={styles.content}>
             <Text allowFontScaling={false} style={styles.hsaTextStyle1}>
             {tile.descrption_en}
             </Text>
             </View>)})
             : null
          }
+         { this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent[this.props.keyName] && this.props.paymentdata.paymentContent[this.props.keyName].link
+            ? <View style={styles.linkView}>
+              <Text allowFontScaling={false} 
+              style={styles.linkText} onPress={() => { NavigationActions.MyView({responseURL: this.props.paymentdata.paymentContent[this.props.keyName].link.url}) }}>
+                  {this.props.paymentdata.paymentContent.link.name}
+                  </Text>
+             
+            </View>
+           : null
+        }
           </View>
         )
     } else if (this.props.error != null) {
@@ -110,7 +121,7 @@ class payByMail extends Component {
   }
     }
 
-payByMail.propTypes = {
+PaymentContent.propTypes = {
 
   data: PropTypes.object,
   error: PropTypes.string
@@ -132,4 +143,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(payByMail)
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentContent)

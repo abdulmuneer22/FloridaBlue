@@ -117,7 +117,8 @@ export default StyleSheet.create({
     flex:2,
     alignItems:'center', 
     justifyContent: 'center',
-    marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001
+    marginTop: Metrics.baseMargin*Metrics.screenHeight*0.001,
+    marginLeft: Metrics.baseMargin*Metrics.screenHeight*0.001,
   },
   content: {
    flex:2,
