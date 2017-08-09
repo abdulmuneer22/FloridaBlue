@@ -236,7 +236,7 @@ export default StyleSheet.create({
 
   },
   tileStyleLandscape: {
-    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 7),
+    width: (Metrics.screenWidth / 1.85) - (Metrics.baseMargin * .01),
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
     alignItems: 'center',
     justifyContent: 'center',
@@ -264,7 +264,7 @@ export default StyleSheet.create({
   linearGradientStyleLandscape: {
   //   alignItems: 'center',
   //   justifyContent: 'center',
-    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4),
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * .1),
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.76)
   },
   tileTextStyle: {
@@ -360,10 +360,11 @@ export default StyleSheet.create({
     // marginBottom:0
   },
   footerImageLandscape: {
-    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4),
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.75),
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * .1),
+    height: Metrics.screenHeight - (Metrics.screenHeight * 0.759),
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: Colors.flBlue.snow
   },
   textBackground: {
     flex: 1,
@@ -435,14 +436,15 @@ export default StyleSheet.create({
     marginTop: 9
   },
   opdStyleLandscape: {
-    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 4.5),
+    width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * 6.5),
     height: Metrics.screenHeight - (Metrics.screenHeight * 0.759),
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 7,
-    marginLeft: Metrics.screenHeight - (Metrics.screenHeight * 1.02),
-    marginRight: 10,
-    flexDirection: 'row'
+    marginLeft: Metrics.screenHeight - (Metrics.screenHeight * .97),
+    marginRight: 100,
+    flexDirection: 'row',
+    left: 20
   },
   payByPhoneContainer: {
     width: Metrics.screenWidth * 0.8,
@@ -495,6 +497,16 @@ export default StyleSheet.create({
     borderRadius: Metrics.mediumMargin * Metrics.screenWidth * 0.0015,
     height: Metrics.mediumMargin * Metrics.screenHeight * 0.0036,
     marginTop: Metrics.mediumMargin*Metrics.screenHeight*0.001,
+  },
+  backgroundImage: {
+    flex: 0.5,
+    alignSelf: 'flex-end',
+    // backgroundColor:Colors.transparent,
+    // marginRight:-50,
+     // resizeMode: 'contain',
+    height: Platform.OS == 'ios' ? (Metrics.screenWidth - Metrics.screenWidth * 0.497) : (Metrics.screenHeight - Metrics.screenHeight * 0.697)
+    // width:Metrics.screenWidth - (Metrics.screenWidth * 0.88)
+   // marginBottom:-Metrics.smallMargin * Metrics.screenHeight * 0.0001
   },
 
 }
