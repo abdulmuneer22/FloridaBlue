@@ -24,10 +24,13 @@ import styles from './MyPlanScreenStyle'
 import MyPlanSwiper from './Components/MyPlanSwiper'
 import { connect } from 'react-redux'
 import MyPlanActions from '../../Redux/MyPlanRedux'
+import SettingActions from '../../Redux/SettingRedux'
 import _ from 'lodash'
+import DeviceInfo from 'react-native-device-info'
 import MemberActions from '../../Redux/MemberRedux'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import Orientation from 'react-native-orientation'
 
 const window = Dimensions.get('window')
 let urlConfig = require('../../UrlConfig')
@@ -41,11 +44,13 @@ class MyPlanScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      isPortrait: true
     }
+    this._orientationDidChange = this._orientationDidChange.bind(this)
   }
 
   _renderHeader () {
-    return (<Image style={styles.headerContainer} source={Images.newHeaderImage}>
+    return (<Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? (DeviceInfo.isTablet() ? Images.landscapeHeaderImage: Images.newHeaderImage) : Images.landscapeHeaderImage}>
       <View style={{marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.backButton()}
       </View>
@@ -57,9 +62,82 @@ class MyPlanScreen extends Component {
       </View>
     </Image>)
   }
+
+componentWillMount () {
+    if (DeviceInfo.getManufacturer() === 'samsung') {
+      console.log('hey samsung!')
+      console.log(DeviceInfo.isTablet())
+    } else if (DeviceInfo.getManufacturer() === 'ios') {
+      console.log('yo apple!')
+    }
+
+    console.log('is it a tablet bro?', DeviceInfo.isTablet())
+    const initial = Orientation.getInitialOrientation()
+
+    if (initial === 'PORTRAIT') {
+      console.log('Hey, Im going to mount in P mode on myplan')
+    } else {
+      console.log('Hey, Im going to mount in L mode on myplan')
+    }
+  }
+
   componentDidMount () {
     gaTracker.trackScreenView('My Plan')
+    Orientation.addOrientationListener(this._orientationDidChange)
+    /*
+    BackHandler.addEventListener('hardwareBackPress', function () {
+         console.log('inside back handler',component.props.currentSceneValue)
+
+          if(  component.props.currentSceneValue && component.props.currentSceneValue ==='login'){
+                         if(component.props.currentSceneValue =='drawer' || component.props.currentSceneValue =='WelcomeDashBoard'){
+            console.log('currentscence',component.props.currentSceneValue)
+                Alert.alert(
+              'Exit',
+              'Are you sure you want to exit this app',
+              [
+                { text: 'Cancel', onPress: () => {} },
+                { text: 'YES', onPress: () => BackHandler.exitApp() },
+              ]
+            );
+          }else {
+
+            console.log('currentscence',component.props.currentSceneValue)
+                Alert.alert(
+              'Exit',
+              'Are you sure you want to exit this app',
+              [
+                { text: 'Cancel', onPress: () => {} },
+                { text: 'YES', onPress: () => BackHandler.exitApp() },
+              ]
+            );
+          }
+          }
+
+      return true
+     })
+  */
   }
+
+   _orientationDidChange (orientation) {
+    if (orientation === 'LANDSCAPE') {
+      this.setState({isPortrait: false})
+      console.log('Hey, Im in landscape mode on login')
+    } else {
+      this.setState({isPortrait: true})
+      console.log('Hey, Im in portrait mode on login')
+    }
+  }
+
+  componentWillUnmount () {
+    Orientation.getOrientation((err, orientation) => {
+      console.log(`Current Device Orientation: ${orientation}`)
+    })
+
+    // Remember to remove listener
+    Orientation.removeOrientationListener(this._orientationDidChange)
+  }
+
+
 
   _displayCondition () {
     if (this.props.fetching) {
@@ -72,8 +150,8 @@ class MyPlanScreen extends Component {
       var message = this.props.data.errorMessage
       return (
         <View style={styles.container}>
-
-          <Card style={{flex: 0.1,
+          {this.props.isPortrait ? <View style={styles.container}>
+            <Card style={{flex: 0.1,
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: -0,
@@ -92,7 +170,7 @@ class MyPlanScreen extends Component {
           </Card>
 
           <View style={styles.chartWrapper}>
-            {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} />
+            {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} isPortrait={this.state.isPortrait}/>
 
               : Alert.alert(
         'My Plan Overview',
@@ -132,8 +210,71 @@ class MyPlanScreen extends Component {
               : <Text />
             }
           </View>
+        </View>: <ScrollView>
+            <Card style={{flex: 0.1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: -0,
+    marginRight : -0,
+    marginTop: -0,
+     
+    }}>
 
-        </View>
+            { this.props.data.annualDeductible || this.props.data.oop
+              ? <Text allowFontScaling={false} style={styles.planNameText}>
+                {this.props.planName}
+              </Text>
+
+             : <Text />
+           }
+          </Card>
+
+          <View style={styles.chartWrapperLandscape}>
+            {this.props.data.annualDeductible || this.props.data.oop ? <MyPlanSwiper data={this.props.data} isPortrait={this.props.isPortrait}/>
+
+              : Alert.alert(
+        'My Plan Overview',
+       'Oops! Looks like this service is not available right now or it\'s not part of your plan.',
+                [
+          { text: 'OK' }
+
+                ])
+              }
+          </View>
+
+          <View style={styles.myplanTilesStyle}>
+            {this.props.visibilityRules != undefined && this.props.visibilityRules.planOverViewTiles != undefined
+              ? this.props.visibilityRules.planOverViewTiles.map((tile, i) => {
+                const index = i + 1
+                const TileCount = this.props.visibilityRules.planOverViewTiles.length
+
+                console.tron.log(tile)
+                return (
+                  <CCard
+                    i={i}
+                    key={index}
+                    title={tile.tileName['en']}
+                    tileType={tile.tileType}
+                    icon={tile.tileIcon}
+                    gradientImage={tile.gradientImage}
+                    gradientColor={tile.gradientColor}
+                    CardCount={TileCount}
+                    image={tile.backgroundImage}
+                    webURL={tile.tileType !== 'native' ? tile.tileUrl : null}
+                    routerName={tile.tileType === 'native' ? tile.routerName : null}
+
+                  />
+                )
+              }
+              )
+              : <Text />
+            }
+          </View>
+        </ScrollView>}
+          
+          
+
+      </View>
 
       )
     } else if (this.props.error != null) {
@@ -186,13 +327,15 @@ const mapStateToProps = (state) => {
     data: state.myplan.data,
     visibilityRules: state.member.visibilityRules,
     error: state.myplan.error,
-    planName: _.get(state, 'member.defaultContract.planName', '')
+    planName: _.get(state, 'member.defaultContract.planName', ''),
+    isPortrait: state.setting.isPortrait
   }
 }
 const mapDispatchToProps = (dispatch) => {
   return {
     attemptMyPlan: () => dispatch(MyPlanActions.myplanRequest()),
-    attemptMember: () => dispatch(MemberActions.memberRequest())
+    attemptMember: () => dispatch(MemberActions.memberRequest()),
+    changeOrientation: (isPortrait) => dispatch(SettingActions.changeOrientation(isPortrait))
   }
 }
 

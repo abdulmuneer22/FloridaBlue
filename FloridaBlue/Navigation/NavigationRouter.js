@@ -12,6 +12,7 @@ import { AgentLogin } from '../Agent/Containers/Login'
 import { Agency } from '../Agent/Containers/Agency'
 import { Group } from '../Agent/Containers/Group'
 import { Quote } from '../Agent/Containers/Quote'
+import { QuoteDetail } from '../Agent/Containers/QuoteDetail'
 
 // MEMBER SCENES //
 import { MemberLogin } from '../App/Containers/Login'
@@ -108,6 +109,7 @@ const scenes = Actions.create(
         <Scene key='Agency' component={Agency} title='Agency' hideNavBar />
         <Scene key='Group' component={Group} title='Group' hideNavBar />
         <Scene key='Quote' component={Quote} title='Quote' hideNavBar />
+        <Scene key='QuoteDetail' component={QuoteDetail} title='QuoteDetail' hideNavBar />
       </Scene>
     </Scene>
   </Scene>

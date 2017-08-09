@@ -29,6 +29,11 @@ class Group extends Component {
 
   }
 
+  _openQuote (selectedGroup) {
+    console.tron.log(selectedGroup)
+    NavigationActions.Quote()
+  }
+
   _renderHeader () {
     return (
       <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={Images.newHeaderImage}>
@@ -53,7 +58,7 @@ class Group extends Component {
 
   _renderGroupItem (group, index) {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => this._openQuote(group)}>
         <GroupItem data={group} />
       </TouchableOpacity>
     )
@@ -68,6 +73,7 @@ class Group extends Component {
           <Text allowFontScaling={false} style={styles.groupTitle}>Groups</Text>
           <Text allowFontScaling={false} style={styles.groupName}>@ TDG of Jacksonville</Text>
         </View>
+
         <MKProgress ref='groupBar' style={styles.groupBar} progress={0.18} progressColor={Colors.flBlue.ocean} bufferColor={Colors.flBlue.grey2} />
 
         <TextInput style={styles.searchInput} onChangeText={(searchText) => this.setState({searchText})} value={this.state.searchText} />
@@ -83,12 +89,10 @@ class Group extends Component {
 
         <View style={styles.groupListHeaderContainer}>
           <Text allowFontScaling={false} style={styles.groupNameTitle}>Group</Text>
-          <ModalDropdown options={_.map(groups, 'owner')} onSelect={this.filterByEffectiveDate} dropdownStyle={styles.groupDateDropdown} renderRow={this._renderDropdownRow.bind(this)}>
-            <View style={styles.groupTypeContainer}>
-              <Text allowFontScaling={false} style={styles.groupTypeTitle}>Eff. Date</Text>
-              <Flb name='caret-down-two' size={15} color={Colors.flBlue.anvil} />
-            </View>
-          </ModalDropdown>
+          <TouchableOpacity style={styles.groupTypeContainer}>
+            <Text allowFontScaling={false} style={styles.groupTypeTitle}>Eff. Date</Text>
+            <Flb name='caret-down-two' size={15} color={Colors.flBlue.anvil} />
+          </TouchableOpacity>
         </View>
 
         <ScrollView>
