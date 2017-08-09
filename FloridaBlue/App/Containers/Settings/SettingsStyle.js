@@ -33,7 +33,7 @@ export default StyleSheet.create({
     fontWeight: (Platform.OS === 'ios') ? '500' : '400'
   },
   cardContainer: {
-    alignItems: 'center',
+   // alignItems: 'center',
     justifyContent: 'center',
     flex: 1
   },

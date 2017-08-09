@@ -237,19 +237,32 @@ class Settings extends Component {
         <View style={{flex: 1, backgroundColor: Colors.flBlue.bg2}}>
 
           { Platform.OS === 'ios' && this.props.touchAvailable ?
-            <View style={styles.cardContainer}>
-              <BCard style={styles.card}>
-                <View style={styles.cardIcon}>
+            <View style={{ // alignItems: 'center',
+                          justifyContent: 'center',
+                          flex: 1}}>
+              <BCard style={{ //alignItems: 'center',
+                            flexDirection: 'row',
+                            flex: 1,
+                            width:Metrics.screenWidth,
+                            height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)}}>
+                <View style={{ flex: 2,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: Colors.transparent}}>
                   <Flb name={'fingerprint'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                 </View>
-                <View style={styles.cardTextContainer}>
+                <View style={{ flex: 6,
+                                alignItems: 'flex-start'}}>
                   { this.props.touchEnabled ?
                     <Text allowFontScaling={false} style={styles.cardText}>Touch ID Enabled</Text>
                     :
                     <Text allowFontScaling={false} style={styles.cardText}>Enable Touch ID</Text>
                   }
                 </View>
-                <MKSwitch style={styles.settingStatusSwitch}
+                <MKSwitch style={{settingStatusSwitch: {
+                                  marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
+                                  marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0025
+                                }}}
                   checked={this.props.touchEnabled}
                   trackSize={30}
                   trackLength={52}
@@ -265,32 +278,61 @@ class Settings extends Component {
               null
           }
 
-          <View style={styles.cardContainer}>
-            <TouchableOpacity onPress={Permissions.openSettings} style={styles.cardContainer}>
-              <BCard style={styles.card}>
-                <View style={styles.cardIcon}>
+          <View style={{ alignItems: 'center',
+                        justifyContent: 'center',
+                        flex: 1}}>
+            <TouchableOpacity onPress={Permissions.openSettings} style={{ alignItems: 'center',
+                                                                          justifyContent: 'center',
+                                                                          flex: 1}}>
+              <BCard style={{alignItems: 'center',
+                            flexDirection: 'row',
+                            flex: 1,
+                            height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)}}>
+                <View style={{flex: 2,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              backgroundColor: Colors.transparent}}>
                   <Flb name={'explore'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                 </View>
-                <View style={styles.cardTextContainer}>
+                <View style={{  flex: 6,
+                              alignItems: 'flex-start'}}>
                   <Text allowFontScaling={false} style={styles.cardText}>Geo-location Settings</Text>
                 </View>
-                <View style={styles.cardIndicator}>
+                <View style={{flex: 1,
+                              alignItems: 'flex-start',
+                              justifyContent: 'center',
+                              backgroundColor: Colors.transparent}}>
                   <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                 </View>
               </BCard>
             </TouchableOpacity>
           </View>
 
-          <View style={styles.cardContainer}>
-            <TouchableOpacity onPress={Permissions.openSettings} style={styles.cardContainer}>
-              <BCard style={styles.card}>
-                <View style={styles.cardIcon}>
+          <View style={{// alignItems: 'center',
+                        justifyContent: 'center',
+                        flex: 1}}>
+            <TouchableOpacity onPress={Permissions.openSettings} 
+                            style={{// alignItems: 'center',
+                            justifyContent: 'center',
+                            flex: 1}}>
+              <BCard style={{alignItems: 'center',
+                              flexDirection: 'row',
+                              flex: 1,
+                              height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)}}>
+                <View style={{flex: 2,
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              backgroundColor: Colors.transparent}}>
                   <Flb name={'exclamation-circle'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                 </View>
-                <View style={styles.cardTextContainer}>
+                <View style={{ flex: 6,
+                               alignItems: 'flex-start'}}>
                   <Text allowFontScaling={false} style={styles.cardText}>Push Notification Settings</Text>
                 </View>
-                <View style={styles.cardIndicator}>
+                <View style={{ flex: 1,
+                              alignItems: 'flex-start',
+                              justifyContent: 'center',
+                              backgroundColor: Colors.transparent}}>
                   <Flb name='chevron-right' size={Metrics.icons.small * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
                 </View>
               </BCard>
