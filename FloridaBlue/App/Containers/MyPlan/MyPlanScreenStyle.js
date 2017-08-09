@@ -17,6 +17,17 @@ export default StyleSheet.create({
     width: Metrics.screenWidth
     // backgroundColor: Colors.flBlue.sky
   },
+  headerContainerLandscape: {
+    flexDirection: 'row',
+    height: (Metrics.screenHeight - (Metrics.screenHeight * 0.80)) / 2,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  //  padding: Metrics.mediumMargin,
+    // resizeMode:'cover',
+    // alignSelf: 'stretch',
+    width: Metrics.screenWidth * 1.78
+    // backgroundColor: Colors.flBlue.sky
+  },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
     backgroundColor: Colors.transparent,
@@ -49,6 +60,12 @@ export default StyleSheet.create({
   chartWrapper: {
      // backgroundColor : 'yellow',
     flex: 0.6
+   // marginBottom: 15
+  },
+  chartWrapperLandscape: {
+     // backgroundColor : 'yellow',
+    flex: 0.6,
+    marginLeft:  (Metrics.screenWidth) - (Metrics.screenWidth * .94)
    // marginBottom: 15
   },
   cardStyle: {
