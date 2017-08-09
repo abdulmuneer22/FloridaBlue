@@ -1,0 +1,32 @@
+[
+  {
+    "quoteId":"177890",
+    "owner":"Mac Miller",
+    "updateDate":"2h",
+    "status":"Initial"
+  },
+  {
+    "quoteId":"177891",
+    "owner":"Mac Miller",
+    "updateDate":"3h",
+    "status":"Finalizing"
+  },
+  {
+    "quoteId":"177892",
+    "owner":"Mac Miller",
+    "updateDate":"3h",
+    "status":"Finalizing"
+  },
+  {
+    "quoteId":"177893",
+    "owner":"Mac Miller",
+    "updateDate":"5h",
+    "status":"Sold"
+  },
+  {
+    "quoteId":"177894",
+    "owner":"Mac Miller",
+    "updateDate":"5h",
+    "status":"Sold"
+  }
+]

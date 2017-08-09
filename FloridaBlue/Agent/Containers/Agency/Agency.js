@@ -76,12 +76,10 @@ class Agency extends Component {
         <Divider />
         <View style={styles.filterContainer}>
           <Text style={styles.filterNameTitle}>Name</Text>
-          <ModalDropdown options={_.map(agencies, 'type')} onSelect={this.filterByType} dropdownStyle={styles.filterDropdown} renderRow={this._renderDropdownRow.bind(this)}>
-            <View style={styles.filterTypeContainer}>
-              <Text style={styles.filterTypeTitle}>Type</Text>
-              <Flb name="caret-down-two" size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
-            </View>
-          </ModalDropdown>
+          <TouchableOpacity style={styles.filterTypeContainer}>
+            <Text style={styles.filterTypeTitle}>Type</Text>
+            <Flb name="caret-down-two" size={15} color={Colors.flBlue.anvil} style={{ marginTop: 5 }} />
+          </TouchableOpacity>
         </View>
         <Divider />
 
