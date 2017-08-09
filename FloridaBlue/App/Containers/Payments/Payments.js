@@ -185,7 +185,7 @@ class Payments extends Component {
                   <Image style={styles.CallButton} source={Images.callNowButton} />
                 </TouchableOpacity>
               </View>
-              <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenHeight * 0.0014 : Metrics.smallMargin * Metrics.screenHeight * 0.0016,
+              <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenHeight * 0.001 : Metrics.smallMargin * Metrics.screenHeight * 0.0016,
                 marginLeft: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
                 <Flb name='rd-brand-phone' onPress={this._toggleFloat} color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} 
                         />

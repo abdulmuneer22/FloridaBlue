@@ -310,11 +310,11 @@ export default StyleSheet.create({
     right: 10
   },
   CallButton: {
-    width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.03 : Metrics.baseMargin * Metrics.screenWidth * 0.0365,
+    width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.03 : Metrics.baseMargin * Metrics.screenWidth * 0.0355,
     backgroundColor: Colors.transparent,
     resizeMode: (Platform.OS === 'ios') ? 'contain' : 'cover',
-    borderRadius: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenWidth * 0.0015 :  Metrics.mediumMargin * Metrics.screenWidth * 0.0025,
-    height: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenHeight * 0.0036 : Metrics.mediumMargin * Metrics.screenHeight * 0.0038,
+    borderRadius: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenWidth * 0.0015 :  Metrics.mediumMargin * Metrics.screenWidth * 0.003,
+    height: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenHeight * 0.0036 : Metrics.mediumMargin * Metrics.screenHeight * 0.0041,
     marginTop: (Platform.OS === 'ios') ? Metrics.mediumMargin*Metrics.screenHeight*0.001 : Metrics.mediumMargin*Metrics.screenHeight*0.001,
   },
 

@@ -152,14 +152,14 @@ class PaymentDetails extends Component {
                         fontWeight:'500'
                         }}>5 business days.</Text>
                     </Text>
-                    </View>                
+                    </View>                          
                   </View>
             <View style={{flex:1,flexDirection:'row', marginTop:Metrics.mediumMargin*Metrics.screenHeight*0.001}}>
-                      <View style={{flex:0.3, alignItems:'center'}}>
+                      <View style={{flex:0.2, alignItems:'center'}}>
                       <Flb name='check' size={Metrics.icons.large*Metrics.screenWidth*0.002}
                                     color={Colors.flBlue.anvil} />
                        </View>             
-                    <View style={{flex:0.7}}>
+                    <View style={{flex:0.8}}>
                       <Text allowFontScaling={false} 
                          style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
                         color:Colors.flBlue.anvil,
@@ -169,11 +169,11 @@ class PaymentDetails extends Component {
                     </View>                
                   </View>
                    <View style={{flex:1,flexDirection:'row', marginTop:Metrics.mediumMargin*Metrics.screenHeight*0.001}}>
-                      <View style={{flex:0.3, alignItems:'center'}}>
+                      <View style={{flex:0.2, alignItems:'center'}}>
                       <Flb name='check' size={Metrics.icons.large*Metrics.screenWidth*0.002}
                                     color={Colors.flBlue.anvil} />
                        </View>             
-                    <View style={{flex:0.7}}>
+                    <View style={{flex:0.8}}>
                       <Text allowFontScaling={false} 
                          style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
                         color:Colors.flBlue.anvil,
@@ -182,78 +182,6 @@ class PaymentDetails extends Component {
                     </Text>
                     </View>                
                   </View>
-                   <View style={{flex:1,flexDirection:'row', marginTop:Metrics.mediumMargin*Metrics.screenHeight*0.001}}>
-                      <View style={{flex:0.3, alignItems:'center'}}>
-                      <Flb name='check' size={Metrics.icons.large*Metrics.screenWidth*0.002}
-                                    color={Colors.flBlue.anvil} />
-                       </View>             
-                    <View style={{flex:0.3}}>
-                      <Text allowFontScaling={false} 
-                         style={{fontSize:Fonts.size.regular*Metrics.screenWidth*0.0028,
-                        color:Colors.flBlue.anvil,
-                        }}>
-                        Payment Details
-                    </Text>
-                    </View>                
-                 
-           <View style={{flex: 0.4, alignItems:'center', justifyContent:'center', backgroundColor:Colors.transparent, 
-           marginTop: (Platform.OS === 'ios') ? Metrics.mediumMargin*Metrics.screenHeight*0.006 : 0
-           }}>
-             {this.state.floatClicked ?  <View style={styles.urgentCareCircle}>
-                <TouchableOpacity onPress={this._toggleFloat}>
-                  <Flb name='rd-brand-phone'
-                    style={{backgroundColor: Colors.transparent}}
-                    color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0025} />
-                </TouchableOpacity>
-              </View> : null}
-            
-          {!this.state.floatClicked ?  
-           
-            <Card style={{
-                    width: Metrics.screenWidth * 0.8,
-                    height: Metrics.screenWidth * 0.78,
-                    flex: 1,
-                    // zIndex: -1,
-                    // backgroundColor:'red',
-                    borderWidth: 1,
-                    borderRadius: Metrics.screenWidth * 1,
-                    borderColor: Colors.flBlue.grey1,
-                    position: 'absolute',
-                    bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.006,
-                    right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035
-            }}>
-
-            <Flb name='close-delete' style={styles.dismissPayByPhone}
-              color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
-               onPress={this._toggleFloat} />
-            {this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ?
-             <Text allowFontScaling={false} style={styles.payByPhoneText}>
-                 {this.props.paymentdata.paymentContent.payByPhone.headerText_en} 
-                 </Text>:null}
-                {this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ?
-              <Text allowFontScaling={false} style={styles.payByPhoneMessage}>
-                {this.props.paymentdata.paymentContent.payByPhone.descrption_en}
-              </Text>:null}
-            <View style={{flexDirection: 'row'}}>
-              <View>
-                <TouchableOpacity style={{marginLeft: (Platform.OS === 'ios') ? Metrics.searchBarHeight*Metrics.screenWidth*0.002 : Metrics.searchBarHeight*Metrics.screenWidth*0.002,
-               marginTop: (Platform.OS === 'ios') ? Metrics.baseMargin*Metrics.screenHeight*0.001 : Metrics.baseMargin*Metrics.screenHeight*0.001}} onPress={() => this.handleCall(this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ? this.props.paymentdata.paymentContent.payByPhone.teleNumber : '')}>
-                  <Image style={styles.CallButton} source={Images.callNowButton} />
-                </TouchableOpacity>
-              </View>
-              <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenHeight * 0.0014 : Metrics.smallMargin * Metrics.screenHeight * 0.0016,
-                marginLeft: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
-                <Flb name='rd-brand-phone' onPress={this._toggleFloat} color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0035} 
-                        />
-              </View>
-            </View>
-          </Card>
-
-
-            : null}
-
-                </View>
-                 </View>
                </View> 
              </View> 
             </Card>
@@ -308,8 +236,62 @@ class PaymentDetails extends Component {
                         on behalf of Florida Blue/Florida Blue HMO/Florida Combined Life Insurance Company, Inc.
                         Florida Blue is the trade name of Blue Cross Blue Shield of Florid, Inc., an Independent Licence of Blur Cross and Blue Shield Association 85583 1115.
                          </Text>           
-                  </View>    
-         </ScrollView> 
+                  </View>
+               </ScrollView>
+             <View style={{flex:0.1}}>      
+              {this.state.floatClicked ?  <View style={styles.urgentCareCircle}>
+                <TouchableOpacity onPress={this._toggleFloat}>
+                  <Flb name='rd-brand-phone'
+                    style={{backgroundColor: Colors.transparent}}
+                    color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.003} />
+                </TouchableOpacity>
+              </View> : null}
+            
+          {!this.state.floatClicked ?  
+           
+            <Card style={{
+                    width: Metrics.screenWidth * 0.8,
+                    height: Metrics.screenWidth * 0.78,
+                    flex: 1,
+                    // zIndex: -1,
+                    // backgroundColor:'red',
+                    borderWidth: 1,
+                    borderRadius: Metrics.screenWidth * 1,
+                    borderColor: Colors.flBlue.grey1,
+                    position: 'absolute',
+                    bottom: -Metrics.textHeight1 * Metrics.screenWidth * 0.006,
+                    right: -Metrics.textHeight2 * Metrics.screenWidth * 0.0035
+            }}>
+
+            <Flb name='close-delete' style={styles.dismissPayByPhone}
+              color={Colors.flBlue.grey4} size={Metrics.icons.small * Metrics.screenWidth * 0.0035}
+               onPress={this._toggleFloat} />
+            {this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ?
+             <Text allowFontScaling={false} style={styles.payByPhoneText}>
+                 {this.props.paymentdata.paymentContent.payByPhone.headerText_en} 
+                 </Text>:null}
+                {this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ?
+              <Text allowFontScaling={false} style={styles.payByPhoneMessage}>
+                {this.props.paymentdata.paymentContent.payByPhone.descrption_en}
+              </Text>:null}
+            <View style={{flexDirection: 'row'}}>
+              <View>
+                <TouchableOpacity style={{marginLeft: (Platform.OS === 'ios') ? Metrics.searchBarHeight*Metrics.screenWidth*0.002 : Metrics.searchBarHeight*Metrics.screenWidth*0.002,
+               marginTop: (Platform.OS === 'ios') ? Metrics.baseMargin*Metrics.screenHeight*0.001 : Metrics.baseMargin*Metrics.screenHeight*0.001}} onPress={() => this.handleCall(this.props.paymentdata && this.props.paymentdata.paymentContent && this.props.paymentdata.paymentContent.payByPhone ? this.props.paymentdata.paymentContent.payByPhone.teleNumber : '')}>
+                  <Image style={styles.CallButton} source={Images.callNowButton} />
+                </TouchableOpacity>
+              </View>
+              <View style={{marginTop: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenHeight * 0.001 : Metrics.smallMargin * Metrics.screenHeight * 0.0016,
+                marginLeft: (Platform.OS === 'ios') ? Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0035 : Metrics.smallMargin * Metrics.screenWidth * 0.0038}}>
+                <Flb name='rd-brand-phone' onPress={this._toggleFloat} color={Colors.flBlue.ocean} size={Metrics.icons.large * Metrics.screenWidth * 0.0033} 
+                        />
+              </View>
+            </View>
+          </Card>
+
+
+            : null}         
+         </View>
         </View>
       </View>
     )
