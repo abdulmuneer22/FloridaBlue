@@ -53,7 +53,7 @@ import {ClaimDetail} from '../App/Containers/Claims/ClaimDetail'
 import {ClaimsSummary} from '../App/Containers/Claims/ClaimsSummary'
 import {PaymentBarcode} from '../App/Containers/Payments'
 import {Payments} from '../App/Containers/Payments'
-import {PaymentContent} from '../App/Containers/Payments'
+import {payByMail} from '../App/Containers/Payments'
 import {PaymentDetails} from '../App/Containers/Payments'
 
 /* **************************
@@ -102,7 +102,7 @@ const scenes = Actions.create(
         <Scene key='ClaimsSummary' component={ClaimsSummary} title='Claims Summary Page' hideNavBar />
         <Scene key='PaymentBarcode' component={PaymentBarcode} title='PaymentBarcode Page' hideNavBar />
         <Scene key='Payments' component={Payments} title='Payments Page' hideNavBar />
-        <Scene key='PaymentContent' component={PaymentContent} title='PaymentContent Page' hideNavBar />
+        <Scene key='payByMail' component={payByMail} title='payByMail Page' hideNavBar />
         <Scene key='PaymentDetails' component={PaymentDetails} title='Payment Details Page' hideNavBar />
         <Scene key='AgentLogin' component={AgentLogin} title='AgentLogin' hideNavBar panHandlers={null} type={ActionConst.RESET} />
         <Scene key='Agency' component={Agency} title='Agency' hideNavBar />

@@ -30,7 +30,7 @@ const SingleColorSpinner = MKSpinner.singleColorSpinner()
 .withStyle(styles.spinner)
 .build()
 
-class PaymentContent extends Component {
+class payByMail extends Component {
     
   _renderHeader () {
     return (<Image style={styles.hsaHeader} source={Images.newHeaderImage}>
@@ -110,7 +110,7 @@ class PaymentContent extends Component {
   }
     }
 
-PaymentContent.propTypes = {
+payByMail.propTypes = {
 
   data: PropTypes.object,
   error: PropTypes.string
@@ -132,4 +132,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentContent)
+export default connect(mapStateToProps, mapDispatchToProps)(payByMail)

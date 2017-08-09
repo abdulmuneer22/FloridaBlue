@@ -218,16 +218,6 @@ class ClaimsList extends Component {
     this.props.changeStartDate(newStartDate)
     this.props.changeEndDate(newEndDate)
 
-    // let memberArray = [{ 'memberId': '', 'memberName': 'All' }]
-    // for (var i = 0; i < this.props.claimsdata.members.length; i++) {
-    //   let member = this.props.claimsdata.members[i]
-    //   let formattedMember = {
-    //     'memberId': member.memberId,
-    //     'memberName': member.firstName + ' ' + member.lastName
-    //   }
-    //   memberArray.push(formattedMember)
-    // }
-
     if (this.props.claimsdata.members) {
       this.props.changeMemberList(this.props.claimsdata.members)
     }
@@ -329,13 +319,18 @@ class ClaimsList extends Component {
     // console.tron.log("view more" +this.props.asyncfetching)
     if (!this.props.asyncfetching) {
       return (<View style={{ flex: 1, margin: 14 }}>
-        <Text allowFontScaling={false} style={{ textAlign: 'center', opacity: 0.6 }}>Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims</Text>
+        <Text allowFontScaling={false} 
+        style={{ textAlign: 'center', opacity: 0.6,
+                   color:Colors.flBlue.grey5,
+                   fontSize:Fonts.size.regular*Metrics.screenWidth*0.0022}}>
+                   Showing {(this.state.listLimit < this.props.claimsdata.totalCount) ? this.state.listLimit : this.props.claimsdata.data.length} out of {this.props.claimsdata.totalCount} Claims
+                   </Text>
         {
           this.state.listLimit < this.props.claimsdata.totalCount ?
-            <View style={{ flex: 1, justifyContent: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center',alignItems:'center', marginTop:Metrics.baseMargin*Metrics.screenWidth*0.001 }}>
               <TouchableOpacity onPress={this.viewMore} style={{ flexDirection: 'row', flex: 1 }}>
                 <Text allowFontScaling={false} style={styles.claimsViewMore}>View More </Text>
-                <Flb name='chevron-down' size={20} color={Colors.flBlue.teal} style={{ marginTop: 3 }} />
+                <Flb name='chevron-down' size={Metrics.icons.large*Metrics.screenWidth*0.0015} color={Colors.flBlue.ocean} style={{ marginTop: Metrics.smallMargin*Metrics.screenHeight*0.001 }} />
               </TouchableOpacity>
             </View>
             : null
@@ -431,26 +426,6 @@ class ClaimsList extends Component {
                       </View>
                     </Card>
                   </TouchableOpacity>
-                   /* <TouchableOpacity style={{flex: 1, margin: 15, marginTop: -5 }}>
-                      <Card style={{flex: 1, borderRadius: 15, backgroundColor: Colors.flBlue.deepBlue, paddingLeft: 10}} >
-                        <View style={{ flexDirection: 'row', margin: 5, alignItems: 'center', justifyContent: 'center' }}>
-                          <View style={{ flex: 0.15 }}>
-                            <Flb name='flag' size={Metrics.icons.medium} color={Colors.snow} />
-                          </View>
-                          <View style={{ flex: 0.85 }}>
-                            <Text allowFontScaling={false} style={{
-                              fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
-                              color: Colors.snow
-                            }}>
-                              <Text allowFontScaling={false} style={{
-                                fontSize: Fonts.size.input * Metrics.screenWidth * 0.0015,
-                                color: Colors.snow,
-                                fontWeight: '700'
-                              }}>Please Note: </Text>Pharmacy and/or claims of others on your plan are not shown. <Text onPress={() => { NavigationActions.MyView({responseURL: urlConfig.internetStatementURL}) }} style={{textDecorationLine: 'underline'}}>Click here</Text> to see all claims.</Text>
-                          </View>
-                        </View>
-                      </Card>
-                    </TouchableOpacity> */
               : null}
 
             </ScrollView>
@@ -459,19 +434,22 @@ class ClaimsList extends Component {
          <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
             <View style={{backgroundColor: 'white', marginTop: -Metrics.mediumMargin*Metrics.screenHeight*0.002}}>
               <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
-                <Flb name='remove'color={Colors.flBlue.anvil} size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
+                <Flb name='remove' color={Colors.flBlue.anvil} size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
               </TouchableOpacity>
-              <Text allowFontScaling={false} style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below:</Text>
+              <Text allowFontScaling={false} style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below.</Text>
               <HideableView visible={this.state.dateError} removeWhenHidden>
                 <Text allowFontScaling={false} style={styles.error}>Oops! Something went wrong. Check your dates and try again.</Text>
               </HideableView>
-              <MKTextField
-                ref='providerName'
-                style={styles.textField}
+            <MKTextField
+            ref='providerName'
+            style={{flex:1,
+                    //width:Metrics.screenWidth * 0.8
+                    marginLeft:Metrics.doubleBaseMargin*Metrics.screenWidth*0.002,
+                    marginRight:Metrics.doubleBaseMargin*Metrics.screenWidth*0.002
+            }}
                 textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
                 autoCorrect={false}
                 keyboardType='default'
-                returnKeyType='next'
                 autoCapitalize='none'
                 underlineColorAndroid={Colors.coal}
                 placeholder={'Provider Name'}
@@ -480,18 +458,25 @@ class ClaimsList extends Component {
                 onChangeText={this.props.changeProviderName}
                 defaultValue={this.props.providerName}
             />
-              <ModalDropdown options={_.map(this.props.memberList, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
+            <ModalDropdown options={_.map(this.props.memberList, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                 <MKTextField
-                  ref='memberName'
-                  textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
-                  style={styles.textField}
+                ref='memberName'
+                textInputStyle={{ flex: 1, color: Colors.flBlue.ocean, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025 }}
+                 style={{flex:1,
+                        //width:Metrics.screenWidth * 0.8,
+                        marginTop:Metrics.doubleBaseMargin*Metrics.screenHeight*0.001,
+                        marginLeft:Metrics.doubleBaseMargin*Metrics.screenWidth*0.002,
+                        marginRight:Metrics.doubleBaseMargin*Metrics.screenWidth*0.002,
+                        height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015,
+                        //width: this.props.isPortrait ? 410 : 668
+                        }}
                   editable={false}
                   underlineColorAndroid={Colors.coal}
                   placeholder={'Member Name'}
                   placeholderTextColor={Colors.steel}
                   tintColor={Colors.black}
                   value={this.props.memberName}
-              />
+                />
               </ModalDropdown>
               <View style={styles.dateContainer}>
                 <TouchableOpacity style={styles.startDateButton} onPress={this.addStartDate}>

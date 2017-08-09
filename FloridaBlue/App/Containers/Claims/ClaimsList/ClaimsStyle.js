@@ -131,17 +131,18 @@ export default StyleSheet.create({
   },
   claimsCardText: {
     color: Colors.flBlue.anvil,
-    fontSize:Fonts.size.regular*Metrics.screenWidth*0.0025
+    fontSize:Fonts.size.regular*Metrics.screenWidth*0.0023
   },
   claimsCardContainer: {
     flex: 10
 
   },
   claimsViewMore: {
-    textAlign: 'center',
-    color: Colors.flBlue.teal,
-    fontSize: 20,
-    paddingLeft: 116
+    //textAlign: 'center',
+    color: Colors.flBlue.ocean,
+    fontSize: Fonts.size.regular*Metrics.screenWidth*0.0034,
+  
+   // paddingLeft: 116
   },
   headerTextStyle: {
     color: Colors.flBlue.ocean,
@@ -281,9 +282,8 @@ export default StyleSheet.create({
   searchTitle: {
     fontSize: Fonts.size.regular,
     fontFamily: Fonts.type.base,
-    fontWeight: '400',
-    paddingTop: Metrics.doubleBaseMargin,
-    paddingLeft: Metrics.doubleBaseMargin,
+    fontWeight: '500',
+    margin:Metrics.mediumMargin*Metrics.screenHeight*0.001,
     color: Colors.flBlue.anvil
   },
   error: {
