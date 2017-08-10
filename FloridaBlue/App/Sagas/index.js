@@ -51,6 +51,8 @@ import {sendDoctorLanguageRequest} from './ProviderSagas'
 import {sendStaffLanguageRequest} from './ProviderSagas'
 import {sendConfigTypeRequest} from './ProviderSagas'
 import {sendDoctorDetailRequest} from './ProviderSagas'
+import {sendSavedProviderRequest} from './ProviderSagas'
+import {sendUnSavedProviderRequest} from './ProviderSagas'
 import {claimslist} from './ClaimsSagas'
 import {paymentsRequest} from './PaymentSagas'
 import {paymentBarcodeRequest} from './PaymentSagas'
@@ -120,6 +122,8 @@ export default function * root () {
     takeLatest(NotificationTypes.POST_F_C_M_TOKEN, postFCMToken, api),
     takeLatest(NotificationTypes.POST_ARCHIVE, postArchive, api),
     takeLatest(PaymentTypes.PAYMENTS_REQUEST, paymentsRequest, api),
-    takeLatest(PaymentTypes.PAYMENT_BARCODE_REQUEST, paymentBarcodeRequest, api)
+    takeLatest(PaymentTypes.PAYMENT_BARCODE_REQUEST, paymentBarcodeRequest, api),
+    takeLatest(ProviderTypes.SEND_SAVED_PROVIDER_REQUEST, sendSavedProviderRequest, api),
+    takeLatest(ProviderTypes.SEND_UN_SAVED_PROVIDER_REQUEST, sendUnSavedProviderRequest, api)
   ]
 }

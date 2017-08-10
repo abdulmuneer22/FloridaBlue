@@ -199,3 +199,29 @@ export function * sendDoctorDetailRequest (api, {data}) {
     yield put(ProviderActions.sendDoctorDetailFailure(error))
   }
 }
+
+export function * sendSavedProviderRequest (api, {data}) {
+  const response = yield call(api.getSavedProvider, data)
+
+  if (response.ok) {
+    var data = response.data
+    yield put(ProviderActions.sendSavedProviderSuccess(data))
+  } else {
+    var error = response.problem
+    console.tron.log('im saved provider error' + error)
+    yield put(ProviderActions.sendSavedProviderFailure(error))
+  }
+}
+
+export function * sendUnSavedProviderRequest (api, {data}) {
+  const response = yield call(api.getUnSavedProvider, data)
+
+  if (response.ok) {
+    var data = response.data
+    yield put(ProviderActions.sendUnSavedProviderSuccess(data))
+  } else {
+    var error = response.problem
+    console.tron.log('im unsaved provider error' + error)
+    yield put(ProviderActions.sendUnSavedProviderFailure(error))
+  }
+}

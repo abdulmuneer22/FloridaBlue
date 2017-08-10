@@ -115,6 +115,16 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     'planCode': ''
   })
 
+  const getSavedProvider = (data) => api.post('/opd/provider/favorite', {
+    'providerKey': data && data.providerKey,
+    'locationKey': data && data.locationKey
+  })
+
+  const getUnSavedProvider = (data) => api.post('/opd/provider/unfavorite', {
+    'providerKey': data && data.providerKey,
+    'locationKey': data && data.locationKey
+  })
+
   const getCareTypes = (data) => api.post('/opd/types', {
     'language': 'EN',
     'planCode': ''
@@ -344,7 +354,9 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     getClaimsMemberList,
     postArchive,
     getPaymentBarcode,
-    getPayment
+    getPayment,
+    getSavedProvider,
+    getUnSavedProvider
   }
 }
 

@@ -57,6 +57,7 @@ const { Types, Creators } = createActions({
   changeSearchRange: ['searchRange'],
   changeNetworkCodeList: ['networkCodeList'],
   changeAddressKey: ['addressKey'],
+  changeLocationKey: ['locationKey'],
   changeProviderKey: ['providerKey'],
   changeLatDelta: ['latDelta'],
   changeLongDelta: ['longDelta'],
@@ -70,7 +71,13 @@ const { Types, Creators } = createActions({
   providerClickright: [],
   sendAsyncProviderSearchRequest: ['data'],
   sendAsyncPharmacySearchRequest: ['data'],
-  sendAsyncUrgentSearchRequest: ['data']
+  sendAsyncUrgentSearchRequest: ['data'],
+  sendSavedProviderRequest: ['data'],
+  sendSavedProviderSuccess: ['data'],
+  sendSavedProviderFailure: ['error'],
+  sendUnSavedProviderRequest: ['data'],
+  sendUnSavedProviderSuccess: ['data'],
+  sendUnSavedProviderFailure: ['error']
 
 })
 
@@ -110,6 +117,7 @@ export const INITIAL_STATE = Immutable({
   memberNetworkList: [],
   networkCodeList: [],
   providerKey: '',
+  locationKey:'',
   addressKey: '',
   fetching: false,
   asyncfetching: false,
@@ -232,6 +240,24 @@ export const _sendConfigTypeSuccess = (state: Object, {data}: Object) => state.m
 // sendConfigTypeFailure
 export const _sendConfigTypeFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
+// sendSavedProviderRequest
+export const _sendSavedProviderRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendSavedProviderSuccess
+export const _sendSavedProviderSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, savedprovider: data.data, error: null})
+
+// sendSavedProviderFailure
+export const _sendSavedProviderFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
+
+// sendUnSavedProviderRequest
+export const _sendUnSavedProviderRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendUnSavedProviderSuccess
+export const _sendUnSavedProviderSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, unsavedprovider: data.data, error: null})
+
+// sendUnSavedProviderFailure
+export const _sendUnSavedProviderFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
+
 // categoryCode
 export const _changeCategoryCode = (state: Object, {categoryCode}: Object) => state.merge({categoryCode})
 
@@ -291,6 +317,9 @@ export const _changeNetworkCodeList = (state: Object, {networkCodeList}: Object)
 
 // addressKey
 export const _changeAddressKey = (state: Object, {addressKey}: Object) => state.merge({addressKey})
+
+// addressKey
+export const _changeLocationKey = (state: Object, {locationKey}: Object) => state.merge({locationKey})
 
 // providerKey
 export const _changeProviderKey = (state: Object, {providerKey}: Object) => state.merge({providerKey})
@@ -393,5 +422,12 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.PROVIDER_CLICKRIGHT]: rightclick,
   [Types.SEND_ASYNC_PROVIDER_SEARCH_REQUEST]: _sendAsyncProviderSearchRequest,
   [Types.SEND_ASYNC_PHARMACY_SEARCH_REQUEST]: _sendAsyncPharmacySearchRequest,
-  [Types.SEND_ASYNC_URGENT_SEARCH_REQUEST]: _sendAsyncUrgentSearchRequest
+  [Types.SEND_ASYNC_URGENT_SEARCH_REQUEST]: _sendAsyncUrgentSearchRequest,
+  [Types.SEND_SAVED_PROVIDER_REQUEST]: _sendSavedProviderRequest,
+  [Types.SEND_SAVED_PROVIDER_SUCCESS]: _sendSavedProviderSuccess,
+  [Types.SEND_SAVED_PROVIDER_FAILURE]: _sendSavedProviderFailure,
+  [Types.SEND_UN_SAVED_PROVIDER_REQUEST]: _sendUnSavedProviderRequest,
+  [Types.SEND_UN_SAVED_PROVIDER_SUCCESS]: _sendUnSavedProviderSuccess,
+  [Types.SEND_UN_SAVED_PROVIDER_FAILURE]: _sendUnSavedProviderFailure,
+  [Types.CHANGE_LOCATION_KEY]: _changeLocationKey
 })
