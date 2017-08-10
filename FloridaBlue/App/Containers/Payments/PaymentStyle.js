@@ -320,7 +320,7 @@ export default StyleSheet.create({
   popoverButton: {
     color: Colors.flBlue.grey4
   },
-  content:{
+  popupcontent:{
    // padding: 10,
    width:Metrics.screenWidth-Metrics.screenWidth*0.4,
     //marginLeft:20,

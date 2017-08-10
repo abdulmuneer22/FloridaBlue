@@ -167,7 +167,7 @@ class PaymentDetails extends Component {
                           color={Colors.flBlue.ocean} />
 
                         <Popover
-                          contentStyle={styles.content}
+                          contentStyle={styles.popupcontent}
                           arrowStyle={{ borderTopColor: Colors.snow }}
                           backgroundStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
                           placement='left' >
@@ -207,7 +207,7 @@ class PaymentDetails extends Component {
                           color={Colors.flBlue.ocean} />
 
                         <Popover
-                          contentStyle={styles.content}
+                          contentStyle={styles.popupcontent}
                           arrowStyle={{ borderTopColor: Colors.snow }}
                           backgroundStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
                           placement='left' >
