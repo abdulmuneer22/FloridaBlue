@@ -280,14 +280,15 @@ export default StyleSheet.create({
     backgroundColor: 'transparent'
   },
   searchTitle: {
-    fontSize: Fonts.size.regular,
+    fontSize: Fonts.size.regular * Metrics.screenWidth*0.0028,
     fontFamily: Fonts.type.base,
     fontWeight: '500',
     margin:Metrics.mediumMargin*Metrics.screenHeight*0.001,
-    color: Colors.flBlue.anvil
+    color: Colors.flBlue.grey5,
+    marginBottom:20
   },
   error: {
-    fontSize: Fonts.size.regular,
+    fontSize: Fonts.size.regular * Metrics.screenWidth*0.0028,
     fontFamily: Fonts.type.base,
     fontWeight: '400',
     paddingTop: Metrics.doubleBaseMargin,
@@ -298,9 +299,9 @@ export default StyleSheet.create({
    flex:1, 
    flexDirection:'row',
     marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.001,
-    width:Metrics.screenWidth*0.6,
+    width:Metrics.screenWidth*0.85,
     borderColor:Colors.flBlue.night,
-    borderWidth:5,
+    borderWidth:3,
     borderRadius:Metrics.doubleBaseMargin*Metrics.screenHeight*0.002,
     alignItems:'center',
     justifyContent:'center', 
@@ -313,7 +314,7 @@ export default StyleSheet.create({
     alignItems:'center'
   },
   searchText:{
-    fontSize: Fonts.size.h6*Metrics.screenWidth*0.0035,
+    fontSize: Fonts.size.h6*Metrics.screenWidth*0.003,
     fontFamily: Fonts.type.base,
     fontWeight: '400',
     //marginTop: Metrics.doubleBaseMargin,
@@ -324,7 +325,7 @@ export default StyleSheet.create({
     alignSelf: 'flex-end',
   // backgroundColor:Colors.flBlue.ocean,
    width:Metrics.textHeight*Metrics.screenWidth*0.0025,
-    marginRight: Metrics.baseMargin,
+    marginRight: Metrics.smallMargin*Metrics.screenWidth*0.001,
     marginTop:Metrics.smallMargin*Metrics.screenHeight*0.001,
     flex: 1
   },
@@ -349,12 +350,12 @@ export default StyleSheet.create({
   endDateButton: {
     //alignItems:'flex-end',
     //marginTop: Metrics.doubleBaseMargin * 2,
-    marginLeft: Metrics.textHeight2 * Metrics.screenWidth*0.007,
+    marginLeft: Metrics.textHeight2 * Metrics.screenWidth*0.005,
     flex: 1,
     flexDirection: 'row'
   },
   dateText: {
-    fontSize: Fonts.size.regular * Metrics.screenWidth*0.0025,
+    fontSize: Fonts.size.regular * Metrics.screenWidth*0.0027,
     fontFamily: Fonts.type.base,
     fontWeight: '400',
     color: Colors.flBlue.grey3,

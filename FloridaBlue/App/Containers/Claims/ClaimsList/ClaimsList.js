@@ -434,7 +434,7 @@ class ClaimsList extends Component {
          <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
             <View style={{backgroundColor: 'white', marginTop: -Metrics.mediumMargin*Metrics.screenHeight*0.002}}>
               <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
-                <Flb name='remove' color={Colors.flBlue.anvil} size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
+                <Flb name='remove' color={Colors.flBlue.grey5} size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
               </TouchableOpacity>
               <Text allowFontScaling={false} style={styles.searchTitle}>Search for specific claims by filling out one or more of the fields below.</Text>
               <HideableView visible={this.state.dateError} removeWhenHidden>
@@ -458,7 +458,7 @@ class ClaimsList extends Component {
                 onChangeText={this.props.changeProviderName}
                 defaultValue={this.props.providerName}
             />
-            <View style={{flexDirection:'row', flex:1}}>
+            <View style={{flexDirection:'row', flex:1, marginTop:10}}>
               <View style={{flex:0.95}}>
             <ModalDropdown options={_.map(this.props.memberList, 'memberName')} onSelect={this.memberSelected} dropdownStyle={styles.dropdown} renderRow={this._renderDropdownRow.bind(this)}>
                
@@ -483,8 +483,9 @@ class ClaimsList extends Component {
                   </ModalDropdown>
                   </View>
                   <View style={{flex:0.05}}>
-                <Flb name="caret-down-two" style={{marginTop:Metrics.baseMargin*Metrics.screenWidth*0.004,
-                                                  marginLeft:-Metrics.mediumMargin*Metrics.screenWidth*0.003}} 
+                <Flb name="caret-down-two" style={{
+                                                marginTop: (Platform.OS === 'ios') ? Metrics.baseMargin*Metrics.screenHeight*0.001 : Metrics.baseMargin*Metrics.screenWidth*0.004,
+                                                  marginLeft:(Platform.OS === 'ios') ? -Metrics.section*Metrics.screenWidth*0.002 : -Metrics.mediumMargin*Metrics.screenWidth*0.003}} 
                     size={Metrics.icons.large*Metrics.screenWidth*0.0015} 
                     color={Colors.flBlue.grey4} />
                 </View>
@@ -493,27 +494,28 @@ class ClaimsList extends Component {
                             flexDirection: 'row',
                             alignItems:'center',
                             justifyContent:'center',
-                            margin:Metrics.baseMargin*Metrics.screenHeight*0.001,
-                            marginTop:Metrics.baseMargin*Metrics.screenHeight*0.001
+                           // margin:Metrics.baseMargin*Metrics.screenHeight*0.001,
+                            marginTop:Metrics.baseMargin*Metrics.screenHeight*0.003,
                             //marginBottom:Metrics.baseMargin*Metrics.screenHeight*0.003
                             }}>
                 <View style={{flex:0.5,
                             justifyContent:'center',
-                            margin:Metrics.baseMargin*Metrics.screenHeight*0.001,}}>            
-                <Text allowFontScaling={false} style={{fontSize: Fonts.size.regular * Metrics.screenWidth*0.0025,
+                            margin:Metrics.baseMargin*Metrics.screenHeight*0.001,
+                            marginLeft: Metrics.doubleBaseMargin*Metrics.screenHeight*0.0012}}>            
+                <Text allowFontScaling={false} style={{fontSize: Fonts.size.regular * Metrics.screenWidth*0.0027,
                                                       fontFamily: Fonts.type.base,
                                                       fontWeight: '400',
-                                                      color: Colors.flBlue.grey3,}}>
+                                                      color: Colors.flBlue.grey5,}}>
                   Start Date
                 </Text>
                 </View>
                 <View style={{flex:0.5,justifyContent:'center',
                               margin:Metrics.baseMargin*Metrics.screenHeight*0.001,
-                              marginLeft:Metrics.textHeight2*Metrics.screenWidth*0.0075}}>
-                 <Text allowFontScaling={false} style={{fontSize: Fonts.size.regular * Metrics.screenWidth*0.0025,
+                              marginLeft:Metrics.textHeight2*Metrics.screenWidth*0.005}}>
+                 <Text allowFontScaling={false} style={{fontSize: Fonts.size.regular * Metrics.screenWidth*0.0027,
                                                         fontFamily: Fonts.type.base,
                                                         fontWeight: '400',
-                                                        color: Colors.flBlue.grey3,}}>
+                                                        color: Colors.flBlue.grey5,}}>
                    End Date
                   </Text>
                </View>
@@ -523,14 +525,14 @@ class ClaimsList extends Component {
               <View style={styles.dateContainer}>
                 <TouchableOpacity style={styles.startDateButton} onPress={this.addStartDate}>
                   <Text allowFontScaling={false} style={styles.dateText}>
-                    <Text>{this.props.startDate} </Text>
-                    <Flb style={styles.calendarIcon} color={Colors.flBlue.grey3} name='calendar' size={15} />
+                    <Text>{this.props.startDate}  </Text>
+                    <Flb style={styles.calendarIcon} color={Colors.flBlue.grey5} name='calendar' size={Metrics.icons.large*Metrics.screenWidth*0.0011} />
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.endDateButton} onPress={this.addEndDate}>
                   <Text allowFontScaling={false} style={styles.dateText}>
-                    <Text>{this.props.endDate} </Text>
-                    <Flb color={Colors.flBlue.grey3} name='calendar' size={15} />
+                    <Text>{this.props.endDate}  </Text>
+                     <Flb style={styles.calendarIcon} color={Colors.flBlue.grey5} name='calendar' size={Metrics.icons.large*Metrics.screenWidth*0.0011} />
                   </Text>
                 </TouchableOpacity>
               </View>
