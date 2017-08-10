@@ -421,7 +421,7 @@ class ClaimsList extends Component {
                           <Text allowFontScaling={false} style={{
                             fontSize: Fonts.size.input * Metrics.screenWidth * 0.002,
                             color: Colors.snow
-                          }}>Pharmacy claims are not shown here. For a full list of claims, click<Text style={{textDecorationLine: 'underline'}}>here.</Text> to see all claims.</Text>
+                          }}>Pharmacy claims are not shown here. For a full list of claims, click <Text style={{textDecorationLine: 'underline'}}>here.</Text> </Text>
                         </View>
                       </View>
                     </Card>
@@ -485,7 +485,7 @@ class ClaimsList extends Component {
                   <View style={{flex:0.05}}>
                 <Flb name="caret-down-two" style={{
                                                 marginTop: (Platform.OS === 'ios') ? Metrics.baseMargin*Metrics.screenHeight*0.001 : Metrics.baseMargin*Metrics.screenWidth*0.004,
-                                                  marginLeft:(Platform.OS === 'ios') ? -Metrics.section*Metrics.screenWidth*0.002 : -Metrics.mediumMargin*Metrics.screenWidth*0.003}} 
+                                                marginLeft:(Platform.OS === 'ios') ? -Metrics.section*Metrics.screenWidth*0.002 : -Metrics.mediumMargin*Metrics.screenWidth*0.004}} 
                     size={Metrics.icons.large*Metrics.screenWidth*0.0015} 
                     color={Colors.flBlue.grey4} />
                 </View>
