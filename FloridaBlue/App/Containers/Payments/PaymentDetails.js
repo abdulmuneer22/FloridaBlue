@@ -25,7 +25,7 @@ import Flb from '../../Themes/FlbIcon'
 import { MKTextField, MKColor, MKSpinner } from 'react-native-material-kit'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import { Card } from 'native-base'
-import PopoverTooltip from 'react-native-popover-tooltip';
+
 import Popover, { PopoverTouchable } from 'react-native-modal-popover'
 
 const window = Dimensions.get('window')
