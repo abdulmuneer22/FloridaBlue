@@ -150,7 +150,7 @@ class ClaimDetail extends Component {
                   <View style={{flex: 0.2,alignItems:'flex-end', marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>
                     <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                       fontSize: Fonts.size.h6 * Metrics.screenWidth * 0.0025}}>
-             Status:
+             Claim Status:
             </Text>
                   </View>
                   <View style={{flex: 0.4}}>
@@ -245,7 +245,7 @@ class ClaimDetail extends Component {
                 <View style={{flex: 0.25, alignItems: 'flex-end'}}>
                   <Text allowFontScaling={false} style={{color: Colors.flBlue.anvil,
                     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025}}>
-            Your Discount
+            MemberDiscount
             </Text>
                 </View>
                 <View style={{flex: 0.25, marginLeft: Metrics.mediumMargin * Metrics.screenWidth * 0.002}}>

@@ -317,6 +317,16 @@ export default StyleSheet.create({
     height: (Platform.OS === 'ios') ? Metrics.mediumMargin * Metrics.screenHeight * 0.0036 : Metrics.mediumMargin * Metrics.screenHeight * 0.0041,
     marginTop: (Platform.OS === 'ios') ? Metrics.mediumMargin*Metrics.screenHeight*0.001 : Metrics.mediumMargin*Metrics.screenHeight*0.001,
   },
+  popoverButton: {
+    color: Colors.flBlue.grey4
+  },
+  content:{
+   // padding: 10,
+   width:Metrics.screenWidth-Metrics.screenWidth*0.4,
+    //marginLeft:20,
+    backgroundColor: Colors.snow,
+    borderRadius: 8,
+  },
 
 }
 

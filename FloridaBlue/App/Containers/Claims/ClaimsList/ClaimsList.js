@@ -421,7 +421,7 @@ class ClaimsList extends Component {
                           <Text allowFontScaling={false} style={{
                             fontSize: Fonts.size.input * Metrics.screenWidth * 0.002,
                             color: Colors.snow
-                          }}>Pharmacy and/or claims of others on your plan are not shown. Click <Text style={{textDecorationLine: 'underline'}}>here</Text> to see all claims.</Text>
+                          }}>Pharmacy claims are not shown here. For a full list of claims, click<Text style={{textDecorationLine: 'underline'}}>here.</Text> to see all claims.</Text>
                         </View>
                       </View>
                     </Card>
