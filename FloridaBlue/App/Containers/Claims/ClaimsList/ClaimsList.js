@@ -525,13 +525,13 @@ class ClaimsList extends Component {
               <View style={styles.dateContainer}>
                 <TouchableOpacity style={styles.startDateButton} onPress={this.addStartDate}>
                   <Text allowFontScaling={false} style={styles.dateText}>
-                    <Text>{this.props.startDate}  </Text>
+                    <Text>{this.props.startDate}   </Text>
                     <Flb style={styles.calendarIcon} color={Colors.flBlue.grey5} name='calendar' size={Metrics.icons.large*Metrics.screenWidth*0.0011} />
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.endDateButton} onPress={this.addEndDate}>
                   <Text allowFontScaling={false} style={styles.dateText}>
-                    <Text>{this.props.endDate}  </Text>
+                    <Text>{this.props.endDate}   </Text>
                      <Flb style={styles.calendarIcon} color={Colors.flBlue.grey5} name='calendar' size={Metrics.icons.large*Metrics.screenWidth*0.0011} />
                   </Text>
                 </TouchableOpacity>
