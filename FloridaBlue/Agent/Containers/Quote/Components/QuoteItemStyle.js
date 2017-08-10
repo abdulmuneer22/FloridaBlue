@@ -32,12 +32,20 @@ export default StyleSheet.create({
     color: Colors.flBlue.grey3,
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0002
   },
+  updateDateContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   updateDateText: {
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0016,
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0002,
     fontFamily: Fonts.type.base,
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0018,
     fontWeight: '400'
+  },
+  updateDateIcon: {
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0016,
+    paddingRight: Metrics.baseMargin * Metrics.screenWidth * 0.0013
   },
   divider: {
     backgroundColor: Colors.flBlue.grey1,

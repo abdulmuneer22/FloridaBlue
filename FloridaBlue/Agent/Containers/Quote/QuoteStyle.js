@@ -127,8 +127,98 @@ export default StyleSheet.create({
     marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.012,
     paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.002
   },
+  groupContainer: {
+    backgroundColor: Colors.bg2,
+    paddingTop: Metrics.baseMargin * Metrics.screenHeight * 0.002
+  },
+  groupInfoButton: {
+    backgroundColor: Colors.bg2,
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingTop: Metrics.baseMargin * Metrics.screenHeight * 0.0008
+  },
+  groupButtonText: {
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.tiny,
+    fontWeight: '500',
+    color: Colors.flBlue.grey3
+  },
+  groupDetailContainer: {
+    flexDirection: 'row'
+  },
+  groupInfoTitle: {
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.small,
+    fontWeight: '500',
+    paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0008
+  },
+  groupAddress: {
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.small,
+    fontWeight: '500',
+    color: Colors.flBlue.grey3
+  },
   groupInfoContainer: {
-    backgroundColor: Colors.bg2
+    flexDirection: 'column',
+    marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.003
+  },
+  groupInfoText: {
+    fontFamily: Fonts.type.base,
+    fontSize: Fonts.size.small,
+    fontWeight: '500',
+    color: Colors.flBlue.grey5,
+    paddingBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0008
+  },
+  groupContactContainer: {
+    flexDirection: 'row',
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0015,
+    marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0028
+  },
+  mapButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: Colors.flBlue.grey2,
+    backgroundColor: Colors.flBlue.snow,
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0006
+  },
+  mapButtonText: {
+    color: Colors.flBlue.grey6,
+    paddingHorizontal: Metrics.baseMargin * Metrics.screenWidth * 0.002
+  },
+  callButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: Colors.flBlue.grey2,
+    backgroundColor: Colors.flBlue.snow,
+    marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0006
+  },
+  callButtonText: {
+    color: Colors.flBlue.grey6,
+    paddingHorizontal: Metrics.baseMargin * Metrics.screenWidth * 0.002
+  },
+  groupContactIcon: {
+    marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.002
+  },
+  emailButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: Colors.flBlue.grass,
+    backgroundColor: Colors.flBlue.grass,
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0015,
+    marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0028,
+    marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.005
+  },
+  emailButtonText: {
+    color: Colors.flBlue.snow,
+    paddingHorizontal: Metrics.baseMargin * Metrics.screenWidth * 0.002,
+    paddingVertical: Metrics.baseMargin * Metrics.screenHeight * 0.0006
   },
   divider: {
     backgroundColor: Colors.flBlue.grey1,

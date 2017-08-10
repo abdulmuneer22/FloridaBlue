@@ -32,7 +32,10 @@ class QuoteItem extends Component {
           </View>
 
           <View style={styles.quoteColumnContainer}>
-            <Text allowFontScaling={false} style={styles.updateDateText}>{this.props.data.updateDate}</Text>
+            <View style={styles.updateDateContainer}>
+              <Flb name='clock' size={15} color={Colors.flBlue.anvil} style={styles.updateDateIcon} />
+              <Text allowFontScaling={false} style={styles.updateDateText}>{this.props.data.updateDate}</Text>
+            </View>
           </View>
 
           <View style={styles.quoteColumnContainer}>
