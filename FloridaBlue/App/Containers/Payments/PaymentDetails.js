@@ -75,7 +75,7 @@ class PaymentDetails extends Component {
         {NavItems.backButton()}
       </View>
       <Text allowFontScaling={false} style={styles.headerTextStyle}>
-        Payment Details</Text>
+        Payment in Person</Text>
       <View style={{marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002}}>
         {NavItems.settingsButton()}
       </View>
@@ -114,7 +114,7 @@ class PaymentDetails extends Component {
           <ScrollView style={{ flex: 1 }}>
             <View style={{ flex: 1, justifyContent: 'center', flexDirection: 'row', margin: Metrics.baseMargin * Metrics.screenWidth * 0.001 }}>
               <View style={{ flex: 0.3, alignItems: 'flex-end', marginTop: 10 }}>
-                <Flb name='money' size={Metrics.icons.large * Metrics.screenWidth * 0.002}
+                <Flb name='cash-payment' size={Metrics.icons.large * Metrics.screenWidth * 0.002}
                   color={Colors.flBlue.grass} />
               </View>
               <View style={{ flex: 0.7, marginTop: 10 }}>
@@ -152,12 +152,12 @@ class PaymentDetails extends Component {
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
                           color: Colors.flBlue.anvil,
                         }}>
-                        Your payment will be applied to your account within <Text allowFontScaling={false}
+                        CVS (except Target locations) and Navarro accept cash, credit card and debit cards <Text allowFontScaling={false}
                           style={{
                             fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
                             color: Colors.flBlue.anvil,
                             fontWeight: '500'
-                          }}>5 business days.</Text>
+                          }}>(checks not accepted).</Text>
                       </Text>
                     </View>
                     <View style={{ flex: 0.2, alignItems: 'center', justifyContent: 'center', width:20 }}>
@@ -175,7 +175,7 @@ class PaymentDetails extends Component {
                                   style={{
                                   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
                                   color: Colors.flBlue.anvil,
-                                }}>Walgreens can accept payments from $1 to $999 per 24 hours.
+                                }}>CVS can accept payments from $1-$999 per 24 hours.
                           </Text>
                         </Popover>
                       </PopoverTouchable>
@@ -192,12 +192,7 @@ class PaymentDetails extends Component {
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
                           color: Colors.flBlue.anvil,
                         }}>
-                        Your payment will be applied to your account within <Text allowFontScaling={false}
-                          style={{
-                            fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
-                            color: Colors.flBlue.anvil,
-                            fontWeight: '500'
-                          }}>5 business days.</Text>
+                        Dollar General accepts cash and debit cards only.
                       </Text>
                     </View>
                     <View style={{ flex: 0.2, alignItems: 'center', justifyContent: 'center', width:20 }}>
@@ -215,7 +210,7 @@ class PaymentDetails extends Component {
                                   style={{
                                   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
                                   color: Colors.flBlue.anvil,
-                                }}>Walgreens can accept payments from $1 to $999 per 24 hours.
+                                }}>Dollar General can accept payments of up to $500 per transaction and $1-$999 per 24 hrs.
                           </Text>
                         </Popover>
                       </PopoverTouchable>
@@ -233,10 +228,32 @@ class PaymentDetails extends Component {
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
                           color: Colors.flBlue.anvil,
                         }}>
-                        Your payment is due by the due date on your bill. payments received after your due date do not guarantee that you policy will remain active.
+                        Family Dollar, MoneyGram and ACE Cash Express accept cash only.
                       </Text>
                     </View>
                   </View>
+                  
+                   <View style={{ flex: 1, flexDirection: 'row', marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.001 }}>
+                    <View style={{ flex: 0.2, alignItems: 'center' }}>
+                      <Flb name='check' size={Metrics.icons.large * Metrics.screenWidth * 0.002}
+                        color={Colors.flBlue.anvil} />
+                    </View>
+                    <View style={{ flex: 0.8 }}>
+                      <Text allowFontScaling={false}
+                        style={{
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
+                          color: Colors.flBlue.anvil,
+                        }}>
+                        Your payment will be applied to your account within <Text allowFontScaling={false}
+                          style={{
+                            fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
+                            color: Colors.flBlue.anvil,
+                            fontWeight: '500'
+                          }}>5 business days.</Text>
+                      </Text>
+                    </View>
+                  </View>
+
                   <View style={{ flex: 1, flexDirection: 'row', marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.001 }}>
                     <View style={{ flex: 0.2, alignItems: 'center' }}>
                       <Flb name='check' size={Metrics.icons.large * Metrics.screenWidth * 0.002}
@@ -248,7 +265,23 @@ class PaymentDetails extends Component {
                           fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
                           color: Colors.flBlue.anvil,
                         }}>
-                        Please contact Florida Blue for questions about the premium due or the status of your account, as sales associates cannot look up your account.
+                        Your payment is due by the due date on your bill. Payments received after your due date do not guarantee that your policy will remain active.
+                      </Text>
+                    </View>
+                  </View>
+
+                  <View style={{ flex: 1, flexDirection: 'row', marginTop: Metrics.mediumMargin * Metrics.screenHeight * 0.001 }}>
+                    <View style={{ flex: 0.2, alignItems: 'center' }}>
+                      <Flb name='check' size={Metrics.icons.large * Metrics.screenWidth * 0.002}
+                        color={Colors.flBlue.anvil} />
+                    </View>
+                    <View style={{ flex: 0.8 }}>
+                      <Text allowFontScaling={false}
+                        style={{
+                          fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
+                          color: Colors.flBlue.anvil,
+                        }}>
+                        Please contact Florida Blue for questions about the premium due or the status of your account, as retail sales associates cannot look up your account information.
                       </Text>
                     </View>
                   </View>
@@ -291,16 +324,7 @@ class PaymentDetails extends Component {
                   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
                   color: Colors.flBlue.anvil,
                 }}>
-                After payment is processed successfully, you can get a detailed receipt at      <Text allowFontScaling={false}
-                  style={{
-                    fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
-                    color: Colors.flBlue.ocean,
-                    textDecorationColor: Colors.flBlue.ocean,
-                    textDecorationLine: 'underline'
-                  }}
-                  onPress={() => Alert.alert('test')}>
-                  www.cashtie/receipt.
-              </Text> </Text>
+                CVS/pharmacy, Navarro Discount Pharmacy, Family Dollar, MoneyGram, Dollar General and ACE Cash Express are independent companies assisting in the collection of premium payments on behalf of Florida Blue/Florida Blue HMO/Florida Combined Life. </Text>
             </View>
             <View style={{
               marginLeft: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.002,
@@ -319,9 +343,7 @@ class PaymentDetails extends Component {
                   color: Colors.flBlue.anvil,
                   textAlign: 'justify'
                 }}>
-                Retailers are independent companies assiting in the collection of premium payment
-                on behalf of Florida Blue/Florida Blue HMO/Florida Combined Life Insurance Company, Inc.
-                Florida Blue is the trade name of Blue Cross Blue Shield of Florid, Inc., an Independent Licence of Blur Cross and Blue Shield Association 85583 1115.
+                Florida Blue is the trade name of Blue Cross and Blue Shield of Florida, Inc., an Independent Licensee of Blue Cross and Blue Shield Association. 85583 1115.
               </Text>
             </View>
             <View style={{ flex: 1, marginTop: 40, alignItems: 'flex-end' }}>

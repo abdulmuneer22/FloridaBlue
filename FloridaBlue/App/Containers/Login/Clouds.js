@@ -9,12 +9,14 @@ import {
 import { Images, Metrics, Colors } from '../../Themes'
 
 import styles from './CloudsStyle'
+import DeviceInfo from 'react-native-device-info'
 
 export default class Clouds extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
-      animatedValue: new Animated.Value(0)
+      animatedValue: new Animated.Value(0),
+      isPortrait: this.props.isPortrait
     }
   }
 

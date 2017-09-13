@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
     StyleSheet,
     Dimensions,
@@ -23,6 +23,7 @@ import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material
 import Flb from '../../../../Themes/FlbIcon'
 import ProviderActions from '../../../../Redux/ProviderRedux'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import SingleProviderCard from './SingleProviderCard'
 
 const window = Dimensions.get('window')
 let urlConfig = require('../../../../UrlConfig')
@@ -36,20 +37,44 @@ class DoctorCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      cardLimit: this.props.cardLimit
+      cardLimit: this.props.cardLimit,
+      selectedProviderKey : ''
     }
-    this.handleCall = this.handleCall.bind(this)
-    this.handleMaps = this.handleMaps.bind(this)
   }
 
-  _doctorPage (selectedProvider) {
+  _doctorPage = (selectedProvider) =>{
     this.props.changeAddressKey(selectedProvider.providerAddressKey)
     this.props.changeProviderKey(selectedProvider.providerKey)
     gaTracker.trackEvent('Provider List', 'Provider Selected')
     NavigationActions.DoctorDetail()
   }
 
-  handleCall (phone) {
+  favouriteProvider = (selectedProvider,currentState) =>{
+    this.props.changeProviderKey(selectedProvider.providerKey)
+    this.props.changeLocationKey(selectedProvider.providerLocationKey)
+    // console.tron.log("checking the save provider", this.props.changeProviderKey(selectedProvider.providerKey))
+    // console.tron.log("checking the save provider", this.props.changeProviderKey(selectedProvider.providerLocationKey))
+    // console.log("jdaskfbsamfba", this.props.changeProviderKey(selectedProvider.providerKey))
+    // console.log("jdaskfbsamfba", this.props.changeLocationKey(selectedProvider.providerLocationKey))
+    let data = {
+      providerKey:selectedProvider.providerKey,
+      locationKey :selectedProvider.providerLocationKey
+    }
+    //this.props.attemptSavedProvider(data)
+    if(currentState){
+      this.props.attemptSavedProvider(data)//set unfav
+    }else{
+      this.props.attemptUnSavedProvider(data)//set unfav
+    }
+  }
+
+  // unfavouriteProvider(){
+  //   this.props.changeProviderKey(selectedProvider.providerKey)
+  //   this.props.changeLocationKey(selectedProvider.providerLocationKey)
+
+  // }
+
+  handleCall = (phone) =>{
     gaTracker.trackEvent('Provider List', 'Phone Call')
     const url = `tel:${phone}`
 
@@ -68,7 +93,7 @@ class DoctorCard extends Component {
     }
   }
 
-  handleMaps (address) {
+  handleMaps = (address) => {
     gaTracker.trackEvent('Provider List', 'Mapped Location')
     const url = `http://maps.apple.com/?daddr=` + address.addressLine1 + ' ' + address.addressLine2 + ' ' + address.city + ' ' + address.state +
     ' ' + address.zipCode
@@ -91,95 +116,24 @@ class DoctorCard extends Component {
             {this.props.data != undefined ? this.props.data.map((value, i) => {
               if (i < this.state.cardLimit) {
                 return (
-                  <Card style={{ flex: 1}} key={i}>
-
-                    <View style={{ flex: 1, justifyContent: 'center', marginBottom: 10, marginTop: 10 }}>
-
-                      <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin, paddingRight: 10}}>
-                        {
-
-                           value ? [ value.categoryCode != '07'
-                             ? <TouchableOpacity onPress={this._doctorPage.bind(this, value)}>
-                               <Text allowFontScaling={false} style={styles.h1}>{value.displayName}</Text>
-                             </TouchableOpacity>
-                             : <Text allowFontScaling={false} style={styles.h1_1}>{value.displayName}</Text>] : null
-                         }
-                        <View style={{flex: 1, flexDirection: 'row'}}>
-
-                          {value
-                            ? <View style={{flex: 0.7}}>
-                              <Text allowFontScaling={false} style={styles.h2}>{value.primarySpecialty}</Text>
-                            </View> : null}
-                          {value && value.handicappedAccessIn && value.handicappedAccessIn == 'Y'
-                            ? <View style={{flex: 0.3, alignItems: 'center', marginTop: 10}}>
-                              <Flb name='accessibility' size={Metrics.icons.medium * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
-                            </View> : null }
-                        </View>
-
-                        <Text allowFontScaling={false} style={styles.h4}>{value ? value.addressLine1 : null}, {value ? value.addressLine2 : null}</Text>
-
-                        <Text allowFontScaling={false} style={styles.h4_2}>{value ? value.city : null}, {value ? value.state : null}</Text>
-                        {value
-                          ? <Text allowFontScaling={false} style={styles.h4_2}>{value.zipCode}</Text> : null}
-                        {value
-                          ? <Text allowFontScaling={false} style={styles.h4_2}>{value.telephoneNumber}</Text> : null}
-                        {value
-                          ? <Text allowFontScaling={false} style={styles.h4_3}>{value.distance} miles</Text> : null}
-                      </View>
-                    </View>
-
-                    <View style={{ flex: 1 }}>
-                      <View style={{ flex: 1, flexDirection: 'row' }}>
-                        <TouchableOpacity style={{ flex: 1, height: Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleCall(value.telephoneNumber)}>
-                          <View style={styles.call}>
-
-                            <View style={{ flex: 0.45, alignItems: 'flex-end' }}>
-                              <Flb
-                                name='call-phone'
-                                size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
-                                color={Colors.snow} />
-                            </View>
-
-                            <View style={{ flex: 0.55, alignItems: 'flex-start' }}>
-
-                              <Text allowFontScaling={false} style={styles.callText}>Call</Text>
-                            </View>
-
-                          </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{ flex: 1, height: Metrics.textHeight * Metrics.screenHeight * 0.0018 }} onPress={() => this.handleMaps(value)}>
-                          <View style={styles.directions}>
-
-                            <View style={{ flex: 0.28, alignItems: 'flex-end' }}>
-                              <Flb
-                                name='directions'
-                                size={Metrics.icons.medium * Metrics.screenWidth * 0.002}
-                                color={Colors.snow} />
-                            </View>
-
-                            <View style={{
-                              flex: 0.72,
-                              alignItems: 'flex-start'
-                            }}>
-
-                              <Text allowFontScaling={false} style={styles.directionText}>Directions</Text>
-                            </View>
-
-                          </View>
-                        </TouchableOpacity>
-                      </View>
-                    </View>
-
-                  </Card>
+                  <SingleProviderCard
+                  key={i}
+                  value = {value}
+                  _doctorPage = {this._doctorPage}
+                  favouriteProvider = {this.favouriteProvider}
+                  handleMaps = {this.handleMaps}
+                  handleCall ={this.handleCall}
+                  isSaved = {this.props.isSaved}
+                  />
                 )
               }
             })
-                            : <View style={styles.spinnerView}>
-                              <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
-                              <Text allowFontScaling={false} style={styles.spinnerText}>Load
-                        </Text>
-                            </View>
-                        }
+                : <View style={styles.spinnerView}>
+                  <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
+                  <Text allowFontScaling={false} style={styles.spinnerText}>Load
+            </Text>
+                </View>
+            }
           </View>
 
                     : <View style={styles.spinnerView}>
@@ -193,18 +147,28 @@ class DoctorCard extends Component {
   }
 }
 
+DoctorCard.propTypes = {
+  attemptSavedProvider: PropTypes.func,
+  attemptUnSavedProvider: PropTypes.func
+}
+
 const mapStateToProps = (state) => {
   return {
     addressKey: state.provider.addressKey,
     provider: state.provider.providerKey,
-    selectedProvider: state.provider.selectedLocation
+    selectedProvider: state.provider.selectedLocation,
+    locationKey: state.provider.locationKey,
+
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeAddressKey: (addressKey) => dispatch(ProviderActions.changeAddressKey(addressKey)),
-    changeProviderKey: (providerKey) => dispatch(ProviderActions.changeProviderKey(providerKey))
+    changeProviderKey: (providerKey) => dispatch(ProviderActions.changeProviderKey(providerKey)),
+    changeLocationKey: (locationKey) => dispatch(ProviderActions.changeLocationKey(locationKey)),
+    attemptSavedProvider:(data) => dispatch(ProviderActions.sendSavedProviderRequest(data)),
+    attemptUnSavedProvider:(data) => dispatch(ProviderActions.sendUnSavedProviderRequest(data))
   }
 }
 

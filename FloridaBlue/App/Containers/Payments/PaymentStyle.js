@@ -258,7 +258,8 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: window.width,
-    height: window.height
+    height: window.height,
+    flex:1
   },
   spinnerText: {
     color: Colors.flBlue.anvil,

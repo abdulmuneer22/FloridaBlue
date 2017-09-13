@@ -63,7 +63,7 @@ class LandingScreen extends Component {
 
   _renderHeader () {
     return (
-      <Image style={this.props.isPortrait ? styles.headerContainer : styles.headerContainerLandscape} source={this.props.isPortrait ? (DeviceInfo.isTablet() ? Images.landscapeHeaderImage: Images.newHeaderImage) : Images.landscapeHeaderImage}>
+      <Image style={this.props.isPortrait ? styles.headerContainer : [styles.headerContainerLandscape, {width: DeviceInfo.isTablet() ? (this.props.isPortrait ? Metrics.screenWidth : Metrics.screenWidth * 1.335) : (this.props.isPortrait ? Metrics.screenHeight : Metrics.screenWidth * 1.78)}]} source={this.props.isPortrait ? (DeviceInfo.isTablet() ? Images.landscapeHeaderImage: Images.newHeaderImage) : Images.landscapeHeaderImage}>
         <View style={{
           alignItems: 'center',
           marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0005,
@@ -181,8 +181,12 @@ class LandingScreen extends Component {
           <Greeting userName={this.props.userName} isPortrait={this.props.isPortrait} unreadNotification={this.props.unreadNotification} allRead={this.props.markAllRead} />
             {
             this.props.visibilityRules != undefined && this.props.visibilityRules.myHealthPlanTile != undefined ? <MyPlanCard data={this.props.visibilityRules.myHealthPlanTile} orientationStatus={this.props.isPortrait} /> : <View />}
-             {this.props.isPortrait ? <View style={{flexDirection: this.props.isPortrait ? null : 'row'}}>
-            <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>
+             
+            
+            {this.props.isPortrait ? 
+            
+             <View style={{flexDirection: this.props.isPortrait ? null : 'row'}}>
+              <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>
               {
                 this.props.visibilityRules != undefined && this.props.visibilityRules.coreTiles != undefined && this.props.visibilityRules.coreTiles.length > 0 ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
                   onItemPress = function () {
@@ -269,7 +273,7 @@ class LandingScreen extends Component {
               </TouchableOpacity> : null
           }</View>
           
-          : <ScrollView horizontal='true' style={{flexDirection: this.props.isPortrait ? null : 'row', marginTop: -5}}>
+          : <ScrollView horizontal='true' showsHorizontalScrollIndicator='false' style={{flexDirection: this.props.isPortrait ? null : 'row', marginTop: DeviceInfo.isTablet() ? null : -5, top: DeviceInfo.isTablet() ? 10 : null}}>
           <View style={this.props.isPortrait ? styles.spacerView : styles.spacerViewLandscape}>
             {
               this.props.visibilityRules != undefined && this.props.visibilityRules.coreTiles != undefined && this.props.visibilityRules.coreTiles.length > 0 ? this.props.visibilityRules.coreTiles.map(function (tile, i) {
@@ -318,12 +322,14 @@ class LandingScreen extends Component {
                 i += 1
               }) : <Text />
             }
-          </View>{ this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined 
+          </View>
+         
+          { this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined && !DeviceInfo.isTablet()
 
             ? <TouchableOpacity onPress={this.handleOPDTileView}
-              style={this.props.isPortrait ? styles.opdStyle : styles.opdStyleLandscape} >
+              style={this.props.isPortrait ? styles.opdStyle : (DeviceInfo.isTablet() ? styles.opdStyle : styles.opdStyleLandscape)} >
 
-              <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={this.props.isPortrait ? styles.footerImage : styles.footerImageLandscape}>
+              <Image source={Images.careFinderLS} style={this.props.isPortrait ? styles.footerImage : DeviceInfo.isTablet() ? styles.footerImage : styles.footerImageLandscape}>
                 <View style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -356,8 +362,48 @@ class LandingScreen extends Component {
               </Image>
 
             </TouchableOpacity> : null
-          }</ScrollView>}
-          
+          }
+          </ScrollView>
+          }
+          {DeviceInfo.isTablet() ? <View>{ this.props.visibilityRules != undefined && this.props.visibilityRules.opdTile != undefined && !this.props.isPortrait
+
+            ? <TouchableOpacity onPress={this.handleOPDTileView}
+              style={this.props.isPortrait ? styles.opdStyle : (DeviceInfo.isTablet() ? styles.opdStyleLandscapeTablet : styles.opdStyleLandscape)} >
+
+              <Image source={Images[this.props.visibilityRules.opdTile.backgroundImage]} style={this.props.isPortrait ? (styles.footerImage ): (DeviceInfo.isTablet() ? styles.footerImageLandscapeTablet : styles.footerImageLandscape)}>
+                <View style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flex: 1
+                  // marginTop:27.5
+                }}>
+
+                  <View style={{flex: 0.35, alignItems: 'flex-end'}}>
+                    <Flb name={this.props.visibilityRules.opdTile.tileIcon}
+                      style={{
+                        backgroundColor: Colors.transparent,
+                        marginRight: Metrics.mediumMargin * Metrics.screenWidth * 0.003
+                      }}
+                      size={this.props.isPortrait ? Metrics.icons.xml * Metrics.screenWidth * 0.0025:  Metrics.icons.xml * Metrics.screenWidth * 0.0015}
+                      color={Colors.flBlue.grey5} />
+                  </View>
+                  <View style={{flex: 0.5, alignItems: 'flex-start'}}>
+                    <Text allowFontScaling={false} style={{
+                      fontSize: this.props.isPortrait ? Fonts.size.h3 * Metrics.screenWidth * 0.003 : Fonts.size.h3 * Metrics.screenWidth * 0.0025,
+                      color: Colors.flBlue.grey5,
+                      fontFamily: Fonts.type.headerFont,
+                      backgroundColor: Colors.transparent,
+                      width: this.props.isPortrait ? null : (DeviceInfo.isTablet() ? 300 : 150)
+                    }}>
+                      {this.props.visibilityRules.opdTile.tileName['en']}
+                    </Text>
+                  </View>
+                </View>
+              </Image>
+
+            </TouchableOpacity> : null
+          }</View>: null}
           
           
         </View>

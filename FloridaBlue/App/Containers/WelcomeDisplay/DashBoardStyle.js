@@ -310,8 +310,7 @@ export default StyleSheet.create({
     color: Colors.snow,
     fontWeight: (Platform.OS === 'ios') ? '500' : '400',
     backgroundColor: Colors.transparent,
-    fontFamily: Fonts.type.subHeaderFont,
-    marginLeft: Metrics.images.large * Metrics.screenWidth * 0.00855
+    fontFamily: Fonts.type.subHeaderFont
   },
   healthPlanSubText: {
     fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
@@ -356,8 +355,8 @@ export default StyleSheet.create({
   //  alignSelf: 'stretch',
    // resizeMode: 'stretch',
     width: Metrics.screenWidth
-    // marginTop: 4
-    // marginBottom:0
+    , marginTop: -8
+   // marginBottom:4
   },
   footerImageLandscape: {
     width: (Metrics.screenWidth / 2) - (Metrics.baseMargin * .1),
@@ -365,6 +364,18 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.flBlue.snow
+  },
+  footerImageLandscapeTablet: {
+     // flexDirection: 'row',
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.84) : Metrics.screenHeight - (Metrics.screenHeight * 0.88),
+     // height : window.height * 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  //  alignSelf: 'stretch',
+   // resizeMode: 'stretch',
+    width: Metrics.screenWidth * 1.35
+    // marginTop: 4
+    // marginBottom:0
   },
   textBackground: {
     flex: 1,
@@ -445,6 +456,14 @@ export default StyleSheet.create({
     marginRight: 100,
     flexDirection: 'row',
     left: 20
+  },
+  opdStyleLandscapeTablet: {
+    flex: 1,
+    height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.82) : Metrics.screenHeight - (Metrics.screenHeight * 0.9),
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Metrics.screenWidth * 1.34,
+    marginTop: 14
   },
   payByPhoneContainer: {
     width: Metrics.screenWidth * 0.8,

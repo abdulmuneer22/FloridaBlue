@@ -276,7 +276,7 @@ export default StyleSheet.create({
     right: 0,
     flex: 1,
     position: 'absolute',
-    paddingTop: Metrics.doubleBaseMargin,
+    //paddingTop: Metrics.doubleBaseMargin,
     backgroundColor: 'transparent'
   },
   searchTitle: {

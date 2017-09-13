@@ -53,6 +53,7 @@ import {sendConfigTypeRequest} from './ProviderSagas'
 import {sendDoctorDetailRequest} from './ProviderSagas'
 import {sendSavedProviderRequest} from './ProviderSagas'
 import {sendUnSavedProviderRequest} from './ProviderSagas'
+import {sendSavedProviderListRequest} from './ProviderSagas'
 import {claimslist} from './ClaimsSagas'
 import {paymentsRequest} from './PaymentSagas'
 import {paymentBarcodeRequest} from './PaymentSagas'
@@ -124,6 +125,7 @@ export default function * root () {
     takeLatest(PaymentTypes.PAYMENTS_REQUEST, paymentsRequest, api),
     takeLatest(PaymentTypes.PAYMENT_BARCODE_REQUEST, paymentBarcodeRequest, api),
     takeLatest(ProviderTypes.SEND_SAVED_PROVIDER_REQUEST, sendSavedProviderRequest, api),
-    takeLatest(ProviderTypes.SEND_UN_SAVED_PROVIDER_REQUEST, sendUnSavedProviderRequest, api)
+    takeLatest(ProviderTypes.SEND_UN_SAVED_PROVIDER_REQUEST, sendUnSavedProviderRequest, api),
+    takeLatest(ProviderTypes.SEND_SAVED_PROVIDER_LIST_REQUEST, sendSavedProviderListRequest, api)
   ]
 }

@@ -10,7 +10,19 @@ export default StyleSheet.create({
     paddingTop: Metrics.screenHeight * 0.05,
     paddingBottom: Metrics.screenHeight * 0.025
   },
+  logoViewLandscape: {
+    paddingTop: Metrics.screenHeight * 0.05,
+    paddingBottom: Metrics.screenHeight * 0.025,
+    marginLeft: 45,
+    marginTop: -15
+  },
   logo: {
+    width: Metrics.screenWidth * 0.85,
+    resizeMode: 'contain',
+    height: Metrics.images.xll2 * Metrics.screenHeight * 0.0015,
+    marginRight: 10
+  },
+  logoLandscape: {
     width: Metrics.screenWidth * 0.85,
     resizeMode: 'contain',
     height: Metrics.images.xll2 * Metrics.screenHeight * 0.0015
@@ -25,8 +37,8 @@ export default StyleSheet.create({
   backgroundImageLandscape: {
     position: 'absolute',
     top: 0,
+    bottom: 300,
     width: Metrics.screenWidth * 1.78,
-    height: Metrics.screenHeight - (Metrics.screenHeight * 0.25),
     resizeMode: 'stretch'
   },
   centered: {
@@ -34,8 +46,7 @@ export default StyleSheet.create({
   },
   loginButton: {
     alignItems: 'center',
-    paddingHorizontal: Metrics.doubleBaseMargin,
-    marginTop: -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015
+    paddingHorizontal: Metrics.doubleBaseMargin
   },
   form: {
     backgroundColor: Colors.snow,
@@ -43,6 +54,14 @@ export default StyleSheet.create({
     marginHorizontal: Metrics.section,
     paddingTop: Metrics.smallMargin * Metrics.screenHeight * 0.0002,
     paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015
+  },
+  formLandscape: {
+    backgroundColor: Colors.snow,
+    borderRadius: 24,
+    marginHorizontal: Metrics.section,
+    paddingTop: Metrics.smallMargin * Metrics.screenHeight * 0.0002,
+    paddingBottom: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015,
+    bottom: 10
   },
   informationPopup: {
     flexWrap: 'wrap',
@@ -73,6 +92,14 @@ export default StyleSheet.create({
     resizeMode: 'contain',
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003
   },
+  signUpButtonLandscape: {
+    width: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenWidth * 0.05 : Metrics.baseMargin * Metrics.screenWidth * 0.060,
+    height: (Platform.OS === 'ios') ? Metrics.baseMargin * Metrics.screenHeight * 0.0063 : Metrics.baseMargin * Metrics.screenHeight * 0.008,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003,
+    bottom: 203
+  },
   loginContainer: {
     flexDirection: 'column',
     paddingTop: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0013,
@@ -83,10 +110,20 @@ export default StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center'
   },
+  touchLoginContainerLandscape: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: Metrics.baseMargin * Metrics.screenHeight * 0.02
+  },
   textFieldContainer: {
     height: Metrics.baseMargin * Metrics.screenWidth * 0.012,
     width: Metrics.baseMargin * Metrics.screenWidth * 0.08,
     marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.003
+  },
+  textFieldContainerLandscape: {
+    height: Metrics.baseMargin * Metrics.screenWidth * 0.022,
+    width: Metrics.baseMargin * Metrics.screenWidth * 0.1,
+    flex: 0.5
   },
   fingerprintContainer: {
     height: Metrics.baseMargin * Metrics.screenWidth * 0.005,
@@ -131,6 +168,13 @@ export default StyleSheet.create({
     bottom: (Platform.OS === 'ios') ? Metrics.searchBarHeight1 : Metrics.searchBarHeight,
     marginHorizontal: Metrics.textHeight1
   },
+  footerLandscape: {
+    flex: 1,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: (Platform.OS === 'ios') ? Metrics.searchBarHeight1 * 2 : Metrics.searchBarHeight,
+    marginHorizontal: Metrics.textHeight1
+  },
   footerText: {
     color: Colors.flBlue.grey4,
     marginHorizontal: Metrics.section,
@@ -168,6 +212,9 @@ export default StyleSheet.create({
     // height: window.height*0.5
   },
   textField: {
+    height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
+  },
+  textFieldLandscape: {
     height: Metrics.searchBarHeight * Metrics.screenHeight * 0.0015
   },
   radio: {

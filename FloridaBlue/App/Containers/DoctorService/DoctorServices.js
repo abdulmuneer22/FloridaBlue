@@ -47,7 +47,7 @@ class DoctorServices extends Component {
       <View style={{ marginLeft: Metrics.baseMargin * Metrics.screenWidth * 0.0010 }}>
         {NavItems.backButton()}
       </View>
-      <Text allowFontScaling={false} style={[styles.headerTextStyle, {marginRight: DeviceInfo.isTablet() ? (this.props.isPortrait ? null : Metrics.screenHeight * Metrics.baseMargin * .03) : null}]}>
+      <Text allowFontScaling={false} style={[styles.headerTextStyle, {marginRight: DeviceInfo.isTablet() ? (this.props.isPortrait ? null : Metrics.smallMargin * Metrics.screenWidth * 0.00001) : null}]}>
         Plan Benefits
               </Text>
       <View style={{ marginRight: Metrics.baseMargin * Metrics.screenWidth * 0.002 }}>

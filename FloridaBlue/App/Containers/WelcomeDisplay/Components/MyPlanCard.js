@@ -17,6 +17,7 @@ import Flb from '../../../Themes/FlbIcon'
 import styles from '../DashBoardStyle'
 import MemberActions from '../../../Redux/MemberRedux'
 import { connect } from 'react-redux'
+import DeviceInfo from 'react-native-device-info'
 
 const theme = getTheme()
 const window = Dimensions.get('window')
@@ -47,7 +48,7 @@ class MyPlanCard extends Component {
       }}>
         <Image source={Images[this.props.data.backgroundImage]} style={this.props.orientationStatus ? styles.summary : styles.summaryLandscape} >
           <View style={styles.healthPlanView}>
-            <Text allowFontScaling={false} numberOfLines={2} style={this.props.orientationStatus ? styles.healthPlanText : styles.healthPlanTextLandscape}>
+            <Text allowFontScaling={false} numberOfLines={2} style={this.props.orientationStatus ? styles.healthPlanText : [styles.healthPlanTextLandscape, {marginLeft: DeviceInfo.isTablet() ? Metrics.images.large * Metrics.screenWidth * 0.0055 : Metrics.images.large * Metrics.screenWidth * 0.00855}]}>
               {this.props.data.tileName['en']}
             </Text>
             <Flb name={this.props.data.tileIcon} style={styles.myPlanArrowIcon} size={Metrics.icons.medium * Metrics.screenWidth * 0.0025} color={Colors.snow} />

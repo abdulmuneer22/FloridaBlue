@@ -88,7 +88,8 @@ class ProviderSearch extends Component {
       urgentCareState: false,
       floatClicked: false,
       helpStatus: true,
-      userWantsResults: false
+      userWantsResults: false,
+      savedProviderStatus: true
     }
 
     this.handleNeedHelp = this.handleNeedHelp.bind(this)
@@ -155,6 +156,7 @@ class ProviderSearch extends Component {
 
   _onChecked (event) {
     this.setState({floatClicked: true})
+    this.setState({savedProviderStatus: false})
     if (event.checked) {
       this.props.changeSubCategoryCode('')
       this.props.changeCategoryCode('ALL')
@@ -419,6 +421,12 @@ class ProviderSearch extends Component {
                   <Text allowFontScaling={false} style={styles.radioText}>{I18n.t('noTitle')}</Text>
                 </View>
               </View>
+
+               <HideableView style={{flex:1, alignItems:'center', justifyContent: 'center'}} removeWhenHidden={true} visible={this.state.savedProviderStatus}>
+                 <Text allowFontScaling={false} style={styles.h1_2}>Already saved your provider?</Text>
+                 <Text allowFontScaling={false} style={styles.h1_3}>View Saved Providers</Text>
+               </HideableView>
+
               <HideableView visible={this.state.knownCareState} removeWhenHidden >
                 <Text allowFontScaling={false} style={[styles.h2, {width: 10}]}>{I18n.t('knownCareMessage')}</Text>
                 <MKTextField
@@ -578,8 +586,8 @@ class ProviderSearch extends Component {
               </View>
           : <View>{this.state._onChecked}</View>
 
-          : 
-         
+          :
+
           <Card style={{
             width: Metrics.screenWidth * 0.9,
             height: Metrics.screenWidth * 0.9,
@@ -612,7 +620,7 @@ class ProviderSearch extends Component {
               </View>
             </View>
           </Card>
-         
+
 
           }
         </View>

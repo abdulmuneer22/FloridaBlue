@@ -116,17 +116,17 @@ class PaymentBarcode extends Component {
                   color: Colors.flBlue.ocean,
                   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0035,
                   transform: [{ rotate: '270deg' }],
-                  width: this.props.isPortrait ? DeviceInfo.isTablet() ? Metrics.screenWidth-Metrics.screenWidth*0.6 : Metrics.screenWidth-Metrics.screenWidth*0.4 : (DeviceInfo.isTablet() ? Metrics.screenWidth-Metrics.screenWidth*0.4 :Metrics.screenWidth-Metrics.screenWidth*0.4),
-                  top: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.7 : Metrics.screenHeight - Metrics.screenHeight * 0.75) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.75 : Metrics.screenHeight - Metrics.screenHeight * 0.75),
+                  width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenWidth-Metrics.screenWidth*0.4 :Metrics.screenWidth-Metrics.screenWidth*0.4) : (DeviceInfo.isTablet() ? Metrics.screenWidth-Metrics.screenWidth*0.4 :Metrics.screenWidth-Metrics.screenWidth*0.4),
+                  top: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.75 : Metrics.screenHeight - Metrics.screenHeight * 0.75) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.75 : Metrics.screenHeight - Metrics.screenHeight * 0.75),
                   //left: this.props.isPortrait ? DeviceInfo.isTablet() ? Metrics.textHeight2 - Metrics.screenHeight * 0.12 : Metrics.baseMargin - Metrics.screenHeight * 0.13 : Metrics.textHeight - Metrics.screenHeight * 0.09
-                  right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.007: Metrics.doubleBaseMargin * Metrics.screenHeight * 0.006) : (DeviceInfo.isTablet() ? Metrics.textHeight * Metrics.screenHeight * 0.004 :Metrics.textHeight * Metrics.screenHeight * 0.003)
+                  right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.textHeight * Metrics.screenHeight * 0.004 :Metrics.textHeight * Metrics.screenHeight * 0.003) : (DeviceInfo.isTablet() ? Metrics.textHeight * Metrics.screenHeight * 0.004 :Metrics.textHeight * Metrics.screenHeight * 0.003)
                 }}>
                 Pay in Person</Text>
                 
               <Flb name='delete-circle' onPress={() => NavigationActions.pop()} size={Metrics.icons.regular * Metrics.screenWidth * 0.0025} color={Colors.flBlue.teal}
                 style={{
                   transform: [{ rotate: '270deg' }],
-                  top:  this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 1.53 :  Metrics.screenHeight - Metrics.screenHeight * 1.5) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 1.5 : Metrics.screenHeight - Metrics.screenHeight * 1.5),
+                  top:  this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 1.5 : Metrics.screenHeight - Metrics.screenHeight * 1.5) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 1.5 : Metrics.screenHeight - Metrics.screenHeight * 1.5),
                   bottom: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.payment3 - Metrics.screenWidth * 0.001 : Metrics.payment3 - Metrics.screenWidth * 0.001) : (DeviceInfo.isTablet() ? Metrics.payment3 - Metrics.screenWidth * 0.001 : Metrics.payment3 - Metrics.screenWidth * 0.001),
                   //width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenWidth * 0.99 :  Metrics.screenHeight - Metrics.screenWidth * 0.99 :  Metrics.screenHeight - Metrics.screenWidth * 0.99,
                   right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.002 : Metrics.mediumMargin * Metrics.screenHeight * 0.002) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.002 : Metrics.mediumMargin * Metrics.screenHeight * 0.002)
@@ -143,7 +143,7 @@ class PaymentBarcode extends Component {
               // backgroundColor:'red',
               alignItems: 'center',
               justifyContent: 'center',
-              bottom: DeviceInfo.isTablet() ? (this.props.isPortrait ? -Metrics.payment2 * Metrics.screenWidth * 0.00245 : -Metrics.payment2 * Metrics.screenWidth * 0.00275) : -Metrics.payment2 * Metrics.screenWidth * 0.003,
+              bottom: DeviceInfo.isTablet() ? (this.props.isPortrait ? -Metrics.payment2 * Metrics.screenWidth * 0.00245 : -Metrics.payment2 * Metrics.screenWidth * 0.00245) : -Metrics.payment2 * Metrics.screenWidth * 0.003,
               right: DeviceInfo.isTablet() ? Metrics.doubleBaseMargin * Metrics.screenHeight * 0.005 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002
             }}>
               <Flb name='shopping-cart-1' size={Metrics.icons.large*Metrics.screenWidth*0.002} color={Colors.flBlue.anvil}
@@ -180,13 +180,13 @@ class PaymentBarcode extends Component {
                 style={{
                   transform: [{ rotate: '270deg' }],
                   bottom: - Metrics.payment6 * Metrics.screenHeight * 0.001,
-                  left: this.props.isPortrait ? -Metrics.smallMargin * Metrics.screenHeight * 0.001 : -Metrics.baseMargin * Metrics.screenHeight * 0.001
+                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? -Metrics.smallMargin * Metrics.screenHeight * 0.001 : -Metrics.smallMargin * Metrics.screenHeight * 0.001) : (DeviceInfo.isTablet() ? -Metrics.smallMargin * Metrics.screenHeight * 0.001 :  -Metrics.smallMargin * Metrics.screenHeight * 0.001)
                 }} />
               <Text allowFontScaling={false} style={{
                 transform: [{ rotate: '270deg' }],
                 bottom: Metrics.screenWidth - Metrics.screenHeight * 0.4,
                 width: Metrics.screenHeight - Metrics.screenWidth * 0.5,
-                right: this.props.isPortrait ? DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.005 : Metrics.textHeight2 * Metrics.screenHeight * 0.006 : DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.0048 : Metrics.textHeight2 * Metrics.screenHeight * 0.0062,
+                right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.0048 : Metrics.textHeight2 * Metrics.screenHeight * 0.0062) : (DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.0048 : Metrics.textHeight2 * Metrics.screenHeight * 0.0062),
                 top: Metrics.screenHeight - Metrics.screenHeight * 1.1,
                 fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0025,
                 color: Colors.flBlue.anvil,
@@ -205,12 +205,12 @@ class PaymentBarcode extends Component {
                 <Text allowFontScaling={false} onPress={() => NavigationActions.PaymentDetails()} style={{
                   transform: [{ rotate: '270deg' }],
                  // bottom: this.props.isPortrait ? Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0012 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0012,
-                  right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.0035 : Metrics.textHeight2 * Metrics.screenHeight * 0.0035) : (DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.0025 : Metrics.textHeight2 * Metrics.screenHeight * 0.006),
-                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenWidth-Metrics.screenWidth*1.15 : Metrics.screenWidth-Metrics.screenWidth*1.11 ) : (DeviceInfo.isTablet() ? Metrics.screenWidth-Metrics.screenWidth*1.15 :  Metrics.screenWidth-Metrics.screenWidth*1.15), 
+                  right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.0025 : Metrics.textHeight2 * Metrics.screenHeight * 0.006) : (DeviceInfo.isTablet() ? Metrics.textHeight2 * Metrics.screenHeight * 0.0025 : Metrics.textHeight2 * Metrics.screenHeight * 0.006),
+                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenWidth-Metrics.screenWidth*1.15 :  Metrics.screenWidth-Metrics.screenWidth*1.15) : (DeviceInfo.isTablet() ? Metrics.screenWidth-Metrics.screenWidth*1.15 :  Metrics.screenWidth-Metrics.screenWidth*1.15), 
                   fontWeight: '500', 
                   width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenWidth - Metrics.screenWidth * 0.5 : Metrics.screenWidth - Metrics.screenWidth * 0.5) : (DeviceInfo.isTablet() ? Metrics.screenWidth - Metrics.screenWidth * 0.5 : Metrics.screenWidth - Metrics.screenWidth * 0.5),
                   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
-                  top: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*0.65 :  Metrics.screenHeight-Metrics.screenHeight*0.62) : (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*0.65 :  Metrics.screenHeight-Metrics.screenHeight*0.6),
+                  top: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*0.65 :  Metrics.screenHeight-Metrics.screenHeight*0.6) : (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*0.65 :  Metrics.screenHeight-Metrics.screenHeight*0.6),
                   textDecorationLine: 'underline', color: Colors.flBlue.ocean
                 }}>See Payment Details
                 </Text>
@@ -220,51 +220,51 @@ class PaymentBarcode extends Component {
                   transform: [{ rotate: '270deg' }],
                   backgroundColor:Colors.transparent,
                  // bottom: - Metrics.payment6 * Metrics.screenHeight * 0.001,
-                 top: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*0.97 : Metrics.screenHeight-Metrics.screenHeight*0.86) : (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*0.96 : Metrics.screenHeight-Metrics.screenHeight*0.84),
-                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.002 : -Metrics.smallMargin * Metrics.screenHeight * 0.001) : (DeviceInfo.isTablet() ? -Metrics.searchBarHeight * Metrics.screenHeight * 0.0013 : -Metrics.baseMargin * Metrics.screenHeight * 0.003)
+                 top: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*0.96 : Metrics.screenHeight-Metrics.screenHeight*0.84) : (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*0.96 : Metrics.screenHeight-Metrics.screenHeight*0.84),
+                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? -Metrics.searchBarHeight * Metrics.screenHeight * 0.0013 : -Metrics.baseMargin * Metrics.screenHeight * 0.003) : (DeviceInfo.isTablet() ? -Metrics.searchBarHeight * Metrics.screenHeight * 0.0013 : -Metrics.baseMargin * Metrics.screenHeight * 0.003)
                 }} />
           
             <Text allowFontScaling={false} style={{
                   transform: [{ rotate: '270deg' }],
-                  right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0068 : Metrics.textHeight2 * Metrics.screenHeight * 0.004) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.007 : Metrics.textHeight2 * Metrics.screenHeight * 0.004),
+                  right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.007 : Metrics.textHeight2 * Metrics.screenHeight * 0.004) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.007 : Metrics.textHeight2 * Metrics.screenHeight * 0.004),
                   //left: this.props.isPortrait ? Metrics.screenWidth-Metrics.screenWidth*1.05:Metrics.payment*Metrics.screenHeight*0.005, fontWeight: '500', 
                   width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenWidth - Metrics.screenWidth * 0.3 : Metrics.screenWidth - Metrics.screenWidth * 0.2) : (DeviceInfo.isTablet() ? Metrics.screenWidth - Metrics.screenWidth * 0.3 : Metrics.screenWidth - Metrics.screenWidth * 0.2),
                   fontSize: Fonts.size.regular * Metrics.screenWidth * 0.0028,
-                  top: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*1.3 : Metrics.screenHeight-Metrics.screenHeight*1.1) : (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*1.27 : Metrics.screenHeight-Metrics.screenHeight*1.1),
+                  top: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*1.27 : Metrics.screenHeight-Metrics.screenHeight*1.1) : (DeviceInfo.isTablet() ? Metrics.screenHeight-Metrics.screenHeight*1.27 : Metrics.screenHeight-Metrics.screenHeight*1.1),
                   color: Colors.flBlue.anvil
                 }}>Accepted at the following retailers:
             </Text>
               
               <Image style={{
                   transform: [{ rotate: '270deg' }],
-                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0032 : Metrics.searchBarHeight * Metrics.screenHeight * 0.0012) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0028 : Metrics.baseMargin * Metrics.screenHeight * 0.002) ,
-                  bottom: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.6 : Metrics.screenHeight - Metrics.screenHeight * 0.635) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.59 : Metrics.screenHeight - Metrics.screenHeight * 0.64),
-                  width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.017 :Metrics.baseMargin * Metrics.screenWidth * 0.023) : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.018 : Metrics.baseMargin * Metrics.screenWidth * 0.026),
-                  height: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.0025 : Metrics.mediumMargin * Metrics.screenHeight * 0.003) : (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.003 : Metrics.mediumMargin * Metrics.screenHeight * 0.0033)
+                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0028 : Metrics.baseMargin * Metrics.screenHeight * 0.002) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0028 : Metrics.baseMargin * Metrics.screenHeight * 0.002) ,
+                  bottom: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.59 : Metrics.screenHeight - Metrics.screenHeight * 0.64) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.59 : Metrics.screenHeight - Metrics.screenHeight * 0.64),
+                  width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.018 : Metrics.baseMargin * Metrics.screenWidth * 0.026) : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.018 : Metrics.baseMargin * Metrics.screenWidth * 0.026),
+                  height: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.003 : Metrics.mediumMargin * Metrics.screenHeight * 0.0033) : (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.003 : Metrics.mediumMargin * Metrics.screenHeight * 0.0033)
                 }}
                   source={Images.familylogo} />
              <Image style={{
                   transform: [{ rotate: '270deg' }],
-                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0038 : Metrics.searchBarHeight * Metrics.screenHeight * 0.0017) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0035 : Metrics.baseMargin * Metrics.screenHeight * 0.004) ,
-                  bottom: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.68 : Metrics.screenHeight - Metrics.screenHeight * 0.728) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.66 : Metrics.screenHeight - Metrics.screenHeight * 0.73),
-                  width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.012 :Metrics.baseMargin * Metrics.screenWidth * 0.02) : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.0125 : Metrics.baseMargin * Metrics.screenWidth * 0.02),
-                  height: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.003 : Metrics.mediumMargin * Metrics.screenHeight * 0.004) : (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.0032 : Metrics.mediumMargin * Metrics.screenHeight * 0.0037) ,
+                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0035 : Metrics.baseMargin * Metrics.screenHeight * 0.004) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0035 : Metrics.baseMargin * Metrics.screenHeight * 0.004) ,
+                  bottom: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.66 : Metrics.screenHeight - Metrics.screenHeight * 0.73) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.66 : Metrics.screenHeight - Metrics.screenHeight * 0.73),
+                  width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.0125 : Metrics.baseMargin * Metrics.screenWidth * 0.02) : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.0125 : Metrics.baseMargin * Metrics.screenWidth * 0.02),
+                  height: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.0032 : Metrics.mediumMargin * Metrics.screenHeight * 0.0037) : (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.0032 : Metrics.mediumMargin * Metrics.screenHeight * 0.0037) ,
                 }}
                   source={Images.navarrologo} />
              <Image style={{
                   transform: [{ rotate: '270deg' }],
-                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0038 : Metrics.searchBarHeight * Metrics.screenHeight * 0.0015) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0033 : Metrics.baseMargin * Metrics.screenHeight * 0.004) ,
-                  bottom: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.73 : Metrics.screenHeight - Metrics.screenHeight * 0.805) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.715 : Metrics.screenHeight - Metrics.screenHeight * 0.8),
-                   width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.013 :Metrics.baseMargin * Metrics.screenWidth * 0.022) : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.013 : Metrics.baseMargin * Metrics.screenWidth * 0.02),
-                  height: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.003 : Metrics.mediumMargin * Metrics.screenHeight * 0.0031) : (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.0032 : Metrics.mediumMargin * Metrics.screenHeight * 0.0032)
+                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0033 : Metrics.baseMargin * Metrics.screenHeight * 0.004) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0033 : Metrics.baseMargin * Metrics.screenHeight * 0.004) ,
+                  bottom: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.715 : Metrics.screenHeight - Metrics.screenHeight * 0.8) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.715 : Metrics.screenHeight - Metrics.screenHeight * 0.8),
+                   width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.013 : Metrics.baseMargin * Metrics.screenWidth * 0.02) : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.013 : Metrics.baseMargin * Metrics.screenWidth * 0.02),
+                  height: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.0032 : Metrics.mediumMargin * Metrics.screenHeight * 0.0032) : (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.0032 : Metrics.mediumMargin * Metrics.screenHeight * 0.0032)
                 }}
                   source={Images.dglogo} />
                <Image style={{
                   transform: [{ rotate: '270deg' }],
-                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.004 : Metrics.searchBarHeight * Metrics.screenHeight * 0.002) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0034 : Metrics.baseMargin * Metrics.screenHeight * 0.004) ,
-                  bottom: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.8 : Metrics.screenHeight - Metrics.screenHeight * 0.88) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.77 : Metrics.screenHeight - Metrics.screenHeight * 0.88),
-                   width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.012 :Metrics.baseMargin * Metrics.screenWidth * 0.018) : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.012 : Metrics.baseMargin * Metrics.screenWidth * 0.019),
-                  height: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.003 : Metrics.mediumMargin * Metrics.screenHeight * 0.0035) : (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.003 : Metrics.mediumMargin * Metrics.screenHeight * 0.0036)
+                  left: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0034 : Metrics.baseMargin * Metrics.screenHeight * 0.004) : (DeviceInfo.isTablet() ? Metrics.searchBarHeight * Metrics.screenHeight * 0.0034 : Metrics.baseMargin * Metrics.screenHeight * 0.004) ,
+                  bottom: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.77 : Metrics.screenHeight - Metrics.screenHeight * 0.88) : (DeviceInfo.isTablet() ? Metrics.screenHeight - Metrics.screenHeight * 0.77 : Metrics.screenHeight - Metrics.screenHeight * 0.88),
+                   width: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.012 : Metrics.baseMargin * Metrics.screenWidth * 0.019) : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenWidth * 0.012 : Metrics.baseMargin * Metrics.screenWidth * 0.019),
+                  height: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.003 : Metrics.mediumMargin * Metrics.screenHeight * 0.0036) : (DeviceInfo.isTablet() ? Metrics.mediumMargin * Metrics.screenHeight * 0.003 : Metrics.mediumMargin * Metrics.screenHeight * 0.0036)
                 }}
                   source={Images.cvslogo} />
             </View>

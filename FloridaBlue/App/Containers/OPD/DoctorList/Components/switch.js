@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Text,
   View,
@@ -8,20 +8,22 @@ import {
   Dimensions
 } from 'react-native'
 
-import {Colors, Metrics, Fonts} from '../../../../Themes'
+import { Colors, Metrics, Fonts } from '../../../../Themes'
 
 const window = Dimensions.get('window')
 
 import {connect} from 'react-redux'
 import styles from '../DoctorListStyle'
 
-class Switch extends Component {
-  constructor () {
-    super()
-    this.state = {
-      leftActive: true
+
+
+class Switch extends Component{
+    constructor(){
+        super();
+        this.state = {
+            leftActive : true
+        }
     }
-  }
 
     // handleClickLeft(){
     //   this.setState({
@@ -36,79 +38,85 @@ class Switch extends Component {
 
     // }
 
-  handleClickLeft () {
+handleClickLeft () {
     this.props.attemptHandleLeft()
   }
   handleClickRight () {
     this.props.attemptHandleRight()
   }
 
-  render () {
+   render () {
     var _this = this
 
-    var twoTabLeftActiveStyle = {
+
+ var twoTabLeftActiveStyle = {
       borderBottomLeftRadius: 15,
       borderColor: Colors.flBlue.night,
-      borderRightWidth: 1,
+      borderRightWidth : 1,
       borderTopLeftRadius: 15,
       padding: 8,
-      backgroundColor: Colors.flBlue.night,
-      width: Metrics.screenWidth * 0.45
+      backgroundColor : Colors.flBlue.night,
+      width:Metrics.screenWidth*0.45,
     }
     var twoTabRightActiveStyle = {
       borderBottomRightRadius: 15,
       borderColor: Colors.flBlue.night,
-      borderLeftWidth: 1,
+      borderLeftWidth : 1,
       borderTopRightRadius: 15,
       padding: 8,
-      backgroundColor: Colors.flBlue.night,
-      width: Metrics.screenWidth * 0.45
+      backgroundColor : Colors.flBlue.night,
+      width:Metrics.screenWidth*0.45,
     }
     var twoTextActiveStyle = {
-      color: 'white',
-      alignSelf: 'center'
+      color : 'white',
+      alignSelf:'center'
     }
     var twoTabInactiveStyle = {
-      // backgroundColor : Colors.flBlue.night,
-      padding: 8,
-      backgroundColor: 'white',
-      borderTopLeftRadius: 30,
-      borderBottomLeftRadius: 25,
-      width: Metrics.screenWidth * 0.45
+      //backgroundColor : Colors.flBlue.night,
+      padding:8,
+      backgroundColor : 'white',
+      borderTopLeftRadius : 30,
+      borderBottomLeftRadius : 25,
+      width:Metrics.screenWidth*0.45
     }
-    var twoTabRightInactiveStyle = {
+     var twoTabRightInactiveStyle = {
     //  backgroundColor : Colors.flBlue.night,
-      padding: 8,
-      backgroundColor: 'white',
-      borderTopRightRadius: 25,
-      borderBottomRightRadius: 25,
-      width: Metrics.screenWidth * 0.45
+      padding:8,
+      backgroundColor : 'white',
+      borderTopRightRadius : 25,
+      borderBottomRightRadius : 25,
+      width:Metrics.screenWidth*0.45
     }
     var twoTextInactiveStyle = {
-      color: Colors.flBlue.anvil,
-      alignSelf: 'center'
+        color : Colors.flBlue.anvil,
+          alignSelf:'center'
     }
 
+
+
     var twoTabHeaderStyle = {
-      flexDirection: 'row',
-      marginLeft: 15,
-      width: Metrics.screenWidth * 0.91,
-      marginTop: 15,
-      borderRadius: 25,
-      borderWidth: 2,
-      borderColor: Colors.flBlue.night
-    }
+        flexDirection: 'row',
+        marginLeft:15,
+        width:Metrics.screenWidth*0.91,
+        marginTop: 15,
+        borderRadius : 25,
+         borderWidth : 2,
+        borderColor: Colors.flBlue.night
+      }
+
 
     let isLeftActive = _this.props.leftActive
     let rightActive = _this.props.rightActive
 
-    var _twoTabView = function (
+
+     var _twoTabView = function (
         injectedStyle,
         inactiveStyle,
         injectedTextStyle,
         inactiveTextStyle,
         injectHeaderStyle
     ) {
+
       return (<View style={injectHeaderStyle}>
 
         <TouchableOpacity style={_this.props.leftActive ? injectedStyle
@@ -130,12 +138,14 @@ class Switch extends Component {
       )
     }
 
+
     var _tabView = function () {
-      var temp = _this.props.data
-      var providerList = temp.providerList
-      if (temp != null && temp.providerList != null) {
-        console.tron.log('left', temp.providerList)
-        return (_this.props.leftActive
+
+     var temp=_this.props.data
+     var providerList= temp.providerList
+        if (temp !=null && temp.providerList !=null ) {
+           console.log('left', temp.providerList)
+          return (_this.props.leftActive
               ? _twoTabView(
               twoTabLeftActiveStyle,
               twoTabRightInactiveStyle,
@@ -152,9 +162,10 @@ class Switch extends Component {
             twoTabHeaderStyle
 
             )
-        )
+          )
+        }
       }
-    }
+
 
     return (
       <View style={{flex: 1}}>

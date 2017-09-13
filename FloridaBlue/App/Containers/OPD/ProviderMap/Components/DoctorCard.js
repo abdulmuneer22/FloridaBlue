@@ -24,6 +24,7 @@ import { MKTextField, MKColor, MKSpinner, getTheme } from 'react-native-material
 import Flb from '../../../../Themes/FlbIcon'
 import ProviderActions from '../../../../Redux/ProviderRedux'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import DeviceInfo from 'react-native-device-info'
 
 const window = Dimensions.get('window')
 let urlConfig = require('../../../../UrlConfig')
@@ -81,7 +82,7 @@ class DoctorCard extends Component {
             ? <Card style={{ flex: 1 }}>
               <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', marginBottom: (Platform.OS === 'ios') ? 10 : 10 }}>
 
-                <View style={{ flex: 1, paddingLeft: Metrics.doubleBaseMargin * 2, paddingRight: 10}}>
+                <View style={{ flex: 1, paddingLeft: DeviceInfo.isTablet() ? Metrics.doubleBaseMargin * 3 : Metrics.doubleBaseMargin * 2, paddingRight: 10}}>
                    {this.props.data && this.props.data.categoryCode != '07'
                     ? <TouchableOpacity onPress={this.providerSelected}>
                       <Text allowFontScaling={false} style={styles.mapHeaderText}>{this.props.data.displayName}</Text>

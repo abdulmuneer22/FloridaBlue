@@ -11,6 +11,7 @@ import _ from 'lodash'
 import LinearGradient from 'react-native-linear-gradient'
 import { Card, CardItem, Body} from 'native-base'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
+import DeviceInfo from 'react-native-device-info'
 
 const card = {card: {margin: 20}}
 let urlConfig = require('../../../UrlConfig')
@@ -130,7 +131,7 @@ class MyPlanSwiper extends Component {
 
     return (
 
-      <Swiper height={(Platform.OS === 'ios') ? (this.props.isPortrait ? Metrics.screenHeight - (Metrics.screenHeight * 0.52) :  Metrics.screenHeight - (Metrics.screenHeight * 0.62)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.48))} width={this.props.isPortrait ?  Metrics.screenWidth : Metrics.screenWidth * 1.78} style={{left: this.props.isPortrait ? 0 :  (Metrics.screenWidth) - (Metrics.screenWidth * 1.033), right:  this.props.isPortrait ? 0 : (Metrics.screenWidth) - (Metrics.screenWidth * 1.033), marginBottom:  this.props.isPortrait ? (Metrics.screenWidth) - (Metrics.screenWidth * 1.033) : 0}}
+      <Swiper height={(Platform.OS === 'ios') ? (this.props.isPortrait ? Metrics.screenHeight - (Metrics.screenHeight * 0.52) :  DeviceInfo.isTablet() ? Metrics.screenHeight - (Metrics.screenHeight * 0.52) : Metrics.screenHeight - (Metrics.screenHeight * 0.62)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.48))} width={this.props.isPortrait ?  Metrics.screenWidth : DeviceInfo.isTablet() ? Metrics.screenWidth * 1.335 : Metrics.screenWidth * 1.78} style={{left: this.props.isPortrait ? 0 :  (Metrics.screenWidth) - (Metrics.screenWidth * 1.033), right:  this.props.isPortrait ? 0 : (Metrics.screenWidth) - (Metrics.screenWidth * 1.033), marginBottom:  this.props.isPortrait ? (Metrics.screenWidth) - (Metrics.screenWidth * 1.033) : 0}}
         showsButtons
         showsPagination
         paginationStyle={{

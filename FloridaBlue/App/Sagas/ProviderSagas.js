@@ -225,3 +225,16 @@ export function * sendUnSavedProviderRequest (api, {data}) {
     yield put(ProviderActions.sendUnSavedProviderFailure(error))
   }
 }
+
+export function * sendSavedProviderListRequest (api, {data}) {
+  const response = yield call(api.getSavedProviderList, data)
+
+  if (response.ok) {
+    var data = response.data
+    yield put(ProviderActions.sendSavedProviderListSuccess(data))
+  } else {
+    var error = response.problem
+    console.tron.log('im Saved provider List error' + error)
+    yield put(ProviderActions.sendSavedProviderListFailure(error))
+  }
+}

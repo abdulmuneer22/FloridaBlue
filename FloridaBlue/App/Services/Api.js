@@ -115,6 +115,10 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     'planCode': ''
   })
 
+  const getSavedProviderList = (data) => api.post('/opd/provider/favorites', {
+    'language': 'EN'
+  })
+
   const getSavedProvider = (data) => api.post('/opd/provider/favorite', {
     'providerKey': data && data.providerKey,
     'locationKey': data && data.locationKey
@@ -356,7 +360,8 @@ const create = (baseURL = urlConfig.mobApiUrl) => {
     getPaymentBarcode,
     getPayment,
     getSavedProvider,
-    getUnSavedProvider
+    getUnSavedProvider,
+    getSavedProviderList
   }
 }
 

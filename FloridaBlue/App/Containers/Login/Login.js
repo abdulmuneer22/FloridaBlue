@@ -98,6 +98,7 @@ class Login extends Component {
     this._orientationDidChange = this._orientationDidChange.bind(this)
     this._handleAgentLogin = this._handleAgentLogin.bind(this)
     this._infoMenu = this._infoMenu.bind(this)
+    this._handleSetState = this._handleSetState.bind(this)
   }
 
   componentWillMount () {
@@ -593,12 +594,18 @@ class Login extends Component {
     console.tron.log(this.state.modalVisible)
   }
 
+  
+   _handleSetState () {
+     this.setState({modalVisible: true})
+     this.setState({isPortrait: false})
+  }
+
   _infoMenu () {
     console.tron.log(urlConfig)
     return (
       <View>
         <PopoverTouchable onPopoverDisplayed={() => console.tron.log('Popover displayed!')}>
-          <TouchableOpacity onPress={() => { this.setState({modalVisible: true}) }}>
+          <TouchableOpacity onPress={this._handleSetState}>
             <Flb name='blocks-circle' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.popoverButton} />
           </TouchableOpacity>
           <Popover
@@ -659,90 +666,184 @@ class Login extends Component {
   _renderTouchAvailableLogin () {
     return (
       <View>
-        <View style={styles.logoView}>
-          <Image source={Images.clearLogo} style={styles.logo} />
-        </View>
-        <View style={styles.form}>
-          <View style={styles.touchLoginContainer}>
-            <View style={styles.textFieldContainer}>
-              <MKTextField
-                ref='username'
-                style={styles.textField}
-                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                keyboardType='default'
-                returnKeyType='next'
-                autoCapitalize='none'
-                autoCorrect={false}
-                onChangeText={this.props.handleChangeUserName}
-                value={this.props.username}
-                underlineColorAndroid={Colors.coal}
-                onSubmitEditing={() => this.refs.password.focus()}
-                placeholder={I18n.t('username')}
-                placeholderTextColor={Colors.steel} />
+        {this.state.isPortrait ?  
+        
+        <View>
+          <View style={styles.logoView}>
+            <Image source={Images.clearLogo} style={styles.logo} />
+          </View>
+          <View style={styles.form}>
+            <View style={styles.touchLoginContainer}>
+              <View style={styles.textFieldContainer}>
+                <MKTextField
+                  ref='username'
+                  style={styles.textField}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  keyboardType='default'
+                  returnKeyType='next'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  onChangeText={this.props.handleChangeUserName}
+                  value={this.props.username}
+                  underlineColorAndroid={Colors.coal}
+                  onSubmitEditing={() => this.refs.password.focus()}
+                  placeholder={I18n.t('username')}
+                  placeholderTextColor={Colors.steel} />
+              </View>
+              <View style={styles.textFieldContainer}>
+                <MKTextField
+                  ref='password'
+                  style={styles.textField}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  keyboardType='default'
+                  returnKeyType='done'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  secureTextEntry
+                  password
+                  onChangeText={this.props.handleChangePassword}
+                  onSubmitEditing={this._handleLogin}
+                  value={this.props.password}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder={I18n.t('userpassword')}
+                  placeholderTextColor={Colors.steel} />
+              </View>
+              <View style={styles.fingerprintContainer}>
+                { this.props.credentialStored ?
+                    <TouchableOpacity style={styles.fingerprintButton} onPress={() => {
+                      this._authenticateUserWithTouch()
+                      gaTracker.trackEvent('Touch ID', 'Relaunch')
+                    }}>
+                      <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
+                      <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
+                    </TouchableOpacity>
+                  :
+                    <View style={styles.fingerprintButton}>
+                      <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
+                        let checked = this.refs.touchCheckbox.state.checked
+                        this._changeTouchCheckbox(checked)
+                      }} />
+                      <Text allowFontScaling={false} style={styles.touchInstruction}>Set up login using your fingerprint</Text>
+                    </View>
+                }
+              </View>
             </View>
-            <View style={styles.textFieldContainer}>
-              <MKTextField
-                ref='password'
-                style={styles.textField}
-                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                keyboardType='default'
-                returnKeyType='done'
-                autoCapitalize='none'
-                autoCorrect={false}
-                secureTextEntry
-                password
-                onChangeText={this.props.handleChangePassword}
-                onSubmitEditing={this._handleLogin}
-                value={this.props.password}
-                underlineColorAndroid={Colors.coal}
-                placeholder={I18n.t('userpassword')}
-                placeholderTextColor={Colors.steel} />
-            </View>
-            <View style={styles.fingerprintContainer}>
-              { this.props.credentialStored ?
-                  <TouchableOpacity style={styles.fingerprintButton} onPress={() => {
-                    this._authenticateUserWithTouch()
-                    gaTracker.trackEvent('Touch ID', 'Relaunch')
-                  }}>
-                    <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
-                    <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
-                  </TouchableOpacity>
-                :
-                  <View style={styles.fingerprintButton}>
-                    <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
-                      let checked = this.refs.touchCheckbox.state.checked
-                      this._changeTouchCheckbox(checked)
-                    }} />
-                    <Text allowFontScaling={false} style={styles.touchInstruction}>Set up login using your fingerprint</Text>
-                  </View>
-              }
+            <View style={styles.touchSignRow}>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+                gaTracker.trackEvent('Login', 'Forgot Password')
+              }}>
+                <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.screen_1()
+                gaTracker.trackEvent('Login', 'Sign Up')
+              }}>
+                <Image style={styles.signUpButton} source={Images.signUpButton} />
+              </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.touchSignRow}>
-            <TouchableOpacity onPress={() => {
-              NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
-              gaTracker.trackEvent('Login', 'Forgot Password')
-            }}>
-              <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {
-              NavigationActions.screen_1()
-              gaTracker.trackEvent('Login', 'Sign Up')
-            }}>
-              <Image style={styles.signUpButton} source={Images.signUpButton} />
-            </TouchableOpacity>
+          <View style={[styles.loginButton, {marginTop: -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015}]}>
+            {this.props.mfetching || this.props.fetching
+              ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
+            : <TouchableOpacity onPress={() => { this._handleLogin() }}>
+              <Image style={{width: Metrics.screenWidth * 0.5,
+                borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
+                height: Metrics.screenHeight * 0.064}}
+                source={Images.loginButtonGreen} />
+            </TouchableOpacity> }
           </View>
-        </View>
-        <View style={styles.loginButton}>
-          {this.props.mfetching || this.props.fetching
-            ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
-          : <TouchableOpacity onPress={() => { this._handleLogin() }}>
-            <Image style={{width: Metrics.screenWidth * 0.5,
-              borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-              height: Metrics.screenHeight * 0.064}}
-              source={Images.loginButtonGreen} />
-          </TouchableOpacity> }
-        </View>
+        </View> 
+        
+        : <View>
+            <View style={styles.logoViewLandscape}>
+              <Image source={Images.clearLogo} style={styles.logo} />
+            </View>
+          <View style={[styles.formLandscape, {paddingBottom: DeviceInfo.isTablet() ? Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015 : Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0007}]}>
+            <View style={styles.touchLoginContainerLandscape}>
+              <View style={styles.textFieldContainerLandscape}>
+                <MKTextField
+                  ref='username'
+                  style={[styles.textFieldLandscape, {left: DeviceInfo.isTablet() ? null : 22}]}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  keyboardType='default'
+                  returnKeyType='next'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  onChangeText={this.props.handleChangeUserName}
+                  value={this.props.username}
+                  underlineColorAndroid={Colors.coal}
+                  onSubmitEditing={() => this.refs.password.focus()}
+                  placeholder={I18n.t('username')}
+                  placeholderTextColor={Colors.steel} />
+                    <View style={styles.fingerprintContainer}>
+                      { this.props.credentialStored ?
+                          <TouchableOpacity style={styles.fingerprintButton} onPress={() => {
+                            this._authenticateUserWithTouch()
+                            gaTracker.trackEvent('Touch ID', 'Relaunch')
+                          }}>
+                            <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
+                            <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
+                          </TouchableOpacity>
+                        :
+                          <View style={styles.fingerprintButton}>
+                            <MKCheckbox ref='touchCheckbox' style={[styles.touchCheckbox, {top: DeviceInfo.isTablet() ? null : 13, right: DeviceInfo.isTablet() ? null : 10}]} checked={this.props.touchEnabled} onCheckedChange={() => {
+                              let checked = this.refs.touchCheckbox.state.checked
+                              this._changeTouchCheckbox(checked)
+                            }} />
+                            <Text allowFontScaling={false} style={[styles.touchInstruction, {marginTop: DeviceInfo.isTablet() ? null : 25, top: DeviceInfo.isTablet() ? null : 1, right: DeviceInfo.isTablet() ? null : 10}]}>Set up login using your fingerprint</Text>
+                          </View>
+                      }
+                    </View>
+              </View>
+              <View style={styles.textFieldContainerLandscape}>
+                <MKTextField
+                  ref='password'
+                  style={[styles.textFieldLandscape, {left: DeviceInfo.isTablet() ? null : 22}]}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  keyboardType='default'
+                  returnKeyType='done'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  secureTextEntry
+                  password
+                  onChangeText={this.props.handleChangePassword}
+                  onSubmitEditing={this._handleLogin}
+                  value={this.props.password}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder={I18n.t('userpassword')}
+                  placeholderTextColor={Colors.steel} />
+                <View style={[styles.loginButton, {marginTop: -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0002, top: DeviceInfo.isTablet() ? null : 18}]}>
+                    {this.props.mfetching || this.props.fetching
+                      ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
+                    : <TouchableOpacity onPress={() => { this._handleLogin() }}>
+                      <Image style={{
+                        width: Metrics.screenWidth * 0.7,
+                        borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
+                        height: Metrics.screenHeight * 0.064}}
+                        source={Images.loginButtonGreen} />
+                    </TouchableOpacity> }
+                </View>
+              </View>
+          
+            </View>
+            <View style={styles.touchSignRow}>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+                gaTracker.trackEvent('Login', 'Forgot Password')
+              }}>
+                <Text allowFontScaling={false} style={[styles.link, {bottom: DeviceInfo.isTablet() ? null : 160, right: DeviceInfo.isTablet() ? null : 90}]}>{I18n.t('forgotPassword')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.screen_1()
+                gaTracker.trackEvent('Login', 'Sign Up')
+              }}>
+                <Image style={[styles.signUpButtonLandscape, {left: DeviceInfo.isTablet() ? null : 80}]} source={Images.signUpButton} />
+              </TouchableOpacity>
+            </View>
+          </View>
+          </View>}
+       
       </View>
     )
   }
@@ -750,71 +851,183 @@ class Login extends Component {
   _renderLogin () {
     return (
       <View>
-        <LogoView>
-          <Image source={Images.clearLogo} style={styles.logo} />
-        </LogoView>
-        <LoginView>
-          <View style={styles.loginContainer}>
-            <View style={styles.textFieldContainer}>
-              <MKTextField
-                ref='username'
-                style={styles.textField}
-                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                keyboardType='default'
-                returnKeyType='next'
-                autoCapitalize='none'
-                autoCorrect={false}
-                onChangeText={this.props.handleChangeUserName}
-                value={this.props.username}
-                underlineColorAndroid={Colors.coal}
-                onSubmitEditing={() => this.refs.password.focus()}
-                placeholder={I18n.t('username')}
-                placeholderTextColor={Colors.steel} />
+        {this.state.isPortrait ?  
+        <View>
+          <View style={styles.logoView}>
+            <Image source={Images.clearLogo} style={styles.logo} />
+          </View>
+          <View style={styles.form}>
+            <View style={styles.touchLoginContainer}>
+              <View style={styles.textFieldContainer}>
+                <MKTextField
+                  ref='username'
+                  style={styles.textField}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  keyboardType='default'
+                  returnKeyType='next'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  onChangeText={this.props.handleChangeUserName}
+                  value={this.props.username}
+                  underlineColorAndroid={Colors.coal}
+                  onSubmitEditing={() => this.refs.password.focus()}
+                  placeholder={I18n.t('username')}
+                  placeholderTextColor={Colors.steel} />
+              </View>
+              <View style={styles.textFieldContainer}>
+                <MKTextField
+                  ref='password'
+                  style={styles.textField}
+                  textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                  keyboardType='default'
+                  returnKeyType='done'
+                  autoCapitalize='none'
+                  autoCorrect={false}
+                  secureTextEntry
+                  password
+                  onChangeText={this.props.handleChangePassword}
+                  onSubmitEditing={this._handleLogin}
+                  value={this.props.password}
+                  underlineColorAndroid={Colors.coal}
+                  placeholder={I18n.t('userpassword')}
+                  placeholderTextColor={Colors.steel} />
+              </View>
+              <View style={styles.fingerprintContainer}>
+                { this.props.credentialStored ?
+                    <TouchableOpacity style={styles.fingerprintButton} onPress={() => {
+                      this._authenticateUserWithTouch()
+                      gaTracker.trackEvent('Touch ID', 'Relaunch')
+                    }}>
+                      <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
+                      <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
+                    </TouchableOpacity>
+                  :
+                    <View style={styles.fingerprintButton}>
+                      <MKCheckbox ref='touchCheckbox' style={styles.touchCheckbox} checked={this.props.touchEnabled} onCheckedChange={() => {
+                        let checked = this.refs.touchCheckbox.state.checked
+                        this._changeTouchCheckbox(checked)
+                      }} />
+                      <Text allowFontScaling={false} style={styles.touchInstruction}>Set up login using your fingerprint</Text>
+                    </View>
+                }
+              </View>
             </View>
-            <View style={styles.textFieldContainer}>
-              <MKTextField
-                ref='password'
-                style={styles.textField}
-                textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
-                keyboardType='default'
-                returnKeyType='done'
-                autoCapitalize='none'
-                autoCorrect={false}
-                secureTextEntry
-                password
-                onChangeText={this.props.handleChangePassword}
-                onSubmitEditing={this._handleLogin}
-                value={this.props.password}
-                underlineColorAndroid={Colors.coal}
-                placeholder={I18n.t('userpassword')}
-                placeholderTextColor={Colors.steel} />
+            <View style={styles.touchSignRow}>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+                gaTracker.trackEvent('Login', 'Forgot Password')
+              }}>
+                <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {
+                NavigationActions.screen_1()
+                gaTracker.trackEvent('Login', 'Sign Up')
+              }}>
+                <Image style={styles.signUpButton} source={Images.signUpButton} />
+              </TouchableOpacity>
             </View>
           </View>
-        </LoginView>
-        <LoginButtonView>
-          {this.props.mfetching || this.props.fetching
-            ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
-          : <TouchableOpacity onPress={() => { this._handleLogin() }}>
-            <Image style={{width: Metrics.screenWidth * 0.5,
-              borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
-              height: Metrics.screenHeight * 0.064}}
-              source={Images.loginButtonGreen} />
-          </TouchableOpacity> }
-        </LoginButtonView>
-        <SignUpView>
-          <TouchableOpacity onPress={() => {
-            NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
-            gaTracker.trackEvent('Login', 'Forgot Password')
-          }}>
-            <Text allowFontScaling={false} style={styles.link}>{I18n.t('forgotPassword')}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {
-            NavigationActions.screen_1()
-            gaTracker.trackEvent('Login', 'Sign Up')
-          }}>
-            <Image style={styles.signUpButton} source={Images.signUpButton} />
-          </TouchableOpacity>
-        </SignUpView>
+          <View style={[styles.loginButton, {marginTop: -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0015}]}>
+            {this.props.mfetching || this.props.fetching
+              ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
+            : <TouchableOpacity onPress={() => { this._handleLogin() }}>
+              <Image style={{width: Metrics.screenWidth * 0.5,
+                borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
+                height: Metrics.screenHeight * 0.064}}
+                source={Images.loginButtonGreen} />
+            </TouchableOpacity> }
+          </View>
+        </View> 
+        
+       :  <View>
+            <View style={styles.logoViewLandscape}>
+              <Image source={Images.clearLogo} style={styles.logo} />
+            </View>
+            <View style={styles.formLandscape}>
+              <View style={styles.touchLoginContainerLandscape}>
+                <View style={[styles.textFieldContainerLandscape, {marginTop: DeviceInfo.isTablet () ? Metrics.baseMargin * Metrics.screenHeight * 0.007 : Metrics.baseMargin * Metrics.screenHeight * 0.003}]}>
+                  <MKTextField
+                    ref='username'
+                    style={[styles.textFieldLandscape, {left: DeviceInfo.isTablet() ? 40 : null}]}
+                    textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                    keyboardType='default'
+                    returnKeyType='next'
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                    onChangeText={this.props.handleChangeUserName}
+                    value={this.props.username}
+                    underlineColorAndroid={Colors.coal}
+                    onSubmitEditing={() => this.refs.password.focus()}
+                    placeholder={I18n.t('username')}
+                    placeholderTextColor={Colors.steel} />
+                      <View style={styles.fingerprintContainer}>
+                        { this.props.credentialStored ?
+                            <TouchableOpacity style={styles.fingerprintButton} onPress={() => {
+                              this._authenticateUserWithTouch()
+                              gaTracker.trackEvent('Touch ID', 'Relaunch')
+                            }}>
+                              <Flb name='fingerprint' size={Metrics.icons.medium * Metrics.screenHeight * 0.0015} style={styles.fingerprint} />
+                              <Text allowFontScaling={false} style={styles.touchInstruction}>Login with your fingerprint</Text>
+                            </TouchableOpacity>
+                          :
+                            <View style={styles.fingerprintButton}>
+                              <MKCheckbox ref='touchCheckbox' style={[styles.touchCheckbox, {top: DeviceInfo.isTablet() ? 62 : 20, right: DeviceInfo.isTablet() ? 70 : 10}]} checked={this.props.touchEnabled} onCheckedChange={() => {
+                                let checked = this.refs.touchCheckbox.state.checked
+                                this._changeTouchCheckbox(checked)
+                              }} />
+                              <Text allowFontScaling={false} style={[styles.touchInstruction, {marginTop: DeviceInfo.isTablet() ? null : 35, top: DeviceInfo.isTablet() ? 60 : 1, right: DeviceInfo.isTablet() ? 70 : 10}]}>Set up login using your fingerprint</Text>
+                            </View>
+                        }
+                      </View>
+                </View>
+                <View style={[styles.textFieldContainerLandscape, {marginTop: DeviceInfo.isTablet () ? Metrics.baseMargin * Metrics.screenHeight * 0.007 : Metrics.baseMargin * Metrics.screenHeight * 0.003}]}>
+                  <MKTextField
+                    ref='password'
+                    style={[styles.textFieldLandscape, {left: DeviceInfo.isTablet() ? 40 : null}]}
+                    textInputStyle={{flex: 1, color: Colors.flBlue.anvil, fontSize: Fonts.size.input * Metrics.screenWidth * 0.0025}}
+                    keyboardType='default'
+                    returnKeyType='done'
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                    secureTextEntry
+                    password
+                    onChangeText={this.props.handleChangePassword}
+                    onSubmitEditing={this._handleLogin}
+                    value={this.props.password}
+                    underlineColorAndroid={Colors.coal}
+                    placeholder={I18n.t('userpassword')}
+                    placeholderTextColor={Colors.steel} />
+                  <View style={[styles.loginButton, {marginTop: DeviceInfo.isTablet() ? 52 : -Metrics.doubleBaseMargin * Metrics.screenHeight * 0.0002, top: DeviceInfo.isTablet() ? null : 30}]}>
+                      {this.props.mfetching || this.props.fetching
+                        ? <SingleColorSpinner strokeColor={Colors.orange} style={styles.spinnerView} />
+                      : <TouchableOpacity onPress={() => { this._handleLogin() }}>
+                          <Image style={{
+                            width:  DeviceInfo.isTablet() ? Metrics.screenWidth * 0.5 : Metrics.screenWidth * 0.7,
+                            borderRadius: Metrics.doubleBaseMargin * Metrics.screenWidth * 0.0025,
+                            height: Metrics.screenHeight * 0.064}}
+                            source={Images.loginButtonGreen} />
+                      </TouchableOpacity> }
+                  </View>
+                </View>
+            
+              </View>
+              <View style={styles.touchSignRow}>
+                <TouchableOpacity onPress={() => {
+                  NavigationActions.MyView({responseURL: urlConfig.forgotPwdURL})
+                  gaTracker.trackEvent('Login', 'Forgot Password')
+                }}>
+                  <Text allowFontScaling={false} style={[styles.link, {bottom:  DeviceInfo.isTablet() ? 125 : 160, right:  DeviceInfo.isTablet() ? 150 : 90}]}>{I18n.t('forgotPassword')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => {
+                  NavigationActions.screen_1()
+                  gaTracker.trackEvent('Login', 'Sign Up')
+                }}>
+                  <Image style={[styles.signUpButtonLandscape, {left: DeviceInfo.isTablet() ? 185 : 80}]} source={Images.signUpButton} />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>}
+       
       </View>
     )
   }
@@ -831,7 +1044,7 @@ class Login extends Component {
       <View style={{position: 'absolute',
         top: 0,
         left: 0,
-        width: this.state.isPortrait ? window.width : window.width * 1.78,
+        width: this.state.isPortrait ? window.width : window.width * 1,
         height: window.height,
         opacity: transparent,
         backgroundColor: Colors.snow
@@ -839,8 +1052,8 @@ class Login extends Component {
 
       {this.state.isPortrait ?  <View style={styles.container}>
           <Image source={Images.background} style={styles.backgroundImage} />
-          <Clouds />
-          <CityScape />
+          <Clouds isPortrait={this.state.isPortrait} />
+          <CityScape isPortrait={this.state.isPortrait} />
           <View keyboardShouldPersistTaps='always' style={styles.container}>
             { this.props.touchAvailable ?
                 this._renderTouchAvailableLogin()
@@ -858,9 +1071,9 @@ class Login extends Component {
             </View>
           </View>
         </View>:  <ScrollView style={styles.container}>
-          <Image source={Images.background} style={styles.backgroundImageLandscape} />
-          <Clouds />
-          <CityScape />
+          <Image source={Images.background} style={[styles.backgroundImageLandscape, {height: DeviceInfo.isTablet() ? Metrics.screenHeight - (Metrics.screenHeight * 0.43) : Metrics.screenHeight - (Metrics.screenHeight * 0.59)}]} />
+          <Clouds isPortrait={this.state.isPortrait}/>
+          <CityScape isPortrait={this.state.isPortrait}/>
           <View keyboardShouldPersistTaps='always' style={styles.container}>
             { this.props.touchAvailable ?
                 this._renderTouchAvailableLogin()
@@ -869,11 +1082,11 @@ class Login extends Component {
             }
           </View>
           {this.state.modalVisible && this._moreInfo()}
-          <View style={styles.footer}>
+          <View style={[styles.footerLandscape, {left: DeviceInfo.isTablet() ? 20 : 25, top: DeviceInfo.isTablet() ? 720 : 290}]}>
             <View>
               <Text allowFontScaling={false} style={styles.footerText}>{I18n.t('footerText')}</Text>
             </View>
-            <View>
+            <View style={{left: DeviceInfo.isTablet() ? 10 : 30, bottom:  DeviceInfo.isTablet() ? 15 : 10}}>
               { this._infoMenu() }
             </View>
           </View>

@@ -52,6 +52,27 @@ export default StyleSheet.create({
     fontWeight: '400',
     margin: 10
   },
+  h1_2: {
+    fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0023 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
+    color: Colors.flBlue.anvil,
+    textAlign: 'center',
+    marginTop: Metrics.doubleBaseMargin,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400',
+    //margin: 10
+  },
+  h1_3: {
+    fontSize: (Platform.OS === 'ios') ? Fonts.size.h4 * Metrics.screenWidth * 0.0023 : Fonts.size.h4 * Metrics.screenWidth * 0.0027,
+    color: Colors.flBlue.ocean,
+    textAlign: 'center',
+    marginTop: Metrics.smallMargin,
+    fontFamily: Fonts.type.subHeaderFont,
+    fontWeight: '400',
+    textDecorationLine: 'underline',
+    textDecorationColor: Colors.flBlue.ocean
+   // margin: 10
+  },
+
   h2: {
     fontSize: Fonts.size.h5 * Metrics.screenWidth * 0.0025,
     color: Colors.flBlue.anvil,

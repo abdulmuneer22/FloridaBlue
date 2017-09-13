@@ -41,7 +41,8 @@ export default StyleSheet.create({
     marginRight: 40,
     marginTop: 20,
     fontSize: Fonts.size.medium * Metrics.screenWidth * 0.0026,
-    textAlign: 'justify'
+    textAlign: 'justify',
+    color: Colors.flBlue.anvil
   },
   readMoreHeader: {
     fontSize: 18,

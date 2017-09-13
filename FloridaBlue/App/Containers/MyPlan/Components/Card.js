@@ -24,6 +24,7 @@ import ClaimsActions from '../../../Redux/ClaimsRedux'
 import LinearGradient from 'react-native-linear-gradient'
 import { GoogleAnalyticsTracker, GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge'
 import SettingActions from '../../../Redux/SettingRedux'
+import DeviceInfo from 'react-native-device-info'
 
 let urlConfig = require('../../../UrlConfig')
 let gaTracker = new GoogleAnalyticsTracker(urlConfig.gaTag)
@@ -109,7 +110,7 @@ class Card extends Component {
           <LinearGradient colors={this.props.gradientColor}
             style={{
               flex: 1,
-              width:  this.props.isPortrait ? this.state.CardWidth : this.state.CardWidth * 1.78,
+              width:  this.props.isPortrait ? this.state.CardWidth : (DeviceInfo.isTablet() ? this.state.CardWidth* 1.34 : this.state.CardWidth * 1.78),
               height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.76) : Metrics.screenHeight - (Metrics.screenHeight * 0.78),
         //    alignItems: 'center',
         //    justifyContent: 'center'

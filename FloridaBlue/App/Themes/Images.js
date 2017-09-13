@@ -86,7 +86,7 @@ const images = {
   dglogo: require('../Images/dg-logo.png'),
   familylogo: require('../Images/family-dollar-logo.png'),
   navarrologo: require('../Images/navarro-logo.png'),
-  careFinderLS: require('../Images/carefinderL.png')
+  careFinderLS: require('../Images/find-care-land-dash.png')
 }
 
 export default images

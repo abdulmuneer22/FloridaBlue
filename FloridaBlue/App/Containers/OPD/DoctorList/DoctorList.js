@@ -18,6 +18,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient'
 import { Card } from 'native-base'
 import DoctorCard from './Components/DoctorCard'
+import Switch from './Components/switch'
 import { Actions as NavigationActions, ActionConst } from 'react-native-router-flux'
 import styles from './DoctorListStyle'
 import NavItems from '../../../../Navigation/NavItems.js'
@@ -200,12 +201,26 @@ class DoctorList extends Component {
                   : null
                 }
 
-                <View style={{flex: 1, marginTop: -20}}>
+            <View style={{flex:1}}>
+              { this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0
+                ? <Switch
+              data={this.props.provider && this.props.provider.data}
+              leftActive={this.props.leftActive}
+              rightActive={this.props.rightActive}
+              attemptHandleLeft={this.props.attemptHandleLeft}
+              attemptHandleRight={this.props.attemptHandleRight} /> 
+              : null }
+              </View>
+
+                <View style={{flex: 1}}>
                   {
                      this.props.provider && this.props.provider.data && this.props.provider.data.providerList && this.props.provider.data.providerList.length > 0
                        ? <DoctorCard
                          cardLimit={this.state.listLimit}
-                         data={this.props.provider.data.providerList}
+                         data={this.props.rightActive ? this.props.savedProviderList && this.props.savedProviderList.providerList : this.props.provider.data.providerList}
+                         leftActive={this.props.leftActive}
+                         rightActive={this.props.rightActive}
+                         isSaved = {this.props.rightActive ? true : false}
                       />
                   : <View style={{flex: 1, margin: 15}}>
                     <Card style={{flex: 1, borderRadius: 20, justifyContent: 'center'}}>
@@ -320,6 +335,8 @@ class DoctorList extends Component {
 
   render () {
     // alert(this.props.data)
+    console.log("checking saveprovider list page", this.props.savedProvider)
+     console.tron.log("checking saveprovider reactron list page", this.props.savedProvider)
     return (
       <View style={styles.container}>
         <View >
@@ -391,7 +408,12 @@ const mapStateToProps = (state) => {
     gender: state.provider.gender,
     programsList: state.provider.programsList,
     officeHours: state.provider.officeHours,
-    isPortrait: state.setting.isPortrait
+    isPortrait: state.setting.isPortrait,
+    leftActive: state.provider.leftActive,
+    rightActive: state.provider.rightActive,
+    savedProvider: state.provider.savedprovider,
+    unsavedProvider: state.provider.unsavedprovider,
+    savedProviderList: state.provider.savedproviderlist
   }
 }
 
@@ -400,6 +422,8 @@ const mapDispatchToProps = (dispatch) => {
     attemptAsyncProviderSearch: (data) => dispatch(ProviderActions.sendAsyncProviderSearchRequest(data)),
     attemptAsyncPharmacySearch: (data) => dispatch(ProviderActions.sendAsyncPharmacySearchRequest(data)),
     attemptAsyncUrgentSearch: (data) => dispatch(ProviderActions.sendAsyncUrgentSearchRequest(data)),
+    attemptHandleLeft: () => dispatch(ProviderActions.providerClickleft()),
+    attemptHandleRight: () => dispatch(ProviderActions.providerClickright()),
     changeLatitude: (latitude) => dispatch(ProviderActions.changeLatitude(latitude)),
     changeLongitude: (longitude) => dispatch(ProviderActions.changeLongitude(longitude)),
     changeEnd: (end) => dispatch(ProviderActions.changeEnd(end)),

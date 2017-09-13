@@ -11,10 +11,11 @@ import { Images, Metrics, Colors } from '../../Themes'
 import styles from './LoginStyle'
 
 export default class LogoView extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
-      fadeAnim: new Animated.Value(0) // init opacity 0
+      fadeAnim: new Animated.Value(0), // init opacity 0
+      isPortrait: this.props.isPortrait
     }
   }
 
@@ -30,7 +31,7 @@ export default class LogoView extends Component {
 
   render () {
     return (
-      <Animated.View style={[styles.logoView, {opacity: this.state.fadeAnim}]}>
+      <Animated.View style={styles.logoViewLandscape}>
         {this.props.children}
       </Animated.View>
     )

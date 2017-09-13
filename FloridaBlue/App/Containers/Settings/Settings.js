@@ -236,33 +236,35 @@ class Settings extends Component {
 
         <View style={{flex: 1, backgroundColor: Colors.flBlue.bg2}}>
 
-          { Platform.OS === 'ios' && this.props.touchAvailable ?
+          { this.props.touchAvailable ?
             <View style={{ // alignItems: 'center',
                           justifyContent: 'center',
                           flex: 1}}>
               <BCard style={{ //alignItems: 'center',
                             flexDirection: 'row',
                             flex: 1,
-                            width:Metrics.screenWidth,
+                            width: this.props.isPortrait ? Metrics.screenWidth : Metrics.screenWidth * 1.78,
                             height: Metrics.screenHeight - (Metrics.screenHeight * 0.90)}}>
                 <View style={{ flex: 2,
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 backgroundColor: Colors.transparent}}>
-                  <Flb name={'fingerprint'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} />
+                  <Flb name={'fingerprint'} size={Metrics.icons.regular * Metrics.screenWidth * 0.002} color={Colors.flBlue.ocean} style={{right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.00025 : null): (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.005 : null)}}/>
                 </View>
                 <View style={{ flex: 6,
                                 alignItems: 'flex-start'}}>
                   { this.props.touchEnabled ?
-                    <Text allowFontScaling={false} style={styles.cardText}>Touch ID Enabled</Text>
+                    <Text allowFontScaling={false} style={[styles.cardText, {top: this.props.isPortrait ? Metrics.baseMargin * Metrics.screenHeight * 0.0028 : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.00085 : null), right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.0006 : null): (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.0097 : null)}]}>Touch ID Enabled</Text>
                     :
-                    <Text allowFontScaling={false} style={styles.cardText}>Enable Touch ID</Text>
+                    <Text allowFontScaling={false} style={[styles.cardText, {top: this.props.isPortrait ? Metrics.baseMargin * Metrics.screenHeight * 0.0028 : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.00085 : null), right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.0006 : null): (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.0097 : null)}]}>Enable Touch ID</Text>
                   }
                 </View>
-                <MKSwitch style={{settingStatusSwitch: {
+                <MKSwitch style={{
                                   marginTop: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
-                                  marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0025
-                                }}}
+                                  marginBottom: Metrics.baseMargin * Metrics.screenHeight * 0.0025,
+                                  bottom: this.props.isPortrait ?  (DeviceInfo.isTablet() ? null : Metrics.baseMargin * Metrics.screenHeight * 0.0016) : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.0016 : Metrics.baseMargin * Metrics.screenHeight * 0.0036),
+                                  right: this.props.isPortrait ? (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.004 :  null) : (DeviceInfo.isTablet() ? Metrics.baseMargin * Metrics.screenHeight * 0.04 : Metrics.baseMargin * Metrics.screenHeight * 0.0055)
+                                }}
                   checked={this.props.touchEnabled}
                   trackSize={30}
                   trackLength={52}
@@ -311,7 +313,7 @@ class Settings extends Component {
           <View style={{// alignItems: 'center',
                         justifyContent: 'center',
                         flex: 1}}>
-            <TouchableOpacity onPress={Permissions.openSettings} 
+            <TouchableOpacity onPress={Permissions.openSettings}
                             style={{// alignItems: 'center',
                             justifyContent: 'center',
                             flex: 1}}>

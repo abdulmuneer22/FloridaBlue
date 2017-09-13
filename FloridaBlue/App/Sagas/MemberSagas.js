@@ -64,6 +64,7 @@ export function * member (api, {smToken}) {
     yield put(ClaimsActions.claimsListRequest(data))
     yield put(ProviderActions.sendSavedProviderRequest(data))
     yield put(ProviderActions.sendUnSavedProviderRequest(data))
+    yield put(ProviderActions.sendSavedProviderListRequest(data))
     if (hsaTrue && financialProduct != null) {
       yield put(HsaActions.hsaRequest(financialProduct))
     }

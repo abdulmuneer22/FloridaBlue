@@ -190,10 +190,12 @@ class ProviderMap extends Component {
         : <View style={styles.spinnerView}>
           <SingleColorSpinner strokeColor={Colors.flBlue.ocean} />
           <Text allowFontScaling={false} style={styles.spinnerText}>Loading Please Wait </Text>
-        </View>}</View> : <ScrollView>{this.props.provider.data.providerList
+        </View>}</View> 
+        
+        : <ScrollView>{this.props.provider.data.providerList
           ? <View style={[styles.container, {flexDirection: 'row'}]}>
             <MapView
-              style={[styles.map, {height: (Platform.OS === 'ios') ? Metrics.screenHeight - (Metrics.screenHeight * 0.54) : Metrics.screenHeight - (Metrics.screenHeight * 0.5655), width: Metrics.screenWidth}]}
+              style={[styles.map, {height: (Platform.OS === 'ios') ? DeviceInfo.isTablet() ? Metrics.screenHeight - (Metrics.screenHeight * 0.34) : Metrics.screenHeight - (Metrics.screenHeight * 0.54) : Metrics.screenHeight - (Metrics.screenHeight * 0.5655), width: DeviceInfo.isTablet() ? Metrics.screenWidth * .63 : Metrics.screenWidth * .885}]}
               showsUserLocation
               loadingEnabled
               onRegionChangeComplete={this._onRegionChange}
@@ -207,19 +209,22 @@ class ProviderMap extends Component {
 
             </MapView>
             <HideableView visible={this.state.showLocationDetail} style={[styles.locationDetailContainer, {top: (Platform.OS === 'ios') ? Metrics.textHeight2 * Metrics.screenHeight * 0.0087 : Metrics.textHeight2 * Metrics.screenHeight * 0.008}]} removeWhenHidden>
-              <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} style={{marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.00315}} showsButtons showsPagination={false}
-                width={(Platform.OS === 'ios') ? (Metrics.screenWidth - (Metrics.screenWidth * 0.10)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
-                height={(Platform.OS === 'ios') ? (Metrics.screenHeight - (Metrics.screenHeight * 0.398)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
-                bottom={(Platform.OS === 'ios') ? 300 : -Metrics.textHeight * Metrics.screenHeight * 0.0013}
-                nextButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045, bottom: 300,
+              <Swiper index={this.state.selectedLocation ? this.state.selectedLocation.uniqueId : ''} loop={false} 
+              style={{
+                marginBottom: Metrics.searchBarHeight1 * Metrics.screenHeight * 0.00315}} showsButtons showsPagination={false}
+                width={(Platform.OS === 'ios') ? DeviceInfo.isTablet() ? (Metrics.screenWidth - (Metrics.screenWidth * 0.29)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.09)) : (Metrics.screenWidth - (Metrics.screenWidth * 0.10))}
+                height={(Platform.OS === 'ios') ? DeviceInfo.isTablet() ? (Metrics.screenHeight - (Metrics.screenHeight * 0.0248)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.3975)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.55))}
+                bottom={(Platform.OS === 'ios') ? DeviceInfo.isTablet() ? (Metrics.screenHeight - (Metrics.screenHeight * 0.555)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.548)) : -Metrics.textHeight * Metrics.screenHeight * 0.0013}
+                left={(Platform.OS === 'ios') ? (DeviceInfo.isTablet() ? (Metrics.screenHeight - (Metrics.screenHeight * 0.997)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.996))) : null}
+                nextButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045, bottom: DeviceInfo.isTablet() ? (Metrics.screenHeight - (Metrics.screenHeight * 0.414)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.514)),
                                             // fontWeight:'400',
-                  marginRight: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
+                  marginRight: (Platform.OS === 'ios') ? DeviceInfo.isTablet() ? -Metrics.baseMargin * Metrics.screenWidth * 0.001 : -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.001,
                   color: Colors.flBlue.grey3,
                   marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>›</Text>}
                 onMomentumScrollEnd={this._locationSwiped}
-                prevButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045, bottom: 300,
+                prevButton={<Text allowFontScaling={false} style={{fontSize: Fonts.size.h1 * Metrics.screenWidth * 0.0045, bottom:  DeviceInfo.isTablet() ? (Metrics.screenHeight - (Metrics.screenHeight * 0.414)) : (Metrics.screenHeight - (Metrics.screenHeight * 0.514)),
                                             // fontWeight:'400',
-                  marginLeft: (Platform.OS === 'ios') ? -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
+                  marginLeft: (Platform.OS === 'ios') ? DeviceInfo.isTablet() ? -Metrics.baseMargin * Metrics.screenWidth * 0.001 : -Metrics.baseMargin * Metrics.screenWidth * 0.002 : -Metrics.baseMargin * Metrics.screenWidth * 0.0009,
                   color: Colors.flBlue.grey3,
                   marginBottom: (Platform.OS === 'ios') ? Metrics.textHeight * Metrics.screenHeight * 0.003 : Metrics.baseMargin * Metrics.screenHeight * 0.003}}>‹</Text>}
 

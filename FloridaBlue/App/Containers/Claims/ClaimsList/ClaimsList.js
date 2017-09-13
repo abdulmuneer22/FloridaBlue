@@ -61,6 +61,12 @@ class ClaimsList extends Component {
       isShowingViewMore: true,
       dateError: false,
       members: [],
+      isMemeberSortin : false,
+      isDateSorting : false,
+      isProviderSorting : false,
+      member : '',
+      date : '',
+      provider : '',
       searchData: {
         memberName: '',
         providerName: '',
@@ -82,7 +88,7 @@ class ClaimsList extends Component {
     this.addStartDate = this.addStartDate.bind(this)
     this.addEndDate = this.addEndDate.bind(this)
     this.memberSelected = this.memberSelected.bind(this)
-    this.sortClaims = this.sortClaims.bind(this)
+    this._sortItems = this._sortItems.bind(this)
     this.searchResults = this.searchResults.bind(this)
     this.handleSearchClose = this.handleSearchClose.bind(this)
     this._orientationDidChange = this._orientationDidChange.bind(this)
@@ -218,7 +224,7 @@ class ClaimsList extends Component {
     this.props.changeStartDate(newStartDate)
     this.props.changeEndDate(newEndDate)
 
-    if (this.props.claimsdata.members) {
+    if (this.props.claimsdata && this.props.claimsdata.members) {
       this.props.changeMemberList(this.props.claimsdata.members)
     }
 
@@ -249,72 +255,7 @@ class ClaimsList extends Component {
     }
   }
 
-  sortClaims (column) {
-    let sortBy = []
-    if (column == 'provider') {
-      let providerSortState = this.state.searchData.sortBy.providerName
-      let sortByState = 0
-      if (providerSortState == 0 || providerSortState == -1) {
-        sortByState = 1
-      } else if (providerSortState == 1) {
-        sortByState = -1
-      } else {
-        sortByState = 1
-      }
-      this.state.searchData.sortBy.providerName = sortByState
-    }
-
-    if (column == 'date') {
-      let dateSortState = this.state.searchData.sortBy.date
-      let sortByState = 0
-      if (dateSortState == 0 || dateSortState == -1) {
-        sortByState = 1
-      } else if (dateSortState == 1) {
-        sortByState = -1
-      } else {
-        sortByState = 1
-      }
-      this.state.searchData.sortBy.date = sortByState
-    }
-
-    if (column == 'member') {
-      let memberSortState = this.state.searchData.sortBy.memberName
-      let sortByState = 0
-      if (memberSortState == 0 || memberSortState == -1) {
-        sortByState = 1
-      } else if (memberSortState == 1) {
-        sortByState = -1
-      } else {
-        sortByState = 1
-      }
-      this.state.searchData.sortBy.memberName = sortByState
-    }
-
-    if (this.state.searchData.sortBy.providerName != 0) {
-      sortBy.push({
-        'columnName': 'providerName',
-        'sortOrder': this.state.searchData.sortBy.providerName
-      })
-    }
-
-    if (this.state.searchData.sortBy.date != 0) {
-      sortBy.push({
-        'columnName': 'date',
-        'sortOrder': this.state.searchData.sortBy.date
-      })
-    }
-
-    if (this.state.searchData.sortBy.memberName != 0) {
-      sortBy.push({
-        'columnName': 'memberName',
-        'sortOrder': this.state.searchData.sortBy.memberName
-      })
-    }
-
-    this.props.changeSortBy(sortBy)
-    this.state.sortOnClaims = true
-    // this.props.attemptClaimsList(this.props);
-  }
+  
   _renderViewMore () {
     // console.tron.log("view more" +this.props.asyncfetching)
     if (!this.props.asyncfetching) {
@@ -345,6 +286,180 @@ class ClaimsList extends Component {
     }
   }
 
+  _renderTwoCarets = (sorter) => {
+      return(
+          <View>
+                <TouchableOpacity
+                onPress = {()=>{
+                    if(sorter === "date") {
+                        this.setState({
+                            isDateSorting : true,
+                            isMemeberSortin : false,
+                            isProviderSorting : false,
+                            date : 1,
+                            member : '',
+                            provider : '',
+                        })
+                        this._sortItems("date",1)
+                    } else if(sorter === "member"){
+                        this.setState({
+                            isDateSorting : false,
+                            isMemeberSortin : true,
+                            isProviderSorting : false,
+                            date : '',
+                            member : 1,
+                            provider : ''
+                        })
+                        this._sortItems("memberName",1)
+                    }else if(sorter === "provider"){
+                        this.setState({
+                            isDateSorting : false,
+                            isMemeberSortin : false,
+                            isProviderSorting : true,
+                            date : '',
+                            member : '',
+                            provider : 1
+                        })
+                        this._sortItems("providerName",1)
+                    }
+                }}
+                >
+                <Icon name='caret-up' size={Metrics.icons.large*Metrics.screenWidth*0.0012} color={Colors.flBlue.anvil}
+                style={{paddingHorizontal : 5,backgroundColor:Colors.transparent, marginTop:Metrics.smallMargin*Metrics.screenHeight*0.0013,}}/>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                onPress = {()=>{
+                    if(sorter === "date") {
+                        this.setState({
+                            isDateSorting : true,
+                            isMemeberSortin : false,
+                            isProviderSorting : false,
+                            date : -1,
+                            member : '',
+                            provider : ''
+                        })
+                        this._sortItems("date",-1)
+                    }else if(sorter === "member"){
+                        this.setState({
+                            isDateSorting : false,
+                            isMemeberSortin : true,
+                            isProviderSorting : false,
+                            date : '',
+                            member : -1,
+                            provider : ''
+                        })
+                        this._sortItems("memberName",-1)
+                    }else if(sorter === "provider"){
+                        this.setState({
+                            isDateSorting : false,
+                            isMemeberSortin : false,
+                            isProviderSorting : true,
+                            date : '',
+                            member : '',
+                            provider : -1,
+                        })
+                        this._sortItems("providerName",-1)
+                    }
+                }}
+                >
+                <Icon name='caret-down' size={Metrics.icons.large*Metrics.screenWidth*0.0012} color={Colors.flBlue.anvil}
+                    style={{paddingHorizontal : 5, backgroundColor:Colors.transparent}}/>
+                </TouchableOpacity>
+            </View>
+      )
+  }
+
+
+  _renderUpCaret = (sorter) => {
+    return(
+      <View>
+        <TouchableOpacity
+        onPress = {()=>{
+            if(sorter === "date") {
+                this.setState({
+                    date : 1,
+                    member : '',
+                    provider : ''
+                })
+                this._sortItems("date",1)
+            } else if(sorter === "member"){
+                this.setState({
+                        date : '',
+                        member : 1,
+                        provider : ''
+                })
+                this._sortItems("memberName",1)
+            }else if(sorter === "provider",1){
+                this.setState({
+                    date : '',
+                    member : '',
+                    provider : 1
+                })
+                this._sortItems("providerName",1)
+            }
+        }
+        }
+        >
+        <Flb
+        name='caret-up'
+        size={Metrics.icons.regular * Metrics.screenWidth * 0.0015}
+        color={Colors.flBlue.anvil}
+        />
+        </TouchableOpacity>
+        </View>
+        )
+  }
+
+
+  _renderDownCaret = (sorter) => {
+    return(
+    <View>
+        <TouchableOpacity
+        onPress = {()=>{
+            if(sorter === "date") {
+            this.setState({
+            date : -1,
+            member : '',
+            provider : ''
+            })
+            this._sortItems("date",-1)
+            } else if(sorter === "member"){
+            this.setState({
+            date : '',
+            member : -1,
+            provider : ''
+            })
+            this._sortItems("memberName",-1)
+            }else if(sorter === "provider"){
+            this.setState({
+            date : '',
+            member : '',
+            provider : -1
+            })
+            this._sortItems("providerName",-1)
+            }
+        }}
+        >
+        <Flb
+        name='caret-down'
+        size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil}
+       />
+        </TouchableOpacity>
+        </View>
+    )
+  }
+
+
+  _sortItems = (sorter,order) => {
+    let sortBy = [{'columnName' : sorter,'sortOrder' : order}]
+    this.setState({
+      sortOnClaims : true  
+    },()=>{
+      this.props.changeSortBy(sortBy)
+    })  
+  }
+
   _displayCondition () {
     if (this.props.fetching) {
       return (<View style={styles.spinnerView}>
@@ -369,31 +484,28 @@ class ClaimsList extends Component {
             </View>
           </View>
 
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, marginBottom:Metrics.smallMargin*Metrics.screenHeight*0.001, marginTop:Metrics.smallMargin*Metrics.screenHeight*0.001}}>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-              <View style={{ flex: 0.3, flexDirection: 'row' }}>
-                <TouchableOpacity style={{ flex: 0.3, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.sortClaims('date')}>
+              <View style={{ flex: 0.3, flexDirection:'row',justifyContent:'center', alignItems:'center' }}>
                   <Text allowFontScaling={false} style={styles.claimsCategoryText}>Date</Text>
-                  <Flb name={this.state.searchData.sortBy.date == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.date == 1 ? 'caret-up' : 'caret-down')}
-                  size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil}
-                    style={{marginTop:Metrics.smallMargin*Metrics.screenHeight*0.002}}/>
-                </TouchableOpacity>
+                  {!this.state.isDateSorting && 
+                  this._renderTwoCarets("date")
+                  }
+                  {this.state.date === -1 && this._renderUpCaret("date")}
+                  {this.state.date === 1 && this._renderDownCaret("date")}
               </View>
-              <View style={{ flex: 0.3 }}>
-                <TouchableOpacity style={{ flex: 0.3, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.sortClaims('member')}>
+              <View style={{ flex: 0.3,flexDirection:'row', justifyContent:'center', alignItems:'center' }}>
                   <Text allowFontScaling={false} style={styles.claimsCategoryText}>Member</Text>
-                  <Flb name={this.state.searchData.sortBy.memberName == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.memberName == 1 ? 'caret-up' : 'caret-down')}
-                  size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil}
-                  style={{marginTop:Metrics.smallMargin*Metrics.screenHeight*0.002}}/>
-                </TouchableOpacity>
+                  {!this.state.isMemeberSortin && this._renderTwoCarets("member")}
+                  {this.state.member === -1 && this._renderUpCaret("member")}
+                  {this.state.member === 1 && this._renderDownCaret("member")}
               </View>
-              <View style={{ flex: 0.4 }}>
-                <TouchableOpacity style={{ flex: 0.4, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.sortClaims('provider')}>
-                  <Text allowFontScaling={false} style={styles.claimsCategoryText}>Providers</Text>
-                  <Flb name={this.state.searchData.sortBy.providerName == 0 ? 'caret-up-down' : (this.state.searchData.sortBy.providerName == 1 ? 'caret-up' : 'caret-down')}
-                    size={Metrics.icons.regular * Metrics.screenWidth * 0.0015} color={Colors.flBlue.anvil}
-                    style={{marginTop:Metrics.smallMargin*Metrics.screenHeight*0.002}}/>
-                </TouchableOpacity>
+              <View style={{ flex: 0.4,flexDirection:'row', justifyContent:'center', alignItems:'center'  }}>
+                 <Text allowFontScaling={false} style={styles.claimsCategoryText}>Providers</Text>
+                  {!this.state.isProviderSorting && this._renderTwoCarets("provider")}
+                  {this.state.provider === -1 && this._renderUpCaret("provider")}
+                  {this.state.provider === 1 && this._renderDownCaret("provider")}
+        
               </View>
             </View>
           </View>
@@ -405,6 +517,7 @@ class ClaimsList extends Component {
                   data={this.props.claimsdata.data}
                   cardLimit={this.state.listLimit < this.props.claimsdata.totalCount ? this.state.listLimit : this.props.claimsdata.data.length}
                   claimsCount={this.props.claimsdata.totalCount}
+                  isPortrait={this.props.isPortrait}
                 />
               </View>
               <View style={{ flex: 1 }}>
@@ -432,7 +545,7 @@ class ClaimsList extends Component {
           </View>
 
          <HideableView style={styles.searchContainer} visible={this.state.searchVisible} removeWhenHidden duration={200}>
-            <View style={{backgroundColor: 'white', marginTop: -Metrics.mediumMargin*Metrics.screenHeight*0.002}}>
+            <View style={{backgroundColor: 'white'}}>
               <TouchableOpacity style={styles.closeSearchButton} onPress={this.handleSearchClose}>
                 <Flb name='remove' color={Colors.flBlue.grey5} size={Metrics.doubleBaseMargin * Metrics.screenWidth * 0.003} />
               </TouchableOpacity>
@@ -502,20 +615,22 @@ class ClaimsList extends Component {
                             justifyContent:'center',
                             margin:Metrics.baseMargin*Metrics.screenHeight*0.001,
                             marginLeft: Metrics.doubleBaseMargin*Metrics.screenHeight*0.0012}}>            
-                <Text allowFontScaling={false} style={{fontSize: Fonts.size.regular * Metrics.screenWidth*0.0027,
-                                                      fontFamily: Fonts.type.base,
-                                                      fontWeight: '400',
-                                                      color: Colors.flBlue.grey5,}}>
+                <Text allowFontScaling={false} 
+                style={{fontSize: Fonts.size.regular * Metrics.screenWidth*0.0027,
+                        fontFamily: Fonts.type.base,
+                        fontWeight: '400',
+                        color: Colors.flBlue.grey5,}}>
                   Start Date
                 </Text>
                 </View>
                 <View style={{flex:0.5,justifyContent:'center',
                               margin:Metrics.baseMargin*Metrics.screenHeight*0.001,
                               marginLeft:Metrics.textHeight2*Metrics.screenWidth*0.005}}>
-                 <Text allowFontScaling={false} style={{fontSize: Fonts.size.regular * Metrics.screenWidth*0.0027,
-                                                        fontFamily: Fonts.type.base,
-                                                        fontWeight: '400',
-                                                        color: Colors.flBlue.grey5,}}>
+                 <Text allowFontScaling={false} 
+                 style={{fontSize: Fonts.size.regular * Metrics.screenWidth*0.0027,
+                        fontFamily: Fonts.type.base,
+                        fontWeight: '400',
+                        color: Colors.flBlue.grey5,}}>
                    End Date
                   </Text>
                </View>
@@ -580,9 +695,6 @@ class ClaimsList extends Component {
   }
 
   render () {
-    /* console.tron.log("claims list data" + this.props.datePickerVisible)
-    console.tron.log("entered to claims list "  + this.props.claimsdata) */
-    //  console.tron.log("entered to claims member list " + JSON.stringify(this.props.memberObject.contractMembers))
     return (
       <View style={styles.container}>
         {this._renderHeader()}

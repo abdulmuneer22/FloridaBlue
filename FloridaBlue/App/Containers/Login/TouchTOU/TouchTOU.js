@@ -69,8 +69,6 @@ class TouchTOU extends Component {
   }
 
   _handleAuthenticateStatus(authStatus) {
-    console.log(authStatus)
-    console.tron.log(authStatus)
     if (authStatus == 'AUTHENTICATED') {
       if (Platform.OS === 'ios') {
         iOSTouchManager.storeCredentials(this.props.username, this.props.password)

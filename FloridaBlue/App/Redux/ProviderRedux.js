@@ -77,7 +77,10 @@ const { Types, Creators } = createActions({
   sendSavedProviderFailure: ['error'],
   sendUnSavedProviderRequest: ['data'],
   sendUnSavedProviderSuccess: ['data'],
-  sendUnSavedProviderFailure: ['error']
+  sendUnSavedProviderFailure: ['error'],
+  sendSavedProviderListRequest: ['data'],
+  sendSavedProviderListSuccess: ['data'],
+  sendSavedProviderListFailure: ['error']
 
 })
 
@@ -241,7 +244,7 @@ export const _sendConfigTypeSuccess = (state: Object, {data}: Object) => state.m
 export const _sendConfigTypeFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
 // sendSavedProviderRequest
-export const _sendSavedProviderRequest = (state: Object) => state.merge({ fetching: true })
+export const _sendSavedProviderRequest = (state: Object) => state.merge({ fetching: false })
 
 // sendSavedProviderSuccess
 export const _sendSavedProviderSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, savedprovider: data.data, error: null})
@@ -250,13 +253,22 @@ export const _sendSavedProviderSuccess = (state: Object, {data}: Object) => stat
 export const _sendSavedProviderFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
 // sendUnSavedProviderRequest
-export const _sendUnSavedProviderRequest = (state: Object) => state.merge({ fetching: true })
+export const _sendUnSavedProviderRequest = (state: Object) => state.merge({ fetching: false })
 
 // sendUnSavedProviderSuccess
 export const _sendUnSavedProviderSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, unsavedprovider: data.data, error: null})
 
 // sendUnSavedProviderFailure
 export const _sendUnSavedProviderFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
+
+// sendSavedProviderListRequest
+export const _sendSavedProviderListRequest = (state: Object) => state.merge({ fetching: true })
+
+// sendSavedProviderListSuccess
+export const _sendSavedProviderListSuccess = (state: Object, {data}: Object) => state.merge({fetching: false, savedproviderlist: data.data, error: null})
+
+// sendSavedProviderListFailure
+export const _sendSavedProviderListFailure = (state: Object, {error}: Object) => state.merge({ fetching: false, error, data: {} })
 
 // categoryCode
 export const _changeCategoryCode = (state: Object, {categoryCode}: Object) => state.merge({categoryCode})
@@ -429,5 +441,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEND_UN_SAVED_PROVIDER_REQUEST]: _sendUnSavedProviderRequest,
   [Types.SEND_UN_SAVED_PROVIDER_SUCCESS]: _sendUnSavedProviderSuccess,
   [Types.SEND_UN_SAVED_PROVIDER_FAILURE]: _sendUnSavedProviderFailure,
-  [Types.CHANGE_LOCATION_KEY]: _changeLocationKey
+  [Types.CHANGE_LOCATION_KEY]: _changeLocationKey,
+  [Types.SEND_SAVED_PROVIDER_LIST_REQUEST]: _sendSavedProviderListRequest,
+  [Types.SEND_SAVED_PROVIDER_LIST_SUCCESS]: _sendSavedProviderListSuccess,
+  [Types.SEND_SAVED_PROVIDER_LIST_FAILURE]: _sendSavedProviderListFailure
 })
